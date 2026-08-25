@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
 
-const headings = [{"depth":1,"slug":"odc-editing-applications","text":"Editing applications"},{"depth":2,"slug":"_prerequisites","text":"Prerequisites"}];
+const headings = [{"depth":1,"slug":"odc-editing-applications","text":"Editing applications"},{"depth":2,"slug":"_prerequisites","text":"Prerequisites"},{"depth":2,"slug":"odc-editing-source-code-using-developer-perspective_odc-editing-applications","text":"Editing the source code of an application using the Developer perspective"},{"depth":2,"slug":"odc-editing-application-configuration-using-developer-perspective_odc-editing-applications","text":"Editing the application configuration using the Developer perspective"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/odc-editing-applications";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["applications"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Editing applications {#odc-editing-applications}\n\nYou can edit the configuration and the source code of the application you create using the **Topology** view.\n\n## Prerequisites {#_prerequisites}\n\n- You have the appropriate [roles and permissions](/openshift-docs-markdown/authentication/using-rbac#default-roles_using-rbac) in a project to create and modify applications in OpenShift Container Platform.\n- You have [created and deployed an application on OpenShift Container Platform using the **Developer** perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective).\n- You have [logged in to the web console](/openshift-docs-markdown/web_console/web-console#web-console) and have switched to [the **Developer** perspective](/openshift-docs-markdown/web_console/web-console-overview#about-developer-perspective_web-console-overview).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/odc-editing-applications.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Editing applications {#odc-editing-applications}\n\nYou can edit the configuration and the source code of the application you create using the **Topology** view.\n\n## Prerequisites {#_prerequisites}\n\n- You have the appropriate [roles and permissions](/openshift-docs-markdown/authentication/using-rbac#default-roles_using-rbac) in a project to create and modify applications in OpenShift Container Platform.\n- You have [created and deployed an application on OpenShift Container Platform using the **Developer** perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective).\n- You have [logged in to the web console](/openshift-docs-markdown/web_console/web-console#web-console) and have switched to [the **Developer** perspective](/openshift-docs-markdown/web_console/web-console-overview#about-developer-perspective_web-console-overview).\n\n## Editing the source code of an application using the Developer perspective {#odc-editing-source-code-using-developer-perspective_odc-editing-applications}\n\nYou can use the **Topology** view in the **Developer** perspective to edit the source code of your application.\n\n**Procedure**\n\n- In the **Topology** view, click the **Edit Source code** icon, displayed at the bottom-right of the deployed application, to access your source code and modify it.\n\n  > [!NOTE]\n  > This feature is available only when you create applications using the **From Git**, **From Catalog**, and the **From Dockerfile** options.\n\n  If the **Eclipse Che** Operator is installed in your cluster, a Che workspace (![title=\"Che Workspace\"](/openshift-docs-markdown/_assets/images/odc_che_workspace.png)) is created and you are directed to the workspace to edit your source code. If it is not installed, you will be directed to the Git repository (![title=\"Git Repository\"](/openshift-docs-markdown/_assets/images/odc_git_repository.png)) your source code is hosted in.\n\n## Editing the application configuration using the Developer perspective {#odc-editing-application-configuration-using-developer-perspective_odc-editing-applications}\n\nYou can use the **Topology** view in the **Developer** perspective to edit the configuration of your application.\n\n> [!NOTE]\n> Currently, only configurations of applications created by using the **From Git**, **Container Image**, **From Catalog**, or **From Dockerfile** options in the **Add** workflow of the **Developer** perspective can be edited. Configurations of applications created by using the CLI or the **YAML** option from the **Add** workflow cannot be edited.\n\n**Prerequisites**\n\nEnsure that you have created an application using  the **From Git**, **Container Image**, **From Catalog**, or **From Dockerfile** options in the **Add** workflow.\n\n**Procedure**\n\n1. After you have created an application and it is displayed in the **Topology** view, right-click the application to see the edit options available. **Figure 1. Edit application**\n\n   ![odc_edit_app](/openshift-docs-markdown/_assets/images/odc_edit_app.png)\n2. Click **Edit *application-name*** to see the **Add** workflow you used to create the application. The form is pre-populated with the values you had added while creating the application.\n3. Edit the necessary values for the application.\n\n   > [!NOTE]\n   > You cannot edit the **Name** field in the **General** section, the CI/CD pipelines, or the **Create a route to the application** field in the **Advanced Options** section.\n4. Click **Save** to restart the build and deploy a new image. **Figure 2. Edit and redeploy application**\n\n   ![odc_edit_redeploy](/openshift-docs-markdown/_assets/images/odc_edit_redeploy.png)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/odc-editing-applications.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="odc-editing-applications" class="group scroll-mt-20">Editing applications<a href="#odc-editing-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can edit the configuration and the source code of the application you create using the <strong>Topology</strong> view.</p>
       <h2 id="_prerequisites" class="group scroll-mt-20">Prerequisites<a href="#_prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
@@ -99,7 +102,52 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>You have <a href="/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective">created and deployed an application on OpenShift Container Platform using the <strong>Developer</strong> perspective</a>.</li>
       <li>You have <a href="/openshift-docs-markdown/web_console/web-console#web-console">logged in to the web console</a> and have switched to <a href="/openshift-docs-markdown/web_console/web-console-overview#about-developer-perspective_web-console-overview">the <strong>Developer</strong> perspective</a>.</li>
       </ul>
-      <p class="/modules/odc-editing-application-configuration-using-developer-perspective.md"></p>
+      <h2 id="odc-editing-source-code-using-developer-perspective_odc-editing-applications" class="group scroll-mt-20">Editing the source code of an application using the Developer perspective<a href="#odc-editing-source-code-using-developer-perspective_odc-editing-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can use the <strong>Topology</strong> view in the <strong>Developer</strong> perspective to edit the source code of your application.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      In the <strong>Topology</strong> view, click the <strong>Edit Source code</strong> icon, displayed at the bottom-right of the deployed application, to access your source code and modify it.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This feature is available only when you create applications using the <strong>From Git</strong>, <strong>From Catalog</strong>, and the <strong>From Dockerfile</strong> options.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If the <strong>Eclipse Che</strong> Operator is installed in your cluster, a Che workspace (<img src="/openshift-docs-markdown/_assets/images/odc_che_workspace.png" alt="title=&quot;Che Workspace&quot;" loading="lazy" />) is created and you are directed to the workspace to edit your source code. If it is not installed, you will be directed to the Git repository (<img src="/openshift-docs-markdown/_assets/images/odc_git_repository.png" alt="title=&quot;Git Repository&quot;" loading="lazy" />) your source code is hosted in.</p>
+      </li>
+      </ul>
+      <h2 id="odc-editing-application-configuration-using-developer-perspective_odc-editing-applications" class="group scroll-mt-20">Editing the application configuration using the Developer perspective<a href="#odc-editing-application-configuration-using-developer-perspective_odc-editing-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can use the <strong>Topology</strong> view in the <strong>Developer</strong> perspective to edit the configuration of your application.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Currently, only configurations of applications created by using the <strong>From Git</strong>, <strong>Container Image</strong>, <strong>From Catalog</strong>, or <strong>From Dockerfile</strong> options in the <strong>Add</strong> workflow of the <strong>Developer</strong> perspective can be edited. Configurations of applications created by using the CLI or the <strong>YAML</strong> option from the <strong>Add</strong> workflow cannot be edited.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <p>Ensure that you have created an application using  the <strong>From Git</strong>, <strong>Container Image</strong>, <strong>From Catalog</strong>, or <strong>From Dockerfile</strong> options in the <strong>Add</strong> workflow.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      After you have created an application and it is displayed in the <strong>Topology</strong> view, right-click the application to see the edit options available. <strong>Figure 1. Edit application</strong>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/odc_edit_app.png" alt="odc_edit_app" />
+      </li>
+      <li>Click <strong>Edit </strong><em><strong>application-name</strong></em> to see the <strong>Add</strong> workflow you used to create the application. The form is pre-populated with the values you had added while creating the application.</li>
+      <li>
+      Edit the necessary values for the application.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You cannot edit the <strong>Name</strong> field in the <strong>General</strong> section, the CI/CD pipelines, or the <strong>Create a route to the application</strong> field in the <strong>Advanced Options</strong> section.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Click <strong>Save</strong> to restart the build and deploy a new image. <strong>Figure 2. Edit and redeploy application</strong>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/odc_edit_redeploy.png" alt="odc_edit_redeploy" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

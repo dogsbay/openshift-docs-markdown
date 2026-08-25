@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"js-about","text":"{{ js_operator }} overview"},{"depth":2,"slug":"js-about_additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"js-about","text":"JobSet Operator overview"},{"depth":2,"slug":"js-about_js-about","text":"About the JobSet Operator"},{"depth":2,"slug":"js-about_additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/jobset_operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ js_operator }} overview";
-const description = "Use the {{ js_operator }} on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and…" || undefined;
+const description = "Use the JobSet Operator on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["ai_workloads"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ js_operator }} overview {#js-about}\n\nUse the {{ js_operator }} on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently.\n\n## Additional resources {#js-about_additional-resources}\n\n- [JobSet documentation (Kubernetes)](https://jobset.sigs.k8s.io/docs/overview/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# JobSet Operator overview {#js-about}\n\nUse the JobSet Operator on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently.\n\n## About the JobSet Operator {#js-about_js-about}\n\nUse the JobSet Operator on OpenShift Container Platform to manage large, distributed, and coordinated computing workloads, such as high-performance computing (HPC) or artificial intelligence (AI) training, and gain automatic stability, coordination, and failure recovery.\n\nThe JobSet Operator is based on the JobSet open source project.\n\nJobSet Operator is designed to manage a group of jobs as a single, coordinated unit. This is especially useful for fields like HPC and training massive AI models where you need a team of machines to run for hours or days.\n\nYou can use the JobSet Operator to solve problems that are too big or too complex for a standard OpenShift Container Platform job. The JobSet Operator provides coordination, stability, and recovery.\n\nThe JobSet Operator automatically sets up stable headless service to get an IP address so workers can find and communicate with each other, even after a failure and restart. It also provides automatic failure recovery. If one small part of a large training job fails, the Operator can be configured to restart the entire group of workers from a saved checkpoint. This saves time and computing costs.\n\nThe JobSet Operator offers startup control, allowing you to define a specific startup sequence to ensure dependencies are met. For example, making sure the leader is running before any workers attempt to connect.\n\nJobSet Operator makes managing large, distributed, and coordinated computing tasks on OpenShift Container Platform easier, turning many individual components into one resilient and manageable system.\n\n- [JobSet project](https://jobset.sigs.k8s.io/docs/overview/)\n\n## Additional resources {#js-about_additional-resources}\n\n- [JobSet documentation (Kubernetes)](https://jobset.sigs.k8s.io/docs/overview/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +90,20 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="js-about" class="group scroll-mt-20">{"{"}{"{"} js_operator {"}"}{"}"} overview<a href="#js-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Use the {"{"}{"{"} js_operator {"}"}{"}"} on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently.</p>
-      <p class="/modules/about-jobset.md"></p>
+      <h1 id="js-about" class="group scroll-mt-20">JobSet Operator overview<a href="#js-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Use the JobSet Operator on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently.</p>
+      <h2 id="js-about_js-about" class="group scroll-mt-20">About the JobSet Operator<a href="#js-about_js-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the JobSet Operator on OpenShift Container Platform to manage large, distributed, and coordinated computing workloads, such as high-performance computing (HPC) or artificial intelligence (AI) training, and gain automatic stability, coordination, and failure recovery.</p>
+      <p>The JobSet Operator is based on the JobSet open source project.</p>
+      <p>JobSet Operator is designed to manage a group of jobs as a single, coordinated unit. This is especially useful for fields like HPC and training massive AI models where you need a team of machines to run for hours or days.</p>
+      <p>You can use the JobSet Operator to solve problems that are too big or too complex for a standard OpenShift Container Platform job. The JobSet Operator provides coordination, stability, and recovery.</p>
+      <p>The JobSet Operator automatically sets up stable headless service to get an IP address so workers can find and communicate with each other, even after a failure and restart. It also provides automatic failure recovery. If one small part of a large training job fails, the Operator can be configured to restart the entire group of workers from a saved checkpoint. This saves time and computing costs.</p>
+      <p>The JobSet Operator offers startup control, allowing you to define a specific startup sequence to ensure dependencies are met. For example, making sure the leader is running before any workers attempt to connect.</p>
+      <p>JobSet Operator makes managing large, distributed, and coordinated computing tasks on OpenShift Container Platform easier, turning many individual components into one resilient and manageable system.</p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://jobset.sigs.k8s.io/docs/overview/">JobSet project</a></li></ul>
+      </section>
       <h2 id="js-about_additional-resources" class="group scroll-mt-20">Additional resources<a href="#js-about_additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="https://jobset.sigs.k8s.io/docs/overview/">JobSet documentation (Kubernetes)</a></li></ul>
     </article>

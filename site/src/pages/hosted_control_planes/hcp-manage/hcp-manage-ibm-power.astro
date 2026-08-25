@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-manage-ibm-power","text":"Managing {{ hcp }} on {{ ibm_power_title }}"}];
+const headings = [{"depth":1,"slug":"hcp-manage-ibm-power","text":"Managing hosted control planes on IBM Power"},{"depth":2,"slug":"hcp-ibm-power-infraenv_hcp-manage-ibm-power","text":"Creating an InfraEnv resource for hosted control planes on IBM Power"},{"depth":2,"slug":"hcp-ibm-power-add-agents_hcp-manage-ibm-power","text":"Adding IBM Power agents to the InfraEnv resource"},{"depth":2,"slug":"hcp-ibm-power-scale-np_hcp-manage-ibm-power","text":"Scaling the NodePool object for a hosted cluster on IBM Power"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-ibm-power";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Managing {{ hcp }} on {{ ibm_power_title }}";
-const description = "After you deploy {{ hcp }} on {{ ibm_power_title }}, you can manage a hosted cluster." || undefined;
+const description = "After you deploy hosted control planes on IBM Power, you can manage a hosted cluster." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-manage"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing {{ hcp }} on {{ ibm_power_title }} {#hcp-manage-ibm-power}\n\nAfter you deploy {{ hcp }} on {{ ibm_power_title }}, you can manage a hosted cluster.\n\n**Additional resources**\n\n- [Initial Operator configuration](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installation-operators-config)\n- [Scaling down the data plane to zero](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-ibm-power.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing hosted control planes on IBM Power {#hcp-manage-ibm-power}\n\nAfter you deploy hosted control planes on IBM Power, you can manage a hosted cluster.\n\n## Creating an InfraEnv resource for hosted control planes on IBM Power {#hcp-ibm-power-infraenv_hcp-manage-ibm-power}\n\nAn `InfraEnv` resource is an environment where hosts that are starting the live ISO can join as agents. In this case, the agents are created in the same namespace as your hosted control plane.\n\nYou can create an `InfraEnv` resource for hosted control planes on 64-bit x86 bare metal for IBM Power compute nodes.\n\n**Procedure**\n\n1. Create a YAML file to configure an `InfraEnv` resource. See the following example:\n\n   ```yaml\n   apiVersion: agent-install.openshift.io/v1beta1\n   kind: InfraEnv\n   metadata:\n     name: <hosted_cluster_name>\n     namespace: <hosted_control_plane_namespace>\n   spec:\n     cpuArchitecture: ppc64le\n     pullSecretRef:\n       name: pull-secret\n     sshAuthorizedKey: <path_to_ssh_public_key>\n   ```\n\n   - `metadata.name` specifies the name of your hosted cluster.\n   - `metadata.namespace` specifies the name of the hosted control plane namespace, for example, `clusters-hosted`.\n   - `spec.sshAuthorizedKey` specifies the path to your SSH public key. The default file path is `~/.ssh/id_rsa.pub`.\n2. Save the file as `infraenv-config.yaml`.\n3. Apply the configuration by entering the following command:\n\n   ```terminal\n   $ oc apply -f infraenv-config.yaml\n   ```\n4. To fetch the URL to download the live ISO, which allows IBM Power machines to join as agents, enter the following command:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> get InfraEnv <hosted_cluster_name> \\\n     -o json\n   ```\n\n## Adding IBM Power agents to the InfraEnv resource {#hcp-ibm-power-add-agents_hcp-manage-ibm-power}\n\nYou can add agents by manually configuring the machine to start with the live ISO.\n\n**Procedure**\n\n1. Download the live ISO and use it to start a bare metal or a virtual machine (VM) host. You can find the URL for the live ISO in the `status.isoDownloadURL` field in the `InfraEnv` resource. At startup, the host communicates with the Assisted Service and registers as an agent in the same namespace as the `InfraEnv` resource.\n2. To list the agents and some of their properties, enter the following command:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> get agents\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                   CLUSTER   APPROVED   ROLE          STAGE\n   86f7ac75-4fc4-4b36-8130-40fa12602218                        auto-assign\n   e57a637f-745b-496e-971d-1abbf03341ba                        auto-assign\n   ```\n3. After each agent is created, you can optionally set the `installation_disk_id` and `hostname` for an agent:\n\n   1. To set the `installation_disk_id` field for an agent, enter the following command:\n\n      ```terminal\n      $ oc -n <hosted_control_plane_namespace> patch agent <agent_name> -p '{\"spec\":{\"installation_disk_id\":\"<installation_disk_id>\",\"approved\":true}}' --type merge\n      ```\n   2. To set the `hostname` field for an agent, enter the following command:\n\n      ```terminal\n      $ oc -n <hosted_control_plane_namespace> patch agent <agent_name> -p '{\"spec\":{\"hostname\":\"<hostname>\",\"approved\":true}}' --type merge\n      ```\n\n**Verification**\n\n- To verify that the agents are approved for use, enter the following command:\n\n  ```terminal\n  $ oc -n <hosted_control_plane_namespace> get agents\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                                   CLUSTER   APPROVED   ROLE          STAGE\n  86f7ac75-4fc4-4b36-8130-40fa12602218             true       auto-assign\n  e57a637f-745b-496e-971d-1abbf03341ba             true       auto-assign\n  ```\n\n## Scaling the NodePool object for a hosted cluster on IBM Power {#hcp-ibm-power-scale-np_hcp-manage-ibm-power}\n\nThe `NodePool` object is created when you create a hosted cluster. By scaling the `NodePool` object, you can add more compute nodes to hosted control planes.\n\n**Procedure**\n\n1. Run the following command to scale the `NodePool` object to two nodes:\n\n   ```terminal\n   $ oc -n <hosted_cluster_namespace> scale nodepool <nodepool_name> --replicas 2\n   ```\n\n   The Cluster API agent provider randomly picks two agents that are then assigned to the hosted cluster. Those agents go through different states and finally join the hosted cluster as OpenShift Container Platform nodes. The agents pass through the transition phases in the following order:\n\n   - `binding`\n   - `discovering`\n   - `insufficient`\n   - `installing`\n   - `installing-in-progress`\n   - `added-to-existing-cluster`\n2. Run the following command to see the status of a specific scaled agent:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> get agent \\\n     -o jsonpath='{range .items[*]}BMH: {@.metadata.labels.agent-install\\.openshift\\.io/bmh} Agent: {@.metadata.name} State: {@.status.debugInfo.state}{\"\\n\"}{end}'\n   ```\n\n   ```terminal {title=\"Example output\"}\n   BMH: Agent: 50c23cda-cedc-9bbd-bcf1-9b3a5c75804d State: known-unbound\n   BMH: Agent: 5e498cd3-542c-e54f-0c58-ed43e28b568a State: insufficient\n   ```\n3. Run the following command to see the transition phases:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> get agent\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                   CLUSTER            APPROVED       ROLE          STAGE\n   50c23cda-cedc-9bbd-bcf1-9b3a5c75804d   hosted-forwarder   true           auto-assign\n   5e498cd3-542c-e54f-0c58-ed43e28b568a                      true           auto-assign\n   da503cf1-a347-44f2-875c-4960ddb04091   hosted-forwarder   true           auto-assign\n   ```\n4. Run the following command to generate the `kubeconfig` file to access the hosted cluster:\n\n   ```terminal\n   $ hcp create kubeconfig --namespace <hosted_cluster_namespace> \\\n     --name <hosted_cluster_name> > <hosted_cluster_name>.kubeconfig\n   ```\n5. After the agents reach the `added-to-existing-cluster` state, verify that you can see the OpenShift Container Platform nodes by entering the following command:\n\n   ```terminal\n   $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                             STATUS   ROLES    AGE      VERSION\n   worker-zvm-0.hostedn.example.com Ready    worker   5m41s    v1.24.0+3882f8f\n   worker-zvm-1.hostedn.example.com Ready    worker   6m3s     v1.24.0+3882f8f\n   ```\n6. Enter the following command to verify that two machines were created when you scaled up the `NodePool` object:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> get machine.cluster.x-k8s.io\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                CLUSTER                  NODENAME                           PROVIDERID                                     PHASE     AGE   VERSION\n   hosted-forwarder-79558597ff-5tbqp   hosted-forwarder-crqq5   worker-zvm-0.hostedn.example.com   agent://50c23cda-cedc-9bbd-bcf1-9b3a5c75804d   Running   41h   4.15.0\n   hosted-forwarder-79558597ff-lfjfk   hosted-forwarder-crqq5   worker-zvm-1.hostedn.example.com   agent://5e498cd3-542c-e54f-0c58-ed43e28b568a   Running   41h   4.15.0\n   ```\n7. Run the following command to check the cluster version:\n\n   ```terminal\n   $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get clusterversion\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                         VERSION       AVAILABLE   PROGRESSING   SINCE   STATUS\n   clusterversion.config.openshift.io/version   4.15.0        True        False         40h     Cluster version is 4.15.0\n   ```\n8. Run the following command to check the Cluster Operator status:\n\n   ```terminal\n   $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get clusteroperators\n   ```\n\n   For each component of your cluster, the output shows the following Cluster Operator statuses:\n\n   - `NAME`\n   - `VERSION`\n   - `AVAILABLE`\n   - `PROGRESSING`\n   - `DEGRADED`\n   - `SINCE`\n   - `MESSAGE`\n\n**Additional resources**\n\n- [Initial Operator configuration](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installation-operators-config)\n- [Scaling down the data plane to zero](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#scale-down-data-plane_hcp-troubleshooting)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-ibm-power.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,12 +91,125 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-manage-ibm-power" class="group scroll-mt-20">Managing {"{"}{"{"} hcp {"}"}{"}"} on {"{"}{"{"} ibm_power_title {"}"}{"}"}<a href="#hcp-manage-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>After you deploy {"{"}{"{"} hcp {"}"}{"}"} on {"{"}{"{"} ibm_power_title {"}"}{"}"}, you can manage a hosted cluster.</p>
-      <p class="/modules/hcp-ibm-power-infraenv.md"></p>
-      <p class="/modules/hcp-ibm-power-add-agents.md"></p>
-      <p class="/modules/hcp-ibm-power-scale-np.md"></p>
+      <h1 id="hcp-manage-ibm-power" class="group scroll-mt-20">Managing hosted control planes on IBM Power<a href="#hcp-manage-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>After you deploy hosted control planes on IBM Power, you can manage a hosted cluster.</p>
+      <h2 id="hcp-ibm-power-infraenv_hcp-manage-ibm-power" class="group scroll-mt-20">Creating an InfraEnv resource for hosted control planes on IBM Power<a href="#hcp-ibm-power-infraenv_hcp-manage-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">An <code>InfraEnv</code> resource is an environment where hosts that are starting the live ISO can join as agents. In this case, the agents are created in the same namespace as your hosted control plane.</p>
+      <p>You can create an <code>InfraEnv</code> resource for hosted control planes on 64-bit x86 bare metal for IBM Power compute nodes.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file to configure an <code>InfraEnv</code> resource. See the following example:
+      <CodeBlock code={"apiVersion: agent-install.openshift.io/v1beta1\nkind: InfraEnv\nmetadata:\n  name: <hosted_cluster_name>\n  namespace: <hosted_control_plane_namespace>\nspec:\n  cpuArchitecture: ppc64le\n  pullSecretRef:\n    name: pull-secret\n  sshAuthorizedKey: <path_to_ssh_public_key>"} lang="yaml" />
+      <ul>
+      <li><code>metadata.name</code> specifies the name of your hosted cluster.</li>
+      <li><code>metadata.namespace</code> specifies the name of the hosted control plane namespace, for example, <code>clusters-hosted</code>.</li>
+      <li><code>spec.sshAuthorizedKey</code> specifies the path to your SSH public key. The default file path is <code>~/.ssh/id_rsa.pub</code>.</li>
+      </ul>
+      </li>
+      <li>Save the file as <code>infraenv-config.yaml</code>.</li>
+      <li>
+      Apply the configuration by entering the following command:
+      <CodeBlock code={"$ oc apply -f infraenv-config.yaml"} lang="terminal" />
+      </li>
+      <li>
+      To fetch the URL to download the live ISO, which allows IBM Power machines to join as agents, enter the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get InfraEnv <hosted_cluster_name> \\\n  -o json"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="hcp-ibm-power-add-agents_hcp-manage-ibm-power" class="group scroll-mt-20">Adding IBM Power agents to the InfraEnv resource<a href="#hcp-ibm-power-add-agents_hcp-manage-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add agents by manually configuring the machine to start with the live ISO.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Download the live ISO and use it to start a bare metal or a virtual machine (VM) host. You can find the URL for the live ISO in the <code>status.isoDownloadURL</code> field in the <code>InfraEnv</code> resource. At startup, the host communicates with the Assisted Service and registers as an agent in the same namespace as the <code>InfraEnv</code> resource.</li>
+      <li>
+      To list the agents and some of their properties, enter the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get agents"} lang="terminal" />
+      <CodeBlock code={"NAME                                   CLUSTER   APPROVED   ROLE          STAGE\n86f7ac75-4fc4-4b36-8130-40fa12602218                        auto-assign\ne57a637f-745b-496e-971d-1abbf03341ba                        auto-assign"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      After each agent is created, you can optionally set the <code>installation_disk_id</code> and <code>hostname</code> for an agent:
+      <ol>
+      <li>
+      To set the <code>installation_disk_id</code> field for an agent, enter the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> patch agent <agent_name> -p '{\"spec\":{\"installation_disk_id\":\"<installation_disk_id>\",\"approved\":true}}' --type merge"} lang="terminal" />
+      </li>
+      <li>
+      To set the <code>hostname</code> field for an agent, enter the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> patch agent <agent_name> -p '{\"spec\":{\"hostname\":\"<hostname>\",\"approved\":true}}' --type merge"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that the agents are approved for use, enter the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get agents"} lang="terminal" />
+      <CodeBlock code={"NAME                                   CLUSTER   APPROVED   ROLE          STAGE\n86f7ac75-4fc4-4b36-8130-40fa12602218             true       auto-assign\ne57a637f-745b-496e-971d-1abbf03341ba             true       auto-assign"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="hcp-ibm-power-scale-np_hcp-manage-ibm-power" class="group scroll-mt-20">Scaling the NodePool object for a hosted cluster on IBM Power<a href="#hcp-ibm-power-scale-np_hcp-manage-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The <code>NodePool</code> object is created when you create a hosted cluster. By scaling the <code>NodePool</code> object, you can add more compute nodes to hosted control planes.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run the following command to scale the <code>NodePool</code> object to two nodes:
+      <CodeBlock code={"$ oc -n <hosted_cluster_namespace> scale nodepool <nodepool_name> --replicas 2"} lang="terminal" />
+      <p>The Cluster API agent provider randomly picks two agents that are then assigned to the hosted cluster. Those agents go through different states and finally join the hosted cluster as OpenShift Container Platform nodes. The agents pass through the transition phases in the following order:</p>
+      <ul>
+      <li><code>binding</code></li>
+      <li><code>discovering</code></li>
+      <li><code>insufficient</code></li>
+      <li><code>installing</code></li>
+      <li><code>installing-in-progress</code></li>
+      <li><code>added-to-existing-cluster</code></li>
+      </ul>
+      </li>
+      <li>
+      Run the following command to see the status of a specific scaled agent:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get agent \\\n  -o jsonpath='{range .items[*]}BMH: {@.metadata.labels.agent-install\\.openshift\\.io/bmh} Agent: {@.metadata.name} State: {@.status.debugInfo.state}{\"\\n\"}{end}'"} lang="terminal" />
+      <CodeBlock code={"BMH: Agent: 50c23cda-cedc-9bbd-bcf1-9b3a5c75804d State: known-unbound\nBMH: Agent: 5e498cd3-542c-e54f-0c58-ed43e28b568a State: insufficient"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Run the following command to see the transition phases:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get agent"} lang="terminal" />
+      <CodeBlock code={"NAME                                   CLUSTER            APPROVED       ROLE          STAGE\n50c23cda-cedc-9bbd-bcf1-9b3a5c75804d   hosted-forwarder   true           auto-assign\n5e498cd3-542c-e54f-0c58-ed43e28b568a                      true           auto-assign\nda503cf1-a347-44f2-875c-4960ddb04091   hosted-forwarder   true           auto-assign"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Run the following command to generate the <code>kubeconfig</code> file to access the hosted cluster:
+      <CodeBlock code={"$ hcp create kubeconfig --namespace <hosted_cluster_namespace> \\\n  --name <hosted_cluster_name> > <hosted_cluster_name>.kubeconfig"} lang="terminal" />
+      </li>
+      <li>
+      After the agents reach the <code>added-to-existing-cluster</code> state, verify that you can see the OpenShift Container Platform nodes by entering the following command:
+      <CodeBlock code={"$ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME                             STATUS   ROLES    AGE      VERSION\nworker-zvm-0.hostedn.example.com Ready    worker   5m41s    v1.24.0+3882f8f\nworker-zvm-1.hostedn.example.com Ready    worker   6m3s     v1.24.0+3882f8f"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Enter the following command to verify that two machines were created when you scaled up the <code>NodePool</code> object:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get machine.cluster.x-k8s.io"} lang="terminal" />
+      <CodeBlock code={"NAME                                CLUSTER                  NODENAME                           PROVIDERID                                     PHASE     AGE   VERSION\nhosted-forwarder-79558597ff-5tbqp   hosted-forwarder-crqq5   worker-zvm-0.hostedn.example.com   agent://50c23cda-cedc-9bbd-bcf1-9b3a5c75804d   Running   41h   4.15.0\nhosted-forwarder-79558597ff-lfjfk   hosted-forwarder-crqq5   worker-zvm-1.hostedn.example.com   agent://5e498cd3-542c-e54f-0c58-ed43e28b568a   Running   41h   4.15.0"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Run the following command to check the cluster version:
+      <CodeBlock code={"$ oc --kubeconfig <hosted_cluster_name>.kubeconfig get clusterversion"} lang="terminal" />
+      <CodeBlock code={"NAME                                         VERSION       AVAILABLE   PROGRESSING   SINCE   STATUS\nclusterversion.config.openshift.io/version   4.15.0        True        False         40h     Cluster version is 4.15.0"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Run the following command to check the Cluster Operator status:
+      <CodeBlock code={"$ oc --kubeconfig <hosted_cluster_name>.kubeconfig get clusteroperators"} lang="terminal" />
+      <p>For each component of your cluster, the output shows the following Cluster Operator statuses:</p>
+      <ul>
+      <li><code>NAME</code></li>
+      <li><code>VERSION</code></li>
+      <li><code>AVAILABLE</code></li>
+      <li><code>PROGRESSING</code></li>
+      <li><code>DEGRADED</code></li>
+      <li><code>SINCE</code></li>
+      <li><code>MESSAGE</code></li>
+      </ul>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installation-operators-config">Initial Operator configuration</a></li>

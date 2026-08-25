@@ -9,13 +9,182 @@ Before you can install OpenShift Container Platform, you must configure a Micros
 > [!IMPORTANT]
 > All Azure resources that are available through public endpoints are subject to resource name restrictions, and you cannot create resources that use certain terms. For a list of terms that Azure restricts, see "Resolve reserved resource name errors".
 
+## Azure Stack Hub account limits {#installation-azure-limits_installing-azure-stack-hub-account}
+
+The OpenShift Container Platform cluster uses a number of Microsoft Azure Stack Hub components, and the default [Quota types in Azure Stack Hub](https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-quota-types?view=azs-2102) affect your ability to install OpenShift Container Platform clusters.
+
+The following table summarizes the Azure Stack Hub components whose limits can impact your ability to install and run OpenShift Container Platform clusters.
+
+|vCPU
+
+|56 |A default cluster requires 56 vCPUs, so you must increase the account limit.
+
+By default, each cluster creates the following instances:
+
+- One bootstrap machine, which is removed after installation
+- Three control plane machines
+- Three compute machines
+
+Because the bootstrap, control plane, and worker machines use `Standard_DS4_v2` virtual machines, which use 8 vCPUs, a default cluster requires 56 vCPUs. The bootstrap node VM is used only during installation.
+
+To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, you must further increase the vCPU limit for your account to ensure that your cluster can deploy the machines that you require.
+
+|VNet | 1 | Each default cluster requires one Virtual Network (VNet), which contains two subnets.
+
+|Network interfaces |7 |Each default cluster requires seven network interfaces. If you create more machines or your deployed workloads create load balancers, your cluster uses more network interfaces.
+
+|Network security groups |2 | Each cluster creates network security groups for each subnet in the VNet. The default cluster creates network security groups for the control plane and for the compute node subnets:
+
+`controlplane`
+:   Allows the control plane machines to be reached on port 6443 from anywhere
+
+`node`
+:   Allows worker nodes to be reached from the internet on ports 80 and 443
+
+|Network load balancers | 3 |Each cluster creates the following [load balancers](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview):
+
+`default`
+:   Public IP address that load balances requests to ports 80 and 443 across worker machines
+
+`internal`
+:   Private IP address that load balances requests to ports 6443 and 22623 across control plane machines
+
+`external`
+:   Public IP address that load balances requests to port 6443 across control plane machines
+
+If your applications create more Kubernetes `LoadBalancer` service objects, your cluster uses more load balancers.
+
+|Public IP addresses
+
+|2 |The public load balancer uses a public IP address. The bootstrap machine also uses a public IP address so that you can SSH into the machine to troubleshoot issues during installation. The IP address for the bootstrap node is used only during installation.
+
+|Private IP addresses |7 |The internal load balancer, each of the three control plane machines, and each of the three worker machines each use a private IP address.
+
+<table>
+</table>
+
 **Additional resources**
 
 - [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)
 
+## Configuring a DNS zone in Azure Stack Hub {#installation-azure-stack-hub-network-config_installing-azure-stack-hub-account}
+
+To successfully install OpenShift Container Platform on Azure Stack Hub, you must create DNS records in an Azure Stack Hub DNS zone. The DNS zone must be authoritative for the domain. To delegate a registrar’s DNS zone to Azure Stack Hub, see "Azure Stack Hub datacenter DNS integration".
+
 **Additional resources**
 
 - [Azure Stack Hub datacenter DNS integration (Microsoft documentation)](https://docs.microsoft.com/en-us/azure-stack/operator/azure-stack-integrate-dns?view=azs-2102)
+
+## Required Azure Stack Hub roles {#installation-azure-stack-hub-permissions_installing-azure-stack-hub-account}
+
+Your Microsoft Azure Stack Hub account must have the `Owner` role for the subscription that you use.
+
+To set roles on the Azure portal, see the [Manage access to resources in Azure Stack Hub with role-based access control](https://docs.microsoft.com/en-us/azure-stack/user/azure-stack-manage-permissions?view=azs-2102) in the Microsoft documentation.
+
+## Creating a service principal {#installation-azure-service-principal_installing-azure-stack-hub-account}
+
+To enable OpenShift Container Platform to create Azure resources, you must create a service principal that represents the installation program in Azure Resource Manager.
+
+**Prerequisites**
+
+- Install or update the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-yum?view=azure-cli-latest).
+- Your Azure account has the required roles for the subscription that you use.
+- If you want to use a custom role, you have created a [custom role](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles) with the required permissions listed in the *Required Azure permissions for user-provisioned infrastructure* section.
+
+**Procedure**
+
+1. Register your environment:
+
+   ```terminal
+   $ az cloud register -n AzureStackCloud --endpoint-resource-manager <endpoint>
+   ```
+
+   `<endpoint>` is the Azure Resource Manager endpoint, \`https://management.<region>.<fqdn>/\`.
+
+   See the [Microsoft documentation](https://docs.microsoft.com/en-us/azure-stack/mdc/azure-stack-version-profiles-azurecli-2-tzl#connect-to-azure-stack-hub) for details.
+2. Set the active environment:
+
+   ```terminal
+   $ az cloud set -n AzureStackCloud
+   ```
+3. Update your environment configuration to use the specific API version for Azure Stack Hub:
+
+   ```terminal
+   $ az cloud update --profile 2019-03-01-hybrid
+   ```
+4. Log in to the Azure CLI:
+
+   ```terminal
+   $ az login
+   ```
+
+   If you are in a multitenant environment, you must also supply the tenant ID.
+5. If your Azure account uses subscriptions, ensure that you are using the right subscription:
+
+   1. View the list of available accounts and record the `tenantId` value for the subscription you want to use for your cluster:
+
+      ```terminal
+      $ az account list --refresh
+      ```
+
+      ```terminal {title="Example output"}
+      [
+        {
+      ```
+
+{%- if not ash %} "cloudName": "AzureCloud", {% endif %} {% if ash %} "cloudName": AzureStackCloud", {%- endif %} "id": "9bab1460-96d5-40b3-a78e-17b15e978a80", "isDefault": true, "name": "Subscription Name", "state": "Enabled", "tenantId": "6057c7e9-b3ae-489d-a54e-de3f6bf6a8ee", "user": { "name": "you@example.com", "type": "user" } } \] ``    1.  View your active account details and confirm that the `tenantId` value matches     the subscription you want to use:        ``terminal $ az account show `       `terminal title="Example output" { {%- if not ash %} "environmentName": "AzureCloud", {% endif %} {% if ash %} "environmentName": AzureStackCloud", {%- endif %} "id": "9bab1460-96d5-40b3-a78e-17b15e978a80", "isDefault": true, "name": "Subscription Name", "state": "Enabled", "tenantId": "6057c7e9-b3ae-489d-a54e-de3f6bf6a8ee", "user": { "name": "you@example.com", "type": "user" } } \`\`\`
+
+````
+    Ensure that the value of the `tenantId` parameter is the correct subscription ID.
+1.  If you are not using the right subscription, change the active subscription:
+    ```terminal
+    $ az account set -s <subscription_id>
+    ```
+
+    For `<subscription_id>`, specify the subscription ID.
+1.  Verify the subscription ID update:
+    ```terminal
+    $ az account show
+    ```
+    ```terminal title="Example output"
+    {
+````
+
+{%- if not ash %} "environmentName": "AzureCloud", {% endif %} {% if ash %} "environmentName": AzureStackCloud", {%- endif %} "id": "33212d16-bdf6-45cb-b038-f6565b61edda", "isDefault": true, "name": "Subscription Name", "state": "Enabled", "tenantId": "8049c7e9-c3de-762d-a54e-dc3f6be6a7ee", "user": { "name": "you@example.com", "type": "user" } } \`\`\`
+
+1. Record the `tenantId` and `id` parameter values from the output. You need these values during the OpenShift Container Platform installation.
+2. Create the service principal for your account:
+
+   ```terminal
+   $ az ad sp create-for-rbac --role Contributor --name <service_principal> \
+     --scopes /subscriptions/<subscription_id> \
+     --years <years>
+   ```
+
+   where:
+
+   `<service_principal>`
+   :   Specifies the service principal name.
+
+   `<subscription_id>`
+   :   Specifies the subscription ID.
+
+   `<years>`
+   :   Specifies the number of years. By default, a service principal expires in one year. By using the `--years` option you can extend the validity of your service principal.
+
+   ```terminal {title="Example output"}
+   Creating 'Contributor' role assignment under scope '/subscriptions/<subscription_id>'
+   The output includes credentials that you must protect. Be sure that you do not
+   include these credentials in your code or check the credentials into your source
+   control. For more information, see https://aka.ms/azadsp-cli
+   {
+     "appId": "ac461d78-bf4b-4387-ad16-7e32e328aec6",
+     "displayName": <service_principal>",
+     "password": "00000000-0000-0000-0000-000000000000",
+     "tenantId": "8049c7e9-c3de-762d-a54e-dc3f6be6a7ee"
+   }
+   ```
+3. Record the values of the `appId` and `password` parameters from the previous output. You need these values during OpenShift Container Platform installation.
 
 **Additional resources**
 

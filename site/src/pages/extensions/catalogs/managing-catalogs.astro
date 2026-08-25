@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"managing-catalogs","text":"Managing catalogs"}];
+const headings = [{"depth":1,"slug":"managing-catalogs","text":"Managing catalogs"},{"depth":2,"slug":"olmv1-about-catalogs_managing-catalogs","text":"About catalogs in OLM v1"},{"depth":2,"slug":"olmv1-red-hat-catalogs_managing-catalogs","text":"Red Hat-provided Operator catalogs in OLM v1"},{"depth":2,"slug":"olmv1-adding-a-catalog-to-a-cluster_managing-catalogs","text":"Adding a catalog to a cluster"},{"depth":2,"slug":"olmv1-deleting-catalog_managing-catalogs","text":"Deleting a catalog"},{"depth":2,"slug":"olmv1-disabling-a-default-catalog_managing-catalogs","text":"Disabling a default catalog"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/extensions/catalogs/managing-catalogs";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["extensions","extensions/catalogs"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing catalogs {#managing-catalogs}\n\nCluster administrators can add *catalogs*, or curated collections of Operators and Kubernetes extensions, to their clusters. Operator authors publish their products to these catalogs.\n\nWhen you add a catalog to your cluster, you have access to the versions, patches, and over-the-air updates of the Operators and extensions that are published to the catalog.\n\nYou can manage catalogs and extensions declaratively from the CLI by using custom resources (CRs).\n\n*File-based catalogs* are the latest iteration of the catalog format in Operator Lifecycle Manager (OLM). It is a plain text-based (JSON or YAML) and declarative config evolution of the earlier SQLite database format, and it is fully compatible with earlier versions.\n\n> [!IMPORTANT]\n> Kubernetes periodically deprecates certain APIs that are removed in subsequent releases. As a result, Operators are unable to use removed APIs starting with the version of OpenShift Container Platform that uses the Kubernetes version that removed the API.\n\n**Additional resources**\n\n- [File-based catalogs](/openshift-docs-markdown/extensions/catalogs/fbc#fbc)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/catalogs/managing-catalogs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing catalogs {#managing-catalogs}\n\nCluster administrators can add *catalogs*, or curated collections of Operators and Kubernetes extensions, to their clusters. Operator authors publish their products to these catalogs.\n\nWhen you add a catalog to your cluster, you have access to the versions, patches, and over-the-air updates of the Operators and extensions that are published to the catalog.\n\nYou can manage catalogs and extensions declaratively from the CLI by using custom resources (CRs).\n\n*File-based catalogs* are the latest iteration of the catalog format in Operator Lifecycle Manager (OLM). It is a plain text-based (JSON or YAML) and declarative config evolution of the earlier SQLite database format, and it is fully compatible with earlier versions.\n\n> [!IMPORTANT]\n> Kubernetes periodically deprecates certain APIs that are removed in subsequent releases. As a result, Operators are unable to use removed APIs starting with the version of OpenShift Container Platform that uses the Kubernetes version that removed the API.\n\n## About catalogs in OLM v1 {#olmv1-about-catalogs_managing-catalogs}\n\nYou can discover installable content by querying a catalog for Kubernetes extensions, such as Operators and controllers, by using the catalogd component.\n\nCatalogd is a Kubernetes extension that unpacks catalog content for on-cluster clients and is part of the Operator Lifecycle Manager (OLM) v1 suite of microservices. Currently, catalogd unpacks catalog content that is packaged and distributed as container images.\n\n**Additional resources**\n\n- [File-based catalogs](/openshift-docs-markdown/extensions/catalogs/fbc#fbc)\n\n## Red Hat-provided Operator catalogs in OLM v1 {#olmv1-red-hat-catalogs_managing-catalogs}\n\nOperator Lifecycle Manager (OLM) v1 includes several Red Hat-provided Operator catalogs on the cluster by default. If you want to add a catalog to your cluster, create a custom resource (CR) for the catalog and apply it to the cluster.\n\nThe following custom resource (CR) examples show the default catalogs installed on the cluster:\n\n```yaml {title=\"Red&#160;Hat Operators catalog\"}\napiVersion: olm.operatorframework.io/v1\nkind: ClusterCatalog\nmetadata:\n  name: openshift-redhat-operators\nspec:\n  priority: -100\n  source:\n    image:\n      pollIntervalMinutes: <poll_interval_duration>\n      ref: registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}\n    type: Image\n```\n\nReplace `<poll_interval_duration>` with the interval in minutes for polling the remote registry for newer image digests. To disable polling, do not set the field.\n\n```yaml {title=\"Certified Operators catalog\"}\napiVersion: olm.operatorframework.io/v1\nkind: ClusterCatalog\nmetadata:\n  name: openshift-certified-operators\nspec:\npriority: -200\n  source:\n    type: image\n    image:\n      pollIntervalMinutes: 10\n      ref: registry.redhat.io/redhat/certified-operator-index:v{{ product_version }}\n    type: Image\n```\n\n```yaml {title=\"Red&#160;Hat Marketplace catalog\"}\napiVersion: olm.operatorframework.io/v1\nkind: ClusterCatalog\nmetadata:\n  name: openshift-redhat-marketplace\nspec:\n  priority: -300\n  source:\n    image:\n      pollIntervalMinutes: 10\n      ref: registry.redhat.io/redhat/redhat-marketplace-index:v{{ product_version }}\n    type: Image\n```\n\n```yaml {title=\"Community Operators catalog\"}\napiVersion: olm.operatorframework.io/v1\nkind: ClusterCatalog\nmetadata:\n  name: openshift-community-operators\nspec:\n  priority: -400\n  source:\n    image:\n      pollIntervalMinutes: 10\n      ref: registry.redhat.io/redhat/community-operator-index:v{{ product_version }}\n    type: Image\n```\n\nThe following command adds a catalog to your cluster:\n\n```terminal {title=\"Command syntax\"}\n$ oc apply -f <catalog_name>.yaml\n```\n\nReplace `<catalog_name>.yaml` with the catalog CR, such as `my-catalog.yaml`.\n\n## Adding a catalog to a cluster {#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs}\n\nTo add a catalog to a cluster for Operator Lifecycle Manager (OLM) v1 usage, create a `ClusterCatalog` custom resource (CR) and apply it to the cluster.\n\n**Procedure**\n\n1. Create a catalog custom resource (CR), similar to the following example:\n\n   ```yaml {title=\"Example my-redhat-operators.yaml file\"}\n   apiVersion: olm.operatorframework.io/v1\n   kind: ClusterCatalog\n   metadata:\n     name: my-redhat-operators\n   spec:\n     priority: 1000\n     source:\n       image:\n         pollIntervalMinutes: 10\n         ref: registry.redhat.io/redhat/community-operator-index:v{{ product_version }}\n       type: Image\n   ```\n\n   where:\n\n   `metadata.name`\n   :   The catalog is automatically labeled with the value of the `metadata.name` field when it is applied to the cluster. For more information about labels and catalog selection, see \"Catalog content resolution\".\n\n   `spec.priority`\n   :   Optional: Specifies the priority of the catalog in relation to the other catalogs on the cluster. For more information, see \"Catalog selection by priority\".\n\n   `spec.source.image.pollIntervalMinutes`\n   :   Specifies the interval in minutes for polling the remote registry for newer image digests. To disable polling, do not set the field.\n\n   `spec.source.image.ref`\n   :   Specifies the catalog image in the `spec.source.image.ref` field.\n2. Add the catalog to your cluster by running the following command:\n\n   ```terminal\n   $ oc apply -f my-redhat-operators.yaml\n   ```\n\n   ```text {title=\"Example output\"}\n   clustercatalog.olm.operatorframework.io/my-redhat-operators created\n   ```\n\n**Verification**\n\n- Run the following commands to verify the status of your catalog:\n\n  1. Check if your catalog is available by running the following command:\n\n     ```terminal\n     $ oc get clustercatalog\n     ```\n\n     ```text {title=\"Example output\"}\n     NAME                            LASTUNPACKED   SERVING   AGE\n     my-redhat-operators             55s            True      64s\n     openshift-certified-operators   83m            True      84m\n     openshift-community-operators   43m            True      84m\n     openshift-redhat-marketplace    83m            True      84m\n     openshift-redhat-operators      54m            True      84m\n     ```\n  2. Check the status of your catalog by running the following command:\n\n     ```terminal\n     $ oc describe clustercatalog my-redhat-operators\n     ```\n\n     ```text {title=\"Example output\"}\n     Name:         my-redhat-operators\n     Namespace:\n     Labels:       olm.operatorframework.io/metadata.name=my-redhat-operators\n     Annotations:  <none>\n     API Version:  olm.operatorframework.io/v1\n     Kind:         ClusterCatalog\n     Metadata:\n       Creation Timestamp:  2025-02-18T20:28:50Z\n       Finalizers:\n         olm.operatorframework.io/delete-server-cache\n       Generation:        1\n       Resource Version:  50248\n       UID:               86adf94f-d2a8-4e70-895b-31139f2eeab7\n     Spec:\n       Availability Mode:  Available\n       Priority:           1000\n       Source:\n         Image:\n           Poll Interval Minutes:  10\n           Ref:                    registry.redhat.io/redhat/community-operator-index:v{{ product_version }}\n         Type:                     Image\n     Status:\n       Conditions:\n         Last Transition Time:  2025-02-18T20:29:00Z\n         Message:               Successfully unpacked and stored content from resolved source\n         Observed Generation:   1\n         Reason:                Succeeded\n         Status:                True\n         Type:                  Progressing\n         Last Transition Time:  2025-02-18T20:29:00Z\n         Message:               Serving desired content from resolved source\n         Observed Generation:   1\n         Reason:                Available\n         Status:                True\n         Type:                  Serving\n       Last Unpacked:           2025-02-18T20:28:59Z\n       Resolved Source:\n         Image:\n           Ref:  registry.redhat.io/redhat/community-operator-index@sha256:11627ea6fdd06b8092df815076e03cae9b7cede8b353c0b461328842d02896c5\n         Type:   Image\n       Urls:\n         Base:  https://catalogd-service.openshift-catalogd.svc/catalogs/my-redhat-operators\n     Events:    <none>\n     ```\n\n     In the output, the `Status` section describes the status of the catalog. In the `Status` section, the `Reason` field displays the reason the catalog is in the current state. In the `Resolved Source` section, the `Ref` field displays the image reference of the catalog.\n\n## Deleting a catalog {#olmv1-deleting-catalog_managing-catalogs}\n\nYou can delete a catalog by deleting its custom resource (CR).\n\n**Prerequisites**\n\n- You have a catalog installed.\n\n**Procedure**\n\n- Delete a catalog by running the following command:\n\n  ```terminal\n  $ oc delete clustercatalog <catalog_name>\n  ```\n\n  ```text {title=\"Example output\"}\n  clustercatalog.olm.operatorframework.io \"my-redhat-operators\" deleted\n  ```\n\n**Verification**\n\n- Verify the catalog is deleted by running the following command:\n\n  ```terminal\n  $ oc get clustercatalog\n  ```\n\n## Disabling a default catalog {#olmv1-disabling-a-default-catalog_managing-catalogs}\n\nYou can disable the Red Hat-provided catalogs that are included with OpenShift Container Platform by default.\n\n**Procedure**\n\n- Disable a default catalog by running the following command:\n\n  ```terminal\n  $ oc patch clustercatalog openshift-certified-operators -p \\\n    '{\"spec\": {\"availabilityMode\": \"Unavailable\"}}' --type=merge\n  ```\n\n  ```text {title=\"Example output\"}\n  clustercatalog.olm.operatorframework.io/openshift-certified-operators patched\n  ```\n\n**Verification**\n\n- Verify the catalog is disabled by running the following command:\n\n  ```terminal\n  $ oc get clustercatalog openshift-certified-operators\n  ```\n\n  ```text {title=\"Example output\"}\n  NAME                            LASTUNPACKED   SERVING   AGE\n  openshift-certified-operators                  False     6h54m\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/catalogs/managing-catalogs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,7 +94,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="managing-catalogs" class="group scroll-mt-20">Managing catalogs<a href="#managing-catalogs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>Cluster administrators can add <em>catalogs</em>, or curated collections of Operators and Kubernetes extensions, to their clusters. Operator authors publish their products to these catalogs.</p>
       <p>When you add a catalog to your cluster, you have access to the versions, patches, and over-the-air updates of the Operators and extensions that are published to the catalog.</p>
@@ -105,12 +105,103 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Kubernetes periodically deprecates certain APIs that are removed in subsequent releases. As a result, Operators are unable to use removed APIs starting with the version of OpenShift Container Platform that uses the Kubernetes version that removed the API.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/olmv1-about-catalogs.md"></p>
+      <h2 id="olmv1-about-catalogs_managing-catalogs" class="group scroll-mt-20">About catalogs in OLM v1<a href="#olmv1-about-catalogs_managing-catalogs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can discover installable content by querying a catalog for Kubernetes extensions, such as Operators and controllers, by using the catalogd component.</p>
+      <p>Catalogd is a Kubernetes extension that unpacks catalog content for on-cluster clients and is part of the Operator Lifecycle Manager (OLM) v1 suite of microservices. Currently, catalogd unpacks catalog content that is packaged and distributed as container images.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/extensions/catalogs/fbc#fbc">File-based catalogs</a></li></ul>
-      <p class="/modules/olmv1-adding-a-catalog.md"></p>
-      <p class="/modules/olmv1-deleting-catalog.md"></p>
-      <p class="/modules/olmv1-disabling-a-default-catalog.md"></p>
+      <h2 id="olmv1-red-hat-catalogs_managing-catalogs" class="group scroll-mt-20">Red Hat-provided Operator catalogs in OLM v1<a href="#olmv1-red-hat-catalogs_managing-catalogs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Operator Lifecycle Manager (OLM) v1 includes several Red Hat-provided Operator catalogs on the cluster by default. If you want to add a catalog to your cluster, create a custom resource (CR) for the catalog and apply it to the cluster.</p>
+      <p>The following custom resource (CR) examples show the default catalogs installed on the cluster:</p>
+      <CodeBlock code={"apiVersion: olm.operatorframework.io/v1\nkind: ClusterCatalog\nmetadata:\n  name: openshift-redhat-operators\nspec:\n  priority: -100\n  source:\n    image:\n      pollIntervalMinutes: <poll_interval_duration>\n      ref: registry.redhat.io/redhat/redhat-operator-index:v{{ product_version }}\n    type: Image"} lang="yaml" title="Red&amp;#160;Hat Operators catalog" />
+      <p>Replace <code>&lt;poll_interval_duration&gt;</code> with the interval in minutes for polling the remote registry for newer image digests. To disable polling, do not set the field.</p>
+      <CodeBlock code={"apiVersion: olm.operatorframework.io/v1\nkind: ClusterCatalog\nmetadata:\n  name: openshift-certified-operators\nspec:\npriority: -200\n  source:\n    type: image\n    image:\n      pollIntervalMinutes: 10\n      ref: registry.redhat.io/redhat/certified-operator-index:v{{ product_version }}\n    type: Image"} lang="yaml" title="Certified Operators catalog" />
+      <CodeBlock code={"apiVersion: olm.operatorframework.io/v1\nkind: ClusterCatalog\nmetadata:\n  name: openshift-redhat-marketplace\nspec:\n  priority: -300\n  source:\n    image:\n      pollIntervalMinutes: 10\n      ref: registry.redhat.io/redhat/redhat-marketplace-index:v{{ product_version }}\n    type: Image"} lang="yaml" title="Red&amp;#160;Hat Marketplace catalog" />
+      <CodeBlock code={"apiVersion: olm.operatorframework.io/v1\nkind: ClusterCatalog\nmetadata:\n  name: openshift-community-operators\nspec:\n  priority: -400\n  source:\n    image:\n      pollIntervalMinutes: 10\n      ref: registry.redhat.io/redhat/community-operator-index:v{{ product_version }}\n    type: Image"} lang="yaml" title="Community Operators catalog" />
+      <p>The following command adds a catalog to your cluster:</p>
+      <CodeBlock code={"$ oc apply -f <catalog_name>.yaml"} lang="terminal" title="Command syntax" />
+      <p>Replace <code>&lt;catalog_name&gt;.yaml</code> with the catalog CR, such as <code>my-catalog.yaml</code>.</p>
+      <h2 id="olmv1-adding-a-catalog-to-a-cluster_managing-catalogs" class="group scroll-mt-20">Adding a catalog to a cluster<a href="#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To add a catalog to a cluster for Operator Lifecycle Manager (OLM) v1 usage, create a <code>ClusterCatalog</code> custom resource (CR) and apply it to the cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a catalog custom resource (CR), similar to the following example:
+      <CodeBlock code={"apiVersion: olm.operatorframework.io/v1\nkind: ClusterCatalog\nmetadata:\n  name: my-redhat-operators\nspec:\n  priority: 1000\n  source:\n    image:\n      pollIntervalMinutes: 10\n      ref: registry.redhat.io/redhat/community-operator-index:v{{ product_version }}\n    type: Image"} lang="yaml" title="Example my-redhat-operators.yaml file" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The catalog is automatically labeled with the value of the <code>metadata.name</code> field when it is applied to the cluster. For more information about labels and catalog selection, see "Catalog content resolution".</p></dd>
+      <dt class="font-semibold"><code>spec.priority</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the priority of the catalog in relation to the other catalogs on the cluster. For more information, see "Catalog selection by priority".</p></dd>
+      <dt class="font-semibold"><code>spec.source.image.pollIntervalMinutes</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the interval in minutes for polling the remote registry for newer image digests. To disable polling, do not set the field.</p></dd>
+      <dt class="font-semibold"><code>spec.source.image.ref</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the catalog image in the <code>spec.source.image.ref</code> field.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Add the catalog to your cluster by running the following command:
+      <CodeBlock code={"$ oc apply -f my-redhat-operators.yaml"} lang="terminal" />
+      <CodeBlock code={"clustercatalog.olm.operatorframework.io/my-redhat-operators created"} lang="text" title="Example output" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Run the following commands to verify the status of your catalog:
+      <ol>
+      <li>
+      Check if your catalog is available by running the following command:
+      <CodeBlock code={"$ oc get clustercatalog"} lang="terminal" />
+      <CodeBlock code={"NAME                            LASTUNPACKED   SERVING   AGE\nmy-redhat-operators             55s            True      64s\nopenshift-certified-operators   83m            True      84m\nopenshift-community-operators   43m            True      84m\nopenshift-redhat-marketplace    83m            True      84m\nopenshift-redhat-operators      54m            True      84m"} lang="text" title="Example output" />
+      </li>
+      <li>
+      Check the status of your catalog by running the following command:
+      <CodeBlock code={"$ oc describe clustercatalog my-redhat-operators"} lang="terminal" />
+      <CodeBlock code={"Name:         my-redhat-operators\nNamespace:\nLabels:       olm.operatorframework.io/metadata.name=my-redhat-operators\nAnnotations:  <none>\nAPI Version:  olm.operatorframework.io/v1\nKind:         ClusterCatalog\nMetadata:\n  Creation Timestamp:  2025-02-18T20:28:50Z\n  Finalizers:\n    olm.operatorframework.io/delete-server-cache\n  Generation:        1\n  Resource Version:  50248\n  UID:               86adf94f-d2a8-4e70-895b-31139f2eeab7\nSpec:\n  Availability Mode:  Available\n  Priority:           1000\n  Source:\n    Image:\n      Poll Interval Minutes:  10\n      Ref:                    registry.redhat.io/redhat/community-operator-index:v{{ product_version }}\n    Type:                     Image\nStatus:\n  Conditions:\n    Last Transition Time:  2025-02-18T20:29:00Z\n    Message:               Successfully unpacked and stored content from resolved source\n    Observed Generation:   1\n    Reason:                Succeeded\n    Status:                True\n    Type:                  Progressing\n    Last Transition Time:  2025-02-18T20:29:00Z\n    Message:               Serving desired content from resolved source\n    Observed Generation:   1\n    Reason:                Available\n    Status:                True\n    Type:                  Serving\n  Last Unpacked:           2025-02-18T20:28:59Z\n  Resolved Source:\n    Image:\n      Ref:  registry.redhat.io/redhat/community-operator-index@sha256:11627ea6fdd06b8092df815076e03cae9b7cede8b353c0b461328842d02896c5\n    Type:   Image\n  Urls:\n    Base:  https://catalogd-service.openshift-catalogd.svc/catalogs/my-redhat-operators\nEvents:    <none>"} lang="text" title="Example output" />
+      <p>In the output, the <code>Status</code> section describes the status of the catalog. In the <code>Status</code> section, the <code>Reason</code> field displays the reason the catalog is in the current state. In the <code>Resolved Source</code> section, the <code>Ref</code> field displays the image reference of the catalog.</p>
+      </li>
+      </ol>
+      </li>
+      </ul>
+      <h2 id="olmv1-deleting-catalog_managing-catalogs" class="group scroll-mt-20">Deleting a catalog<a href="#olmv1-deleting-catalog_managing-catalogs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can delete a catalog by deleting its custom resource (CR).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have a catalog installed.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Delete a catalog by running the following command:
+      <CodeBlock code={"$ oc delete clustercatalog <catalog_name>"} lang="terminal" />
+      <CodeBlock code={"clustercatalog.olm.operatorframework.io \"my-redhat-operators\" deleted"} lang="text" title="Example output" />
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify the catalog is deleted by running the following command:
+      <CodeBlock code={"$ oc get clustercatalog"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="olmv1-disabling-a-default-catalog_managing-catalogs" class="group scroll-mt-20">Disabling a default catalog<a href="#olmv1-disabling-a-default-catalog_managing-catalogs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can disable the Red Hat-provided catalogs that are included with OpenShift Container Platform by default.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Disable a default catalog by running the following command:
+      <CodeBlock code={"$ oc patch clustercatalog openshift-certified-operators -p \\\n  '{\"spec\": {\"availabilityMode\": \"Unavailable\"}}' --type=merge"} lang="terminal" />
+      <CodeBlock code={"clustercatalog.olm.operatorframework.io/openshift-certified-operators patched"} lang="text" title="Example output" />
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify the catalog is disabled by running the following command:
+      <CodeBlock code={"$ oc get clustercatalog openshift-certified-operators"} lang="terminal" />
+      <CodeBlock code={"NAME                            LASTUNPACKED   SERVING   AGE\nopenshift-certified-operators                  False     6h54m"} lang="text" title="Example output" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

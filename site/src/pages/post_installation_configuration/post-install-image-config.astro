@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"post-install-image-config","text":"Configuring image streams and image registries"},{"depth":2,"slug":"post-install-image-config-disconnected","text":"Configuring image streams for a disconnected cluster"},{"depth":2,"slug":"additional-resources_post-install-image-config","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"post-install-image-config","text":"Configuring image streams and image registries"},{"depth":2,"slug":"post-install-image-config-disconnected","text":"Configuring image streams for a disconnected cluster"},{"depth":3,"slug":"installation-images-samples-disconnected-mirroring-assist_post-install-image-config","text":"Cluster Samples Operator assistance for mirroring"},{"depth":3,"slug":"installation-restricted-network-samples_post-install-image-config","text":"Using Cluster Samples Operator image streams with alternate or mirrored registries"},{"depth":3,"slug":"installation-preparing-restricted-cluster-to-gather-support-data_post-install-image-config","text":"Preparing your cluster to gather support data"},{"depth":2,"slug":"images-cluster-sample-imagestream-import_post-install-image-config","text":"Configuring periodic importing of Cluster Sample Operator image stream tags"},{"depth":2,"slug":"additional-resources_post-install-image-config","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/post-install-image-config";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["post_installation_configuration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring image streams and image registries {#post-install-image-config}\n\nYou can configure image streams, image registries, and pull secrets after installation to control how your cluster accesses, imports, and stores container images.\n\nYou can update the global pull secret for your cluster by either replacing the current pull secret or appending a new pull secret. The procedure is required when users use a separate registry to store images than the registry used during installation. For more information, see \"Using image pull secrets\".\n\nFor information about images and configuring image streams or image registries, see the following documentation:\n\n- Overview of images\n- Image Registry Operator in OpenShift Container Platform\n- Configuring image registry settings\n\n## Configuring image streams for a disconnected cluster {#post-install-image-config-disconnected}\n\nAfter installing OpenShift Container Platform in a disconnected environment, configure the image streams for the Cluster Samples Operator and the `must-gather` image stream.\n\n## Additional resources {#additional-resources_post-install-image-config}\n\n- [Using image pull secrets](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets)\n- [Overview of images](/openshift-docs-markdown/openshift_images/index#overview-of-images)\n- [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator)\n- [Configuring image registry settings](/openshift-docs-markdown/openshift_images/image-configuration#image-configuration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/post-install-image-config.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring image streams and image registries {#post-install-image-config}\n\nYou can configure image streams, image registries, and pull secrets after installation to control how your cluster accesses, imports, and stores container images.\n\nYou can update the global pull secret for your cluster by either replacing the current pull secret or appending a new pull secret. The procedure is required when users use a separate registry to store images than the registry used during installation. For more information, see \"Using image pull secrets\".\n\nFor information about images and configuring image streams or image registries, see the following documentation:\n\n- Overview of images\n- Image Registry Operator in OpenShift Container Platform\n- Configuring image registry settings\n\n## Configuring image streams for a disconnected cluster {#post-install-image-config-disconnected}\n\nAfter installing OpenShift Container Platform in a disconnected environment, configure the image streams for the Cluster Samples Operator and the `must-gather` image stream.\n\n### Cluster Samples Operator assistance for mirroring {#installation-images-samples-disconnected-mirroring-assist_post-install-image-config}\n\nDuring installation, OpenShift Container Platform creates a config map named `imagestreamtag-to-image` in the `openshift-cluster-samples-operator` namespace.\n\nThe `imagestreamtag-to-image` config map contains an entry, the populating image, for each image stream tag.\n\nThe format of the key for each entry in the data field in the config map is `<image_stream_name>_<image_stream_tag_name>`.\n\nDuring a disconnected installation of OpenShift Container Platform, the status of the Cluster Samples Operator is set to `Removed`. If you choose to change it to `Managed`, it installs samples.\n\n> [!NOTE]\n> The use of samples in a network-restricted or discontinued environment might require access to services external to your network. Some example services include: Github, Maven Central, npm, RubyGems, PyPi and others. There might be additional steps to take that allow the Cluster Samples Operators objects to reach the services they require.\n\nUse the following principles to determine which images you need to mirror for your image streams to import:\n\n- While the Cluster Samples Operator is set to `Removed`, you can create your mirrored registry, or determine which existing mirrored registry you want to use.\n- Mirror the samples you want to the mirrored registry using the new config map as your guide.\n- Add any of the image streams you did not mirror to the `skippedImagestreams` list of the Cluster Samples Operator configuration object.\n- Set `samplesRegistry` of the Cluster Samples Operator configuration object to the mirrored registry.\n- Then set the Cluster Samples Operator to `Managed` to install the image streams you have mirrored.\n\n### Using Cluster Samples Operator image streams with alternate or mirrored registries {#installation-restricted-network-samples_post-install-image-config}\n\nYou can use an alternate or mirror registry to host your images streams instead of using the Red Hat registry.\n\nMost image streams in the `openshift` namespace managed by the Cluster Samples Operator point to images located in the Red Hat registry at [registry.redhat.io](https://registry.redhat.io).\n\n> [!NOTE]\n> The `cli`, `installer`, `must-gather`, and `tests` image streams, while part of the install payload, are not managed by the Cluster Samples Operator. These are not addressed in this procedure.\n\n> [!IMPORTANT]\n> The Cluster Samples Operator must be set to `Managed` in a disconnected environment. To install the image streams, you must have a mirrored registry.\n\n**Prerequisites**\n\n- Access to the cluster as a user with the `cluster-admin` role.\n- Create a pull secret for your mirror registry.\n\n**Procedure**\n\n1. Access the images of a specific image stream to mirror, for example:\n\n   ```terminal\n   $ oc get is <imagestream> -n openshift -o json | jq .spec.tags[].from.name | grep registry.redhat.io\n   ```\n2. Mirror images from [registry.redhat.io](https://registry.redhat.io) associated with any image streams you need\n\n   ```terminal\n   $ oc image mirror registry.redhat.io/rhscl/ruby-25-rhel7:latest ${MIRROR_ADDR}/rhscl/ruby-25-rhel7:latest\n   ```\n3. Create the image configuration object for the cluster by running the following command:\n\n   ```terminal\n   $ oc create configmap registry-config --from-file=${MIRROR_ADDR_HOSTNAME}..5000=$path/ca.crt -n openshift-config\n   ```\n4. Add the required trusted CAs for the mirror in the image configuration object:\n\n   ```terminal\n   $ oc patch image.config.openshift.io/cluster --patch '{\"spec\":{\"additionalTrustedCA\":{\"name\":\"registry-config\"}}}' --type=merge\n   ```\n5. Update the `samplesRegistry` field in the Cluster Samples Operator configuration object to contain the `hostname` portion of the mirror location defined in the mirror configuration:\n\n   ```terminal\n   $ oc edit configs.samples.operator.openshift.io -n openshift-cluster-samples-operator\n   ```\n\n   > [!IMPORTANT]\n   > This step is required because the image stream import process does not use the mirror or search mechanism at this time.\n6. Add any image streams that are not mirrored into the `skippedImagestreams` field of the Cluster Samples Operator configuration object. Or if you do not want to support any of the sample image streams, set the Cluster Samples Operator to `Removed` in the Cluster Samples Operator configuration object.\n\n   > [!NOTE]\n   > The Cluster Samples Operator issues alerts if image stream imports are failing but the Cluster Samples Operator is either periodically retrying or does not appear to be retrying them.\n\n   Many of the templates in the `openshift` namespace reference the image streams. You can use `Removed` to purge both the image streams and templates. This eliminates the possibility of attempts to use the templates if they are not functional because of any missing image streams.\n\n### Preparing your cluster to gather support data {#installation-preparing-restricted-cluster-to-gather-support-data_post-install-image-config}\n\nYou can prepare a cluster on a restricted network to gather support data by importing the default must-gather image and configuring access to the mirror registry.\n\nClusters using a restricted network must import the default must-gather image to gather debugging data for Red Hat support. The must-gather image is not imported by default, and clusters on a restricted network do not have access to the internet to pull the latest image from a remote repository.\n\n**Procedure**\n\n1. If you have not added your mirror registry’s trusted CA to your cluster’s image configuration object as part of the Cluster Samples Operator configuration, perform the following steps:\n\n   1. Create the cluster’s image configuration object:\n\n      ```terminal\n      $ oc create configmap registry-config --from-file=${MIRROR_ADDR_HOSTNAME}..5000=$path/ca.crt -n openshift-config\n      ```\n   2. Add the required trusted CAs for the mirror in the cluster’s image configuration object:\n\n      ```terminal\n      $ oc patch image.config.openshift.io/cluster --patch '{\"spec\":{\"additionalTrustedCA\":{\"name\":\"registry-config\"}}}' --type=merge\n      ```\n2. Import the default must-gather image from your installation payload:\n\n   ```terminal\n   $ oc import-image is/must-gather -n openshift\n   ```\n\n   When running the `oc adm must-gather` command, use the `--image` flag and point to the payload image, as in the following example:\n\n   ```terminal\n   $ oc adm must-gather --image=$(oc adm release info --image-for must-gather)\n   ```\n\n## Configuring periodic importing of Cluster Sample Operator image stream tags {#images-cluster-sample-imagestream-import_post-install-image-config}\n\nYou can configure scheduled imports for Cluster Sample Operator image stream tags to periodically retrieve updated images and retry imports after temporary failures.\n\nYou can ensure that you always have access to the latest versions of the Cluster Sample Operator images by periodically importing the image stream tags when new versions become available.\n\n**Procedure**\n\n1. Fetch all the imagestreams in the `openshift` namespace by running the following command:\n\n   ```terminal\n   oc get imagestreams -n openshift\n   ```\n2. Fetch the tags for every imagestream in the `openshift` namespace by running the following command:\n\n   ```terminal\n   $ oc get is <image-stream-name> -o jsonpath=\"{range .spec.tags[*]}{.name}{'\\t'}{.from.name}{'\\n'}{end}\" -n openshift\n   ```\n\n   For example:\n\n   ```terminal\n   $ oc get is ubi8-openjdk-17 -o jsonpath=\"{range .spec.tags[*]}{.name}{'\\t'}{.from.name}{'\\n'}{end}\" -n openshift\n   ```\n\n   ```terminal {title=\"Example output\"}\n   1.11\tregistry.access.redhat.com/ubi8/openjdk-17:1.11\n   1.12\tregistry.access.redhat.com/ubi8/openjdk-17:1.12\n   ```\n3. Schedule periodic importing of images for each tag present in the image stream by running the following command:\n\n   ```terminal\n   $ oc tag <repository/image> <image-stream-name:tag> --scheduled -n openshift\n   ```\n\n   For example:\n\n   ```terminal\n   $ oc tag registry.access.redhat.com/ubi8/openjdk-17:1.11 ubi8-openjdk-17:1.11 --scheduled -n openshift\n   ```\n\n   ```terminal\n   $ oc tag registry.access.redhat.com/ubi8/openjdk-17:1.12 ubi8-openjdk-17:1.12 --scheduled -n openshift\n   ```\n\n   > [!NOTE]\n   > Using the `--scheduled` flag is recommended to periodically re-import an image when working with an external container image registry. The `--scheduled` flag helps to ensure that you receive the latest versions and security updates. Additionally, this setting allows the import process to automatically retry if a temporary error initially prevents the image from being imported.\n   >\n   > By default, scheduled image imports occur every 15 minutes cluster-wide.\n4. Verify the scheduling status of the periodic import by running the following command:\n\n   ```terminal\n   oc get imagestream <image-stream-name> -o jsonpath=\"{range .spec.tags[*]}Tag: {.name}{'\\t'}Scheduled: {.importPolicy.scheduled}{'\\n'}{end}\" -n openshift\n   ```\n\n   For example:\n\n   ```terminal\n   oc get imagestream ubi8-openjdk-17 -o jsonpath=\"{range .spec.tags[*]}Tag: {.name}{'\\t'}Scheduled: {.importPolicy.scheduled}{'\\n'}{end}\" -n openshift\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Tag: 1.11\tScheduled: true\n   Tag: 1.12\tScheduled: true\n   ```\n\n## Additional resources {#additional-resources_post-install-image-config}\n\n- [Using image pull secrets](/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets)\n- [Overview of images](/openshift-docs-markdown/openshift_images/index#overview-of-images)\n- [Image Registry Operator in OpenShift Container Platform](/openshift-docs-markdown/registry/configuring-registry-operator#configuring-registry-operator)\n- [Configuring image registry settings](/openshift-docs-markdown/openshift_images/image-configuration#image-configuration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/post-install-image-config.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,7 +94,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
       <h1 id="post-install-image-config" class="group scroll-mt-20">Configuring image streams and image registries<a href="#post-install-image-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You can configure image streams, image registries, and pull secrets after installation to control how your cluster accesses, imports, and stores container images.</p>
       <p>You can update the global pull secret for your cluster by either replacing the current pull secret or appending a new pull secret. The procedure is required when users use a separate registry to store images than the registry used during installation. For more information, see "Using image pull secrets".</p>
@@ -102,10 +105,147 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <h2 id="post-install-image-config-disconnected" class="group scroll-mt-20">Configuring image streams for a disconnected cluster<a href="#post-install-image-config-disconnected" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>After installing OpenShift Container Platform in a disconnected environment, configure the image streams for the Cluster Samples Operator and the <code>must-gather</code> image stream.</p>
-      <p class="/modules/installation-images-samples-disconnected-mirroring-assist.md"></p>
-      <p class="/modules/installation-restricted-network-samples.md"></p>
-      <p class="/modules/installation-preparing-restricted-cluster-to-gather-support-data.md"></p>
-      <p class="/modules/images-cluster-sample-imagestream-import.md"></p>
+      <h3 id="installation-images-samples-disconnected-mirroring-assist_post-install-image-config" class="group scroll-mt-20">Cluster Samples Operator assistance for mirroring<a href="#installation-images-samples-disconnected-mirroring-assist_post-install-image-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">During installation, OpenShift Container Platform creates a config map named <code>imagestreamtag-to-image</code> in the <code>openshift-cluster-samples-operator</code> namespace.</p>
+      <p>The <code>imagestreamtag-to-image</code> config map contains an entry, the populating image, for each image stream tag.</p>
+      <p>The format of the key for each entry in the data field in the config map is <code>&lt;image_stream_name&gt;_&lt;image_stream_tag_name&gt;</code>.</p>
+      <p>During a disconnected installation of OpenShift Container Platform, the status of the Cluster Samples Operator is set to <code>Removed</code>. If you choose to change it to <code>Managed</code>, it installs samples.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The use of samples in a network-restricted or discontinued environment might require access to services external to your network. Some example services include: Github, Maven Central, npm, RubyGems, PyPi and others. There might be additional steps to take that allow the Cluster Samples Operators objects to reach the services they require.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Use the following principles to determine which images you need to mirror for your image streams to import:</p>
+      <ul>
+      <li>While the Cluster Samples Operator is set to <code>Removed</code>, you can create your mirrored registry, or determine which existing mirrored registry you want to use.</li>
+      <li>Mirror the samples you want to the mirrored registry using the new config map as your guide.</li>
+      <li>Add any of the image streams you did not mirror to the <code>skippedImagestreams</code> list of the Cluster Samples Operator configuration object.</li>
+      <li>Set <code>samplesRegistry</code> of the Cluster Samples Operator configuration object to the mirrored registry.</li>
+      <li>Then set the Cluster Samples Operator to <code>Managed</code> to install the image streams you have mirrored.</li>
+      </ul>
+      <h3 id="installation-restricted-network-samples_post-install-image-config" class="group scroll-mt-20">Using Cluster Samples Operator image streams with alternate or mirrored registries<a href="#installation-restricted-network-samples_post-install-image-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can use an alternate or mirror registry to host your images streams instead of using the Red Hat registry.</p>
+      <p>Most image streams in the <code>openshift</code> namespace managed by the Cluster Samples Operator point to images located in the Red Hat registry at <a href="https://registry.redhat.io">registry.redhat.io</a>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>cli</code>, <code>installer</code>, <code>must-gather</code>, and <code>tests</code> image streams, while part of the install payload, are not managed by the Cluster Samples Operator. These are not addressed in this procedure.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The Cluster Samples Operator must be set to <code>Managed</code> in a disconnected environment. To install the image streams, you must have a mirrored registry.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>Create a pull secret for your mirror registry.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Access the images of a specific image stream to mirror, for example:
+      <CodeBlock code={"$ oc get is <imagestream> -n openshift -o json | jq .spec.tags[].from.name | grep registry.redhat.io"} lang="terminal" />
+      </li>
+      <li>
+      Mirror images from <a href="https://registry.redhat.io">registry.redhat.io</a> associated with any image streams you need
+      <CodeBlock code={"$ oc image mirror registry.redhat.io/rhscl/ruby-25-rhel7:latest ${MIRROR_ADDR}/rhscl/ruby-25-rhel7:latest"} lang="terminal" />
+      </li>
+      <li>
+      Create the image configuration object for the cluster by running the following command:
+      <CodeBlock code={"$ oc create configmap registry-config --from-file=${MIRROR_ADDR_HOSTNAME}..5000=$path/ca.crt -n openshift-config"} lang="terminal" />
+      </li>
+      <li>
+      Add the required trusted CAs for the mirror in the image configuration object:
+      <CodeBlock code={"$ oc patch image.config.openshift.io/cluster --patch '{\"spec\":{\"additionalTrustedCA\":{\"name\":\"registry-config\"}}}' --type=merge"} lang="terminal" />
+      </li>
+      <li>
+      Update the <code>samplesRegistry</code> field in the Cluster Samples Operator configuration object to contain the <code>hostname</code> portion of the mirror location defined in the mirror configuration:
+      <CodeBlock code={"$ oc edit configs.samples.operator.openshift.io -n openshift-cluster-samples-operator"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>This step is required because the image stream import process does not use the mirror or search mechanism at this time.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Add any image streams that are not mirrored into the <code>skippedImagestreams</code> field of the Cluster Samples Operator configuration object. Or if you do not want to support any of the sample image streams, set the Cluster Samples Operator to <code>Removed</code> in the Cluster Samples Operator configuration object.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The Cluster Samples Operator issues alerts if image stream imports are failing but the Cluster Samples Operator is either periodically retrying or does not appear to be retrying them.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Many of the templates in the <code>openshift</code> namespace reference the image streams. You can use <code>Removed</code> to purge both the image streams and templates. This eliminates the possibility of attempts to use the templates if they are not functional because of any missing image streams.</p>
+      </li>
+      </ol>
+      <h3 id="installation-preparing-restricted-cluster-to-gather-support-data_post-install-image-config" class="group scroll-mt-20">Preparing your cluster to gather support data<a href="#installation-preparing-restricted-cluster-to-gather-support-data_post-install-image-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can prepare a cluster on a restricted network to gather support data by importing the default must-gather image and configuring access to the mirror registry.</p>
+      <p>Clusters using a restricted network must import the default must-gather image to gather debugging data for Red Hat support. The must-gather image is not imported by default, and clusters on a restricted network do not have access to the internet to pull the latest image from a remote repository.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      If you have not added your mirror registry’s trusted CA to your cluster’s image configuration object as part of the Cluster Samples Operator configuration, perform the following steps:
+      <ol>
+      <li>
+      Create the cluster’s image configuration object:
+      <CodeBlock code={"$ oc create configmap registry-config --from-file=${MIRROR_ADDR_HOSTNAME}..5000=$path/ca.crt -n openshift-config"} lang="terminal" />
+      </li>
+      <li>
+      Add the required trusted CAs for the mirror in the cluster’s image configuration object:
+      <CodeBlock code={"$ oc patch image.config.openshift.io/cluster --patch '{\"spec\":{\"additionalTrustedCA\":{\"name\":\"registry-config\"}}}' --type=merge"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Import the default must-gather image from your installation payload:
+      <CodeBlock code={"$ oc import-image is/must-gather -n openshift"} lang="terminal" />
+      <p>When running the <code>oc adm must-gather</code> command, use the <code>--image</code> flag and point to the payload image, as in the following example:</p>
+      <CodeBlock code={"$ oc adm must-gather --image=$(oc adm release info --image-for must-gather)"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="images-cluster-sample-imagestream-import_post-install-image-config" class="group scroll-mt-20">Configuring periodic importing of Cluster Sample Operator image stream tags<a href="#images-cluster-sample-imagestream-import_post-install-image-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure scheduled imports for Cluster Sample Operator image stream tags to periodically retrieve updated images and retry imports after temporary failures.</p>
+      <p>You can ensure that you always have access to the latest versions of the Cluster Sample Operator images by periodically importing the image stream tags when new versions become available.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Fetch all the imagestreams in the <code>openshift</code> namespace by running the following command:
+      <CodeBlock code={"oc get imagestreams -n openshift"} lang="terminal" />
+      </li>
+      <li>
+      Fetch the tags for every imagestream in the <code>openshift</code> namespace by running the following command:
+      <CodeBlock code={"$ oc get is <image-stream-name> -o jsonpath=\"{range .spec.tags[*]}{.name}{'\\t'}{.from.name}{'\\n'}{end}\" -n openshift"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc get is ubi8-openjdk-17 -o jsonpath=\"{range .spec.tags[*]}{.name}{'\\t'}{.from.name}{'\\n'}{end}\" -n openshift"} lang="terminal" />
+      <CodeBlock code={"1.11\tregistry.access.redhat.com/ubi8/openjdk-17:1.11\n1.12\tregistry.access.redhat.com/ubi8/openjdk-17:1.12"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Schedule periodic importing of images for each tag present in the image stream by running the following command:
+      <CodeBlock code={"$ oc tag <repository/image> <image-stream-name:tag> --scheduled -n openshift"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc tag registry.access.redhat.com/ubi8/openjdk-17:1.11 ubi8-openjdk-17:1.11 --scheduled -n openshift"} lang="terminal" />
+      <CodeBlock code={"$ oc tag registry.access.redhat.com/ubi8/openjdk-17:1.12 ubi8-openjdk-17:1.12 --scheduled -n openshift"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Using the <code>--scheduled</code> flag is recommended to periodically re-import an image when working with an external container image registry. The <code>--scheduled</code> flag helps to ensure that you receive the latest versions and security updates. Additionally, this setting allows the import process to automatically retry if a temporary error initially prevents the image from being imported.</p>
+          <p>By default, scheduled image imports occur every 15 minutes cluster-wide.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Verify the scheduling status of the periodic import by running the following command:
+      <CodeBlock code={"oc get imagestream <image-stream-name> -o jsonpath=\"{range .spec.tags[*]}Tag: {.name}{'\\t'}Scheduled: {.importPolicy.scheduled}{'\\n'}{end}\" -n openshift"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"oc get imagestream ubi8-openjdk-17 -o jsonpath=\"{range .spec.tags[*]}Tag: {.name}{'\\t'}Scheduled: {.importPolicy.scheduled}{'\\n'}{end}\" -n openshift"} lang="terminal" />
+      <CodeBlock code={"Tag: 1.11\tScheduled: true\nTag: 1.12\tScheduled: true"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
       <h2 id="additional-resources_post-install-image-config" class="group scroll-mt-20">Additional resources<a href="#additional-resources_post-install-image-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/openshift_images/managing_images/using-image-pull-secrets#using-image-pull-secrets">Using image pull secrets</a></li>

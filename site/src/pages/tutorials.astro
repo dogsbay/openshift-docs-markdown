@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"tutorials-overview","text":"Tutorials overview"}];
+const headings = [{"depth":1,"slug":"tutorials-overview","text":"Tutorials overview"},{"depth":2,"slug":"tutorial-dev-tutorials_tutorials-overview","text":"Tutorials for developers"},{"depth":2,"slug":"tutorial-additional-learning_tutorials-overview","text":"Additional learning resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/tutorials";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +39,7 @@ const pageCategory = null;
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Tutorials overview {#tutorials-overview}\n\nTo learn how to use OpenShift Container Platform, review the tutorials and other learning resources that are available.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/tutorials.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Tutorials overview {#tutorials-overview}\n\nTo learn how to use OpenShift Container Platform, review the tutorials and other learning resources that are available.\n\n## Tutorials for developers {#tutorial-dev-tutorials_tutorials-overview}\n\nYou can follow an end-to-end example of deploying an application on OpenShift Container Platform either by using the OpenShift CLI (`oc`) or the web console.\n\nChoose one of the following tutorials:\n\n- [Tutorial: Deploying an application by using the CLI](/openshift-docs-markdown/tutorials/dev-app-cli#dev-app-cli)\n- [Tutorial: Deploying an application by using the web console](/openshift-docs-markdown/tutorials/dev-app-web-console#dev-app-web-console)\n\n## Additional learning resources {#tutorial-additional-learning_tutorials-overview}\n\nExplore the additional learning resources that are available for OpenShift Container Platform.\n\nTo review the Red Hat Developer learning paths, training courses, and cheat sheets for OpenShift Container Platform, see [Additional hands-on learning](/openshift-docs-markdown/tutorials/additional-tutorials#additional-tutorials).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/tutorials.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +91,17 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="tutorials-overview" class="group scroll-mt-20">Tutorials overview<a href="#tutorials-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To learn how to use OpenShift Container Platform, review the tutorials and other learning resources that are available.</p>
-      <p class="/modules/tutorial-dev-tutorials.md"></p>
-      <p class="/modules/tutorial-additional-learning.md"></p>
+      <h2 id="tutorial-dev-tutorials_tutorials-overview" class="group scroll-mt-20">Tutorials for developers<a href="#tutorial-dev-tutorials_tutorials-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can follow an end-to-end example of deploying an application on OpenShift Container Platform either by using the OpenShift CLI (<code>oc</code>) or the web console.</p>
+      <p>Choose one of the following tutorials:</p>
+      <ul>
+      <li><a href="/openshift-docs-markdown/tutorials/dev-app-cli#dev-app-cli">Tutorial: Deploying an application by using the CLI</a></li>
+      <li><a href="/openshift-docs-markdown/tutorials/dev-app-web-console#dev-app-web-console">Tutorial: Deploying an application by using the web console</a></li>
+      </ul>
+      <h2 id="tutorial-additional-learning_tutorials-overview" class="group scroll-mt-20">Additional learning resources<a href="#tutorial-additional-learning_tutorials-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Explore the additional learning resources that are available for OpenShift Container Platform.</p>
+      <p>To review the Red Hat Developer learning paths, training courses, and cheat sheets for OpenShift Container Platform, see <a href="/openshift-docs-markdown/tutorials/additional-tutorials#additional-tutorials">Additional hands-on learning</a>.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

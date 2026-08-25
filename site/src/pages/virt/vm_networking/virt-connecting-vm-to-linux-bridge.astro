@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-connecting-vm-to-linux-bridge","text":"Connecting a virtual machine to a Linux bridge network"},{"depth":2,"slug":"additional-resources_virt-connecting-vm-to-linux-bridge","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-connecting-vm-to-linux-bridge","text":"Connecting a virtual machine to a Linux bridge network"},{"depth":2,"slug":"virt-creating-linux-bridge-nncp_virt-connecting-vm-to-linux-bridge","text":"Creating a Linux bridge NNCP"},{"depth":2,"slug":"virt-creating-linux-bridge-nad-web_virt-connecting-vm-to-linux-bridge","text":"Creating a Linux bridge NAD by using the web console"},{"depth":2,"slug":"virt-creating-linux-bridge-nad-cli_virt-connecting-vm-to-linux-bridge","text":"Creating a Linux bridge NAD by using the CLI"},{"depth":3,"slug":"virt-linux-bridge-nad-port-isolation_virt-connecting-vm-to-linux-bridge","text":"Enabling port isolation for a Linux bridge NAD"},{"depth":2,"slug":"virt-vm-creating-nic-web_virt-connecting-vm-to-linux-bridge","text":"Configuring a VM network interface by using the web console"},{"depth":3,"slug":"virt-networking-wizard-fields-web_virt-connecting-vm-to-linux-bridge","text":"Networking fields"},{"depth":2,"slug":"virt-attaching-vm-secondary-network-cli_virt-connecting-vm-to-linux-bridge","text":"Configuring a VM network interface by using the CLI"},{"depth":2,"slug":"additional-resources_virt-connecting-vm-to-linux-bridge","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Connecting a virtual machine to a Linux bridge network";
-const description = "By default, {{ VirtProductName }} is installed with a single, internal pod network. You can connect a virtual machine (VM) to the physical network by…" || undefined;
+const description = "By default, OpenShift Virtualization is installed with a single, internal pod network. You can connect a virtual machine (VM) to the physical network by…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/vm_networking"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Connecting a virtual machine to a Linux bridge network {#virt-connecting-vm-to-linux-bridge}\n\nBy default, {{ VirtProductName }} is installed with a single, internal pod network. You can connect a virtual machine (VM) to the physical network by using a Linux bridge.\n\nTo create a Linux bridge network and attach a VM to the network, perform the following steps:\n\n1. Prepare the node network by creating a Linux bridge node network configuration policy (NNCP).\n2. Define the secondary Linux bridge network by creating a network attachment definition (NAD).\n3. Attach the VM to the Linux bridge network.\n\n> [!NOTE]\n> {{ VirtProductName }} does not support Linux bridge bonding modes 0, 5, and 6. For more information, see \"Additional resources\".\n\n## Additional resources {#additional-resources_virt-connecting-vm-to-linux-bridge}\n\n- [Configuring IP addresses for virtual machines](/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)\n- [Which bonding modes work when used with a bridge that virtual machine guests or containers connect to?](https://access.redhat.com/solutions/67546)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Connecting a virtual machine to a Linux bridge network {#virt-connecting-vm-to-linux-bridge}\n\nBy default, OpenShift Virtualization is installed with a single, internal pod network. You can connect a virtual machine (VM) to the physical network by using a Linux bridge.\n\nTo create a Linux bridge network and attach a VM to the network, perform the following steps:\n\n1. Prepare the node network by creating a Linux bridge node network configuration policy (NNCP).\n2. Define the secondary Linux bridge network by creating a network attachment definition (NAD).\n3. Attach the VM to the Linux bridge network.\n\n> [!NOTE]\n> OpenShift Virtualization does not support Linux bridge bonding modes 0, 5, and 6. For more information, see \"Additional resources\".\n\n## Creating a Linux bridge NNCP {#virt-creating-linux-bridge-nncp_virt-connecting-vm-to-linux-bridge}\n\nAfter you install the Kubernetes NMState Operator, you can configure a Linux bridge network for live migration or external access to virtual machines (VMs).\n\nYou can create a `NodeNetworkConfigurationPolicy` (NNCP) manifest for a Linux bridge network.\n\n**Prerequisites**\n\n- You have installed the Kubernetes NMState Operator.\n\n**Procedure**\n\n- Create the `NodeNetworkConfigurationPolicy` manifest. This example includes sample values that you must replace with your own information.\n\n  ```yaml\n  apiVersion: nmstate.io/v1\n  kind: NodeNetworkConfigurationPolicy\n  metadata:\n    name: br1-eth1-policy\n  spec:\n    desiredState:\n      interfaces:\n        - name: br1\n          description: Linux bridge with eth1 as a port\n          type: linux-bridge\n          state: up\n          ipv4:\n            enabled: false\n          bridge:\n            options:\n              stp:\n                enabled: false\n            port:\n              - name: eth1\n  ```\n\n  - `metadata.name` defines the name of the node network configuration policy.\n  - `spec.desiredState.interfaces.name` defines the name of the new Linux bridge.\n  - `spec.desiredState.interfaces.description` is an optional field that can be used to define a human-readable description for the bridge.\n  - `spec.desiredState.interfaces.type` defines the interface type. In this example, the type is a Linux bridge.\n  - `spec.desiredState.interfaces.state` defines the requested state for the interface after creation.\n  - `spec.desiredState.interfaces.ipv4.enabled` defines whether the ipv4 protocol is active. Setting this to `false` disables IPv4 addressing on this bridge.\n  - `spec.desiredState.interfaces.bridge.options.stp.enabled` defines whether Spanning Tree Protocol (STP) is active. Setting this to `false` disables STP on this bridge.\n  - `spec.desiredState.interfaces.bridge.port.name` defines the node NIC that the bridge is attached to.\n\n    > [!NOTE]\n    > To create the NNCP manifest for a Linux bridge using Open Systems Adapter (OSA) with IBM Z(R), you must disable VLAN filtering by the setting the `rx-vlan-filter` to `false` in the `NodeNetworkConfigurationPolicy` manifest.\n    >\n    > Alternatively, if you have SSH access to the node, you can disable VLAN filtering by running the following command:\n    >\n    > ```terminal\n    > $ sudo ethtool -K <osa-interface-name> rx-vlan-filter off\n    > ```\n\n## Creating a Linux bridge NAD by using the web console {#virt-creating-linux-bridge-nad-web_virt-connecting-vm-to-linux-bridge}\n\nUse the OpenShift Container Platform web console to create a network attachment definition (NAD) that connects pods and virtual machines to a layer-2 network.\n\n> [!WARNING]\n> Configuring IP address management (IPAM) in a network attachment definition for virtual machines is not supported.\n\n**Procedure**\n\n1. In the web console, click **Networking** -> **NetworkAttachmentDefinitions**.\n2. Click **Create Network Attachment Definition**.\n\n   > [!NOTE]\n   > The network attachment definition must be in the same namespace as the pod or virtual machine.\n3. Enter a unique **Name** and optional **Description**.\n4. Select **CNV Linux bridge** from the **Network Type** list.\n5. Enter the name of the bridge in the **Bridge Name** field.\n6. Optional: If the resource has VLAN IDs configured, enter the ID numbers in the **VLAN Tag Number** field.\n\n   > [!NOTE]\n   > Open Systems Adapter (OSA) interfaces on IBM Z(R) do not support VLAN filtering and drop VLAN-tagged traffic. Avoid using VLAN-tagged NADs with OSA interfaces.\n7. Optional: Select **MAC Spoof Check** to enable MAC spoof filtering. This feature provides security against a MAC spoofing attack by allowing only a single MAC address to exit the pod.\n8. Optional: In the **YAML** tab, add the `spec.config.disableContainerInterface` field. When set to `true`, the Bridge CNI plug-in skips creating a standard container virtual ethernet (`veth`) interface inside the pod’s network namespace. This enables the virtualization networking backend to attach the layer-2 interface directly to the guest VM instead of a standard container.\n\n   Example YAML:\n\n   ```yaml\n   apiVersion: \"k8s.cni.cncf.io/v1\"\n   kind: NetworkAttachmentDefinition\n   metadata:\n     name: bridge-network\n     annotations:\n       k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1\n   spec:\n     config: |\n       {\n   # ...\n         \"disableContainerInterface\": true,\n   # ...\n       }\n   ```\n9. Click **Create**.\n\n## Creating a Linux bridge NAD by using the CLI {#virt-creating-linux-bridge-nad-cli_virt-connecting-vm-to-linux-bridge}\n\nYou can create a network attachment definition (NAD) to provide layer-2 networking to pods and virtual machines (VMs) by using the command line.\n\nThe NAD and the VM must be in the same namespace.\n\n> [!WARNING]\n> Configuring IP address management (IPAM) in a network attachment definition for VMs is not supported.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Add the VM to the `NetworkAttachmentDefinition` configuration, as in the following example:\n\n   ```yaml\n   apiVersion: \"k8s.cni.cncf.io/v1\"\n   kind: NetworkAttachmentDefinition\n   metadata:\n     name: bridge-network\n     annotations:\n       k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1\n   spec:\n     config: |\n       {\n         \"cniVersion\": \"0.3.1\",\n         \"name\": \"bridge-network\",\n         \"type\": \"bridge\",\n         \"bridge\": \"br1\",\n         \"macspoofchk\": false,\n         \"vlan\": 100,\n         \"disableContainerInterface\": true,\n         \"preserveDefaultVlan\": false\n       }\n   ```\n\n   > [!NOTE]\n   > OSA interfaces on IBM Z(R) do not support VLAN filtering and VLAN-tagged traffic is dropped. Avoid using VLAN-tagged NADs with OSA interfaces.\n\n   - `metadata.name` defines the name for the `NetworkAttachmentDefinition` object.\n   - `metadata.annotations.k8s.v1.cni.cncf.io/resourceName` is optional and defines the annotation key-value pair for node selection for the bridge configured on some nodes. If you add this annotation to your network attachment definition, your virtual machine instances will only run on the nodes that have the defined bridge connected.\n   - `spec.config.name` defines the name for the configuration. It is recommended to match the configuration name to the `name` value of the network attachment definition.\n   - `spec.config.type` defines the actual name of the Container Network Interface (CNI) plugin that provides the network for this network attachment definition. Do not change this field unless you want to use a different CNI.\n   - `spec.config.bridge` defines the name of the Linux bridge configured on the node. The name should match the interface bridge name defined in the `NodeNetworkConfigurationPolicy` manifest.\n   - `spec.config.macspoofchk` is optional and defines a flag to enable the MAC spoof check. When set to `true`, you cannot change the MAC address of the pod or guest interface. This attribute allows only a single MAC address to exit the pod, which provides security against a MAC spoofing attack.\n   - `spec.config.vlan` is optional and defines the VLAN tag. No additional VLAN configuration is required on the node network configuration policy.\n   - `spec.config.disableContainerInterface` is optional. When set to `true`, the Bridge CNI plug-in skips creating a standard container virtual ethernet (`veth`) interface inside the pod’s network namespace. This enables the virtualization networking backend to attach the layer-2 interface directly to the guest VM instead of a standard container.\n   - `spec.config.preserveDefaultVlan` is optional and defines whether the VM connects to the bridge through the default VLAN. The default value is `true`.\n2. Optional: If you want to connect a VM to the native network, configure the Linux bridge `NetworkAttachmentDefinition` manifest without specifying any VLAN:\n\n   ```yaml\n   apiVersion: \"k8s.cni.cncf.io/v1\"\n   kind: NetworkAttachmentDefinition\n   metadata:\n     name: bridge-network\n     annotations:\n       k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1\n   spec:\n     config: |\n       {\n         \"cniVersion\": \"0.3.1\",\n         \"name\": \"bridge-network\",\n         \"type\": \"bridge\",\n         \"bridge\": \"br1\",\n         \"macspoofchk\": false,\n         \"disableContainerInterface\": true\n       }\n   ```\n3. Create the network attachment definition:\n\n   ```terminal\n   $ oc create -f network-attachment-definition.yaml\n   ```\n\n   where:\n\n   `network-attachment-definition.yaml`\n   :   Specifies the file name of the network attachment definition manifest.\n\n**Verification**\n\n- Verify that the network attachment definition was created by running the following command:\n\n  ```terminal\n  $ oc get network-attachment-definition bridge-network\n  ```\n\n### Enabling port isolation for a Linux bridge NAD {#virt-linux-bridge-nad-port-isolation_virt-connecting-vm-to-linux-bridge}\n\nYou can enable port isolation for a Linux bridge network attachment definition (NAD) so that virtual machines (VMs) or pods that run on the same virtual LAN (VLAN) can operate in isolation from one another.\n\nThe Linux bridge NAD creates a virtual bridge, or *virtual switch*, between network interfaces and the physical network.\n\nIsolating ports in this way can provide enhanced security for VM workloads that run on the same node.\n\n**Prerequisites**\n\n- For VMs, you configured either a static or dynamic IP address for each VM. See \"Configuring IP addresses for virtual machines\".\n- You created a Linux bridge NAD by using either the web console or the command-line interface.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Edit the Linux bridge NAD by setting `portIsolation` to `true`:\n\n   ```yaml\n   apiVersion: \"k8s.cni.cncf.io/v1\"\n   kind: NetworkAttachmentDefinition\n   metadata:\n     name: bridge-network\n     annotations:\n       k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1\n   spec:\n     config: |\n       {\n         \"cniVersion\": \"0.3.1\",\n         \"name\": \"bridge-network\",\n         \"type\": \"bridge\",\n         \"bridge\": \"br1\",\n         \"preserveDefaultVlan\": false,\n         \"vlan\": 100,\n         \"disableContainerInterface\": false,\n         \"portIsolation\": true\n       }\n   # ...\n   ```\n\n   - `spec.config.name` specifies the name for the configuration. The name must match the value in the `metadata.name` of the NAD.\n   - `spec.config.type` specifies the actual name of the Container Network Interface (CNI) plugin that provides the network for this network attachment definition. Do not change this field unless you want to use a different CNI.\n   - `spec.config.bridge` specifies the name of the Linux bridge that is configured on the node. The name must match the interface bridge name defined in the `NodeNetworkConfigurationPolicy` manifest.\n   - `spec.config.portIsolation` specifies whether port isolation on the virtual bridge is enabled or disabled. The default value is `false`. When set to `true`, each VM or pod is assigned to an isolated port. The virtual bridge prevents traffic from one isolated port from reaching another isolated port.\n2. Apply the configuration:\n\n   ```terminal\n   $ oc apply -f example-vm.yaml\n   ```\n3. Optional: If you edited a running virtual machine, you must restart it for the changes to take effect.\n\n## Configuring a VM network interface by using the web console {#virt-vm-creating-nic-web_virt-connecting-vm-to-linux-bridge}\n\nYou can configure a network interface for a virtual machine (VM) by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You created a network attachment definition for the network.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **VirtualMachines**.\n2. Click a VM to view the **VirtualMachine details** page.\n3. On the **Configuration** tab, click the **Network interfaces** tab.\n4. Click **Add network interface**.\n5. Enter the interface name and select the network attachment definition from the **Network** list.\n6. Click **Save**.\n7. Restart or live migrate the VM to apply the changes.\n\n### Networking fields {#virt-networking-wizard-fields-web_virt-connecting-vm-to-linux-bridge}\n\nInformation about networking fields in the virtual machine wizard.\n\n<table>\n<thead>\n<tr>\n  <th>Name</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Name</td>\n  <td>Name for the network interface controller.</td>\n</tr>\n<tr>\n  <td>Model</td>\n  <td>Indicates the model of the network interface controller. Supported values are <strong>e1000e</strong> and <strong>virtio</strong>.</td>\n</tr>\n<tr>\n  <td>Network</td>\n  <td>List of available network attachment definitions.</td>\n</tr>\n<tr>\n  <td>Type</td>\n  <td>List of available binding methods. Select the binding method suitable for the network interface:<br><br><ul><li>Default pod network: <code>masquerade</code></li><li>Linux bridge network: <code>bridge</code></li><li>SR-IOV network: <code>SR-IOV</code></li></ul>+On IBM Z(R), <code>SR-IOV</code> is not supported.</td>\n</tr>\n<tr>\n  <td>MAC Address</td>\n  <td>MAC address for the network interface controller. If a MAC address is not specified, one is assigned automatically.</td>\n</tr>\n</tbody>\n</table>\n\n## Configuring a VM network interface by using the CLI {#virt-attaching-vm-secondary-network-cli_virt-connecting-vm-to-linux-bridge}\n\nYou can configure a virtual machine (VM) network interface for a bridge network by using the command line.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- Shut down the virtual machine before editing the configuration. If you edit a running virtual machine, you must restart the virtual machine for the changes to take effect.\n\n**Procedure**\n\n1. Add the bridge interface and the network attachment definition to the VM configuration as in the following example:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: example-vm\n   spec:\n     template:\n       spec:\n         domain:\n           devices:\n             interfaces:\n               - bridge: {}\n                 name: bridge-net\n   # ...\n         networks:\n           - name: bridge-net\n             multus:\n               networkName: bridge-network\n   ```\n\n   where:\n\n   `spec.template.spec.domain.devices.interface`\n   :   Specifies the name of the bridge interface.\n\n   `spec.template.spec.networks.name`\n   :   Specifies the name of the network. This value must match the `name` value of the corresponding `spec.template.spec.domain.devices.interfaces` entry.\n\n   `spec.template.spec.networks.multus.networkName`\n   :   Specifies the name of the network attachment definition.\n2. Apply the configuration:\n\n   ```terminal\n   $ oc apply -f example-vm.yaml\n   ```\n3. Optional: If you edited a running virtual machine, you must restart it for the changes to take effect.\n\n   > [!NOTE]\n   > When running OpenShift Virtualization on IBM Z(R) using OSA, RoCE, or HiperSockets interfaces, you must register the MAC address of the device. For more information, see [OSA interface traffic forwarding](https://www.ibm.com/docs/en/linux-on-systems?topic=choices-osa-interface-traffic-forwarding) (IBM documentation).\n\n## Additional resources {#additional-resources_virt-connecting-vm-to-linux-bridge}\n\n- [Configuring IP addresses for virtual machines](/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)\n- [Which bonding modes work when used with a bridge that virtual machine guests or containers connect to?](https://access.redhat.com/solutions/67546)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,8 +95,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-connecting-vm-to-linux-bridge" class="group scroll-mt-20">Connecting a virtual machine to a Linux bridge network<a href="#virt-connecting-vm-to-linux-bridge" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>By default, {"{"}{"{"} VirtProductName {"}"}{"}"} is installed with a single, internal pod network. You can connect a virtual machine (VM) to the physical network by using a Linux bridge.</p>
+      <p>By default, OpenShift Virtualization is installed with a single, internal pod network. You can connect a virtual machine (VM) to the physical network by using a Linux bridge.</p>
       <p>To create a Linux bridge network and attach a VM to the network, perform the following steps:</p>
       <ol>
       <li>Prepare the node network by creating a Linux bridge node network configuration policy (NNCP).</li>
@@ -105,16 +105,217 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>{"{"}{"{"} VirtProductName {"}"}{"}"} does not support Linux bridge bonding modes 0, 5, and 6. For more information, see "Additional resources".</p>
+          <p>OpenShift Virtualization does not support Linux bridge bonding modes 0, 5, and 6. For more information, see "Additional resources".</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/virt-creating-linux-bridge-nncp.md"></p>
-      <p class="/modules/virt-creating-linux-bridge-nad-web.md"></p>
-      <p class="/modules/virt-creating-linux-bridge-nad-cli.md"></p>
-      <p class="/modules/virt-linux-bridge-nad-port-isolation.md"></p>
-      <p class="/modules/virt-vm-creating-nic-web.md"></p>
-      <p class="/modules/virt-networking-wizard-fields-web.md"></p>
-      <p class="/modules/virt-attaching-vm-secondary-network-cli.md"></p>
+      <h2 id="virt-creating-linux-bridge-nncp_virt-connecting-vm-to-linux-bridge" class="group scroll-mt-20">Creating a Linux bridge NNCP<a href="#virt-creating-linux-bridge-nncp_virt-connecting-vm-to-linux-bridge" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you install the Kubernetes NMState Operator, you can configure a Linux bridge network for live migration or external access to virtual machines (VMs).</p>
+      <p>You can create a <code>NodeNetworkConfigurationPolicy</code> (NNCP) manifest for a Linux bridge network.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the Kubernetes NMState Operator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create the <code>NodeNetworkConfigurationPolicy</code> manifest. This example includes sample values that you must replace with your own information.
+      <CodeBlock code={"apiVersion: nmstate.io/v1\nkind: NodeNetworkConfigurationPolicy\nmetadata:\n  name: br1-eth1-policy\nspec:\n  desiredState:\n    interfaces:\n      - name: br1\n        description: Linux bridge with eth1 as a port\n        type: linux-bridge\n        state: up\n        ipv4:\n          enabled: false\n        bridge:\n          options:\n            stp:\n              enabled: false\n          port:\n            - name: eth1"} lang="yaml" />
+      <ul>
+      <li><code>metadata.name</code> defines the name of the node network configuration policy.</li>
+      <li><code>spec.desiredState.interfaces.name</code> defines the name of the new Linux bridge.</li>
+      <li><code>spec.desiredState.interfaces.description</code> is an optional field that can be used to define a human-readable description for the bridge.</li>
+      <li><code>spec.desiredState.interfaces.type</code> defines the interface type. In this example, the type is a Linux bridge.</li>
+      <li><code>spec.desiredState.interfaces.state</code> defines the requested state for the interface after creation.</li>
+      <li><code>spec.desiredState.interfaces.ipv4.enabled</code> defines whether the ipv4 protocol is active. Setting this to <code>false</code> disables IPv4 addressing on this bridge.</li>
+      <li><code>spec.desiredState.interfaces.bridge.options.stp.enabled</code> defines whether Spanning Tree Protocol (STP) is active. Setting this to <code>false</code> disables STP on this bridge.</li>
+      <li>
+      <code>spec.desiredState.interfaces.bridge.port.name</code> defines the node NIC that the bridge is attached to.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To create the NNCP manifest for a Linux bridge using Open Systems Adapter (OSA) with IBM Z(R), you must disable VLAN filtering by the setting the <code>rx-vlan-filter</code> to <code>false</code> in the <code>NodeNetworkConfigurationPolicy</code> manifest.</p>
+          <p>Alternatively, if you have SSH access to the node, you can disable VLAN filtering by running the following command:</p>
+          <CodeBlock code={"$ sudo ethtool -K <osa-interface-name> rx-vlan-filter off"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="virt-creating-linux-bridge-nad-web_virt-connecting-vm-to-linux-bridge" class="group scroll-mt-20">Creating a Linux bridge NAD by using the web console<a href="#virt-creating-linux-bridge-nad-web_virt-connecting-vm-to-linux-bridge" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the OpenShift Container Platform web console to create a network attachment definition (NAD) that connects pods and virtual machines to a layer-2 network.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Configuring IP address management (IPAM) in a network attachment definition for virtual machines is not supported.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the web console, click <strong>Networking</strong> -&gt; <strong>NetworkAttachmentDefinitions</strong>.</li>
+      <li>
+      Click <strong>Create Network Attachment Definition</strong>.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The network attachment definition must be in the same namespace as the pod or virtual machine.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Enter a unique <strong>Name</strong> and optional <strong>Description</strong>.</li>
+      <li>Select <strong>CNV Linux bridge</strong> from the <strong>Network Type</strong> list.</li>
+      <li>Enter the name of the bridge in the <strong>Bridge Name</strong> field.</li>
+      <li>
+      Optional: If the resource has VLAN IDs configured, enter the ID numbers in the <strong>VLAN Tag Number</strong> field.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Open Systems Adapter (OSA) interfaces on IBM Z(R) do not support VLAN filtering and drop VLAN-tagged traffic. Avoid using VLAN-tagged NADs with OSA interfaces.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Optional: Select <strong>MAC Spoof Check</strong> to enable MAC spoof filtering. This feature provides security against a MAC spoofing attack by allowing only a single MAC address to exit the pod.</li>
+      <li>
+      Optional: In the <strong>YAML</strong> tab, add the <code>spec.config.disableContainerInterface</code> field. When set to <code>true</code>, the Bridge CNI plug-in skips creating a standard container virtual ethernet (<code>veth</code>) interface inside the pod’s network namespace. This enables the virtualization networking backend to attach the layer-2 interface directly to the guest VM instead of a standard container.
+      <p>Example YAML:</p>
+      <CodeBlock code={"apiVersion: \"k8s.cni.cncf.io/v1\"\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: bridge-network\n  annotations:\n    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1\nspec:\n  config: |\n    {\n# ...\n      \"disableContainerInterface\": true,\n# ...\n    }"} lang="yaml" />
+      </li>
+      <li>Click <strong>Create</strong>.</li>
+      </ol>
+      <h2 id="virt-creating-linux-bridge-nad-cli_virt-connecting-vm-to-linux-bridge" class="group scroll-mt-20">Creating a Linux bridge NAD by using the CLI<a href="#virt-creating-linux-bridge-nad-cli_virt-connecting-vm-to-linux-bridge" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a network attachment definition (NAD) to provide layer-2 networking to pods and virtual machines (VMs) by using the command line.</p>
+      <p>The NAD and the VM must be in the same namespace.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Configuring IP address management (IPAM) in a network attachment definition for VMs is not supported.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add the VM to the <code>NetworkAttachmentDefinition</code> configuration, as in the following example:
+      <CodeBlock code={"apiVersion: \"k8s.cni.cncf.io/v1\"\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: bridge-network\n  annotations:\n    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1\nspec:\n  config: |\n    {\n      \"cniVersion\": \"0.3.1\",\n      \"name\": \"bridge-network\",\n      \"type\": \"bridge\",\n      \"bridge\": \"br1\",\n      \"macspoofchk\": false,\n      \"vlan\": 100,\n      \"disableContainerInterface\": true,\n      \"preserveDefaultVlan\": false\n    }"} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>OSA interfaces on IBM Z(R) do not support VLAN filtering and VLAN-tagged traffic is dropped. Avoid using VLAN-tagged NADs with OSA interfaces.</p>
+        </AlertDescription>
+      </Alert>
+      <ul>
+      <li><code>metadata.name</code> defines the name for the <code>NetworkAttachmentDefinition</code> object.</li>
+      <li><code>metadata.annotations.k8s.v1.cni.cncf.io/resourceName</code> is optional and defines the annotation key-value pair for node selection for the bridge configured on some nodes. If you add this annotation to your network attachment definition, your virtual machine instances will only run on the nodes that have the defined bridge connected.</li>
+      <li><code>spec.config.name</code> defines the name for the configuration. It is recommended to match the configuration name to the <code>name</code> value of the network attachment definition.</li>
+      <li><code>spec.config.type</code> defines the actual name of the Container Network Interface (CNI) plugin that provides the network for this network attachment definition. Do not change this field unless you want to use a different CNI.</li>
+      <li><code>spec.config.bridge</code> defines the name of the Linux bridge configured on the node. The name should match the interface bridge name defined in the <code>NodeNetworkConfigurationPolicy</code> manifest.</li>
+      <li><code>spec.config.macspoofchk</code> is optional and defines a flag to enable the MAC spoof check. When set to <code>true</code>, you cannot change the MAC address of the pod or guest interface. This attribute allows only a single MAC address to exit the pod, which provides security against a MAC spoofing attack.</li>
+      <li><code>spec.config.vlan</code> is optional and defines the VLAN tag. No additional VLAN configuration is required on the node network configuration policy.</li>
+      <li><code>spec.config.disableContainerInterface</code> is optional. When set to <code>true</code>, the Bridge CNI plug-in skips creating a standard container virtual ethernet (<code>veth</code>) interface inside the pod’s network namespace. This enables the virtualization networking backend to attach the layer-2 interface directly to the guest VM instead of a standard container.</li>
+      <li><code>spec.config.preserveDefaultVlan</code> is optional and defines whether the VM connects to the bridge through the default VLAN. The default value is <code>true</code>.</li>
+      </ul>
+      </li>
+      <li>
+      Optional: If you want to connect a VM to the native network, configure the Linux bridge <code>NetworkAttachmentDefinition</code> manifest without specifying any VLAN:
+      <CodeBlock code={"apiVersion: \"k8s.cni.cncf.io/v1\"\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: bridge-network\n  annotations:\n    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1\nspec:\n  config: |\n    {\n      \"cniVersion\": \"0.3.1\",\n      \"name\": \"bridge-network\",\n      \"type\": \"bridge\",\n      \"bridge\": \"br1\",\n      \"macspoofchk\": false,\n      \"disableContainerInterface\": true\n    }"} lang="yaml" />
+      </li>
+      <li>
+      Create the network attachment definition:
+      <CodeBlock code={"$ oc create -f network-attachment-definition.yaml"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>network-attachment-definition.yaml</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the file name of the network attachment definition manifest.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the network attachment definition was created by running the following command:
+      <CodeBlock code={"$ oc get network-attachment-definition bridge-network"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="virt-linux-bridge-nad-port-isolation_virt-connecting-vm-to-linux-bridge" class="group scroll-mt-20">Enabling port isolation for a Linux bridge NAD<a href="#virt-linux-bridge-nad-port-isolation_virt-connecting-vm-to-linux-bridge" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can enable port isolation for a Linux bridge network attachment definition (NAD) so that virtual machines (VMs) or pods that run on the same virtual LAN (VLAN) can operate in isolation from one another.</p>
+      <p>The Linux bridge NAD creates a virtual bridge, or <em>virtual switch</em>, between network interfaces and the physical network.</p>
+      <p>Isolating ports in this way can provide enhanced security for VM workloads that run on the same node.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>For VMs, you configured either a static or dynamic IP address for each VM. See "Configuring IP addresses for virtual machines".</li>
+      <li>You created a Linux bridge NAD by using either the web console or the command-line interface.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the Linux bridge NAD by setting <code>portIsolation</code> to <code>true</code>:
+      <CodeBlock code={"apiVersion: \"k8s.cni.cncf.io/v1\"\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: bridge-network\n  annotations:\n    k8s.v1.cni.cncf.io/resourceName: bridge.network.kubevirt.io/br1\nspec:\n  config: |\n    {\n      \"cniVersion\": \"0.3.1\",\n      \"name\": \"bridge-network\",\n      \"type\": \"bridge\",\n      \"bridge\": \"br1\",\n      \"preserveDefaultVlan\": false,\n      \"vlan\": 100,\n      \"disableContainerInterface\": false,\n      \"portIsolation\": true\n    }\n# ..."} lang="yaml" />
+      <ul>
+      <li><code>spec.config.name</code> specifies the name for the configuration. The name must match the value in the <code>metadata.name</code> of the NAD.</li>
+      <li><code>spec.config.type</code> specifies the actual name of the Container Network Interface (CNI) plugin that provides the network for this network attachment definition. Do not change this field unless you want to use a different CNI.</li>
+      <li><code>spec.config.bridge</code> specifies the name of the Linux bridge that is configured on the node. The name must match the interface bridge name defined in the <code>NodeNetworkConfigurationPolicy</code> manifest.</li>
+      <li><code>spec.config.portIsolation</code> specifies whether port isolation on the virtual bridge is enabled or disabled. The default value is <code>false</code>. When set to <code>true</code>, each VM or pod is assigned to an isolated port. The virtual bridge prevents traffic from one isolated port from reaching another isolated port.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the configuration:
+      <CodeBlock code={"$ oc apply -f example-vm.yaml"} lang="terminal" />
+      </li>
+      <li>Optional: If you edited a running virtual machine, you must restart it for the changes to take effect.</li>
+      </ol>
+      <h2 id="virt-vm-creating-nic-web_virt-connecting-vm-to-linux-bridge" class="group scroll-mt-20">Configuring a VM network interface by using the web console<a href="#virt-vm-creating-nic-web_virt-connecting-vm-to-linux-bridge" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure a network interface for a virtual machine (VM) by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You created a network attachment definition for the network.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong>.</li>
+      <li>Click a VM to view the <strong>VirtualMachine details</strong> page.</li>
+      <li>On the <strong>Configuration</strong> tab, click the <strong>Network interfaces</strong> tab.</li>
+      <li>Click <strong>Add network interface</strong>.</li>
+      <li>Enter the interface name and select the network attachment definition from the <strong>Network</strong> list.</li>
+      <li>Click <strong>Save</strong>.</li>
+      <li>Restart or live migrate the VM to apply the changes.</li>
+      </ol>
+      <h3 id="virt-networking-wizard-fields-web_virt-connecting-vm-to-linux-bridge" class="group scroll-mt-20">Networking fields<a href="#virt-networking-wizard-fields-web_virt-connecting-vm-to-linux-bridge" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Information about networking fields in the virtual machine wizard.</p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Name</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Name</td>\n  <td>Name for the network interface controller.</td>\n</tr>\n<tr>\n  <td>Model</td>\n  <td>Indicates the model of the network interface controller. Supported values are <strong>e1000e</strong> and <strong>virtio</strong>.</td>\n</tr>\n<tr>\n  <td>Network</td>\n  <td>List of available network attachment definitions.</td>\n</tr>\n<tr>\n  <td>Type</td>\n  <td>List of available binding methods. Select the binding method suitable for the network interface:<br><br><ul><li>Default pod network: <code>masquerade</code></li><li>Linux bridge network: <code>bridge</code></li><li>SR-IOV network: <code>SR-IOV</code></li></ul>+On IBM Z(R), <code>SR-IOV</code> is not supported.</td>\n</tr>\n<tr>\n  <td>MAC Address</td>\n  <td>MAC address for the network interface controller. If a MAC address is not specified, one is assigned automatically.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <h2 id="virt-attaching-vm-secondary-network-cli_virt-connecting-vm-to-linux-bridge" class="group scroll-mt-20">Configuring a VM network interface by using the CLI<a href="#virt-attaching-vm-secondary-network-cli_virt-connecting-vm-to-linux-bridge" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure a virtual machine (VM) network interface for a bridge network by using the command line.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>Shut down the virtual machine before editing the configuration. If you edit a running virtual machine, you must restart the virtual machine for the changes to take effect.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add the bridge interface and the network attachment definition to the VM configuration as in the following example:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: example-vm\nspec:\n  template:\n    spec:\n      domain:\n        devices:\n          interfaces:\n            - bridge: {}\n              name: bridge-net\n# ...\n      networks:\n        - name: bridge-net\n          multus:\n            networkName: bridge-network"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.template.spec.domain.devices.interface</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the bridge interface.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.networks.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the network. This value must match the <code>name</code> value of the corresponding <code>spec.template.spec.domain.devices.interfaces</code> entry.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.networks.multus.networkName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the network attachment definition.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the configuration:
+      <CodeBlock code={"$ oc apply -f example-vm.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Optional: If you edited a running virtual machine, you must restart it for the changes to take effect.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When running OpenShift Virtualization on IBM Z(R) using OSA, RoCE, or HiperSockets interfaces, you must register the MAC address of the device. For more information, see <a href="https://www.ibm.com/docs/en/linux-on-systems?topic=choices-osa-interface-traffic-forwarding">OSA interface traffic forwarding</a> (IBM documentation).</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
       <h2 id="additional-resources_virt-connecting-vm-to-linux-bridge" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-connecting-vm-to-linux-bridge" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms">Configuring IP addresses for virtual machines</a></li>

@@ -24,7 +24,7 @@ This guide provides a high-level walkthrough of the container security measures 
 This guide contains the following information:
 
 - Why container security is important and how it compares with existing security standards.
-- Which container security measures are provided by the host ({{ op_system }} and {{ op_system_base }}) layer and which are provided by OpenShift Container Platform.
+- Which container security measures are provided by the host (RHCOS and RHEL) layer and which are provided by OpenShift Container Platform.
 - How to evaluate your container content and sources for vulnerabilities.
 - How to design your build and deployment process to proactively check container content.
 - How to control access to containers through authentication and authorization.
@@ -32,6 +32,37 @@ This guide contains the following information:
 - Containerized solutions for API management and SSO.
 
 The goal of this guide is to understand the incredible security benefits of using OpenShift Container Platform for your containerized workloads and how the entire Red Hat ecosystem plays a part in making and keeping containers secure. It will also help you understand how you can engage with the OpenShift Container Platform to achieve your organization’s security goals.
+
+## What are containers? {#security-understanding-containers_security-understanding}
+
+Containers package applications and their dependencies into single, portable images that you can use for consistent deployment across development, test, and production environments.
+
+The image can be promoted from development, to test, to production, without change. A container might be part of a larger application that works closely with other containers.
+
+Containers provide consistency across environments and multiple deployment targets: physical servers, virtual machines (VMs), and private or public cloud.
+
+Some of the benefits of using containers include:
+
+| Infrastructure | Applications |
+| --- | --- |
+| Sandboxed application processes on a shared Linux operating system kernel | Package my application and all of its dependencies |
+| Simpler, lighter, and denser than virtual machines | Deploy to any environment in seconds and enable CI/CD |
+| Portable across different environments | Easily access and share containerized components |
+
+- [Understanding Linux containers](https://www.redhat.com/en/topics/containers)
+- [Building, running, and managing containers](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html-single/building_running_and_managing_containers/index)
+
+## What is OpenShift Container Platform? {#security-understanding-openshift_security-understanding}
+
+You can use OpenShift Container Platform to automate the deployment, operation, and management of containerized applications. OpenShift Container Platform uses Kubernetes as its orchestration engine, enhanced with Red Hat security, support, and enterprise features.
+
+Automating how containerized applications are deployed, run, and managed is the job of a platform such as OpenShift Container Platform. At its core, OpenShift Container Platform relies on the Kubernetes project to provide the engine for orchestrating containers across many nodes in scalable data centers.
+
+Kubernetes is a project, which can run using different operating systems and add-on components that offer no guarantees of supportability from the project. As a result, the security of different Kubernetes platforms can vary.
+
+OpenShift Container Platform is designed to lock down Kubernetes security and integrate the platform with a variety of extended components. To do this, OpenShift Container Platform draws on the extensive Red Hat ecosystem of open source technologies that include the operating systems, authentication, storage, networking, development tools, base container images, and many other components.
+
+OpenShift Container Platform can use Red Hat’s experience in uncovering and rapidly deploying fixes for vulnerabilities in the platform itself and the containerized applications running on the platform. Red Hat’s experience also extends to efficiently integrating new components with OpenShift Container Platform as they become available and adapting technologies to individual customer needs.
 
 **Additional resources**
 

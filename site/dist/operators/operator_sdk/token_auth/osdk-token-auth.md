@@ -16,5 +16,5 @@ Starting in OpenShift Container Platform 4.14, the CCO can detect when it is run
 
 - [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)
 - [CCO-based workflow for OLM-managed Operators with AWS STS](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-aws-sts#osdk-cco-aws-sts)
-- [CCO-based workflow for OLM-managed Operators with {{ entra_first }}](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-azure#osdk-cco-azure)
-- [CCO-based workflow for OLM-managed Operators with {{ gcp_wid_short }}](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-gcp#osdk-cco-gcp)
+- [CCO-based workflow for OLM-managed Operators with Microsoft Entra Workload ID](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-azure#osdk-cco-azure)
+- [CCO-based workflow for OLM-managed Operators with GCP Workload Identity](/openshift-docs-markdown/operators/operator_sdk/token_auth/osdk-cco-gcp#osdk-cco-gcp)

@@ -27,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Enabling parallel backup processing";
-const description = "By default, {{ oadp_full }} processes only one backup in the InProgress phase at a time. Configure the DataProtectionApplication (DPA) custom resource…" || undefined;
+const description = "By default, OpenShift API for Data Protection processes only one backup in the InProgress phase at a time. Configure the DataProtectionApplication (DPA)…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -40,7 +40,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling parallel backup processing {#oadp-enabling-parallel-backup-processing_{{ context }}}\n\nBy default, {{ oadp_full }} processes only one backup in the `InProgress` phase at a time. Configure the `DataProtectionApplication` (DPA) custom resource (CR) to run several backups simultaneously to prevent smaller backups from being queued behind larger operations.\n\n**Prerequisites**\n\n- You must be logged in as a user with `cluster-admin` privileges.\n- You must have a DPA CR configured and deployed in your cluster.\n\n**Procedure**\n\n1. Edit your DPA CR:\n\n   ```terminal\n   $ oc edit dpa <dpa_name> -n openshift-adp\n   ```\n2. Add the `concurrentBackups` field in the `spec.configuration.velero` section of your DPA CR:\n\n   ```yaml\n     configuration:\n       velero:\n         concurrentBackups: <integer_limit>\n         defaultPlugins:\n           - openshift\n           - aws\n           - csi\n   ```\n\n   Replace `<integer_limit>` with the maximum number of backups you want {{ oadp_short }} to process simultaneously. The default value is `1`. Backups that target overlapping namespaces are automatically serialized.\n\n**Verification**\n\n- Verify that all backups are in the `InProgress` phase simultaneously:\n\n  ```terminal\n  $ oc get backups.velero.io -n openshift-adp\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                STATUS       CREATED                        EXPIRES\n  backup-namespace1   InProgress   2026-04-28 10:00:00 +0000 UTC  29d\n  backup-namespace2   InProgress   2026-04-28 10:00:05 +0000 UTC  29d\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-enabling-parallel-backup-processing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling parallel backup processing {#oadp-enabling-parallel-backup-processing_{{ context }}}\n\nBy default, OpenShift API for Data Protection processes only one backup in the `InProgress` phase at a time. Configure the `DataProtectionApplication` (DPA) custom resource (CR) to run several backups simultaneously to prevent smaller backups from being queued behind larger operations.\n\n**Prerequisites**\n\n- You must be logged in as a user with `cluster-admin` privileges.\n- You must have a DPA CR configured and deployed in your cluster.\n\n**Procedure**\n\n1. Edit your DPA CR:\n\n   ```terminal\n   $ oc edit dpa <dpa_name> -n openshift-adp\n   ```\n2. Add the `concurrentBackups` field in the `spec.configuration.velero` section of your DPA CR:\n\n   ```yaml\n     configuration:\n       velero:\n         concurrentBackups: <integer_limit>\n         defaultPlugins:\n           - openshift\n           - aws\n           - csi\n   ```\n\n   Replace `<integer_limit>` with the maximum number of backups you want OADP to process simultaneously. The default value is `1`. Backups that target overlapping namespaces are automatically serialized.\n\n**Verification**\n\n- Verify that all backups are in the `InProgress` phase simultaneously:\n\n  ```terminal\n  $ oc get backups.velero.io -n openshift-adp\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                STATUS       CREATED                        EXPIRES\n  backup-namespace1   InProgress   2026-04-28 10:00:00 +0000 UTC  29d\n  backup-namespace2   InProgress   2026-04-28 10:00:05 +0000 UTC  29d\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-enabling-parallel-backup-processing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -76,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -91,9 +91,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="oadp-enabling-parallel-backup-processing_{{ context }}" class="group scroll-mt-20">Enabling parallel backup processing<a href="#oadp-enabling-parallel-backup-processing_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>By default, {"{"}{"{"} oadp_full {"}"}{"}"} processes only one backup in the <code>InProgress</code> phase at a time. Configure the <code>DataProtectionApplication</code> (DPA) custom resource (CR) to run several backups simultaneously to prevent smaller backups from being queued behind larger operations.</p>
+      <p>By default, OpenShift API for Data Protection processes only one backup in the <code>InProgress</code> phase at a time. Configure the <code>DataProtectionApplication</code> (DPA) custom resource (CR) to run several backups simultaneously to prevent smaller backups from being queued behind larger operations.</p>
       <p><strong>Prerequisites</strong></p>
       <ul>
       <li>You must be logged in as a user with <code>cluster-admin</code> privileges.</li>
@@ -108,7 +107,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>
       Add the <code>concurrentBackups</code> field in the <code>spec.configuration.velero</code> section of your DPA CR:
       <CodeBlock code={"  configuration:\n    velero:\n      concurrentBackups: <integer_limit>\n      defaultPlugins:\n        - openshift\n        - aws\n        - csi"} lang="yaml" />
-      <p>Replace <code>&lt;integer_limit&gt;</code> with the maximum number of backups you want {"{"}{"{"} oadp_short {"}"}{"}"} to process simultaneously. The default value is <code>1</code>. Backups that target overlapping namespaces are automatically serialized.</p>
+      <p>Replace <code>&lt;integer_limit&gt;</code> with the maximum number of backups you want OADP to process simultaneously. The default value is <code>1</code>. Backups that target overlapping namespaces are automatically serialized.</p>
       </li>
       </ol>
       <p><strong>Verification</strong></p>

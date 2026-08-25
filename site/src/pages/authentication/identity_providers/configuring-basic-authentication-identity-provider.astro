@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-basic-authentication-identity-provider","text":"Configuring a basic authentication identity provider"}];
+const headings = [{"depth":1,"slug":"configuring-basic-authentication-identity-provider","text":"Configuring a basic authentication identity provider"},{"depth":2,"slug":"identity-provider-overview_configuring-basic-authentication-identity-provider","text":"Identity providers in OpenShift Container Platform"},{"depth":2,"slug":"identity-provider-about-basic-authentication_configuring-basic-authentication-identity-provider","text":"About basic authentication"},{"depth":2,"slug":"identity-provider-creating-secret-tls_configuring-basic-authentication-identity-provider","text":"Creating the secret"},{"depth":2,"slug":"identity-provider-creating-configmap_configuring-basic-authentication-identity-provider","text":"Creating a 'ConfigMap'"},{"depth":2,"slug":"identity-provider-basic-authentication-CR_configuring-basic-authentication-identity-provider","text":"Sample basic authentication custom resource"},{"depth":2,"slug":"add-identity-provider_configuring-basic-authentication-identity-provider","text":"Adding an identity provider to your cluster"},{"depth":2,"slug":"example-apache-httpd-configuration_configuring-basic-authentication-identity-provider","text":"Example Apache HTTPD configuration for basic identity providers"},{"depth":3,"slug":"_file_requirements","text":"File requirements"},{"depth":2,"slug":"identity-provider-basic-authentication-troubleshooting_configuring-basic-authentication-identity-provider","text":"Troubleshooting basic authentication"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/authentication/identity_providers/configuring-basic-authentication-identity-provider";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["authentication","authentication/identity_providers"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring a basic authentication identity provider {#configuring-basic-authentication-identity-provider}\n\nConfigure the `basic-authentication` identity provider. Users can log in to OpenShift Container Platform with credentials validated against a remote authentication service, without maintaining a separate user store in the cluster.\n\n**Additional resources**\n\n- [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/identity_providers/configuring-basic-authentication-identity-provider.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring a basic authentication identity provider {#configuring-basic-authentication-identity-provider}\n\nConfigure the `basic-authentication` identity provider. Users can log in to OpenShift Container Platform with credentials validated against a remote authentication service, without maintaining a separate user store in the cluster.\n\n## Identity providers in OpenShift Container Platform {#identity-provider-overview_configuring-basic-authentication-identity-provider}\n\nYou can configure identity providers by creating a custom resource (CR) that describes the provider and adding it to the cluster. Identity providers enable user authentication in OpenShift Container Platform beyond the default `kubeadmin` user.\n\n> [!NOTE]\n> OpenShift Container Platform usernames containing `/`, `:`, and `%` are not supported.\n\n## About basic authentication {#identity-provider-about-basic-authentication_configuring-basic-authentication-identity-provider}\n\nConfigure basic authentication to validate user credentials against a remote service over HTTP. Use this integration when you need a flexible back-end for username and password login in OpenShift Container Platform.\n\nBasic authentication is a generic back-end integration mechanism that allows users to log in to OpenShift Container Platform with credentials validated against a remote identity provider.\n\nBecause basic authentication is generic, you can use this identity provider for advanced authentication configurations.\n\n> [!IMPORTANT]\n> Basic authentication must use an HTTPS connection to the remote server to prevent potential snooping of the user ID and password and man-in-the-middle attacks.\n\nWith basic authentication configured, users send their username and password to OpenShift Container Platform during login. OpenShift Container Platform validates those credentials against a remote server. OpenShift Container Platform makes a server-to-server request, passing the credentials as a basic authentication header.\n\n> [!NOTE]\n> This only works for username and password login mechanisms, and OpenShift Container Platform must be able to make network requests to the remote authentication server.\n\nUsernames and passwords are validated against a remote URL that is protected by basic authentication and returns JSON.\n\nA `401` response indicates failed authentication.\n\nA non-`200` status, or the presence of a non-empty \"error\" key, indicates an error:\n\n```terminal\n{\"error\":\"Error message\"}\n```\n\nA `200` status with a `sub` (subject) key indicates success:\n\n```terminal\n{\"sub\":\"userid\"}\n```\n\nwhere:\n\n`userid`\n:   Specifies a value that is unique to the authenticated user and must not be modified.\n\nA successful response can optionally provide additional data, such as:\n\n- A display name using the `name` key. For example:\n\n  ```terminal\n  {\"sub\":\"userid\", \"name\": \"User Name\", ...}\n  ```\n- An email address using the `email` key. For example:\n\n  ```terminal\n  {\"sub\":\"userid\", \"email\":\"user@example.com\", ...}\n  ```\n- A preferred username using the `preferred_username` key. This is useful when the unique, unchangeable subject is a database key or UID, and a more human-readable name exists. This is used as a hint when provisioning the OpenShift Container Platform user for the authenticated identity. For example:\n\n  ```terminal\n  {\"sub\":\"014fbff9a07c\", \"preferred_username\":\"bob\", ...}\n  ```\n\n## Creating the secret {#identity-provider-creating-secret-tls_configuring-basic-authentication-identity-provider}\n\nYou can create a TLS `Secret` object in the `openshift-config` namespace by using the `oc` CLI or by applying a YAML file to store client certificates and keys that identity providers require for secure communication.\n\n**Procedure**\n\n1. Create a `Secret` object that contains the key and certificate by running the following command:\n\n   ```terminal\n   $ oc create secret tls <secret_name> --key=key.pem --cert=cert.pem -n openshift-config\n   ```\n2. Optional: Apply the following YAML to create the secret:\n\n   ```yaml\n   apiVersion: v1\n   kind: Secret\n   metadata:\n     name: <secret_name>\n     namespace: openshift-config\n   type: kubernetes.io/tls\n   data:\n     tls.crt: <base64_encoded_cert>\n     tls.key: <base64_encoded_key>\n   ```\n\n## Creating a 'ConfigMap' {#identity-provider-creating-configmap_configuring-basic-authentication-identity-provider}\n\nCreate a `ConfigMap` object in the `openshift-config` namespace to store the certificate authority bundle that identity providers use to validate secure connections to the remote authentication service.\n\n**Procedure**\n\n1. Define an OpenShift Container Platform `ConfigMap` object containing the certificate authority by running the following command:\n\n   ```terminal\n   $ oc create configmap ca-config-map --from-file=ca.crt=/path/to/ca -n openshift-config\n   ```\n2. Optional: Apply the following YAML to create the config map:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: ca-config-map\n     namespace: openshift-config\n   data:\n     ca.crt: |\n       <CA_certificate_PEM>\n   ```\n\n   The certificate authority must be stored in the `ca.crt` key of the `ConfigMap` object.\n\n## Sample basic authentication custom resource {#identity-provider-basic-authentication-CR_configuring-basic-authentication-identity-provider}\n\nYou can configure basic authentication for your cluster by applying an `OAuth` custom resource (CR) with a `BasicAuth` identity provider. Use this sample to review provider parameters and acceptable values before you connect to your remote authentication server.\n\n```yaml\napiVersion: config.openshift.io/v1\nkind: OAuth\nmetadata:\n  name: cluster\nspec:\n  identityProviders:\n  - name: basicidp\n    mappingMethod: claim\n    type: BasicAuth\n    basicAuth:\n      url: https://www.example.com/remote-idp\n      ca:\n        name: ca-config-map\n      tlsClientCert:\n        name: client-cert-secret\n      tlsClientKey:\n        name: client-key-secret\n```\n\nwhere:\n\n`spec.identityProviders.name`\n:   Specifies that the provider name is prefixed to the returned user ID to form an identity name.\n\n`spec.identityProviders.mappingMethod`\n:   Specifies how mappings are established between the identities of this provider and `User` objects.\n\n`spec.identityProviders.basicAuth.url`\n:   Specifies the URL that accepts credentials in Basic authentication headers.\n\n`spec.identityProviders.basicAuth.ca`\n:   Optional: Specifies a reference to an OpenShift Container Platform `ConfigMap` object containing the Privacy-Enhanced Mail (PEM)-encoded certificate authority bundle to use in validating server certificates for the configured URL.\n\n`spec.identityProviders.basicAuth.tlsClientCert`\n:   Optional: Specifies a reference to an OpenShift Container Platform `Secret` object containing the client certificate to present when making requests to the configured URL.\n\n`spec.identityProviders.basicAuth.tlsClientKey`\n:   Specifies a reference to an OpenShift Container Platform `Secret` object containing the key for the client certificate. Required if `tlsClientCert` is specified.\n\n**Additional resources**\n\n- [Identity provider parameters](/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider)\n\n## Adding an identity provider to your cluster {#add-identity-provider_configuring-basic-authentication-identity-provider}\n\nApply the identity provider custom resource (CR) to your cluster so users can authenticate with the configured identity provider.\n\n**Prerequisites**\n\n- You installed an OpenShift Container Platform cluster.\n- You defined the CR for your identity provider.\n- You are logged in as an administrator.\n\n**Procedure**\n\n1. Apply the defined CR by running the following command:\n\n   ```terminal\n   $ oc apply -f </path/to/CR>\n   ```\n\n   > [!NOTE]\n   > If a CR does not exist, `oc apply` creates a new CR and might trigger the following warning: `Warning: oc apply should be used on resources created by either oc create --save-config or oc apply`. In this case you can safely ignore this warning.\n2. Log in to the cluster as a user from your identity provider, entering the password when prompted. Run the following command:\n\n   ```terminal\n   $ oc login -u <username>\n   ```\n3. Confirm that the user logged in successfully and that the username displays by running the following command:\n\n   ```terminal\n   $ oc whoami\n   ```\n\n## Example Apache HTTPD configuration for basic identity providers {#example-apache-httpd-configuration_configuring-basic-authentication-identity-provider}\n\nYou can use CGI scripting in Apache HTTPD to configure a remote authentication server that returns JSON responses for basic identity providers in OpenShift Container Platform.\n\nThe following is an example of an Apache `VirtualHost` configuration file.\n\n```conf\n<VirtualHost *:443>\n  # CGI Scripts in here\n  DocumentRoot /var/www/cgi-bin\n\n  # SSL Directives\n  SSLEngine on\n  SSLCipherSuite PROFILE=SYSTEM\n  SSLProxyCipherSuite PROFILE=SYSTEM\n  SSLCertificateFile /etc/pki/tls/certs/localhost.crt\n  SSLCertificateKeyFile /etc/pki/tls/private/localhost.key\n\n  # Configure HTTPD to execute scripts\n  ScriptAlias /basic /var/www/cgi-bin\n\n  # Handles a failed login attempt\n  ErrorDocument 401 /basic/fail.cgi\n\n  # Handles authentication\n  <Location /basic/login.cgi>\n    AuthType Basic\n    AuthName \"Please Log In\"\n    AuthBasicProvider file\n    AuthUserFile /etc/httpd/conf/passwords\n    Require valid-user\n  </Location>\n</VirtualHost>\n```\n\nThe following is an example of a `login.cgi` CGI script file.\n\n```bash\n#!/bin/bash\necho \"Content-Type: application/json\"\necho \"\"\necho '{\"sub\":\"userid\", \"name\":\"'$REMOTE_USER'\"}'\nexit 0\n```\n\nThe following is an example of a `fail.cgi` CGI script file.\n\n```bash\n#!/bin/bash\necho \"Content-Type: application/json\"\necho \"\"\necho '{\"error\": \"Login failure\"}'\nexit 0\n```\n\n### File requirements {#_file_requirements}\n\nThese are the requirements for the files you create on an Apache HTTPD web server:\n\n- The `login.cgi` and `fail.cgi` CGI script files must be executable. Use the `chmod +x` command on both files.\n- If SELinux is enabled, the `login.cgi` and `fail.cgi` CGI script files must have proper SELinux security contexts. Run the `restorecon -RFv /var/www/cgi-bin` command, or ensure that the context is the `httpd_sys_script_exec_t` SELinux type by using the `ls -laZ` command.\n- The `login.cgi` CGI script file runs only when the user successfully logs in according to the `Require` and `Auth` Apache configuration directives.\n- The `fail.cgi` CGI script file runs when the user fails to log in and returns an `HTTP 401` HTTP status code.\n\n## Troubleshooting basic authentication {#identity-provider-basic-authentication-troubleshooting_configuring-basic-authentication-identity-provider}\n\nTroubleshoot basic authentication by testing backend connectivity and verifying JSON login responses when users cannot authenticate in OpenShift Container Platform.\n\nThe most common issue relates to network connectivity to the backend server. To debug connectivity, run `curl` commands on a control plane node.\n\n**Procedure**\n\n1. To test successful and unsuccessful logins, replace the `<user>` and `<password>` in the following example command with valid or invalid credentials:\n\n   ```terminal\n   $ curl --cacert /path/to/ca.crt --cert /path/to/client.crt --key /path/to/client.key -u <user>:<password> -v https://www.example.com/remote-idp\n   ```\n2. Review successful login responses.\n\n   A `200` status with a `sub` (subject) key indicates success:\n\n   ```terminal\n   {\"sub\":\"userid\"}\n   ```\n\n   The subject must be unique to the authenticated user and must not be modified.\n\n   A successful response can optionally provide additional data, such as:\n\n   - A display name using the `name` key:\n\n     ```terminal\n     {\"sub\":\"userid\", \"name\": \"User Name\", ...}\n     ```\n   - An email address using the `email` key:\n\n     ```terminal\n     {\"sub\":\"userid\", \"email\":\"user@example.com\", ...}\n     ```\n   - A preferred username using the `preferred_username` key:\n\n     ```terminal\n     {\"sub\":\"014fbff9a07c\", \"preferred_username\":\"bob\", ...}\n     ```\n\n   The `preferred_username` key is useful when the unique, unchangeable subject is a database key or UID, and a more human-readable name exists. This is used as a hint when provisioning the OpenShift Container Platform user for the authenticated identity.\n3. Review failed login responses.\n\n   - A `401` response indicates failed authentication.\n   - A non-`200` status or the presence of a non-empty \"error\" key indicates an error: `{\"error\":\"Error message\"}`\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/identity_providers/configuring-basic-authentication-identity-provider.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,17 +95,189 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-basic-authentication-identity-provider" class="group scroll-mt-20">Configuring a basic authentication identity provider<a href="#configuring-basic-authentication-identity-provider" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Configure the <code>basic-authentication</code> identity provider. Users can log in to OpenShift Container Platform with credentials validated against a remote authentication service, without maintaining a separate user store in the cluster.</p>
-      <p class="/modules/identity-provider-overview.md"></p>
-      <p class="/modules/identity-provider-about-basic-authentication.md"></p>
-      <p class="/modules/identity-provider-secret-tls.md"></p>
-      <p class="/modules/identity-provider-config-map.md"></p>
-      <p class="/modules/identity-provider-basic-authentication-CR.md"></p>
+      <h2 id="identity-provider-overview_configuring-basic-authentication-identity-provider" class="group scroll-mt-20">Identity providers in OpenShift Container Platform<a href="#identity-provider-overview_configuring-basic-authentication-identity-provider" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure identity providers by creating a custom resource (CR) that describes the provider and adding it to the cluster. Identity providers enable user authentication in OpenShift Container Platform beyond the default <code>kubeadmin</code> user.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>OpenShift Container Platform usernames containing <code>/</code>, <code>:</code>, and <code>%</code> are not supported.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="identity-provider-about-basic-authentication_configuring-basic-authentication-identity-provider" class="group scroll-mt-20">About basic authentication<a href="#identity-provider-about-basic-authentication_configuring-basic-authentication-identity-provider" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure basic authentication to validate user credentials against a remote service over HTTP. Use this integration when you need a flexible back-end for username and password login in OpenShift Container Platform.</p>
+      <p>Basic authentication is a generic back-end integration mechanism that allows users to log in to OpenShift Container Platform with credentials validated against a remote identity provider.</p>
+      <p>Because basic authentication is generic, you can use this identity provider for advanced authentication configurations.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Basic authentication must use an HTTPS connection to the remote server to prevent potential snooping of the user ID and password and man-in-the-middle attacks.</p>
+        </AlertDescription>
+      </Alert>
+      <p>With basic authentication configured, users send their username and password to OpenShift Container Platform during login. OpenShift Container Platform validates those credentials against a remote server. OpenShift Container Platform makes a server-to-server request, passing the credentials as a basic authentication header.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This only works for username and password login mechanisms, and OpenShift Container Platform must be able to make network requests to the remote authentication server.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Usernames and passwords are validated against a remote URL that is protected by basic authentication and returns JSON.</p>
+      <p>A <code>401</code> response indicates failed authentication.</p>
+      <p>A non-<code>200</code> status, or the presence of a non-empty "error" key, indicates an error:</p>
+      <CodeBlock code={"{\"error\":\"Error message\"}"} lang="terminal" />
+      <p>A <code>200</code> status with a <code>sub</code> (subject) key indicates success:</p>
+      <CodeBlock code={"{\"sub\":\"userid\"}"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>userid</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a value that is unique to the authenticated user and must not be modified.</p></dd>
+      </dl>
+      <p>A successful response can optionally provide additional data, such as:</p>
+      <ul>
+      <li>
+      A display name using the <code>name</code> key. For example:
+      <CodeBlock code={"{\"sub\":\"userid\", \"name\": \"User Name\", ...}"} lang="terminal" />
+      </li>
+      <li>
+      An email address using the <code>email</code> key. For example:
+      <CodeBlock code={"{\"sub\":\"userid\", \"email\":\"user@example.com\", ...}"} lang="terminal" />
+      </li>
+      <li>
+      A preferred username using the <code>preferred_username</code> key. This is useful when the unique, unchangeable subject is a database key or UID, and a more human-readable name exists. This is used as a hint when provisioning the OpenShift Container Platform user for the authenticated identity. For example:
+      <CodeBlock code={"{\"sub\":\"014fbff9a07c\", \"preferred_username\":\"bob\", ...}"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="identity-provider-creating-secret-tls_configuring-basic-authentication-identity-provider" class="group scroll-mt-20">Creating the secret<a href="#identity-provider-creating-secret-tls_configuring-basic-authentication-identity-provider" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a TLS <code>Secret</code> object in the <code>openshift-config</code> namespace by using the <code>oc</code> CLI or by applying a YAML file to store client certificates and keys that identity providers require for secure communication.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>Secret</code> object that contains the key and certificate by running the following command:
+      <CodeBlock code={"$ oc create secret tls <secret_name> --key=key.pem --cert=cert.pem -n openshift-config"} lang="terminal" />
+      </li>
+      <li>
+      Optional: Apply the following YAML to create the secret:
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n  name: <secret_name>\n  namespace: openshift-config\ntype: kubernetes.io/tls\ndata:\n  tls.crt: <base64_encoded_cert>\n  tls.key: <base64_encoded_key>"} lang="yaml" />
+      </li>
+      </ol>
+      <h2 id="identity-provider-creating-configmap_configuring-basic-authentication-identity-provider" class="group scroll-mt-20">Creating a 'ConfigMap'<a href="#identity-provider-creating-configmap_configuring-basic-authentication-identity-provider" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Create a <code>ConfigMap</code> object in the <code>openshift-config</code> namespace to store the certificate authority bundle that identity providers use to validate secure connections to the remote authentication service.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Define an OpenShift Container Platform <code>ConfigMap</code> object containing the certificate authority by running the following command:
+      <CodeBlock code={"$ oc create configmap ca-config-map --from-file=ca.crt=/path/to/ca -n openshift-config"} lang="terminal" />
+      </li>
+      <li>
+      Optional: Apply the following YAML to create the config map:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: ca-config-map\n  namespace: openshift-config\ndata:\n  ca.crt: |\n    <CA_certificate_PEM>"} lang="yaml" />
+      <p>The certificate authority must be stored in the <code>ca.crt</code> key of the <code>ConfigMap</code> object.</p>
+      </li>
+      </ol>
+      <h2 id="identity-provider-basic-authentication-CR_configuring-basic-authentication-identity-provider" class="group scroll-mt-20">Sample basic authentication custom resource<a href="#identity-provider-basic-authentication-CR_configuring-basic-authentication-identity-provider" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure basic authentication for your cluster by applying an <code>OAuth</code> custom resource (CR) with a <code>BasicAuth</code> identity provider. Use this sample to review provider parameters and acceptable values before you connect to your remote authentication server.</p>
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: OAuth\nmetadata:\n  name: cluster\nspec:\n  identityProviders:\n  - name: basicidp\n    mappingMethod: claim\n    type: BasicAuth\n    basicAuth:\n      url: https://www.example.com/remote-idp\n      ca:\n        name: ca-config-map\n      tlsClientCert:\n        name: client-cert-secret\n      tlsClientKey:\n        name: client-key-secret"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.identityProviders.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the provider name is prefixed to the returned user ID to form an identity name.</p></dd>
+      <dt class="font-semibold"><code>spec.identityProviders.mappingMethod</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies how mappings are established between the identities of this provider and <code>User</code> objects.</p></dd>
+      <dt class="font-semibold"><code>spec.identityProviders.basicAuth.url</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the URL that accepts credentials in Basic authentication headers.</p></dd>
+      <dt class="font-semibold"><code>spec.identityProviders.basicAuth.ca</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies a reference to an OpenShift Container Platform <code>ConfigMap</code> object containing the Privacy-Enhanced Mail (PEM)-encoded certificate authority bundle to use in validating server certificates for the configured URL.</p></dd>
+      <dt class="font-semibold"><code>spec.identityProviders.basicAuth.tlsClientCert</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies a reference to an OpenShift Container Platform <code>Secret</code> object containing the client certificate to present when making requests to the configured URL.</p></dd>
+      <dt class="font-semibold"><code>spec.identityProviders.basicAuth.tlsClientKey</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a reference to an OpenShift Container Platform <code>Secret</code> object containing the key for the client certificate. Required if <code>tlsClientCert</code> is specified.</p></dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/authentication/understanding-identity-provider#identity-provider-parameters_understanding-identity-provider">Identity provider parameters</a></li></ul>
-      <p class="/modules/example-apache-httpd-configuration.md"></p>
-      <p class="/modules/identity-provider-basic-authentication-troubleshooting.md"></p>
+      <h2 id="add-identity-provider_configuring-basic-authentication-identity-provider" class="group scroll-mt-20">Adding an identity provider to your cluster<a href="#add-identity-provider_configuring-basic-authentication-identity-provider" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Apply the identity provider custom resource (CR) to your cluster so users can authenticate with the configured identity provider.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed an OpenShift Container Platform cluster.</li>
+      <li>You defined the CR for your identity provider.</li>
+      <li>You are logged in as an administrator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Apply the defined CR by running the following command:
+      <CodeBlock code={"$ oc apply -f </path/to/CR>"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If a CR does not exist, <code>oc apply</code> creates a new CR and might trigger the following warning: <code>Warning: oc apply should be used on resources created by either oc create --save-config or oc apply</code>. In this case you can safely ignore this warning.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Log in to the cluster as a user from your identity provider, entering the password when prompted. Run the following command:
+      <CodeBlock code={"$ oc login -u <username>"} lang="terminal" />
+      </li>
+      <li>
+      Confirm that the user logged in successfully and that the username displays by running the following command:
+      <CodeBlock code={"$ oc whoami"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="example-apache-httpd-configuration_configuring-basic-authentication-identity-provider" class="group scroll-mt-20">Example Apache HTTPD configuration for basic identity providers<a href="#example-apache-httpd-configuration_configuring-basic-authentication-identity-provider" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use CGI scripting in Apache HTTPD to configure a remote authentication server that returns JSON responses for basic identity providers in OpenShift Container Platform.</p>
+      <p>The following is an example of an Apache <code>VirtualHost</code> configuration file.</p>
+      <CodeBlock code={"<VirtualHost *:443>\n  # CGI Scripts in here\n  DocumentRoot /var/www/cgi-bin\n\n  # SSL Directives\n  SSLEngine on\n  SSLCipherSuite PROFILE=SYSTEM\n  SSLProxyCipherSuite PROFILE=SYSTEM\n  SSLCertificateFile /etc/pki/tls/certs/localhost.crt\n  SSLCertificateKeyFile /etc/pki/tls/private/localhost.key\n\n  # Configure HTTPD to execute scripts\n  ScriptAlias /basic /var/www/cgi-bin\n\n  # Handles a failed login attempt\n  ErrorDocument 401 /basic/fail.cgi\n\n  # Handles authentication\n  <Location /basic/login.cgi>\n    AuthType Basic\n    AuthName \"Please Log In\"\n    AuthBasicProvider file\n    AuthUserFile /etc/httpd/conf/passwords\n    Require valid-user\n  </Location>\n</VirtualHost>"} lang="conf" />
+      <p>The following is an example of a <code>login.cgi</code> CGI script file.</p>
+      <CodeBlock code={"#!/bin/bash\necho \"Content-Type: application/json\"\necho \"\"\necho '{\"sub\":\"userid\", \"name\":\"'$REMOTE_USER'\"}'\nexit 0"} lang="bash" />
+      <p>The following is an example of a <code>fail.cgi</code> CGI script file.</p>
+      <CodeBlock code={"#!/bin/bash\necho \"Content-Type: application/json\"\necho \"\"\necho '{\"error\": \"Login failure\"}'\nexit 0"} lang="bash" />
+      <h3 id="_file_requirements" class="group scroll-mt-20">File requirements<a href="#_file_requirements" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>These are the requirements for the files you create on an Apache HTTPD web server:</p>
+      <ul>
+      <li>The <code>login.cgi</code> and <code>fail.cgi</code> CGI script files must be executable. Use the <code>chmod +x</code> command on both files.</li>
+      <li>If SELinux is enabled, the <code>login.cgi</code> and <code>fail.cgi</code> CGI script files must have proper SELinux security contexts. Run the <code>restorecon -RFv /var/www/cgi-bin</code> command, or ensure that the context is the <code>httpd_sys_script_exec_t</code> SELinux type by using the <code>ls -laZ</code> command.</li>
+      <li>The <code>login.cgi</code> CGI script file runs only when the user successfully logs in according to the <code>Require</code> and <code>Auth</code> Apache configuration directives.</li>
+      <li>The <code>fail.cgi</code> CGI script file runs when the user fails to log in and returns an <code>HTTP 401</code> HTTP status code.</li>
+      </ul>
+      <h2 id="identity-provider-basic-authentication-troubleshooting_configuring-basic-authentication-identity-provider" class="group scroll-mt-20">Troubleshooting basic authentication<a href="#identity-provider-basic-authentication-troubleshooting_configuring-basic-authentication-identity-provider" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Troubleshoot basic authentication by testing backend connectivity and verifying JSON login responses when users cannot authenticate in OpenShift Container Platform.</p>
+      <p>The most common issue relates to network connectivity to the backend server. To debug connectivity, run <code>curl</code> commands on a control plane node.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To test successful and unsuccessful logins, replace the <code>&lt;user&gt;</code> and <code>&lt;password&gt;</code> in the following example command with valid or invalid credentials:
+      <CodeBlock code={"$ curl --cacert /path/to/ca.crt --cert /path/to/client.crt --key /path/to/client.key -u <user>:<password> -v https://www.example.com/remote-idp"} lang="terminal" />
+      </li>
+      <li>
+      Review successful login responses.
+      <p>A <code>200</code> status with a <code>sub</code> (subject) key indicates success:</p>
+      <CodeBlock code={"{\"sub\":\"userid\"}"} lang="terminal" />
+      <p>The subject must be unique to the authenticated user and must not be modified.</p>
+      <p>A successful response can optionally provide additional data, such as:</p>
+      <ul>
+      <li>
+      A display name using the <code>name</code> key:
+      <CodeBlock code={"{\"sub\":\"userid\", \"name\": \"User Name\", ...}"} lang="terminal" />
+      </li>
+      <li>
+      An email address using the <code>email</code> key:
+      <CodeBlock code={"{\"sub\":\"userid\", \"email\":\"user@example.com\", ...}"} lang="terminal" />
+      </li>
+      <li>
+      A preferred username using the <code>preferred_username</code> key:
+      <CodeBlock code={"{\"sub\":\"014fbff9a07c\", \"preferred_username\":\"bob\", ...}"} lang="terminal" />
+      </li>
+      </ul>
+      <p>The <code>preferred_username</code> key is useful when the unique, unchangeable subject is a database key or UID, and a more human-readable name exists. This is used as a hint when provisioning the OpenShift Container Platform user for the authenticated identity.</p>
+      </li>
+      <li>
+      Review failed login responses.
+      <ul>
+      <li>A <code>401</code> response indicates failed authentication.</li>
+      <li>A non-<code>200</code> status or the presence of a non-empty "error" key indicates an error: <code>{"{"}"error":"Error message"{"}"}</code></li>
+      </ul>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

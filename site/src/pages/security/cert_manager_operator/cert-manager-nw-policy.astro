@@ -18,8 +18,15 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"cert-manager-nw-policy","text":"Network policy configuration for cert-manager Operator"}];
+const headings = [{"depth":1,"slug":"cert-manager-nw-policy","text":"Network policy configuration for cert-manager Operator"},{"depth":2,"slug":"cert-manager-nw-policy-rules_cert-manager-nw-policy","text":"Default ingress and egress rules"},{"depth":2,"slug":"cert-manager-nw-policy-params_cert-manager-nw-policy","text":"Network policy configuration parameters"},{"depth":2,"slug":"cert-manager-nw-policy-examples_cert-manager-nw-policy","text":"Network policy configuration examples"},{"depth":2,"slug":"verifying-network-policy-creation_cert-manager-nw-policy","text":"Verifying the network policy creation"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/cert_manager_operator/cert-manager-nw-policy";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Network policy configuration for cert-manager Operator";
-const description = "The {{ cert_manager_operator }} provides predefined NetworkPolicy resources to enhance security by controlling the ingress and egress traffic for its…" || undefined;
+const description = "The cert-manager Operator for Red Hat OpenShift provides predefined NetworkPolicy resources to enhance security by controlling the ingress and egress…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +49,7 @@ const pageCategory = ["security","security/cert_manager_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network policy configuration for cert-manager Operator {#cert-manager-nw-policy}\n\nThe {{ cert_manager_operator }} provides predefined `NetworkPolicy` resources to enhance security by controlling the ingress and egress traffic for its components. By default, this feature is disabled to prevent connectivity issues or breaking changes during an upgrade. To use this feature, you must enable it in the `CertManager` custom resource (CR).\n\nAfter enabling the default policies, you must manually configure additional egress rules to allow outbound traffic. These rules are required for {{ cert_manager_operator }} to communicate with external services beyond the API server and internal DNS.\n\nThe examples of services that require custom egress rules include the following:\n\n- ACME servers, for example, Let’s Encrypt\n- DNS-01 challenge providers, for example, AWS Route53 or Cloudflare\n- External CAs, such as HashiCorp Vault\n\n> [!NOTE]\n> Network policies are expected to be enabled by default in a future release, which could cause connectivity failures during an upgrade. To prepare for this change, configure the required egress policies.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/cert_manager_operator/cert-manager-nw-policy.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network policy configuration for cert-manager Operator {#cert-manager-nw-policy}\n\nThe cert-manager Operator for Red Hat OpenShift provides predefined `NetworkPolicy` resources to enhance security by controlling the ingress and egress traffic for its components. By default, this feature is disabled to prevent connectivity issues or breaking changes during an upgrade. To use this feature, you must enable it in the `CertManager` custom resource (CR).\n\nAfter enabling the default policies, you must manually configure additional egress rules to allow outbound traffic. These rules are required for cert-manager Operator for Red Hat OpenShift to communicate with external services beyond the API server and internal DNS.\n\nThe examples of services that require custom egress rules include the following:\n\n- ACME servers, for example, Let’s Encrypt\n- DNS-01 challenge providers, for example, AWS Route53 or Cloudflare\n- External CAs, such as HashiCorp Vault\n\n> [!NOTE]\n> Network policies are expected to be enabled by default in a future release, which could cause connectivity failures during an upgrade. To prepare for this change, configure the required egress policies.\n\n## Default ingress and egress rules {#cert-manager-nw-policy-rules_cert-manager-nw-policy}\n\nThe default network policy applies the following ingress and egress rules to each component.\n\n| Component | Ingress ports | Egress ports | Description |\n| --- | --- | --- | --- |\n| `cert-manager` | 9402 | 6443, 5353 | Allows ingress traffic to metrics server and egress traffic to OpenShift API server. |\n| `cert-manager-webhook` | 9402, 10250 | 6443 | Allows ingress traffic to metrics and webhook servers, and egress traffic to OpenShift API server and internal DNS server. |\n| `cert-manager-cainjector` | 9402 | 6443 | Allows ingress traffic to metrics server and egress traffic to OpenShift API server. |\n| `istio-csr` | 6443, 9402 | 6443 | Allows ingress traffic to the gRPC Istio certificate request API, metrics servers and egress traffic to OpenShift API server. |\n\n## Network policy configuration parameters {#cert-manager-nw-policy-params_cert-manager-nw-policy}\n\nYou can enable and configure network policies for the cert-manager Operator components by updating the `CertManager` custom resource (CR). The CR includes the following parameters for enabling default network policies and defining custom egress rules.\n\n<table>\n<thead>\n<tr>\n  <th>Field</th>\n  <th>Type</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>spec.defaultNetworkPolicy</code></td>\n  <td><code>boolean</code></td>\n  <td>Specifies whether to enable the default network policy for the cert-manager Operator components.<dl><dt>Important</dt><dd>Once you enable default network policies, you cannot disable them. This restriction prevents accidental security degradation. Before enabling this setting, ensure that you plan the network policy requirements.</dd></dl></td>\n</tr>\n<tr>\n  <td><code>spec.networkPolicies</code></td>\n  <td><code>object</code></td>\n  <td>Defines a list of custom network policy configuration. To apply the configuration, you must set <code>spec.defaultNetworkPolicy</code> to <code>true</code>.</td>\n</tr>\n<tr>\n  <td><code>spec.networkPolicies.componentName</code></td>\n  <td><code>string</code></td>\n  <td>Specifies the component that this network policy targets. The only valid value is <code>CoreController</code>.</td>\n</tr>\n<tr>\n  <td><code>spec.networkPolicies.egress</code></td>\n  <td><code>object</code></td>\n  <td>Defines the egress rules for the specified component. Set to <code>{}</code> to allow connections to all external providers.</td>\n</tr>\n<tr>\n  <td><code>spec.networkPolicies.egress.ports</code></td>\n  <td><code>object</code></td>\n  <td>Defines a list of network ports and protocols for the specified providers.</td>\n</tr>\n<tr>\n  <td><code>spec.networkPolicies.name</code></td>\n  <td><code>string</code></td>\n  <td>Specifies a unique name for the custom network policy, which is used to generate the <code>NetworkPolicy</code> resource name.</td>\n</tr>\n</tbody>\n</table>\n\n## Network policy configuration examples {#cert-manager-nw-policy-examples_cert-manager-nw-policy}\n\nTo control traffic flow and enhance cluster security, enable network policies and custom rules for the cert-manager Operator for Red Hat OpenShift.\n\nTo enable network policy and custom rules, see the following example:\n\n```yaml\napiVersion: operator.openshift.io/v1alpha1\nkind: CertManager\nmetadata:\n  name: cluster\nspec:\n  defaultNetworkPolicy: \"true\"\n```\n\nTo allow egress access to all external issuer providers, see the following example:\n\n```yaml\napiVersion: operator.openshift.io/v1alpha1\nkind: CertManager\nmetadata:\n  name: cluster\nspec:\n  defaultNetworkPolicy: \"true\"\n  networkPolicies:\n  - name: allow-egress-to-all\n    componentName: CoreController\n    egress:\n     - {}\n```\n\nTo allow the cert-manager Operator controller to perform the ACME challenge self-check, see the following example. This process requires connections to the ACME provider, DNS API endpoints, and recursive DNS servers.\n\n```yaml\napiVersion: operator.openshift.io/v1alpha1\nkind: CertManager\nmetadata:\n  name: cluster\nspec:\n  defaultNetworkPolicy: \"true\"\n  networkPolicies:\n  - name: allow-egress-to-acme-server\n    componentName: CoreController\n    egress:\n    - ports:\n      - port: 80\n        protocol: TCP\n      - port: 443\n        protocol: TCP\n  - name: allow-egress-to-dns-service\n    componentName: CoreController\n    egress:\n    - ports:\n      - port: 53\n        protocol: UDP\n      - port: 53\n        protocol: TCP\n```\n\n## Verifying the network policy creation {#verifying-network-policy-creation_cert-manager-nw-policy}\n\nYou can verify that the default and custom `NetworkPolicy` resources are created.\n\n**Prerequisites**\n\n- You have enabled network policy for cert-manager Operator for Red Hat OpenShift in the `CertManager` custom resource.\n\n**Procedure**\n\n- Verify the list of `NetworkPolicy` resources in the `cert-manager` namespace by running the following command:\n\n  ```terminal\n  $ oc get networkpolicy -n cert-manager\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                                             POD-SELECTOR                              AGE\n  cert-manager-allow-egress-to-api-server          app.kubernetes.io/instance=cert-manager   7s\n  cert-manager-allow-egress-to-dns                 app=cert-manager                          6s\n  cert-manager-allow-ingress-to-metrics            app.kubernetes.io/instance=cert-manager   7s\n  cert-manager-allow-ingress-to-webhook            app=webhook                               6s\n  cert-manager-deny-all                            app.kubernetes.io/instance=cert-manager   8s\n  cert-manager-user-allow-egress-to-acme-server    app=cert-manager                          8s\n  cert-manager-user-allow-egress-to-dns-service    app=cert-manager                          7s\n  ```\n\n  The output lists the default policies and any custom policies that you created.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/cert_manager_operator/cert-manager-nw-policy.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,9 +101,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cert-manager-nw-policy" class="group scroll-mt-20">Network policy configuration for cert-manager Operator<a href="#cert-manager-nw-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>The {"{"}{"{"} cert_manager_operator {"}"}{"}"} provides predefined <code>NetworkPolicy</code> resources to enhance security by controlling the ingress and egress traffic for its components. By default, this feature is disabled to prevent connectivity issues or breaking changes during an upgrade. To use this feature, you must enable it in the <code>CertManager</code> custom resource (CR).</p>
-      <p>After enabling the default policies, you must manually configure additional egress rules to allow outbound traffic. These rules are required for {"{"}{"{"} cert_manager_operator {"}"}{"}"} to communicate with external services beyond the API server and internal DNS.</p>
+      <p>The cert-manager Operator for Red Hat OpenShift provides predefined <code>NetworkPolicy</code> resources to enhance security by controlling the ingress and egress traffic for its components. By default, this feature is disabled to prevent connectivity issues or breaking changes during an upgrade. To use this feature, you must enable it in the <code>CertManager</code> custom resource (CR).</p>
+      <p>After enabling the default policies, you must manually configure additional egress rules to allow outbound traffic. These rules are required for cert-manager Operator for Red Hat OpenShift to communicate with external services beyond the API server and internal DNS.</p>
       <p>The examples of services that require custom egress rules include the following:</p>
       <ul>
       <li>ACME servers, for example, Let’s Encrypt</li>
@@ -109,10 +115,68 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Network policies are expected to be enabled by default in a future release, which could cause connectivity failures during an upgrade. To prepare for this change, configure the required egress policies.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/cert-manager-nw-policy-rules.md"></p>
-      <p class="/modules/cert-manager-nw-policy-params.md"></p>
-      <p class="/modules/cert-manager-nw-policy-examples.md"></p>
-      <p class="/modules/cert-manager-nw-policy-verify.md"></p>
+      <h2 id="cert-manager-nw-policy-rules_cert-manager-nw-policy" class="group scroll-mt-20">Default ingress and egress rules<a href="#cert-manager-nw-policy-rules_cert-manager-nw-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The default network policy applies the following ingress and egress rules to each component.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Component</TableHead>
+      <TableHead>Ingress ports</TableHead>
+      <TableHead>Egress ports</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>cert-manager</code></TableCell>
+      <TableCell>9402</TableCell>
+      <TableCell>6443, 5353</TableCell>
+      <TableCell>Allows ingress traffic to metrics server and egress traffic to OpenShift API server.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>cert-manager-webhook</code></TableCell>
+      <TableCell>9402, 10250</TableCell>
+      <TableCell>6443</TableCell>
+      <TableCell>Allows ingress traffic to metrics and webhook servers, and egress traffic to OpenShift API server and internal DNS server.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>cert-manager-cainjector</code></TableCell>
+      <TableCell>9402</TableCell>
+      <TableCell>6443</TableCell>
+      <TableCell>Allows ingress traffic to metrics server and egress traffic to OpenShift API server.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>istio-csr</code></TableCell>
+      <TableCell>6443, 9402</TableCell>
+      <TableCell>6443</TableCell>
+      <TableCell>Allows ingress traffic to the gRPC Istio certificate request API, metrics servers and egress traffic to OpenShift API server.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="cert-manager-nw-policy-params_cert-manager-nw-policy" class="group scroll-mt-20">Network policy configuration parameters<a href="#cert-manager-nw-policy-params_cert-manager-nw-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can enable and configure network policies for the cert-manager Operator components by updating the <code>CertManager</code> custom resource (CR). The CR includes the following parameters for enabling default network policies and defining custom egress rules.</p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Field</th>\n  <th>Type</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>spec.defaultNetworkPolicy</code></td>\n  <td><code>boolean</code></td>\n  <td>Specifies whether to enable the default network policy for the cert-manager Operator components.<dl><dt>Important</dt><dd>Once you enable default network policies, you cannot disable them. This restriction prevents accidental security degradation. Before enabling this setting, ensure that you plan the network policy requirements.</dd></dl></td>\n</tr>\n<tr>\n  <td><code>spec.networkPolicies</code></td>\n  <td><code>object</code></td>\n  <td>Defines a list of custom network policy configuration. To apply the configuration, you must set <code>spec.defaultNetworkPolicy</code> to <code>true</code>.</td>\n</tr>\n<tr>\n  <td><code>spec.networkPolicies.componentName</code></td>\n  <td><code>string</code></td>\n  <td>Specifies the component that this network policy targets. The only valid value is <code>CoreController</code>.</td>\n</tr>\n<tr>\n  <td><code>spec.networkPolicies.egress</code></td>\n  <td><code>object</code></td>\n  <td>Defines the egress rules for the specified component. Set to <code>{}</code> to allow connections to all external providers.</td>\n</tr>\n<tr>\n  <td><code>spec.networkPolicies.egress.ports</code></td>\n  <td><code>object</code></td>\n  <td>Defines a list of network ports and protocols for the specified providers.</td>\n</tr>\n<tr>\n  <td><code>spec.networkPolicies.name</code></td>\n  <td><code>string</code></td>\n  <td>Specifies a unique name for the custom network policy, which is used to generate the <code>NetworkPolicy</code> resource name.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <h2 id="cert-manager-nw-policy-examples_cert-manager-nw-policy" class="group scroll-mt-20">Network policy configuration examples<a href="#cert-manager-nw-policy-examples_cert-manager-nw-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To control traffic flow and enhance cluster security, enable network policies and custom rules for the cert-manager Operator for Red Hat OpenShift.</p>
+      <p>To enable network policy and custom rules, see the following example:</p>
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: CertManager\nmetadata:\n  name: cluster\nspec:\n  defaultNetworkPolicy: \"true\""} lang="yaml" />
+      <p>To allow egress access to all external issuer providers, see the following example:</p>
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: CertManager\nmetadata:\n  name: cluster\nspec:\n  defaultNetworkPolicy: \"true\"\n  networkPolicies:\n  - name: allow-egress-to-all\n    componentName: CoreController\n    egress:\n     - {}"} lang="yaml" />
+      <p>To allow the cert-manager Operator controller to perform the ACME challenge self-check, see the following example. This process requires connections to the ACME provider, DNS API endpoints, and recursive DNS servers.</p>
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: CertManager\nmetadata:\n  name: cluster\nspec:\n  defaultNetworkPolicy: \"true\"\n  networkPolicies:\n  - name: allow-egress-to-acme-server\n    componentName: CoreController\n    egress:\n    - ports:\n      - port: 80\n        protocol: TCP\n      - port: 443\n        protocol: TCP\n  - name: allow-egress-to-dns-service\n    componentName: CoreController\n    egress:\n    - ports:\n      - port: 53\n        protocol: UDP\n      - port: 53\n        protocol: TCP"} lang="yaml" />
+      <h2 id="verifying-network-policy-creation_cert-manager-nw-policy" class="group scroll-mt-20">Verifying the network policy creation<a href="#verifying-network-policy-creation_cert-manager-nw-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can verify that the default and custom <code>NetworkPolicy</code> resources are created.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have enabled network policy for cert-manager Operator for Red Hat OpenShift in the <code>CertManager</code> custom resource.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Verify the list of <code>NetworkPolicy</code> resources in the <code>cert-manager</code> namespace by running the following command:
+      <CodeBlock code={"$ oc get networkpolicy -n cert-manager"} lang="terminal" />
+      <CodeBlock code={"NAME                                             POD-SELECTOR                              AGE\ncert-manager-allow-egress-to-api-server          app.kubernetes.io/instance=cert-manager   7s\ncert-manager-allow-egress-to-dns                 app=cert-manager                          6s\ncert-manager-allow-ingress-to-metrics            app.kubernetes.io/instance=cert-manager   7s\ncert-manager-allow-ingress-to-webhook            app=webhook                               6s\ncert-manager-deny-all                            app.kubernetes.io/instance=cert-manager   8s\ncert-manager-user-allow-egress-to-acme-server    app=cert-manager                          8s\ncert-manager-user-allow-egress-to-dns-service    app=cert-manager                          7s"} lang="terminal" title="Example output" />
+      <p>The output lists the default policies and any custom policies that you created.</p>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

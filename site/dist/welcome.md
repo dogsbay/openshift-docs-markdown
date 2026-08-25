@@ -4,6 +4,8 @@ title: OpenShift Container Platform 4.22 Documentation
 
 # OpenShift Container Platform 4.22 Documentation {#welcome-index}
 
+true
+
 Welcome to the official OpenShift Container Platform 4.22
 
 documentation, where you can learn about OpenShift Container Platform and start exploring its features.

@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"js-uninstall","text":"Uninstalling the {{ js_operator }}"}];
+const headings = [{"depth":1,"slug":"js-uninstall","text":"Uninstalling the JobSet Operator"},{"depth":2,"slug":"js-uninstall_js-uninstall","text":"Uninstalling the JobSet Operator"},{"depth":2,"slug":"js-remove-resources_js-uninstall","text":"Uninstalling JobSet Operator resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-uninstall";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Uninstalling the {{ js_operator }}";
-const description = "Uninstall the {{ js_operator }} by using the OpenShift Container Platform web console to remove the Operator instance and its resources from your cluster." || undefined;
+const description = "Uninstall the JobSet Operator by using the OpenShift Container Platform web console to remove the Operator instance and its resources from your cluster." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["ai_workloads","ai_workloads/jobset_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the {{ js_operator }} {#js-uninstall}\n\nUninstall the {{ js_operator }} by using the OpenShift Container Platform web console to remove the Operator instance and its resources from your cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-uninstall.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the JobSet Operator {#js-uninstall}\n\nUninstall the JobSet Operator by using the OpenShift Container Platform web console to remove the Operator instance and its resources from your cluster.\n\n## Uninstalling the JobSet Operator {#js-uninstall_js-uninstall}\n\nUninstall the JobSet Operator by using the OpenShift Container Platform web console to remove the Operator instance.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- You have installed the JobSet Operator.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Navigate to **Operators** -> **Installed Operators**.\n3. Select `openshift-js-operator` from the **Project** dropdown list.\n4. Delete the `JobSetOperator` instance.\n\n   1. Click **JobSet Operator** and select the **JobSetOperator** tab.\n   2. Click the Options menu ![](kebab.png \"Options menu\") next to the **cluster** entry and select **Delete JobSetOperator**.\n   3. In the confirmation dialog, click **Delete**.\n5. Uninstall the JobSet Operator.\n\n   1. Navigate to **Operators** -> **Installed Operators**.\n   2. Click the Options menu ![](kebab.png \"Options menu\") next to the **JobSet Operator** entry and click **Uninstall Operator**.\n   3. In the confirmation dialog, click **Uninstall**.\n\n## Uninstalling JobSet Operator resources {#js-remove-resources_js-uninstall}\n\nOptionally, after uninstalling the JobSet Operator, you can remove its related resources from your cluster.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- You have uninstalled the JobSet Operator.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Remove CRDs that were created when the JobSet Operator was installed:\n\n   1. Navigate to **Administration** -> **CustomResourceDefinitions**.\n   2. Enter `JobSetOperator` in the **Name** field to filter the CRDs.\n   3. Click the Options menu ![](kebab.png \"Options menu\") next to the **JobSetOperator** CRD and select **Delete CustomResourceDefinition**.\n   4. In the confirmation dialog, click **Delete**.\n3. Delete the `openshift-jobset-operator` namespace.\n\n   1. Navigate to **Administration** -> **Namespaces**.\n   2. Fine `openshift-jobset-operator` in the list of namespaces.\n   3. Click the Options menu ![](kebab.png \"Options menu\") next to the **openshift-jobset-operator** entry and select **Delete Namespace**.\n   4. In the confirmation dialog, enter `openshift-jobset-operator` and click **Delete**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-uninstall.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +90,68 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="js-uninstall" class="group scroll-mt-20">Uninstalling the {"{"}{"{"} js_operator {"}"}{"}"}<a href="#js-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Uninstall the {"{"}{"{"} js_operator {"}"}{"}"} by using the OpenShift Container Platform web console to remove the Operator instance and its resources from your cluster.</p>
-      <p class="/modules/uninstall-jobset.md"></p>
-      <p class="/modules/jobset-remove-resources.md"></p>
+      <h1 id="js-uninstall" class="group scroll-mt-20">Uninstalling the JobSet Operator<a href="#js-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Uninstall the JobSet Operator by using the OpenShift Container Platform web console to remove the Operator instance and its resources from your cluster.</p>
+      <h2 id="js-uninstall_js-uninstall" class="group scroll-mt-20">Uninstalling the JobSet Operator<a href="#js-uninstall_js-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Uninstall the JobSet Operator by using the OpenShift Container Platform web console to remove the Operator instance.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      <li>You have installed the JobSet Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Navigate to <strong>Operators</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Select <code>openshift-js-operator</code> from the <strong>Project</strong> dropdown list.</li>
+      <li>
+      Delete the <code>JobSetOperator</code> instance.
+      <ol>
+      <li>Click <strong>JobSet Operator</strong> and select the <strong>JobSetOperator</strong> tab.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>cluster</strong> entry and select <strong>Delete JobSetOperator</strong>.</li>
+      <li>In the confirmation dialog, click <strong>Delete</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Uninstall the JobSet Operator.
+      <ol>
+      <li>Navigate to <strong>Operators</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>JobSet Operator</strong> entry and click <strong>Uninstall Operator</strong>.</li>
+      <li>In the confirmation dialog, click <strong>Uninstall</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="js-remove-resources_js-uninstall" class="group scroll-mt-20">Uninstalling JobSet Operator resources<a href="#js-remove-resources_js-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Optionally, after uninstalling the JobSet Operator, you can remove its related resources from your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      <li>You have uninstalled the JobSet Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>
+      Remove CRDs that were created when the JobSet Operator was installed:
+      <ol>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>CustomResourceDefinitions</strong>.</li>
+      <li>Enter <code>JobSetOperator</code> in the <strong>Name</strong> field to filter the CRDs.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>JobSetOperator</strong> CRD and select <strong>Delete CustomResourceDefinition</strong>.</li>
+      <li>In the confirmation dialog, click <strong>Delete</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Delete the <code>openshift-jobset-operator</code> namespace.
+      <ol>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>Namespaces</strong>.</li>
+      <li>Fine <code>openshift-jobset-operator</code> in the list of namespaces.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>openshift-jobset-operator</strong> entry and select <strong>Delete Namespace</strong>.</li>
+      <li>In the confirmation dialog, enter <code>openshift-jobset-operator</code> and click <strong>Delete</strong>.</li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

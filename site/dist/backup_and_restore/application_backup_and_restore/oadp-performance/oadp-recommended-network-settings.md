@@ -4,10 +4,26 @@ title: "{{ oadp_short }} recommended network settings"
 
 # {{ oadp_short }} recommended network settings {#oadp-recommended-network-settings}
 
-Keep a stable network across your {{ OCP_short }} nodes, {{ aws_short }} Simple Storage Service (S3) storage, and cloud environments. Meeting these recommended network settings helps you ensure successful {{ oadp_first }} backup and restore operations, even when using remote {{ aws_short }} S3 buckets.
+Keep a stable network across your OpenShift nodes, AWS Simple Storage Service (S3) storage, and cloud environments. Meeting these recommended network settings helps you ensure successful OpenShift API for Data Protection (OADP) backup and restore operations, even when using remote AWS S3 buckets.
+
+## OADP network requirements {#oadp-performance-network-requirements_oadp-recommended-network-settings}
+
+For a supported experience with OpenShift API for Data Protection (OADP), you should have a stable and resilient network across OpenShift nodes, AWS Simple Storage Service (S3)-compatible object storage, and in supported cloud environments that meet OpenShift network requirements.
+
+For deployments that use remote S3 buckets located off-cluster with suboptimal data paths, such as high-latency or geographically distant locations, successful backup and restore operations require specific configurations. Ensure your network settings meet the following minimum requirements:
+
+- Bandwidth (network upload speed to object storage): Greater than 2 Mbps for small backups and 10-100 Mbps depending on the data volume for larger backups.
+- Packet loss: 1%
+- Packet corruption: 1%
+- Latency: 100 ms
+
+Ensure that your OpenShift Container Platform network performs optimally and meets OpenShift Container Platform network requirements.
+
+> [!IMPORTANT]
+> Although Red Hat provides support for standard backup and restore failures, it does not provide support for failures caused by network settings that do not meet the recommended thresholds.
 
 ## Additional resources {#_additional_resources}
 
-- \[Configuring network settings\](https://docs.redhat.com/en/documentation/openshift_container_platform/{{ ocp_version }}/html/configuring_network_settings/index)
-- [About installing {{ oadp_short }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
+- [Configuring network settings](https://docs.redhat.com/en/documentation/openshift_container_platform/4.19/html/configuring_network_settings/index)
+- [About installing OADP](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#about-installing-oadp)
 - [Troubleshooting](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/troubleshooting#troubleshooting)

@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"windows-containers-release-notes","text":"{{ productwinc }} release notes"}];
+const headings = [{"depth":1,"slug":"windows-containers-release-notes","text":"Red Hat OpenShift support for Windows Containers release notes"},{"depth":2,"slug":"windows-containers-release-notes-10-22-1_windows-containers-release-notes","text":"Release notes for Red Hat Windows Machine Config Operator 10.22.1"},{"depth":3,"slug":"windows-containers-release-notes-10-22-1-bugs_windows-containers-release-notes","text":"Bug fixes"},{"depth":3,"slug":"_cve_fixes","text":"CVE fixes"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ productwinc }} release notes";
-const description = "You can review the release notes to learn about the changes introduced through each release of the {{ productwinc }} and the Windows Machine Config…" || undefined;
+const description = "You can review the release notes to learn about the changes introduced through each release of the Red Hat OpenShift support for Windows Containers and…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["windows_containers","windows_containers/wmco_rn"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ productwinc }} release notes {#windows-containers-release-notes}\n\nYou can review the release notes to learn about the changes introduced through each release of the {{ productwinc }} and the Windows Machine Config Operator (WMCO).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Red Hat OpenShift support for Windows Containers release notes {#windows-containers-release-notes}\n\nYou can review the release notes to learn about the changes introduced through each release of the Red Hat OpenShift support for Windows Containers and the Windows Machine Config Operator (WMCO).\n\n## Release notes for Red Hat Windows Machine Config Operator 10.22.1 {#windows-containers-release-notes-10-22-1_windows-containers-release-notes}\n\nIssued: 28 July 2026\n\nYou can review the release notes to learn about the bug fixes and Common Vulnerabilities and Exposures (CVEs) fixes in the Windows Machine Config Operator (WMCO) version 10.22.1.\n\nThe components of the WMCO version 10.22.1 were released in [RHSA-2026:47173](https://access.redhat.com/errata/RHSA-2026:47173).\n\n### Bug fixes {#windows-containers-release-notes-10-22-1-bugs_windows-containers-release-notes}\n\n- Before this update, the SSH connection between the WMCO and a Windows node would terminate when the WMCO rebooted the node after a configuration update. As a consequence, the WMCO incorrectly treated the SSH disconnection as a reboot failure, preventing the Windows node from completing required reboots. With this release, the reboot validation process is modified to ignore SSH termination errors and instead verify a successful reboot by using explicit node reachability checks and the SSH reconnection. As a result, Windows nodes successfully reboot upon node configuration changes. ([OCPBUGS-98228](https://issues.redhat.com/browse/OCPBUGS-98228))\n\n### CVE fixes {#_cve_fixes}\n\n- [CVE-2026-54099](https://access.redhat.com/security/cve/cve-2026-54099)\n- [CVE-2026-54100](https://access.redhat.com/security/cve/cve-2026-54100)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +90,19 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="windows-containers-release-notes" class="group scroll-mt-20">{"{"}{"{"} productwinc {"}"}{"}"} release notes<a href="#windows-containers-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can review the release notes to learn about the changes introduced through each release of the {"{"}{"{"} productwinc {"}"}{"}"} and the Windows Machine Config Operator (WMCO).</p>
-      <p class="/modules/windows-containers-release-notes-10-22-1.md"></p>
+      <h1 id="windows-containers-release-notes" class="group scroll-mt-20">Red Hat OpenShift support for Windows Containers release notes<a href="#windows-containers-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can review the release notes to learn about the changes introduced through each release of the Red Hat OpenShift support for Windows Containers and the Windows Machine Config Operator (WMCO).</p>
+      <h2 id="windows-containers-release-notes-10-22-1_windows-containers-release-notes" class="group scroll-mt-20">Release notes for Red Hat Windows Machine Config Operator 10.22.1<a href="#windows-containers-release-notes-10-22-1_windows-containers-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Issued: 28 July 2026</p>
+      <p class="_abstract">You can review the release notes to learn about the bug fixes and Common Vulnerabilities and Exposures (CVEs) fixes in the Windows Machine Config Operator (WMCO) version 10.22.1.</p>
+      <p>The components of the WMCO version 10.22.1 were released in <a href="https://access.redhat.com/errata/RHSA-2026:47173">RHSA-2026:47173</a>.</p>
+      <h3 id="windows-containers-release-notes-10-22-1-bugs_windows-containers-release-notes" class="group scroll-mt-20">Bug fixes<a href="#windows-containers-release-notes-10-22-1-bugs_windows-containers-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul><li>Before this update, the SSH connection between the WMCO and a Windows node would terminate when the WMCO rebooted the node after a configuration update. As a consequence, the WMCO incorrectly treated the SSH disconnection as a reboot failure, preventing the Windows node from completing required reboots. With this release, the reboot validation process is modified to ignore SSH termination errors and instead verify a successful reboot by using explicit node reachability checks and the SSH reconnection. As a result, Windows nodes successfully reboot upon node configuration changes. (<a href="https://issues.redhat.com/browse/OCPBUGS-98228">OCPBUGS-98228</a>)</li></ul>
+      <h3 id="_cve_fixes" class="group scroll-mt-20">CVE fixes<a href="#_cve_fixes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul>
+      <li><a href="https://access.redhat.com/security/cve/cve-2026-54099">CVE-2026-54099</a></li>
+      <li><a href="https://access.redhat.com/security/cve/cve-2026-54100">CVE-2026-54100</a></li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

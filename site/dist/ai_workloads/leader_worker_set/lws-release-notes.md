@@ -2,12 +2,27 @@
 title: "{{ lws_operator }} release notes"
 ---
 
-# {{ lws_operator }} release notes {#lws-release-notes}
+# Leader Worker Set Operator release notes {#lws-release-notes}
 
-Review the {{ lws_operator }} release notes to track its development and learn what is new and changed with each release.
+Review the Leader Worker Set Operator release notes to track its development and learn what is new and changed with each release.
 
-You can use the {{ lws_operator }} to manage distributed inference workloads and process large-scale inference requests efficiently.
+You can use the Leader Worker Set Operator to manage distributed inference workloads and process large-scale inference requests efficiently.
 
-These release notes track the development of the {{ lws_operator }}.
+These release notes track the development of the Leader Worker Set Operator.
 
-For more information, see [About the {{ lws_operator }}](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about).
+For more information, see [About the Leader Worker Set Operator](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about).
+
+## Release notes for Leader Worker Set Operator 1.0.0 {#lws-rn-1.0.0_lws-release-notes}
+
+Review the release notes for Leader Worker Set Operator 1.0.0 to learn what is new and updated with this release.
+
+Issued: 18 September 2025
+
+The following advisories are available for the Leader Worker Set Operator 1.0.0:
+
+- [RHBA-2025:13974](https://access.redhat.com/errata/RHBA-2025:13974)
+- [RHBA-2025:13574](https://access.redhat.com/errata/RHBA-2025:13574)
+
+### New features and enhancements {#lws-rn-1.0.0-new-features_lws-release-notes}
+
+- This is the initial release of the Leader Worker Set Operator.

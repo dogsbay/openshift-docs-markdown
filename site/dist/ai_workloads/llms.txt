@@ -2,30 +2,30 @@
 
 ## AI workloads
 
-- [Overview of AI workloads on OpenShift Container Platform](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads.md)
-- [Introduction to Red Hat build of Kueue](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/about-kueue.md)
-- [Release notes](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/release-notes.md)
-- [Installing Red Hat build of Kueue](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/install-kueue.md)
-- [Installing Red Hat build of Kueue in a disconnected environment](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/install-disconnected.md)
-- [Integrating the Leader Worker Set Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/integrating-lws.md)
-- [Integrating the JobSet Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/integrating-jobset.md)
-- [Integrating Dynamic Resource Allocation](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/kueue-dra-integrating-dynamic-resource-allocation.md)
-- [Configuring role-based permissions](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/rbac-permissions.md)
-- [Configuring quotas](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas.md)
-- [Managing jobs and workloads](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/managing-workloads.md)
-- [Monitoring pending workloads](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/monitoring-pending-workloads.md)
-- [Using cohorts](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/using-cohorts.md)
-- [Configuring fair sharing](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/configuring-fairsharing.md)
-- [Admission fair sharing](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/admission-fair-sharing.md)
-- [Gang scheduling](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/gangscheduling.md)
-- [Running jobs with quota limits](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/running-kueue-jobs.md)
-- [Getting support](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/getting-support.md)
-- [Leader Worker Set Operator overview](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set.md)
-- [Leader Worker Set Operator release notes](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-release-notes.md)
-- [Managing distributed workloads with the Leader Worker Set Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-managing.md)
-- [Uninstalling the Leader Worker Set Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-uninstalling.md)
-- [Jobset Operator overview](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator.md)
-- [JobSet Operator release notes](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-release-notes.md)
-- [Installing the JobSet Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-install.md)
-- [Managing workloads with the JobSet Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/managing-jobset.md)
-- [Uninstalling the JobSet Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-uninstall.md)
+- [Overview of AI workloads on OpenShift Container Platform](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads.md): OpenShift Container Platform provides a secure, scalable foundation for running artificial intelligence (AI) workloads across training, inference, and data…
+- [Introduction to Red Hat build of Kueue](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/about-kueue.md): You can use Red Hat build of Kueue to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. Red Hat build of Kueue optimizes…
+- [Release notes](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/release-notes.md): Red Hat build of Kueue is released as an Operator that is supported on OpenShift Container Platform.
+- [Installing Red Hat build of Kueue](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/install-kueue.md): You can install Red Hat build of Kueue by using the Red Hat Build of Kueue Operator in OperatorHub.
+- [Installing Red Hat build of Kueue in a disconnected environment](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/install-disconnected.md): You can install Red Hat build of Kueue on a disconnected OpenShift Container Platform cluster after enabling Operator Lifecycle Manager (OLM) in your…
+- [Integrating the Leader Worker Set Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/integrating-lws.md): You can integrate the Leader Worker Set Operator with Red Hat build of Kueue so you can leverage the scheduling and resource management functionality when…
+- [Integrating the JobSet Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/integrating-jobset.md): You can integrate JobSet Operator with Red Hat build of Kueue so you can leverage the scheduling and resource management functionality provided by Red Hat…
+- [Integrating Dynamic Resource Allocation](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/kueue-dra-integrating-dynamic-resource-allocation.md): You can configure Red Hat build of Kueue to manage quota for workloads that use Dynamic Resource Allocation (DRA) to request GPUs. When DRA quota management is…
+- [Configuring role-based permissions](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/rbac-permissions.md): You can configure role-based access control (RBAC) for your Red Hat build of Kueue deployment to control which users can create specific Red Hat build of Kueue…
+- [Configuring quotas](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas.md): As an administrator, you can use Red Hat build of Kueue to configure quotas to optimize resource allocation and system throughput for user workloads. You can…
+- [Managing jobs and workloads](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/managing-workloads.md): When you create jobs in your cluster, Red Hat build of Kueue represents each job as a Workload object to track resource requirements, decisions, and statuses.
+- [Monitoring pending workloads](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/monitoring-pending-workloads.md): Red Hat build of Kueue provides the VisibilityOnDemand feature to monitor pending workloads. A workload is an application that runs to completion. It can be…
+- [Using cohorts](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/using-cohorts.md): You can use cohorts to group cluster queues and determine which cluster queues can share borrowable resources with each other.
+- [Configuring fair sharing](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/configuring-fairsharing.md): You can configure fair sharing as a preemption strategy to distribute borrowable resources equally or by weight between tenants of a cohort.
+- [Admission fair sharing](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/admission-fair-sharing.md): Use admission fair sharing to fairly distribute workloads across local Queues that share a single ClusterQueue.
+- [Gang scheduling](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/gangscheduling.md): You can use gang scheduling to ensure that a group, or gang, of related jobs starts only when all required resources are available.
+- [Running jobs with quota limits](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/running-kueue-jobs.md): You can run Kubernetes jobs with Red Hat build of Kueue enabled to manage resource allocation within defined quota limits. Running jobs with quota limits…
+- [Getting support](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/getting-support.md): If you experience difficulty with a procedure described in this documentation, or with Red Hat build of Kueue in general, visit the Red Hat Customer Portal.
+- [Leader Worker Set Operator overview](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set.md): Use the Leader Worker Set Operator to manage multi-node AI/ML inference deployments efficiently. The Leader Worker Set Operator treats groups of pods as one…
+- [Leader Worker Set Operator release notes](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-release-notes.md): Review the Leader Worker Set Operator release notes to track its development and learn what is new and changed with each release.
+- [Managing distributed workloads with the Leader Worker Set Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-managing.md): You can use the Leader Worker Set Operator to manage distributed inference workloads and process large-scale inference requests efficiently.
+- [Uninstalling the Leader Worker Set Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-uninstalling.md): If you no longer need the Leader Worker Set Operator in your cluster, you can uninstall the Operator and remove its related resources.
+- [Jobset Operator overview](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator.md): Use the JobSet Operator on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI…
+- [JobSet Operator release notes](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-release-notes.md): Track the development, features, and fixes for the JobSet Operator, which manages coordinated, large-scale computing workloads on OpenShift Container Platform.
+- [Installing the JobSet Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-install.md): Install the JobSet Operator on OpenShift Container Platform to enable management of large-scale, coordinated computing workloads, giving your applications a…
+- [Managing workloads with the JobSet Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/managing-jobset.md): Use the JobSet Operator on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI…
+- [Uninstalling the JobSet Operator](https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-uninstall.md): Uninstall the JobSet Operator by using the OpenShift Container Platform web console to remove the Operator instance and its resources from your cluster.

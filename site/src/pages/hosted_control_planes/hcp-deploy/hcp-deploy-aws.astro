@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"hcp-deploy-aws","text":"Deploying {{ hcp }} on {{ aws_short }}"}];
+const headings = [{"depth":1,"slug":"hcp-deploy-aws","text":"Deploying hosted control planes on AWS"},{"depth":2,"slug":"hcp-aws-prepare_hcp-deploy-aws","text":"Preparing to deploy hosted control planes on AWS"},{"depth":3,"slug":"hcp-aws-prereqs_hcp-deploy-aws","text":"Prerequisites to deploy hosted control planes on AWS"},{"depth":3,"slug":"hcp-aws-create-secret-s3_hcp-deploy-aws","text":"Creating the Amazon Web Services S3 bucket and S3 OIDC secret"},{"depth":3,"slug":"hcp-aws-create-public-zone_hcp-deploy-aws","text":"Creating a routable public zone for hosted clusters"},{"depth":3,"slug":"hcp-aws-create-role-sts-creds_hcp-deploy-aws","text":"Creating an AWS IAM role and STS credentials"},{"depth":3,"slug":"hcp-aws-enable-private-link_hcp-deploy-aws","text":"Enabling AWS PrivateLink for hosted control planes"},{"depth":2,"slug":"hcp-aws-enable-ext-dns_hcp-deploy-aws","text":"Enabling external DNS for hosted control planes on AWS"},{"depth":3,"slug":"hcp-aws-set-up-ext-dns_hcp-deploy-aws","text":"Setting up external DNS for hosted control planes"},{"depth":3,"slug":"hcp-aws-create-dns-hosted-zone_hcp-deploy-aws","text":"Creating the public DNS hosted zone"},{"depth":3,"slug":"hcp-aws-hc-ext-dns_hcp-deploy-aws","text":"Creating a hosted cluster by using the external DNS on AWS"},{"depth":3,"slug":"hcp-custom-dns_hcp-deploy-aws","text":"Defining a custom DNS name"},{"depth":2,"slug":"hcp-create-hc-aws_hcp-deploy-aws","text":"Creating a hosted cluster on AWS"},{"depth":3,"slug":"hcp-aws-deploy-hc_hcp-deploy-aws","text":"Creating a hosted cluster on AWS by using the CLI"},{"depth":3,"slug":"hcp-create-hc-multi-zone-aws-creds_hcp-deploy-aws","text":"Creating a hosted cluster by providing AWS STS credentials"},{"depth":3,"slug":"hc-create-aws-multiple-zones_hcp-deploy-aws","text":"Creating a hosted cluster in multiple zones on AWS"},{"depth":2,"slug":"hcp-cluster-capabilities_hcp-deploy-aws","text":"Capabilities for hosted clusters"},{"depth":3,"slug":"hcp-cluster-capabilities-ref_hcp-deploy-aws","text":"Capabilities that you can enable or disable for a hosted cluster"},{"depth":3,"slug":"hcp-cluster-capabilities-proc_hcp-deploy-aws","text":"Setting capabilities for a hosted cluster"},{"depth":2,"slug":"hcp-access-hc-aws_hcp-deploy-aws","text":"Accessing a hosted cluster on AWS"},{"depth":2,"slug":"hcp-enable-arm-amd_hcp-deploy-aws","text":"Running hosted clusters on an ARM64 architecture"},{"depth":3,"slug":"hcp-create-hc-arm64-aws_hcp-deploy-aws","text":"Creating a hosted cluster on an ARM64 OpenShift Container Platform cluster"},{"depth":3,"slug":"hcp-create-np-arm64-aws_hcp-deploy-aws","text":"Creating an ARM or AMD NodePool object on AWS hosted clusters"},{"depth":2,"slug":"hcp-create-private-hc-aws_hcp-deploy-aws","text":"Creating a private hosted cluster on AWS"},{"depth":3,"slug":"hcp-access-private-hc-aws_hcp-deploy-aws","text":"Accessing a private hosted cluster on AWS"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Deploying {{ hcp }} on {{ aws_short }}";
-const description = "To reduce infrastructure costs and improve cluster management efficiency, you can deploy {{ hcp }} on {{ aws_short }}. This configuration decouples the…" || undefined;
+const description = "To reduce infrastructure costs and improve cluster management efficiency, you can deploy hosted control planes on AWS. This configuration decouples the…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-deploy"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on {{ aws_short }} {#hcp-deploy-aws}\n\nTo reduce infrastructure costs and improve cluster management efficiency, you can deploy {{ hcp }} on {{ aws_short }}. This configuration decouples the control plane from the data plane so that you can manage multiple clusters from a central management service.\n\nA *hosted cluster* is an OpenShift Container Platform cluster with its API endpoint and control plane that are hosted on the management cluster. The hosted cluster includes the control plane and its corresponding data plane. To configure {{ hcp }} on premises, you must install {{ mce }} in a management cluster. By deploying the HyperShift Operator on an existing managed cluster by using the `hypershift-addon` managed cluster add-on, you can enable that cluster as a management cluster and start to create the hosted cluster. The `hypershift-addon` managed cluster add-on is enabled by default for the `local-cluster` managed cluster.\n\nYou can use the {{ mce_short }} console or the hosted control plane command-line interface (CLI), `hcp`, to create a hosted cluster. The hosted cluster is automatically imported as a managed cluster. However, you can disable this automatic import feature into {{ mce_short }}. For more information, see \"Disabling the automatic import of hosted clusters into {{ mce_short }}\".\n\n**Additional resources**\n\n- [Configuring Ansible Automation Platform jobs to run on hosted clusters](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#ansible-config-hosted-cluster)\n- [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)\n- [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)\n- [Manually enabling the {{ hcp }} feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable)\n- [Disabling the {{ hcp }} feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable)\n- [Deploying the SR-IOV Operator for {{ hcp }}](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#sriov-operator-hosted-control-planes_configuring-sriov-operator)\n\n**Additional resources**\n\n- [Disabling the automatic import of hosted clusters into {{ mce_short }}](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)\n- [Running hosted clusters on an ARM64 architecture](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-enable-arm-amd_hcp-deploy-aws)\n\n**Additional resources**\n\n- [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)\n\n**Additional resources**\n\n- [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)\n- [Create an OpenShift Container Platform Cluster: {{ aws_short }} (ARM)](https://console.redhat.com/openshift/install/aws/arm)\n- [Creating an {{ aws_short }} IAM role and STS credentials](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws)\n\n**Additional resources**\n\n- [Multi-architecture nightly images](https://multi.ocp.releases.ci.openshift.org/)\n\n**Additional resources**\n\n- [Enabling {{ aws_short }} PrivateLink for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-enable-private-link_hcp-deploy-aws)\n- [Creating an {{ aws_short }} IAM role and STS credentials](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws)\n- [Identity and Access Management (IAM) permissions](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-aws#hcp-manage-aws-infra-req_hcp-managing-aws)\n- [Tutorial: Configuring private network access using a Linux Bastion Host](https://docs.aws.amazon.com/mwaa/latest/userguide/tutorials-private-network-bastion.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying hosted control planes on AWS {#hcp-deploy-aws}\n\nTo reduce infrastructure costs and improve cluster management efficiency, you can deploy hosted control planes on AWS. This configuration decouples the control plane from the data plane so that you can manage multiple clusters from a central management service.\n\nA *hosted cluster* is an OpenShift Container Platform cluster with its API endpoint and control plane that are hosted on the management cluster. The hosted cluster includes the control plane and its corresponding data plane. To configure hosted control planes on premises, you must install multicluster engine for Kubernetes Operator in a management cluster. By deploying the HyperShift Operator on an existing managed cluster by using the `hypershift-addon` managed cluster add-on, you can enable that cluster as a management cluster and start to create the hosted cluster. The `hypershift-addon` managed cluster add-on is enabled by default for the `local-cluster` managed cluster.\n\nYou can use the multicluster engine Operator console or the hosted control plane command-line interface (CLI), `hcp`, to create a hosted cluster. The hosted cluster is automatically imported as a managed cluster. However, you can disable this automatic import feature into multicluster engine Operator. For more information, see \"Disabling the automatic import of hosted clusters into multicluster engine Operator\".\n\n## Preparing to deploy hosted control planes on AWS {#hcp-aws-prepare_hcp-deploy-aws}\n\nPreparing to deploy hosted control planes on Amazon Web Services (AWS) involves meeting several prerequisites and creating resources, including an S3 bucket, an OIDC secret, a routable public zone, IAM role and STS credentials.\n\n### Prerequisites to deploy hosted control planes on AWS {#hcp-aws-prereqs_hcp-deploy-aws}\n\nTo ensure successful deployment of hosted control planes on Amazon Web Services (AWS), your environment must meet the following requirements.\n\n- You installed the multicluster engine for Kubernetes Operator 2.5 and later on an OpenShift Container Platform cluster. The multicluster engine Operator is automatically installed when you install Red Hat Advanced Cluster Management (RHACM). The multicluster engine Operator can also be installed without RHACM as an Operator from the OpenShift Container Platform software catalog.\n- You have at least one managed OpenShift Container Platform cluster for the multicluster engine Operator. The `local-cluster` is automatically imported in the multicluster engine Operator version 2.5 and later. You can check the status of your hub cluster by running the following command:\n\n  ```terminal\n  $ oc get managedclusters local-cluster\n  ```\n- You installed the [`aws` command-line interface (CLI)](https://aws.amazon.com/cli/).\n- You installed the hosted control plane CLI, `hcp`.\n\n> [!IMPORTANT]\n> - Run the management cluster and compute nodes on the same platform.\n> - For each hosted cluster, provide a cluster-wide unique name. A hosted cluster name cannot be the same as any existing managed cluster in order for multicluster engine Operator to manage it.\n> - Do not use `clusters` as a hosted cluster name.\n> - Do not create a hosted cluster in the namespace of a multicluster engine Operator managed cluster.\n\n**Additional resources**\n\n- [Configuring Ansible Automation Platform jobs to run on hosted clusters](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#ansible-config-hosted-cluster)\n- [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)\n- [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)\n- [Manually enabling the hosted control planes feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable)\n- [Disabling the hosted control planes feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable)\n- [Deploying the SR-IOV Operator for hosted control planes](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#sriov-operator-hosted-control-planes_configuring-sriov-operator)\n\n### Creating the Amazon Web Services S3 bucket and S3 OIDC secret {#hcp-aws-create-secret-s3_hcp-deploy-aws}\n\nBefore you can create and manage a hosted cluster on Amazon Web Services (AWS), you must create the S3 bucket and S3 OIDC secret. These resources provide a place for the cluster to store information about itself and a way for the cluster to prove its identity to AWS.\n\n**Procedure**\n\n1. Create an S3 bucket that has public access to host OIDC discovery documents for your clusters.\n\n   1. Enter the following command:\n\n      ```terminal\n      $ aws s3api create-bucket --bucket <bucket_name> \\\n        --create-bucket-configuration LocationConstraint=<region> \\\n        --region <region>\n      ```\n\n      where:\n\n      `<bucket_name>`\n      :   Specifies the name of the S3 bucket you are creating.\n\n      `<region>`\n      :   Specifies that you want to create the bucket in a region other than the `us-east-1` region. Include this line and replace `<region>` with the region you want to use. To create a bucket in the `us-east-1` region, omit this line.\n   2. Enter the following command:\n\n      ```terminal\n      $ aws s3api delete-public-access-block --bucket <bucket_name>\n      ```\n\n      Replace `<bucket_name>` with the name of the S3 bucket you are creating.\n   3. Enter the following command:\n\n      ```terminal\n      $ echo '{\n          \"Version\": \"2012-10-17\",\n          \"Statement\": [\n              {\n                  \"Effect\": \"Allow\",\n                  \"Principal\": \"*\",\n                  \"Action\": \"s3:GetObject\",\n                  \"Resource\": \"arn:aws:s3:::<bucket_name>/*\"\n              }\n          ]\n      }' | envsubst > policy.json\n      ```\n\n      Replace `<bucket_name>` with the name of the S3 bucket you are creating.\n   4. Enter the following command:\n\n      ```terminal\n      $ aws s3api put-bucket-policy --bucket <bucket_name> \\\n        --policy file://policy.json\n      ```\n\n      Replace `<bucket_name>` with the name of the S3 bucket you are creating.\n\n      > [!NOTE]\n      > If you are using a Mac computer, you must export the bucket name in order for the policy to work.\n2. Create an OIDC S3 secret named `hypershift-operator-oidc-provider-s3-credentials` for the HyperShift Operator by running the following command:\n\n   ```terminal\n   $ oc create secret generic hypershift-operator-oidc-provider-s3-credentials \\\n     --from-file=credentials=<path>/.aws/credentials \\\n     --from-literal=bucket=<s3_bucket> \\\n     --from-literal=region=<region> \\\n     -n local-cluster\n   ```\n\n   - Save the secret in the `local-cluster` namespace.\n   - The `bucket` field specifies an S3 bucket with public access to host OIDC discovery documents for your hosted clusters.\n   - The `credentials` field specifies reference to a file that contains the credentials of the `default` profile that can access the bucket. By default, the HyperShift Operator only uses the `default` profile to operate the `bucket`.\n   - The `region` field specifies the region of the S3 bucket.\n\n     > [!NOTE]\n     > Disaster recovery backup for the secret is not automatically enabled. To add the label that enables the `hypershift-operator-oidc-provider-s3-credentials` secret to be backed up for disaster recovery, run the following command:\n     >\n     > ```terminal\n     > $ oc label secret hypershift-operator-oidc-provider-s3-credentials \\\n     >   -n local-cluster cluster.open-cluster-management.io/backup=true\n     > ```\n\n### Creating a routable public zone for hosted clusters {#hcp-aws-create-public-zone_hcp-deploy-aws}\n\nIn order to access applications in your hosted clusters, you must configure the routable public zone.\n\nIf the public zone exists, skip this step. Otherwise, the public zone affects the existing functions.\n\n**Procedure**\n\n- To create a routable public zone for DNS records, enter the following command:\n\n  ```terminal\n  $ aws route53 create-hosted-zone \\\n    --name <basedomain> \\\n    --caller-reference $(whoami)-$(date --rfc-3339=date)\n  ```\n\n  Replace `<basedomain>` with your base domain, for example, `www.example.com`.\n\n### Creating an AWS IAM role and STS credentials {#hcp-aws-create-role-sts-creds_hcp-deploy-aws}\n\nBefore you create a hosted cluster on Amazon Web Services (AWS), you must create an AWS IAM role and STS credentials.\n\n**Procedure**\n\n1. Get the Amazon Resource Name (ARN) of your user by running the following command:\n\n   ```terminal\n   $ aws sts get-caller-identity --query \"Arn\" --output text\n   ```\n\n   ```terminal {title=\"Example output\"}\n   arn:aws:iam::1234567890:user/<aws_username>\n   ```\n\n   Use this output as the value for the `<arn>` value in the next step.\n2. Create a JSON file that contains the trust relationship configuration for your role. See the following example:\n\n   ```json\n   {\n       \"Version\": \"2012-10-17\",\n       \"Statement\": [\n           {\n               \"Effect\": \"Allow\",\n               \"Principal\": {\n                   \"AWS\": \"<arn>\"\n               },\n               \"Action\": \"sts:AssumeRole\"\n           }\n       ]\n   }\n   ```\n\n   Replace `<arn>` with the ARN of your user that you noted in the previous step.\n3. Create the Identity and Access Management (IAM) role by running the following command:\n\n   ```terminal\n   $ aws iam create-role \\\n     --role-name <name> \\\n     --assume-role-policy-document file://<file_name>.json \\\n     --query \"Role.Arn\"\n   ```\n\n   where:\n\n   `<name>`\n   :   Specifies the role name, for example, `hcp-cli-role`.\n\n   `<file_name>`\n   :   Specifies the name of the JSON file you created in the previous step.\n\n   ```terminal {title=\"Example output\"}\n   arn:aws:iam::820196288204:role/myrole\n   ```\n4. Create a JSON file named `policy.json` that contains the following permission policies for your role:\n\n   ```json\n   {\n       \"Version\": \"2012-10-17\",\n       \"Statement\": [\n           {\n               \"Sid\": \"EC2\",\n               \"Effect\": \"Allow\",\n               \"Action\": [\n                   \"ec2:CreateDhcpOptions\",\n                   \"ec2:DeleteSubnet\",\n                   \"ec2:ReplaceRouteTableAssociation\",\n                   \"ec2:DescribeAddresses\",\n                   \"ec2:DescribeInstances\",\n                   \"ec2:DeleteVpcEndpoints\",\n                   \"ec2:CreateNatGateway\",\n                   \"ec2:CreateVpc\",\n                   \"ec2:DescribeDhcpOptions\",\n                   \"ec2:AttachInternetGateway\",\n                   \"ec2:DeleteVpcEndpointServiceConfigurations\",\n                   \"ec2:DeleteRouteTable\",\n                   \"ec2:AssociateRouteTable\",\n                   \"ec2:DescribeInternetGateways\",\n                   \"ec2:DescribeAvailabilityZones\",\n                   \"ec2:CreateRoute\",\n                   \"ec2:CreateInternetGateway\",\n                   \"ec2:RevokeSecurityGroupEgress\",\n                   \"ec2:ModifyVpcAttribute\",\n                   \"ec2:DeleteInternetGateway\",\n                   \"ec2:DescribeVpcEndpointConnections\",\n                   \"ec2:RejectVpcEndpointConnections\",\n                   \"ec2:DescribeRouteTables\",\n                   \"ec2:ReleaseAddress\",\n                   \"ec2:AssociateDhcpOptions\",\n                   \"ec2:TerminateInstances\",\n                   \"ec2:CreateTags\",\n                   \"ec2:DeleteRoute\",\n                   \"ec2:CreateRouteTable\",\n                   \"ec2:DetachInternetGateway\",\n                   \"ec2:DescribeVpcEndpointServiceConfigurations\",\n                   \"ec2:DescribeNatGateways\",\n                   \"ec2:DisassociateRouteTable\",\n                   \"ec2:AllocateAddress\",\n                   \"ec2:DescribeSecurityGroups\",\n                   \"ec2:RevokeSecurityGroupIngress\",\n                   \"ec2:CreateVpcEndpoint\",\n                   \"ec2:DescribeVpcs\",\n                   \"ec2:DeleteSecurityGroup\",\n                   \"ec2:DeleteDhcpOptions\",\n                   \"ec2:DeleteNatGateway\",\n                   \"ec2:DescribeVpcEndpoints\",\n                   \"ec2:DeleteVpc\",\n                   \"ec2:CreateSubnet\",\n                   \"ec2:DescribeSubnets\"\n               ],\n               \"Resource\": \"*\"\n           },\n           {\n               \"Sid\": \"ELB\",\n               \"Effect\": \"Allow\",\n               \"Action\": [\n                   \"elasticloadbalancing:DeleteLoadBalancer\",\n                   \"elasticloadbalancing:DescribeLoadBalancers\",\n                   \"elasticloadbalancing:DescribeTargetGroups\",\n                   \"elasticloadbalancing:DeleteTargetGroup\"\n               ],\n               \"Resource\": \"*\"\n           },\n           {\n               \"Sid\": \"IAMPassRole\",\n               \"Effect\": \"Allow\",\n               \"Action\": \"iam:PassRole\",\n               \"Resource\": \"arn:*:iam::*:role/*-worker-role\",\n               \"Condition\": {\n                   \"ForAnyValue:StringEqualsIfExists\": {\n                       \"iam:PassedToService\": \"ec2.amazonaws.com\"\n                   }\n               }\n           },\n           {\n               \"Sid\": \"IAM\",\n               \"Effect\": \"Allow\",\n               \"Action\": [\n                   \"iam:CreateInstanceProfile\",\n                   \"iam:DeleteInstanceProfile\",\n                   \"iam:TagInstanceProfile\",\n                   \"iam:GetRole\",\n                   \"iam:UpdateAssumeRolePolicy\",\n                   \"iam:GetInstanceProfile\",\n                   \"iam:TagRole\",\n                   \"iam:RemoveRoleFromInstanceProfile\",\n                   \"iam:CreateRole\",\n                   \"iam:DeleteRole\",\n                   \"iam:PutRolePolicy\",\n                   \"iam:AddRoleToInstanceProfile\",\n                   \"iam:CreateOpenIDConnectProvider\",\n                   \"iam:TagOpenIDConnectProvider\",\n                   \"iam:ListOpenIDConnectProviders\",\n                   \"iam:DeleteRolePolicy\",\n                   \"iam:UpdateRole\",\n                   \"iam:DeleteOpenIDConnectProvider\",\n                   \"iam:GetRolePolicy\",\n                   \"iam:ListAttachedRolePolicies\",\n                   \"iam:ListRolePolicies\",\n                   \"iam:DetachRolePolicy\"\n               ],\n               \"Resource\": \"*\"\n           },\n           {\n               \"Sid\": \"Route53\",\n               \"Effect\": \"Allow\",\n               \"Action\": [\n                   \"route53:ListHostedZonesByVPC\",\n                   \"route53:CreateHostedZone\",\n                   \"route53:ListHostedZones\",\n                   \"route53:ChangeResourceRecordSets\",\n                   \"route53:ListResourceRecordSets\",\n                   \"route53:DeleteHostedZone\",\n                   \"route53:AssociateVPCWithHostedZone\",\n                   \"route53:ListHostedZonesByName\"\n               ],\n               \"Resource\": \"*\"\n           },\n           {\n               \"Sid\": \"S3\",\n               \"Effect\": \"Allow\",\n               \"Action\": [\n                   \"s3:ListAllMyBuckets\",\n                   \"s3:ListBucket\",\n                   \"s3:DeleteObject\",\n                   \"s3:DeleteBucket\"\n               ],\n               \"Resource\": \"*\"\n           }\n       ]\n   }\n   ```\n5. Attach the `policy.json` file that contains the permissions policies for your role by running the following command:\n\n   ```terminal\n   $ aws iam put-role-policy \\\n     --role-name <role_name> \\\n     --policy-name <policy_name> \\\n     --policy-document file://policy.json\n   ```\n\n   where:\n\n   `<role_name>`\n   :   Specifies the name of your role.\n\n   `<policy_name>`\n   :   Specifies your policy name.\n6. Retrieve STS credentials in a JSON file named `sts-creds.json` by running the following command:\n\n   ```terminal\n   $ aws sts get-session-token --output json > sts-creds.json\n   ```\n\n   ```json {title=\"Example sts-creds.json file\"}\n   {\n       \"Credentials\": {\n           \"AccessKeyId\": \"<access_key_id\",\n           \"SecretAccessKey\": \"<secret_access_key>”,\n           \"SessionToken\": \"<session_token>\",\n           \"Expiration\": \"<time_stamp>\"\n       }\n   }\n   ```\n\n### Enabling AWS PrivateLink for hosted control planes {#hcp-aws-enable-private-link_hcp-deploy-aws}\n\nIn order to provision hosted control planes on the Amazon Web Services (AWS) with PrivateLink, you need to enable AWS PrivateLink for hosted control planes.\n\n**Procedure**\n\n1. Create an AWS credential secret for the HyperShift Operator and name it `hypershift-operator-private-link-credentials`. The secret must reside in the managed cluster namespace that is the namespace of the managed cluster being used as the management cluster. If you used `local-cluster`, create the secret in the `local-cluster` namespace.\n2. See the following table to confirm that the secret contains the required fields: **Required fields for the AWS secret**\n\n   | Field name | Description | Optional or required |\n   | --- | --- | --- |\n   | `region` | Region for use with Private Link | Required |\n   | `aws-access-key-id` | The credential access key id. | Required |\n   | `aws-secret-access-key` | The credential access key secret. | Required |\n3. To create an AWS secret, run the following command:\n\n   ```terminal\n   $ oc create secret generic <secret_name> \\\n     --from-literal=aws-access-key-id=<aws_access_key_id> \\\n     --from-literal=aws-secret-access-key=<aws_secret_access_key> \\\n     --from-literal=region=<region> -n local-cluster\n   ```\n4. Disaster recovery backup for the secret is not automatically enabled. Run the following command to add the label that enables the `hypershift-operator-private-link-credentials` secret to be backed up for disaster recovery:\n\n   ```terminal\n   $ oc label secret hypershift-operator-private-link-credentials \\\n     -n local-cluster \\\n     cluster.open-cluster-management.io/backup=\"\"\n   ```\n\n## Enabling external DNS for hosted control planes on AWS {#hcp-aws-enable-ext-dns_hcp-deploy-aws}\n\nTo automate the management of DNS records, you can enable external DNS. By configuring this feature, you provide a way for the cluster to update your AWS Route 53 public hosted zones automatically when you create or delete services and ingresses.\n\nThe control plane and the data plane are separate in hosted control planes. You can configure DNS in two independent areas:\n\n- Ingress for workloads within the hosted cluster, such as the following domain: `*.apps.service-consumer-domain.com`.\n- Ingress for service endpoints within the management cluster, such as API or OAuth endpoints through the service provider domain: `*.service-provider-domain.com`.\n\nThe input for `hostedCluster.spec.dns` manages the ingress for workloads within the hosted cluster. The input for `hostedCluster.spec.services.servicePublishingStrategy.route.hostname` manages the ingress for service endpoints within the management cluster.\n\nExternal DNS creates name records for hosted cluster services that specify a publishing type of `LoadBalancer` or `Route` and provide a hostname for that publishing type. For hosted clusters with `Private` or `PublicAndPrivate` endpoint access types, only the `APIServer` and `OAuth` services support hostnames. For `Private` hosted clusters, the DNS record resolves to a private IP address of a Virtual Private Cloud (VPC) endpoint in your VPC.\n\nA hosted control plane exposes the following services:\n\n- `APIServer`\n- `OIDC`\n\n> [!NOTE]\n> The `NodePort` publishing type is not supported on hosted control planes on AWS.\n\nYou can expose these services by using the `servicePublishingStrategy` field in the `HostedCluster` specification. By default, for the `LoadBalancer` and `Route` types of `servicePublishingStrategy`, you can publish the service in one of the following ways:\n\n- By using the hostname of the load balancer that is in the status of the `Service` with the `LoadBalancer` type.\n- By using the `status.host` field of the `Route` resource.\n\nHowever, when you deploy hosted control planes in a managed service context, those methods can expose the ingress subdomain of the underlying management cluster and limit options for the management cluster lifecycle and disaster recovery.\n\nWhen a DNS indirection is layered on the `LoadBalancer` and `Route` publishing types, a managed service operator can publish all public hosted cluster services by using a service-level domain. This architecture allows remapping on the DNS name to a new `LoadBalancer` or `Route` and does not expose the ingress domain of the management cluster. Hosted control planes uses external DNS to achieve that indirection layer.\n\nYou can deploy `external-dns` alongside the HyperShift Operator in the `hypershift` namespace of the management cluster. External DNS watches for `Services` or `Routes` that have the `external-dns.alpha.kubernetes.io/hostname` annotation. That annotation is used to create a DNS record that points to the `Service`, such as an A record, or the `Route`, such as a CNAME record.\n\nYou can use external DNS on cloud environments only. For the other environments, you need to manually configure DNS and services.\n\nFor more information about external DNS, see [external DNS](https://github.com/kubernetes-sigs/external-dns).\n\n### Setting up external DNS for hosted control planes {#hcp-aws-set-up-ext-dns_hcp-deploy-aws}\n\nTo automate the management of DNS records, you can set up external DNS for hosted control planes on AWS. You need this configuration to ensure that when you create or modify services, the corresponding DNS records in your AWS Route 53 public hosted zones update automatically.\n\nYou can provision hosted control planes with external DNS or service-level DNS.\n\n**Prerequisites**\n\n- You created an external public domain.\n- You have access to the AWS Route53 Management console.\n- You enabled AWS PrivateLink for hosted control planes.\n\n**Procedure**\n\n1. Create an Amazon Web Services (AWS) credential secret for the HyperShift Operator and name it `hypershift-operator-external-dns-credentials` in the `local-cluster` namespace.\n2. Verify that the secret has the required fields. For your reference, the required fields are detailed in the following table. **Required fields for the AWS secret**\n\n   | Field name | Description | Optional or required |\n   | --- | --- | --- |\n   | `provider` | The DNS provider that manages the service-level DNS zone. | Required |\n   | `domain-filter` | The service-level domain. | Required |\n   | `credentials` | The credential file that supports all external DNS types. | Optional when you use AWS keys |\n   | `aws-access-key-id` | The credential access key id. | Optional when you use the AWS DNS service |\n   | `aws-secret-access-key` | The credential access key secret. | Optional when you use the AWS DNS service |\n3. Create an AWS secret by running the following command:\n\n   ```terminal\n   $ oc create secret generic <secret_name> \\\n     --from-literal=provider=aws \\\n     --from-literal=domain-filter=<domain_name> \\\n     --from-file=credentials=<path_to_aws_credentials_file> -n local-cluster\n   ```\n\n   > [!NOTE]\n   > Disaster recovery backup for the secret is not automatically enabled. To back up the secret for disaster recovery, add the `hypershift-operator-external-dns-credentials` by entering the following command:\n   >\n   > ```terminal\n   > $ oc label secret hypershift-operator-external-dns-credentials \\\n   >   -n local-cluster \\\n   >   cluster.open-cluster-management.io/backup=\"\"\n   > ```\n\n### Creating the public DNS hosted zone {#hcp-aws-create-dns-hosted-zone_hcp-deploy-aws}\n\nYou can create the public DNS hosted zone to use as the external DNS domain filter. The External DNS Operator uses the public DNS hosted zone to create your public hosted cluster.\n\n**Procedure**\n\n1. In the AWS Route 53 management console, click **Create hosted zone**.\n2. On the **Hosted zone configuration** page, type a domain name, verify that **Public hosted zone** is selected as the type, and click **Create hosted zone**.\n3. After the zone is created, on the **Records** tab, note the values in the **Value/Route traffic to** column.\n4. In the main domain, create an NS record to redirect the DNS requests to the delegated zone. In the **Value** field, enter the values that you noted in the previous step.\n5. Click **Create records**.\n6. Verify that the DNS hosted zone is working by creating a test entry in the new subzone and testing it with a `dig` command, such as in the following example:\n\n   ```terminal\n   $ dig +short test.user-dest-public.aws.kerberos.com\n   ```\n\n   ```terminal {title=\"Example output\"}\n   192.168.1.1\n   ```\n7. To create a hosted cluster that sets the hostname for the `LoadBalancer` and `Route` services, enter the following command:\n\n   ```terminal\n   $ hcp create cluster aws --name=<hosted_cluster_name> \\\n     --endpoint-access=PublicAndPrivate \\\n     --external-dns-domain=<public_hosted_zone> ...\n   ```\n\n   Replace `<public_hosted_zone>` with the public hosted zone that you created.\n\n   ```yaml {title=\"Example services block for the hosted cluster\"}\n     platform:\n       aws:\n         endpointAccess: PublicAndPrivate\n   ...\n     services:\n     - service: APIServer\n       servicePublishingStrategy:\n         route:\n           hostname: api-example.service-provider-domain.com\n         type: Route\n     - service: OAuthServer\n       servicePublishingStrategy:\n         route:\n           hostname: oauth-example.service-provider-domain.com\n         type: Route\n     - service: Konnectivity\n       servicePublishingStrategy:\n         type: Route\n     - service: Ignition\n       servicePublishingStrategy:\n         type: Route\n   ```\n\n   The Control Plane Operator creates the `Services` and `Routes` resources and annotates them with the `external-dns.alpha.kubernetes.io/hostname` annotation. For `Services` and `Routes`, the Control Plane Operator uses a value of the `hostname` parameter in the `servicePublishingStrategy` field for the service endpoints. To create the DNS records, you can use a mechanism, such as the `external-dns` deployment.\n\n   You can configure service-level DNS indirection for public services only. You cannot set `hostname` for private services because they use the `hypershift.local` private zone.\n\n   The following table shows when it is valid to set `hostname` for a service and endpoint combinations: **Service and endpoint combinations to set `hostname`**\n\n   | Service | Public | PublicAndPrivate | Private |\n   | --- | --- | --- | --- |\n   | `APIServer` | Y | Y | N |\n   | `OAuthServer` | Y | Y | N |\n   | `Konnectivity` | Y | N | N |\n   | `Ignition` | Y | N | N |\n\n### Creating a hosted cluster by using the external DNS on AWS {#hcp-aws-hc-ext-dns_hcp-deploy-aws}\n\nWhen you create a hosted cluster on AWS, using external DNS provides advantages over standard installation methods. With external DNS, you can automatically synchronize your cluster’s service endpoints with AWS Route 53.\n\nWithout external DNS, you must manually manage DNS records for every new service or ingress, which increases the risk of configuration errors and downtime.\n\n**Prerequisites**\n\n- You configured the following artifacts in your management cluster:\n\n  - The public DNS hosted zone\n  - The External DNS Operator\n  - The HyperShift Operator\n\n**Procedure**\n\n1. On the `hcp` command-line interface (CLI), enter the following command to access your management cluster:\n\n   ```terminal\n   $ export KUBECONFIG=<path_to_management_cluster_kubeconfig>\n   ```\n2. Verify that the External DNS Operator is running by entering the following command:\n\n   ```terminal\n   $ oc get pod -n hypershift -lapp=external-dns\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                            READY   STATUS    RESTARTS   AGE\n   external-dns-7c89788c69-rn8gp   1/1     Running   0          40s\n   ```\n3. To create a hosted cluster by using external DNS, enter the following command:\n\n   ```terminal\n   $ hcp create cluster aws \\\n       --role-arn <arn_role> \\\n       --instance-type <instance_type> \\\n       --region <region> \\\n       --auto-repair \\\n       --generate-ssh \\\n       --name <hosted_cluster_name> \\\n       --namespace clusters \\\n       --base-domain <service_consumer_domain> \\\n       --node-pool-replicas <node_replica_count> \\\n       --pull-secret <path_to_your_pull_secret> \\\n       --release-image quay.io/openshift-release-dev/ocp-release:<ocp_release_image> \\\n       --external-dns-domain=<service_provider_domain> \\\n       --endpoint-access=<endpoint_access_configuration> \\\n       --sts-creds <path_to_sts_credential_file>\n   ```\n\n   where:\n\n   `<arn_role>`\n   :   Specifies the Amazon Resource Name (ARN), for example, `arn:aws:iam::820196288204:role/myrole`.\n\n   `<instance_types>`\n   :   Specifies the instance type, for example, `m6i.xlarge`.\n\n   `<region>`\n   :   Specifies the AWS region, for example, `us-east-1`.\n\n   `<hosted_cluster_name>`\n   :   Specifies your hosted cluster name, for example, `my-external-aws`.\n\n   `<service_consumer_domain>`\n   :   Specifies the public hosted zone that the service consumer owns, for example, `service-consumer-domain.com`.\n\n   `<node_replica_count>`\n   :   Specifies the node replica count, for example, `2`.\n\n   `<path_to_your_pull_secret>`\n   :   Specifies the path to your pull secret file.\n\n   `<ocp_release_image>`\n   :   Specifies the supported OpenShift Container Platform version that you want to use, for example, `4.22.0-multi`.\n\n   `<service_provider_domain>`\n   :   Specifies the public hosted zone that the service provider owns, for example, `service-provider-domain.com`.\n\n   `<endpoint_access_configuraton>`\n   :   Specifies the endpoint access configuration for the external DNS. Set as `PublicAndPrivate`. You can use external DNS with `Public` or `PublicAndPrivate` configurations only.\n\n   `<path_to_sts_credential_file>`\n   :   Specifies the path to your AWS STS credentials file, for example, `/home/user/sts-creds/sts-creds.json`.\n\n### Defining a custom DNS name {#hcp-custom-dns_hcp-deploy-aws}\n\nAs a cluster administrator, you can create a hosted cluster with an external API DNS name that differs from the internal endpoint that gets used for node bootstraps and control plane communication.\n\nYou might want to define a different DNS name for the following reasons:\n\n- To replace the user-facing TLS certificate with one from a public CA without breaking the control plane functions that bind to the internal root CA\n- To support split-horizon DNS and NAT scenarios\n- To ensure a similar experience to standalone control planes, where you can use functions, such as the `Show Login Command` function, with the correct `kubeconfig` and DNS configuration\n\nYou can define a DNS name either during your initial setup or during postinstallation operations, by entering a domain name in the `kubeAPIServerDNSName` parameter of a `HostedCluster` object.\n\n**Prerequisites**\n\n- You have a valid TLS certificate that covers the DNS name that you set in the `kubeAPIServerDNSName` parameter.\n- You have a resolvable DNS name URI that can reach and point to the correct address.\n\n**Procedure**\n\n- In the specification for the `HostedCluster` object, add the `kubeAPIServerDNSName` parameter and the address for the domain and specify which certificate to use, as shown in the following example:\n\n  ```yaml\n  #...\n  spec:\n    configuration:\n      apiServer:\n        servingCerts:\n          namedCertificates:\n          - names:\n            - xxx.example.com\n            - yyy.example.com\n            servingCertificate:\n              name: <my_serving_certificate>\n    kubeAPIServerDNSName: <custom_address>\n  ```\n\n  The value for the `kubeAPIServerDNSName` parameter must be a valid and addressable domain.\n\n  After you define the `kubeAPIServerDNSName` parameter and specify the certificate, the Control Plane Operator controllers create a `kubeconfig` file named `custom-admin-kubeconfig`, where the file gets stored in the `HostedControlPlane` namespace. The generation of certificates happen from the root CA, and the `HostedControlPlane` namespace manages their expiration and renewal.\n\n  The Control Plane Operator reports a new `kubeconfig` file named `CustomKubeconfig` in the `HostedControlPlane` namespace. That file uses the defined new server in the `kubeAPIServerDNSName` parameter.\n\n  A reference for the custom `kubeconfig` file exists in the `status` parameter as `CustomKubeconfig` of the `HostedCluster` object. The `CustomKubeConfig` parameter is optional, and you can add the parameter only if the `kubeAPIServerDNSName` parameter is not empty. After you set the `CustomKubeConfig` parameter, the parameter triggers the generation of a secret named `<hosted_cluster_name>-custom-admin-kubeconfig` in the `HostedCluster` namespace. You can use the secret to access the `HostedCluster` API server. If you remove the `CustomKubeConfig` parameter during postinstallation operations, deletion of all related secrets and status references occur.\n\n  > [!NOTE]\n  > Defining a custom DNS name does not directly impact the data plane, so no expected rollouts occur. The `HostedControlPlane` namespace receives the changes from the HyperShift Operator and deletes the corresponding parameters.\n\n  If you remove the `kubeAPIServerDNSName` parameter from the specification for the `HostedCluster` object, all newly generated secrets and the `CustomKubeconfig` reference are removed from the cluster and from the `status` parameter.\n\n## Creating a hosted cluster on AWS {#hcp-create-hc-aws_hcp-deploy-aws}\n\nOn AWS, you can create a hosted cluster by using the command-line interface, `hcp`, or by providing AWS STS credentials. You can also create a hosted cluster in multiple zones on AWS.\n\nA *hosted cluster* is an OpenShift Container Platform cluster with its API endpoint and control plane hosted on a management cluster. The hosted cluster includes the control plane and its corresponding data plane.\n\nThe hosted cluster is automatically imported as a managed cluster. If you want to disable this automatic import feature, see \"Disabling the automatic import of hosted clusters into multicluster engine Operator\".\n\nBy default for hosted control planes on AWS, you use an AMD64 hosted cluster. However, you can enable hosted control planes to run on an ARM64 hosted cluster. For more information, see \"Running hosted clusters on an ARM64 architecture\".\n\nFor compatible combinations of node pools and hosted clusters, see the following table:\n\n**Compatible architectures for node pools and hosted clusters**\n\n| Hosted cluster | Node pools |\n| --- | --- |\n| AMD64 | AMD64 or ARM64 |\n| ARM64 | ARM64 or AMD64 |\n\n**Additional resources**\n\n- [Disabling the automatic import of hosted clusters into multicluster engine Operator](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import)\n- [Running hosted clusters on an ARM64 architecture](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-enable-arm-amd_hcp-deploy-aws)\n\n### Creating a hosted cluster on AWS by using the CLI {#hcp-aws-deploy-hc_hcp-deploy-aws}\n\nTo create a hosted cluster on Amazon Web Services (AWS), you can use the hosted control plane command-line interface (`hcp`).\n\n**Prerequisites**\n\n- You have set up the hosted control plane CLI, `hcp`.\n- You have enabled the `local-cluster` managed cluster as the management cluster.\n- You created an AWS Identity and Access Management (IAM) role and AWS Security Token Service (STS) credentials.\n\n**Procedure**\n\n1. To create a hosted cluster on AWS, run the following command:\n\n   ```terminal\n   $ hcp create cluster aws \\\n       --name <hosted_cluster_name> \\\n       --infra-id <infra_id> \\\n       --base-domain <basedomain> \\\n       --sts-creds <path_to_sts_credential_file> \\\n       --pull-secret <path_to_pull_secret> \\\n       --region <region> \\\n       --generate-ssh \\\n       --node-pool-replicas <node_pool_replica_count> \\\n       --namespace <hosted_cluster_namespace> \\\n       --role-arn <role_name> \\\n       --release-image=quay.io/openshift-release-dev/ocp-release:<ocp_release_image> \\\n       --disable-cluster-capabilities=<capability> \\\n       --enable-cluster-capabilities=<capability> \\\n       --render-into <file_name>.yaml \\\n       --render-sensitive\n   ```\n\n   - `--name` specifies the name of your hosted cluster.\n   - `--infra-id` specifies your infrastructure name. You must provide the same value for `<hosted_cluster_name>` and `<infra_id>`. Otherwise, the cluster might not appear correctly in the multicluster engine for Kubernetes Operator console.\n   - `--base-domain` specifies your base domain, for example, `example.com`.\n   - `--sts-creds` specifies the path to your AWS STS credentials file, for example, `/home/user/sts-creds/sts-creds.json`.\n   - `--pull-secret` specifies the path to your pull secret, for example, `/user/name/pullsecret`.\n   - `--region` specifies the AWS region name, for example, `us-east-1`.\n   - `--node-pool-replicas` specifies the node pool replica count, for example, `3`.\n   - `--namespace` specifies that you want to create the `HostedCluster` and `NodePool` custom resource in a specific namespace. Otherwise, by default, all `HostedCluster` and `NodePool` custom resources are created in the `clusters` namespace.\n   - `--role-arn` specifies the Amazon Resource Name (ARN), for example, `arn:aws:iam::820196288204:role/myrole`.\n   - `--release-image` specifies the supported OpenShift Container Platform version that you want to use, for example, `4.22.0-multi`.\n   - `--disable-cluster-capabilities` specifies that you want to disable optional capabilities in the hosted cluster. This flag is optional. For more information, see \"Capabilities for hosted clusters\".\n   - `--enable-cluster-capabilities` specifies that you want to enable an optional capability for the hosted cluster. This flag is optional. For more information, see \"Capabilities for hosted clusters\".\n   - `--render-into` specifies whether the EC2 instance runs on shared or single tenant hardware. The `--render-into` flag renders Kubernetes resources into the YAML file that you specify in this field. Continue to the next step to edit the YAML file.\n   - `--render-sensitive` specifies that you want sensitive secrets to be rendered into the file that is specified by the `--render-into` flag. If you include the `--render-into` flag in the `hcp create cluster` command, you must also include the `--render-sensitive` flag, or cluster creation fails.\n2. If you included the `--render-into` flag in the `hcp create cluster` command, edit the specified YAML file. Edit the `NodePool` specification in the YAML file to indicate whether the EC2 instance should run on shared or single-tenant hardware, similar to the following example:\n\n   ```yaml {title=\"Example YAML file\"}\n   apiVersion: hypershift.openshift.io/v1beta1\n   kind: NodePool\n   metadata:\n     name: <nodepool_name>\n   spec:\n     platform:\n       aws:\n         placement:\n           tenancy: \"default\"\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the name of the `NodePool` resource.\n\n   `spec.platform.aws.placement.tenancy`\n   :   Specifies a valid value for tenancy: `\"default\"`, `\"dedicated\"`, or `\"host\"`. Use `\"default\"` when node pool instances run on shared hardware. Use `\"dedicated\"` when each node pool instance runs on single-tenant hardware. Use `\"host\"` when node pool instances run on your pre-allocated dedicated hosts.\n3. If you use external load balancers, configure the ingress endpoint by editing the `HostedCluster` resource as shown in the following example. If you do not configure the endpoint, the default behavior is to randomize the node port that the service exposes the ingress on. To configure how the ingress controller publishes the default ingress route, set the `endpointPublishingStrategy` parameter and its underlying functions:\n\n   ```yaml\n   #...\n   spec:\n     operatorConfiguration:\n       ingressOperator:\n         endpointPublishingStrategy:\n           type: LoadBalancerService\n           loadBalancer:\n             scope: Internal\n   #...\n   ```\n\n   The `spec.operatorConfiguration.ingressOperator.endPointPublishingStrategy.type` parameter specifies the endpoint for the load balancer. For AWS, use the `LoadBalancerService` type.\n4. Enter the following command:\n\n   ```terminal\n   $ oc create -f <file_name>.yaml\n   ```\n\n**Verification**\n\n1. Verify the status of your hosted cluster to check that the value of `AVAILABLE` is `True`. Run the following command:\n\n   ```terminal\n   $ oc get hostedclusters -n <hosted_cluster_namespace>\n   ```\n2. Get a list of your node pools by running the following command:\n\n   ```terminal\n   $ oc get nodepools --namespace <hosted_cluster_namespace>\n   ```\n\n**Additional resources**\n\n- [Configuring a custom API server certificate in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates)\n\n### Creating a hosted cluster by providing AWS STS credentials {#hcp-create-hc-multi-zone-aws-creds_hcp-deploy-aws}\n\nTo enhance the security of your hosted control plane deployment, you can create a hosted cluster on AWS by using the AWS Security Token Service (STS).\n\nWhen you create a hosted cluster by using the `hcp create cluster aws` command, you must provide an Amazon Web Services (AWS) account credentials that have permissions to create infrastructure resources for your hosted cluster.\n\nInfrastructure resources include the following examples:\n\n- Virtual Private Cloud (VPC)\n- Subnets\n- Network address translation (NAT) gateways\n\nYou can provide the AWS credentials by using the either of the following ways:\n\n- The AWS Security Token Service (STS) credentials\n- The AWS cloud provider secret from multicluster engine Operator\n\n**Procedure**\n\n- To create a hosted cluster on AWS by providing AWS STS credentials, enter the following command:\n\n  ```terminal\n  $ hcp create cluster aws \\\n    --name <hosted_cluster_name> \\\n    --node-pool-replicas <node_pool_replica_count> \\\n    --base-domain <base_domain> \\\n    --pull-secret <path_to_pull_secret> \\\n    --sts-creds <path_to_sts_credential_file> \\\n    --region <region> \\\n    --role-arn <arn_role>\n  ```\n\n  where:\n\n  `<hosted_cluster_name>`\n  :   Specifies the name of your hosted cluster, for example, `my-hosted-cluster-01`.\n\n  `<node_pool_replica_count>`\n  :   Specifies the node pool replica count, for example, `2`.\n\n  `<base_domain>`\n  :   Specifies your base domain, for example, `example.com`.\n\n  `<path_to_pull_secret>`\n  :   Specifies the path to your pull secret, for example, `/user/name/pullsecret`.\n\n  `<path_to_sts_credentials>`\n  :   Specifies the path to your AWS STS credentials file, for example, `/home/user/sts-creds/sts-creds.json`.\n\n  `<region>`\n  :   Specifies the AWS region name, for example, `us-east-1`.\n\n  `<arn_role>`\n  :   Specifies the Amazon Resource Name (ARN), for example, `arn:aws:iam::820196288204:role/myrole`.\n\n### Creating a hosted cluster in multiple zones on AWS {#hc-create-aws-multiple-zones_hcp-deploy-aws}\n\nTo improve availability and fault tolerance, you can create a hosted cluster across multiple AWS availability zones. Distributing your node pools and compute nodes across several zones protects your workloads against potential outages in a single geographical region.\n\nYou can create a hosted cluster in multiple zones on Amazon Web Services (AWS) by using the `hcp` command-line interface (CLI).\n\n**Prerequisites**\n\n- You created an AWS Identity and Access Management (IAM) role and AWS Security Token Service (STS) credentials.\n\n**Procedure**\n\n- Create a hosted cluster in multiple zones on AWS by running the following command:\n\n  ```terminal\n  $ hcp create cluster aws \\\n    --name <hosted_cluster_name> \\\n    --node-pool-replicas=<node_pool_replica_count> \\\n    --base-domain <base_domain> \\\n    --pull-secret <path_to_pull_secret> \\\n    --role-arn <arn_role> \\\n    --region <region> \\\n    --zones <zones> \\\n    --sts-creds <path_to_sts_credential_file>\n  ```\n\n  where:\n\n  `<hosted_cluster_name>`\n  :   Specifies the name of your hosted cluster, such as `my-hosted-cluster-01`.\n\n  `<node_pool_replica_count>`\n  :   Specifies the node pool replica count, for example, `2`.\n\n  `<base_domain>`\n  :   Specifies your base domain, for example, `example.com`.\n\n  `<path_to_pull_secret>`\n  :   Specifies the path to your pull secret, for example, `/user/name/pullsecret`.\n\n  `<arn_role>`\n  :   Specifies the Amazon Resource Name (ARN), for example, `arn:aws:iam::820196288204:role/myrole`.\n\n  `<region>`\n  :   Specifies the AWS region name, for example, `us-east-1`.\n\n  `<zones>`\n  :   Specifies availability zones within your AWS region, for example, `us-east-1a`, and `us-east-1b`. For each specified zone, the following infrastructure is created: public subnet, private subnet, NAT gateway, and private route table. A public route table is shared across public subnets. One `NodePool` resource is created for each zone. The node pool name is suffixed by the zone name. The private subnet for the zone is set in the `spec.platform.aws.subnet.id` parameter.\n\n  `<path_to_sts_credential_file>`\n  :   Specifies the path to your AWS STS credentials file, for example, `/home/user/sts-creds/sts-creds.json`.\n\n## Capabilities for hosted clusters {#hcp-cluster-capabilities_hcp-deploy-aws}\n\nTo reduce resource consumption and prevent unnecessary Operators and operands from being deployed, administrators can enable or disable optional OpenShift Container Platform components when they create a hosted cluster.\n\nWhen capabilities are not specified on a `HostedCluster` resource, the cluster uses the OpenShift Container Platform version’s `DefaultCapabilitySet` settings, excluding the `baremetal` capability. As a result, most optional components are enabled by default.\n\n> [!IMPORTANT]\n> Capabilities are immutable after cluster creation. You cannot change them after you create the `HostedCluster` resource.\n\n### Capabilities that you can enable or disable for a hosted cluster {#hcp-cluster-capabilities-ref_hcp-deploy-aws}\n\nFamiliarize yourself with the supported capabilities that you can enable or disable for a `HostedCluster` resource.\n\nThe capabilities are described in the following table:\n\n| Capability | Description |\n| --- | --- |\n| `ImageRegistry` | The OpenShift Image Registry Operator and its operands, including cloud storage infrastructure, such as S3 buckets and Identity and Access Management (IAM) users. |\n| `openshift-samples` | The OpenShift Samples Operator, which manages example `ImageStreams` and templates. |\n| `Insights` | The Insights Operator, which collects and uploads cluster telemetry data. |\n| `baremetal` | The Bare Metal Infrastructure Operator. This capability is excluded from the default set. If needed, you must explicitly enable it. |\n| `Console` | The OpenShift Web Console Operator and its operands. |\n| `NodeTuning` | The Node Tuning Operator, which manages node-level performance tuning by using TuneD and performance profiles. |\n| `Ingress` | The OpenShift Ingress Operator, which manages the default router of the cluster. |\n\nThe following rules apply when you combine capability settings:\n\nNo overlap\n:   A capability cannot be in both the `enabled` and `disabled` lists simultaneously.\n\nConsole requires Ingress\n:   You can disable the `Ingress` capability only if the `Console` capability is also disabled because the console depends on Ingress.\n\nVersion requirement\n:   You must use OpenShift Container Platform 4.20 or later to disable any of the following capabilities: `openshift-samples`, `Insights`, `Console`, `NodeTuning`, and `Ingress`. You can disable `ImageRegistry` and `baremetal` on versions earlier than 4.20.\n\nBare metal default exclusion\n:   The `baremetal` capability is excluded from the default set. You can add it to the cluster by explicitly enabling it.\n\n### Setting capabilities for a hosted cluster {#hcp-cluster-capabilities-proc_hcp-deploy-aws}\n\nTo reduce unnecessary resource consumption, you can control which optional capabilities are enabled for a hosted cluster when you create the cluster.\n\n> [!IMPORTANT]\n> Capabilities are immutable after cluster creation. You cannot change them after you create the `HostedCluster` resource.\n\nYou can specify which capabilities are enabled by either using the `hcp` command-line interface (CLI) or by setting the `HostedCluster` manifest.\n\n**Procedure**\n\n- To specify which capabilities are enabled in a hosted cluster by using the CLI, you can add the `--disable-cluster-capabilities` flag, the `--enable-cluster-capabilities` flag, or both. The following example shows how to disable the `ImageRegistry`, `Console`, and `Ingress` capabilities and enable the `baremetal` capability while you create a hosted cluster on AWS by using the `hcp` command-line interface:\n\n  ```terminal\n  $ hcp create cluster aws \\\n      --name my-hosted-cluster \\\n      --disable-cluster-capabilities=ImageRegistry,Console,Ingress \\\n      --enable-cluster-capabilities=baremetal\n  ```\n\n  You can specify multiple capabilities as a comma-separated list. The supported values are as follows:\n\n  - `ImageRegistry`\n  - `openshift-samples`\n  - `Insights`\n  - `baremetal`\n  - `Console`\n  - `NodeTuning`\n  - `Ingress`\n- To specify which capabilities are enabled in a hosted cluster by using the `HostedCluster` manifest at cluster creation time, see the following examples:\n\n  - To directly disable capabilities in a hosted cluster, add the `spec.capabilities.disabled` section in the `HostedCluster` resource:\n\n    ```yaml\n    apiVersion: hypershift.openshift.io/v1beta1\n    kind: HostedCluster\n    metadata:\n      name: my-hosted-cluster\n      namespace: my-cluster-namespace\n    spec:\n      capabilities:\n        disabled:\n          - ImageRegistry\n          - Console\n          - Ingress\n      # ...\n    ```\n  - To explicitly enable a capability that is not part of the default set of capabilities, such as the `baremetal` capability, see the following example:\n\n    ```yaml\n    apiVersion: hypershift.openshift.io/v1beta1\n    kind: HostedCluster\n    metadata:\n      name: my-hosted-cluster\n      namespace: my-cluster-namespace\n    spec:\n      capabilities:\n        enabled:\n          - baremetal\n      # ...\n    ```\n  - You can use both `enabled` and `disabled` if no capabilities are in both lists. See the following example:\n\n    ```yaml\n    apiVersion: hypershift.openshift.io/v1beta1\n    kind: HostedCluster\n    metadata:\n      name: my-hosted-cluster\n      namespace: my-cluster-namespace\n    spec:\n      capabilities:\n        enabled:\n          - baremetal\n        disabled:\n          - ImageRegistry\n          - openshift-samples\n      # ...\n    ```\n\n## Accessing a hosted cluster on AWS {#hcp-access-hc-aws_hcp-deploy-aws}\n\nAfter you create a hosted cluster on AWS, you can access it by using your `kubeconfig` file, access secrets, and `kubeadmin` credentials.\n\nThe hosted cluster namespace contains hosted cluster resources and the access secrets. The hosted control plane runs in the hosted control plane namespace.\n\nThe secret name formats are shown in the following table:\n\n**Access secrets**\n\n| Secret | Format | Example |\n| --- | --- | --- |\n| `kubeconfig` secret | `<hosted_cluster_namespace>-<name>-admin-kubeconfig` | `clusters-hypershift-demo-admin-kubeconfig` |\n| `kubeadmin` password secret | `<hosted_cluster_namespace>-<name>-kubeadmin-password` | `clusters-hypershift-demo-kubeadmin-password` |\n\n> [!NOTE]\n> The `kubeadmin` password secret is Base64-encoded and the `kubeconfig` secret contains a Base64-encoded `kubeconfig` configuration. You must decode the Base64-encoded `kubeconfig` configuration and save it into a `<hosted_cluster_name>.kubeconfig` file.\n\n**Procedure**\n\n1. Generate the `kubeconfig` file by entering the following command:\n\n   ```terminal\n   $ hcp create kubeconfig --namespace <hosted_cluster_namespace> \\\n     --name <hosted_cluster_name> > <hosted_cluster_name>.kubeconfig\n   ```\n2. Use your `<hosted_cluster_name>.kubeconfig` file that contains the decoded `kubeconfig` configuration to access the hosted cluster. Enter the following command:\n\n   ```terminal\n   $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes\n   ```\n\n   You must decode the `kubeadmin` password secret to log in to the API server or the console of the hosted cluster.\n\n## Running hosted clusters on an ARM64 architecture {#hcp-enable-arm-amd_hcp-deploy-aws}\n\nBy default for hosted control planes on Amazon Web Services (AWS), you use an AMD64 hosted cluster. However, you can enable hosted control planes to run on an ARM64 hosted cluster.\n\nFor compatible combinations of node pools and hosted clusters, see the following table:\n\n**Compatible architectures for node pools and hosted clusters**\n\n| Hosted cluster | Node pools |\n| --- | --- |\n| AMD64 | AMD64 or ARM64 |\n| ARM64 | ARM64 or AMD64 |\n\n### Creating a hosted cluster on an ARM64 OpenShift Container Platform cluster {#hcp-create-hc-arm64-aws_hcp-deploy-aws}\n\nYou can run a hosted cluster on an ARM64 OpenShift Container Platform cluster for Amazon Web Services (AWS) by overriding the default release image with a multi-architecture release image.\n\nIf you do not use a multi-architecture release image, the compute nodes in the node pool are not created and reconciliation of the node pool stops until you either use a multi-architecture release image in the hosted cluster or update the `NodePool` custom resource based on the release image.\n\n**Prerequisites**\n\n- You must have an OpenShift Container Platform cluster with a 64-bit ARM infrastructure that is installed on AWS. For more information, see \"Create an OpenShift Container Platform Cluster: AWS (ARM)\".\n- You must create an AWS Identity and Access Management (IAM) role and AWS Security Token Service (STS) credentials. For more information, see \"Creating an AWS IAM role and STS credentials\".\n\n**Procedure**\n\n- Create a hosted cluster on an ARM64 OpenShift Container Platform cluster by entering the following command:\n\n  ```terminal\n  $ hcp create cluster aws \\\n    --name <hosted_cluster_name> \\\n    --node-pool-replicas <node_pool_replica_count> \\\n    --base-domain <base_domain> \\\n    --pull-secret <path_to_pull_secret> \\\n    --sts-creds <path_to_sts_credential_file> \\\n    --region <region> \\\n    --release-image quay.io/openshift-release-dev/ocp-release:<ocp_release_image> \\\n    --role-arn <role_name>\n  ```\n\n  where:\n\n  `<hosted_cluster_name>`\n  :   Specifies the name of your hosted cluster, for example, `my-hosted-cluster-01`.\n\n  `<node_pool_replica_count>`\n  :   Specifies the node pool replica count, for example, `3`.\n\n  `<base_domain>`\n  :   Specifies your base domain, for example, `example.com`.\n\n  `<path_to_pull_secret>`\n  :   Specifies the path to your pull secret, for example, `/user/name/pullsecret`.\n\n  `<path_to_sts_credential_file>`\n  :   Specifies the path to your AWS STS credentials file, for example, `/home/user/sts-creds/sts-creds.json`.\n\n  `<region>`\n  :   Specifies the AWS region name, for example, `us-east-1`.\n\n  `<ocp_release_image>`\n  :   Specifies the supported OpenShift Container Platform version that you want to use, for example, `4.22.0-multi`. If you are using a disconnected environment, replace `<ocp_release_image>` with the digest image. To extract the OpenShift Container Platform release image digest, see \"Extracting the release image digest\".\n\n  `<role_name>`\n  :   Specifies the Amazon Resource Name (ARN), for example, `arn:aws:iam::820196288204:role/myrole`.\n\n**Additional resources**\n\n- [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)\n- [Create an OpenShift Container Platform Cluster: AWS (ARM)](https://console.redhat.com/openshift/install/aws/arm)\n- [Creating an AWS IAM role and STS credentials](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws)\n\n### Creating an ARM or AMD NodePool object on AWS hosted clusters {#hcp-create-np-arm64-aws_hcp-deploy-aws}\n\nYou can schedule application workloads that are the `NodePool` objects on 64-bit ARM and AMD from the same hosted control plane. To set the required processor architecture for the `NodePool` object, you define the `arch` field in the `NodePool` specification.\n\nThe valid values for the `arch` field are as follows:\n\n- `arm64`\n- `amd64`\n\n**Prerequisites**\n\n- You must have a multi-architecture image for the `HostedCluster` custom resource to use. You can access multi-architecture nightly images. For more information, see \"Multi-architecture nightly images\".\n\n**Procedure**\n\n- Add an ARM or AMD `NodePool` object to the hosted cluster on AWS by running the following command:\n\n  ```terminal\n  $ hcp create nodepool aws \\\n    --cluster-name <hosted_cluster_name> \\\n    --name <node_pool_name> \\\n    --node-count <node_pool_replica_count> \\\n    --arch <architecture>\n  ```\n\n  where:\n\n  `<hosted_cluster_name>`\n  :   Specifies the name of your hosted cluster, for example, `my-hosted-cluster-01`.\n\n  `<node_pool_name>`\n  :   Specifies the node pool name.\n\n  `<node_pool_replica_count>`\n  :   Specifies the node pool replica count, for example, `3`.\n\n  `<architecture>`\n  :   Specifies the architecture type, such as `arm64` or `amd64`. If you do not specify a value for the `--arch` flag, the `amd64` value is used by default.\n\n**Additional resources**\n\n- [Multi-architecture nightly images](https://multi.ocp.releases.ci.openshift.org/)\n\n## Creating a private hosted cluster on AWS {#hcp-create-private-hc-aws_hcp-deploy-aws}\n\nAfter you enable the `local-cluster` as the management cluster, you can deploy a hosted cluster or a private hosted cluster on Amazon Web Services (AWS).\n\nBy default, hosted clusters are publicly accessible through public DNS and the default router for the management cluster.\n\nFor private clusters on AWS, all communication with the hosted cluster occurs over AWS PrivateLink.\n\n**Prerequisites**\n\n- You enabled AWS PrivateLink. For more information, see \"Enabling AWS PrivateLink\".\n- You created an AWS Identity and Access Management (IAM) role and AWS Security Token Service (STS) credentials. For more information, see \"Creating an AWS IAM role and STS credentials\" and \"Identity and Access Management (IAM) permissions\".\n- You configured a bastion instance on AWS. For more information, see \"Tutorial: Configuring private network access using a Linux Bastion Host\".\n\n**Procedure**\n\n- Create a private hosted cluster on AWS by entering the following command:\n\n  ```terminal\n  $ hcp create cluster aws \\\n    --name <hosted_cluster_name> \\\n    --node-pool-replicas=<node_pool_replica_count> \\\n    --base-domain <basedomain> \\\n    --pull-secret <path_to_pull_secret> \\\n    --sts-creds <path_to_sts_credential_file> \\\n    --region <region> \\\n    --endpoint-access Private \\\n    --role-arn <role_name>\n  ```\n\n  where:\n\n  `<hosted_cluster_name>`\n  :   Specifies the name of your hosted cluster, such as, `example`.\n\n  `<node_pool_replica_count>`\n  :   Specifies the node pool replica count, for example, `3`.\n\n  `<basedomain>`\n  :   Specifies your base domain, for example, `example.com`.\n\n  `<path_to_pull_secret>`\n  :   Specifies the path to your pull secret, for example, `/user/name/pullsecret`.\n\n  `<path_to_sts_credential_file>`\n  :   Specifies the path to your AWS STS credentials file, for example, `/home/user/sts-creds/sts-creds.json`.\n\n  `<region>`\n  :   Specifies the AWS region name, for example, `us-east-1`.\n\n  `Private`\n  :   Specifies that the cluster is private.\n\n  `<role_name>`\n  :   Specifies the Amazon Resource Name (ARN), for example, `arn:aws:iam::820196288204:role/myrole`. For more information about ARN roles, see \"Identity and Access Management (IAM) permissions\".\n\n  The following API endpoints for the hosted cluster are accessible through a private DNS zone:\n- `api.<hosted_cluster_name>.hypershift.local`\n- `*.apps.<hosted_cluster_name>.hypershift.local`\n\n**Additional resources**\n\n- [Enabling AWS PrivateLink for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-enable-private-link_hcp-deploy-aws)\n- [Creating an AWS IAM role and STS credentials](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws)\n- [Identity and Access Management (IAM) permissions](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-aws#hcp-manage-aws-infra-req_hcp-managing-aws)\n- [Tutorial: Configuring private network access using a Linux Bastion Host](https://docs.aws.amazon.com/mwaa/latest/userguide/tutorials-private-network-bastion.html)\n\n### Accessing a private hosted cluster on AWS {#hcp-access-private-hc-aws_hcp-deploy-aws}\n\nAfter you create a private hosted cluster, you can access it by using the command-line interface (CLI).\n\n**Procedure**\n\n1. Find the private IPs of nodes by entering the following command:\n\n   ```terminal\n   $ aws ec2 describe-instances \\\n     --filter=\"Name=tag:kubernetes.io/cluster/<infra_id>,Values=owned\" \\\n     | jq '.Reservations[] | .Instances[] | select(.PublicDnsName==\"\") \\\n     | .PrivateIpAddress'\n   ```\n2. Create a `kubeconfig` file for the hosted cluster that you can copy to a node by entering the following command:\n\n   ```terminal\n   $ hcp create kubeconfig > <hosted_cluster_kubeconfig>\n   ```\n3. To SSH into one of the nodes through the bastion, enter the following command:\n\n   ```terminal\n   $ ssh -o ProxyCommand=\"ssh ec2-user@<bastion_ip> \\\n     -W %h:%p\" core@<node_ip>\n   ```\n4. From the SSH shell, copy the `kubeconfig` file contents to a file on the node by entering the following command:\n\n   ```terminal\n   $ mv <path_to_kubeconfig_file> <new_file_name>\n   ```\n5. Export the `kubeconfig` file by entering the following command:\n\n   ```terminal\n   $ export KUBECONFIG=<path_to_kubeconfig_file>\n   ```\n6. Observe the hosted cluster status by entering the following command:\n\n   ```terminal\n   $ oc get clusteroperators clusterversion\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,60 +100,923 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-deploy-aws" class="group scroll-mt-20">Deploying {"{"}{"{"} hcp {"}"}{"}"} on {"{"}{"{"} aws_short {"}"}{"}"}<a href="#hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To reduce infrastructure costs and improve cluster management efficiency, you can deploy {"{"}{"{"} hcp {"}"}{"}"} on {"{"}{"{"} aws_short {"}"}{"}"}. This configuration decouples the control plane from the data plane so that you can manage multiple clusters from a central management service.</p>
-      <p>A <em>hosted cluster</em> is an OpenShift Container Platform cluster with its API endpoint and control plane that are hosted on the management cluster. The hosted cluster includes the control plane and its corresponding data plane. To configure {"{"}{"{"} hcp {"}"}{"}"} on premises, you must install {"{"}{"{"} mce {"}"}{"}"} in a management cluster. By deploying the HyperShift Operator on an existing managed cluster by using the <code>hypershift-addon</code> managed cluster add-on, you can enable that cluster as a management cluster and start to create the hosted cluster. The <code>hypershift-addon</code> managed cluster add-on is enabled by default for the <code>local-cluster</code> managed cluster.</p>
-      <p>You can use the {"{"}{"{"} mce_short {"}"}{"}"} console or the hosted control plane command-line interface (CLI), <code>hcp</code>, to create a hosted cluster. The hosted cluster is automatically imported as a managed cluster. However, you can disable this automatic import feature into {"{"}{"{"} mce_short {"}"}{"}"}. For more information, see "Disabling the automatic import of hosted clusters into {"{"}{"{"} mce_short {"}"}{"}"}".</p>
-      <p class="/modules/hcp-aws-prepare.md"></p>
-      <p class="/modules/hcp-aws-prereqs.md"></p>
+      <h1 id="hcp-deploy-aws" class="group scroll-mt-20">Deploying hosted control planes on AWS<a href="#hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>To reduce infrastructure costs and improve cluster management efficiency, you can deploy hosted control planes on AWS. This configuration decouples the control plane from the data plane so that you can manage multiple clusters from a central management service.</p>
+      <p>A <em>hosted cluster</em> is an OpenShift Container Platform cluster with its API endpoint and control plane that are hosted on the management cluster. The hosted cluster includes the control plane and its corresponding data plane. To configure hosted control planes on premises, you must install multicluster engine for Kubernetes Operator in a management cluster. By deploying the HyperShift Operator on an existing managed cluster by using the <code>hypershift-addon</code> managed cluster add-on, you can enable that cluster as a management cluster and start to create the hosted cluster. The <code>hypershift-addon</code> managed cluster add-on is enabled by default for the <code>local-cluster</code> managed cluster.</p>
+      <p>You can use the multicluster engine Operator console or the hosted control plane command-line interface (CLI), <code>hcp</code>, to create a hosted cluster. The hosted cluster is automatically imported as a managed cluster. However, you can disable this automatic import feature into multicluster engine Operator. For more information, see "Disabling the automatic import of hosted clusters into multicluster engine Operator".</p>
+      <h2 id="hcp-aws-prepare_hcp-deploy-aws" class="group scroll-mt-20">Preparing to deploy hosted control planes on AWS<a href="#hcp-aws-prepare_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Preparing to deploy hosted control planes on Amazon Web Services (AWS) involves meeting several prerequisites and creating resources, including an S3 bucket, an OIDC secret, a routable public zone, IAM role and STS credentials.</p>
+      <h3 id="hcp-aws-prereqs_hcp-deploy-aws" class="group scroll-mt-20">Prerequisites to deploy hosted control planes on AWS<a href="#hcp-aws-prereqs_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To ensure successful deployment of hosted control planes on Amazon Web Services (AWS), your environment must meet the following requirements.</p>
+      <ul>
+      <li>You installed the multicluster engine for Kubernetes Operator 2.5 and later on an OpenShift Container Platform cluster. The multicluster engine Operator is automatically installed when you install Red Hat Advanced Cluster Management (RHACM). The multicluster engine Operator can also be installed without RHACM as an Operator from the OpenShift Container Platform software catalog.</li>
+      <li>
+      You have at least one managed OpenShift Container Platform cluster for the multicluster engine Operator. The <code>local-cluster</code> is automatically imported in the multicluster engine Operator version 2.5 and later. You can check the status of your hub cluster by running the following command:
+      <CodeBlock code={"$ oc get managedclusters local-cluster"} lang="terminal" />
+      </li>
+      <li>You installed the <a href="https://aws.amazon.com/cli/"><code>aws</code> command-line interface (CLI)</a>.</li>
+      <li>You installed the hosted control plane CLI, <code>hcp</code>.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>Run the management cluster and compute nodes on the same platform.</li>
+          <li>For each hosted cluster, provide a cluster-wide unique name. A hosted cluster name cannot be the same as any existing managed cluster in order for multicluster engine Operator to manage it.</li>
+          <li>Do not use <code>clusters</code> as a hosted cluster name.</li>
+          <li>Do not create a hosted cluster in the namespace of a multicluster engine Operator managed cluster.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#ansible-config-hosted-cluster">Configuring Ansible Automation Platform jobs to run on hosted clusters</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine">Advanced configuration</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim">Enabling the central infrastructure management service</a></li>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable">Manually enabling the {"{"}{"{"} hcp {"}"}{"}"} feature</a></li>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable">Disabling the {"{"}{"{"} hcp {"}"}{"}"} feature</a></li>
-      <li><a href="/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#sriov-operator-hosted-control-planes_configuring-sriov-operator">Deploying the SR-IOV Operator for {"{"}{"{"} hcp {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable">Manually enabling the hosted control planes feature</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable">Disabling the hosted control planes feature</a></li>
+      <li><a href="/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#sriov-operator-hosted-control-planes_configuring-sriov-operator">Deploying the SR-IOV Operator for hosted control planes</a></li>
       </ul>
-      <p class="/modules/hcp-aws-create-public-zone.md"></p>
-      <p class="/modules/hcp-aws-create-role-sts-creds.md"></p>
-      <p class="/modules/hcp-aws-enable-private-link.md"></p>
-      <p class="/modules/hcp-aws-enable-ext-dns.md"></p>
-      <p class="/modules/hcp-aws-set-up-ext-dns.md"></p>
-      <p class="/modules/hcp-aws-create-dns-hosted-zone.md"></p>
-      <p class="/modules/hcp-aws-hc-ext-dns.md"></p>
-      <p class="/modules/hcp-custom-dns.md"></p>
-      <p class="/modules/hcp-create-hc-aws.md"></p>
+      <h3 id="hcp-aws-create-secret-s3_hcp-deploy-aws" class="group scroll-mt-20">Creating the Amazon Web Services S3 bucket and S3 OIDC secret<a href="#hcp-aws-create-secret-s3_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Before you can create and manage a hosted cluster on Amazon Web Services (AWS), you must create the S3 bucket and S3 OIDC secret. These resources provide a place for the cluster to store information about itself and a way for the cluster to prove its identity to AWS. </p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an S3 bucket that has public access to host OIDC discovery documents for your clusters.
+      <ol>
+      <li>
+      Enter the following command:
+      <CodeBlock code={"$ aws s3api create-bucket --bucket <bucket_name> \\\n  --create-bucket-configuration LocationConstraint=<region> \\\n  --region <region>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;bucket_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the S3 bucket you are creating.</p></dd>
+      <dt class="font-semibold"><code>&lt;region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that you want to create the bucket in a region other than the <code>us-east-1</code> region. Include this line and replace <code>&lt;region&gt;</code> with the region you want to use. To create a bucket in the <code>us-east-1</code> region, omit this line.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Enter the following command:
+      <CodeBlock code={"$ aws s3api delete-public-access-block --bucket <bucket_name>"} lang="terminal" />
+      <p>Replace <code>&lt;bucket_name&gt;</code> with the name of the S3 bucket you are creating.</p>
+      </li>
+      <li>
+      Enter the following command:
+      <CodeBlock code={"$ echo '{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Principal\": \"*\",\n            \"Action\": \"s3:GetObject\",\n            \"Resource\": \"arn:aws:s3:::<bucket_name>/*\"\n        }\n    ]\n}' | envsubst > policy.json"} lang="terminal" />
+      <p>Replace <code>&lt;bucket_name&gt;</code> with the name of the S3 bucket you are creating.</p>
+      </li>
+      <li>
+      Enter the following command:
+      <CodeBlock code={"$ aws s3api put-bucket-policy --bucket <bucket_name> \\\n  --policy file://policy.json"} lang="terminal" />
+      <p>Replace <code>&lt;bucket_name&gt;</code> with the name of the S3 bucket you are creating.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you are using a Mac computer, you must export the bucket name in order for the policy to work.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create an OIDC S3 secret named <code>hypershift-operator-oidc-provider-s3-credentials</code> for the HyperShift Operator by running the following command:
+      <CodeBlock code={"$ oc create secret generic hypershift-operator-oidc-provider-s3-credentials \\\n  --from-file=credentials=<path>/.aws/credentials \\\n  --from-literal=bucket=<s3_bucket> \\\n  --from-literal=region=<region> \\\n  -n local-cluster"} lang="terminal" />
+      <ul>
+      <li>Save the secret in the <code>local-cluster</code> namespace.</li>
+      <li>The <code>bucket</code> field specifies an S3 bucket with public access to host OIDC discovery documents for your hosted clusters.</li>
+      <li>The <code>credentials</code> field specifies reference to a file that contains the credentials of the <code>default</code> profile that can access the bucket. By default, the HyperShift Operator only uses the <code>default</code> profile to operate the <code>bucket</code>.</li>
+      <li>
+      The <code>region</code> field specifies the region of the S3 bucket.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Disaster recovery backup for the secret is not automatically enabled. To add the label that enables the <code>hypershift-operator-oidc-provider-s3-credentials</code> secret to be backed up for disaster recovery, run the following command:</p>
+          <CodeBlock code={"$ oc label secret hypershift-operator-oidc-provider-s3-credentials \\\n  -n local-cluster cluster.open-cluster-management.io/backup=true"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <h3 id="hcp-aws-create-public-zone_hcp-deploy-aws" class="group scroll-mt-20">Creating a routable public zone for hosted clusters<a href="#hcp-aws-create-public-zone_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">In order to access applications in your hosted clusters, you must configure the routable public zone. </p>
+      <p>If the public zone exists, skip this step. Otherwise, the public zone affects the existing functions.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To create a routable public zone for DNS records, enter the following command:
+      <CodeBlock code={"$ aws route53 create-hosted-zone \\\n  --name <basedomain> \\\n  --caller-reference $(whoami)-$(date --rfc-3339=date)"} lang="terminal" />
+      <p>Replace <code>&lt;basedomain&gt;</code> with your base domain, for example, <code>www.example.com</code>.</p>
+      </li>
+      </ul>
+      <h3 id="hcp-aws-create-role-sts-creds_hcp-deploy-aws" class="group scroll-mt-20">Creating an AWS IAM role and STS credentials<a href="#hcp-aws-create-role-sts-creds_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Before you create a hosted cluster on Amazon Web Services (AWS), you must create an AWS IAM role and STS credentials.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Get the Amazon Resource Name (ARN) of your user by running the following command:
+      <CodeBlock code={"$ aws sts get-caller-identity --query \"Arn\" --output text"} lang="terminal" />
+      <CodeBlock code={"arn:aws:iam::1234567890:user/<aws_username>"} lang="terminal" title="Example output" />
+      <p>Use this output as the value for the <code>&lt;arn&gt;</code> value in the next step.</p>
+      </li>
+      <li>
+      Create a JSON file that contains the trust relationship configuration for your role. See the following example:
+      <CodeBlock code={"{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"AWS\": \"<arn>\"\n            },\n            \"Action\": \"sts:AssumeRole\"\n        }\n    ]\n}"} lang="json" />
+      <p>Replace <code>&lt;arn&gt;</code> with the ARN of your user that you noted in the previous step.</p>
+      </li>
+      <li>
+      Create the Identity and Access Management (IAM) role by running the following command:
+      <CodeBlock code={"$ aws iam create-role \\\n  --role-name <name> \\\n  --assume-role-policy-document file://<file_name>.json \\\n  --query \"Role.Arn\""} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the role name, for example, <code>hcp-cli-role</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;file_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the JSON file you created in the previous step.</p></dd>
+      </dl>
+      <CodeBlock code={"arn:aws:iam::820196288204:role/myrole"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Create a JSON file named <code>policy.json</code> that contains the following permission policies for your role:
+      <CodeBlock code={"{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Sid\": \"EC2\",\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"ec2:CreateDhcpOptions\",\n                \"ec2:DeleteSubnet\",\n                \"ec2:ReplaceRouteTableAssociation\",\n                \"ec2:DescribeAddresses\",\n                \"ec2:DescribeInstances\",\n                \"ec2:DeleteVpcEndpoints\",\n                \"ec2:CreateNatGateway\",\n                \"ec2:CreateVpc\",\n                \"ec2:DescribeDhcpOptions\",\n                \"ec2:AttachInternetGateway\",\n                \"ec2:DeleteVpcEndpointServiceConfigurations\",\n                \"ec2:DeleteRouteTable\",\n                \"ec2:AssociateRouteTable\",\n                \"ec2:DescribeInternetGateways\",\n                \"ec2:DescribeAvailabilityZones\",\n                \"ec2:CreateRoute\",\n                \"ec2:CreateInternetGateway\",\n                \"ec2:RevokeSecurityGroupEgress\",\n                \"ec2:ModifyVpcAttribute\",\n                \"ec2:DeleteInternetGateway\",\n                \"ec2:DescribeVpcEndpointConnections\",\n                \"ec2:RejectVpcEndpointConnections\",\n                \"ec2:DescribeRouteTables\",\n                \"ec2:ReleaseAddress\",\n                \"ec2:AssociateDhcpOptions\",\n                \"ec2:TerminateInstances\",\n                \"ec2:CreateTags\",\n                \"ec2:DeleteRoute\",\n                \"ec2:CreateRouteTable\",\n                \"ec2:DetachInternetGateway\",\n                \"ec2:DescribeVpcEndpointServiceConfigurations\",\n                \"ec2:DescribeNatGateways\",\n                \"ec2:DisassociateRouteTable\",\n                \"ec2:AllocateAddress\",\n                \"ec2:DescribeSecurityGroups\",\n                \"ec2:RevokeSecurityGroupIngress\",\n                \"ec2:CreateVpcEndpoint\",\n                \"ec2:DescribeVpcs\",\n                \"ec2:DeleteSecurityGroup\",\n                \"ec2:DeleteDhcpOptions\",\n                \"ec2:DeleteNatGateway\",\n                \"ec2:DescribeVpcEndpoints\",\n                \"ec2:DeleteVpc\",\n                \"ec2:CreateSubnet\",\n                \"ec2:DescribeSubnets\"\n            ],\n            \"Resource\": \"*\"\n        },\n        {\n            \"Sid\": \"ELB\",\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"elasticloadbalancing:DeleteLoadBalancer\",\n                \"elasticloadbalancing:DescribeLoadBalancers\",\n                \"elasticloadbalancing:DescribeTargetGroups\",\n                \"elasticloadbalancing:DeleteTargetGroup\"\n            ],\n            \"Resource\": \"*\"\n        },\n        {\n            \"Sid\": \"IAMPassRole\",\n            \"Effect\": \"Allow\",\n            \"Action\": \"iam:PassRole\",\n            \"Resource\": \"arn:*:iam::*:role/*-worker-role\",\n            \"Condition\": {\n                \"ForAnyValue:StringEqualsIfExists\": {\n                    \"iam:PassedToService\": \"ec2.amazonaws.com\"\n                }\n            }\n        },\n        {\n            \"Sid\": \"IAM\",\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"iam:CreateInstanceProfile\",\n                \"iam:DeleteInstanceProfile\",\n                \"iam:TagInstanceProfile\",\n                \"iam:GetRole\",\n                \"iam:UpdateAssumeRolePolicy\",\n                \"iam:GetInstanceProfile\",\n                \"iam:TagRole\",\n                \"iam:RemoveRoleFromInstanceProfile\",\n                \"iam:CreateRole\",\n                \"iam:DeleteRole\",\n                \"iam:PutRolePolicy\",\n                \"iam:AddRoleToInstanceProfile\",\n                \"iam:CreateOpenIDConnectProvider\",\n                \"iam:TagOpenIDConnectProvider\",\n                \"iam:ListOpenIDConnectProviders\",\n                \"iam:DeleteRolePolicy\",\n                \"iam:UpdateRole\",\n                \"iam:DeleteOpenIDConnectProvider\",\n                \"iam:GetRolePolicy\",\n                \"iam:ListAttachedRolePolicies\",\n                \"iam:ListRolePolicies\",\n                \"iam:DetachRolePolicy\"\n            ],\n            \"Resource\": \"*\"\n        },\n        {\n            \"Sid\": \"Route53\",\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"route53:ListHostedZonesByVPC\",\n                \"route53:CreateHostedZone\",\n                \"route53:ListHostedZones\",\n                \"route53:ChangeResourceRecordSets\",\n                \"route53:ListResourceRecordSets\",\n                \"route53:DeleteHostedZone\",\n                \"route53:AssociateVPCWithHostedZone\",\n                \"route53:ListHostedZonesByName\"\n            ],\n            \"Resource\": \"*\"\n        },\n        {\n            \"Sid\": \"S3\",\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"s3:ListAllMyBuckets\",\n                \"s3:ListBucket\",\n                \"s3:DeleteObject\",\n                \"s3:DeleteBucket\"\n            ],\n            \"Resource\": \"*\"\n        }\n    ]\n}"} lang="json" />
+      </li>
+      <li>
+      Attach the <code>policy.json</code> file that contains the permissions policies for your role by running the following command:
+      <CodeBlock code={"$ aws iam put-role-policy \\\n  --role-name <role_name> \\\n  --policy-name <policy_name> \\\n  --policy-document file://policy.json"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;role_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of your role.</p></dd>
+      <dt class="font-semibold"><code>&lt;policy_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies your policy name.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Retrieve STS credentials in a JSON file named <code>sts-creds.json</code> by running the following command:
+      <CodeBlock code={"$ aws sts get-session-token --output json > sts-creds.json"} lang="terminal" />
+      <CodeBlock code={"{\n    \"Credentials\": {\n        \"AccessKeyId\": \"<access_key_id\",\n        \"SecretAccessKey\": \"<secret_access_key>”,\n        \"SessionToken\": \"<session_token>\",\n        \"Expiration\": \"<time_stamp>\"\n    }\n}"} lang="json" title="Example sts-creds.json file" />
+      </li>
+      </ol>
+      <h3 id="hcp-aws-enable-private-link_hcp-deploy-aws" class="group scroll-mt-20">Enabling AWS PrivateLink for hosted control planes<a href="#hcp-aws-enable-private-link_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">In order to provision hosted control planes on the Amazon Web Services (AWS) with PrivateLink, you need to enable AWS PrivateLink for hosted control planes.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create an AWS credential secret for the HyperShift Operator and name it <code>hypershift-operator-private-link-credentials</code>. The secret must reside in the managed cluster namespace that is the namespace of the managed cluster being used as the management cluster. If you used <code>local-cluster</code>, create the secret in the <code>local-cluster</code> namespace.</li>
+      <li>
+      See the following table to confirm that the secret contains the required fields: <strong>Required fields for the AWS secret</strong>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field name</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Optional or required</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>region</code></TableCell>
+      <TableCell>Region for use with Private Link</TableCell>
+      <TableCell>Required</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>aws-access-key-id</code></TableCell>
+      <TableCell>The credential access key id.</TableCell>
+      <TableCell>Required</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>aws-secret-access-key</code></TableCell>
+      <TableCell>The credential access key secret.</TableCell>
+      <TableCell>Required</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      </li>
+      <li>
+      To create an AWS secret, run the following command:
+      <CodeBlock code={"$ oc create secret generic <secret_name> \\\n  --from-literal=aws-access-key-id=<aws_access_key_id> \\\n  --from-literal=aws-secret-access-key=<aws_secret_access_key> \\\n  --from-literal=region=<region> -n local-cluster"} lang="terminal" />
+      </li>
+      <li>
+      Disaster recovery backup for the secret is not automatically enabled. Run the following command to add the label that enables the <code>hypershift-operator-private-link-credentials</code> secret to be backed up for disaster recovery:
+      <CodeBlock code={"$ oc label secret hypershift-operator-private-link-credentials \\\n  -n local-cluster \\\n  cluster.open-cluster-management.io/backup=\"\""} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="hcp-aws-enable-ext-dns_hcp-deploy-aws" class="group scroll-mt-20">Enabling external DNS for hosted control planes on AWS<a href="#hcp-aws-enable-ext-dns_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To automate the management of DNS records, you can enable external DNS. By configuring this feature, you provide a way for the cluster to update your AWS Route 53 public hosted zones automatically when you create or delete services and ingresses.</p>
+      <p>The control plane and the data plane are separate in hosted control planes. You can configure DNS in two independent areas:</p>
+      <ul>
+      <li>Ingress for workloads within the hosted cluster, such as the following domain: <code>*.apps.service-consumer-domain.com</code>.</li>
+      <li>Ingress for service endpoints within the management cluster, such as API or OAuth endpoints through the service provider domain: <code>*.service-provider-domain.com</code>.</li>
+      </ul>
+      <p>The input for <code>hostedCluster.spec.dns</code> manages the ingress for workloads within the hosted cluster. The input for <code>hostedCluster.spec.services.servicePublishingStrategy.route.hostname</code> manages the ingress for service endpoints within the management cluster.</p>
+      <p>External DNS creates name records for hosted cluster services that specify a publishing type of <code>LoadBalancer</code> or <code>Route</code> and provide a hostname for that publishing type. For hosted clusters with <code>Private</code> or <code>PublicAndPrivate</code> endpoint access types, only the <code>APIServer</code> and <code>OAuth</code> services support hostnames. For <code>Private</code> hosted clusters, the DNS record resolves to a private IP address of a Virtual Private Cloud (VPC) endpoint in your VPC.</p>
+      <p>A hosted control plane exposes the following services:</p>
+      <ul>
+      <li><code>APIServer</code></li>
+      <li><code>OIDC</code></li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>NodePort</code> publishing type is not supported on hosted control planes on AWS.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can expose these services by using the <code>servicePublishingStrategy</code> field in the <code>HostedCluster</code> specification. By default, for the <code>LoadBalancer</code> and <code>Route</code> types of <code>servicePublishingStrategy</code>, you can publish the service in one of the following ways:</p>
+      <ul>
+      <li>By using the hostname of the load balancer that is in the status of the <code>Service</code> with the <code>LoadBalancer</code> type.</li>
+      <li>By using the <code>status.host</code> field of the <code>Route</code> resource.</li>
+      </ul>
+      <p>However, when you deploy hosted control planes in a managed service context, those methods can expose the ingress subdomain of the underlying management cluster and limit options for the management cluster lifecycle and disaster recovery.</p>
+      <p>When a DNS indirection is layered on the <code>LoadBalancer</code> and <code>Route</code> publishing types, a managed service operator can publish all public hosted cluster services by using a service-level domain. This architecture allows remapping on the DNS name to a new <code>LoadBalancer</code> or <code>Route</code> and does not expose the ingress domain of the management cluster. Hosted control planes uses external DNS to achieve that indirection layer.</p>
+      <p>You can deploy <code>external-dns</code> alongside the HyperShift Operator in the <code>hypershift</code> namespace of the management cluster. External DNS watches for <code>Services</code> or <code>Routes</code> that have the <code>external-dns.alpha.kubernetes.io/hostname</code> annotation. That annotation is used to create a DNS record that points to the <code>Service</code>, such as an A record, or the <code>Route</code>, such as a CNAME record.</p>
+      <p>You can use external DNS on cloud environments only. For the other environments, you need to manually configure DNS and services.</p>
+      <p>For more information about external DNS, see <a href="https://github.com/kubernetes-sigs/external-dns">external DNS</a>.</p>
+      <h3 id="hcp-aws-set-up-ext-dns_hcp-deploy-aws" class="group scroll-mt-20">Setting up external DNS for hosted control planes<a href="#hcp-aws-set-up-ext-dns_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To automate the management of DNS records, you can set up external DNS for hosted control planes on AWS. You need this configuration to ensure that when you create or modify services, the corresponding DNS records in your AWS Route 53 public hosted zones update automatically.</p>
+      <p>You can provision hosted control planes with external DNS or service-level DNS.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You created an external public domain.</li>
+      <li>You have access to the AWS Route53 Management console.</li>
+      <li>You enabled AWS PrivateLink for hosted control planes.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create an Amazon Web Services (AWS) credential secret for the HyperShift Operator and name it <code>hypershift-operator-external-dns-credentials</code> in the <code>local-cluster</code> namespace.</li>
+      <li>
+      Verify that the secret has the required fields. For your reference, the required fields are detailed in the following table. <strong>Required fields for the AWS secret</strong>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field name</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Optional or required</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>provider</code></TableCell>
+      <TableCell>The DNS provider that manages the service-level DNS zone.</TableCell>
+      <TableCell>Required</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>domain-filter</code></TableCell>
+      <TableCell>The service-level domain.</TableCell>
+      <TableCell>Required</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>credentials</code></TableCell>
+      <TableCell>The credential file that supports all external DNS types.</TableCell>
+      <TableCell>Optional when you use AWS keys</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>aws-access-key-id</code></TableCell>
+      <TableCell>The credential access key id.</TableCell>
+      <TableCell>Optional when you use the AWS DNS service</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>aws-secret-access-key</code></TableCell>
+      <TableCell>The credential access key secret.</TableCell>
+      <TableCell>Optional when you use the AWS DNS service</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      </li>
+      <li>
+      Create an AWS secret by running the following command:
+      <CodeBlock code={"$ oc create secret generic <secret_name> \\\n  --from-literal=provider=aws \\\n  --from-literal=domain-filter=<domain_name> \\\n  --from-file=credentials=<path_to_aws_credentials_file> -n local-cluster"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Disaster recovery backup for the secret is not automatically enabled. To back up the secret for disaster recovery, add the <code>hypershift-operator-external-dns-credentials</code> by entering the following command:</p>
+          <CodeBlock code={"$ oc label secret hypershift-operator-external-dns-credentials \\\n  -n local-cluster \\\n  cluster.open-cluster-management.io/backup=\"\""} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h3 id="hcp-aws-create-dns-hosted-zone_hcp-deploy-aws" class="group scroll-mt-20">Creating the public DNS hosted zone<a href="#hcp-aws-create-dns-hosted-zone_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can create the public DNS hosted zone to use as the external DNS domain filter. The External DNS Operator uses the public DNS hosted zone to create your public hosted cluster. </p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the AWS Route 53 management console, click <strong>Create hosted zone</strong>.</li>
+      <li>On the <strong>Hosted zone configuration</strong> page, type a domain name, verify that <strong>Public hosted zone</strong> is selected as the type, and click <strong>Create hosted zone</strong>.</li>
+      <li>After the zone is created, on the <strong>Records</strong> tab, note the values in the <strong>Value/Route traffic to</strong> column.</li>
+      <li>In the main domain, create an NS record to redirect the DNS requests to the delegated zone. In the <strong>Value</strong> field, enter the values that you noted in the previous step.</li>
+      <li>Click <strong>Create records</strong>.</li>
+      <li>
+      Verify that the DNS hosted zone is working by creating a test entry in the new subzone and testing it with a <code>dig</code> command, such as in the following example:
+      <CodeBlock code={"$ dig +short test.user-dest-public.aws.kerberos.com"} lang="terminal" />
+      <CodeBlock code={"192.168.1.1"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To create a hosted cluster that sets the hostname for the <code>LoadBalancer</code> and <code>Route</code> services, enter the following command:
+      <CodeBlock code={"$ hcp create cluster aws --name=<hosted_cluster_name> \\\n  --endpoint-access=PublicAndPrivate \\\n  --external-dns-domain=<public_hosted_zone> ..."} lang="terminal" />
+      <p>Replace <code>&lt;public_hosted_zone&gt;</code> with the public hosted zone that you created.</p>
+      <CodeBlock code={"  platform:\n    aws:\n      endpointAccess: PublicAndPrivate\n...\n  services:\n  - service: APIServer\n    servicePublishingStrategy:\n      route:\n        hostname: api-example.service-provider-domain.com\n      type: Route\n  - service: OAuthServer\n    servicePublishingStrategy:\n      route:\n        hostname: oauth-example.service-provider-domain.com\n      type: Route\n  - service: Konnectivity\n    servicePublishingStrategy:\n      type: Route\n  - service: Ignition\n    servicePublishingStrategy:\n      type: Route"} lang="yaml" title="Example services block for the hosted cluster" />
+      <p>The Control Plane Operator creates the <code>Services</code> and <code>Routes</code> resources and annotates them with the <code>external-dns.alpha.kubernetes.io/hostname</code> annotation. For <code>Services</code> and <code>Routes</code>, the Control Plane Operator uses a value of the <code>hostname</code> parameter in the <code>servicePublishingStrategy</code> field for the service endpoints. To create the DNS records, you can use a mechanism, such as the <code>external-dns</code> deployment.</p>
+      <p>You can configure service-level DNS indirection for public services only. You cannot set <code>hostname</code> for private services because they use the <code>hypershift.local</code> private zone.</p>
+      <p>The following table shows when it is valid to set <code>hostname</code> for a service and endpoint combinations: <strong>Service and endpoint combinations to set </strong><code>hostname</code></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Service</TableHead>
+      <TableHead>Public</TableHead>
+      <TableHead>PublicAndPrivate</TableHead>
+      <TableHead>Private</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>APIServer</code></TableCell>
+      <TableCell>Y</TableCell>
+      <TableCell>Y</TableCell>
+      <TableCell>N</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OAuthServer</code></TableCell>
+      <TableCell>Y</TableCell>
+      <TableCell>Y</TableCell>
+      <TableCell>N</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Konnectivity</code></TableCell>
+      <TableCell>Y</TableCell>
+      <TableCell>N</TableCell>
+      <TableCell>N</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Ignition</code></TableCell>
+      <TableCell>Y</TableCell>
+      <TableCell>N</TableCell>
+      <TableCell>N</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      </li>
+      </ol>
+      <h3 id="hcp-aws-hc-ext-dns_hcp-deploy-aws" class="group scroll-mt-20">Creating a hosted cluster by using the external DNS on AWS<a href="#hcp-aws-hc-ext-dns_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When you create a hosted cluster on AWS, using external DNS provides advantages over standard installation methods. With external DNS, you can automatically synchronize your cluster’s service endpoints with AWS Route 53. </p>
+      <p>Without external DNS, you must manually manage DNS records for every new service or ingress, which increases the risk of configuration errors and downtime.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>
+      You configured the following artifacts in your management cluster:
+      <ul>
+      <li>The public DNS hosted zone</li>
+      <li>The External DNS Operator</li>
+      <li>The HyperShift Operator</li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      On the <code>hcp</code> command-line interface (CLI), enter the following command to access your management cluster:
+      <CodeBlock code={"$ export KUBECONFIG=<path_to_management_cluster_kubeconfig>"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the External DNS Operator is running by entering the following command:
+      <CodeBlock code={"$ oc get pod -n hypershift -lapp=external-dns"} lang="terminal" />
+      <CodeBlock code={"NAME                            READY   STATUS    RESTARTS   AGE\nexternal-dns-7c89788c69-rn8gp   1/1     Running   0          40s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To create a hosted cluster by using external DNS, enter the following command:
+      <CodeBlock code={"$ hcp create cluster aws \\\n    --role-arn <arn_role> \\\n    --instance-type <instance_type> \\\n    --region <region> \\\n    --auto-repair \\\n    --generate-ssh \\\n    --name <hosted_cluster_name> \\\n    --namespace clusters \\\n    --base-domain <service_consumer_domain> \\\n    --node-pool-replicas <node_replica_count> \\\n    --pull-secret <path_to_your_pull_secret> \\\n    --release-image quay.io/openshift-release-dev/ocp-release:<ocp_release_image> \\\n    --external-dns-domain=<service_provider_domain> \\\n    --endpoint-access=<endpoint_access_configuration> \\\n    --sts-creds <path_to_sts_credential_file>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;arn_role&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Amazon Resource Name (ARN), for example, <code>arn:aws:iam::820196288204:role/myrole</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;instance_types&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the instance type, for example, <code>m6i.xlarge</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS region, for example, <code>us-east-1</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;hosted_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies your hosted cluster name, for example, <code>my-external-aws</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;service_consumer_domain&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the public hosted zone that the service consumer owns, for example, <code>service-consumer-domain.com</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;node_replica_count&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node replica count, for example, <code>2</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_your_pull_secret&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to your pull secret file.</p></dd>
+      <dt class="font-semibold"><code>&lt;ocp_release_image&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the supported OpenShift Container Platform version that you want to use, for example, <code>4.22.0-multi</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;service_provider_domain&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the public hosted zone that the service provider owns, for example, <code>service-provider-domain.com</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;endpoint_access_configuraton&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the endpoint access configuration for the external DNS. Set as <code>PublicAndPrivate</code>. You can use external DNS with <code>Public</code> or <code>PublicAndPrivate</code> configurations only.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_sts_credential_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to your AWS STS credentials file, for example, <code>/home/user/sts-creds/sts-creds.json</code>.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <h3 id="hcp-custom-dns_hcp-deploy-aws" class="group scroll-mt-20">Defining a custom DNS name<a href="#hcp-custom-dns_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">As a cluster administrator, you can create a hosted cluster with an external API DNS name that differs from the internal endpoint that gets used for node bootstraps and control plane communication. </p>
+      <p>You might want to define a different DNS name for the following reasons:</p>
+      <ul>
+      <li>To replace the user-facing TLS certificate with one from a public CA without breaking the control plane functions that bind to the internal root CA</li>
+      <li>To support split-horizon DNS and NAT scenarios</li>
+      <li>To ensure a similar experience to standalone control planes, where you can use functions, such as the <code>Show Login Command</code> function, with the correct <code>kubeconfig</code> and DNS configuration</li>
+      </ul>
+      <p>You can define a DNS name either during your initial setup or during postinstallation operations, by entering a domain name in the <code>kubeAPIServerDNSName</code> parameter of a <code>HostedCluster</code> object.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a valid TLS certificate that covers the DNS name that you set in the <code>kubeAPIServerDNSName</code> parameter.</li>
+      <li>You have a resolvable DNS name URI that can reach and point to the correct address.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      In the specification for the <code>HostedCluster</code> object, add the <code>kubeAPIServerDNSName</code> parameter and the address for the domain and specify which certificate to use, as shown in the following example:
+      <CodeBlock code={"#...\nspec:\n  configuration:\n    apiServer:\n      servingCerts:\n        namedCertificates:\n        - names:\n          - xxx.example.com\n          - yyy.example.com\n          servingCertificate:\n            name: <my_serving_certificate>\n  kubeAPIServerDNSName: <custom_address>"} lang="yaml" />
+      <p>The value for the <code>kubeAPIServerDNSName</code> parameter must be a valid and addressable domain.</p>
+      <p>After you define the <code>kubeAPIServerDNSName</code> parameter and specify the certificate, the Control Plane Operator controllers create a <code>kubeconfig</code> file named <code>custom-admin-kubeconfig</code>, where the file gets stored in the <code>HostedControlPlane</code> namespace. The generation of certificates happen from the root CA, and the <code>HostedControlPlane</code> namespace manages their expiration and renewal.</p>
+      <p>The Control Plane Operator reports a new <code>kubeconfig</code> file named <code>CustomKubeconfig</code> in the <code>HostedControlPlane</code> namespace. That file uses the defined new server in the <code>kubeAPIServerDNSName</code> parameter.</p>
+      <p>A reference for the custom <code>kubeconfig</code> file exists in the <code>status</code> parameter as <code>CustomKubeconfig</code> of the <code>HostedCluster</code> object. The <code>CustomKubeConfig</code> parameter is optional, and you can add the parameter only if the <code>kubeAPIServerDNSName</code> parameter is not empty. After you set the <code>CustomKubeConfig</code> parameter, the parameter triggers the generation of a secret named <code>&lt;hosted_cluster_name&gt;-custom-admin-kubeconfig</code> in the <code>HostedCluster</code> namespace. You can use the secret to access the <code>HostedCluster</code> API server. If you remove the <code>CustomKubeConfig</code> parameter during postinstallation operations, deletion of all related secrets and status references occur.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Defining a custom DNS name does not directly impact the data plane, so no expected rollouts occur. The <code>HostedControlPlane</code> namespace receives the changes from the HyperShift Operator and deletes the corresponding parameters.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If you remove the <code>kubeAPIServerDNSName</code> parameter from the specification for the <code>HostedCluster</code> object, all newly generated secrets and the <code>CustomKubeconfig</code> reference are removed from the cluster and from the <code>status</code> parameter.</p>
+      </li>
+      </ul>
+      <h2 id="hcp-create-hc-aws_hcp-deploy-aws" class="group scroll-mt-20">Creating a hosted cluster on AWS<a href="#hcp-create-hc-aws_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">On AWS, you can create a hosted cluster by using the command-line interface, <code>hcp</code>, or by providing AWS STS credentials. You can also create a hosted cluster in multiple zones on AWS.</p>
+      <p>A <em>hosted cluster</em> is an OpenShift Container Platform cluster with its API endpoint and control plane hosted on a management cluster. The hosted cluster includes the control plane and its corresponding data plane.</p>
+      <p>The hosted cluster is automatically imported as a managed cluster. If you want to disable this automatic import feature, see "Disabling the automatic import of hosted clusters into multicluster engine Operator".</p>
+      <p>By default for hosted control planes on AWS, you use an AMD64 hosted cluster. However, you can enable hosted control planes to run on an ARM64 hosted cluster. For more information, see "Running hosted clusters on an ARM64 architecture".</p>
+      <p>For compatible combinations of node pools and hosted clusters, see the following table:</p>
+      <p><strong>Compatible architectures for node pools and hosted clusters</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Hosted cluster</TableHead>
+      <TableHead>Node pools</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>AMD64</TableCell>
+      <TableCell>AMD64 or ARM64</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>ARM64</TableCell>
+      <TableCell>ARM64 or AMD64</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import">Disabling the automatic import of hosted clusters into {"{"}{"{"} mce_short {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import-disable_hcp-import">Disabling the automatic import of hosted clusters into multicluster engine Operator</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-enable-arm-amd_hcp-deploy-aws">Running hosted clusters on an ARM64 architecture</a></li>
       </ul>
+      <h3 id="hcp-aws-deploy-hc_hcp-deploy-aws" class="group scroll-mt-20">Creating a hosted cluster on AWS by using the CLI<a href="#hcp-aws-deploy-hc_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To create a hosted cluster on Amazon Web Services (AWS), you can use the hosted control plane command-line interface (<code>hcp</code>). </p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have set up the hosted control plane CLI, <code>hcp</code>.</li>
+      <li>You have enabled the <code>local-cluster</code> managed cluster as the management cluster.</li>
+      <li>You created an AWS Identity and Access Management (IAM) role and AWS Security Token Service (STS) credentials.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To create a hosted cluster on AWS, run the following command:
+      <CodeBlock code={"$ hcp create cluster aws \\\n    --name <hosted_cluster_name> \\\n    --infra-id <infra_id> \\\n    --base-domain <basedomain> \\\n    --sts-creds <path_to_sts_credential_file> \\\n    --pull-secret <path_to_pull_secret> \\\n    --region <region> \\\n    --generate-ssh \\\n    --node-pool-replicas <node_pool_replica_count> \\\n    --namespace <hosted_cluster_namespace> \\\n    --role-arn <role_name> \\\n    --release-image=quay.io/openshift-release-dev/ocp-release:<ocp_release_image> \\\n    --disable-cluster-capabilities=<capability> \\\n    --enable-cluster-capabilities=<capability> \\\n    --render-into <file_name>.yaml \\\n    --render-sensitive"} lang="terminal" />
+      <ul>
+      <li><code>--name</code> specifies the name of your hosted cluster.</li>
+      <li><code>--infra-id</code> specifies your infrastructure name. You must provide the same value for <code>&lt;hosted_cluster_name&gt;</code> and <code>&lt;infra_id&gt;</code>. Otherwise, the cluster might not appear correctly in the multicluster engine for Kubernetes Operator console.</li>
+      <li><code>--base-domain</code> specifies your base domain, for example, <code>example.com</code>.</li>
+      <li><code>--sts-creds</code> specifies the path to your AWS STS credentials file, for example, <code>/home/user/sts-creds/sts-creds.json</code>.</li>
+      <li><code>--pull-secret</code> specifies the path to your pull secret, for example, <code>/user/name/pullsecret</code>.</li>
+      <li><code>--region</code> specifies the AWS region name, for example, <code>us-east-1</code>.</li>
+      <li><code>--node-pool-replicas</code> specifies the node pool replica count, for example, <code>3</code>.</li>
+      <li><code>--namespace</code> specifies that you want to create the <code>HostedCluster</code> and <code>NodePool</code> custom resource in a specific namespace. Otherwise, by default, all <code>HostedCluster</code> and <code>NodePool</code> custom resources are created in the <code>clusters</code> namespace.</li>
+      <li><code>--role-arn</code> specifies the Amazon Resource Name (ARN), for example, <code>arn:aws:iam::820196288204:role/myrole</code>.</li>
+      <li><code>--release-image</code> specifies the supported OpenShift Container Platform version that you want to use, for example, <code>4.22.0-multi</code>.</li>
+      <li><code>--disable-cluster-capabilities</code> specifies that you want to disable optional capabilities in the hosted cluster. This flag is optional. For more information, see "Capabilities for hosted clusters".</li>
+      <li><code>--enable-cluster-capabilities</code> specifies that you want to enable an optional capability for the hosted cluster. This flag is optional. For more information, see "Capabilities for hosted clusters".</li>
+      <li><code>--render-into</code> specifies whether the EC2 instance runs on shared or single tenant hardware. The <code>--render-into</code> flag renders Kubernetes resources into the YAML file that you specify in this field. Continue to the next step to edit the YAML file.</li>
+      <li><code>--render-sensitive</code> specifies that you want sensitive secrets to be rendered into the file that is specified by the <code>--render-into</code> flag. If you include the <code>--render-into</code> flag in the <code>hcp create cluster</code> command, you must also include the <code>--render-sensitive</code> flag, or cluster creation fails.</li>
+      </ul>
+      </li>
+      <li>
+      If you included the <code>--render-into</code> flag in the <code>hcp create cluster</code> command, edit the specified YAML file. Edit the <code>NodePool</code> specification in the YAML file to indicate whether the EC2 instance should run on shared or single-tenant hardware, similar to the following example:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: NodePool\nmetadata:\n  name: <nodepool_name>\nspec:\n  platform:\n    aws:\n      placement:\n        tenancy: \"default\""} lang="yaml" title="Example YAML file" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>NodePool</code> resource.</p></dd>
+      <dt class="font-semibold"><code>spec.platform.aws.placement.tenancy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a valid value for tenancy: <code>"default"</code>, <code>"dedicated"</code>, or <code>"host"</code>. Use <code>"default"</code> when node pool instances run on shared hardware. Use <code>"dedicated"</code> when each node pool instance runs on single-tenant hardware. Use <code>"host"</code> when node pool instances run on your pre-allocated dedicated hosts.</p></dd>
+      </dl>
+      </li>
+      <li>
+      If you use external load balancers, configure the ingress endpoint by editing the <code>HostedCluster</code> resource as shown in the following example. If you do not configure the endpoint, the default behavior is to randomize the node port that the service exposes the ingress on. To configure how the ingress controller publishes the default ingress route, set the <code>endpointPublishingStrategy</code> parameter and its underlying functions:
+      <CodeBlock code={"#...\nspec:\n  operatorConfiguration:\n    ingressOperator:\n      endpointPublishingStrategy:\n        type: LoadBalancerService\n        loadBalancer:\n          scope: Internal\n#..."} lang="yaml" />
+      <p>The <code>spec.operatorConfiguration.ingressOperator.endPointPublishingStrategy.type</code> parameter specifies the endpoint for the load balancer. For AWS, use the <code>LoadBalancerService</code> type.</p>
+      </li>
+      <li>
+      Enter the following command:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify the status of your hosted cluster to check that the value of <code>AVAILABLE</code> is <code>True</code>. Run the following command:
+      <CodeBlock code={"$ oc get hostedclusters -n <hosted_cluster_namespace>"} lang="terminal" />
+      </li>
+      <li>
+      Get a list of your node pools by running the following command:
+      <CodeBlock code={"$ oc get nodepools --namespace <hosted_cluster_namespace>"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-certificates#hcp-custom-cert_hcp-certificates">Configuring a custom API server certificate in a hosted cluster</a></li></ul>
-      <p class="/modules/hc-create-aws-multi-zones.md"></p>
-      <p class="/modules/hcp-cluster-capabilities.md"></p>
-      <p class="/modules/hcp-cluster-capabilities-ref.md"></p>
-      <p class="/modules/hcp-cluster-capabilities-proc.md"></p>
-      <p class="/modules/hcp-access-hc-aws.md"></p>
-      <p class="/modules/hcp-enable-arm-amd.md"></p>
-      <p class="/modules/hcp-create-hc-arm64-aws.md"></p>
+      <h3 id="hcp-create-hc-multi-zone-aws-creds_hcp-deploy-aws" class="group scroll-mt-20">Creating a hosted cluster by providing AWS STS credentials<a href="#hcp-create-hc-multi-zone-aws-creds_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To enhance the security of your hosted control plane deployment, you can create a hosted cluster on AWS by using the AWS Security Token Service (STS).</p>
+      <p>When you create a hosted cluster by using the <code>hcp create cluster aws</code> command, you must provide an Amazon Web Services (AWS) account credentials that have permissions to create infrastructure resources for your hosted cluster.</p>
+      <p>Infrastructure resources include the following examples:</p>
+      <ul>
+      <li>Virtual Private Cloud (VPC)</li>
+      <li>Subnets</li>
+      <li>Network address translation (NAT) gateways</li>
+      </ul>
+      <p>You can provide the AWS credentials by using the either of the following ways:</p>
+      <ul>
+      <li>The AWS Security Token Service (STS) credentials</li>
+      <li>The AWS cloud provider secret from multicluster engine Operator</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To create a hosted cluster on AWS by providing AWS STS credentials, enter the following command:
+      <CodeBlock code={"$ hcp create cluster aws \\\n  --name <hosted_cluster_name> \\\n  --node-pool-replicas <node_pool_replica_count> \\\n  --base-domain <base_domain> \\\n  --pull-secret <path_to_pull_secret> \\\n  --sts-creds <path_to_sts_credential_file> \\\n  --region <region> \\\n  --role-arn <arn_role>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hosted_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of your hosted cluster, for example, <code>my-hosted-cluster-01</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;node_pool_replica_count&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node pool replica count, for example, <code>2</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;base_domain&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies your base domain, for example, <code>example.com</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_pull_secret&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to your pull secret, for example, <code>/user/name/pullsecret</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_sts_credentials&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to your AWS STS credentials file, for example, <code>/home/user/sts-creds/sts-creds.json</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS region name, for example, <code>us-east-1</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;arn_role&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Amazon Resource Name (ARN), for example, <code>arn:aws:iam::820196288204:role/myrole</code>.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h3 id="hc-create-aws-multiple-zones_hcp-deploy-aws" class="group scroll-mt-20">Creating a hosted cluster in multiple zones on AWS<a href="#hc-create-aws-multiple-zones_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To improve availability and fault tolerance, you can create a hosted cluster across multiple AWS availability zones. Distributing your node pools and compute nodes across several zones protects your workloads against potential outages in a single geographical region.</p>
+      <p>You can create a hosted cluster in multiple zones on Amazon Web Services (AWS) by using the <code>hcp</code> command-line interface (CLI).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You created an AWS Identity and Access Management (IAM) role and AWS Security Token Service (STS) credentials.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create a hosted cluster in multiple zones on AWS by running the following command:
+      <CodeBlock code={"$ hcp create cluster aws \\\n  --name <hosted_cluster_name> \\\n  --node-pool-replicas=<node_pool_replica_count> \\\n  --base-domain <base_domain> \\\n  --pull-secret <path_to_pull_secret> \\\n  --role-arn <arn_role> \\\n  --region <region> \\\n  --zones <zones> \\\n  --sts-creds <path_to_sts_credential_file>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hosted_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of your hosted cluster, such as <code>my-hosted-cluster-01</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;node_pool_replica_count&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node pool replica count, for example, <code>2</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;base_domain&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies your base domain, for example, <code>example.com</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_pull_secret&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to your pull secret, for example, <code>/user/name/pullsecret</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;arn_role&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Amazon Resource Name (ARN), for example, <code>arn:aws:iam::820196288204:role/myrole</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS region name, for example, <code>us-east-1</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;zones&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies availability zones within your AWS region, for example, <code>us-east-1a</code>, and <code>us-east-1b</code>. For each specified zone, the following infrastructure is created: public subnet, private subnet, NAT gateway, and private route table. A public route table is shared across public subnets. One <code>NodePool</code> resource is created for each zone. The node pool name is suffixed by the zone name. The private subnet for the zone is set in the <code>spec.platform.aws.subnet.id</code> parameter.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_sts_credential_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to your AWS STS credentials file, for example, <code>/home/user/sts-creds/sts-creds.json</code>.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h2 id="hcp-cluster-capabilities_hcp-deploy-aws" class="group scroll-mt-20">Capabilities for hosted clusters<a href="#hcp-cluster-capabilities_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To reduce resource consumption and prevent unnecessary Operators and operands from being deployed, administrators can enable or disable optional OpenShift Container Platform components when they create a hosted cluster.</p>
+      <p>When capabilities are not specified on a <code>HostedCluster</code> resource, the cluster uses the OpenShift Container Platform version’s <code>DefaultCapabilitySet</code> settings, excluding the <code>baremetal</code> capability. As a result, most optional components are enabled by default.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Capabilities are immutable after cluster creation. You cannot change them after you create the <code>HostedCluster</code> resource.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="hcp-cluster-capabilities-ref_hcp-deploy-aws" class="group scroll-mt-20">Capabilities that you can enable or disable for a hosted cluster<a href="#hcp-cluster-capabilities-ref_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Familiarize yourself with the supported capabilities that you can enable or disable for a <code>HostedCluster</code> resource.</p>
+      <p>The capabilities are described in the following table:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Capability</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>ImageRegistry</code></TableCell>
+      <TableCell>The OpenShift Image Registry Operator and its operands, including cloud storage infrastructure, such as S3 buckets and Identity and Access Management (IAM) users.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>openshift-samples</code></TableCell>
+      <TableCell>The OpenShift Samples Operator, which manages example <code>ImageStreams</code> and templates.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Insights</code></TableCell>
+      <TableCell>The Insights Operator, which collects and uploads cluster telemetry data.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>baremetal</code></TableCell>
+      <TableCell>The Bare Metal Infrastructure Operator. This capability is excluded from the default set. If needed, you must explicitly enable it.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Console</code></TableCell>
+      <TableCell>The OpenShift Web Console Operator and its operands.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NodeTuning</code></TableCell>
+      <TableCell>The Node Tuning Operator, which manages node-level performance tuning by using TuneD and performance profiles.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Ingress</code></TableCell>
+      <TableCell>The OpenShift Ingress Operator, which manages the default router of the cluster.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>The following rules apply when you combine capability settings:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">No overlap</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A capability cannot be in both the <code>enabled</code> and <code>disabled</code> lists simultaneously.</p></dd>
+      <dt class="font-semibold">Console requires Ingress</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You can disable the <code>Ingress</code> capability only if the <code>Console</code> capability is also disabled because the console depends on Ingress.</p></dd>
+      <dt class="font-semibold">Version requirement</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You must use OpenShift Container Platform 4.20 or later to disable any of the following capabilities: <code>openshift-samples</code>, <code>Insights</code>, <code>Console</code>, <code>NodeTuning</code>, and <code>Ingress</code>. You can disable <code>ImageRegistry</code> and <code>baremetal</code> on versions earlier than 4.20.</p></dd>
+      <dt class="font-semibold">Bare metal default exclusion</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The <code>baremetal</code> capability is excluded from the default set. You can add it to the cluster by explicitly enabling it.</p></dd>
+      </dl>
+      <h3 id="hcp-cluster-capabilities-proc_hcp-deploy-aws" class="group scroll-mt-20">Setting capabilities for a hosted cluster<a href="#hcp-cluster-capabilities-proc_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To reduce unnecessary resource consumption, you can control which optional capabilities are enabled for a hosted cluster when you create the cluster.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Capabilities are immutable after cluster creation. You cannot change them after you create the <code>HostedCluster</code> resource.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can specify which capabilities are enabled by either using the <code>hcp</code> command-line interface (CLI) or by setting the <code>HostedCluster</code> manifest.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To specify which capabilities are enabled in a hosted cluster by using the CLI, you can add the <code>--disable-cluster-capabilities</code> flag, the <code>--enable-cluster-capabilities</code> flag, or both. The following example shows how to disable the <code>ImageRegistry</code>, <code>Console</code>, and <code>Ingress</code> capabilities and enable the <code>baremetal</code> capability while you create a hosted cluster on AWS by using the <code>hcp</code> command-line interface:
+      <CodeBlock code={"$ hcp create cluster aws \\\n    --name my-hosted-cluster \\\n    --disable-cluster-capabilities=ImageRegistry,Console,Ingress \\\n    --enable-cluster-capabilities=baremetal"} lang="terminal" />
+      <p>You can specify multiple capabilities as a comma-separated list. The supported values are as follows:</p>
+      <ul>
+      <li><code>ImageRegistry</code></li>
+      <li><code>openshift-samples</code></li>
+      <li><code>Insights</code></li>
+      <li><code>baremetal</code></li>
+      <li><code>Console</code></li>
+      <li><code>NodeTuning</code></li>
+      <li><code>Ingress</code></li>
+      </ul>
+      </li>
+      <li>
+      To specify which capabilities are enabled in a hosted cluster by using the <code>HostedCluster</code> manifest at cluster creation time, see the following examples:
+      <ul>
+      <li>
+      To directly disable capabilities in a hosted cluster, add the <code>spec.capabilities.disabled</code> section in the <code>HostedCluster</code> resource:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-hosted-cluster\n  namespace: my-cluster-namespace\nspec:\n  capabilities:\n    disabled:\n      - ImageRegistry\n      - Console\n      - Ingress\n  # ..."} lang="yaml" />
+      </li>
+      <li>
+      To explicitly enable a capability that is not part of the default set of capabilities, such as the <code>baremetal</code> capability, see the following example:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-hosted-cluster\n  namespace: my-cluster-namespace\nspec:\n  capabilities:\n    enabled:\n      - baremetal\n  # ..."} lang="yaml" />
+      </li>
+      <li>
+      You can use both <code>enabled</code> and <code>disabled</code> if no capabilities are in both lists. See the following example:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-hosted-cluster\n  namespace: my-cluster-namespace\nspec:\n  capabilities:\n    enabled:\n      - baremetal\n    disabled:\n      - ImageRegistry\n      - openshift-samples\n  # ..."} lang="yaml" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="hcp-access-hc-aws_hcp-deploy-aws" class="group scroll-mt-20">Accessing a hosted cluster on AWS<a href="#hcp-access-hc-aws_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you create a hosted cluster on AWS, you can access it by using your <code>kubeconfig</code> file, access secrets, and <code>kubeadmin</code> credentials.</p>
+      <p>The hosted cluster namespace contains hosted cluster resources and the access secrets. The hosted control plane runs in the hosted control plane namespace.</p>
+      <p>The secret name formats are shown in the following table:</p>
+      <p><strong>Access secrets</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Secret</TableHead>
+      <TableHead>Format</TableHead>
+      <TableHead>Example</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>kubeconfig</code> secret</TableCell>
+      <TableCell><code>&lt;hosted_cluster_namespace&gt;-&lt;name&gt;-admin-kubeconfig</code></TableCell>
+      <TableCell><code>clusters-hypershift-demo-admin-kubeconfig</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>kubeadmin</code> password secret</TableCell>
+      <TableCell><code>&lt;hosted_cluster_namespace&gt;-&lt;name&gt;-kubeadmin-password</code></TableCell>
+      <TableCell><code>clusters-hypershift-demo-kubeadmin-password</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>kubeadmin</code> password secret is Base64-encoded and the <code>kubeconfig</code> secret contains a Base64-encoded <code>kubeconfig</code> configuration. You must decode the Base64-encoded <code>kubeconfig</code> configuration and save it into a <code>&lt;hosted_cluster_name&gt;.kubeconfig</code> file.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Generate the <code>kubeconfig</code> file by entering the following command:
+      <CodeBlock code={"$ hcp create kubeconfig --namespace <hosted_cluster_namespace> \\\n  --name <hosted_cluster_name> > <hosted_cluster_name>.kubeconfig"} lang="terminal" />
+      </li>
+      <li>
+      Use your <code>&lt;hosted_cluster_name&gt;.kubeconfig</code> file that contains the decoded <code>kubeconfig</code> configuration to access the hosted cluster. Enter the following command:
+      <CodeBlock code={"$ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes"} lang="terminal" />
+      <p>You must decode the <code>kubeadmin</code> password secret to log in to the API server or the console of the hosted cluster.</p>
+      </li>
+      </ol>
+      <h2 id="hcp-enable-arm-amd_hcp-deploy-aws" class="group scroll-mt-20">Running hosted clusters on an ARM64 architecture<a href="#hcp-enable-arm-amd_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By default for hosted control planes on Amazon Web Services (AWS), you use an AMD64 hosted cluster. However, you can enable hosted control planes to run on an ARM64 hosted cluster.</p>
+      <p>For compatible combinations of node pools and hosted clusters, see the following table:</p>
+      <p><strong>Compatible architectures for node pools and hosted clusters</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Hosted cluster</TableHead>
+      <TableHead>Node pools</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>AMD64</TableCell>
+      <TableCell>AMD64 or ARM64</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>ARM64</TableCell>
+      <TableCell>ARM64 or AMD64</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="hcp-create-hc-arm64-aws_hcp-deploy-aws" class="group scroll-mt-20">Creating a hosted cluster on an ARM64 OpenShift Container Platform cluster<a href="#hcp-create-hc-arm64-aws_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can run a hosted cluster on an ARM64 OpenShift Container Platform cluster for Amazon Web Services (AWS) by overriding the default release image with a multi-architecture release image.</p>
+      <p>If you do not use a multi-architecture release image, the compute nodes in the node pool are not created and reconciliation of the node pool stops until you either use a multi-architecture release image in the hosted cluster or update the <code>NodePool</code> custom resource based on the release image.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have an OpenShift Container Platform cluster with a 64-bit ARM infrastructure that is installed on AWS. For more information, see "Create an OpenShift Container Platform Cluster: AWS (ARM)".</li>
+      <li>You must create an AWS Identity and Access Management (IAM) role and AWS Security Token Service (STS) credentials. For more information, see "Creating an AWS IAM role and STS credentials".</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create a hosted cluster on an ARM64 OpenShift Container Platform cluster by entering the following command:
+      <CodeBlock code={"$ hcp create cluster aws \\\n  --name <hosted_cluster_name> \\\n  --node-pool-replicas <node_pool_replica_count> \\\n  --base-domain <base_domain> \\\n  --pull-secret <path_to_pull_secret> \\\n  --sts-creds <path_to_sts_credential_file> \\\n  --region <region> \\\n  --release-image quay.io/openshift-release-dev/ocp-release:<ocp_release_image> \\\n  --role-arn <role_name>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hosted_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of your hosted cluster, for example, <code>my-hosted-cluster-01</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;node_pool_replica_count&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node pool replica count, for example, <code>3</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;base_domain&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies your base domain, for example, <code>example.com</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_pull_secret&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to your pull secret, for example, <code>/user/name/pullsecret</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_sts_credential_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to your AWS STS credentials file, for example, <code>/home/user/sts-creds/sts-creds.json</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS region name, for example, <code>us-east-1</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;ocp_release_image&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the supported OpenShift Container Platform version that you want to use, for example, <code>4.22.0-multi</code>. If you are using a disconnected environment, replace <code>&lt;ocp_release_image&gt;</code> with the digest image. To extract the OpenShift Container Platform release image digest, see "Extracting the release image digest".</p></dd>
+      <dt class="font-semibold"><code>&lt;role_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Amazon Resource Name (ARN), for example, <code>arn:aws:iam::820196288204:role/myrole</code>.</p></dd>
+      </dl>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm">Extracting the release image digest</a></li>
-      <li><a href="https://console.redhat.com/openshift/install/aws/arm">Create an OpenShift Container Platform Cluster: {"{"}{"{"} aws_short {"}"}{"}"} (ARM)</a></li>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws">Creating an {"{"}{"{"} aws_short {"}"}{"}"} IAM role and STS credentials</a></li>
+      <li><a href="https://console.redhat.com/openshift/install/aws/arm">Create an OpenShift Container Platform Cluster: AWS (ARM)</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws">Creating an AWS IAM role and STS credentials</a></li>
+      </ul>
+      <h3 id="hcp-create-np-arm64-aws_hcp-deploy-aws" class="group scroll-mt-20">Creating an ARM or AMD NodePool object on AWS hosted clusters<a href="#hcp-create-np-arm64-aws_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can schedule application workloads that are the <code>NodePool</code> objects on 64-bit ARM and AMD from the same hosted control plane. To set the required processor architecture for the <code>NodePool</code> object, you define the <code>arch</code> field in the <code>NodePool</code> specification. </p>
+      <p>The valid values for the <code>arch</code> field are as follows:</p>
+      <ul>
+      <li><code>arm64</code></li>
+      <li><code>amd64</code></li>
+      </ul>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have a multi-architecture image for the <code>HostedCluster</code> custom resource to use. You can access multi-architecture nightly images. For more information, see "Multi-architecture nightly images".</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Add an ARM or AMD <code>NodePool</code> object to the hosted cluster on AWS by running the following command:
+      <CodeBlock code={"$ hcp create nodepool aws \\\n  --cluster-name <hosted_cluster_name> \\\n  --name <node_pool_name> \\\n  --node-count <node_pool_replica_count> \\\n  --arch <architecture>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hosted_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of your hosted cluster, for example, <code>my-hosted-cluster-01</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;node_pool_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node pool name.</p></dd>
+      <dt class="font-semibold"><code>&lt;node_pool_replica_count&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node pool replica count, for example, <code>3</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;architecture&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the architecture type, such as <code>arm64</code> or <code>amd64</code>. If you do not specify a value for the <code>--arch</code> flag, the <code>amd64</code> value is used by default.</p></dd>
+      </dl>
+      </li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://multi.ocp.releases.ci.openshift.org/">Multi-architecture nightly images</a></li></ul>
+      <h2 id="hcp-create-private-hc-aws_hcp-deploy-aws" class="group scroll-mt-20">Creating a private hosted cluster on AWS<a href="#hcp-create-private-hc-aws_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you enable the <code>local-cluster</code> as the management cluster, you can deploy a hosted cluster or a private hosted cluster on Amazon Web Services (AWS).</p>
+      <p>By default, hosted clusters are publicly accessible through public DNS and the default router for the management cluster.</p>
+      <p>For private clusters on AWS, all communication with the hosted cluster occurs over AWS PrivateLink.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You enabled AWS PrivateLink. For more information, see "Enabling AWS PrivateLink".</li>
+      <li>You created an AWS Identity and Access Management (IAM) role and AWS Security Token Service (STS) credentials. For more information, see "Creating an AWS IAM role and STS credentials" and "Identity and Access Management (IAM) permissions".</li>
+      <li>You configured a bastion instance on AWS. For more information, see "Tutorial: Configuring private network access using a Linux Bastion Host".</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create a private hosted cluster on AWS by entering the following command:
+      <CodeBlock code={"$ hcp create cluster aws \\\n  --name <hosted_cluster_name> \\\n  --node-pool-replicas=<node_pool_replica_count> \\\n  --base-domain <basedomain> \\\n  --pull-secret <path_to_pull_secret> \\\n  --sts-creds <path_to_sts_credential_file> \\\n  --region <region> \\\n  --endpoint-access Private \\\n  --role-arn <role_name>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hosted_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of your hosted cluster, such as, <code>example</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;node_pool_replica_count&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node pool replica count, for example, <code>3</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;basedomain&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies your base domain, for example, <code>example.com</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_pull_secret&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to your pull secret, for example, <code>/user/name/pullsecret</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_sts_credential_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to your AWS STS credentials file, for example, <code>/home/user/sts-creds/sts-creds.json</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS region name, for example, <code>us-east-1</code>.</p></dd>
+      <dt class="font-semibold"><code>Private</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the cluster is private.</p></dd>
+      <dt class="font-semibold"><code>&lt;role_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Amazon Resource Name (ARN), for example, <code>arn:aws:iam::820196288204:role/myrole</code>. For more information about ARN roles, see "Identity and Access Management (IAM) permissions".</p></dd>
+      </dl>
+      <p>The following API endpoints for the hosted cluster are accessible through a private DNS zone:</p>
+      </li>
+      <li><code>api.&lt;hosted_cluster_name&gt;.hypershift.local</code></li>
+      <li><code>*.apps.&lt;hosted_cluster_name&gt;.hypershift.local</code></li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-enable-private-link_hcp-deploy-aws">Enabling {"{"}{"{"} aws_short {"}"}{"}"} PrivateLink for {"{"}{"{"} hcp {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws">Creating an {"{"}{"{"} aws_short {"}"}{"}"} IAM role and STS credentials</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-enable-private-link_hcp-deploy-aws">Enabling AWS PrivateLink for hosted control planes</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-aws-create-role-sts-creds_hcp-deploy-aws">Creating an AWS IAM role and STS credentials</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-aws#hcp-manage-aws-infra-req_hcp-managing-aws">Identity and Access Management (IAM) permissions</a></li>
       <li><a href="https://docs.aws.amazon.com/mwaa/latest/userguide/tutorials-private-network-bastion.html">Tutorial: Configuring private network access using a Linux Bastion Host</a></li>
       </ul>
+      <h3 id="hcp-access-private-hc-aws_hcp-deploy-aws" class="group scroll-mt-20">Accessing a private hosted cluster on AWS<a href="#hcp-access-private-hc-aws_hcp-deploy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">After you create a private hosted cluster, you can access it by using the command-line interface (CLI).</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Find the private IPs of nodes by entering the following command:
+      <CodeBlock code={"$ aws ec2 describe-instances \\\n  --filter=\"Name=tag:kubernetes.io/cluster/<infra_id>,Values=owned\" \\\n  | jq '.Reservations[] | .Instances[] | select(.PublicDnsName==\"\") \\\n  | .PrivateIpAddress'"} lang="terminal" />
+      </li>
+      <li>
+      Create a <code>kubeconfig</code> file for the hosted cluster that you can copy to a node by entering the following command:
+      <CodeBlock code={"$ hcp create kubeconfig > <hosted_cluster_kubeconfig>"} lang="terminal" />
+      </li>
+      <li>
+      To SSH into one of the nodes through the bastion, enter the following command:
+      <CodeBlock code={"$ ssh -o ProxyCommand=\"ssh ec2-user@<bastion_ip> \\\n  -W %h:%p\" core@<node_ip>"} lang="terminal" />
+      </li>
+      <li>
+      From the SSH shell, copy the <code>kubeconfig</code> file contents to a file on the node by entering the following command:
+      <CodeBlock code={"$ mv <path_to_kubeconfig_file> <new_file_name>"} lang="terminal" />
+      </li>
+      <li>
+      Export the <code>kubeconfig</code> file by entering the following command:
+      <CodeBlock code={"$ export KUBECONFIG=<path_to_kubeconfig_file>"} lang="terminal" />
+      </li>
+      <li>
+      Observe the hosted cluster status by entering the following command:
+      <CodeBlock code={"$ oc get clusteroperators clusterversion"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-physical-cores-allocation-vms","text":"Allocate physical cores for virtual machines"}];
+const headings = [{"depth":1,"slug":"virt-physical-cores-allocation-vms","text":"Allocate physical cores for virtual machines"},{"depth":2,"slug":"virt-CPU-manager-policy_virt-physical-cores-allocation-vms","text":"Configure full physical core allocation for virtual machines"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/post_installation_configuration/virt-physical-cores-allocation-vms";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/post_installation_configuration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Allocate physical cores for virtual machines {#virt-physical-cores-allocation-vms}\n\nAs a cluster administrator, you can allocate a full physical core to a specific virtual machine (VM), instead of allowing different VMs to share the same physical core. Configuring your VMs to use only full physical cores can optimize performance for high-throughput or latency-critical VMs.\n\nAllocating only full physical cores is important on simultaneous multi-threading (SMT) enabled systems because it offers the following benefits:\n\n- Prevents noisy neighbors and resource contention\n- Mitigates performance degradation\n- Offers predictable latency\n- Guarantees exclusive CPU resources\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-physical-cores-allocation-vms.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Allocate physical cores for virtual machines {#virt-physical-cores-allocation-vms}\n\nAs a cluster administrator, you can allocate a full physical core to a specific virtual machine (VM), instead of allowing different VMs to share the same physical core. Configuring your VMs to use only full physical cores can optimize performance for high-throughput or latency-critical VMs.\n\nAllocating only full physical cores is important on simultaneous multi-threading (SMT) enabled systems because it offers the following benefits:\n\n- Prevents noisy neighbors and resource contention\n- Mitigates performance degradation\n- Offers predictable latency\n- Guarantees exclusive CPU resources\n\n## Configure full physical core allocation for virtual machines {#virt-CPU-manager-policy_virt-physical-cores-allocation-vms}\n\nYou can configure full physical core allocation by modifying the `cpuManagerPolicy` and `cpuManagerPolicyOptions` settings in the `KubeletConfig` custom resource (CR).\n\n**Prerequisites**\n\n- You have cluster administrator access to a OpenShift Container Platform cluster with OpenShift Virtualization installed.\n- You have installed the OpenShift CLI (`oc`).\n- You have enabled CPU Manager on the node where your VM runs.\n\n**Procedure**\n\n1. Edit the `KubeletConfig` CR to add the required `cpuManagerPolicy` and `cpuManagerPolicyOptions` configurations:\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: KubeletConfig\n   # ...\n   cpuManagerPolicy: static\n   cpuManagerPolicyOptions:\n     full-pcpus-only: true\n   kubeReserved:\n     cpu: \"1\"\n   # ...\n   ```\n\n   - You must set the `cpuManagerPolicy: static` policy to enable exclusive CPU allocation. This setting is a prerequisite for configuring the `cpuManagerPolicyOptions` settings.\n   - You must set the `full-pcpus-only: true` policy option so that the static CPU Manager policy only allocates full physical cores.\n   - You must reserve 1 CPU for the system by setting `cpu: \"1\"` in the `kubeReserved` settings. This ensures that the cluster remains stable, by requiring that the system’s core functions always have access to the CPU that they need to work correctly.\n2. Run the following command to apply the changes to the `KubeletConfig` CR:\n\n   ```terminal\n   $ oc apply -f <filename>.yaml\n   ```\n\n**Verification**\n\n- Inspect the kubelet configuration on a node where the change you applied the change, by running the following command and inspecting the output:\n\n  ```terminal\n  $ oc debug node/<node_name> -- chroot /host cat /etc/kubernetes/kubelet.conf | grep -E -A 2 'cpuManagerPolicy|kubeReserved'\n  ```\n\n  Example output:\n\n  ```YAML\n  cpuManagerPolicy: static\n  cpuManagerPolicyOptions:\n    full-pcpus-only: true\n  --\n  kubeReserved:\n    cpu: \"1\"\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-physical-cores-allocation-vms.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,7 +91,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-physical-cores-allocation-vms" class="group scroll-mt-20">Allocate physical cores for virtual machines<a href="#virt-physical-cores-allocation-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>As a cluster administrator, you can allocate a full physical core to a specific virtual machine (VM), instead of allowing different VMs to share the same physical core. Configuring your VMs to use only full physical cores can optimize performance for high-throughput or latency-critical VMs.</p>
       <p>Allocating only full physical cores is important on simultaneous multi-threading (SMT) enabled systems because it offers the following benefits:</p>
@@ -99,6 +99,39 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Mitigates performance degradation</li>
       <li>Offers predictable latency</li>
       <li>Guarantees exclusive CPU resources</li>
+      </ul>
+      <h2 id="virt-CPU-manager-policy_virt-physical-cores-allocation-vms" class="group scroll-mt-20">Configure full physical core allocation for virtual machines<a href="#virt-CPU-manager-policy_virt-physical-cores-allocation-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure full physical core allocation by modifying the <code>cpuManagerPolicy</code> and <code>cpuManagerPolicyOptions</code> settings in the <code>KubeletConfig</code> custom resource (CR).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have cluster administrator access to a OpenShift Container Platform cluster with OpenShift Virtualization installed.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have enabled CPU Manager on the node where your VM runs.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>KubeletConfig</code> CR to add the required <code>cpuManagerPolicy</code> and <code>cpuManagerPolicyOptions</code> configurations:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: KubeletConfig\n# ...\ncpuManagerPolicy: static\ncpuManagerPolicyOptions:\n  full-pcpus-only: true\nkubeReserved:\n  cpu: \"1\"\n# ..."} lang="yaml" />
+      <ul>
+      <li>You must set the <code>cpuManagerPolicy: static</code> policy to enable exclusive CPU allocation. This setting is a prerequisite for configuring the <code>cpuManagerPolicyOptions</code> settings.</li>
+      <li>You must set the <code>full-pcpus-only: true</code> policy option so that the static CPU Manager policy only allocates full physical cores.</li>
+      <li>You must reserve 1 CPU for the system by setting <code>cpu: "1"</code> in the <code>kubeReserved</code> settings. This ensures that the cluster remains stable, by requiring that the system’s core functions always have access to the CPU that they need to work correctly.</li>
+      </ul>
+      </li>
+      <li>
+      Run the following command to apply the changes to the <code>KubeletConfig</code> CR:
+      <CodeBlock code={"$ oc apply -f <filename>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Inspect the kubelet configuration on a node where the change you applied the change, by running the following command and inspecting the output:
+      <CodeBlock code={"$ oc debug node/<node_name> -- chroot /host cat /etc/kubernetes/kubelet.conf | grep -E -A 2 'cpuManagerPolicy|kubeReserved'"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"cpuManagerPolicy: static\ncpuManagerPolicyOptions:\n  full-pcpus-only: true\n--\nkubeReserved:\n  cpu: \"1\""} lang="YAML" />
+      </li>
       </ul>
     </article>
   </MarkdownContentStack>

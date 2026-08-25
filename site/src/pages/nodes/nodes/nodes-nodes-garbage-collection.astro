@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"nodes-nodes-garbage-collection","text":"Freeing node resources using garbage collection"}];
+const headings = [{"depth":1,"slug":"nodes-nodes-garbage-collection","text":"Freeing node resources using garbage collection"},{"depth":2,"slug":"nodes-nodes-garbage-collection-containers_nodes-nodes-configuring","text":"Understanding how terminated containers are removed through garbage collection"},{"depth":2,"slug":"nodes-nodes-garbage-collection-images_nodes-nodes-configuring","text":"Understanding how images are removed through garbage collection"},{"depth":2,"slug":"nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring","text":"Configuring garbage collection for containers and images"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-nodes-garbage-collection";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["nodes","nodes/nodes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Freeing node resources using garbage collection {#nodes-nodes-garbage-collection}\n\nAs an administrator, you can use OpenShift Container Platform to ensure that your nodes are running efficiently by freeing up resources through garbage collection.\n\nThe OpenShift Container Platform node performs two types of garbage collection:\n\n- Container garbage collection: Removes terminated containers.\n- Image garbage collection: Removes images not referenced by any running pods.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-garbage-collection.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Freeing node resources using garbage collection {#nodes-nodes-garbage-collection}\n\nAs an administrator, you can use OpenShift Container Platform to ensure that your nodes are running efficiently by freeing up resources through garbage collection.\n\nThe OpenShift Container Platform node performs two types of garbage collection:\n\n- Container garbage collection: Removes terminated containers.\n- Image garbage collection: Removes images not referenced by any running pods.\n\n## Understanding how terminated containers are removed through garbage collection {#nodes-nodes-garbage-collection-containers_nodes-nodes-configuring}\n\nYou can help ensure that your nodes are running efficiently by using container garbage collection to remove terminated containers.\n\nWhen eviction thresholds are set for garbage collection, the node tries to keep any container for any pod accessible from the API. If the pod has been deleted, the containers will be as well. Containers are preserved as long the pod is not deleted and the eviction threshold is not reached. If the node is under disk pressure, it will remove containers and their logs will no longer be accessible using `oc logs`.\n\n- **eviction-soft** - A soft eviction threshold pairs an eviction threshold with a required administrator-specified grace period.\n- **eviction-hard** - A hard eviction threshold has no grace period, and if observed, OpenShift Container Platform takes immediate action.\n\nThe following table lists the eviction thresholds:\n\n***Variables for configuring container garbage collection***\n\n<table>\n<thead>\n<tr>\n  <th>Node condition</th>\n  <th>Eviction signal</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>MemoryPressure</td>\n  <td><code>memory.available</code></td>\n  <td>The available memory on the node.</td>\n</tr>\n<tr>\n  <td>DiskPressure</td>\n  <td><ul><li><code>nodefs.available</code></li><li><code>nodefs.inodesFree</code></li><li><code>imagefs.available</code></li><li><code>imagefs.inodesFree</code></li></ul></td>\n  <td>The available disk space or inodes on the node root file system, <code>nodefs</code>, or image file system, <code>imagefs</code>.</td>\n</tr>\n</tbody>\n</table>\n\n> [!NOTE]\n> For `evictionHard` you must specify all of these parameters.  If you do not specify all parameters, only the specified parameters are applied and the garbage collection will not function properly.\n\nIf a node is oscillating above and below a soft eviction threshold, but not exceeding its associated grace period, the corresponding node would constantly oscillate between `true` and `false`. As a consequence, the scheduler could make poor scheduling decisions.\n\nTo protect against this oscillation, use the `evictionpressure-transition-period` flag to control how long OpenShift Container Platform must wait before transitioning out of a pressure condition. OpenShift Container Platform will not set an eviction threshold as being met for the specified pressure condition for the period specified before toggling the condition back to false.\n\n> [!NOTE]\n> Setting the `evictionPressureTransitionPeriod` parameter to `0` configures the default value of 5 minutes. You cannot set an eviction pressure transition period to zero seconds.\n\n## Understanding how images are removed through garbage collection {#nodes-nodes-garbage-collection-images_nodes-nodes-configuring}\n\nYou can help ensure that your nodes are running efficiently by using image garbage collection to removes images that are not referenced by any running pods.\n\nOpenShift Container Platform determines which images to remove from a node based on the disk usage that is reported by **cAdvisor**.\n\nThe policy for image garbage collection is based on two conditions:\n\n- The percent of disk usage (expressed as an integer) which triggers image garbage collection. The default is **85**.\n- The percent of disk usage (expressed as an integer) to which image garbage collection attempts to free. Default is **80**.\n\nFor image garbage collection, you can modify any of the following variables using a custom resource.\n\n**Variables for configuring image garbage collection**\n\n| Setting | Description |\n| --- | --- |\n| `imageMinimumGCAge` | The minimum age for an unused image before the image is removed by garbage collection. The default is **2m**. |\n| `imageGCHighThresholdPercent` | The percent of disk usage, expressed as an integer, which triggers image garbage collection. The default is **85**. This value must be greater than the `imageGCLowThresholdPercent` value. |\n| `imageGCLowThresholdPercent` | The percent of disk usage, expressed as an integer, to which image garbage collection attempts to free. The default is **80**. This value must be less than the `imageGCHighThresholdPercent` value. |\n\nTwo lists of images are retrieved in each garbage collector run:\n\n1. A list of images currently running in at least one pod.\n2. A list of images available on a host.\n\nAs new containers are run, new images appear. All images are marked with a time stamp. If the image is running (the first list above) or is newly detected (the second list above), it is marked with the current time. The remaining images are already marked from the previous spins. All images are then sorted by the time stamp.\n\nOnce the collection starts, the oldest images get deleted first until the stopping criterion is met.\n\n## Configuring garbage collection for containers and images {#nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring}\n\nAs an administrator, you can configure how OpenShift Container Platform performs garbage collection by creating a `kubeletConfig` object for each machine config pool. Performing garbage collection helps ensure that your nodes are running efficiently.\n\n> [!NOTE]\n> OpenShift Container Platform supports only one `kubeletConfig` object for each machine config pool.\n\nYou can configure any combination of the following:\n\n- Soft eviction for containers\n- Hard eviction for containers\n- Eviction for images\n\nContainer garbage collection removes terminated containers. Image garbage collection removes images that are not referenced by any running pods.\n\n**Prerequisites**\n\n1. Obtain the label associated with the static `MachineConfigPool` CRD for the type of node you want to configure by entering the following command:\n\n   ```terminal\n   $ oc edit machineconfigpool <name>\n   ```\n\n   For example:\n\n   ```terminal\n   $ oc edit machineconfigpool worker\n   ```\n\n   ```yaml {title=\"Example output\"}\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfigPool\n   metadata:\n     creationTimestamp: \"2022-11-16T15:34:25Z\"\n     generation: 4\n     labels:\n       pools.operator.machineconfiguration.openshift.io/worker: \"\"\n     name: worker\n   #...\n   ```\n\n   where:\n\n   `metadata.labels`\n   :   Specifies a label to use with the kubelet configuration.\n\n   > [!TIP]\n   > If the label is not present, add a key/value pair such as:\n   >\n   > ```\n   > $ oc label machineconfigpool worker custom-kubelet=small-pods\n   > ```\n\n**Procedure**\n\n1. Create a custom resource (CR) for your configuration change.\n\n   > [!IMPORTANT]\n   > If there is one file system, or if `/var/lib/kubelet` and `/var/lib/containers/` are in the same file system, the settings with the highest values trigger evictions, as those are met first. The file system triggers the eviction.\n\n   ```yaml {title=\"Sample configuration for a container garbage collection CR\"}\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: KubeletConfig\n   metadata:\n     name: worker-kubeconfig\n   spec:\n     machineConfigPoolSelector:\n       matchLabels:\n         pools.operator.machineconfiguration.openshift.io/worker: \"\"\n     kubeletConfig:\n       evictionSoft:\n         memory.available: \"500Mi\"\n         nodefs.available: \"10%\"\n         nodefs.inodesFree: \"5%\"\n         imagefs.available: \"15%\"\n         imagefs.inodesFree: \"10%\"\n       evictionSoftGracePeriod:\n         memory.available: \"1m30s\"\n         nodefs.available: \"1m30s\"\n         nodefs.inodesFree: \"1m30s\"\n         imagefs.available: \"1m30s\"\n         imagefs.inodesFree: \"1m30s\"\n       evictionHard:\n         memory.available: \"200Mi\"\n         nodefs.available: \"5%\"\n         nodefs.inodesFree: \"4%\"\n         imagefs.available: \"10%\"\n         imagefs.inodesFree: \"5%\"\n       evictionPressureTransitionPeriod: 3m\n       imageMinimumGCAge: 5m\n       imageGCHighThresholdPercent: 80\n       imageGCLowThresholdPercent: 75\n   #...\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies a name for the object.\n\n   `spec.machineConfigPoolSelector.matchLabels`\n   :   Specifies the label from the machine config pool.\n\n   `spec.kubeletConfig.evictionSoft`\n   :   Specifies a soft eviction and eviction thresholds for container garbage collection.\n\n   `spec.kubeletConfig.evictionSoftGracePeriod`\n   :   Specifies a grace period for the soft eviction of containers. This parameter does not apply to `eviction-hard`.\n\n   `spec.kubeletConfig.evictionHard`\n   :   Specifies a soft eviction and eviction thresholds for container garbage collection. For `evictionHard` you must specify all of these parameters. If you do not specify all parameters, only the specified parameters are applied and the garbage collection will not function properly.\n\n   `spec.kubeletConfig.evictionPressureTransitionPeriod`\n   :   Specifies the duration to wait before transitioning out of an eviction pressure condition for container garbage collection. Setting the `evictionPressureTransitionPeriod` parameter to `0` configures the default value of 5 minutes.\n\n   `spec.kubeletConfig.imageMinimumGCAge`\n   :   Specifies the minimum age for an unused image before the image is removed by garbage collection.\n\n   `spec.kubeletConfig.imageGCHighThresholdPercent`\n   :   Specifies the percent of disk usage, expressed as an integer, that triggers image garbage collection. This value must be greater than the `imageGCLowThresholdPercent` value.\n\n   `spec.kubeletConfig.imageGCHighThresholdPercent`\n   :   Specifies the percent of disk usage, expressed as an integer, to which image garbage collection attempts to free. This value must be less than the `imageGCHighThresholdPercent` value.\n2. Run the following command to create the CR:\n\n   ```terminal\n   $ oc create -f <file_name>.yaml\n   ```\n\n   For example:\n\n   ```terminal\n   $ oc create -f gc-container.yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   kubeletconfig.machineconfiguration.openshift.io/gc-container created\n   ```\n\n**Verification**\n\n- Verify that garbage collection is active by entering the following command. The Machine Config Pool you specified in the custom resource appears with `UPDATING` as 'true\\` until the change is fully implemented:\n\n  ```terminal\n  $ oc get machineconfigpool\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME     CONFIG                                   UPDATED   UPDATING\n  master   rendered-master-546383f80705bd5aeaba93   True      False\n  worker   rendered-worker-b4c51bb33ccaae6fc4a6a5   False     True\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-garbage-collection.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,15 +101,161 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-nodes-garbage-collection" class="group scroll-mt-20">Freeing node resources using garbage collection<a href="#nodes-nodes-garbage-collection" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As an administrator, you can use OpenShift Container Platform to ensure that your nodes are running efficiently by freeing up resources through garbage collection.</p>
       <p>The OpenShift Container Platform node performs two types of garbage collection:</p>
       <ul>
       <li>Container garbage collection: Removes terminated containers.</li>
       <li>Image garbage collection: Removes images not referenced by any running pods.</li>
       </ul>
-      <p class="/modules/nodes-nodes-garbage-collection-images.md"></p>
-      <p class="/modules/nodes-nodes-garbage-collection-configuring.md"></p>
+      <h2 id="nodes-nodes-garbage-collection-containers_nodes-nodes-configuring" class="group scroll-mt-20">Understanding how terminated containers are removed through garbage collection<a href="#nodes-nodes-garbage-collection-containers_nodes-nodes-configuring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can help ensure that your nodes are running efficiently by using container garbage collection to remove terminated containers.</p>
+      <p>When eviction thresholds are set for garbage collection, the node tries to keep any container for any pod accessible from the API. If the pod has been deleted, the containers will be as well. Containers are preserved as long the pod is not deleted and the eviction threshold is not reached. If the node is under disk pressure, it will remove containers and their logs will no longer be accessible using <code>oc logs</code>.</p>
+      <ul>
+      <li><strong>eviction-soft</strong> - A soft eviction threshold pairs an eviction threshold with a required administrator-specified grace period.</li>
+      <li><strong>eviction-hard</strong> - A hard eviction threshold has no grace period, and if observed, OpenShift Container Platform takes immediate action.</li>
+      </ul>
+      <p>The following table lists the eviction thresholds:</p>
+      <p><em></em><em><strong>Variables for configuring container garbage collection</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Node condition</th>\n  <th>Eviction signal</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>MemoryPressure</td>\n  <td><code>memory.available</code></td>\n  <td>The available memory on the node.</td>\n</tr>\n<tr>\n  <td>DiskPressure</td>\n  <td><ul><li><code>nodefs.available</code></li><li><code>nodefs.inodesFree</code></li><li><code>imagefs.available</code></li><li><code>imagefs.inodesFree</code></li></ul></td>\n  <td>The available disk space or inodes on the node root file system, <code>nodefs</code>, or image file system, <code>imagefs</code>.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For <code>evictionHard</code> you must specify all of these parameters.  If you do not specify all parameters, only the specified parameters are applied and the garbage collection will not function properly.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If a node is oscillating above and below a soft eviction threshold, but not exceeding its associated grace period, the corresponding node would constantly oscillate between <code>true</code> and <code>false</code>. As a consequence, the scheduler could make poor scheduling decisions.</p>
+      <p>To protect against this oscillation, use the <code>evictionpressure-transition-period</code> flag to control how long OpenShift Container Platform must wait before transitioning out of a pressure condition. OpenShift Container Platform will not set an eviction threshold as being met for the specified pressure condition for the period specified before toggling the condition back to false.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Setting the <code>evictionPressureTransitionPeriod</code> parameter to <code>0</code> configures the default value of 5 minutes. You cannot set an eviction pressure transition period to zero seconds.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="nodes-nodes-garbage-collection-images_nodes-nodes-configuring" class="group scroll-mt-20">Understanding how images are removed through garbage collection<a href="#nodes-nodes-garbage-collection-images_nodes-nodes-configuring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can help ensure that your nodes are running efficiently by using image garbage collection to removes images that are not referenced by any running pods.</p>
+      <p>OpenShift Container Platform determines which images to remove from a node based on the disk usage that is reported by <strong>cAdvisor</strong>.</p>
+      <p>The policy for image garbage collection is based on two conditions:</p>
+      <ul>
+      <li>The percent of disk usage (expressed as an integer) which triggers image garbage collection. The default is <strong>85</strong>.</li>
+      <li>The percent of disk usage (expressed as an integer) to which image garbage collection attempts to free. Default is <strong>80</strong>.</li>
+      </ul>
+      <p>For image garbage collection, you can modify any of the following variables using a custom resource.</p>
+      <p><strong>Variables for configuring image garbage collection</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Setting</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>imageMinimumGCAge</code></TableCell>
+      <TableCell>The minimum age for an unused image before the image is removed by garbage collection. The default is <strong>2m</strong>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>imageGCHighThresholdPercent</code></TableCell>
+      <TableCell>The percent of disk usage, expressed as an integer, which triggers image garbage collection. The default is <strong>85</strong>. This value must be greater than the <code>imageGCLowThresholdPercent</code> value.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>imageGCLowThresholdPercent</code></TableCell>
+      <TableCell>The percent of disk usage, expressed as an integer, to which image garbage collection attempts to free. The default is <strong>80</strong>. This value must be less than the <code>imageGCHighThresholdPercent</code> value.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>Two lists of images are retrieved in each garbage collector run:</p>
+      <ol>
+      <li>A list of images currently running in at least one pod.</li>
+      <li>A list of images available on a host.</li>
+      </ol>
+      <p>As new containers are run, new images appear. All images are marked with a time stamp. If the image is running (the first list above) or is newly detected (the second list above), it is marked with the current time. The remaining images are already marked from the previous spins. All images are then sorted by the time stamp.</p>
+      <p>Once the collection starts, the oldest images get deleted first until the stopping criterion is met.</p>
+      <h2 id="nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring" class="group scroll-mt-20">Configuring garbage collection for containers and images<a href="#nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">As an administrator, you can configure how OpenShift Container Platform performs garbage collection by creating a <code>kubeletConfig</code> object for each machine config pool. Performing garbage collection helps ensure that your nodes are running efficiently.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>OpenShift Container Platform supports only one <code>kubeletConfig</code> object for each machine config pool.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can configure any combination of the following:</p>
+      <ul>
+      <li>Soft eviction for containers</li>
+      <li>Hard eviction for containers</li>
+      <li>Eviction for images</li>
+      </ul>
+      <p>Container garbage collection removes terminated containers. Image garbage collection removes images that are not referenced by any running pods.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ol>
+      <li>
+      Obtain the label associated with the static <code>MachineConfigPool</code> CRD for the type of node you want to configure by entering the following command:
+      <CodeBlock code={"$ oc edit machineconfigpool <name>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc edit machineconfigpool worker"} lang="terminal" />
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfigPool\nmetadata:\n  creationTimestamp: \"2022-11-16T15:34:25Z\"\n  generation: 4\n  labels:\n    pools.operator.machineconfiguration.openshift.io/worker: \"\"\n  name: worker\n#..."} lang="yaml" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.labels</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a label to use with the kubelet configuration.</p></dd>
+      </dl>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>If the label is not present, add a key/value pair such as:</p>
+          <CodeBlock code={"$ oc label machineconfigpool worker custom-kubelet=small-pods"} lang="plaintext" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a custom resource (CR) for your configuration change.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If there is one file system, or if <code>/var/lib/kubelet</code> and <code>/var/lib/containers/</code> are in the same file system, the settings with the highest values trigger evictions, as those are met first. The file system triggers the eviction.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: KubeletConfig\nmetadata:\n  name: worker-kubeconfig\nspec:\n  machineConfigPoolSelector:\n    matchLabels:\n      pools.operator.machineconfiguration.openshift.io/worker: \"\"\n  kubeletConfig:\n    evictionSoft:\n      memory.available: \"500Mi\"\n      nodefs.available: \"10%\"\n      nodefs.inodesFree: \"5%\"\n      imagefs.available: \"15%\"\n      imagefs.inodesFree: \"10%\"\n    evictionSoftGracePeriod:\n      memory.available: \"1m30s\"\n      nodefs.available: \"1m30s\"\n      nodefs.inodesFree: \"1m30s\"\n      imagefs.available: \"1m30s\"\n      imagefs.inodesFree: \"1m30s\"\n    evictionHard:\n      memory.available: \"200Mi\"\n      nodefs.available: \"5%\"\n      nodefs.inodesFree: \"4%\"\n      imagefs.available: \"10%\"\n      imagefs.inodesFree: \"5%\"\n    evictionPressureTransitionPeriod: 3m\n    imageMinimumGCAge: 5m\n    imageGCHighThresholdPercent: 80\n    imageGCLowThresholdPercent: 75\n#..."} lang="yaml" title="Sample configuration for a container garbage collection CR" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the object.</p></dd>
+      <dt class="font-semibold"><code>spec.machineConfigPoolSelector.matchLabels</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the label from the machine config pool.</p></dd>
+      <dt class="font-semibold"><code>spec.kubeletConfig.evictionSoft</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a soft eviction and eviction thresholds for container garbage collection.</p></dd>
+      <dt class="font-semibold"><code>spec.kubeletConfig.evictionSoftGracePeriod</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a grace period for the soft eviction of containers. This parameter does not apply to <code>eviction-hard</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.kubeletConfig.evictionHard</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a soft eviction and eviction thresholds for container garbage collection. For <code>evictionHard</code> you must specify all of these parameters. If you do not specify all parameters, only the specified parameters are applied and the garbage collection will not function properly.</p></dd>
+      <dt class="font-semibold"><code>spec.kubeletConfig.evictionPressureTransitionPeriod</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the duration to wait before transitioning out of an eviction pressure condition for container garbage collection. Setting the <code>evictionPressureTransitionPeriod</code> parameter to <code>0</code> configures the default value of 5 minutes.</p></dd>
+      <dt class="font-semibold"><code>spec.kubeletConfig.imageMinimumGCAge</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the minimum age for an unused image before the image is removed by garbage collection.</p></dd>
+      <dt class="font-semibold"><code>spec.kubeletConfig.imageGCHighThresholdPercent</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the percent of disk usage, expressed as an integer, that triggers image garbage collection. This value must be greater than the <code>imageGCLowThresholdPercent</code> value.</p></dd>
+      <dt class="font-semibold"><code>spec.kubeletConfig.imageGCHighThresholdPercent</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the percent of disk usage, expressed as an integer, to which image garbage collection attempts to free. This value must be less than the <code>imageGCHighThresholdPercent</code> value.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Run the following command to create the CR:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc create -f gc-container.yaml"} lang="terminal" />
+      <CodeBlock code={"kubeletconfig.machineconfiguration.openshift.io/gc-container created"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that garbage collection is active by entering the following command. The Machine Config Pool you specified in the custom resource appears with <code>UPDATING</code> as 'true` until the change is fully implemented:
+      <CodeBlock code={"$ oc get machineconfigpool"} lang="terminal" />
+      <CodeBlock code={"NAME     CONFIG                                   UPDATED   UPDATING\nmaster   rendered-master-546383f80705bd5aeaba93   True      False\nworker   rendered-worker-b4c51bb33ccaae6fc4a6a5   False     True"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

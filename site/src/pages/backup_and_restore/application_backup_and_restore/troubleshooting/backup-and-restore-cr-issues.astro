@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"backup-and-restore-cr-issues","text":"Backup and Restore CR issues"}];
+const headings = [{"depth":1,"slug":"backup-and-restore-cr-issues","text":"Backup and Restore CR issues"},{"depth":2,"slug":"troubleshooting-backup-cr-cannot-retrieve-volume-issue_backup-and-restore-cr-issues","text":"Troubleshooting issue where backup CR cannot retrieve volume"},{"depth":2,"slug":"troubleshooting-backup-cr-status-remains-in-progress-issue_backup-and-restore-cr-issues","text":"Troubleshooting issue where backup CR status remains in progress"},{"depth":2,"slug":"troubleshooting-backup-cr-status-remains-in-partiallyfailed-issue_backup-and-restore-cr-issues","text":"Troubleshooting issue where backup CR status remains partially failed"},{"depth":2,"slug":"oadp-troubleshooting-pvc-binding-delay_backup-and-restore-cr-issues","text":"Troubleshooting PVC binding failures with the waitForFirstConsumer storage class"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/backup-and-restore-cr-issues";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backup and Restore CR issues {#backup-and-restore-cr-issues}\n\nResolve common issues with `Backup` and `Restore` custom resources (CRs), such as volume retrieval failures, and backups remaining in progress or partially failed states. This helps you ensure successful backup and restore operations in {{ oadp_short }}.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/backup-and-restore-cr-issues.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backup and Restore CR issues {#backup-and-restore-cr-issues}\n\nResolve common issues with `Backup` and `Restore` custom resources (CRs), such as volume retrieval failures, and backups remaining in progress or partially failed states. This helps you ensure successful backup and restore operations in OADP.\n\n## Troubleshooting issue where backup CR cannot retrieve volume {#troubleshooting-backup-cr-cannot-retrieve-volume-issue_backup-and-restore-cr-issues}\n\nResolve the `InvalidVolume.NotFound` error that occurs when the persistent volume (PV) and snapshot locations are in different regions. This helps you ensure the `Backup` CR can successfully retrieve volumes.\n\nIf the PV and the snapshot locations are in different regions, the `Backup` custom resource (CR) displays the following error message:\n\n```text\nInvalidVolume.NotFound: The volume vol-xxxx does not exist.\n```\n\n**Procedure**\n\n1. Edit the value of the `spec.snapshotLocations.velero.config.region` key in the `DataProtectionApplication` manifest so that the snapshot location is in the same region as the PV.\n2. Create a new `Backup` CR.\n\n## Troubleshooting issue where backup CR status remains in progress {#troubleshooting-backup-cr-status-remains-in-progress-issue_backup-and-restore-cr-issues}\n\nResolve the issue where an interrupted backup causes the `Backup` CR status to remain in the `InProgress` phase. This helps you clear stalled backups and create new ones to complete your backup operations.\n\n**Procedure**\n\n1. Retrieve the details of the `Backup` CR by running the following command:\n\n   ```terminal\n   $ oc -n {namespace} exec deployment/velero -c velero -- ./velero \\\n     backup describe <backup>\n   ```\n2. Delete the `Backup` CR by running the following command:\n\n   ```terminal\n   $ oc delete backups.velero.io <backup> -n openshift-adp\n   ```\n\n   You do not need to clean up the backup location because an in progress `Backup` CR has not uploaded files to object storage.\n3. Create a new `Backup` CR.\n4. View the Velero backup details by running the following command:\n\n   ```terminal\n   $ velero backup describe <backup_name> --details\n   ```\n\n## Troubleshooting issue where backup CR status remains partially failed {#troubleshooting-backup-cr-status-remains-in-partiallyfailed-issue_backup-and-restore-cr-issues}\n\nResolve the `PartiallyFailed` status that occurs when a `Backup` CR cannot create a CSI snapshot due to a missing label on the `VolumeSnapshotClass`. This helps you ensure successful backups by properly labeling the snapshot class.\n\nIf the backup created based on the CSI snapshot class is missing a label, the CSI snapshot plugin fails to create a snapshot. As a result, the `Velero` pod logs an error similar to the following message:\n\n```text\ntime=\"2023-02-17T16:33:13Z\" level=error msg=\"Error backing up item\" backup=openshift-adp/user1-backup-check5 error=\"error executing custom action (groupResource=persistentvolumeclaims, namespace=busy1, name=pvc1-user1): rpc error: code = Unknown desc = failed to get volumesnapshotclass for storageclass ocs-storagecluster-ceph-rbd: failed to get volumesnapshotclass for provisioner openshift-storage.rbd.csi.ceph.com, ensure that the desired volumesnapshot class has the velero.io/csi-volumesnapshot-class label\" logSource=\"/remote-source/velero/app/pkg/backup/backup.go:417\" name=busybox-79799557b5-vprq\n```\n\n**Procedure**\n\n1. Delete the `Backup` CR by running the following command::\n\n   ```terminal\n   $ oc delete backups.velero.io <backup> -n openshift-adp\n   ```\n2. If required, clean up the stored data on the `BackupStorageLocation` resource  to free up space.\n3. Apply the `velero.io/csi-volumesnapshot-class=true` label to the `VolumeSnapshotClass` object by running the following command:\n\n   ```terminal\n   $ oc label volumesnapshotclass/<snapclass_name> velero.io/csi-volumesnapshot-class=true\n   ```\n4. Create a new `Backup` CR.\n\n## Troubleshooting PVC binding failures with the waitForFirstConsumer storage class {#oadp-troubleshooting-pvc-binding-delay_backup-and-restore-cr-issues}\n\nTo ensure that restored persistent volume claims (PVCs) successfully bind to PVs when node affinity is configured, adjust the storage class binding mode settings during restore operations.\n\nPVCs that use a storage class with `bindingMode: WaitForFirstConsumer` might fail to bind to a PV when node affinity is configured. This issue can occur during restore operations, including virtual machine file restore (VMFR) workflows.\n\n**Procedure**\n\n- Set the `ignoreDelayBinding` field to `true` in the `restorePVC` section of the `nodeAgent` configuration in the `DataProtectionApplication` CR, as shown in the following example:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n    name: dpa-test\n    namespace: openshift-adp\n  spec:\n  # ...\n    configuration:\n      nodeAgent:\n        enable: true\n        restorePVC:\n          ignoreDelayBinding: true\n        uploaderType: kopia\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/backup-and-restore-cr-issues.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +92,62 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="backup-and-restore-cr-issues" class="group scroll-mt-20">Backup and Restore CR issues<a href="#backup-and-restore-cr-issues" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
-      <p>Resolve common issues with <code>Backup</code> and <code>Restore</code> custom resources (CRs), such as volume retrieval failures, and backups remaining in progress or partially failed states. This helps you ensure successful backup and restore operations in {"{"}{"{"} oadp_short {"}"}{"}"}.</p>
-      <p class="/modules/troubleshooting-backup-cr-cannot-retrieve-volume-issue.md"></p>
-      <p class="/modules/troubleshooting-backup-cr-status-remains-in-progress-issue.md"></p>
-      <p class="/modules/troubleshooting-backup-cr-status-remains-in-partiallyfailed-issue.md"></p>
-      <p class="/modules/oadp-troubleshooting-pvc-binding-delay.md"></p>
+      <p>Resolve common issues with <code>Backup</code> and <code>Restore</code> custom resources (CRs), such as volume retrieval failures, and backups remaining in progress or partially failed states. This helps you ensure successful backup and restore operations in OADP.</p>
+      <h2 id="troubleshooting-backup-cr-cannot-retrieve-volume-issue_backup-and-restore-cr-issues" class="group scroll-mt-20">Troubleshooting issue where backup CR cannot retrieve volume<a href="#troubleshooting-backup-cr-cannot-retrieve-volume-issue_backup-and-restore-cr-issues" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Resolve the <code>InvalidVolume.NotFound</code> error that occurs when the persistent volume (PV) and snapshot locations are in different regions. This helps you ensure the <code>Backup</code> CR can successfully retrieve volumes.</p>
+      <p>If the PV and the snapshot locations are in different regions, the <code>Backup</code> custom resource (CR) displays the following error message:</p>
+      <CodeBlock code={"InvalidVolume.NotFound: The volume vol-xxxx does not exist."} lang="text" />
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Edit the value of the <code>spec.snapshotLocations.velero.config.region</code> key in the <code>DataProtectionApplication</code> manifest so that the snapshot location is in the same region as the PV.</li>
+      <li>Create a new <code>Backup</code> CR.</li>
+      </ol>
+      <h2 id="troubleshooting-backup-cr-status-remains-in-progress-issue_backup-and-restore-cr-issues" class="group scroll-mt-20">Troubleshooting issue where backup CR status remains in progress<a href="#troubleshooting-backup-cr-status-remains-in-progress-issue_backup-and-restore-cr-issues" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Resolve the issue where an interrupted backup causes the <code>Backup</code> CR status to remain in the <code>InProgress</code> phase. This helps you clear stalled backups and create new ones to complete your backup operations.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Retrieve the details of the <code>Backup</code> CR by running the following command:
+      <CodeBlock code={"$ oc -n {namespace} exec deployment/velero -c velero -- ./velero \\\n  backup describe <backup>"} lang="terminal" />
+      </li>
+      <li>
+      Delete the <code>Backup</code> CR by running the following command:
+      <CodeBlock code={"$ oc delete backups.velero.io <backup> -n openshift-adp"} lang="terminal" />
+      <p>You do not need to clean up the backup location because an in progress <code>Backup</code> CR has not uploaded files to object storage.</p>
+      </li>
+      <li>Create a new <code>Backup</code> CR.</li>
+      <li>
+      View the Velero backup details by running the following command:
+      <CodeBlock code={"$ velero backup describe <backup_name> --details"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="troubleshooting-backup-cr-status-remains-in-partiallyfailed-issue_backup-and-restore-cr-issues" class="group scroll-mt-20">Troubleshooting issue where backup CR status remains partially failed<a href="#troubleshooting-backup-cr-status-remains-in-partiallyfailed-issue_backup-and-restore-cr-issues" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Resolve the <code>PartiallyFailed</code> status that occurs when a <code>Backup</code> CR cannot create a CSI snapshot due to a missing label on the <code>VolumeSnapshotClass</code>. This helps you ensure successful backups by properly labeling the snapshot class.</p>
+      <p>If the backup created based on the CSI snapshot class is missing a label, the CSI snapshot plugin fails to create a snapshot. As a result, the <code>Velero</code> pod logs an error similar to the following message:</p>
+      <CodeBlock code={"time=\"2023-02-17T16:33:13Z\" level=error msg=\"Error backing up item\" backup=openshift-adp/user1-backup-check5 error=\"error executing custom action (groupResource=persistentvolumeclaims, namespace=busy1, name=pvc1-user1): rpc error: code = Unknown desc = failed to get volumesnapshotclass for storageclass ocs-storagecluster-ceph-rbd: failed to get volumesnapshotclass for provisioner openshift-storage.rbd.csi.ceph.com, ensure that the desired volumesnapshot class has the velero.io/csi-volumesnapshot-class label\" logSource=\"/remote-source/velero/app/pkg/backup/backup.go:417\" name=busybox-79799557b5-vprq"} lang="text" />
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Delete the <code>Backup</code> CR by running the following command::
+      <CodeBlock code={"$ oc delete backups.velero.io <backup> -n openshift-adp"} lang="terminal" />
+      </li>
+      <li>If required, clean up the stored data on the <code>BackupStorageLocation</code> resource  to free up space.</li>
+      <li>
+      Apply the <code>velero.io/csi-volumesnapshot-class=true</code> label to the <code>VolumeSnapshotClass</code> object by running the following command:
+      <CodeBlock code={"$ oc label volumesnapshotclass/<snapclass_name> velero.io/csi-volumesnapshot-class=true"} lang="terminal" />
+      </li>
+      <li>Create a new <code>Backup</code> CR.</li>
+      </ol>
+      <h2 id="oadp-troubleshooting-pvc-binding-delay_backup-and-restore-cr-issues" class="group scroll-mt-20">Troubleshooting PVC binding failures with the waitForFirstConsumer storage class<a href="#oadp-troubleshooting-pvc-binding-delay_backup-and-restore-cr-issues" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To ensure that restored persistent volume claims (PVCs) successfully bind to PVs when node affinity is configured, adjust the storage class binding mode settings during restore operations.</p>
+      <p>PVCs that use a storage class with <code>bindingMode: WaitForFirstConsumer</code> might fail to bind to a PV when node affinity is configured. This issue can occur during restore operations, including virtual machine file restore (VMFR) workflows.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Set the <code>ignoreDelayBinding</code> field to <code>true</code> in the <code>restorePVC</code> section of the <code>nodeAgent</code> configuration in the <code>DataProtectionApplication</code> CR, as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: dpa-test\n  namespace: openshift-adp\nspec:\n# ...\n  configuration:\n    nodeAgent:\n      enable: true\n      restorePVC:\n        ignoreDelayBinding: true\n      uploaderType: kopia"} lang="yaml" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

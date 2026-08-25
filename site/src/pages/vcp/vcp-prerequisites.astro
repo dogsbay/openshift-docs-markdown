@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"vcp-prerequisites","text":"Prerequisites for virtualized control planes"},{"depth":2,"slug":"additional-resources_vcp-prerequisites","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"vcp-prerequisites","text":"Prerequisites for virtualized control planes"},{"depth":2,"slug":"con_virt-vcp-hosting-cluster-requirements_vcp-prerequisites","text":"Hosting cluster requirements"},{"depth":2,"slug":"con_virt-vcp-storage-requirements_vcp-prerequisites","text":"Storage requirements"},{"depth":2,"slug":"con_virt-vcp-network-requirements_vcp-prerequisites","text":"Network requirements"},{"depth":2,"slug":"con_virt-vcp-control-plane-vm-requirements_vcp-prerequisites","text":"Control plane VM requirements"},{"depth":2,"slug":"con_virt-vcp-kubevirt-redfish-requirements_vcp-prerequisites","text":"KubeVirt Redfish requirements"},{"depth":2,"slug":"additional-resources_vcp-prerequisites","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/vcp/vcp-prerequisites";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +42,7 @@ const pageCategory = ["vcp"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Prerequisites for virtualized control planes {#vcp-prerequisites}\n\nBefore deploying a virtualized control plane cluster, ensure your environment meets the following requirements.\n\n## Additional resources {#additional-resources_vcp-prerequisites}\n\n- [Recommended resources for the agent-based installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer)\n- [Effects of disk latency on etcd](/openshift-docs-markdown/etcd/etcd-performance#etcd-disk-latency_etcd-performance)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-prerequisites.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Prerequisites for virtualized control planes {#vcp-prerequisites}\n\nBefore deploying a virtualized control plane cluster, ensure your environment meets the following requirements.\n\n> [!IMPORTANT]\n> KubeVirt Redfish is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Hosting cluster requirements {#con_virt-vcp-hosting-cluster-requirements_vcp-prerequisites}\n\nThe hosting cluster runs the virtualized control plane VMs and manages their lifecycle through KubeVirt Redfish.\n\nThe hosting cluster requires the following components:\n\n- OpenShift Container Platform installed and operational.\n- OpenShift Virtualization installed and configured.\n- Sufficient compute resources to host control plane VMs.\n- At least three physical nodes to enable anti-affinity placement, ensuring control plane VMs are spread across different physical hosts.\n\n## Storage requirements {#con_virt-vcp-storage-requirements_vcp-prerequisites}\n\nThe hosting cluster must have a storage solution that supports VM disk images and meets the latency requirements of `etcd`.\n\nThe hosting cluster must have one of the following storage solutions:\n\n- Red Hat OpenShift Data Foundation (ODF) provides VM live migration. When you install ODF on a cluster where OpenShift Virtualization is running, the `ocs-storagecluster-ceph-rbd-virtualization` storage class is created automatically. This storage class is optimized for KubeVirt workloads.\n- Logical Volume Manager (LVM) Storage, backed by NVMe drives, provides predictable, low-latency disk I/O but does not support VM live migration.\n\nConsider the following when choosing a storage solution:\n\n- ODF replicates data across multiple storage nodes for durability. This replication can cause unpredictable latency spikes during synchronization, which might affect `etcd` performance. Monitor `etcd` disk latency in production and ensure the underlying storage nodes use NVMe disks.\n- LVM Storage writes directly to local disks without replication, providing consistent low latency. However, data is not replicated across nodes.\n\n## Network requirements {#con_virt-vcp-network-requirements_vcp-prerequisites}\n\nVirtualized control plane deployments require specific network connectivity between VMs, worker nodes, and external services.\n\nConfigure networking to meet the following requirements:\n\n- L2 network connectivity between control plane VMs. The OpenShift Container Platform installation program requires all control plane nodes to share the same L2 network segment.\n- L3 connectivity without network address translation (NAT) between the control plane VMs and worker nodes. Worker nodes must be able to route traffic directly to the control plane VMs. During installation, the bootstrap VM also requires L3 connectivity to the control plane.\n- External access to the cluster API.\n- Access to container image registries.\n- DNS resolution for cluster components.\n\nYou can use either dynamic or static IP addressing for the control plane VMs:\n\n- For deployments that use DHCP, configure static MAC addresses on the primary network interfaces of the VMs and create DHCP reservations for each MAC address. This ensures consistent IP assignment across VM restarts.\n- For deployments that use static IP addressing, define the network configuration in your `install-config.yaml` or Agent-based installation manifests.\n\n## Control plane VM requirements {#con_virt-vcp-control-plane-vm-requirements_vcp-prerequisites}\n\nEach control plane VM must meet minimum resource requirements to run the OpenShift Container Platform control plane components reliably.\n\nEach control plane VM requires the following minimum resources:\n\n- 8 vCPUs\n- 16 GiB RAM\n- 120 GiB storage\n\n## KubeVirt Redfish requirements {#con_virt-vcp-kubevirt-redfish-requirements_vcp-prerequisites}\n\nKubeVirt Redfish exposes VMs through the Redfish API.\n\nYou need the following to use KubeVirt Redfish:\n\n- Network access from the installation workstation to the KubeVirt Redfish route.\n- Credentials configured in KubeVirt Redfish for API authentication.\n- VMs labeled to be exposed through the Redfish API.\n\n## Additional resources {#additional-resources_vcp-prerequisites}\n\n- [Recommended resources for the agent-based installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer)\n- [Effects of disk latency on etcd](/openshift-docs-markdown/etcd/etcd-performance#etcd-disk-latency_etcd-performance)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-prerequisites.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,14 +93,67 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="vcp-prerequisites" class="group scroll-mt-20">Prerequisites for virtualized control planes<a href="#vcp-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/snippets/technology-preview.md">Before deploying a virtualized control plane cluster, ensure your environment meets the following requirements.</p>
-      <p class="/modules/con_virt-vcp-hosting-cluster-requirements.md"></p>
-      <p class="/modules/con_virt-vcp-storage-requirements.md"></p>
-      <p class="/modules/con_virt-vcp-network-requirements.md"></p>
-      <p class="/modules/con_virt-vcp-control-plane-vm-requirements.md"></p>
-      <p class="/modules/con_virt-vcp-kubevirt-redfish-requirements.md"></p>
+      <p>Before deploying a virtualized control plane cluster, ensure your environment meets the following requirements.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>KubeVirt Redfish is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="con_virt-vcp-hosting-cluster-requirements_vcp-prerequisites" class="group scroll-mt-20">Hosting cluster requirements<a href="#con_virt-vcp-hosting-cluster-requirements_vcp-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The hosting cluster runs the virtualized control plane VMs and manages their lifecycle through KubeVirt Redfish.</p>
+      <p>The hosting cluster requires the following components:</p>
+      <ul>
+      <li>OpenShift Container Platform installed and operational.</li>
+      <li>OpenShift Virtualization installed and configured.</li>
+      <li>Sufficient compute resources to host control plane VMs.</li>
+      <li>At least three physical nodes to enable anti-affinity placement, ensuring control plane VMs are spread across different physical hosts.</li>
+      </ul>
+      <h2 id="con_virt-vcp-storage-requirements_vcp-prerequisites" class="group scroll-mt-20">Storage requirements<a href="#con_virt-vcp-storage-requirements_vcp-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The hosting cluster must have a storage solution that supports VM disk images and meets the latency requirements of <code>etcd</code>.</p>
+      <p>The hosting cluster must have one of the following storage solutions:</p>
+      <ul>
+      <li>Red Hat OpenShift Data Foundation (ODF) provides VM live migration. When you install ODF on a cluster where OpenShift Virtualization is running, the <code>ocs-storagecluster-ceph-rbd-virtualization</code> storage class is created automatically. This storage class is optimized for KubeVirt workloads.</li>
+      <li>Logical Volume Manager (LVM) Storage, backed by NVMe drives, provides predictable, low-latency disk I/O but does not support VM live migration.</li>
+      </ul>
+      <p>Consider the following when choosing a storage solution:</p>
+      <ul>
+      <li>ODF replicates data across multiple storage nodes for durability. This replication can cause unpredictable latency spikes during synchronization, which might affect <code>etcd</code> performance. Monitor <code>etcd</code> disk latency in production and ensure the underlying storage nodes use NVMe disks.</li>
+      <li>LVM Storage writes directly to local disks without replication, providing consistent low latency. However, data is not replicated across nodes.</li>
+      </ul>
+      <h2 id="con_virt-vcp-network-requirements_vcp-prerequisites" class="group scroll-mt-20">Network requirements<a href="#con_virt-vcp-network-requirements_vcp-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Virtualized control plane deployments require specific network connectivity between VMs, worker nodes, and external services.</p>
+      <p>Configure networking to meet the following requirements:</p>
+      <ul>
+      <li>L2 network connectivity between control plane VMs. The OpenShift Container Platform installation program requires all control plane nodes to share the same L2 network segment.</li>
+      <li>L3 connectivity without network address translation (NAT) between the control plane VMs and worker nodes. Worker nodes must be able to route traffic directly to the control plane VMs. During installation, the bootstrap VM also requires L3 connectivity to the control plane.</li>
+      <li>External access to the cluster API.</li>
+      <li>Access to container image registries.</li>
+      <li>DNS resolution for cluster components.</li>
+      </ul>
+      <p>You can use either dynamic or static IP addressing for the control plane VMs:</p>
+      <ul>
+      <li>For deployments that use DHCP, configure static MAC addresses on the primary network interfaces of the VMs and create DHCP reservations for each MAC address. This ensures consistent IP assignment across VM restarts.</li>
+      <li>For deployments that use static IP addressing, define the network configuration in your <code>install-config.yaml</code> or Agent-based installation manifests.</li>
+      </ul>
+      <h2 id="con_virt-vcp-control-plane-vm-requirements_vcp-prerequisites" class="group scroll-mt-20">Control plane VM requirements<a href="#con_virt-vcp-control-plane-vm-requirements_vcp-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Each control plane VM must meet minimum resource requirements to run the OpenShift Container Platform control plane components reliably.</p>
+      <p>Each control plane VM requires the following minimum resources:</p>
+      <ul>
+      <li>8 vCPUs</li>
+      <li>16 GiB RAM</li>
+      <li>120 GiB storage</li>
+      </ul>
+      <h2 id="con_virt-vcp-kubevirt-redfish-requirements_vcp-prerequisites" class="group scroll-mt-20">KubeVirt Redfish requirements<a href="#con_virt-vcp-kubevirt-redfish-requirements_vcp-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">KubeVirt Redfish exposes VMs through the Redfish API.</p>
+      <p>You need the following to use KubeVirt Redfish:</p>
+      <ul>
+      <li>Network access from the installation workstation to the KubeVirt Redfish route.</li>
+      <li>Credentials configured in KubeVirt Redfish for API authentication.</li>
+      <li>VMs labeled to be exposed through the Redfish API.</li>
+      </ul>
       <h2 id="additional-resources_vcp-prerequisites" class="group scroll-mt-20">Additional resources<a href="#additional-resources_vcp-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-based-installer-recommended-resources_preparing-to-install-with-agent-based-installer">Recommended resources for the agent-based installer</a></li>

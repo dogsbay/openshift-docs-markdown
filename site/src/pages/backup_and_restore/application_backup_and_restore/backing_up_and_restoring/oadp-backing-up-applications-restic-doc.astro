@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"oadp-backing-up-applications-restic-doc","text":"Backing up applications with File System Backup: Kopia or Restic"}];
+const headings = [{"depth":1,"slug":"oadp-backing-up-applications-restic-doc","text":"Backing up applications with File System Backup: Kopia or Restic"},{"depth":2,"slug":"oadp-backingup-file-system-backup_backing-up-applications","text":"Backing up applications with File System Backup"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Backing up applications with File System Backup: Kopia or Restic";
-const description = "Use {{ oadp_short }} File System Backup (FSB) with Kopia or Restic to back up and restore Kubernetes volumes attached to pods when snapshots are not…" || undefined;
+const description = "Use OADP File System Backup (FSB) with Kopia or Restic to back up and restore Kubernetes volumes attached to pods when snapshots are not available. This…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up applications with File System Backup: Kopia or Restic {#oadp-backing-up-applications-restic-doc}\n\nUse {{ oadp_short }} File System Backup (FSB) with Kopia or Restic to back up and restore Kubernetes volumes attached to pods when snapshots are not available. This helps you to protect application data on NFS or other non-snapshot storage.\n\nIf your cloud provider does not support snapshots or if your applications are on NFS data volumes, you can create backups by using FSB.\n\nFSB integration with OADP provides a solution for backing up and restoring almost any type of Kubernetes volumes. This integration is an additional capability of OADP and is not a replacement for existing functionality.\n\nYou back up Kubernetes resources, internal images, and persistent volumes with Kopia or Restic by editing the `Backup` custom resource (CR).\n\nYou do not need to specify a snapshot location in the `DataProtectionApplication` CR.\n\n> [!NOTE]\n> In OADP version 1.3 and later, you can use either Kopia or Restic for backing up applications.\n>\n> For the Built-in DataMover, you must use Kopia.\n>\n> In OADP version 1.2 and earlier, you can only use Restic for backing up applications.\n\n> [!IMPORTANT]\n> FSB does not support backing up `hostPath` volumes. For more information, see *FSB limitations*.\n\n**Additional resources**\n\n- [FSB limitations](https://velero.io/docs/v1.12/file-system-backup/#limitations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up applications with File System Backup: Kopia or Restic {#oadp-backing-up-applications-restic-doc}\n\nUse OADP File System Backup (FSB) with Kopia or Restic to back up and restore Kubernetes volumes attached to pods when snapshots are not available. This helps you to protect application data on NFS or other non-snapshot storage.\n\nIf your cloud provider does not support snapshots or if your applications are on NFS data volumes, you can create backups by using FSB.\n\nFSB integration with OADP provides a solution for backing up and restoring almost any type of Kubernetes volumes. This integration is an additional capability of OADP and is not a replacement for existing functionality.\n\nYou back up Kubernetes resources, internal images, and persistent volumes with Kopia or Restic by editing the `Backup` custom resource (CR).\n\nYou do not need to specify a snapshot location in the `DataProtectionApplication` CR.\n\n> [!NOTE]\n> In OADP version 1.3 and later, you can use either Kopia or Restic for backing up applications.\n>\n> For the Built-in DataMover, you must use Kopia.\n>\n> In OADP version 1.2 and earlier, you can only use Restic for backing up applications.\n\n> [!IMPORTANT]\n> FSB does not support backing up `hostPath` volumes. For more information, see *FSB limitations*.\n\n> [!IMPORTANT]\n> The `.../.snapshot` directory is a snapshot copy directory, which is used by several NFS servers. This directory has read-only access by default, so Velero cannot restore to this directory.\n>\n> Do not give Velero write access to the `.snapshot` directory, and disable client access to this directory.\n\n## Backing up applications with File System Backup {#oadp-backingup-file-system-backup_backing-up-applications}\n\nCreate a `Backup` custom resource (CR) to back up applications by using File System Backup (FSB) with Kopia as the uploader. This helps you to protect Kubernetes volumes attached to pods when snapshots are not available or when using NFS data volumes.\n\n**Prerequisites**\n\n- You must install the OpenShift API for Data Protection (OADP) Operator.\n- You must not disable the default `nodeAgent` installation by setting `spec.configuration.nodeAgent.enable` to `false` in the `DataProtectionApplication` CR.\n- You must select Kopia or Restic as the uploader by setting `spec.configuration.nodeAgent.uploaderType` to `kopia` or `restic` in the `DataProtectionApplication` CR.\n- The `DataProtectionApplication` CR must be in a `Ready` state.\n\n**Procedure**\n\n- Create the `Backup` CR, as in the following example:\n\n  ```yaml\n  apiVersion: velero.io/v1\n  kind: Backup\n  metadata:\n    name: <backup>\n    labels:\n      velero.io/storage-location: default\n    namespace: openshift-adp\n  spec:\n    defaultVolumesToFsBackup: true\n  ...\n  ```\n\n  where:\n\n  `defaultVolumesToFsBackup: true`\n  :   Specifies the FSB setting within the `spec` block for OADP version 1.2 and later. In OADP version 1.1, add `defaultVolumesToRestic: true` instead.\n\n**Additional resources**\n\n- [FSB limitations](https://velero.io/docs/v1.12/file-system-backup/#limitations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,8 +95,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-backing-up-applications-restic-doc" class="group scroll-mt-20">Backing up applications with File System Backup: Kopia or Restic<a href="#oadp-backing-up-applications-restic-doc" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Use {"{"}{"{"} oadp_short {"}"}{"}"} File System Backup (FSB) with Kopia or Restic to back up and restore Kubernetes volumes attached to pods when snapshots are not available. This helps you to protect application data on NFS or other non-snapshot storage.</p>
+      <p>Use OADP File System Backup (FSB) with Kopia or Restic to back up and restore Kubernetes volumes attached to pods when snapshots are not available. This helps you to protect application data on NFS or other non-snapshot storage.</p>
       <p>If your cloud provider does not support snapshots or if your applications are on NFS data volumes, you can create backups by using FSB.</p>
       <p>FSB integration with OADP provides a solution for backing up and restoring almost any type of Kubernetes volumes. This integration is an additional capability of OADP and is not a replacement for existing functionality.</p>
       <p>You back up Kubernetes resources, internal images, and persistent volumes with Kopia or Restic by editing the <code>Backup</code> custom resource (CR).</p>
@@ -114,8 +114,34 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>FSB does not support backing up <code>hostPath</code> volumes. For more information, see <em>FSB limitations</em>.</p>
         </AlertDescription>
       </Alert>
-      <p class="/snippets/pod-volume-restore-snapshot-read-only.md"></p>
-      <p class="/modules/oadp-backingup-using-kopia.md"></p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The <code>.../.snapshot</code> directory is a snapshot copy directory, which is used by several NFS servers. This directory has read-only access by default, so Velero cannot restore to this directory.</p>
+          <p>Do not give Velero write access to the <code>.snapshot</code> directory, and disable client access to this directory.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="oadp-backingup-file-system-backup_backing-up-applications" class="group scroll-mt-20">Backing up applications with File System Backup<a href="#oadp-backingup-file-system-backup_backing-up-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Create a <code>Backup</code> custom resource (CR) to back up applications by using File System Backup (FSB) with Kopia as the uploader. This helps you to protect Kubernetes volumes attached to pods when snapshots are not available or when using NFS data volumes.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must install the OpenShift API for Data Protection (OADP) Operator.</li>
+      <li>You must not disable the default <code>nodeAgent</code> installation by setting <code>spec.configuration.nodeAgent.enable</code> to <code>false</code> in the <code>DataProtectionApplication</code> CR.</li>
+      <li>You must select Kopia or Restic as the uploader by setting <code>spec.configuration.nodeAgent.uploaderType</code> to <code>kopia</code> or <code>restic</code> in the <code>DataProtectionApplication</code> CR.</li>
+      <li>The <code>DataProtectionApplication</code> CR must be in a <code>Ready</code> state.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create the <code>Backup</code> CR, as in the following example:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Backup\nmetadata:\n  name: <backup>\n  labels:\n    velero.io/storage-location: default\n  namespace: openshift-adp\nspec:\n  defaultVolumesToFsBackup: true\n..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>defaultVolumesToFsBackup: true</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the FSB setting within the <code>spec</code> block for OADP version 1.2 and later. In OADP version 1.1, add <code>defaultVolumesToRestic: true</code> instead.</p></dd>
+      </dl>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://velero.io/docs/v1.12/file-system-backup/#limitations">FSB limitations</a></li></ul>
     </article>

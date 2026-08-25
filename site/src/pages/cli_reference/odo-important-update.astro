@@ -78,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,7 +93,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md /_attributes/attributes-openshift-dedicated.md"></p>
       <h1 id="odo-important_update_{{ context }}" class="group scroll-mt-20">Important update on <code>{"{"}{"{"} odo_title {"}"}{"}"}</code><a href="#odo-important_update_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>Red Hat does not provide information about <code>{"{"}{"{"} odo_title {"}"}{"}"}</code> on the OpenShift Container Platform documentation site. See the <a href="https://odo.dev/docs/introduction">documentation</a> maintained by Red Hat and the upstream community for documentation information related to <code>{"{"}{"{"} odo_title {"}"}{"}"}</code>.</p>
       <Alert variant="info" class="my-4">

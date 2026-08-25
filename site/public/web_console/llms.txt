@@ -2,23 +2,23 @@
 
 ## Web console
 
-- [Web console overview](https://dogsbay.github.io/openshift-docs-markdown/web_console/web-console-overview.md)
-- [Accessing the web console](https://dogsbay.github.io/openshift-docs-markdown/web_console/web-console.md)
-- [Using the OpenShift Container Platform dashboard to get cluster information](https://dogsbay.github.io/openshift-docs-markdown/web_console/using-dashboard-to-get-cluster-information.md)
-- [Adding user preferences](https://dogsbay.github.io/openshift-docs-markdown/web_console/adding-user-preferences.md)
-- [Configuring the web console](https://dogsbay.github.io/openshift-docs-markdown/web_console/configuring-web-console.md)
-- [Customizing the web console](https://dogsbay.github.io/openshift-docs-markdown/web_console/customizing-the-web-console.md)
-- [Overview of dynamic plugins](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/overview-dynamic-plugin.md)
-- [Getting started with dynamic plugins](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started.md)
-- [Deploy your plugin on a cluster](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/deploy-plugin-cluster.md)
-- [Content Security Policy](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/content-security-policy.md)
-- [Dynamic plugin example](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example.md)
-- [Dynamic plugin reference](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-reference.md)
-- [Installing the web terminal](https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/installing-web-terminal.md)
-- [Configuring the web terminal](https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/configuring-web-terminal.md)
-- [Using the web terminal](https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/odc-using-web-terminal.md)
-- [Troubleshooting the web terminal](https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/troubleshooting-web-terminal.md)
-- [Uninstalling the web terminal](https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/uninstalling-web-terminal.md)
-- [Disabling the web console](https://dogsbay.github.io/openshift-docs-markdown/web_console/disabling-web-console.md)
-- [Creating quick start tutorials](https://dogsbay.github.io/openshift-docs-markdown/web_console/creating-quick-start-tutorials.md)
-- [Optional capabilities and products](https://dogsbay.github.io/openshift-docs-markdown/web_console/capabilities_products-web-console.md)
+- [Web console overview](https://dogsbay.github.io/openshift-docs-markdown/web_console/web-console-overview.md): The OpenShift Container Platform web console provides a graphical user interface to visualize your project data and perform administrative, management, and…
+- [Accessing the web console](https://dogsbay.github.io/openshift-docs-markdown/web_console/web-console.md): The OpenShift Container Platform web console is a user interface accessible from a web browser. You can use the web console to visualize, browse, and manage…
+- [Using the OpenShift Container Platform dashboard to get cluster information](https://dogsbay.github.io/openshift-docs-markdown/web_console/using-dashboard-to-get-cluster-information.md): The OpenShift Container Platform web console captures high-level information about the cluster.
+- [Adding user preferences](https://dogsbay.github.io/openshift-docs-markdown/web_console/adding-user-preferences.md): You can change the default preferences for your profile to meet your requirements. You can set your default project, topology view (graph or list), editing…
+- [Configuring the web console](https://dogsbay.github.io/openshift-docs-markdown/web_console/configuring-web-console.md): You can change the OpenShift Container Platform web console to set a logout redirect URL or disable the quick start tutorials.
+- [Customizing the web console](https://dogsbay.github.io/openshift-docs-markdown/web_console/customizing-the-web-console.md): You can customize the OpenShift Container Platform
+- [Overview of dynamic plugins](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/overview-dynamic-plugin.md): Dynamic plugins are loaded and interpreted from remote sources at runtime. One way to deliver and expose dynamic plugins to the console is through OLM…
+- [Getting started with dynamic plugins](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started.md): To get started using the dynamic plugin, you must set up your environment to write a new OpenShift Container Platform dynamic plugin. For an example of how to…
+- [Deploy your plugin on a cluster](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/deploy-plugin-cluster.md): You can deploy the plugin to an OpenShift Container Platform
+- [Content Security Policy](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/content-security-policy.md): Specify Content Security Policy (CSP) directives for your dynamic plugin using the contentSecurityPolicy field in ConsolePluginSpec. CSP restricts which…
+- [Dynamic plugin example](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugin-example.md): Before working through the example, verify that the plugin is working by following the steps in Dynamic plugin development
+- [Dynamic plugin reference](https://dogsbay.github.io/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-reference.md): You can add extensions that allow you to customize your plugin. Those extensions are then loaded to the console at runtime.
+- [Installing the web terminal](https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/installing-web-terminal.md): You can install the web terminal by using the Web Terminal Operator listed in the OpenShift Container Platform software catalog. When you install the Web…
+- [Configuring the web terminal](https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/configuring-web-terminal.md): You can configure timeout and image settings for the web terminal, either for your current session or for all user sessions if you are a cluster administrator.
+- [Using the web terminal](https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/odc-using-web-terminal.md): You can launch an embedded command-line terminal instance in the web console. This terminal instance is preinstalled with common CLI tools for interacting with…
+- [Troubleshooting the web terminal](https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/troubleshooting-web-terminal.md): The web terminal might fail to start if the cluster has network policies configured. To start a web terminal instance, the Web Terminal Operator must…
+- [Uninstalling the web terminal](https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/uninstalling-web-terminal.md): Uninstalling the Web Terminal Operator does not remove any of the custom resource definitions (CRDs) or managed resources that are created when the Operator is…
+- [Disabling the web console](https://dogsbay.github.io/openshift-docs-markdown/web_console/disabling-web-console.md): You can disable the OpenShift Container Platform web console.
+- [Creating quick start tutorials](https://dogsbay.github.io/openshift-docs-markdown/web_console/creating-quick-start-tutorials.md): If you are creating quick start tutorials for the OpenShift Container Platform web console, follow these guidelines to keep a consistent user experience across…
+- [Optional capabilities and products](https://dogsbay.github.io/openshift-docs-markdown/web_console/capabilities_products-web-console.md): You can further customize the OpenShift Container Platform web console by adding additional capabilities to your existing workflows and integrations through…

@@ -15,8 +15,14 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"json-flows-format-reference","text":"Network flows format reference"}];
+const headings = [{"depth":1,"slug":"json-flows-format-reference","text":"Network flows format reference"},{"depth":2,"slug":"network-observability-flows-format_json_reference","text":"Network Flows format reference"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/network_observability/json-flows-format-reference";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +45,7 @@ const pageCategory = ["observability","observability/network_observability"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network flows format reference {#json-flows-format-reference}\n\nReview the specifications for the network flow format, which is used internally and for exporting flow data to Kafka.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/json-flows-format-reference.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network flows format reference {#json-flows-format-reference}\n\nReview the specifications for the network flow format, which is used internally and for exporting flow data to Kafka.\n\n## Network Flows format reference {#network-observability-flows-format_json_reference}\n\nThis is the specification of the network flows format. That format is used when a Kafka exporter is configured, for Prometheus metrics labels as well as internally for the Loki store.\n\nThe \"Filter ID\" column shows which related name to use when defining Quick Filters (see `spec.consolePlugin.quickFilters` in the `FlowCollector` specification).\n\nThe \"Loki label\" column is useful when querying Loki directly: label fields need to be selected using [stream selectors](https://grafana.com/docs/loki/latest/logql/log_queries/#log-stream-selector).\n\nThe \"Cardinality\" column gives information about the implied metric cardinality if this field was to be used as a Prometheus label with the `FlowMetrics` API. Refer to the `FlowMetrics` documentation for more information on using this API.\n\n| Name | Type | Description | Filter ID | Loki label | Cardinality | OpenTelemetry |\n| --- | --- | --- | --- | --- | --- | --- |\n| `Bytes` | number | Number of bytes | n/a | no | avoid | bytes |\n| `DnsErrno` | number | Error number returned from DNS tracker ebpf hook function | `dns_errno` | no | fine | dns.errno |\n| `DnsFlags` | number | DNS flags for DNS record | n/a | no | fine | dns.flags |\n| `DnsFlagsResponseCode` | string | Parsed DNS header RCODEs name | `dns_flag_response_code` | no | fine | dns.responsecode |\n| `DnsId` | number | DNS record id | `dns_id` | no | avoid | dns.id |\n| `DnsLatencyMs` | number | Time between a DNS request and response, in milliseconds | `dns_latency` | no | avoid | dns.latency |\n| `DnsName` | string | DNS queried name | `dns_name` | no | careful | dns.name |\n| `Dscp` | number | Differentiated Services Code Point (DSCP) value | `dscp` | no | fine | dscp |\n| `DstAddr` | string | Destination IP address (ipv4 or ipv6) | `dst_address` | no | avoid | destination.address |\n| `DstK8S_HostIP` | string | Destination node IP | `dst_host_address` | no | fine | destination.k8s.host.address |\n| `DstK8S_HostName` | string | Destination node name | `dst_host_name` | no | fine | destination.k8s.host.name |\n| `DstK8S_Name` | string | Name of the destination Kubernetes object, such as Pod name, Service name or Node name. | `dst_name` | no | careful | destination.k8s.name |\n| `DstK8S_Namespace` | string | Destination namespace | `dst_namespace` | yes | fine | destination.k8s.namespace.name |\n| `DstK8S_NetworkName` | string | Destination network name | `dst_network` | no | fine | destination.network.name |\n| `DstK8S_OwnerName` | string | Name of the destination owner, such as Deployment name, StatefulSet name, etc. | `dst_owner_name` | yes | fine | destination.k8s.owner.name |\n| `DstK8S_OwnerType` | string | Kind of the destination owner, such as Deployment, StatefulSet, etc. | `dst_kind` | no | fine | destination.k8s.owner.kind |\n| `DstK8S_Type` | string | Kind of the destination Kubernetes object, such as Pod, Service or Node. | `dst_kind` | yes | fine | destination.k8s.kind |\n| `DstK8S_Zone` | string | Destination availability zone | `dst_zone` | yes | fine | destination.zone |\n| `DstMac` | string | Destination MAC address | `dst_mac` | no | avoid | destination.mac |\n| `DstPort` | number | Destination port | `dst_port` | no | careful | destination.port |\n| `DstSubnetLabel` | string | Destination subnet label | `dst_subnet_label` | no | fine | destination.subnet.label |\n| `Flags` | string\\[\\] | List of TCP flags comprised in the flow, according to RFC-9293, with additional custom flags to represent the following per-packet combinations:<br> - SYN_ACK<br> - FIN_ACK<br> - RST_ACK | `tcp_flags` | no | careful | tcp.flags |\n| `FlowDirection` | number | Flow interpreted direction from the node observation point. Can be one of:<br> - 0: Ingress (incoming traffic, from the node observation point)<br> - 1: Egress (outgoing traffic, from the node observation point)<br> - 2: Inner (with the same source and destination node) | `node_direction` | yes | fine | host.direction |\n| `IPSecStatus` | string | Status of the IPsec encryption (on egress, given by the kernel xfrm_output function) or decryption (on ingress, via xfrm_input) | `ipsec_status` | no | fine | ipsec.status |\n| `IcmpCode` | number | ICMP code | `icmp_code` | no | fine | icmp.code |\n| `IcmpType` | number | ICMP type | `icmp_type` | no | fine | icmp.type |\n| `IfDirections` | number\\[\\] | Flow directions from the network interface observation point. Can be one of:<br> - 0: Ingress (interface incoming traffic)<br> - 1: Egress (interface outgoing traffic) | `ifdirections` | no | fine | interface.directions |\n| `Interfaces` | string\\[\\] | Network interfaces | `interfaces` | no | careful | interface.names |\n| `K8S_ClusterName` | string | Cluster name or identifier | `cluster_name` | yes | fine | k8s.cluster.name |\n| `K8S_FlowLayer` | string | Flow layer: 'app' or 'infra' | `flow_layer` | yes | fine | k8s.layer |\n| `NetworkEvents` | object\\[\\] | Network events, such as network policy actions, composed of nested fields:<br> - Feature (such as \"acl\" for network policies)<br> - Type (such as an \"AdminNetworkPolicy\")<br> - Namespace (namespace where the event applies, if any)<br> - Name (name of the resource that triggered the event)<br> - Action (such as \"allow\" or \"drop\")<br> - Direction (Ingress or Egress) | `network_events` | no | avoid | n/a |\n| `Packets` | number | Number of packets | n/a | no | avoid | packets |\n| `PktDropBytes` | number | Number of bytes dropped by the kernel | n/a | no | avoid | drops.bytes |\n| `PktDropLatestDropCause` | string | Latest drop cause | `pkt_drop_cause` | no | fine | drops.latestcause |\n| `PktDropLatestFlags` | number | TCP flags on last dropped packet | n/a | no | fine | drops.latestflags |\n| `PktDropLatestState` | string | TCP state on last dropped packet | `pkt_drop_state` | no | fine | drops.lateststate |\n| `PktDropPackets` | number | Number of packets dropped by the kernel | n/a | no | avoid | drops.packets |\n| `Proto` | number | L4 protocol | `protocol` | no | fine | protocol |\n| `Sampling` | number | Sampling interval used for this flow | n/a | no | fine | n/a |\n| `SrcAddr` | string | Source IP address (ipv4 or ipv6) | `src_address` | no | avoid | source.address |\n| `SrcK8S_HostIP` | string | Source node IP | `src_host_address` | no | fine | source.k8s.host.address |\n| `SrcK8S_HostName` | string | Source node name | `src_host_name` | no | fine | source.k8s.host.name |\n| `SrcK8S_Name` | string | Name of the source Kubernetes object, such as Pod name, Service name or Node name. | `src_name` | no | careful | source.k8s.name |\n| `SrcK8S_Namespace` | string | Source namespace | `src_namespace` | yes | fine | source.k8s.namespace.name |\n| `SrcK8S_NetworkName` | string | Source network name | `src_network` | no | fine | source.network.name |\n| `SrcK8S_OwnerName` | string | Name of the source owner, such as Deployment name, StatefulSet name, etc. | `src_owner_name` | yes | fine | source.k8s.owner.name |\n| `SrcK8S_OwnerType` | string | Kind of the source owner, such as Deployment, StatefulSet, etc. | `src_kind` | no | fine | source.k8s.owner.kind |\n| `SrcK8S_Type` | string | Kind of the source Kubernetes object, such as Pod, Service or Node. | `src_kind` | yes | fine | source.k8s.kind |\n| `SrcK8S_Zone` | string | Source availability zone | `src_zone` | yes | fine | source.zone |\n| `SrcMac` | string | Source MAC address | `src_mac` | no | avoid | source.mac |\n| `SrcPort` | number | Source port | `src_port` | no | careful | source.port |\n| `SrcSubnetLabel` | string | Source subnet label | `src_subnet_label` | no | fine | source.subnet.label |\n| `TLSCipherSuite` | string | TLS cipher suite | `tls_cipher_suite` | no | fine | tls.ciphersuite |\n| `TLSGroup` | string | TLS group name | `tls_group` | no | fine | tls.group |\n| `TLSTypes` | string\\[\\] | TLS message types (bitfield) | `tls_types` | no | careful | tls.types |\n| `TLSVersion` | string | TLS version | `tls_version` | no | fine | tls.version |\n| `TimeFlowEndMs` | number | End timestamp of this flow, in milliseconds | n/a | no | avoid | timeflowend |\n| `TimeFlowRttNs` | number | TCP Smoothed Round Trip Time (SRTT), in nanoseconds | `time_flow_rtt` | no | avoid | tcp.rtt |\n| `TimeFlowStartMs` | number | Start timestamp of this flow, in milliseconds | n/a | no | avoid | timeflowstart |\n| `TimeReceived` | number | Timestamp when this flow was received and processed by the flow collector, in seconds | n/a | no | avoid | timereceived |\n| `Udns` | string\\[\\] | List of User Defined Networks | `udns` | no | careful | n/a |\n| `XlatDstAddr` | string | packet translation destination address | `xlat_dst_address` | no | avoid | n/a |\n| `XlatDstPort` | number | packet translation destination port | `xlat_dst_port` | no | careful | n/a |\n| `XlatSrcAddr` | string | packet translation source address | `xlat_src_address` | no | avoid | n/a |\n| `XlatSrcPort` | number | packet translation source port | `xlat_src_port` | no | careful | n/a |\n| `ZoneId` | number | packet translation zone id | `xlat_zone_id` | no | avoid | n/a |\n| `_HashId` | string | In conversation tracking, the conversation identifier | `id` | no | avoid | n/a |\n| `_RecordType` | string | Type of record: `flowLog` for regular flow logs, or `newConnection`, `heartbeat`, `endConnection` for conversation tracking | `type` | yes | fine | n/a |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/json-flows-format-reference.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +97,639 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="json-flows-format-reference" class="group scroll-mt-20">Network flows format reference<a href="#json-flows-format-reference" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Review the specifications for the network flow format, which is used internally and for exporting flow data to Kafka.</p>
-      <p class="/modules/network-observability-flows-format.md"></p>
+      <h2 id="network-observability-flows-format_json_reference" class="group scroll-mt-20">Network Flows format reference<a href="#network-observability-flows-format_json_reference" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>This is the specification of the network flows format. That format is used when a Kafka exporter is configured, for Prometheus metrics labels as well as internally for the Loki store.</p>
+      <p>The "Filter ID" column shows which related name to use when defining Quick Filters (see <code>spec.consolePlugin.quickFilters</code> in the <code>FlowCollector</code> specification).</p>
+      <p>The "Loki label" column is useful when querying Loki directly: label fields need to be selected using <a href="https://grafana.com/docs/loki/latest/logql/log_queries/#log-stream-selector">stream selectors</a>.</p>
+      <p>The "Cardinality" column gives information about the implied metric cardinality if this field was to be used as a Prometheus label with the <code>FlowMetrics</code> API. Refer to the <code>FlowMetrics</code> documentation for more information on using this API.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Filter ID</TableHead>
+      <TableHead>Loki label</TableHead>
+      <TableHead>Cardinality</TableHead>
+      <TableHead>OpenTelemetry</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>Bytes</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Number of bytes</TableCell>
+      <TableCell>n/a</TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>bytes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DnsErrno</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Error number returned from DNS tracker ebpf hook function</TableCell>
+      <TableCell><code>dns_errno</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>dns.errno</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DnsFlags</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>DNS flags for DNS record</TableCell>
+      <TableCell>n/a</TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>dns.flags</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DnsFlagsResponseCode</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Parsed DNS header RCODEs name</TableCell>
+      <TableCell><code>dns_flag_response_code</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>dns.responsecode</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DnsId</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>DNS record id</TableCell>
+      <TableCell><code>dns_id</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>dns.id</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DnsLatencyMs</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Time between a DNS request and response, in milliseconds</TableCell>
+      <TableCell><code>dns_latency</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>dns.latency</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DnsName</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>DNS queried name</TableCell>
+      <TableCell><code>dns_name</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>dns.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Dscp</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Differentiated Services Code Point (DSCP) value</TableCell>
+      <TableCell><code>dscp</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>dscp</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstAddr</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Destination IP address (ipv4 or ipv6)</TableCell>
+      <TableCell><code>dst_address</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>destination.address</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstK8S_HostIP</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Destination node IP</TableCell>
+      <TableCell><code>dst_host_address</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>destination.k8s.host.address</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstK8S_HostName</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Destination node name</TableCell>
+      <TableCell><code>dst_host_name</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>destination.k8s.host.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstK8S_Name</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Name of the destination Kubernetes object, such as Pod name, Service name or Node name.</TableCell>
+      <TableCell><code>dst_name</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>destination.k8s.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstK8S_Namespace</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Destination namespace</TableCell>
+      <TableCell><code>dst_namespace</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>destination.k8s.namespace.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstK8S_NetworkName</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Destination network name</TableCell>
+      <TableCell><code>dst_network</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>destination.network.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstK8S_OwnerName</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Name of the destination owner, such as Deployment name, StatefulSet name, etc.</TableCell>
+      <TableCell><code>dst_owner_name</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>destination.k8s.owner.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstK8S_OwnerType</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Kind of the destination owner, such as Deployment, StatefulSet, etc.</TableCell>
+      <TableCell><code>dst_kind</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>destination.k8s.owner.kind</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstK8S_Type</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Kind of the destination Kubernetes object, such as Pod, Service or Node.</TableCell>
+      <TableCell><code>dst_kind</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>destination.k8s.kind</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstK8S_Zone</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Destination availability zone</TableCell>
+      <TableCell><code>dst_zone</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>destination.zone</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstMac</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Destination MAC address</TableCell>
+      <TableCell><code>dst_mac</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>destination.mac</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstPort</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Destination port</TableCell>
+      <TableCell><code>dst_port</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>destination.port</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DstSubnetLabel</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Destination subnet label</TableCell>
+      <TableCell><code>dst_subnet_label</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>destination.subnet.label</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Flags</code></TableCell>
+      <TableCell>string[]</TableCell>
+      <TableCell>List of TCP flags comprised in the flow, according to RFC-9293, with additional custom flags to represent the following per-packet combinations:<Fragment set:html={"<br>"} /> - SYN_ACK<Fragment set:html={"<br>"} /> - FIN_ACK<Fragment set:html={"<br>"} /> - RST_ACK</TableCell>
+      <TableCell><code>tcp_flags</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>tcp.flags</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FlowDirection</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Flow interpreted direction from the node observation point. Can be one of:<Fragment set:html={"<br>"} /> - 0: Ingress (incoming traffic, from the node observation point)<Fragment set:html={"<br>"} /> - 1: Egress (outgoing traffic, from the node observation point)<Fragment set:html={"<br>"} /> - 2: Inner (with the same source and destination node)</TableCell>
+      <TableCell><code>node_direction</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>host.direction</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>IPSecStatus</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Status of the IPsec encryption (on egress, given by the kernel xfrm_output function) or decryption (on ingress, via xfrm_input)</TableCell>
+      <TableCell><code>ipsec_status</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>ipsec.status</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>IcmpCode</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>ICMP code</TableCell>
+      <TableCell><code>icmp_code</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>icmp.code</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>IcmpType</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>ICMP type</TableCell>
+      <TableCell><code>icmp_type</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>icmp.type</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>IfDirections</code></TableCell>
+      <TableCell>number[]</TableCell>
+      <TableCell>Flow directions from the network interface observation point. Can be one of:<Fragment set:html={"<br>"} /> - 0: Ingress (interface incoming traffic)<Fragment set:html={"<br>"} /> - 1: Egress (interface outgoing traffic)</TableCell>
+      <TableCell><code>ifdirections</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>interface.directions</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Interfaces</code></TableCell>
+      <TableCell>string[]</TableCell>
+      <TableCell>Network interfaces</TableCell>
+      <TableCell><code>interfaces</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>interface.names</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>K8S_ClusterName</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Cluster name or identifier</TableCell>
+      <TableCell><code>cluster_name</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>k8s.cluster.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>K8S_FlowLayer</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Flow layer: 'app' or 'infra'</TableCell>
+      <TableCell><code>flow_layer</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>k8s.layer</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NetworkEvents</code></TableCell>
+      <TableCell>object[]</TableCell>
+      <TableCell>Network events, such as network policy actions, composed of nested fields:<Fragment set:html={"<br>"} /> - Feature (such as "acl" for network policies)<Fragment set:html={"<br>"} /> - Type (such as an "AdminNetworkPolicy")<Fragment set:html={"<br>"} /> - Namespace (namespace where the event applies, if any)<Fragment set:html={"<br>"} /> - Name (name of the resource that triggered the event)<Fragment set:html={"<br>"} /> - Action (such as "allow" or "drop")<Fragment set:html={"<br>"} /> - Direction (Ingress or Egress)</TableCell>
+      <TableCell><code>network_events</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>n/a</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Packets</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Number of packets</TableCell>
+      <TableCell>n/a</TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>packets</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>PktDropBytes</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Number of bytes dropped by the kernel</TableCell>
+      <TableCell>n/a</TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>drops.bytes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>PktDropLatestDropCause</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Latest drop cause</TableCell>
+      <TableCell><code>pkt_drop_cause</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>drops.latestcause</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>PktDropLatestFlags</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>TCP flags on last dropped packet</TableCell>
+      <TableCell>n/a</TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>drops.latestflags</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>PktDropLatestState</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>TCP state on last dropped packet</TableCell>
+      <TableCell><code>pkt_drop_state</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>drops.lateststate</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>PktDropPackets</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Number of packets dropped by the kernel</TableCell>
+      <TableCell>n/a</TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>drops.packets</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Proto</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>L4 protocol</TableCell>
+      <TableCell><code>protocol</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>protocol</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Sampling</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Sampling interval used for this flow</TableCell>
+      <TableCell>n/a</TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>n/a</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcAddr</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Source IP address (ipv4 or ipv6)</TableCell>
+      <TableCell><code>src_address</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>source.address</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcK8S_HostIP</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Source node IP</TableCell>
+      <TableCell><code>src_host_address</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>source.k8s.host.address</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcK8S_HostName</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Source node name</TableCell>
+      <TableCell><code>src_host_name</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>source.k8s.host.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcK8S_Name</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Name of the source Kubernetes object, such as Pod name, Service name or Node name.</TableCell>
+      <TableCell><code>src_name</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>source.k8s.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcK8S_Namespace</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Source namespace</TableCell>
+      <TableCell><code>src_namespace</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>source.k8s.namespace.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcK8S_NetworkName</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Source network name</TableCell>
+      <TableCell><code>src_network</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>source.network.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcK8S_OwnerName</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Name of the source owner, such as Deployment name, StatefulSet name, etc.</TableCell>
+      <TableCell><code>src_owner_name</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>source.k8s.owner.name</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcK8S_OwnerType</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Kind of the source owner, such as Deployment, StatefulSet, etc.</TableCell>
+      <TableCell><code>src_kind</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>source.k8s.owner.kind</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcK8S_Type</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Kind of the source Kubernetes object, such as Pod, Service or Node.</TableCell>
+      <TableCell><code>src_kind</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>source.k8s.kind</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcK8S_Zone</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Source availability zone</TableCell>
+      <TableCell><code>src_zone</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>source.zone</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcMac</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Source MAC address</TableCell>
+      <TableCell><code>src_mac</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>source.mac</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcPort</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Source port</TableCell>
+      <TableCell><code>src_port</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>source.port</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SrcSubnetLabel</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Source subnet label</TableCell>
+      <TableCell><code>src_subnet_label</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>source.subnet.label</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>TLSCipherSuite</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>TLS cipher suite</TableCell>
+      <TableCell><code>tls_cipher_suite</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>tls.ciphersuite</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>TLSGroup</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>TLS group name</TableCell>
+      <TableCell><code>tls_group</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>tls.group</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>TLSTypes</code></TableCell>
+      <TableCell>string[]</TableCell>
+      <TableCell>TLS message types (bitfield)</TableCell>
+      <TableCell><code>tls_types</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>tls.types</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>TLSVersion</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>TLS version</TableCell>
+      <TableCell><code>tls_version</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>tls.version</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>TimeFlowEndMs</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>End timestamp of this flow, in milliseconds</TableCell>
+      <TableCell>n/a</TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>timeflowend</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>TimeFlowRttNs</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>TCP Smoothed Round Trip Time (SRTT), in nanoseconds</TableCell>
+      <TableCell><code>time_flow_rtt</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>tcp.rtt</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>TimeFlowStartMs</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Start timestamp of this flow, in milliseconds</TableCell>
+      <TableCell>n/a</TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>timeflowstart</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>TimeReceived</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>Timestamp when this flow was received and processed by the flow collector, in seconds</TableCell>
+      <TableCell>n/a</TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>timereceived</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Udns</code></TableCell>
+      <TableCell>string[]</TableCell>
+      <TableCell>List of User Defined Networks</TableCell>
+      <TableCell><code>udns</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>n/a</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>XlatDstAddr</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>packet translation destination address</TableCell>
+      <TableCell><code>xlat_dst_address</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>n/a</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>XlatDstPort</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>packet translation destination port</TableCell>
+      <TableCell><code>xlat_dst_port</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>n/a</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>XlatSrcAddr</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>packet translation source address</TableCell>
+      <TableCell><code>xlat_src_address</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>n/a</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>XlatSrcPort</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>packet translation source port</TableCell>
+      <TableCell><code>xlat_src_port</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>careful</TableCell>
+      <TableCell>n/a</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ZoneId</code></TableCell>
+      <TableCell>number</TableCell>
+      <TableCell>packet translation zone id</TableCell>
+      <TableCell><code>xlat_zone_id</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>n/a</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>_HashId</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>In conversation tracking, the conversation identifier</TableCell>
+      <TableCell><code>id</code></TableCell>
+      <TableCell>no</TableCell>
+      <TableCell>avoid</TableCell>
+      <TableCell>n/a</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>_RecordType</code></TableCell>
+      <TableCell>string</TableCell>
+      <TableCell>Type of record: <code>flowLog</code> for regular flow logs, or <code>newConnection</code>, <code>heartbeat</code>, <code>endConnection</code> for conversation tracking</TableCell>
+      <TableCell><code>type</code></TableCell>
+      <TableCell>yes</TableCell>
+      <TableCell>fine</TableCell>
+      <TableCell>n/a</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

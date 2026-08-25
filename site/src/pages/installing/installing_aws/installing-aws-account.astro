@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-aws-account","text":"Configuring an {{ aws_short }} account"}];
+const headings = [{"depth":1,"slug":"installing-aws-account","text":"Configuring an AWS account"},{"depth":2,"slug":"installation-aws-route53_installing-aws-account","text":"Configuring Route 53"},{"depth":3,"slug":"nw-endpoint-route53_installing-aws-account","text":"Ingress Operator endpoint configuration for AWS Route 53"},{"depth":2,"slug":"installation-aws-limits_installing-aws-account","text":"AWS account limits"},{"depth":2,"slug":"installation-aws-permissions_installing-aws-account","text":"Required AWS permissions for the IAM user"},{"depth":2,"slug":"installation-aws-iam-user_installing-aws-account","text":"Creating an IAM user"},{"depth":2,"slug":"iam-policies-and-aws-authentication_installing-aws-account","text":"IAM Policies and AWS authentication"},{"depth":3,"slug":"installation-aws-permissions-iam-roles_installing-aws-account","text":"Default permissions for IAM instance profiles"},{"depth":3,"slug":"specify-an-existing-iam-role_installing-aws-account","text":"Specifying an existing IAM role"},{"depth":3,"slug":"create-custom-permissions-for-iam-instance-profiles_installing-aws-account","text":"Using AWS IAM Analyzer to create policy templates"},{"depth":2,"slug":"installation-aws-marketplace_installing-aws-account","text":"Supported AWS Marketplace regions"},{"depth":2,"slug":"installation-aws-regions_installing-aws-account","text":"Supported AWS regions"},{"depth":3,"slug":"installation-aws-public_installing-aws-account","text":"AWS public regions"},{"depth":3,"slug":"installation-aws-eusc_region_installing-aws-account","text":"AWS EUSC region"},{"depth":3,"slug":"installation-aws-govcloud_installing-aws-account","text":"AWS GovCloud regions"},{"depth":3,"slug":"installation-aws-c2s_installing-aws-account","text":"AWS SC2S and C2S secret regions"},{"depth":3,"slug":"installation-aws-china_installing-aws-account","text":"AWS China regions"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_aws/installing-aws-account";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring an {{ aws_short }} account";
-const description = "To ensure OpenShift Container Platform can successfully install and run the cluster in {{ aws_first }}, you must configure an {{ aws_short }} account with…" || undefined;
+const description = "To ensure OpenShift Container Platform can successfully install and run the cluster in Amazon Web Services (AWS), you must configure an AWS account with…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_aws"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring an {{ aws_short }} account {#installing-aws-account}\n\nTo ensure OpenShift Container Platform can successfully install and run the cluster in {{ aws_first }}, you must configure an {{ aws_short }} account with the correct identity and permissions before you start the installation.\n\n**Additional resources**\n\n- [Service Limits ({{ aws_short }} documentation)](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)\n- [Regions and Zones ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)\n- [NAT Gateways ({{ aws_short }} documentation)](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)\n- [Elastic IP Addresses ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)\n- [Region map ({{ aws_short }} documentation)](https://aws.amazon.com/about-aws/global-infrastructure)\n- [Elastic load balancing ({{ aws_short }} documentation)](https://aws.amazon.com/elasticloadbalancing)\n\n**Additional resources**\n\n- [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations)\n\n**Additional resources**\n\n- [Quickly install a cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)\n- [Install a cluster with cloud customizations on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)\n- [Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/installing-aws-account.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring an AWS account {#installing-aws-account}\n\nTo ensure OpenShift Container Platform can successfully install and run the cluster in Amazon Web Services (AWS), you must configure an AWS account with the correct identity and permissions before you start the installation.\n\n## Configuring Route 53 {#installation-aws-route53_installing-aws-account}\n\nTo install OpenShift Container Platform, the Amazon Web Services (AWS) account you use must have a dedicated public hosted zone in your Route 53 service. This zone must be authoritative for the domain. The Route 53 service provides cluster DNS resolution and name lookup for external connections to the cluster.\n\n**Procedure**\n\n1. Identify your domain, or subdomain, and registrar. You can transfer an existing domain and registrar or obtain a new one through AWS or another source.\n\n   > [!NOTE]\n   > If you purchase a new domain through AWS, it takes time for the relevant DNS changes to propagate. For more information about purchasing domains through AWS, see [Registering Domain Names Using Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html) in the AWS documentation.\n2. If you are using an existing domain and registrar, migrate its DNS to AWS. See [Making Amazon Route 53 the DNS Service for an Existing Domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/MigratingDNS.html) in the AWS documentation.\n3. Create a public hosted zone for your domain or subdomain. See [Creating a Public Hosted Zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html) in the AWS documentation.\n\n   Use an appropriate root domain, such as `openshiftcorp.com`, or subdomain, such as `clusters.openshiftcorp.com`.\n4. Extract the new authoritative name servers from the hosted zone records. See [Getting the Name Servers for a Public Hosted Zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/GetInfoAboutHostedZone.html) in the AWS documentation.\n5. Update the registrar records for the AWS Route 53 name servers that your domain uses. For example, if you registered your domain to a Route 53 service in a different accounts, see the following topic in the AWS documentation: [Adding or Changing Name Servers or Glue Records](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-name-servers-glue-records.html#domain-name-servers-glue-records-procedure).\n6. If you are using a subdomain, add its delegation records to the parent domain. This gives Amazon Route 53 responsibility for the subdomain. Follow the delegation procedure outlined by the DNS provider of the parent domain. See [Creating a subdomain that uses Amazon Route 53 as the DNS service without migrating the parent domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html) in the AWS documentation for an example high level procedure.\n\n### Ingress Operator endpoint configuration for AWS Route 53 {#nw-endpoint-route53_installing-aws-account}\n\nConfigure Ingress Operator endpoints for OpenShift Container Platform clusters in Amazon Web Services (AWS) GovCloud (US) regions. Verifying these settings helps to ensure that your cluster connects to the correct API endpoints.\n\nIf you install in either AWS GovCloud (US) US-West or US-East region, the Ingress Operator uses `us-gov-west-1` region for Route53 and tagging API clients.\n\nThe Ingress Operator uses `https://tagging.us-gov-west-1.amazonaws.com` as the tagging API endpoint if a tagging custom endpoint is configured that includes the string 'us-gov-east-1'.\n\nFor more information on AWS GovCloud (US) endpoints, see the [Service Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the AWS documentation about GovCloud (US).\n\n> [!IMPORTANT]\n> Private, disconnected installations are not supported for AWS GovCloud when you install in the `us-gov-east-1` region.\n\n```yaml {title=\"Example Route 53 configuration\"}\nplatform:\n  aws:\n    region: us-gov-west-1\n    serviceEndpoints:\n    - name: ec2\n      url: https://ec2.us-gov-west-1.amazonaws.com\n    - name: elasticloadbalancing\n      url: https://elasticloadbalancing.us-gov-west-1.amazonaws.com\n    - name: route53\n      url: https://route53.us-gov.amazonaws.com\n    - name: tagging\n      url: https://tagging.us-gov-west-1.amazonaws.com\n```\n\n++ where: ++\n\n`https://route53.us-gov.amazonaws.com`\n:   Defaults to `https://route53.us-gov.amazonaws.com` for both AWS GovCloud (US) regions.\n\n`https://tagging.us-gov-west-1.amazonaws.com`\n:   Only the US-West region has endpoints for tagging. Omit this parameter if your cluster is in another region.\n\n## AWS account limits {#installation-aws-limits_installing-aws-account}\n\nThe OpenShift Container Platform cluster uses several Amazon Web Services (AWS) components, and the default service limits affect your ability to install OpenShift Container Platform clusters.\n\nIf you use certain cluster configurations, deploy your cluster in certain AWS regions, or run multiple clusters from your account, you might need to request additional resources for your AWS account.\n\nThe following table summarizes the AWS  components whose limits can impact your ability to install and run OpenShift Container Platform clusters.\n\n<table>\n<thead>\n<tr>\n  <th>Component</th>\n  <th>Number of clusters available by default</th>\n  <th>Default AWS limit</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Instance Limits</td>\n  <td>Varies</td>\n  <td>Varies</td>\n  <td>By default, each cluster creates the following instances:<br><br><ul><li>One bootstrap machine, which is removed after installation</li><li>Three control plane nodes</li><li>Three worker nodes</li></ul>These instance type counts are within a new account's default limit. To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, review your account limits to ensure that your cluster can deploy the machines that you need.<br><br>In most regions, the worker machines use an <code>m6i.large</code> instanceand the bootstrap and control plane machines use <code>m6i.xlarge</code> instances. In some regions, including all regions that do not support these instance types, <code>m5.large</code> and <code>m5.xlarge</code> instances are used instead.</td>\n</tr>\n<tr>\n  <td>Elastic IPs (EIPs)</td>\n  <td>0 to 1</td>\n  <td>5 EIPs per account</td>\n  <td>To provision the cluster in a highly available configuration, the installation program creates a public and private subnet for each availability zone within a region.Each private subnet requires a NAT gateway, and each NAT gateway requires a separate elastic IP.Review the AWS region map to determine how many availability zones are in each region. To take advantage of the default high availability, install the cluster in a region with at least three availability zones. To install a cluster in a region with more than five availability zones, you must increase the EIP limit.<br><br><dl><dt>Important</dt><dd>To use the <code>us-east-1</code> region, you must increase the EIP limit for your account.</dd></dl></td>\n</tr>\n<tr>\n  <td>Virtual Private Clouds (VPCs)</td>\n  <td>5</td>\n  <td>5 VPCs per region</td>\n  <td>Each cluster creates its own VPC.</td>\n</tr>\n<tr>\n  <td>Elastic Load Balancing (ELB/NLB)</td>\n  <td>3</td>\n  <td>20 per region</td>\n  <td>By default, each cluster creates internal and external network load balancers for the masterAPI server and a single Classic Load Balancer for the router. Deploying more Kubernetes <code>Service</code> objects with type <code>LoadBalancer</code> will create additional load balancers.</td>\n</tr>\n<tr>\n  <td>NAT Gateways</td>\n  <td>5</td>\n  <td>5 per availability zone</td>\n  <td>The cluster deploys one NAT gateway in each availability zone.</td>\n</tr>\n<tr>\n  <td>Elastic Network Interfaces (ENIs)</td>\n  <td>At least 12</td>\n  <td>350 per region</td>\n  <td>The default installation creates 21 ENIs and an ENI for each availability zonein your region. For example, the <code>us-east-1</code> region contains six availability zones, so a cluster that is deployed in that zone uses 27 ENIs. Review the AWS region map to determine how many availability zones are in each region.<br><br>Additional ENIs are created for additional machines and ELB load balancers that are created by cluster usage and deployed workloads.</td>\n</tr>\n<tr>\n  <td>VPC Gateway</td>\n  <td>20</td>\n  <td>20 per account</td>\n  <td>Each cluster creates a single VPC Gateway for S3 access.</td>\n</tr>\n<tr>\n  <td>S3 buckets</td>\n  <td>99</td>\n  <td>100 buckets per account</td>\n  <td>Because the installation process creates a temporary bucket and the registry component in each cluster creates a bucket, you can create only 99 OpenShift Container Platform clusters per AWS account.</td>\n</tr>\n<tr>\n  <td>Security Groups</td>\n  <td>250</td>\n  <td>2,500 per account</td>\n  <td>Each cluster creates 10 distinct security groups.</td>\n</tr>\n<tr>\n  <td>Security Groups on network interfaces</td>\n  <td>Varies</td>\n  <td>5 per network interface</td>\n  <td>By default, AWS allows 5 security groups per network interface. The installation program creates 2 security groups for compute machines and 3 security groups for control plane machines. If you are installing a cluster into a shared VPC, there are three scenarios in which you must increase this quota:<br><br><ul><li>You specified 4 or more custom security groups for compute machines using the <code>compute.platform.aws.additionalSecurityGroupIDs</code> parameter in the <code>install-config.yaml</code> file.</li><li>You specified 3 or more custom security groups for control plane machines using the <code>controlPlane.platform.aws.additionalSecurityGroupIDs</code> parameter in the <code>install-config.yaml</code> file.</li><li>You specified 3 or more custom security groups for all machines using the <code>platform.aws.defaultMachinePlatform</code> parameter in the <code>install-config.yaml</code> file.</li></ul>You must increase the quota of security groups per network interface to a number greater than or equal to <code>3 + (number of control plane custom security groups OR number of default machine platform custom security groups)</code>, or <code>2 + (number of compute custom security groups OR number of default machine platform custom security groups)</code>, whichever is higher. If you do not specify a sufficient quota, the installation will succeed, but it will generate <code>SecurityGroupsPerInterfaceLimitExceeded</code> errors in the installation log, and the additional security groups will not be applied. The maximum allowed quota is 16 and the maximum number of user-specified security groups is 10.</td>\n</tr>\n</tbody>\n</table>\n\n**Additional resources**\n\n- [Service Limits (AWS documentation)](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)\n- [Regions and Zones (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)\n- [NAT Gateways (AWS documentation)](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)\n- [Elastic IP Addresses (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)\n- [Region map (AWS documentation)](https://aws.amazon.com/about-aws/global-infrastructure)\n- [Elastic load balancing (AWS documentation)](https://aws.amazon.com/elasticloadbalancing)\n\n## Required AWS permissions for the IAM user {#installation-aws-permissions_installing-aws-account}\n\nTo deploy all components of an OpenShift Container Platform cluster, you must grant all the required permissions to the IAM user that you create in Amazon Web Services (AWS).\n\n> [!NOTE]\n> Your IAM user must have the permission `tag:GetResources` in the region `us-east-1` to delete the base cluster resources. As part of the AWS API requirement, the OpenShift Container Platform installation program performs various actions in this region.\n\nWhen you attach the `AdministratorAccess` policy to the IAM user that you create in AWS, you grant that user all of the required permissions. To deploy all components of an OpenShift Container Platform cluster, the IAM user requires the following permissions:\n\n**Required EC2 permissions for installation**\n\n- `ec2:AttachNetworkInterface`\n- `ec2:AuthorizeSecurityGroupEgress`\n- `ec2:AuthorizeSecurityGroupIngress`\n- `ec2:CopyImage`\n- `ec2:CreateNetworkInterface`\n- `ec2:CreateSecurityGroup`\n- `ec2:CreateTags`\n- `ec2:CreateVolume`\n- `ec2:DeleteSecurityGroup`\n- `ec2:DeleteSnapshot`\n- `ec2:DeleteTags`\n- `ec2:DeregisterImage`\n- `ec2:DescribeAccountAttributes`\n- `ec2:DescribeAddresses`\n- `ec2:DescribeAvailabilityZones`\n- `ec2:DescribeDhcpOptions`\n- `ec2:DescribeImages`\n- `ec2:DescribeInstanceAttribute`\n- `ec2:DescribeInstanceCreditSpecifications`\n- `ec2:DescribeInstances`\n- `ec2:DescribeInstanceTypes`\n- `ec2:DescribeInstanceTypeOfferings`\n- `ec2:DescribeInternetGateways`\n- `ec2:DescribeKeyPairs`\n- `ec2:DescribeNatGateways`\n- `ec2:DescribeNetworkAcls`\n- `ec2:DescribeNetworkInterfaces`\n- `ec2:DescribePrefixLists`\n- `ec2:DescribePublicIpv4Pools` (only required if you specify `publicIpv4Pool` in `install-config.yaml`)\n- `ec2:DescribeRegions`\n- `ec2:DescribeRouteTables`\n- `ec2:DescribeSecurityGroupRules`\n- `ec2:DescribeSecurityGroups`\n- `ec2:DescribeSubnets`\n- `ec2:DescribeTags`\n- `ec2:DescribeVolumes`\n- `ec2:DescribeVpcAttribute`\n- `ec2:DescribeVpcClassicLink`\n- `ec2:DescribeVpcClassicLinkDnsSupport`\n- `ec2:DescribeVpcEndpoints`\n- `ec2:DescribeVpcs`\n- `ec2:DisassociateAddress` (only required if you specify `publicIpv4Pool` in `install-config.yaml`)\n- `ec2:GetEbsDefaultKmsKeyId`\n- `ec2:ModifyInstanceAttribute`\n- `ec2:ModifyNetworkInterfaceAttribute`\n- `ec2:RevokeSecurityGroupEgress`\n- `ec2:RevokeSecurityGroupIngress`\n- `ec2:RunInstances`\n- `ec2:TerminateInstances`\n\n**Required permissions for creating network resources during installation**\n\n- `ec2:AllocateAddress`\n- `ec2:AssociateAddress`\n- `ec2:AssociateDhcpOptions`\n- `ec2:AssociateRouteTable`\n- `ec2:AttachInternetGateway`\n- `ec2:CreateDhcpOptions`\n- `ec2:CreateInternetGateway`\n- `ec2:CreateNatGateway`\n- `ec2:CreateRoute`\n- `ec2:CreateRouteTable`\n- `ec2:CreateSubnet`\n- `ec2:CreateVpc`\n- `ec2:CreateVpcEndpoint`\n- `ec2:ModifySubnetAttribute`\n- `ec2:ModifyVpcAttribute`\n\n> [!NOTE]\n> If you use an existing Virtual Private Cloud (VPC), your account does not require these permissions for creating network resources.\n\n**Required Elastic Load Balancing permissions (ELB) for installation**\n\n- `elasticloadbalancing:AddTags`\n- `elasticloadbalancing:ApplySecurityGroupsToLoadBalancer`\n- `elasticloadbalancing:AttachLoadBalancerToSubnets`\n- `elasticloadbalancing:ConfigureHealthCheck`\n- `elasticloadbalancing:CreateListener`\n- `elasticloadbalancing:CreateLoadBalancer`\n- `elasticloadbalancing:CreateLoadBalancerListeners`\n- `elasticloadbalancing:CreateTargetGroup`\n- `elasticloadbalancing:DeleteLoadBalancer`\n- `elasticloadbalancing:DeregisterInstancesFromLoadBalancer`\n- `elasticloadbalancing:DeregisterTargets`\n- `elasticloadbalancing:DescribeInstanceHealth`\n- `elasticloadbalancing:DescribeListeners`\n- `elasticloadbalancing:DescribeLoadBalancerAttributes`\n- `elasticloadbalancing:DescribeLoadBalancers`\n- `elasticloadbalancing:DescribeTags`\n- `elasticloadbalancing:DescribeTargetGroupAttributes`\n- `elasticloadbalancing:DescribeTargetHealth`\n- `elasticloadbalancing:ModifyLoadBalancerAttributes`\n- `elasticloadbalancing:ModifyTargetGroup`\n- `elasticloadbalancing:ModifyTargetGroupAttributes`\n- `elasticloadbalancing:RegisterInstancesWithLoadBalancer`\n- `elasticloadbalancing:RegisterTargets`\n- `elasticloadbalancing:SetLoadBalancerPoliciesOfListener`\n- `elasticloadbalancing:SetSecurityGroups`\n\n> [!IMPORTANT]\n> OpenShift Container Platform uses both the ELB and ELBv2 API services to provision load balancers. The permission list shows permissions required by both services. A known issue exists in the AWS web console where both services use the same `elasticloadbalancing` action prefix but do not recognize the same actions. You can ignore the warnings about the service not recognizing certain `elasticloadbalancing` actions.\n\n**Required IAM permissions for installation**\n\n- `iam:AddRoleToInstanceProfile`\n- `iam:CreateInstanceProfile`\n- `iam:CreateRole`\n- `iam:DeleteInstanceProfile`\n- `iam:DeleteRole`\n- `iam:DeleteRolePolicy`\n- `iam:GetInstanceProfile`\n- `iam:GetRole`\n- `iam:GetRolePolicy`\n- `iam:GetUser`\n- `iam:ListInstanceProfilesForRole`\n- `iam:ListRoles`\n- `iam:ListUsers`\n- `iam:PassRole`\n- `iam:PutRolePolicy`\n- `iam:RemoveRoleFromInstanceProfile`\n- `iam:SimulatePrincipalPolicy`\n- `iam:TagInstanceProfile`\n- `iam:TagRole`\n\n> [!NOTE]\n> - If you specify an existing IAM role in the `install-config.yaml` file, the following IAM permissions are not required: `iam:CreateRole`,`iam:DeleteRole`, `iam:DeleteRolePolicy`, and `iam:PutRolePolicy`.\n> - If you have not created a load balancer in your AWS account, the IAM user also requires the `iam:CreateServiceLinkedRole` permission.\n\n**Required Route 53 permissions for installation**\n\n- `route53:ChangeResourceRecordSets`\n- `route53:ChangeTagsForResource`\n- `route53:CreateHostedZone`\n- `route53:DeleteHostedZone`\n- `route53:GetChange`\n- `route53:GetHostedZone`\n- `route53:ListHostedZones`\n- `route53:ListHostedZonesByName`\n- `route53:ListResourceRecordSets`\n- `route53:ListTagsForResource`\n- `route53:UpdateHostedZoneComment`\n\n**Required Amazon Simple Storage Service (S3) permissions for installation**\n\n- `s3:CreateBucket`\n- `s3:DeleteBucket`\n- `s3:GetAccelerateConfiguration`\n- `s3:GetBucketAcl`\n- `s3:GetBucketCors`\n- `s3:GetBucketLocation`\n- `s3:GetBucketLogging`\n- `s3:GetBucketObjectLockConfiguration`\n- `s3:GetBucketPolicy`\n- `s3:GetBucketRequestPayment`\n- `s3:GetBucketTagging`\n- `s3:GetBucketVersioning`\n- `s3:GetBucketWebsite`\n- `s3:GetEncryptionConfiguration`\n- `s3:GetLifecycleConfiguration`\n- `s3:GetReplicationConfiguration`\n- `s3:ListBucket`\n- `s3:PutBucketAcl`\n- `s3:PutBucketPolicy`\n- `s3:PutBucketTagging`\n- `s3:PutEncryptionConfiguration`\n\n**S3 permissions that cluster Operators require**\n\n- `s3:DeleteObject`\n- `s3:GetObject`\n- `s3:GetObjectAcl`\n- `s3:GetObjectTagging`\n- `s3:GetObjectVersion`\n- `s3:PutObject`\n- `s3:PutObjectAcl`\n- `s3:PutObjectTagging`\n\n**Required permissions to delete base cluster resources**\n\n- `autoscaling:DescribeAutoScalingGroups`\n- `ec2:DeleteNetworkInterface`\n- `ec2:DeletePlacementGroup`\n- `ec2:DeleteVolume`\n- `elasticloadbalancing:DeleteTargetGroup`\n- `elasticloadbalancing:DescribeTargetGroups`\n- `iam:DeleteAccessKey`\n- `iam:DeleteUser`\n- `iam:DeleteUserPolicy`\n- `iam:ListAttachedRolePolicies`\n- `iam:ListInstanceProfiles`\n- `iam:ListRolePolicies`\n- `iam:ListUserPolicies`\n- `s3:DeleteObject`\n- `s3:ListBucketVersions`\n- `tag:GetResources`\n\n**Required permissions to delete network resources**\n\n- `ec2:DeleteDhcpOptions`\n- `ec2:DeleteInternetGateway`\n- `ec2:DeleteNatGateway`\n- `ec2:DeleteRoute`\n- `ec2:DeleteRouteTable`\n- `ec2:DeleteSubnet`\n- `ec2:DeleteVpc`\n- `ec2:DeleteVpcEndpoints`\n- `ec2:DetachInternetGateway`\n- `ec2:DisassociateRouteTable`\n- `ec2:ReleaseAddress`\n- `ec2:ReplaceRouteTableAssociation`\n\n> [!NOTE]\n> If you use an existing VPC, your account does not require these permissions to delete network resources. Instead, your account only requires the `tag:UntagResources` permission to delete network resources.\n\n**Optional permissions for installing a cluster with a custom Key Management Service (KMS) key**\n\n- `kms:CreateGrant`\n- `kms:Decrypt`\n- `kms:DescribeKey`\n- `kms:Encrypt`\n- `kms:GenerateDataKey`\n- `kms:GenerateDataKeyWithoutPlainText`\n- `kms:ListGrants`\n- `kms:RevokeGrant`\n\n> [!NOTE]\n> If you use an Amazon Machine Image (AMI) encrypted with a customer-managed key, you must grant the `kms:ReEncrypt*` permissions in addition to these permissions.\n\n**Required permissions to delete a cluster with shared instance roles**\n\n- `iam:UntagRole`\n\n**Required permissions to delete a cluster with shared instance profiles**\n\n- `tag:UntagResources`\n\n**Additional IAM and S3 permissions required to create manifests**\n\n- `iam:GetUserPolicy`\n- `iam:ListAccessKeys`\n- `iam:PutUserPolicy`\n- `iam:TagUser`\n- `s3:AbortMultipartUpload`\n- `s3:GetBucketPublicAccessBlock`\n- `s3:ListBucket`\n- `s3:ListBucketMultipartUploads`\n- `s3:PutBucketPublicAccessBlock`\n- `s3:PutLifecycleConfiguration`\n\n> [!NOTE]\n> If you are managing your cloud provider credentials with mint mode, the IAM user also requires the `iam:CreateAccessKey` and `iam:CreateUser` permissions.\n\n**Optional permissions for instance and quota checks for installation**\n\n- `servicequotas:ListAWSDefaultServiceQuotas`\n\n**Optional permissions for the cluster owner account when installing a cluster on a shared VPC**\n\n- `sts:AssumeRole`\n\n**Required permissions for enabling Bring your own public IPv4 addresses (BYOIP) feature for installation**\n\n- `ec2:DescribePublicIpv4Pools`\n- `ec2:DisassociateAddress`\n\n**Required permissions to install a cluster with dual-stack networking**\n\n- `ec2:DescribeEgressOnlyInternetGateways`\n- `ec2:CreateEgressOnlyInternetGateway`\n\n**Required permissions to delete a cluster with dual-stack networking**\n\n- `ec2:DeleteEgressOnlyInternetGateway`\n\n## Creating an IAM user {#installation-aws-iam-user_installing-aws-account}\n\nBefore you install OpenShift Container Platform, you must create a secondary IAM administrative user and assign permissions to create the cluster.\n\nEach Amazon Web Services (AWS) account contains a root user account that is based on the email address you used to create the account.\n\n> [!IMPORTANT]\n> This is a highly-privileged account, and it is recommended to use it for only initial account and billing configuration, creating an initial set of users, and securing the account.\n\nAs you complete the [Creating an IAM User in Your AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) procedure in the Amazon Web Services (AWS) documentation, set the following options:\n\n**Procedure**\n\n1. Specify the IAM user name and select `Programmatic access`.\n2. Attach the `AdministratorAccess` policy to ensure that the account has sufficient permission to create the cluster. This policy provides the cluster with the ability to grant credentials to each OpenShift Container Platform component. The cluster grants the components only the credentials that they require.\n\n   > [!NOTE]\n   > While it is possible to create a policy that grants the all of the required AWS permissions and attach it to the user, this is not the preferred option. The cluster will not have the ability to grant additional credentials to individual components, so the same credentials are used by all components.\n3. Optional: Add metadata to the user by attaching tags.\n4. Confirm that the user name that you specified is granted the `AdministratorAccess` policy.\n5. Record the access key ID and secret access key values. You must use these values when you configure your local machine to run the installation program.\n\n   > [!IMPORTANT]\n   > You cannot use a temporary session token that you generated while using a multi-factor authentication device to authenticate to AWS when you deploy a cluster. The cluster continues to use your current AWS credentials to create AWS resources for the entire life of the cluster, so you must use key-based, long-term credentials.\n\n## IAM Policies and AWS authentication {#iam-policies-and-aws-authentication_installing-aws-account}\n\nYou can specify your own IAM roles if required. By default, the installation program creates instance profiles for the bootstrap, control plane, and compute instances with the necessary permissions for the cluster to operate.\n\n> [!NOTE]\n> To enable pulling images from the Amazon Elastic Container Registry (ECR) as a postinstallation task in a single-node OpenShift cluster, you must add the `AmazonEC2ContainerRegistryReadOnly` policy to the IAM role associated with the cluster’s control plane role.\n\nHowever, you can create your own IAM roles and specify them as part of the installation process. You might need to specify your own roles to deploy the cluster or to manage the cluster after installation. For example:\n\n- Your organization’s security policies require that you use a more restrictive set of permissions to install the cluster.\n- After the installation, the cluster is configured with an Operator that requires access to additional services.\n\nIf you choose to specify your own IAM roles, you can take the following steps:\n\n- Begin with the default policies and adapt as required. For more information, see \"Default permissions for IAM instance profiles\".\n- To create a policy template that is based on the cluster’s activity, see \"Using AWS IAM Analyzer to create policy templates\".\n\n### Default permissions for IAM instance profiles {#installation-aws-permissions-iam-roles_installing-aws-account}\n\nTo ensure your cluster operates with the correct security permissions in OpenShift Container Platform, review the default IAM instance profiles created by the installation program.\n\nBy default, the installation program creates IAM instance profiles for the bootstrap, control plane, and compute instances with the necessary permissions for the cluster to operate.\n\nThe following list specifies the default IAM role permissions for control plane instance profiles:\n\n- `ec2:AttachVolume`\n- `ec2:AuthorizeSecurityGroupIngress`\n- `ec2:CreateSecurityGroup`\n- `ec2:CreateTags`\n- `ec2:CreateVolume`\n- `ec2:DeleteSecurityGroup`\n- `ec2:DeleteVolume`\n- `ec2:Describe*`\n- `ec2:DetachVolume`\n- `ec2:ModifyInstanceAttribute`\n- `ec2:ModifyVolume`\n- `ec2:RevokeSecurityGroupIngress`\n- `elasticloadbalancing:AddTags`\n- `elasticloadbalancing:AttachLoadBalancerToSubnets`\n- `elasticloadbalancing:ApplySecurityGroupsToLoadBalancer`\n- `elasticloadbalancing:CreateListener`\n- `elasticloadbalancing:CreateLoadBalancer`\n- `elasticloadbalancing:CreateLoadBalancerPolicy`\n- `elasticloadbalancing:CreateLoadBalancerListeners`\n- `elasticloadbalancing:CreateTargetGroup`\n- `elasticloadbalancing:ConfigureHealthCheck`\n- `elasticloadbalancing:DeleteListener`\n- `elasticloadbalancing:DeleteLoadBalancer`\n- `elasticloadbalancing:DeleteLoadBalancerListeners`\n- `elasticloadbalancing:DeleteTargetGroup`\n- `elasticloadbalancing:DeregisterInstancesFromLoadBalancer`\n- `elasticloadbalancing:DeregisterTargets`\n- `elasticloadbalancing:Describe*`\n- `elasticloadbalancing:DetachLoadBalancerFromSubnets`\n- `elasticloadbalancing:ModifyListener`\n- `elasticloadbalancing:ModifyLoadBalancerAttributes`\n- `elasticloadbalancing:ModifyTargetGroup`\n- `elasticloadbalancing:ModifyTargetGroupAttributes`\n- `elasticloadbalancing:RegisterInstancesWithLoadBalancer`\n- `elasticloadbalancing:RegisterTargets`\n- `elasticloadbalancing:SetLoadBalancerPoliciesForBackendServer`\n- `elasticloadbalancing:SetLoadBalancerPoliciesOfListener`\n- `kms:DescribeKey`\n\nThe following list specifies the default IAM permissions for compute instance profiles:\n\n- `ec2:DescribeInstances`\n- `ec2:DescribeRegions`\n\n### Specifying an existing IAM role {#specify-an-existing-iam-role_installing-aws-account}\n\nInstead of allowing the installation program to create IAM instance profiles with the default permissions, you can use the `install-config.yaml` file to specify an existing IAM role for control plane and compute instances.\n\n**Prerequisites**\n\n- You have an existing `install-config.yaml` file.\n\n**Procedure**\n\n1. Update `compute.platform.aws.iamRole` with an existing role for the compute machines.\n\n   ```yaml {title=\"Sample install-config.yaml file with an IAM role for compute instances\"}\n   compute:\n   - hyperthreading: Enabled\n     name: worker\n     platform:\n       aws:\n         iamRole: ExampleRole\n   ```\n2. Update `controlPlane.platform.aws.iamRole` with an existing role for the control plane machines.\n\n   ```yaml {title=\"Sample install-config.yaml file with an IAM role for control plane instances\"}\n   controlPlane:\n     hyperthreading: Enabled\n     name: master\n     platform:\n       aws:\n         iamRole: ExampleRole\n   ```\n3. Save the file and reference it when installing the OpenShift Container Platform cluster.\n\n   > [!NOTE]\n   > To change or update an IAM account after the cluster has been installed, see [RHOCP 4 AWS cloud-credentials access key is expired](https://access.redhat.com/solutions/4284011) (Red Hat Knowledgebase).\n\n**Additional resources**\n\n- [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations)\n\n### Using AWS IAM Analyzer to create policy templates {#create-custom-permissions-for-iam-instance-profiles_installing-aws-account}\n\nTo reduce security risk, you can use AWS IAM Access Analyzer and CloudTrail to generate and apply minimal, fine-grained IAM policies for cluster control plane and compute instance profiles.\n\nThe minimal set of permissions that the control plane and compute instance profiles require depends on how the cluster is configured for its daily operation.\n\nOne way to determine which permissions the cluster instances require is to use the AWS Identity and Access Management Access Analyzer (IAM Access Analyzer) to create a policy template:\n\n- A policy template contains the permissions the cluster has used over a specified period of time.\n- You can then use the template to create policies with fine-grained permissions.\n\n**Procedure**\n\n1. Ensure that CloudTrail is enabled. CloudTrail records all of the actions and events in your AWS account, including the API calls that are required to create a policy template. For more information, see the AWS documentation for [working with CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-getting-started.html).\n2. Create an instance profile for control plane instances and an instance profile for compute instances. Be sure to assign each role a permissive policy, such as PowerUserAccess. For more information, see the AWS documentation for [creating instance profile roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html).\n3. Install the cluster in a development environment and configure it as required. Be sure to deploy all of applications the cluster will host in a production environment.\n4. Test the cluster thoroughly. Testing the cluster ensures that all of the required API calls are logged.\n5. Use the IAM Access Analyzer to create a policy template for each instance profile. For more information, see the AWS documentation for [generating policies based on the CloudTrail logs](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html).\n6. Create and add a fine-grained policy to each instance profile.\n7. Remove the permissive policy from each instance profile.\n8. Deploy a production cluster using the existing instance profiles with the new policies.\n\n   > [!NOTE]\n   > You can add [IAM Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) to your policy to make it more restrictive and compliant with your organization security requirements.\n\n## Supported AWS Marketplace regions {#installation-aws-marketplace_installing-aws-account}\n\nInstalling an OpenShift Container Platform cluster using an AWS Marketplace image is available to customers who purchase the offer in North America.\n\nWhile the offer must be purchased in North America, you can deploy the cluster to any of the following supported partitions:\n\n- Public\n- GovCloud\n\n> [!NOTE]\n> Deploying a OpenShift Container Platform cluster using an AWS Marketplace image is not supported for the AWS secret regions or China regions.\n\n## Supported AWS regions {#installation-aws-regions_installing-aws-account}\n\nYou can deploy an OpenShift Container Platform cluster to the following regions.\n\n> [!NOTE]\n> Your IAM user must have the permission `tag:GetResources` in the region `us-east-1` to delete the base cluster resources. As part of the AWS API requirement, the OpenShift Container Platform installation program performs various actions in this region.\n\n### AWS public regions {#installation-aws-public_installing-aws-account}\n\nThe following AWS public regions are supported:\n\n- `af-south-1` (Cape Town)\n- `ap-east-1` (Hong Kong)\n- `ap-east-2` (Taipei)\n- `ap-northeast-1` (Tokyo)\n- `ap-northeast-2` (Seoul)\n- `ap-northeast-3` (Osaka)\n- `ap-south-1` (Mumbai)\n- `ap-south-2` (Hyderabad)\n- `ap-southeast-1` (Singapore)\n- `ap-southeast-2` (Sydney)\n- `ap-southeast-3` (Jakarta)\n- `ap-southeast-4` (Melbourne)\n- `ap-southeast-5` (Malaysia)\n- `ap-southeast-6` (New Zealand)\n- `ap-southeast-7` (Thailand)\n- `ca-central-1` (Central Canada)\n- `ca-west-1` (Calgary)\n- `eu-central-1` (Frankfurt)\n- `eu-central-2` (Zurich)\n- `eu-north-1` (Stockholm)\n- `eu-south-1` (Milan)\n- `eu-south-2` (Spain)\n- `eu-west-1` (Ireland)\n- `eu-west-2` (London)\n- `eu-west-3` (Paris)\n- `il-central-1` (Tel Aviv)\n- `me-central-1` (UAE)\n- `me-south-1` (Bahrain)\n- `mx-central-1` (Central Mexico)\n- `sa-east-1` (São Paulo)\n- `us-east-1` (N. Virginia)\n- `us-east-2` (Ohio)\n- `us-west-1` (N. California)\n- `us-west-2` (Oregon)\n\n### AWS EUSC region {#installation-aws-eusc_region_installing-aws-account}\n\n> [!IMPORTANT]\n> European Sovereign Cloud (EUSC) region is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\nInstalling an OpenShift Container Platform cluster into the AWS European Sovereign Cloud (EUSC) region helps maximize the sovereignty of your data and satisfy your organization’s regulatory requirements. The AWS EUSC is separate and independent from other AWS regions. The infrastructure is located wholly within the European Union (EU). For more information, see [Establishing a European trust service provider for the AWS European Sovereign Cloud](https://aws.amazon.com/blogs/security/establishing-a-european-trust-service-provider-for-the-aws-european-sovereign-cloud/) in the AWS documentation.\n\nThe following AWS EUSC region is supported:\n\n- `eusc-de-east-1` (Brandenburg)\n\n> [!IMPORTANT]\n> The following list outlines the limitations that apply to installing an OpenShift Container Platform cluster into the AWS EUSC region:\n>\n> - Only one region, `eusc-de-east-1`, and two zones in that region are available.\n> - The Amazon Machine Images (AMIs) for public Red Hat Enterprise Linux CoreOS (RHCOS) are not yet available in the EUSC region. As a workaround, until the AMI publication for RHCOS is extended to the EUSC region, you must edit your `install-config.yaml` file to specify a custom AMI in the `amiID` field.\n> - Support is not yet provided for the AWS Security Token Service (STS).\n> - Support is not yet provided for installing a cluster into a shared Virtual Private Cloud (VPC) with a cross-account private hosted zone.\n\n### AWS GovCloud regions {#installation-aws-govcloud_installing-aws-account}\n\nThe following AWS GovCloud regions are supported:\n\n- `us-gov-west-1`\n- `us-gov-east-1`\n\n### AWS SC2S and C2S secret regions {#installation-aws-c2s_installing-aws-account}\n\nThe following AWS secret regions are supported:\n\n- `us-isob-east-1` Secret Commercial Cloud Services (SC2S)\n- `us-iso-east-1` Commercial Cloud Services (C2S)\n\n### AWS China regions {#installation-aws-china_installing-aws-account}\n\nThe following AWS China regions are supported:\n\n- `cn-north-1` (Beijing)\n- `cn-northwest-1` (Ningxia)\n\n**Additional resources**\n\n- [Quickly install a cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)\n- [Install a cluster with cloud customizations on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)\n- [Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/installing-aws-account.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,29 +94,612 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="installing-aws-account" class="group scroll-mt-20">Configuring an {"{"}{"{"} aws_short {"}"}{"}"} account<a href="#installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To ensure OpenShift Container Platform can successfully install and run the cluster in {"{"}{"{"} aws_first {"}"}{"}"}, you must configure an {"{"}{"{"} aws_short {"}"}{"}"} account with the correct identity and permissions before you start the installation.</p>
-      <p class="/modules/installation-aws-route53.md"></p>
-      <p class="/modules/nw-endpoint-route53.md"></p>
-      <p class="/modules/installation-aws-limits.md"></p>
+      <h1 id="installing-aws-account" class="group scroll-mt-20">Configuring an AWS account<a href="#installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>To ensure OpenShift Container Platform can successfully install and run the cluster in Amazon Web Services (AWS), you must configure an AWS account with the correct identity and permissions before you start the installation.</p>
+      <h2 id="installation-aws-route53_installing-aws-account" class="group scroll-mt-20">Configuring Route 53<a href="#installation-aws-route53_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To install OpenShift Container Platform, the Amazon Web Services (AWS) account you use must have a dedicated public hosted zone in your Route 53 service. This zone must be authoritative for the domain. The Route 53 service provides cluster DNS resolution and name lookup for external connections to the cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Identify your domain, or subdomain, and registrar. You can transfer an existing domain and registrar or obtain a new one through AWS or another source.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you purchase a new domain through AWS, it takes time for the relevant DNS changes to propagate. For more information about purchasing domains through AWS, see <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html">Registering Domain Names Using Amazon Route 53</a> in the AWS documentation.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>If you are using an existing domain and registrar, migrate its DNS to AWS. See <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/MigratingDNS.html">Making Amazon Route 53 the DNS Service for an Existing Domain</a> in the AWS documentation.</li>
+      <li>
+      Create a public hosted zone for your domain or subdomain. See <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html">Creating a Public Hosted Zone</a> in the AWS documentation.
+      <p>Use an appropriate root domain, such as <code>openshiftcorp.com</code>, or subdomain, such as <code>clusters.openshiftcorp.com</code>.</p>
+      </li>
+      <li>Extract the new authoritative name servers from the hosted zone records. See <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/GetInfoAboutHostedZone.html">Getting the Name Servers for a Public Hosted Zone</a> in the AWS documentation.</li>
+      <li>Update the registrar records for the AWS Route 53 name servers that your domain uses. For example, if you registered your domain to a Route 53 service in a different accounts, see the following topic in the AWS documentation: <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-name-servers-glue-records.html#domain-name-servers-glue-records-procedure">Adding or Changing Name Servers or Glue Records</a>.</li>
+      <li>If you are using a subdomain, add its delegation records to the parent domain. This gives Amazon Route 53 responsibility for the subdomain. Follow the delegation procedure outlined by the DNS provider of the parent domain. See <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html">Creating a subdomain that uses Amazon Route 53 as the DNS service without migrating the parent domain</a> in the AWS documentation for an example high level procedure.</li>
+      </ol>
+      <h3 id="nw-endpoint-route53_installing-aws-account" class="group scroll-mt-20">Ingress Operator endpoint configuration for AWS Route 53<a href="#nw-endpoint-route53_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Configure Ingress Operator endpoints for OpenShift Container Platform clusters in Amazon Web Services (AWS) GovCloud (US) regions. Verifying these settings helps to ensure that your cluster connects to the correct API endpoints.</p>
+      <p>If you install in either AWS GovCloud (US) US-West or US-East region, the Ingress Operator uses <code>us-gov-west-1</code> region for Route53 and tagging API clients.</p>
+      <p>The Ingress Operator uses <code>https://tagging.us-gov-west-1.amazonaws.com</code> as the tagging API endpoint if a tagging custom endpoint is configured that includes the string 'us-gov-east-1'.</p>
+      <p>For more information on AWS GovCloud (US) endpoints, see the <a href="https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html">Service Endpoints</a> in the AWS documentation about GovCloud (US).</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Private, disconnected installations are not supported for AWS GovCloud when you install in the <code>us-gov-east-1</code> region.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"platform:\n  aws:\n    region: us-gov-west-1\n    serviceEndpoints:\n    - name: ec2\n      url: https://ec2.us-gov-west-1.amazonaws.com\n    - name: elasticloadbalancing\n      url: https://elasticloadbalancing.us-gov-west-1.amazonaws.com\n    - name: route53\n      url: https://route53.us-gov.amazonaws.com\n    - name: tagging\n      url: https://tagging.us-gov-west-1.amazonaws.com"} lang="yaml" title="Example Route 53 configuration" />
+      <p>++ where: ++</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>https://route53.us-gov.amazonaws.com</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Defaults to <code>https://route53.us-gov.amazonaws.com</code> for both AWS GovCloud (US) regions.</p></dd>
+      <dt class="font-semibold"><code>https://tagging.us-gov-west-1.amazonaws.com</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Only the US-West region has endpoints for tagging. Omit this parameter if your cluster is in another region.</p></dd>
+      </dl>
+      <h2 id="installation-aws-limits_installing-aws-account" class="group scroll-mt-20">AWS account limits<a href="#installation-aws-limits_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The OpenShift Container Platform cluster uses several Amazon Web Services (AWS) components, and the default service limits affect your ability to install OpenShift Container Platform clusters.</p>
+      <p>If you use certain cluster configurations, deploy your cluster in certain AWS regions, or run multiple clusters from your account, you might need to request additional resources for your AWS account.</p>
+      <p>The following table summarizes the AWS  components whose limits can impact your ability to install and run OpenShift Container Platform clusters.</p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Component</th>\n  <th>Number of clusters available by default</th>\n  <th>Default AWS limit</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Instance Limits</td>\n  <td>Varies</td>\n  <td>Varies</td>\n  <td>By default, each cluster creates the following instances:<br><br><ul><li>One bootstrap machine, which is removed after installation</li><li>Three control plane nodes</li><li>Three worker nodes</li></ul>These instance type counts are within a new account's default limit. To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, review your account limits to ensure that your cluster can deploy the machines that you need.<br><br>In most regions, the worker machines use an <code>m6i.large</code> instanceand the bootstrap and control plane machines use <code>m6i.xlarge</code> instances. In some regions, including all regions that do not support these instance types, <code>m5.large</code> and <code>m5.xlarge</code> instances are used instead.</td>\n</tr>\n<tr>\n  <td>Elastic IPs (EIPs)</td>\n  <td>0 to 1</td>\n  <td>5 EIPs per account</td>\n  <td>To provision the cluster in a highly available configuration, the installation program creates a public and private subnet for each availability zone within a region.Each private subnet requires a NAT gateway, and each NAT gateway requires a separate elastic IP.Review the AWS region map to determine how many availability zones are in each region. To take advantage of the default high availability, install the cluster in a region with at least three availability zones. To install a cluster in a region with more than five availability zones, you must increase the EIP limit.<br><br><dl><dt>Important</dt><dd>To use the <code>us-east-1</code> region, you must increase the EIP limit for your account.</dd></dl></td>\n</tr>\n<tr>\n  <td>Virtual Private Clouds (VPCs)</td>\n  <td>5</td>\n  <td>5 VPCs per region</td>\n  <td>Each cluster creates its own VPC.</td>\n</tr>\n<tr>\n  <td>Elastic Load Balancing (ELB/NLB)</td>\n  <td>3</td>\n  <td>20 per region</td>\n  <td>By default, each cluster creates internal and external network load balancers for the masterAPI server and a single Classic Load Balancer for the router. Deploying more Kubernetes <code>Service</code> objects with type <code>LoadBalancer</code> will create additional load balancers.</td>\n</tr>\n<tr>\n  <td>NAT Gateways</td>\n  <td>5</td>\n  <td>5 per availability zone</td>\n  <td>The cluster deploys one NAT gateway in each availability zone.</td>\n</tr>\n<tr>\n  <td>Elastic Network Interfaces (ENIs)</td>\n  <td>At least 12</td>\n  <td>350 per region</td>\n  <td>The default installation creates 21 ENIs and an ENI for each availability zonein your region. For example, the <code>us-east-1</code> region contains six availability zones, so a cluster that is deployed in that zone uses 27 ENIs. Review the AWS region map to determine how many availability zones are in each region.<br><br>Additional ENIs are created for additional machines and ELB load balancers that are created by cluster usage and deployed workloads.</td>\n</tr>\n<tr>\n  <td>VPC Gateway</td>\n  <td>20</td>\n  <td>20 per account</td>\n  <td>Each cluster creates a single VPC Gateway for S3 access.</td>\n</tr>\n<tr>\n  <td>S3 buckets</td>\n  <td>99</td>\n  <td>100 buckets per account</td>\n  <td>Because the installation process creates a temporary bucket and the registry component in each cluster creates a bucket, you can create only 99 OpenShift Container Platform clusters per AWS account.</td>\n</tr>\n<tr>\n  <td>Security Groups</td>\n  <td>250</td>\n  <td>2,500 per account</td>\n  <td>Each cluster creates 10 distinct security groups.</td>\n</tr>\n<tr>\n  <td>Security Groups on network interfaces</td>\n  <td>Varies</td>\n  <td>5 per network interface</td>\n  <td>By default, AWS allows 5 security groups per network interface. The installation program creates 2 security groups for compute machines and 3 security groups for control plane machines. If you are installing a cluster into a shared VPC, there are three scenarios in which you must increase this quota:<br><br><ul><li>You specified 4 or more custom security groups for compute machines using the <code>compute.platform.aws.additionalSecurityGroupIDs</code> parameter in the <code>install-config.yaml</code> file.</li><li>You specified 3 or more custom security groups for control plane machines using the <code>controlPlane.platform.aws.additionalSecurityGroupIDs</code> parameter in the <code>install-config.yaml</code> file.</li><li>You specified 3 or more custom security groups for all machines using the <code>platform.aws.defaultMachinePlatform</code> parameter in the <code>install-config.yaml</code> file.</li></ul>You must increase the quota of security groups per network interface to a number greater than or equal to <code>3 + (number of control plane custom security groups OR number of default machine platform custom security groups)</code>, or <code>2 + (number of compute custom security groups OR number of default machine platform custom security groups)</code>, whichever is higher. If you do not specify a sufficient quota, the installation will succeed, but it will generate <code>SecurityGroupsPerInterfaceLimitExceeded</code> errors in the installation log, and the additional security groups will not be applied. The maximum allowed quota is 16 and the maximum number of user-specified security groups is 10.</td>\n</tr>\n</tbody>\n</table>\n"} />
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">Service Limits ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">Regions and Zones ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT Gateways ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="https://aws.amazon.com/about-aws/global-infrastructure">Region map ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="https://aws.amazon.com/elasticloadbalancing">Elastic load balancing ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
+      <li><a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">Service Limits (AWS documentation)</a></li>
+      <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">Regions and Zones (AWS documentation)</a></li>
+      <li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT Gateways (AWS documentation)</a></li>
+      <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses (AWS documentation)</a></li>
+      <li><a href="https://aws.amazon.com/about-aws/global-infrastructure">Region map (AWS documentation)</a></li>
+      <li><a href="https://aws.amazon.com/elasticloadbalancing">Elastic load balancing (AWS documentation)</a></li>
       </ul>
-      <p class="/modules/installation-aws-iam-user.md"></p>
-      <p class="/modules/installation-aws-iam-policies-about.md"></p>
-      <p class="/modules/installation-aws-permissions-iam-roles.md"></p>
-      <p class="/modules/installation-aws-add-iam-roles.md"></p>
+      <h2 id="installation-aws-permissions_installing-aws-account" class="group scroll-mt-20">Required AWS permissions for the IAM user<a href="#installation-aws-permissions_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To deploy all components of an OpenShift Container Platform cluster, you must grant all the required permissions to the IAM user that you create in Amazon Web Services (AWS).</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Your IAM user must have the permission <code>tag:GetResources</code> in the region <code>us-east-1</code> to delete the base cluster resources. As part of the AWS API requirement, the OpenShift Container Platform installation program performs various actions in this region.</p>
+        </AlertDescription>
+      </Alert>
+      <p>When you attach the <code>AdministratorAccess</code> policy to the IAM user that you create in AWS, you grant that user all of the required permissions. To deploy all components of an OpenShift Container Platform cluster, the IAM user requires the following permissions:</p>
+      <p><strong>Required EC2 permissions for installation</strong></p>
+      <ul>
+      <li><code>ec2:AttachNetworkInterface</code></li>
+      <li><code>ec2:AuthorizeSecurityGroupEgress</code></li>
+      <li><code>ec2:AuthorizeSecurityGroupIngress</code></li>
+      <li><code>ec2:CopyImage</code></li>
+      <li><code>ec2:CreateNetworkInterface</code></li>
+      <li><code>ec2:CreateSecurityGroup</code></li>
+      <li><code>ec2:CreateTags</code></li>
+      <li><code>ec2:CreateVolume</code></li>
+      <li><code>ec2:DeleteSecurityGroup</code></li>
+      <li><code>ec2:DeleteSnapshot</code></li>
+      <li><code>ec2:DeleteTags</code></li>
+      <li><code>ec2:DeregisterImage</code></li>
+      <li><code>ec2:DescribeAccountAttributes</code></li>
+      <li><code>ec2:DescribeAddresses</code></li>
+      <li><code>ec2:DescribeAvailabilityZones</code></li>
+      <li><code>ec2:DescribeDhcpOptions</code></li>
+      <li><code>ec2:DescribeImages</code></li>
+      <li><code>ec2:DescribeInstanceAttribute</code></li>
+      <li><code>ec2:DescribeInstanceCreditSpecifications</code></li>
+      <li><code>ec2:DescribeInstances</code></li>
+      <li><code>ec2:DescribeInstanceTypes</code></li>
+      <li><code>ec2:DescribeInstanceTypeOfferings</code></li>
+      <li><code>ec2:DescribeInternetGateways</code></li>
+      <li><code>ec2:DescribeKeyPairs</code></li>
+      <li><code>ec2:DescribeNatGateways</code></li>
+      <li><code>ec2:DescribeNetworkAcls</code></li>
+      <li><code>ec2:DescribeNetworkInterfaces</code></li>
+      <li><code>ec2:DescribePrefixLists</code></li>
+      <li><code>ec2:DescribePublicIpv4Pools</code> (only required if you specify <code>publicIpv4Pool</code> in <code>install-config.yaml</code>)</li>
+      <li><code>ec2:DescribeRegions</code></li>
+      <li><code>ec2:DescribeRouteTables</code></li>
+      <li><code>ec2:DescribeSecurityGroupRules</code></li>
+      <li><code>ec2:DescribeSecurityGroups</code></li>
+      <li><code>ec2:DescribeSubnets</code></li>
+      <li><code>ec2:DescribeTags</code></li>
+      <li><code>ec2:DescribeVolumes</code></li>
+      <li><code>ec2:DescribeVpcAttribute</code></li>
+      <li><code>ec2:DescribeVpcClassicLink</code></li>
+      <li><code>ec2:DescribeVpcClassicLinkDnsSupport</code></li>
+      <li><code>ec2:DescribeVpcEndpoints</code></li>
+      <li><code>ec2:DescribeVpcs</code></li>
+      <li><code>ec2:DisassociateAddress</code> (only required if you specify <code>publicIpv4Pool</code> in <code>install-config.yaml</code>)</li>
+      <li><code>ec2:GetEbsDefaultKmsKeyId</code></li>
+      <li><code>ec2:ModifyInstanceAttribute</code></li>
+      <li><code>ec2:ModifyNetworkInterfaceAttribute</code></li>
+      <li><code>ec2:RevokeSecurityGroupEgress</code></li>
+      <li><code>ec2:RevokeSecurityGroupIngress</code></li>
+      <li><code>ec2:RunInstances</code></li>
+      <li><code>ec2:TerminateInstances</code></li>
+      </ul>
+      <p><strong>Required permissions for creating network resources during installation</strong></p>
+      <ul>
+      <li><code>ec2:AllocateAddress</code></li>
+      <li><code>ec2:AssociateAddress</code></li>
+      <li><code>ec2:AssociateDhcpOptions</code></li>
+      <li><code>ec2:AssociateRouteTable</code></li>
+      <li><code>ec2:AttachInternetGateway</code></li>
+      <li><code>ec2:CreateDhcpOptions</code></li>
+      <li><code>ec2:CreateInternetGateway</code></li>
+      <li><code>ec2:CreateNatGateway</code></li>
+      <li><code>ec2:CreateRoute</code></li>
+      <li><code>ec2:CreateRouteTable</code></li>
+      <li><code>ec2:CreateSubnet</code></li>
+      <li><code>ec2:CreateVpc</code></li>
+      <li><code>ec2:CreateVpcEndpoint</code></li>
+      <li><code>ec2:ModifySubnetAttribute</code></li>
+      <li><code>ec2:ModifyVpcAttribute</code></li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you use an existing Virtual Private Cloud (VPC), your account does not require these permissions for creating network resources.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Required Elastic Load Balancing permissions (ELB) for installation</strong></p>
+      <ul>
+      <li><code>elasticloadbalancing:AddTags</code></li>
+      <li><code>elasticloadbalancing:ApplySecurityGroupsToLoadBalancer</code></li>
+      <li><code>elasticloadbalancing:AttachLoadBalancerToSubnets</code></li>
+      <li><code>elasticloadbalancing:ConfigureHealthCheck</code></li>
+      <li><code>elasticloadbalancing:CreateListener</code></li>
+      <li><code>elasticloadbalancing:CreateLoadBalancer</code></li>
+      <li><code>elasticloadbalancing:CreateLoadBalancerListeners</code></li>
+      <li><code>elasticloadbalancing:CreateTargetGroup</code></li>
+      <li><code>elasticloadbalancing:DeleteLoadBalancer</code></li>
+      <li><code>elasticloadbalancing:DeregisterInstancesFromLoadBalancer</code></li>
+      <li><code>elasticloadbalancing:DeregisterTargets</code></li>
+      <li><code>elasticloadbalancing:DescribeInstanceHealth</code></li>
+      <li><code>elasticloadbalancing:DescribeListeners</code></li>
+      <li><code>elasticloadbalancing:DescribeLoadBalancerAttributes</code></li>
+      <li><code>elasticloadbalancing:DescribeLoadBalancers</code></li>
+      <li><code>elasticloadbalancing:DescribeTags</code></li>
+      <li><code>elasticloadbalancing:DescribeTargetGroupAttributes</code></li>
+      <li><code>elasticloadbalancing:DescribeTargetHealth</code></li>
+      <li><code>elasticloadbalancing:ModifyLoadBalancerAttributes</code></li>
+      <li><code>elasticloadbalancing:ModifyTargetGroup</code></li>
+      <li><code>elasticloadbalancing:ModifyTargetGroupAttributes</code></li>
+      <li><code>elasticloadbalancing:RegisterInstancesWithLoadBalancer</code></li>
+      <li><code>elasticloadbalancing:RegisterTargets</code></li>
+      <li><code>elasticloadbalancing:SetLoadBalancerPoliciesOfListener</code></li>
+      <li><code>elasticloadbalancing:SetSecurityGroups</code></li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>OpenShift Container Platform uses both the ELB and ELBv2 API services to provision load balancers. The permission list shows permissions required by both services. A known issue exists in the AWS web console where both services use the same <code>elasticloadbalancing</code> action prefix but do not recognize the same actions. You can ignore the warnings about the service not recognizing certain <code>elasticloadbalancing</code> actions.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Required IAM permissions for installation</strong></p>
+      <ul>
+      <li><code>iam:AddRoleToInstanceProfile</code></li>
+      <li><code>iam:CreateInstanceProfile</code></li>
+      <li><code>iam:CreateRole</code></li>
+      <li><code>iam:DeleteInstanceProfile</code></li>
+      <li><code>iam:DeleteRole</code></li>
+      <li><code>iam:DeleteRolePolicy</code></li>
+      <li><code>iam:GetInstanceProfile</code></li>
+      <li><code>iam:GetRole</code></li>
+      <li><code>iam:GetRolePolicy</code></li>
+      <li><code>iam:GetUser</code></li>
+      <li><code>iam:ListInstanceProfilesForRole</code></li>
+      <li><code>iam:ListRoles</code></li>
+      <li><code>iam:ListUsers</code></li>
+      <li><code>iam:PassRole</code></li>
+      <li><code>iam:PutRolePolicy</code></li>
+      <li><code>iam:RemoveRoleFromInstanceProfile</code></li>
+      <li><code>iam:SimulatePrincipalPolicy</code></li>
+      <li><code>iam:TagInstanceProfile</code></li>
+      <li><code>iam:TagRole</code></li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>If you specify an existing IAM role in the <code>install-config.yaml</code> file, the following IAM permissions are not required: <code>iam:CreateRole</code>,<code>iam:DeleteRole</code>, <code>iam:DeleteRolePolicy</code>, and <code>iam:PutRolePolicy</code>.</li>
+          <li>If you have not created a load balancer in your AWS account, the IAM user also requires the <code>iam:CreateServiceLinkedRole</code> permission.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Required Route 53 permissions for installation</strong></p>
+      <ul>
+      <li><code>route53:ChangeResourceRecordSets</code></li>
+      <li><code>route53:ChangeTagsForResource</code></li>
+      <li><code>route53:CreateHostedZone</code></li>
+      <li><code>route53:DeleteHostedZone</code></li>
+      <li><code>route53:GetChange</code></li>
+      <li><code>route53:GetHostedZone</code></li>
+      <li><code>route53:ListHostedZones</code></li>
+      <li><code>route53:ListHostedZonesByName</code></li>
+      <li><code>route53:ListResourceRecordSets</code></li>
+      <li><code>route53:ListTagsForResource</code></li>
+      <li><code>route53:UpdateHostedZoneComment</code></li>
+      </ul>
+      <p><strong>Required Amazon Simple Storage Service (S3) permissions for installation</strong></p>
+      <ul>
+      <li><code>s3:CreateBucket</code></li>
+      <li><code>s3:DeleteBucket</code></li>
+      <li><code>s3:GetAccelerateConfiguration</code></li>
+      <li><code>s3:GetBucketAcl</code></li>
+      <li><code>s3:GetBucketCors</code></li>
+      <li><code>s3:GetBucketLocation</code></li>
+      <li><code>s3:GetBucketLogging</code></li>
+      <li><code>s3:GetBucketObjectLockConfiguration</code></li>
+      <li><code>s3:GetBucketPolicy</code></li>
+      <li><code>s3:GetBucketRequestPayment</code></li>
+      <li><code>s3:GetBucketTagging</code></li>
+      <li><code>s3:GetBucketVersioning</code></li>
+      <li><code>s3:GetBucketWebsite</code></li>
+      <li><code>s3:GetEncryptionConfiguration</code></li>
+      <li><code>s3:GetLifecycleConfiguration</code></li>
+      <li><code>s3:GetReplicationConfiguration</code></li>
+      <li><code>s3:ListBucket</code></li>
+      <li><code>s3:PutBucketAcl</code></li>
+      <li><code>s3:PutBucketPolicy</code></li>
+      <li><code>s3:PutBucketTagging</code></li>
+      <li><code>s3:PutEncryptionConfiguration</code></li>
+      </ul>
+      <p><strong>S3 permissions that cluster Operators require</strong></p>
+      <ul>
+      <li><code>s3:DeleteObject</code></li>
+      <li><code>s3:GetObject</code></li>
+      <li><code>s3:GetObjectAcl</code></li>
+      <li><code>s3:GetObjectTagging</code></li>
+      <li><code>s3:GetObjectVersion</code></li>
+      <li><code>s3:PutObject</code></li>
+      <li><code>s3:PutObjectAcl</code></li>
+      <li><code>s3:PutObjectTagging</code></li>
+      </ul>
+      <p><strong>Required permissions to delete base cluster resources</strong></p>
+      <ul>
+      <li><code>autoscaling:DescribeAutoScalingGroups</code></li>
+      <li><code>ec2:DeleteNetworkInterface</code></li>
+      <li><code>ec2:DeletePlacementGroup</code></li>
+      <li><code>ec2:DeleteVolume</code></li>
+      <li><code>elasticloadbalancing:DeleteTargetGroup</code></li>
+      <li><code>elasticloadbalancing:DescribeTargetGroups</code></li>
+      <li><code>iam:DeleteAccessKey</code></li>
+      <li><code>iam:DeleteUser</code></li>
+      <li><code>iam:DeleteUserPolicy</code></li>
+      <li><code>iam:ListAttachedRolePolicies</code></li>
+      <li><code>iam:ListInstanceProfiles</code></li>
+      <li><code>iam:ListRolePolicies</code></li>
+      <li><code>iam:ListUserPolicies</code></li>
+      <li><code>s3:DeleteObject</code></li>
+      <li><code>s3:ListBucketVersions</code></li>
+      <li><code>tag:GetResources</code></li>
+      </ul>
+      <p><strong>Required permissions to delete network resources</strong></p>
+      <ul>
+      <li><code>ec2:DeleteDhcpOptions</code></li>
+      <li><code>ec2:DeleteInternetGateway</code></li>
+      <li><code>ec2:DeleteNatGateway</code></li>
+      <li><code>ec2:DeleteRoute</code></li>
+      <li><code>ec2:DeleteRouteTable</code></li>
+      <li><code>ec2:DeleteSubnet</code></li>
+      <li><code>ec2:DeleteVpc</code></li>
+      <li><code>ec2:DeleteVpcEndpoints</code></li>
+      <li><code>ec2:DetachInternetGateway</code></li>
+      <li><code>ec2:DisassociateRouteTable</code></li>
+      <li><code>ec2:ReleaseAddress</code></li>
+      <li><code>ec2:ReplaceRouteTableAssociation</code></li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you use an existing VPC, your account does not require these permissions to delete network resources. Instead, your account only requires the <code>tag:UntagResources</code> permission to delete network resources.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Optional permissions for installing a cluster with a custom Key Management Service (KMS) key</strong></p>
+      <ul>
+      <li><code>kms:CreateGrant</code></li>
+      <li><code>kms:Decrypt</code></li>
+      <li><code>kms:DescribeKey</code></li>
+      <li><code>kms:Encrypt</code></li>
+      <li><code>kms:GenerateDataKey</code></li>
+      <li><code>kms:GenerateDataKeyWithoutPlainText</code></li>
+      <li><code>kms:ListGrants</code></li>
+      <li><code>kms:RevokeGrant</code></li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you use an Amazon Machine Image (AMI) encrypted with a customer-managed key, you must grant the <code>kms:ReEncrypt*</code> permissions in addition to these permissions.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Required permissions to delete a cluster with shared instance roles</strong></p>
+      <ul><li><code>iam:UntagRole</code></li></ul>
+      <p><strong>Required permissions to delete a cluster with shared instance profiles</strong></p>
+      <ul><li><code>tag:UntagResources</code></li></ul>
+      <p><strong>Additional IAM and S3 permissions required to create manifests</strong></p>
+      <ul>
+      <li><code>iam:GetUserPolicy</code></li>
+      <li><code>iam:ListAccessKeys</code></li>
+      <li><code>iam:PutUserPolicy</code></li>
+      <li><code>iam:TagUser</code></li>
+      <li><code>s3:AbortMultipartUpload</code></li>
+      <li><code>s3:GetBucketPublicAccessBlock</code></li>
+      <li><code>s3:ListBucket</code></li>
+      <li><code>s3:ListBucketMultipartUploads</code></li>
+      <li><code>s3:PutBucketPublicAccessBlock</code></li>
+      <li><code>s3:PutLifecycleConfiguration</code></li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you are managing your cloud provider credentials with mint mode, the IAM user also requires the <code>iam:CreateAccessKey</code> and <code>iam:CreateUser</code> permissions.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Optional permissions for instance and quota checks for installation</strong></p>
+      <ul><li><code>servicequotas:ListAWSDefaultServiceQuotas</code></li></ul>
+      <p><strong>Optional permissions for the cluster owner account when installing a cluster on a shared VPC</strong></p>
+      <ul><li><code>sts:AssumeRole</code></li></ul>
+      <p><strong>Required permissions for enabling Bring your own public IPv4 addresses (BYOIP) feature for installation</strong></p>
+      <ul>
+      <li><code>ec2:DescribePublicIpv4Pools</code></li>
+      <li><code>ec2:DisassociateAddress</code></li>
+      </ul>
+      <p><strong>Required permissions to install a cluster with dual-stack networking</strong></p>
+      <ul>
+      <li><code>ec2:DescribeEgressOnlyInternetGateways</code></li>
+      <li><code>ec2:CreateEgressOnlyInternetGateway</code></li>
+      </ul>
+      <p><strong>Required permissions to delete a cluster with dual-stack networking</strong></p>
+      <ul><li><code>ec2:DeleteEgressOnlyInternetGateway</code></li></ul>
+      <h2 id="installation-aws-iam-user_installing-aws-account" class="group scroll-mt-20">Creating an IAM user<a href="#installation-aws-iam-user_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you install OpenShift Container Platform, you must create a secondary IAM administrative user and assign permissions to create the cluster.</p>
+      <p>Each Amazon Web Services (AWS) account contains a root user account that is based on the email address you used to create the account.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>This is a highly-privileged account, and it is recommended to use it for only initial account and billing configuration, creating an initial set of users, and securing the account.</p>
+        </AlertDescription>
+      </Alert>
+      <p>As you complete the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html">Creating an IAM User in Your AWS Account</a> procedure in the Amazon Web Services (AWS) documentation, set the following options:</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Specify the IAM user name and select <code>Programmatic access</code>.</li>
+      <li>
+      Attach the <code>AdministratorAccess</code> policy to ensure that the account has sufficient permission to create the cluster. This policy provides the cluster with the ability to grant credentials to each OpenShift Container Platform component. The cluster grants the components only the credentials that they require.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>While it is possible to create a policy that grants the all of the required AWS permissions and attach it to the user, this is not the preferred option. The cluster will not have the ability to grant additional credentials to individual components, so the same credentials are used by all components.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Optional: Add metadata to the user by attaching tags.</li>
+      <li>Confirm that the user name that you specified is granted the <code>AdministratorAccess</code> policy.</li>
+      <li>
+      Record the access key ID and secret access key values. You must use these values when you configure your local machine to run the installation program.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You cannot use a temporary session token that you generated while using a multi-factor authentication device to authenticate to AWS when you deploy a cluster. The cluster continues to use your current AWS credentials to create AWS resources for the entire life of the cluster, so you must use key-based, long-term credentials.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="iam-policies-and-aws-authentication_installing-aws-account" class="group scroll-mt-20">IAM Policies and AWS authentication<a href="#iam-policies-and-aws-authentication_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can specify your own IAM roles if required. By default, the installation program creates instance profiles for the bootstrap, control plane, and compute instances with the necessary permissions for the cluster to operate.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To enable pulling images from the Amazon Elastic Container Registry (ECR) as a postinstallation task in a single-node OpenShift cluster, you must add the <code>AmazonEC2ContainerRegistryReadOnly</code> policy to the IAM role associated with the cluster’s control plane role.</p>
+        </AlertDescription>
+      </Alert>
+      <p>However, you can create your own IAM roles and specify them as part of the installation process. You might need to specify your own roles to deploy the cluster or to manage the cluster after installation. For example:</p>
+      <ul>
+      <li>Your organization’s security policies require that you use a more restrictive set of permissions to install the cluster.</li>
+      <li>After the installation, the cluster is configured with an Operator that requires access to additional services.</li>
+      </ul>
+      <p>If you choose to specify your own IAM roles, you can take the following steps:</p>
+      <ul>
+      <li>Begin with the default policies and adapt as required. For more information, see "Default permissions for IAM instance profiles".</li>
+      <li>To create a policy template that is based on the cluster’s activity, see "Using AWS IAM Analyzer to create policy templates".</li>
+      </ul>
+      <h3 id="installation-aws-permissions-iam-roles_installing-aws-account" class="group scroll-mt-20">Default permissions for IAM instance profiles<a href="#installation-aws-permissions-iam-roles_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To ensure your cluster operates with the correct security permissions in OpenShift Container Platform, review the default IAM instance profiles created by the installation program.</p>
+      <p>By default, the installation program creates IAM instance profiles for the bootstrap, control plane, and compute instances with the necessary permissions for the cluster to operate.</p>
+      <p>The following list specifies the default IAM role permissions for control plane instance profiles:</p>
+      <ul>
+      <li><code>ec2:AttachVolume</code></li>
+      <li><code>ec2:AuthorizeSecurityGroupIngress</code></li>
+      <li><code>ec2:CreateSecurityGroup</code></li>
+      <li><code>ec2:CreateTags</code></li>
+      <li><code>ec2:CreateVolume</code></li>
+      <li><code>ec2:DeleteSecurityGroup</code></li>
+      <li><code>ec2:DeleteVolume</code></li>
+      <li><code>ec2:Describe*</code></li>
+      <li><code>ec2:DetachVolume</code></li>
+      <li><code>ec2:ModifyInstanceAttribute</code></li>
+      <li><code>ec2:ModifyVolume</code></li>
+      <li><code>ec2:RevokeSecurityGroupIngress</code></li>
+      <li><code>elasticloadbalancing:AddTags</code></li>
+      <li><code>elasticloadbalancing:AttachLoadBalancerToSubnets</code></li>
+      <li><code>elasticloadbalancing:ApplySecurityGroupsToLoadBalancer</code></li>
+      <li><code>elasticloadbalancing:CreateListener</code></li>
+      <li><code>elasticloadbalancing:CreateLoadBalancer</code></li>
+      <li><code>elasticloadbalancing:CreateLoadBalancerPolicy</code></li>
+      <li><code>elasticloadbalancing:CreateLoadBalancerListeners</code></li>
+      <li><code>elasticloadbalancing:CreateTargetGroup</code></li>
+      <li><code>elasticloadbalancing:ConfigureHealthCheck</code></li>
+      <li><code>elasticloadbalancing:DeleteListener</code></li>
+      <li><code>elasticloadbalancing:DeleteLoadBalancer</code></li>
+      <li><code>elasticloadbalancing:DeleteLoadBalancerListeners</code></li>
+      <li><code>elasticloadbalancing:DeleteTargetGroup</code></li>
+      <li><code>elasticloadbalancing:DeregisterInstancesFromLoadBalancer</code></li>
+      <li><code>elasticloadbalancing:DeregisterTargets</code></li>
+      <li><code>elasticloadbalancing:Describe*</code></li>
+      <li><code>elasticloadbalancing:DetachLoadBalancerFromSubnets</code></li>
+      <li><code>elasticloadbalancing:ModifyListener</code></li>
+      <li><code>elasticloadbalancing:ModifyLoadBalancerAttributes</code></li>
+      <li><code>elasticloadbalancing:ModifyTargetGroup</code></li>
+      <li><code>elasticloadbalancing:ModifyTargetGroupAttributes</code></li>
+      <li><code>elasticloadbalancing:RegisterInstancesWithLoadBalancer</code></li>
+      <li><code>elasticloadbalancing:RegisterTargets</code></li>
+      <li><code>elasticloadbalancing:SetLoadBalancerPoliciesForBackendServer</code></li>
+      <li><code>elasticloadbalancing:SetLoadBalancerPoliciesOfListener</code></li>
+      <li><code>kms:DescribeKey</code></li>
+      </ul>
+      <p>The following list specifies the default IAM permissions for compute instance profiles:</p>
+      <ul>
+      <li><code>ec2:DescribeInstances</code></li>
+      <li><code>ec2:DescribeRegions</code></li>
+      </ul>
+      <h3 id="specify-an-existing-iam-role_installing-aws-account" class="group scroll-mt-20">Specifying an existing IAM role<a href="#specify-an-existing-iam-role_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Instead of allowing the installation program to create IAM instance profiles with the default permissions, you can use the <code>install-config.yaml</code> file to specify an existing IAM role for control plane and compute instances.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have an existing <code>install-config.yaml</code> file.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Update <code>compute.platform.aws.iamRole</code> with an existing role for the compute machines.
+      <CodeBlock code={"compute:\n- hyperthreading: Enabled\n  name: worker\n  platform:\n    aws:\n      iamRole: ExampleRole"} lang="yaml" title="Sample install-config.yaml file with an IAM role for compute instances" />
+      </li>
+      <li>
+      Update <code>controlPlane.platform.aws.iamRole</code> with an existing role for the control plane machines.
+      <CodeBlock code={"controlPlane:\n  hyperthreading: Enabled\n  name: master\n  platform:\n    aws:\n      iamRole: ExampleRole"} lang="yaml" title="Sample install-config.yaml file with an IAM role for control plane instances" />
+      </li>
+      <li>
+      Save the file and reference it when installing the OpenShift Container Platform cluster.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To change or update an IAM account after the cluster has been installed, see <a href="https://access.redhat.com/solutions/4284011">RHOCP 4 AWS cloud-credentials access key is expired</a> (Red Hat Knowledgebase).</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations">Deploying the cluster</a></li></ul>
-      <p class="/modules/installation-aws-marketplace.md"></p>
-      <p class="/modules/installation-aws-regions.md"></p>
+      <h3 id="create-custom-permissions-for-iam-instance-profiles_installing-aws-account" class="group scroll-mt-20">Using AWS IAM Analyzer to create policy templates<a href="#create-custom-permissions-for-iam-instance-profiles_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To reduce security risk, you can use AWS IAM Access Analyzer and CloudTrail to generate and apply minimal, fine-grained IAM policies for cluster control plane and compute instance profiles.</p>
+      <p>The minimal set of permissions that the control plane and compute instance profiles require depends on how the cluster is configured for its daily operation.</p>
+      <p>One way to determine which permissions the cluster instances require is to use the AWS Identity and Access Management Access Analyzer (IAM Access Analyzer) to create a policy template:</p>
+      <ul>
+      <li>A policy template contains the permissions the cluster has used over a specified period of time.</li>
+      <li>You can then use the template to create policies with fine-grained permissions.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Ensure that CloudTrail is enabled. CloudTrail records all of the actions and events in your AWS account, including the API calls that are required to create a policy template. For more information, see the AWS documentation for <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-getting-started.html">working with CloudTrail</a>.</li>
+      <li>Create an instance profile for control plane instances and an instance profile for compute instances. Be sure to assign each role a permissive policy, such as PowerUserAccess. For more information, see the AWS documentation for <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html">creating instance profile roles</a>.</li>
+      <li>Install the cluster in a development environment and configure it as required. Be sure to deploy all of applications the cluster will host in a production environment.</li>
+      <li>Test the cluster thoroughly. Testing the cluster ensures that all of the required API calls are logged.</li>
+      <li>Use the IAM Access Analyzer to create a policy template for each instance profile. For more information, see the AWS documentation for <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html">generating policies based on the CloudTrail logs</a>.</li>
+      <li>Create and add a fine-grained policy to each instance profile.</li>
+      <li>Remove the permissive policy from each instance profile.</li>
+      <li>
+      Deploy a production cluster using the existing instance profiles with the new policies.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can add <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html">IAM Conditions</a> to your policy to make it more restrictive and compliant with your organization security requirements.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="installation-aws-marketplace_installing-aws-account" class="group scroll-mt-20">Supported AWS Marketplace regions<a href="#installation-aws-marketplace_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Installing an OpenShift Container Platform cluster using an AWS Marketplace image is available to customers who purchase the offer in North America.</p>
+      <p>While the offer must be purchased in North America, you can deploy the cluster to any of the following supported partitions:</p>
+      <ul>
+      <li>Public</li>
+      <li>GovCloud</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Deploying a OpenShift Container Platform cluster using an AWS Marketplace image is not supported for the AWS secret regions or China regions.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="installation-aws-regions_installing-aws-account" class="group scroll-mt-20">Supported AWS regions<a href="#installation-aws-regions_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can deploy an OpenShift Container Platform cluster to the following regions.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Your IAM user must have the permission <code>tag:GetResources</code> in the region <code>us-east-1</code> to delete the base cluster resources. As part of the AWS API requirement, the OpenShift Container Platform installation program performs various actions in this region.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="installation-aws-public_installing-aws-account" class="group scroll-mt-20">AWS public regions<a href="#installation-aws-public_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following AWS public regions are supported:</p>
+      <ul>
+      <li><code>af-south-1</code> (Cape Town)</li>
+      <li><code>ap-east-1</code> (Hong Kong)</li>
+      <li><code>ap-east-2</code> (Taipei)</li>
+      <li><code>ap-northeast-1</code> (Tokyo)</li>
+      <li><code>ap-northeast-2</code> (Seoul)</li>
+      <li><code>ap-northeast-3</code> (Osaka)</li>
+      <li><code>ap-south-1</code> (Mumbai)</li>
+      <li><code>ap-south-2</code> (Hyderabad)</li>
+      <li><code>ap-southeast-1</code> (Singapore)</li>
+      <li><code>ap-southeast-2</code> (Sydney)</li>
+      <li><code>ap-southeast-3</code> (Jakarta)</li>
+      <li><code>ap-southeast-4</code> (Melbourne)</li>
+      <li><code>ap-southeast-5</code> (Malaysia)</li>
+      <li><code>ap-southeast-6</code> (New Zealand)</li>
+      <li><code>ap-southeast-7</code> (Thailand)</li>
+      <li><code>ca-central-1</code> (Central Canada)</li>
+      <li><code>ca-west-1</code> (Calgary)</li>
+      <li><code>eu-central-1</code> (Frankfurt)</li>
+      <li><code>eu-central-2</code> (Zurich)</li>
+      <li><code>eu-north-1</code> (Stockholm)</li>
+      <li><code>eu-south-1</code> (Milan)</li>
+      <li><code>eu-south-2</code> (Spain)</li>
+      <li><code>eu-west-1</code> (Ireland)</li>
+      <li><code>eu-west-2</code> (London)</li>
+      <li><code>eu-west-3</code> (Paris)</li>
+      <li><code>il-central-1</code> (Tel Aviv)</li>
+      <li><code>me-central-1</code> (UAE)</li>
+      <li><code>me-south-1</code> (Bahrain)</li>
+      <li><code>mx-central-1</code> (Central Mexico)</li>
+      <li><code>sa-east-1</code> (São Paulo)</li>
+      <li><code>us-east-1</code> (N. Virginia)</li>
+      <li><code>us-east-2</code> (Ohio)</li>
+      <li><code>us-west-1</code> (N. California)</li>
+      <li><code>us-west-2</code> (Oregon)</li>
+      </ul>
+      <h3 id="installation-aws-eusc_region_installing-aws-account" class="group scroll-mt-20">AWS EUSC region<a href="#installation-aws-eusc_region_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>European Sovereign Cloud (EUSC) region is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Installing an OpenShift Container Platform cluster into the AWS European Sovereign Cloud (EUSC) region helps maximize the sovereignty of your data and satisfy your organization’s regulatory requirements. The AWS EUSC is separate and independent from other AWS regions. The infrastructure is located wholly within the European Union (EU). For more information, see <a href="https://aws.amazon.com/blogs/security/establishing-a-european-trust-service-provider-for-the-aws-european-sovereign-cloud/">Establishing a European trust service provider for the AWS European Sovereign Cloud</a> in the AWS documentation.</p>
+      <p>The following AWS EUSC region is supported:</p>
+      <ul><li><code>eusc-de-east-1</code> (Brandenburg)</li></ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The following list outlines the limitations that apply to installing an OpenShift Container Platform cluster into the AWS EUSC region:</p>
+          <ul>
+          <li>Only one region, <code>eusc-de-east-1</code>, and two zones in that region are available.</li>
+          <li>The Amazon Machine Images (AMIs) for public Red Hat Enterprise Linux CoreOS (RHCOS) are not yet available in the EUSC region. As a workaround, until the AMI publication for RHCOS is extended to the EUSC region, you must edit your <code>install-config.yaml</code> file to specify a custom AMI in the <code>amiID</code> field.</li>
+          <li>Support is not yet provided for the AWS Security Token Service (STS).</li>
+          <li>Support is not yet provided for installing a cluster into a shared Virtual Private Cloud (VPC) with a cross-account private hosted zone.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <h3 id="installation-aws-govcloud_installing-aws-account" class="group scroll-mt-20">AWS GovCloud regions<a href="#installation-aws-govcloud_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following AWS GovCloud regions are supported:</p>
+      <ul>
+      <li><code>us-gov-west-1</code></li>
+      <li><code>us-gov-east-1</code></li>
+      </ul>
+      <h3 id="installation-aws-c2s_installing-aws-account" class="group scroll-mt-20">AWS SC2S and C2S secret regions<a href="#installation-aws-c2s_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following AWS secret regions are supported:</p>
+      <ul>
+      <li><code>us-isob-east-1</code> Secret Commercial Cloud Services (SC2S)</li>
+      <li><code>us-iso-east-1</code> Commercial Cloud Services (C2S)</li>
+      </ul>
+      <h3 id="installation-aws-china_installing-aws-account" class="group scroll-mt-20">AWS China regions<a href="#installation-aws-china_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following AWS China regions are supported:</p>
+      <ul>
+      <li><code>cn-north-1</code> (Beijing)</li>
+      <li><code>cn-northwest-1</code> (Ningxia)</li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default">Quickly install a cluster</a></li>

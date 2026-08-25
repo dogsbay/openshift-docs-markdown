@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-cma-autoscaling-custom-audit-log","text":"Gathering audit logs"}];
+const headings = [{"depth":1,"slug":"nodes-cma-autoscaling-custom-audit-log","text":"Gathering audit logs"},{"depth":2,"slug":"nodes-cma-autoscaling-custom-audit_nodes-cma-autoscaling-custom-audit-log","text":"Configuring audit logging"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-audit-log";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["nodes","nodes/cma"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Gathering audit logs {#nodes-cma-autoscaling-custom-audit-log}\n\nYou can gather audit logs, which are a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system.\n\nFor example, audit logs can help you understand where an autoscaling request is coming from. This is key information when backends are getting overloaded by autoscaling requests made by user applications and you need to determine which is the troublesome application.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-audit-log.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Gathering audit logs {#nodes-cma-autoscaling-custom-audit-log}\n\nYou can gather audit logs, which are a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system.\n\nFor example, audit logs can help you understand where an autoscaling request is coming from. This is key information when backends are getting overloaded by autoscaling requests made by user applications and you need to determine which is the troublesome application.\n\n## Configuring audit logging {#nodes-cma-autoscaling-custom-audit_nodes-cma-autoscaling-custom-audit-log}\n\nYou can configure auditing for the Custom Metrics Autoscaler Operator by editing the `KedaController` custom resource. The logs are sent to an audit log file on a volume that is secured by using a persistent volume claim in the `KedaController` CR.\n\n**Prerequisites**\n\n- The Custom Metrics Autoscaler Operator must be installed.\n\n**Procedure**\n\n1. Edit the `KedaController` custom resource to add the `auditConfig` stanza:\n\n   ```yaml\n   kind: KedaController\n   apiVersion: keda.sh/v1alpha1\n   metadata:\n     name: keda\n     namespace: openshift-keda\n   spec:\n   # ...\n     metricsServer:\n   # ...\n       auditConfig:\n         logFormat: \"json\" (1)\n         logOutputVolumeClaim: \"pvc-audit-log\" (2)\n         policy:\n           rules: (3)\n           - level: Metadata\n           omitStages: \"RequestReceived\" (4)\n           omitManagedFields: false (5)\n         lifetime: (6)\n           maxAge: \"2\"\n           maxBackup: \"1\"\n           maxSize: \"50\"\n   ```\n\n   1. Specifies the output format of the audit log, either `legacy` or `json`.\n   2. Specifies an existing persistent volume claim for storing the log data. All requests coming to the API server are logged to this persistent volume claim. If you leave this field empty, the log data is sent to stdout.\n   3. Specifies which events should be recorded and what data they should include:\n\n      - `None`: Do not log events.\n      - `Metadata`: Log only the metadata for the request, such as user, timestamp, and so forth. Do not log the request text and the response text. This is the default.\n      - `Request`: Log only the metadata and the request text but not the response text. This option does not apply for non-resource requests.\n      - `RequestResponse`: Log event metadata, request text, and response text. This option does not apply for non-resource requests.\n   4. Specifies stages for which no event is created.\n   5. Specifies whether to omit the managed fields of the request and response bodies from being written to the API audit log, either `true` to omit the fields or `false` to include the fields.\n   6. Specifies the size and lifespan of the audit logs.\n\n      - `maxAge`: The maximum number of days to retain audit log files, based on the timestamp encoded in their filename.\n      - `maxBackup`: The maximum number of audit log files to retain. Set to `0` to retain all audit log files.\n      - `maxSize`: The maximum size in megabytes of an audit log file before it gets rotated.\n\n**Verification**\n\n1. View the audit log file directly:\n\n   1. Obtain the name of the `keda-metrics-apiserver-*` pod:\n\n      ```terminal\n      oc get pod -n openshift-keda\n      ```\n\n      ```terminal {title=\"Example output\"}\n      NAME                                                  READY   STATUS    RESTARTS   AGE\n      custom-metrics-autoscaler-operator-5cb44cd75d-9v4lv   1/1     Running   0          8m20s\n      keda-metrics-apiserver-65c7cc44fd-rrl4r               1/1     Running   0          2m55s\n      keda-operator-776cbb6768-zpj5b                        1/1     Running   0          2m55s\n      ```\n   2. View the log data by using a command similar to the following:\n\n      ```terminal\n      $ oc logs keda-metrics-apiserver-<hash>|grep -i metadata (1)\n      ```\n\n      1. Optional: You can use the `grep` command to specify the log level to display: `Metadata`, `Request`, `RequestResponse`.\n\n         For example:\n\n         ```terminal\n         $ oc logs keda-metrics-apiserver-65c7cc44fd-rrl4r|grep -i metadata\n         ```\n\n         ```terminal {title=\"Example output\"}\n          ...\n         {\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"4c81d41b-3dab-4675-90ce-20b87ce24013\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/healthz\",\"verb\":\"get\",\"user\":{\"username\":\"system:anonymous\",\"groups\":[\"system:unauthenticated\"]},\"sourceIPs\":[\"10.131.0.1\"],\"userAgent\":\"kube-probe/1.28\",\"responseStatus\":{\"metadata\":{},\"code\":200},\"requestReceivedTimestamp\":\"2023-02-16T13:00:03.554567Z\",\"stageTimestamp\":\"2023-02-16T13:00:03.555032Z\",\"annotations\":{\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"\"}}\n          ...\n         ```\n2. Alternatively, you can view a specific log:\n\n   1. Use a command similar to the following to log into the `keda-metrics-apiserver-*` pod:\n\n      ```terminal\n      $ oc rsh pod/keda-metrics-apiserver-<hash> -n openshift-keda\n      ```\n\n      For example:\n\n      ```terminal\n      $ oc rsh pod/keda-metrics-apiserver-65c7cc44fd-rrl4r -n openshift-keda\n      ```\n   2. Change to the `/var/audit-policy/` directory:\n\n      ```terminal\n      sh-4.4$ cd /var/audit-policy/\n      ```\n   3. List the available logs:\n\n      ```terminal\n      sh-4.4$ ls\n      ```\n\n      ```terminal {title=\"Example output\"}\n      log-2023.02.17-14:50  policy.yaml\n      ```\n   4. View the log, as needed:\n\n      ```terminal\n      sh-4.4$ cat <log_name>/<pvc_name>|grep -i <log_level> (1)\n      ```\n\n      1. Optional: You can use the `grep` command to specify the log level to display: `Metadata`, `Request`, `RequestResponse`.\n\n         For example:\n\n         ```terminal\n         sh-4.4$ cat log-2023.02.17-14:50/pvc-audit-log|grep -i Request\n         ```\n\n         ```text {title=\"Example output\"}\n          ...\n         {\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Request\",\"auditID\":\"63e7f68c-04ec-4f4d-8749-bf1656572a41\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/openapi/v2\",\"verb\":\"get\",\"user\":{\"username\":\"system:aggregator\",\"groups\":[\"system:authenticated\"]},\"sourceIPs\":[\"10.128.0.1\"],\"responseStatus\":{\"metadata\":{},\"code\":304},\"requestReceivedTimestamp\":\"2023-02-17T13:12:55.035478Z\",\"stageTimestamp\":\"2023-02-17T13:12:55.038346Z\",\"annotations\":{\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"RBAC: allowed by ClusterRoleBinding \\\"system:discovery\\\" of ClusterRole \\\"system:discovery\\\" to Group \\\"system:authenticated\\\"\"}}\n          ...\n         ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-audit-log.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,99 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-cma-autoscaling-custom-audit-log" class="group scroll-mt-20">Gathering audit logs<a href="#nodes-cma-autoscaling-custom-audit-log" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can gather audit logs, which are a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system.</p>
       <p>For example, audit logs can help you understand where an autoscaling request is coming from. This is key information when backends are getting overloaded by autoscaling requests made by user applications and you need to determine which is the troublesome application.</p>
-      <p class="/modules/nodes-cma-autoscaling-custom-audit.md"></p>
+      <h2 id="nodes-cma-autoscaling-custom-audit_nodes-cma-autoscaling-custom-audit-log" class="group scroll-mt-20">Configuring audit logging<a href="#nodes-cma-autoscaling-custom-audit_nodes-cma-autoscaling-custom-audit-log" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can configure auditing for the Custom Metrics Autoscaler Operator by editing the <code>KedaController</code> custom resource. The logs are sent to an audit log file on a volume that is secured by using a persistent volume claim in the <code>KedaController</code> CR.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>The Custom Metrics Autoscaler Operator must be installed.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>KedaController</code> custom resource to add the <code>auditConfig</code> stanza:
+      <CodeBlock code={"kind: KedaController\napiVersion: keda.sh/v1alpha1\nmetadata:\n  name: keda\n  namespace: openshift-keda\nspec:\n# ...\n  metricsServer:\n# ...\n    auditConfig:\n      logFormat: \"json\" (1)\n      logOutputVolumeClaim: \"pvc-audit-log\" (2)\n      policy:\n        rules: (3)\n        - level: Metadata\n        omitStages: \"RequestReceived\" (4)\n        omitManagedFields: false (5)\n      lifetime: (6)\n        maxAge: \"2\"\n        maxBackup: \"1\"\n        maxSize: \"50\""} lang="yaml" />
+      <ol>
+      <li>Specifies the output format of the audit log, either <code>legacy</code> or <code>json</code>.</li>
+      <li>Specifies an existing persistent volume claim for storing the log data. All requests coming to the API server are logged to this persistent volume claim. If you leave this field empty, the log data is sent to stdout.</li>
+      <li>
+      Specifies which events should be recorded and what data they should include:
+      <ul>
+      <li><code>None</code>: Do not log events.</li>
+      <li><code>Metadata</code>: Log only the metadata for the request, such as user, timestamp, and so forth. Do not log the request text and the response text. This is the default.</li>
+      <li><code>Request</code>: Log only the metadata and the request text but not the response text. This option does not apply for non-resource requests.</li>
+      <li><code>RequestResponse</code>: Log event metadata, request text, and response text. This option does not apply for non-resource requests.</li>
+      </ul>
+      </li>
+      <li>Specifies stages for which no event is created.</li>
+      <li>Specifies whether to omit the managed fields of the request and response bodies from being written to the API audit log, either <code>true</code> to omit the fields or <code>false</code> to include the fields.</li>
+      <li>
+      Specifies the size and lifespan of the audit logs.
+      <ul>
+      <li><code>maxAge</code>: The maximum number of days to retain audit log files, based on the timestamp encoded in their filename.</li>
+      <li><code>maxBackup</code>: The maximum number of audit log files to retain. Set to <code>0</code> to retain all audit log files.</li>
+      <li><code>maxSize</code>: The maximum size in megabytes of an audit log file before it gets rotated.</li>
+      </ul>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      View the audit log file directly:
+      <ol>
+      <li>
+      Obtain the name of the <code>keda-metrics-apiserver-*</code> pod:
+      <CodeBlock code={"oc get pod -n openshift-keda"} lang="terminal" />
+      <CodeBlock code={"NAME                                                  READY   STATUS    RESTARTS   AGE\ncustom-metrics-autoscaler-operator-5cb44cd75d-9v4lv   1/1     Running   0          8m20s\nkeda-metrics-apiserver-65c7cc44fd-rrl4r               1/1     Running   0          2m55s\nkeda-operator-776cbb6768-zpj5b                        1/1     Running   0          2m55s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View the log data by using a command similar to the following:
+      <CodeBlock code={"$ oc logs keda-metrics-apiserver-<hash>|grep -i metadata (1)"} lang="terminal" />
+      <ol>
+      <li>
+      Optional: You can use the <code>grep</code> command to specify the log level to display: <code>Metadata</code>, <code>Request</code>, <code>RequestResponse</code>.
+      <p>For example:</p>
+      <CodeBlock code={"$ oc logs keda-metrics-apiserver-65c7cc44fd-rrl4r|grep -i metadata"} lang="terminal" />
+      <CodeBlock code={" ...\n{\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"4c81d41b-3dab-4675-90ce-20b87ce24013\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/healthz\",\"verb\":\"get\",\"user\":{\"username\":\"system:anonymous\",\"groups\":[\"system:unauthenticated\"]},\"sourceIPs\":[\"10.131.0.1\"],\"userAgent\":\"kube-probe/1.28\",\"responseStatus\":{\"metadata\":{},\"code\":200},\"requestReceivedTimestamp\":\"2023-02-16T13:00:03.554567Z\",\"stageTimestamp\":\"2023-02-16T13:00:03.555032Z\",\"annotations\":{\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"\"}}\n ..."} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Alternatively, you can view a specific log:
+      <ol>
+      <li>
+      Use a command similar to the following to log into the <code>keda-metrics-apiserver-*</code> pod:
+      <CodeBlock code={"$ oc rsh pod/keda-metrics-apiserver-<hash> -n openshift-keda"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc rsh pod/keda-metrics-apiserver-65c7cc44fd-rrl4r -n openshift-keda"} lang="terminal" />
+      </li>
+      <li>
+      Change to the <code>/var/audit-policy/</code> directory:
+      <CodeBlock code={"sh-4.4$ cd /var/audit-policy/"} lang="terminal" />
+      </li>
+      <li>
+      List the available logs:
+      <CodeBlock code={"sh-4.4$ ls"} lang="terminal" />
+      <CodeBlock code={"log-2023.02.17-14:50  policy.yaml"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View the log, as needed:
+      <CodeBlock code={"sh-4.4$ cat <log_name>/<pvc_name>|grep -i <log_level> (1)"} lang="terminal" />
+      <ol>
+      <li>
+      Optional: You can use the <code>grep</code> command to specify the log level to display: <code>Metadata</code>, <code>Request</code>, <code>RequestResponse</code>.
+      <p>For example:</p>
+      <CodeBlock code={"sh-4.4$ cat log-2023.02.17-14:50/pvc-audit-log|grep -i Request"} lang="terminal" />
+      <CodeBlock code={" ...\n{\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Request\",\"auditID\":\"63e7f68c-04ec-4f4d-8749-bf1656572a41\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/openapi/v2\",\"verb\":\"get\",\"user\":{\"username\":\"system:aggregator\",\"groups\":[\"system:authenticated\"]},\"sourceIPs\":[\"10.128.0.1\"],\"responseStatus\":{\"metadata\":{},\"code\":304},\"requestReceivedTimestamp\":\"2023-02-17T13:12:55.035478Z\",\"stageTimestamp\":\"2023-02-17T13:12:55.038346Z\",\"annotations\":{\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"RBAC: allowed by ClusterRoleBinding \\\"system:discovery\\\" of ClusterRole \\\"system:discovery\\\" to Group \\\"system:authenticated\\\"\"}}\n ..."} lang="text" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

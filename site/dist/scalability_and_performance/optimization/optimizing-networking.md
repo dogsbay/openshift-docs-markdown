@@ -22,9 +22,51 @@ For environments where maximum throughput and CPU efficiency are critical, you c
 
 - [OVN-Kubernetes](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#about-ovn-kubernetes)
 
+## Optimizing the MTU for your network {#optimizing-mtu_optimizing-networking}
+
+You can optimize the MTU value of your network so that your network is optimized for throughput or low latency.
+
+There are two important maximum transmission units (MTUs): the network interface controller (NIC) MTU and the cluster network MTU.
+
+The NIC MTU is configured at the time of OpenShift Container Platform installation, and you can also change the MTU of a cluster as a postinstallation task. For more information, see "Changing cluster network MTU".
+
+For a cluster that uses the OVN-Kubernetes plugin, the MTU must be at least `100` bytes less than the maximum supported value of the NIC of your network. If you are optimizing for throughput, choose the largest possible value, such as `8900`. If you are optimizing for lowest latency, choose a lower value.
+
+> [!IMPORTANT]
+> If your cluster uses the OVN-Kubernetes plugin and the network uses a NIC to send and receive unfragmented jumbo frame packets over the network, you must specify `9000` bytes as the MTU value for the NIC so that pods do not fail.
+
 **Additional resources**
 
 - [Changing cluster network MTU](/openshift-docs-markdown/networking/advanced_networking/changing-cluster-network-mtu#changing-cluster-network-mtu)
+
+## Recommended practices for installing large-scale clusters {#recommended-install-practices_optimizing-networking}
+
+When installing large clusters or scaling the cluster to larger node counts, set the cluster network `cidr` accordingly in your `install-config.yaml` file before you install the cluster.
+
+```yaml {title="Example install-config.yaml file with a network configuration for a cluster with a large node count"}
+apiVersion: v1
+metadata:
+  name: cluster-name
+# ...
+networking:
+  clusterNetwork:
+  - cidr: 10.128.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 10.0.0.0/16
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.30.0.0/16
+# ...
+```
+
+- The default cluster network `cidr` `10.128.0.0/14` cannot be used if the cluster size is more than 500 nodes. The `cidr` must be set to `10.128.0.0/12` or `10.128.0.0/10` to support larger node counts beyond 500 nodes.
+
+## Impact of IPsec {#ipsec-impact_optimizing-networking}
+
+Encrypting and decrypting node hosts uses CPU power so performance is affected both in throughput and CPU usage on the nodes when encryption is enabled, regardless of the IP security system being used. To account for performance overhead, review the impact of enabling IPsec.
+
+IPSec encrypts traffic at the IP payload level, before it hits the NIC, protecting fields that would otherwise be used for NIC offloading. This means that some NIC acceleration features might not be usable when IPSec is enabled. This situation leads to decreased throughput and increased CPU usage.
 
 ## Additional resources {#optimizing-networking-additional-resources}
 

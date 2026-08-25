@@ -2,26 +2,26 @@
 title: Introduction to {{ kueue_name }}
 ---
 
-# Introduction to {{ kueue_name }} {#about-kueue}
+# Introduction to Red Hat build of Kueue {#about-kueue}
 
-You can use {{ kueue_name }} to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. {{ kueue_name }} optimizes resource utilization by enforcing quotas and scheduling policies across your workloads.
+You can use Red Hat build of Kueue to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. Red Hat build of Kueue optimizes resource utilization by enforcing quotas and scheduling policies across your workloads.
 
-{{ kueue_name }} can determine when a job waits, is admitted to start by creating pods, or should be *preempted*, meaning that active pods for that job are deleted.
+Red Hat build of Kueue can determine when a job waits, is admitted to start by creating pods, or should be *preempted*, meaning that active pods for that job are deleted.
 
 > [!NOTE]
-> In the context of {{ kueue_name }}, a job can be defined as a one-time or on-demand task that runs to completion.
+> In the context of Red Hat build of Kueue, a job can be defined as a one-time or on-demand task that runs to completion.
 
-{{ kueue_name }} is based on the Kueue open source project.
+Red Hat build of Kueue is based on the Kueue open source project.
 
-{{ kueue_name }} is compatible with environments that use heterogeneous, elastic resources, where many different resource types exist and those resources are capable of dynamic scaling.
+Red Hat build of Kueue is compatible with environments that use heterogeneous, elastic resources, where many different resource types exist and those resources are capable of dynamic scaling.
 
-{{ kueue_name }} does not replace any existing components in a Kubernetes cluster, but instead integrates with the existing Kubernetes API server, scheduler, and cluster autoscaler components.
+Red Hat build of Kueue does not replace any existing components in a Kubernetes cluster, but instead integrates with the existing Kubernetes API server, scheduler, and cluster autoscaler components.
 
-{{ kueue_name }} supports all-or-nothing semantics, where either an entire job with all of its components is admitted to the cluster, or the entire job is rejected if it does not fit on the cluster.
+Red Hat build of Kueue supports all-or-nothing semantics, where either an entire job with all of its components is admitted to the cluster, or the entire job is rejected if it does not fit on the cluster.
 
 ## Personas {#about-kueue-personas}
 
-Different personas exist in a {{ kueue_name }} workflow.
+Different personas exist in a Red Hat build of Kueue workflow.
 
 Batch administrators
 :   Batch administrators manage the cluster infrastructure and establish quotas and queues.
@@ -33,16 +33,16 @@ Serving users
 :   Serving users run jobs on the cluster. For example, to expose a trained AI/ML model for inference.
 
 Platform developers
-:   Platform developers integrate {{ kueue_name }} with other software. They might also contribute to the Kueue open source project.
+:   Platform developers integrate Red Hat build of Kueue with other software. They might also contribute to the Kueue open source project.
 
 ## Workflow overview {#about-kueue-workflow}
 
-The {{ kueue_name }} workflow can be described at a high level as follows:
+The Red Hat build of Kueue workflow can be described at a high level as follows:
 
 1. Batch administrators create and configure `ResourceFlavor`, `LocalQueue`, and `ClusterQueue` resources.
 2. User personas create jobs on the cluster.
 3. The Kubernetes API server validates and accepts job data.
-4. {{ kueue_name }} admits jobs based on configured options, such as order or quota. It injects affinity into the job by using resource flavors, and creates a `Workload` object that corresponds to each job.
+4. Red Hat build of Kueue admits jobs based on configured options, such as order or quota. It injects affinity into the job by using resource flavors, and creates a `Workload` object that corresponds to each job.
 5. The applicable controller for the job type creates pods.
 6. The Kubernetes scheduler assigns pods to a node in the cluster.
 7. The Kubernetes cluster autoscaler provisions more nodes as required.

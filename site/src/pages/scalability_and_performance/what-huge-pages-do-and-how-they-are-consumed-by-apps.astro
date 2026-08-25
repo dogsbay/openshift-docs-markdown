@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"what-huge-pages-do-and-how-they-are-consumed","text":"Optimizing memory management for workloads by using huge pages"}];
+const headings = [{"depth":1,"slug":"what-huge-pages-do-and-how-they-are-consumed","text":"Optimizing memory management for workloads by using huge pages"},{"depth":2,"slug":"what-huge-pages-do_huge-pages","text":"What huge pages do"},{"depth":2,"slug":"how-huge-pages-are-consumed-by-apps_huge-pages","text":"How huge pages are consumed by apps"},{"depth":3,"slug":"huge-pages-allocating-specific-size_huge-pages","text":"Allocating huge pages of a specific size"},{"depth":3,"slug":"huge-pages-requirements_huge-pages","text":"Huge page requirements"},{"depth":2,"slug":"consuming-huge-pages-resource-using-the-downward-api_huge-pages","text":"Consuming huge pages resources using the Downward API"},{"depth":2,"slug":"configuring-huge-pages_huge-pages","text":"Configuring huge pages at boot time"},{"depth":2,"slug":"disable-thp_huge-pages","text":"Disabling transparent huge pages"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/scalability_and_performance/what-huge-pages-do-and-how-they-are-consumed-by-apps";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["scalability_and_performance"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Optimizing memory management for workloads by using huge pages {#what-huge-pages-do-and-how-they-are-consumed}\n\nTo optimize memory management for specific workloads, configure huge pages.\n\n**Additional resources**\n\n- [Allowing containers to consume Downward API objects](/openshift-docs-markdown/nodes/containers/nodes-containers-downward-api#nodes-containers-downward-api)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/what-huge-pages-do-and-how-they-are-consumed-by-apps.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Optimizing memory management for workloads by using huge pages {#what-huge-pages-do-and-how-they-are-consumed}\n\nTo optimize memory management for specific workloads, configure huge pages.\n\n## What huge pages do {#what-huge-pages-do_huge-pages}\n\nTo optimize memory mapping efficiency, understand the function of huge pages. Unlike standard 4Ki blocks, huge pages are larger memory segments that reduce the tracking load on the translation lookaside buffer (TLB) hardware cache.\n\nMemory is managed in blocks known as pages. On most systems, a page is 4Ki; 1Mi of memory is equal to 256 pages; 1Gi of memory is 256,000 pages, and so on. CPUs have a built-in memory management unit that manages a list of these pages in hardware. The translation lookaside buffer (TLB) is a small hardware cache of virtual-to-physical page mappings. If the virtual address passed in a hardware instruction can be found in the TLB, the mapping can be determined quickly. If not, a TLB miss occurs, and the system falls back to slower, software-based address translation, resulting in performance issues. Since the size of the TLB is fixed, the only way to reduce the chance of a TLB miss is to increase the page size.\n\nA huge page is a memory page that is larger than 4Ki. On x86_64 architectures, there are two common huge page sizes: 2Mi and 1Gi. Sizes vary on other architectures. To use huge pages, code must be written so that applications are aware of them. Transparent huge pages (THP) attempt to automate the management of huge pages without application knowledge, but they have limitations. In particular, they are limited to 2Mi page sizes. THP can lead to performance degradation on nodes with high memory utilization or fragmentation because of defragmenting efforts of THP, which can lock memory pages. For this reason, some applications might be designed to or recommend usage of pre-allocated huge pages instead of THP.\n\nIn OpenShift Container Platform, applications in a pod can allocate and consume pre-allocated huge pages.\n\n## How huge pages are consumed by apps {#how-huge-pages-are-consumed-by-apps_huge-pages}\n\nYou must ensure that nodes pre-allocate huge pages in order for the node to report its huge page capacity. A node can only pre-allocate huge pages for a single size.\n\nHuge pages can be consumed through container-level resource requirements by using the resource name `hugepages-<size>`, where size is the most compact binary notation by using integer values supported on a particular node. For example, if a node supports 2048 KiB page sizes, the node exposes a schedulable resource `hugepages-2Mi`. Unlike CPU or memory, huge pages do not support over-commitment.\n\n```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  generateName: hugepages-volume-\nspec:\n  containers:\n  - securityContext:\n      privileged: true\n    image: rhel7:latest\n    command:\n    - sleep\n    - inf\n    name: example\n    volumeMounts:\n    - mountPath: /dev/hugepages\n      name: hugepage\n    resources:\n      limits:\n        hugepages-2Mi: 100Mi\n        memory: \"1Gi\"\n        cpu: \"1\"\n  volumes:\n  - name: hugepage\n    emptyDir:\n      medium: HugePages\n```\n\n- `spec.containers.resources.limits.hugepages-2Mi`: Specifies the amount of memory for `hugepages` as the exact amount to be allocated.\n\n  > [!IMPORTANT]\n  > Do not specify this value as the amount of memory for `hugepages` multiplied by the size of the page. For example, given a huge page size of 2 MB, if you want to use 100 MB of huge-page-backed RAM for your application, then you would allocate 50 huge pages. OpenShift Container Platform handles the math for you. As in the above example, you can specify `100MB` directly.\n\n### Allocating huge pages of a specific size {#huge-pages-allocating-specific-size_huge-pages}\n\nSome platforms support multiple huge page sizes. To allocate huge pages of a specific size, precede the huge pages boot command parameters with a huge page size selection parameter `hugepagesz=<size>`. The `<size>` value must be specified in bytes with an optional scale suffix \\[`kKmMgG`\\]. The default huge page size can be defined with the `default_hugepagesz=<size>` boot parameter.\n\n### Huge page requirements {#huge-pages-requirements_huge-pages}\n\n- Huge page requests must equal the limits. This is the default if limits are specified, but requests are not.\n- Huge pages are isolated at a pod scope. Container isolation is planned in a future iteration.\n- `EmptyDir` volumes backed by huge pages must not consume more huge page memory than the pod request.\n- Applications that consume huge pages via `shmget()` with `SHM_HUGETLB` must run with a supplemental group that matches ***proc/sys/vm/hugetlb_shm_group***.\n\n## Consuming huge pages resources using the Downward API {#consuming-huge-pages-resource-using-the-downward-api_huge-pages}\n\nTo inject information about the huge pages resources consumed by a container, use the Downward API.\n\nYou can inject the resource allocation as environment variables, a volume plugin, or both. Applications that you develop and run in the container can determine the resources that are available by reading the environment variables or files in the specified volumes.\n\n**Procedure**\n\n1. Create a `{{ file_name }}` file that is similar to the following example:\n\n   ```yaml\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     generateName: hugepages-volume-\n     labels:\n       app: hugepages-example\n   spec:\n     containers:\n     - securityContext:\n         capabilities:\n           add: [ \"IPC_LOCK\" ]\n       image: rhel7:latest\n       command:\n       - sleep\n       - inf\n       name: example\n       volumeMounts:\n       - mountPath: /dev/hugepages\n         name: hugepage\n       - mountPath: /etc/podinfo\n         name: podinfo\n       resources:\n         limits:\n           hugepages-1Gi: 2Gi\n           memory: \"1Gi\"\n           cpu: \"1\"\n         requests:\n           hugepages-1Gi: 2Gi\n       env:\n       - name: REQUESTS_HUGEPAGES_1GI\n         valueFrom:\n           resourceFieldRef:\n             containerName: example\n             resource: requests.hugepages-1Gi\n     volumes:\n     - name: hugepage\n       emptyDir:\n         medium: HugePages\n     - name: podinfo\n       downwardAPI:\n         items:\n           - path: \"hugepages_1G_request\"\n             resourceFieldRef:\n               containerName: example\n               resource: requests.hugepages-1Gi\n               divisor: 1Gi\n   ```\n\n   where:\n\n   `spec.containers.securityContext.env.name`\n   :   Specifies what resource to read and use from `requests.hugepages-1Gi` and expose the value as the `REQUESTS_HUGEPAGES_1GI` environment variable.\n\n   `spec.volumes.name.items.path`\n   :   Specifies what resource to read and use from `requests.hugepages-1Gi` and expose the value as the file `/etc/podinfo/hugepages_1G_request`.\n2. Create the pod from the `{{ file_name }}` file by entering the following command:\n\n   ```terminal\n   $ oc create -f {{ file_name }}\n   ```\n\n**Verification**\n\n1. Check the value of the `REQUESTS_HUGEPAGES_1GI` environment variable:\n\n   ```terminal\n   $ oc exec -it $(oc get pods -l app=hugepages-example -o jsonpath='{.items[0].metadata.name}') \\\n        -- env | grep REQUESTS_HUGEPAGES_1GI\n   ```\n\n   ```terminal {title=\"Example output\"}\n   REQUESTS_HUGEPAGES_1GI=2147483648\n   ```\n2. Check the value of the `/etc/podinfo/hugepages_1G_request` file:\n\n   ```terminal\n   $ oc exec -it $(oc get pods -l app=hugepages-example -o jsonpath='{.items[0].metadata.name}') \\\n        -- cat /etc/podinfo/hugepages_1G_request\n   ```\n\n   ```terminal {title=\"Example output\"}\n   2\n   ```\n\n**Additional resources**\n\n- [Allowing containers to consume Downward API objects](/openshift-docs-markdown/nodes/containers/nodes-containers-downward-api#nodes-containers-downward-api)\n\n## Configuring huge pages at boot time {#configuring-huge-pages_huge-pages}\n\nTo ensure nodes in your OpenShift Container Platform cluster pre-allocate memory for specific workloads, reserve huge pages at boot time.\n\nThere are two ways of reserving huge pages: at boot time and at run time. Reserving at boot time increases the possibility of success because the memory has not yet been significantly fragmented. The Node Tuning Operator currently supports boot-time allocation of huge pages on specific nodes.\n\n> [!NOTE]\n> The TuneD boot-loader plugin only supports Red Hat Enterprise Linux CoreOS (RHCOS) compute nodes.\n\n**Procedure**\n\n1. Label all nodes that need the same huge pages setting by a label by entering the following command:\n\n   ```terminal\n   $ oc label node <node_using_hugepages> node-role.kubernetes.io/worker-hp=\n   ```\n2. Create a file with the following content and name it `hugepages-tuned-boottime.yaml`:\n\n   ```yaml\n   apiVersion: tuned.openshift.io/v1\n   kind: Tuned\n   metadata:\n     name: hugepages\n     namespace: openshift-cluster-node-tuning-operator\n   spec:\n     profile:\n     - data: |\n         [main]\n         summary=Boot time configuration for hugepages\n         include=openshift-node\n         [bootloader]\n         cmdline_openshift_node_hugepages=hugepagesz=2M hugepages=50\n       name: openshift-node-hugepages\n\n     recommend:\n     - machineConfigLabels:\n         machineconfiguration.openshift.io/role: \"worker-hp\"\n       priority: 30\n       profile: openshift-node-hugepages\n   # ...\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the `name` of the Tuned resource to `hugepages`.\n\n   `spec.profile`\n   :   Specifies the `profile` section to allocate huge pages.\n\n   `spec.profile.data`\n   :   Specifies the order of parameters. The order is important as some platforms support huge pages of various sizes.\n\n   `spec.recommend.machineConfigLabels`\n   :   Specifies the enablement of a machine config pool based matching.\n3. Create the Tuned `hugepages` object by entering the following command:\n\n   ```terminal\n   $ oc create -f hugepages-tuned-boottime.yaml\n   ```\n4. Create a file with the following content and name it `hugepages-mcp.yaml`:\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfigPool\n   metadata:\n     name: worker-hp\n     labels:\n       worker-hp: \"\"\n   spec:\n     machineConfigSelector:\n       matchExpressions:\n         - {key: machineconfiguration.openshift.io/role, operator: In, values: [worker,worker-hp]}\n     nodeSelector:\n       matchLabels:\n         node-role.kubernetes.io/worker-hp: \"\"\n   ```\n5. Create the machine config pool by entering the following command:\n\n   ```terminal\n   $ oc create -f hugepages-mcp.yaml\n   ```\n\n**Verification**\n\n- To check that enough non-fragmented memory exists and that all the nodes in the `worker-hp` machine config pool now have 50 2Mi huge pages allocated, enter the following command:\n\n  ```terminal\n  $ oc get node <node_using_hugepages> -o jsonpath=\"{.status.allocatable.hugepages-2Mi}\"\n  100Mi\n  ```\n\n## Disabling transparent huge pages {#disable-thp_huge-pages}\n\nIf your application can handle huge pages on its own, you can disable transparent huge pages (THP) to optimally handle huge pages for all types of workloads and avoid the performance regressions that THP can cause.\n\nDisabling THP prevents them from attempting to automate most aspects of creating, managing, and using huge pages. You can disable THP by using the Node Tuning Operator (NTO).\n\n**Procedure**\n\n1. Create a file with the following content and name it `thp-disable-tuned.yaml`:\n\n   ```yaml\n   apiVersion: tuned.openshift.io/v1\n   kind: Tuned\n   metadata:\n     name: thp-workers-profile\n     namespace: openshift-cluster-node-tuning-operator\n   spec:\n     profile:\n     - data: |\n         [main]\n         summary=Custom tuned profile for OpenShift to turn off THP on worker nodes\n         include=openshift-node\n\n         [vm]\n         transparent_hugepages=never\n       name: openshift-thp-never-worker\n\n     recommend:\n     - match:\n       - label: node-role.kubernetes.io/worker\n       priority: 25\n       profile: openshift-thp-never-worker\n   # ...\n   ```\n2. Create the Tuned object by entering the following command:\n\n   ```terminal\n   $ oc create -f thp-disable-tuned.yaml\n   ```\n3. Check the list of active profiles by entering the following command::\n\n   ```terminal\n   $ oc get profile -n openshift-cluster-node-tuning-operator\n   ```\n\n**Verification**\n\n- Log in to one of the nodes and do a regular THP check to verify if the nodes applied the profile successfully:\n\n  ```terminal\n  $ cat /sys/kernel/mm/transparent_hugepage/enabled\n  ```\n\n  ```terminal {title=\"Example output\"}\n  always madvise [never]\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/what-huge-pages-do-and-how-they-are-consumed-by-apps.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,148 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="what-huge-pages-do-and-how-they-are-consumed" class="group scroll-mt-20">Optimizing memory management for workloads by using huge pages<a href="#what-huge-pages-do-and-how-they-are-consumed" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To optimize memory management for specific workloads, configure huge pages.</p>
-      <p class="/modules/what-huge-pages-do.md"></p>
-      <p class="/modules/how-huge-pages-are-consumed-by-apps.md"></p>
-      <p class="/modules/consuming-huge-pages-resource-using-the-downward-api.md"></p>
+      <h2 id="what-huge-pages-do_huge-pages" class="group scroll-mt-20">What huge pages do<a href="#what-huge-pages-do_huge-pages" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To optimize memory mapping efficiency, understand the function of huge pages. Unlike standard 4Ki blocks, huge pages are larger memory segments that reduce the tracking load on the translation lookaside buffer (TLB) hardware cache.</p>
+      <p>Memory is managed in blocks known as pages. On most systems, a page is 4Ki; 1Mi of memory is equal to 256 pages; 1Gi of memory is 256,000 pages, and so on. CPUs have a built-in memory management unit that manages a list of these pages in hardware. The translation lookaside buffer (TLB) is a small hardware cache of virtual-to-physical page mappings. If the virtual address passed in a hardware instruction can be found in the TLB, the mapping can be determined quickly. If not, a TLB miss occurs, and the system falls back to slower, software-based address translation, resulting in performance issues. Since the size of the TLB is fixed, the only way to reduce the chance of a TLB miss is to increase the page size.</p>
+      <p>A huge page is a memory page that is larger than 4Ki. On x86_64 architectures, there are two common huge page sizes: 2Mi and 1Gi. Sizes vary on other architectures. To use huge pages, code must be written so that applications are aware of them. Transparent huge pages (THP) attempt to automate the management of huge pages without application knowledge, but they have limitations. In particular, they are limited to 2Mi page sizes. THP can lead to performance degradation on nodes with high memory utilization or fragmentation because of defragmenting efforts of THP, which can lock memory pages. For this reason, some applications might be designed to or recommend usage of pre-allocated huge pages instead of THP.</p>
+      <p>In OpenShift Container Platform, applications in a pod can allocate and consume pre-allocated huge pages.</p>
+      <h2 id="how-huge-pages-are-consumed-by-apps_huge-pages" class="group scroll-mt-20">How huge pages are consumed by apps<a href="#how-huge-pages-are-consumed-by-apps_huge-pages" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You must ensure that nodes pre-allocate huge pages in order for the node to report its huge page capacity. A node can only pre-allocate huge pages for a single size.</p>
+      <p>Huge pages can be consumed through container-level resource requirements by using the resource name <code>hugepages-&lt;size&gt;</code>, where size is the most compact binary notation by using integer values supported on a particular node. For example, if a node supports 2048 KiB page sizes, the node exposes a schedulable resource <code>hugepages-2Mi</code>. Unlike CPU or memory, huge pages do not support over-commitment.</p>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  generateName: hugepages-volume-\nspec:\n  containers:\n  - securityContext:\n      privileged: true\n    image: rhel7:latest\n    command:\n    - sleep\n    - inf\n    name: example\n    volumeMounts:\n    - mountPath: /dev/hugepages\n      name: hugepage\n    resources:\n      limits:\n        hugepages-2Mi: 100Mi\n        memory: \"1Gi\"\n        cpu: \"1\"\n  volumes:\n  - name: hugepage\n    emptyDir:\n      medium: HugePages"} lang="yaml" />
+      <ul>
+      <li>
+      <code>spec.containers.resources.limits.hugepages-2Mi</code>: Specifies the amount of memory for <code>hugepages</code> as the exact amount to be allocated.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not specify this value as the amount of memory for <code>hugepages</code> multiplied by the size of the page. For example, given a huge page size of 2 MB, if you want to use 100 MB of huge-page-backed RAM for your application, then you would allocate 50 huge pages. OpenShift Container Platform handles the math for you. As in the above example, you can specify <code>100MB</code> directly.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h3 id="huge-pages-allocating-specific-size_huge-pages" class="group scroll-mt-20">Allocating huge pages of a specific size<a href="#huge-pages-allocating-specific-size_huge-pages" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Some platforms support multiple huge page sizes. To allocate huge pages of a specific size, precede the huge pages boot command parameters with a huge page size selection parameter <code>hugepagesz=&lt;size&gt;</code>. The <code>&lt;size&gt;</code> value must be specified in bytes with an optional scale suffix [<code>kKmMgG</code>]. The default huge page size can be defined with the <code>default_hugepagesz=&lt;size&gt;</code> boot parameter.</p>
+      <h3 id="huge-pages-requirements_huge-pages" class="group scroll-mt-20">Huge page requirements<a href="#huge-pages-requirements_huge-pages" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul>
+      <li>Huge page requests must equal the limits. This is the default if limits are specified, but requests are not.</li>
+      <li>Huge pages are isolated at a pod scope. Container isolation is planned in a future iteration.</li>
+      <li><code>EmptyDir</code> volumes backed by huge pages must not consume more huge page memory than the pod request.</li>
+      <li>Applications that consume huge pages via <code>shmget()</code> with <code>SHM_HUGETLB</code> must run with a supplemental group that matches <em><strong>proc/sys/vm/hugetlb_shm_group</strong></em>.</li>
+      </ul>
+      <h2 id="consuming-huge-pages-resource-using-the-downward-api_huge-pages" class="group scroll-mt-20">Consuming huge pages resources using the Downward API<a href="#consuming-huge-pages-resource-using-the-downward-api_huge-pages" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To inject information about the huge pages resources consumed by a container, use the Downward API.</p>
+      <p>You can inject the resource allocation as environment variables, a volume plugin, or both. Applications that you develop and run in the container can determine the resources that are available by reading the environment variables or files in the specified volumes.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>{"{"}{"{"} file_name {"}"}{"}"}</code> file that is similar to the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  generateName: hugepages-volume-\n  labels:\n    app: hugepages-example\nspec:\n  containers:\n  - securityContext:\n      capabilities:\n        add: [ \"IPC_LOCK\" ]\n    image: rhel7:latest\n    command:\n    - sleep\n    - inf\n    name: example\n    volumeMounts:\n    - mountPath: /dev/hugepages\n      name: hugepage\n    - mountPath: /etc/podinfo\n      name: podinfo\n    resources:\n      limits:\n        hugepages-1Gi: 2Gi\n        memory: \"1Gi\"\n        cpu: \"1\"\n      requests:\n        hugepages-1Gi: 2Gi\n    env:\n    - name: REQUESTS_HUGEPAGES_1GI\n      valueFrom:\n        resourceFieldRef:\n          containerName: example\n          resource: requests.hugepages-1Gi\n  volumes:\n  - name: hugepage\n    emptyDir:\n      medium: HugePages\n  - name: podinfo\n    downwardAPI:\n      items:\n        - path: \"hugepages_1G_request\"\n          resourceFieldRef:\n            containerName: example\n            resource: requests.hugepages-1Gi\n            divisor: 1Gi"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.containers.securityContext.env.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies what resource to read and use from <code>requests.hugepages-1Gi</code> and expose the value as the <code>REQUESTS_HUGEPAGES_1GI</code> environment variable.</p></dd>
+      <dt class="font-semibold"><code>spec.volumes.name.items.path</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies what resource to read and use from <code>requests.hugepages-1Gi</code> and expose the value as the file <code>/etc/podinfo/hugepages_1G_request</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the pod from the <code>{"{"}{"{"} file_name {"}"}{"}"}</code> file by entering the following command:
+      <CodeBlock code={"$ oc create -f {{ file_name }}"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Check the value of the <code>REQUESTS_HUGEPAGES_1GI</code> environment variable:
+      <CodeBlock code={"$ oc exec -it $(oc get pods -l app=hugepages-example -o jsonpath='{.items[0].metadata.name}') \\\n     -- env | grep REQUESTS_HUGEPAGES_1GI"} lang="terminal" />
+      <CodeBlock code={"REQUESTS_HUGEPAGES_1GI=2147483648"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check the value of the <code>/etc/podinfo/hugepages_1G_request</code> file:
+      <CodeBlock code={"$ oc exec -it $(oc get pods -l app=hugepages-example -o jsonpath='{.items[0].metadata.name}') \\\n     -- cat /etc/podinfo/hugepages_1G_request"} lang="terminal" />
+      <CodeBlock code={"2"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/nodes/containers/nodes-containers-downward-api#nodes-containers-downward-api">Allowing containers to consume Downward API objects</a></li></ul>
-      <p class="/modules/disabling-transparent-huge-pages.md"></p>
+      <h2 id="configuring-huge-pages_huge-pages" class="group scroll-mt-20">Configuring huge pages at boot time<a href="#configuring-huge-pages_huge-pages" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To ensure nodes in your OpenShift Container Platform cluster pre-allocate memory for specific workloads, reserve huge pages at boot time.</p>
+      <p>There are two ways of reserving huge pages: at boot time and at run time. Reserving at boot time increases the possibility of success because the memory has not yet been significantly fragmented. The Node Tuning Operator currently supports boot-time allocation of huge pages on specific nodes.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The TuneD boot-loader plugin only supports Red Hat Enterprise Linux CoreOS (RHCOS) compute nodes.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Label all nodes that need the same huge pages setting by a label by entering the following command:
+      <CodeBlock code={"$ oc label node <node_using_hugepages> node-role.kubernetes.io/worker-hp="} lang="terminal" />
+      </li>
+      <li>
+      Create a file with the following content and name it <code>hugepages-tuned-boottime.yaml</code>:
+      <CodeBlock code={"apiVersion: tuned.openshift.io/v1\nkind: Tuned\nmetadata:\n  name: hugepages\n  namespace: openshift-cluster-node-tuning-operator\nspec:\n  profile:\n  - data: |\n      [main]\n      summary=Boot time configuration for hugepages\n      include=openshift-node\n      [bootloader]\n      cmdline_openshift_node_hugepages=hugepagesz=2M hugepages=50\n    name: openshift-node-hugepages\n\n  recommend:\n  - machineConfigLabels:\n      machineconfiguration.openshift.io/role: \"worker-hp\"\n    priority: 30\n    profile: openshift-node-hugepages\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>name</code> of the Tuned resource to <code>hugepages</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.profile</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>profile</code> section to allocate huge pages.</p></dd>
+      <dt class="font-semibold"><code>spec.profile.data</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the order of parameters. The order is important as some platforms support huge pages of various sizes.</p></dd>
+      <dt class="font-semibold"><code>spec.recommend.machineConfigLabels</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the enablement of a machine config pool based matching.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the Tuned <code>hugepages</code> object by entering the following command:
+      <CodeBlock code={"$ oc create -f hugepages-tuned-boottime.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create a file with the following content and name it <code>hugepages-mcp.yaml</code>:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfigPool\nmetadata:\n  name: worker-hp\n  labels:\n    worker-hp: \"\"\nspec:\n  machineConfigSelector:\n    matchExpressions:\n      - {key: machineconfiguration.openshift.io/role, operator: In, values: [worker,worker-hp]}\n  nodeSelector:\n    matchLabels:\n      node-role.kubernetes.io/worker-hp: \"\""} lang="yaml" />
+      </li>
+      <li>
+      Create the machine config pool by entering the following command:
+      <CodeBlock code={"$ oc create -f hugepages-mcp.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To check that enough non-fragmented memory exists and that all the nodes in the <code>worker-hp</code> machine config pool now have 50 2Mi huge pages allocated, enter the following command:
+      <CodeBlock code={"$ oc get node <node_using_hugepages> -o jsonpath=\"{.status.allocatable.hugepages-2Mi}\"\n100Mi"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="disable-thp_huge-pages" class="group scroll-mt-20">Disabling transparent huge pages<a href="#disable-thp_huge-pages" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If your application can handle huge pages on its own, you can disable transparent huge pages (THP) to optimally handle huge pages for all types of workloads and avoid the performance regressions that THP can cause.</p>
+      <p>Disabling THP prevents them from attempting to automate most aspects of creating, managing, and using huge pages. You can disable THP by using the Node Tuning Operator (NTO).</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a file with the following content and name it <code>thp-disable-tuned.yaml</code>:
+      <CodeBlock code={"apiVersion: tuned.openshift.io/v1\nkind: Tuned\nmetadata:\n  name: thp-workers-profile\n  namespace: openshift-cluster-node-tuning-operator\nspec:\n  profile:\n  - data: |\n      [main]\n      summary=Custom tuned profile for OpenShift to turn off THP on worker nodes\n      include=openshift-node\n\n      [vm]\n      transparent_hugepages=never\n    name: openshift-thp-never-worker\n\n  recommend:\n  - match:\n    - label: node-role.kubernetes.io/worker\n    priority: 25\n    profile: openshift-thp-never-worker\n# ..."} lang="yaml" />
+      </li>
+      <li>
+      Create the Tuned object by entering the following command:
+      <CodeBlock code={"$ oc create -f thp-disable-tuned.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Check the list of active profiles by entering the following command::
+      <CodeBlock code={"$ oc get profile -n openshift-cluster-node-tuning-operator"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Log in to one of the nodes and do a regular THP check to verify if the nodes applied the profile successfully:
+      <CodeBlock code={"$ cat /sys/kernel/mm/transparent_hugepage/enabled"} lang="terminal" />
+      <CodeBlock code={"always madvise [never]"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

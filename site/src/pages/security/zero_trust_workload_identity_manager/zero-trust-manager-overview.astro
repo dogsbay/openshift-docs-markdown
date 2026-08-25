@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"zero-trust-manager-overview","text":"Zero Trust Workload Identity Manager overview"}];
+const headings = [{"depth":1,"slug":"zero-trust-manager-overview","text":"Zero Trust Workload Identity Manager overview"},{"depth":2,"slug":"zero-trust-manager-about-spiffe_zero-trust-manager-overview","text":"SPIFFE"},{"depth":2,"slug":"zero-trust-manager-about-spire_zero-trust-manager-overview","text":"SPIRE Server"},{"depth":2,"slug":"zero-trust-manager-about-agent_zero-trust-manager-overview","text":"SPIRE Agent"},{"depth":2,"slug":"zero-trust-manager-about-attestation_zero-trust-manager-overview","text":"Attestation"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Zero Trust Workload Identity Manager overview";
-const description = "The {{ zero_trust_full }} is an OpenShift Container Platform Operator that manages the lifecycle of SPIFFE Runtime Environment (SPIRE) components. It…" || undefined;
+const description = "The Zero Trust Workload Identity Manager is an OpenShift Container Platform Operator that manages the lifecycle of SPIFFE Runtime Environment (SPIRE)…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["security","security/zero_trust_workload_identity_manager"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Zero Trust Workload Identity Manager overview {#zero-trust-manager-overview}\n\nThe {{ zero_trust_full }} is an OpenShift Container Platform Operator that manages the lifecycle of SPIFFE Runtime Environment (SPIRE) components. It enables workload identity management based on the Secure Production Identity Framework for Everyone (SPIFFE) standard, providing cryptographically verifiable identities (SVIDs) to workloads running in OpenShift Container Platform clusters.\n\nThe following are  components of the {{ zero_trust_full }} architecture:\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Zero Trust Workload Identity Manager overview {#zero-trust-manager-overview}\n\nThe Zero Trust Workload Identity Manager is an OpenShift Container Platform Operator that manages the lifecycle of SPIFFE Runtime Environment (SPIRE) components. It enables workload identity management based on the Secure Production Identity Framework for Everyone (SPIFFE) standard, providing cryptographically verifiable identities (SVIDs) to workloads running in OpenShift Container Platform clusters.\n\nThe following are  components of the Zero Trust Workload Identity Manager architecture:\n\n## SPIFFE {#zero-trust-manager-about-spiffe_zero-trust-manager-overview}\n\nEstablish trust between software workloads in distributed systems with Secure Production Identity Framework for Everyone (SPIFFE). SPIFFE assigns unique IDs to workloads, allowing workloads to verify identities and communicate securely. This ensures secure authentication across dynamic environments.\n\nThe SPIFFE IDs are contained in the SPIFFE Verifiable Identity Document (SVID). SVIDs are used by workloads to verify their identity to other workloads so that the workloads can communicate with each other. The two main SVID formats are:\n\n- X.509-SVIDs: X.509 certificates where the SPIFFE ID is embedded in the Subject Alternative Name (SAN) field.\n- JWT-SVIDs: JSON Web Tokens (JWTs) where the SPIFFE ID is included as the `sub` claim.\n\nFor more information, see [SPIFFE Overview](https://spiffe.io/docs/latest/spiffe-about/overview/).\n\n## SPIRE Server {#zero-trust-manager-about-spire_zero-trust-manager-overview}\n\nThe SPIRE Server is the central management component of SPIRE that issues SPIFFE identities and maintains the registration database for a trust domain.\n\n- [About the SPIRE Server](https://spiffe.io/docs/latest/spire-about/spire-concepts/#all-about-the-server)\n\n## SPIRE Agent {#zero-trust-manager-about-agent_zero-trust-manager-overview}\n\nThe SPIRE Agent performs workload attestation to ensure that workloads receive a verified identity when requesting authentication through the SPIFFE Workload API. The agent uses configured workload attestor plugins to verify these identities.\n\nSPIRE and the SPIRE Agent perform node attestation via node plugins. The plugins are used to verify the identity of the node on which the agent is running. For more information, see [About the SPIRE Agent](https://spiffe.io/docs/latest/spire-about/spire-concepts/#all-about-the-agent).\n\n## Attestation {#zero-trust-manager-about-attestation_zero-trust-manager-overview}\n\nThe attestation process verifies the identity of nodes and workloads before issuing SPIFFE IDs. By comparing attributes against defined selectors, this process ensures that only legitimate entities within the trust domain receive cryptographic credentials.\n\nThe two main types of attestation in SPIFFE/SPIRE are:\n\n- Node attestation: verifies the identity of a machine or a node on a system, before a SPIRE Agent running on that node can be trusted to request identities for workloads.\n- Workload attestation: verifies the identity of an application or service running on an attested node before the SPIRE Agent on that node can provide it with a SPIFFE ID and SVID.\n\nFor more information, see [Attestation](https://spiffe.io/docs/latest/spire-about/spire-concepts/#attestation).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +91,33 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="zero-trust-manager-overview" class="group scroll-mt-20">Zero Trust Workload Identity Manager overview<a href="#zero-trust-manager-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>The {"{"}{"{"} zero_trust_full {"}"}{"}"} is an OpenShift Container Platform Operator that manages the lifecycle of SPIFFE Runtime Environment (SPIRE) components. It enables workload identity management based on the Secure Production Identity Framework for Everyone (SPIFFE) standard, providing cryptographically verifiable identities (SVIDs) to workloads running in OpenShift Container Platform clusters.</p>
-      <p>The following are  components of the {"{"}{"{"} zero_trust_full {"}"}{"}"} architecture:</p>
-      <p class="/modules/zero-trust-manager-about-spiffe.md"></p>
-      <p class="/modules/zero-trust-manager-about-spire.md"></p>
-      <p class="/modules/zero-trust-manager-about-agent.md"></p>
-      <p class="/modules/zero-trust-manager-about-attestation.md"></p>
+      <p>The Zero Trust Workload Identity Manager is an OpenShift Container Platform Operator that manages the lifecycle of SPIFFE Runtime Environment (SPIRE) components. It enables workload identity management based on the Secure Production Identity Framework for Everyone (SPIFFE) standard, providing cryptographically verifiable identities (SVIDs) to workloads running in OpenShift Container Platform clusters.</p>
+      <p>The following are  components of the Zero Trust Workload Identity Manager architecture:</p>
+      <h2 id="zero-trust-manager-about-spiffe_zero-trust-manager-overview" class="group scroll-mt-20">SPIFFE<a href="#zero-trust-manager-about-spiffe_zero-trust-manager-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Establish trust between software workloads in distributed systems with Secure Production Identity Framework for Everyone (SPIFFE). SPIFFE assigns unique IDs to workloads, allowing workloads to verify identities and communicate securely. This ensures secure authentication across dynamic environments.</p>
+      <p>The SPIFFE IDs are contained in the SPIFFE Verifiable Identity Document (SVID). SVIDs are used by workloads to verify their identity to other workloads so that the workloads can communicate with each other. The two main SVID formats are:</p>
+      <ul>
+      <li>X.509-SVIDs: X.509 certificates where the SPIFFE ID is embedded in the Subject Alternative Name (SAN) field.</li>
+      <li>JWT-SVIDs: JSON Web Tokens (JWTs) where the SPIFFE ID is included as the <code>sub</code> claim.</li>
+      </ul>
+      <p>For more information, see <a href="https://spiffe.io/docs/latest/spiffe-about/overview/">SPIFFE Overview</a>.</p>
+      <h2 id="zero-trust-manager-about-spire_zero-trust-manager-overview" class="group scroll-mt-20">SPIRE Server<a href="#zero-trust-manager-about-spire_zero-trust-manager-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The SPIRE Server is the central management component of SPIRE that issues SPIFFE identities and maintains the registration database for a trust domain. </p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://spiffe.io/docs/latest/spire-about/spire-concepts/#all-about-the-server">About the SPIRE Server</a></li></ul>
+      </section>
+      <h2 id="zero-trust-manager-about-agent_zero-trust-manager-overview" class="group scroll-mt-20">SPIRE Agent<a href="#zero-trust-manager-about-agent_zero-trust-manager-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The SPIRE Agent performs workload attestation to ensure that workloads receive a verified identity when requesting authentication through the SPIFFE Workload API. The agent uses configured workload attestor plugins to verify these identities.</p>
+      <p>SPIRE and the SPIRE Agent perform node attestation via node plugins. The plugins are used to verify the identity of the node on which the agent is running. For more information, see <a href="https://spiffe.io/docs/latest/spire-about/spire-concepts/#all-about-the-agent">About the SPIRE Agent</a>.</p>
+      <h2 id="zero-trust-manager-about-attestation_zero-trust-manager-overview" class="group scroll-mt-20">Attestation<a href="#zero-trust-manager-about-attestation_zero-trust-manager-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The attestation process verifies the identity of nodes and workloads before issuing SPIFFE IDs. By comparing attributes against defined selectors, this process ensures that only legitimate entities within the trust domain receive cryptographic credentials.</p>
+      <p>The two main types of attestation in SPIFFE/SPIRE are:</p>
+      <ul>
+      <li>Node attestation: verifies the identity of a machine or a node on a system, before a SPIRE Agent running on that node can be trusted to request identities for workloads.</li>
+      <li>Workload attestation: verifies the identity of an application or service running on an attested node before the SPIRE Agent on that node can provide it with a SPIFFE ID and SVID.</li>
+      </ul>
+      <p>For more information, see <a href="https://spiffe.io/docs/latest/spire-about/spire-concepts/#attestation">Attestation</a>.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

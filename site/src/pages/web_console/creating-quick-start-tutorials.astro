@@ -15,8 +15,19 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"creating-quick-start-tutorials","text":"Creating quick start tutorials in the web console"},{"depth":2,"slug":"quick-start-tutorials-additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"creating-quick-start-tutorials","text":"Creating quick start tutorials in the web console"},{"depth":2,"slug":"understanding-quick-starts_creating-quick-start-tutorials","text":"Understanding quick starts"},{"depth":2,"slug":"quick-start-user-workflow_creating-quick-start-tutorials","text":"Quick start user workflow"},{"depth":2,"slug":"quick-start-components_creating-quick-start-tutorials","text":"Quick start components"},{"depth":2,"slug":"contributing-quick-starts_creating-quick-start-tutorials","text":"Contributing quick starts"},{"depth":3,"slug":"viewing-quick-start-api-documentation_creating-quick-start-tutorials","text":"Viewing the quick start API documentation"},{"depth":3,"slug":"understanding-quick-start-elements_creating-quick-start-tutorials","text":"Mapping the elements in the quick start to the quick start CR"},{"depth":4,"slug":"conclusion-quick-start-element_creating-quick-start-tutorials","text":"Conclusion element"},{"depth":4,"slug":"description-quick-start-element_creating-quick-start-tutorials","text":"Description element"},{"depth":4,"slug":"displayName-quick-start-element_creating-quick-start-tutorials","text":"The  element"},{"depth":4,"slug":"duration-minutes-quick-start-element_creating-quick-start-tutorials","text":"The  element"},{"depth":4,"slug":"icon-quick-start-element_creating-quick-start-tutorials","text":"Icon element"},{"depth":4,"slug":"introduction-quick-start-element_creating-quick-start-tutorials","text":"Introduction element"},{"depth":3,"slug":"adding-custom-icon-to-quick-start_creating-quick-start-tutorials","text":"Adding a custom icon to a quick start"},{"depth":3,"slug":"limiting-access-to-quick-starts_creating-quick-start-tutorials","text":"Limiting access to a quick start"},{"depth":3,"slug":"linking-to-other-quick-starts_creating-quick-start-tutorials","text":"Linking to other quick starts"},{"depth":3,"slug":"supported-tags-for-quick-starts_creating-quick-start-tutorials","text":"Supported tags for quick starts"},{"depth":3,"slug":"quick-start-highlighting-reference_creating-quick-start-tutorials","text":"Quick start highlighting markdown reference"},{"depth":4,"slug":"quick-start-highlighting-perspective-switcher_creating-quick-start-tutorials","text":"Perspective switcher"},{"depth":4,"slug":"quick-start-highlighting-admin-perspective_creating-quick-start-tutorials","text":"Administrator perspective navigation links"},{"depth":4,"slug":"quick-start-highlighting-dev-perspective_creating-quick-start-tutorials","text":"Developer perspective navigation links"},{"depth":4,"slug":"quick-start-highlighting-common-nav_creating-quick-start-tutorials","text":"Common navigation links"},{"depth":4,"slug":"quick-start-highlighting-masthead-links_creating-quick-start-tutorials","text":"Masthead links"},{"depth":3,"slug":"quick-starts-accessing-and-executing-code-snippets_creating-quick-start-tutorials","text":"Code snippet markdown reference"},{"depth":4,"slug":"quick-starts-syntax-for-inline-code-snippets_creating-quick-start-tutorials","text":"Syntax for inline code snippets"},{"depth":4,"slug":"quick-starts-syntax-for-multi-line-code-snippets_creating-quick-start-tutorials","text":"Syntax for multi-line code snippets"},{"depth":2,"slug":"quick-start-content-guidelines_creating-quick-start-tutorials","text":"Quick start content guidelines"},{"depth":3,"slug":"quick-start-content-guidelines-card-copy_creating-quick-start-tutorials","text":"Card copy"},{"depth":3,"slug":"quick-start-content-guidelines-introduction_creating-quick-start-tutorials","text":"Introduction"},{"depth":3,"slug":"quick-start-content-guidelines-task-steps_creating-quick-start-tutorials","text":"Task steps"},{"depth":3,"slug":"quick-start-content-guidelines-check-your-work-module_creating-quick-start-tutorials","text":"Check your work module"},{"depth":3,"slug":"quick-start-content-guidelines-formatting-UI-elements_creating-quick-start-tutorials","text":"Formatting UI elements"},{"depth":2,"slug":"quick-start-tutorials-additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/creating-quick-start-tutorials";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +50,7 @@ const pageCategory = ["web_console"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating quick start tutorials in the web console {#creating-quick-start-tutorials}\n\nIf you are creating quick start tutorials for the OpenShift Container Platform web console, follow these guidelines to keep a consistent user experience across all quick starts.\n\n## Additional resources {#quick-start-tutorials-additional-resources}\n\n- [PatternFly’s brand voice and tone guidelines](https://www.patternfly.org/ux-writing/brand-voice-and-tone)\n- [PatternFly’s UX writing style guide](https://www.patternfly.org/ux-writing/about)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/creating-quick-start-tutorials.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating quick start tutorials in the web console {#creating-quick-start-tutorials}\n\nIf you are creating quick start tutorials for the OpenShift Container Platform web console, follow these guidelines to keep a consistent user experience across all quick starts.\n\n## Understanding quick starts {#understanding-quick-starts_creating-quick-start-tutorials}\n\nA quick start is a guided tutorial with user tasks. In the web console, you can access quick starts under the **Help** menu. They are especially useful for getting oriented with an application, Operator, or other product offering.\n\nA quick start primarily consists of tasks and steps. Each task has multiple steps, and each quick start has multiple tasks. For example:\n\n- Task 1\n\n  - Step 1\n  - Step 2\n  - Step 3\n- Task 2\n\n  - Step 1\n  - Step 2\n  - Step 3\n- Task 3\n\n  - Step 1\n  - Step 2\n  - Step 3\n\n## Quick start user workflow {#quick-start-user-workflow_creating-quick-start-tutorials}\n\nWhen you interact with an existing quick start tutorial, this is the expected workflow experience:\n\n1. In the **Administrator** or **Developer** perspective, click the **Help icon** and select **Quick Starts**.\n2. Click a quick start card.\n3. In the panel that is displayed, click **Start**.\n4. Complete the on-screen instructions, then click **Next**.\n5. In the **Check your work** module that is displayed, answer the question to confirm that you successfully completed the task.\n\n   1. If you select **Yes**, click **Next** to continue to the next task.\n   2. If you select **No**, repeat the task instructions and check your work again.\n6. Repeat steps 1 through 6 above to complete the remaining tasks in the quick start.\n7. After completing the final task, click **Close** to close the quick start.\n\n## Quick start components {#quick-start-components_creating-quick-start-tutorials}\n\nA quick start consists of the following sections:\n\n- **Card**: The catalog tile that provides the basic information of the quick start, including title, description, time commitment, and completion status\n- **Introduction**: A brief overview of the goal and tasks of the quick start\n- **Task headings**: Hyper-linked titles for each task in the quick start\n- **Check your work module**: A module for a user to confirm that they completed a task successfully before advancing to the next task in the quick start\n- **Hints**: An animation to help users identify specific areas of the product\n- **Buttons**\n\n  - **Next and back buttons**: Buttons for navigating the steps and modules within each task of a quick start\n  - **Final screen buttons**: Buttons for closing the quick start, going back to previous tasks within the quick start, and viewing all quick starts\n\nThe main content area of a quick start includes the following sections:\n\n- **Card copy**\n- **Introduction**\n- **Task steps**\n- **Modals and in-app messaging**\n- **Check your work module**\n\n## Contributing quick starts {#contributing-quick-starts_creating-quick-start-tutorials}\n\nOpenShift Container Platform introduces the quick start custom resource, which is defined by a `ConsoleQuickStart` object. Operators and administrators can use this resource to contribute quick starts to the cluster.\n\n**Prerequisites**\n\n- You must have cluster administrator privileges.\n\n**Procedure**\n\n1. To create a new quick start, run:\n\n   ```yaml\n   $ oc get -o yaml consolequickstart spring-with-s2i > my-quick-start.yaml\n   ```\n2. Run:\n\n   ```yaml\n   $ oc create -f my-quick-start.yaml\n   ```\n3. Update the YAML file using the guidance outlined in this documentation.\n4. Save your edits.\n\n### Viewing the quick start API documentation {#viewing-quick-start-api-documentation_creating-quick-start-tutorials}\n\nYou can view the API documentation for the `ConsoleQuickStart` resource by using the `oc explain` command.\n\n**Procedure**\n\n- To see the quick start API documentation, run:\n\n  ```terminal\n  $ oc explain consolequickstarts\n  ```\n\n  Run `oc explain -h` for more information about `oc explain` usage.\n\n### Mapping the elements in the quick start to the quick start CR {#understanding-quick-start-elements_creating-quick-start-tutorials}\n\nThese mappings show where each part of the quick start custom resource (CR) is displayed in the quick start within the web console.\n\n#### Conclusion element {#conclusion-quick-start-element_creating-quick-start-tutorials}\n\n```yaml {title=\"Viewing the conclusion element in the YAML file\"}\n...\nsummary:\n  failed: Try the steps again.\n  success: Your Spring application is running.\ntitle: Run the Spring application\nconclusion: >-\n  Your Spring application is deployed and ready.\n```\n\nThe `conclusion` field defines the conclusion text.\n\nIn the web console, the conclusion is displayed in the last section of the quick start.\n\n![quick start conclusion in the web console](/openshift-docs-markdown/_assets/images/quick-start-conclusion.png)\n\n#### Description element {#description-quick-start-element_creating-quick-start-tutorials}\n\n```yaml {title=\"Viewing the description element in the YAML file\"}\napiVersion: console.openshift.io/v1\nkind: ConsoleQuickStart\nmetadata:\n  name: spring-with-s2i\nspec:\n  description: 'Import a Spring Application from git, build, and deploy it onto OpenShift.'\n...\n```\n\nThe `description` field defines the description text.\n\nIn the web console, the description is displayed on the introductory tile of the quick start on the **Quick Starts** page.\n\n![quick start description in the web console](/openshift-docs-markdown/_assets/images/quick-start-description.png)\n\n#### The `displayName` element {#displayName-quick-start-element_creating-quick-start-tutorials}\n\n```yaml {title=\"Viewing the displayName element in the YAML file\"}\napiVersion: console.openshift.io/v1\nkind: ConsoleQuickStart\nmetadata:\n  name: spring-with-s2i\nspec:\n  description: 'Import a Spring Application from git, build, and deploy it onto OpenShift.'\n  displayName: Get started with Spring\n  durationMinutes: 10\n```\n\nThe `displayName` field defines the display name text.\n\nIn the web console, the display name is displayed on the introductory tile of the quick start on the **Quick Starts** page.\n\n![quick start display name in the web console](/openshift-docs-markdown/_assets/images/quick-start-display-name.png)\n\n#### The `durationMinutes` element {#duration-minutes-quick-start-element_creating-quick-start-tutorials}\n\n```yaml {title=\"Viewing the durationMinutes element in the YAML file\"}\napiVersion: console.openshift.io/v1\nkind: ConsoleQuickStart\nmetadata:\n  name: spring-with-s2i\nspec:\n  description: 'Import a Spring Application from git, build, and deploy it onto OpenShift.'\n  displayName: Get started with Spring\n  durationMinutes: 10\n```\n\nThe `durationMinutes` field defines, in minutes, how long the quick start should take to complete.\n\nIn the web console, the duration minutes element is displayed on the introductory tile of the quick start on the **Quick Starts** page.\n\n![quick start durationMinutes element in the web console](/openshift-docs-markdown/_assets/images/quick-start-duration.png)\n\n#### Icon element {#icon-quick-start-element_creating-quick-start-tutorials}\n\n```yaml {title=\"Viewing the icon element in the YAML file\"}\n...\nspec:\n  description: 'Import a Spring Application from git, build, and deploy it onto OpenShift.'\n  displayName: Get started with Spring\n  durationMinutes: 10\n  icon: >-\n    data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJMYXllcl8xIiBkYXRhLW5hbWU9IkxheWVyIDEiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojMTUzZDNjO30uY2xzLTJ7ZmlsbDojZDhkYTlkO30uY2xzLTN7ZmlsbDojNThjMGE4O30uY2xzLTR7ZmlsbDojZmZmO30uY2xzLTV7ZmlsbDojM2Q5MTkxO308L3N0eWxlPjwvZGVmcz48dGl0bGU+c25vd2Ryb3BfaWNvbl9yZ2JfZGVmYXVsdDwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTAxMi42OSw1OTNjLTExLjEyLTM4LjA3LTMxLTczLTU5LjIxLTEwMy44LTkuNS0xMS4zLTIzLjIxLTI4LjI5LTM5LjA2LTQ3Ljk0QzgzMy41MywzNDEsNzQ1LjM3LDIzNC4xOCw2NzQsMTY4Ljk0Yy01LTUuMjYtMTAuMjYtMTAuMzEtMTUuNjUtMTUuMDdhMjQ2LjQ5LDI0Ni40OSwwLDAsMC0zNi41NS0yNi44LDE4Mi41LDE4Mi41LDAsMCwwLTIwLjMtMTEuNzcsMjAxLjUzLDIwMS41MywwLDAsMC00My4xOS0xNUExNTUuMjQsMTU1LjI0LDAsMCwwLDUyOCw5NS4yYy02Ljc2LS42OC0xMS43NC0uODEtMTQuMzktLjgxaDBsLTEuNjIsMC0xLjYyLDBhMTc3LjMsMTc3LjMsMCwwLDAtMzEuNzcsMy4zNSwyMDguMjMsMjA4LjIzLDAsMCwwLTU2LjEyLDE3LjU2LDE4MSwxODEsMCwwLDAtMjAuMjcsMTEuNzUsMjQ3LjQzLDI0Ny40MywwLDAsMC0zNi41NywyNi44MUMzNjAuMjUsMTU4LjYyLDM1NSwxNjMuNjgsMzUwLDE2OWMtNzEuMzUsNjUuMjUtMTU5LjUsMTcyLTI0MC4zOSwyNzIuMjhDOTMuNzMsNDYwLjg4LDgwLDQ3Ny44Nyw3MC41Miw0ODkuMTcsNDIuMzUsNTIwLDIyLjQzLDU1NC45LDExLjMxLDU5MywuNzIsNjI5LjIyLTEuNzMsNjY3LjY5LDQsNzA3LjMxLDE1LDc4Mi40OSw1NS43OCw4NTkuMTIsMTE4LjkzLDkyMy4wOWEyMiwyMiwwLDAsMCwxNS41OSw2LjUyaDEuODNsMS44Ny0uMzJjODEuMDYtMTMuOTEsMTEwLTc5LjU3LDE0My40OC0xNTUuNiwzLjkxLTguODgsNy45NS0xOC4wNSwxMi4yLTI3LjQzcTUuNDIsOC41NCwxMS4zOSwxNi4yM2MzMS44NSw0MC45MSw3NS4xMiw2NC42NywxMzIuMzIsNzIuNjNsMTguOCwyLjYyLDQuOTUtMTguMzNjMTMuMjYtNDkuMDcsMzUuMy05MC44NSw1MC42NC0xMTYuMTksMTUuMzQsMjUuMzQsMzcuMzgsNjcuMTIsNTAuNjQsMTE2LjE5bDUsMTguMzMsMTguOC0yLjYyYzU3LjItOCwxMDAuNDctMzEuNzIsMTMyLjMyLTcyLjYzcTYtNy42OCwxMS4zOS0xNi4yM2M0LjI1LDkuMzgsOC4yOSwxOC41NSwxMi4yLDI3LjQzLDMzLjQ5LDc2LDYyLjQyLDE0MS42OSwxNDMuNDgsMTU1LjZsMS44MS4zMWgxLjg5YTIyLDIyLDAsMCwwLDE1LjU5LTYuNTJjNjMuMTUtNjQsMTAzLjk1LTE0MC42LDExNC44OS0yMTUuNzhDMTAyNS43Myw2NjcuNjksMTAyMy4yOCw2MjkuMjIsMTAxMi42OSw1OTNaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzY0LjE1LDE4NS4yM2MxNy44OS0xNi40LDM0LjctMzAuMTUsNDkuNzctNDAuMTFhMjEyLDIxMiwwLDAsMSw2NS45My0yNS43M0ExOTgsMTk4LDAsMCwxLDUxMiwxMTYuMjdhMTk2LjExLDE5Ni4xMSwwLDAsMSwzMiwzLjFjNC41LjkxLDkuMzYsMi4wNiwxNC41MywzLjUyLDYwLjQxLDIwLjQ4LDg0LjkyLDkxLjA1LTQ3LjQ0LDI0OC4wNi0yOC43NSwzNC4xMi0xNDAuNywxOTQuODQtMTg0LjY2LDI2OC40MmE2MzAuODYsNjMwLjg2LDAsMCwwLTMzLjIyLDU4LjMyQzI3Niw2NTUuMzQsMjY1LjQsNTk4LDI2NS40LDUyMC4yOSwyNjUuNCwzNDAuNjEsMzExLjY5LDI0MC43NCwzNjQuMTUsMTg1LjIzWiIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTUyNy41NCwzODQuODNjODQuMDYtOTkuNywxMTYuMDYtMTc3LjI4LDk1LjIyLTIzMC43NCwxMS42Miw4LjY5LDI0LDE5LjIsMzcuMDYsMzEuMTMsNTIuNDgsNTUuNSw5OC43OCwxNTUuMzgsOTguNzgsMzM1LjA3LDAsNzcuNzEtMTAuNiwxMzUuMDUtMjcuNzcsMTc3LjRhNjI4LjczLDYyOC43MywwLDAsMC0zMy4yMy01OC4zMmMtMzktNjUuMjYtMTMxLjQ1LTE5OS0xNzEuOTMtMjUyLjI3QzUyNi4zMywzODYuMjksNTI3LDM4NS41Miw1MjcuNTQsMzg0LjgzWiIvPjxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTEzNC41OCw5MDguMDdoLS4wNmEuMzkuMzksMCwwLDEtLjI3LS4xMWMtMTE5LjUyLTEyMS4wNy0xNTUtMjg3LjQtNDcuNTQtNDA0LjU4LDM0LjYzLTQxLjE0LDEyMC0xNTEuNiwyMDIuNzUtMjQyLjE5LTMuMTMsNy02LjEyLDE0LjI1LTguOTIsMjEuNjktMjQuMzQsNjQuNDUtMzYuNjcsMTQ0LjMyLTM2LjY3LDIzNy40MSwwLDU2LjUzLDUuNTgsMTA2LDE2LjU5LDE0Ny4xNEEzMDcuNDksMzA3LjQ5LDAsMCwwLDI4MC45MSw3MjNDMjM3LDgxNi44OCwyMTYuOTMsODkzLjkzLDEzNC41OCw5MDguMDdaIi8+PHBhdGggY2xhc3M9ImNscy01IiBkPSJNNTgzLjQzLDgxMy43OUM1NjAuMTgsNzI3LjcyLDUxMiw2NjQuMTUsNTEyLDY2NC4xNXMtNDguMTcsNjMuNTctNzEuNDMsMTQ5LjY0Yy00OC40NS02Ljc0LTEwMC45MS0yNy41Mi0xMzUuNjYtOTEuMThhNjQ1LjY4LDY0NS42OCwwLDAsMSwzOS41Ny03MS41NGwuMjEtLjMyLjE5LS4zM2MzOC02My42MywxMjYuNC0xOTEuMzcsMTY3LjEyLTI0NS42Niw0MC43MSw1NC4yOCwxMjkuMSwxODIsMTY3LjEyLDI0NS42NmwuMTkuMzMuMjEuMzJhNjQ1LjY4LDY0NS42OCwwLDAsMSwzOS41Nyw3MS41NEM2ODQuMzQsNzg2LjI3LDYzMS44OCw4MDcuMDUsNTgzLjQzLDgxMy43OVoiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik04ODkuNzUsOTA4YS4zOS4zOSwwLDAsMS0uMjcuMTFoLS4wNkM4MDcuMDcsODkzLjkzLDc4Nyw4MTYuODgsNzQzLjA5LDcyM2EzMDcuNDksMzA3LjQ5LDAsMCwwLDIwLjQ1LTU1LjU0YzExLTQxLjExLDE2LjU5LTkwLjYxLDE2LjU5LTE0Ny4xNCwwLTkzLjA4LTEyLjMzLTE3My0zNi42Ni0yMzcuNHEtNC4yMi0xMS4xNi04LjkzLTIxLjdjODIuNzUsOTAuNTksMTY4LjEyLDIwMS4wNSwyMDIuNzUsMjQyLjE5QzEwNDQuNzksNjIwLjU2LDEwMDkuMjcsNzg2Ljg5LDg4OS43NSw5MDhaIi8+PC9zdmc+Cg==\n...\n```\n\nThe `icon` field defines the icon as a base64 value.\n\nIn the web console, the icon is displayed on the introductory tile of the quick start on the **Quick Starts** page.\n\n![quick start icon element in the web console](/openshift-docs-markdown/_assets/images/quick-start-icon.png)\n\n#### Introduction element {#introduction-quick-start-element_creating-quick-start-tutorials}\n\n```yaml {title=\"Viewing the introduction element in the YAML file\"}\n...\n  introduction: >-\n    **Spring** is a Java framework for building applications based on a distributed microservices architecture.\n\n    - Spring enables easy packaging and configuration of Spring applications into a self-contained executable application which can be easily deployed as a container to OpenShift.\n\n    - Spring applications can integrate OpenShift capabilities to provide a natural \"Spring on OpenShift\" developer experience for both existing and net-new Spring applications. For example:\n\n    - Externalized configuration using Kubernetes ConfigMaps and integration with Spring Cloud Kubernetes\n\n    - Service discovery using Kubernetes Services\n\n    - Load balancing with Replication Controllers\n\n    - Kubernetes health probes and integration with Spring Actuator\n\n    - Metrics: Prometheus, Grafana, and integration with Spring Cloud Sleuth\n\n    - Distributed tracing with Istio\n\n    - Developer tooling through Red Hat OpenShift and Red Hat CodeReady developer tooling to quickly scaffold new Spring projects, gain access to familiar Spring APIs in your favorite IDE, and deploy to Red Hat OpenShift\n...\n```\n\nThe `introduction` field introduces the quick start and lists the tasks within it.\n\nIn the web console, after you click a quick start card, a side panel slides in that introduces the quick start and lists the tasks within it.\n\n![quick start introduction element in the web console](/openshift-docs-markdown/_assets/images/quick-start-introduction.png)\n\n### Adding a custom icon to a quick start {#adding-custom-icon-to-quick-start_creating-quick-start-tutorials}\n\nA default icon is provided for all quick starts. You can provide your own custom icon.\n\n**Procedure**\n\n1. Find the `.svg` file that you want to use as your custom icon.\n2. Use an [online tool to convert the text to base64](https://cryptii.com/pipes/text-to-base64).\n3. In the YAML file, add `icon: >-`, then on the next line include `data:image/svg+xml;base64` followed by the output from the base64 conversion. For example:\n\n   ```yaml\n   icon: >-\n      data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHJvbGU9ImltZyIgdmlld.\n   ```\n\n### Limiting access to a quick start {#limiting-access-to-quick-starts_creating-quick-start-tutorials}\n\nNot all quick starts should be available for everyone. The `accessReviewResources` section of the YAML file provides the ability to limit access to the quick start.\n\nTo only allow the user to access the quick start if they have the ability to create `HelmChartRepository` resources, use the following configuration:\n\n```yaml\naccessReviewResources:\n  - group: helm.openshift.io\n    resource: helmchartrepositories\n    verb: create\n```\n\nTo only allow the user to access the quick start if they have the ability to list Operator groups and package manifests, thus ability to install Operators, use the following configuration:\n\n```yaml\naccessReviewResources:\n  - group: operators.coreos.com\n    resource: operatorgroups\n    verb: list\n  - group: packages.operators.coreos.com\n    resource: packagemanifests\n    verb: list\n```\n\n### Linking to other quick starts {#linking-to-other-quick-starts_creating-quick-start-tutorials}\n\nYou can link a quick start to another quick start by setting the `nextQuickStart` field.\n\nIn the `nextQuickStart` section of the YAML file, enter the `name`, not the `displayName`, of the quick start to which you want to link. For example:\n\n```yaml\nnextQuickStart:\n  - add-healthchecks\n```\n\n### Supported tags for quick starts {#supported-tags-for-quick-starts_creating-quick-start-tutorials}\n\nWrite your quick start content in markdown using these tags. The markdown is converted to HTML.\n\n| Tag | Description |\n| --- | --- |\n| ’b',\\` | Defines bold text. |\n| ’img',\\` | Embeds an image. |\n| ’i',\\` | Defines italic text. |\n| ’strike',\\` | Defines strike-through text. |\n| ’s',\\` | Defines smaller text |\n| ’del',\\` | Defines smaller text. |\n| ’em',\\` | Defines emphasized text. |\n| ’strong',\\` | Defines important text. |\n| ’a',\\` | Defines an anchor tag. |\n| ’p',\\` | Defines paragraph text. |\n| ’h1',\\` | Defines a level 1 heading. |\n| ’h2',\\` | Defines a level 2 heading. |\n| ’h3',\\` | Defines a level 3 heading. |\n| ’h4',\\` | Defines a level 4 heading. |\n| ’ul',\\` | Defines an unordered list. |\n| ’ol',\\` | Defines an ordered list. |\n| ’li',\\` | Defines a list item. |\n| ’code',\\` | Defines a text as code. |\n| ’pre',\\` | Defines a block of preformatted text. |\n| ’button',\\` | Defines a button in text. |\n\n### Quick start highlighting markdown reference {#quick-start-highlighting-reference_creating-quick-start-tutorials}\n\nYou can use highlighting, or hints, in a quick start to add a link that highlights and animates a component of the web console.\n\nThe markdown syntax contains:\n\n- Bracketed link text\n- The `highlight` keyword, followed by the ID of the element that you want to animate\n\n#### Perspective switcher {#quick-start-highlighting-perspective-switcher_creating-quick-start-tutorials}\n\n```text\n[Perspective switcher]{{highlight qs-perspective-switcher}}\n```\n\n#### Administrator perspective navigation links {#quick-start-highlighting-admin-perspective_creating-quick-start-tutorials}\n\n```text\n[Home]{{highlight qs-nav-home}}\n[Operators]{{highlight qs-nav-operators}}\n[Workloads]{{highlight qs-nav-workloads}}\n[Serverless]{{highlight qs-nav-serverless}}\n[Networking]{{highlight qs-nav-networking}}\n[Storage]{{highlight qs-nav-storage}}\n[Service catalog]{{highlight qs-nav-servicecatalog}}\n[Compute]{{highlight qs-nav-compute}}\n[User management]{{highlight qs-nav-usermanagement}}\n[Administration]{{highlight qs-nav-administration}}\n```\n\n#### Developer perspective navigation links {#quick-start-highlighting-dev-perspective_creating-quick-start-tutorials}\n\n```text\n[Add]{{highlight qs-nav-add}}\n[Topology]{{highlight qs-nav-topology}}\n[Search]{{highlight qs-nav-search}}\n[Project]{{highlight qs-nav-project}}\n[Helm]{{highlight qs-nav-helm}}\n```\n\n#### Common navigation links {#quick-start-highlighting-common-nav_creating-quick-start-tutorials}\n\n```text\n[Builds]{{highlight qs-nav-builds}}\n[Pipelines]{{highlight qs-nav-pipelines}}\n[Monitoring]{{highlight qs-nav-monitoring}}\n```\n\n#### Masthead links {#quick-start-highlighting-masthead-links_creating-quick-start-tutorials}\n\n```text\n[CloudShell]{{highlight qs-masthead-cloudshell}}\n[Utility Menu]{{highlight qs-masthead-utilitymenu}}\n[User Menu]{{highlight qs-masthead-usermenu}}\n[Applications]{{highlight qs-masthead-applications}}\n[Import]{{highlight qs-masthead-import}}\n[Help]{{highlight qs-masthead-help}}\n[Notifications]{{highlight qs-masthead-notifications}}\n```\n\n### Code snippet markdown reference {#quick-starts-accessing-and-executing-code-snippets_creating-quick-start-tutorials}\n\nEmbed executable and copyable CLI code snippets in a quick start using this markdown syntax. Executing a snippet requires the Web Terminal Operator; copying works with or without it installed.\n\n#### Syntax for inline code snippets {#quick-starts-syntax-for-inline-code-snippets_creating-quick-start-tutorials}\n\n```\n`code block`{{copy}}\n`code block`{{execute}}\n```\n\n> [!NOTE]\n> If the `execute` syntax is used, the **Copy to clipboard** action is present whether you have the Web Terminal Operator installed or not.\n\n#### Syntax for multi-line code snippets {#quick-starts-syntax-for-multi-line-code-snippets_creating-quick-start-tutorials}\n\n```\n\n```\n\nmulti line code block\n\n```{{\n\n```\n\nmulti line code block\n\n```{{\n\n```\n\n## Quick start content guidelines {#quick-start-content-guidelines_creating-quick-start-tutorials}\n\nFollow these content guidelines when writing quick starts for the OpenShift Container Platform web console.\n\n### Card copy {#quick-start-content-guidelines-card-copy_creating-quick-start-tutorials}\n\nYou can customize the title and description on a quick start card, but you cannot customize the status.\n\n- Keep your description to one to two sentences.\n- Start with a verb and communicate the goal of the user. Correct example:\n\n  ```\n  Create a serverless application.\n  ```\n\n### Introduction {#quick-start-content-guidelines-introduction_creating-quick-start-tutorials}\n\nAfter clicking a quick start card, a side panel slides in that introduces the quick start and lists the tasks within it.\n\n- Make your introduction content clear, concise, informative, and friendly.\n- State the outcome of the quick start. A user should understand the purpose of the quick start before they begin.\n- Give action to the user, not the quick start.\n\n  - **Correct example**:\n\n    ```\n    In this quick start, you will deploy a sample application to {product-title}.\n    ```\n  - **Incorrect example**:\n\n    ```\n    This quick start shows you how to deploy a sample application to {product-title}.\n    ```\n- The introduction should be a maximum of four to five sentences, depending on the complexity of the feature. A long introduction can overwhelm the user.\n- List the quick start tasks after the introduction content, and start each task with a verb. Do not specify the number of tasks because the copy would need to be updated every time a task is added or removed.\n\n  - **Correct example**:\n\n    ```\n    Tasks to complete: Create a serverless application; Connect an event source; Force a new revision\n    ```\n  - **Incorrect example**:\n\n    ```\n    You will complete these 3 tasks: Creating a serverless application; Connecting an event source; Forcing a new revision\n    ```\n\n### Task steps {#quick-start-content-guidelines-task-steps_creating-quick-start-tutorials}\n\nAfter the user clicks **Start**, a series of steps is displayed that they must perform to complete the quick start.\n\nFollow these general guidelines when writing task steps:\n\n- Use \"Click\" for buttons and labels. Use \"Select\" for checkboxes, radio buttons, and drop-down menus.\n- Use \"Click\" by itself. Do not add \"on\" after it.\n\n  - **Correct example**:\n\n    ```\n    Click OK.\n    ```\n  - **Incorrect example**:\n\n    ```\n    Click on the OK button.\n    ```\n- Tell users how to navigate between **Administrator** and **Developer** perspectives. Even if you think a user might already be in the appropriate perspective, give them instructions on how to get there so that they are definitely where they need to be.\n\n  Examples:\n\n  ```\n  Enter the Developer perspective: In the main navigation, click the dropdown menu and select Developer.\n  Enter the Administrator perspective: In the main navigation, click the dropdown menu and select Admin.\n  ```\n- Use the \"Location, action\" structure. Tell a user where to go before telling them what to do.\n\n  - **Correct example**:\n\n    ```\n    In the node.js deployment, hover over the icon.\n    ```\n  - **Incorrect example**:\n\n    ```\n    Hover over the icon in the node.js deployment.\n    ```\n- Keep your product terminology capitalization consistent.\n- If you must specify a menu type or list as a dropdown, write \"dropdown” as one word without a hyphen.\n- Clearly distinguish between a user action and additional information on product functionality.\n\n  - **User action**:\n\n    ```\n    Change the time range of the dashboard by clicking the dropdown menu and selecting time range.\n    ```\n  - **Additional information**:\n\n    ```\n    To look at data in a specific time frame, you can change the time range of the dashboard.\n    ```\n- Avoid directional language, such as \"In the upper-right corner, click the icon\". Directional language becomes outdated every time UI layouts change. Also, a direction for desktop users might not be accurate for users with a different screen size. Instead, identify something using its name.\n\n  - **Correct example**:\n\n    ```\n    In the navigation menu, click Settings.\n    ```\n  - **Incorrect example**:\n\n    ```\n    In the left-hand menu, click Settings.\n    ```\n- Do not identify items by color alone, such as \"Click the gray circle\". Color identifiers are not useful for sight-limited users, especially colorblind users. Instead, identify an item using its name or copy, such as button copy.\n\n  - **Correct example**:\n\n    ```\n    The success message indicates a connection.\n    ```\n  - **Incorrect example**:\n\n    ```\n    The message with a green icon indicates a connection.\n    ```\n- Use the second-person point of view, you, consistently:\n\n  - **Correct example**:\n\n    ```\n    Set up your environment.\n    ```\n  - **Incorrect example**:\n\n    ```\n    Let's set up our environment.\n    ```\n\n### Check your work module {#quick-start-content-guidelines-check-your-work-module_creating-quick-start-tutorials}\n\n- After a user completes a step, a **Check your work** module displays. This module prompts the user to answer a yes or no question about the step results, which gives them the opportunity to review their work. For this module, you only need to write a single yes or no question.\n\n  - If the user answers **Yes**, a checkmark displays.\n  - If the user answers **No**, an error message displays with a link to relevant documentation, if necessary. The user then has the opportunity to go back and try again.\n\n### Formatting UI elements {#quick-start-content-guidelines-formatting-UI-elements_creating-quick-start-tutorials}\n\nFormat UI elements by using these guidelines:\n\n- Copy for buttons, dropdowns, tabs, fields, and other UI controls: Write the copy as it is displayed in the UI and bold it.\n- All other UI elements (including page, window, and panel names): Write the copy as it is displayed in the UI and bold it.\n- Code or user-entered text: Use monospaced font.\n- Hints: If a hint to a navigation or masthead element is included, style the text as you would a link.\n- CLI commands: Use monospaced font.\n- In running text, use a bold, monospaced font for a command.\n- If a parameter or option is a variable value, use an italic monospaced font.\n- Use a bold, monospaced font for the parameter and a monospaced font for the option.\n\n## Additional resources {#quick-start-tutorials-additional-resources}\n\n- [PatternFly’s brand voice and tone guidelines](https://www.patternfly.org/ux-writing/brand-voice-and-tone)\n- [PatternFly’s UX writing style guide](https://www.patternfly.org/ux-writing/about)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/creating-quick-start-tutorials.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,20 +102,439 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-quick-start-tutorials" class="group scroll-mt-20">Creating quick start tutorials in the web console<a href="#creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
       <p>If you are creating quick start tutorials for the OpenShift Container Platform web console, follow these guidelines to keep a consistent user experience across all quick starts.</p>
-      <p class="/modules/understanding-quick-starts.md"></p>
-      <p class="/modules/quick-start-user-workflow.md"></p>
-      <p class="/modules/contributing-quick-starts.md /modules/quick-start-components.md"></p>
-      <p class="/modules/viewing-quick-start-api-documentation.md"></p>
-      <p class="/modules/understanding-quick-start-elements.md"></p>
-      <p class="/modules/quick-start-adding-custom-icon.md"></p>
-      <p class="/modules/quick-start-limiting-access.md"></p>
-      <p class="/modules/quick-starts-linking-to-others.md"></p>
-      <p class="/modules/quick-starts-supported-tags.md"></p>
-      <p class="/modules/quick-starts-highlighting-reference.md"></p>
-      <p class="/modules/quick-starts-accessing-and-executing-code-snippets.md"></p>
-      <p class="/modules/quick-start-content-guidelines.md"></p>
+      <h2 id="understanding-quick-starts_creating-quick-start-tutorials" class="group scroll-mt-20">Understanding quick starts<a href="#understanding-quick-starts_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A quick start is a guided tutorial with user tasks. In the web console, you can access quick starts under the <strong>Help</strong> menu. They are especially useful for getting oriented with an application, Operator, or other product offering.</p>
+      <p>A quick start primarily consists of tasks and steps. Each task has multiple steps, and each quick start has multiple tasks. For example:</p>
+      <ul>
+      <li>
+      Task 1
+      <ul>
+      <li>Step 1</li>
+      <li>Step 2</li>
+      <li>Step 3</li>
+      </ul>
+      </li>
+      <li>
+      Task 2
+      <ul>
+      <li>Step 1</li>
+      <li>Step 2</li>
+      <li>Step 3</li>
+      </ul>
+      </li>
+      <li>
+      Task 3
+      <ul>
+      <li>Step 1</li>
+      <li>Step 2</li>
+      <li>Step 3</li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="quick-start-user-workflow_creating-quick-start-tutorials" class="group scroll-mt-20">Quick start user workflow<a href="#quick-start-user-workflow_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When you interact with an existing quick start tutorial, this is the expected workflow experience:</p>
+      <ol>
+      <li>In the <strong>Administrator</strong> or <strong>Developer</strong> perspective, click the <strong>Help icon</strong> and select <strong>Quick Starts</strong>.</li>
+      <li>Click a quick start card.</li>
+      <li>In the panel that is displayed, click <strong>Start</strong>.</li>
+      <li>Complete the on-screen instructions, then click <strong>Next</strong>.</li>
+      <li>
+      In the <strong>Check your work</strong> module that is displayed, answer the question to confirm that you successfully completed the task.
+      <ol>
+      <li>If you select <strong>Yes</strong>, click <strong>Next</strong> to continue to the next task.</li>
+      <li>If you select <strong>No</strong>, repeat the task instructions and check your work again.</li>
+      </ol>
+      </li>
+      <li>Repeat steps 1 through 6 above to complete the remaining tasks in the quick start.</li>
+      <li>After completing the final task, click <strong>Close</strong> to close the quick start.</li>
+      </ol>
+      <h2 id="quick-start-components_creating-quick-start-tutorials" class="group scroll-mt-20">Quick start components<a href="#quick-start-components_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A quick start consists of the following sections:</p>
+      <ul>
+      <li><strong>Card</strong>: The catalog tile that provides the basic information of the quick start, including title, description, time commitment, and completion status</li>
+      <li><strong>Introduction</strong>: A brief overview of the goal and tasks of the quick start</li>
+      <li><strong>Task headings</strong>: Hyper-linked titles for each task in the quick start</li>
+      <li><strong>Check your work module</strong>: A module for a user to confirm that they completed a task successfully before advancing to the next task in the quick start</li>
+      <li><strong>Hints</strong>: An animation to help users identify specific areas of the product</li>
+      <li>
+      <strong>Buttons</strong>
+      <ul>
+      <li><strong>Next and back buttons</strong>: Buttons for navigating the steps and modules within each task of a quick start</li>
+      <li><strong>Final screen buttons</strong>: Buttons for closing the quick start, going back to previous tasks within the quick start, and viewing all quick starts</li>
+      </ul>
+      </li>
+      </ul>
+      <p>The main content area of a quick start includes the following sections:</p>
+      <ul>
+      <li><strong>Card copy</strong></li>
+      <li><strong>Introduction</strong></li>
+      <li><strong>Task steps</strong></li>
+      <li><strong>Modals and in-app messaging</strong></li>
+      <li><strong>Check your work module</strong></li>
+      </ul>
+      <h2 id="contributing-quick-starts_creating-quick-start-tutorials" class="group scroll-mt-20">Contributing quick starts<a href="#contributing-quick-starts_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Container Platform introduces the quick start custom resource, which is defined by a <code>ConsoleQuickStart</code> object. Operators and administrators can use this resource to contribute quick starts to the cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have cluster administrator privileges.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To create a new quick start, run:
+      <CodeBlock code={"$ oc get -o yaml consolequickstart spring-with-s2i > my-quick-start.yaml"} lang="yaml" />
+      </li>
+      <li>
+      Run:
+      <CodeBlock code={"$ oc create -f my-quick-start.yaml"} lang="yaml" />
+      </li>
+      <li>Update the YAML file using the guidance outlined in this documentation.</li>
+      <li>Save your edits.</li>
+      </ol>
+      <h3 id="viewing-quick-start-api-documentation_creating-quick-start-tutorials" class="group scroll-mt-20">Viewing the quick start API documentation<a href="#viewing-quick-start-api-documentation_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can view the API documentation for the <code>ConsoleQuickStart</code> resource by using the <code>oc explain</code> command.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To see the quick start API documentation, run:
+      <CodeBlock code={"$ oc explain consolequickstarts"} lang="terminal" />
+      <p>Run <code>oc explain -h</code> for more information about <code>oc explain</code> usage.</p>
+      </li>
+      </ul>
+      <h3 id="understanding-quick-start-elements_creating-quick-start-tutorials" class="group scroll-mt-20">Mapping the elements in the quick start to the quick start CR<a href="#understanding-quick-start-elements_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">These mappings show where each part of the quick start custom resource (CR) is displayed in the quick start within the web console.</p>
+      <h4 id="conclusion-quick-start-element_creating-quick-start-tutorials" class="group scroll-mt-20">Conclusion element<a href="#conclusion-quick-start-element_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"...\nsummary:\n  failed: Try the steps again.\n  success: Your Spring application is running.\ntitle: Run the Spring application\nconclusion: >-\n  Your Spring application is deployed and ready."} lang="yaml" title="Viewing the conclusion element in the YAML file" />
+      <p>The <code>conclusion</code> field defines the conclusion text.</p>
+      <p>In the web console, the conclusion is displayed in the last section of the quick start.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/quick-start-conclusion.png" alt="quick start conclusion in the web console" />
+      <h4 id="description-quick-start-element_creating-quick-start-tutorials" class="group scroll-mt-20">Description element<a href="#description-quick-start-element_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"apiVersion: console.openshift.io/v1\nkind: ConsoleQuickStart\nmetadata:\n  name: spring-with-s2i\nspec:\n  description: 'Import a Spring Application from git, build, and deploy it onto OpenShift.'\n..."} lang="yaml" title="Viewing the description element in the YAML file" />
+      <p>The <code>description</code> field defines the description text.</p>
+      <p>In the web console, the description is displayed on the introductory tile of the quick start on the <strong>Quick Starts</strong> page.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/quick-start-description.png" alt="quick start description in the web console" />
+      <h4 id="displayName-quick-start-element_creating-quick-start-tutorials" class="group scroll-mt-20">The <code>displayName</code> element<a href="#displayName-quick-start-element_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"apiVersion: console.openshift.io/v1\nkind: ConsoleQuickStart\nmetadata:\n  name: spring-with-s2i\nspec:\n  description: 'Import a Spring Application from git, build, and deploy it onto OpenShift.'\n  displayName: Get started with Spring\n  durationMinutes: 10"} lang="yaml" title="Viewing the displayName element in the YAML file" />
+      <p>The <code>displayName</code> field defines the display name text.</p>
+      <p>In the web console, the display name is displayed on the introductory tile of the quick start on the <strong>Quick Starts</strong> page.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/quick-start-display-name.png" alt="quick start display name in the web console" />
+      <h4 id="duration-minutes-quick-start-element_creating-quick-start-tutorials" class="group scroll-mt-20">The <code>durationMinutes</code> element<a href="#duration-minutes-quick-start-element_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"apiVersion: console.openshift.io/v1\nkind: ConsoleQuickStart\nmetadata:\n  name: spring-with-s2i\nspec:\n  description: 'Import a Spring Application from git, build, and deploy it onto OpenShift.'\n  displayName: Get started with Spring\n  durationMinutes: 10"} lang="yaml" title="Viewing the durationMinutes element in the YAML file" />
+      <p>The <code>durationMinutes</code> field defines, in minutes, how long the quick start should take to complete.</p>
+      <p>In the web console, the duration minutes element is displayed on the introductory tile of the quick start on the <strong>Quick Starts</strong> page.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/quick-start-duration.png" alt="quick start durationMinutes element in the web console" />
+      <h4 id="icon-quick-start-element_creating-quick-start-tutorials" class="group scroll-mt-20">Icon element<a href="#icon-quick-start-element_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"...\nspec:\n  description: 'Import a Spring Application from git, build, and deploy it onto OpenShift.'\n  displayName: Get started with Spring\n  durationMinutes: 10\n  icon: >-\n    data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJMYXllcl8xIiBkYXRhLW5hbWU9IkxheWVyIDEiIHZpZXdCb3g9IjAgMCAxMDI0IDEwMjQiPjxkZWZzPjxzdHlsZT4uY2xzLTF7ZmlsbDojMTUzZDNjO30uY2xzLTJ7ZmlsbDojZDhkYTlkO30uY2xzLTN7ZmlsbDojNThjMGE4O30uY2xzLTR7ZmlsbDojZmZmO30uY2xzLTV7ZmlsbDojM2Q5MTkxO308L3N0eWxlPjwvZGVmcz48dGl0bGU+c25vd2Ryb3BfaWNvbl9yZ2JfZGVmYXVsdDwvdGl0bGU+PHBhdGggY2xhc3M9ImNscy0xIiBkPSJNMTAxMi42OSw1OTNjLTExLjEyLTM4LjA3LTMxLTczLTU5LjIxLTEwMy44LTkuNS0xMS4zLTIzLjIxLTI4LjI5LTM5LjA2LTQ3Ljk0QzgzMy41MywzNDEsNzQ1LjM3LDIzNC4xOCw2NzQsMTY4Ljk0Yy01LTUuMjYtMTAuMjYtMTAuMzEtMTUuNjUtMTUuMDdhMjQ2LjQ5LDI0Ni40OSwwLDAsMC0zNi41NS0yNi44LDE4Mi41LDE4Mi41LDAsMCwwLTIwLjMtMTEuNzcsMjAxLjUzLDIwMS41MywwLDAsMC00My4xOS0xNUExNTUuMjQsMTU1LjI0LDAsMCwwLDUyOCw5NS4yYy02Ljc2LS42OC0xMS43NC0uODEtMTQuMzktLjgxaDBsLTEuNjIsMC0xLjYyLDBhMTc3LjMsMTc3LjMsMCwwLDAtMzEuNzcsMy4zNSwyMDguMjMsMjA4LjIzLDAsMCwwLTU2LjEyLDE3LjU2LDE4MSwxODEsMCwwLDAtMjAuMjcsMTEuNzUsMjQ3LjQzLDI0Ny40MywwLDAsMC0zNi41NywyNi44MUMzNjAuMjUsMTU4LjYyLDM1NSwxNjMuNjgsMzUwLDE2OWMtNzEuMzUsNjUuMjUtMTU5LjUsMTcyLTI0MC4zOSwyNzIuMjhDOTMuNzMsNDYwLjg4LDgwLDQ3Ny44Nyw3MC41Miw0ODkuMTcsNDIuMzUsNTIwLDIyLjQzLDU1NC45LDExLjMxLDU5MywuNzIsNjI5LjIyLTEuNzMsNjY3LjY5LDQsNzA3LjMxLDE1LDc4Mi40OSw1NS43OCw4NTkuMTIsMTE4LjkzLDkyMy4wOWEyMiwyMiwwLDAsMCwxNS41OSw2LjUyaDEuODNsMS44Ny0uMzJjODEuMDYtMTMuOTEsMTEwLTc5LjU3LDE0My40OC0xNTUuNiwzLjkxLTguODgsNy45NS0xOC4wNSwxMi4yLTI3LjQzcTUuNDIsOC41NCwxMS4zOSwxNi4yM2MzMS44NSw0MC45MSw3NS4xMiw2NC42NywxMzIuMzIsNzIuNjNsMTguOCwyLjYyLDQuOTUtMTguMzNjMTMuMjYtNDkuMDcsMzUuMy05MC44NSw1MC42NC0xMTYuMTksMTUuMzQsMjUuMzQsMzcuMzgsNjcuMTIsNTAuNjQsMTE2LjE5bDUsMTguMzMsMTguOC0yLjYyYzU3LjItOCwxMDAuNDctMzEuNzIsMTMyLjMyLTcyLjYzcTYtNy42OCwxMS4zOS0xNi4yM2M0LjI1LDkuMzgsOC4yOSwxOC41NSwxMi4yLDI3LjQzLDMzLjQ5LDc2LDYyLjQyLDE0MS42OSwxNDMuNDgsMTU1LjZsMS44MS4zMWgxLjg5YTIyLDIyLDAsMCwwLDE1LjU5LTYuNTJjNjMuMTUtNjQsMTAzLjk1LTE0MC42LDExNC44OS0yMTUuNzhDMTAyNS43Myw2NjcuNjksMTAyMy4yOCw2MjkuMjIsMTAxMi42OSw1OTNaIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMzY0LjE1LDE4NS4yM2MxNy44OS0xNi40LDM0LjctMzAuMTUsNDkuNzctNDAuMTFhMjEyLDIxMiwwLDAsMSw2NS45My0yNS43M0ExOTgsMTk4LDAsMCwxLDUxMiwxMTYuMjdhMTk2LjExLDE5Ni4xMSwwLDAsMSwzMiwzLjFjNC41LjkxLDkuMzYsMi4wNiwxNC41MywzLjUyLDYwLjQxLDIwLjQ4LDg0LjkyLDkxLjA1LTQ3LjQ0LDI0OC4wNi0yOC43NSwzNC4xMi0xNDAuNywxOTQuODQtMTg0LjY2LDI2OC40MmE2MzAuODYsNjMwLjg2LDAsMCwwLTMzLjIyLDU4LjMyQzI3Niw2NTUuMzQsMjY1LjQsNTk4LDI2NS40LDUyMC4yOSwyNjUuNCwzNDAuNjEsMzExLjY5LDI0MC43NCwzNjQuMTUsMTg1LjIzWiIvPjxwYXRoIGNsYXNzPSJjbHMtMyIgZD0iTTUyNy41NCwzODQuODNjODQuMDYtOTkuNywxMTYuMDYtMTc3LjI4LDk1LjIyLTIzMC43NCwxMS42Miw4LjY5LDI0LDE5LjIsMzcuMDYsMzEuMTMsNTIuNDgsNTUuNSw5OC43OCwxNTUuMzgsOTguNzgsMzM1LjA3LDAsNzcuNzEtMTAuNiwxMzUuMDUtMjcuNzcsMTc3LjRhNjI4LjczLDYyOC43MywwLDAsMC0zMy4yMy01OC4zMmMtMzktNjUuMjYtMTMxLjQ1LTE5OS0xNzEuOTMtMjUyLjI3QzUyNi4zMywzODYuMjksNTI3LDM4NS41Miw1MjcuNTQsMzg0LjgzWiIvPjxwYXRoIGNsYXNzPSJjbHMtNCIgZD0iTTEzNC41OCw5MDguMDdoLS4wNmEuMzkuMzksMCwwLDEtLjI3LS4xMWMtMTE5LjUyLTEyMS4wNy0xNTUtMjg3LjQtNDcuNTQtNDA0LjU4LDM0LjYzLTQxLjE0LDEyMC0xNTEuNiwyMDIuNzUtMjQyLjE5LTMuMTMsNy02LjEyLDE0LjI1LTguOTIsMjEuNjktMjQuMzQsNjQuNDUtMzYuNjcsMTQ0LjMyLTM2LjY3LDIzNy40MSwwLDU2LjUzLDUuNTgsMTA2LDE2LjU5LDE0Ny4xNEEzMDcuNDksMzA3LjQ5LDAsMCwwLDI4MC45MSw3MjNDMjM3LDgxNi44OCwyMTYuOTMsODkzLjkzLDEzNC41OCw5MDguMDdaIi8+PHBhdGggY2xhc3M9ImNscy01IiBkPSJNNTgzLjQzLDgxMy43OUM1NjAuMTgsNzI3LjcyLDUxMiw2NjQuMTUsNTEyLDY2NC4xNXMtNDguMTcsNjMuNTctNzEuNDMsMTQ5LjY0Yy00OC40NS02Ljc0LTEwMC45MS0yNy41Mi0xMzUuNjYtOTEuMThhNjQ1LjY4LDY0NS42OCwwLDAsMSwzOS41Ny03MS41NGwuMjEtLjMyLjE5LS4zM2MzOC02My42MywxMjYuNC0xOTEuMzcsMTY3LjEyLTI0NS42Niw0MC43MSw1NC4yOCwxMjkuMSwxODIsMTY3LjEyLDI0NS42NmwuMTkuMzMuMjEuMzJhNjQ1LjY4LDY0NS42OCwwLDAsMSwzOS41Nyw3MS41NEM2ODQuMzQsNzg2LjI3LDYzMS44OCw4MDcuMDUsNTgzLjQzLDgxMy43OVoiLz48cGF0aCBjbGFzcz0iY2xzLTQiIGQ9Ik04ODkuNzUsOTA4YS4zOS4zOSwwLDAsMS0uMjcuMTFoLS4wNkM4MDcuMDcsODkzLjkzLDc4Nyw4MTYuODgsNzQzLjA5LDcyM2EzMDcuNDksMzA3LjQ5LDAsMCwwLDIwLjQ1LTU1LjU0YzExLTQxLjExLDE2LjU5LTkwLjYxLDE2LjU5LTE0Ny4xNCwwLTkzLjA4LTEyLjMzLTE3My0zNi42Ni0yMzcuNHEtNC4yMi0xMS4xNi04LjkzLTIxLjdjODIuNzUsOTAuNTksMTY4LjEyLDIwMS4wNSwyMDIuNzUsMjQyLjE5QzEwNDQuNzksNjIwLjU2LDEwMDkuMjcsNzg2Ljg5LDg4OS43NSw5MDhaIi8+PC9zdmc+Cg==\n..."} lang="yaml" title="Viewing the icon element in the YAML file" />
+      <p>The <code>icon</code> field defines the icon as a base64 value.</p>
+      <p>In the web console, the icon is displayed on the introductory tile of the quick start on the <strong>Quick Starts</strong> page.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/quick-start-icon.png" alt="quick start icon element in the web console" />
+      <h4 id="introduction-quick-start-element_creating-quick-start-tutorials" class="group scroll-mt-20">Introduction element<a href="#introduction-quick-start-element_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"...\n  introduction: >-\n    **Spring** is a Java framework for building applications based on a distributed microservices architecture.\n\n    - Spring enables easy packaging and configuration of Spring applications into a self-contained executable application which can be easily deployed as a container to OpenShift.\n\n    - Spring applications can integrate OpenShift capabilities to provide a natural \"Spring on OpenShift\" developer experience for both existing and net-new Spring applications. For example:\n\n    - Externalized configuration using Kubernetes ConfigMaps and integration with Spring Cloud Kubernetes\n\n    - Service discovery using Kubernetes Services\n\n    - Load balancing with Replication Controllers\n\n    - Kubernetes health probes and integration with Spring Actuator\n\n    - Metrics: Prometheus, Grafana, and integration with Spring Cloud Sleuth\n\n    - Distributed tracing with Istio\n\n    - Developer tooling through Red Hat OpenShift and Red Hat CodeReady developer tooling to quickly scaffold new Spring projects, gain access to familiar Spring APIs in your favorite IDE, and deploy to Red Hat OpenShift\n..."} lang="yaml" title="Viewing the introduction element in the YAML file" />
+      <p>The <code>introduction</code> field introduces the quick start and lists the tasks within it.</p>
+      <p>In the web console, after you click a quick start card, a side panel slides in that introduces the quick start and lists the tasks within it.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/quick-start-introduction.png" alt="quick start introduction element in the web console" />
+      <h3 id="adding-custom-icon-to-quick-start_creating-quick-start-tutorials" class="group scroll-mt-20">Adding a custom icon to a quick start<a href="#adding-custom-icon-to-quick-start_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">A default icon is provided for all quick starts. You can provide your own custom icon.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Find the <code>.svg</code> file that you want to use as your custom icon.</li>
+      <li>Use an <a href="https://cryptii.com/pipes/text-to-base64">online tool to convert the text to base64</a>.</li>
+      <li>
+      In the YAML file, add <code>icon: &gt;-</code>, then on the next line include <code>data:image/svg+xml;base64</code> followed by the output from the base64 conversion. For example:
+      <CodeBlock code={"icon: >-\n   data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHJvbGU9ImltZyIgdmlld."} lang="yaml" />
+      </li>
+      </ol>
+      <h3 id="limiting-access-to-quick-starts_creating-quick-start-tutorials" class="group scroll-mt-20">Limiting access to a quick start<a href="#limiting-access-to-quick-starts_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Not all quick starts should be available for everyone. The <code>accessReviewResources</code> section of the YAML file provides the ability to limit access to the quick start.</p>
+      <p>To only allow the user to access the quick start if they have the ability to create <code>HelmChartRepository</code> resources, use the following configuration:</p>
+      <CodeBlock code={"accessReviewResources:\n  - group: helm.openshift.io\n    resource: helmchartrepositories\n    verb: create"} lang="yaml" />
+      <p>To only allow the user to access the quick start if they have the ability to list Operator groups and package manifests, thus ability to install Operators, use the following configuration:</p>
+      <CodeBlock code={"accessReviewResources:\n  - group: operators.coreos.com\n    resource: operatorgroups\n    verb: list\n  - group: packages.operators.coreos.com\n    resource: packagemanifests\n    verb: list"} lang="yaml" />
+      <h3 id="linking-to-other-quick-starts_creating-quick-start-tutorials" class="group scroll-mt-20">Linking to other quick starts<a href="#linking-to-other-quick-starts_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can link a quick start to another quick start by setting the <code>nextQuickStart</code> field.</p>
+      <p>In the <code>nextQuickStart</code> section of the YAML file, enter the <code>name</code>, not the <code>displayName</code>, of the quick start to which you want to link. For example:</p>
+      <CodeBlock code={"nextQuickStart:\n  - add-healthchecks"} lang="yaml" />
+      <h3 id="supported-tags-for-quick-starts_creating-quick-start-tutorials" class="group scroll-mt-20">Supported tags for quick starts<a href="#supported-tags-for-quick-starts_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Write your quick start content in markdown using these tags. The markdown is converted to HTML.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Tag</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>’b',`</TableCell>
+      <TableCell>Defines bold text.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’img',`</TableCell>
+      <TableCell>Embeds an image.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’i',`</TableCell>
+      <TableCell>Defines italic text.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’strike',`</TableCell>
+      <TableCell>Defines strike-through text.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’s',`</TableCell>
+      <TableCell>Defines smaller text</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’del',`</TableCell>
+      <TableCell>Defines smaller text.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’em',`</TableCell>
+      <TableCell>Defines emphasized text.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’strong',`</TableCell>
+      <TableCell>Defines important text.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’a',`</TableCell>
+      <TableCell>Defines an anchor tag.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’p',`</TableCell>
+      <TableCell>Defines paragraph text.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’h1',`</TableCell>
+      <TableCell>Defines a level 1 heading.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’h2',`</TableCell>
+      <TableCell>Defines a level 2 heading.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’h3',`</TableCell>
+      <TableCell>Defines a level 3 heading.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’h4',`</TableCell>
+      <TableCell>Defines a level 4 heading.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’ul',`</TableCell>
+      <TableCell>Defines an unordered list.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’ol',`</TableCell>
+      <TableCell>Defines an ordered list.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’li',`</TableCell>
+      <TableCell>Defines a list item.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’code',`</TableCell>
+      <TableCell>Defines a text as code.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’pre',`</TableCell>
+      <TableCell>Defines a block of preformatted text.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>’button',`</TableCell>
+      <TableCell>Defines a button in text.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="quick-start-highlighting-reference_creating-quick-start-tutorials" class="group scroll-mt-20">Quick start highlighting markdown reference<a href="#quick-start-highlighting-reference_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can use highlighting, or hints, in a quick start to add a link that highlights and animates a component of the web console.</p>
+      <p>The markdown syntax contains:</p>
+      <ul>
+      <li>Bracketed link text</li>
+      <li>The <code>highlight</code> keyword, followed by the ID of the element that you want to animate</li>
+      </ul>
+      <h4 id="quick-start-highlighting-perspective-switcher_creating-quick-start-tutorials" class="group scroll-mt-20">Perspective switcher<a href="#quick-start-highlighting-perspective-switcher_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"[Perspective switcher]{{highlight qs-perspective-switcher}}"} lang="text" />
+      <h4 id="quick-start-highlighting-admin-perspective_creating-quick-start-tutorials" class="group scroll-mt-20">Administrator perspective navigation links<a href="#quick-start-highlighting-admin-perspective_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"[Home]{{highlight qs-nav-home}}\n[Operators]{{highlight qs-nav-operators}}\n[Workloads]{{highlight qs-nav-workloads}}\n[Serverless]{{highlight qs-nav-serverless}}\n[Networking]{{highlight qs-nav-networking}}\n[Storage]{{highlight qs-nav-storage}}\n[Service catalog]{{highlight qs-nav-servicecatalog}}\n[Compute]{{highlight qs-nav-compute}}\n[User management]{{highlight qs-nav-usermanagement}}\n[Administration]{{highlight qs-nav-administration}}"} lang="text" />
+      <h4 id="quick-start-highlighting-dev-perspective_creating-quick-start-tutorials" class="group scroll-mt-20">Developer perspective navigation links<a href="#quick-start-highlighting-dev-perspective_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"[Add]{{highlight qs-nav-add}}\n[Topology]{{highlight qs-nav-topology}}\n[Search]{{highlight qs-nav-search}}\n[Project]{{highlight qs-nav-project}}\n[Helm]{{highlight qs-nav-helm}}"} lang="text" />
+      <h4 id="quick-start-highlighting-common-nav_creating-quick-start-tutorials" class="group scroll-mt-20">Common navigation links<a href="#quick-start-highlighting-common-nav_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"[Builds]{{highlight qs-nav-builds}}\n[Pipelines]{{highlight qs-nav-pipelines}}\n[Monitoring]{{highlight qs-nav-monitoring}}"} lang="text" />
+      <h4 id="quick-start-highlighting-masthead-links_creating-quick-start-tutorials" class="group scroll-mt-20">Masthead links<a href="#quick-start-highlighting-masthead-links_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"[CloudShell]{{highlight qs-masthead-cloudshell}}\n[Utility Menu]{{highlight qs-masthead-utilitymenu}}\n[User Menu]{{highlight qs-masthead-usermenu}}\n[Applications]{{highlight qs-masthead-applications}}\n[Import]{{highlight qs-masthead-import}}\n[Help]{{highlight qs-masthead-help}}\n[Notifications]{{highlight qs-masthead-notifications}}"} lang="text" />
+      <h3 id="quick-starts-accessing-and-executing-code-snippets_creating-quick-start-tutorials" class="group scroll-mt-20">Code snippet markdown reference<a href="#quick-starts-accessing-and-executing-code-snippets_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Embed executable and copyable CLI code snippets in a quick start using this markdown syntax. Executing a snippet requires the Web Terminal Operator; copying works with or without it installed.</p>
+      <h4 id="quick-starts-syntax-for-inline-code-snippets_creating-quick-start-tutorials" class="group scroll-mt-20">Syntax for inline code snippets<a href="#quick-starts-syntax-for-inline-code-snippets_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={"`code block`{{copy}}\n`code block`{{execute}}"} lang="plaintext" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If the <code>execute</code> syntax is used, the <strong>Copy to clipboard</strong> action is present whether you have the Web Terminal Operator installed or not.</p>
+        </AlertDescription>
+      </Alert>
+      <h4 id="quick-starts-syntax-for-multi-line-code-snippets_creating-quick-start-tutorials" class="group scroll-mt-20">Syntax for multi-line code snippets<a href="#quick-starts-syntax-for-multi-line-code-snippets_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <CodeBlock code={""} lang="plaintext" />
+      <p>multi line code block</p>
+      <CodeBlock code={""} lang="{{" />
+      <p>multi line code block</p>
+      <CodeBlock code={""} lang="{{" />
+      <h2 id="quick-start-content-guidelines_creating-quick-start-tutorials" class="group scroll-mt-20">Quick start content guidelines<a href="#quick-start-content-guidelines_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Follow these content guidelines when writing quick starts for the OpenShift Container Platform web console.</p>
+      <h3 id="quick-start-content-guidelines-card-copy_creating-quick-start-tutorials" class="group scroll-mt-20">Card copy<a href="#quick-start-content-guidelines-card-copy_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can customize the title and description on a quick start card, but you cannot customize the status.</p>
+      <ul>
+      <li>Keep your description to one to two sentences.</li>
+      <li>
+      Start with a verb and communicate the goal of the user. Correct example:
+      <CodeBlock code={"Create a serverless application."} lang="plaintext" />
+      </li>
+      </ul>
+      <h3 id="quick-start-content-guidelines-introduction_creating-quick-start-tutorials" class="group scroll-mt-20">Introduction<a href="#quick-start-content-guidelines-introduction_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>After clicking a quick start card, a side panel slides in that introduces the quick start and lists the tasks within it.</p>
+      <ul>
+      <li>Make your introduction content clear, concise, informative, and friendly.</li>
+      <li>State the outcome of the quick start. A user should understand the purpose of the quick start before they begin.</li>
+      <li>
+      Give action to the user, not the quick start.
+      <ul>
+      <li>
+      <strong>Correct example</strong>:
+      <CodeBlock code={"In this quick start, you will deploy a sample application to {product-title}."} lang="plaintext" />
+      </li>
+      <li>
+      <strong>Incorrect example</strong>:
+      <CodeBlock code={"This quick start shows you how to deploy a sample application to {product-title}."} lang="plaintext" />
+      </li>
+      </ul>
+      </li>
+      <li>The introduction should be a maximum of four to five sentences, depending on the complexity of the feature. A long introduction can overwhelm the user.</li>
+      <li>
+      List the quick start tasks after the introduction content, and start each task with a verb. Do not specify the number of tasks because the copy would need to be updated every time a task is added or removed.
+      <ul>
+      <li>
+      <strong>Correct example</strong>:
+      <CodeBlock code={"Tasks to complete: Create a serverless application; Connect an event source; Force a new revision"} lang="plaintext" />
+      </li>
+      <li>
+      <strong>Incorrect example</strong>:
+      <CodeBlock code={"You will complete these 3 tasks: Creating a serverless application; Connecting an event source; Forcing a new revision"} lang="plaintext" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="quick-start-content-guidelines-task-steps_creating-quick-start-tutorials" class="group scroll-mt-20">Task steps<a href="#quick-start-content-guidelines-task-steps_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>After the user clicks <strong>Start</strong>, a series of steps is displayed that they must perform to complete the quick start.</p>
+      <p>Follow these general guidelines when writing task steps:</p>
+      <ul>
+      <li>Use "Click" for buttons and labels. Use "Select" for checkboxes, radio buttons, and drop-down menus.</li>
+      <li>
+      Use "Click" by itself. Do not add "on" after it.
+      <ul>
+      <li>
+      <strong>Correct example</strong>:
+      <CodeBlock code={"Click OK."} lang="plaintext" />
+      </li>
+      <li>
+      <strong>Incorrect example</strong>:
+      <CodeBlock code={"Click on the OK button."} lang="plaintext" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Tell users how to navigate between <strong>Administrator</strong> and <strong>Developer</strong> perspectives. Even if you think a user might already be in the appropriate perspective, give them instructions on how to get there so that they are definitely where they need to be.
+      <p>Examples:</p>
+      <CodeBlock code={"Enter the Developer perspective: In the main navigation, click the dropdown menu and select Developer.\nEnter the Administrator perspective: In the main navigation, click the dropdown menu and select Admin."} lang="plaintext" />
+      </li>
+      <li>
+      Use the "Location, action" structure. Tell a user where to go before telling them what to do.
+      <ul>
+      <li>
+      <strong>Correct example</strong>:
+      <CodeBlock code={"In the node.js deployment, hover over the icon."} lang="plaintext" />
+      </li>
+      <li>
+      <strong>Incorrect example</strong>:
+      <CodeBlock code={"Hover over the icon in the node.js deployment."} lang="plaintext" />
+      </li>
+      </ul>
+      </li>
+      <li>Keep your product terminology capitalization consistent.</li>
+      <li>If you must specify a menu type or list as a dropdown, write "dropdown” as one word without a hyphen.</li>
+      <li>
+      Clearly distinguish between a user action and additional information on product functionality.
+      <ul>
+      <li>
+      <strong>User action</strong>:
+      <CodeBlock code={"Change the time range of the dashboard by clicking the dropdown menu and selecting time range."} lang="plaintext" />
+      </li>
+      <li>
+      <strong>Additional information</strong>:
+      <CodeBlock code={"To look at data in a specific time frame, you can change the time range of the dashboard."} lang="plaintext" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Avoid directional language, such as "In the upper-right corner, click the icon". Directional language becomes outdated every time UI layouts change. Also, a direction for desktop users might not be accurate for users with a different screen size. Instead, identify something using its name.
+      <ul>
+      <li>
+      <strong>Correct example</strong>:
+      <CodeBlock code={"In the navigation menu, click Settings."} lang="plaintext" />
+      </li>
+      <li>
+      <strong>Incorrect example</strong>:
+      <CodeBlock code={"In the left-hand menu, click Settings."} lang="plaintext" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Do not identify items by color alone, such as "Click the gray circle". Color identifiers are not useful for sight-limited users, especially colorblind users. Instead, identify an item using its name or copy, such as button copy.
+      <ul>
+      <li>
+      <strong>Correct example</strong>:
+      <CodeBlock code={"The success message indicates a connection."} lang="plaintext" />
+      </li>
+      <li>
+      <strong>Incorrect example</strong>:
+      <CodeBlock code={"The message with a green icon indicates a connection."} lang="plaintext" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Use the second-person point of view, you, consistently:
+      <ul>
+      <li>
+      <strong>Correct example</strong>:
+      <CodeBlock code={"Set up your environment."} lang="plaintext" />
+      </li>
+      <li>
+      <strong>Incorrect example</strong>:
+      <CodeBlock code={"Let's set up our environment."} lang="plaintext" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="quick-start-content-guidelines-check-your-work-module_creating-quick-start-tutorials" class="group scroll-mt-20">Check your work module<a href="#quick-start-content-guidelines-check-your-work-module_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul>
+      <li>
+      After a user completes a step, a <strong>Check your work</strong> module displays. This module prompts the user to answer a yes or no question about the step results, which gives them the opportunity to review their work. For this module, you only need to write a single yes or no question.
+      <ul>
+      <li>If the user answers <strong>Yes</strong>, a checkmark displays.</li>
+      <li>If the user answers <strong>No</strong>, an error message displays with a link to relevant documentation, if necessary. The user then has the opportunity to go back and try again.</li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="quick-start-content-guidelines-formatting-UI-elements_creating-quick-start-tutorials" class="group scroll-mt-20">Formatting UI elements<a href="#quick-start-content-guidelines-formatting-UI-elements_creating-quick-start-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Format UI elements by using these guidelines:</p>
+      <ul>
+      <li>Copy for buttons, dropdowns, tabs, fields, and other UI controls: Write the copy as it is displayed in the UI and bold it.</li>
+      <li>All other UI elements (including page, window, and panel names): Write the copy as it is displayed in the UI and bold it.</li>
+      <li>Code or user-entered text: Use monospaced font.</li>
+      <li>Hints: If a hint to a navigation or masthead element is included, style the text as you would a link.</li>
+      <li>CLI commands: Use monospaced font.</li>
+      <li>In running text, use a bold, monospaced font for a command.</li>
+      <li>If a parameter or option is a variable value, use an italic monospaced font.</li>
+      <li>Use a bold, monospaced font for the parameter and a monospaced font for the option.</li>
+      </ul>
       <h2 id="quick-start-tutorials-additional-resources" class="group scroll-mt-20">Additional resources<a href="#quick-start-tutorials-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://www.patternfly.org/ux-writing/brand-voice-and-tone">PatternFly’s brand voice and tone guidelines</a></li>

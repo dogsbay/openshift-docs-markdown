@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"virt-collecting-virt-data","text":"Collecting data for Red Hat Support"},{"depth":2,"slug":"additional-resources_virt-collecting-virt-data","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-collecting-virt-data","text":"Collecting data for Red Hat Support"},{"depth":2,"slug":"virt-collecting-data-about-your-environment_virt-collecting-virt-data","text":"Collecting data about your environment"},{"depth":2,"slug":"virt-collecting-data-about-vms_virt-collecting-virt-data","text":"Collecting data about virtual machines"},{"depth":2,"slug":"virt-using-virt-must-gather_virt-collecting-virt-data","text":"Using the must-gather tool for OpenShift Virtualization"},{"depth":3,"slug":"virt-must-gather-options_virt-collecting-virt-data","text":"must-gather tool options"},{"depth":4,"slug":"must-gather-environment-variables_virt-collecting-virt-data","text":"Environment variables"},{"depth":4,"slug":"must-gather-scripts_virt-collecting-virt-data","text":"Scripts"},{"depth":4,"slug":"usage-and-examples_virt-collecting-virt-data","text":"Usage and examples"},{"depth":2,"slug":"virt-generating-a-vm-memory-dump_virt-collecting-virt-data","text":"Generating a VM memory dump"},{"depth":2,"slug":"about-self-service-tsr_virt-collecting-virt-data","text":"Self-service Technical Supportability Review"},{"depth":3,"slug":"when-to-use-self-service-tsr_virt-collecting-virt-data","text":"When to use the self-service TSR tool"},{"depth":3,"slug":"how-to-access-tsr_virt-collecting-virt-data","text":"How to access the TSR"},{"depth":2,"slug":"additional-resources_virt-collecting-virt-data","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/support/virt-collecting-virt-data";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Collecting data for Red Hat Support";
-const description = "When you submit a support case to Red Hat Support, it is helpful to provide debugging information for OpenShift Container Platform and {{ VirtProductName…" || undefined;
+const description = "When you submit a support case to Red Hat Support, it is helpful to provide debugging information for OpenShift Container Platform and OpenShift…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["virt","virt/support"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Collecting data for Red Hat Support {#virt-collecting-virt-data}\n\nWhen you submit a support case to Red Hat Support, it is helpful to provide debugging information for OpenShift Container Platform and {{ VirtProductName }}.\n\nYou can use the following tools to collect debugging information:\n\nmust-gather tool\n:   The `must-gather` tool collects diagnostic information, including resource definitions and service logs.\n\nPrometheus\n:   Prometheus is a time-series database and a rule evaluation engine for metrics. Prometheus sends alerts to Alertmanager for processing.\n\nAlertmanager\n:   The Alertmanager service handles alerts received from Prometheus. The Alertmanager is also responsible for sending the alerts to external notification systems.\n\n## Additional resources {#additional-resources_virt-collecting-virt-data}\n\n- [VM support overview](/openshift-docs-markdown/virt/support/virt-support-overview#virt-support-overview)\n- [How to provide log files to Red Hat Support (Red Hat Knowledgebase)](https://access.redhat.com/solutions/2112)\n- [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)\n- [Installing the QEMU guest agent on a Linux VM](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent-on-linux-vm_virt-installing-qemu-guest-agent)\n- [Installing VirtIO drivers from a SATA CD drive on an existing Windows VM](/openshift-docs-markdown/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms#virt-installing-virtio-drivers-existing-windows_virt-install-virtio-drivers-on-windows-vms)\n- [Connect to the desktop viewer by using the web console](/openshift-docs-markdown/virt/managing_vms/virt-accessing-vm-consoles#virt-connecting-desktop-viewer-web_virt-accessing-vm-consoles)\n- [Collect memory dumps from VMs](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-generating-a-vm-memory-dump_virt-collecting-virt-data)\n- [Submitting a support case](/openshift-docs-markdown/support/getting-support#support-submitting-a-case_getting-support)\n- [Modifying retention time and size for Prometheus metrics data](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/storing-and-recording-data-uwm#modifying-retention-time-and-size-for-prometheus-metrics-data_storing-and-recording-data-uwm)\n- [Configuring the Alertmanager to capture relevant alerts and to send alert notifications to a dedicated mailbox](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/storing-and-recording-data-uwm#modifying-retention-time-and-size-for-prometheus-metrics-data_storing-and-recording-data-uwm)\n- [Modifying retention time and size for Prometheus metrics data](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_core_platform_monitoring/storing-and-recording-data#modifying-retention-time-and-size-for-prometheus-metrics-data_storing-and-recording-data)\n- [Configuring alerts and notifications](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_core_platform_monitoring/configuring-alerts-and-notifications)\n- [Downloading log files and diagnostic information](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html-single/troubleshooting_openshift_data_foundation/index#downloading-log-files-and-diagnostic-information_rhodf)\n- [Querying metrics for all projects with the monitoring dashboard](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator#querying-metrics-for-all-projects-with-mon-dashboard_accessing-metrics-as-an-administrator)\n- [Installing the latest VirtIO drivers](https://access.redhat.com/solutions/6957701)\n- [Volatility3 tool](https://github.com/volatilityfoundation/volatility3)\n- [Customer Support](https://access.redhat.com/support/cases/#/case/list)\n- [Create issue](https://redhat.atlassian.net/secure/CreateIssue.jspa)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/support/virt-collecting-virt-data.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Collecting data for Red Hat Support {#virt-collecting-virt-data}\n\nWhen you submit a support case to Red Hat Support, it is helpful to provide debugging information for OpenShift Container Platform and OpenShift Virtualization.\n\nYou can use the following tools to collect debugging information:\n\nmust-gather tool\n:   The `must-gather` tool collects diagnostic information, including resource definitions and service logs.\n\nPrometheus\n:   Prometheus is a time-series database and a rule evaluation engine for metrics. Prometheus sends alerts to Alertmanager for processing.\n\nAlertmanager\n:   The Alertmanager service handles alerts received from Prometheus. The Alertmanager is also responsible for sending the alerts to external notification systems.\n\n## Collecting data about your environment {#virt-collecting-data-about-your-environment_virt-collecting-virt-data}\n\nCollecting data about your environment minimizes the time required to analyze and determine the root cause.\n\n**Prerequisites**\n\n- You have set the retention time for Prometheus metrics data to a minimum of seven days.\n- You have configured the Alertmanager to capture relevant alerts and to send alert notifications to a dedicated mailbox so that they can be viewed and persisted outside the cluster.\n- You have recorded the exact number of affected nodes and virtual machines.\n\n**Procedure**\n\n1. Collect must-gather data for the cluster.\n2. Collect must-gather data for Red Hat OpenShift Data Foundation, if necessary.\n3. Collect must-gather data for OpenShift Virtualization.\n4. Collect Prometheus metrics for the cluster.\n\n## Collecting data about virtual machines {#virt-collecting-data-about-vms_virt-collecting-virt-data}\n\nCollecting data about malfunctioning virtual machines (VMs) minimizes the time required to analyze and determine the root cause.\n\n**Prerequisites**\n\n- For Linux VMs, you have installed the latest QEMU guest agent.\n- For Windows VMs, you have:\n\n  - Recorded the Windows patch update details.\n  - Installed the latest VirtIO drivers.\n  - Installed the latest QEMU guest agent.\n  - If Remote Desktop Protocol (RDP) is enabled, you have connected by using the desktop viewer to determine whether there is a problem with the connection software.\n\n**Procedure**\n\n1. Collect must-gather data for the VMs using the `/usr/bin/gather` script.\n2. Collect screenshots of VMs that have crashed before you restart them.\n3. Collect memory dumps from VMs before remediation attempts.\n4. Record factors that the malfunctioning VMs have in common. For example, the VMs have the same host or network.\n\n## Using the must-gather tool for OpenShift Virtualization {#virt-using-virt-must-gather_virt-collecting-virt-data}\n\nYou can collect data about OpenShift Virtualization resources by running the `must-gather` command with the OpenShift Virtualization image.\n\nThe default data collection includes information about the following resources:\n\n- OpenShift Virtualization Operator namespaces, including child objects\n- OpenShift Virtualization custom resource definitions\n- Namespaces that contain virtual machines\n- Basic virtual machine definitions\n\nYou can add optional environment details and scripts to the `must-gather` command to collect additional information. Use these environment variables and scripts to collect data about specific VMs, images, or instance types.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Run the `must-gather` command to collect data about OpenShift Virtualization:\n\n  ```terminal\n  $ oc adm must-gather \\\n    --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n    -- /usr/bin/gather\n  ```\n\n  > [!NOTE]\n  > You can also collect `must-gather` logs for all Operators and products on your cluster by running following command:\n  >\n  > ```terminal\n  > $ oc adm must-gather --all-images\n  > ```\n\n  1. Run the following command to modify the number of processes running in parallel when collecting `must-gather` data:\n\n     ```terminal\n     $ oc adm must-gather \\\n       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n       -- PROS=<number> /usr/bin/gather\n     ```\n\n     `PROS` defines the number of parallel processes running to collect data. The default number of processes is 5. Increasing the number of processes may result in faster data collection, but uses more resources. Increasing the maximum number of parallel processes is not recommended.\n  2. Run the following command to collect detailed information for a specific VM in a specific namespace:\n\n     ```terminal\n     $ oc adm must-gather \\\n       --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n       -- NS=<namespace name> VM=<VM name> /usr/bin/gather --vms_details\n     ```\n\n     `NS` is the environment variable for `namespace`. It is mandatory when using the `VM` environment variable.\n  3. Run the following command to collect image, image-stream, and image-stream-tags information from the cluster:\n\n     ```terminal\n     $ oc adm must-gather \\\n      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n      /usr/bin/gather --images\n     ```\n  4. Run the following command to collect information about instance types from the cluster:\n\n     ```terminal\n     $ oc adm must-gather \\\n      --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n      /usr/bin/gather --instancetypes\n     ```\n\n### must-gather tool options {#virt-must-gather-options_virt-collecting-virt-data}\n\nTo troubleshoot complex issues and collect specific data beyond the default logs, add optional parameters to the `must-gather` command when gathering information from your cluster.\n\nYou can specify a combination of scripts and environment variables for the following options:\n\n- Collecting detailed virtual machine (VM) information from a namespace\n- Collecting detailed information about specified VMs\n- Collecting image, image-stream, and image-stream-tags information\n- Limiting the maximum number of parallel processes used by the `must-gather` tool\n\n#### Environment variables {#must-gather-environment-variables_virt-collecting-virt-data}\n\nYou can specify environment variables for a compatible script.\n\n`NS=<namespace_name>`\n:   Collect virtual machine information, including `virt-launcher` pod details, from the namespace that you specify. The `VirtualMachine` and `VirtualMachineInstance` CR data is collected for all namespaces.\n\n`VM=<vm_name>`\n:   Collect details about a particular virtual machine. To use this option, you must also specify a namespace by using the `NS` environment variable.\n\n`PROS=<number_of_processes>`\n:   Modify the maximum number of parallel processes that the `must-gather` tool uses. The default value is `5`.\n\n    > [!IMPORTANT]\n    > Using too many parallel processes can cause performance issues. Increasing the maximum number of parallel processes is not recommended.\n\n#### Scripts {#must-gather-scripts_virt-collecting-virt-data}\n\nEach script is compatible only with certain environment variable combinations.\n\n`/usr/bin/gather`\n:   Use the default `must-gather` script, which collects cluster data from all namespaces and includes only basic VM information. This script is compatible only with the `PROS` variable.\n\n`/usr/bin/gather --vms_details`\n:   Collect VM log files, VM definitions, control-plane logs, and namespaces that belong to OpenShift Virtualization resources. Specifying namespaces includes their child objects. If you use this parameter without specifying a namespace or VM, the `must-gather` tool collects this data for all VMs in the cluster. This script is compatible with all environment variables, but you must specify a namespace if you use the `VM` variable.\n\n`/usr/bin/gather --images`\n:   Collect image, image-stream, and image-stream-tags custom resource information. This script is compatible only with the `PROS` variable.\n\n`/usr/bin/gather --instancetypes`\n:   Collect instance types information. This information is not currently collected by default; you can, however, optionally collect it.\n\n#### Usage and examples {#usage-and-examples_virt-collecting-virt-data}\n\nYou can run a script by itself or with one or more compatible environment variables.\n\n```terminal {title=\"must-gather syntax with optional parameters\"}\n$ oc adm must-gather \\\n  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n  -- <environment_variable_1> <environment_variable_2> <script_name>\n```\n\n**Compatible parameters**\n\n| Script | Compatible environment variable |\n| --- | --- |\n| `/usr/bin/gather` | \\* `PROS=<number_of_processes>` |\n| `/usr/bin/gather --vms_details` | \\* For a namespace: `NS=<namespace_name>` \\* For a VM: `VM=<vm_name> NS=<namespace_name>` \\* `PROS=<number_of_processes>` |\n| `/usr/bin/gather --images` | \\* `PROS=<number_of_processes>` |\n\n## Generating a VM memory dump {#virt-generating-a-vm-memory-dump_virt-collecting-virt-data}\n\nWhen a virtual machine (VM) terminates unexpectedly, you can use the `virtctl memory-dump` to generate a memory dump command to output a VM memory dump and save it on a persistent volume claim (PVC). Afterwards, you can analyze the memory dump to diagnose and troubleshoot issues on the VM.\n\n**Procedure**\n\n1. Optional: You have an existing PVC on which you want to save the memory dump.\n\n   - The PVC volume mode must be `FileSystem`.\n   - The PVC must be large enough to contain the memory dump.\n\n     The formula for calculating the PVC size is `(VMMemorySize + 100Mi) * (1 + FileSystemOverhead)`, where `100Mi` is the memory dump overhead, and `FileSystemOverhead` is defined in the `HCO` object.\n2. Create a memory dump of the required VM:\n\n   - If you have an existing PVC selected on which you want to save the memory dump:\n\n     ```terminal\n     $ virtctl memory-dump get <vm_name> --claim-name=<pvc_name>\n     ```\n   - If you want to create a new PVC for the memory dump:\n\n     ```terminal\n     $ virtctl memory-dump get <vm_name> --claim-name=<new_pvc_name> --create-claim\n     ```\n3. Download the memory dump:\n\n   ```terminal\n   $ virtctl memory-dump download <vm_name> --output=<output_file>\n   ```\n4. Attach the memory dump to a Red Hat Support case.\n\n   Alternatively, you can inspect the memory dump, for example by using the volatility3 tool.\n5. Optional: Remove the memory dump:\n\n   ```terminal\n   $ virtctl memory-dump remove <vm_name>\n   ```\n\n## Self-service Technical Supportability Review {#about-self-service-tsr_virt-collecting-virt-data}\n\nYou can use the self-service Technical Supportability Review (TSR) on the Red Hat Customer Portal to validate your cluster configuration against Red Hat common practices.\n\n> [!NOTE]\n> The `must-gather` tool collects diagnostic information about your cluster, including resource definitions, service logs, and configuration data. For more information, see \"Gathering data about your cluster\" in the OpenShift Container Platform documentation.\n\nThe self-service TSR uses AI to evaluate your cluster’s `must-gather` data and provides a prioritized executive summary of recommendations. This serves as a starting point to help you identify and resolve potential issues before they impact your environment.\n\nThe TSR performs hundreds of checks across the OpenShift Container Platform platform, including OpenShift Virtualization. Coverage is continually expanding.\n\n### When to use the self-service TSR tool {#when-to-use-self-service-tsr_virt-collecting-virt-data}\n\nIntegrating the self-service TSR into your regular operational workflow can be helpful in the following scenarios:\n\nRoutine benchmarking\n:   Use the TSR quarterly to benchmark cluster health and plan for routine maintenance activities.\n\nPre-flight checks\n:   Validate your cluster configuration before major structural changes, including upgrades, migrations, and expansions.\n\nCritical event preparation\n:   Confirm cluster stability ahead of high-traffic business events, such as seasonal peaks, or operational milestones, such as year-end shutdowns, business continuity drills, and compliance audits.\n\n### How to access the TSR {#how-to-access-tsr_virt-collecting-virt-data}\n\nTo run a self-service review, upload your cluster’s `must-gather` data to the **Analyze** tab in the **Support** section of the Red Hat Customer Portal. For a direct link, see \"Technical Supportability Review with AI tool\" in the Additional resources section. The **Analyze** feature generates a prioritized executive summary that identifies your cluster’s top risks and recommends corrective actions. Review the recommendations and implement the suggested corrective actions to address the identified risks.\n\nThe self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.\n\n- [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze)\n- [Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform](https://access.redhat.com/solutions/7141255)\n\n## Additional resources {#additional-resources_virt-collecting-virt-data}\n\n- [VM support overview](/openshift-docs-markdown/virt/support/virt-support-overview#virt-support-overview)\n- [How to provide log files to Red Hat Support (Red Hat Knowledgebase)](https://access.redhat.com/solutions/2112)\n- [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)\n- [Installing the QEMU guest agent on a Linux VM](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent-on-linux-vm_virt-installing-qemu-guest-agent)\n- [Installing VirtIO drivers from a SATA CD drive on an existing Windows VM](/openshift-docs-markdown/virt/managing_vms/virt-install-virtio-drivers-on-windows-vms#virt-installing-virtio-drivers-existing-windows_virt-install-virtio-drivers-on-windows-vms)\n- [Connect to the desktop viewer by using the web console](/openshift-docs-markdown/virt/managing_vms/virt-accessing-vm-consoles#virt-connecting-desktop-viewer-web_virt-accessing-vm-consoles)\n- [Collect memory dumps from VMs](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-generating-a-vm-memory-dump_virt-collecting-virt-data)\n- [Submitting a support case](/openshift-docs-markdown/support/getting-support#support-submitting-a-case_getting-support)\n- [Modifying retention time and size for Prometheus metrics data](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/storing-and-recording-data-uwm#modifying-retention-time-and-size-for-prometheus-metrics-data_storing-and-recording-data-uwm)\n- [Configuring the Alertmanager to capture relevant alerts and to send alert notifications to a dedicated mailbox](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/storing-and-recording-data-uwm#modifying-retention-time-and-size-for-prometheus-metrics-data_storing-and-recording-data-uwm)\n- [Modifying retention time and size for Prometheus metrics data](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_core_platform_monitoring/storing-and-recording-data#modifying-retention-time-and-size-for-prometheus-metrics-data_storing-and-recording-data)\n- [Configuring alerts and notifications](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_core_platform_monitoring/configuring-alerts-and-notifications)\n- [Downloading log files and diagnostic information](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html-single/troubleshooting_openshift_data_foundation/index#downloading-log-files-and-diagnostic-information_rhodf)\n- [Querying metrics for all projects with the monitoring dashboard](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator#querying-metrics-for-all-projects-with-mon-dashboard_accessing-metrics-as-an-administrator)\n- [Installing the latest VirtIO drivers](https://access.redhat.com/solutions/6957701)\n- [Volatility3 tool](https://github.com/volatilityfoundation/volatility3)\n- [Customer Support](https://access.redhat.com/support/cases/#/case/list)\n- [Create issue](https://redhat.atlassian.net/secure/CreateIssue.jspa)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/support/virt-collecting-virt-data.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,9 +100,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-collecting-virt-data" class="group scroll-mt-20">Collecting data for Red Hat Support<a href="#virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>When you submit a support case to Red Hat Support, it is helpful to provide debugging information for OpenShift Container Platform and {"{"}{"{"} VirtProductName {"}"}{"}"}.</p>
+      <p>When you submit a support case to Red Hat Support, it is helpful to provide debugging information for OpenShift Container Platform and OpenShift Virtualization.</p>
       <p>You can use the following tools to collect debugging information:</p>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold">must-gather tool</dt>
@@ -102,11 +111,224 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <dt class="font-semibold">Alertmanager</dt>
       <dd class="ml-6 text-muted-foreground"><p>The Alertmanager service handles alerts received from Prometheus. The Alertmanager is also responsible for sending the alerts to external notification systems.</p></dd>
       </dl>
-      <p class="/modules/virt-collecting-data-about-your-environment.md"></p>
-      <p class="/modules/virt-using-virt-must-gather.md /modules/virt-collecting-data-about-vms.md"></p>
-      <p class="/modules/virt-must-gather-options.md"></p>
-      <p class="/modules/virt-generating-a-vm-memory-dump.md"></p>
-      <p class="/modules/about-self-service-tsr.md"></p>
+      <h2 id="virt-collecting-data-about-your-environment_virt-collecting-virt-data" class="group scroll-mt-20">Collecting data about your environment<a href="#virt-collecting-data-about-your-environment_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Collecting data about your environment minimizes the time required to analyze and determine the root cause.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have set the retention time for Prometheus metrics data to a minimum of seven days.</li>
+      <li>You have configured the Alertmanager to capture relevant alerts and to send alert notifications to a dedicated mailbox so that they can be viewed and persisted outside the cluster.</li>
+      <li>You have recorded the exact number of affected nodes and virtual machines.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Collect must-gather data for the cluster.</li>
+      <li>Collect must-gather data for Red Hat OpenShift Data Foundation, if necessary.</li>
+      <li>Collect must-gather data for OpenShift Virtualization.</li>
+      <li>Collect Prometheus metrics for the cluster.</li>
+      </ol>
+      <h2 id="virt-collecting-data-about-vms_virt-collecting-virt-data" class="group scroll-mt-20">Collecting data about virtual machines<a href="#virt-collecting-data-about-vms_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Collecting data about malfunctioning virtual machines (VMs) minimizes the time required to analyze and determine the root cause.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>For Linux VMs, you have installed the latest QEMU guest agent.</li>
+      <li>
+      For Windows VMs, you have:
+      <ul>
+      <li>Recorded the Windows patch update details.</li>
+      <li>Installed the latest VirtIO drivers.</li>
+      <li>Installed the latest QEMU guest agent.</li>
+      <li>If Remote Desktop Protocol (RDP) is enabled, you have connected by using the desktop viewer to determine whether there is a problem with the connection software.</li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Collect must-gather data for the VMs using the <code>/usr/bin/gather</code> script.</li>
+      <li>Collect screenshots of VMs that have crashed before you restart them.</li>
+      <li>Collect memory dumps from VMs before remediation attempts.</li>
+      <li>Record factors that the malfunctioning VMs have in common. For example, the VMs have the same host or network.</li>
+      </ol>
+      <h2 id="virt-using-virt-must-gather_virt-collecting-virt-data" class="group scroll-mt-20">Using the must-gather tool for OpenShift Virtualization<a href="#virt-using-virt-must-gather_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can collect data about OpenShift Virtualization resources by running the <code>must-gather</code> command with the OpenShift Virtualization image.</p>
+      <p>The default data collection includes information about the following resources:</p>
+      <ul>
+      <li>OpenShift Virtualization Operator namespaces, including child objects</li>
+      <li>OpenShift Virtualization custom resource definitions</li>
+      <li>Namespaces that contain virtual machines</li>
+      <li>Basic virtual machine definitions</li>
+      </ul>
+      <p>You can add optional environment details and scripts to the <code>must-gather</code> command to collect additional information. Use these environment variables and scripts to collect data about specific VMs, images, or instance types.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Run the <code>must-gather</code> command to collect data about OpenShift Virtualization:
+      <CodeBlock code={"$ oc adm must-gather \\\n  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n  -- /usr/bin/gather"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can also collect <code>must-gather</code> logs for all Operators and products on your cluster by running following command:</p>
+          <CodeBlock code={"$ oc adm must-gather --all-images"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      <ol>
+      <li>
+      Run the following command to modify the number of processes running in parallel when collecting <code>must-gather</code> data:
+      <CodeBlock code={"$ oc adm must-gather \\\n  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n  -- PROS=<number> /usr/bin/gather"} lang="terminal" />
+      <p><code>PROS</code> defines the number of parallel processes running to collect data. The default number of processes is 5. Increasing the number of processes may result in faster data collection, but uses more resources. Increasing the maximum number of parallel processes is not recommended.</p>
+      </li>
+      <li>
+      Run the following command to collect detailed information for a specific VM in a specific namespace:
+      <CodeBlock code={"$ oc adm must-gather \\\n  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n  -- NS=<namespace name> VM=<VM name> /usr/bin/gather --vms_details"} lang="terminal" />
+      <p><code>NS</code> is the environment variable for <code>namespace</code>. It is mandatory when using the <code>VM</code> environment variable.</p>
+      </li>
+      <li>
+      Run the following command to collect image, image-stream, and image-stream-tags information from the cluster:
+      <CodeBlock code={"$ oc adm must-gather \\\n --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n /usr/bin/gather --images"} lang="terminal" />
+      </li>
+      <li>
+      Run the following command to collect information about instance types from the cluster:
+      <CodeBlock code={"$ oc adm must-gather \\\n --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n /usr/bin/gather --instancetypes"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ul>
+      <h3 id="virt-must-gather-options_virt-collecting-virt-data" class="group scroll-mt-20">must-gather tool options<a href="#virt-must-gather-options_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To troubleshoot complex issues and collect specific data beyond the default logs, add optional parameters to the <code>must-gather</code> command when gathering information from your cluster.</p>
+      <p>You can specify a combination of scripts and environment variables for the following options:</p>
+      <ul>
+      <li>Collecting detailed virtual machine (VM) information from a namespace</li>
+      <li>Collecting detailed information about specified VMs</li>
+      <li>Collecting image, image-stream, and image-stream-tags information</li>
+      <li>Limiting the maximum number of parallel processes used by the <code>must-gather</code> tool</li>
+      </ul>
+      <h4 id="must-gather-environment-variables_virt-collecting-virt-data" class="group scroll-mt-20">Environment variables<a href="#must-gather-environment-variables_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>You can specify environment variables for a compatible script.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>NS=&lt;namespace_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Collect virtual machine information, including <code>virt-launcher</code> pod details, from the namespace that you specify. The <code>VirtualMachine</code> and <code>VirtualMachineInstance</code> CR data is collected for all namespaces.</p></dd>
+      <dt class="font-semibold"><code>VM=&lt;vm_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Collect details about a particular virtual machine. To use this option, you must also specify a namespace by using the <code>NS</code> environment variable.</p></dd>
+      <dt class="font-semibold"><code>PROS=&lt;number_of_processes&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Modify the maximum number of parallel processes that the <code>must-gather</code> tool uses. The default value is <code>5</code>.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Using too many parallel processes can cause performance issues. Increasing the maximum number of parallel processes is not recommended.</p>
+        </AlertDescription>
+      </Alert>
+      </dd>
+      </dl>
+      <h4 id="must-gather-scripts_virt-collecting-virt-data" class="group scroll-mt-20">Scripts<a href="#must-gather-scripts_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Each script is compatible only with certain environment variable combinations.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>/usr/bin/gather</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Use the default <code>must-gather</code> script, which collects cluster data from all namespaces and includes only basic VM information. This script is compatible only with the <code>PROS</code> variable.</p></dd>
+      <dt class="font-semibold"><code>/usr/bin/gather --vms_details</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Collect VM log files, VM definitions, control-plane logs, and namespaces that belong to OpenShift Virtualization resources. Specifying namespaces includes their child objects. If you use this parameter without specifying a namespace or VM, the <code>must-gather</code> tool collects this data for all VMs in the cluster. This script is compatible with all environment variables, but you must specify a namespace if you use the <code>VM</code> variable.</p></dd>
+      <dt class="font-semibold"><code>/usr/bin/gather --images</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Collect image, image-stream, and image-stream-tags custom resource information. This script is compatible only with the <code>PROS</code> variable.</p></dd>
+      <dt class="font-semibold"><code>/usr/bin/gather --instancetypes</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Collect instance types information. This information is not currently collected by default; you can, however, optionally collect it.</p></dd>
+      </dl>
+      <h4 id="usage-and-examples_virt-collecting-virt-data" class="group scroll-mt-20">Usage and examples<a href="#usage-and-examples_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>You can run a script by itself or with one or more compatible environment variables.</p>
+      <CodeBlock code={"$ oc adm must-gather \\\n  --image=registry.redhat.io/container-native-virtualization/cnv-must-gather-rhel9:v{{ HCOVersion }} \\\n  -- <environment_variable_1> <environment_variable_2> <script_name>"} lang="terminal" title="must-gather syntax with optional parameters" />
+      <p><strong>Compatible parameters</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Script</TableHead>
+      <TableHead>Compatible environment variable</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>/usr/bin/gather</code></TableCell>
+      <TableCell>* <code>PROS=&lt;number_of_processes&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>/usr/bin/gather --vms_details</code></TableCell>
+      <TableCell>* For a namespace: <code>NS=&lt;namespace_name&gt;</code> * For a VM: <code>VM=&lt;vm_name&gt; NS=&lt;namespace_name&gt;</code> * <code>PROS=&lt;number_of_processes&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>/usr/bin/gather --images</code></TableCell>
+      <TableCell>* <code>PROS=&lt;number_of_processes&gt;</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="virt-generating-a-vm-memory-dump_virt-collecting-virt-data" class="group scroll-mt-20">Generating a VM memory dump<a href="#virt-generating-a-vm-memory-dump_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When a virtual machine (VM) terminates unexpectedly, you can use the <code>virtctl memory-dump</code> to generate a memory dump command to output a VM memory dump and save it on a persistent volume claim (PVC). Afterwards, you can analyze the memory dump to diagnose and troubleshoot issues on the VM.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Optional: You have an existing PVC on which you want to save the memory dump.
+      <ul>
+      <li>The PVC volume mode must be <code>FileSystem</code>.</li>
+      <li>
+      The PVC must be large enough to contain the memory dump.
+      <p>The formula for calculating the PVC size is <code>(VMMemorySize + 100Mi) * (1 + FileSystemOverhead)</code>, where <code>100Mi</code> is the memory dump overhead, and <code>FileSystemOverhead</code> is defined in the <code>HCO</code> object.</p>
+      </li>
+      </ul>
+      </li>
+      <li>
+      Create a memory dump of the required VM:
+      <ul>
+      <li>
+      If you have an existing PVC selected on which you want to save the memory dump:
+      <CodeBlock code={"$ virtctl memory-dump get <vm_name> --claim-name=<pvc_name>"} lang="terminal" />
+      </li>
+      <li>
+      If you want to create a new PVC for the memory dump:
+      <CodeBlock code={"$ virtctl memory-dump get <vm_name> --claim-name=<new_pvc_name> --create-claim"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Download the memory dump:
+      <CodeBlock code={"$ virtctl memory-dump download <vm_name> --output=<output_file>"} lang="terminal" />
+      </li>
+      <li>
+      Attach the memory dump to a Red Hat Support case.
+      <p>Alternatively, you can inspect the memory dump, for example by using the volatility3 tool.</p>
+      </li>
+      <li>
+      Optional: Remove the memory dump:
+      <CodeBlock code={"$ virtctl memory-dump remove <vm_name>"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="about-self-service-tsr_virt-collecting-virt-data" class="group scroll-mt-20">Self-service Technical Supportability Review<a href="#about-self-service-tsr_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the self-service Technical Supportability Review (TSR) on the Red Hat Customer Portal to validate your cluster configuration against Red Hat common practices.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>must-gather</code> tool collects diagnostic information about your cluster, including resource definitions, service logs, and configuration data. For more information, see "Gathering data about your cluster" in the OpenShift Container Platform documentation.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The self-service TSR uses AI to evaluate your cluster’s <code>must-gather</code> data and provides a prioritized executive summary of recommendations. This serves as a starting point to help you identify and resolve potential issues before they impact your environment.</p>
+      <p>The TSR performs hundreds of checks across the OpenShift Container Platform platform, including OpenShift Virtualization. Coverage is continually expanding.</p>
+      <h3 id="when-to-use-self-service-tsr_virt-collecting-virt-data" class="group scroll-mt-20">When to use the self-service TSR tool<a href="#when-to-use-self-service-tsr_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Integrating the self-service TSR into your regular operational workflow can be helpful in the following scenarios:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Routine benchmarking</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Use the TSR quarterly to benchmark cluster health and plan for routine maintenance activities.</p></dd>
+      <dt class="font-semibold">Pre-flight checks</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Validate your cluster configuration before major structural changes, including upgrades, migrations, and expansions.</p></dd>
+      <dt class="font-semibold">Critical event preparation</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Confirm cluster stability ahead of high-traffic business events, such as seasonal peaks, or operational milestones, such as year-end shutdowns, business continuity drills, and compliance audits.</p></dd>
+      </dl>
+      <h3 id="how-to-access-tsr_virt-collecting-virt-data" class="group scroll-mt-20">How to access the TSR<a href="#how-to-access-tsr_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>To run a self-service review, upload your cluster’s <code>must-gather</code> data to the <strong>Analyze</strong> tab in the <strong>Support</strong> section of the Red Hat Customer Portal. For a direct link, see "Technical Supportability Review with AI tool" in the Additional resources section. The <strong>Analyze</strong> feature generates a prioritized executive summary that identifies your cluster’s top risks and recommends corrective actions. Review the recommendations and implement the suggested corrective actions to address the identified risks.</p>
+      <p>The self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.</p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul>
+      <li><a href="https://access.redhat.com/support/cases/#/analyze">Technical Supportability Review with AI tool</a></li>
+      <li><a href="https://access.redhat.com/solutions/7141255">Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform</a></li>
+      </ul>
+      </section>
       <h2 id="additional-resources_virt-collecting-virt-data" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-collecting-virt-data" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/virt/support/virt-support-overview#virt-support-overview">VM support overview</a></li>

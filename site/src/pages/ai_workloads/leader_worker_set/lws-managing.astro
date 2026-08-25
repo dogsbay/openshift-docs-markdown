@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"lws-managing","text":"Managing distributed workloads with the {{ lws_operator }}"},{"depth":2,"slug":"lws-managing_additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"lws-managing","text":"Managing distributed workloads with the Leader Worker Set Operator"},{"depth":2,"slug":"lws-install-operator_lws-managing","text":"Installing the Leader Worker Set Operator"},{"depth":2,"slug":"lws-config_lws-managing","text":"Deploying a leader worker set"},{"depth":2,"slug":"lws-managing_additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-managing";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Managing distributed workloads with the {{ lws_operator }}";
-const description = "You can use the {{ lws_operator }} to manage distributed inference workloads and process large-scale inference requests efficiently." || undefined;
+const description = "You can use the Leader Worker Set Operator to manage distributed inference workloads and process large-scale inference requests efficiently." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["ai_workloads","ai_workloads/leader_worker_set"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing distributed workloads with the {{ lws_operator }} {#lws-managing}\n\nYou can use the {{ lws_operator }} to manage distributed inference workloads and process large-scale inference requests efficiently.\n\n## Additional resources {#lws-managing_additional-resources}\n\n- [LeaderWorkerSet API (Kubernetes)](https://lws.sigs.k8s.io/docs/reference/leaderworkerset.v1/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-managing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing distributed workloads with the Leader Worker Set Operator {#lws-managing}\n\nYou can use the Leader Worker Set Operator to manage distributed inference workloads and process large-scale inference requests efficiently.\n\n## Installing the Leader Worker Set Operator {#lws-install-operator_lws-managing}\n\nYou can install the Leader Worker Set Operator through the OpenShift Container Platform web console to begin managing distributed AI workloads.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- You have installed the cert-manager Operator for Red Hat OpenShift.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Verify that the cert-manager Operator for Red Hat OpenShift is installed.\n3. Install the Leader Worker Set Operator.\n\n   1. Navigate to **Ecosystem** -> **Software Catalog**.\n   2. Enter **Leader Worker Set Operator** into the filter box.\n   3. Select the **Leader Worker Set Operator** and click **Install**.\n   4. On the **Install Operator** page:\n\n      1. The **Update channel** is set to **stable-v1.0**, which installs the latest stable release of Leader Worker Set Operator 1.0.\n      2. Under **Installation mode**, select **A specific namespace on the cluster**.\n      3. Under **Installed Namespace**, select **Operator recommended Namespace: openshift-lws-operator**.\n      4. Under **Update approval**, select one of the following update strategies:\n\n         - The **Automatic** strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.\n         - The **Manual** strategy requires a user with appropriate credentials to approve the Operator update.\n      5. Click **Install**.\n4. Create the custom resource (CR) for the Leader Worker Set Operator:\n\n   1. Navigate to **Installed Operators** -> **Leader Worker Set Operator**.\n   2. Under **Provided APIs**, click **Create instance** in the **LeaderWorkerSetOperator** pane.\n   3. Click **Create**.\n\n## Deploying a leader worker set {#lws-config_lws-managing}\n\nYou can use the Leader Worker Set Operator to deploy a leader worker set to assist with managing distributed workloads across nodes.\n\n**Prerequisites**\n\n- You have installed the Leader Worker Set Operator.\n\n**Procedure**\n\n1. Create a new project by running the following command:\n\n   ```terminal\n   $ oc new-project my-namespace\n   ```\n2. Create a file named `leader-worker-set.yaml`\n\n   ```yaml\n   apiVersion: leaderworkerset.x-k8s.io/v1\n   kind: LeaderWorkerSet\n   metadata:\n     generation: 1\n     name: my-lws\n     namespace: my-namespace\n   spec:\n     leaderWorkerTemplate:\n       leaderTemplate:\n         metadata: {}\n         spec:\n           containers:\n           - image: nginxinc/nginx-unprivileged:1.27\n             name: leader\n             resources: {}\n       restartPolicy: RecreateGroupOnPodRestart\n       size: 3\n       workerTemplate:\n         metadata: {}\n         spec:\n           containers:\n           - image: nginxinc/nginx-unprivileged:1.27\n             name: worker\n             ports:\n             - containerPort: 8080\n               protocol: TCP\n             resources: {}\n     networkConfig:\n       subdomainPolicy: Shared\n     replicas: 2\n     rolloutStrategy:\n       rollingUpdateConfiguration:\n         maxSurge: 1\n         maxUnavailable: 1\n       type: RollingUpdate\n     startupPolicy: LeaderCreated\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the name of the leader worker set resource.\n\n`metadata.namespace`\n:   Specifies the namespace for the leader worker set to run in.\n\n`spec.leaderWorkerTemplate.leaderTemplate`\n:   Specifies the pod template for the leader pods.\n\n`spec.leaderWorkerTemplate.restartPolicy`\n:   Specifies the restart policy for when pod failures occur. Allowed values are `RecreateGroupOnPodRestart` to restart the whole group or `None` to not restart the group.\n\n`spec.leaderWorkerTemplate.size`\n:   Specifies the number of pods to create for each group, including the leader pod. For example, a value of `3` creates 1 leader pod and 2 worker pods. The default value is `1`.\n\n`spec.leaderWorkerTemplate.workerTemplate`\n:   Specifies the pod template for the worker pods.\n\n`spec.networkConfig.subdomainPolicy`\n:   Specifies the policy to use when creating the headless service. Allowed values are `UniquePerReplica` or `Shared`. The default value is `Shared`.\n\n`spec.replicas`\n:   Specifies the number of replicas, or leader-worker groups. The default value is `1`.\n\n`spec.rolloutStrategy.rollingUpdateConfiguration.maxSurge`\n:   Specifies the maximum number of replicas that can be scheduled above the `replicas` value during rolling updates. The value can be specified as an integer or a percentage.\n\n    For more information on all available fields to configure, see [LeaderWorkerSet API](https://lws.sigs.k8s.io/docs/reference/leaderworkerset.v1/) upstream documentation.\n\n1. Apply the leader worker set configuration by running the following command:\n\n   ```terminal\n   $ oc apply -f leader-worker-set.yaml\n   ```\n\n**Verification**\n\n1. Verify that pods were created by running the following command:\n\n   ```terminal\n   $ oc get pods -n my-namespace\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME         READY   STATUS    RESTARTS   AGE\n   my-lws-0     1/1     Running   0          4s\n   my-lws-0-1   1/1     Running   0          3s\n   my-lws-0-2   1/1     Running   0          3s\n   my-lws-1     1/1     Running   0          7s\n   my-lws-1-1   1/1     Running   0          6s\n   my-lws-1-2   1/1     Running   0          6s\n   ```\n\n   - `my-lws-0` is the leader pod for the first group.\n   - `my-lws-1` is the leader pod for the second group.\n2. Review the stateful sets by running the following command:\n\n   ```terminal\n   $ oc get statefulsets\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME       READY   AGE\n   my-lws     4/4     111s\n   my-lws-0   2/2     57s\n   my-lws-1   2/2     60s\n   ```\n\n   - `my-lws` is the leader stateful set for all leader-worker groups.\n   - `my-lws-0` is the worker stateful set for the first group.\n   - `my-lws-1` is the worker stateful set for the second group.\n\n## Additional resources {#lws-managing_additional-resources}\n\n- [LeaderWorkerSet API (Kubernetes)](https://lws.sigs.k8s.io/docs/reference/leaderworkerset.v1/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-managing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +91,122 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="lws-managing" class="group scroll-mt-20">Managing distributed workloads with the {"{"}{"{"} lws_operator {"}"}{"}"}<a href="#lws-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use the {"{"}{"{"} lws_operator {"}"}{"}"} to manage distributed inference workloads and process large-scale inference requests efficiently.</p>
-      <p class="/modules/lws-install-operator.md"></p>
-      <p class="/modules/lws-config.md"></p>
+      <h1 id="lws-managing" class="group scroll-mt-20">Managing distributed workloads with the Leader Worker Set Operator<a href="#lws-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can use the Leader Worker Set Operator to manage distributed inference workloads and process large-scale inference requests efficiently.</p>
+      <h2 id="lws-install-operator_lws-managing" class="group scroll-mt-20">Installing the Leader Worker Set Operator<a href="#lws-install-operator_lws-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can install the Leader Worker Set Operator through the OpenShift Container Platform web console to begin managing distributed AI workloads.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      <li>You have installed the cert-manager Operator for Red Hat OpenShift.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Verify that the cert-manager Operator for Red Hat OpenShift is installed.</li>
+      <li>
+      Install the Leader Worker Set Operator.
+      <ol>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong>.</li>
+      <li>Enter <strong>Leader Worker Set Operator</strong> into the filter box.</li>
+      <li>Select the <strong>Leader Worker Set Operator</strong> and click <strong>Install</strong>.</li>
+      <li>
+      On the <strong>Install Operator</strong> page:
+      <ol>
+      <li>The <strong>Update channel</strong> is set to <strong>stable-v1.0</strong>, which installs the latest stable release of Leader Worker Set Operator 1.0.</li>
+      <li>Under <strong>Installation mode</strong>, select <strong>A specific namespace on the cluster</strong>.</li>
+      <li>Under <strong>Installed Namespace</strong>, select <strong>Operator recommended Namespace: openshift-lws-operator</strong>.</li>
+      <li>
+      Under <strong>Update approval</strong>, select one of the following update strategies:
+      <ul>
+      <li>The <strong>Automatic</strong> strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.</li>
+      <li>The <strong>Manual</strong> strategy requires a user with appropriate credentials to approve the Operator update.</li>
+      </ul>
+      </li>
+      <li>Click <strong>Install</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the custom resource (CR) for the Leader Worker Set Operator:
+      <ol>
+      <li>Navigate to <strong>Installed Operators</strong> -&gt; <strong>Leader Worker Set Operator</strong>.</li>
+      <li>Under <strong>Provided APIs</strong>, click <strong>Create instance</strong> in the <strong>LeaderWorkerSetOperator</strong> pane.</li>
+      <li>Click <strong>Create</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="lws-config_lws-managing" class="group scroll-mt-20">Deploying a leader worker set<a href="#lws-config_lws-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the Leader Worker Set Operator to deploy a leader worker set to assist with managing distributed workloads across nodes.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the Leader Worker Set Operator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a new project by running the following command:
+      <CodeBlock code={"$ oc new-project my-namespace"} lang="terminal" />
+      </li>
+      <li>
+      Create a file named <code>leader-worker-set.yaml</code>
+      <CodeBlock code={"apiVersion: leaderworkerset.x-k8s.io/v1\nkind: LeaderWorkerSet\nmetadata:\n  generation: 1\n  name: my-lws\n  namespace: my-namespace\nspec:\n  leaderWorkerTemplate:\n    leaderTemplate:\n      metadata: {}\n      spec:\n        containers:\n        - image: nginxinc/nginx-unprivileged:1.27\n          name: leader\n          resources: {}\n    restartPolicy: RecreateGroupOnPodRestart\n    size: 3\n    workerTemplate:\n      metadata: {}\n      spec:\n        containers:\n        - image: nginxinc/nginx-unprivileged:1.27\n          name: worker\n          ports:\n          - containerPort: 8080\n            protocol: TCP\n          resources: {}\n  networkConfig:\n    subdomainPolicy: Shared\n  replicas: 2\n  rolloutStrategy:\n    rollingUpdateConfiguration:\n      maxSurge: 1\n      maxUnavailable: 1\n    type: RollingUpdate\n  startupPolicy: LeaderCreated"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the leader worker set resource.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.namespace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace for the leader worker set to run in.</p></dd>
+      <dt class="font-semibold"><code>spec.leaderWorkerTemplate.leaderTemplate</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the pod template for the leader pods.</p></dd>
+      <dt class="font-semibold"><code>spec.leaderWorkerTemplate.restartPolicy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the restart policy for when pod failures occur. Allowed values are <code>RecreateGroupOnPodRestart</code> to restart the whole group or <code>None</code> to not restart the group.</p></dd>
+      <dt class="font-semibold"><code>spec.leaderWorkerTemplate.size</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the number of pods to create for each group, including the leader pod. For example, a value of <code>3</code> creates 1 leader pod and 2 worker pods. The default value is <code>1</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.leaderWorkerTemplate.workerTemplate</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the pod template for the worker pods.</p></dd>
+      <dt class="font-semibold"><code>spec.networkConfig.subdomainPolicy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the policy to use when creating the headless service. Allowed values are <code>UniquePerReplica</code> or <code>Shared</code>. The default value is <code>Shared</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.replicas</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the number of replicas, or leader-worker groups. The default value is <code>1</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.rolloutStrategy.rollingUpdateConfiguration.maxSurge</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the maximum number of replicas that can be scheduled above the <code>replicas</code> value during rolling updates. The value can be specified as an integer or a percentage.</p>
+      <p>For more information on all available fields to configure, see <a href="https://lws.sigs.k8s.io/docs/reference/leaderworkerset.v1/">LeaderWorkerSet API</a> upstream documentation.</p>
+      </dd>
+      </dl>
+      <ol>
+      <li>
+      Apply the leader worker set configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f leader-worker-set.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that pods were created by running the following command:
+      <CodeBlock code={"$ oc get pods -n my-namespace"} lang="terminal" />
+      <CodeBlock code={"NAME         READY   STATUS    RESTARTS   AGE\nmy-lws-0     1/1     Running   0          4s\nmy-lws-0-1   1/1     Running   0          3s\nmy-lws-0-2   1/1     Running   0          3s\nmy-lws-1     1/1     Running   0          7s\nmy-lws-1-1   1/1     Running   0          6s\nmy-lws-1-2   1/1     Running   0          6s"} lang="terminal" title="Example output" />
+      <ul>
+      <li><code>my-lws-0</code> is the leader pod for the first group.</li>
+      <li><code>my-lws-1</code> is the leader pod for the second group.</li>
+      </ul>
+      </li>
+      <li>
+      Review the stateful sets by running the following command:
+      <CodeBlock code={"$ oc get statefulsets"} lang="terminal" />
+      <CodeBlock code={"NAME       READY   AGE\nmy-lws     4/4     111s\nmy-lws-0   2/2     57s\nmy-lws-1   2/2     60s"} lang="terminal" title="Example output" />
+      <ul>
+      <li><code>my-lws</code> is the leader stateful set for all leader-worker groups.</li>
+      <li><code>my-lws-0</code> is the worker stateful set for the first group.</li>
+      <li><code>my-lws-1</code> is the worker stateful set for the second group.</li>
+      </ul>
+      </li>
+      </ol>
       <h2 id="lws-managing_additional-resources" class="group scroll-mt-20">Additional resources<a href="#lws-managing_additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="https://lws.sigs.k8s.io/docs/reference/leaderworkerset.v1/">LeaderWorkerSet API (Kubernetes)</a></li></ul>
     </article>

@@ -18,8 +18,15 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"post-install-multi-architecture-configuration","text":"About clusters with multi-architecture compute machines"},{"depth":2,"slug":"additional-resources_multi-architecture-configuration","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"post-install-multi-architecture-configuration","text":"About clusters with multi-architecture compute machines"},{"depth":2,"slug":"multi-architecture-configuring-your-cluster_multi-architecture-configuration","text":"Configuring your cluster with multi-architecture compute machines"},{"depth":2,"slug":"multi-architecture-verifying-cluster-compatibility_multi-architecture-configuration","text":"Verifying cluster compatibility"},{"depth":2,"slug":"additional-resources_multi-architecture-configuration","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-configuration";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +49,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About clusters with multi-architecture compute machines {#post-install-multi-architecture-configuration}\n\nAn OpenShift Container Platform cluster with multi-architecture compute machines is a cluster that supports compute machines with different architectures.\n\nConfiguring multi-architecture compute machines involves some additional considerations:\n\n- When there are nodes with multiple architectures in your cluster, the architecture of the container image that you deploy to a node must be consistent with the architecture of that node. You need to ensure that the pod is assigned to the node with the appropriate architecture and that it matches the container image architecture. For more information on assigning pods to nodes, see \"Assigning pods to nodes\".\n- In installer-provisioned installations, you are restricted to using the infrastructure provided by a single cloud provider. Adding external nodes, regardless of their architecture, to these clusters is not supported.\n- Clusters that are installed with the platform type `none` are unable to use some features, such as managing compute machines with the Machine API. This limitation applies even if the compute machines that are attached to the cluster are installed on a platform that would normally support the feature. This parameter cannot be changed after installation.\n\n  > [!IMPORTANT]\n  > See \"Deploying OpenShift 4.x on non-tested platforms using the bare metal install method\" before you attempt to install an OpenShift Container Platform cluster in virtualized or cloud environments.\n- The Cluster Samples Operator is not supported on clusters with multi-architecture compute machines. Your cluster can be created without this capability. For more information, see \"Cluster capabilities\".\n- For information on migrating your single-architecture cluster to a cluster that supports multi-architecture compute machines, see \"Migrating to a cluster with multi-architecture compute machines\".\n\n**Additional resources**\n\n- [Creating a cluster with multi-architecture compute machines on Azure](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-azure#creating-multi-arch-compute-nodes-azure)\n- [Creating a cluster with multi-architecture compute machines on AWS](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-aws#creating-multi-arch-compute-nodes-aws)\n- [Creating a cluster with multi-architecture compute machines on {{ gcp_short }}](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-google-cloud#creating-multi-arch-compute-nodes-google-cloud)\n- [Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal)\n- [Creating a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} with z/VM](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z#creating-multi-arch-compute-nodes-ibm-z)\n- [Creating a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} with {{ op_system_base }} KVM](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z-kvm#creating-multi-arch-compute-nodes-ibm-z-kvm)\n- [Creating a cluster with multi-architecture compute machines on {{ ibm_power_name }}](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-power#creating-multi-arch-compute-nodes-ibm-power)\n\n**Additional resources**\n\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n\n## Additional resources {#additional-resources_multi-architecture-configuration}\n\n- [Assigning pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)\n- [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)\n- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-configuration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About clusters with multi-architecture compute machines {#post-install-multi-architecture-configuration}\n\nAn OpenShift Container Platform cluster with multi-architecture compute machines is a cluster that supports compute machines with different architectures.\n\nConfiguring multi-architecture compute machines involves some additional considerations:\n\n- When there are nodes with multiple architectures in your cluster, the architecture of the container image that you deploy to a node must be consistent with the architecture of that node. You need to ensure that the pod is assigned to the node with the appropriate architecture and that it matches the container image architecture. For more information on assigning pods to nodes, see \"Assigning pods to nodes\".\n- In installer-provisioned installations, you are restricted to using the infrastructure provided by a single cloud provider. Adding external nodes, regardless of their architecture, to these clusters is not supported.\n- Clusters that are installed with the platform type `none` are unable to use some features, such as managing compute machines with the Machine API. This limitation applies even if the compute machines that are attached to the cluster are installed on a platform that would normally support the feature. This parameter cannot be changed after installation.\n\n  > [!IMPORTANT]\n  > See \"Deploying OpenShift 4.x on non-tested platforms using the bare metal install method\" before you attempt to install an OpenShift Container Platform cluster in virtualized or cloud environments.\n- The Cluster Samples Operator is not supported on clusters with multi-architecture compute machines. Your cluster can be created without this capability. For more information, see \"Cluster capabilities\".\n- For information on migrating your single-architecture cluster to a cluster that supports multi-architecture compute machines, see \"Migrating to a cluster with multi-architecture compute machines\".\n\n## Configuring your cluster with multi-architecture compute machines {#multi-architecture-configuring-your-cluster_multi-architecture-configuration}\n\nTo create a cluster with multi-architecture compute machines with different installation options and platforms, see the documentation references.\n\n**Cluster with multi-architecture compute machine installation options**\n\n| Documentation section | Platform | User-provisioned installation | Installer-provisioned installation | Control Plane | Compute node |\n| --- | --- | --- | --- | --- | --- |\n| \"Creating a cluster with multi-architecture compute machines on Azure\" | Microsoft Azure | ✓ | ✓ | `aarch64` or `x86_64` | `aarch64`, `x86_64` |\n| \"Creating a cluster with multi-architecture compute machines on AWS\" | Amazon Web Services (AWS) | ✓ | ✓ | `aarch64` or `x86_64` | `aarch64`, `x86_64` |\n| \"Creating a cluster with multi-architecture compute machines on Google Cloud\" | Google Cloud |  | ✓ | `aarch64` or `x86_64` | `aarch64`, `x86_64` .3+ |\n| \"Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z\" | Bare metal | ✓ | ✓ | `aarch64` or `x86_64` | `aarch64`, `x86_64` |\n| IBM Power | ✓ |  | `x86_64` or `ppc64le` | `x86_64`, `ppc64le` | IBM Z |\n| ✓ |  | `x86_64` or `s390x` | `x86_64`, `s390x` | \"Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with z/VM\" | IBM Z(R) and IBM(R) LinuxONE |\n| ✓ |  | `x86_64`, `s390x` | `x86_64`, `s390x` | \"Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with RHEL KVM\" | IBM Z(R) and IBM(R) LinuxONE |\n| ✓ |  | `x86_64`, `s390x` | `x86_64`, `s390x` | \"Creating a cluster with multi-architecture compute machines on IBM Power(R)\" | IBM Power(R) |\n\n**Additional resources**\n\n- [Creating a cluster with multi-architecture compute machines on Azure](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-azure#creating-multi-arch-compute-nodes-azure)\n- [Creating a cluster with multi-architecture compute machines on AWS](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-aws#creating-multi-arch-compute-nodes-aws)\n- [Creating a cluster with multi-architecture compute machines on Google Cloud](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-google-cloud#creating-multi-arch-compute-nodes-google-cloud)\n- [Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal)\n- [Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with z/VM](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z#creating-multi-arch-compute-nodes-ibm-z)\n- [Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with RHEL KVM](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z-kvm#creating-multi-arch-compute-nodes-ibm-z-kvm)\n- [Creating a cluster with multi-architecture compute machines on IBM Power(R)](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-power#creating-multi-arch-compute-nodes-ibm-power)\n\n## Verifying cluster compatibility {#multi-architecture-verifying-cluster-compatibility_multi-architecture-configuration}\n\nBefore you can start adding compute nodes of different architectures to your cluster, you must verify that your cluster is multi-architecture compatible.\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n- IBM Power only: Ensure that you meet the following prerequisites:\n\n  - When using multiple architectures, hosts for OpenShift Container Platform nodes must share the same storage layer. If they do not have the same storage layer, use a storage provider such as `nfs-provisioner`.\n  - You should limit the number of network hops between the compute and control plane as much as possible.\n\n**Procedure**\n\n1. Log in to the OpenShift CLI (`oc`).\n2. You can check that your cluster uses the architecture payload by running the following command:\n\n   ```terminal\n   $ oc adm release info -o jsonpath=\"{ .metadata.metadata}\"\n   ```\n\n**Verification**\n\n- If you see the following output, your cluster is using the multi-architecture payload:\n\n  ```terminal\n  {\n   \"release.openshift.io/architecture\": \"multi\",\n   \"url\": \"https://access.redhat.com/errata/<errata_version>\"\n  }\n  ```\n\n  You can then begin adding multi-arch compute nodes to your cluster.\n- If you see the following output, your cluster is not using the multi-architecture payload:\n\n  ```terminal\n  {\n   \"url\": \"https://access.redhat.com/errata/<errata_version>\"\n  }\n  ```\n\n  > [!IMPORTANT]\n  > To migrate your cluster so the cluster supports multi-architecture compute machines, see \"Migrating to a cluster with multi-architecture compute machines\".\n\n**Additional resources**\n\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n\n## Additional resources {#additional-resources_multi-architecture-configuration}\n\n- [Assigning pods to nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/)\n- [Deploying OpenShift 4.x on non-tested platforms using the bare metal install method (Red Hat Knowledgebase article)](https://access.redhat.com/articles/4207611)\n- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multi-architecture-configuration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +101,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="post-install-multi-architecture-configuration" class="group scroll-mt-20">About clusters with multi-architecture compute machines<a href="#post-install-multi-architecture-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>An OpenShift Container Platform cluster with multi-architecture compute machines is a cluster that supports compute machines with different architectures.</p>
       <p>Configuring multi-architecture compute machines involves some additional considerations:</p>
       <ul>
@@ -112,15 +118,135 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>The Cluster Samples Operator is not supported on clusters with multi-architecture compute machines. Your cluster can be created without this capability. For more information, see "Cluster capabilities".</li>
       <li>For information on migrating your single-architecture cluster to a cluster that supports multi-architecture compute machines, see "Migrating to a cluster with multi-architecture compute machines".</li>
       </ul>
+      <h2 id="multi-architecture-configuring-your-cluster_multi-architecture-configuration" class="group scroll-mt-20">Configuring your cluster with multi-architecture compute machines<a href="#multi-architecture-configuring-your-cluster_multi-architecture-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To create a cluster with multi-architecture compute machines with different installation options and platforms, see the documentation references.</p>
+      <p><strong>Cluster with multi-architecture compute machine installation options</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Documentation section</TableHead>
+      <TableHead>Platform</TableHead>
+      <TableHead>User-provisioned installation</TableHead>
+      <TableHead>Installer-provisioned installation</TableHead>
+      <TableHead>Control Plane</TableHead>
+      <TableHead>Compute node</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>"Creating a cluster with multi-architecture compute machines on Azure"</TableCell>
+      <TableCell>Microsoft Azure</TableCell>
+      <TableCell>✓</TableCell>
+      <TableCell>✓</TableCell>
+      <TableCell><code>aarch64</code> or <code>x86_64</code></TableCell>
+      <TableCell><code>aarch64</code>, <code>x86_64</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>"Creating a cluster with multi-architecture compute machines on AWS"</TableCell>
+      <TableCell>Amazon Web Services (AWS)</TableCell>
+      <TableCell>✓</TableCell>
+      <TableCell>✓</TableCell>
+      <TableCell><code>aarch64</code> or <code>x86_64</code></TableCell>
+      <TableCell><code>aarch64</code>, <code>x86_64</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>"Creating a cluster with multi-architecture compute machines on Google Cloud"</TableCell>
+      <TableCell>Google Cloud</TableCell>
+      <TableCell></TableCell>
+      <TableCell>✓</TableCell>
+      <TableCell><code>aarch64</code> or <code>x86_64</code></TableCell>
+      <TableCell><code>aarch64</code>, <code>x86_64</code> .3+</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>"Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z"</TableCell>
+      <TableCell>Bare metal</TableCell>
+      <TableCell>✓</TableCell>
+      <TableCell>✓</TableCell>
+      <TableCell><code>aarch64</code> or <code>x86_64</code></TableCell>
+      <TableCell><code>aarch64</code>, <code>x86_64</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>IBM Power</TableCell>
+      <TableCell>✓</TableCell>
+      <TableCell></TableCell>
+      <TableCell><code>x86_64</code> or <code>ppc64le</code></TableCell>
+      <TableCell><code>x86_64</code>, <code>ppc64le</code></TableCell>
+      <TableCell>IBM Z</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>✓</TableCell>
+      <TableCell></TableCell>
+      <TableCell><code>x86_64</code> or <code>s390x</code></TableCell>
+      <TableCell><code>x86_64</code>, <code>s390x</code></TableCell>
+      <TableCell>"Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with z/VM"</TableCell>
+      <TableCell>IBM Z(R) and IBM(R) LinuxONE</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>✓</TableCell>
+      <TableCell></TableCell>
+      <TableCell><code>x86_64</code>, <code>s390x</code></TableCell>
+      <TableCell><code>x86_64</code>, <code>s390x</code></TableCell>
+      <TableCell>"Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with RHEL KVM"</TableCell>
+      <TableCell>IBM Z(R) and IBM(R) LinuxONE</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>✓</TableCell>
+      <TableCell></TableCell>
+      <TableCell><code>x86_64</code>, <code>s390x</code></TableCell>
+      <TableCell><code>x86_64</code>, <code>s390x</code></TableCell>
+      <TableCell>"Creating a cluster with multi-architecture compute machines on IBM Power(R)"</TableCell>
+      <TableCell>IBM Power(R)</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-azure#creating-multi-arch-compute-nodes-azure">Creating a cluster with multi-architecture compute machines on Azure</a></li>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-aws#creating-multi-arch-compute-nodes-aws">Creating a cluster with multi-architecture compute machines on AWS</a></li>
-      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-google-cloud#creating-multi-arch-compute-nodes-google-cloud">Creating a cluster with multi-architecture compute machines on {"{"}{"{"} gcp_short {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal">Creating a cluster with multi-architecture compute machines on bare metal, {"{"}{"{"} ibm_power_title {"}"}{"}"}, or {"{"}{"{"} ibm_z_title {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z#creating-multi-arch-compute-nodes-ibm-z">Creating a cluster with multi-architecture compute machines on {"{"}{"{"} ibm_z_name {"}"}{"}"} and {"{"}{"{"} ibm_linuxone_name {"}"}{"}"} with z/VM</a></li>
-      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z-kvm#creating-multi-arch-compute-nodes-ibm-z-kvm">Creating a cluster with multi-architecture compute machines on {"{"}{"{"} ibm_z_name {"}"}{"}"} and {"{"}{"{"} ibm_linuxone_name {"}"}{"}"} with {"{"}{"{"} op_system_base {"}"}{"}"} KVM</a></li>
-      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-power#creating-multi-arch-compute-nodes-ibm-power">Creating a cluster with multi-architecture compute machines on {"{"}{"{"} ibm_power_name {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-google-cloud#creating-multi-arch-compute-nodes-google-cloud">Creating a cluster with multi-architecture compute machines on Google Cloud</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal">Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z#creating-multi-arch-compute-nodes-ibm-z">Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with z/VM</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z-kvm#creating-multi-arch-compute-nodes-ibm-z-kvm">Creating a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE with RHEL KVM</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-power#creating-multi-arch-compute-nodes-ibm-power">Creating a cluster with multi-architecture compute machines on IBM Power(R)</a></li>
+      </ul>
+      <h2 id="multi-architecture-verifying-cluster-compatibility_multi-architecture-configuration" class="group scroll-mt-20">Verifying cluster compatibility<a href="#multi-architecture-verifying-cluster-compatibility_multi-architecture-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you can start adding compute nodes of different architectures to your cluster, you must verify that your cluster is multi-architecture compatible.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>
+      IBM Power only: Ensure that you meet the following prerequisites:
+      <ul>
+      <li>When using multiple architectures, hosts for OpenShift Container Platform nodes must share the same storage layer. If they do not have the same storage layer, use a storage provider such as <code>nfs-provisioner</code>.</li>
+      <li>You should limit the number of network hops between the compute and control plane as much as possible.</li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift CLI (<code>oc</code>).</li>
+      <li>
+      You can check that your cluster uses the architecture payload by running the following command:
+      <CodeBlock code={"$ oc adm release info -o jsonpath=\"{ .metadata.metadata}\""} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      If you see the following output, your cluster is using the multi-architecture payload:
+      <CodeBlock code={"{\n \"release.openshift.io/architecture\": \"multi\",\n \"url\": \"https://access.redhat.com/errata/<errata_version>\"\n}"} lang="terminal" />
+      <p>You can then begin adding multi-arch compute nodes to your cluster.</p>
+      </li>
+      <li>
+      If you see the following output, your cluster is not using the multi-architecture payload:
+      <CodeBlock code={"{\n \"url\": \"https://access.redhat.com/errata/<errata_version>\"\n}"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>To migrate your cluster so the cluster supports multi-architecture compute machines, see "Migrating to a cluster with multi-architecture compute machines".</p>
+        </AlertDescription>
+      </Alert>
+      </li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload">Migrating to a cluster with multi-architecture compute machines</a></li></ul>

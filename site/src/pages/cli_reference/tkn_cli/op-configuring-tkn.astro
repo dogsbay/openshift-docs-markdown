@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"op-configuring-tkn","text":"Configuring the OpenShift Pipelines tkn CLI"}];
+const headings = [{"depth":1,"slug":"op-configuring-tkn","text":"Configuring the OpenShift Pipelines tkn CLI"},{"depth":2,"slug":"op-tkn-enabling-tab-completion_configuring-tkn","text":"Enabling tab completion"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/tkn_cli/op-configuring-tkn";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring the OpenShift Pipelines tkn CLI";
-const description = "Configure the {{ pipelines_title }} tkn CLI to enable tab completion." || undefined;
+const description = "Configure the Red Hat OpenShift Pipelines tkn CLI to enable tab completion." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["cli_reference","cli_reference/tkn_cli"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the OpenShift Pipelines tkn CLI {#op-configuring-tkn}\n\nConfigure the {{ pipelines_title }} `tkn` CLI to enable tab completion.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/op-configuring-tkn.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the OpenShift Pipelines tkn CLI {#op-configuring-tkn}\n\nConfigure the Red Hat OpenShift Pipelines `tkn` CLI to enable tab completion.\n\n## Enabling tab completion {#op-tkn-enabling-tab-completion_configuring-tkn}\n\nAfter you install the `tkn` CLI, you can enable tab completion to automatically complete `tkn` commands or suggest options when you press Tab.\n\n**Prerequisites**\n\n- You must have the `tkn` CLI tool installed.\n- You must have `bash-completion` installed on your local system.\n\n**Procedure**\n\nThe following procedure enables tab completion for Bash.\n\n1. Save the Bash completion code to a file:\n\n   ```terminal\n   $ tkn completion bash > tkn_bash_completion\n   ```\n2. Copy the file to `/etc/bash_completion.d/`:\n\n   ```terminal\n   $ sudo cp tkn_bash_completion /etc/bash_completion.d/\n   ```\n\n   Alternatively, you can save the file to a local directory and source it from your `.bashrc` file instead.\n\nTab completion is enabled when you open a new terminal.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/op-configuring-tkn.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,28 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="op-configuring-tkn" class="group scroll-mt-20">Configuring the OpenShift Pipelines tkn CLI<a href="#op-configuring-tkn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Configure the {"{"}{"{"} pipelines_title {"}"}{"}"} <code>tkn</code> CLI to enable tab completion.</p>
-      <p class="/modules/op-tkn-enabling-tab-completion.md"></p>
+      <p>Configure the Red Hat OpenShift Pipelines <code>tkn</code> CLI to enable tab completion.</p>
+      <h2 id="op-tkn-enabling-tab-completion_configuring-tkn" class="group scroll-mt-20">Enabling tab completion<a href="#op-tkn-enabling-tab-completion_configuring-tkn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>After you install the <code>tkn</code> CLI, you can enable tab completion to automatically complete <code>tkn</code> commands or suggest options when you press Tab.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have the <code>tkn</code> CLI tool installed.</li>
+      <li>You must have <code>bash-completion</code> installed on your local system.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <p>The following procedure enables tab completion for Bash.</p>
+      <ol>
+      <li>
+      Save the Bash completion code to a file:
+      <CodeBlock code={"$ tkn completion bash > tkn_bash_completion"} lang="terminal" />
+      </li>
+      <li>
+      Copy the file to <code>/etc/bash_completion.d/</code>:
+      <CodeBlock code={"$ sudo cp tkn_bash_completion /etc/bash_completion.d/"} lang="terminal" />
+      <p>Alternatively, you can save the file to a local directory and source it from your <code>.bashrc</code> file instead.</p>
+      </li>
+      </ol>
+      <p>Tab completion is enabled when you open a new terminal.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

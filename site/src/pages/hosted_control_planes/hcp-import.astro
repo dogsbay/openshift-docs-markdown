@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-import","text":"Manually importing a hosted cluster"}];
+const headings = [{"depth":1,"slug":"hcp-import","text":"Manually importing a hosted cluster"},{"depth":2,"slug":"hcp-import-limitations_hcp-import","text":"Limitations of managing imported hosted clusters"},{"depth":2,"slug":"hcp-import-manual_hcp-import","text":"Manually importing hosted clusters"},{"depth":2,"slug":"hcp-import-manual-aws_hcp-import","text":"Manually importing a hosted cluster on AWS"},{"depth":2,"slug":"hcp-import-disable_hcp-import","text":"Disabling the automatic import of hosted clusters into multicluster engine Operator"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-import";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Manually importing a hosted cluster";
-const description = "Hosted clusters are automatically imported into {{ mce_short }} after the hosted control plane becomes available." || undefined;
+const description = "Hosted clusters are automatically imported into multicluster engine Operator after the hosted control plane becomes available." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["hosted_control_planes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Manually importing a hosted cluster {#hcp-import}\n\nHosted clusters are automatically imported into {{ mce_short }} after the hosted control plane becomes available.\n\n**Additional resources**\n\n- [Updating node pools in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating)\n- [Updating a control plane in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating)\n- [Discovering {{ mce }} hosted clusters in {{ rh_rhacm_title }}](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/hosted-acm#discover-hosted-acm)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-import.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Manually importing a hosted cluster {#hcp-import}\n\nHosted clusters are automatically imported into multicluster engine Operator after the hosted control plane becomes available.\n\n## Limitations of managing imported hosted clusters {#hcp-import-limitations_hcp-import}\n\nHosted clusters are automatically imported into the local multicluster engine for Kubernetes Operator, unlike a standalone OpenShift Container Platform or third-party clusters. Hosted clusters run some of their agents in the *hosted mode* so that the agents do not use the resources of your cluster.\n\nIf you choose to automatically import hosted clusters, you can update node pools and the control plane in hosted clusters by using the `HostedCluster` resource on the management cluster. To update node pools and a control plane, see \"Updating node pools in a hosted cluster\" and \"Updating a control plane in a hosted cluster\".\n\nYou can import hosted clusters into a location other than the local multicluster engine Operator by using the Red Hat Advanced Cluster Management (RHACM). For more information, see \"Discovering multicluster engine for Kubernetes Operator hosted clusters in Red Hat Advanced Cluster Management\".\n\nIn this topology, you must update your hosted clusters by using the command-line interface or the console of the local multicluster engine for Kubernetes Operator where the cluster is hosted. You cannot update the hosted clusters through the RHACM hub cluster.\n\n**Additional resources**\n\n- [Updating node pools in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating)\n- [Updating a control plane in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating)\n- [Discovering multicluster engine for Kubernetes Operator hosted clusters in Red Hat Advanced Cluster Management](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/hosted-acm#discover-hosted-acm)\n\n## Manually importing hosted clusters {#hcp-import-manual_hcp-import}\n\nTypically, hosted clusters are automatically imported to multicluster engine Operator after the hosted control plane becomes available. However, you can import hosted clusters manually as required.\n\n**Procedure**\n\n1. In the console, click **Infrastructure** -> **Clusters** and select the hosted cluster that you want to import.\n2. Click **Import hosted cluster**.\n\n   > [!NOTE]\n   > For your *discovered* hosted cluster, you can also import from the console, but the cluster must be in an upgradeable state. Import on your cluster is disabled if the hosted cluster is not in an upgradeable state because the hosted control plane is not available. Click **Import** to begin the process. The status is `Importing` while the cluster receives updates and then changes to `Ready`.\n\n## Manually importing a hosted cluster on AWS {#hcp-import-manual-aws_hcp-import}\n\nYou can import a hosted cluster on Amazon Web Services (AWS) with the command-line interface.\n\n**Procedure**\n\n1. Create your `ManagedCluster` resource by using the following sample YAML file:\n\n   ```yaml\n   apiVersion: cluster.open-cluster-management.io/v1\n   kind: ManagedCluster\n   metadata:\n     annotations:\n       import.open-cluster-management.io/hosting-cluster-name: local-cluster\n       import.open-cluster-management.io/klusterlet-deploy-mode: Hosted\n       open-cluster-management/created-via: hypershift\n     labels:\n       cloud: auto-detect\n       cluster.open-cluster-management.io/clusterset: default\n       name: <hosted_cluster_name>\n       vendor: OpenShift\n     name: <hosted_cluster_name>\n   spec:\n     hubAcceptsClient: true\n     leaseDurationSeconds: 60\n   ```\n\n   Replace `<hosted_cluster_name>` with the name of your hosted cluster.\n2. Run the following command to apply the resource:\n\n   ```terminal\n   $ oc apply -f <file_name>\n   ```\n\n   Replace `<file_name>` with the YAML file name you created in the previous step.\n3. If you have Red Hat Advanced Cluster Management installed, create your `KlusterletAddonConfig` resource by using the following sample YAML file. If you have installed multicluster engine Operator only, skip this step:\n\n   ```yaml\n   apiVersion: agent.open-cluster-management.io/v1\n   kind: KlusterletAddonConfig\n   metadata:\n     name: <hosted_cluster_name>\n     namespace: <hosted_cluster_namespace>\n   spec:\n     clusterName: <hosted_cluster_name>\n     clusterNamespace: <hosted_cluster_namespace>\n     clusterLabels:\n       cloud: auto-detect\n       vendor: auto-detect\n     applicationManager:\n       enabled: true\n     certPolicyController:\n       enabled: true\n     iamPolicyController:\n       enabled: true\n     policyController:\n       enabled: true\n     searchCollector:\n       enabled: false\n   ```\n\n   - Replace `<hosted_cluster_name>` with the name of your hosted cluster.\n   - Replace `<hosted_cluster_namespace>` with the name of your hosted cluster namespace.\n4. Run the following command to apply the resource:\n\n   ```terminal\n   $ oc apply -f <file_name>\n   ```\n\n   Replace `<file_name>` with the name of the YAML that you created in the previous step.\n5. After the import process is complete, your hosted cluster becomes visible in the console. You can also check the status of your hosted cluster by running the following command:\n\n   ```terminal\n   $ oc get managedcluster <hosted_cluster_name>\n   ```\n\n## Disabling the automatic import of hosted clusters into multicluster engine Operator {#hcp-import-disable_hcp-import}\n\nHosted clusters are automatically imported into multicluster engine Operator after the control plane becomes available. If needed, you can disable the automatic import of hosted clusters.\n\nAny hosted clusters that were previously imported are not affected, even if you disable automatic import. When you upgrade to multicluster engine Operator 2.5 and automatic import is enabled, all hosted clusters that are not imported are automatically imported if their control planes are available.\n\n> [!NOTE]\n> If Red Hat Advanced Cluster Management is installed, all Red Hat Advanced Cluster Management add-ons are also enabled.\n\nWhen automatic import is disabled, only newly created hosted clusters are not automatically imported. Hosted clusters that were already imported are not affected. You can still manually import clusters by using the console or by creating the `ManagedCluster` and `KlusterletAddonConfig` custom resources.\n\n**Procedure**\n\n1. On the hub cluster, open the `hypershift-addon-deploy-config` specification that is in the `AddonDeploymentConfig` resource in the namespace where multicluster engine Operator is installed by entering the following command:\n\n   ```terminal\n   $ oc edit addondeploymentconfig hypershift-addon-deploy-config \\\n     -n multicluster-engine\n   ```\n2. In the `spec.customizedVariables` section, add the `autoImportDisabled` variable with value of `\"true\"`, as shown in the following example:\n\n   ```yaml\n   apiVersion: addon.open-cluster-management.io/v1alpha1\n   kind: AddOnDeploymentConfig\n   metadata:\n     name: hypershift-addon-deploy-config\n     namespace: multicluster-engine\n   spec:\n     customizedVariables:\n      - name: hcMaxNumber\n        value: \"80\"\n     - name: hcThresholdNumber\n       value: \"60\"\n     - name: autoImportDisabled\n       value: \"true\"\n   ```\n3. To re-enable automatic import, set the value of the `autoImportDisabled` variable to `\"false\"` or remove the variable from the `AddonDeploymentConfig` resource.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-import.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,18 +94,88 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="hcp-import" class="group scroll-mt-20">Manually importing a hosted cluster<a href="#hcp-import" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Hosted clusters are automatically imported into {"{"}{"{"} mce_short {"}"}{"}"} after the hosted control plane becomes available.</p>
-      <p class="/modules/hcp-import-limitations.md"></p>
+      <p>Hosted clusters are automatically imported into multicluster engine Operator after the hosted control plane becomes available.</p>
+      <h2 id="hcp-import-limitations_hcp-import" class="group scroll-mt-20">Limitations of managing imported hosted clusters<a href="#hcp-import-limitations_hcp-import" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Hosted clusters are automatically imported into the local multicluster engine for Kubernetes Operator, unlike a standalone OpenShift Container Platform or third-party clusters. Hosted clusters run some of their agents in the <em>hosted mode</em> so that the agents do not use the resources of your cluster.</p>
+      <p>If you choose to automatically import hosted clusters, you can update node pools and the control plane in hosted clusters by using the <code>HostedCluster</code> resource on the management cluster. To update node pools and a control plane, see "Updating node pools in a hosted cluster" and "Updating a control plane in a hosted cluster".</p>
+      <p>You can import hosted clusters into a location other than the local multicluster engine Operator by using the Red Hat Advanced Cluster Management (RHACM). For more information, see "Discovering multicluster engine for Kubernetes Operator hosted clusters in Red Hat Advanced Cluster Management".</p>
+      <p>In this topology, you must update your hosted clusters by using the command-line interface or the console of the local multicluster engine for Kubernetes Operator where the cluster is hosted. You cannot update the hosted clusters through the RHACM hub cluster.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-node-pools_hcp-updating">Updating node pools in a hosted cluster</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-updating#hcp-update-ocp-hc_hcp-updating">Updating a control plane in a hosted cluster</a></li>
-      <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/hosted-acm#discover-hosted-acm">Discovering {"{"}{"{"} mce {"}"}{"}"} hosted clusters in {"{"}{"{"} rh_rhacm_title {"}"}{"}"}</a></li>
+      <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/multicluster_engine_operator_with_red_hat_advanced_cluster_management/hosted-acm#discover-hosted-acm">Discovering multicluster engine for Kubernetes Operator hosted clusters in Red Hat Advanced Cluster Management</a></li>
       </ul>
-      <p class="/modules/hcp-import-manual-aws.md"></p>
-      <p class="/modules/hcp-import-disable.md"></p>
+      <h2 id="hcp-import-manual_hcp-import" class="group scroll-mt-20">Manually importing hosted clusters<a href="#hcp-import-manual_hcp-import" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Typically, hosted clusters are automatically imported to multicluster engine Operator after the hosted control plane becomes available. However, you can import hosted clusters manually as required.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the console, click <strong>Infrastructure</strong> -&gt; <strong>Clusters</strong> and select the hosted cluster that you want to import.</li>
+      <li>
+      Click <strong>Import hosted cluster</strong>.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For your <em>discovered</em> hosted cluster, you can also import from the console, but the cluster must be in an upgradeable state. Import on your cluster is disabled if the hosted cluster is not in an upgradeable state because the hosted control plane is not available. Click <strong>Import</strong> to begin the process. The status is <code>Importing</code> while the cluster receives updates and then changes to <code>Ready</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="hcp-import-manual-aws_hcp-import" class="group scroll-mt-20">Manually importing a hosted cluster on AWS<a href="#hcp-import-manual-aws_hcp-import" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can import a hosted cluster on Amazon Web Services (AWS) with the command-line interface.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create your <code>ManagedCluster</code> resource by using the following sample YAML file:
+      <CodeBlock code={"apiVersion: cluster.open-cluster-management.io/v1\nkind: ManagedCluster\nmetadata:\n  annotations:\n    import.open-cluster-management.io/hosting-cluster-name: local-cluster\n    import.open-cluster-management.io/klusterlet-deploy-mode: Hosted\n    open-cluster-management/created-via: hypershift\n  labels:\n    cloud: auto-detect\n    cluster.open-cluster-management.io/clusterset: default\n    name: <hosted_cluster_name>\n    vendor: OpenShift\n  name: <hosted_cluster_name>\nspec:\n  hubAcceptsClient: true\n  leaseDurationSeconds: 60"} lang="yaml" />
+      <p>Replace <code>&lt;hosted_cluster_name&gt;</code> with the name of your hosted cluster.</p>
+      </li>
+      <li>
+      Run the following command to apply the resource:
+      <CodeBlock code={"$ oc apply -f <file_name>"} lang="terminal" />
+      <p>Replace <code>&lt;file_name&gt;</code> with the YAML file name you created in the previous step.</p>
+      </li>
+      <li>
+      If you have Red Hat Advanced Cluster Management installed, create your <code>KlusterletAddonConfig</code> resource by using the following sample YAML file. If you have installed multicluster engine Operator only, skip this step:
+      <CodeBlock code={"apiVersion: agent.open-cluster-management.io/v1\nkind: KlusterletAddonConfig\nmetadata:\n  name: <hosted_cluster_name>\n  namespace: <hosted_cluster_namespace>\nspec:\n  clusterName: <hosted_cluster_name>\n  clusterNamespace: <hosted_cluster_namespace>\n  clusterLabels:\n    cloud: auto-detect\n    vendor: auto-detect\n  applicationManager:\n    enabled: true\n  certPolicyController:\n    enabled: true\n  iamPolicyController:\n    enabled: true\n  policyController:\n    enabled: true\n  searchCollector:\n    enabled: false"} lang="yaml" />
+      <ul>
+      <li>Replace <code>&lt;hosted_cluster_name&gt;</code> with the name of your hosted cluster.</li>
+      <li>Replace <code>&lt;hosted_cluster_namespace&gt;</code> with the name of your hosted cluster namespace.</li>
+      </ul>
+      </li>
+      <li>
+      Run the following command to apply the resource:
+      <CodeBlock code={"$ oc apply -f <file_name>"} lang="terminal" />
+      <p>Replace <code>&lt;file_name&gt;</code> with the name of the YAML that you created in the previous step.</p>
+      </li>
+      <li>
+      After the import process is complete, your hosted cluster becomes visible in the console. You can also check the status of your hosted cluster by running the following command:
+      <CodeBlock code={"$ oc get managedcluster <hosted_cluster_name>"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="hcp-import-disable_hcp-import" class="group scroll-mt-20">Disabling the automatic import of hosted clusters into multicluster engine Operator<a href="#hcp-import-disable_hcp-import" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Hosted clusters are automatically imported into multicluster engine Operator after the control plane becomes available. If needed, you can disable the automatic import of hosted clusters.</p>
+      <p>Any hosted clusters that were previously imported are not affected, even if you disable automatic import. When you upgrade to multicluster engine Operator 2.5 and automatic import is enabled, all hosted clusters that are not imported are automatically imported if their control planes are available.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If Red Hat Advanced Cluster Management is installed, all Red Hat Advanced Cluster Management add-ons are also enabled.</p>
+        </AlertDescription>
+      </Alert>
+      <p>When automatic import is disabled, only newly created hosted clusters are not automatically imported. Hosted clusters that were already imported are not affected. You can still manually import clusters by using the console or by creating the <code>ManagedCluster</code> and <code>KlusterletAddonConfig</code> custom resources.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      On the hub cluster, open the <code>hypershift-addon-deploy-config</code> specification that is in the <code>AddonDeploymentConfig</code> resource in the namespace where multicluster engine Operator is installed by entering the following command:
+      <CodeBlock code={"$ oc edit addondeploymentconfig hypershift-addon-deploy-config \\\n  -n multicluster-engine"} lang="terminal" />
+      </li>
+      <li>
+      In the <code>spec.customizedVariables</code> section, add the <code>autoImportDisabled</code> variable with value of <code>"true"</code>, as shown in the following example:
+      <CodeBlock code={"apiVersion: addon.open-cluster-management.io/v1alpha1\nkind: AddOnDeploymentConfig\nmetadata:\n  name: hypershift-addon-deploy-config\n  namespace: multicluster-engine\nspec:\n  customizedVariables:\n   - name: hcMaxNumber\n     value: \"80\"\n  - name: hcThresholdNumber\n    value: \"60\"\n  - name: autoImportDisabled\n    value: \"true\""} lang="yaml" />
+      </li>
+      <li>To re-enable automatic import, set the value of the <code>autoImportDisabled</code> variable to <code>"false"</code> or remove the variable from the <code>AddonDeploymentConfig</code> resource.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

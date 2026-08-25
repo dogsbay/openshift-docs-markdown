@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"configuring-web-terminal","text":"Configuring the web terminal"}];
+const headings = [{"depth":1,"slug":"configuring-web-terminal","text":"Configuring the web terminal"},{"depth":2,"slug":"odc-configure-web-terminal-timeout-session_configuring-web-terminal","text":"Configuring the web terminal timeout for a session"},{"depth":2,"slug":"configure-web-terminal-timeout-admin_configuring-web-terminal","text":"Configuring the web terminal timeout for all users"},{"depth":2,"slug":"odc-configure-web-terminal-image-session_configuring-web-terminal","text":"Configuring the web terminal image for a session"},{"depth":2,"slug":"configure-web-terminal-image-admin_configuring-web-terminal","text":"Configuring the web terminal image for all users"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/web_terminal/configuring-web-terminal";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +39,7 @@ const pageCategory = ["web_console","web_console/web_terminal"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the web terminal {#configuring-web-terminal}\n\nYou can configure timeout and image settings for the web terminal, either for your current session or for all user sessions if you are a cluster administrator.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/configuring-web-terminal.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the web terminal {#configuring-web-terminal}\n\nYou can configure timeout and image settings for the web terminal, either for your current session or for all user sessions if you are a cluster administrator.\n\n## Configuring the web terminal timeout for a session {#odc-configure-web-terminal-timeout-session_configuring-web-terminal}\n\nYou can change the default timeout period for the web terminal for your current session.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform\n\ncluster that has the Web Terminal Operator installed.\n\n- You are logged into the web console.\n\n**Procedure**\n\n1. Click the web terminal icon (![title=\"web terminal icon\"](/openshift-docs-markdown/_assets/images/odc-wto-icon.png)).\n2. Optional: Set the web terminal timeout for the current session:\n\n   1. Click Timeout.\n   2. In the field that is displayed, enter the timeout value.\n   3. From the drop-down list, select a timeout interval of **Seconds**, **Minutes**, **Hours**, or **Milliseconds**.\n3. Optional: Select a custom image for the web terminal to use.\n\n   1. Click Image.\n   2. In the field that is displayed, enter the URL of the image that you want to use.\n4. Click **Start** to begin a terminal instance using the specified timeout setting.\n\n## Configuring the web terminal timeout for all users {#configure-web-terminal-timeout-admin_configuring-web-terminal}\n\nYou can use the **Administrator** perspective of the web console to set the default web terminal timeout period for all users.\n\n**Prerequisites**\n\n- You have cluster administrator permissions and are logged in to the web console.\n- You have installed the Web Terminal Operator.\n\n**Procedure**\n\n1. In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.\n2. On the **Cluster Settings** page, click the **Configuration** tab.\n3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/_assets/images/cluster-settings-console.png)\n4. From the **Action** drop-down list, select **Customize**, which opens the **Cluster configuration** page.\n5. Click the **Web Terminal** tab, which opens the **Web Terminal Configuration** page.\n6. Set a value for the timeout. From the drop-down list, select a time interval of **Seconds**, **Minutes**, **Hours**, or **Milliseconds**.\n7. Click **Save**.\n\n## Configuring the web terminal image for a session {#odc-configure-web-terminal-image-session_configuring-web-terminal}\n\nYou can change the default image for the web terminal for your current session.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform\n\ncluster that has the Web Terminal Operator installed.\n\n- You are logged into the web console.\n\n**Procedure**\n\n1. Click the web terminal icon (![title=\"web terminal icon\"](/openshift-docs-markdown/_assets/images/odc-wto-icon.png)).\n2. Click **Image** to display advanced configuration options for the web terminal image.\n3. Enter the URL of the image that you want to use.\n4. Click **Start** to begin a terminal instance using the specified image setting.\n\n## Configuring the web terminal image for all users {#configure-web-terminal-image-admin_configuring-web-terminal}\n\nYou can use the **Administrator** perspective of the web console to set the default web terminal image for all users.\n\n**Prerequisites**\n\n- You have cluster administrator permissions and are logged in to the web console.\n- You have installed the Web Terminal Operator.\n\n**Procedure**\n\n1. In the **Administrator** perspective, navigate to **Administration** -> **Cluster Settings**.\n2. On the **Cluster Settings** page, click the **Configuration** tab.\n3. On the **Configuration** page, click the **Console** configuration resource with the description **operator.openshift.io**. ![Image of the Configuration page showing the correct Console configuration resource to select](/openshift-docs-markdown/_assets/images/cluster-settings-console.png)\n4. From the **Action** drop-down list, select **Customize**, which opens the **Cluster configuration** page.\n5. Click the **Web Terminal** tab, which opens the **Web Terminal Configuration** page.\n6. Enter the URL of the image that you want to use.\n7. Click **Save**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/configuring-web-terminal.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +91,80 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-web-terminal" class="group scroll-mt-20">Configuring the web terminal<a href="#configuring-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
       <p>You can configure timeout and image settings for the web terminal, either for your current session or for all user sessions if you are a cluster administrator.</p>
-      <p class="/modules/odc-configure-web-terminal-timeout-session.md"></p>
-      <p class="/modules/configure-web-terminal-timeout-admin.md"></p>
-      <p class="/modules/odc-configure-web-terminal-image-session.md"></p>
-      <p class="/modules/configure-web-terminal-image-admin.md"></p>
+      <h2 id="odc-configure-web-terminal-timeout-session_configuring-web-terminal" class="group scroll-mt-20">Configuring the web terminal timeout for a session<a href="#odc-configure-web-terminal-timeout-session_configuring-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can change the default timeout period for the web terminal for your current session.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to an OpenShift Container Platform</li></ul>
+      <p>cluster that has the Web Terminal Operator installed.</p>
+      <ul><li>You are logged into the web console.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Click the web terminal icon (<img src="/openshift-docs-markdown/_assets/images/odc-wto-icon.png" alt="title=&quot;web terminal icon&quot;" loading="lazy" />).</li>
+      <li>
+      Optional: Set the web terminal timeout for the current session:
+      <ol>
+      <li>Click Timeout.</li>
+      <li>In the field that is displayed, enter the timeout value.</li>
+      <li>From the drop-down list, select a timeout interval of <strong>Seconds</strong>, <strong>Minutes</strong>, <strong>Hours</strong>, or <strong>Milliseconds</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Optional: Select a custom image for the web terminal to use.
+      <ol>
+      <li>Click Image.</li>
+      <li>In the field that is displayed, enter the URL of the image that you want to use.</li>
+      </ol>
+      </li>
+      <li>Click <strong>Start</strong> to begin a terminal instance using the specified timeout setting.</li>
+      </ol>
+      <h2 id="configure-web-terminal-timeout-admin_configuring-web-terminal" class="group scroll-mt-20">Configuring the web terminal timeout for all users<a href="#configure-web-terminal-timeout-admin_configuring-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the <strong>Administrator</strong> perspective of the web console to set the default web terminal timeout period for all users.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have cluster administrator permissions and are logged in to the web console.</li>
+      <li>You have installed the Web Terminal Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the <strong>Administrator</strong> perspective, navigate to <strong>Administration</strong> -&gt; <strong>Cluster Settings</strong>.</li>
+      <li>On the <strong>Cluster Settings</strong> page, click the <strong>Configuration</strong> tab.</li>
+      <li>On the <strong>Configuration</strong> page, click the <strong>Console</strong> configuration resource with the description <strong>operator.openshift.io</strong>. <img src="/openshift-docs-markdown/_assets/images/cluster-settings-console.png" alt="Image of the Configuration page showing the correct Console configuration resource to select" loading="lazy" /></li>
+      <li>From the <strong>Action</strong> drop-down list, select <strong>Customize</strong>, which opens the <strong>Cluster configuration</strong> page.</li>
+      <li>Click the <strong>Web Terminal</strong> tab, which opens the <strong>Web Terminal Configuration</strong> page.</li>
+      <li>Set a value for the timeout. From the drop-down list, select a time interval of <strong>Seconds</strong>, <strong>Minutes</strong>, <strong>Hours</strong>, or <strong>Milliseconds</strong>.</li>
+      <li>Click <strong>Save</strong>.</li>
+      </ol>
+      <h2 id="odc-configure-web-terminal-image-session_configuring-web-terminal" class="group scroll-mt-20">Configuring the web terminal image for a session<a href="#odc-configure-web-terminal-image-session_configuring-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can change the default image for the web terminal for your current session.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to an OpenShift Container Platform</li></ul>
+      <p>cluster that has the Web Terminal Operator installed.</p>
+      <ul><li>You are logged into the web console.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Click the web terminal icon (<img src="/openshift-docs-markdown/_assets/images/odc-wto-icon.png" alt="title=&quot;web terminal icon&quot;" loading="lazy" />).</li>
+      <li>Click <strong>Image</strong> to display advanced configuration options for the web terminal image.</li>
+      <li>Enter the URL of the image that you want to use.</li>
+      <li>Click <strong>Start</strong> to begin a terminal instance using the specified image setting.</li>
+      </ol>
+      <h2 id="configure-web-terminal-image-admin_configuring-web-terminal" class="group scroll-mt-20">Configuring the web terminal image for all users<a href="#configure-web-terminal-image-admin_configuring-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the <strong>Administrator</strong> perspective of the web console to set the default web terminal image for all users.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have cluster administrator permissions and are logged in to the web console.</li>
+      <li>You have installed the Web Terminal Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the <strong>Administrator</strong> perspective, navigate to <strong>Administration</strong> -&gt; <strong>Cluster Settings</strong>.</li>
+      <li>On the <strong>Cluster Settings</strong> page, click the <strong>Configuration</strong> tab.</li>
+      <li>On the <strong>Configuration</strong> page, click the <strong>Console</strong> configuration resource with the description <strong>operator.openshift.io</strong>. <img src="/openshift-docs-markdown/_assets/images/cluster-settings-console.png" alt="Image of the Configuration page showing the correct Console configuration resource to select" loading="lazy" /></li>
+      <li>From the <strong>Action</strong> drop-down list, select <strong>Customize</strong>, which opens the <strong>Cluster configuration</strong> page.</li>
+      <li>Click the <strong>Web Terminal</strong> tab, which opens the <strong>Web Terminal Configuration</strong> page.</li>
+      <li>Enter the URL of the image that you want to use.</li>
+      <li>Click <strong>Save</strong>.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

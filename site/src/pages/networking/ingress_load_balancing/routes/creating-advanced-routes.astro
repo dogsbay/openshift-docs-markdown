@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"creating-advanced-routes","text":"Securing routes through ingress objects"}];
+const headings = [{"depth":1,"slug":"creating-advanced-routes","text":"Securing routes through ingress objects"},{"depth":2,"slug":"nw-ingress-re-encrypt-route-custom-cert_creating-advanced-routes","text":"Create a route using the destination CA certificate in the Ingress annotation"},{"depth":2,"slug":"nw-ingress-edge-route-default-certificate_creating-advanced-routes","text":"Create a route using the default certificate through an Ingress object"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/routes/creating-advanced-routes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["networking","networking/ingress_load_balancing","networki
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Securing routes through ingress objects {#creating-advanced-routes}\n\nYou can secure your application traffic by managing certificates directly through ingress objects. This includes creating routes using the destination CA certificate in an ingress annotation or using the default certificate.\n\n> [!WARNING]\n> The Ingress Controller maintains a one-way sync for certificates managed through ingress objects. Do not manually apply changes directly to the generated route’s TLS configuration. Any manual modifications are silently overwritten the next time the parent ingress object is updated or reconciled. This is particularly important to note if you operate a GitOps-managed cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/routes/creating-advanced-routes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Securing routes through ingress objects {#creating-advanced-routes}\n\nYou can secure your application traffic by managing certificates directly through ingress objects. This includes creating routes using the destination CA certificate in an ingress annotation or using the default certificate.\n\n> [!WARNING]\n> The Ingress Controller maintains a one-way sync for certificates managed through ingress objects. Do not manually apply changes directly to the generated route’s TLS configuration. Any manual modifications are silently overwritten the next time the parent ingress object is updated or reconciled. This is particularly important to note if you operate a GitOps-managed cluster.\n\n## Create a route using the destination CA certificate in the Ingress annotation {#nw-ingress-re-encrypt-route-custom-cert_creating-advanced-routes}\n\nTo define a route with a custom destination CA certificate, apply the `route.openshift.io/destination-ca-certificate-secret` annotation to an Ingress object. This configuration ensures the Ingress Controller uses the specified secret to verify the identity of the destination service.\n\n**Prerequisites**\n\n- You have a certificate/key pair in PEM-encoded files, where the certificate is valid for the route host.\n- You have a separate CA certificate in a PEM-encoded file that completes the certificate chain.\n- You have a separate destination CA certificate in a PEM-encoded file.\n- You have a service that you want to expose.\n\n**Procedure**\n\n1. Create a secret for the destination CA certificate by entering the following command:\n\n   ```terminal\n   $ oc create secret generic dest-ca-cert --from-file=tls.crt=<file_path>\n   ```\n\n   For example:\n\n   ```terminal\n   $ oc -n test-ns create secret generic dest-ca-cert --from-file=tls.crt=tls.crt\n   ```\n\n   ```terminal {title=\"Example output\"}\n   secret/dest-ca-cert created\n   ```\n2. Add the `route.openshift.io/destination-ca-certificate-secret` to the Ingress annotations:\n\n   ```yaml\n   apiVersion: networking.k8s.io/v1\n   kind: Ingress\n   metadata:\n     name: frontend\n     annotations:\n       route.openshift.io/termination: \"reencrypt\"\n       route.openshift.io/destination-ca-certificate-secret: secret-ca-cert\n   ...\n   ```\n\n   where:\n\n   `destination-ca-certificate-secret`\n   :   Specifies the `route.openshift.io/destination-ca-certificate-secret` annotation. The annotation references a Kubernetes secret. The Ingress Controller inserts a secret that is referenced in the annotation into the generated route.\n\n   ```yaml {title=\"Example output\"}\n   apiVersion: route.openshift.io/v1\n   kind: Route\n   metadata:\n     name: frontend\n     annotations:\n       route.openshift.io/termination: reencrypt\n       route.openshift.io/destination-ca-certificate-secret: secret-ca-cert\n   spec:\n   ...\n     tls:\n       insecureEdgeTerminationPolicy: Redirect\n       termination: reencrypt\n       destinationCACertificate: |\n         -----BEGIN CERTIFICATE-----\n         [...]\n         -----END CERTIFICATE-----\n   ...\n   ```\n\n## Create a route using the default certificate through an Ingress object {#nw-ingress-edge-route-default-certificate_creating-advanced-routes}\n\nTo generate a secure, edge-terminated route that uses the default ingress certificate, specify an empty TLS configuration in the Ingress object. This configuration overrides the default behavior, preventing the creation of an insecure route.\n\n**Prerequisites**\n\n- You have a service that you want to expose.\n- You have access to the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a YAML file for the Ingress object. In the following example, the file is called `example-ingress.yaml`:\n\n   ```yaml {title=\"YAML definition of an Ingress object\"}\n   apiVersion: networking.k8s.io/v1\n   kind: Ingress\n   metadata:\n     name: frontend\n     ...\n   spec:\n     rules:\n       ...\n     tls:\n     - {}\n   ```\n\n   where:\n\n   `spec.tls`\n   :   Specifies the TLS configuration. Use the exact syntax shown to specify TLS without specifying a custom certificate.\n2. Create the Ingress object by running the following command:\n\n   ```terminal\n   $ oc create -f example-ingress.yaml\n   ```\n\n**Verification**\n\n- Verify that OpenShift Container Platform has created the expected route for the Ingress object by running the following command:\n\n  ```terminal\n  $ oc get routes -o yaml\n  ```\n\n  ```yaml {title=\"Example output\"}\n  apiVersion: v1\n  items:\n  - apiVersion: route.openshift.io/v1\n    kind: Route\n    metadata:\n      name: frontend-j9sdd\n  # ...\n    spec:\n    ...\n      tls:\n        insecureEdgeTerminationPolicy: Redirect\n        termination: edge\n  # ...\n  ```\n\n  where:\n\n  `metadata.name`\n  :   Specifies the name of the route, which includes the name of the Ingress object followed by a random suffix.\n\n  `spec.tls`\n  :   To use the default certificate, the route should not specify `spec.certificate`.\n\n  `tls.termination`\n  :   Specifies the termination policy for the route. The route should specify the `edge` termination policy.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/routes/creating-advanced-routes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-advanced-routes" class="group scroll-mt-20">Securing routes through ingress objects<a href="#creating-advanced-routes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can secure your application traffic by managing certificates directly through ingress objects. This includes creating routes using the destination CA certificate in an ingress annotation or using the default certificate.</p>
       <Alert variant="warning" class="my-4">
         <AlertTitle>Warning</AlertTitle>
@@ -102,8 +102,75 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>The Ingress Controller maintains a one-way sync for certificates managed through ingress objects. Do not manually apply changes directly to the generated route’s TLS configuration. Any manual modifications are silently overwritten the next time the parent ingress object is updated or reconciled. This is particularly important to note if you operate a GitOps-managed cluster.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/nw-ingress-reencrypt-route-custom-cert.md"></p>
-      <p class="/modules/nw-ingress-edge-route-default-certificate.md"></p>
+      <h2 id="nw-ingress-re-encrypt-route-custom-cert_creating-advanced-routes" class="group scroll-mt-20">Create a route using the destination CA certificate in the Ingress annotation<a href="#nw-ingress-re-encrypt-route-custom-cert_creating-advanced-routes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To define a route with a custom destination CA certificate, apply the <code>route.openshift.io/destination-ca-certificate-secret</code> annotation to an Ingress object. This configuration ensures the Ingress Controller uses the specified secret to verify the identity of the destination service.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a certificate/key pair in PEM-encoded files, where the certificate is valid for the route host.</li>
+      <li>You have a separate CA certificate in a PEM-encoded file that completes the certificate chain.</li>
+      <li>You have a separate destination CA certificate in a PEM-encoded file.</li>
+      <li>You have a service that you want to expose.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a secret for the destination CA certificate by entering the following command:
+      <CodeBlock code={"$ oc create secret generic dest-ca-cert --from-file=tls.crt=<file_path>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc -n test-ns create secret generic dest-ca-cert --from-file=tls.crt=tls.crt"} lang="terminal" />
+      <CodeBlock code={"secret/dest-ca-cert created"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Add the <code>route.openshift.io/destination-ca-certificate-secret</code> to the Ingress annotations:
+      <CodeBlock code={"apiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: frontend\n  annotations:\n    route.openshift.io/termination: \"reencrypt\"\n    route.openshift.io/destination-ca-certificate-secret: secret-ca-cert\n..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>destination-ca-certificate-secret</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>route.openshift.io/destination-ca-certificate-secret</code> annotation. The annotation references a Kubernetes secret. The Ingress Controller inserts a secret that is referenced in the annotation into the generated route.</p></dd>
+      </dl>
+      <CodeBlock code={"apiVersion: route.openshift.io/v1\nkind: Route\nmetadata:\n  name: frontend\n  annotations:\n    route.openshift.io/termination: reencrypt\n    route.openshift.io/destination-ca-certificate-secret: secret-ca-cert\nspec:\n...\n  tls:\n    insecureEdgeTerminationPolicy: Redirect\n    termination: reencrypt\n    destinationCACertificate: |\n      -----BEGIN CERTIFICATE-----\n      [...]\n      -----END CERTIFICATE-----\n..."} lang="yaml" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="nw-ingress-edge-route-default-certificate_creating-advanced-routes" class="group scroll-mt-20">Create a route using the default certificate through an Ingress object<a href="#nw-ingress-edge-route-default-certificate_creating-advanced-routes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To generate a secure, edge-terminated route that uses the default ingress certificate, specify an empty TLS configuration in the Ingress object. This configuration overrides the default behavior, preventing the creation of an insecure route.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a service that you want to expose.</li>
+      <li>You have access to the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file for the Ingress object. In the following example, the file is called <code>example-ingress.yaml</code>:
+      <CodeBlock code={"apiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: frontend\n  ...\nspec:\n  rules:\n    ...\n  tls:\n  - {}"} lang="yaml" title="YAML definition of an Ingress object" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.tls</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the TLS configuration. Use the exact syntax shown to specify TLS without specifying a custom certificate.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the Ingress object by running the following command:
+      <CodeBlock code={"$ oc create -f example-ingress.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that OpenShift Container Platform has created the expected route for the Ingress object by running the following command:
+      <CodeBlock code={"$ oc get routes -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: v1\nitems:\n- apiVersion: route.openshift.io/v1\n  kind: Route\n  metadata:\n    name: frontend-j9sdd\n# ...\n  spec:\n  ...\n    tls:\n      insecureEdgeTerminationPolicy: Redirect\n      termination: edge\n# ..."} lang="yaml" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the route, which includes the name of the Ingress object followed by a random suffix.</p></dd>
+      <dt class="font-semibold"><code>spec.tls</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>To use the default certificate, the route should not specify <code>spec.certificate</code>.</p></dd>
+      <dt class="font-semibold"><code>tls.termination</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the termination policy for the route. The route should specify the <code>edge</code> termination policy.</p></dd>
+      </dl>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

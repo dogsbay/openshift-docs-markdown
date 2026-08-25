@@ -6,7 +6,7 @@ title: Troubleshooting the web terminal
 
 ## Web terminal and network policies {#troubleshooting-web-terminal-network-policies}
 
-The web terminal might fail to start if the cluster has network policies configured. To start a web terminal instance, the {{ web_terminal_op }} must communicate with the web terminal’s pod to verify it is running, and the OpenShift Container Platform web console needs to send information to automatically log in to the cluster within the terminal. If either step fails, the web terminal fails to start and the terminal panel is in a loading state until a `context deadline exceeded error` occurs.
+The web terminal might fail to start if the cluster has network policies configured. To start a web terminal instance, the Web Terminal Operator must communicate with the web terminal’s pod to verify it is running, and the OpenShift Container Platform web console needs to send information to automatically log in to the cluster within the terminal. If either step fails, the web terminal fails to start and the terminal panel is in a loading state until a `context deadline exceeded error` occurs.
 
 To avoid this issue, ensure that the network policies for namespaces that are used for terminals allow ingress from the `openshift-console` and `openshift-operators` namespaces.
 

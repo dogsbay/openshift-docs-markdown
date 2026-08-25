@@ -15,8 +15,17 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"hcp-sizing-guidance","text":"Sizing guidance for {{ hcp }}"}];
+const headings = [{"depth":1,"slug":"hcp-sizing-guidance","text":"Sizing guidance for hosted control planes"},{"depth":2,"slug":"hcp-pod-limits_hcp-sizing-guidance","text":"Pod limits"},{"depth":2,"slug":"hcp-resource-limit_hcp-sizing-guidance","text":"Request-based resource limit"},{"depth":2,"slug":"hcp-load-based-limit_hcp-sizing-guidance","text":"Load-based limit"},{"depth":2,"slug":"hcp-sizing-calculation_hcp-sizing-guidance","text":"Sizing calculation example"},{"depth":2,"slug":"hcp-shared-infra_hcp-sizing-guidance","text":"Shared infrastructure between hosted and standalone control planes"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +48,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-prepare
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Sizing guidance for {{ hcp }} {#hcp-sizing-guidance}\n\nMany factors, including hosted cluster workload and worker node count, affect how many hosted control planes can fit within a certain number of worker nodes.\n\nUse this sizing guide to help with hosted cluster capacity planning.\n\nThis guidance assumes a highly available {{ hcp }} topology. The load-based sizing examples were measured on a bare-metal cluster. Cloud-based instances might have different limiting factors, such as memory size.\n\nYou can override the following resource utilization sizing measurements and disable the metric service monitoring.\n\nSee the following highly available {{ hcp }} requirements, which were tested with OpenShift Container Platform version 4.12.9 and later:\n\n- 78 pods\n- Three 8 GiB PVs for etcd\n- Minimum vCPU: approximately 5.5 cores\n- Minimum memory: approximately 19 GiB\n\n**Additional resources**\n\n- [Overriding resource utilization measurements](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util)\n- [Distributing hosted cluster workloads](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads)\n\n**Additional resources**\n\n- [Configuring the maximum number of pods per node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods)\n\n**Additional resources**\n\n- [Sizing guidance for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Sizing guidance for hosted control planes {#hcp-sizing-guidance}\n\nMany factors, including hosted cluster workload and worker node count, affect how many hosted control planes can fit within a certain number of worker nodes.\n\nUse this sizing guide to help with hosted cluster capacity planning.\n\nThis guidance assumes a highly available hosted control planes topology. The load-based sizing examples were measured on a bare-metal cluster. Cloud-based instances might have different limiting factors, such as memory size.\n\nYou can override the following resource utilization sizing measurements and disable the metric service monitoring.\n\nSee the following highly available hosted control planes requirements, which were tested with OpenShift Container Platform version 4.12.9 and later:\n\n- 78 pods\n- Three 8 GiB PVs for etcd\n- Minimum vCPU: approximately 5.5 cores\n- Minimum memory: approximately 19 GiB\n\n**Additional resources**\n\n- [Overriding resource utilization measurements](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util)\n- [Distributing hosted cluster workloads](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads)\n\n## Pod limits {#hcp-pod-limits_hcp-sizing-guidance}\n\nThe `maxPods` setting for each node affects how many hosted clusters can fit in a control-plane node. It is important to note the `maxPods` value on all control-plane nodes. Plan for about 75 pods for each highly available hosted control plane.\n\nFor bare-metal nodes, the default `maxPods` setting of 250 is likely to be a limiting factor because roughly three hosted control planes fit for each node given the pod requirements, even if the machine has plenty of resources to spare. Setting the `maxPods` value to 500 by configuring the `KubeletConfig` value allows for greater hosted control plane density, which can help you take advantage of additional compute resources.\n\n**Additional resources**\n\n- [Configuring the maximum number of pods per node](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods)\n\n## Request-based resource limit {#hcp-resource-limit_hcp-sizing-guidance}\n\nThe maximum number of hosted control planes that the cluster can host is calculated based on the hosted control plane CPU and memory requests from the pods.\n\nA highly available hosted control plane consists of 78 pods that request 5 vCPUs and 18 GiB memory. These baseline numbers are compared to the cluster worker node resource capacities to estimate the maximum number of hosted control planes.\n\n## Load-based limit {#hcp-load-based-limit_hcp-sizing-guidance}\n\nAs you plan your deployment, consider the maximum number of hosted control planes that the cluster can host. That number is calculated based on the hosted control plane pods CPU and memory utilizations when some workload is put on the hosted control plane Kubernetes API server.\n\nThe following method is used to measure the hosted control plane resource utilizations as the workload increases:\n\n- A hosted cluster with 9 workers that use 8 vCPU and 32 GiB each, while using the KubeVirt platform\n- The workload test profile that is configured to focus on API control-plane stress, based on the following definition:\n\n  - Created objects for each namespace, scaling up to 100 namespaces total\n  - Additional API stress with continuous object deletion and creation\n  - Workload queries-per-second (QPS) and Burst settings set high to remove any client-side throttling\n\nAs the load increases by 1000 QPS, the hosted control plane resource utilization increases by 9 vCPUs and 2.5 GB memory.\n\nFor general sizing purposes, consider the 1000 QPS API rate that is a *medium* hosted cluster load, and a 2000 QPS API that is a *heavy* hosted cluster load.\n\n> [!NOTE]\n> This test provides an estimation factor to increase the compute resource utilization based on the expected API load. Exact utilization rates can vary based on the type and pace of the cluster workload.\n\nThe following example shows hosted control plane resource scaling for the workload and API rate definitions:\n\n**API rate table**\n\n| QPS (API rate) | vCPU usage | Memory usage (GiB) |\n| --- | --- | --- |\n| Low load (Less than 50 QPS) | 2.9 | 11.1 |\n| Medium load (1000 QPS) | 11.9 | 13.6 |\n| High load (2000 QPS) | 20.9 | 16.1 |\n\nThe hosted control plane sizing is about control-plane load and workloads that cause heavy API activity, etcd activity, or both. Hosted pod workloads that focus on data-plane loads, such as running a database, might not result in high API rates.\n\n## Sizing calculation example {#hcp-sizing-calculation_hcp-sizing-guidance}\n\nReview an example of how to size a deployment of hosted control planes.\n\nThis example provides sizing guidance for the following scenario:\n\n- Three bare-metal workers that are labeled as `hypershift.openshift.io/control-plane` nodes\n- `maxPods` value set to 500\n- The expected API rate is medium or about 1000, according to the load-based limits\n\n**Limit inputs**\n\n| Limit description | Server 1 | Server 2 |\n| --- | --- | --- |\n| Number of vCPUs on worker node | 64 | 128 |\n| Memory on worker node (GiB) | 128 | 256 |\n| Maximum pods per worker | 500 | 500 |\n| Number of workers used to host control planes | 3 | 3 |\n| Maximum QPS target rate (API requests per second) | 1000 | 1000 |\n\n**Sizing calculation example**\n\n|  |  |  |  |\n| --- | --- | --- | --- |\n| Calculated values based on worker node size and API rate | Server 1 | Server 2 | Calculation notes |\n| Maximum hosted control planes per worker based on vCPU requests | 12.8 | 25.6 | Number of worker vCPUs ÷ 5 total vCPU requests per hosted control plane |\n| Maximum hosted control planes per worker based on vCPU usage | 5.4 | 10.7 | Number of vCPUS ÷ (2.9 measured idle vCPU usage + (QPS target rate ÷ 1000) × 9.0 measured vCPU usage per 1000 QPS increase) |\n| Maximum hosted control planes per worker based on memory requests | 7.1 | 14.2 | Worker memory GiB ÷ 18 GiB total memory request per hosted control plane |\n| Maximum hosted control planes per worker based on memory usage | 9.4 | 18.8 | Worker memory GiB ÷ (11.1 measured idle memory usage + (QPS target rate ÷ 1000) × 2.5 measured memory usage per 1000 QPS increase) |\n| Maximum hosted control planes per worker based on per node pod limit | 6.7 | 6.7 | 500 `maxPods` ÷ 75 pods per hosted control plane |\n| Minimum of previously mentioned maximums | 5.4 | 6.7 |  |\n|  | vCPU limiting factor | `maxPods` limiting factor |  |\n| Maximum number of hosted control planes within a management cluster | 16 | 20 | Minimum of previously mentioned maximums × 3 control-plane workers |\n\n**Hosted control planes capacity metrics**\n\n|  |  |\n| --- | --- |\n| Name | Description |\n| `mce_hs_addon_request_based_hcp_capacity_gauge` | Estimated maximum number of hosted control planes the cluster can host based on a highly available hosted control planes resource request. |\n| `mce_hs_addon_low_qps_based_hcp_capacity_gauge` | Estimated maximum number of hosted control planes the cluster can host if all hosted control planes make around 50 QPS to the clusters Kube API server. |\n| `mce_hs_addon_medium_qps_based_hcp_capacity_gauge` | Estimated maximum number of hosted control planes the cluster can host if all hosted control planes make around 1000 QPS to the clusters Kube API server. |\n| `mce_hs_addon_high_qps_based_hcp_capacity_gauge` | Estimated maximum number of hosted control planes the cluster can host if all hosted control planes make around 2000 QPS to the clusters Kube API server. |\n| `mce_hs_addon_average_qps_based_hcp_capacity_gauge` | Estimated maximum number of hosted control planes the cluster can host based on the existing average QPS of hosted control planes. If you do not have an active hosted control planes, you can expect low QPS. |\n\n## Shared infrastructure between hosted and standalone control planes {#hcp-shared-infra_hcp-sizing-guidance}\n\nAs a service provider, you can more effectively use your resources by sharing infrastructure between a standalone OpenShift Container Platform control plane and hosted control planes. A 3-node OpenShift Container Platform cluster can be a management cluster for a hosted cluster.\n\nSharing infrastructure can be beneficial in constrained environments, such as in small-scale deployments where you need resource efficiency.\n\nBefore you share infrastructure, ensure that your infrastructure has enough resources to support hosted control planes. On the OpenShift Container Platform management cluster, nothing else can be deployed except hosted control planes. Ensure that the management cluster has enough CPU, memory, storage, and network resources to handle the combined load of the hosted clusters. Workload must not be demanding, and it must fall within a low queries-per-second (QPS) profile. For more information about resources and workload, see \"Sizing guidance for hosted control planes\".\n\n**Additional resources**\n\n- [Sizing guidance for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +84,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,13 +99,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-sizing-guidance" class="group scroll-mt-20">Sizing guidance for {"{"}{"{"} hcp {"}"}{"}"}<a href="#hcp-sizing-guidance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <h1 id="hcp-sizing-guidance" class="group scroll-mt-20">Sizing guidance for hosted control planes<a href="#hcp-sizing-guidance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>Many factors, including hosted cluster workload and worker node count, affect how many hosted control planes can fit within a certain number of worker nodes.</p>
       <p>Use this sizing guide to help with hosted cluster capacity planning.</p>
-      <p>This guidance assumes a highly available {"{"}{"{"} hcp {"}"}{"}"} topology. The load-based sizing examples were measured on a bare-metal cluster. Cloud-based instances might have different limiting factors, such as memory size.</p>
+      <p>This guidance assumes a highly available hosted control planes topology. The load-based sizing examples were measured on a bare-metal cluster. Cloud-based instances might have different limiting factors, such as memory size.</p>
       <p>You can override the following resource utilization sizing measurements and disable the metric service monitoring.</p>
-      <p>See the following highly available {"{"}{"{"} hcp {"}"}{"}"} requirements, which were tested with OpenShift Container Platform version 4.12.9 and later:</p>
+      <p>See the following highly available hosted control planes requirements, which were tested with OpenShift Container Platform version 4.12.9 and later:</p>
       <ul>
       <li>78 pods</li>
       <li>Three 8 GiB PVs for etcd</li>
@@ -108,13 +116,218 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util">Overriding resource utilization measurements</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads">Distributing hosted cluster workloads</a></li>
       </ul>
+      <h2 id="hcp-pod-limits_hcp-sizing-guidance" class="group scroll-mt-20">Pod limits<a href="#hcp-pod-limits_hcp-sizing-guidance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The <code>maxPods</code> setting for each node affects how many hosted clusters can fit in a control-plane node. It is important to note the <code>maxPods</code> value on all control-plane nodes. Plan for about 75 pods for each highly available hosted control plane.</p>
+      <p>For bare-metal nodes, the default <code>maxPods</code> setting of 250 is likely to be a limiting factor because roughly three hosted control planes fit for each node given the pod requirements, even if the machine has plenty of resources to spare. Setting the <code>maxPods</code> value to 500 by configuring the <code>KubeletConfig</code> value allows for greater hosted control plane density, which can help you take advantage of additional compute resources.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods">Configuring the maximum number of pods per node</a></li></ul>
-      <p class="/modules/hcp-load-based-limit.md"></p>
-      <p class="/modules/hcp-sizing-calculation.md"></p>
-      <p class="/modules/hcp-shared-infra.md"></p>
+      <h2 id="hcp-resource-limit_hcp-sizing-guidance" class="group scroll-mt-20">Request-based resource limit<a href="#hcp-resource-limit_hcp-sizing-guidance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The maximum number of hosted control planes that the cluster can host is calculated based on the hosted control plane CPU and memory requests from the pods.</p>
+      <p>A highly available hosted control plane consists of 78 pods that request 5 vCPUs and 18 GiB memory. These baseline numbers are compared to the cluster worker node resource capacities to estimate the maximum number of hosted control planes.</p>
+      <h2 id="hcp-load-based-limit_hcp-sizing-guidance" class="group scroll-mt-20">Load-based limit<a href="#hcp-load-based-limit_hcp-sizing-guidance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">As you plan your deployment, consider the maximum number of hosted control planes that the cluster can host. That number is calculated based on the hosted control plane pods CPU and memory utilizations when some workload is put on the hosted control plane Kubernetes API server. </p>
+      <p>The following method is used to measure the hosted control plane resource utilizations as the workload increases:</p>
+      <ul>
+      <li>A hosted cluster with 9 workers that use 8 vCPU and 32 GiB each, while using the KubeVirt platform</li>
+      <li>
+      The workload test profile that is configured to focus on API control-plane stress, based on the following definition:
+      <ul>
+      <li>Created objects for each namespace, scaling up to 100 namespaces total</li>
+      <li>Additional API stress with continuous object deletion and creation</li>
+      <li>Workload queries-per-second (QPS) and Burst settings set high to remove any client-side throttling</li>
+      </ul>
+      </li>
+      </ul>
+      <p>As the load increases by 1000 QPS, the hosted control plane resource utilization increases by 9 vCPUs and 2.5 GB memory.</p>
+      <p>For general sizing purposes, consider the 1000 QPS API rate that is a <em>medium</em> hosted cluster load, and a 2000 QPS API that is a <em>heavy</em> hosted cluster load.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This test provides an estimation factor to increase the compute resource utilization based on the expected API load. Exact utilization rates can vary based on the type and pace of the cluster workload.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following example shows hosted control plane resource scaling for the workload and API rate definitions:</p>
+      <p><strong>API rate table</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>QPS (API rate)</TableHead>
+      <TableHead>vCPU usage</TableHead>
+      <TableHead>Memory usage (GiB)</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Low load (Less than 50 QPS)</TableCell>
+      <TableCell>2.9</TableCell>
+      <TableCell>11.1</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Medium load (1000 QPS)</TableCell>
+      <TableCell>11.9</TableCell>
+      <TableCell>13.6</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>High load (2000 QPS)</TableCell>
+      <TableCell>20.9</TableCell>
+      <TableCell>16.1</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>The hosted control plane sizing is about control-plane load and workloads that cause heavy API activity, etcd activity, or both. Hosted pod workloads that focus on data-plane loads, such as running a database, might not result in high API rates.</p>
+      <h2 id="hcp-sizing-calculation_hcp-sizing-guidance" class="group scroll-mt-20">Sizing calculation example<a href="#hcp-sizing-calculation_hcp-sizing-guidance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review an example of how to size a deployment of hosted control planes.</p>
+      <p>This example provides sizing guidance for the following scenario:</p>
+      <ul>
+      <li>Three bare-metal workers that are labeled as <code>hypershift.openshift.io/control-plane</code> nodes</li>
+      <li><code>maxPods</code> value set to 500</li>
+      <li>The expected API rate is medium or about 1000, according to the load-based limits</li>
+      </ul>
+      <p><strong>Limit inputs</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Limit description</TableHead>
+      <TableHead>Server 1</TableHead>
+      <TableHead>Server 2</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Number of vCPUs on worker node</TableCell>
+      <TableCell>64</TableCell>
+      <TableCell>128</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Memory on worker node (GiB)</TableCell>
+      <TableCell>128</TableCell>
+      <TableCell>256</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Maximum pods per worker</TableCell>
+      <TableCell>500</TableCell>
+      <TableCell>500</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Number of workers used to host control planes</TableCell>
+      <TableCell>3</TableCell>
+      <TableCell>3</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Maximum QPS target rate (API requests per second)</TableCell>
+      <TableCell>1000</TableCell>
+      <TableCell>1000</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Sizing calculation example</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead></TableHead>
+      <TableHead></TableHead>
+      <TableHead></TableHead>
+      <TableHead></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Calculated values based on worker node size and API rate</TableCell>
+      <TableCell>Server 1</TableCell>
+      <TableCell>Server 2</TableCell>
+      <TableCell>Calculation notes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Maximum hosted control planes per worker based on vCPU requests</TableCell>
+      <TableCell>12.8</TableCell>
+      <TableCell>25.6</TableCell>
+      <TableCell>Number of worker vCPUs ÷ 5 total vCPU requests per hosted control plane</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Maximum hosted control planes per worker based on vCPU usage</TableCell>
+      <TableCell>5.4</TableCell>
+      <TableCell>10.7</TableCell>
+      <TableCell>Number of vCPUS ÷ (2.9 measured idle vCPU usage + (QPS target rate ÷ 1000) × 9.0 measured vCPU usage per 1000 QPS increase)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Maximum hosted control planes per worker based on memory requests</TableCell>
+      <TableCell>7.1</TableCell>
+      <TableCell>14.2</TableCell>
+      <TableCell>Worker memory GiB ÷ 18 GiB total memory request per hosted control plane</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Maximum hosted control planes per worker based on memory usage</TableCell>
+      <TableCell>9.4</TableCell>
+      <TableCell>18.8</TableCell>
+      <TableCell>Worker memory GiB ÷ (11.1 measured idle memory usage + (QPS target rate ÷ 1000) × 2.5 measured memory usage per 1000 QPS increase)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Maximum hosted control planes per worker based on per node pod limit</TableCell>
+      <TableCell>6.7</TableCell>
+      <TableCell>6.7</TableCell>
+      <TableCell>500 <code>maxPods</code> ÷ 75 pods per hosted control plane</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Minimum of previously mentioned maximums</TableCell>
+      <TableCell>5.4</TableCell>
+      <TableCell>6.7</TableCell>
+      <TableCell></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell></TableCell>
+      <TableCell>vCPU limiting factor</TableCell>
+      <TableCell><code>maxPods</code> limiting factor</TableCell>
+      <TableCell></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Maximum number of hosted control planes within a management cluster</TableCell>
+      <TableCell>16</TableCell>
+      <TableCell>20</TableCell>
+      <TableCell>Minimum of previously mentioned maximums × 3 control-plane workers</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Hosted control planes capacity metrics</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead></TableHead>
+      <TableHead></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Name</TableCell>
+      <TableCell>Description</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mce_hs_addon_request_based_hcp_capacity_gauge</code></TableCell>
+      <TableCell>Estimated maximum number of hosted control planes the cluster can host based on a highly available hosted control planes resource request.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mce_hs_addon_low_qps_based_hcp_capacity_gauge</code></TableCell>
+      <TableCell>Estimated maximum number of hosted control planes the cluster can host if all hosted control planes make around 50 QPS to the clusters Kube API server.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mce_hs_addon_medium_qps_based_hcp_capacity_gauge</code></TableCell>
+      <TableCell>Estimated maximum number of hosted control planes the cluster can host if all hosted control planes make around 1000 QPS to the clusters Kube API server.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mce_hs_addon_high_qps_based_hcp_capacity_gauge</code></TableCell>
+      <TableCell>Estimated maximum number of hosted control planes the cluster can host if all hosted control planes make around 2000 QPS to the clusters Kube API server.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mce_hs_addon_average_qps_based_hcp_capacity_gauge</code></TableCell>
+      <TableCell>Estimated maximum number of hosted control planes the cluster can host based on the existing average QPS of hosted control planes. If you do not have an active hosted control planes, you can expect low QPS.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="hcp-shared-infra_hcp-sizing-guidance" class="group scroll-mt-20">Shared infrastructure between hosted and standalone control planes<a href="#hcp-shared-infra_hcp-sizing-guidance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">As a service provider, you can more effectively use your resources by sharing infrastructure between a standalone OpenShift Container Platform control plane and hosted control planes. A 3-node OpenShift Container Platform cluster can be a management cluster for a hosted cluster. </p>
+      <p>Sharing infrastructure can be beneficial in constrained environments, such as in small-scale deployments where you need resource efficiency.</p>
+      <p>Before you share infrastructure, ensure that your infrastructure has enough resources to support hosted control planes. On the OpenShift Container Platform management cluster, nothing else can be deployed except hosted control planes. Ensure that the management cluster has enough CPU, memory, storage, and network resources to handle the combined load of the hosted clusters. Workload must not be demanding, and it must fall within a low queries-per-second (QPS) profile. For more information about resources and workload, see "Sizing guidance for hosted control planes".</p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance">Sizing guidance for {"{"}{"{"} hcp {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance">Sizing guidance for hosted control planes</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

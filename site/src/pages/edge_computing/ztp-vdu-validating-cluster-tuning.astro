@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"ztp-vdu-configuration-reference","text":"Validating {{ sno }} cluster tuning for vDU application workloads"}];
+const headings = [{"depth":1,"slug":"ztp-vdu-configuration-reference","text":"Validating {{ sno }} cluster tuning for vDU application workloads"},{"depth":2,"slug":"ztp-du-firmware-config-reference_vdu-config-ref","text":"Recommended firmware configuration for vDU cluster hosts"},{"depth":2,"slug":"ztp-du-cluster-config-reference_vdu-config-ref","text":"Recommended cluster configurations to run vDU applications"},{"depth":3,"slug":"ztp-recommended-cluster-mc-crs_vdu-config-ref","text":"Recommended cluster MachineConfig CRs for single-node OpenShift clusters"},{"depth":3,"slug":"ztp-recommended-cluster-operators_vdu-config-ref","text":"Recommended cluster Operators"},{"depth":3,"slug":"ztp-recommended-cluster-kernel-config_vdu-config-ref","text":"Recommended cluster kernel configuration"},{"depth":3,"slug":"ztp-checking-kernel-rt-in-cluster_vdu-config-ref","text":"Checking the realtime kernel version"},{"depth":2,"slug":"ztp-checking-du-cluster-config_vdu-config-ref","text":"Checking that the recommended cluster configurations are applied"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/edge_computing/ztp-vdu-validating-cluster-tuning";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["edge_computing"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Validating {{ sno }} cluster tuning for vDU application workloads {#ztp-vdu-configuration-reference}\n\nBefore you can deploy virtual distributed unit (vDU) applications, you need to tune and configure the cluster host firmware and various other cluster configuration settings. Use the following information to validate the cluster configuration to support vDU workloads.\n\n**Additional resources**\n\n- [Workload partitioning in {{ sno }} with {{ ztp }}](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-workload-partitioning-sno_sno-configure-for-vdu)\n- [Reference configuration for deploying vDUs on {{ sno }}](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)\n\n**Additional resources**\n\n- [Workload partitioning in {{ sno }} with {{ ztp }}](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-workload-partitioning-sno_sno-configure-for-vdu)\n- [Extracting source CRs from the ztp-site-generate container](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-vdu-validating-cluster-tuning.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Validating {{ sno }} cluster tuning for vDU application workloads {#ztp-vdu-configuration-reference}\n\nBefore you can deploy virtual distributed unit (vDU) applications, you need to tune and configure the cluster host firmware and various other cluster configuration settings. Use the following information to validate the cluster configuration to support vDU workloads.\n\n**Additional resources**\n\n- [Workload partitioning in single-node OpenShift with GitOps ZTP](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-workload-partitioning-sno_sno-configure-for-vdu)\n- [Reference configuration for deploying vDUs on single-node OpenShift](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)\n\n## Recommended firmware configuration for vDU cluster hosts {#ztp-du-firmware-config-reference_vdu-config-ref}\n\nUse the following table as the basis to configure the cluster host firmware for vDU applications running on OpenShift Container Platform 4.22.\n\n> [!NOTE]\n> The following table is a general recommendation for vDU cluster host firmware configuration. Exact firmware settings will depend on your requirements and specific hardware platform. Automatic setting of firmware is not handled by the zero touch provisioning pipeline.\n\n**Recommended cluster host firmware settings**\n\n| Firmware setting | Configuration | Description |\n| --- | --- | --- |\n| HyperTransport (HT) | Enabled | HyperTransport (HT) bus is a bus technology developed by AMD. HT provides a high-speed link between the components in the host memory and other system peripherals. |\n| UEFI | Enabled | Enable booting from UEFI for the vDU host. |\n| CPU Power and Performance Policy | Performance | Set CPU Power and Performance Policy to optimize the system for performance over energy efficiency. |\n| Uncore Frequency Scaling | Disabled | Disable Uncore Frequency Scaling to prevent the voltage and frequency of non-core parts of the CPU from being set independently. |\n| Uncore Frequency | Maximum | Sets the non-core parts of the CPU such as cache and memory controller to their maximum possible frequency of operation. |\n| Performance P-limit | Disabled | Disable Performance P-limit to prevent the Uncore frequency coordination of processors. |\n| Enhanced Intel(R) SpeedStep Tech | Enabled | Enable Enhanced Intel SpeedStep to allow the system to dynamically adjust processor voltage and core frequency that decreases power consumption and heat production in the host. |\n| Intel(R) Turbo Boost Technology | Enabled | Enable Turbo Boost Technology for Intel-based CPUs to automatically allow processor cores to run faster than the rated operating frequency if they are operating below power, current, and temperature specification limits. |\n| Intel Configurable TDP | Enabled | Enables Thermal Design Power (TDP) for the CPU. |\n| Configurable TDP Level | Level 2 | TDP level sets the CPU power consumption required for a particular performance rating. TDP level 2 sets the CPU to the most stable performance level at the cost of power consumption. |\n| Energy Efficient Turbo | Disabled | Disable Energy Efficient Turbo to prevent the processor from using an energy-efficiency based policy. |\n| Hardware P-States | Enabled or Disabled | Enable OS-controlled P-States to allow power saving configurations. Disable `P-states` (performance states) to optimize the operating system and CPU for performance over power consumption. |\n| Package C-State | C0/C1 state | Use C0 or C1 states to set the processor to a fully active state (C0) or to stop CPU internal clocks running in software (C1). |\n| C1E | Disabled | CPU Enhanced Halt (C1E) is a power saving feature in Intel chips. Disabling C1E prevents the operating system from sending a halt command to the CPU when inactive. |\n| Processor C6 | Disabled | C6 power-saving is a CPU feature that automatically disables idle CPU cores and cache. Disabling C6 improves system performance. |\n| Sub-NUMA Clustering | Disabled | Sub-NUMA clustering divides the processor cores, cache, and memory into multiple NUMA domains. Disabling this option can increase performance for latency-sensitive workloads. |\n\n> [!NOTE]\n> Enable global SR-IOV and VT-d settings in the firmware for the host. These settings are relevant to bare-metal environments.\n\n> [!NOTE]\n> Enable both `C-states` and OS-controlled `P-States` to allow per pod power management.\n\n## Recommended cluster configurations to run vDU applications {#ztp-du-cluster-config-reference_vdu-config-ref}\n\nClusters running virtualized distributed unit (vDU) applications require a highly tuned and optimized configuration. The following information describes the various elements that you require to support vDU workloads in OpenShift Container Platform 4.22 clusters.\n\n### Recommended cluster MachineConfig CRs for single-node OpenShift clusters {#ztp-recommended-cluster-mc-crs_vdu-config-ref}\n\nCheck that the `MachineConfig` custom resources (CRs) that you extract from the `ztp-site-generate` container are applied in the cluster. The CRs can be found in the extracted `out/source-crs/extra-manifest/` folder.\n\nThe following `MachineConfig` CRs from the `ztp-site-generate` container configure the cluster host:\n\n***Recommended GitOps ZTP MachineConfig CRs***\n\n<table>\n<thead>\n<tr>\n  <th>MachineConfig CR</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>01-container-mount-ns-and-kubelet-conf-master.yaml</code><br><br><code>01-container-mount-ns-and-kubelet-conf-worker.yaml</code></td>\n  <td>Configures the container mount namespace and kubelet configuration.</td>\n</tr>\n<tr>\n  <td><code>03-sctp-machine-config-master.yaml</code><br><br><code>03-sctp-machine-config-worker.yaml</code></td>\n  <td>Loads the SCTP kernel module. These <code>MachineConfig</code> CRs are optional and can be omitted if you do not require this kernel module.</td>\n</tr>\n<tr>\n  <td><code>06-kdump-master.yaml</code><br><br><code>06-kdump-worker.yaml</code></td>\n  <td>Configures kdump crash reporting for the cluster.</td>\n</tr>\n<tr>\n  <td><code>07-sriov-related-kernel-args-master.yaml</code></td>\n  <td>Configures SR-IOV kernel arguments in the cluster.</td>\n</tr>\n<tr>\n  <td><code>08-set-rcu-normal-master.yaml</code><br><br><code>08-set-rcu-normal-worker.yaml</code></td>\n  <td>Disables <code>rcu_expedited</code> mode after the cluster has rebooted.</td>\n</tr>\n<tr>\n  <td><code>99-crio-disable-wipe-master.yaml</code><br><br><code>99-crio-disable-wipe-worker.yaml</code></td>\n  <td>Disables the automatic CRI-O cache wipe following cluster reboot.</td>\n</tr>\n<tr>\n  <td><code>99-sync-time-once-master.yaml</code><br><br><code>99-sync-time-once-worker.yaml</code></td>\n  <td>Configures the one-time check and adjustment of the system clock by the Chrony service.</td>\n</tr>\n<tr>\n  <td><code>enable-crun-master.yaml</code><br><br><code>enable-crun-worker.yaml</code></td>\n  <td>Enables the <code>crun</code> OCI container runtime.</td>\n</tr>\n<tr>\n  <td><code>extra-manifest/enable-cgroups-v1.yaml</code><br><br><code>source-crs/extra-manifest/enable-cgroups-v1.yaml</code></td>\n  <td>Enables cgroups v1 during cluster installation and when generating RHACM cluster policies.</td>\n</tr>\n</tbody>\n</table>\n\n> [!NOTE]\n> In OpenShift Container Platform 4.14 and later, you configure workload partitioning with the `cpuPartitioningMode` field in the `ClusterInstance` CR.\n\n**Additional resources**\n\n- [Workload partitioning in single-node OpenShift with GitOps ZTP](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-workload-partitioning-sno_sno-configure-for-vdu)\n- [Extracting source CRs from the ztp-site-generate container](/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster)\n\n### Recommended cluster Operators {#ztp-recommended-cluster-operators_vdu-config-ref}\n\nThe following Operators are required for clusters running virtualized distributed unit (vDU) applications and are a part of the baseline reference configuration:\n\n- Node Tuning Operator (NTO). NTO packages functionality that was previously delivered with the Performance Addon Operator, which is now a part of NTO.\n- PTP Operator\n- SR-IOV Network Operator\n- Red Hat OpenShift Logging Operator\n- Local Storage Operator\n\n### Recommended cluster kernel configuration {#ztp-recommended-cluster-kernel-config_vdu-config-ref}\n\nAlways use the latest supported real-time kernel version in your cluster. Ensure that you apply the following configurations in the cluster:\n\n1. Ensure that the following `additionalKernelArgs` are set in the cluster performance profile:\n\n   ```yaml\n   apiVersion: performance.openshift.io/v2\n   kind: PerformanceProfile\n   # ...\n   spec:\n     additionalKernelArgs:\n     - \"rcupdate.rcu_normal_after_boot=0\"\n     - \"efi=runtime\"\n     - \"vfio_pci.enable_sriov=1\"\n     - \"vfio_pci.disable_idle_d3=1\"\n     - \"module_blacklist=irdma\"\n\n     # ...\n   ```\n2. Optional: Set the CPU frequency under the `hardwareTuning` field:\n\n   You can use hardware tuning to tune CPU frequencies for reserved and isolated core CPUs. For FlexRAN like applications, hardware vendors recommend that you run CPU frequencies below the default provided frequencies. It is highly recommended that, before setting any frequencies, you refer to the hardware vendor’s guidelines for maximum frequency settings for your processor generation. This example sets the frequencies for reserved and isolated CPUs to 2500 MHz:\n\n   ```yaml\n   apiVersion: performance.openshift.io/v2\n   kind: PerformanceProfile\n   metadata:\n     name: openshift-node-performance-profile\n   spec:\n         cpu:\n           isolated: \"2-19,22-39\"\n           reserved: \"0-1,20-21\"\n         hugepages:\n           defaultHugepagesSize: 1G\n           pages:\n             - size: 1G\n               count: 32\n         realTimeKernel:\n             enabled: true\n         hardwareTuning:\n             isolatedCpuFreq: 2500000\n             reservedCpuFreq: 2500000\n   ```\n3. Ensure that the `performance-patch` profile in the `Tuned` CR configures the correct CPU isolation set that matches the `isolated` CPU set in the related `PerformanceProfile` CR, for example:\n\n   ```yaml\n   apiVersion: tuned.openshift.io/v1\n   kind: Tuned\n   metadata:\n     name: performance-patch\n     namespace: openshift-cluster-node-tuning-operator\n     annotations:\n       ran.openshift.io/ztp-deploy-wave: \"10\"\n   spec:\n     profile:\n       - name: performance-patch\n         # The 'include' line must match the associated PerformanceProfile name, for example:\n         # include=openshift-node-performance-${PerformanceProfile.metadata.name}\n         # When using the standard (non-realtime) kernel, remove the kernel.timer_migration override from the [sysctl] section\n         data: |\n           [main]\n           summary=Configuration changes profile inherited from performance created tuned\n           include=openshift-node-performance-openshift-node-performance-profile\n           [scheduler]\n           group.ice-ptp=0:f:10:*:ice-ptp.*\n           group.ice-gnss=0:f:10:*:ice-gnss.*\n           group.ice-dplls=0:f:10:*:ice-dplls.*\n           [service]\n           service.stalld=start,enable\n           service.chronyd=stop,disable\n   # ...\n   ```\n\n### Checking the realtime kernel version {#ztp-checking-kernel-rt-in-cluster_vdu-config-ref}\n\nAlways use the latest version of the realtime kernel in your OpenShift Container Platform clusters. If you are unsure about the kernel version that is in use in the cluster, you can compare the current realtime kernel version to the release version with the following procedure.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You are logged in as a user with `cluster-admin` privileges.\n- You have installed `podman`.\n\n**Procedure**\n\n1. Run the following command to get the cluster version:\n\n   ```terminal\n   $ OCP_VERSION=$(oc get clusterversion version -o jsonpath='{.status.desired.version}{\"\\n\"}')\n   ```\n2. Get the release image SHA number:\n\n   ```terminal\n   $ DTK_IMAGE=$(oc adm release info --image-for=driver-toolkit quay.io/openshift-release-dev/ocp-release:$OCP_VERSION-x86_64)\n   ```\n3. Run the release image container and extract the kernel version that is packaged with cluster’s current release:\n\n   ```terminal\n   $ podman run --rm $DTK_IMAGE rpm -qa | grep 'kernel-rt-core-' | sed 's#kernel-rt-core-##'\n   ```\n\n   ```terminal {title=\"Example output\"}\n   4.18.0-305.49.1.rt7.121.el8_4.x86_64\n   ```\n\n   This is the default realtime kernel version that ships with the release.\n\n   > [!NOTE]\n   > The realtime kernel is denoted by the string `.rt` in the kernel version.\n\n**Verification**\n\nCheck that the kernel version listed for the cluster’s current release matches actual realtime kernel that is running in the cluster. Run the following commands to check the running realtime kernel version:\n\n1. Open a remote shell connection to the cluster node:\n\n   ```terminal\n   $ oc debug node/<node_name>\n   ```\n2. Check the realtime kernel version:\n\n   ```terminal\n   sh-4.4# uname -r\n   ```\n\n   ```terminal {title=\"Example output\"}\n   4.18.0-305.49.1.rt7.121.el8_4.x86_64\n   ```\n\n## Checking that the recommended cluster configurations are applied {#ztp-checking-du-cluster-config_vdu-config-ref}\n\nYou can check that clusters are running the correct configuration. The following procedure describes how to check the various configurations that you require to deploy a DU application in OpenShift Container Platform 4.22 clusters.\n\n**Prerequisites**\n\n- You have deployed a cluster and tuned it for vDU workloads.\n- You have installed the OpenShift CLI (`oc`).\n- You have logged in as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Check that the default OperatorHub sources are disabled. Run the following command:\n\n   ```terminal\n   $ oc get operatorhub cluster -o yaml\n   ```\n\n   The following example output shows that all default sources are disabled:\n\n   ```yaml\n   spec:\n       disableAllDefaultSources: true\n   ```\n2. Check that all required `CatalogSource` resources are annotated for workload partitioning (`PreferredDuringScheduling`) by running the following command:\n\n   ```terminal\n   $ oc get catalogsource -A -o jsonpath='{range .items[*]}{.metadata.name}{\" -- \"}{.metadata.annotations.target\\.workload\\.openshift\\.io/management}{\"\\n\"}{end}'\n   ```\n\n   ```terminal\n   certified-operators -- {\"effect\": \"PreferredDuringScheduling\"}\n   community-operators -- {\"effect\": \"PreferredDuringScheduling\"}\n   ran-operators --\n   redhat-marketplace -- {\"effect\": \"PreferredDuringScheduling\"}\n   redhat-operators -- {\"effect\": \"PreferredDuringScheduling\"}\n   ```\n\n   In this output, `CatalogSource` resources that are not annotated are also returned. The `ran-operators` `CatalogSource` resource is not annotated and does not have the `PreferredDuringScheduling` annotation.\n\n   > [!NOTE]\n   > In a properly configured vDU cluster, only a single annotated catalog source is listed.\n3. Check that all applicable OpenShift Container Platform Operator namespaces are annotated for workload partitioning. This includes all Operators installed with core OpenShift Container Platform and the set of additional Operators included in the reference DU tuning configuration. Run the following command:\n\n   ```terminal\n   $ oc get namespaces -A -o jsonpath='{range .items[*]}{.metadata.name}{\" -- \"}{.metadata.annotations.workload\\.openshift\\.io/allowed}{\"\\n\"}{end}'\n   ```\n\n   ```terminal\n   default --\n   openshift-apiserver -- management\n   openshift-apiserver-operator -- management\n   openshift-authentication -- management\n   openshift-authentication-operator -- management\n   ```\n\n   > [!IMPORTANT]\n   > Additional Operators must not be annotated for workload partitioning. In the output from the previous command, additional Operators should be listed without any value on the right side of the `--` separator.\n4. Check that the `ClusterLogging` configuration is correct. Run the following commands:\n\n   1. Validate that the appropriate input and output logs are configured:\n\n      ```terminal\n      $ oc get -n openshift-logging ClusterLogForwarder instance -o yaml\n      ```\n\n      ```yaml\n      apiVersion: logging.openshift.io/v1\n      kind: ClusterLogForwarder\n      metadata:\n        creationTimestamp: \"2022-07-19T21:51:41Z\"\n        generation: 1\n        name: instance\n        namespace: openshift-logging\n        resourceVersion: \"1030342\"\n        uid: 8c1a842d-80c5-447a-9150-40350bdf40f0\n      spec:\n        inputs:\n        - infrastructure: {}\n          name: infra-logs\n        outputs:\n        - name: kafka-open\n          type: kafka\n          url: tcp://10.46.55.190:9092/test\n        pipelines:\n        - inputRefs:\n          - audit\n          name: audit-logs\n          outputRefs:\n          - kafka-open\n        - inputRefs:\n          - infrastructure\n          name: infrastructure-logs\n          outputRefs:\n          - kafka-open\n      ...\n      ```\n   2. Check that the curation schedule is appropriate for your application:\n\n      ```terminal\n      $ oc get -n openshift-logging clusterloggings.logging.openshift.io instance -o yaml\n      ```\n\n      ```yaml\n      apiVersion: logging.openshift.io/v1\n      kind: ClusterLogging\n      metadata:\n        creationTimestamp: \"2022-07-07T18:22:56Z\"\n        generation: 1\n        name: instance\n        namespace: openshift-logging\n        resourceVersion: \"235796\"\n        uid: ef67b9b8-0e65-4a10-88ff-ec06922ea796\n      spec:\n        collection:\n          logs:\n            fluentd: {}\n            type: fluentd\n        curation:\n          curator:\n            schedule: 30 3 * * *\n          type: curator\n        managementState: Managed\n      ...\n      ```\n5. Check that the web console is disabled (`managementState: Removed`) by running the following command:\n\n   ```terminal\n   $ oc get consoles.operator.openshift.io cluster -o jsonpath=\"{ .spec.managementState }\"\n   ```\n\n   ```terminal\n   Removed\n   ```\n6. Check that `chronyd` is disabled on the cluster node by running the following commands:\n\n   ```terminal\n   $ oc debug node/<node_name>\n   ```\n\n   Check the status of `chronyd` on the node:\n\n   ```terminal\n   sh-4.4# chroot /host\n   ```\n\n   ```terminal\n   sh-4.4# systemctl status chronyd\n   ```\n\n   ```terminal\n   ● chronyd.service - NTP client/server\n       Loaded: loaded (/usr/lib/systemd/system/chronyd.service; disabled; vendor preset: enabled)\n       Active: inactive (dead)\n         Docs: man:chronyd(8)\n               man:chrony.conf(5)\n   ```\n7. Check that the PTP interface is successfully synchronized to the primary clock using a remote shell connection to the `linuxptp-daemon` container and the PTP Management Client (`pmc`) tool:\n\n   1. Set the `$PTP_POD_NAME` variable with the name of the `linuxptp-daemon` pod by running the following command:\n\n      ```terminal\n      $ PTP_POD_NAME=$(oc get pods -n openshift-ptp -l app=linuxptp-daemon -o name)\n      ```\n   2. Run the following command to check the sync status of the PTP device:\n\n      ```terminal\n      $ oc -n openshift-ptp rsh -c linuxptp-daemon-container ${PTP_POD_NAME} pmc -u -f /var/run/ptp4l.0.config -b 0 'GET PORT_DATA_SET'\n      ```\n\n      ```terminal\n      sending: GET PORT_DATA_SET\n        3cecef.fffe.7a7020-1 seq 0 RESPONSE MANAGEMENT PORT_DATA_SET\n          portIdentity            3cecef.fffe.7a7020-1\n          portState               SLAVE\n          logMinDelayReqInterval  -4\n          peerMeanPathDelay       0\n          logAnnounceInterval     1\n          announceReceiptTimeout  3\n          logSyncInterval         0\n          delayMechanism          1\n          logMinPdelayReqInterval 0\n          versionNumber           2\n        3cecef.fffe.7a7020-2 seq 0 RESPONSE MANAGEMENT PORT_DATA_SET\n          portIdentity            3cecef.fffe.7a7020-2\n          portState               LISTENING\n          logMinDelayReqInterval  0\n          peerMeanPathDelay       0\n          logAnnounceInterval     1\n          announceReceiptTimeout  3\n          logSyncInterval         0\n          delayMechanism          1\n          logMinPdelayReqInterval 0\n          versionNumber           2\n      ```\n   3. Run the following `pmc` command to check the PTP clock status:\n\n      ```terminal\n      $ oc -n openshift-ptp rsh -c linuxptp-daemon-container ${PTP_POD_NAME} pmc -u -f /var/run/ptp4l.0.config -b 0 'GET TIME_STATUS_NP'\n      ```\n\n      ```terminal\n      sending: GET TIME_STATUS_NP\n        3cecef.fffe.7a7020-0 seq 0 RESPONSE MANAGEMENT TIME_STATUS_NP\n          master_offset              10\n          ingress_time               1657275432697400530\n          cumulativeScaledRateOffset +0.000000000\n          scaledLastGmPhaseChange    0\n          gmTimeBaseIndicator        0\n          lastGmPhaseChange          0x0000'0000000000000000.0000\n          gmPresent                  true\n          gmIdentity                 3c2c30.ffff.670e00\n      ```\n\n      In this output:\n\n      - `master_offset` should be between -100 and 100 ns.\n      - `gmPresent` indicates that the PTP clock is synchronized to a primary clock, and the local clock is not the grandmaster clock.\n   4. Check that the expected `master offset` value corresponding to the value in `/var/run/ptp4l.0.config` is found in the `linuxptp-daemon-container` log:\n\n      ```terminal\n      $ oc logs $PTP_POD_NAME -n openshift-ptp -c linuxptp-daemon-container\n      ```\n\n      ```terminal\n      phc2sys[56020.341]: [ptp4l.1.config] CLOCK_REALTIME phc offset  -1731092 s2 freq -1546242 delay    497\n      ptp4l[56020.390]: [ptp4l.1.config] master offset         -2 s2 freq   -5863 path delay       541\n      ptp4l[56020.390]: [ptp4l.0.config] master offset         -8 s2 freq  -10699 path delay       533\n      ```\n8. Check that the SR-IOV configuration is correct by running the following commands:\n\n   1. Check that the `disableDrain` value in the `SriovOperatorConfig` resource is set to `true`:\n\n      ```terminal\n      $ oc get sriovoperatorconfig -n openshift-sriov-network-operator default -o jsonpath=\"{.spec.disableDrain}{'\\n'}\"\n      ```\n\n      ```terminal\n      true\n      ```\n   2. Check that the `SriovNetworkNodeState` sync status is `Succeeded` by running the following command:\n\n      ```terminal\n      $ oc get SriovNetworkNodeStates -n openshift-sriov-network-operator -o jsonpath=\"{.items[*].status.syncStatus}{'\\n'}\"\n      ```\n\n      ```terminal\n      Succeeded\n      ```\n   3. Verify that the expected number and configuration of virtual functions (`Vfs`) under each interface configured for SR-IOV is present and correct in the `.status.interfaces` field. For example:\n\n      ```terminal\n      $ oc get SriovNetworkNodeStates -n openshift-sriov-network-operator -o yaml\n      ```\n\n      ```yaml\n      apiVersion: v1\n      items:\n      - apiVersion: sriovnetwork.openshift.io/v1\n        kind: SriovNetworkNodeState\n      ...\n        status:\n          interfaces:\n          ...\n          - Vfs:\n            - deviceID: 154c\n              driver: vfio-pci\n              pciAddress: 0000:3b:0a.0\n              vendor: \"8086\"\n              vfID: 0\n            - deviceID: 154c\n              driver: vfio-pci\n              pciAddress: 0000:3b:0a.1\n              vendor: \"8086\"\n              vfID: 1\n            - deviceID: 154c\n              driver: vfio-pci\n              pciAddress: 0000:3b:0a.2\n              vendor: \"8086\"\n              vfID: 2\n            - deviceID: 154c\n              driver: vfio-pci\n              pciAddress: 0000:3b:0a.3\n              vendor: \"8086\"\n              vfID: 3\n            - deviceID: 154c\n              driver: vfio-pci\n              pciAddress: 0000:3b:0a.4\n              vendor: \"8086\"\n              vfID: 4\n            - deviceID: 154c\n              driver: vfio-pci\n              pciAddress: 0000:3b:0a.5\n              vendor: \"8086\"\n              vfID: 5\n            - deviceID: 154c\n              driver: vfio-pci\n              pciAddress: 0000:3b:0a.6\n              vendor: \"8086\"\n              vfID: 6\n            - deviceID: 154c\n              driver: vfio-pci\n              pciAddress: 0000:3b:0a.7\n              vendor: \"8086\"\n              vfID: 7\n      ```\n9. Check that the cluster performance profile is correct. The `cpu` and `hugepages` sections will vary depending on your hardware configuration. Run the following command:\n\n   ```terminal\n   $ oc get PerformanceProfile openshift-node-performance-profile -o yaml\n   ```\n\n   ```yaml\n   apiVersion: performance.openshift.io/v2\n   kind: PerformanceProfile\n   metadata:\n     creationTimestamp: \"2022-07-19T21:51:31Z\"\n     finalizers:\n     - foreground-deletion\n     generation: 1\n     name: openshift-node-performance-profile\n     resourceVersion: \"33558\"\n     uid: 217958c0-9122-4c62-9d4d-fdc27c31118c\n   spec:\n     additionalKernelArgs:\n     - idle=poll\n     - rcupdate.rcu_normal_after_boot=0\n     - efi=runtime\n     cpu:\n       isolated: 2-51,54-103\n       reserved: 0-1,52-53\n     hugepages:\n       defaultHugepagesSize: 1G\n       pages:\n       - count: 32\n         size: 1G\n     machineConfigPoolSelector:\n       pools.operator.machineconfiguration.openshift.io/master: \"\"\n     net:\n       userLevelNetworking: true\n     nodeSelector:\n       node-role.kubernetes.io/master: \"\"\n     numa:\n       topologyPolicy: restricted\n     realTimeKernel:\n       enabled: true\n   status:\n     conditions:\n     - lastHeartbeatTime: \"2022-07-19T21:51:31Z\"\n       lastTransitionTime: \"2022-07-19T21:51:31Z\"\n       status: \"True\"\n       type: Available\n     - lastHeartbeatTime: \"2022-07-19T21:51:31Z\"\n       lastTransitionTime: \"2022-07-19T21:51:31Z\"\n       status: \"True\"\n       type: Upgradeable\n     - lastHeartbeatTime: \"2022-07-19T21:51:31Z\"\n       lastTransitionTime: \"2022-07-19T21:51:31Z\"\n       status: \"False\"\n       type: Progressing\n     - lastHeartbeatTime: \"2022-07-19T21:51:31Z\"\n       lastTransitionTime: \"2022-07-19T21:51:31Z\"\n       status: \"False\"\n       type: Degraded\n     runtimeClass: performance-openshift-node-performance-profile\n     tuned: openshift-cluster-node-tuning-operator/openshift-node-performance-openshift-node-performance-profile\n   ```\n\n   > [!NOTE]\n   > CPU settings are dependent on the number of cores available on the server and should align with workload partitioning settings. `hugepages` configuration is server and application dependent.\n10. Check that the `PerformanceProfile` was successfully applied to the cluster by running the following command:\n\n    ```terminal\n    $ oc get performanceprofile openshift-node-performance-profile -o jsonpath=\"{range .status.conditions[*]}{ @.type }{' -- '}{@.status}{'\\n'}{end}\"\n    ```\n\n    ```terminal\n    Available -- True\n    Upgradeable -- True\n    Progressing -- False\n    Degraded -- False\n    ```\n11. Check the `Tuned` performance patch settings by running the following command:\n\n    ```terminal\n    $ oc get tuneds.tuned.openshift.io -n openshift-cluster-node-tuning-operator performance-patch -o yaml\n    ```\n\n    ```yaml\n    apiVersion: tuned.openshift.io/v1\n    kind: Tuned\n    metadata:\n      creationTimestamp: \"2022-07-18T10:33:52Z\"\n      generation: 1\n      name: performance-patch\n      namespace: openshift-cluster-node-tuning-operator\n      resourceVersion: \"34024\"\n      uid: f9799811-f744-4179-bf00-32d4436c08fd\n    spec:\n      profile:\n      - data: |\n          [main]\n          summary=Configuration changes profile inherited from performance created tuned\n          include=openshift-node-performance-openshift-node-performance-profile\n          [bootloader]\n          cmdline_crash=nohz_full=2-23,26-47\n          [sysctl]\n          kernel.timer_migration=1\n          [scheduler]\n          group.ice-ptp=0:f:10:*:ice-ptp.*\n          [service]\n          service.stalld=start,enable\n          service.chronyd=stop,disable\n        name: performance-patch\n      recommend:\n      - machineConfigLabels:\n          machineconfiguration.openshift.io/role: master\n        priority: 19\n        profile: performance-patch\n    ```\n\n    The CPU list in `cmdline=nohz_full=` will vary based on your hardware configuration.\n12. Check that cluster networking diagnostics are disabled by running the following command:\n\n    ```terminal\n    $ oc get networks.operator.openshift.io cluster -o jsonpath='{.spec.disableNetworkDiagnostics}'\n    ```\n\n    ```terminal\n    true\n    ```\n13. Check that the `Kubelet` housekeeping interval is tuned to slower rate. This is set in the `containerMountNS` machine config. Run the following command:\n\n    ```terminal\n    $ oc describe machineconfig container-mount-namespace-and-kubelet-conf-master | grep OPENSHIFT_MAX_HOUSEKEEPING_INTERVAL_DURATION\n    ```\n\n    ```terminal\n    Environment=\"OPENSHIFT_MAX_HOUSEKEEPING_INTERVAL_DURATION=60s\"\n    ```\n14. Check that Grafana and `alertManagerMain` are disabled and that the Prometheus retention period is set to 24h by running the following command:\n\n    ```terminal\n    $ oc get configmap cluster-monitoring-config -n openshift-monitoring -o jsonpath=\"{ .data.config\\.yaml }\"\n    ```\n\n    ```terminal\n    grafana:\n      enabled: false\n    alertmanagerMain:\n      enabled: false\n    prometheusK8s:\n       retention: 24h\n    ```\n\n    1. Use the following commands to verify that Grafana and `alertManagerMain` routes are not found in the cluster:\n\n       ```terminal\n       $ oc get route -n openshift-monitoring alertmanager-main\n       ```\n\n       ```terminal\n       $ oc get route -n openshift-monitoring grafana\n       ```\n\n       Both queries should return `Error from server (NotFound)` messages.\n15. Check that there is a minimum of 4 CPUs allocated as `reserved` for each of the `PerformanceProfile`, `Tuned` performance-patch, workload partitioning, and kernel command-line arguments by running the following command:\n\n    ```terminal\n    $ oc get performanceprofile -o jsonpath=\"{ .items[0].spec.cpu.reserved }\"\n    ```\n\n    ```terminal\n    0-3\n    ```\n\n    > [!NOTE]\n    > Depending on your workload requirements, you might require additional reserved CPUs to be allocated.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-vdu-validating-cluster-tuning.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,23 +101,385 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ztp-vdu-configuration-reference" class="group scroll-mt-20">Validating {"{"}{"{"} sno {"}"}{"}"} cluster tuning for vDU application workloads<a href="#ztp-vdu-configuration-reference" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Before you can deploy virtual distributed unit (vDU) applications, you need to tune and configure the cluster host firmware and various other cluster configuration settings. Use the following information to validate the cluster configuration to support vDU workloads.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-workload-partitioning-sno_sno-configure-for-vdu">Workload partitioning in {"{"}{"{"} sno {"}"}{"}"} with {"{"}{"{"} ztp {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu">Reference configuration for deploying vDUs on {"{"}{"{"} sno {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-workload-partitioning-sno_sno-configure-for-vdu">Workload partitioning in single-node OpenShift with GitOps ZTP</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu">Reference configuration for deploying vDUs on single-node OpenShift</a></li>
       </ul>
-      <p class="/modules/con-ztp-du-cluster-config-reference.md"></p>
-      <p class="/modules/ztp-recommended-cluster-mc-crs.md"></p>
+      <h2 id="ztp-du-firmware-config-reference_vdu-config-ref" class="group scroll-mt-20">Recommended firmware configuration for vDU cluster hosts<a href="#ztp-du-firmware-config-reference_vdu-config-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the following table as the basis to configure the cluster host firmware for vDU applications running on OpenShift Container Platform 4.22.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The following table is a general recommendation for vDU cluster host firmware configuration. Exact firmware settings will depend on your requirements and specific hardware platform. Automatic setting of firmware is not handled by the zero touch provisioning pipeline.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Recommended cluster host firmware settings</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Firmware setting</TableHead>
+      <TableHead>Configuration</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>HyperTransport (HT)</TableCell>
+      <TableCell>Enabled</TableCell>
+      <TableCell>HyperTransport (HT) bus is a bus technology developed by AMD. HT provides a high-speed link between the components in the host memory and other system peripherals.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>UEFI</TableCell>
+      <TableCell>Enabled</TableCell>
+      <TableCell>Enable booting from UEFI for the vDU host.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>CPU Power and Performance Policy</TableCell>
+      <TableCell>Performance</TableCell>
+      <TableCell>Set CPU Power and Performance Policy to optimize the system for performance over energy efficiency.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Uncore Frequency Scaling</TableCell>
+      <TableCell>Disabled</TableCell>
+      <TableCell>Disable Uncore Frequency Scaling to prevent the voltage and frequency of non-core parts of the CPU from being set independently.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Uncore Frequency</TableCell>
+      <TableCell>Maximum</TableCell>
+      <TableCell>Sets the non-core parts of the CPU such as cache and memory controller to their maximum possible frequency of operation.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Performance P-limit</TableCell>
+      <TableCell>Disabled</TableCell>
+      <TableCell>Disable Performance P-limit to prevent the Uncore frequency coordination of processors.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Enhanced Intel(R) SpeedStep Tech</TableCell>
+      <TableCell>Enabled</TableCell>
+      <TableCell>Enable Enhanced Intel SpeedStep to allow the system to dynamically adjust processor voltage and core frequency that decreases power consumption and heat production in the host.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Intel(R) Turbo Boost Technology</TableCell>
+      <TableCell>Enabled</TableCell>
+      <TableCell>Enable Turbo Boost Technology for Intel-based CPUs to automatically allow processor cores to run faster than the rated operating frequency if they are operating below power, current, and temperature specification limits.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Intel Configurable TDP</TableCell>
+      <TableCell>Enabled</TableCell>
+      <TableCell>Enables Thermal Design Power (TDP) for the CPU.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Configurable TDP Level</TableCell>
+      <TableCell>Level 2</TableCell>
+      <TableCell>TDP level sets the CPU power consumption required for a particular performance rating. TDP level 2 sets the CPU to the most stable performance level at the cost of power consumption.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Energy Efficient Turbo</TableCell>
+      <TableCell>Disabled</TableCell>
+      <TableCell>Disable Energy Efficient Turbo to prevent the processor from using an energy-efficiency based policy.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Hardware P-States</TableCell>
+      <TableCell>Enabled or Disabled</TableCell>
+      <TableCell>Enable OS-controlled P-States to allow power saving configurations. Disable <code>P-states</code> (performance states) to optimize the operating system and CPU for performance over power consumption.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Package C-State</TableCell>
+      <TableCell>C0/C1 state</TableCell>
+      <TableCell>Use C0 or C1 states to set the processor to a fully active state (C0) or to stop CPU internal clocks running in software (C1).</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>C1E</TableCell>
+      <TableCell>Disabled</TableCell>
+      <TableCell>CPU Enhanced Halt (C1E) is a power saving feature in Intel chips. Disabling C1E prevents the operating system from sending a halt command to the CPU when inactive.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Processor C6</TableCell>
+      <TableCell>Disabled</TableCell>
+      <TableCell>C6 power-saving is a CPU feature that automatically disables idle CPU cores and cache. Disabling C6 improves system performance.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Sub-NUMA Clustering</TableCell>
+      <TableCell>Disabled</TableCell>
+      <TableCell>Sub-NUMA clustering divides the processor cores, cache, and memory into multiple NUMA domains. Disabling this option can increase performance for latency-sensitive workloads.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Enable global SR-IOV and VT-d settings in the firmware for the host. These settings are relevant to bare-metal environments.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Enable both <code>C-states</code> and OS-controlled <code>P-States</code> to allow per pod power management.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="ztp-du-cluster-config-reference_vdu-config-ref" class="group scroll-mt-20">Recommended cluster configurations to run vDU applications<a href="#ztp-du-cluster-config-reference_vdu-config-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Clusters running virtualized distributed unit (vDU) applications require a highly tuned and optimized configuration. The following information describes the various elements that you require to support vDU workloads in OpenShift Container Platform 4.22 clusters.</p>
+      <h3 id="ztp-recommended-cluster-mc-crs_vdu-config-ref" class="group scroll-mt-20">Recommended cluster MachineConfig CRs for single-node OpenShift clusters<a href="#ztp-recommended-cluster-mc-crs_vdu-config-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Check that the <code>MachineConfig</code> custom resources (CRs) that you extract from the <code>ztp-site-generate</code> container are applied in the cluster. The CRs can be found in the extracted <code>out/source-crs/extra-manifest/</code> folder.</p>
+      <p>The following <code>MachineConfig</code> CRs from the <code>ztp-site-generate</code> container configure the cluster host:</p>
+      <p><em></em><em><strong>Recommended GitOps ZTP MachineConfig CRs</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>MachineConfig CR</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>01-container-mount-ns-and-kubelet-conf-master.yaml</code><br><br><code>01-container-mount-ns-and-kubelet-conf-worker.yaml</code></td>\n  <td>Configures the container mount namespace and kubelet configuration.</td>\n</tr>\n<tr>\n  <td><code>03-sctp-machine-config-master.yaml</code><br><br><code>03-sctp-machine-config-worker.yaml</code></td>\n  <td>Loads the SCTP kernel module. These <code>MachineConfig</code> CRs are optional and can be omitted if you do not require this kernel module.</td>\n</tr>\n<tr>\n  <td><code>06-kdump-master.yaml</code><br><br><code>06-kdump-worker.yaml</code></td>\n  <td>Configures kdump crash reporting for the cluster.</td>\n</tr>\n<tr>\n  <td><code>07-sriov-related-kernel-args-master.yaml</code></td>\n  <td>Configures SR-IOV kernel arguments in the cluster.</td>\n</tr>\n<tr>\n  <td><code>08-set-rcu-normal-master.yaml</code><br><br><code>08-set-rcu-normal-worker.yaml</code></td>\n  <td>Disables <code>rcu_expedited</code> mode after the cluster has rebooted.</td>\n</tr>\n<tr>\n  <td><code>99-crio-disable-wipe-master.yaml</code><br><br><code>99-crio-disable-wipe-worker.yaml</code></td>\n  <td>Disables the automatic CRI-O cache wipe following cluster reboot.</td>\n</tr>\n<tr>\n  <td><code>99-sync-time-once-master.yaml</code><br><br><code>99-sync-time-once-worker.yaml</code></td>\n  <td>Configures the one-time check and adjustment of the system clock by the Chrony service.</td>\n</tr>\n<tr>\n  <td><code>enable-crun-master.yaml</code><br><br><code>enable-crun-worker.yaml</code></td>\n  <td>Enables the <code>crun</code> OCI container runtime.</td>\n</tr>\n<tr>\n  <td><code>extra-manifest/enable-cgroups-v1.yaml</code><br><br><code>source-crs/extra-manifest/enable-cgroups-v1.yaml</code></td>\n  <td>Enables cgroups v1 during cluster installation and when generating RHACM cluster policies.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>In OpenShift Container Platform 4.14 and later, you configure workload partitioning with the <code>cpuPartitioningMode</code> field in the <code>ClusterInstance</code> CR.</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-workload-partitioning-sno_sno-configure-for-vdu">Workload partitioning in {"{"}{"{"} sno {"}"}{"}"} with {"{"}{"{"} ztp {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#ztp-workload-partitioning-sno_sno-configure-for-vdu">Workload partitioning in single-node OpenShift with GitOps ZTP</a></li>
       <li><a href="/openshift-docs-markdown/edge_computing/ztp-preparing-the-hub-cluster#ztp-preparing-the-ztp-git-repository_ztp-preparing-the-hub-cluster">Extracting source CRs from the ztp-site-generate container</a></li>
       </ul>
-      <p class="/modules/ztp-recommended-cluster-kernel-config.md"></p>
-      <p class="/modules/ztp-checking-kernel-rt-in-cluster.md"></p>
-      <p class="/modules/ztp-checking-du-cluster-config.md"></p>
+      <h3 id="ztp-recommended-cluster-operators_vdu-config-ref" class="group scroll-mt-20">Recommended cluster Operators<a href="#ztp-recommended-cluster-operators_vdu-config-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The following Operators are required for clusters running virtualized distributed unit (vDU) applications and are a part of the baseline reference configuration:</p>
+      <ul>
+      <li>Node Tuning Operator (NTO). NTO packages functionality that was previously delivered with the Performance Addon Operator, which is now a part of NTO.</li>
+      <li>PTP Operator</li>
+      <li>SR-IOV Network Operator</li>
+      <li>Red Hat OpenShift Logging Operator</li>
+      <li>Local Storage Operator</li>
+      </ul>
+      <h3 id="ztp-recommended-cluster-kernel-config_vdu-config-ref" class="group scroll-mt-20">Recommended cluster kernel configuration<a href="#ztp-recommended-cluster-kernel-config_vdu-config-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Always use the latest supported real-time kernel version in your cluster. Ensure that you apply the following configurations in the cluster:</p>
+      <ol>
+      <li>
+      Ensure that the following <code>additionalKernelArgs</code> are set in the cluster performance profile:
+      <CodeBlock code={"apiVersion: performance.openshift.io/v2\nkind: PerformanceProfile\n# ...\nspec:\n  additionalKernelArgs:\n  - \"rcupdate.rcu_normal_after_boot=0\"\n  - \"efi=runtime\"\n  - \"vfio_pci.enable_sriov=1\"\n  - \"vfio_pci.disable_idle_d3=1\"\n  - \"module_blacklist=irdma\"\n\n  # ..."} lang="yaml" />
+      </li>
+      <li>
+      Optional: Set the CPU frequency under the <code>hardwareTuning</code> field:
+      <p>You can use hardware tuning to tune CPU frequencies for reserved and isolated core CPUs. For FlexRAN like applications, hardware vendors recommend that you run CPU frequencies below the default provided frequencies. It is highly recommended that, before setting any frequencies, you refer to the hardware vendor’s guidelines for maximum frequency settings for your processor generation. This example sets the frequencies for reserved and isolated CPUs to 2500 MHz:</p>
+      <CodeBlock code={"apiVersion: performance.openshift.io/v2\nkind: PerformanceProfile\nmetadata:\n  name: openshift-node-performance-profile\nspec:\n      cpu:\n        isolated: \"2-19,22-39\"\n        reserved: \"0-1,20-21\"\n      hugepages:\n        defaultHugepagesSize: 1G\n        pages:\n          - size: 1G\n            count: 32\n      realTimeKernel:\n          enabled: true\n      hardwareTuning:\n          isolatedCpuFreq: 2500000\n          reservedCpuFreq: 2500000"} lang="yaml" />
+      </li>
+      <li>
+      Ensure that the <code>performance-patch</code> profile in the <code>Tuned</code> CR configures the correct CPU isolation set that matches the <code>isolated</code> CPU set in the related <code>PerformanceProfile</code> CR, for example:
+      <CodeBlock code={"apiVersion: tuned.openshift.io/v1\nkind: Tuned\nmetadata:\n  name: performance-patch\n  namespace: openshift-cluster-node-tuning-operator\n  annotations:\n    ran.openshift.io/ztp-deploy-wave: \"10\"\nspec:\n  profile:\n    - name: performance-patch\n      # The 'include' line must match the associated PerformanceProfile name, for example:\n      # include=openshift-node-performance-${PerformanceProfile.metadata.name}\n      # When using the standard (non-realtime) kernel, remove the kernel.timer_migration override from the [sysctl] section\n      data: |\n        [main]\n        summary=Configuration changes profile inherited from performance created tuned\n        include=openshift-node-performance-openshift-node-performance-profile\n        [scheduler]\n        group.ice-ptp=0:f:10:*:ice-ptp.*\n        group.ice-gnss=0:f:10:*:ice-gnss.*\n        group.ice-dplls=0:f:10:*:ice-dplls.*\n        [service]\n        service.stalld=start,enable\n        service.chronyd=stop,disable\n# ..."} lang="yaml" />
+      </li>
+      </ol>
+      <h3 id="ztp-checking-kernel-rt-in-cluster_vdu-config-ref" class="group scroll-mt-20">Checking the realtime kernel version<a href="#ztp-checking-kernel-rt-in-cluster_vdu-config-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Always use the latest version of the realtime kernel in your OpenShift Container Platform clusters. If you are unsure about the kernel version that is in use in the cluster, you can compare the current realtime kernel version to the release version with the following procedure.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You are logged in as a user with <code>cluster-admin</code> privileges.</li>
+      <li>You have installed <code>podman</code>.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run the following command to get the cluster version:
+      <CodeBlock code={"$ OCP_VERSION=$(oc get clusterversion version -o jsonpath='{.status.desired.version}{\"\\n\"}')"} lang="terminal" />
+      </li>
+      <li>
+      Get the release image SHA number:
+      <CodeBlock code={"$ DTK_IMAGE=$(oc adm release info --image-for=driver-toolkit quay.io/openshift-release-dev/ocp-release:$OCP_VERSION-x86_64)"} lang="terminal" />
+      </li>
+      <li>
+      Run the release image container and extract the kernel version that is packaged with cluster’s current release:
+      <CodeBlock code={"$ podman run --rm $DTK_IMAGE rpm -qa | grep 'kernel-rt-core-' | sed 's#kernel-rt-core-##'"} lang="terminal" />
+      <CodeBlock code={"4.18.0-305.49.1.rt7.121.el8_4.x86_64"} lang="terminal" title="Example output" />
+      <p>This is the default realtime kernel version that ships with the release.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The realtime kernel is denoted by the string <code>.rt</code> in the kernel version.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <p>Check that the kernel version listed for the cluster’s current release matches actual realtime kernel that is running in the cluster. Run the following commands to check the running realtime kernel version:</p>
+      <ol>
+      <li>
+      Open a remote shell connection to the cluster node:
+      <CodeBlock code={"$ oc debug node/<node_name>"} lang="terminal" />
+      </li>
+      <li>
+      Check the realtime kernel version:
+      <CodeBlock code={"sh-4.4# uname -r"} lang="terminal" />
+      <CodeBlock code={"4.18.0-305.49.1.rt7.121.el8_4.x86_64"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="ztp-checking-du-cluster-config_vdu-config-ref" class="group scroll-mt-20">Checking that the recommended cluster configurations are applied<a href="#ztp-checking-du-cluster-config_vdu-config-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can check that clusters are running the correct configuration. The following procedure describes how to check the various configurations that you require to deploy a DU application in OpenShift Container Platform 4.22 clusters.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have deployed a cluster and tuned it for vDU workloads.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have logged in as a user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check that the default OperatorHub sources are disabled. Run the following command:
+      <CodeBlock code={"$ oc get operatorhub cluster -o yaml"} lang="terminal" />
+      <p>The following example output shows that all default sources are disabled:</p>
+      <CodeBlock code={"spec:\n    disableAllDefaultSources: true"} lang="yaml" />
+      </li>
+      <li>
+      Check that all required <code>CatalogSource</code> resources are annotated for workload partitioning (<code>PreferredDuringScheduling</code>) by running the following command:
+      <CodeBlock code={"$ oc get catalogsource -A -o jsonpath='{range .items[*]}{.metadata.name}{\" -- \"}{.metadata.annotations.target\\.workload\\.openshift\\.io/management}{\"\\n\"}{end}'"} lang="terminal" />
+      <CodeBlock code={"certified-operators -- {\"effect\": \"PreferredDuringScheduling\"}\ncommunity-operators -- {\"effect\": \"PreferredDuringScheduling\"}\nran-operators --\nredhat-marketplace -- {\"effect\": \"PreferredDuringScheduling\"}\nredhat-operators -- {\"effect\": \"PreferredDuringScheduling\"}"} lang="terminal" />
+      <p>In this output, <code>CatalogSource</code> resources that are not annotated are also returned. The <code>ran-operators</code> <code>CatalogSource</code> resource is not annotated and does not have the <code>PreferredDuringScheduling</code> annotation.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>In a properly configured vDU cluster, only a single annotated catalog source is listed.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Check that all applicable OpenShift Container Platform Operator namespaces are annotated for workload partitioning. This includes all Operators installed with core OpenShift Container Platform and the set of additional Operators included in the reference DU tuning configuration. Run the following command:
+      <CodeBlock code={"$ oc get namespaces -A -o jsonpath='{range .items[*]}{.metadata.name}{\" -- \"}{.metadata.annotations.workload\\.openshift\\.io/allowed}{\"\\n\"}{end}'"} lang="terminal" />
+      <CodeBlock code={"default --\nopenshift-apiserver -- management\nopenshift-apiserver-operator -- management\nopenshift-authentication -- management\nopenshift-authentication-operator -- management"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Additional Operators must not be annotated for workload partitioning. In the output from the previous command, additional Operators should be listed without any value on the right side of the <code>--</code> separator.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Check that the <code>ClusterLogging</code> configuration is correct. Run the following commands:
+      <ol>
+      <li>
+      Validate that the appropriate input and output logs are configured:
+      <CodeBlock code={"$ oc get -n openshift-logging ClusterLogForwarder instance -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: logging.openshift.io/v1\nkind: ClusterLogForwarder\nmetadata:\n  creationTimestamp: \"2022-07-19T21:51:41Z\"\n  generation: 1\n  name: instance\n  namespace: openshift-logging\n  resourceVersion: \"1030342\"\n  uid: 8c1a842d-80c5-447a-9150-40350bdf40f0\nspec:\n  inputs:\n  - infrastructure: {}\n    name: infra-logs\n  outputs:\n  - name: kafka-open\n    type: kafka\n    url: tcp://10.46.55.190:9092/test\n  pipelines:\n  - inputRefs:\n    - audit\n    name: audit-logs\n    outputRefs:\n    - kafka-open\n  - inputRefs:\n    - infrastructure\n    name: infrastructure-logs\n    outputRefs:\n    - kafka-open\n..."} lang="yaml" />
+      </li>
+      <li>
+      Check that the curation schedule is appropriate for your application:
+      <CodeBlock code={"$ oc get -n openshift-logging clusterloggings.logging.openshift.io instance -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: logging.openshift.io/v1\nkind: ClusterLogging\nmetadata:\n  creationTimestamp: \"2022-07-07T18:22:56Z\"\n  generation: 1\n  name: instance\n  namespace: openshift-logging\n  resourceVersion: \"235796\"\n  uid: ef67b9b8-0e65-4a10-88ff-ec06922ea796\nspec:\n  collection:\n    logs:\n      fluentd: {}\n      type: fluentd\n  curation:\n    curator:\n      schedule: 30 3 * * *\n    type: curator\n  managementState: Managed\n..."} lang="yaml" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Check that the web console is disabled (<code>managementState: Removed</code>) by running the following command:
+      <CodeBlock code={"$ oc get consoles.operator.openshift.io cluster -o jsonpath=\"{ .spec.managementState }\""} lang="terminal" />
+      <CodeBlock code={"Removed"} lang="terminal" />
+      </li>
+      <li>
+      Check that <code>chronyd</code> is disabled on the cluster node by running the following commands:
+      <CodeBlock code={"$ oc debug node/<node_name>"} lang="terminal" />
+      <p>Check the status of <code>chronyd</code> on the node:</p>
+      <CodeBlock code={"sh-4.4# chroot /host"} lang="terminal" />
+      <CodeBlock code={"sh-4.4# systemctl status chronyd"} lang="terminal" />
+      <CodeBlock code={"● chronyd.service - NTP client/server\n    Loaded: loaded (/usr/lib/systemd/system/chronyd.service; disabled; vendor preset: enabled)\n    Active: inactive (dead)\n      Docs: man:chronyd(8)\n            man:chrony.conf(5)"} lang="terminal" />
+      </li>
+      <li>
+      Check that the PTP interface is successfully synchronized to the primary clock using a remote shell connection to the <code>linuxptp-daemon</code> container and the PTP Management Client (<code>pmc</code>) tool:
+      <ol>
+      <li>
+      Set the <code>$PTP_POD_NAME</code> variable with the name of the <code>linuxptp-daemon</code> pod by running the following command:
+      <CodeBlock code={"$ PTP_POD_NAME=$(oc get pods -n openshift-ptp -l app=linuxptp-daemon -o name)"} lang="terminal" />
+      </li>
+      <li>
+      Run the following command to check the sync status of the PTP device:
+      <CodeBlock code={"$ oc -n openshift-ptp rsh -c linuxptp-daemon-container ${PTP_POD_NAME} pmc -u -f /var/run/ptp4l.0.config -b 0 'GET PORT_DATA_SET'"} lang="terminal" />
+      <CodeBlock code={"sending: GET PORT_DATA_SET\n  3cecef.fffe.7a7020-1 seq 0 RESPONSE MANAGEMENT PORT_DATA_SET\n    portIdentity            3cecef.fffe.7a7020-1\n    portState               SLAVE\n    logMinDelayReqInterval  -4\n    peerMeanPathDelay       0\n    logAnnounceInterval     1\n    announceReceiptTimeout  3\n    logSyncInterval         0\n    delayMechanism          1\n    logMinPdelayReqInterval 0\n    versionNumber           2\n  3cecef.fffe.7a7020-2 seq 0 RESPONSE MANAGEMENT PORT_DATA_SET\n    portIdentity            3cecef.fffe.7a7020-2\n    portState               LISTENING\n    logMinDelayReqInterval  0\n    peerMeanPathDelay       0\n    logAnnounceInterval     1\n    announceReceiptTimeout  3\n    logSyncInterval         0\n    delayMechanism          1\n    logMinPdelayReqInterval 0\n    versionNumber           2"} lang="terminal" />
+      </li>
+      <li>
+      Run the following <code>pmc</code> command to check the PTP clock status:
+      <CodeBlock code={"$ oc -n openshift-ptp rsh -c linuxptp-daemon-container ${PTP_POD_NAME} pmc -u -f /var/run/ptp4l.0.config -b 0 'GET TIME_STATUS_NP'"} lang="terminal" />
+      <CodeBlock code={"sending: GET TIME_STATUS_NP\n  3cecef.fffe.7a7020-0 seq 0 RESPONSE MANAGEMENT TIME_STATUS_NP\n    master_offset              10\n    ingress_time               1657275432697400530\n    cumulativeScaledRateOffset +0.000000000\n    scaledLastGmPhaseChange    0\n    gmTimeBaseIndicator        0\n    lastGmPhaseChange          0x0000'0000000000000000.0000\n    gmPresent                  true\n    gmIdentity                 3c2c30.ffff.670e00"} lang="terminal" />
+      <p>In this output:</p>
+      <ul>
+      <li><code>master_offset</code> should be between -100 and 100 ns.</li>
+      <li><code>gmPresent</code> indicates that the PTP clock is synchronized to a primary clock, and the local clock is not the grandmaster clock.</li>
+      </ul>
+      </li>
+      <li>
+      Check that the expected <code>master offset</code> value corresponding to the value in <code>/var/run/ptp4l.0.config</code> is found in the <code>linuxptp-daemon-container</code> log:
+      <CodeBlock code={"$ oc logs $PTP_POD_NAME -n openshift-ptp -c linuxptp-daemon-container"} lang="terminal" />
+      <CodeBlock code={"phc2sys[56020.341]: [ptp4l.1.config] CLOCK_REALTIME phc offset  -1731092 s2 freq -1546242 delay    497\nptp4l[56020.390]: [ptp4l.1.config] master offset         -2 s2 freq   -5863 path delay       541\nptp4l[56020.390]: [ptp4l.0.config] master offset         -8 s2 freq  -10699 path delay       533"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Check that the SR-IOV configuration is correct by running the following commands:
+      <ol>
+      <li>
+      Check that the <code>disableDrain</code> value in the <code>SriovOperatorConfig</code> resource is set to <code>true</code>:
+      <CodeBlock code={"$ oc get sriovoperatorconfig -n openshift-sriov-network-operator default -o jsonpath=\"{.spec.disableDrain}{'\\n'}\""} lang="terminal" />
+      <CodeBlock code={"true"} lang="terminal" />
+      </li>
+      <li>
+      Check that the <code>SriovNetworkNodeState</code> sync status is <code>Succeeded</code> by running the following command:
+      <CodeBlock code={"$ oc get SriovNetworkNodeStates -n openshift-sriov-network-operator -o jsonpath=\"{.items[*].status.syncStatus}{'\\n'}\""} lang="terminal" />
+      <CodeBlock code={"Succeeded"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the expected number and configuration of virtual functions (<code>Vfs</code>) under each interface configured for SR-IOV is present and correct in the <code>.status.interfaces</code> field. For example:
+      <CodeBlock code={"$ oc get SriovNetworkNodeStates -n openshift-sriov-network-operator -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: v1\nitems:\n- apiVersion: sriovnetwork.openshift.io/v1\n  kind: SriovNetworkNodeState\n...\n  status:\n    interfaces:\n    ...\n    - Vfs:\n      - deviceID: 154c\n        driver: vfio-pci\n        pciAddress: 0000:3b:0a.0\n        vendor: \"8086\"\n        vfID: 0\n      - deviceID: 154c\n        driver: vfio-pci\n        pciAddress: 0000:3b:0a.1\n        vendor: \"8086\"\n        vfID: 1\n      - deviceID: 154c\n        driver: vfio-pci\n        pciAddress: 0000:3b:0a.2\n        vendor: \"8086\"\n        vfID: 2\n      - deviceID: 154c\n        driver: vfio-pci\n        pciAddress: 0000:3b:0a.3\n        vendor: \"8086\"\n        vfID: 3\n      - deviceID: 154c\n        driver: vfio-pci\n        pciAddress: 0000:3b:0a.4\n        vendor: \"8086\"\n        vfID: 4\n      - deviceID: 154c\n        driver: vfio-pci\n        pciAddress: 0000:3b:0a.5\n        vendor: \"8086\"\n        vfID: 5\n      - deviceID: 154c\n        driver: vfio-pci\n        pciAddress: 0000:3b:0a.6\n        vendor: \"8086\"\n        vfID: 6\n      - deviceID: 154c\n        driver: vfio-pci\n        pciAddress: 0000:3b:0a.7\n        vendor: \"8086\"\n        vfID: 7"} lang="yaml" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Check that the cluster performance profile is correct. The <code>cpu</code> and <code>hugepages</code> sections will vary depending on your hardware configuration. Run the following command:
+      <CodeBlock code={"$ oc get PerformanceProfile openshift-node-performance-profile -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: performance.openshift.io/v2\nkind: PerformanceProfile\nmetadata:\n  creationTimestamp: \"2022-07-19T21:51:31Z\"\n  finalizers:\n  - foreground-deletion\n  generation: 1\n  name: openshift-node-performance-profile\n  resourceVersion: \"33558\"\n  uid: 217958c0-9122-4c62-9d4d-fdc27c31118c\nspec:\n  additionalKernelArgs:\n  - idle=poll\n  - rcupdate.rcu_normal_after_boot=0\n  - efi=runtime\n  cpu:\n    isolated: 2-51,54-103\n    reserved: 0-1,52-53\n  hugepages:\n    defaultHugepagesSize: 1G\n    pages:\n    - count: 32\n      size: 1G\n  machineConfigPoolSelector:\n    pools.operator.machineconfiguration.openshift.io/master: \"\"\n  net:\n    userLevelNetworking: true\n  nodeSelector:\n    node-role.kubernetes.io/master: \"\"\n  numa:\n    topologyPolicy: restricted\n  realTimeKernel:\n    enabled: true\nstatus:\n  conditions:\n  - lastHeartbeatTime: \"2022-07-19T21:51:31Z\"\n    lastTransitionTime: \"2022-07-19T21:51:31Z\"\n    status: \"True\"\n    type: Available\n  - lastHeartbeatTime: \"2022-07-19T21:51:31Z\"\n    lastTransitionTime: \"2022-07-19T21:51:31Z\"\n    status: \"True\"\n    type: Upgradeable\n  - lastHeartbeatTime: \"2022-07-19T21:51:31Z\"\n    lastTransitionTime: \"2022-07-19T21:51:31Z\"\n    status: \"False\"\n    type: Progressing\n  - lastHeartbeatTime: \"2022-07-19T21:51:31Z\"\n    lastTransitionTime: \"2022-07-19T21:51:31Z\"\n    status: \"False\"\n    type: Degraded\n  runtimeClass: performance-openshift-node-performance-profile\n  tuned: openshift-cluster-node-tuning-operator/openshift-node-performance-openshift-node-performance-profile"} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>CPU settings are dependent on the number of cores available on the server and should align with workload partitioning settings. <code>hugepages</code> configuration is server and application dependent.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Check that the <code>PerformanceProfile</code> was successfully applied to the cluster by running the following command:
+      <CodeBlock code={"$ oc get performanceprofile openshift-node-performance-profile -o jsonpath=\"{range .status.conditions[*]}{ @.type }{' -- '}{@.status}{'\\n'}{end}\""} lang="terminal" />
+      <CodeBlock code={"Available -- True\nUpgradeable -- True\nProgressing -- False\nDegraded -- False"} lang="terminal" />
+      </li>
+      <li>
+      Check the <code>Tuned</code> performance patch settings by running the following command:
+      <CodeBlock code={"$ oc get tuneds.tuned.openshift.io -n openshift-cluster-node-tuning-operator performance-patch -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: tuned.openshift.io/v1\nkind: Tuned\nmetadata:\n  creationTimestamp: \"2022-07-18T10:33:52Z\"\n  generation: 1\n  name: performance-patch\n  namespace: openshift-cluster-node-tuning-operator\n  resourceVersion: \"34024\"\n  uid: f9799811-f744-4179-bf00-32d4436c08fd\nspec:\n  profile:\n  - data: |\n      [main]\n      summary=Configuration changes profile inherited from performance created tuned\n      include=openshift-node-performance-openshift-node-performance-profile\n      [bootloader]\n      cmdline_crash=nohz_full=2-23,26-47\n      [sysctl]\n      kernel.timer_migration=1\n      [scheduler]\n      group.ice-ptp=0:f:10:*:ice-ptp.*\n      [service]\n      service.stalld=start,enable\n      service.chronyd=stop,disable\n    name: performance-patch\n  recommend:\n  - machineConfigLabels:\n      machineconfiguration.openshift.io/role: master\n    priority: 19\n    profile: performance-patch"} lang="yaml" />
+      <p>The CPU list in <code>cmdline=nohz_full=</code> will vary based on your hardware configuration.</p>
+      </li>
+      <li>
+      Check that cluster networking diagnostics are disabled by running the following command:
+      <CodeBlock code={"$ oc get networks.operator.openshift.io cluster -o jsonpath='{.spec.disableNetworkDiagnostics}'"} lang="terminal" />
+      <CodeBlock code={"true"} lang="terminal" />
+      </li>
+      <li>
+      Check that the <code>Kubelet</code> housekeeping interval is tuned to slower rate. This is set in the <code>containerMountNS</code> machine config. Run the following command:
+      <CodeBlock code={"$ oc describe machineconfig container-mount-namespace-and-kubelet-conf-master | grep OPENSHIFT_MAX_HOUSEKEEPING_INTERVAL_DURATION"} lang="terminal" />
+      <CodeBlock code={"Environment=\"OPENSHIFT_MAX_HOUSEKEEPING_INTERVAL_DURATION=60s\""} lang="terminal" />
+      </li>
+      <li>
+      Check that Grafana and <code>alertManagerMain</code> are disabled and that the Prometheus retention period is set to 24h by running the following command:
+      <CodeBlock code={"$ oc get configmap cluster-monitoring-config -n openshift-monitoring -o jsonpath=\"{ .data.config\\.yaml }\""} lang="terminal" />
+      <CodeBlock code={"grafana:\n  enabled: false\nalertmanagerMain:\n  enabled: false\nprometheusK8s:\n   retention: 24h"} lang="terminal" />
+      <ol>
+      <li>
+      Use the following commands to verify that Grafana and <code>alertManagerMain</code> routes are not found in the cluster:
+      <CodeBlock code={"$ oc get route -n openshift-monitoring alertmanager-main"} lang="terminal" />
+      <CodeBlock code={"$ oc get route -n openshift-monitoring grafana"} lang="terminal" />
+      <p>Both queries should return <code>Error from server (NotFound)</code> messages.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Check that there is a minimum of 4 CPUs allocated as <code>reserved</code> for each of the <code>PerformanceProfile</code>, <code>Tuned</code> performance-patch, workload partitioning, and kernel command-line arguments by running the following command:
+      <CodeBlock code={"$ oc get performanceprofile -o jsonpath=\"{ .items[0].spec.cpu.reserved }\""} lang="terminal" />
+      <CodeBlock code={"0-3"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Depending on your workload requirements, you might require additional reserved CPUs to be allocated.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

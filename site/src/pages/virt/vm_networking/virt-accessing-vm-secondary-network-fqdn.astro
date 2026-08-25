@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-accessing-vm-secondary-network-fqdn","text":"Accessing a virtual machine by using its external FQDN"},{"depth":2,"slug":"additional-resources_virt-accessing-vm-secondary-network-fqdn","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-accessing-vm-secondary-network-fqdn","text":"Accessing a virtual machine by using its external FQDN"},{"depth":2,"slug":"virt-configuring-secondary-dns-server_virt-accessing-vm-secondary-network-fqdn","text":"Configuring a DNS server for secondary networks"},{"depth":2,"slug":"virt-connecting-vm-secondarynw-fqdn_virt-accessing-vm-secondary-network-fqdn","text":"Connecting to a VM on a secondary network by using the cluster FQDN"},{"depth":2,"slug":"additional-resources_virt-accessing-vm-secondary-network-fqdn","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/vm_networking/virt-accessing-vm-secondary-network-fqdn";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/vm_networking"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing a virtual machine by using its external FQDN {#virt-accessing-vm-secondary-network-fqdn}\n\nYou can access a virtual machine (VM) that is attached to a secondary network interface from outside the cluster by using its fully qualified domain name (FQDN). You must configure the DNS server, retrieve the cluster FQDN, then connect to the VM by using the `ssh` command.\n\n## Additional resources {#additional-resources_virt-accessing-vm-secondary-network-fqdn}\n\n- [Configuring ingress cluster traffic by using a load balancer](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer#configuring-ingress-cluster-traffic-load-balancer)\n- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)\n- [Configuring IP addresses for virtual machines](/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-accessing-vm-secondary-network-fqdn.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing a virtual machine by using its external FQDN {#virt-accessing-vm-secondary-network-fqdn}\n\nYou can access a virtual machine (VM) that is attached to a secondary network interface from outside the cluster by using its fully qualified domain name (FQDN). You must configure the DNS server, retrieve the cluster FQDN, then connect to the VM by using the `ssh` command.\n\n> [!IMPORTANT]\n> Accessing a VM from outside the cluster by using its FQDN is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Configuring a DNS server for secondary networks {#virt-configuring-secondary-dns-server_virt-accessing-vm-secondary-network-fqdn}\n\nThe Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) server and monitoring components when you enable the `deployKubeSecondaryDNS` feature gate in the `HyperConverged` custom resource (CR).\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n- You configured a load balancer for the cluster.\n- You logged in to the cluster with `cluster-admin` permissions.\n\n**Procedure**\n\n1. Edit the `HyperConverged` CR in your default editor by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Enable the DNS server and monitoring components according to the following example:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n     namespace: {{ CNVNamespace }}\n   spec:\n       featureGates:\n         deployKubeSecondaryDNS: true\n   # ...\n   ```\n\n   Setting `deployKubeSecondaryDNS` to `true` enables the DNS server.\n3. Save the file and exit the editor.\n4. Create a load balancer service to expose the DNS server outside the cluster by running the `oc expose` command according to the following example:\n\n   ```terminal\n   $ oc expose -n {{ CNVNamespace }} deployment/secondary-dns --name=dns-lb \\\n     --type=LoadBalancer --port=53 --target-port=5353 --protocol='UDP'\n   ```\n5. Retrieve the external IP address by running the following command:\n\n   ```terminal\n   $ oc get service -n {{ CNVNamespace }}\n   ```\n\n   Example output:\n\n   ```text\n   NAME       TYPE             CLUSTER-IP     EXTERNAL-IP      PORT(S)          AGE\n   dns-lb     LoadBalancer     172.30.27.5    10.46.41.94      53:31829/TCP     5s\n   ```\n6. Edit the `HyperConverged` CR again:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n7. Add the external IP address that you previously retrieved to the `kubeSecondaryDNSNameServerIP` field in the enterprise DNS server records. For example:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n     namespace: {{ CNVNamespace }}\n   spec:\n     featureGates:\n       deployKubeSecondaryDNS: true\n     kubeSecondaryDNSNameServerIP: \"10.46.41.94\"\n   # ...\n   ```\n\n   Specify the external IP address exposed by the load balancer service in the `kubeSecondaryDNSNameServerIP` field.\n8. Save the file and exit the editor.\n9. Retrieve the cluster FQDN by running the following command:\n\n   ```terminal\n    $ oc get dnses.config.openshift.io cluster -o jsonpath='{.spec.baseDomain}'\n   ```\n\n   Example output:\n\n   ```text\n   openshift.example.com\n   ```\n10. Point to the DNS server. To do so, add the `kubeSecondaryDNSNameServerIP` value and the cluster FQDN to the enterprise DNS server records. For example:\n\n    ```terminal\n    vm.<FQDN>. IN NS ns.vm.<FQDN>.\n    ```\n\n    ```terminal\n    ns.vm.<FQDN>. IN A <kubeSecondaryDNSNameServerIP>\n    ```\n\n## Connecting to a VM on a secondary network by using the cluster FQDN {#virt-connecting-vm-secondarynw-fqdn_virt-accessing-vm-secondary-network-fqdn}\n\nYou can access a running virtual machine (VM) attached to a secondary network interface by using the fully qualified domain name (FQDN) of the cluster.\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n- You installed the QEMU guest agent on the VM.\n- The IP address of the VM is public.\n- You configured the DNS server for secondary networks.\n- You retrieved the fully qualified domain name (FQDN) of the cluster.\n\n  To obtain the FQDN, use the `oc get` command as follows:\n\n  ```terminal\n  $ oc get dnses.config.openshift.io cluster -o json | jq .spec.baseDomain\n  ```\n\n**Procedure**\n\n1. Retrieve the network interface name from the VM configuration by running the following command:\n\n   ```terminal\n   $ oc get vm -n <namespace> <vm_name> -o yaml\n   ```\n\n   Example output:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: example-vm\n     namespace: example-namespace\n   spec:\n     runStrategy: Always\n     template:\n       spec:\n         domain:\n           devices:\n             interfaces:\n               - bridge: {}\n                 name: example-nic\n   # ...\n         networks:\n         - multus:\n             networkName: bridge-conf\n           name: example-nic\n   ```\n\n   Note the `name` of the network interface.\n2. Connect to the VM by using the `ssh` command:\n\n   ```terminal\n   $ ssh <user_name>@<interface_name>.<vm_name>.<namespace>.vm.<cluster_fqdn>\n   ```\n\n## Additional resources {#additional-resources_virt-accessing-vm-secondary-network-fqdn}\n\n- [Configuring ingress cluster traffic by using a load balancer](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer#configuring-ingress-cluster-traffic-load-balancer)\n- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)\n- [Configuring IP addresses for virtual machines](/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms#virt-configuring-viewing-ips-for-vms)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-accessing-vm-secondary-network-fqdn.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,94 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-accessing-vm-secondary-network-fqdn" class="group scroll-mt-20">Accessing a virtual machine by using its external FQDN<a href="#virt-accessing-vm-secondary-network-fqdn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/snippets/technology-preview.md">You can access a virtual machine (VM) that is attached to a secondary network interface from outside the cluster by using its fully qualified domain name (FQDN). You must configure the DNS server, retrieve the cluster FQDN, then connect to the VM by using the <code>ssh</code> command.</p>
-      <p class="/modules/virt-configuring-secondary-dns-server.md"></p>
-      <p class="/modules/virt-connecting-vm-secondarynw-using-fqdn.md"></p>
+      <p>You can access a virtual machine (VM) that is attached to a secondary network interface from outside the cluster by using its fully qualified domain name (FQDN). You must configure the DNS server, retrieve the cluster FQDN, then connect to the VM by using the <code>ssh</code> command.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Accessing a VM from outside the cluster by using its FQDN is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="virt-configuring-secondary-dns-server_virt-accessing-vm-secondary-network-fqdn" class="group scroll-mt-20">Configuring a DNS server for secondary networks<a href="#virt-configuring-secondary-dns-server_virt-accessing-vm-secondary-network-fqdn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Cluster Network Addons Operator (CNAO) deploys a Domain Name Server (DNS) server and monitoring components when you enable the <code>deployKubeSecondaryDNS</code> feature gate in the <code>HyperConverged</code> custom resource (CR).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You configured a load balancer for the cluster.</li>
+      <li>You logged in to the cluster with <code>cluster-admin</code> permissions.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>HyperConverged</code> CR in your default editor by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Enable the DNS server and monitoring components according to the following example:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n    featureGates:\n      deployKubeSecondaryDNS: true\n# ..."} lang="yaml" />
+      <p>Setting <code>deployKubeSecondaryDNS</code> to <code>true</code> enables the DNS server.</p>
+      </li>
+      <li>Save the file and exit the editor.</li>
+      <li>
+      Create a load balancer service to expose the DNS server outside the cluster by running the <code>oc expose</code> command according to the following example:
+      <CodeBlock code={"$ oc expose -n {{ CNVNamespace }} deployment/secondary-dns --name=dns-lb \\\n  --type=LoadBalancer --port=53 --target-port=5353 --protocol='UDP'"} lang="terminal" />
+      </li>
+      <li>
+      Retrieve the external IP address by running the following command:
+      <CodeBlock code={"$ oc get service -n {{ CNVNamespace }}"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"NAME       TYPE             CLUSTER-IP     EXTERNAL-IP      PORT(S)          AGE\ndns-lb     LoadBalancer     172.30.27.5    10.46.41.94      53:31829/TCP     5s"} lang="text" />
+      </li>
+      <li>
+      Edit the <code>HyperConverged</code> CR again:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Add the external IP address that you previously retrieved to the <code>kubeSecondaryDNSNameServerIP</code> field in the enterprise DNS server records. For example:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  featureGates:\n    deployKubeSecondaryDNS: true\n  kubeSecondaryDNSNameServerIP: \"10.46.41.94\"\n# ..."} lang="yaml" />
+      <p>Specify the external IP address exposed by the load balancer service in the <code>kubeSecondaryDNSNameServerIP</code> field.</p>
+      </li>
+      <li>Save the file and exit the editor.</li>
+      <li>
+      Retrieve the cluster FQDN by running the following command:
+      <CodeBlock code={" $ oc get dnses.config.openshift.io cluster -o jsonpath='{.spec.baseDomain}'"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"openshift.example.com"} lang="text" />
+      </li>
+      <li>
+      Point to the DNS server. To do so, add the <code>kubeSecondaryDNSNameServerIP</code> value and the cluster FQDN to the enterprise DNS server records. For example:
+      <CodeBlock code={"vm.<FQDN>. IN NS ns.vm.<FQDN>."} lang="terminal" />
+      <CodeBlock code={"ns.vm.<FQDN>. IN A <kubeSecondaryDNSNameServerIP>"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-connecting-vm-secondarynw-fqdn_virt-accessing-vm-secondary-network-fqdn" class="group scroll-mt-20">Connecting to a VM on a secondary network by using the cluster FQDN<a href="#virt-connecting-vm-secondarynw-fqdn_virt-accessing-vm-secondary-network-fqdn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can access a running virtual machine (VM) attached to a secondary network interface by using the fully qualified domain name (FQDN) of the cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You installed the QEMU guest agent on the VM.</li>
+      <li>The IP address of the VM is public.</li>
+      <li>You configured the DNS server for secondary networks.</li>
+      <li>
+      You retrieved the fully qualified domain name (FQDN) of the cluster.
+      <p>To obtain the FQDN, use the <code>oc get</code> command as follows:</p>
+      <CodeBlock code={"$ oc get dnses.config.openshift.io cluster -o json | jq .spec.baseDomain"} lang="terminal" />
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Retrieve the network interface name from the VM configuration by running the following command:
+      <CodeBlock code={"$ oc get vm -n <namespace> <vm_name> -o yaml"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: example-vm\n  namespace: example-namespace\nspec:\n  runStrategy: Always\n  template:\n    spec:\n      domain:\n        devices:\n          interfaces:\n            - bridge: {}\n              name: example-nic\n# ...\n      networks:\n      - multus:\n          networkName: bridge-conf\n        name: example-nic"} lang="yaml" />
+      <p>Note the <code>name</code> of the network interface.</p>
+      </li>
+      <li>
+      Connect to the VM by using the <code>ssh</code> command:
+      <CodeBlock code={"$ ssh <user_name>@<interface_name>.<vm_name>.<namespace>.vm.<cluster_fqdn>"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="additional-resources_virt-accessing-vm-secondary-network-fqdn" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-accessing-vm-secondary-network-fqdn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer#configuring-ingress-cluster-traffic-load-balancer">Configuring ingress cluster traffic by using a load balancer</a></li>

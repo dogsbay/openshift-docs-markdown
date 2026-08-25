@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"security-monitoring","text":"Monitoring cluster events and logs"}];
+const headings = [{"depth":1,"slug":"security-monitoring","text":"Monitoring cluster events and logs"},{"depth":2,"slug":"security-monitoring-events_security-monitoring","text":"Watching cluster events"},{"depth":2,"slug":"security-monitoring-cluster-logging_security-monitoring","text":"Logging"},{"depth":2,"slug":"security-monitoring-audit-logs_security-monitoring","text":"Audit logs"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/container_security/security-monitoring";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["security","security/container_security"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring cluster events and logs {#security-monitoring}\n\nMonitoring and auditing an OpenShift Container Platform cluster is an important part of safeguarding the cluster and its users against inappropriate usage. There are two main sources of cluster-level information that are useful for this purpose: events and logging.\n\n**Additional resources**\n\n- [List of system events](/openshift-docs-markdown/nodes/clusters/nodes-containers-events#nodes-containers-events)\n- [Viewing audit logs](/openshift-docs-markdown/security/audit-log-view#audit-log-view)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/container_security/security-monitoring.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring cluster events and logs {#security-monitoring}\n\nMonitoring and auditing an OpenShift Container Platform cluster is an important part of safeguarding the cluster and its users against inappropriate usage. There are two main sources of cluster-level information that are useful for this purpose: events and logging.\n\n## Watching cluster events {#security-monitoring-events_security-monitoring}\n\nCluster administrators are encouraged to familiarize themselves with the `Event` resource type and review the list of system events to determine which events are of interest.\n\nEvents are associated with a namespace, either the namespace of the resource they are related to or, for cluster events, the `default` namespace. The default namespace holds relevant events for monitoring or auditing a cluster, such as node events and resource events related to infrastructure components.\n\nThe master API and `oc` command do not provide parameters to scope a listing of events to only those related to nodes. A simple approach would be to use `grep`:\n\n```terminal\n$ oc get event -n default | grep Node\n```\n\n```terminal {title=\"Example output\"}\n1h         20h         3         origin-node-1.example.local   Node      Normal    NodeHasDiskPressure   ...\n```\n\nA more flexible approach is to output the events in a form that other tools can process. For example, the following example uses the `jq` tool against JSON output to extract only `NodeHasDiskPressure` events:\n\n```terminal\n$ oc get events -n default -o json \\\n  | jq '.items[] | select(.involvedObject.kind == \"Node\" and .reason == \"NodeHasDiskPressure\")'\n```\n\n```terminal {title=\"Example output\"}\n{\n  \"apiVersion\": \"v1\",\n  \"count\": 3,\n  \"involvedObject\": {\n    \"kind\": \"Node\",\n    \"name\": \"origin-node-1.example.local\",\n    \"uid\": \"origin-node-1.example.local\"\n  },\n  \"kind\": \"Event\",\n  \"reason\": \"NodeHasDiskPressure\",\n  ...\n}\n```\n\nEvents related to resource creation, modification, or deletion can also be good candidates for detecting misuse of the cluster. The following query, for example, can be used to look for excessive pulling of images:\n\n```terminal\n$ oc get events --all-namespaces -o json \\\n  | jq '[.items[] | select(.involvedObject.kind == \"Pod\" and .reason == \"Pulling\")] | length'\n```\n\n```terminal {title=\"Example output\"}\n4\n```\n\n> [!NOTE]\n> When a namespace is deleted, its events are deleted as well. Events can also expire and are deleted to prevent filling up etcd storage. Events are not stored as a permanent record and frequent polling is necessary to capture statistics over time.\n\n## Logging {#security-monitoring-cluster-logging_security-monitoring}\n\nUsing the `oc log` command, you can view container logs, build configs and deployments in real time. Different users can have access different access to logs:\n\n- Users who have access to a project are able to see the logs for that project by default.\n- Users with admin roles can access all container logs.\n\nTo save your logs for further audit and analysis, you can enable the `cluster-logging` add-on feature to collect, manage, and view system, container, and audit logs. You can deploy, manage, and upgrade OpenShift Logging through the OpenShift Elasticsearch Operator and Red Hat OpenShift Logging Operator.\n\n## Audit logs {#security-monitoring-audit-logs_security-monitoring}\n\nWith *audit logs*, you can follow a sequence of activities associated with how a user, administrator, or other OpenShift Container Platform component is behaving. API audit logging is done on each server.\n\n**Additional resources**\n\n- [List of system events](/openshift-docs-markdown/nodes/clusters/nodes-containers-events#nodes-containers-events)\n- [Viewing audit logs](/openshift-docs-markdown/security/audit-log-view#audit-log-view)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/container_security/security-monitoring.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,34 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="security-monitoring" class="group scroll-mt-20">Monitoring cluster events and logs<a href="#security-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Monitoring and auditing an OpenShift Container Platform cluster is an important part of safeguarding the cluster and its users against inappropriate usage. There are two main sources of cluster-level information that are useful for this purpose: events and logging.</p>
-      <p class="/modules/security-monitoring-events.md"></p>
-      <p class="/modules/security-monitoring-cluster-logging.md"></p>
-      <p class="/modules/security-monitoring-audit-logging.md"></p>
+      <h2 id="security-monitoring-events_security-monitoring" class="group scroll-mt-20">Watching cluster events<a href="#security-monitoring-events_security-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Cluster administrators are encouraged to familiarize themselves with the <code>Event</code> resource type and review the list of system events to determine which events are of interest.</p>
+      <p class="_abstract">Events are associated with a namespace, either the namespace of the resource they are related to or, for cluster events, the <code>default</code> namespace. The default namespace holds relevant events for monitoring or auditing a cluster, such as node events and resource events related to infrastructure components.</p>
+      <p>The master API and <code>oc</code> command do not provide parameters to scope a listing of events to only those related to nodes. A simple approach would be to use <code>grep</code>:</p>
+      <CodeBlock code={"$ oc get event -n default | grep Node"} lang="terminal" />
+      <CodeBlock code={"1h         20h         3         origin-node-1.example.local   Node      Normal    NodeHasDiskPressure   ..."} lang="terminal" title="Example output" />
+      <p>A more flexible approach is to output the events in a form that other tools can process. For example, the following example uses the <code>jq</code> tool against JSON output to extract only <code>NodeHasDiskPressure</code> events:</p>
+      <CodeBlock code={"$ oc get events -n default -o json \\\n  | jq '.items[] | select(.involvedObject.kind == \"Node\" and .reason == \"NodeHasDiskPressure\")'"} lang="terminal" />
+      <CodeBlock code={"{\n  \"apiVersion\": \"v1\",\n  \"count\": 3,\n  \"involvedObject\": {\n    \"kind\": \"Node\",\n    \"name\": \"origin-node-1.example.local\",\n    \"uid\": \"origin-node-1.example.local\"\n  },\n  \"kind\": \"Event\",\n  \"reason\": \"NodeHasDiskPressure\",\n  ...\n}"} lang="terminal" title="Example output" />
+      <p>Events related to resource creation, modification, or deletion can also be good candidates for detecting misuse of the cluster. The following query, for example, can be used to look for excessive pulling of images:</p>
+      <CodeBlock code={"$ oc get events --all-namespaces -o json \\\n  | jq '[.items[] | select(.involvedObject.kind == \"Pod\" and .reason == \"Pulling\")] | length'"} lang="terminal" />
+      <CodeBlock code={"4"} lang="terminal" title="Example output" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When a namespace is deleted, its events are deleted as well. Events can also expire and are deleted to prevent filling up etcd storage. Events are not stored as a permanent record and frequent polling is necessary to capture statistics over time.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="security-monitoring-cluster-logging_security-monitoring" class="group scroll-mt-20">Logging<a href="#security-monitoring-cluster-logging_security-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Using the <code>oc log</code> command, you can view container logs, build configs and deployments in real time. Different users can have access different access to logs:</p>
+      <ul>
+      <li>Users who have access to a project are able to see the logs for that project by default.</li>
+      <li>Users with admin roles can access all container logs.</li>
+      </ul>
+      <p>To save your logs for further audit and analysis, you can enable the <code>cluster-logging</code> add-on feature to collect, manage, and view system, container, and audit logs. You can deploy, manage, and upgrade OpenShift Logging through the OpenShift Elasticsearch Operator and Red Hat OpenShift Logging Operator.</p>
+      <h2 id="security-monitoring-audit-logs_security-monitoring" class="group scroll-mt-20">Audit logs<a href="#security-monitoring-audit-logs_security-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>With <em>audit logs</em>, you can follow a sequence of activities associated with how a user, administrator, or other OpenShift Container Platform component is behaving. API audit logging is done on each server.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/nodes/clusters/nodes-containers-events#nodes-containers-events">List of system events</a></li>

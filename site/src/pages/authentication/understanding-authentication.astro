@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"understanding-authentication","text":"Understanding authentication"}];
+const headings = [{"depth":1,"slug":"understanding-authentication","text":"Understanding authentication"},{"depth":2,"slug":"rbac-users_understanding-authentication","text":"Users"},{"depth":2,"slug":"rbac-groups_understanding-authentication","text":"Groups"},{"depth":2,"slug":"rbac-api-authentication_understanding-authentication","text":"API authentication"},{"depth":3,"slug":"oauth-server-overview_understanding-authentication","text":"OpenShift Container Platform OAuth server"},{"depth":3,"slug":"oauth-token-requests_understanding-authentication","text":"OAuth token requests"},{"depth":4,"slug":"authentication-api-impersonation_understanding-authentication","text":"API impersonation"},{"depth":4,"slug":"authentication-prometheus-system-metrics_understanding-authentication","text":"Authentication metrics for Prometheus"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/authentication/understanding-authentication";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["authentication"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding authentication {#understanding-authentication}\n\nTo interact with OpenShift Container Platform, log in so the authentication layer can verify your identity. The authorization layer then uses your identity to determine which actions and resources you can access.\n\nAs an administrator, you can configure authentication for OpenShift Container Platform.\n\n**Additional resources**\n\n- [User impersonation (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/understanding-authentication.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding authentication {#understanding-authentication}\n\nTo interact with OpenShift Container Platform, log in so the authentication layer can verify your identity. The authorization layer then uses your identity to determine which actions and resources you can access.\n\nAs an administrator, you can configure authentication for OpenShift Container Platform.\n\n## Users {#rbac-users_understanding-authentication}\n\nA user in OpenShift Container Platform is an entity that makes API requests and can be granted permissions through role assignments. Users include regular users, system users for infrastructure components, and service accounts associated with projects.\n\nSeveral types of users can exist:\n\n| User type | Description |\n| --- | --- |\n| `Regular users` | This is the way most interactive OpenShift Container Platform users are represented. Regular users are created automatically in the system upon first login or can be created via the API. Regular users are represented with the `User` object. Examples: `joe` `alice` |\n| `System users` | Many of these are created automatically when the infrastructure  is defined, mainly for the purpose of enabling the infrastructure to  interact with the API securely. They include a cluster administrator  (with access to everything), a per-node user, users for use by routers  and registries, and various others. Finally, there is an `anonymous`  system user that is used by default for unauthenticated requests. Examples: `system:admin` `system:openshift-registry` `system:node:node1.example.com` |\n| `Service accounts` | These are special system users associated with projects; some are created automatically when the project is first created, while project administrators can create more for the purpose of defining access to the contents of each project. Service accounts are represented with the `ServiceAccount` object. Examples: `system:serviceaccount:default:deployer` `system:serviceaccount:foo:builder` |\n\nEach user must authenticate in some way to access OpenShift Container Platform. API requests with no authentication or invalid authentication are authenticated as requests by the `anonymous` system user. After authentication, policy determines what the user is authorized to do.\n\n## Groups {#rbac-groups_understanding-authentication}\n\nGroups represent sets of users and simplify authorization management by allowing administrators to grant permissions to multiple users simultaneously rather than individually. OpenShift Container Platform includes both explicitly defined groups and automatically provisioned virtual groups.\n\nIn addition to explicitly defined groups, there are also system groups, or *virtual groups*, that are automatically provisioned by the cluster.\n\nThe following default virtual groups are most important:\n\n| Virtual group | Description |\n| --- | --- |\n| `system:authenticated` | Automatically associated with all authenticated users. |\n| `system:authenticated:oauth` | Automatically associated with all users authenticated with an OAuth access token. |\n| `system:unauthenticated` | Automatically associated with all unauthenticated users. |\n\n## API authentication {#rbac-api-authentication_understanding-authentication}\n\nRequests to the OpenShift Container Platform API are authenticated using OAuth access tokens or X.509 client certificates, with invalid credentials rejected and anonymous requests assigned virtual user and group identities for authorization processing.\n\nOAuth access tokens\n:   - Obtained from the OpenShift Container Platform OAuth server using the `_<namespace_route>_/oauth/authorize` and `_<namespace_route>_/oauth/token` endpoints.\n    - Sent as an `Authorization: Bearer...` header.\n    - Sent as a websocket subprotocol header in the form `base64url.bearer.authorization.k8s.io.<base64url-encoded-token>` for websocket requests.\n\nX.509 client certificates\n:   - Requires an HTTPS connection to the API server.\n    - Verified by the API server against a trusted certificate authority bundle.\n    - The API server creates and distributes certificates to controllers to authenticate themselves.\n\nAny request with an invalid access token or an invalid certificate is rejected by the authentication layer with a `401` error.\n\nIf no access token or certificate is presented, the authentication layer assigns the `system:anonymous` virtual user and the `system:unauthenticated` virtual group to the request. This allows the authorization layer to determine which requests, if any, an anonymous user is allowed to make.\n\n### OpenShift Container Platform OAuth server {#oauth-server-overview_understanding-authentication}\n\nThe OpenShift Container Platform Control Plane includes a built-in OAuth server. Users obtain OAuth access tokens to authenticate themselves to the API.\n\nWhen a person requests a new OAuth token, the OAuth server uses the configured identity provider to determine the identity of the person making the request.\n\nIt then determines what user that identity maps to, creates an access token for that user, and returns the token for use.\n\n### OAuth token requests {#oauth-token-requests_understanding-authentication}\n\nOpenShift Container Platform automatically creates OAuth clients to handle token requests from different user agents, including browser-based and CLI tools. These clients interact with OAuth endpoints to authenticate users through interactive login flows or WWW-Authenticate challenges.\n\nThe following OAuth clients are automatically created when starting the OpenShift Container Platform API:\n\n| OAuth client | Usage |\n| --- | --- |\n| `openshift-browser-client` | Requests tokens at `<namespace_route>/oauth/token/request` with a user-agent that can handle interactive logins. [^1]^ |\n| `openshift-challenging-client` | Requests tokens with a user-agent that can handle `WWW-Authenticate` challenges. |\n\n1. `<namespace_route>` refers to the namespace route. This is found by running the following command:\n\n   ```terminal\n   $ oc get route oauth-openshift -n openshift-authentication -o json | jq .spec.host\n   ```\n\nAll requests for OAuth tokens involve a request to `<namespace_route>/oauth/authorize`. Most authentication integrations place an authenticating proxy in front of this endpoint, or configure OpenShift Container Platform to validate credentials against a backing identity provider. Requests to `<namespace_route>/oauth/authorize` can come from user-agents that cannot display interactive login pages, such as the CLI. Therefore, OpenShift Container Platform supports authenticating using a `WWW-Authenticate` challenge in addition to interactive login flows.\n\nIf an authenticating proxy is placed in front of the `<namespace_route>/oauth/authorize` endpoint, it sends unauthenticated, non-browser user-agents `WWW-Authenticate` challenges rather than displaying an interactive login page or redirecting to an interactive login flow.\n\n> [!NOTE]\n> To prevent cross-site request forgery (CSRF) attacks against browser clients,  only send Basic authentication challenges with if a `X-CSRF-Token` header is on the request. Clients that expect to receive Basic `WWW-Authenticate` challenges must set this header to a non-empty value.\n>\n> If the authenticating proxy cannot support `WWW-Authenticate` challenges, or if OpenShift Container Platform is configured to use an identity provider that does not support WWW-Authenticate challenges, you must use a browser to manually obtain a token from `<namespace_route>/oauth/token/request`.\n\n#### API impersonation {#authentication-api-impersonation_understanding-authentication}\n\nYou can configure API requests in OpenShift Container Platform to act as another user. Impersonation allows you to perform actions on behalf of another account without switching credentials.\n\n**Additional resources**\n\n- [User impersonation (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)\n\n#### Authentication metrics for Prometheus {#authentication-prometheus-system-metrics_understanding-authentication}\n\nYou can use Prometheus metrics to monitor login activity and troubleshoot authentication failures.\n\nOpenShift Container Platform captures the following Prometheus metrics that track authentication attempts and outcomes for both the CLI and web console:\n\n- `openshift_auth_basic_password_count` counts the number of `oc login` user name and password attempts.\n- `openshift_auth_basic_password_count_result` counts the number of `oc login` user name and password attempts by result, `success` or `error`.\n- `openshift_auth_form_password_count` counts the number of web console login attempts.\n- `openshift_auth_form_password_count_result` counts the number of web console login attempts by result, `success` or `error`.\n- `openshift_auth_password_total` counts the total number of `oc login` and web console login attempts.\n\n[^1]: 1\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/understanding-authentication.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,17 +101,143 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="understanding-authentication" class="group scroll-mt-20">Understanding authentication<a href="#understanding-authentication" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To interact with OpenShift Container Platform, log in so the authentication layer can verify your identity. The authorization layer then uses your identity to determine which actions and resources you can access.</p>
       <p>As an administrator, you can configure authentication for OpenShift Container Platform.</p>
-      <p class="/modules/rbac-users.md"></p>
-      <p class="/modules/rbac-groups.md"></p>
-      <p class="/modules/rbac-api-authentication.md"></p>
-      <p class="/modules/oauth-server-overview.md"></p>
-      <p class="/modules/oauth-token-requests.md"></p>
-      <p class="/modules/authentication-api-impersonation.md"></p>
+      <h2 id="rbac-users_understanding-authentication" class="group scroll-mt-20">Users<a href="#rbac-users_understanding-authentication" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A user in OpenShift Container Platform is an entity that makes API requests and can be granted permissions through role assignments. Users include regular users, system users for infrastructure components, and service accounts associated with projects.</p>
+      <p>Several types of users can exist:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>User type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>Regular users</code></TableCell>
+      <TableCell>This is the way most interactive OpenShift Container Platform users are represented. Regular users are created automatically in the system upon first login or can be created via the API. Regular users are represented with the <code>User</code> object. Examples: <code>joe</code> <code>alice</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>System users</code></TableCell>
+      <TableCell>Many of these are created automatically when the infrastructure  is defined, mainly for the purpose of enabling the infrastructure to  interact with the API securely. They include a cluster administrator  (with access to everything), a per-node user, users for use by routers  and registries, and various others. Finally, there is an <code>anonymous</code>  system user that is used by default for unauthenticated requests. Examples: <code>system:admin</code> <code>system:openshift-registry</code> <code>system:node:node1.example.com</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Service accounts</code></TableCell>
+      <TableCell>These are special system users associated with projects; some are created automatically when the project is first created, while project administrators can create more for the purpose of defining access to the contents of each project. Service accounts are represented with the <code>ServiceAccount</code> object. Examples: <code>system:serviceaccount:default:deployer</code> <code>system:serviceaccount:foo:builder</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>Each user must authenticate in some way to access OpenShift Container Platform. API requests with no authentication or invalid authentication are authenticated as requests by the <code>anonymous</code> system user. After authentication, policy determines what the user is authorized to do.</p>
+      <h2 id="rbac-groups_understanding-authentication" class="group scroll-mt-20">Groups<a href="#rbac-groups_understanding-authentication" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Groups represent sets of users and simplify authorization management by allowing administrators to grant permissions to multiple users simultaneously rather than individually. OpenShift Container Platform includes both explicitly defined groups and automatically provisioned virtual groups.</p>
+      <p>In addition to explicitly defined groups, there are also system groups, or <em>virtual groups</em>, that are automatically provisioned by the cluster.</p>
+      <p>The following default virtual groups are most important:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Virtual group</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>system:authenticated</code></TableCell>
+      <TableCell>Automatically associated with all authenticated users.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>system:authenticated:oauth</code></TableCell>
+      <TableCell>Automatically associated with all users authenticated with an OAuth access token.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>system:unauthenticated</code></TableCell>
+      <TableCell>Automatically associated with all unauthenticated users.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="rbac-api-authentication_understanding-authentication" class="group scroll-mt-20">API authentication<a href="#rbac-api-authentication_understanding-authentication" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Requests to the OpenShift Container Platform API are authenticated using OAuth access tokens or X.509 client certificates, with invalid credentials rejected and anonymous requests assigned virtual user and group identities for authorization processing.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">OAuth access tokens</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>Obtained from the OpenShift Container Platform OAuth server using the <code>_&lt;namespace_route&gt;_/oauth/authorize</code> and <code>_&lt;namespace_route&gt;_/oauth/token</code> endpoints.</li>
+      <li>Sent as an <code>Authorization: Bearer...</code> header.</li>
+      <li>Sent as a websocket subprotocol header in the form <code>base64url.bearer.authorization.k8s.io.&lt;base64url-encoded-token&gt;</code> for websocket requests.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">X.509 client certificates</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>Requires an HTTPS connection to the API server.</li>
+      <li>Verified by the API server against a trusted certificate authority bundle.</li>
+      <li>The API server creates and distributes certificates to controllers to authenticate themselves.</li>
+      </ul>
+      </dd>
+      </dl>
+      <p>Any request with an invalid access token or an invalid certificate is rejected by the authentication layer with a <code>401</code> error.</p>
+      <p>If no access token or certificate is presented, the authentication layer assigns the <code>system:anonymous</code> virtual user and the <code>system:unauthenticated</code> virtual group to the request. This allows the authorization layer to determine which requests, if any, an anonymous user is allowed to make.</p>
+      <h3 id="oauth-server-overview_understanding-authentication" class="group scroll-mt-20">OpenShift Container Platform OAuth server<a href="#oauth-server-overview_understanding-authentication" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The OpenShift Container Platform Control Plane includes a built-in OAuth server. Users obtain OAuth access tokens to authenticate themselves to the API.</p>
+      <p>When a person requests a new OAuth token, the OAuth server uses the configured identity provider to determine the identity of the person making the request.</p>
+      <p>It then determines what user that identity maps to, creates an access token for that user, and returns the token for use.</p>
+      <h3 id="oauth-token-requests_understanding-authentication" class="group scroll-mt-20">OAuth token requests<a href="#oauth-token-requests_understanding-authentication" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">OpenShift Container Platform automatically creates OAuth clients to handle token requests from different user agents, including browser-based and CLI tools. These clients interact with OAuth endpoints to authenticate users through interactive login flows or WWW-Authenticate challenges.</p>
+      <p>The following OAuth clients are automatically created when starting the OpenShift Container Platform API:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>OAuth client</TableHead>
+      <TableHead>Usage</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>openshift-browser-client</code></TableCell>
+      <TableCell>Requests tokens at <code>&lt;namespace_route&gt;/oauth/token/request</code> with a user-agent that can handle interactive logins. <sup><a href="#fn-1" id="fnref-1" class="text-primary hover:underline">[1]</a></sup>^</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>openshift-challenging-client</code></TableCell>
+      <TableCell>Requests tokens with a user-agent that can handle <code>WWW-Authenticate</code> challenges.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <ol>
+      <li>
+      <code>&lt;namespace_route&gt;</code> refers to the namespace route. This is found by running the following command:
+      <CodeBlock code={"$ oc get route oauth-openshift -n openshift-authentication -o json | jq .spec.host"} lang="terminal" />
+      </li>
+      </ol>
+      <p>All requests for OAuth tokens involve a request to <code>&lt;namespace_route&gt;/oauth/authorize</code>. Most authentication integrations place an authenticating proxy in front of this endpoint, or configure OpenShift Container Platform to validate credentials against a backing identity provider. Requests to <code>&lt;namespace_route&gt;/oauth/authorize</code> can come from user-agents that cannot display interactive login pages, such as the CLI. Therefore, OpenShift Container Platform supports authenticating using a <code>WWW-Authenticate</code> challenge in addition to interactive login flows.</p>
+      <p>If an authenticating proxy is placed in front of the <code>&lt;namespace_route&gt;/oauth/authorize</code> endpoint, it sends unauthenticated, non-browser user-agents <code>WWW-Authenticate</code> challenges rather than displaying an interactive login page or redirecting to an interactive login flow.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To prevent cross-site request forgery (CSRF) attacks against browser clients,  only send Basic authentication challenges with if a <code>X-CSRF-Token</code> header is on the request. Clients that expect to receive Basic <code>WWW-Authenticate</code> challenges must set this header to a non-empty value.</p>
+          <p>If the authenticating proxy cannot support <code>WWW-Authenticate</code> challenges, or if OpenShift Container Platform is configured to use an identity provider that does not support WWW-Authenticate challenges, you must use a browser to manually obtain a token from <code>&lt;namespace_route&gt;/oauth/token/request</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <h4 id="authentication-api-impersonation_understanding-authentication" class="group scroll-mt-20">API impersonation<a href="#authentication-api-impersonation_understanding-authentication" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>You can configure API requests in OpenShift Container Platform to act as another user. Impersonation allows you to perform actions on behalf of another account without switching credentials.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation">User impersonation (Kubernetes documentation)</a></li></ul>
+      <h4 id="authentication-prometheus-system-metrics_understanding-authentication" class="group scroll-mt-20">Authentication metrics for Prometheus<a href="#authentication-prometheus-system-metrics_understanding-authentication" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p class="_abstract">You can use Prometheus metrics to monitor login activity and troubleshoot authentication failures.</p>
+      <p>OpenShift Container Platform captures the following Prometheus metrics that track authentication attempts and outcomes for both the CLI and web console:</p>
+      <ul>
+      <li><code>openshift_auth_basic_password_count</code> counts the number of <code>oc login</code> user name and password attempts.</li>
+      <li><code>openshift_auth_basic_password_count_result</code> counts the number of <code>oc login</code> user name and password attempts by result, <code>success</code> or <code>error</code>.</li>
+      <li><code>openshift_auth_form_password_count</code> counts the number of web console login attempts.</li>
+      <li><code>openshift_auth_form_password_count_result</code> counts the number of web console login attempts by result, <code>success</code> or <code>error</code>.</li>
+      <li><code>openshift_auth_password_total</code> counts the total number of <code>oc login</code> and web console login attempts.</li>
+      </ul>
+      <hr class="my-8 border-t border-border" data-footnotes-separator />
+      <section class="footnotes" data-footnotes aria-labelledby="footnote-label">
+        <h2 id="footnote-label" class="sr-only">Footnotes</h2>
+        <ol class="list-decimal pl-6 space-y-1 text-sm text-muted-foreground" data-footnote-list>
+      <li id="fn-1" class="text-sm text-muted-foreground">1 <a href="#fnref-1" class="text-primary hover:underline">↩</a></li>
+        </ol>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

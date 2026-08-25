@@ -18,8 +18,15 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"multiarch-tuning-operator","text":"Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator"}];
+const headings = [{"depth":1,"slug":"multiarch-tuning-operator","text":"Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator"},{"depth":2,"slug":"multi-architecture-installing-using-cli_multiarch-tuning-operator","text":"Installing the Multiarch Tuning Operator by using the CLI"},{"depth":2,"slug":"multi-architecture-installing-using-web-console_multiarch-tuning-operator","text":"Installing the Multiarch Tuning Operator by using the web console"},{"depth":2,"slug":"multi-architecture-gather-info-about-workloads_multiarch-tuning-operator","text":"Multiarch Tuning Operator pod labels and architecture support overview"},{"depth":2,"slug":"multi-architecture-creating-podplacement-config_multiarch-tuning-operator","text":"The ClusterPodPlacementConfig object"},{"depth":3,"slug":"multi-architecture-creating-podplacement-config-using-cli_multiarch-tuning-operator","text":"Creating the ClusterPodPlacementConfig object by using the CLI"},{"depth":3,"slug":"multi-architecture-creating-podplacement-config-using-web-console_multiarch-tuning-operator","text":"Creating the ClusterPodPlacementConfig object by using the web console"},{"depth":2,"slug":"multi-arch-creating-namespace-podplacement-config_multiarch-tuning-operator","text":"Creating the namespace-scoped PodPlacementConfig object"},{"depth":2,"slug":"multi-architecture-deleting-podplacement-config-using-cli_multiarch-tuning-operator","text":"Deleting the ClusterPodPlacementConfig object by using the CLI"},{"depth":2,"slug":"multi-architecture-deleting-podplacement-config-using-web-console_multiarch-tuning-operator","text":"Deleting the ClusterPodPlacementConfig object by using the web console"},{"depth":2,"slug":"multi-architecture-uninstalling-using-cli_multiarch-tuning-operator","text":"Uninstalling the Multiarch Tuning Operator by using the CLI"},{"depth":2,"slug":"multi-architecture-uninstalling-using-web-console_multiarch-tuning-operator","text":"Uninstalling the Multiarch Tuning Operator by using the web console"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +49,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator {#multiarch-tuning-operator}\n\nThe Multiarch Tuning Operator optimizes workload management within multi-architecture clusters and in single-architecture clusters transitioning to multi-architecture environments.\n\nArchitecture-aware workload scheduling allows the scheduler to place pods onto nodes that match the architecture of the pod images.\n\nBy default, the scheduler does not consider the architecture of a pod’s container images when determining the placement of new pods onto nodes.\n\nTo enable architecture-aware workload scheduling, you must create the `ClusterPodPlacementConfig` object. When you create the `ClusterPodPlacementConfig` object, the Multiarch Tuning Operator deploys the necessary operands to support architecture-aware workload scheduling. You can also use the `nodeAffinityScoring` plugin in the `ClusterPodPlacementConfig` object to set cluster-wide scores for node architectures. If you enable the `nodeAffinityScoring` plugin, the scheduler first filters nodes with compatible architectures and then places the pod on the node with the highest score.\n\nWhen a pod is created, the operands perform the following actions:\n\n1. Add the `multiarch.openshift.io/scheduling-gate` scheduling gate that prevents the scheduling of the pod.\n2. Compute a scheduling predicate that includes the supported architecture values for the `kubernetes.io/arch` label.\n3. Integrate the scheduling predicate as a `nodeAffinity` requirement in the pod specification.\n4. Remove the scheduling gate from the pod.\n\n> [!IMPORTANT]\n> Note the following operand behaviors:\n>\n> - If the `nodeSelector` field is already configured with the `kubernetes.io/arch` label for a workload, the operand does not update the `nodeAffinity` field for that workload.\n> - If the `nodeSelector` field is not configured with the `kubernetes.io/arch` label for a workload, the operand updates the `nodeAffinity` field for that workload. For the `nodeAffinity` field, the operand updates only the node selector terms that are not configured with the `kubernetes.io/arch` label.\n> - If the `nodeName` field is already set, the Multiarch Tuning Operator does not process the pod.\n> - If the pod is owned by a DaemonSet, the operand does not update the `nodeAffinity` field.\n> - If `nodeSelector` or `nodeAffinity` and `preferredAffinity` fields are set for the `kubernetes.io/arch` label, the operand does not update the `nodeAffinity` field.\n> - If only the `nodeSelector` or the `nodeAffinity` field is set for the `kubernetes.io/arch` label and the `nodeAffinityScoring` plugin is disabled, the operand does not update the `nodeAffinity` field.\n> - If the `nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution` field already contains terms that score nodes based on the `kubernetes.io/arch` label, the operand ignores the configuration in the `nodeAffinityScoring` plugin.\n\n**Additional resources**\n\n- [Installing from the software catalog by using the CLI](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator {#multiarch-tuning-operator}\n\nThe Multiarch Tuning Operator optimizes workload management within multi-architecture clusters and in single-architecture clusters transitioning to multi-architecture environments.\n\nArchitecture-aware workload scheduling allows the scheduler to place pods onto nodes that match the architecture of the pod images.\n\nBy default, the scheduler does not consider the architecture of a pod’s container images when determining the placement of new pods onto nodes.\n\nTo enable architecture-aware workload scheduling, you must create the `ClusterPodPlacementConfig` object. When you create the `ClusterPodPlacementConfig` object, the Multiarch Tuning Operator deploys the necessary operands to support architecture-aware workload scheduling. You can also use the `nodeAffinityScoring` plugin in the `ClusterPodPlacementConfig` object to set cluster-wide scores for node architectures. If you enable the `nodeAffinityScoring` plugin, the scheduler first filters nodes with compatible architectures and then places the pod on the node with the highest score.\n\nWhen a pod is created, the operands perform the following actions:\n\n1. Add the `multiarch.openshift.io/scheduling-gate` scheduling gate that prevents the scheduling of the pod.\n2. Compute a scheduling predicate that includes the supported architecture values for the `kubernetes.io/arch` label.\n3. Integrate the scheduling predicate as a `nodeAffinity` requirement in the pod specification.\n4. Remove the scheduling gate from the pod.\n\n> [!IMPORTANT]\n> Note the following operand behaviors:\n>\n> - If the `nodeSelector` field is already configured with the `kubernetes.io/arch` label for a workload, the operand does not update the `nodeAffinity` field for that workload.\n> - If the `nodeSelector` field is not configured with the `kubernetes.io/arch` label for a workload, the operand updates the `nodeAffinity` field for that workload. For the `nodeAffinity` field, the operand updates only the node selector terms that are not configured with the `kubernetes.io/arch` label.\n> - If the `nodeName` field is already set, the Multiarch Tuning Operator does not process the pod.\n> - If the pod is owned by a DaemonSet, the operand does not update the `nodeAffinity` field.\n> - If `nodeSelector` or `nodeAffinity` and `preferredAffinity` fields are set for the `kubernetes.io/arch` label, the operand does not update the `nodeAffinity` field.\n> - If only the `nodeSelector` or the `nodeAffinity` field is set for the `kubernetes.io/arch` label and the `nodeAffinityScoring` plugin is disabled, the operand does not update the `nodeAffinity` field.\n> - If the `nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution` field already contains terms that score nodes based on the `kubernetes.io/arch` label, the operand ignores the configuration in the `nodeAffinityScoring` plugin.\n\n## Installing the Multiarch Tuning Operator by using the CLI {#multi-architecture-installing-using-cli_multiarch-tuning-operator}\n\nYou can install the Multiarch Tuning Operator by using the OpenShift CLI (`oc`).\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have logged in to `oc` as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Create a new project named `openshift-multiarch-tuning-operator` by running the following command:\n\n   ```terminal\n   $ oc create ns openshift-multiarch-tuning-operator\n   ```\n2. Create an `OperatorGroup` object:\n\n   1. Create a YAML file with the configuration for creating an `OperatorGroup` object.\n\n      ```yaml {title=\"Example YAML configuration for creating an OperatorGroup object\"}\n      apiVersion: operators.coreos.com/v1\n      kind: OperatorGroup\n      metadata:\n        name: openshift-multiarch-tuning-operator\n        namespace: openshift-multiarch-tuning-operator\n      spec: {}\n      ```\n   2. Create the `OperatorGroup` object by running the following command:\n\n      ```terminal\n      $ oc create -f <file_name>\n      ```\n\n      Replace `<file_name>` with the name of the YAML file that contains the `OperatorGroup` object configuration.\n3. Create a `Subscription` object:\n\n   1. Create a YAML file with the configuration for creating a `Subscription` object.\n\n      ```yaml {title=\"Example YAML configuration for creating a Subscription object\"}\n      apiVersion: operators.coreos.com/v1alpha1\n      kind: Subscription\n      metadata:\n        name: openshift-multiarch-tuning-operator\n        namespace: openshift-multiarch-tuning-operator\n      spec:\n        channel: stable\n        name: multiarch-tuning-operator\n        source: redhat-operators\n        sourceNamespace: openshift-marketplace\n        installPlanApproval: Automatic\n        startingCSV: multiarch-tuning-operator.<version>\n      ```\n   2. Create the `Subscription` object by running the following command:\n\n      ```terminal\n      $ oc create -f <file_name>\n      ```\n\n      Replace `<file_name>` with the name of the YAML file that contains the `Subscription` object configuration.\n\n      > [!NOTE]\n      > For more details about configuring the `Subscription` object and `OperatorGroup` object, see \"Installing from the software catalog by using the CLI\".\n\n**Verification**\n\n1. To verify that the Multiarch Tuning Operator is installed, run the following command:\n\n   ```terminal\n   $ oc get csv -n openshift-multiarch-tuning-operator\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                   DISPLAY                     VERSION       REPLACES                            PHASE\n   multiarch-tuning-operator.<version>   Multiarch Tuning Operator   <version>     multiarch-tuning-operator.1.0.0      Succeeded\n   ```\n\n   The installation is successful if the Operator is in the `Succeeded` phase.\n2. Optional: To verify that the `OperatorGroup` object is created, run the following command:\n\n   ```terminal\n   $ oc get operatorgroup -n openshift-multiarch-tuning-operator\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                        AGE\n   openshift-multiarch-tuning-operator-q8zbb   133m\n   ```\n3. Optional: To verify that the `Subscription` object is created, run the following command:\n\n   ```terminal\n   $ oc get subscription -n openshift-multiarch-tuning-operator\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                        PACKAGE                     SOURCE                  CHANNEL\n   multiarch-tuning-operator   multiarch-tuning-operator   redhat-operators        stable\n   ```\n\n**Additional resources**\n\n- [Installing from the software catalog by using the CLI](/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace)\n\n## Installing the Multiarch Tuning Operator by using the web console {#multi-architecture-installing-using-web-console_multiarch-tuning-operator}\n\nYou can install the Multiarch Tuning Operator by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Navigate to **Ecosystem** -> **Software Catalog**.\n3. Enter **Multiarch Tuning Operator** in the search field.\n4. Click **Multiarch Tuning Operator**.\n5. Select the **Multiarch Tuning Operator** version from the **Version** list.\n6. Click **Install**.\n7. Set the following options on the **Operator Installation** page:\n\n   1. Set **Update Channel** to **stable**.\n   2. Set **Installation Mode** to **All namespaces on the cluster**.\n   3. Set **Installed Namespace** to **Operator recommended Namespace** or **Select a Namespace**.\n\n      The recommended Operator namespace is `openshift-multiarch-tuning-operator`. If the `openshift-multiarch-tuning-operator` namespace does not exist, the namespace is created during the Operator installation.\n\n      If you select **Select a namespace**, you must select a namespace for the Operator from the **Select Project** list.\n   4. **Update approval** as **Automatic** or **Manual**.\n\n      If you select **Automatic** updates, Operator Lifecycle Manager (OLM) automatically updates the running instance of the Multiarch Tuning Operator without any intervention.\n\n      If you select **Manual** updates, OLM creates an update request. As a cluster administrator, you must manually approve the update request to update the Multiarch Tuning Operator to a newer version.\n8. Optional: Select the **Enable Operator recommended cluster monitoring on this Namespace** checkbox.\n9. Click **Install**.\n\n**Verification**\n\n1. Navigate to **Ecosystem** -> **Installed Operators**.\n2. Verify that the **Multiarch Tuning Operator** is listed with the **Status** field as **Succeeded** in the `openshift-multiarch-tuning-operator` namespace.\n\n## Multiarch Tuning Operator pod labels and architecture support overview {#multi-architecture-gather-info-about-workloads_multiarch-tuning-operator}\n\nAfter installing the Multiarch Tuning Operator, you can verify the multi-architecture support for workloads in your cluster. You can identify and manage pods based on their architecture compatibility by using the pod labels.\n\nThese labels are automatically set on the newly created pods to provide insights into their architecture support.\n\nThe following table describes the labels that the Multiarch Tuning Operator adds when you create a pod:\n\n**Pod labels that the Multiarch Tuning Operator adds when you create a pod**\n\n| Label | Description |\n| --- | --- |\n| `multiarch.openshift.io/multi-arch: \"\"` | The pod supports multiple architectures. |\n| `multiarch.openshift.io/single-arch: \"\"` | The pod supports only a single architecture. |\n| `multiarch.openshift.io/arm64: \"\"` | The pod supports the `arm64` architecture. |\n| `multiarch.openshift.io/amd64: \"\"` | The pod supports the `amd64` architecture. |\n| `multiarch.openshift.io/ppc64le: \"\"` | The pod supports the `ppc64le` architecture. |\n| `multiarch.openshift.io/s390x: \"\"` | The pod supports the `s390x` architecture. |\n| `multiarch.openshift.io/node-affinity: set` | The Operator has set the node affinity requirement for the architecture. |\n| `multiarch.openshift.io/node-affinity: not-set` | The Operator did not set the node affinity requirement. For example, when the pod already has a node affinity for the architecture, the Multiarch Tuning Operator adds this label to the pod. |\n| `multiarch.openshift.io/scheduling-gate: gated` | The pod is gated. |\n| `multiarch.openshift.io/scheduling-gate: removed` | The pod gate has been removed. |\n| `multiarch.openshift.io/inspection-error: \"\"` | An error has occurred while building the node affinity requirements. |\n| `multiarch.openshift.io/preferred-node-affinity: set` | The Operator has set the architecture preferences in the pod. |\n| `multiarch.openshift.io/preferred-node-affinity: not-set` | The Operator did not set the architecture preferences in the pod because the user had already set them in the `preferredDuringSchedulingIgnoredDuringExecution` node affinity. |\n\n## The ClusterPodPlacementConfig object {#multi-architecture-creating-podplacement-config_multiarch-tuning-operator}\n\nAfter installing the Multiarch Tuning Operator, you must create a `ClusterPodPlacementConfig` object. The object instructs the Operator to deploy its operand, which enables architecture-aware workload scheduling across your cluster.\n\nThe `ClusterPodPlacementConfig` object supports two optional plugins:\n\n- The `node affinity scoring` plugin patches pods to set soft preferences, using weighted affinities, for the architectures specified by the user. Pods are more likely to be scheduled on nodes running architectures with higher weights.\n- The `exec format error monitor` plugin detects `ENOEXEC` errors, which occur when a pod attempts to execute a binary incompatible with the architecture of the node. When enabled, this plugin generates events in the affected event stream of the pod. The plugin triggers an `ExecFormatErrorsDetected` Prometheus alert if one or more `ENOEXEC` errors are detected within the last six hours. These errors can result from incorrect architecture node selectors, invalid image metadata that affects architecture-aware workload scheduling, an incorrect binary in an image, or an incompatible binary injected at runtime.\n\n> [!NOTE]\n> You can create only one instance of the `ClusterPodPlacementConfig` object.\n\n```yaml {title=\"Example ClusterPodPlacementConfig object configuration\"}\napiVersion: multiarch.openshift.io/v1beta1\nkind: ClusterPodPlacementConfig\nmetadata:\n  name: cluster\nspec:\n  logVerbosity: Normal\n  namespaceSelector:\n    matchExpressions:\n      - key: multiarch.openshift.io/exclude-pod-placement\n        operator: DoesNotExist\n  plugins:\n    nodeAffinityScoring:\n      enabled: true\n      platforms:\n        - architecture: amd64\n          weight: 100\n        - architecture: arm64\n          weight: 50\n    execFormatErrorMonitor:\n      enabled: true\n  fallbackArchitecture: amd64\n```\n\nwhere:\n\n`metadata.name`\n:   Specifies the name of the object. You must set this parameter to `cluster`.\n\n`spec.logVerbosity`\n:   Optional parameter. Specifies the log verbosity level. You can set the field value to `Normal`, `Debug`, `Trace`, or `TraceAll`. The value is set to `Normal` by default.\n\n`spec.namespaceSelector`\n:   Optional parameter. You can configure the `namespaceSelector` to select the namespaces in which the Multiarch Tuning Operator’s pod placement operand must process the `nodeAffinity` of the pods. All namespaces are considered by default.\n\n`spec.plugins.nodeAffinityScoring.enabled`\n:   Optional parameter. You can enable the node affinity scoring plugin to set architecture preferences for pod placement. When enabled, the scheduler first filters out nodes that do not meet the pod’s requirements. Then, it prioritizes the remaining nodes based on the architecture scores defined in the `nodeAffinityScoring.platforms` field. The default value is false.\n\n`spec.plugins.nodeAffinityScoring.platforms`\n:   Optional parameter. Defines a list of architectures and their corresponding scores. The scheduler prioritizes nodes for pod placement based on the architecture scores that you set and the scheduling requirements defined in the pod specification.\n\n`spec.plugins.nodeAffinityScoring.platforms.architecture`\n:   Specifies the architecture for the node affinity scoring plugin. Accepted values are `arm64`, `amd64`, `ppc64le`, or `s390x`.\n\n`spec.plugins.nodeAffinityScoring.platforms.weight`\n:   Specifies the weight for the architecture you specified in the `spec.plugins.nodeAffinityScoring.platforms.architecture` parameter. The value must be configured in the range of `1` (lowest priority) to `100` (highest priority). The scheduler uses this score to prioritize nodes for pod placement, favoring nodes with architectures that have higher scores.\n\n`spec.plugins.execFormatErrorMonitor.enabled`\n:   Optional parameter. Set this field to `true` to enable the `execFormatErrorMonitor` plugin. When enabled, the plugin detects `ENOEXEC` errors, caused when a pod executes a binary incompatible with the node’s architecture. The plugin generates events in the affected pods, and triggers the `ExecFormatErrorsDetected` Prometheus alert if one or more errors are found in the last six hours.\n\n`spec.fallbackArchitecture`\n:   Optional parameter. Specifies an architecture where pods are scheduled if the image inspector cannot determine the architecture of the image. Valid values are `\"\"`, `arm64`, `amd64`, `ppc64le`, or `s390x`. The value is set to `\"\"` by default.\n\nIn this example, the `operator` field value is set to `DoesNotExist`. Therefore, if the `key` field value (`multiarch.openshift.io/exclude-pod-placement`) is set as a label in a namespace, the operand does not process the `nodeAffinity` of the pods in that namespace. Instead, the operand processes the `nodeAffinity` of the pods in namespaces that do not contain the label.\n\nIf you want the operand to process the `nodeAffinity` of the pods only in specific namespaces, you can configure the `namespaceSelector` as follows:\n\n```yaml\nnamespaceSelector:\n  matchExpressions:\n    - key: multiarch.openshift.io/include-pod-placement\n      operator: Exists\n```\n\nIn this example, the `operator` field value is set to `Exists`. Therefore, the operand processes the `nodeAffinity` of the pods only in namespaces that contain the `multiarch.openshift.io/include-pod-placement` label.\n\n> [!IMPORTANT]\n> This Operator excludes pods in namespaces starting with `kube-`. The Operator also excludes pods that are expected to be scheduled on control plane nodes.\n\n### Creating the ClusterPodPlacementConfig object by using the CLI {#multi-architecture-creating-podplacement-config-using-cli_multiarch-tuning-operator}\n\nTo deploy the pod placement operand that enables architecture-aware workload scheduling, you can create the `ClusterPodPlacementConfig` object by using the OpenShift CLI (`oc`).\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have logged in to `oc` as a user with `cluster-admin` privileges.\n- You have installed the Multiarch Tuning Operator.\n\n**Procedure**\n\n1. Create a `ClusterPodPlacementConfig` object YAML file:\n\n   ```yaml {title=\"Example ClusterPodPlacementConfig object configuration\"}\n   apiVersion: multiarch.openshift.io/v1beta1\n   kind: ClusterPodPlacementConfig\n   metadata:\n     name: cluster\n   spec:\n     logVerbosityLevel: Normal\n     namespaceSelector:\n       matchExpressions:\n         - key: multiarch.openshift.io/exclude-pod-placement\n           operator: DoesNotExist\n     plugins:\n       nodeAffinityScoring:\n         enabled: true\n         platforms:\n           - architecture: amd64\n             weight: 100\n           - architecture: arm64\n             weight: 50\n   ```\n2. Create the `ClusterPodPlacementConfig` object by running the following command:\n\n   ```terminal\n   $ oc create -f <file_name>\n   ```\n\n   Replace `<file_name>` with the name of the `ClusterPodPlacementConfig` object YAML file.\n\n**Verification**\n\n- To check that the `ClusterPodPlacementConfig` object is created, run the following command:\n\n  ```terminal\n  $ oc get clusterpodplacementconfig\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME      AGE\n  cluster   29s\n  ```\n\n### Creating the ClusterPodPlacementConfig object by using the web console {#multi-architecture-creating-podplacement-config-using-web-console_multiarch-tuning-operator}\n\nTo deploy the pod placement operand that enables architecture-aware workload scheduling, you can create the `ClusterPodPlacementConfig` object by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- You have installed the Multiarch Tuning Operator.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Go to **Ecosystem** -> **Installed Operators**.\n3. On the **Installed Operators** page, click **Multiarch Tuning Operator**.\n4. Click the **Cluster Pod Placement Config** tab.\n5. Select either **Form view** or **YAML view**.\n6. Configure the `ClusterPodPlacementConfig` object parameters.\n7. Click **Create**.\n8. Optional: If you want to edit the `ClusterPodPlacementConfig` object, perform the following actions:\n\n   1. Click the **Cluster Pod Placement Config** tab.\n   2. Select **Edit ClusterPodPlacementConfig** from the options menu.\n   3. Click **YAML** and edit the `ClusterPodPlacementConfig` object parameters.\n   4. Click **Save**.\n\n**Verification**\n\n- On the **Cluster Pod Placement Config** page, check that the `ClusterPodPlacementConfig` object is in the `Ready` state.\n\n## Creating the namespace-scoped PodPlacementConfig object {#multi-arch-creating-namespace-podplacement-config_multiarch-tuning-operator}\n\nAfter creating the `ClusterPodPlacementConfig` object, you can configure pod placement at the namespace level by creating namespace-scoped `PodPlacementConfig` objects.\n\n`PodPlacementConfig` objects modify the pod placement controller’s behavior at the namespace level, and take precedence over the `ClusterPodPlacementConfig` object.\n\n**Prerequisites**\n\n- You have created a `ClusterPodPlacementConfig` object.\n\n**Procedure**\n\n1. Using a text editor, create a YAML file based on the following example and modify the example with your namespace values:\n\n   ```yaml {title=\"Example PodPlacementConfig object configuration\"}\n   apiVersion: multiarch.openshift.io/v1beta1\n   kind: PodPlacementConfig\n   metadata:\n     name: my-namespace-config\n     namespace: my-namespace\n   spec:\n     labelSelector:\n         matchExpressions:\n           - key: app\n             operator: In\n             values:\n               - my-label-for-apps-performing-better-on-arm64\n     priority: 100\n     plugins:\n       nodeAffinityScoring:\n         enabled: true\n         platforms:\n           - architecture: amd64\n             weight: 25\n           - architecture: arm64\n             weight: 75\n   ```\n\n   where:\n\n   `metadata`\n   :   Specifies the object name, and namespace name. This parameter is required.\n\n   `spec.labelSelector`\n   :   Optionally specifies a label so that the `PodPlacementConfig` only applies to a subset of pods in the namespace. If you do not specify this parameter, the `PodPlacementConfig` applies to all pods in the namespace.\n\n   `spec.priority`\n   :   Optionally specifies a priority in case multiple `PodPlacementConfig` objects exist in one namespace. Higher priorities take precedence. Valid values are 0-255, and the default value is 0. If you specify multiple `PodPlacementConfig` objects in one namespace, they must have different priority values.\n\n   `spec.plugins.nodeAffinityScoring`\n   :   Specifies architecture preferences for pod placement. The controller prioritizes nodes based on the architecture scores, with higher weights taking precedence. If you enable this plugin by setting `spec.plugins.nodeAffinityScoring.enabled` to `true`, you must specify at least one platform with an architecture and weight value.\n\n   `spec.plugins.nodeAffinityScoring.platforms[]`\n   :   Specifies one or more platform configurations, each with a required architecture and weight pair. This parameter is required if `spec.plugins.nodeAffinityScoring` is present. Valid architecture values are `arm64`, `amd64`, `ppc64le`, and `s390x`. Valid weight values are 0-100. Each architecture can only be specified once.\n2. Apply the configuration file by running the following command:\n\n   ```terminal\n   $ oc create -f <filename>\n   ```\n\n   Replace `<filename>` with the name of the `PodPlacementConfig` configuration file.\n\n## Deleting the ClusterPodPlacementConfig object by using the CLI {#multi-architecture-deleting-podplacement-config-using-cli_multiarch-tuning-operator}\n\nYou can create only one instance of the `ClusterPodPlacementConfig` object. If you want to re-create this object, you must first delete the existing instance.\n\nYou can delete this object by using the OpenShift CLI (`oc`).\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have logged in to `oc` as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Delete the `ClusterPodPlacementConfig` object by running the following command:\n\n   ```terminal\n   $ oc delete clusterpodplacementconfig cluster\n   ```\n\n**Verification**\n\n- To check that the `ClusterPodPlacementConfig` object is deleted, run the following command:\n\n  ```terminal\n  $ oc get clusterpodplacementconfig\n  ```\n\n  ```terminal {title=\"Example output\"}\n  No resources found\n  ```\n\n## Deleting the ClusterPodPlacementConfig object by using the web console {#multi-architecture-deleting-podplacement-config-using-web-console_multiarch-tuning-operator}\n\nYou can create only one instance of the `ClusterPodPlacementConfig` object. If you want to recreate this object, you must first delete the existing instance.\n\nYou can delete this object by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- You have created the `ClusterPodPlacementConfig` object.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Navigate to **Ecosystem** -> **Installed Operators**.\n3. On the **Installed Operators** page, click **Multiarch Tuning Operator**.\n4. Click the **Cluster Pod Placement Config** tab.\n5. Select **Delete ClusterPodPlacementConfig** from the options menu.\n6. Click **Delete**.\n\n**Verification**\n\n- On the **Cluster Pod Placement Config** page, check that the `ClusterPodPlacementConfig` object has been deleted.\n\n## Uninstalling the Multiarch Tuning Operator by using the CLI {#multi-architecture-uninstalling-using-cli_multiarch-tuning-operator}\n\nYou can uninstall the Multiarch Tuning Operator by using the OpenShift CLI (`oc`).\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have logged in to `oc` as a user with `cluster-admin` privileges.\n- You have deleted the `ClusterPodPlacementConfig` object.\n\n  > [!IMPORTANT]\n  > You must delete the `ClusterPodPlacementConfig` object before uninstalling the Multiarch Tuning Operator. Uninstalling the Operator without deleting the `ClusterPodPlacementConfig` object leads to unexpected behavior.\n\n**Procedure**\n\n1. Get the `Subscription` object name for the Multiarch Tuning Operator by running the following command:\n\n   ```terminal\n   $ oc get subscription.operators.coreos.com -n <namespace>\n   ```\n\n   Replace `<namespace>` with the name of the namespace where you want to uninstall the Multiarch Tuning Operator.\n\n   ```terminal {title=\"Example output\"}\n   NAME                                  PACKAGE                     SOURCE             CHANNEL\n   openshift-multiarch-tuning-operator   multiarch-tuning-operator   redhat-operators   stable\n   ```\n2. Get the `currentCSV` value for the Multiarch Tuning Operator by running the following command:\n\n   ```terminal\n   $ oc get subscription.operators.coreos.com <subscription_name> -n <namespace> -o yaml | grep currentCSV\n   ```\n\n   - Replace `<subscription_name>` with the `Subscription` object name. For example, `openshift-multiarch-tuning-operator`.\n   - Replace `<namespace>` with the name of the namespace where you want to uninstall the Multiarch Tuning Operator.\n\n     ```terminal {title=\"Example output\"}\n     currentCSV: multiarch-tuning-operator.<version>\n     ```\n3. Delete the `Subscription` object by running the following command:\n\n   ```terminal\n   $ oc delete subscription.operators.coreos.com <subscription_name> -n <namespace>\n   ```\n\n   - Replace `<subscription_name>` with the `Subscription` object name.\n   - Replace `<namespace>` with the name of the namespace where you want to uninstall the Multiarch Tuning Operator.\n\n     ```terminal {title=\"Example output\"}\n     subscription.operators.coreos.com \"openshift-multiarch-tuning-operator\" deleted\n     ```\n4. Delete the CSV for the Multiarch Tuning Operator in the target namespace by using the `currentCSV` value by running the following command:\n\n   ```terminal\n   $ oc delete clusterserviceversion <currentCSV_value> -n <namespace>\n   ```\n\n   - Replace `<currentCSV_value>` with the `currentCSV` value for the Multiarch Tuning Operator. For example: `multiarch-tuning-operator.<version>`.\n   - Replace `<namespace>` with the name of the namespace where you want to uninstall the Multiarch Tuning Operator.\n\n     ```terminal {title=\"Example output\"}\n     clusterserviceversion.operators.coreos.com \"multiarch-tuning-operator.<version>\" deleted\n     ```\n\n**Verification**\n\n- To verify that the Multiarch Tuning Operator is uninstalled, run the following command:\n\n  ```terminal\n  $ oc get csv -n <namespace>\n  ```\n\n  Replace `<namespace>` with the name of the namespace where you have uninstalled the Multiarch Tuning Operator.\n\n  ```terminal {title=\"Example output\"}\n  No resources found in openshift-multiarch-tuning-operator namespace.\n  ```\n\n## Uninstalling the Multiarch Tuning Operator by using the web console {#multi-architecture-uninstalling-using-web-console_multiarch-tuning-operator}\n\nYou can uninstall the Multiarch Tuning Operator by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` permissions.\n- You have deleted the `ClusterPodPlacementConfig` object.\n\n  > [!IMPORTANT]\n  > You must delete the `ClusterPodPlacementConfig` object before uninstalling the Multiarch Tuning Operator. Uninstalling the Operator without deleting the `ClusterPodPlacementConfig` object leads to unexpected behavior.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Navigate to **Ecosystem** -> **Software Catalog**.\n3. Enter **Multiarch Tuning Operator** in the search field.\n4. Click **Multiarch Tuning Operator**.\n5. Click the **Details** tab.\n6. From the **Actions** menu, select **Uninstall Operator**.\n7. When prompted, click **Uninstall**.\n\n**Verification**\n\n1. Navigate to **Ecosystem** -> **Installed Operators**.\n2. On the **Installed Operators** page, verify that the **Multiarch Tuning Operator** is not listed.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +101,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="multiarch-tuning-operator" class="group scroll-mt-20">Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator<a href="#multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The Multiarch Tuning Operator optimizes workload management within multi-architecture clusters and in single-architecture clusters transitioning to multi-architecture environments.</p>
       <p>Architecture-aware workload scheduling allows the scheduler to place pods onto nodes that match the architecture of the pod images.</p>
       <p>By default, the scheduler does not consider the architecture of a pod’s container images when determining the placement of new pods onto nodes.</p>
@@ -121,18 +127,454 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           </ul>
         </AlertDescription>
       </Alert>
-      <p class="/modules/multi-arch-installing-using-cli.md"></p>
+      <h2 id="multi-architecture-installing-using-cli_multiarch-tuning-operator" class="group scroll-mt-20">Installing the Multiarch Tuning Operator by using the CLI<a href="#multi-architecture-installing-using-cli_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can install the Multiarch Tuning Operator by using the OpenShift CLI (<code>oc</code>).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have logged in to <code>oc</code> as a user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a new project named <code>openshift-multiarch-tuning-operator</code> by running the following command:
+      <CodeBlock code={"$ oc create ns openshift-multiarch-tuning-operator"} lang="terminal" />
+      </li>
+      <li>
+      Create an <code>OperatorGroup</code> object:
+      <ol>
+      <li>
+      Create a YAML file with the configuration for creating an <code>OperatorGroup</code> object.
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1\nkind: OperatorGroup\nmetadata:\n  name: openshift-multiarch-tuning-operator\n  namespace: openshift-multiarch-tuning-operator\nspec: {}"} lang="yaml" title="Example YAML configuration for creating an OperatorGroup object" />
+      </li>
+      <li>
+      Create the <code>OperatorGroup</code> object by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>"} lang="terminal" />
+      <p>Replace <code>&lt;file_name&gt;</code> with the name of the YAML file that contains the <code>OperatorGroup</code> object configuration.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a <code>Subscription</code> object:
+      <ol>
+      <li>
+      Create a YAML file with the configuration for creating a <code>Subscription</code> object.
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: openshift-multiarch-tuning-operator\n  namespace: openshift-multiarch-tuning-operator\nspec:\n  channel: stable\n  name: multiarch-tuning-operator\n  source: redhat-operators\n  sourceNamespace: openshift-marketplace\n  installPlanApproval: Automatic\n  startingCSV: multiarch-tuning-operator.<version>"} lang="yaml" title="Example YAML configuration for creating a Subscription object" />
+      </li>
+      <li>
+      Create the <code>Subscription</code> object by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>"} lang="terminal" />
+      <p>Replace <code>&lt;file_name&gt;</code> with the name of the YAML file that contains the <code>Subscription</code> object configuration.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For more details about configuring the <code>Subscription</code> object and <code>OperatorGroup</code> object, see "Installing from the software catalog by using the CLI".</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      To verify that the Multiarch Tuning Operator is installed, run the following command:
+      <CodeBlock code={"$ oc get csv -n openshift-multiarch-tuning-operator"} lang="terminal" />
+      <CodeBlock code={"NAME                                   DISPLAY                     VERSION       REPLACES                            PHASE\nmultiarch-tuning-operator.<version>   Multiarch Tuning Operator   <version>     multiarch-tuning-operator.1.0.0      Succeeded"} lang="terminal" title="Example output" />
+      <p>The installation is successful if the Operator is in the <code>Succeeded</code> phase.</p>
+      </li>
+      <li>
+      Optional: To verify that the <code>OperatorGroup</code> object is created, run the following command:
+      <CodeBlock code={"$ oc get operatorgroup -n openshift-multiarch-tuning-operator"} lang="terminal" />
+      <CodeBlock code={"NAME                                        AGE\nopenshift-multiarch-tuning-operator-q8zbb   133m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Optional: To verify that the <code>Subscription</code> object is created, run the following command:
+      <CodeBlock code={"$ oc get subscription -n openshift-multiarch-tuning-operator"} lang="terminal" />
+      <CodeBlock code={"NAME                        PACKAGE                     SOURCE                  CHANNEL\nmultiarch-tuning-operator   multiarch-tuning-operator   redhat-operators        stable"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace">Installing from the software catalog by using the CLI</a></li></ul>
-      <p class="/modules/multi-arch-gather-info-about-workloads.md"></p>
-      <p class="/modules/multi-arch-creating-podplacment-config.md"></p>
-      <p class="/modules/multi-arch-creating-podplacment-config-using-cli.md"></p>
-      <p class="/modules/multi-arch-creating-podplacment-config-using-web-console.md"></p>
-      <p class="/modules/multi-arch-creating-namespace-podplacement-config.md"></p>
-      <p class="/modules/multi-arch-deleting-podplacment-config-using-cli.md"></p>
-      <p class="/modules/multi-arch-deleting-podplacment-config-using-web-console.md"></p>
-      <p class="/modules/multi-arch-uninstalling-using-cli.md"></p>
-      <p class="/modules/multi-arch-uninstalling-using-web-console.md"></p>
+      <h2 id="multi-architecture-installing-using-web-console_multiarch-tuning-operator" class="group scroll-mt-20">Installing the Multiarch Tuning Operator by using the web console<a href="#multi-architecture-installing-using-web-console_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can install the Multiarch Tuning Operator by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong>.</li>
+      <li>Enter <strong>Multiarch Tuning Operator</strong> in the search field.</li>
+      <li>Click <strong>Multiarch Tuning Operator</strong>.</li>
+      <li>Select the <strong>Multiarch Tuning Operator</strong> version from the <strong>Version</strong> list.</li>
+      <li>Click <strong>Install</strong>.</li>
+      <li>
+      Set the following options on the <strong>Operator Installation</strong> page:
+      <ol>
+      <li>Set <strong>Update Channel</strong> to <strong>stable</strong>.</li>
+      <li>Set <strong>Installation Mode</strong> to <strong>All namespaces on the cluster</strong>.</li>
+      <li>
+      Set <strong>Installed Namespace</strong> to <strong>Operator recommended Namespace</strong> or <strong>Select a Namespace</strong>.
+      <p>The recommended Operator namespace is <code>openshift-multiarch-tuning-operator</code>. If the <code>openshift-multiarch-tuning-operator</code> namespace does not exist, the namespace is created during the Operator installation.</p>
+      <p>If you select <strong>Select a namespace</strong>, you must select a namespace for the Operator from the <strong>Select Project</strong> list.</p>
+      </li>
+      <li>
+      <strong>Update approval</strong> as <strong>Automatic</strong> or <strong>Manual</strong>.
+      <p>If you select <strong>Automatic</strong> updates, Operator Lifecycle Manager (OLM) automatically updates the running instance of the Multiarch Tuning Operator without any intervention.</p>
+      <p>If you select <strong>Manual</strong> updates, OLM creates an update request. As a cluster administrator, you must manually approve the update request to update the Multiarch Tuning Operator to a newer version.</p>
+      </li>
+      </ol>
+      </li>
+      <li>Optional: Select the <strong>Enable Operator recommended cluster monitoring on this Namespace</strong> checkbox.</li>
+      <li>Click <strong>Install</strong>.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Verify that the <strong>Multiarch Tuning Operator</strong> is listed with the <strong>Status</strong> field as <strong>Succeeded</strong> in the <code>openshift-multiarch-tuning-operator</code> namespace.</li>
+      </ol>
+      <h2 id="multi-architecture-gather-info-about-workloads_multiarch-tuning-operator" class="group scroll-mt-20">Multiarch Tuning Operator pod labels and architecture support overview<a href="#multi-architecture-gather-info-about-workloads_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After installing the Multiarch Tuning Operator, you can verify the multi-architecture support for workloads in your cluster. You can identify and manage pods based on their architecture compatibility by using the pod labels. </p>
+      <p>These labels are automatically set on the newly created pods to provide insights into their architecture support.</p>
+      <p>The following table describes the labels that the Multiarch Tuning Operator adds when you create a pod:</p>
+      <p><strong>Pod labels that the Multiarch Tuning Operator adds when you create a pod</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Label</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/multi-arch: ""</code></TableCell>
+      <TableCell>The pod supports multiple architectures.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/single-arch: ""</code></TableCell>
+      <TableCell>The pod supports only a single architecture.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/arm64: ""</code></TableCell>
+      <TableCell>The pod supports the <code>arm64</code> architecture.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/amd64: ""</code></TableCell>
+      <TableCell>The pod supports the <code>amd64</code> architecture.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/ppc64le: ""</code></TableCell>
+      <TableCell>The pod supports the <code>ppc64le</code> architecture.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/s390x: ""</code></TableCell>
+      <TableCell>The pod supports the <code>s390x</code> architecture.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/node-affinity: set</code></TableCell>
+      <TableCell>The Operator has set the node affinity requirement for the architecture.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/node-affinity: not-set</code></TableCell>
+      <TableCell>The Operator did not set the node affinity requirement. For example, when the pod already has a node affinity for the architecture, the Multiarch Tuning Operator adds this label to the pod.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/scheduling-gate: gated</code></TableCell>
+      <TableCell>The pod is gated.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/scheduling-gate: removed</code></TableCell>
+      <TableCell>The pod gate has been removed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/inspection-error: ""</code></TableCell>
+      <TableCell>An error has occurred while building the node affinity requirements.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/preferred-node-affinity: set</code></TableCell>
+      <TableCell>The Operator has set the architecture preferences in the pod.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>multiarch.openshift.io/preferred-node-affinity: not-set</code></TableCell>
+      <TableCell>The Operator did not set the architecture preferences in the pod because the user had already set them in the <code>preferredDuringSchedulingIgnoredDuringExecution</code> node affinity.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="multi-architecture-creating-podplacement-config_multiarch-tuning-operator" class="group scroll-mt-20">The ClusterPodPlacementConfig object<a href="#multi-architecture-creating-podplacement-config_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After installing the Multiarch Tuning Operator, you must create a <code>ClusterPodPlacementConfig</code> object. The object instructs the Operator to deploy its operand, which enables architecture-aware workload scheduling across your cluster.</p>
+      <p>The <code>ClusterPodPlacementConfig</code> object supports two optional plugins:</p>
+      <ul>
+      <li>The <code>node affinity scoring</code> plugin patches pods to set soft preferences, using weighted affinities, for the architectures specified by the user. Pods are more likely to be scheduled on nodes running architectures with higher weights.</li>
+      <li>The <code>exec format error monitor</code> plugin detects <code>ENOEXEC</code> errors, which occur when a pod attempts to execute a binary incompatible with the architecture of the node. When enabled, this plugin generates events in the affected event stream of the pod. The plugin triggers an <code>ExecFormatErrorsDetected</code> Prometheus alert if one or more <code>ENOEXEC</code> errors are detected within the last six hours. These errors can result from incorrect architecture node selectors, invalid image metadata that affects architecture-aware workload scheduling, an incorrect binary in an image, or an incompatible binary injected at runtime.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can create only one instance of the <code>ClusterPodPlacementConfig</code> object.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: multiarch.openshift.io/v1beta1\nkind: ClusterPodPlacementConfig\nmetadata:\n  name: cluster\nspec:\n  logVerbosity: Normal\n  namespaceSelector:\n    matchExpressions:\n      - key: multiarch.openshift.io/exclude-pod-placement\n        operator: DoesNotExist\n  plugins:\n    nodeAffinityScoring:\n      enabled: true\n      platforms:\n        - architecture: amd64\n          weight: 100\n        - architecture: arm64\n          weight: 50\n    execFormatErrorMonitor:\n      enabled: true\n  fallbackArchitecture: amd64"} lang="yaml" title="Example ClusterPodPlacementConfig object configuration" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the object. You must set this parameter to <code>cluster</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.logVerbosity</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. Specifies the log verbosity level. You can set the field value to <code>Normal</code>, <code>Debug</code>, <code>Trace</code>, or <code>TraceAll</code>. The value is set to <code>Normal</code> by default.</p></dd>
+      <dt class="font-semibold"><code>spec.namespaceSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. You can configure the <code>namespaceSelector</code> to select the namespaces in which the Multiarch Tuning Operator’s pod placement operand must process the <code>nodeAffinity</code> of the pods. All namespaces are considered by default.</p></dd>
+      <dt class="font-semibold"><code>spec.plugins.nodeAffinityScoring.enabled</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. You can enable the node affinity scoring plugin to set architecture preferences for pod placement. When enabled, the scheduler first filters out nodes that do not meet the pod’s requirements. Then, it prioritizes the remaining nodes based on the architecture scores defined in the <code>nodeAffinityScoring.platforms</code> field. The default value is false.</p></dd>
+      <dt class="font-semibold"><code>spec.plugins.nodeAffinityScoring.platforms</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. Defines a list of architectures and their corresponding scores. The scheduler prioritizes nodes for pod placement based on the architecture scores that you set and the scheduling requirements defined in the pod specification.</p></dd>
+      <dt class="font-semibold"><code>spec.plugins.nodeAffinityScoring.platforms.architecture</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the architecture for the node affinity scoring plugin. Accepted values are <code>arm64</code>, <code>amd64</code>, <code>ppc64le</code>, or <code>s390x</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.plugins.nodeAffinityScoring.platforms.weight</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the weight for the architecture you specified in the <code>spec.plugins.nodeAffinityScoring.platforms.architecture</code> parameter. The value must be configured in the range of <code>1</code> (lowest priority) to <code>100</code> (highest priority). The scheduler uses this score to prioritize nodes for pod placement, favoring nodes with architectures that have higher scores.</p></dd>
+      <dt class="font-semibold"><code>spec.plugins.execFormatErrorMonitor.enabled</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. Set this field to <code>true</code> to enable the <code>execFormatErrorMonitor</code> plugin. When enabled, the plugin detects <code>ENOEXEC</code> errors, caused when a pod executes a binary incompatible with the node’s architecture. The plugin generates events in the affected pods, and triggers the <code>ExecFormatErrorsDetected</code> Prometheus alert if one or more errors are found in the last six hours.</p></dd>
+      <dt class="font-semibold"><code>spec.fallbackArchitecture</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. Specifies an architecture where pods are scheduled if the image inspector cannot determine the architecture of the image. Valid values are <code>""</code>, <code>arm64</code>, <code>amd64</code>, <code>ppc64le</code>, or <code>s390x</code>. The value is set to <code>""</code> by default.</p></dd>
+      </dl>
+      <p>In this example, the <code>operator</code> field value is set to <code>DoesNotExist</code>. Therefore, if the <code>key</code> field value (<code>multiarch.openshift.io/exclude-pod-placement</code>) is set as a label in a namespace, the operand does not process the <code>nodeAffinity</code> of the pods in that namespace. Instead, the operand processes the <code>nodeAffinity</code> of the pods in namespaces that do not contain the label.</p>
+      <p>If you want the operand to process the <code>nodeAffinity</code> of the pods only in specific namespaces, you can configure the <code>namespaceSelector</code> as follows:</p>
+      <CodeBlock code={"namespaceSelector:\n  matchExpressions:\n    - key: multiarch.openshift.io/include-pod-placement\n      operator: Exists"} lang="yaml" />
+      <p>In this example, the <code>operator</code> field value is set to <code>Exists</code>. Therefore, the operand processes the <code>nodeAffinity</code> of the pods only in namespaces that contain the <code>multiarch.openshift.io/include-pod-placement</code> label.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>This Operator excludes pods in namespaces starting with <code>kube-</code>. The Operator also excludes pods that are expected to be scheduled on control plane nodes.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="multi-architecture-creating-podplacement-config-using-cli_multiarch-tuning-operator" class="group scroll-mt-20">Creating the ClusterPodPlacementConfig object by using the CLI<a href="#multi-architecture-creating-podplacement-config-using-cli_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To deploy the pod placement operand that enables architecture-aware workload scheduling, you can create the <code>ClusterPodPlacementConfig</code> object by using the OpenShift CLI (<code>oc</code>).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have logged in to <code>oc</code> as a user with <code>cluster-admin</code> privileges.</li>
+      <li>You have installed the Multiarch Tuning Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>ClusterPodPlacementConfig</code> object YAML file:
+      <CodeBlock code={"apiVersion: multiarch.openshift.io/v1beta1\nkind: ClusterPodPlacementConfig\nmetadata:\n  name: cluster\nspec:\n  logVerbosityLevel: Normal\n  namespaceSelector:\n    matchExpressions:\n      - key: multiarch.openshift.io/exclude-pod-placement \n        operator: DoesNotExist\n  plugins:\n    nodeAffinityScoring:\n      enabled: true\n      platforms:\n        - architecture: amd64\n          weight: 100\n        - architecture: arm64\n          weight: 50"} lang="yaml" title="Example ClusterPodPlacementConfig object configuration" />
+      </li>
+      <li>
+      Create the <code>ClusterPodPlacementConfig</code> object by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>"} lang="terminal" />
+      <p>Replace <code>&lt;file_name&gt;</code> with the name of the <code>ClusterPodPlacementConfig</code> object YAML file.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To check that the <code>ClusterPodPlacementConfig</code> object is created, run the following command:
+      <CodeBlock code={"$ oc get clusterpodplacementconfig"} lang="terminal" />
+      <CodeBlock code={"NAME      AGE\ncluster   29s"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h3 id="multi-architecture-creating-podplacement-config-using-web-console_multiarch-tuning-operator" class="group scroll-mt-20">Creating the ClusterPodPlacementConfig object by using the web console<a href="#multi-architecture-creating-podplacement-config-using-web-console_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To deploy the pod placement operand that enables architecture-aware workload scheduling, you can create the <code>ClusterPodPlacementConfig</code> object by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      <li>You have installed the Multiarch Tuning Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Go to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>On the <strong>Installed Operators</strong> page, click <strong>Multiarch Tuning Operator</strong>.</li>
+      <li>Click the <strong>Cluster Pod Placement Config</strong> tab.</li>
+      <li>Select either <strong>Form view</strong> or <strong>YAML view</strong>.</li>
+      <li>Configure the <code>ClusterPodPlacementConfig</code> object parameters.</li>
+      <li>Click <strong>Create</strong>.</li>
+      <li>
+      Optional: If you want to edit the <code>ClusterPodPlacementConfig</code> object, perform the following actions:
+      <ol>
+      <li>Click the <strong>Cluster Pod Placement Config</strong> tab.</li>
+      <li>Select <strong>Edit ClusterPodPlacementConfig</strong> from the options menu.</li>
+      <li>Click <strong>YAML</strong> and edit the <code>ClusterPodPlacementConfig</code> object parameters.</li>
+      <li>Click <strong>Save</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>On the <strong>Cluster Pod Placement Config</strong> page, check that the <code>ClusterPodPlacementConfig</code> object is in the <code>Ready</code> state.</li></ul>
+      <h2 id="multi-arch-creating-namespace-podplacement-config_multiarch-tuning-operator" class="group scroll-mt-20">Creating the namespace-scoped PodPlacementConfig object<a href="#multi-arch-creating-namespace-podplacement-config_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After creating the <code>ClusterPodPlacementConfig</code> object, you can configure pod placement at the namespace level by creating namespace-scoped <code>PodPlacementConfig</code> objects.</p>
+      <p><code>PodPlacementConfig</code> objects modify the pod placement controller’s behavior at the namespace level, and take precedence over the <code>ClusterPodPlacementConfig</code> object.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have created a <code>ClusterPodPlacementConfig</code> object.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Using a text editor, create a YAML file based on the following example and modify the example with your namespace values:
+      <CodeBlock code={"apiVersion: multiarch.openshift.io/v1beta1\nkind: PodPlacementConfig\nmetadata:\n  name: my-namespace-config\n  namespace: my-namespace\nspec:\n  labelSelector:\n      matchExpressions:\n        - key: app\n          operator: In\n          values:\n            - my-label-for-apps-performing-better-on-arm64\n  priority: 100\n  plugins:\n    nodeAffinityScoring:\n      enabled: true\n      platforms:\n        - architecture: amd64\n          weight: 25\n        - architecture: arm64\n          weight: 75"} lang="yaml" title="Example PodPlacementConfig object configuration" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the object name, and namespace name. This parameter is required.</p></dd>
+      <dt class="font-semibold"><code>spec.labelSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optionally specifies a label so that the <code>PodPlacementConfig</code> only applies to a subset of pods in the namespace. If you do not specify this parameter, the <code>PodPlacementConfig</code> applies to all pods in the namespace.</p></dd>
+      <dt class="font-semibold"><code>spec.priority</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optionally specifies a priority in case multiple <code>PodPlacementConfig</code> objects exist in one namespace. Higher priorities take precedence. Valid values are 0-255, and the default value is 0. If you specify multiple <code>PodPlacementConfig</code> objects in one namespace, they must have different priority values.</p></dd>
+      <dt class="font-semibold"><code>spec.plugins.nodeAffinityScoring</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies architecture preferences for pod placement. The controller prioritizes nodes based on the architecture scores, with higher weights taking precedence. If you enable this plugin by setting <code>spec.plugins.nodeAffinityScoring.enabled</code> to <code>true</code>, you must specify at least one platform with an architecture and weight value.</p></dd>
+      <dt class="font-semibold"><code>spec.plugins.nodeAffinityScoring.platforms[]</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies one or more platform configurations, each with a required architecture and weight pair. This parameter is required if <code>spec.plugins.nodeAffinityScoring</code> is present. Valid architecture values are <code>arm64</code>, <code>amd64</code>, <code>ppc64le</code>, and <code>s390x</code>. Valid weight values are 0-100. Each architecture can only be specified once.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the configuration file by running the following command:
+      <CodeBlock code={"$ oc create -f <filename>"} lang="terminal" />
+      <p>Replace <code>&lt;filename&gt;</code> with the name of the <code>PodPlacementConfig</code> configuration file.</p>
+      </li>
+      </ol>
+      <h2 id="multi-architecture-deleting-podplacement-config-using-cli_multiarch-tuning-operator" class="group scroll-mt-20">Deleting the ClusterPodPlacementConfig object by using the CLI<a href="#multi-architecture-deleting-podplacement-config-using-cli_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create only one instance of the <code>ClusterPodPlacementConfig</code> object. If you want to re-create this object, you must first delete the existing instance.</p>
+      <p>You can delete this object by using the OpenShift CLI (<code>oc</code>).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have logged in to <code>oc</code> as a user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Delete the <code>ClusterPodPlacementConfig</code> object by running the following command:
+      <CodeBlock code={"$ oc delete clusterpodplacementconfig cluster"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To check that the <code>ClusterPodPlacementConfig</code> object is deleted, run the following command:
+      <CodeBlock code={"$ oc get clusterpodplacementconfig"} lang="terminal" />
+      <CodeBlock code={"No resources found"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="multi-architecture-deleting-podplacement-config-using-web-console_multiarch-tuning-operator" class="group scroll-mt-20">Deleting the ClusterPodPlacementConfig object by using the web console<a href="#multi-architecture-deleting-podplacement-config-using-web-console_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create only one instance of the <code>ClusterPodPlacementConfig</code> object. If you want to recreate this object, you must first delete the existing instance.</p>
+      <p>You can delete this object by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      <li>You have created the <code>ClusterPodPlacementConfig</code> object.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>On the <strong>Installed Operators</strong> page, click <strong>Multiarch Tuning Operator</strong>.</li>
+      <li>Click the <strong>Cluster Pod Placement Config</strong> tab.</li>
+      <li>Select <strong>Delete ClusterPodPlacementConfig</strong> from the options menu.</li>
+      <li>Click <strong>Delete</strong>.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>On the <strong>Cluster Pod Placement Config</strong> page, check that the <code>ClusterPodPlacementConfig</code> object has been deleted.</li></ul>
+      <h2 id="multi-architecture-uninstalling-using-cli_multiarch-tuning-operator" class="group scroll-mt-20">Uninstalling the Multiarch Tuning Operator by using the CLI<a href="#multi-architecture-uninstalling-using-cli_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can uninstall the Multiarch Tuning Operator by using the OpenShift CLI (<code>oc</code>).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have logged in to <code>oc</code> as a user with <code>cluster-admin</code> privileges.</li>
+      <li>
+      You have deleted the <code>ClusterPodPlacementConfig</code> object.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You must delete the <code>ClusterPodPlacementConfig</code> object before uninstalling the Multiarch Tuning Operator. Uninstalling the Operator without deleting the <code>ClusterPodPlacementConfig</code> object leads to unexpected behavior.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Get the <code>Subscription</code> object name for the Multiarch Tuning Operator by running the following command:
+      <CodeBlock code={"$ oc get subscription.operators.coreos.com -n <namespace>"} lang="terminal" />
+      <p>Replace <code>&lt;namespace&gt;</code> with the name of the namespace where you want to uninstall the Multiarch Tuning Operator.</p>
+      <CodeBlock code={"NAME                                  PACKAGE                     SOURCE             CHANNEL\nopenshift-multiarch-tuning-operator   multiarch-tuning-operator   redhat-operators   stable"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Get the <code>currentCSV</code> value for the Multiarch Tuning Operator by running the following command:
+      <CodeBlock code={"$ oc get subscription.operators.coreos.com <subscription_name> -n <namespace> -o yaml | grep currentCSV"} lang="terminal" />
+      <ul>
+      <li>Replace <code>&lt;subscription_name&gt;</code> with the <code>Subscription</code> object name. For example, <code>openshift-multiarch-tuning-operator</code>.</li>
+      <li>
+      Replace <code>&lt;namespace&gt;</code> with the name of the namespace where you want to uninstall the Multiarch Tuning Operator.
+      <CodeBlock code={"currentCSV: multiarch-tuning-operator.<version>"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Delete the <code>Subscription</code> object by running the following command:
+      <CodeBlock code={"$ oc delete subscription.operators.coreos.com <subscription_name> -n <namespace>"} lang="terminal" />
+      <ul>
+      <li>Replace <code>&lt;subscription_name&gt;</code> with the <code>Subscription</code> object name.</li>
+      <li>
+      Replace <code>&lt;namespace&gt;</code> with the name of the namespace where you want to uninstall the Multiarch Tuning Operator.
+      <CodeBlock code={"subscription.operators.coreos.com \"openshift-multiarch-tuning-operator\" deleted"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Delete the CSV for the Multiarch Tuning Operator in the target namespace by using the <code>currentCSV</code> value by running the following command:
+      <CodeBlock code={"$ oc delete clusterserviceversion <currentCSV_value> -n <namespace>"} lang="terminal" />
+      <ul>
+      <li>Replace <code>&lt;currentCSV_value&gt;</code> with the <code>currentCSV</code> value for the Multiarch Tuning Operator. For example: <code>multiarch-tuning-operator.&lt;version&gt;</code>.</li>
+      <li>
+      Replace <code>&lt;namespace&gt;</code> with the name of the namespace where you want to uninstall the Multiarch Tuning Operator.
+      <CodeBlock code={"clusterserviceversion.operators.coreos.com \"multiarch-tuning-operator.<version>\" deleted"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that the Multiarch Tuning Operator is uninstalled, run the following command:
+      <CodeBlock code={"$ oc get csv -n <namespace>"} lang="terminal" />
+      <p>Replace <code>&lt;namespace&gt;</code> with the name of the namespace where you have uninstalled the Multiarch Tuning Operator.</p>
+      <CodeBlock code={"No resources found in openshift-multiarch-tuning-operator namespace."} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="multi-architecture-uninstalling-using-web-console_multiarch-tuning-operator" class="group scroll-mt-20">Uninstalling the Multiarch Tuning Operator by using the web console<a href="#multi-architecture-uninstalling-using-web-console_multiarch-tuning-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can uninstall the Multiarch Tuning Operator by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> permissions.</li>
+      <li>
+      You have deleted the <code>ClusterPodPlacementConfig</code> object.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You must delete the <code>ClusterPodPlacementConfig</code> object before uninstalling the Multiarch Tuning Operator. Uninstalling the Operator without deleting the <code>ClusterPodPlacementConfig</code> object leads to unexpected behavior.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong>.</li>
+      <li>Enter <strong>Multiarch Tuning Operator</strong> in the search field.</li>
+      <li>Click <strong>Multiarch Tuning Operator</strong>.</li>
+      <li>Click the <strong>Details</strong> tab.</li>
+      <li>From the <strong>Actions</strong> menu, select <strong>Uninstall Operator</strong>.</li>
+      <li>When prompted, click <strong>Uninstall</strong>.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>On the <strong>Installed Operators</strong> page, verify that the <strong>Multiarch Tuning Operator</strong> is not listed.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

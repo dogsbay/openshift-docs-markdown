@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-cluster-enabling-features","text":"Enabling features using feature gates"},{"depth":2,"slug":"additional-resources_nodes-cluster-enabling","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"nodes-cluster-enabling-features","text":"Enabling features using feature gates"},{"depth":2,"slug":"nodes-cluster-enabling-features-about_nodes-cluster-enabling","text":"Understanding feature gates"},{"depth":2,"slug":"nodes-cluster-enabling-features-install_nodes-cluster-enabling","text":"Enabling feature sets at installation"},{"depth":2,"slug":"nodes-cluster-enabling-features-console_nodes-cluster-enabling","text":"Enabling feature sets using the web console"},{"depth":2,"slug":"nodes-cluster-enabling-features-cli_nodes-cluster-enabling","text":"Enabling feature sets using the CLI"},{"depth":2,"slug":"additional-resources_nodes-cluster-enabling","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/clusters"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling features using feature gates {#nodes-cluster-enabling-features}\n\nAs an administrator, you can use feature gates to enable features that are not part of the default set of features so that you can use these non-default features in your cluster.\n\n## Additional resources {#additional-resources_nodes-cluster-enabling}\n\n- [Shared Resources CSI Driver and Build CSI Volumes in OpenShift Builds](/openshift-docs-markdown/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds)\n- [CSI inline ephemeral volumes](/openshift-docs-markdown/storage/container_storage_interface/ephemeral-storage-csi-inline#ephemeral-storage-csi-inline)\n- [Managing machines with the Cluster API](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-about#cluster-api-about)\n- [Disabling the {{ insights_operator }} gather operations](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#disabling-insights-operator-gather_using-insights-operator)\n- [Enabling the {{ insights_operator }} gather operations](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#enabling-insights-operator-gather_using-insights-operator)\n- [Running an {{ insights_operator }} gather operation](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#running-insights-operator-gather_using-insights-operator)\n- [Managing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)\n- [Pod security admission enforcement](/openshift-docs-markdown/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling features using feature gates {#nodes-cluster-enabling-features}\n\nAs an administrator, you can use feature gates to enable features that are not part of the default set of features so that you can use these non-default features in your cluster.\n\n## Understanding feature gates {#nodes-cluster-enabling-features-about_nodes-cluster-enabling}\n\nYou can use the `FeatureGate` custom resource (CR) to enable specific feature sets so that you can use specific non-default features in your cluster.\n\nA feature set is a collection of OpenShift Container Platform features that are not enabled by default.\n\nYou can activate the following feature set by using the `FeatureGate` CR:\n\n- `TechPreviewNoUpgrade`. This feature set is a subset of the current Technology Preview features. This feature set allows you to enable these Technology Preview features on test clusters, where you can fully test them, while leaving the features disabled on production clusters.\n\n  > [!WARNING]\n  > Enabling the `TechPreviewNoUpgrade` feature set on your cluster cannot be undone and prevents minor version updates. You should not enable this feature set on production clusters.\n\n  The following Technology Preview features are enabled by this feature set:\n\n  - `AdditionalStorageConfig`\n  - `AutomatedEtcdBackup`\n  - `AWSClusterHostedDNS`\n  - `AWSClusterHostedDNSInstall`\n  - `AWSDedicatedHosts`\n  - `AWSDualStackInstall`\n  - `AWSEuropeanSovereignCloudInstall`\n  - `AWSServiceLBNetworkSecurityGroup`\n  - `AzureClusterHostedDNSInstall`\n  - `AzureDedicatedHosts`\n  - `AzureDualStackInstall`\n  - `AzureMultiDisk`\n  - `AzureWorkloadIdentity`\n  - `BootcNodeManagement`\n  - `BootImageSkewEnforcement`\n  - `BuildCSIVolumes`\n  - `CBORServingAndStorage`\n  - `ClientsPreferCBOR`\n  - `ClusterAPIInstallIBMCloud`\n  - `ClusterAPIMachineManagement`\n  - `ClusterAPIMachineManagementAWS`\n  - `ClusterAPIMachineManagementAzure`\n  - `ClusterAPIMachineManagementBareMetal`\n  - `ClusterAPIMachineManagementGCP`\n  - `ClusterAPIMachineManagementOpenStack`\n  - `ClusterAPIMachineManagementPowerVS`\n  - `ClusterAPIMachineManagementVSphere`\n  - `ClusterMonitoringConfig`\n  - `ClusterUpdateAcceptRisks`\n  - `ClusterVersionOperatorConfiguration`\n  - `ConfigurablePKI`\n  - `ConsolePluginContentSecurityPolicy`\n  - `CRDCompatibilityRequirementOperator`\n  - `CRIOCredentialProviderConfig`\n  - `DNSNameResolver`\n  - `DRAPartitionableDevices`\n  - `DualReplica`\n  - `DynamicServiceEndpointIBMCloud`\n  - `EtcdBackendQuota`\n  - `EventTTL`\n  - `Example`\n  - `ExternalOIDC`\n  - `ExternalOIDCWithUIDAndExtraClaimMappings`\n  - `ExternalOIDCWithUpstreamParity`\n  - `GatewayAPIWithoutOLM`\n  - `GCPCustomAPIEndpoints`\n  - `GCPCustomAPIEndpointsInstall`\n  - `GCPDualStackInstall`\n  - `HyperShiftOnlyDynamicResourceAllocation`\n  - `ImageModeStatusReporting`\n  - `ImageStreamImportMode`\n  - `IngressControllerDynamicConfigurationManager`\n  - `InsightsConfig`\n  - `InsightsOnDemandDataGather`\n  - `IrreconcilableMachineConfig`\n  - `KMSEncryption`\n  - `KMSv1`\n  - `MachineAPIMigration`\n  - `MachineAPIMigrationAWS`\n  - `MachineAPIMigrationOpenStack`\n  - `ManagedBootImagesCPMS`\n  - `MaxUnavailableStatefulSet`\n  - `MetricsCollectionProfiles`\n  - `MinimumKubeletVersion`\n  - `MixedCPUsAllocation`\n  - `MultiDiskSetup`\n  - `MutableCSINodeAllocatableCount`\n  - `MutatingAdmissionPolicy`\n  - `NewOLM`\n  - `NewOLMBoxCutterRuntime`\n  - `NewOLMCatalogdAPIV1Metas`\n  - `NewOLMConfigAPI`\n  - `NewOLMOwnSingleNamespace`\n  - `NewOLMPreflightPermissionChecks`\n  - `NewOLMWebhookProviderOpenshiftServiceCA`\n  - `NoOverlayMode`\n  - `NoRegistryClusterInstall`\n  - `NutanixMultiSubnets`\n  - `OnPremDNSRecords`\n  - `OpenShiftPodSecurityAdmission`\n  - `OSStreams`\n  - `OVNObservability`\n  - `RouteExternalCertificate`\n  - `SELinuxMount`\n  - `ServiceAccountTokenNodeBinding`\n  - `SignatureStores`\n  - `SigstoreImageVerification`\n  - `SigstoreImageVerificationPKI`\n  - `StoragePerformantSecurityPolicy`\n  - `TLSAdherence`\n  - `UpgradeStatus`\n  - `UserNamespacesPodSecurityStandards`\n  - `UserNamespacesSupport`\n  - `VolumeGroupSnapshot`\n  - `VSphereConfigurableMaxAllowedBlockVolumesPerNode`\n  - `VSphereHostVMGroupZonal`\n  - `VSphereMixedNodeEnv`\n  - `VSphereMultiDisk`\n  - `VSphereMultiNetworks`\n\n## Enabling feature sets at installation {#nodes-cluster-enabling-features-install_nodes-cluster-enabling}\n\nYou can enable feature sets for all nodes in the cluster by editing the `install-config.yaml` file before you deploy the cluster. This allows you to use non-default features in your cluster.\n\n**Prerequisites**\n\n- You have an `install-config.yaml` file.\n\n**Procedure**\n\n1. Use the `featureSet` parameter to specify the name of the feature set you want to enable, such as `TechPreviewNoUpgrade`:\n\n   > [!WARNING]\n   > Enabling the `TechPreviewNoUpgrade` feature set on your cluster cannot be undone and prevents minor version updates. You should not enable this feature set on production clusters.\n\n```yaml {title=\"Sample install-config.yaml file with an enabled feature set\"}\ncompute:\n- hyperthreading: Enabled\n  name: worker\n  platform:\n    aws:\n      rootVolume:\n        iops: 2000\n        size: 500\n        type: io1\n      metadataService:\n        authentication: Optional\n      type: c5.4xlarge\n      zones:\n      - us-west-2c\n  replicas: 3\nfeatureSet: TechPreviewNoUpgrade\n```\n\n1. Save the file and reference it when using the installation program to deploy the cluster.\n\n**Verification**\n\nYou can verify that the feature gates are enabled by looking at the `kubelet.conf` file on a node after the nodes return to the ready state.\n\n1. From the **Administrator** perspective in the web console, navigate to **Compute** -> **Nodes**.\n2. Select a node.\n3. In the **Node details** page, click **Terminal**.\n4. In the terminal window, change your root directory to `/host`:\n\n   ```terminal\n   sh-4.2# chroot /host\n   ```\n5. View the `kubelet.conf` file:\n\n   ```terminal\n   sh-4.2# cat /etc/kubernetes/kubelet.conf\n   ```\n\n   ```terminal {title=\"Sample output\"}\n   # ...\n   featureGates:\n     InsightsOperatorPullingSCA: true,\n     LegacyNodeRoleBehavior: false\n   # ...\n   ```\n\n   The features that are listed as `true` are enabled on your cluster.\n\n   > [!NOTE]\n   > The features listed vary depending upon the OpenShift Container Platform version.\n\n## Enabling feature sets using the web console {#nodes-cluster-enabling-features-console_nodes-cluster-enabling}\n\nYou can use the OpenShift Container Platform web console to enable feature sets for all of the nodes in a cluster by editing the `FeatureGate` custom resource (CR). Completing this task enables non-default features in your cluster.\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, switch to the **Administration** -> **Custom Resource Definitions** page.\n2. On the **Custom Resource Definitions** page, click **FeatureGate**.\n3. On the **Custom Resource Definition Details** page, click the **Instances** tab.\n4. Click the **cluster** feature gate, then click the **YAML** tab.\n5. Edit the **cluster** instance to add specific feature sets:\n\n   > [!WARNING]\n   > Enabling the `TechPreviewNoUpgrade` feature set on your cluster cannot be undone and prevents minor version updates. You should not enable this feature set on production clusters.\n\n   ```yaml {title=\"Sample Feature Gate custom resource\"}\n   apiVersion: config.openshift.io/v1\n   kind: FeatureGate\n   metadata:\n     name: cluster (1)\n   # ...\n   spec:\n     featureSet: TechPreviewNoUpgrade (2)\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the name of the `FeatureGate` CR. You must specify `cluster` for the name.\n\n   `spec.featureSet`\n   :   Specifies the feature set that you want to enable:\n\n       - `TechPreviewNoUpgrade` enables specific Technology Preview features.\n\n   After you save the changes, new machine configs are created, the machine config pools are updated, and scheduling on each node is disabled while the change is being applied.\n\n**Verification**\n\nYou can verify that the feature gates are enabled by looking at the `kubelet.conf` file on a node after the nodes return to the ready state.\n\n1. From the **Administrator** perspective in the web console, navigate to **Compute** -> **Nodes**.\n2. Select a node.\n3. In the **Node details** page, click **Terminal**.\n4. In the terminal window, change your root directory to `/host`:\n\n   ```terminal\n   sh-4.2# chroot /host\n   ```\n5. View the `kubelet.conf` file:\n\n   ```terminal\n   sh-4.2# cat /etc/kubernetes/kubelet.conf\n   ```\n\n   ```terminal {title=\"Sample output\"}\n   # ...\n   featureGates:\n     InsightsOperatorPullingSCA: true,\n     LegacyNodeRoleBehavior: false\n   # ...\n   ```\n\n   The features that are listed as `true` are enabled on your cluster.\n\n   > [!NOTE]\n   > The features listed vary depending upon the OpenShift Container Platform version.\n\n## Enabling feature sets using the CLI {#nodes-cluster-enabling-features-cli_nodes-cluster-enabling}\n\nYou can use the OpenShift CLI (`oc`) to enable feature sets for all of the nodes in a cluster by editing the `FeatureGate` custom resource (CR). Completing this task enables non-default features in your cluster.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Edit the `FeatureGate` CR named `cluster`:\n\n  ```terminal\n  $ oc edit featuregate cluster\n  ```\n\n  > [!WARNING]\n  > Enabling the `TechPreviewNoUpgrade` feature set on your cluster cannot be undone and prevents minor version updates. You should not enable this feature set on production clusters.\n\n  ```yaml {title=\"Sample FeatureGate custom resource\"}\n  apiVersion: config.openshift.io/v1\n  kind: FeatureGate\n  metadata:\n    name: cluster\n  # ...\n  spec:\n    featureSet: TechPreviewNoUpgrade\n  ```\n\n  where:\n\n  `metadata.name`\n  :   Specifies the name of the `FeatureGate` CR. This must be `cluster`.\n\n  `spec.featureSet`\n  :   Specifies the feature set that you want to enable:\n\n      - `TechPreviewNoUpgrade` enables specific Technology Preview features.\n\n  After you save the changes, new machine configs are created, the machine config pools are updated, and scheduling on each node is disabled while the change is being applied.\n\n**Verification**\n\nYou can verify that the feature gates are enabled by looking at the `kubelet.conf` file on a node after the nodes return to the ready state.\n\n1. From the **Administrator** perspective in the web console, navigate to **Compute** -> **Nodes**.\n2. Select a node.\n3. In the **Node details** page, click **Terminal**.\n4. In the terminal window, change your root directory to `/host`:\n\n   ```terminal\n   sh-4.2# chroot /host\n   ```\n5. View the `kubelet.conf` file:\n\n   ```terminal\n   sh-4.2# cat /etc/kubernetes/kubelet.conf\n   ```\n\n   ```terminal {title=\"Sample output\"}\n   # ...\n   featureGates:\n     InsightsOperatorPullingSCA: true,\n     LegacyNodeRoleBehavior: false\n   # ...\n   ```\n\n   The features that are listed as `true` are enabled on your cluster.\n\n   > [!NOTE]\n   > The features listed vary depending upon the OpenShift Container Platform version.\n\n## Additional resources {#additional-resources_nodes-cluster-enabling}\n\n- [Shared Resources CSI Driver and Build CSI Volumes in OpenShift Builds](/openshift-docs-markdown/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds)\n- [CSI inline ephemeral volumes](/openshift-docs-markdown/storage/container_storage_interface/ephemeral-storage-csi-inline#ephemeral-storage-csi-inline)\n- [Managing machines with the Cluster API](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-about#cluster-api-about)\n- [Disabling the Insights Operator gather operations](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#disabling-insights-operator-gather_using-insights-operator)\n- [Enabling the Insights Operator gather operations](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#enabling-insights-operator-gather_using-insights-operator)\n- [Running an Insights Operator gather operation](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#running-insights-operator-gather_using-insights-operator)\n- [Managing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)\n- [Pod security admission enforcement](/openshift-docs-markdown/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,20 +95,278 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-cluster-enabling-features" class="group scroll-mt-20">Enabling features using feature gates<a href="#nodes-cluster-enabling-features" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As an administrator, you can use feature gates to enable features that are not part of the default set of features so that you can use these non-default features in your cluster.</p>
-      <p class="/modules/nodes-cluster-enabling-features-about.md"></p>
-      <p class="/modules/nodes-cluster-enabling-features-install.md"></p>
-      <p class="/modules/nodes-cluster-enabling-features-console.md"></p>
-      <p class="/modules/nodes-cluster-enabling-features-cli.md"></p>
+      <h2 id="nodes-cluster-enabling-features-about_nodes-cluster-enabling" class="group scroll-mt-20">Understanding feature gates<a href="#nodes-cluster-enabling-features-about_nodes-cluster-enabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the <code>FeatureGate</code> custom resource (CR) to enable specific feature sets so that you can use specific non-default features in your cluster.</p>
+      <p>A feature set is a collection of OpenShift Container Platform features that are not enabled by default.</p>
+      <p>You can activate the following feature set by using the <code>FeatureGate</code> CR:</p>
+      <ul>
+      <li>
+      <code>TechPreviewNoUpgrade</code>. This feature set is a subset of the current Technology Preview features. This feature set allows you to enable these Technology Preview features on test clusters, where you can fully test them, while leaving the features disabled on production clusters.
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Enabling the <code>TechPreviewNoUpgrade</code> feature set on your cluster cannot be undone and prevents minor version updates. You should not enable this feature set on production clusters.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following Technology Preview features are enabled by this feature set:</p>
+      <ul>
+      <li><code>AdditionalStorageConfig</code></li>
+      <li><code>AutomatedEtcdBackup</code></li>
+      <li><code>AWSClusterHostedDNS</code></li>
+      <li><code>AWSClusterHostedDNSInstall</code></li>
+      <li><code>AWSDedicatedHosts</code></li>
+      <li><code>AWSDualStackInstall</code></li>
+      <li><code>AWSEuropeanSovereignCloudInstall</code></li>
+      <li><code>AWSServiceLBNetworkSecurityGroup</code></li>
+      <li><code>AzureClusterHostedDNSInstall</code></li>
+      <li><code>AzureDedicatedHosts</code></li>
+      <li><code>AzureDualStackInstall</code></li>
+      <li><code>AzureMultiDisk</code></li>
+      <li><code>AzureWorkloadIdentity</code></li>
+      <li><code>BootcNodeManagement</code></li>
+      <li><code>BootImageSkewEnforcement</code></li>
+      <li><code>BuildCSIVolumes</code></li>
+      <li><code>CBORServingAndStorage</code></li>
+      <li><code>ClientsPreferCBOR</code></li>
+      <li><code>ClusterAPIInstallIBMCloud</code></li>
+      <li><code>ClusterAPIMachineManagement</code></li>
+      <li><code>ClusterAPIMachineManagementAWS</code></li>
+      <li><code>ClusterAPIMachineManagementAzure</code></li>
+      <li><code>ClusterAPIMachineManagementBareMetal</code></li>
+      <li><code>ClusterAPIMachineManagementGCP</code></li>
+      <li><code>ClusterAPIMachineManagementOpenStack</code></li>
+      <li><code>ClusterAPIMachineManagementPowerVS</code></li>
+      <li><code>ClusterAPIMachineManagementVSphere</code></li>
+      <li><code>ClusterMonitoringConfig</code></li>
+      <li><code>ClusterUpdateAcceptRisks</code></li>
+      <li><code>ClusterVersionOperatorConfiguration</code></li>
+      <li><code>ConfigurablePKI</code></li>
+      <li><code>ConsolePluginContentSecurityPolicy</code></li>
+      <li><code>CRDCompatibilityRequirementOperator</code></li>
+      <li><code>CRIOCredentialProviderConfig</code></li>
+      <li><code>DNSNameResolver</code></li>
+      <li><code>DRAPartitionableDevices</code></li>
+      <li><code>DualReplica</code></li>
+      <li><code>DynamicServiceEndpointIBMCloud</code></li>
+      <li><code>EtcdBackendQuota</code></li>
+      <li><code>EventTTL</code></li>
+      <li><code>Example</code></li>
+      <li><code>ExternalOIDC</code></li>
+      <li><code>ExternalOIDCWithUIDAndExtraClaimMappings</code></li>
+      <li><code>ExternalOIDCWithUpstreamParity</code></li>
+      <li><code>GatewayAPIWithoutOLM</code></li>
+      <li><code>GCPCustomAPIEndpoints</code></li>
+      <li><code>GCPCustomAPIEndpointsInstall</code></li>
+      <li><code>GCPDualStackInstall</code></li>
+      <li><code>HyperShiftOnlyDynamicResourceAllocation</code></li>
+      <li><code>ImageModeStatusReporting</code></li>
+      <li><code>ImageStreamImportMode</code></li>
+      <li><code>IngressControllerDynamicConfigurationManager</code></li>
+      <li><code>InsightsConfig</code></li>
+      <li><code>InsightsOnDemandDataGather</code></li>
+      <li><code>IrreconcilableMachineConfig</code></li>
+      <li><code>KMSEncryption</code></li>
+      <li><code>KMSv1</code></li>
+      <li><code>MachineAPIMigration</code></li>
+      <li><code>MachineAPIMigrationAWS</code></li>
+      <li><code>MachineAPIMigrationOpenStack</code></li>
+      <li><code>ManagedBootImagesCPMS</code></li>
+      <li><code>MaxUnavailableStatefulSet</code></li>
+      <li><code>MetricsCollectionProfiles</code></li>
+      <li><code>MinimumKubeletVersion</code></li>
+      <li><code>MixedCPUsAllocation</code></li>
+      <li><code>MultiDiskSetup</code></li>
+      <li><code>MutableCSINodeAllocatableCount</code></li>
+      <li><code>MutatingAdmissionPolicy</code></li>
+      <li><code>NewOLM</code></li>
+      <li><code>NewOLMBoxCutterRuntime</code></li>
+      <li><code>NewOLMCatalogdAPIV1Metas</code></li>
+      <li><code>NewOLMConfigAPI</code></li>
+      <li><code>NewOLMOwnSingleNamespace</code></li>
+      <li><code>NewOLMPreflightPermissionChecks</code></li>
+      <li><code>NewOLMWebhookProviderOpenshiftServiceCA</code></li>
+      <li><code>NoOverlayMode</code></li>
+      <li><code>NoRegistryClusterInstall</code></li>
+      <li><code>NutanixMultiSubnets</code></li>
+      <li><code>OnPremDNSRecords</code></li>
+      <li><code>OpenShiftPodSecurityAdmission</code></li>
+      <li><code>OSStreams</code></li>
+      <li><code>OVNObservability</code></li>
+      <li><code>RouteExternalCertificate</code></li>
+      <li><code>SELinuxMount</code></li>
+      <li><code>ServiceAccountTokenNodeBinding</code></li>
+      <li><code>SignatureStores</code></li>
+      <li><code>SigstoreImageVerification</code></li>
+      <li><code>SigstoreImageVerificationPKI</code></li>
+      <li><code>StoragePerformantSecurityPolicy</code></li>
+      <li><code>TLSAdherence</code></li>
+      <li><code>UpgradeStatus</code></li>
+      <li><code>UserNamespacesPodSecurityStandards</code></li>
+      <li><code>UserNamespacesSupport</code></li>
+      <li><code>VolumeGroupSnapshot</code></li>
+      <li><code>VSphereConfigurableMaxAllowedBlockVolumesPerNode</code></li>
+      <li><code>VSphereHostVMGroupZonal</code></li>
+      <li><code>VSphereMixedNodeEnv</code></li>
+      <li><code>VSphereMultiDisk</code></li>
+      <li><code>VSphereMultiNetworks</code></li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="nodes-cluster-enabling-features-install_nodes-cluster-enabling" class="group scroll-mt-20">Enabling feature sets at installation<a href="#nodes-cluster-enabling-features-install_nodes-cluster-enabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can enable feature sets for all nodes in the cluster by editing the <code>install-config.yaml</code> file before you deploy the cluster. This allows you to use non-default features in your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have an <code>install-config.yaml</code> file.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Use the <code>featureSet</code> parameter to specify the name of the feature set you want to enable, such as <code>TechPreviewNoUpgrade</code>:
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Enabling the <code>TechPreviewNoUpgrade</code> feature set on your cluster cannot be undone and prevents minor version updates. You should not enable this feature set on production clusters.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <CodeBlock code={"compute:\n- hyperthreading: Enabled\n  name: worker\n  platform:\n    aws:\n      rootVolume:\n        iops: 2000\n        size: 500\n        type: io1\n      metadataService:\n        authentication: Optional\n      type: c5.4xlarge\n      zones:\n      - us-west-2c\n  replicas: 3\nfeatureSet: TechPreviewNoUpgrade"} lang="yaml" title="Sample install-config.yaml file with an enabled feature set" />
+      <ol><li>Save the file and reference it when using the installation program to deploy the cluster.</li></ol>
+      <p><strong>Verification</strong></p>
+      <p>You can verify that the feature gates are enabled by looking at the <code>kubelet.conf</code> file on a node after the nodes return to the ready state.</p>
+      <ol>
+      <li>From the <strong>Administrator</strong> perspective in the web console, navigate to <strong>Compute</strong> -&gt; <strong>Nodes</strong>.</li>
+      <li>Select a node.</li>
+      <li>In the <strong>Node details</strong> page, click <strong>Terminal</strong>.</li>
+      <li>
+      In the terminal window, change your root directory to <code>/host</code>:
+      <CodeBlock code={"sh-4.2# chroot /host"} lang="terminal" />
+      </li>
+      <li>
+      View the <code>kubelet.conf</code> file:
+      <CodeBlock code={"sh-4.2# cat /etc/kubernetes/kubelet.conf"} lang="terminal" />
+      <CodeBlock code={"# ...\nfeatureGates:\n  InsightsOperatorPullingSCA: true,\n  LegacyNodeRoleBehavior: false\n# ..."} lang="terminal" title="Sample output" />
+      <p>The features that are listed as <code>true</code> are enabled on your cluster.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The features listed vary depending upon the OpenShift Container Platform version.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="nodes-cluster-enabling-features-console_nodes-cluster-enabling" class="group scroll-mt-20">Enabling feature sets using the web console<a href="#nodes-cluster-enabling-features-console_nodes-cluster-enabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the OpenShift Container Platform web console to enable feature sets for all of the nodes in a cluster by editing the <code>FeatureGate</code> custom resource (CR). Completing this task enables non-default features in your cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform web console, switch to the <strong>Administration</strong> -&gt; <strong>Custom Resource Definitions</strong> page.</li>
+      <li>On the <strong>Custom Resource Definitions</strong> page, click <strong>FeatureGate</strong>.</li>
+      <li>On the <strong>Custom Resource Definition Details</strong> page, click the <strong>Instances</strong> tab.</li>
+      <li>Click the <strong>cluster</strong> feature gate, then click the <strong>YAML</strong> tab.</li>
+      <li>
+      Edit the <strong>cluster</strong> instance to add specific feature sets:
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Enabling the <code>TechPreviewNoUpgrade</code> feature set on your cluster cannot be undone and prevents minor version updates. You should not enable this feature set on production clusters.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: FeatureGate\nmetadata:\n  name: cluster (1)\n# ...\nspec:\n  featureSet: TechPreviewNoUpgrade (2)"} lang="yaml" title="Sample Feature Gate custom resource" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>FeatureGate</code> CR. You must specify <code>cluster</code> for the name.</p></dd>
+      <dt class="font-semibold"><code>spec.featureSet</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the feature set that you want to enable:</p>
+      <ul><li><code>TechPreviewNoUpgrade</code> enables specific Technology Preview features.</li></ul>
+      </dd>
+      </dl>
+      <p>After you save the changes, new machine configs are created, the machine config pools are updated, and scheduling on each node is disabled while the change is being applied.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <p>You can verify that the feature gates are enabled by looking at the <code>kubelet.conf</code> file on a node after the nodes return to the ready state.</p>
+      <ol>
+      <li>From the <strong>Administrator</strong> perspective in the web console, navigate to <strong>Compute</strong> -&gt; <strong>Nodes</strong>.</li>
+      <li>Select a node.</li>
+      <li>In the <strong>Node details</strong> page, click <strong>Terminal</strong>.</li>
+      <li>
+      In the terminal window, change your root directory to <code>/host</code>:
+      <CodeBlock code={"sh-4.2# chroot /host"} lang="terminal" />
+      </li>
+      <li>
+      View the <code>kubelet.conf</code> file:
+      <CodeBlock code={"sh-4.2# cat /etc/kubernetes/kubelet.conf"} lang="terminal" />
+      <CodeBlock code={"# ...\nfeatureGates:\n  InsightsOperatorPullingSCA: true,\n  LegacyNodeRoleBehavior: false\n# ..."} lang="terminal" title="Sample output" />
+      <p>The features that are listed as <code>true</code> are enabled on your cluster.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The features listed vary depending upon the OpenShift Container Platform version.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="nodes-cluster-enabling-features-cli_nodes-cluster-enabling" class="group scroll-mt-20">Enabling feature sets using the CLI<a href="#nodes-cluster-enabling-features-cli_nodes-cluster-enabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the OpenShift CLI (<code>oc</code>) to enable feature sets for all of the nodes in a cluster by editing the <code>FeatureGate</code> custom resource (CR). Completing this task enables non-default features in your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the <code>FeatureGate</code> CR named <code>cluster</code>:
+      <CodeBlock code={"$ oc edit featuregate cluster"} lang="terminal" />
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Enabling the <code>TechPreviewNoUpgrade</code> feature set on your cluster cannot be undone and prevents minor version updates. You should not enable this feature set on production clusters.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: FeatureGate\nmetadata:\n  name: cluster\n# ...\nspec:\n  featureSet: TechPreviewNoUpgrade"} lang="yaml" title="Sample FeatureGate custom resource" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>FeatureGate</code> CR. This must be <code>cluster</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.featureSet</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the feature set that you want to enable:</p>
+      <ul><li><code>TechPreviewNoUpgrade</code> enables specific Technology Preview features.</li></ul>
+      </dd>
+      </dl>
+      <p>After you save the changes, new machine configs are created, the machine config pools are updated, and scheduling on each node is disabled while the change is being applied.</p>
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <p>You can verify that the feature gates are enabled by looking at the <code>kubelet.conf</code> file on a node after the nodes return to the ready state.</p>
+      <ol>
+      <li>From the <strong>Administrator</strong> perspective in the web console, navigate to <strong>Compute</strong> -&gt; <strong>Nodes</strong>.</li>
+      <li>Select a node.</li>
+      <li>In the <strong>Node details</strong> page, click <strong>Terminal</strong>.</li>
+      <li>
+      In the terminal window, change your root directory to <code>/host</code>:
+      <CodeBlock code={"sh-4.2# chroot /host"} lang="terminal" />
+      </li>
+      <li>
+      View the <code>kubelet.conf</code> file:
+      <CodeBlock code={"sh-4.2# cat /etc/kubernetes/kubelet.conf"} lang="terminal" />
+      <CodeBlock code={"# ...\nfeatureGates:\n  InsightsOperatorPullingSCA: true,\n  LegacyNodeRoleBehavior: false\n# ..."} lang="terminal" title="Sample output" />
+      <p>The features that are listed as <code>true</code> are enabled on your cluster.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The features listed vary depending upon the OpenShift Container Platform version.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
       <h2 id="additional-resources_nodes-cluster-enabling" class="group scroll-mt-20">Additional resources<a href="#additional-resources_nodes-cluster-enabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds">Shared Resources CSI Driver and Build CSI Volumes in OpenShift Builds</a></li>
       <li><a href="/openshift-docs-markdown/storage/container_storage_interface/ephemeral-storage-csi-inline#ephemeral-storage-csi-inline">CSI inline ephemeral volumes</a></li>
       <li><a href="/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-about#cluster-api-about">Managing machines with the Cluster API</a></li>
-      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#disabling-insights-operator-gather_using-insights-operator">Disabling the {"{"}{"{"} insights_operator {"}"}{"}"} gather operations</a></li>
-      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#enabling-insights-operator-gather_using-insights-operator">Enabling the {"{"}{"{"} insights_operator {"}"}{"}"} gather operations</a></li>
-      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#running-insights-operator-gather_using-insights-operator">Running an {"{"}{"{"} insights_operator {"}"}{"}"} gather operation</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#disabling-insights-operator-gather_using-insights-operator">Disabling the Insights Operator gather operations</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#enabling-insights-operator-gather_using-insights-operator">Enabling the Insights Operator gather operations</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator#running-insights-operator-gather_using-insights-operator">Running an Insights Operator gather operation</a></li>
       <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage">Managing the default storage class</a></li>
       <li><a href="/openshift-docs-markdown/authentication/understanding-and-managing-pod-security-admission#understanding-and-managing-pod-security-admission">Pod security admission enforcement</a></li>
       </ul>

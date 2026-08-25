@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"troubleshooting-s2i","text":"Troubleshooting the Source-to-Image process"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"troubleshooting-s2i","text":"Troubleshooting the Source-to-Image process"},{"depth":2,"slug":"strategies-for-s2i-troubleshooting_troubleshooting-s2i","text":"Strategies for Source-to-Image troubleshooting"},{"depth":2,"slug":"gathering-s2i-diagnostic-data_troubleshooting-s2i","text":"Gathering Source-to-Image diagnostic data"},{"depth":2,"slug":"gathering-application-diagnostic-data_troubleshooting-s2i","text":"Gathering application diagnostic data to investigate application failures"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/support/troubleshooting/troubleshooting-s2i";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["support","support/troubleshooting"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting the Source-to-Image process {#troubleshooting-s2i}\n\nA cluster administrator can observe the S2I stages to determine where in the S2I process a failure occurred and gather diagnostic data to resolve Source-to-Image issues.\n\n## Additional resources {#_additional_resources}\n\n- [Source-to-Image (S2I) build](/openshift-docs-markdown/cicd/builds/build-strategies#build-strategy-s2i_build-strategies)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-s2i.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting the Source-to-Image process {#troubleshooting-s2i}\n\nA cluster administrator can observe the S2I stages to determine where in the S2I process a failure occurred and gather diagnostic data to resolve Source-to-Image issues.\n\n## Strategies for Source-to-Image troubleshooting {#strategies-for-s2i-troubleshooting_troubleshooting-s2i}\n\nUse Source-to-Image (S2I) to build reproducible, Docker-formatted container images. You can create ready-to-run images by injecting application source code into a container image and assembling a new image. The new image incorporates the base image (the builder) and built source.\n\n**Procedure**\n\n1. To determine where in the S2I process a failure occurs, you can observe the state of the pods relating to each of the following S2I stages:\n\n   1. **During the build configuration stage**, a build pod is used to create an application container image from a base image and application source code.\n   2. **During the deployment configuration stage**, a deployment pod is used to deploy application pods from the application container image that was built in the build configuration stage. The deployment pod also deploys other resources such as services and routes. The deployment configuration begins after the build configuration succeeds.\n   3. **After the deployment pod has started the application pods**, application failures can occur within the running application pods. For instance, an application might not behave as expected even though the application pods are in a `Running` state. In this scenario, you can access running application pods to investigate application failures within a pod.\n2. When troubleshooting S2I issues, follow this strategy:\n\n   1. Monitor build, deployment, and application pod status.\n   2. Determine the stage of the S2I process where the problem occurred.\n   3. Review logs corresponding to the failed stage.\n\n## Gathering Source-to-Image diagnostic data {#gathering-s2i-diagnostic-data_troubleshooting-s2i}\n\nThe S2I tool runs a build pod and a deployment pod in sequence. The deployment pod is responsible for deploying the application pods based on the application container image created in the build stage. Watch build, deployment and application pod status to determine where in the S2I process a failure occurs. Then, focus diagnostic data collection accordingly.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- Your API service is still functional.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Watch the pod status throughout the S2I process to determine at which stage a failure occurs:\n\n   ```terminal\n   $ oc get pods -w\n   ```\n\n   Use the `-w` flag to monitor pods for changes until you quit the command using `Ctrl+C`.\n2. Review a failed pod’s logs for errors.\n\n   - **If the build pod fails**, review the build pod’s logs:\n\n     ```terminal\n     $ oc logs -f pod/<application_name>-<build_number>-build\n     ```\n\n     > [!NOTE]\n     > Alternatively, you can review the build configuration’s logs using `oc logs -f bc/<application_name>`. The build configuration’s logs include the logs from the build pod.\n   - **If the deployment pod fails**, review the deployment pod’s logs:\n\n     ```terminal\n     $ oc logs -f pod/<application_name>-<build_number>-deploy\n     ```\n\n     > [!NOTE]\n     > Alternatively, you can review the deployment configuration’s logs using `oc logs -f dc/<application_name>`. This outputs logs from the deployment pod until the deployment pod completes successfully. The command outputs logs from the application pods if you run it after the deployment pod has completed. After a deployment pod completes, its logs can still be accessed by running `oc logs -f pod/<application_name>-<build_number>-deploy`.\n   - **If an application pod fails, or if an application is not behaving as expected within a running application pod**, review the application pod’s logs:\n\n     ```terminal\n     $ oc logs -f pod/<application_name>-<build_number>-<random_string>\n     ```\n\n## Gathering application diagnostic data to investigate application failures {#gathering-application-diagnostic-data_troubleshooting-s2i}\n\nApplication failures can occur within running application pods. In these situations, you can retrieve diagnostic information with these strategies:\n\n- Review events relating to the application pods.\n- Review the logs from the application pods, including application-specific log files that are not collected by the OpenShift Logging framework.\n- Test application functionality interactively and run diagnostic tools in an application container.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. List events relating to a specific application pod. The following example retrieves events for an application pod named `my-app-1-akdlg`:\n\n   ```terminal\n   $ oc describe pod/my-app-1-akdlg\n   ```\n2. Review logs from an application pod:\n\n   ```terminal\n   $ oc logs -f pod/my-app-1-akdlg\n   ```\n3. Query specific logs within a running application pod. Logs that are sent to stdout are collected by the OpenShift Logging framework and are included in the output of the preceding command. The following query is only required for logs that are not sent to stdout.\n\n   1. If an application log can be accessed without root privileges within a pod, concatenate the log file as follows:\n\n      ```terminal\n      $ oc exec my-app-1-akdlg -- cat /var/log/my-application.log\n      ```\n   2. If root access is required to view an application log, you can start a debug container with root privileges and then view the log file from within the container. Start the debug container from the project’s `DeploymentConfig` object. Pod users typically run with non-root privileges, but running troubleshooting pods with temporary root privileges can be useful during issue investigation:\n\n      ```terminal\n      $ oc debug dc/my-deployment-configuration --as-root -- cat /var/log/my-application.log\n      ```\n\n      > [!NOTE]\n      > You can access an interactive shell with root access within the debug pod if you run `oc debug dc/<deployment_configuration> --as-root` without appending `-- <command>`.\n4. Test application functionality interactively and run diagnostic tools, in an application container with an interactive shell.\n\n   1. Start an interactive shell on the application container:\n\n      ```terminal\n      $ oc exec -it my-app-1-akdlg /bin/bash\n      ```\n   2. Test application functionality interactively from within the shell. For example, you can run the container’s entry point command and observe the results. Then, test changes from the command line directly, before updating the source code and rebuilding the application container through the S2I process.\n   3. Run diagnostic binaries available within the container.\n\n      > [!NOTE]\n      > Root privileges are required to run some diagnostic binaries. In these situations you can start a debug pod with root access, based on a problematic pod’s `DeploymentConfig` object, by running `oc debug dc/<deployment_configuration> --as-root`. Then, you can run diagnostic binaries as root from within the debug pod.\n5. If diagnostic binaries are not available within a container, you can run a host’s diagnostic binaries within a container’s namespace by using `nsenter`. The following example runs `ip ad` within a container’s namespace, using the host`s `ip\\` binary.\n\n   1. Enter into a debug session on the target node. This step instantiates a debug pod called `<node_name>-debug`:\n\n      ```terminal\n      $ oc debug node/my-cluster-node\n      ```\n   2. Set `/host` as the root directory within the debug shell. The debug pod mounts the host’s root file system in `/host` within the pod. By changing the root directory to `/host`, you can run binaries contained in the host’s executable paths:\n\n      ```terminal\n      # chroot /host\n      ```\n\n      > [!NOTE]\n      > OpenShift Container Platform 4.22 cluster nodes running Red Hat Enterprise Linux CoreOS (RHCOS) are immutable and rely on Operators to apply cluster changes. Accessing cluster nodes by using SSH is not recommended. However, if the OpenShift Container Platform API is not available, or the kubelet is not properly functioning on the target node, `oc` operations will be impacted. In such situations, it is possible to access nodes using `ssh core@<node>.<cluster_name>.<base_domain>` instead.\n   3. Determine the target container ID:\n\n      ```terminal\n      # crictl ps\n      ```\n   4. Determine the container’s process ID. In this example, the target container ID is `a7fe32346b120`:\n\n      ```terminal\n      # crictl inspect a7fe32346b120 --output yaml | grep 'pid:' | awk '{print $2}'\n      ```\n   5. Run `ip ad` within the container’s namespace, using the host’s `ip` binary. This example uses `31150` as the container’s process ID. The `nsenter` command enters the namespace of a target process and runs a command in its namespace. Because the target process in this example is a container’s process ID, the `ip ad` command is run in the container’s namespace from the host:\n\n      ```terminal\n      # nsenter -n -t 31150 -- ip ad\n      ```\n\n      > [!NOTE]\n      > Running a host’s diagnostic binaries within a container’s namespace is only possible if you are using a privileged container such as a debug node.\n\n## Additional resources {#_additional_resources}\n\n- [Source-to-Image (S2I) build](/openshift-docs-markdown/cicd/builds/build-strategies#build-strategy-s2i_build-strategies)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-s2i.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,171 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="troubleshooting-s2i" class="group scroll-mt-20">Troubleshooting the Source-to-Image process<a href="#troubleshooting-s2i" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>A cluster administrator can observe the S2I stages to determine where in the S2I process a failure occurred and gather diagnostic data to resolve Source-to-Image issues.</p>
-      <p class="/modules/strategies-for-s2i-troubleshooting.md"></p>
-      <p class="/modules/gathering-s2i-diagnostic-data.md"></p>
-      <p class="/modules/gathering-application-diagnostic-data.md"></p>
+      <h2 id="strategies-for-s2i-troubleshooting_troubleshooting-s2i" class="group scroll-mt-20">Strategies for Source-to-Image troubleshooting<a href="#strategies-for-s2i-troubleshooting_troubleshooting-s2i" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use Source-to-Image (S2I) to build reproducible, Docker-formatted container images. You can create ready-to-run images by injecting application source code into a container image and assembling a new image. The new image incorporates the base image (the builder) and built source.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To determine where in the S2I process a failure occurs, you can observe the state of the pods relating to each of the following S2I stages:
+      <ol>
+      <li><strong>During the build configuration stage</strong>, a build pod is used to create an application container image from a base image and application source code.</li>
+      <li><strong>During the deployment configuration stage</strong>, a deployment pod is used to deploy application pods from the application container image that was built in the build configuration stage. The deployment pod also deploys other resources such as services and routes. The deployment configuration begins after the build configuration succeeds.</li>
+      <li><strong>After the deployment pod has started the application pods</strong>, application failures can occur within the running application pods. For instance, an application might not behave as expected even though the application pods are in a <code>Running</code> state. In this scenario, you can access running application pods to investigate application failures within a pod.</li>
+      </ol>
+      </li>
+      <li>
+      When troubleshooting S2I issues, follow this strategy:
+      <ol>
+      <li>Monitor build, deployment, and application pod status.</li>
+      <li>Determine the stage of the S2I process where the problem occurred.</li>
+      <li>Review logs corresponding to the failed stage.</li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="gathering-s2i-diagnostic-data_troubleshooting-s2i" class="group scroll-mt-20">Gathering Source-to-Image diagnostic data<a href="#gathering-s2i-diagnostic-data_troubleshooting-s2i" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The S2I tool runs a build pod and a deployment pod in sequence. The deployment pod is responsible for deploying the application pods based on the application container image created in the build stage. Watch build, deployment and application pod status to determine where in the S2I process a failure occurs. Then, focus diagnostic data collection accordingly.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>Your API service is still functional.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Watch the pod status throughout the S2I process to determine at which stage a failure occurs:
+      <CodeBlock code={"$ oc get pods -w"} lang="terminal" />
+      <p>Use the <code>-w</code> flag to monitor pods for changes until you quit the command using <code>Ctrl+C</code>.</p>
+      </li>
+      <li>
+      Review a failed pod’s logs for errors.
+      <ul>
+      <li>
+      <strong>If the build pod fails</strong>, review the build pod’s logs:
+      <CodeBlock code={"$ oc logs -f pod/<application_name>-<build_number>-build"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Alternatively, you can review the build configuration’s logs using <code>oc logs -f bc/&lt;application_name&gt;</code>. The build configuration’s logs include the logs from the build pod.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      <strong>If the deployment pod fails</strong>, review the deployment pod’s logs:
+      <CodeBlock code={"$ oc logs -f pod/<application_name>-<build_number>-deploy"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Alternatively, you can review the deployment configuration’s logs using <code>oc logs -f dc/&lt;application_name&gt;</code>. This outputs logs from the deployment pod until the deployment pod completes successfully. The command outputs logs from the application pods if you run it after the deployment pod has completed. After a deployment pod completes, its logs can still be accessed by running <code>oc logs -f pod/&lt;application_name&gt;-&lt;build_number&gt;-deploy</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      <strong>If an application pod fails, or if an application is not behaving as expected within a running application pod</strong>, review the application pod’s logs:
+      <CodeBlock code={"$ oc logs -f pod/<application_name>-<build_number>-<random_string>"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <h2 id="gathering-application-diagnostic-data_troubleshooting-s2i" class="group scroll-mt-20">Gathering application diagnostic data to investigate application failures<a href="#gathering-application-diagnostic-data_troubleshooting-s2i" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Application failures can occur within running application pods. In these situations, you can retrieve diagnostic information with these strategies:</p>
+      <ul>
+      <li>Review events relating to the application pods.</li>
+      <li>Review the logs from the application pods, including application-specific log files that are not collected by the OpenShift Logging framework.</li>
+      <li>Test application functionality interactively and run diagnostic tools in an application container.</li>
+      </ul>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      List events relating to a specific application pod. The following example retrieves events for an application pod named <code>my-app-1-akdlg</code>:
+      <CodeBlock code={"$ oc describe pod/my-app-1-akdlg"} lang="terminal" />
+      </li>
+      <li>
+      Review logs from an application pod:
+      <CodeBlock code={"$ oc logs -f pod/my-app-1-akdlg"} lang="terminal" />
+      </li>
+      <li>
+      Query specific logs within a running application pod. Logs that are sent to stdout are collected by the OpenShift Logging framework and are included in the output of the preceding command. The following query is only required for logs that are not sent to stdout.
+      <ol>
+      <li>
+      If an application log can be accessed without root privileges within a pod, concatenate the log file as follows:
+      <CodeBlock code={"$ oc exec my-app-1-akdlg -- cat /var/log/my-application.log"} lang="terminal" />
+      </li>
+      <li>
+      If root access is required to view an application log, you can start a debug container with root privileges and then view the log file from within the container. Start the debug container from the project’s <code>DeploymentConfig</code> object. Pod users typically run with non-root privileges, but running troubleshooting pods with temporary root privileges can be useful during issue investigation:
+      <CodeBlock code={"$ oc debug dc/my-deployment-configuration --as-root -- cat /var/log/my-application.log"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can access an interactive shell with root access within the debug pod if you run <code>oc debug dc/&lt;deployment_configuration&gt; --as-root</code> without appending <code>-- &lt;command&gt;</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Test application functionality interactively and run diagnostic tools, in an application container with an interactive shell.
+      <ol>
+      <li>
+      Start an interactive shell on the application container:
+      <CodeBlock code={"$ oc exec -it my-app-1-akdlg /bin/bash"} lang="terminal" />
+      </li>
+      <li>Test application functionality interactively from within the shell. For example, you can run the container’s entry point command and observe the results. Then, test changes from the command line directly, before updating the source code and rebuilding the application container through the S2I process.</li>
+      <li>
+      Run diagnostic binaries available within the container.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Root privileges are required to run some diagnostic binaries. In these situations you can start a debug pod with root access, based on a problematic pod’s <code>DeploymentConfig</code> object, by running <code>oc debug dc/&lt;deployment_configuration&gt; --as-root</code>. Then, you can run diagnostic binaries as root from within the debug pod.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      <li>
+      If diagnostic binaries are not available within a container, you can run a host’s diagnostic binaries within a container’s namespace by using <code>nsenter</code>. The following example runs <code>ip ad</code> within a container’s namespace, using the host<code>s </code>ip` binary.
+      <ol>
+      <li>
+      Enter into a debug session on the target node. This step instantiates a debug pod called <code>&lt;node_name&gt;-debug</code>:
+      <CodeBlock code={"$ oc debug node/my-cluster-node"} lang="terminal" />
+      </li>
+      <li>
+      Set <code>/host</code> as the root directory within the debug shell. The debug pod mounts the host’s root file system in <code>/host</code> within the pod. By changing the root directory to <code>/host</code>, you can run binaries contained in the host’s executable paths:
+      <CodeBlock code={"# chroot /host"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>OpenShift Container Platform 4.22 cluster nodes running Red Hat Enterprise Linux CoreOS (RHCOS) are immutable and rely on Operators to apply cluster changes. Accessing cluster nodes by using SSH is not recommended. However, if the OpenShift Container Platform API is not available, or the kubelet is not properly functioning on the target node, <code>oc</code> operations will be impacted. In such situations, it is possible to access nodes using <code>ssh core@&lt;node&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> instead.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Determine the target container ID:
+      <CodeBlock code={"# crictl ps"} lang="terminal" />
+      </li>
+      <li>
+      Determine the container’s process ID. In this example, the target container ID is <code>a7fe32346b120</code>:
+      <CodeBlock code={"# crictl inspect a7fe32346b120 --output yaml | grep 'pid:' | awk '{print $2}'"} lang="terminal" />
+      </li>
+      <li>
+      Run <code>ip ad</code> within the container’s namespace, using the host’s <code>ip</code> binary. This example uses <code>31150</code> as the container’s process ID. The <code>nsenter</code> command enters the namespace of a target process and runs a command in its namespace. Because the target process in this example is a container’s process ID, the <code>ip ad</code> command is run in the container’s namespace from the host:
+      <CodeBlock code={"# nsenter -n -t 31150 -- ip ad"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Running a host’s diagnostic binaries within a container’s namespace is only possible if you are using a privileged container such as a debug node.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      </ol>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/cicd/builds/build-strategies#build-strategy-s2i_build-strategies">Source-to-Image (S2I) build</a></li></ul>
     </article>

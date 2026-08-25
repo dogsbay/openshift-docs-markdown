@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"creating-machineset-ibm-power-vs","text":"Creating a compute machine set on {{ ibm_power_server_title }}"}];
+const headings = [{"depth":1,"slug":"creating-machineset-ibm-power-vs","text":"Creating a compute machine set on IBM Power Virtual Server"},{"depth":2,"slug":"machineset-yaml-ibm-power-vs_creating-machineset-ibm-power-vs","text":"Sample YAML for a compute machine set custom resource on IBM Power Virtual Server"},{"depth":2,"slug":"machineset-creating_creating-machineset-ibm-power-vs","text":"Creating a compute machine set"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-ibm-power-vs";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Creating a compute machine set on {{ ibm_power_server_title }}";
-const description = "Create compute machine sets in your OpenShift Container Platform cluster on {{ ibm_power_server_name }} to perform specific tasks. For example, you might…" || undefined;
+const description = "Create compute machine sets in your OpenShift Container Platform cluster on IBM Power(R) Virtual Server to perform specific tasks. For example, you might…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["machine_management","machine_management/creating_machines
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a compute machine set on {{ ibm_power_server_title }} {#creating-machineset-ibm-power-vs}\n\nCreate compute machine sets in your OpenShift Container Platform cluster on {{ ibm_power_server_name }} to perform specific tasks. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines. Moving supporting workloads to dedicated machines helps ensure that your cluster resources are allocated efficiently.\n\n**Additional resources**\n\n- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)\n\n**Additional resources**\n\n- [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-ibm-power-vs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a compute machine set on IBM Power Virtual Server {#creating-machineset-ibm-power-vs}\n\nCreate compute machine sets in your OpenShift Container Platform cluster on IBM Power(R) Virtual Server to perform specific tasks. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines. Moving supporting workloads to dedicated machines helps ensure that your cluster resources are allocated efficiently.\n\n> [!IMPORTANT]\n> You can use the advanced machine management and scaling capabilities only in clusters where the Machine API is operational. Clusters with user-provisioned infrastructure require additional validation and configuration to use the Machine API.\n>\n> Clusters with the infrastructure platform type `none` cannot use the Machine API. This limitation applies even if the compute machines that are attached to the cluster are installed on a platform that supports the feature. This parameter cannot be changed after installation.\n>\n> To view the platform type for your cluster, run the following command:\n>\n> ```terminal\n> $ oc get infrastructure cluster -o jsonpath='{.status.platform}'\n> ```\n\n## Sample YAML for a compute machine set custom resource on IBM Power Virtual Server {#machineset-yaml-ibm-power-vs_creating-machineset-ibm-power-vs}\n\nYou can use the sample YAML file to help automate provisioning and to ensure scaling and scheduling work, as required. The sample YAML file defines a compute machine set that runs in a specified IBM Power(R) Virtual Server zone in a region and creates nodes that are labeled with `node-role.kubernetes.io/<role>: \"\"`.\n\nIn the sample, `<infrastructure_id>` is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and `<role>` is the node label to add.\n\n```yaml\napiVersion: machine.openshift.io/v1beta1\nkind: MachineSet\nmetadata:\n  labels:\n    machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n    machine.openshift.io/cluster-api-machine-role: <role>\n    machine.openshift.io/cluster-api-machine-type: <role>\n  name: <infrastructure_id>-<role>-<region>\n  namespace: openshift-machine-api\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>\n  template:\n    metadata:\n      labels:\n        machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n        machine.openshift.io/cluster-api-machine-role: <role>\n        machine.openshift.io/cluster-api-machine-type: <role>\n        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>\n    spec:\n      metadata:\n        labels:\n          node-role.kubernetes.io/<role>: \"\"\n      providerSpec:\n        value:\n          apiVersion: machine.openshift.io/v1\n          credentialsSecret:\n            name: powervs-credentials\n          image:\n            name: rhcos-<infrastructure_id>\n            type: Name\n          keyPairName: <infrastructure_id>-key\n          kind: PowerVSMachineProviderConfig\n          memoryGiB: 32\n          network:\n            regex: ^DHCPSERVER[0-9a-z]{32}_Private$\n            type: RegEx\n          processorType: Shared\n          processors: \"0.5\"\n          serviceInstance:\n            id: <ibm_power_vs_service_instance_id>\n            type: ID\n          systemType: s922\n          userDataSecret:\n            name: <role>-user-data\n```\n\nwhere:\n\n`<infrastructure_id>`\n:   Specifies the infrastructure ID that is based on the cluster ID that you set when you provisioned the cluster. If you have the OpenShift CLI installed, you can obtain the infrastructure ID by running the following command:\n\n    ```terminal\n    $ oc get -o jsonpath='{.status.infrastructureName}{\"\\n\"}' infrastructure cluster\n    ```\n\n`<role>`\n:   Specifies the node label to add.\n\n`<infrastructure_id>-<role>-<region>`\n:   Specifies the infrastructure ID, node label, and region.\n\n`rhcos-<infrastructure_id>`\n:   Specifies the custom Red Hat Enterprise Linux CoreOS (RHCOS) image to use as a boot image for your nodes. You should use the use the latest image when adding a new machine set.\n\n`<ibm_power_vs_service_instance_id>`\n:   Specifies the infrastructure ID within your region to place machines on.\n\n**Additional resources**\n\n- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)\n\n## Creating a compute machine set {#machineset-creating_creating-machineset-ibm-power-vs}\n\nTo dynamically manage machine compute resources, you can create your own compute machine sets in addition to the compute machine sets created by the installation program. Use the OpenShift Container Platform CLI to automate node provisioning.\n\n**Prerequisites**\n\n- Deploy an OpenShift Container Platform cluster.\n- Install the OpenShift CLI (`oc`).\n- Log in to `oc` as a user with `cluster-admin` permission.\n\n**Procedure**\n\n1. Create a new YAML file that contains the compute machine set custom resource (CR) sample and is named `<file_name>.yaml`.\n\n   Ensure that you set the `<clusterID>` and `<role>` parameter values.\n2. Optional: If you are not sure which value to set for a specific field, you can check an existing compute machine set from your cluster.\n\n   1. To list the compute machine sets in your cluster, run the following command:\n\n      ```terminal\n      $ oc get machinesets -n openshift-machine-api\n      ```\n\n      The following is example output:\n\n      ```terminal\n      NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE\n      agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m\n      agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m\n      agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m\n      agl030519-vplxk-worker-us-east-1d   0         0                             55m\n      agl030519-vplxk-worker-us-east-1e   0         0                             55m\n      agl030519-vplxk-worker-us-east-1f   0         0                             55m\n      ```\n   2. To view values of a specific compute machine set custom resource (CR), run the following command:\n\n      ```terminal\n      $ oc get machineset <machineset_name> \\\n        -n openshift-machine-api -o yaml\n      ```\n\n      The following is example output:\n\n      ```yaml\n      apiVersion: machine.openshift.io/v1beta1\n      kind: MachineSet\n      metadata:\n        labels:\n          machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n        name: <infrastructure_id>-<role>\n        namespace: openshift-machine-api\n      spec:\n        replicas: 1\n        selector:\n          matchLabels:\n            machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n            machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>\n        template:\n          metadata:\n            labels:\n              machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n              machine.openshift.io/cluster-api-machine-role: <role>\n              machine.openshift.io/cluster-api-machine-type: <role>\n              machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>\n          spec:\n            providerSpec:\n              ...\n      ```\n\n      where:\n\n      `metadata.labels.machine.openshift.io/cluster-api-cluster`\n      :   Specifies the cluster infrastructure ID.\n\n      `metadata.labels.name`\n      :   Specifies a default node label.\n\n      > [!NOTE]\n      > For clusters that have user-provisioned infrastructure, a compute machine set can only create `worker` and `infra` type machines.\n\n      `spec.template.metadata.spec.providerSpec`\n      :   Specifies the values of the compute machine set CR. The values are platform-specific. For more information about `<providerSpec>` parameters in the CR, see the sample compute machine set CR configuration for your provider.\n3. Create a `MachineSet` CR by running the following command:\n\n   ```terminal\n   $ oc create -f <file_name>.yaml\n   ```\n\n**Verification**\n\n- View the list of compute machine sets by running the following command:\n\n  ```terminal\n  $ oc get machineset -n openshift-machine-api\n  ```\n\n  The following is example output:\n\n  ```terminal\n\n  ```\n\n{%- if win or post_aws_zones %} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {%- if win %} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {% endif %} {% if post_aws_zones %} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {%- endif %} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {% endif %} {% if not (win or post_aws_zones) %} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {%- endif %} \\`\\`\\`\n\n```\nWhen the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again.\n```\n\n**Additional resources**\n\n- [Cluster autoscaler resource definition](/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-ibm-power-vs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,13 +94,103 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="creating-machineset-ibm-power-vs" class="group scroll-mt-20">Creating a compute machine set on {"{"}{"{"} ibm_power_server_title {"}"}{"}"}<a href="#creating-machineset-ibm-power-vs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Create compute machine sets in your OpenShift Container Platform cluster on {"{"}{"{"} ibm_power_server_name {"}"}{"}"} to perform specific tasks. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines. Moving supporting workloads to dedicated machines helps ensure that your cluster resources are allocated efficiently.</p>
-      <p class="/snippets/machine-user-provisioned-limitations.md"></p>
-      <p class="/modules/machineset-yaml-ibm-power-vs.md"></p>
+      <h1 id="creating-machineset-ibm-power-vs" class="group scroll-mt-20">Creating a compute machine set on IBM Power Virtual Server<a href="#creating-machineset-ibm-power-vs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Create compute machine sets in your OpenShift Container Platform cluster on IBM Power(R) Virtual Server to perform specific tasks. For example, you might create infrastructure machine sets and related machines so that you can move supporting workloads to the new machines. Moving supporting workloads to dedicated machines helps ensure that your cluster resources are allocated efficiently.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You can use the advanced machine management and scaling capabilities only in clusters where the Machine API is operational. Clusters with user-provisioned infrastructure require additional validation and configuration to use the Machine API.</p>
+          <p>Clusters with the infrastructure platform type <code>none</code> cannot use the Machine API. This limitation applies even if the compute machines that are attached to the cluster are installed on a platform that supports the feature. This parameter cannot be changed after installation.</p>
+          <p>To view the platform type for your cluster, run the following command:</p>
+          <CodeBlock code={"$ oc get infrastructure cluster -o jsonpath='{.status.platform}'"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      <h2 id="machineset-yaml-ibm-power-vs_creating-machineset-ibm-power-vs" class="group scroll-mt-20">Sample YAML for a compute machine set custom resource on IBM Power Virtual Server<a href="#machineset-yaml-ibm-power-vs_creating-machineset-ibm-power-vs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the sample YAML file to help automate provisioning and to ensure scaling and scheduling work, as required. The sample YAML file defines a compute machine set that runs in a specified IBM Power(R) Virtual Server zone in a region and creates nodes that are labeled with <code>node-role.kubernetes.io/&lt;role&gt;: ""</code>.</p>
+      <p>In the sample, <code>&lt;infrastructure_id&gt;</code> is the infrastructure ID label that is based on the cluster ID that you set when you provisioned the cluster, and <code>&lt;role&gt;</code> is the node label to add.</p>
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: MachineSet\nmetadata:\n  labels:\n    machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n    machine.openshift.io/cluster-api-machine-role: <role>\n    machine.openshift.io/cluster-api-machine-type: <role>\n  name: <infrastructure_id>-<role>-<region>\n  namespace: openshift-machine-api\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>\n  template:\n    metadata:\n      labels:\n        machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n        machine.openshift.io/cluster-api-machine-role: <role>\n        machine.openshift.io/cluster-api-machine-type: <role>\n        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<region>\n    spec:\n      metadata:\n        labels:\n          node-role.kubernetes.io/<role>: \"\"\n      providerSpec:\n        value:\n          apiVersion: machine.openshift.io/v1\n          credentialsSecret:\n            name: powervs-credentials\n          image:\n            name: rhcos-<infrastructure_id>\n            type: Name\n          keyPairName: <infrastructure_id>-key\n          kind: PowerVSMachineProviderConfig\n          memoryGiB: 32\n          network:\n            regex: ^DHCPSERVER[0-9a-z]{32}_Private$\n            type: RegEx\n          processorType: Shared\n          processors: \"0.5\"\n          serviceInstance:\n            id: <ibm_power_vs_service_instance_id>\n            type: ID\n          systemType: s922\n          userDataSecret:\n            name: <role>-user-data"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;infrastructure_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the infrastructure ID that is based on the cluster ID that you set when you provisioned the cluster. If you have the OpenShift CLI installed, you can obtain the infrastructure ID by running the following command:</p>
+      <CodeBlock code={"$ oc get -o jsonpath='{.status.infrastructureName}{\"\\n\"}' infrastructure cluster"} lang="terminal" />
+      </dd>
+      <dt class="font-semibold"><code>&lt;role&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node label to add.</p></dd>
+      <dt class="font-semibold"><code>&lt;infrastructure_id&gt;-&lt;role&gt;-&lt;region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the infrastructure ID, node label, and region.</p></dd>
+      <dt class="font-semibold"><code>rhcos-&lt;infrastructure_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the custom Red Hat Enterprise Linux CoreOS (RHCOS) image to use as a boot image for your nodes. You should use the use the latest image when adding a new machine set.</p></dd>
+      <dt class="font-semibold"><code>&lt;ibm_power_vs_service_instance_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the infrastructure ID within your region to place machines on.</p></dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual">Manually updating the boot image</a></li></ul>
+      <h2 id="machineset-creating_creating-machineset-ibm-power-vs" class="group scroll-mt-20">Creating a compute machine set<a href="#machineset-creating_creating-machineset-ibm-power-vs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To dynamically manage machine compute resources, you can create your own compute machine sets in addition to the compute machine sets created by the installation program. Use the OpenShift Container Platform CLI to automate node provisioning.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Deploy an OpenShift Container Platform cluster.</li>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Log in to <code>oc</code> as a user with <code>cluster-admin</code> permission.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a new YAML file that contains the compute machine set custom resource (CR) sample and is named <code>&lt;file_name&gt;.yaml</code>.
+      <p>Ensure that you set the <code>&lt;clusterID&gt;</code> and <code>&lt;role&gt;</code> parameter values.</p>
+      </li>
+      <li>
+      Optional: If you are not sure which value to set for a specific field, you can check an existing compute machine set from your cluster.
+      <ol>
+      <li>
+      To list the compute machine sets in your cluster, run the following command:
+      <CodeBlock code={"$ oc get machinesets -n openshift-machine-api"} lang="terminal" />
+      <p>The following is example output:</p>
+      <CodeBlock code={"NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE\nagl030519-vplxk-worker-us-east-1a   1         1         1       1           55m\nagl030519-vplxk-worker-us-east-1b   1         1         1       1           55m\nagl030519-vplxk-worker-us-east-1c   1         1         1       1           55m\nagl030519-vplxk-worker-us-east-1d   0         0                             55m\nagl030519-vplxk-worker-us-east-1e   0         0                             55m\nagl030519-vplxk-worker-us-east-1f   0         0                             55m"} lang="terminal" />
+      </li>
+      <li>
+      To view values of a specific compute machine set custom resource (CR), run the following command:
+      <CodeBlock code={"$ oc get machineset <machineset_name> \\\n  -n openshift-machine-api -o yaml"} lang="terminal" />
+      <p>The following is example output:</p>
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: MachineSet\nmetadata:\n  labels:\n    machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n  name: <infrastructure_id>-<role>\n  namespace: openshift-machine-api\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>\n  template:\n    metadata:\n      labels:\n        machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n        machine.openshift.io/cluster-api-machine-role: <role>\n        machine.openshift.io/cluster-api-machine-type: <role>\n        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>\n    spec:\n      providerSpec:\n        ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.labels.machine.openshift.io/cluster-api-cluster</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the cluster infrastructure ID.</p></dd>
+      <dt class="font-semibold"><code>metadata.labels.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a default node label.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For clusters that have user-provisioned infrastructure, a compute machine set can only create <code>worker</code> and <code>infra</code> type machines.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.template.metadata.spec.providerSpec</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the values of the compute machine set CR. The values are platform-specific. For more information about <code>&lt;providerSpec&gt;</code> parameters in the CR, see the sample compute machine set CR configuration for your provider.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a <code>MachineSet</code> CR by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      View the list of compute machine sets by running the following command:
+      <CodeBlock code={"$ oc get machineset -n openshift-machine-api"} lang="terminal" />
+      <p>The following is example output:</p>
+      <CodeBlock code={""} lang="terminal" />
+      </li>
+      </ul>
+      <p>{"{"}%- if win or post_aws_zones %{"}"} NAME                                       DESIRED   CURRENT   READY   AVAILABLE   AGE {"{"}%- if win %{"}"} agl030519-vplxk-windows-worker-us-east-1a  1         1         1       1           11m {"{"}% endif %{"}"} {"{"}% if post_aws_zones %{"}"} agl030519-vplxk-edge-us-east-1-nyc-1a      1         1         1       1           11m {"{"}%- endif %{"}"} agl030519-vplxk-worker-us-east-1a          1         1         1       1           55m agl030519-vplxk-worker-us-east-1b          1         1         1       1           55m agl030519-vplxk-worker-us-east-1c          1         1         1       1           55m agl030519-vplxk-worker-us-east-1d          0         0                             55m agl030519-vplxk-worker-us-east-1e          0         0                             55m agl030519-vplxk-worker-us-east-1f          0         0                             55m {"{"}% endif %{"}"} {"{"}% if not (win or post_aws_zones) %{"}"} NAME                                DESIRED   CURRENT   READY   AVAILABLE   AGE agl030519-vplxk-infra-us-east-1a    1         1         1       1           11m agl030519-vplxk-worker-us-east-1a   1         1         1       1           55m agl030519-vplxk-worker-us-east-1b   1         1         1       1           55m agl030519-vplxk-worker-us-east-1c   1         1         1       1           55m agl030519-vplxk-worker-us-east-1d   0         0                             55m agl030519-vplxk-worker-us-east-1e   0         0                             55m agl030519-vplxk-worker-us-east-1f   0         0                             55m {"{"}%- endif %{"}"} ```</p>
+      <CodeBlock code={"When the new compute machine set is available, the `DESIRED` and `CURRENT` values match. If the compute machine set is not available, wait a few minutes and run the command again."} lang="plaintext" />
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/machine_management/applying-autoscaling#cluster-autoscaler-cr_applying-autoscaling">Cluster autoscaler resource definition</a></li></ul>
     </article>

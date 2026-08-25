@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"troubleshooting-cluster-comparisons","text":"Troubleshooting cluster comparisons"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"troubleshooting-cluster-comparisons","text":"Troubleshooting cluster comparisons"},{"depth":2,"slug":"troubleshooting-cc-false-positives_troubleshooting-cluster-comparisons","text":"Troubleshooting false positives for missing resources"},{"depth":2,"slug":"troubleshooting-cc-multiple-matches_troubleshooting-cluster-comparisons","text":"Troubleshooting multiple template matches for the same CR"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/scalability_and_performance/cluster-compare/troubleshooting-cluster-comparisons";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +39,7 @@ const pageCategory = ["scalability_and_performance","scalability_and_performance
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting cluster comparisons {#troubleshooting-cluster-comparisons}\n\nWhen using the `cluster-compare` plugin, you might see unexpected results, such as false positives or conflicts when multiple cluster custom resources (CRs) exist.\n\n## Additional resources {#_additional_resources}\n\n- [Installing the cluster-compare plugin](/openshift-docs-markdown/scalability_and_performance/cluster-compare/installing-cluster-compare-plugin#installing-cluster-compare_installing-cluster-compare-plugin)\n- [Configuring manual matching between CRs and templates](/openshift-docs-markdown/scalability_and_performance/cluster-compare/advanced-ref-config-customization#cluster-compare-manual-match_advanced-ref-config-customization)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/cluster-compare/troubleshooting-cluster-comparisons.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting cluster comparisons {#troubleshooting-cluster-comparisons}\n\nWhen using the `cluster-compare` plugin, you might see unexpected results, such as false positives or conflicts when multiple cluster custom resources (CRs) exist.\n\n## Troubleshooting false positives for missing resources {#troubleshooting-cc-false-positives_troubleshooting-cluster-comparisons}\n\nThe plugin might report a missing resource even though the cluster custom resource (CR) is present in the cluster.\n\n**Procedure**\n\n1. Ensure you are using the latest version of the `cluster-compare` plugin. For more information, see \"Installing the cluster-compare plugin\".\n2. Ensure you are using the most up-to-date version of the reference configuration.\n3. Ensure that template has the same `apiVersion`, `kind`, `name`, and `namespace` fields as the cluster CR.\n\n## Troubleshooting multiple template matches for the same CR {#troubleshooting-cc-multiple-matches_troubleshooting-cluster-comparisons}\n\nIn some cases, more than one cluster CR can match a template because they feature the same `apiVersion`, `namespace`, and `kind`. The plugin’s default matching compares the CR that features the least differences.\n\nYou can optionally configure your reference configuration to avoid this situation.\n\n**Procedure**\n\n1. Ensure the templates feature distinct `apiVersion`, `namespace`, and `kind` values to ensure no duplicate template matching.\n2. Use a user configuration file to manually match a template to a CR. For more information, see \"Configuring manual matching between CRs and templates\".\n\n## Additional resources {#_additional_resources}\n\n- [Installing the cluster-compare plugin](/openshift-docs-markdown/scalability_and_performance/cluster-compare/installing-cluster-compare-plugin#installing-cluster-compare_installing-cluster-compare-plugin)\n- [Configuring manual matching between CRs and templates](/openshift-docs-markdown/scalability_and_performance/cluster-compare/advanced-ref-config-customization#cluster-compare-manual-match_advanced-ref-config-customization)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/cluster-compare/troubleshooting-cluster-comparisons.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +91,23 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="troubleshooting-cluster-comparisons" class="group scroll-mt-20">Troubleshooting cluster comparisons<a href="#troubleshooting-cluster-comparisons" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>When using the <code>cluster-compare</code> plugin, you might see unexpected results, such as false positives or conflicts when multiple cluster custom resources (CRs) exist.</p>
-      <p class="/modules/troubleshooting-cc-false-positives.md"></p>
-      <p class="/modules/troubleshooting-cc-multiple-matches.md"></p>
+      <h2 id="troubleshooting-cc-false-positives_troubleshooting-cluster-comparisons" class="group scroll-mt-20">Troubleshooting false positives for missing resources<a href="#troubleshooting-cc-false-positives_troubleshooting-cluster-comparisons" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The plugin might report a missing resource even though the cluster custom resource (CR) is present in the cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Ensure you are using the latest version of the <code>cluster-compare</code> plugin. For more information, see "Installing the cluster-compare plugin".</li>
+      <li>Ensure you are using the most up-to-date version of the reference configuration.</li>
+      <li>Ensure that template has the same <code>apiVersion</code>, <code>kind</code>, <code>name</code>, and <code>namespace</code> fields as the cluster CR.</li>
+      </ol>
+      <h2 id="troubleshooting-cc-multiple-matches_troubleshooting-cluster-comparisons" class="group scroll-mt-20">Troubleshooting multiple template matches for the same CR<a href="#troubleshooting-cc-multiple-matches_troubleshooting-cluster-comparisons" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In some cases, more than one cluster CR can match a template because they feature the same <code>apiVersion</code>, <code>namespace</code>, and <code>kind</code>. The plugin’s default matching compares the CR that features the least differences.</p>
+      <p>You can optionally configure your reference configuration to avoid this situation.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Ensure the templates feature distinct <code>apiVersion</code>, <code>namespace</code>, and <code>kind</code> values to ensure no duplicate template matching.</li>
+      <li>Use a user configuration file to manually match a template to a CR. For more information, see "Configuring manual matching between CRs and templates".</li>
+      </ol>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/scalability_and_performance/cluster-compare/installing-cluster-compare-plugin#installing-cluster-compare_installing-cluster-compare-plugin">Installing the cluster-compare plugin</a></li>

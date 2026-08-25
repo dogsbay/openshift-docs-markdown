@@ -2,5 +2,5 @@
 
 ## What's new?
 
-- [New features and enhancements](https://dogsbay.github.io/openshift-docs-markdown/whats_new/new-features.md)
-- [Deprecated features](https://dogsbay.github.io/openshift-docs-markdown/whats_new/deprecated-features.md)
+- [New features and enhancements](https://dogsbay.github.io/openshift-docs-markdown/whats_new/new-features.md): This release adds improvements related to the following components and concepts.
+- [Deprecated features](https://dogsbay.github.io/openshift-docs-markdown/whats_new/deprecated-features.md): Large changes to the underlying architecture and installation process are applied in OpenShift Container Platform v4, and many features from OpenShift…

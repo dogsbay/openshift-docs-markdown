@@ -27,6 +27,44 @@ Advanced pod scheduling
 
 The default OpenShift Container Platform pod scheduler is responsible for determining the placement of new pods onto nodes within the cluster. It reads data from the pod and finds a node that is a good fit based on configured profiles. It is completely independent and exists as a standalone solution. It does not modify the pod; it creates a binding for the pod that ties the pod to the particular node.
 
+### Understanding default scheduling {#nodes-scheduler-default-about_nodes-scheduler-about}
+
+The existing generic scheduler is the default platform-provided scheduler *engine* that selects a node to host the pod.
+
+The default scheduler selects the node in a three-step operation:
+
+Filters the nodes
+:   The available nodes are filtered based on the constraints or requirements specified. This is done by running each node through the list of filter functions called *predicates*, or *filters*.
+
+Prioritizes the filtered list of nodes
+:   This is achieved by passing each node through a series of *priority*, or *scoring*, functions that assign it a score between 0 - 10, with 0 indicating a bad fit and 10 indicating a good fit to host the pod. The scheduler configuration can also take in a simple *weight* (positive numeric value) for each scoring function. The node score provided by each scoring function is multiplied by the weight (default weight for most scores is 1) and then combined by adding the scores for each node provided by all the scores. This weight attribute can be used by administrators to give higher importance to some scores.
+
+Selects the best fit node
+:   The nodes are sorted based on their scores and the node with the highest score is selected to host the pod. If multiple nodes have the same high score, then one of them is selected at random.
+
+### Scheduler use cases {#nodes-scheduler-use-cases_nodes-scheduler-about}
+
+You can configure the cluster scheduler to apply affinity and anti-affinity policies across customizable infrastructure topological levels to meet application latency and high-availability requirements.
+
+Infrastructure topological levels
+:   Administrators can define multiple topological levels for their infrastructure (nodes) by specifying labels on nodes. For example: `region=r1`, `zone=z1`, `rack=s1`.
+
+    These label names have no particular meaning and administrators are free to name their infrastructure levels anything, such as city/building/room. Also, administrators can define any number of levels for their infrastructure topology, with three levels usually being adequate (such as: `regions` -> `zones` -> `racks`).  Administrators can specify affinity and anti-affinity rules at each of these levels in any combination.
+
+Affinity
+:   Administrators should be able to configure the scheduler to specify affinity at any topological level, or even at multiple levels. Affinity at a particular level indicates that all pods that belong to the same service are scheduled onto nodes that belong to the same level. This handles any latency requirements of applications by allowing administrators to ensure that peer pods do not end up being too geographically separated. If no node is available within the same affinity group to host the pod, then the pod is not scheduled.
+
+    If you need greater control over where the pods are scheduled, see "Controlling pod placement on nodes using node affinity rules" and "Placing pods relative to other pods using affinity and anti-affinity rules".
+
+    These advanced scheduling features allow administrators to specify which node a pod can be scheduled on and to force or reject scheduling relative to other pods.
+
+Anti-affinity
+:   Administrators should be able to configure the scheduler to specify anti-affinity at any topological level, or even at multiple levels. Anti-affinity (or 'spread') at a particular level indicates that all pods that belong to the same service are spread across nodes that belong to that level. This ensures that the application is well spread for high availability purposes. The scheduler tries to balance the service pods across all applicable nodes as evenly as possible.
+
+    If you need greater control over where the pods are scheduled, see "Controlling pod placement on nodes using node affinity rules" and "Placing pods relative to other pods using affinity and anti-affinity rules".
+
+    These advanced scheduling features allow administrators to specify which node a pod can be scheduled on and to force or reject scheduling relative to other pods.
+
 ## Additional resources {#additional-resources_nodes-scheduler-about}
 
 - [Scheduler profiles](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-profiles#nodes-scheduler-profiles)

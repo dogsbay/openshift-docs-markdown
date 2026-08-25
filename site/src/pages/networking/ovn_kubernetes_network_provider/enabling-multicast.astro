@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nw-ovn-kubernetes-enabling-multicast","text":"Enabling multicast for a project"}];
+const headings = [{"depth":1,"slug":"nw-ovn-kubernetes-enabling-multicast","text":"Enabling multicast for a project"},{"depth":2,"slug":"nw-about-multicast_ovn-kubernetes-enabling-multicast","text":"About multicast"},{"depth":2,"slug":"nw-enabling-multicast_ovn-kubernetes-enabling-multicast","text":"Enabling multicast between pods"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/enabling-multicast";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["networking","networking/ovn_kubernetes_network_provider"]
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling multicast for a project {#nw-ovn-kubernetes-enabling-multicast}\n\nIn OpenShift Container Platform with OVN-Kubernetes, you can enable IP multicast on a per-project basis so pods can send and receive multicast traffic.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/enabling-multicast.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling multicast for a project {#nw-ovn-kubernetes-enabling-multicast}\n\nIn OpenShift Container Platform with OVN-Kubernetes, you can enable IP multicast on a per-project basis so pods can send and receive multicast traffic.\n\n## About multicast {#nw-about-multicast_ovn-kubernetes-enabling-multicast}\n\nWith IP multicast in OpenShift Container Platform, data is broadcast to many IP addresses simultaneously. With OVN-Kubernetes, multicast is off by default and is not affected by network policies when you enable it in a project.\n\n> [!IMPORTANT]\n> - At this time, multicast is best used for low-bandwidth coordination or service discovery and not a high-bandwidth solution.\n> - By default, network policies affect all connections in a namespace. However, multicast is unaffected by network policies. If multicast is enabled in the same namespace as your network policies, it is always allowed, even if there is a `deny-all` network policy.\n> - Cluster administrators must consider the implications of the exemption of multicast from network policies before enabling it.\n\nMulticast traffic between OpenShift Container Platform pods is disabled by default. If you are using the OVN-Kubernetes network plugin, you can enable multicast on a per-project basis.\n\n## Enabling multicast between pods {#nw-enabling-multicast_ovn-kubernetes-enabling-multicast}\n\nTo enable multicast between pods in a project, you can add the `k8s.ovn.org/multicast-enabled` annotation to the namespace by using the `oc annotate` command or a namespace manifest.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n- You must log in to the cluster with a user that has the `cluster-admin` role.\n\n**Procedure**\n\n- Run the following command to enable multicast for a project. Replace `<namespace>` with the namespace for the project you want to enable multicast for.\n\n  ```terminal\n  $ oc annotate {{ namespace }} <namespace> \\\n      {{ annotation }}\n  ```\n\n  > [!TIP]\n  > You can alternatively apply the following YAML to add the annotation:\n  >\n  > ```yaml\n  > apiVersion: v1\n  > kind: Namespace\n  > metadata:\n  >   name: <namespace>\n  >   annotations:\n  >     k8s.ovn.org/multicast-enabled: \"true\"\n  > ```\n\n**Verification**\n\nTo verify that multicast is enabled for a project, complete the following procedure:\n\n1. Change your current project to the project that you enabled multicast for. Replace `<project>` with the project name.\n\n   ```terminal\n   $ oc project <project>\n   ```\n2. Create a pod to act as a multicast receiver:\n\n   ```terminal\n   $ cat <<EOF| oc create -f -\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     name: mlistener\n     labels:\n       app: multicast-verify\n   spec:\n     containers:\n       - name: mlistener\n         image: registry.access.redhat.com/ubi9\n         command: [\"/bin/sh\", \"-c\"]\n         args:\n           [\"dnf -y install socat hostname && sleep inf\"]\n         ports:\n           - containerPort: 30102\n             name: mlistener\n             protocol: UDP\n   EOF\n   ```\n3. Create a pod to act as a multicast sender:\n\n   ```terminal\n   $ cat <<EOF| oc create -f -\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     name: msender\n     labels:\n       app: multicast-verify\n   spec:\n     containers:\n       - name: msender\n         image: registry.access.redhat.com/ubi9\n         command: [\"/bin/sh\", \"-c\"]\n         args:\n           [\"dnf -y install socat && sleep inf\"]\n   EOF\n   ```\n4. In a new terminal window or tab, start the multicast listener.\n\n   1. Get the IP address for the Pod:\n\n      ```terminal\n      $ POD_IP=$(oc get pods mlistener -o jsonpath='{.status.podIP}')\n      ```\n   2. Start the multicast listener by entering the following command:\n\n      ```terminal\n      $ oc exec mlistener -i -t -- \\\n          socat UDP4-RECVFROM:30102,ip-add-membership=224.1.0.1:$POD_IP,fork EXEC:hostname\n      ```\n5. Start the multicast transmitter.\n\n   1. Get the pod network IP address range:\n\n      ```terminal\n      $ CIDR=$(oc get Network.config.openshift.io cluster \\\n          -o jsonpath='{.status.clusterNetwork[0].cidr}')\n      ```\n   2. To send a multicast message, enter the following command:\n\n      ```terminal\n      $ oc exec msender -i -t -- \\\n          /bin/bash -c \"echo | socat STDIO UDP4-DATAGRAM:224.1.0.1:30102,range=$CIDR,ip-multicast-ttl=64\"\n      ```\n\n      If multicast is working, the previous command returns the following output:\n\n      ```text\n      mlistener\n      ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/enabling-multicast.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,85 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nw-ovn-kubernetes-enabling-multicast" class="group scroll-mt-20">Enabling multicast for a project<a href="#nw-ovn-kubernetes-enabling-multicast" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>In OpenShift Container Platform with OVN-Kubernetes, you can enable IP multicast on a per-project basis so pods can send and receive multicast traffic.</p>
-      <p class="/modules/nw-about-multicast.md"></p>
-      <p class="/modules/nw-enabling-multicast.md"></p>
+      <h2 id="nw-about-multicast_ovn-kubernetes-enabling-multicast" class="group scroll-mt-20">About multicast<a href="#nw-about-multicast_ovn-kubernetes-enabling-multicast" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">With IP multicast in OpenShift Container Platform, data is broadcast to many IP addresses simultaneously. With OVN-Kubernetes, multicast is off by default and is not affected by network policies when you enable it in a project.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>At this time, multicast is best used for low-bandwidth coordination or service discovery and not a high-bandwidth solution.</li>
+          <li>By default, network policies affect all connections in a namespace. However, multicast is unaffected by network policies. If multicast is enabled in the same namespace as your network policies, it is always allowed, even if there is a <code>deny-all</code> network policy.</li>
+          <li>Cluster administrators must consider the implications of the exemption of multicast from network policies before enabling it.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <p>Multicast traffic between OpenShift Container Platform pods is disabled by default. If you are using the OVN-Kubernetes network plugin, you can enable multicast on a per-project basis.</p>
+      <h2 id="nw-enabling-multicast_ovn-kubernetes-enabling-multicast" class="group scroll-mt-20">Enabling multicast between pods<a href="#nw-enabling-multicast_ovn-kubernetes-enabling-multicast" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To enable multicast between pods in a project, you can add the <code>k8s.ovn.org/multicast-enabled</code> annotation to the namespace by using the <code>oc annotate</code> command or a namespace manifest.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>You must log in to the cluster with a user that has the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Run the following command to enable multicast for a project. Replace <code>&lt;namespace&gt;</code> with the namespace for the project you want to enable multicast for.
+      <CodeBlock code={"$ oc annotate {{ namespace }} <namespace> \\\n    {{ annotation }}"} lang="terminal" />
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can alternatively apply the following YAML to add the annotation:</p>
+          <CodeBlock code={"apiVersion: v1\nkind: Namespace\nmetadata:\n  name: <namespace>\n  annotations:\n    k8s.ovn.org/multicast-enabled: \"true\""} lang="yaml" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <p>To verify that multicast is enabled for a project, complete the following procedure:</p>
+      <ol>
+      <li>
+      Change your current project to the project that you enabled multicast for. Replace <code>&lt;project&gt;</code> with the project name.
+      <CodeBlock code={"$ oc project <project>"} lang="terminal" />
+      </li>
+      <li>
+      Create a pod to act as a multicast receiver:
+      <CodeBlock code={"$ cat <<EOF| oc create -f -\napiVersion: v1\nkind: Pod\nmetadata:\n  name: mlistener\n  labels:\n    app: multicast-verify\nspec:\n  containers:\n    - name: mlistener\n      image: registry.access.redhat.com/ubi9\n      command: [\"/bin/sh\", \"-c\"]\n      args:\n        [\"dnf -y install socat hostname && sleep inf\"]\n      ports:\n        - containerPort: 30102\n          name: mlistener\n          protocol: UDP\nEOF"} lang="terminal" />
+      </li>
+      <li>
+      Create a pod to act as a multicast sender:
+      <CodeBlock code={"$ cat <<EOF| oc create -f -\napiVersion: v1\nkind: Pod\nmetadata:\n  name: msender\n  labels:\n    app: multicast-verify\nspec:\n  containers:\n    - name: msender\n      image: registry.access.redhat.com/ubi9\n      command: [\"/bin/sh\", \"-c\"]\n      args:\n        [\"dnf -y install socat && sleep inf\"]\nEOF"} lang="terminal" />
+      </li>
+      <li>
+      In a new terminal window or tab, start the multicast listener.
+      <ol>
+      <li>
+      Get the IP address for the Pod:
+      <CodeBlock code={"$ POD_IP=$(oc get pods mlistener -o jsonpath='{.status.podIP}')"} lang="terminal" />
+      </li>
+      <li>
+      Start the multicast listener by entering the following command:
+      <CodeBlock code={"$ oc exec mlistener -i -t -- \\\n    socat UDP4-RECVFROM:30102,ip-add-membership=224.1.0.1:$POD_IP,fork EXEC:hostname"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Start the multicast transmitter.
+      <ol>
+      <li>
+      Get the pod network IP address range:
+      <CodeBlock code={"$ CIDR=$(oc get Network.config.openshift.io cluster \\\n    -o jsonpath='{.status.clusterNetwork[0].cidr}')"} lang="terminal" />
+      </li>
+      <li>
+      To send a multicast message, enter the following command:
+      <CodeBlock code={"$ oc exec msender -i -t -- \\\n    /bin/bash -c \"echo | socat STDIO UDP4-DATAGRAM:224.1.0.1:30102,range=$CIDR,ip-multicast-ttl=64\""} lang="terminal" />
+      <p>If multicast is working, the previous command returns the following output:</p>
+      <CodeBlock code={"mlistener"} lang="text" />
+      </li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"odc-using-web-terminal","text":"Using the web terminal"}];
+const headings = [{"depth":1,"slug":"odc-using-web-terminal","text":"Using the web terminal"},{"depth":2,"slug":"odc-access-web-terminal_odc-using-web-terminal","text":"Accessing the web terminal"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/web_terminal/odc-using-web-terminal";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +42,7 @@ const pageCategory = ["web_console","web_console/web_terminal"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the web terminal {#odc-using-web-terminal}\n\nYou can launch an embedded command-line terminal instance in the web console. This terminal instance is preinstalled with common CLI tools for interacting with the cluster, such as `oc`, `kubectl`,`odo`, `kn`, `tkn`, `helm`, and `subctl`. It also has the context of the project you are working on and automatically logs you in using your credentials.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/odc-using-web-terminal.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the web terminal {#odc-using-web-terminal}\n\nYou can launch an embedded command-line terminal instance in the web console. This terminal instance is preinstalled with common CLI tools for interacting with the cluster, such as `oc`, `kubectl`,`odo`, `kn`, `tkn`, `helm`, and `subctl`. It also has the context of the project you are working on and automatically logs you in using your credentials.\n\n## Accessing the web terminal {#odc-access-web-terminal_odc-using-web-terminal}\n\nAfter the Web Terminal Operator is installed, you can access the web terminal. After the web terminal is initialized, you can use the preinstalled CLI tools such as `oc`, `kubectl`, `odo`, `kn`, `tkn`, `helm`, and `subctl` in the web terminal. You can re-run commands by selecting them from the list of commands you have run in the terminal. These commands persist across multiple terminal sessions. The web terminal remains open until you close it or until you close the browser window or tab.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform\n\ncluster and are logged into the web console.\n\n- The Web Terminal Operator is installed on your cluster.\n\n**Procedure**\n\n1. To launch the web terminal, click the command-line terminal icon (![title=\"wto icon\"](/openshift-docs-markdown/_assets/images/odc-wto-icon.png)) in the masthead of the console. A web terminal instance is displayed in the **Command line terminal** pane. This instance is automatically logged in with your credentials.\n2. If a project has not been selected in the current session, select the project where the `DevWorkspace` CR must be created from the **Project** drop-down list. By default, the current project is selected.\n\n   > [!NOTE]\n   > - One `DevWorkspace` CR defines the web terminal of one user. This CR contains details about the user’s web terminal status and container image components.\n   > - The `DevWorkspace` CR is created only if it does not already exist.\n   > - The `openshift-terminal` project is the default project used for cluster administrators. They do not have the option to choose another project. The Web Terminal Operator installs the DevWorkspace Operator as a dependency.\n3. Optional: Set the web terminal timeout for the current session:\n\n   1. Click Timeout.\n   2. In the field that is displayed, enter the timeout value.\n   3. From the drop-down list, select a timeout interval of **Seconds**, **Minutes**, **Hours**, or **Milliseconds**.\n4. Optional: Select a custom image for the web terminal to use.\n\n   1. Click Image.\n   2. In the field that is displayed, enter the URL of the image that you want to use.\n5. Click **Start** to initialize the web terminal using the selected project.\n6. Click **+** to open multiple tabs within the web terminal in the console.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/odc-using-web-terminal.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +94,47 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="odc-using-web-terminal" class="group scroll-mt-20">Using the web terminal<a href="#odc-using-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
       <p>You can launch an embedded command-line terminal instance in the web console. This terminal instance is preinstalled with common CLI tools for interacting with the cluster, such as <code>oc</code>, <code>kubectl</code>,<code>odo</code>, <code>kn</code>, <code>tkn</code>, <code>helm</code>, and <code>subctl</code>. It also has the context of the project you are working on and automatically logs you in using your credentials.</p>
-      <p class="/modules/odc-access-web-terminal.md"></p>
+      <h2 id="odc-access-web-terminal_odc-using-web-terminal" class="group scroll-mt-20">Accessing the web terminal<a href="#odc-access-web-terminal_odc-using-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After the Web Terminal Operator is installed, you can access the web terminal. After the web terminal is initialized, you can use the preinstalled CLI tools such as <code>oc</code>, <code>kubectl</code>, <code>odo</code>, <code>kn</code>, <code>tkn</code>, <code>helm</code>, and <code>subctl</code> in the web terminal. You can re-run commands by selecting them from the list of commands you have run in the terminal. These commands persist across multiple terminal sessions. The web terminal remains open until you close it or until you close the browser window or tab.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to an OpenShift Container Platform</li></ul>
+      <p>cluster and are logged into the web console.</p>
+      <ul><li>The Web Terminal Operator is installed on your cluster.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>To launch the web terminal, click the command-line terminal icon (<img src="/openshift-docs-markdown/_assets/images/odc-wto-icon.png" alt="title=&quot;wto icon&quot;" loading="lazy" />) in the masthead of the console. A web terminal instance is displayed in the <strong>Command line terminal</strong> pane. This instance is automatically logged in with your credentials.</li>
+      <li>
+      If a project has not been selected in the current session, select the project where the <code>DevWorkspace</code> CR must be created from the <strong>Project</strong> drop-down list. By default, the current project is selected.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>One <code>DevWorkspace</code> CR defines the web terminal of one user. This CR contains details about the user’s web terminal status and container image components.</li>
+          <li>The <code>DevWorkspace</code> CR is created only if it does not already exist.</li>
+          <li>The <code>openshift-terminal</code> project is the default project used for cluster administrators. They do not have the option to choose another project. The Web Terminal Operator installs the DevWorkspace Operator as a dependency.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Optional: Set the web terminal timeout for the current session:
+      <ol>
+      <li>Click Timeout.</li>
+      <li>In the field that is displayed, enter the timeout value.</li>
+      <li>From the drop-down list, select a timeout interval of <strong>Seconds</strong>, <strong>Minutes</strong>, <strong>Hours</strong>, or <strong>Milliseconds</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Optional: Select a custom image for the web terminal to use.
+      <ol>
+      <li>Click Image.</li>
+      <li>In the field that is displayed, enter the URL of the image that you want to use.</li>
+      </ol>
+      </li>
+      <li>Click <strong>Start</strong> to initialize the web terminal using the selected project.</li>
+      <li>Click <strong>+</strong> to open multiple tabs within the web terminal in the console.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

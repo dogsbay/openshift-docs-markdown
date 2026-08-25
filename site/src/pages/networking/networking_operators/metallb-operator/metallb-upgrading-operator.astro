@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"metallb-upgrading-operator","text":"Upgrading the MetalLB Operator"},{"depth":2,"slug":"additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"metallb-upgrading-operator","text":"Upgrading the MetalLB Operator"},{"depth":2,"slug":"upgrading-metallb-operator_metallb-upgrading-operator","text":"Manually upgrading the MetalLB Operator"},{"depth":2,"slug":"additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-upgrading-operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["networking","networking/networking_operators","networking
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Upgrading the MetalLB Operator {#metallb-upgrading-operator}\n\nThe `Subscription` custom resource (CR) for the MetalLB Operator is used to manage whether the Operator is upgraded automatically or manually.\n\nBy default, the `Subscription` CR assigns the namespace to `metallb-system` and automatically sets the `installPlanApproval` parameter to `Automatic`. This means that when Red Hat-provided Operator catalogs include a newer version of the MetalLB Operator, the MetalLB Operator is automatically upgraded.\n\nIf you need to manually control upgrading the MetalLB Operator, set the `installPlanApproval` parameter to `Manual`.\n\n## Additional resources {#additional-resources}\n\n- [Introduction to OpenShift updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#intro-to-updates_intro-to-updates)\n- [Installing the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-upgrading-operator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Upgrading the MetalLB Operator {#metallb-upgrading-operator}\n\nThe `Subscription` custom resource (CR) for the MetalLB Operator is used to manage whether the Operator is upgraded automatically or manually.\n\nBy default, the `Subscription` CR assigns the namespace to `metallb-system` and automatically sets the `installPlanApproval` parameter to `Automatic`. This means that when Red Hat-provided Operator catalogs include a newer version of the MetalLB Operator, the MetalLB Operator is automatically upgraded.\n\nIf you need to manually control upgrading the MetalLB Operator, set the `installPlanApproval` parameter to `Manual`.\n\n## Manually upgrading the MetalLB Operator {#upgrading-metallb-operator_metallb-upgrading-operator}\n\nTo manually control when the MetalLB Operator upgrades in OpenShift Container Platform, you set `installPlanApproval` to Manual in the Subscription custom resource and approve the install plan. You then verify the upgrade by using the `ClusterServiceVersion` status.\n\n**Prerequisites**\n\n- You updated your cluster to the latest z-stream release.\n- You used the software catalog to install the MetalLB Operator.\n- Access the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Get the YAML definition of the `metallb-operator` subscription in the `metallb-system` namespace by entering the following command:\n\n   ```terminal\n   $ oc -n metallb-system get subscription metallb-operator -o yaml\n   ```\n2. Edit the `Subscription` CR by setting the `installPlanApproval` parameter to `Manual`:\n\n   ```yaml\n   apiVersion: operators.coreos.com/v1alpha1\n   kind: Subscription\n   metadata:\n     name: metallb-operator\n     namespace: metallb-system\n   # ...\n   spec:\n      channel: stable\n      installPlanApproval: Manual\n      name: metallb-operator\n      source: redhat-operators\n      sourceNamespace: openshift-marketplace\n   # ...\n   ```\n3. Find the latest OpenShift Container Platform 4.22 version of the MetalLB Operator by entering the following command:\n\n   ```terminal\n   $ oc -n metallb-system get csv\n   ```\n4. Check the install plan that exists in the namespace by entering the following command.\n\n   ```terminal\n   $ oc -n metallb-system get installplan\n   ```\n\n   The following example output shows `install-tsz2g` as a manual install plan:\n\n   ```terminal\n   NAME            CSV                                     APPROVAL    APPROVED\n   install-shpmd   metallb-operator.v{{ product_version }}.0-202502261233   Automatic   true\n   install-tsz2g   metallb-operator.v{{ product_version }}.0-202503102139   Manual      false\n   ```\n5. Edit the install plan that exists in the namespace by entering the following command. Ensure that you replace `<name_of_installplan>` with the name of the install plan, such as `install-tsz2g`.\n\n   ```terminal\n   $ oc edit installplan <name_of_installplan> -n metallb-system\n   ```\n\n   1. With the install plan open in your editor, set the `spec.approval` parameter to `Manual` and set the `spec.approved` parameter to `true`.\n\n      > [!NOTE]\n      > After you edit the install plan, the upgrade operation starts. If you enter the `oc -n metallb-system get csv` command during the upgrade operation, the output might show the `Replacing` or the `Pending` status.\n\n**Verification**\n\n- To verify that the Operator is upgraded, enter the following command and then check that output shows `Succeeded` for the Operator:\n\n  ```terminal\n  $ oc -n metallb-system get csv\n  ```\n\n## Additional resources {#additional-resources}\n\n- [Introduction to OpenShift updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#intro-to-updates_intro-to-updates)\n- [Installing the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-operator-install#metallb-operator-install)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/metallb-operator/metallb-upgrading-operator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,60 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="metallb-upgrading-operator" class="group scroll-mt-20">Upgrading the MetalLB Operator<a href="#metallb-upgrading-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The <code>Subscription</code> custom resource (CR) for the MetalLB Operator is used to manage whether the Operator is upgraded automatically or manually.</p>
       <p>By default, the <code>Subscription</code> CR assigns the namespace to <code>metallb-system</code> and automatically sets the <code>installPlanApproval</code> parameter to <code>Automatic</code>. This means that when Red Hat-provided Operator catalogs include a newer version of the MetalLB Operator, the MetalLB Operator is automatically upgraded.</p>
       <p>If you need to manually control upgrading the MetalLB Operator, set the <code>installPlanApproval</code> parameter to <code>Manual</code>.</p>
-      <p class="/modules/nw-metalLB-basic-upgrade-operator.md"></p>
+      <h2 id="upgrading-metallb-operator_metallb-upgrading-operator" class="group scroll-mt-20">Manually upgrading the MetalLB Operator<a href="#upgrading-metallb-operator_metallb-upgrading-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To manually control when the MetalLB Operator upgrades in OpenShift Container Platform, you set <code>installPlanApproval</code> to Manual in the Subscription custom resource and approve the install plan. You then verify the upgrade by using the <code>ClusterServiceVersion</code> status.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You updated your cluster to the latest z-stream release.</li>
+      <li>You used the software catalog to install the MetalLB Operator.</li>
+      <li>Access the cluster as a user with the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Get the YAML definition of the <code>metallb-operator</code> subscription in the <code>metallb-system</code> namespace by entering the following command:
+      <CodeBlock code={"$ oc -n metallb-system get subscription metallb-operator -o yaml"} lang="terminal" />
+      </li>
+      <li>
+      Edit the <code>Subscription</code> CR by setting the <code>installPlanApproval</code> parameter to <code>Manual</code>:
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: metallb-operator\n  namespace: metallb-system\n# ...\nspec:\n   channel: stable\n   installPlanApproval: Manual\n   name: metallb-operator\n   source: redhat-operators\n   sourceNamespace: openshift-marketplace\n# ..."} lang="yaml" />
+      </li>
+      <li>
+      Find the latest OpenShift Container Platform 4.22 version of the MetalLB Operator by entering the following command:
+      <CodeBlock code={"$ oc -n metallb-system get csv"} lang="terminal" />
+      </li>
+      <li>
+      Check the install plan that exists in the namespace by entering the following command.
+      <CodeBlock code={"$ oc -n metallb-system get installplan"} lang="terminal" />
+      <p>The following example output shows <code>install-tsz2g</code> as a manual install plan:</p>
+      <CodeBlock code={"NAME            CSV                                     APPROVAL    APPROVED\ninstall-shpmd   metallb-operator.v{{ product_version }}.0-202502261233   Automatic   true\ninstall-tsz2g   metallb-operator.v{{ product_version }}.0-202503102139   Manual      false"} lang="terminal" />
+      </li>
+      <li>
+      Edit the install plan that exists in the namespace by entering the following command. Ensure that you replace <code>&lt;name_of_installplan&gt;</code> with the name of the install plan, such as <code>install-tsz2g</code>.
+      <CodeBlock code={"$ oc edit installplan <name_of_installplan> -n metallb-system"} lang="terminal" />
+      <ol>
+      <li>
+      With the install plan open in your editor, set the <code>spec.approval</code> parameter to <code>Manual</code> and set the <code>spec.approved</code> parameter to <code>true</code>.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>After you edit the install plan, the upgrade operation starts. If you enter the <code>oc -n metallb-system get csv</code> command during the upgrade operation, the output might show the <code>Replacing</code> or the <code>Pending</code> status.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that the Operator is upgraded, enter the following command and then check that output shows <code>Succeeded</code> for the Operator:
+      <CodeBlock code={"$ oc -n metallb-system get csv"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="additional-resources" class="group scroll-mt-20">Additional resources<a href="#additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#intro-to-updates_intro-to-updates">Introduction to OpenShift updates</a></li>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-backup-restore-virt","text":"Backing up and restoring a hosted cluster on {{ VirtProductName }}"}];
+const headings = [{"depth":1,"slug":"hcp-backup-restore-virt","text":"Backing up and restoring a hosted cluster on OpenShift Virtualization"},{"depth":2,"slug":"backup-hosted-cluster-virt_hcp-backup-restore-virt","text":"Backing up a hosted cluster on OpenShift Virtualization"},{"depth":2,"slug":"restore-hosted-cluster-virt_hcp-backup-restore-virt","text":"Restoring a hosted cluster on OpenShift Virtualization"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-virt";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Backing up and restoring a hosted cluster on {{ VirtProductName }}";
-const description = "You can back up and restore a hosted cluster on {{ VirtProductName }} to fix failures." || undefined;
+const description = "You can back up and restore a hosted cluster on OpenShift Virtualization to fix failures." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp_high_av
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring a hosted cluster on {{ VirtProductName }} {#hcp-backup-restore-virt}\n\nYou can back up and restore a hosted cluster on {{ VirtProductName }} to fix failures.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-virt.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring a hosted cluster on OpenShift Virtualization {#hcp-backup-restore-virt}\n\nYou can back up and restore a hosted cluster on OpenShift Virtualization to fix failures.\n\n## Backing up a hosted cluster on OpenShift Virtualization {#backup-hosted-cluster-virt_hcp-backup-restore-virt}\n\nWhen you back up a hosted cluster on OpenShift Virtualization, the hosted cluster can remain running. The backup contains the hosted control plane components and the etcd for the hosted cluster.\n\nWhen the hosted cluster is not running compute nodes on external infrastructure, hosted cluster workload data that is stored in persistent volume claims (PVCs) that are provisioned by KubeVirt CSI are also backed up. The backup does not contain any KubeVirt virtual machines (VMs) that are used as compute nodes. Those VMs are automatically re-created after the restore process is completed.\n\n**Procedure**\n\n1. Create a Velero backup resource by creating a YAML file that is similar to the following example:\n\n   ```yaml\n   apiVersion: velero.io/v1\n   kind: Backup\n   metadata:\n     name: hc-clusters-hosted-backup\n     namespace: openshift-adp\n     labels:\n       velero.io/storage-location: default\n   spec:\n     includedNamespaces:\n     - clusters\n     - clusters-hosted\n     includedResources:\n     - sa\n     - role\n     - rolebinding\n     - deployment\n     - statefulset\n     - pv\n     - pvc\n     - bmh\n     - configmap\n     - infraenv\n     - priorityclasses\n     - pdb\n     - hostedcluster\n     - nodepool\n     - secrets\n     - hostedcontrolplane\n     - cluster\n     - datavolume\n     - service\n     - route\n     excludedResources: [ ]\n     labelSelector:\n       matchExpressions:\n       - key: 'hypershift.openshift.io/is-kubevirt-rhcos'\n         operator: 'DoesNotExist'\n     storageLocation: default\n     preserveNodePorts: true\n     ttl: 4h0m0s\n     snapshotMoveData: true\n     datamover: \"velero\"\n     defaultVolumesToFsBackup: false\n   ```\n\n   where:\n\n   `includedNamespaces`\n   :   Specifies the namespaces from the objects to back up. Include namespaces from both the hosted cluster and the hosted control plane. In this example, `clusters` is a namespace from the hosted cluster and `clusters-hosted` is a namespace from the hosted control plane.\n\n   > [!IMPORTANT]\n   > If you store all hosted cluster information in a shared namespace and then back up and restore a hosted cluster, you might unintentionally change other hosted clusters. To avoid this issue, do not store all hosted cluster information in a shared namespace. Alternatively, you can back up and restore resources based on labels.\n\n   `labelSelector`\n   :   Specifies the boot image of the VMs that are used as the hosted cluster nodes are stored in large PVCs. To reduce backup time and storage size, you can filter those PVCs out of the backup by adding this label selector.\n\n   `snapshotMoveData`\n   :   Along with the `datamover` field, specifies that the CSI `VolumeSnapshots` are automatically uploaded to remote cloud storage.\n\n   `datamover`\n   :   Along with the `snapshotMoveData` field, specifies that the CSI `VolumeSnapshots` are automatically uploaded to remote cloud storage.\n\n   `defaultVolumesToFsBackup`\n   :   Specifies whether pod volume file system backup is used for all volumes by default. Set this value to `false` to back up the PVCs that you want.\n2. Apply the changes to the YAML file by entering the following command:\n\n   ```terminal\n   $ oc apply -f <backup_file_name>.yaml\n   ```\n\n   Replace `<backup_file_name>` with the name of your file.\n3. Monitor the backup process in the backup object status and in the Velero logs.\n\n   - To monitor the backup object status, enter the following command:\n\n     ```terminal\n     $ watch \"oc get backups.velero.io -n openshift-adp <backup_file_name> -o jsonpath='{.status}' | jq\"\n     ```\n   - To monitor the Velero logs, enter the following command:\n\n     ```terminal\n     $ oc logs -n openshift-adp -ldeploy=velero -f\n     ```\n\n**Verification**\n\n- When the `status.phase` field is `Completed`, the backup process is considered complete.\n\n## Restoring a hosted cluster on OpenShift Virtualization {#restore-hosted-cluster-virt_hcp-backup-restore-virt}\n\nAfter you back up a hosted cluster on OpenShift Virtualization, you can restore the backup.\n\n> [!NOTE]\n> The restore process can be completed only on the same management cluster where you created the backup.\n\n**Procedure**\n\n1. Ensure that no pods or persistent volume claims (PVCs) are running in the `HostedControlPlane` namespace.\n2. Delete the following objects from the management cluster:\n\n   - `HostedCluster`\n   - `NodePool`\n   - PVCs\n3. Create a restoration manifest YAML file that is similar to the following example:\n\n   ```yaml\n   apiVersion: velero.io/v1\n   kind: Restore\n   metadata:\n     name: hc-clusters-hosted-restore\n     namespace: openshift-adp\n   spec:\n     backupName: hc-clusters-hosted-backup\n     restorePVs: true\n     existingResourcePolicy: update\n     excludedResources:\n     - nodes\n     - events\n     - events.events.k8s.io\n     - backups.velero.io\n     - restores.velero.io\n     - resticrepositories.velero.io\n   ```\n\n   - `spec.restorePVs` starts the recovery of pods with the included persistent volumes.\n   - `spec.existingResourcePolicy: update` ensures that any existing objects are overwritten with backup content. This action can cause issues with objects that contain immutable fields, which is why you deleted the `HostedCluster`, node pools, and PVCs. If you do not set this policy, the Velero engine skips the restoration of objects that already exist.\n4. Apply the changes to the YAML file by entering the following command:\n\n   ```terminal\n   $ oc apply -f <restore_resource_file_name>.yaml\n   ```\n\n   Replace `<restore_resource_file_name>` with the name of your file.\n5. Monitor the restore process by checking the restore status field and the Velero logs.\n\n   - To check the restore status field, enter the following command:\n\n     ```terminal\n     $ watch \"oc get restores.velero.io -n openshift-adp <backup_file_name> -o jsonpath='{.status}' | jq\"\n     ```\n   - To check the Velero logs, enter the following command:\n\n     ```terminal\n     $ oc logs -n openshift-adp -ldeploy=velero -f\n     ```\n\n**Verification**\n\n- When the `status.phase` field is `Completed`, the restore process is considered complete.\n\n**Next steps**\n\n- After some time, the KubeVirt VMs are created and join the hosted cluster as compute nodes. Make sure that the hosted cluster workloads are running again as expected.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-virt.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +94,109 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-backup-restore-virt" class="group scroll-mt-20">Backing up and restoring a hosted cluster on {"{"}{"{"} VirtProductName {"}"}{"}"}<a href="#hcp-backup-restore-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can back up and restore a hosted cluster on {"{"}{"{"} VirtProductName {"}"}{"}"} to fix failures.</p>
-      <p class="/modules/backup-hosted-cluster-virt.md"></p>
-      <p class="/modules/restore-hosted-cluster-virt.md"></p>
+      <h1 id="hcp-backup-restore-virt" class="group scroll-mt-20">Backing up and restoring a hosted cluster on OpenShift Virtualization<a href="#hcp-backup-restore-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can back up and restore a hosted cluster on OpenShift Virtualization to fix failures.</p>
+      <h2 id="backup-hosted-cluster-virt_hcp-backup-restore-virt" class="group scroll-mt-20">Backing up a hosted cluster on OpenShift Virtualization<a href="#backup-hosted-cluster-virt_hcp-backup-restore-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When you back up a hosted cluster on OpenShift Virtualization, the hosted cluster can remain running. The backup contains the hosted control plane components and the etcd for the hosted cluster.</p>
+      <p>When the hosted cluster is not running compute nodes on external infrastructure, hosted cluster workload data that is stored in persistent volume claims (PVCs) that are provisioned by KubeVirt CSI are also backed up. The backup does not contain any KubeVirt virtual machines (VMs) that are used as compute nodes. Those VMs are automatically re-created after the restore process is completed.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a Velero backup resource by creating a YAML file that is similar to the following example:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Backup\nmetadata:\n  name: hc-clusters-hosted-backup\n  namespace: openshift-adp\n  labels:\n    velero.io/storage-location: default\nspec:\n  includedNamespaces:\n  - clusters\n  - clusters-hosted\n  includedResources:\n  - sa\n  - role\n  - rolebinding\n  - deployment\n  - statefulset\n  - pv\n  - pvc\n  - bmh\n  - configmap\n  - infraenv\n  - priorityclasses\n  - pdb\n  - hostedcluster\n  - nodepool\n  - secrets\n  - hostedcontrolplane\n  - cluster\n  - datavolume\n  - service\n  - route\n  excludedResources: [ ]\n  labelSelector:\n    matchExpressions:\n    - key: 'hypershift.openshift.io/is-kubevirt-rhcos'\n      operator: 'DoesNotExist'\n  storageLocation: default\n  preserveNodePorts: true\n  ttl: 4h0m0s\n  snapshotMoveData: true\n  datamover: \"velero\"\n  defaultVolumesToFsBackup: false"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>includedNamespaces</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespaces from the objects to back up. Include namespaces from both the hosted cluster and the hosted control plane. In this example, <code>clusters</code> is a namespace from the hosted cluster and <code>clusters-hosted</code> is a namespace from the hosted control plane.</p></dd>
+      </dl>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If you store all hosted cluster information in a shared namespace and then back up and restore a hosted cluster, you might unintentionally change other hosted clusters. To avoid this issue, do not store all hosted cluster information in a shared namespace. Alternatively, you can back up and restore resources based on labels.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>labelSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the boot image of the VMs that are used as the hosted cluster nodes are stored in large PVCs. To reduce backup time and storage size, you can filter those PVCs out of the backup by adding this label selector.</p></dd>
+      <dt class="font-semibold"><code>snapshotMoveData</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Along with the <code>datamover</code> field, specifies that the CSI <code>VolumeSnapshots</code> are automatically uploaded to remote cloud storage.</p></dd>
+      <dt class="font-semibold"><code>datamover</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Along with the <code>snapshotMoveData</code> field, specifies that the CSI <code>VolumeSnapshots</code> are automatically uploaded to remote cloud storage.</p></dd>
+      <dt class="font-semibold"><code>defaultVolumesToFsBackup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether pod volume file system backup is used for all volumes by default. Set this value to <code>false</code> to back up the PVCs that you want.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the changes to the YAML file by entering the following command:
+      <CodeBlock code={"$ oc apply -f <backup_file_name>.yaml"} lang="terminal" />
+      <p>Replace <code>&lt;backup_file_name&gt;</code> with the name of your file.</p>
+      </li>
+      <li>
+      Monitor the backup process in the backup object status and in the Velero logs.
+      <ul>
+      <li>
+      To monitor the backup object status, enter the following command:
+      <CodeBlock code={"$ watch \"oc get backups.velero.io -n openshift-adp <backup_file_name> -o jsonpath='{.status}' | jq\""} lang="terminal" />
+      </li>
+      <li>
+      To monitor the Velero logs, enter the following command:
+      <CodeBlock code={"$ oc logs -n openshift-adp -ldeploy=velero -f"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>When the <code>status.phase</code> field is <code>Completed</code>, the backup process is considered complete.</li></ul>
+      <h2 id="restore-hosted-cluster-virt_hcp-backup-restore-virt" class="group scroll-mt-20">Restoring a hosted cluster on OpenShift Virtualization<a href="#restore-hosted-cluster-virt_hcp-backup-restore-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you back up a hosted cluster on OpenShift Virtualization, you can restore the backup.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The restore process can be completed only on the same management cluster where you created the backup.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Ensure that no pods or persistent volume claims (PVCs) are running in the <code>HostedControlPlane</code> namespace.</li>
+      <li>
+      Delete the following objects from the management cluster:
+      <ul>
+      <li><code>HostedCluster</code></li>
+      <li><code>NodePool</code></li>
+      <li>PVCs</li>
+      </ul>
+      </li>
+      <li>
+      Create a restoration manifest YAML file that is similar to the following example:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Restore\nmetadata:\n  name: hc-clusters-hosted-restore\n  namespace: openshift-adp\nspec:\n  backupName: hc-clusters-hosted-backup\n  restorePVs: true\n  existingResourcePolicy: update\n  excludedResources:\n  - nodes\n  - events\n  - events.events.k8s.io\n  - backups.velero.io\n  - restores.velero.io\n  - resticrepositories.velero.io"} lang="yaml" />
+      <ul>
+      <li><code>spec.restorePVs</code> starts the recovery of pods with the included persistent volumes.</li>
+      <li><code>spec.existingResourcePolicy: update</code> ensures that any existing objects are overwritten with backup content. This action can cause issues with objects that contain immutable fields, which is why you deleted the <code>HostedCluster</code>, node pools, and PVCs. If you do not set this policy, the Velero engine skips the restoration of objects that already exist.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the changes to the YAML file by entering the following command:
+      <CodeBlock code={"$ oc apply -f <restore_resource_file_name>.yaml"} lang="terminal" />
+      <p>Replace <code>&lt;restore_resource_file_name&gt;</code> with the name of your file.</p>
+      </li>
+      <li>
+      Monitor the restore process by checking the restore status field and the Velero logs.
+      <ul>
+      <li>
+      To check the restore status field, enter the following command:
+      <CodeBlock code={"$ watch \"oc get restores.velero.io -n openshift-adp <backup_file_name> -o jsonpath='{.status}' | jq\""} lang="terminal" />
+      </li>
+      <li>
+      To check the Velero logs, enter the following command:
+      <CodeBlock code={"$ oc logs -n openshift-adp -ldeploy=velero -f"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>When the <code>status.phase</code> field is <code>Completed</code>, the restore process is considered complete.</li></ul>
+      <p><strong>Next steps</strong></p>
+      <ul><li>After some time, the KubeVirt VMs are created and join the hosted cluster as compute nodes. Make sure that the hosted cluster workloads are running again as expected.</li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

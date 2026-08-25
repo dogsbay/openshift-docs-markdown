@@ -2,7 +2,7 @@
 // Source: cli_reference/tkn_cli/op-configuring-tkn.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Configuring the OpenShift Pipelines tkn CLI\n---\n\n# Configuring the OpenShift Pipelines tkn CLI {#op-configuring-tkn}\n\nConfigure the {{ pipelines_title }} `tkn` CLI to enable tab completion.\n";
+const body = "---\ntitle: Configuring the OpenShift Pipelines tkn CLI\n---\n\n# Configuring the OpenShift Pipelines tkn CLI {#op-configuring-tkn}\n\nConfigure the Red Hat OpenShift Pipelines `tkn` CLI to enable tab completion.\n\n## Enabling tab completion {#op-tkn-enabling-tab-completion_configuring-tkn}\n\nAfter you install the `tkn` CLI, you can enable tab completion to automatically complete `tkn` commands or suggest options when you press Tab.\n\n**Prerequisites**\n\n- You must have the `tkn` CLI tool installed.\n- You must have `bash-completion` installed on your local system.\n\n**Procedure**\n\nThe following procedure enables tab completion for Bash.\n\n1. Save the Bash completion code to a file:\n\n   ```terminal\n   $ tkn completion bash > tkn_bash_completion\n   ```\n2. Copy the file to `/etc/bash_completion.d/`:\n\n   ```terminal\n   $ sudo cp tkn_bash_completion /etc/bash_completion.d/\n   ```\n\n   Alternatively, you can save the file to a local directory and source it from your `.bashrc` file instead.\n\nTab completion is enabled when you open a new terminal.\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

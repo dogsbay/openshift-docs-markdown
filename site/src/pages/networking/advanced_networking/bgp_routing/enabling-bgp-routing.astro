@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"enabling-bgp-routing","text":"Enabling BGP routing"},{"depth":2,"slug":"additional-resources_enabling-bgp-routing","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"enabling-bgp-routing","text":"Enabling BGP routing"},{"depth":2,"slug":"nw-bgp-routing-config_enabling-bgp-routing","text":"Enabling Border Gateway Protocol (BGP) routing"},{"depth":2,"slug":"additional-resources_enabling-bgp-routing","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/advanced_networking/bgp_routing/enabling-bgp-routing";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/advanced_networking","networking/
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling BGP routing {#enabling-bgp-routing}\n\nTo support dynamic route advertisement and integration with external network infrastructure, you can enable Border Gateway Protocol (BGP) routing for your cluster as a cluster administrator.\n\nAs a cluster administrator, you can enable OVN-Kubernetes BGP routing support for your cluster.\n\n## Additional resources {#additional-resources_enabling-bgp-routing}\n\n- [Improve east-west performance by routing pods on the underlay with BGP](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/advanced_networking/bgp_routing/enabling-bgp-routing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling BGP routing {#enabling-bgp-routing}\n\nTo support dynamic route advertisement and integration with external network infrastructure, you can enable Border Gateway Protocol (BGP) routing for your cluster as a cluster administrator.\n\nAs a cluster administrator, you can enable OVN-Kubernetes BGP routing support for your cluster.\n\n## Enabling Border Gateway Protocol (BGP) routing {#nw-bgp-routing-config_enabling-bgp-routing}\n\nTo allow external network integration and route advertisement on supported infrastructure, you can enable Border Gateway Protocol (BGP) routing for your cluster by configuring the cluster network to use an FRR-based dynamic routing provider.\n\nAs a cluster administrator, you can enable BGP routing support for your cluster on bare-metal infrastructure.\n\nIf you are using BGP routing in conjunction with the MetalLB Operator, the necessary BGP routing support is enabled automatically. You do not need to manually enable BGP routing support.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You are logged in to the cluster as a user with the `cluster-admin` role.\n- The cluster is installed on compatible infrastructure.\n\n**Procedure**\n\n- To enable a dynamic routing provider, enter the following command:\n\n  ```terminal\n  $ oc patch Network.operator.openshift.io/cluster --type=merge -p '{\n    \"spec\": {\n      \"additionalRoutingCapabilities\": {\n        \"providers\": [\"FRR\"]\n      }\n    }\n  }'\n  ```\n\n## Additional resources {#additional-resources_enabling-bgp-routing}\n\n- [Improve east-west performance by routing pods on the underlay with BGP](/openshift-docs-markdown/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/advanced_networking/bgp_routing/enabling-bgp-routing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,25 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="enabling-bgp-routing" class="group scroll-mt-20">Enabling BGP routing<a href="#enabling-bgp-routing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To support dynamic route advertisement and integration with external network infrastructure, you can enable Border Gateway Protocol (BGP) routing for your cluster as a cluster administrator.</p>
       <p>As a cluster administrator, you can enable OVN-Kubernetes BGP routing support for your cluster.</p>
-      <p class="/modules/nw-bgp-routing-enable.md"></p>
+      <h2 id="nw-bgp-routing-config_enabling-bgp-routing" class="group scroll-mt-20">Enabling Border Gateway Protocol (BGP) routing<a href="#nw-bgp-routing-config_enabling-bgp-routing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To allow external network integration and route advertisement on supported infrastructure, you can enable Border Gateway Protocol (BGP) routing for your cluster by configuring the cluster network to use an FRR-based dynamic routing provider.</p>
+      <p>As a cluster administrator, you can enable BGP routing support for your cluster on bare-metal infrastructure.</p>
+      <p>If you are using BGP routing in conjunction with the MetalLB Operator, the necessary BGP routing support is enabled automatically. You do not need to manually enable BGP routing support.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You are logged in to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>The cluster is installed on compatible infrastructure.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To enable a dynamic routing provider, enter the following command:
+      <CodeBlock code={"$ oc patch Network.operator.openshift.io/cluster --type=merge -p '{\n  \"spec\": {\n    \"additionalRoutingCapabilities\": {\n      \"providers\": [\"FRR\"]\n    }\n  }\n}'"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="additional-resources_enabling-bgp-routing" class="group scroll-mt-20">Additional resources<a href="#additional-resources_enabling-bgp-routing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/networking/advanced_networking/bgp_routing/no-overlay-mode-bgp-routing#no-overlay-mode-bgp-routing">Improve east-west performance by routing pods on the underlay with BGP</a></li></ul>
     </article>

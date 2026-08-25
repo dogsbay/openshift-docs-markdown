@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"restoring-applications","text":"Restoring applications"}];
+const headings = [{"depth":1,"slug":"restoring-applications","text":"Restoring applications"},{"depth":2,"slug":"oadp-review-backup-restore_restoring-applications","text":"Previewing resources before running backup and restore"},{"depth":2,"slug":"oadp-creating-restore-cr_restoring-applications","text":"Creating a Restore CR"},{"depth":2,"slug":"oadp-creating-restore-hooks_restoring-applications","text":"Creating restore hooks"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Restoring applications {#restoring-applications}\n\nRestore application backups by previewing resources before running the restore, creating a `Restore` custom resource (CR), and configuring restore hooks to run commands in restored pods. This helps you to recover your application data and configuration while controlling the restore process.\n\n**Additional resources**\n\n- [Triggering updates on image stream changes](/openshift-docs-markdown/openshift_images/triggering-updates-on-imagestream-changes#triggering-updates-on-imagestream-changes)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Restoring applications {#restoring-applications}\n\nRestore application backups by previewing resources before running the restore, creating a `Restore` custom resource (CR), and configuring restore hooks to run commands in restored pods. This helps you to recover your application data and configuration while controlling the restore process.\n\n## Previewing resources before running backup and restore {#oadp-review-backup-restore_restoring-applications}\n\nPreview the backup and restore resources in advance by doing a dry run of the backup and restore operations. This helps you to verify which resources will be included before committing to a full backup or restore.\n\nOADP backs up application resources based on the type, namespace, or label. This means that you can view the resources after the backup is complete. Similarly, you can view the restored objects based on the namespace, persistent volume (PV), or label after a restore operation is complete.\n\n**Prerequisites**\n\n- You have installed the OADP Operator.\n\n**Procedure**\n\n1. To preview the resources included in the backup before running the actual backup, run the following command:\n\n   ```terminal\n   $ velero backup create <backup-name> --snapshot-volumes false\n   ```\n\n   Specify the value of `--snapshot-volumes` parameter as `false`.\n2. To know more details about the backup resources, run the following command:\n\n   ```terminal\n   $ velero describe backup <backup_name> --details\n   ```\n\n   Replace `<backup_name>` with the name of the backup.\n3. To preview the resources included in the restore before running the actual restore, run the following command:\n\n   ```terminal\n   $ velero restore create --from-backup <backup_name>\n   ```\n\n   Replace `<backup_name>` with the name of the backup.\n\n   > [!IMPORTANT]\n   > The `velero restore create` command creates restore resources in the cluster. You must delete the resources created as part of the restore, after you review the resources.\n4. To know more details about the restore resources, run the following command:\n\n   ```terminal\n   $ velero describe restore <restore_name> --details\n   ```\n\n   Replace `<restore_name>` with the name of the restore.\n\n## Creating a Restore CR {#oadp-creating-restore-cr_restoring-applications}\n\nRestore a `Backup` custom resource (CR) by creating a `Restore` CR.\n\nWhen you restore a stateful application that uses the `azurefile-csi` storage class, the restore operation remains in the `Finalizing` phase.\n\n**Prerequisites**\n\n- You must install the OpenShift API for Data Protection (OADP) Operator.\n- The `DataProtectionApplication` CR must be in a `Ready` state.\n- You must have a Velero `Backup` CR.\n- The persistent volume (PV) capacity must match the requested size at backup time. Adjust the requested size if needed.\n\n**Procedure**\n\n1. Create a `Restore` CR, as in the following example:\n\n   ```yaml\n   apiVersion: velero.io/v1\n   kind: Restore\n   metadata:\n     name: <restore>\n     namespace: openshift-adp\n   spec:\n     backupName: <backup>\n     includedResources: []\n     excludedResources:\n     - nodes\n     - events\n     - events.events.k8s.io\n     - backups.velero.io\n     - restores.velero.io\n     - resticrepositories.velero.io\n     restorePVs: true\n   ```\n\n   where:\n\n   `<backup>`\n   :   Specifies the name of the `Backup` CR.\n\n   `includedResources`\n   :   Optional: Specifies an array of resources to include in the restore process. Resources might be shortcuts (for example, `po` for `pods`) or fully-qualified. If unspecified, all resources are included.\n\n   `restorePVs: true`\n   :   Optional: The `restorePVs` parameter can be set to `false` to turn off restore of `PersistentVolumes` from `VolumeSnapshot` of Container Storage Interface (CSI) snapshots or from native snapshots when `VolumeSnapshotLocation` is configured.\n2. Verify that the status of the `Restore` CR is `Completed` by entering the following command:\n\n   ```terminal\n   $ oc get restores.velero.io -n openshift-adp <restore> -o jsonpath='{.status.phase}'\n   ```\n3. Verify that the backup resources have been restored by entering the following command:\n\n   ```terminal\n   $ oc get all -n <namespace>\n   ```\n\n   where:\n\n   `<namespace>`\n   :   Specifies the namespace that you backed up.\n4. If you restore `DeploymentConfig` with volumes or if you use post-restore hooks, run the `dc-post-restore.sh` cleanup script by entering the following command:\n\n   ```terminal\n   $ bash dc-restic-post-restore.sh -> dc-post-restore.sh\n   ```\n\n   > [!NOTE]\n   > During the restore process, the OADP Velero plug-ins scale down the `DeploymentConfig` objects and restore the pods as standalone pods. This is done to prevent the cluster from deleting the restored `DeploymentConfig` pods immediately on restore and to allow the restore and post-restore hooks to complete their actions on the restored pods. The cleanup script shown below removes these disconnected pods and scales any `DeploymentConfig` objects back up to the appropriate number of replicas.\n\n   ```bash\n   #!/bin/bash\n   set -e\n\n   # if sha256sum exists, use it to check the integrity of the file\n   if command -v sha256sum >/dev/null 2>&1; then\n     CHECKSUM_CMD=\"sha256sum\"\n   else\n     CHECKSUM_CMD=\"shasum -a 256\"\n   fi\n\n   label_name () {\n       if [ \"${#1}\" -le \"63\" ]; then\n   \techo $1\n   \treturn\n       fi\n       sha=$(echo -n $1|$CHECKSUM_CMD)\n       echo \"${1:0:57}${sha:0:6}\"\n   }\n\n   if [[ $# -ne 1 ]]; then\n       echo \"usage: ${BASH_SOURCE} restore-name\"\n       exit 1\n   fi\n\n   echo \"restore: $1\"\n\n   label=$(label_name $1)\n   echo \"label:   $label\"\n\n   echo Deleting disconnected restore pods\n   oc delete pods --all-namespaces -l oadp.openshift.io/disconnected-from-dc=$label\n\n   for dc in $(oc get dc --all-namespaces -l oadp.openshift.io/replicas-modified=$label -o jsonpath='{range .items[*]}{.metadata.namespace}{\",\"}{.metadata.name}{\",\"}{.metadata.annotations.oadp\\.openshift\\.io/original-replicas}{\",\"}{.metadata.annotations.oadp\\.openshift\\.io/original-paused}{\"\\n\"}')\n   do\n       IFS=',' read -ra dc_arr <<< \"$dc\"\n       if [ ${#dc_arr[0]} -gt 0 ]; then\n   \techo Found deployment ${dc_arr[0]}/${dc_arr[1]}, setting replicas: ${dc_arr[2]}, paused: ${dc_arr[3]}\n   \tcat <<EOF | oc patch dc  -n ${dc_arr[0]} ${dc_arr[1]} --patch-file /dev/stdin\n   spec:\n     replicas: ${dc_arr[2]}\n     paused: ${dc_arr[3]}\n   EOF\n       fi\n   done\n   ```\n\n## Creating restore hooks {#oadp-creating-restore-hooks_restoring-applications}\n\nCreate restore hooks to run commands in a container in a pod by editing the `Restore` custom resource (CR).\n\nYou can create two types of restore hooks:\n\n- An `init` hook adds an init container to a pod to perform setup tasks before the application container starts.\n\n  If you restore a Restic backup, the `restic-wait` init container is added before the restore hook init container.\n- An `exec` hook runs commands or scripts in a container of a restored pod.\n\n**Procedure**\n\n- Add a hook to the `spec.hooks` block of the `Restore` CR, as in the following example:\n\n  ```yaml\n  apiVersion: velero.io/v1\n  kind: Restore\n  metadata:\n    name: <restore>\n    namespace: openshift-adp\n  spec:\n    hooks:\n      resources:\n        - name: <hook_name>\n          includedNamespaces:\n          - <namespace>\n          excludedNamespaces:\n          - <namespace>\n          includedResources:\n          - pods\n          excludedResources: []\n          labelSelector:\n            matchLabels:\n              app: velero\n              component: server\n          postHooks:\n          - init:\n              initContainers:\n              - name: restore-hook-init\n                image: alpine:latest\n                volumeMounts:\n                - mountPath: /restores/pvc1-vm\n                  name: pvc1-vm\n                command:\n                - /bin/ash\n                - -c\n              timeout:\n          - exec:\n              container: <container>\n              command:\n              - /bin/bash\n              - -c\n              - \"psql < /backup/backup.sql\"\n              waitTimeout: 5m\n              execTimeout: 1m\n              onError: Continue\n  ```\n\n  where:\n\n  `<namespace>`\n  :   Optional: Specifies an array of namespaces to which the hook applies. If this value is not specified, the hook applies to all namespaces.\n\n  `pods`\n  :   Currently, pods are the only supported resource that hooks can apply to.\n\n  `labelSelector`\n  :   Optional: This hook only applies to objects matching the label selector.\n\n  `timeout`\n  :   Optional: Specifies the maximum length of time Velero waits for `initContainers` to complete.\n\n  `<container>`\n  :   Optional: Specifies the container in which the command runs. If the container is not specified, the command runs in the first container in the pod.\n\n  `/bin/bash`\n  :   Specifies the entrypoint for the init container being added.\n\n  `waitTimeout: 5m`\n  :   Optional: Specifies how long to wait for a container to become ready. This should be long enough for the container to start and for any preceding hooks in the same container to complete. If not set, the restore process waits indefinitely.\n\n  `execTimeout: 1m`\n  :   Optional: Specifies how long to wait for the commands to run. The default is `30s`.\n\n  `onError: Continue`\n  :   Specifies the error handling behavior. Allowed values are `Fail` and `Continue`: \\*   `Continue`: Only command failures are logged. \\*   `Fail`: No more restore hooks run in any container in any pod. The status of the `Restore` CR will be `PartiallyFailed`.\n\nDuring a File System Backup (FSB) restore operation, a `Deployment` resource referencing an `ImageStream` is not restored properly. The restored pod that runs the FSB, and the `postHook` is terminated prematurely.\n\nThis happens because, during the restore operation, OpenShift controller updates the `spec.template.spec.containers[0].image` field in the `Deployment` resource with an updated `ImageStreamTag` hash. The update triggers the rollout of a new pod, terminating the pod on which `velero` runs the FSB and the post restore hook. For more information about image stream trigger, see \"Triggering updates on image stream changes\".\n\nThe workaround for this behavior is a two-step restore process:\n\n1. First, perform a restore excluding the `Deployment` resources, for example:\n\n   ```terminal\n   $ velero restore create <RESTORE_NAME> \\\n     --from-backup <BACKUP_NAME> \\\n     --exclude-resources=deployment.apps\n   ```\n2. After the first restore is successful, perform a second restore by including these resources, for example:\n\n   ```terminal\n   $ velero restore create <RESTORE_NAME> \\\n     --from-backup <BACKUP_NAME> \\\n     --include-resources=deployment.apps\n   ```\n\n**Additional resources**\n\n- [Triggering updates on image stream changes](/openshift-docs-markdown/openshift_images/triggering-updates-on-imagestream-changes#triggering-updates-on-imagestream-changes)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/restoring-applications.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,142 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="restoring-applications" class="group scroll-mt-20">Restoring applications<a href="#restoring-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Restore application backups by previewing resources before running the restore, creating a <code>Restore</code> custom resource (CR), and configuring restore hooks to run commands in restored pods. This helps you to recover your application data and configuration while controlling the restore process.</p>
-      <p class="/modules/oadp-review-backup-restore.md"></p>
-      <p class="/modules/oadp-creating-restore-cr.md"></p>
-      <p class="/modules/oadp-creating-restore-hooks.md"></p>
-      <p class="/snippets/oadp-image-stream-tag-trigger.md"></p>
+      <h2 id="oadp-review-backup-restore_restoring-applications" class="group scroll-mt-20">Previewing resources before running backup and restore<a href="#oadp-review-backup-restore_restoring-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Preview the backup and restore resources in advance by doing a dry run of the backup and restore operations. This helps you to verify which resources will be included before committing to a full backup or restore.</p>
+      <p>OADP backs up application resources based on the type, namespace, or label. This means that you can view the resources after the backup is complete. Similarly, you can view the restored objects based on the namespace, persistent volume (PV), or label after a restore operation is complete.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OADP Operator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To preview the resources included in the backup before running the actual backup, run the following command:
+      <CodeBlock code={"$ velero backup create <backup-name> --snapshot-volumes false"} lang="terminal" />
+      <p>Specify the value of <code>--snapshot-volumes</code> parameter as <code>false</code>.</p>
+      </li>
+      <li>
+      To know more details about the backup resources, run the following command:
+      <CodeBlock code={"$ velero describe backup <backup_name> --details"} lang="terminal" />
+      <p>Replace <code>&lt;backup_name&gt;</code> with the name of the backup.</p>
+      </li>
+      <li>
+      To preview the resources included in the restore before running the actual restore, run the following command:
+      <CodeBlock code={"$ velero restore create --from-backup <backup_name>"} lang="terminal" />
+      <p>Replace <code>&lt;backup_name&gt;</code> with the name of the backup.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The <code>velero restore create</code> command creates restore resources in the cluster. You must delete the resources created as part of the restore, after you review the resources.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      To know more details about the restore resources, run the following command:
+      <CodeBlock code={"$ velero describe restore <restore_name> --details"} lang="terminal" />
+      <p>Replace <code>&lt;restore_name&gt;</code> with the name of the restore.</p>
+      </li>
+      </ol>
+      <h2 id="oadp-creating-restore-cr_restoring-applications" class="group scroll-mt-20">Creating a Restore CR<a href="#oadp-creating-restore-cr_restoring-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Restore a <code>Backup</code> custom resource (CR) by creating a <code>Restore</code> CR.</p>
+      <p>When you restore a stateful application that uses the <code>azurefile-csi</code> storage class, the restore operation remains in the <code>Finalizing</code> phase.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must install the OpenShift API for Data Protection (OADP) Operator.</li>
+      <li>The <code>DataProtectionApplication</code> CR must be in a <code>Ready</code> state.</li>
+      <li>You must have a Velero <code>Backup</code> CR.</li>
+      <li>The persistent volume (PV) capacity must match the requested size at backup time. Adjust the requested size if needed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>Restore</code> CR, as in the following example:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Restore\nmetadata:\n  name: <restore>\n  namespace: openshift-adp\nspec:\n  backupName: <backup>\n  includedResources: []\n  excludedResources:\n  - nodes\n  - events\n  - events.events.k8s.io\n  - backups.velero.io\n  - restores.velero.io\n  - resticrepositories.velero.io\n  restorePVs: true"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;backup&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>Backup</code> CR.</p></dd>
+      <dt class="font-semibold"><code>includedResources</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies an array of resources to include in the restore process. Resources might be shortcuts (for example, <code>po</code> for <code>pods</code>) or fully-qualified. If unspecified, all resources are included.</p></dd>
+      <dt class="font-semibold"><code>restorePVs: true</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: The <code>restorePVs</code> parameter can be set to <code>false</code> to turn off restore of <code>PersistentVolumes</code> from <code>VolumeSnapshot</code> of Container Storage Interface (CSI) snapshots or from native snapshots when <code>VolumeSnapshotLocation</code> is configured.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Verify that the status of the <code>Restore</code> CR is <code>Completed</code> by entering the following command:
+      <CodeBlock code={"$ oc get restores.velero.io -n openshift-adp <restore> -o jsonpath='{.status.phase}'"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the backup resources have been restored by entering the following command:
+      <CodeBlock code={"$ oc get all -n <namespace>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace that you backed up.</p></dd>
+      </dl>
+      </li>
+      <li>
+      If you restore <code>DeploymentConfig</code> with volumes or if you use post-restore hooks, run the <code>dc-post-restore.sh</code> cleanup script by entering the following command:
+      <CodeBlock code={"$ bash dc-restic-post-restore.sh -> dc-post-restore.sh"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>During the restore process, the OADP Velero plug-ins scale down the <code>DeploymentConfig</code> objects and restore the pods as standalone pods. This is done to prevent the cluster from deleting the restored <code>DeploymentConfig</code> pods immediately on restore and to allow the restore and post-restore hooks to complete their actions on the restored pods. The cleanup script shown below removes these disconnected pods and scales any <code>DeploymentConfig</code> objects back up to the appropriate number of replicas.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"#!/bin/bash\nset -e\n\n# if sha256sum exists, use it to check the integrity of the file\nif command -v sha256sum >/dev/null 2>&1; then\n  CHECKSUM_CMD=\"sha256sum\"\nelse\n  CHECKSUM_CMD=\"shasum -a 256\"\nfi\n\nlabel_name () {\n    if [ \"${#1}\" -le \"63\" ]; then\n\techo $1\n\treturn\n    fi\n    sha=$(echo -n $1|$CHECKSUM_CMD)\n    echo \"${1:0:57}${sha:0:6}\"\n}\n\nif [[ $# -ne 1 ]]; then\n    echo \"usage: ${BASH_SOURCE} restore-name\"\n    exit 1\nfi\n\necho \"restore: $1\"\n\nlabel=$(label_name $1)\necho \"label:   $label\"\n\necho Deleting disconnected restore pods\noc delete pods --all-namespaces -l oadp.openshift.io/disconnected-from-dc=$label\n\nfor dc in $(oc get dc --all-namespaces -l oadp.openshift.io/replicas-modified=$label -o jsonpath='{range .items[*]}{.metadata.namespace}{\",\"}{.metadata.name}{\",\"}{.metadata.annotations.oadp\\.openshift\\.io/original-replicas}{\",\"}{.metadata.annotations.oadp\\.openshift\\.io/original-paused}{\"\\n\"}')\ndo\n    IFS=',' read -ra dc_arr <<< \"$dc\"\n    if [ ${#dc_arr[0]} -gt 0 ]; then\n\techo Found deployment ${dc_arr[0]}/${dc_arr[1]}, setting replicas: ${dc_arr[2]}, paused: ${dc_arr[3]}\n\tcat <<EOF | oc patch dc  -n ${dc_arr[0]} ${dc_arr[1]} --patch-file /dev/stdin\nspec:\n  replicas: ${dc_arr[2]}\n  paused: ${dc_arr[3]}\nEOF\n    fi\ndone"} lang="bash" />
+      </li>
+      </ol>
+      <h2 id="oadp-creating-restore-hooks_restoring-applications" class="group scroll-mt-20">Creating restore hooks<a href="#oadp-creating-restore-hooks_restoring-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Create restore hooks to run commands in a container in a pod by editing the <code>Restore</code> custom resource (CR).</p>
+      <p>You can create two types of restore hooks:</p>
+      <ul>
+      <li>
+      An <code>init</code> hook adds an init container to a pod to perform setup tasks before the application container starts.
+      <p>If you restore a Restic backup, the <code>restic-wait</code> init container is added before the restore hook init container.</p>
+      </li>
+      <li>An <code>exec</code> hook runs commands or scripts in a container of a restored pod.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Add a hook to the <code>spec.hooks</code> block of the <code>Restore</code> CR, as in the following example:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Restore\nmetadata:\n  name: <restore>\n  namespace: openshift-adp\nspec:\n  hooks:\n    resources:\n      - name: <hook_name>\n        includedNamespaces:\n        - <namespace>\n        excludedNamespaces:\n        - <namespace>\n        includedResources:\n        - pods\n        excludedResources: []\n        labelSelector:\n          matchLabels:\n            app: velero\n            component: server\n        postHooks:\n        - init:\n            initContainers:\n            - name: restore-hook-init\n              image: alpine:latest\n              volumeMounts:\n              - mountPath: /restores/pvc1-vm\n                name: pvc1-vm\n              command:\n              - /bin/ash\n              - -c\n            timeout:\n        - exec:\n            container: <container>\n            command:\n            - /bin/bash\n            - -c\n            - \"psql < /backup/backup.sql\"\n            waitTimeout: 5m\n            execTimeout: 1m\n            onError: Continue"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies an array of namespaces to which the hook applies. If this value is not specified, the hook applies to all namespaces.</p></dd>
+      <dt class="font-semibold"><code>pods</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Currently, pods are the only supported resource that hooks can apply to.</p></dd>
+      <dt class="font-semibold"><code>labelSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: This hook only applies to objects matching the label selector.</p></dd>
+      <dt class="font-semibold"><code>timeout</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the maximum length of time Velero waits for <code>initContainers</code> to complete.</p></dd>
+      <dt class="font-semibold"><code>&lt;container&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the container in which the command runs. If the container is not specified, the command runs in the first container in the pod.</p></dd>
+      <dt class="font-semibold"><code>/bin/bash</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the entrypoint for the init container being added.</p></dd>
+      <dt class="font-semibold"><code>waitTimeout: 5m</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies how long to wait for a container to become ready. This should be long enough for the container to start and for any preceding hooks in the same container to complete. If not set, the restore process waits indefinitely.</p></dd>
+      <dt class="font-semibold"><code>execTimeout: 1m</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies how long to wait for the commands to run. The default is <code>30s</code>.</p></dd>
+      <dt class="font-semibold"><code>onError: Continue</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the error handling behavior. Allowed values are <code>Fail</code> and <code>Continue</code>: *   <code>Continue</code>: Only command failures are logged. *   <code>Fail</code>: No more restore hooks run in any container in any pod. The status of the <code>Restore</code> CR will be <code>PartiallyFailed</code>.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <p>During a File System Backup (FSB) restore operation, a <code>Deployment</code> resource referencing an <code>ImageStream</code> is not restored properly. The restored pod that runs the FSB, and the <code>postHook</code> is terminated prematurely.</p>
+      <p>This happens because, during the restore operation, OpenShift controller updates the <code>spec.template.spec.containers[0].image</code> field in the <code>Deployment</code> resource with an updated <code>ImageStreamTag</code> hash. The update triggers the rollout of a new pod, terminating the pod on which <code>velero</code> runs the FSB and the post restore hook. For more information about image stream trigger, see "Triggering updates on image stream changes".</p>
+      <p>The workaround for this behavior is a two-step restore process:</p>
+      <ol>
+      <li>
+      First, perform a restore excluding the <code>Deployment</code> resources, for example:
+      <CodeBlock code={"$ velero restore create <RESTORE_NAME> \\\n  --from-backup <BACKUP_NAME> \\\n  --exclude-resources=deployment.apps"} lang="terminal" />
+      </li>
+      <li>
+      After the first restore is successful, perform a second restore by including these resources, for example:
+      <CodeBlock code={"$ velero restore create <RESTORE_NAME> \\\n  --from-backup <BACKUP_NAME> \\\n  --include-resources=deployment.apps"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/openshift_images/triggering-updates-on-imagestream-changes#triggering-updates-on-imagestream-changes">Triggering updates on image stream changes</a></li></ul>
     </article>

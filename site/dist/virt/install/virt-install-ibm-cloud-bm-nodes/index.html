@@ -1,14 +1,788 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes | OpenShift Container Platform</title><meta name="description" content="Install {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes"><meta property="og:description" content="Install {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes"><meta name="twitter:description" content="Install {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3…"><script>
+<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes | OpenShift Container Platform</title><meta name="description" content="Install OpenShift Virtualization on IBM Cloud bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes"><meta property="og:description" content="Install OpenShift Virtualization on IBM Cloud bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes"><meta name="twitter:description" content="Install OpenShift Virtualization on IBM Cloud bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An…"><script>
       if (localStorage.getItem("theme") === "dark") {
         document.documentElement.classList.add("dark");
       }
-    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BTNukzuO.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes {#virt-install-ibm-cloud-bm-nodes}
+    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BrFMoueR.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Installing OpenShift Virtualization on IBM Cloud bare-metal nodes {#virt-install-ibm-cloud-bm-nodes}
 
-Install {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer.
+Install OpenShift Virtualization on IBM Cloud bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer.
 
 ## Prerequisites {#_prerequisites}
 
-- An account in {{ ibm_cloud_title }} with permissions to order and operate bare-metal nodes.
-- An {{ ibm_cloud_title }} SSL VPN user, to access the SuperMicro IPMI interface of a node.
+- An account in IBM Cloud with permissions to order and operate bare-metal nodes.
+- An IBM Cloud SSL VPN user, to access the SuperMicro IPMI interface of a node.
 - Install the OpenShift CLI (`oc`).
-"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Finstall%2Fvirt-install-ibm-cloud-bm-nodes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Finstall%2Fvirt-install-ibm-cloud-bm-nodes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Finstall%2Fvirt-install-ibm-cloud-bm-nodes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Finstall%2Fvirt-install-ibm-cloud-bm-nodes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:virt" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:virt/install" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><h1 class="text-3xl font-bold tracking-tight mb-2" data-astro-cid-vg5xjwtk>Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes</h1><article class="docs-prose"><p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p><h1 id="virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes<a href="#virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>Install {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer.</p><h2 id="_prerequisites" class="group scroll-mt-20">Prerequisites<a href="#_prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><ul><li>An account in {{ ibm_cloud_title }} with permissions to order and operate bare-metal nodes.</li><li>An {{ ibm_cloud_title }} SSL VPN user, to access the SuperMicro IPMI interface of a node.</li><li>Install the OpenShift CLI (<code>oc</code>).</li></ul><p class="/modules/virt-install-ibm-cloud-initialize-new-cluster.md"></p><p class="/modules/virt-install-ibm-cloud-cluster-network-access.md"></p><p class="/modules/virt-install-ibm-cloud-complete-cluster-config.md"></p></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/virt/install/uninstalling-virt" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Uninstalling OpenShift Virtualization</div></div></a><a href="/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-config" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Postinstallation configuration</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>
+
+## Configuring IBM Cloud for the new cluster {#virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes}
+
+Configure and provision the IBM Cloud environment to establish the operational framework and nodes for your OpenShift Virtualization cluster.
+
+**Procedure**
+
+1. Create a new virtual server instance in IBM Cloud at [Virtual Server for Classic](https://cloud.ibm.com/gen1/infrastructure/provision/vs) to be the Bastion server. This instance is used to run the installation and provide environment services.
+2. Change the default properties of the new virtual server instance to the following values. Use the provided defaults for all other values.
+
+   - **Type of virtual server:** Public
+   - **Operating system:** CentOS
+   - Your public SSH RSA key
+3. Note the private VLAN and subnet the virtual server instance is assigned to at [VLANs](https://cloud.ibm.com/classic/network/vlans).
+4. Provision 6 bare-metal nodes in IBM Cloud at [Bare metal server provision](https://cloud.ibm.com/gen1/infrastructure/provision/bm). Use the following values when provisioning the nodes:
+
+   - **Domain**: A subdomain you can add records to.
+   - **Quantity**: 6
+   - **Location**: The same location as the virtual server instance.
+   - **Storage disks**: RAID 1
+   - **Network Interface**: Private
+   - **Private VLAN**: The same as noted for the virtual server instance.
+5. Confirm all nodes are provisioned and ready at [Device list](https://cloud.ibm.com/gen1/infrastructure/devices).
+6. Rename the control plane nodes to `control0-<domain-name>`, `control1-<domain-name>`, and `control2-<domain-name>`. Replace `<domain-name>` with the domain used when provisioning the nodes.
+7. Rename the compute nodes to `compute0-<domain-name>`, `compute1-<domain-name>`, and `compute2-<domain-name>`. Replace `<domain-name>` with the domain used when provisioning the nodes.
+8. Configure the Bastion virtual server instance as a default network gateway.
+9. Configure DHCP by editing `/etc/dhcp/dhcpd.conf` on the Bastion virtual server instance. For example:
+
+   ```text
+   # Set DNS name and DNS server's IP address or hostname
+   option domain-name  <dns_domain_name>;
+   option domain-name-servers  <dns_ip_addresses>;
+
+   # Declare DHCP Server
+   authoritative;
+
+   # The default DHCP lease time
+   default-lease-time <default_lease_value>;
+
+   # Set the maximum lease time
+   max-lease-time <max_lease_value>;
+
+   # Set Network address, subnet mask and gateway
+
+   subnet <subnet_ip_address> netmask <subnet_mask> {
+     # Range of IP addresses to allocate
+     range dynamic-bootp <dynamic_boot_lower_address> <dynamic_boot_upper_address>;
+     # Provide broadcast address
+     option broadcast-address <broadcast_ip_address>;
+     # Set default gateway
+     option routers <default_gateway_ip_address>;
+   ```
+
+   where:
+
+   `<dns_domain_name>`
+   :   Specifies the default domain name for DNS clients.
+
+   `<dns_ip_addresses>`
+   :   Specifies a comma-separated list of DNS server IP addresses.
+
+   `<default_lease_value>`
+   :   Specifies the default number of seconds a client keeps an assigned address.
+
+   `<max_lease_value>`
+   :   Specifies the maximum number of seconds a client keeps an assigned address.
+
+   `<subnet_ip_address>`
+   :   Specifies the start of the subnet IP address range.
+
+   `<subnet_mask>`
+   :   Specifies the subnet mask of the subnet IP address range.
+
+   `<broad_ip_address>`
+   :   Specifies the broadcast IP address to use when to use sending a message to every device on the subnet.
+
+   `<default_gateway_ip_address>`
+   :   Specifies the default gateway of the subnet.
+10. Restart DHCP on the Bastion virtual server instance:
+
+    ```terminal
+    $ systemctl restart dhcpd
+    ```
+11. Enable IP forwarding on the Bastion virtual server instance:
+
+    ```terminal
+    $ sysctl -w net.ipv4.ip_forward=1
+    ```
+12. Verify IP forwarding is enabled on the Bastion virtual server instance:
+
+    ```terminal
+    $ sysctl -p /etc/sysctl.conf
+    ```
+13. Restart the network service on the Bastion virtual server instance:
+
+    ```terminal
+    $ service network restart
+    ```
+14. Verify if `firewalld` is enabled on the Bastion virtual server instance:
+
+    ```terminal
+    $ firewall-cmd --state
+    ```
+15. If the `firewalld` service is not enabled on the Bastion virtual server instance, enable the service:
+
+    ```terminal
+    $ systemctl enable firewalld
+    ```
+16. Start the `firewalld` service:
+
+    ```terminal
+    $ systemctl start firewalld
+    ```
+17. Add network address translation (NAT) rules to the `firewalld` service:
+
+    ```terminal
+    $ firewall-cmd --add-masquerade --permanent
+    ```
+18. Restart the `firewalld` service:
+
+    ```terminal
+    $ firewall-cmd --reload
+    ```
+
+## Initializing the new cluster configuration {#virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes}
+
+Initialize the new cluster configuration using the OpenShift Virtualization Assisted Installer service and Samba on the Bastion virtual server instance.
+
+**Procedure**
+
+1. Log in to the **Assisted Installer** service.
+2. Create a new cluster. The new cluster has the following properties:
+
+   - **Cluster name**: The name used to identify the cluster under the base domain.
+   - **Base domain**: The domain used to provision the bare-metal nodes.
+3. Click **Next**.
+4. Click **Generate Discovery ISO**.
+5. Provide your public SSH RSA key when prompted.
+6. Copy and save the generated `wget` command for the ISO file. This will be used later to connect to the cluster nodes.
+7. Install Samba server on the Bastion virtual server instance:
+
+   ```terminal
+   $ dnf install samba
+   ```
+8. Enable Samba server on the Bastion virtual server instance:
+
+   ```terminal
+   $ systemctl enable smb --now
+   ```
+9. Configure NAT rules for the Samba server:
+
+   ```terminal
+   $ firewall-cmd --permanent --zone=FedoraWorkstation --add-service=samba
+   $ firewall-cmd --reload
+   ```
+10. Configure a root user password:
+
+    ```terminal
+    $ sudo smbpasswd -a root
+    ```
+11. Create a share directory:
+
+    ```terminal
+    $ mkdir <share_directory>
+    ```
+
+    Replace `<share_directory>` with the share directory name.
+12. Navigate to the share directory and download the Assisted Installer ISO file using the generated `wget` command.
+
+## Configuring cluster networking and access {#virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes}
+
+Configure networking and access to allow for remote management of the cluster.
+
+**Procedure**
+
+1. Edit `/etc/samba/smb.conf` to use the following configuration:
+
+   ```text
+   [global]
+         log level = 3
+             workgroup = SAMBA
+             security = user
+
+             passdb backend = tdbsam
+
+             printing = cups
+             printcap name = cups
+             load printers = yes
+             cups options = raw
+
+         server min protocol = NT1
+         ntlm auth = yes
+
+   [share]
+         comment = ISO Files
+         path = /root/share
+         browseable = yes
+         public = no
+         read only = no
+         directory mode = 0555
+         valid users = root
+   ```
+
+   > [!NOTE]
+   > For a more detailed example of the `smb.conf` file, see the `smb.conf.example` file in the same directory.
+2. Save the file.
+3. Verify the new Samba configuration:
+
+   ```terminal
+   $ testparm
+   ```
+4. Restart the Samba service:
+
+   ```terminal
+   $ systemctl restart smb
+   ```
+5. Verify that the Samba service is running and active:
+
+   ```terminal
+   $ systemctl status smb
+   ```
+6. Configure SSL VPN access to IBM Cloud:
+
+   1. Perform the procedure at [Getting started with IBM Cloud Virtual Private Networking](https://cloud.ibm.com/docs/iaas-vpn?topic=iaas-vpn-getting-started) in the IBM Cloud documentation.
+   2. Download and install the MotionPro SSL VPN client.
+   3. Connect to the appropriate IBM Cloud endpoint:
+
+      ```terminal
+      $ sudo MotionPro --host $<vpn_endpoint> --user $<vpn_username> --passwd $<vpn_password>
+      ```
+
+      where:
+
+      `<vpn_endpoint>`
+      :   Specifies the appropriate SSL VPN endpoint.
+
+      `<vpn_username>`
+      :   Specifies the SSL VPN user name you configured.
+
+      `<vpn_password>`
+      :   Specifies the SSL VPN password you configured.
+
+      > [!NOTE]
+      > Connecting to the IBM Cloud SSL VPN disconnects you from any open VPN connections.
+
+## Completing the cluster configuration {#virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes}
+
+Complete the cluster configuration by installing software on the control plane and compute nodes and configuring DNS for external access.
+
+**Procedure**
+
+1. For each bare-metal server, perform the following tasks:
+
+   1. Access the server using the IPMI console.
+
+      > [!NOTE]
+      > The IP address and credentials for IPMI console access is available in the **Remote management** section for each server.
+   2. Mount the Assisted Installer ISO file with the following attributes:
+
+      - **Virtual Media**: CD-ROM Image
+      - **Share host**: The private IP address of the Bastion server.
+      - **Path to image**: The location of the Assisted Installer ISO file.
+      - **User**: root
+      - **Password**: The root user password you configured.
+   3. Click **Save and Mount**.
+   4. Verify the ISO mounted successfully.
+   5. Restart the server by selecting **Remote Control** -> **Power Control** -> **Reset Server** -> **Perform Action**.
+2. Return to the **Assisted Installer** service.
+3. Select the **Install OpenShift Virtualization** and **Install OpenShift Data Foundation** checkboxes in the **Assisted Installer** options.
+4. Select a role for each host.
+
+   > [!NOTE]
+   > The cluster consists of 3 control plane and 3 compute nodes.
+5. Wait for the **Assisted Installer** interface to indicate each node is ready.
+6. Click **Next**.
+7. Select **Cluster Managed Network**.
+8. Select the **API VIP** and **Ingress VIP** checkboxes to obtain them from DHCP or leave them unchecked to enter static values.
+9. Click **Install**.
+10. For each bare-metal server, perform the following tasks:
+
+    1. Access the server using the IPMI console.
+
+       > [!NOTE]
+       > The IP address and credentials for IPMI console access is available in the **Remote management** section for each server.
+    2. Select **Virtual Media** -> **CD-Rom Image**.
+    3. Click **Unmount**.
+    4. Select **Remote Control** -> **Power Control** -> **Reset Server** -> **Perform Action** to restart the server.
+11. Locate the **Cluster Credentials** section of the installation summary.
+12. Perform the following tasks in the **Cluster Credentials** section:
+
+    1. Download the `kubeconfig` file.
+    2. Save the `kubeadmin` password.
+13. Install `haproxy` on the Bastion virtual server instance.
+14. Configure `haproxy` for your environment. The following is an example configuration:
+
+    ```text
+    #---------------------------------------------------------------------
+    # Example configuration for a possible web application.  See the
+    # full configuration options online.
+    #
+    #   https://www.haproxy.org/download/1.8/doc/configuration.txt
+    #
+    #---------------------------------------------------------------------
+
+    #---------------------------------------------------------------------
+    # Global settings
+    #---------------------------------------------------------------------
+    global
+      # to have these messages end up in /var/log/haproxy.log you will
+      # need to:
+      #
+      # 1) configure syslog to accept network log events.  This is done
+      # by adding the '-r' option to the SYSLOGD_OPTIONS in
+      # /etc/sysconfig/syslog
+      #
+      # 2) configure local2 events to go to the /var/log/haproxy.log
+      #   file. A line like the following can be added to
+      #   /etc/sysconfig/syslog
+      #
+      # local2.*                    /var/log/haproxy.log
+      #
+      log       127.0.0.1 local2
+
+      chroot    /var/lib/haproxy
+      pidfile   /var/run/haproxy.pid
+      maxconn   4000
+      user      haproxy
+      group     haproxy
+      daemon
+
+      # turn on stats unix socket
+      stats socket /var/lib/haproxy/stats
+
+      # utilize system-wide crypto-policies
+      #ssl-default-bind-ciphers PROFILE=SYSTEM
+      #ssl-default-server-ciphers PROFILE=SYSTEM
+
+    #---------------------------------------------------------------------
+    # common defaults that all the 'listen' and 'backend' sections will
+    # use if not designated in their block
+    #---------------------------------------------------------------------
+    defaults
+      mode                  tcp
+      log                   global
+      option                httplog
+      option                dontlognull
+      option http-server-close
+      option forwardfor     except 127.0.0.0/8
+      option                redispatch
+      retries               3
+      timeout http-request  10s
+      timeout queue         1m
+      timeout connect       10s
+      timeout client        1m
+      timeout server        1m
+      timeout http-keep-alive 10s
+      timeout check         10s
+      maxconn               3000
+    #---------------------------------------------------------------------
+    # main frontend which proxys to the backends
+    #---------------------------------------------------------------------
+
+    frontend api
+      bind <api_ip_address>:<api_port>
+      default_backend controlplaneapi
+
+    frontend apiinternal
+      bind <apiinternal_ip_address>:<apiinternal_port>
+      default_backend controlplaneapiinternal
+
+    frontend secure
+      bind <frontend_secure_ip_address>:<frontend_secure_port>
+      default_backend secure
+
+    frontend insecure
+      bind <frontend_insecure_ip_address>:<frontend_insecure_port>
+      default_backend insecure
+
+    #---------------------------------------------------------------------
+    # static backend
+    #---------------------------------------------------------------------
+
+    backend controlplaneapi
+      balance source
+      server api <controlplaneapi_ip_address>:<controlplaneapi_port> check
+
+    backend controlplaneapiinternal
+      balance source
+      server api <controlplaneapiinternal_ip_address>:<controlplaneapiinternal_port> check
+
+    backend secure
+      balance source
+      server ingress <backend_secure_ip_address>:<backend_secure_port> check
+
+    backend insecure
+      balance source
+      server ingress <backend_insecure_ip_address>:<backend_insecure_port> check
+    ```
+
+    where:
+
+    `<api_ip_address>:<api_port>`
+    :   Specifies the front end IP address and port used by the Kubernetes API server.
+
+    `<apiinternal_ip_address>:<apiinternal_port>`
+    :   Specifies the front end IP address and port used for internal cluster management.
+
+    `<frontend_secure_ip_address>:<frontend_secure_port>`
+    :   Specifies the front end IP address and port used for HTTPS traffic for hosted applications.
+
+    `<frontend_insecure_ip_address>:<frontend_insecure_port>`
+    :   Specifies the front end IP address and port used for HTTP traffic for hosted applications.
+
+    `<controlplaneapi_ip_address>:<controlplaneapi_port>`
+    :   Specifies the back end IP address and port used by the Kubernetes API server.
+
+    `<controlplaneapiinternal_ip_address>:<controlplaneapiinternal_port>`
+    :   Specifies the back end IP address and port used for internal cluster management.
+
+    `<backend_secure_ip_address>:<backend_secure_port>`
+    :   Specifies the back end IP address and port used for HTTPS traffic for hosted applications.
+
+    `<backend_insecure_ip_address>:<backend_insecure_port>`
+    :   Specifies the back end IP address and port used for HTTP traffic for hosted applications.
+
+    > [!NOTE]
+    > Replace the example values with values applicable to your network configuration.
+15. Save the `haproxy` configuration.
+16. Configure two DNS Address records (A records) for the subdomain that are externally available over the Internet:
+
+    ```text
+    <bastion_public_ip_address> api.<cluster_name>.<cluster_domain>
+    <bastion_public_ip_address> *.apps..<cluster_name>.<cluster_domain>
+    ```
+
+    where:
+
+    `<bastion_public_ip_address>`
+    :   Specifies the externally available IP address of the Bastion virtual server instance.
+
+    `<cluster_name>`
+    :   Specifies the name assigned to the cluster.
+
+    `<cluster_domain>`
+    :   Specifies the domain assigned to the cluster.
+
+**Verification**
+
+1. Perform the following tasks to verify cluster access using command line access:
+
+   1. Set your environment with the `kubeconfig` file:
+
+      ```terminal
+      $ export KUBECONFIG=<kubeconfig_file_path>
+      ```
+
+      where:
+
+      `<kubeconfig_file_path>`
+      :   Specifies the path to the downloaded `kubeconfig` file.
+   2. Check cluster node status:
+
+      ```terminal
+      $ oc get nodes
+      ```
+
+      > [!NOTE]
+      > The command output should show all nodes as `Ready` in the `STATUS` column and the `ROLES` column should show that control plane and compute nodes are present.
+   3. Check the cluster version:
+
+      ```terminal
+      $ oc get clusterversion
+      ```
+
+      > [!NOTE]
+      > The command output should say `Condition: Available`.
+2. Perform the following tasks to verify cluster access using the web console:
+
+   1. Paste the access URL provided by Assisted Installer into your web browser.
+
+      > [!NOTE]
+      > By default, clusters use self-signed certificates. This may cause your browser to display a message that says **Connection not private** or a similar warning. You can close this warning and continue.
+   2. Navigate to the URL.
+   3. Log in to the cluster with the username `kubeadmin` and the `kubeadmin` password provided in the **Cluster Credentials** section.
+"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Finstall%2Fvirt-install-ibm-cloud-bm-nodes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Finstall%2Fvirt-install-ibm-cloud-bm-nodes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Finstall%2Fvirt-install-ibm-cloud-bm-nodes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Finstall%2Fvirt-install-ibm-cloud-bm-nodes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:virt" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:virt/install" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><details class="dba-toc-top not-prose mb-6 rounded-md border" data-toc-top data-astro-cid-vg5xjwtk><summary class="cursor-pointer list-none px-3 py-2 text-sm font-medium text-muted-foreground" data-astro-cid-vg5xjwtk>On this page</summary><div class="border-t px-3 py-2" data-astro-cid-vg5xjwtk><nav class="text-sm" aria-label="Table of contents"><ul class="mt-2 space-y-1"><li><a href="#_prerequisites" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="_prerequisites">Prerequisites</a></li><li><a href="#virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes">Configuring IBM Cloud for the new cluster</a></li><li><a href="#virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes">Initializing the new cluster configuration</a></li><li><a href="#virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes">Configuring cluster networking and access</a></li><li><a href="#virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes">Completing the cluster configuration</a></li></ul></nav></div></details><article class="docs-prose"><h1 id="virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Installing OpenShift Virtualization on IBM Cloud bare-metal nodes<a href="#virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>Install OpenShift Virtualization on IBM Cloud bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer.</p><h2 id="_prerequisites" class="group scroll-mt-20">Prerequisites<a href="#_prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><ul><li>An account in IBM Cloud with permissions to order and operate bare-metal nodes.</li><li>An IBM Cloud SSL VPN user, to access the SuperMicro IPMI interface of a node.</li><li>Install the OpenShift CLI (<code>oc</code>).</li></ul><h2 id="virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Configuring IBM Cloud for the new cluster<a href="#virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">Configure and provision the IBM Cloud environment to establish the operational framework and nodes for your OpenShift Virtualization cluster.</p><p><strong>Procedure</strong></p><ol><li>Create a new virtual server instance in IBM Cloud at <a href="https://cloud.ibm.com/gen1/infrastructure/provision/vs">Virtual Server for Classic</a> to be the Bastion server. This instance is used to run the installation and provide environment services.</li><li>Change the default properties of the new virtual server instance to the following values. Use the provided defaults for all other values.<ul><li><strong>Type of virtual server:</strong> Public</li><li><strong>Operating system:</strong> CentOS</li><li>Your public SSH RSA key</li></ul></li><li>Note the private VLAN and subnet the virtual server instance is assigned to at <a href="https://cloud.ibm.com/classic/network/vlans">VLANs</a>.</li><li>Provision 6 bare-metal nodes in IBM Cloud at <a href="https://cloud.ibm.com/gen1/infrastructure/provision/bm">Bare metal server provision</a>. Use the following values when provisioning the nodes:<ul><li><strong>Domain</strong>: A subdomain you can add records to.</li><li><strong>Quantity</strong>: 6</li><li><strong>Location</strong>: The same location as the virtual server instance.</li><li><strong>Storage disks</strong>: RAID 1</li><li><strong>Network Interface</strong>: Private</li><li><strong>Private VLAN</strong>: The same as noted for the virtual server instance.</li></ul></li><li>Confirm all nodes are provisioned and ready at <a href="https://cloud.ibm.com/gen1/infrastructure/devices">Device list</a>.</li><li>Rename the control plane nodes to <code>control0-&lt;domain-name&gt;</code>, <code>control1-&lt;domain-name&gt;</code>, and <code>control2-&lt;domain-name&gt;</code>. Replace <code>&lt;domain-name&gt;</code> with the domain used when provisioning the nodes.</li><li>Rename the compute nodes to <code>compute0-&lt;domain-name&gt;</code>, <code>compute1-&lt;domain-name&gt;</code>, and <code>compute2-&lt;domain-name&gt;</code>. Replace <code>&lt;domain-name&gt;</code> with the domain used when provisioning the nodes.</li><li>Configure the Bastion virtual server instance as a default network gateway.</li><li>Configure DHCP by editing <code>/etc/dhcp/dhcpd.conf</code> on the Bastion virtual server instance. For example:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">text</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="# Set DNS name and DNS server's IP address or hostname
+option domain-name  <dns_domain_name>;
+option domain-name-servers  <dns_ip_addresses>;
+
+# Declare DHCP Server
+authoritative;
+
+# The default DHCP lease time
+default-lease-time <default_lease_value>;
+
+# Set the maximum lease time
+max-lease-time <max_lease_value>;
+
+# Set Network address, subnet mask and gateway
+
+subnet <subnet_ip_address> netmask <subnet_mask> {
+  # Range of IP addresses to allocate
+  range dynamic-bootp <dynamic_boot_lower_address> <dynamic_boot_upper_address>;
+  # Provide broadcast address
+  option broadcast-address <broadcast_ip_address>;
+  # Set default gateway
+  option routers <default_gateway_ip_address>;" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span># Set DNS name and DNS server's IP address or hostname</span></span>
+<span class="line"><span>option domain-name  &#x3C;dns_domain_name>;</span></span>
+<span class="line"><span>option domain-name-servers  &#x3C;dns_ip_addresses>;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Declare DHCP Server</span></span>
+<span class="line"><span>authoritative;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># The default DHCP lease time</span></span>
+<span class="line"><span>default-lease-time &#x3C;default_lease_value>;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Set the maximum lease time</span></span>
+<span class="line"><span>max-lease-time &#x3C;max_lease_value>;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span># Set Network address, subnet mask and gateway</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>subnet &#x3C;subnet_ip_address> netmask &#x3C;subnet_mask> {</span></span>
+<span class="line"><span>  # Range of IP addresses to allocate</span></span>
+<span class="line"><span>  range dynamic-bootp &#x3C;dynamic_boot_lower_address> &#x3C;dynamic_boot_upper_address>;</span></span>
+<span class="line"><span>  # Provide broadcast address</span></span>
+<span class="line"><span>  option broadcast-address &#x3C;broadcast_ip_address>;</span></span>
+<span class="line"><span>  # Set default gateway</span></span>
+<span class="line"><span>  option routers &#x3C;default_gateway_ip_address>;</span></span></code></pre></div></div><script type="module">function e(){document.querySelectorAll(`[data-component='code-block'] [data-part='copy']`).forEach(e=>{e.__copyBound||(e.__copyBound=!0,e.addEventListener(`click`,async()=>{let t=e.getAttribute(`data-copy-text`)||``;try{await navigator.clipboard.writeText(t);let n=e.querySelector(`[data-copy-icon]`),r=e.querySelector(`[data-check-icon]`);n&&r&&(n.classList.add(`hidden`),r.classList.remove(`hidden`),setTimeout(()=>{n.classList.remove(`hidden`),r.classList.add(`hidden`)},2e3))}catch{}}))})}e(),document.addEventListener(`astro:after-swap`,e);</script><p>where:</p><dl class="my-4 space-y-2"><dt class="font-semibold"><code>&lt;dns_domain_name&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the default domain name for DNS clients.</p></dd><dt class="font-semibold"><code>&lt;dns_ip_addresses&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies a comma-separated list of DNS server IP addresses.</p></dd><dt class="font-semibold"><code>&lt;default_lease_value&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the default number of seconds a client keeps an assigned address.</p></dd><dt class="font-semibold"><code>&lt;max_lease_value&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the maximum number of seconds a client keeps an assigned address.</p></dd><dt class="font-semibold"><code>&lt;subnet_ip_address&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the start of the subnet IP address range.</p></dd><dt class="font-semibold"><code>&lt;subnet_mask&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the subnet mask of the subnet IP address range.</p></dd><dt class="font-semibold"><code>&lt;broad_ip_address&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the broadcast IP address to use when to use sending a message to every device on the subnet.</p></dd><dt class="font-semibold"><code>&lt;default_gateway_ip_address&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the default gateway of the subnet.</p></dd></dl></li><li>Restart DHCP on the Bastion virtual server instance:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ systemctl restart dhcpd" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> systemctl</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> restart</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> dhcpd</span></span></code></pre></div></div></li><li>Enable IP forwarding on the Bastion virtual server instance:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ sysctl -w net.ipv4.ip_forward=1" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> sysctl</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -w</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> net.ipv4.ip_forward=</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">1</span></span></code></pre></div></div></li><li>Verify IP forwarding is enabled on the Bastion virtual server instance:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ sysctl -p /etc/sysctl.conf" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> sysctl</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -p</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> /etc/sysctl.conf</span></span></code></pre></div></div></li><li>Restart the network service on the Bastion virtual server instance:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ service network restart" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> service</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> network</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> restart</span></span></code></pre></div></div></li><li>Verify if <code>firewalld</code> is enabled on the Bastion virtual server instance:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ firewall-cmd --state" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> firewall-cmd</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --state</span></span></code></pre></div></div></li><li>If the <code>firewalld</code> service is not enabled on the Bastion virtual server instance, enable the service:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ systemctl enable firewalld" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> systemctl</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> enable</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> firewalld</span></span></code></pre></div></div></li><li>Start the <code>firewalld</code> service:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ systemctl start firewalld" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> systemctl</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> start</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> firewalld</span></span></code></pre></div></div></li><li>Add network address translation (NAT) rules to the <code>firewalld</code> service:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ firewall-cmd --add-masquerade --permanent" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> firewall-cmd</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --add-masquerade</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --permanent</span></span></code></pre></div></div></li><li>Restart the <code>firewalld</code> service:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ firewall-cmd --reload" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> firewall-cmd</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --reload</span></span></code></pre></div></div></li></ol><h2 id="virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Initializing the new cluster configuration<a href="#virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">Initialize the new cluster configuration using the OpenShift Virtualization Assisted Installer service and Samba on the Bastion virtual server instance.</p><p><strong>Procedure</strong></p><ol><li>Log in to the <strong>Assisted Installer</strong> service.</li><li>Create a new cluster. The new cluster has the following properties:<ul><li><strong>Cluster name</strong>: The name used to identify the cluster under the base domain.</li><li><strong>Base domain</strong>: The domain used to provision the bare-metal nodes.</li></ul></li><li>Click <strong>Next</strong>.</li><li>Click <strong>Generate Discovery ISO</strong>.</li><li>Provide your public SSH RSA key when prompted.</li><li>Copy and save the generated <code>wget</code> command for the ISO file. This will be used later to connect to the cluster nodes.</li><li>Install Samba server on the Bastion virtual server instance:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ dnf install samba" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> dnf</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> install</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> samba</span></span></code></pre></div></div></li><li>Enable Samba server on the Bastion virtual server instance:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ systemctl enable smb --now" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> systemctl</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> enable</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> smb</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --now</span></span></code></pre></div></div></li><li>Configure NAT rules for the Samba server:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ firewall-cmd --permanent --zone=FedoraWorkstation --add-service=samba
+$ firewall-cmd --reload" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> firewall-cmd</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --permanent</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --zone=FedoraWorkstation</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --add-service=samba</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> firewall-cmd</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --reload</span></span></code></pre></div></div></li><li>Configure a root user password:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ sudo smbpasswd -a root" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> sudo</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> smbpasswd</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -a</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> root</span></span></code></pre></div></div></li><li>Create a share directory:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ mkdir <share_directory>" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> mkdir</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> &#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">share_director</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">y</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span></span></code></pre></div></div><p>Replace <code>&lt;share_directory&gt;</code> with the share directory name.</p></li><li>Navigate to the share directory and download the Assisted Installer ISO file using the generated <code>wget</code> command.</li></ol><h2 id="virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Configuring cluster networking and access<a href="#virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">Configure networking and access to allow for remote management of the cluster.</p><p><strong>Procedure</strong></p><ol><li>Edit <code>/etc/samba/smb.conf</code> to use the following configuration:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">text</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="[global]
+      log level = 3
+          workgroup = SAMBA
+          security = user
+
+          passdb backend = tdbsam
+
+          printing = cups
+          printcap name = cups
+          load printers = yes
+          cups options = raw
+
+      server min protocol = NT1
+      ntlm auth = yes
+
+[share]
+      comment = ISO Files
+      path = /root/share
+      browseable = yes
+      public = no
+      read only = no
+      directory mode = 0555
+      valid users = root" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>[global]</span></span>
+<span class="line"><span>      log level = 3</span></span>
+<span class="line"><span>          workgroup = SAMBA</span></span>
+<span class="line"><span>          security = user</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          passdb backend = tdbsam</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>          printing = cups</span></span>
+<span class="line"><span>          printcap name = cups</span></span>
+<span class="line"><span>          load printers = yes</span></span>
+<span class="line"><span>          cups options = raw</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>      server min protocol = NT1</span></span>
+<span class="line"><span>      ntlm auth = yes</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>[share]</span></span>
+<span class="line"><span>      comment = ISO Files</span></span>
+<span class="line"><span>      path = /root/share</span></span>
+<span class="line"><span>      browseable = yes</span></span>
+<span class="line"><span>      public = no</span></span>
+<span class="line"><span>      read only = no</span></span>
+<span class="line"><span>      directory mode = 0555</span></span>
+<span class="line"><span>      valid users = root</span></span></code></pre></div></div><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>For a more detailed example of the <code>smb.conf</code> file, see the <code>smb.conf.example</code> file in the same directory.</p></div></div></li><li>Save the file.</li><li>Verify the new Samba configuration:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ testparm" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> testparm</span></span></code></pre></div></div></li><li>Restart the Samba service:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ systemctl restart smb" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> systemctl</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> restart</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> smb</span></span></code></pre></div></div></li><li>Verify that the Samba service is running and active:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ systemctl status smb" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> systemctl</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> status</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> smb</span></span></code></pre></div></div></li><li>Configure SSL VPN access to IBM Cloud:<ol><li>Perform the procedure at <a href="https://cloud.ibm.com/docs/iaas-vpn?topic=iaas-vpn-getting-started">Getting started with IBM Cloud Virtual Private Networking</a> in the IBM Cloud documentation.</li><li>Download and install the MotionPro SSL VPN client.</li><li>Connect to the appropriate IBM Cloud endpoint:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ sudo MotionPro --host $<vpn_endpoint> --user $<vpn_username> --passwd $<vpn_password>" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> sudo</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> MotionPro</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --host</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3"> $</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">&#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">vpn_endpoin</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">t</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --user</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3"> $</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">&#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">vpn_usernam</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">e</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --passwd</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3"> $</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">&#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">vpn_passwor</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">d</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span></span></code></pre></div></div><p>where:</p><dl class="my-4 space-y-2"><dt class="font-semibold"><code>&lt;vpn_endpoint&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the appropriate SSL VPN endpoint.</p></dd><dt class="font-semibold"><code>&lt;vpn_username&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the SSL VPN user name you configured.</p></dd><dt class="font-semibold"><code>&lt;vpn_password&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the SSL VPN password you configured.</p></dd></dl><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>Connecting to the IBM Cloud SSL VPN disconnects you from any open VPN connections.</p></div></div></li></ol></li></ol><h2 id="virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Completing the cluster configuration<a href="#virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">Complete the cluster configuration by installing software on the control plane and compute nodes and configuring DNS for external access.</p><p><strong>Procedure</strong></p><ol><li>For each bare-metal server, perform the following tasks:<ol><li>Access the server using the IPMI console.<div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The IP address and credentials for IPMI console access is available in the <strong>Remote management</strong> section for each server.</p></div></div></li><li>Mount the Assisted Installer ISO file with the following attributes:<ul><li><strong>Virtual Media</strong>: CD-ROM Image</li><li><strong>Share host</strong>: The private IP address of the Bastion server.</li><li><strong>Path to image</strong>: The location of the Assisted Installer ISO file.</li><li><strong>User</strong>: root</li><li><strong>Password</strong>: The root user password you configured.</li></ul></li><li>Click <strong>Save and Mount</strong>.</li><li>Verify the ISO mounted successfully.</li><li>Restart the server by selecting <strong>Remote Control</strong> -&gt; <strong>Power Control</strong> -&gt; <strong>Reset Server</strong> -&gt; <strong>Perform Action</strong>.</li></ol></li><li>Return to the <strong>Assisted Installer</strong> service.</li><li>Select the <strong>Install OpenShift Virtualization</strong> and <strong>Install OpenShift Data Foundation</strong> checkboxes in the <strong>Assisted Installer</strong> options.</li><li>Select a role for each host.<div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The cluster consists of 3 control plane and 3 compute nodes.</p></div></div></li><li>Wait for the <strong>Assisted Installer</strong> interface to indicate each node is ready.</li><li>Click <strong>Next</strong>.</li><li>Select <strong>Cluster Managed Network</strong>.</li><li>Select the <strong>API VIP</strong> and <strong>Ingress VIP</strong> checkboxes to obtain them from DHCP or leave them unchecked to enter static values.</li><li>Click <strong>Install</strong>.</li><li>For each bare-metal server, perform the following tasks:<ol><li>Access the server using the IPMI console.<div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The IP address and credentials for IPMI console access is available in the <strong>Remote management</strong> section for each server.</p></div></div></li><li>Select <strong>Virtual Media</strong> -&gt; <strong>CD-Rom Image</strong>.</li><li>Click <strong>Unmount</strong>.</li><li>Select <strong>Remote Control</strong> -&gt; <strong>Power Control</strong> -&gt; <strong>Reset Server</strong> -&gt; <strong>Perform Action</strong> to restart the server.</li></ol></li><li>Locate the <strong>Cluster Credentials</strong> section of the installation summary.</li><li>Perform the following tasks in the <strong>Cluster Credentials</strong> section:<ol><li>Download the <code>kubeconfig</code> file.</li><li>Save the <code>kubeadmin</code> password.</li></ol></li><li>Install <code>haproxy</code> on the Bastion virtual server instance.</li><li>Configure <code>haproxy</code> for your environment. The following is an example configuration:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">text</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="#---------------------------------------------------------------------
+# Example configuration for a possible web application.  See the
+# full configuration options online.
+#
+#   https://www.haproxy.org/download/1.8/doc/configuration.txt
+#
+#---------------------------------------------------------------------
+
+#---------------------------------------------------------------------
+# Global settings
+#---------------------------------------------------------------------
+global
+  # to have these messages end up in /var/log/haproxy.log you will
+  # need to:
+  #
+  # 1) configure syslog to accept network log events.  This is done
+  # by adding the '-r' option to the SYSLOGD_OPTIONS in
+  # /etc/sysconfig/syslog
+  #
+  # 2) configure local2 events to go to the /var/log/haproxy.log
+  #   file. A line like the following can be added to
+  #   /etc/sysconfig/syslog
+  #
+  # local2.*                    /var/log/haproxy.log
+  #
+  log       127.0.0.1 local2
+
+  chroot    /var/lib/haproxy
+  pidfile   /var/run/haproxy.pid
+  maxconn   4000
+  user      haproxy
+  group     haproxy
+  daemon
+
+  # turn on stats unix socket
+  stats socket /var/lib/haproxy/stats
+
+  # utilize system-wide crypto-policies
+  #ssl-default-bind-ciphers PROFILE=SYSTEM
+  #ssl-default-server-ciphers PROFILE=SYSTEM
+
+#---------------------------------------------------------------------
+# common defaults that all the 'listen' and 'backend' sections will
+# use if not designated in their block
+#---------------------------------------------------------------------
+defaults
+  mode                  tcp
+  log                   global
+  option                httplog
+  option                dontlognull
+  option http-server-close
+  option forwardfor     except 127.0.0.0/8
+  option                redispatch
+  retries               3
+  timeout http-request  10s
+  timeout queue         1m
+  timeout connect       10s
+  timeout client        1m
+  timeout server        1m
+  timeout http-keep-alive 10s
+  timeout check         10s
+  maxconn               3000
+#---------------------------------------------------------------------
+# main frontend which proxys to the backends
+#---------------------------------------------------------------------
+
+frontend api
+  bind <api_ip_address>:<api_port>
+  default_backend controlplaneapi
+
+frontend apiinternal
+  bind <apiinternal_ip_address>:<apiinternal_port>
+  default_backend controlplaneapiinternal
+
+frontend secure
+  bind <frontend_secure_ip_address>:<frontend_secure_port>
+  default_backend secure
+
+frontend insecure
+  bind <frontend_insecure_ip_address>:<frontend_insecure_port>
+  default_backend insecure
+
+#---------------------------------------------------------------------
+# static backend
+#---------------------------------------------------------------------
+
+backend controlplaneapi
+  balance source
+  server api <controlplaneapi_ip_address>:<controlplaneapi_port> check
+
+backend controlplaneapiinternal
+  balance source
+  server api <controlplaneapiinternal_ip_address>:<controlplaneapiinternal_port> check
+
+backend secure
+  balance source
+  server ingress <backend_secure_ip_address>:<backend_secure_port> check
+
+backend insecure
+  balance source
+  server ingress <backend_insecure_ip_address>:<backend_insecure_port> check" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>#---------------------------------------------------------------------</span></span>
+<span class="line"><span># Example configuration for a possible web application.  See the</span></span>
+<span class="line"><span># full configuration options online.</span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span>#   https://www.haproxy.org/download/1.8/doc/configuration.txt</span></span>
+<span class="line"><span>#</span></span>
+<span class="line"><span>#---------------------------------------------------------------------</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#---------------------------------------------------------------------</span></span>
+<span class="line"><span># Global settings</span></span>
+<span class="line"><span>#---------------------------------------------------------------------</span></span>
+<span class="line"><span>global</span></span>
+<span class="line"><span>  # to have these messages end up in /var/log/haproxy.log you will</span></span>
+<span class="line"><span>  # need to:</span></span>
+<span class="line"><span>  #</span></span>
+<span class="line"><span>  # 1) configure syslog to accept network log events.  This is done</span></span>
+<span class="line"><span>  # by adding the '-r' option to the SYSLOGD_OPTIONS in</span></span>
+<span class="line"><span>  # /etc/sysconfig/syslog</span></span>
+<span class="line"><span>  #</span></span>
+<span class="line"><span>  # 2) configure local2 events to go to the /var/log/haproxy.log</span></span>
+<span class="line"><span>  #   file. A line like the following can be added to</span></span>
+<span class="line"><span>  #   /etc/sysconfig/syslog</span></span>
+<span class="line"><span>  #</span></span>
+<span class="line"><span>  # local2.*                    /var/log/haproxy.log</span></span>
+<span class="line"><span>  #</span></span>
+<span class="line"><span>  log       127.0.0.1 local2</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  chroot    /var/lib/haproxy</span></span>
+<span class="line"><span>  pidfile   /var/run/haproxy.pid</span></span>
+<span class="line"><span>  maxconn   4000</span></span>
+<span class="line"><span>  user      haproxy</span></span>
+<span class="line"><span>  group     haproxy</span></span>
+<span class="line"><span>  daemon</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  # turn on stats unix socket</span></span>
+<span class="line"><span>  stats socket /var/lib/haproxy/stats</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>  # utilize system-wide crypto-policies</span></span>
+<span class="line"><span>  #ssl-default-bind-ciphers PROFILE=SYSTEM</span></span>
+<span class="line"><span>  #ssl-default-server-ciphers PROFILE=SYSTEM</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#---------------------------------------------------------------------</span></span>
+<span class="line"><span># common defaults that all the 'listen' and 'backend' sections will</span></span>
+<span class="line"><span># use if not designated in their block</span></span>
+<span class="line"><span>#---------------------------------------------------------------------</span></span>
+<span class="line"><span>defaults</span></span>
+<span class="line"><span>  mode                  tcp</span></span>
+<span class="line"><span>  log                   global</span></span>
+<span class="line"><span>  option                httplog</span></span>
+<span class="line"><span>  option                dontlognull</span></span>
+<span class="line"><span>  option http-server-close</span></span>
+<span class="line"><span>  option forwardfor     except 127.0.0.0/8</span></span>
+<span class="line"><span>  option                redispatch</span></span>
+<span class="line"><span>  retries               3</span></span>
+<span class="line"><span>  timeout http-request  10s</span></span>
+<span class="line"><span>  timeout queue         1m</span></span>
+<span class="line"><span>  timeout connect       10s</span></span>
+<span class="line"><span>  timeout client        1m</span></span>
+<span class="line"><span>  timeout server        1m</span></span>
+<span class="line"><span>  timeout http-keep-alive 10s</span></span>
+<span class="line"><span>  timeout check         10s</span></span>
+<span class="line"><span>  maxconn               3000</span></span>
+<span class="line"><span>#---------------------------------------------------------------------</span></span>
+<span class="line"><span># main frontend which proxys to the backends</span></span>
+<span class="line"><span>#---------------------------------------------------------------------</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>frontend api</span></span>
+<span class="line"><span>  bind &#x3C;api_ip_address>:&#x3C;api_port></span></span>
+<span class="line"><span>  default_backend controlplaneapi</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>frontend apiinternal</span></span>
+<span class="line"><span>  bind &#x3C;apiinternal_ip_address>:&#x3C;apiinternal_port></span></span>
+<span class="line"><span>  default_backend controlplaneapiinternal</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>frontend secure</span></span>
+<span class="line"><span>  bind &#x3C;frontend_secure_ip_address>:&#x3C;frontend_secure_port></span></span>
+<span class="line"><span>  default_backend secure</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>frontend insecure</span></span>
+<span class="line"><span>  bind &#x3C;frontend_insecure_ip_address>:&#x3C;frontend_insecure_port></span></span>
+<span class="line"><span>  default_backend insecure</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>#---------------------------------------------------------------------</span></span>
+<span class="line"><span># static backend</span></span>
+<span class="line"><span>#---------------------------------------------------------------------</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>backend controlplaneapi</span></span>
+<span class="line"><span>  balance source</span></span>
+<span class="line"><span>  server api &#x3C;controlplaneapi_ip_address>:&#x3C;controlplaneapi_port> check</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>backend controlplaneapiinternal</span></span>
+<span class="line"><span>  balance source</span></span>
+<span class="line"><span>  server api &#x3C;controlplaneapiinternal_ip_address>:&#x3C;controlplaneapiinternal_port> check</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>backend secure</span></span>
+<span class="line"><span>  balance source</span></span>
+<span class="line"><span>  server ingress &#x3C;backend_secure_ip_address>:&#x3C;backend_secure_port> check</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>backend insecure</span></span>
+<span class="line"><span>  balance source</span></span>
+<span class="line"><span>  server ingress &#x3C;backend_insecure_ip_address>:&#x3C;backend_insecure_port> check</span></span></code></pre></div></div><p>where:</p><dl class="my-4 space-y-2"><dt class="font-semibold"><code>&lt;api_ip_address&gt;:&lt;api_port&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the front end IP address and port used by the Kubernetes API server.</p></dd><dt class="font-semibold"><code>&lt;apiinternal_ip_address&gt;:&lt;apiinternal_port&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the front end IP address and port used for internal cluster management.</p></dd><dt class="font-semibold"><code>&lt;frontend_secure_ip_address&gt;:&lt;frontend_secure_port&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the front end IP address and port used for HTTPS traffic for hosted applications.</p></dd><dt class="font-semibold"><code>&lt;frontend_insecure_ip_address&gt;:&lt;frontend_insecure_port&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the front end IP address and port used for HTTP traffic for hosted applications.</p></dd><dt class="font-semibold"><code>&lt;controlplaneapi_ip_address&gt;:&lt;controlplaneapi_port&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the back end IP address and port used by the Kubernetes API server.</p></dd><dt class="font-semibold"><code>&lt;controlplaneapiinternal_ip_address&gt;:&lt;controlplaneapiinternal_port&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the back end IP address and port used for internal cluster management.</p></dd><dt class="font-semibold"><code>&lt;backend_secure_ip_address&gt;:&lt;backend_secure_port&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the back end IP address and port used for HTTPS traffic for hosted applications.</p></dd><dt class="font-semibold"><code>&lt;backend_insecure_ip_address&gt;:&lt;backend_insecure_port&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the back end IP address and port used for HTTP traffic for hosted applications.</p></dd></dl><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>Replace the example values with values applicable to your network configuration.</p></div></div></li><li>Save the <code>haproxy</code> configuration.</li><li>Configure two DNS Address records (A records) for the subdomain that are externally available over the Internet:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">text</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="<bastion_public_ip_address> api.<cluster_name>.<cluster_domain>
+<bastion_public_ip_address> *.apps..<cluster_name>.<cluster_domain>" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>&#x3C;bastion_public_ip_address> api.&#x3C;cluster_name>.&#x3C;cluster_domain></span></span>
+<span class="line"><span>&#x3C;bastion_public_ip_address> *.apps..&#x3C;cluster_name>.&#x3C;cluster_domain></span></span></code></pre></div></div><p>where:</p><dl class="my-4 space-y-2"><dt class="font-semibold"><code>&lt;bastion_public_ip_address&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the externally available IP address of the Bastion virtual server instance.</p></dd><dt class="font-semibold"><code>&lt;cluster_name&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the name assigned to the cluster.</p></dd><dt class="font-semibold"><code>&lt;cluster_domain&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the domain assigned to the cluster.</p></dd></dl></li></ol><p><strong>Verification</strong></p><ol><li>Perform the following tasks to verify cluster access using command line access:<ol><li>Set your environment with the <code>kubeconfig</code> file:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ export KUBECONFIG=<kubeconfig_file_path>" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> export</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> KUBECONFIG=</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">&#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">kubeconfig_file_pat</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">h</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span></span></code></pre></div></div><p>where:</p><dl class="my-4 space-y-2"><dt class="font-semibold"><code>&lt;kubeconfig_file_path&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the path to the downloaded <code>kubeconfig</code> file.</p></dd></dl></li><li>Check cluster node status:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc get nodes" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> get</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> nodes</span></span></code></pre></div></div><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The command output should show all nodes as <code>Ready</code> in the <code>STATUS</code> column and the <code>ROLES</code> column should show that control plane and compute nodes are present.</p></div></div></li><li>Check the cluster version:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc get clusterversion" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> get</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> clusterversion</span></span></code></pre></div></div><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The command output should say <code>Condition: Available</code>.</p></div></div></li></ol></li><li>Perform the following tasks to verify cluster access using the web console:<ol><li>Paste the access URL provided by Assisted Installer into your web browser.<div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>By default, clusters use self-signed certificates. This may cause your browser to display a message that says <strong>Connection not private</strong> or a similar warning. You can close this warning and continue.</p></div></div></li><li>Navigate to the URL.</li><li>Log in to the cluster with the username <code>kubeadmin</code> and the <code>kubeadmin</code> password provided in the <strong>Cluster Credentials</strong> section.</li></ol></li></ol></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/virt/install/uninstalling-virt" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Uninstalling OpenShift Virtualization</div></div></a><a href="/openshift-docs-markdown/virt/post_installation_configuration/virt-post-install-config" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Postinstallation configuration</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>

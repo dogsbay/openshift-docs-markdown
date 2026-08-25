@@ -4,25 +4,25 @@ title: About Observability
 
 # About Observability {#observability-overview}
 
-{{ ObservabilityLongName }} provides real-time visibility, monitoring, and analysis of various system metrics, logs, traces, and events to help users quickly diagnose and troubleshoot issues before they impact systems or applications. To help ensure the reliability, performance, and security of your applications and infrastructure, OpenShift Container Platform offers the following {{ ObservabilityShortName }} components:
+Red Hat OpenShift Observability provides real-time visibility, monitoring, and analysis of various system metrics, logs, traces, and events to help users quickly diagnose and troubleshoot issues before they impact systems or applications. To help ensure the reliability, performance, and security of your applications and infrastructure, OpenShift Container Platform offers the following Observability components:
 
 - Monitoring
-- {{ logging_uc }}
+- Logging
 - Distributed tracing
-- {{ OTELName }}
+- Red Hat build of OpenTelemetry
 - Network Observability
-- {{ PM_shortname_c }}
+- Power monitoring
 
-{{ ObservabilityLongName }} connects open-source observability tools and technologies to create a unified {{ ObservabilityShortName }} solution. The components of {{ ObservabilityLongName }} work together to help you collect, store, deliver, analyze, and visualize data.
+Red Hat OpenShift Observability connects open-source observability tools and technologies to create a unified Observability solution. The components of Red Hat OpenShift Observability work together to help you collect, store, deliver, analyze, and visualize data.
 
 > [!NOTE]
-> With the exception of monitoring, {{ ObservabilityLongName }} components have distinct release cycles separate from the core OpenShift Container Platform release cycles. See the Red Hat [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators) page for their release compatibility.
+> With the exception of monitoring, Red Hat OpenShift Observability components have distinct release cycles separate from the core OpenShift Container Platform release cycles. See the Red Hat [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators) page for their release compatibility.
 
 ## Monitoring {#monitoring-overview-index_observability-overview}
 
-Monitor the in-cluster health and performance of your applications running on OpenShift Container Platform with metrics and customized alerts for CPU and memory usage, network connectivity, and other resource usage. Monitoring stack components are deployed and managed by the {{ cmo_full }}.
+Monitor the in-cluster health and performance of your applications running on OpenShift Container Platform with metrics and customized alerts for CPU and memory usage, network connectivity, and other resource usage. Monitoring stack components are deployed and managed by the Cluster Monitoring Operator.
 
-Monitoring stack components are deployed by default in every OpenShift Container Platform installation and are managed by the {{ cmo_first }}. These components include Prometheus, Alertmanager, Thanos Querier, and others. The {{ cmo_short }} also deploys the Telemeter Client, which sends a subset of data from platform Prometheus instances to Red Hat to facilitate Remote Health Monitoring for clusters.
+Monitoring stack components are deployed by default in every OpenShift Container Platform installation and are managed by the Cluster Monitoring Operator (CMO). These components include Prometheus, Alertmanager, Thanos Querier, and others. The CMO also deploys the Telemeter Client, which sends a subset of data from platform Prometheus instances to Red Hat to facilitate Remote Health Monitoring for clusters.
 
 For more information, see [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)
 
@@ -36,13 +36,13 @@ Collect, visualize, forward, and store log data to troubleshoot issues, identify
 
 Store and visualize large volumes of requests passing through distributed systems, across the whole stack of microservices, and under heavy loads. Use it for monitoring distributed transactions, gathering insights into your instrumented services, network profiling, performance and latency optimization, root cause analysis, and troubleshooting the interaction between components in modern cloud-native microservices-based applications.
 
-For more information, see [{{ DTProductName }}](https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest).
+For more information, see [Red Hat OpenShift Distributed Tracing Platform](https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest).
 
-## {{ OTELName }} {#otel-release-notes-index_observability-overview}
+## Red Hat build of OpenTelemetry {#otel-release-notes-index_observability-overview}
 
 Instrument, generate, collect, and export telemetry traces, metrics, and logs to analyze and understand your software’s performance and behavior. Use open-source back ends like Tempo or Prometheus, or use commercial offerings. Learn a single set of APIs and conventions, and own the data that you generate.
 
-For more information, see [{{ OTELName }}](https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest/html/installing_red_hat_build_of_opentelemetry/install-otel).
+For more information, see [Red Hat build of OpenTelemetry](https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest/html/installing_red_hat_build_of_opentelemetry/install-otel).
 
 ## Network Observability {#network-observability-overview-index_observability-overview}
 
@@ -52,6 +52,6 @@ For more information, see [Network Observability overview](/openshift-docs-markd
 
 ## Power monitoring {#power-monitoring-overview-index_observability-overview}
 
-Monitor the power usage of workloads and identify the most power-consuming namespaces running in a cluster with key power consumption metrics, such as CPU or DRAM measured at the container level. Visualize energy-related system statistics with the {{ PM_operator }}.
+Monitor the power usage of workloads and identify the most power-consuming namespaces running in a cluster with key power consumption metrics, such as CPU or DRAM measured at the container level. Visualize energy-related system statistics with the Power Monitoring Operator.
 
-For more information, see [About {{ PM_shortname }}](https://docs.redhat.com/en/documentation/power_monitoring_for_red_hat_openshift/latest/html/about_power_monitoring/about-power-monitoring).
+For more information, see [About power monitoring](https://docs.redhat.com/en/documentation/power_monitoring_for_red_hat_openshift/latest/html/about_power_monitoring/about-power-monitoring).

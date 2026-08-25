@@ -16,8 +16,8 @@ Review the different methods for installing OpenShift Container Platform on bare
 
 The OpenShift Container Platform installation program offers four methods for deploying a cluster:
 
-- **Interactive**: You can deploy a cluster with the web-based {{ ai_full }}. This is the recommended approach for clusters with networks connected to the internet. The {{ ai_full }} is the easiest way to install OpenShift Container Platform, it provides smart defaults, and it performs pre-flight validations before installing the cluster. It also provides a RESTful API for automation and advanced configuration scenarios.
-- **Local Agent-based**: You can deploy a cluster locally with the agent-based installer for air-gapped or restricted networks. It provides many of the benefits of the {{ ai_full }}, but you must download and configure the agent-based installer first. Configuration is done with a commandline interface. This approach is ideal for air-gapped or restricted networks.
+- **Interactive**: You can deploy a cluster with the web-based Assisted Installer. This is the recommended approach for clusters with networks connected to the internet. The Assisted Installer is the easiest way to install OpenShift Container Platform, it provides smart defaults, and it performs pre-flight validations before installing the cluster. It also provides a RESTful API for automation and advanced configuration scenarios.
+- **Local Agent-based**: You can deploy a cluster locally with the agent-based installer for air-gapped or restricted networks. It provides many of the benefits of the Assisted Installer, but you must download and configure the agent-based installer first. Configuration is done with a commandline interface. This approach is ideal for air-gapped or restricted networks.
 - **Automated**: You can deploy a cluster on installer-provisioned infrastructure and the cluster it maintains. The installation program uses each cluster host’s baseboard management controller (BMC) for provisioning. You can deploy clusters with both connected or air-gapped or restricted networks.
 - **Full control**: You can deploy a cluster on infrastructure that you prepare and maintain, which provides maximum customizability. You can deploy clusters with both connected or air-gapped or restricted networks.
 
@@ -46,12 +46,58 @@ You can install a cluster on bare-metal infrastructure that you provision, by us
 ***Installing a user-provisioned bare-metal cluster on a restricted network***
 :   You can install a user-provisioned bare-metal cluster on a restricted or disconnected network by using a mirror registry. You can also use this installation method to ensure that your clusters only use container images that satisfy your organizational controls on external content.
 
+## Bare-metal cluster installation requirements for OpenShift Virtualization {#virt-planning-bare-metal-cluster-for-ocp-virt_preparing-to-install-on-bare-metal}
+
+Configure your bare-metal cluster correctly during installation to support OpenShift Virtualization, as certain required settings cannot be changed after installation.
+
+### High availability requirements for OpenShift Virtualization {#virt-planning-bare-metal-cluster-for-ocp-virt-HA_preparing-to-install-on-bare-metal}
+
+When discussing high availability (HA) features in the context of OpenShift Virtualization, this refers only to the replication model of the core cluster components, determined by the `controlPlaneTopology` and `infrastructureTopology` fields in the `Infrastructure` custom resource (CR). Setting these fields to `HighlyAvailable` offers component redundancy, which is distinct from general cluster-wide application HA. Setting these fields to `SingleReplica` disables component redundancy, and therefore disables OpenShift Virtualization HA features.
+
+If you plan to use OpenShift Virtualization HA features, you must have three control plane nodes at the time of cluster installation. The `controlPlaneTopology` status in the `Infrastructure` CR for the cluster must be `HighlyAvailable`.
+
+> [!NOTE]
+> You can install OpenShift Virtualization on a single-node cluster, but single-node OpenShift does not support HA features.
+
+### Live migration requirements for OpenShift Virtualization {#virt-planning-bare-metal-cluster-for-ocp-virt-LM_preparing-to-install-on-bare-metal}
+
+- If you plan to use live migration, you must have multiple worker nodes. The `infrastructureTopology` status in the `Infrastructure` CR for the cluster must be `HighlyAvailable`. A minimum of three worker nodes is recommended.
+
+  > [!NOTE]
+  > You can install OpenShift Virtualization on a single-node cluster, but single-node OpenShift does not support live migration.
+- Live migration requires shared storage. Storage for OpenShift Virtualization must support and use the ReadWriteMany (RWX) access mode.
+
+### SR-IOV requirements for OpenShift Virtualization {#virt-planning-bare-metal-cluster-for-ocp-virt-SR-IOV_preparing-to-install-on-bare-metal}
+
+If you plan to use Single Root I/O Virtualization (SR-IOV), ensure that your network interface controllers (NICs) are supported by OpenShift Container Platform.
+
+## NIC partitioning for SR-IOV devices {#nw-sriov-dual-nic-con_preparing-to-install-on-bare-metal}
+
+You can partition a single, high-speed dual port NIC into multiple virtual functions (VFs) and enable SR-IOV to support high availability with Link Aggregation Control Protocol (LACP) bonding.
+
+This feature supports the use of bonds for high availability with the Link Aggregation Control Protocol (LACP).
+
+> [!NOTE]
+> Only one LACP can be declared by physical NIC.
+
+An OpenShift Container Platform cluster can be deployed on a bond interface with 2 VFs on 2 physical functions (PFs) using the following methods:
+
+- Agent-based installer
+
+  > [!NOTE]
+  > The minimum required version of `nmstate` is:
+  >
+  > - `1.4.2-4` for RHEL 8 versions
+  > - `2.2.7` for RHEL 9 versions
+- Installer-provisioned infrastructure installation
+- User-provisioned infrastructure installation
+
 ## Additional resources {#additional-resources_preparing-to-install-on-bare-metal}
 
 - [OpenShift Container Platform installation and update processes](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)
 - [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)
 - [OVN-Kubernetes purpose](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/about-ovn-kubernetes#nw-ovn-kubernetes-purpose_about-ovn-kubernetes)
-- [{{ ai_full }}](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)
+- [Assisted Installer](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)
 - [Preparing to install with the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#preparing-to-install-with-agent-based-installer)
 - [Agent-based installer](https://console.redhat.com/openshift/install/metal/agent-based)
 - [Deploying installer-provisioned clusters on bare metal](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-overview#ipi-install-overview)
@@ -59,8 +105,8 @@ You can install a cluster on bare-metal infrastructure that you provision, by us
 - [Installing a user-provisioned bare-metal cluster with network customizations](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#installing-bare-metal-network-customizations)
 - [Installing a user-provisioned bare-metal cluster on a restricted network](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal)
 - [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)
-- [Getting started with {{ VirtProductName }}](/openshift-docs-markdown/virt/getting_started/virt-getting-started#virt-getting-started)
-- [Preparing your cluster for {{ VirtProductName }}](/openshift-docs-markdown/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt)
+- [Getting started with OpenShift Virtualization](/openshift-docs-markdown/virt/getting_started/virt-getting-started#virt-getting-started)
+- [Preparing your cluster for OpenShift Virtualization](/openshift-docs-markdown/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt)
 - [About Single Root I/O Virtualization (SR-IOV) hardware networks](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)
 - [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
 - [Example: Bonds and SR-IOV dual-NIC node network configuration](/openshift-docs-markdown/installing/installing_with_agent_based_installer/preparing-to-install-with-agent-based-installer#agent-install-sample-config-bond-sriov_preparing-to-install-with-agent-based-installer)

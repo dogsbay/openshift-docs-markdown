@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"windows-node-upgrades","text":"Windows node updates"},{"depth":2,"slug":"additional-resources_windows-node-upgrades","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"windows-node-upgrades","text":"Windows node updates"},{"depth":2,"slug":"wmco-upgrades_windows-node-upgrades","text":"Windows Machine Config Operator updates"},{"depth":2,"slug":"wmco-upgrades-eus_windows-node-upgrades","text":"Windows Machine Config Operator Control Plane Only update"},{"depth":3,"slug":"wmco-upgrades-eus-using-web-console_windows-node-upgrades","text":"WMCO Control Plane Only update by using the web console"},{"depth":3,"slug":"wmco-upgrades-eus-using-cli_windows-node-upgrades","text":"WMCO Control Plane Only update by using the CLI"},{"depth":2,"slug":"additional-resources_windows-node-upgrades","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/windows_containers/windows-node-upgrades";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +42,7 @@ const pageCategory = ["windows_containers"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Windows node updates {#windows-node-upgrades}\n\nYou can ensure your Windows nodes have the latest updates by updating the Windows Machine Config Operator (WMCO).\n\nYou can update the WMCO in any of the following scenarios:\n\n- Within the current version. for example, from <10.y.z> to <10.y.z+1>.\n- To a new, contiguous version. For example, from <10.y> to <10.y+1>.\n- From an EUS version to another EUS version by using a Control Plane Only update. For example, from <10.y> to <10.y+2>.\n\n## Additional resources {#additional-resources_windows-node-upgrades}\n\n- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n- [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)\n- [Installing the Windows Machine Config Operator using the CLI](/openshift-docs-markdown/windows_containers/enabling-windows-container-workloads#installing-wmco-using-cli_enabling-windows-container-workloads)\n- [Deleting Operators from a cluster using the CLI](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operator-from-a-cluster-using-cli_olm-deleting-operators-from-a-cluster)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/windows-node-upgrades.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Windows node updates {#windows-node-upgrades}\n\nYou can ensure your Windows nodes have the latest updates by updating the Windows Machine Config Operator (WMCO).\n\nYou can update the WMCO in any of the following scenarios:\n\n- Within the current version. for example, from <10.y.z> to <10.y.z+1>.\n- To a new, contiguous version. For example, from <10.y> to <10.y+1>.\n- From an EUS version to another EUS version by using a Control Plane Only update. For example, from <10.y> to <10.y+2>.\n\n## Windows Machine Config Operator updates {#wmco-upgrades_windows-node-upgrades}\n\nWhen a new version of the Windows Machine Config Operator (WMCO) is released that is compatible with the current cluster version, the Operator is updated based on the update channel and subscription approval strategy it was installed with when using the Operator Lifecycle Manager (OLM).\n\nThe WMCO update results in the Kubernetes components in the Windows machine being updated.\n\n> [!NOTE]\n> If you are updating to a new version of the WMCO and want to use cluster monitoring, you must have the `openshift.io/cluster-monitoring=true` label present in the WMCO namespace. If you add the label to a pre-existing WMCO namespace, and there are already Windows nodes configured, restart the WMCO pod to allow monitoring graphs to display.\n\nFor a non-disruptive update, the WMCO terminates the Windows machines configured by the previous version of the WMCO and recreates them using the current version. This is done by deleting the `Machine` object, which results in the drain and deletion of the Windows node. To facilitate an update, the WMCO adds a version annotation to all the configured nodes. During an update, a mismatch in version annotation results in the deletion and recreation of a Windows machine. To have minimal service disruptions during an update, the WMCO only updates one Windows machine at a time.\n\nAfter the update, it is recommended that you set the `spec.os.name.windows` parameter in your workload pods. The WMCO uses this field to authoritatively identify the pod operating system for validation and is used to enforce Windows-specific pod security context constraints (SCCs).\n\n> [!IMPORTANT]\n> The WMCO is only responsible for updating Kubernetes components, not for Windows operating system updates. You provide the Windows image when creating the VMs; therefore, you are responsible for providing an updated image. You can provide an updated Windows image by changing the image configuration in the `MachineSet` spec.\n\n## Windows Machine Config Operator Control Plane Only update {#wmco-upgrades-eus_windows-node-upgrades}\n\nYou can use the **Control Plane Only** process to update the OpenShift Container Platform from one EUS version to another EUS version of OpenShift Container Platform. After you update the cluster, the Windows nodes are updated the new EUS version.\n\nDuring the update, the Windows workloads are kept in a healthy state with no disruptions.\n\n> [!IMPORTANT]\n> This update was previously known as an **EUS-to-EUS** update and is now referred to as a **Control Plane Only** update. These updates are only viable between **even-numbered minor versions** of OpenShift Container Platform.\n\n### WMCO Control Plane Only update by using the web console {#wmco-upgrades-eus-using-web-console_windows-node-upgrades}\n\nYou can use the OpenShift Container Platform web console to perform a Control Plane Only update of the Windows Machine Config Operator (WMCO).\n\n**Prerequisites**\n\n- The cluster must be running on a supported EUS version of OpenShift Container Platform.\n- All Windows nodes must be in a healthy state.\n- All Windows nodes must be running on the same version of the WMCO.\n- All the of the prerequisites of the Control Plane Only update are met, as described in \"Performing a Control Plane Only update.\"\n\n**Procedure**\n\n1. Uninstall WMCO operator by using the following the steps:\n\n   > [!IMPORTANT]\n   > Delete the Operator only. Do not delete the Windows namespace or any Windows workloads.\n\n   1. Log in to the OpenShift Container Platform web console.\n   2. Navigate to **Ecosystem** -> **Software Catalog**.\n   3. Use the **Filter by keyword** box to search for `Red Hat Windows Machine Config Operator`.\n   4. Click the **Red Hat Windows Machine Config Operator** tile. The Operator tile indicates it is installed.\n   5. In the **Windows Machine Config Operator** descriptor page, click **Uninstall**.\n2. Update OpenShift Container Platform by following the steps in \"Performing a Control Plane Only update.\"\n3. Install the new WMCO version by following the steps in \"Installing the Windows Machine Config Operator using the web console.\"\n\n### WMCO Control Plane Only update by using the CLI {#wmco-upgrades-eus-using-cli_windows-node-upgrades}\n\nYou can use the OpenShift CLI (`oc`) to perform a Control Plane Only update of the Windows Machine Config Operator (WMCO).\n\n**Prerequisites**\n\n- The cluster must be running on a supported EUS version of OpenShift Container Platform.\n- All Windows nodes must be in a healthy state.\n- All Windows nodes must be running on the same version of the WMCO.\n- All the of the prerequisites of the Control Plane Only update are met, as described in \"Performing a Control Plane Only update.\"\n\n**Procedure**\n\n1. Uninstall the WMCO Operator from the cluster by following the steps in \"Deleting Operators from a cluster using the CLI.\"\n\n   > [!IMPORTANT]\n   > Delete the Operator only. Do not delete the Windows namespace or any Windows workloads.\n2. Update OpenShift Container Platform by following the steps in \"Performing a Control Plane Only update.\"\n3. Install the new WMCO version by following the steps in \"Installing the Windows Machine Config Operator using the CLI.\"\n\n**Verification**\n\n- On the Verify that the **Status** shows **Succeeded** to confirm successful installation of the WMCO.\n\n## Additional resources {#additional-resources_windows-node-upgrades}\n\n- [Updating installed Operators](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators)\n- [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)\n- [Installing the Windows Machine Config Operator using the CLI](/openshift-docs-markdown/windows_containers/enabling-windows-container-workloads#installing-wmco-using-cli_enabling-windows-container-workloads)\n- [Deleting Operators from a cluster using the CLI](/openshift-docs-markdown/operators/admin/olm-deleting-operators-from-cluster#olm-deleting-operator-from-a-cluster-using-cli_olm-deleting-operators-from-a-cluster)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/windows-node-upgrades.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,7 +94,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="windows-node-upgrades" class="group scroll-mt-20">Windows node updates<a href="#windows-node-upgrades" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can ensure your Windows nodes have the latest updates by updating the Windows Machine Config Operator (WMCO).</p>
       <p>You can update the WMCO in any of the following scenarios:</p>
       <ul>
@@ -99,9 +101,87 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>To a new, contiguous version. For example, from &lt;10.y&gt; to &lt;10.y+1&gt;.</li>
       <li>From an EUS version to another EUS version by using a Control Plane Only update. For example, from &lt;10.y&gt; to &lt;10.y+2&gt;.</li>
       </ul>
-      <p class="/modules/windows-upgrades-eus.md"></p>
-      <p class="/modules/wmco-upgrades-eus-using-web-console.md"></p>
-      <p class="/modules/wmco-upgrades-eus-using-cli.md"></p>
+      <h2 id="wmco-upgrades_windows-node-upgrades" class="group scroll-mt-20">Windows Machine Config Operator updates<a href="#wmco-upgrades_windows-node-upgrades" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When a new version of the Windows Machine Config Operator (WMCO) is released that is compatible with the current cluster version, the Operator is updated based on the update channel and subscription approval strategy it was installed with when using the Operator Lifecycle Manager (OLM). </p>
+      <p>The WMCO update results in the Kubernetes components in the Windows machine being updated.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you are updating to a new version of the WMCO and want to use cluster monitoring, you must have the <code>openshift.io/cluster-monitoring=true</code> label present in the WMCO namespace. If you add the label to a pre-existing WMCO namespace, and there are already Windows nodes configured, restart the WMCO pod to allow monitoring graphs to display.</p>
+        </AlertDescription>
+      </Alert>
+      <p>For a non-disruptive update, the WMCO terminates the Windows machines configured by the previous version of the WMCO and recreates them using the current version. This is done by deleting the <code>Machine</code> object, which results in the drain and deletion of the Windows node. To facilitate an update, the WMCO adds a version annotation to all the configured nodes. During an update, a mismatch in version annotation results in the deletion and recreation of a Windows machine. To have minimal service disruptions during an update, the WMCO only updates one Windows machine at a time.</p>
+      <p>After the update, it is recommended that you set the <code>spec.os.name.windows</code> parameter in your workload pods. The WMCO uses this field to authoritatively identify the pod operating system for validation and is used to enforce Windows-specific pod security context constraints (SCCs).</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The WMCO is only responsible for updating Kubernetes components, not for Windows operating system updates. You provide the Windows image when creating the VMs; therefore, you are responsible for providing an updated image. You can provide an updated Windows image by changing the image configuration in the <code>MachineSet</code> spec.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="wmco-upgrades-eus_windows-node-upgrades" class="group scroll-mt-20">Windows Machine Config Operator Control Plane Only update<a href="#wmco-upgrades-eus_windows-node-upgrades" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the <strong>Control Plane Only</strong> process to update the OpenShift Container Platform from one EUS version to another EUS version of OpenShift Container Platform. After you update the cluster, the Windows nodes are updated the new EUS version. </p>
+      <p>During the update, the Windows workloads are kept in a healthy state with no disruptions.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>This update was previously known as an <strong>EUS-to-EUS</strong> update and is now referred to as a <strong>Control Plane Only</strong> update. These updates are only viable between <strong>even-numbered minor versions</strong> of OpenShift Container Platform.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="wmco-upgrades-eus-using-web-console_windows-node-upgrades" class="group scroll-mt-20">WMCO Control Plane Only update by using the web console<a href="#wmco-upgrades-eus-using-web-console_windows-node-upgrades" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can use the OpenShift Container Platform web console to perform a Control Plane Only update of the Windows Machine Config Operator (WMCO).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The cluster must be running on a supported EUS version of OpenShift Container Platform.</li>
+      <li>All Windows nodes must be in a healthy state.</li>
+      <li>All Windows nodes must be running on the same version of the WMCO.</li>
+      <li>All the of the prerequisites of the Control Plane Only update are met, as described in "Performing a Control Plane Only update."</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Uninstall WMCO operator by using the following the steps:
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Delete the Operator only. Do not delete the Windows namespace or any Windows workloads.</p>
+        </AlertDescription>
+      </Alert>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong>.</li>
+      <li>Use the <strong>Filter by keyword</strong> box to search for <code>Red Hat Windows Machine Config Operator</code>.</li>
+      <li>Click the <strong>Red Hat Windows Machine Config Operator</strong> tile. The Operator tile indicates it is installed.</li>
+      <li>In the <strong>Windows Machine Config Operator</strong> descriptor page, click <strong>Uninstall</strong>.</li>
+      </ol>
+      </li>
+      <li>Update OpenShift Container Platform by following the steps in "Performing a Control Plane Only update."</li>
+      <li>Install the new WMCO version by following the steps in "Installing the Windows Machine Config Operator using the web console."</li>
+      </ol>
+      <h3 id="wmco-upgrades-eus-using-cli_windows-node-upgrades" class="group scroll-mt-20">WMCO Control Plane Only update by using the CLI<a href="#wmco-upgrades-eus-using-cli_windows-node-upgrades" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can use the OpenShift CLI (<code>oc</code>) to perform a Control Plane Only update of the Windows Machine Config Operator (WMCO).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The cluster must be running on a supported EUS version of OpenShift Container Platform.</li>
+      <li>All Windows nodes must be in a healthy state.</li>
+      <li>All Windows nodes must be running on the same version of the WMCO.</li>
+      <li>All the of the prerequisites of the Control Plane Only update are met, as described in "Performing a Control Plane Only update."</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Uninstall the WMCO Operator from the cluster by following the steps in "Deleting Operators from a cluster using the CLI."
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Delete the Operator only. Do not delete the Windows namespace or any Windows workloads.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Update OpenShift Container Platform by following the steps in "Performing a Control Plane Only update."</li>
+      <li>Install the new WMCO version by following the steps in "Installing the Windows Machine Config Operator using the CLI."</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>On the Verify that the <strong>Status</strong> shows <strong>Succeeded</strong> to confirm successful installation of the WMCO.</li></ul>
       <h2 id="additional-resources_windows-node-upgrades" class="group scroll-mt-20">Additional resources<a href="#additional-resources_windows-node-upgrades" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-upgrading-operators">Updating installed Operators</a></li>

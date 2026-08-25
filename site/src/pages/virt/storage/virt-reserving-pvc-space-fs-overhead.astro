@@ -18,6 +18,7 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 import Table from "@ui/table/Table.astro";
 import TableBody from "@ui/table/TableBody.astro";
 import TableCell from "@ui/table/TableCell.astro";
@@ -25,7 +26,7 @@ import TableHead from "@ui/table/TableHead.astro";
 import TableHeader from "@ui/table/TableHeader.astro";
 import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"virt-reserving-pvc-space-fs-overhead","text":"Reserving PVC space for file system overhead"}];
+const headings = [{"depth":1,"slug":"virt-reserving-pvc-space-fs-overhead","text":"Reserving PVC space for file system overhead"},{"depth":2,"slug":"virt-overriding-default-fs-overhead-value_virt-reserving-pvc-space-fs-overhead","text":"Overriding the default file system overhead value"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/storage/virt-reserving-pvc-space-fs-overhead";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -35,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Reserving PVC space for file system overhead";
-const description = "When you create a DataVolume custom resource (CR) for a virtual machine (VM) by setting the spec.storage.volumeMode attribute to Filesystem, {{…" || undefined;
+const description = "When you create a DataVolume custom resource (CR) for a virtual machine (VM) by setting the spec.storage.volumeMode attribute to Filesystem, OpenShift…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -48,7 +49,7 @@ const pageCategory = ["virt","virt/storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Reserving PVC space for file system overhead {#virt-reserving-pvc-space-fs-overhead}\n\nWhen you create a `DataVolume` custom resource (CR) for a virtual machine (VM) by setting the `spec.storage.volumeMode`  attribute to `Filesystem`, {{ VirtProductName }} automatically accounts for file system overhead.\n\nIf you specify the storage type by using the `spec.pvc` attribute in the `DataVolume` CR, {{ VirtProductName }} does not add any file system overhead and the requested size is passed directly to Kubernetes.\n\nThe default file system overhead value is 6%. For example, if you request a 10 GiB disk and the `spec.storage.volumeMode` attribute is set to `FileSystem`, Kubernetes provisions a PVC of approximately 10.6 GiB so that the VM has the full 10 GiB of space available.\n\n**Example file system overhead for data volumes**\n\n| Requested virtual disk size | Calculated overhead (6%) | Total PVC space provisioned |\n| --- | --- | --- |\n| 10 GiB | 0.6 GiB | 10.6 GiB |\n| 100 GiB | 6 GiB | 106 GiB |\n\n> [!NOTE]\n> You can change the default file system overhead value by editing the `HyperConverged` CR.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-reserving-pvc-space-fs-overhead.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Reserving PVC space for file system overhead {#virt-reserving-pvc-space-fs-overhead}\n\nWhen you create a `DataVolume` custom resource (CR) for a virtual machine (VM) by setting the `spec.storage.volumeMode`  attribute to `Filesystem`, OpenShift Virtualization automatically accounts for file system overhead.\n\nIf you specify the storage type by using the `spec.pvc` attribute in the `DataVolume` CR, OpenShift Virtualization does not add any file system overhead and the requested size is passed directly to Kubernetes.\n\nThe default file system overhead value is 6%. For example, if you request a 10 GiB disk and the `spec.storage.volumeMode` attribute is set to `FileSystem`, Kubernetes provisions a PVC of approximately 10.6 GiB so that the VM has the full 10 GiB of space available.\n\n**Example file system overhead for data volumes**\n\n| Requested virtual disk size | Calculated overhead (6%) | Total PVC space provisioned |\n| --- | --- | --- |\n| 10 GiB | 0.6 GiB | 10.6 GiB |\n| 100 GiB | 6 GiB | 106 GiB |\n\n> [!NOTE]\n> You can change the default file system overhead value by editing the `HyperConverged` CR.\n\n## Overriding the default file system overhead value {#virt-overriding-default-fs-overhead-value_virt-reserving-pvc-space-fs-overhead}\n\nChange the amount of persistent volume claim (PVC) space that the OpenShift Virtualization reserves for file system overhead by editing the `spec.filesystemOverhead` attribute of the `HCO` object.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HCO` object for editing by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Edit the `spec.filesystemOverhead` fields, populating them with your chosen values:\n\n   ```yaml\n   # ...\n   spec:\n     filesystemOverhead:\n       global: \"<new_global_value>\"\n       storageClass:\n         <storage_class_name>: \"<new_value_for_this_storage_class>\"\n   ```\n\n   - `spec.filesystemOverhead.global` specifies the default file system overhead percentage used for any storage classes that do not already have a set value. For example, `global: \"0.07\"` reserves 7% of the PVC for file system overhead.\n   - `spec.filesystemOverhead.storageClass` specifies the file system overhead percentage for the specified storage class. For example, `mystorageclass: \"0.04\"` changes the default overhead value for PVCs in the `mystorageclass` storage class to 4%.\n3. Save and exit the editor to update the `HCO` object.\n\n**Verification**\n\n- View the `CDIConfig` status and verify your changes by running one of the following commands:\n\n  To generally verify changes to `CDIConfig`:\n\n  ```terminal\n  $ oc get cdiconfig -o yaml\n  ```\n\n  To view your specific changes to `CDIConfig`:\n\n  ```terminal\n  $ oc get cdiconfig -o jsonpath='{.items..status.filesystemOverhead}'\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-reserving-pvc-space-fs-overhead.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -100,9 +101,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-reserving-pvc-space-fs-overhead" class="group scroll-mt-20">Reserving PVC space for file system overhead<a href="#virt-reserving-pvc-space-fs-overhead" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>When you create a <code>DataVolume</code> custom resource (CR) for a virtual machine (VM) by setting the <code>spec.storage.volumeMode</code>  attribute to <code>Filesystem</code>, {"{"}{"{"} VirtProductName {"}"}{"}"} automatically accounts for file system overhead.</p>
-      <p>If you specify the storage type by using the <code>spec.pvc</code> attribute in the <code>DataVolume</code> CR, {"{"}{"{"} VirtProductName {"}"}{"}"} does not add any file system overhead and the requested size is passed directly to Kubernetes.</p>
+      <p>When you create a <code>DataVolume</code> custom resource (CR) for a virtual machine (VM) by setting the <code>spec.storage.volumeMode</code>  attribute to <code>Filesystem</code>, OpenShift Virtualization automatically accounts for file system overhead.</p>
+      <p>If you specify the storage type by using the <code>spec.pvc</code> attribute in the <code>DataVolume</code> CR, OpenShift Virtualization does not add any file system overhead and the requested size is passed directly to Kubernetes.</p>
       <p>The default file system overhead value is 6%. For example, if you request a 10 GiB disk and the <code>spec.storage.volumeMode</code> attribute is set to <code>FileSystem</code>, Kubernetes provisions a PVC of approximately 10.6 GiB so that the VM has the full 10 GiB of space available.</p>
       <p><strong>Example file system overhead for data volumes</strong></p>
       <Table class="my-4">
@@ -132,7 +132,36 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>You can change the default file system overhead value by editing the <code>HyperConverged</code> CR.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/virt-overriding-default-fs-overhead-value.md"></p>
+      <h2 id="virt-overriding-default-fs-overhead-value_virt-reserving-pvc-space-fs-overhead" class="group scroll-mt-20">Overriding the default file system overhead value<a href="#virt-overriding-default-fs-overhead-value_virt-reserving-pvc-space-fs-overhead" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Change the amount of persistent volume claim (PVC) space that the OpenShift Virtualization reserves for file system overhead by editing the <code>spec.filesystemOverhead</code> attribute of the <code>HCO</code> object.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Install the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Open the <code>HCO</code> object for editing by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Edit the <code>spec.filesystemOverhead</code> fields, populating them with your chosen values:
+      <CodeBlock code={"# ...\nspec:\n  filesystemOverhead:\n    global: \"<new_global_value>\"\n    storageClass:\n      <storage_class_name>: \"<new_value_for_this_storage_class>\""} lang="yaml" />
+      <ul>
+      <li><code>spec.filesystemOverhead.global</code> specifies the default file system overhead percentage used for any storage classes that do not already have a set value. For example, <code>global: "0.07"</code> reserves 7% of the PVC for file system overhead.</li>
+      <li><code>spec.filesystemOverhead.storageClass</code> specifies the file system overhead percentage for the specified storage class. For example, <code>mystorageclass: "0.04"</code> changes the default overhead value for PVCs in the <code>mystorageclass</code> storage class to 4%.</li>
+      </ul>
+      </li>
+      <li>Save and exit the editor to update the <code>HCO</code> object.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      View the <code>CDIConfig</code> status and verify your changes by running one of the following commands:
+      <p>To generally verify changes to <code>CDIConfig</code>:</p>
+      <CodeBlock code={"$ oc get cdiconfig -o yaml"} lang="terminal" />
+      <p>To view your specific changes to <code>CDIConfig</code>:</p>
+      <CodeBlock code={"$ oc get cdiconfig -o jsonpath='{.items..status.filesystemOverhead}'"} lang="terminal" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

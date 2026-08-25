@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"olm-operatorconditions","text":"Operator conditions"},{"depth":2,"slug":"olm-operatorconditions-addtl-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"olm-operatorconditions","text":"Operator conditions"},{"depth":2,"slug":"_about_operator_conditions","text":"About Operator conditions"},{"depth":2,"slug":"olm-supported-operatorconditions_olm-operatorconditions","text":"Supported conditions"},{"depth":3,"slug":"olm-upgradeable-operatorcondition_olm-operatorconditions","text":"Upgradeable condition"},{"depth":2,"slug":"olm-operatorconditions-addtl-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/operators/understanding/olm/olm-operatorconditions";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["operators","operators/understanding","operators/understan
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Operator conditions {#olm-operatorconditions}\n\nOperator Lifecycle Manager (OLM) uses Operator conditions to communicate additional lifecycle information about an Operator that OLM cannot infer on its own.\n\n## Additional resources {#olm-operatorconditions-addtl-resources}\n\n- [Managing Operator conditions](/openshift-docs-markdown/operators/admin/olm-managing-operatorconditions#olm-operatorconditions)\n- [Understanding how to use pod disruption budgets to specify the number of pods that must be up](/openshift-docs-markdown/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-about_nodes-pods-configuring)\n- [Graceful termination](/openshift-docs-markdown/applications/deployments/route-based-deployment-strategies#deployments-graceful-termination_route-based-deployment-strategies)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/understanding/olm/olm-operatorconditions.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Operator conditions {#olm-operatorconditions}\n\nOperator Lifecycle Manager (OLM) uses Operator conditions to communicate additional lifecycle information about an Operator that OLM cannot infer on its own.\n\n## About Operator conditions {#_about_operator_conditions}\n\nOperator Lifecycle Manager (OLM) infers Operator state from Kubernetes resources, but some conditions require explicit communication. You can use the `OperatorCondition` custom resource definition (CRD) to tell OLM about supported conditions that affect lifecycle management.\n\n> [!NOTE]\n> By default, the `Spec.Conditions` array is not present in an `OperatorCondition` object until it is either added by a user or as a result of custom Operator logic.\n\n## Supported conditions {#olm-supported-operatorconditions_olm-operatorconditions}\n\nOperator Lifecycle Manager (OLM) supports a specific set of Operator conditions that communicate the state of an Operator.\n\n### Upgradeable condition {#olm-upgradeable-operatorcondition_olm-operatorconditions}\n\nThe `Upgradeable` Operator condition prevents an existing cluster service version (CSV) from being replaced by a newer version of the CSV. This condition is useful when:\n\n- An Operator is about to start a critical process and should not be upgraded until the process is completed.\n- An Operator is performing a migration of custom resources (CRs) that must be completed before the Operator is ready to be upgraded.\n\n> [!IMPORTANT]\n> Setting the `Upgradeable` Operator condition to the `False` value does not avoid pod disruption. If you must ensure your pods are not disrupted, see \"Using pod disruption budgets to specify the number of pods that must be up\" and \"Graceful termination\" in the \"Additional resources\" section.\n\n```yaml {title=\"Example Upgradeable Operator condition\"}\napiVersion: operators.coreos.com/v1\nkind: OperatorCondition\nmetadata:\n  name: my-operator\n  namespace: operators\nspec:\n  conditions:\n  - type: Upgradeable\n    status: \"False\"\n    reason: \"migration\"\n    message: \"The Operator is performing a migration.\"\n    lastTransitionTime: \"2020-08-24T23:15:55Z\"\n```\n\n- The `type` field sets the name of the condition.\n- A `False` value in the `status` field indicates the Operator is not ready to be upgraded. OLM prevents a CSV that replaces the existing CSV of the Operator from leaving the `Pending` phase. A `False` value does not block cluster upgrades.\n\n## Additional resources {#olm-operatorconditions-addtl-resources}\n\n- [Managing Operator conditions](/openshift-docs-markdown/operators/admin/olm-managing-operatorconditions#olm-operatorconditions)\n- [Understanding how to use pod disruption budgets to specify the number of pods that must be up](/openshift-docs-markdown/nodes/pods/nodes-pods-configuring#nodes-pods-pod-disruption-about_nodes-pods-configuring)\n- [Graceful termination](/openshift-docs-markdown/applications/deployments/route-based-deployment-strategies#deployments-graceful-termination_route-based-deployment-strategies)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/understanding/olm/olm-operatorconditions.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,34 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="olm-operatorconditions" class="group scroll-mt-20">Operator conditions<a href="#olm-operatorconditions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Operator Lifecycle Manager (OLM) uses Operator conditions to communicate additional lifecycle information about an Operator that OLM cannot infer on its own.</p>
-      <p class="/modules/olm-operatorconditions-about.md"></p>
-      <p class="/modules/olm-supported-operatorconditions.md"></p>
+      <h2 id="_about_operator_conditions" class="group scroll-mt-20">About Operator conditions<a href="#_about_operator_conditions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Operator Lifecycle Manager (OLM) infers Operator state from Kubernetes resources, but some conditions require explicit communication. You can use the <code>OperatorCondition</code> custom resource definition (CRD) to tell OLM about supported conditions that affect lifecycle management.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>By default, the <code>Spec.Conditions</code> array is not present in an <code>OperatorCondition</code> object until it is either added by a user or as a result of custom Operator logic.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="olm-supported-operatorconditions_olm-operatorconditions" class="group scroll-mt-20">Supported conditions<a href="#olm-supported-operatorconditions_olm-operatorconditions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Operator Lifecycle Manager (OLM) supports a specific set of Operator conditions that communicate the state of an Operator.</p>
+      <h3 id="olm-upgradeable-operatorcondition_olm-operatorconditions" class="group scroll-mt-20">Upgradeable condition<a href="#olm-upgradeable-operatorcondition_olm-operatorconditions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The <code>Upgradeable</code> Operator condition prevents an existing cluster service version (CSV) from being replaced by a newer version of the CSV. This condition is useful when:</p>
+      <ul>
+      <li>An Operator is about to start a critical process and should not be upgraded until the process is completed.</li>
+      <li>An Operator is performing a migration of custom resources (CRs) that must be completed before the Operator is ready to be upgraded.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Setting the <code>Upgradeable</code> Operator condition to the <code>False</code> value does not avoid pod disruption. If you must ensure your pods are not disrupted, see "Using pod disruption budgets to specify the number of pods that must be up" and "Graceful termination" in the "Additional resources" section.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1\nkind: OperatorCondition\nmetadata:\n  name: my-operator\n  namespace: operators\nspec:\n  conditions:\n  - type: Upgradeable\n    status: \"False\"\n    reason: \"migration\"\n    message: \"The Operator is performing a migration.\"\n    lastTransitionTime: \"2020-08-24T23:15:55Z\""} lang="yaml" title="Example Upgradeable Operator condition" />
+      <ul>
+      <li>The <code>type</code> field sets the name of the condition.</li>
+      <li>A <code>False</code> value in the <code>status</code> field indicates the Operator is not ready to be upgraded. OLM prevents a CSV that replaces the existing CSV of the Operator from leaving the <code>Pending</code> phase. A <code>False</code> value does not block cluster upgrades.</li>
+      </ul>
       <h2 id="olm-operatorconditions-addtl-resources" class="group scroll-mt-20">Additional resources<a href="#olm-operatorconditions-addtl-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/operators/admin/olm-managing-operatorconditions#olm-operatorconditions">Managing Operator conditions</a></li>

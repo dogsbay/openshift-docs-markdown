@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"co-support","text":"Compliance Operator support"},{"depth":2,"slug":"co-lifecycle_co-support","text":"Compliance Operator lifecycle"},{"depth":2,"slug":"additional-resources_co-support","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"co-support","text":"Compliance Operator support"},{"depth":2,"slug":"co-lifecycle_co-support","text":"Compliance Operator lifecycle"},{"depth":2,"slug":"support_co-support","text":"Get support"},{"depth":2,"slug":"compliance-must-gather_co-support","text":"Using the must-gather tool for the Compliance Operator"},{"depth":2,"slug":"additional-resources_co-support","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/compliance_operator/co-support";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["security","security/compliance_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Compliance Operator support {#co-support}\n\nYou can find support resources for the Compliance Operator, including lifecycle information, general support procedures, and troubleshooting tools.\n\n## Compliance Operator lifecycle {#co-lifecycle_co-support}\n\nThe Compliance Operator is a \"Rolling Stream\" Operator, meaning updates are available asynchronously of OpenShift Container Platform releases. For more information, see \"OpenShift Operator Life Cycles\" on the Red Hat Customer Portal.\n\n## Additional resources {#additional-resources_co-support}\n\n- [About the must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)\n- [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)\n- [Product Compliance](https://access.redhat.com/compliance)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-support.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Compliance Operator support {#co-support}\n\nYou can find support resources for the Compliance Operator, including lifecycle information, general support procedures, and troubleshooting tools.\n\n## Compliance Operator lifecycle {#co-lifecycle_co-support}\n\nThe Compliance Operator is a \"Rolling Stream\" Operator, meaning updates are available asynchronously of OpenShift Container Platform releases. For more information, see \"OpenShift Operator Life Cycles\" on the Red Hat Customer Portal.\n\n## Get support {#support_co-support}\n\nRed Hat offers several support channels to help you troubleshoot issues and get the most from OpenShift Container Platform.\n\nFrom the Red Hat Customer Portal, you can:\n\n- Search or browse through the Red Hat Knowledgebase of articles and solutions about Red Hat products.\n- Submit a support case to Red Hat Support.\n- Access other product documentation.\n\nTo identify issues with your cluster, you can use Red Hat Lightspeed in [OpenShift Cluster Manager](https://console.redhat.com/openshift). Red Hat Lightspeed provides details about issues and, if available, information about how to solve a problem.\n\nTo suggest improvements or report errors, give specific details such as the section name and OpenShift Container Platform version.\n\n## Using the must-gather tool for the Compliance Operator {#compliance-must-gather_co-support}\n\nYou can collect detailed Compliance Operator configuration and logs by using the must-gather tool to aid in troubleshooting issues and support case resolution.\n\nStarting in Compliance Operator v1.6.0, you can collect data about the Compliance Operator resources by running the `must-gather` command with the Compliance Operator image.\n\n> [!NOTE]\n> Consider using the `must-gather` tool when opening support cases or filing bug reports, as it provides additional details about the Operator configuration and logs.\n\n**Procedure**\n\n- Run the following command to collect data about the Compliance Operator:\n\n  ```terminal\n  $ oc adm must-gather --image=$(oc get csv compliance-operator.v1.6.0 -o=jsonpath='{.spec.relatedImages[?(@.name==\"must-gather\")].image}')\n  ```\n\n## Additional resources {#additional-resources_co-support}\n\n- [About the must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)\n- [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)\n- [Product Compliance](https://access.redhat.com/compliance)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-support.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,35 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="co-support" class="group scroll-mt-20">Compliance Operator support<a href="#co-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can find support resources for the Compliance Operator, including lifecycle information, general support procedures, and troubleshooting tools.</p>
       <h2 id="co-lifecycle_co-support" class="group scroll-mt-20">Compliance Operator lifecycle<a href="#co-lifecycle_co-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>The Compliance Operator is a "Rolling Stream" Operator, meaning updates are available asynchronously of OpenShift Container Platform releases. For more information, see "OpenShift Operator Life Cycles" on the Red Hat Customer Portal.</p>
-      <p class="/modules/support.md"></p>
-      <p class="/modules/compliance-must-gather.md"></p>
+      <h2 id="support_co-support" class="group scroll-mt-20">Get support<a href="#support_co-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Red Hat offers several support channels to help you troubleshoot issues and get the most from OpenShift Container Platform.</p>
+      <p>From the Red Hat Customer Portal, you can:</p>
+      <ul>
+      <li>Search or browse through the Red Hat Knowledgebase of articles and solutions about Red Hat products.</li>
+      <li>Submit a support case to Red Hat Support.</li>
+      <li>Access other product documentation.</li>
+      </ul>
+      <p>To identify issues with your cluster, you can use Red Hat Lightspeed in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>. Red Hat Lightspeed provides details about issues and, if available, information about how to solve a problem.</p>
+      <p>To suggest improvements or report errors, give specific details such as the section name and OpenShift Container Platform version.</p>
+      <h2 id="compliance-must-gather_co-support" class="group scroll-mt-20">Using the must-gather tool for the Compliance Operator<a href="#compliance-must-gather_co-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can collect detailed Compliance Operator configuration and logs by using the must-gather tool to aid in troubleshooting issues and support case resolution.</p>
+      <p>Starting in Compliance Operator v1.6.0, you can collect data about the Compliance Operator resources by running the <code>must-gather</code> command with the Compliance Operator image.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Consider using the <code>must-gather</code> tool when opening support cases or filing bug reports, as it provides additional details about the Operator configuration and logs.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Run the following command to collect data about the Compliance Operator:
+      <CodeBlock code={"$ oc adm must-gather --image=$(oc get csv compliance-operator.v1.6.0 -o=jsonpath='{.spec.relatedImages[?(@.name==\"must-gather\")].image}')"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="additional-resources_co-support" class="group scroll-mt-20">Additional resources<a href="#additional-resources_co-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data">About the must-gather tool</a></li>

@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-using-mac-address-pool-for-vms","text":"Managing MAC address pools for network interfaces"}];
+const headings = [{"depth":1,"slug":"virt-using-mac-address-pool-for-vms","text":"Managing MAC address pools for network interfaces"},{"depth":2,"slug":"virt-managing-kubemacpool-cli_virt-using-mac-address-pool-for-vms","text":"Managing KubeMacPool by using the CLI"},{"depth":2,"slug":"virt-custom-kubemacpool-range_virt-using-mac-address-pool-for-vms","text":"Customizing the MAC pool range"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/vm_networking/virt-using-mac-address-pool-for-vms";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/vm_networking"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing MAC address pools for network interfaces {#virt-using-mac-address-pool-for-vms}\n\nKubeMacPool allocates MAC addresses for virtual machine (VM) network interfaces from a shared MAC address pool. This ensures that each network interface is assigned a unique MAC address.\n\nA virtual machine instance created from that VM retains the assigned MAC address across reboots.\n\n> [!NOTE]\n> KubeMacPool does not handle virtual machine instances created independently from a virtual machine.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-using-mac-address-pool-for-vms.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing MAC address pools for network interfaces {#virt-using-mac-address-pool-for-vms}\n\nKubeMacPool allocates MAC addresses for virtual machine (VM) network interfaces from a shared MAC address pool. This ensures that each network interface is assigned a unique MAC address.\n\nA virtual machine instance created from that VM retains the assigned MAC address across reboots.\n\n> [!NOTE]\n> KubeMacPool does not handle virtual machine instances created independently from a virtual machine.\n\n## Managing KubeMacPool by using the CLI {#virt-managing-kubemacpool-cli_virt-using-mac-address-pool-for-vms}\n\nYou can disable and re-enable KubeMacPool by using the command line.\n\nKubeMacPool is enabled by default.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- To disable KubeMacPool in two namespaces, run the following command:\n\n  ```terminal\n  $ oc label namespace <namespace1> <namespace2> mutatevirtualmachines.kubemacpool.io=ignore\n  ```\n- To re-enable KubeMacPool in two namespaces, run the following command:\n\n  ```terminal\n  $ oc label namespace <namespace1> <namespace2> mutatevirtualmachines.kubemacpool.io-\n  ```\n\n## Customizing the MAC pool range {#virt-custom-kubemacpool-range_virt-using-mac-address-pool-for-vms}\n\nKubeMacPool works by allocating MAC addresses to VMs from a range. The `rangeStart` and `rangeEnd` parameters in the `HyperConverged` custom resource (CR) define the MAC pool range.\n\nAs a cluster administrator, you can configure this range to ensure that MAC addresses for VMs hosted on OpenShift Virtualization do not conflict with other virtualization solutions on the same network.\n\n**Prerequisites**\n\n- You have cluster administrator access on an OpenShift Container Platform cluster.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Edit the `HyperConverged` CR by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Update the `HyperConverged` CR to configure the `rangeStart` and `rangeEnd` parameters that define your required MAC address range:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n   spec:\n     kubeMacPoolConfiguration:\n       rangeStart: \"AA:00:00:00:00:00\"\n       rangeEnd: \"FD:FF:FF:FF:FF:FF\"\n   # ...\n   ```\n\n**Verification**\n\n1. Run the following command and observe the output:\n\n   ```terminal\n   $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o=jsonpath='{.spec.kubeMacPoolConfiguration}'\n   ```\n\n   If you have successfully applied the configuration changes, the output shows the new MAC pool range you have configured:\n\n   Example output:\n\n   ```terminal\n   {\n     \"rangeStart\": \"AA:00:00:00:00:00\",\n     \"rangeEnd\": \"FD:FF:FF:FF:FF:FF\"\n   }\n   ```\n2. Optional. Create a new VM and run the following command to check the MAC address of the VM’s network interface:\n\n   ```terminal\n   $ oc get vmi <vm-name> -o=jsonpath='{.status.interfaces[0].macAddress}'\n   ```\n\n   Example output:\n\n   ```yaml\n   macAddress: AA:00:00:00:00:04\n   ```\n\n   If you have successfully applied the configuration changes, the `macAddress` field in the VM interface is within the range you specified in your `kubeMacPoolConfiguration`, between the value of `rangeStart` and `rangeEnd`.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-using-mac-address-pool-for-vms.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-using-mac-address-pool-for-vms" class="group scroll-mt-20">Managing MAC address pools for network interfaces<a href="#virt-using-mac-address-pool-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>KubeMacPool allocates MAC addresses for virtual machine (VM) network interfaces from a shared MAC address pool. This ensures that each network interface is assigned a unique MAC address.</p>
       <p>A virtual machine instance created from that VM retains the assigned MAC address across reboots.</p>
       <Alert variant="note" class="my-4">
@@ -103,8 +103,58 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>KubeMacPool does not handle virtual machine instances created independently from a virtual machine.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/virt-managing-kubemacpool-cli.md"></p>
-      <p class="/modules/virt-custom-kubemacpool-range.md"></p>
+      <h2 id="virt-managing-kubemacpool-cli_virt-using-mac-address-pool-for-vms" class="group scroll-mt-20">Managing KubeMacPool by using the CLI<a href="#virt-managing-kubemacpool-cli_virt-using-mac-address-pool-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can disable and re-enable KubeMacPool by using the command line.</p>
+      <p>KubeMacPool is enabled by default.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To disable KubeMacPool in two namespaces, run the following command:
+      <CodeBlock code={"$ oc label namespace <namespace1> <namespace2> mutatevirtualmachines.kubemacpool.io=ignore"} lang="terminal" />
+      </li>
+      <li>
+      To re-enable KubeMacPool in two namespaces, run the following command:
+      <CodeBlock code={"$ oc label namespace <namespace1> <namespace2> mutatevirtualmachines.kubemacpool.io-"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="virt-custom-kubemacpool-range_virt-using-mac-address-pool-for-vms" class="group scroll-mt-20">Customizing the MAC pool range<a href="#virt-custom-kubemacpool-range_virt-using-mac-address-pool-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">KubeMacPool works by allocating MAC addresses to VMs from a range. The <code>rangeStart</code> and <code>rangeEnd</code> parameters in the <code>HyperConverged</code> custom resource (CR) define the MAC pool range.</p>
+      <p>As a cluster administrator, you can configure this range to ensure that MAC addresses for VMs hosted on OpenShift Virtualization do not conflict with other virtualization solutions on the same network.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have cluster administrator access on an OpenShift Container Platform cluster.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>HyperConverged</code> CR by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Update the <code>HyperConverged</code> CR to configure the <code>rangeStart</code> and <code>rangeEnd</code> parameters that define your required MAC address range:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\nspec:\n  kubeMacPoolConfiguration:\n    rangeStart: \"AA:00:00:00:00:00\"\n    rangeEnd: \"FD:FF:FF:FF:FF:FF\"\n# ..."} lang="yaml" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Run the following command and observe the output:
+      <CodeBlock code={"$ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o=jsonpath='{.spec.kubeMacPoolConfiguration}'"} lang="terminal" />
+      <p>If you have successfully applied the configuration changes, the output shows the new MAC pool range you have configured:</p>
+      <p>Example output:</p>
+      <CodeBlock code={"{\n  \"rangeStart\": \"AA:00:00:00:00:00\",\n  \"rangeEnd\": \"FD:FF:FF:FF:FF:FF\"\n}"} lang="terminal" />
+      </li>
+      <li>
+      Optional. Create a new VM and run the following command to check the MAC address of the VM’s network interface:
+      <CodeBlock code={"$ oc get vmi <vm-name> -o=jsonpath='{.status.interfaces[0].macAddress}'"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"macAddress: AA:00:00:00:00:04"} lang="yaml" />
+      <p>If you have successfully applied the configuration changes, the <code>macAddress</code> field in the VM interface is within the range you specified in your <code>kubeMacPoolConfiguration</code>, between the value of <code>rangeStart</code> and <code>rangeEnd</code>.</p>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

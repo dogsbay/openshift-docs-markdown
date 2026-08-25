@@ -15,9 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"albo-sts-cluster","text":"Preparing an AWS STS cluster for the AWS Load Balancer Operator"},{"depth":2,"slug":"additional-resources-albo-sts-cluster_albo-sts-cluster","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"albo-sts-cluster","text":"Preparing an AWS STS cluster for the AWS Load Balancer Operator"},{"depth":2,"slug":"the-iam-role-albo-operator_albo-sts-cluster","text":"The IAM role for the AWS Load Balancer Operator"},{"depth":3,"slug":"using-ccoctl-create-iam-role-alb-operator_albo-sts-cluster","text":"Creating an AWS IAM role by using the Cloud Credential Operator utility"},{"depth":3,"slug":"using-aws-cli-create-iam-role-alb-operator_albo-sts-cluster","text":"Creating an AWS IAM role by using the AWS CLI"},{"depth":2,"slug":"specifying-role-arn-albo-sts_albo-sts-cluster","text":"Configuring the ARN role for the AWS Load Balancer Operator"},{"depth":2,"slug":"the-iam-role-albo-controller.adoc_albo-sts-cluster","text":"The IAM role for the AWS Load Balancer Controller"},{"depth":3,"slug":"using-ccoctl-create-iam-role-alb-controller_albo-sts-cluster","text":"Creating an AWS IAM role for the controller by using the Cloud Credential Operator utility"},{"depth":3,"slug":"using-aws-cli-create-iam-role-alb-controller_albo-sts-cluster","text":"Creating an AWS IAM role for the controller by using the AWS CLI"},{"depth":2,"slug":"additional-resources-albo-sts-cluster_albo-sts-cluster","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/preparing-sts-cluster-for-albo";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -27,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Preparing an AWS STS cluster for the AWS Load Balancer Operator";
-const description = "To install the {{ aws_first }} Load Balancer Operator on a cluster that uses the {{ sts_first }}, prepare the cluster by configuring the…" || undefined;
+const description = "To install the Amazon Web Services (AWS) Load Balancer Operator on a cluster that uses the Security Token Service (STS), prepare the cluster by…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -40,7 +43,7 @@ const pageCategory = ["networking","networking/networking_operators","networking
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing an AWS STS cluster for the AWS Load Balancer Operator {#albo-sts-cluster}\n\nTo install the {{ aws_first }} Load Balancer Operator on a cluster that uses the {{ sts_first }}, prepare the cluster by configuring the `CredentialsRequest` object. This ensures the Operator can bootstrap the {{ aws_short }} Load Balancer Controller and access the required secrets.\n\nThe {{ aws_short }} Load Balancer Operator waits until the required secrets are created and available.\n\nBefore you start any {{ sts_first }} procedures, ensure that you meet the following prerequisites:\n\n- You installed the {{ oc_first }}.\n- You know the infrastructure ID of your cluster. To show this ID, run the following command in your CLI:\n\n  ```terminal\n  $ oc get infrastructure cluster -o=jsonpath=\"{.status.infrastructureName}\"\n  ```\n- You know the OpenID Connect (OIDC) DNS information for your cluster. To show this information, enter the following command in your CLI:\n\n  ```terminal\n  $ oc get authentication.config cluster -o=jsonpath=\"{.spec.serviceAccountIssuer}\"\n  ```\n\n  where:\n\n  `{.spec.serviceAccountIssuer}`\n  :   Specifies an OIDC DNS URL. An example URL is `https://rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f`.\n- You logged into the {{ aws_short }} management console, navigated to **IAM** -> **Access management** -> **Identity providers**, and located the OIDC Amazon Resource Name (ARN) information. An OIDC ARN example is `arn:aws:iam::777777777777:oidc-provider/<oidc_dns_url>`.\n\n**Additional resources**\n\n- [the Cloud Credential Operator utility (`ccoctl`)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n\n**Additional resources**\n\n- [the Cloud Credential Operator utility (`ccoctl`)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n\n## Additional resources {#additional-resources-albo-sts-cluster_albo-sts-cluster}\n\n- [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/preparing-sts-cluster-for-albo.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing an AWS STS cluster for the AWS Load Balancer Operator {#albo-sts-cluster}\n\nTo install the Amazon Web Services (AWS) Load Balancer Operator on a cluster that uses the Security Token Service (STS), prepare the cluster by configuring the `CredentialsRequest` object. This ensures the Operator can bootstrap the AWS Load Balancer Controller and access the required secrets.\n\nThe AWS Load Balancer Operator waits until the required secrets are created and available.\n\nBefore you start any Security Token Service (STS) procedures, ensure that you meet the following prerequisites:\n\n- You installed the OpenShift CLI (`oc`).\n- You know the infrastructure ID of your cluster. To show this ID, run the following command in your CLI:\n\n  ```terminal\n  $ oc get infrastructure cluster -o=jsonpath=\"{.status.infrastructureName}\"\n  ```\n- You know the OpenID Connect (OIDC) DNS information for your cluster. To show this information, enter the following command in your CLI:\n\n  ```terminal\n  $ oc get authentication.config cluster -o=jsonpath=\"{.spec.serviceAccountIssuer}\"\n  ```\n\n  where:\n\n  `{.spec.serviceAccountIssuer}`\n  :   Specifies an OIDC DNS URL. An example URL is `https://rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f`.\n- You logged into the AWS management console, navigated to **IAM** -> **Access management** -> **Identity providers**, and located the OIDC Amazon Resource Name (ARN) information. An OIDC ARN example is `arn:aws:iam::777777777777:oidc-provider/<oidc_dns_url>`.\n\n**Additional resources**\n\n- [the Cloud Credential Operator utility (`ccoctl`)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n\n## The IAM role for the AWS Load Balancer Operator {#the-iam-role-albo-operator_albo-sts-cluster}\n\nTo install the Amazon Web Services (AWS) Load Balancer Operator on a cluster by using STS, configure an additional Identity and Access Management (IAM) role.\n\nYou can create the IAM role by using the following options:\n\n- Using the Cloud Credential Operator utility (`ccoctl`) and a predefined `CredentialsRequest` object.\n- Using the AWS CLI and predefined AWS manifests.\n\nUse the AWS CLI if your environment does not support the `ccoctl` command.\n\n### Creating an AWS IAM role by using the Cloud Credential Operator utility {#using-ccoctl-create-iam-role-alb-operator_albo-sts-cluster}\n\nTo enable the AWS Load Balancer Operator to interact with subnets and VPCs, create an AWS IAM role by using the Cloud Credential Operator utility (`ccoctl`).\n\n**Prerequisites**\n\n- You must extract and prepare the `ccoctl` binary.\n\n**Procedure**\n\n1. Download the `CredentialsRequest` custom resource (CR) and store it in a directory by running the following command:\n\n   ```terminal\n   $ curl --create-dirs -o <credentials_requests_dir>/operator.yaml https://raw.githubusercontent.com/openshift/aws-load-balancer-operator/main/hack/operator-credentials-request.yaml\n   ```\n2. Use the `ccoctl` utility to create an AWS IAM role by running the following command:\n\n   ```terminal\n   $ ccoctl aws create-iam-roles \\\n       --name <name> \\\n       --region=<aws_region> \\\n       --credentials-requests-dir=<credentials_requests_dir> \\\n       --identity-provider-arn <oidc_arn>\n   ```\n\n   ```terminal {title=\"Example output\"}\n   2023/09/12 11:38:57 Role arn:aws:iam::777777777777:role/<name>-aws-load-balancer-operator-aws-load-balancer-operator created\n   2023/09/12 11:38:57 Saved credentials configuration to: /home/user/<credentials_requests_dir>/manifests/aws-load-balancer-operator-aws-load-balancer-operator-credentials.yaml\n   2023/09/12 11:38:58 Updated Role policy for Role <name>-aws-load-balancer-operator-aws-load-balancer-operator created\n   ```\n\n   where:\n\n   `<name>`\n   :   Specifies the Amazon Resource Name (ARN) for an AWS IAM role that was created for the AWS Load Balancer Operator, such as `arn:aws:iam::777777777777:role/<name>-aws-load-balancer-operator-aws-load-balancer-operator`.\n\n   > [!NOTE]\n   > The length of an AWS IAM role name must be less than or equal to 12 characters.\n\n### Creating an AWS IAM role by using the AWS CLI {#using-aws-cli-create-iam-role-alb-operator_albo-sts-cluster}\n\nTo enable the AWS Load Balancer Operator to interact with subnets and VPCs, create an AWS IAM role by using the AWS CLI. This enables the Operator to access and manage the necessary network resources within the cluster.\n\n**Prerequisites**\n\n- You must have access to the AWS Command Line Interface (`aws`).\n\n**Procedure**\n\n1. Generate a trust policy file by using your identity provider by running the following command:\n\n   ```terminal\n   $ cat <<EOF > albo-operator-trust-policy.json\n   {\n       \"Version\": \"2012-10-17\",\n       \"Statement\": [\n           {\n               \"Effect\": \"Allow\",\n               \"Principal\": {\n                   \"Federated\": \"<oidc_arn>\"\n               },\n               \"Action\": \"sts:AssumeRoleWithWebIdentity\",\n               \"Condition\": {\n                   \"StringEquals\": {\n                       \"<cluster_oidc_endpoint>:sub\": \"system:serviceaccount:aws-load-balancer-operator:aws-load-balancer-operator-controller-manager\"\n                   }\n               }\n           }\n       ]\n   }\n   EOF\n   ```\n\n   where:\n\n   `<oidc_arn>`\n   :   Specifies the Amazon Resource Name (ARN) of the OIDC identity provider, such as `arn:aws:iam::777777777777:oidc-provider/rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f`.\n\n   `serviceaccount`\n   :   Specifies the service account for the AWS Load Balancer Controller. An example of `<cluster_oidc_endpoint>` is `rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f`.\n2. Create the IAM role with the generated trust policy by running the following command:\n\n   ```terminal\n   $ aws iam create-role --role-name albo-operator --assume-role-policy-document file://albo-operator-trust-policy.json\n   ```\n\n   ```terminal {title=\"Example output\"}\n   ROLE\tarn:aws:iam::<aws_account_number>:role/albo-operator\t2023-08-02T12:13:22Z (1)\n   ASSUMEROLEPOLICYDOCUMENT\t2012-10-17\n   STATEMENT\tsts:AssumeRoleWithWebIdentity\tAllow\n   STRINGEQUALS\tsystem:serviceaccount:aws-load-balancer-operator:aws-load-balancer-controller-manager\n   PRINCIPAL\tarn:aws:iam:<aws_account_number>:oidc-provider/<cluster_oidc_endpoint>\n   ```\n\n   where:\n\n   `<aws_account_number>`\n   :   Specifies the ARN of the created AWS IAM role for the AWS Load Balancer Operator, such as `arn:aws:iam::777777777777:role/albo-operator`.\n3. Download the permission policy for the AWS Load Balancer Operator by running the following command:\n\n   ```terminal\n   $ curl -o albo-operator-permission-policy.json https://raw.githubusercontent.com/openshift/aws-load-balancer-operator/main/hack/operator-permission-policy.json\n   ```\n4. Attach the permission policy for the AWS Load Balancer Controller to the IAM role by running the following command:\n\n   ```terminal\n   $ aws iam put-role-policy --role-name albo-operator --policy-name perms-policy-albo-operator --policy-document file://albo-operator-permission-policy.json\n   ```\n\n## Configuring the ARN role for the AWS Load Balancer Operator {#specifying-role-arn-albo-sts_albo-sts-cluster}\n\nYou can configure the Amazon Resource Name (ARN) role for the AWS Load Balancer Operator as an environment variable. You can configure the ARN role by using the CLI.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create the `aws-load-balancer-operator` project by running the following command:\n\n   ```terminal\n   $ oc new-project aws-load-balancer-operator\n   ```\n2. Create the `OperatorGroup` object by running the following command:\n\n   ```terminal\n   $ cat <<EOF | oc apply -f -\n   apiVersion: operators.coreos.com/v1\n   kind: OperatorGroup\n   metadata:\n     name: aws-load-balancer-operator\n     namespace: aws-load-balancer-operator\n   spec:\n     targetNamespaces: []\n   EOF\n   ```\n3. Create the `Subscription` object by running the following command:\n\n   ```terminal\n   $ cat <<EOF | oc apply -f -\n   apiVersion: operators.coreos.com/v1alpha1\n   kind: Subscription\n   metadata:\n     name: aws-load-balancer-operator\n     namespace: aws-load-balancer-operator\n   spec:\n     channel: stable-v1\n     name: aws-load-balancer-operator\n     source: redhat-operators\n     sourceNamespace: openshift-marketplace\n     config:\n       env:\n       - name: ROLEARN\n         value: \"<albo_role_arn>\"\n   EOF\n   ```\n\n   where:\n\n   `<albo_role_arn>`\n   :   Specifies the ARN role to be used in the `CredentialsRequest` to provision the AWS credentials for the AWS Load Balancer Operator. An example for `<albo_role_arn>` is `arn:aws:iam::<aws_account_number>:role/albo-operator`.\n\n   > [!NOTE]\n   > The AWS Load Balancer Operator waits until the secret is created before moving to the `Available` status.\n\n## The IAM role for the AWS Load Balancer Controller {#the-iam-role-albo-controller.adoc_albo-sts-cluster}\n\nThe `CredentialsRequest` object for the AWS Load Balancer Controller must be set with a manually provisioned Identity and Access Management (IAM) role.\n\nYou can create the IAM role by using the following options:\n\n- Using the Cloud Credential Operator utility (`ccoctl`) and a predefined `CredentialsRequest` object.\n- Using the AWS CLI and predefined AWS manifests.\n\nIf your environment does not support the `ccoctl` `command.ws-short` CLI, use the AWS CLI.\n\n**Additional resources**\n\n- [the Cloud Credential Operator utility (`ccoctl`)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n\n### Creating an AWS IAM role for the controller by using the Cloud Credential Operator utility {#using-ccoctl-create-iam-role-alb-controller_albo-sts-cluster}\n\nTo enable the AWS Load Balancer Controller to interact with subnets and VPCs, create an IAM role by using the Cloud Credential Operator utility (`ccoctl`). This utility ensures the controller has the specific permissions required to manage network resources within the cluster.\n\n**Prerequisites**\n\n- You must extract and prepare the `ccoctl` binary.\n\n**Procedure**\n\n1. Download the `CredentialsRequest` custom resource (CR) and store it in a directory by running the following command:\n\n   ```terminal\n   $ curl --create-dirs -o <credentials_requests_dir>/controller.yaml https://raw.githubusercontent.com/openshift/aws-load-balancer-operator/main/hack/controller/controller-credentials-request.yaml\n   ```\n2. Use the `ccoctl` utility to create an AWS IAM role by running the following command:\n\n   ```terminal\n   $ ccoctl aws create-iam-roles \\\n       --name <name> \\\n       --region=<aws_region> \\\n       --credentials-requests-dir=<credentials_requests_dir> \\\n       --identity-provider-arn <oidc_arn>\n   ```\n\n   ```terminal {title=\"Example output\"}\n   2023/09/12 11:38:57 Role arn:aws:iam::777777777777:role/<name>-aws-load-balancer-operator-aws-load-balancer-controller created\n   2023/09/12 11:38:57 Saved credentials configuration to: /home/user/<credentials_requests_dir>/manifests/aws-load-balancer-operator-aws-load-balancer-controller-credentials.yaml\n   2023/09/12 11:38:58 Updated Role policy for Role <name>-aws-load-balancer-operator-aws-load-balancer-controller created\n   ```\n\n   where:\n\n   `<name>`\n   :   Specifies the Amazon Resource Name (ARN) for an AWS IAM role that was created for the AWS Load Balancer Controller, such as `arn:aws:iam::777777777777:role/<name>-aws-load-balancer-operator-aws-load-balancer-controller`.\n\n   > [!NOTE]\n   > The length of an AWS IAM role name must be less than or equal to 12 characters.\n\n### Creating an AWS IAM role for the controller by using the AWS CLI {#using-aws-cli-create-iam-role-alb-controller_albo-sts-cluster}\n\nTo enable the AWS Load Balancer Controller to interact with subnets and Virtual Private Clouds (VPCs), create an IAM role by using the AWS CLI. This ensures the controller has the specific permissions required to manage network resources within the cluster.\n\n**Prerequisites**\n\n- You must have access to the AWS command-line interface (`aws`).\n\n**Procedure**\n\n1. Generate a trust policy file using your identity provider by running the following command:\n\n   ```terminal\n   $ cat <<EOF > albo-controller-trust-policy.json\n   {\n       \"Version\": \"2012-10-17\",\n       \"Statement\": [\n           {\n               \"Effect\": \"Allow\",\n               \"Principal\": {\n                   \"Federated\": \"<oidc_arn>\"\n               },\n               \"Action\": \"sts:AssumeRoleWithWebIdentity\",\n               \"Condition\": {\n                   \"StringEquals\": {\n                       \"<cluster_oidc_endpoint>:sub\": \"system:serviceaccount:aws-load-balancer-operator:aws-load-balancer-operator-controller-manager\"\n                   }\n               }\n           }\n       ]\n   }\n   EOF\n   ```\n\n   where:\n\n   `<oidc_arn>`\n   :   Specifies the Amazon Resource Name (ARN) of the OIDC identity provider, such as `arn:aws:iam::777777777777:oidc-provider/rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f`.\n\n   `serviceaccount`\n   :   Specifies the service account for the AWS Load Balancer Controller. An example of `<cluster_oidc_endpoint>` is `rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f`.\n2. Create an AWS IAM role with the generated trust policy by running the following command:\n\n   ```terminal\n   $ aws iam create-role --role-name albo-controller --assume-role-policy-document file://albo-controller-trust-policy.json\n   ```\n\n   ```terminal {title=\"Example output\"}\n   ROLE\tarn:aws:iam::<aws_account_number>:role/albo-controller\t2023-08-02T12:13:22Z (1)\n   ASSUMEROLEPOLICYDOCUMENT\t2012-10-17\n   STATEMENT\tsts:AssumeRoleWithWebIdentity\tAllow\n   STRINGEQUALS\tsystem:serviceaccount:aws-load-balancer-operator:aws-load-balancer-operator-controller-manager\n   PRINCIPAL\tarn:aws:iam:<aws_account_number>:oidc-provider/<cluster_oidc_endpoint>\n   ```\n\n   where:\n\n   `<aws_account_number>`\n   :   Specifies the ARN for an AWS IAM role for the AWS Load Balancer Controller, such as `arn:aws:iam::777777777777:role/albo-controller`.\n3. Download the permission policy for the AWS Load Balancer Controller by running the following command:\n\n   ```terminal\n   $ curl -o albo-controller-permission-policy.json https://raw.githubusercontent.com/openshift/aws-load-balancer-operator/main/assets/iam-policy.json\n   ```\n4. Attach the permission policy for the AWS Load Balancer Controller to an AWS IAM role by running the following command:\n\n   ```terminal\n   $ aws iam put-role-policy --role-name albo-controller --policy-name perms-policy-albo-controller --policy-document file://albo-controller-permission-policy.json\n   ```\n5. Create a YAML file that defines the `AWSLoadBalancerController` object:\n\n   ```yaml {title=\"Example sample-aws-lb-manual-creds.yaml file\"}\n   apiVersion: networking.olm.openshift.io/v1\n   kind: AWSLoadBalancerController\n   metadata:\n     name: cluster\n   spec:\n     credentialsRequestConfig:\n       stsIAMRoleARN: <albc_role_arn>\n   ```\n\n   where:\n\n   `kind`\n   :   Specifies the `AWSLoadBalancerController` object.\n\n   `metatdata.name`\n   :   Specifies the AWS Load Balancer Controller name. All related resources use this instance name as a suffix.\n\n   `stsIAMRoleARN`\n   :   Specifies the ARN role for the AWS Load Balancer Controller. The `CredentialsRequest` object uses this ARN role to provision the AWS credentials. An example of `<albc_role_arn>` is `arn:aws:iam::777777777777:role/albo-controller`.\n\n## Additional resources {#additional-resources-albo-sts-cluster_albo-sts-cluster}\n\n- [Configuring the Cloud Credential Operator utility](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/preparing-sts-cluster-for-albo.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -76,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -91,13 +94,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="albo-sts-cluster" class="group scroll-mt-20">Preparing an AWS STS cluster for the AWS Load Balancer Operator<a href="#albo-sts-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To install the {"{"}{"{"} aws_first {"}"}{"}"} Load Balancer Operator on a cluster that uses the {"{"}{"{"} sts_first {"}"}{"}"}, prepare the cluster by configuring the <code>CredentialsRequest</code> object. This ensures the Operator can bootstrap the {"{"}{"{"} aws_short {"}"}{"}"} Load Balancer Controller and access the required secrets.</p>
-      <p>The {"{"}{"{"} aws_short {"}"}{"}"} Load Balancer Operator waits until the required secrets are created and available.</p>
-      <p>Before you start any {"{"}{"{"} sts_first {"}"}{"}"} procedures, ensure that you meet the following prerequisites:</p>
+      <p>To install the Amazon Web Services (AWS) Load Balancer Operator on a cluster that uses the Security Token Service (STS), prepare the cluster by configuring the <code>CredentialsRequest</code> object. This ensures the Operator can bootstrap the AWS Load Balancer Controller and access the required secrets.</p>
+      <p>The AWS Load Balancer Operator waits until the required secrets are created and available.</p>
+      <p>Before you start any Security Token Service (STS) procedures, ensure that you meet the following prerequisites:</p>
       <ul>
-      <li>You installed the {"{"}{"{"} oc_first {"}"}{"}"}.</li>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
       <li>
       You know the infrastructure ID of your cluster. To show this ID, run the following command in your CLI:
       <CodeBlock code={"$ oc get infrastructure cluster -o=jsonpath=\"{.status.infrastructureName}\" "} lang="terminal" />
@@ -111,17 +113,197 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <dd class="ml-6 text-muted-foreground"><p>Specifies an OIDC DNS URL. An example URL is <code>https://rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f</code>.</p></dd>
       </dl>
       </li>
-      <li>You logged into the {"{"}{"{"} aws_short {"}"}{"}"} management console, navigated to <strong>IAM</strong> -&gt; <strong>Access management</strong> -&gt; <strong>Identity providers</strong>, and located the OIDC Amazon Resource Name (ARN) information. An OIDC ARN example is <code>arn:aws:iam::777777777777:oidc-provider/&lt;oidc_dns_url&gt;</code>.</li>
+      <li>You logged into the AWS management console, navigated to <strong>IAM</strong> -&gt; <strong>Access management</strong> -&gt; <strong>Identity providers</strong>, and located the OIDC Amazon Resource Name (ARN) information. An OIDC ARN example is <code>arn:aws:iam::777777777777:oidc-provider/&lt;oidc_dns_url&gt;</code>.</li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations">the Cloud Credential Operator utility (<code>ccoctl</code>)</a></li></ul>
-      <p class="/modules/using-ccoctl-create-iam-role-alb-operator.md"></p>
-      <p class="/modules/using-aws-cli-create-iam-role-alb-operator.md"></p>
-      <p class="/modules/specifying-role-arn-albo-sts.md"></p>
-      <p class="/modules/the-iam-role-albo-controller.md"></p>
+      <h2 id="the-iam-role-albo-operator_albo-sts-cluster" class="group scroll-mt-20">The IAM role for the AWS Load Balancer Operator<a href="#the-iam-role-albo-operator_albo-sts-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To install the Amazon Web Services (AWS) Load Balancer Operator on a cluster by using STS, configure an additional Identity and Access Management (IAM) role.</p>
+      <p>You can create the IAM role by using the following options:</p>
+      <ul>
+      <li>Using the Cloud Credential Operator utility (<code>ccoctl</code>) and a predefined <code>CredentialsRequest</code> object.</li>
+      <li>Using the AWS CLI and predefined AWS manifests.</li>
+      </ul>
+      <p>Use the AWS CLI if your environment does not support the <code>ccoctl</code> command.</p>
+      <h3 id="using-ccoctl-create-iam-role-alb-operator_albo-sts-cluster" class="group scroll-mt-20">Creating an AWS IAM role by using the Cloud Credential Operator utility<a href="#using-ccoctl-create-iam-role-alb-operator_albo-sts-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To enable the AWS Load Balancer Operator to interact with subnets and VPCs, create an AWS IAM role by using the Cloud Credential Operator utility (<code>ccoctl</code>).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must extract and prepare the <code>ccoctl</code> binary.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Download the <code>CredentialsRequest</code> custom resource (CR) and store it in a directory by running the following command:
+      <CodeBlock code={"$ curl --create-dirs -o <credentials_requests_dir>/operator.yaml https://raw.githubusercontent.com/openshift/aws-load-balancer-operator/main/hack/operator-credentials-request.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Use the <code>ccoctl</code> utility to create an AWS IAM role by running the following command:
+      <CodeBlock code={"$ ccoctl aws create-iam-roles \\\n    --name <name> \\\n    --region=<aws_region> \\\n    --credentials-requests-dir=<credentials_requests_dir> \\\n    --identity-provider-arn <oidc_arn>"} lang="terminal" />
+      <CodeBlock code={"2023/09/12 11:38:57 Role arn:aws:iam::777777777777:role/<name>-aws-load-balancer-operator-aws-load-balancer-operator created\n2023/09/12 11:38:57 Saved credentials configuration to: /home/user/<credentials_requests_dir>/manifests/aws-load-balancer-operator-aws-load-balancer-operator-credentials.yaml\n2023/09/12 11:38:58 Updated Role policy for Role <name>-aws-load-balancer-operator-aws-load-balancer-operator created"} lang="terminal" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Amazon Resource Name (ARN) for an AWS IAM role that was created for the AWS Load Balancer Operator, such as <code>arn:aws:iam::777777777777:role/&lt;name&gt;-aws-load-balancer-operator-aws-load-balancer-operator</code>.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The length of an AWS IAM role name must be less than or equal to 12 characters.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h3 id="using-aws-cli-create-iam-role-alb-operator_albo-sts-cluster" class="group scroll-mt-20">Creating an AWS IAM role by using the AWS CLI<a href="#using-aws-cli-create-iam-role-alb-operator_albo-sts-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To enable the AWS Load Balancer Operator to interact with subnets and VPCs, create an AWS IAM role by using the AWS CLI. This enables the Operator to access and manage the necessary network resources within the cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have access to the AWS Command Line Interface (<code>aws</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Generate a trust policy file by using your identity provider by running the following command:
+      <CodeBlock code={"$ cat <<EOF > albo-operator-trust-policy.json\n{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"Federated\": \"<oidc_arn>\"\n            },\n            \"Action\": \"sts:AssumeRoleWithWebIdentity\",\n            \"Condition\": {\n                \"StringEquals\": {\n                    \"<cluster_oidc_endpoint>:sub\": \"system:serviceaccount:aws-load-balancer-operator:aws-load-balancer-operator-controller-manager\"\n                }\n            }\n        }\n    ]\n}\nEOF"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;oidc_arn&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Amazon Resource Name (ARN) of the OIDC identity provider, such as <code>arn:aws:iam::777777777777:oidc-provider/rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f</code>.</p></dd>
+      <dt class="font-semibold"><code>serviceaccount</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the service account for the AWS Load Balancer Controller. An example of <code>&lt;cluster_oidc_endpoint&gt;</code> is <code>rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the IAM role with the generated trust policy by running the following command:
+      <CodeBlock code={"$ aws iam create-role --role-name albo-operator --assume-role-policy-document file://albo-operator-trust-policy.json"} lang="terminal" />
+      <CodeBlock code={"ROLE\tarn:aws:iam::<aws_account_number>:role/albo-operator\t2023-08-02T12:13:22Z (1)\nASSUMEROLEPOLICYDOCUMENT\t2012-10-17\nSTATEMENT\tsts:AssumeRoleWithWebIdentity\tAllow\nSTRINGEQUALS\tsystem:serviceaccount:aws-load-balancer-operator:aws-load-balancer-controller-manager\nPRINCIPAL\tarn:aws:iam:<aws_account_number>:oidc-provider/<cluster_oidc_endpoint>"} lang="terminal" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;aws_account_number&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the ARN of the created AWS IAM role for the AWS Load Balancer Operator, such as <code>arn:aws:iam::777777777777:role/albo-operator</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Download the permission policy for the AWS Load Balancer Operator by running the following command:
+      <CodeBlock code={"$ curl -o albo-operator-permission-policy.json https://raw.githubusercontent.com/openshift/aws-load-balancer-operator/main/hack/operator-permission-policy.json"} lang="terminal" />
+      </li>
+      <li>
+      Attach the permission policy for the AWS Load Balancer Controller to the IAM role by running the following command:
+      <CodeBlock code={"$ aws iam put-role-policy --role-name albo-operator --policy-name perms-policy-albo-operator --policy-document file://albo-operator-permission-policy.json"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="specifying-role-arn-albo-sts_albo-sts-cluster" class="group scroll-mt-20">Configuring the ARN role for the AWS Load Balancer Operator<a href="#specifying-role-arn-albo-sts_albo-sts-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure the Amazon Resource Name (ARN) role for the AWS Load Balancer Operator as an environment variable. You can configure the ARN role by using the CLI.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the <code>aws-load-balancer-operator</code> project by running the following command:
+      <CodeBlock code={"$ oc new-project aws-load-balancer-operator"} lang="terminal" />
+      </li>
+      <li>
+      Create the <code>OperatorGroup</code> object by running the following command:
+      <CodeBlock code={"$ cat <<EOF | oc apply -f -\napiVersion: operators.coreos.com/v1\nkind: OperatorGroup\nmetadata:\n  name: aws-load-balancer-operator\n  namespace: aws-load-balancer-operator\nspec:\n  targetNamespaces: []\nEOF"} lang="terminal" />
+      </li>
+      <li>
+      Create the <code>Subscription</code> object by running the following command:
+      <CodeBlock code={"$ cat <<EOF | oc apply -f -\napiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: aws-load-balancer-operator\n  namespace: aws-load-balancer-operator\nspec:\n  channel: stable-v1\n  name: aws-load-balancer-operator\n  source: redhat-operators\n  sourceNamespace: openshift-marketplace\n  config:\n    env:\n    - name: ROLEARN\n      value: \"<albo_role_arn>\"\nEOF"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;albo_role_arn&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the ARN role to be used in the <code>CredentialsRequest</code> to provision the AWS credentials for the AWS Load Balancer Operator. An example for <code>&lt;albo_role_arn&gt;</code> is <code>arn:aws:iam::&lt;aws_account_number&gt;:role/albo-operator</code>.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The AWS Load Balancer Operator waits until the secret is created before moving to the <code>Available</code> status.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="the-iam-role-albo-controller.adoc_albo-sts-cluster" class="group scroll-mt-20">The IAM role for the AWS Load Balancer Controller<a href="#the-iam-role-albo-controller.adoc_albo-sts-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The <code>CredentialsRequest</code> object for the AWS Load Balancer Controller must be set with a manually provisioned Identity and Access Management (IAM) role.</p>
+      <p>You can create the IAM role by using the following options:</p>
+      <ul>
+      <li>Using the Cloud Credential Operator utility (<code>ccoctl</code>) and a predefined <code>CredentialsRequest</code> object.</li>
+      <li>Using the AWS CLI and predefined AWS manifests.</li>
+      </ul>
+      <p>If your environment does not support the <code>ccoctl</code> <code>command.ws-short</code> CLI, use the AWS CLI.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations">the Cloud Credential Operator utility (<code>ccoctl</code>)</a></li></ul>
-      <p class="/modules/using-aws-cli-create-iam-role-alb-controller.md"></p>
+      <h3 id="using-ccoctl-create-iam-role-alb-controller_albo-sts-cluster" class="group scroll-mt-20">Creating an AWS IAM role for the controller by using the Cloud Credential Operator utility<a href="#using-ccoctl-create-iam-role-alb-controller_albo-sts-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To enable the AWS Load Balancer Controller to interact with subnets and VPCs, create an IAM role by using the Cloud Credential Operator utility (<code>ccoctl</code>). This utility ensures the controller has the specific permissions required to manage network resources within the cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must extract and prepare the <code>ccoctl</code> binary.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Download the <code>CredentialsRequest</code> custom resource (CR) and store it in a directory by running the following command:
+      <CodeBlock code={"$ curl --create-dirs -o <credentials_requests_dir>/controller.yaml https://raw.githubusercontent.com/openshift/aws-load-balancer-operator/main/hack/controller/controller-credentials-request.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Use the <code>ccoctl</code> utility to create an AWS IAM role by running the following command:
+      <CodeBlock code={"$ ccoctl aws create-iam-roles \\\n    --name <name> \\\n    --region=<aws_region> \\\n    --credentials-requests-dir=<credentials_requests_dir> \\\n    --identity-provider-arn <oidc_arn>"} lang="terminal" />
+      <CodeBlock code={"2023/09/12 11:38:57 Role arn:aws:iam::777777777777:role/<name>-aws-load-balancer-operator-aws-load-balancer-controller created\n2023/09/12 11:38:57 Saved credentials configuration to: /home/user/<credentials_requests_dir>/manifests/aws-load-balancer-operator-aws-load-balancer-controller-credentials.yaml\n2023/09/12 11:38:58 Updated Role policy for Role <name>-aws-load-balancer-operator-aws-load-balancer-controller created"} lang="terminal" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Amazon Resource Name (ARN) for an AWS IAM role that was created for the AWS Load Balancer Controller, such as <code>arn:aws:iam::777777777777:role/&lt;name&gt;-aws-load-balancer-operator-aws-load-balancer-controller</code>.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The length of an AWS IAM role name must be less than or equal to 12 characters.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h3 id="using-aws-cli-create-iam-role-alb-controller_albo-sts-cluster" class="group scroll-mt-20">Creating an AWS IAM role for the controller by using the AWS CLI<a href="#using-aws-cli-create-iam-role-alb-controller_albo-sts-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To enable the AWS Load Balancer Controller to interact with subnets and Virtual Private Clouds (VPCs), create an IAM role by using the AWS CLI. This ensures the controller has the specific permissions required to manage network resources within the cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have access to the AWS command-line interface (<code>aws</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Generate a trust policy file using your identity provider by running the following command:
+      <CodeBlock code={"$ cat <<EOF > albo-controller-trust-policy.json\n{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Principal\": {\n                \"Federated\": \"<oidc_arn>\"\n            },\n            \"Action\": \"sts:AssumeRoleWithWebIdentity\",\n            \"Condition\": {\n                \"StringEquals\": {\n                    \"<cluster_oidc_endpoint>:sub\": \"system:serviceaccount:aws-load-balancer-operator:aws-load-balancer-operator-controller-manager\"\n                }\n            }\n        }\n    ]\n}\nEOF"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;oidc_arn&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Amazon Resource Name (ARN) of the OIDC identity provider, such as <code>arn:aws:iam::777777777777:oidc-provider/rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f</code>.</p></dd>
+      <dt class="font-semibold"><code>serviceaccount</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the service account for the AWS Load Balancer Controller. An example of <code>&lt;cluster_oidc_endpoint&gt;</code> is <code>rh-oidc.s3.us-east-1.amazonaws.com/28292va7ad7mr9r4he1fb09b14t59t4f</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create an AWS IAM role with the generated trust policy by running the following command:
+      <CodeBlock code={"$ aws iam create-role --role-name albo-controller --assume-role-policy-document file://albo-controller-trust-policy.json"} lang="terminal" />
+      <CodeBlock code={"ROLE\tarn:aws:iam::<aws_account_number>:role/albo-controller\t2023-08-02T12:13:22Z (1)\nASSUMEROLEPOLICYDOCUMENT\t2012-10-17\nSTATEMENT\tsts:AssumeRoleWithWebIdentity\tAllow\nSTRINGEQUALS\tsystem:serviceaccount:aws-load-balancer-operator:aws-load-balancer-operator-controller-manager\nPRINCIPAL\tarn:aws:iam:<aws_account_number>:oidc-provider/<cluster_oidc_endpoint>"} lang="terminal" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;aws_account_number&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the ARN for an AWS IAM role for the AWS Load Balancer Controller, such as <code>arn:aws:iam::777777777777:role/albo-controller</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Download the permission policy for the AWS Load Balancer Controller by running the following command:
+      <CodeBlock code={"$ curl -o albo-controller-permission-policy.json https://raw.githubusercontent.com/openshift/aws-load-balancer-operator/main/assets/iam-policy.json"} lang="terminal" />
+      </li>
+      <li>
+      Attach the permission policy for the AWS Load Balancer Controller to an AWS IAM role by running the following command:
+      <CodeBlock code={"$ aws iam put-role-policy --role-name albo-controller --policy-name perms-policy-albo-controller --policy-document file://albo-controller-permission-policy.json"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file that defines the <code>AWSLoadBalancerController</code> object:
+      <CodeBlock code={"apiVersion: networking.olm.openshift.io/v1\nkind: AWSLoadBalancerController\nmetadata:\n  name: cluster\nspec:\n  credentialsRequestConfig:\n    stsIAMRoleARN: <albc_role_arn>"} lang="yaml" title="Example sample-aws-lb-manual-creds.yaml file" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>kind</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>AWSLoadBalancerController</code> object.</p></dd>
+      <dt class="font-semibold"><code>metatdata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS Load Balancer Controller name. All related resources use this instance name as a suffix.</p></dd>
+      <dt class="font-semibold"><code>stsIAMRoleARN</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the ARN role for the AWS Load Balancer Controller. The <code>CredentialsRequest</code> object uses this ARN role to provision the AWS credentials. An example of <code>&lt;albc_role_arn&gt;</code> is <code>arn:aws:iam::777777777777:role/albo-controller</code>.</p></dd>
+      </dl>
+      </li>
+      </ol>
       <h2 id="additional-resources-albo-sts-cluster_albo-sts-cluster" class="group scroll-mt-20">Additional resources<a href="#additional-resources-albo-sts-cluster_albo-sts-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#cco-ccoctl-configuring_installing-aws-customizations">Configuring the Cloud Credential Operator utility</a></li></ul>
     </article>

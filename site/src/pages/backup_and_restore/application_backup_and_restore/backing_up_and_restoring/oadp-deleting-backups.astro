@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"oadp-deleting-backups","text":"Deleting backups"}];
+const headings = [{"depth":1,"slug":"oadp-deleting-backups","text":"Deleting backups"},{"depth":2,"slug":"oadp-deleting-backups-using-oc_deleting-backups","text":"Deleting a backup by creating a DeleteBackupRequest CR"},{"depth":2,"slug":"oadp-deleting-backups-using-velero_deleting-backups","text":"Deleting a backup by using the OADP CLI"},{"depth":2,"slug":"oadp-about-kopia-repo-maintenance_deleting-backups","text":"About Kopia repository maintenance"},{"depth":3,"slug":"kopia-maint-in-oadp_deleting-backups","text":"Kopia maintenance in OADP"},{"depth":2,"slug":"oadp-deleting-backup-repository_deleting-backups","text":"Deleting a backup repository"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-deleting-backups";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deleting backups {#oadp-deleting-backups}\n\nDelete a backup by creating the `DeleteBackupRequest` custom resource (CR) or by running the `velero backup delete` command. This helps you to free up storage space and remove outdated backup artifacts.\n\nThe volume backup artifacts are deleted at different times depending on the backup method:\n\n- Restic: The artifacts are deleted in the next full maintenance cycle, after the backup is deleted.\n- Container Storage Interface (CSI): The artifacts are deleted immediately when the backup is deleted.\n- Kopia: The artifacts are deleted after three full maintenance cycles of the Kopia repository, after the backup is deleted.\n\n{% include \"./modules/oadp-deleting-backups-using-oc.md\" %} {% include \"./modules/oadp-deleting-backups-using-velero.md\" %}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-deleting-backups.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deleting backups {#oadp-deleting-backups}\n\nDelete a backup by creating the `DeleteBackupRequest` custom resource (CR) or by running the `velero backup delete` command. This helps you to free up storage space and remove outdated backup artifacts.\n\nThe volume backup artifacts are deleted at different times depending on the backup method:\n\n- Restic: The artifacts are deleted in the next full maintenance cycle, after the backup is deleted.\n- Container Storage Interface (CSI): The artifacts are deleted immediately when the backup is deleted.\n- Kopia: The artifacts are deleted after three full maintenance cycles of the Kopia repository, after the backup is deleted.\n\n## Deleting a backup by creating a DeleteBackupRequest CR {#oadp-deleting-backups-using-oc_deleting-backups}\n\nDelete a backup by creating a `DeleteBackupRequest` custom resource (CR). This helps you to remove specific backups and their associated volume artifacts from storage.\n\n**Prerequisites**\n\n- You have run a backup of your application.\n\n**Procedure**\n\n1. Create a `DeleteBackupRequest` CR manifest file:\n\n   ```yaml\n   apiVersion: velero.io/v1\n   kind: DeleteBackupRequest\n   metadata:\n     name: deletebackuprequest\n     namespace: openshift-adp\n   spec:\n     backupName: <backup_name>\n   ```\n\n   Replace `<backup_name>` with the name of the backup.\n2. Apply the `DeleteBackupRequest` CR to delete the backup:\n\n   ```terminal\n   $ oc apply -f <deletebackuprequest_cr_filename>\n   ```\n\n## Deleting a backup by using the OADP CLI {#oadp-deleting-backups-using-velero_deleting-backups}\n\nDelete a backup by using the OADP CLI to run the `oc oadp backup delete` command. This helps you to quickly remove backups and their associated volume artifacts from storage.\n\n**Prerequisites**\n\n- You have run a backup of your application.\n- You have downloaded the OADP CLI binary from your cluster and can access the `oc oadp` commands.\n\n**Procedure**\n\n- To delete the backup, run the following command:\n\n  ```terminal\n  $ oc oadp backup delete <backup_name> -n openshift-adp\n  ```\n\n  Replace `<backup_name>` with the name of the backup.\n\n## About Kopia repository maintenance {#oadp-about-kopia-repo-maintenance_deleting-backups}\n\nKopia repository maintenance has two types, quick and full, that run automatically to optimize index performance and perform garbage collection. Knowing the two types helps you understand the maintenance cycle and how long it takes for backup artifacts to be deleted.\n\nQuick maintenance\n:   - Runs every hour to keep the number of index blobs (n) low. A high number of indexes negatively affects the performance of Kopia operations.\n    - Does not delete any metadata from the repository without ensuring that another copy of the same metadata exists.\n\nFull maintenance\n:   - Runs every 24 hours to perform garbage collection of repository contents that are no longer needed.\n    - `snapshot-gc`, a full maintenance task, finds all files and directory listings that are no longer accessible from snapshot manifests and marks them as deleted.\n    - A full maintenance is a resource-costly operation, as it requires scanning all directories in all snapshots that are active in the cluster.\n\n### Kopia maintenance in OADP {#kopia-maint-in-oadp_deleting-backups}\n\nThe `repo-maintain-job` jobs are executed in the namespace where OADP is installed, as shown in the following example:\n\n```terminal\npod/repo-maintain-job-173...2527-2nbls                             0/1     Completed   0          168m\npod/repo-maintain-job-173....536-fl9tm                             0/1     Completed   0          108m\npod/repo-maintain-job-173...2545-55ggx                             0/1     Completed   0          48m\n```\n\nYou can check the logs of the `repo-maintain-job` for more details about the cleanup and the removal of artifacts in the backup object storage. You can find a note, as shown in the following example, in the `repo-maintain-job` when the next full cycle maintenance is due:\n\n```terminal\nnot due for full maintenance cycle until 2024-00-00 18:29:4\n```\n\n> [!IMPORTANT]\n> Three successful executions of a full maintenance cycle are required for the objects to be deleted from the backup object storage. This means you can expect up to 72 hours for all the artifacts in the backup object storage to be deleted.\n\n## Deleting a backup repository {#oadp-deleting-backup-repository_deleting-backups}\n\nDelete the `backuprepository` custom resource (CR) to complete the backup deletion process. This helps you to ensure that all backup metadata and artifacts are fully removed from storage.\n\nAfter you delete the backup, and after the Kopia repository maintenance cycles to delete the related artifacts are complete, the backup is no longer referenced by any metadata or manifest objects.\n\n**Prerequisites**\n\n- You have deleted the backup of your application.\n- You have waited up to 72 hours after the backup is deleted. This time frame allows Kopia to run the repository maintenance cycles.\n\n**Procedure**\n\n1. To get the name of the backup repository CR for a backup, run the following command:\n\n   ```terminal\n   $ oc get backuprepositories.velero.io -n openshift-adp\n   ```\n2. To delete the backup repository CR, run the following command:\n\n   ```terminal\n   $ oc delete backuprepository <backup_repository_name> -n openshift-adp\n   ```\n\n   Replace `<backup_repository_name>` with the name of the backup repository.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-deleting-backups.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-deleting-backups" class="group scroll-mt-20">Deleting backups<a href="#oadp-deleting-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Delete a backup by creating the <code>DeleteBackupRequest</code> custom resource (CR) or by running the <code>velero backup delete</code> command. This helps you to free up storage space and remove outdated backup artifacts.</p>
       <p>The volume backup artifacts are deleted at different times depending on the backup method:</p>
       <ul>
@@ -99,7 +102,87 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Container Storage Interface (CSI): The artifacts are deleted immediately when the backup is deleted.</li>
       <li>Kopia: The artifacts are deleted after three full maintenance cycles of the Kopia repository, after the backup is deleted.</li>
       </ul>
-      <p class="/modules/oadp-deleting-backup-repository.md /modules/oadp-about-kopia-repo-maintenance.md">{"{"}% include "./modules/oadp-deleting-backups-using-oc.md" %{"}"} {"{"}% include "./modules/oadp-deleting-backups-using-velero.md" %{"}"} </p>
+      <h2 id="oadp-deleting-backups-using-oc_deleting-backups" class="group scroll-mt-20">Deleting a backup by creating a DeleteBackupRequest CR<a href="#oadp-deleting-backups-using-oc_deleting-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Delete a backup by creating a <code>DeleteBackupRequest</code> custom resource (CR). This helps you to remove specific backups and their associated volume artifacts from storage.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have run a backup of your application.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>DeleteBackupRequest</code> CR manifest file:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: DeleteBackupRequest\nmetadata:\n  name: deletebackuprequest\n  namespace: openshift-adp\nspec:\n  backupName: <backup_name>"} lang="yaml" />
+      <p>Replace <code>&lt;backup_name&gt;</code> with the name of the backup.</p>
+      </li>
+      <li>
+      Apply the <code>DeleteBackupRequest</code> CR to delete the backup:
+      <CodeBlock code={"$ oc apply -f <deletebackuprequest_cr_filename> "} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="oadp-deleting-backups-using-velero_deleting-backups" class="group scroll-mt-20">Deleting a backup by using the OADP CLI<a href="#oadp-deleting-backups-using-velero_deleting-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Delete a backup by using the OADP CLI to run the <code>oc oadp backup delete</code> command. This helps you to quickly remove backups and their associated volume artifacts from storage.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have run a backup of your application.</li>
+      <li>You have downloaded the OADP CLI binary from your cluster and can access the <code>oc oadp</code> commands.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To delete the backup, run the following command:
+      <CodeBlock code={"$ oc oadp backup delete <backup_name> -n openshift-adp"} lang="terminal" />
+      <p>Replace <code>&lt;backup_name&gt;</code> with the name of the backup.</p>
+      </li>
+      </ul>
+      <h2 id="oadp-about-kopia-repo-maintenance_deleting-backups" class="group scroll-mt-20">About Kopia repository maintenance<a href="#oadp-about-kopia-repo-maintenance_deleting-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Kopia repository maintenance has two types, quick and full, that run automatically to optimize index performance and perform garbage collection. Knowing the two types helps you understand the maintenance cycle and how long it takes for backup artifacts to be deleted.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Quick maintenance</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>Runs every hour to keep the number of index blobs (n) low. A high number of indexes negatively affects the performance of Kopia operations.</li>
+      <li>Does not delete any metadata from the repository without ensuring that another copy of the same metadata exists.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Full maintenance</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>Runs every 24 hours to perform garbage collection of repository contents that are no longer needed.</li>
+      <li><code>snapshot-gc</code>, a full maintenance task, finds all files and directory listings that are no longer accessible from snapshot manifests and marks them as deleted.</li>
+      <li>A full maintenance is a resource-costly operation, as it requires scanning all directories in all snapshots that are active in the cluster.</li>
+      </ul>
+      </dd>
+      </dl>
+      <h3 id="kopia-maint-in-oadp_deleting-backups" class="group scroll-mt-20">Kopia maintenance in OADP<a href="#kopia-maint-in-oadp_deleting-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The <code>repo-maintain-job</code> jobs are executed in the namespace where OADP is installed, as shown in the following example:</p>
+      <CodeBlock code={"pod/repo-maintain-job-173...2527-2nbls                             0/1     Completed   0          168m\npod/repo-maintain-job-173....536-fl9tm                             0/1     Completed   0          108m\npod/repo-maintain-job-173...2545-55ggx                             0/1     Completed   0          48m"} lang="terminal" />
+      <p>You can check the logs of the <code>repo-maintain-job</code> for more details about the cleanup and the removal of artifacts in the backup object storage. You can find a note, as shown in the following example, in the <code>repo-maintain-job</code> when the next full cycle maintenance is due:</p>
+      <CodeBlock code={"not due for full maintenance cycle until 2024-00-00 18:29:4"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Three successful executions of a full maintenance cycle are required for the objects to be deleted from the backup object storage. This means you can expect up to 72 hours for all the artifacts in the backup object storage to be deleted.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="oadp-deleting-backup-repository_deleting-backups" class="group scroll-mt-20">Deleting a backup repository<a href="#oadp-deleting-backup-repository_deleting-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Delete the <code>backuprepository</code> custom resource (CR) to complete the backup deletion process. This helps you to ensure that all backup metadata and artifacts are fully removed from storage.</p>
+      <p>After you delete the backup, and after the Kopia repository maintenance cycles to delete the related artifacts are complete, the backup is no longer referenced by any metadata or manifest objects.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have deleted the backup of your application.</li>
+      <li>You have waited up to 72 hours after the backup is deleted. This time frame allows Kopia to run the repository maintenance cycles.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To get the name of the backup repository CR for a backup, run the following command:
+      <CodeBlock code={"$ oc get backuprepositories.velero.io -n openshift-adp"} lang="terminal" />
+      </li>
+      <li>
+      To delete the backup repository CR, run the following command:
+      <CodeBlock code={"$ oc delete backuprepository <backup_repository_name> -n openshift-adp"} lang="terminal" />
+      <p>Replace <code>&lt;backup_repository_name&gt;</code> with the name of the backup repository.</p>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-nutanix-three-node","text":"Installing a three-node cluster on Nutanix"},{"depth":2,"slug":"additional-resources_installing-nutanix-three-node","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"installing-nutanix-three-node","text":"Installing a three-node cluster on Nutanix"},{"depth":2,"slug":"installation-three-node-cluster_installing-nutanix-three-node","text":"Configuring a three-node cluster"},{"depth":2,"slug":"additional-resources_installing-nutanix-three-node","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_nutanix/installing-nutanix-three-node";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_nutanix"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a three-node cluster on Nutanix {#installing-nutanix-three-node}\n\nIn OpenShift Container Platform version 4.22, you can install a three-node cluster on Nutanix. A three-node cluster consists of three control plane machines, which also act as compute machines. This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.\n\n## Additional resources {#additional-resources_installing-nutanix-three-node}\n\n- [Installing a cluster on Nutanix](/openshift-docs-markdown/installing/installing_nutanix/installing-nutanix-installer-provisioned#installing-nutanix-installer-provisioned)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_nutanix/installing-nutanix-three-node.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a three-node cluster on Nutanix {#installing-nutanix-three-node}\n\nIn OpenShift Container Platform version 4.22, you can install a three-node cluster on Nutanix. A three-node cluster consists of three control plane machines, which also act as compute machines. This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.\n\n## Configuring a three-node cluster {#installation-three-node-cluster_installing-nutanix-three-node}\n\nTo configure a three-node cluster, set the number of worker nodes to `0` in the `install-config.yaml` file before you deploy the cluster.\n\nSetting the number of worker nodes to `0` ensures that the control plane machines are schedulable. This allows application workloads to be scheduled to run from the control plane nodes.\n\n> [!NOTE]\n> Because application workloads run from control plane nodes, additional subscriptions are required, as the control plane nodes are considered to be compute nodes.\n\n**Prerequisites**\n\n- You have an existing `install-config.yaml` file.\n\n**Procedure**\n\n````\n*   Set the number of compute replicas to `0` in your `install-config.yaml` file, as shown in the following `compute` stanza:\n\n```yaml title=\"Example install-config.yaml file for a three-node cluster\"\napiVersion: v1\nbaseDomain: example.com\ncompute:\n- name: worker\n  platform: {}\n  replicas: 0\n# ...\n```\n````\n\n## Additional resources {#additional-resources_installing-nutanix-three-node}\n\n- [Installing a cluster on Nutanix](/openshift-docs-markdown/installing/installing_nutanix/installing-nutanix-installer-provisioned#installing-nutanix-installer-provisioned)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_nutanix/installing-nutanix-three-node.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,20 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-nutanix-three-node" class="group scroll-mt-20">Installing a three-node cluster on Nutanix<a href="#installing-nutanix-three-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>In OpenShift Container Platform version 4.22, you can install a three-node cluster on Nutanix. A three-node cluster consists of three control plane machines, which also act as compute machines. This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.</p>
-      <p class="/modules/installation-three-node-cluster-cloud-provider.md"></p>
+      <h2 id="installation-three-node-cluster_installing-nutanix-three-node" class="group scroll-mt-20">Configuring a three-node cluster<a href="#installation-three-node-cluster_installing-nutanix-three-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To configure a three-node cluster, set the number of worker nodes to <code>0</code> in the <code>install-config.yaml</code> file before you deploy the cluster.</p>
+      <p>Setting the number of worker nodes to <code>0</code> ensures that the control plane machines are schedulable. This allows application workloads to be scheduled to run from the control plane nodes.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Because application workloads run from control plane nodes, additional subscriptions are required, as the control plane nodes are considered to be compute nodes.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have an existing <code>install-config.yaml</code> file.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <CodeBlock code={"*   Set the number of compute replicas to `0` in your `install-config.yaml` file, as shown in the following `compute` stanza:\n\n\n```yaml title=\"Example install-config.yaml file for a three-node cluster\"\napiVersion: v1\nbaseDomain: example.com\ncompute:\n- name: worker\n  platform: {}\n  replicas: 0\n# ...\n```"} lang="plaintext" />
       <h2 id="additional-resources_installing-nutanix-three-node" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-nutanix-three-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_nutanix/installing-nutanix-installer-provisioned#installing-nutanix-installer-provisioned">Installing a cluster on Nutanix</a></li></ul>
     </article>

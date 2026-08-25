@@ -94,7 +94,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cert-types-bootstrap-certificates" class="group scroll-mt-20">Bootstrap certificates<a href="#cert-types-bootstrap-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You should understand how bootstrap certificates enable kubelet transport layer security (TLS) bootstrapping when nodes join a cluster, including how the certificates are issued and rotated and how the certificates are managed.</p>
       <h2 id="bootstrap-certificates-purpose_cert-types-bootstrap-certificates" class="group scroll-mt-20">Purpose<a href="#bootstrap-certificates-purpose_cert-types-bootstrap-certificates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>The kubelet, in OpenShift Container Platform 4 and later, uses the bootstrap certificate located in <code>/etc/kubernetes/kubeconfig</code> to initially bootstrap. This is followed by the bootstrap initialization process and the authorization of the kubelet to create a certificate signing request (CSR).</p>

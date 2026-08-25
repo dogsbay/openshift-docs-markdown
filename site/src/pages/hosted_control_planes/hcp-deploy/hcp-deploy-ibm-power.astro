@@ -18,8 +18,15 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"hcp-deploy-ibm-power","text":"Deploying {{ hcp }} on {{ ibm_power_title }}"}];
+const headings = [{"depth":1,"slug":"hcp-deploy-ibm-power","text":"Deploying hosted control planes on IBM Power"},{"depth":2,"slug":"hcp-ibm-power-prereqs_hcp-deploy-ibm-power","text":"Prerequisites to configure hosted control planes on IBM Power"},{"depth":2,"slug":"hcp-ibm-power-infra-reqs_hcp-deploy-ibm-power","text":"IBM Power infrastructure requirements"},{"depth":2,"slug":"hcp-ibm-power-dns_hcp-deploy-ibm-power","text":"DNS configuration for hosted control planes on IBM Power"},{"depth":3,"slug":"hcp-custom-dns_hcp-deploy-ibm-power","text":"Defining a custom DNS name"},{"depth":2,"slug":"hcp-bm-hc_hcp-deploy-ibm-power","text":"Creating a hosted cluster by using the CLI"},{"depth":2,"slug":"hcp-cluster-capabilities_hcp-deploy-ibm-power","text":"Capabilities for hosted clusters"},{"depth":3,"slug":"hcp-cluster-capabilities-ref_hcp-deploy-ibm-power","text":"Capabilities that you can enable or disable for a hosted cluster"},{"depth":3,"slug":"hcp-cluster-capabilities-proc_hcp-deploy-ibm-power","text":"Setting capabilities for a hosted cluster"},{"depth":2,"slug":"hcp-ibm-power-create-heterogeneous-nodepools-agent-hc-con_hcp-deploy-ibm-power","text":"About creating heterogeneous node pools on agent hosted clusters"},{"depth":3,"slug":"hcp-ibm-power-create-heterogeneous-nodepools-agent-hc_hcp-deploy-ibm-power","text":"Creating the AgentServiceConfig custom resource"},{"depth":3,"slug":"hcp-ibm-power-heterogeneous-nodepools-create-agent-cluster_hcp-deploy-ibm-power","text":"Create an agent cluster"},{"depth":3,"slug":"hcp-create-heterogeneous-nodepools_hcp-deploy-ibm-power","text":"Creating heterogeneous node pools"},{"depth":3,"slug":"hcp-ibm-power-heterogeneous-nodepools-agent-hc-dns_hcp-deploy-ibm-power","text":"DNS configuration for hosted control planes"},{"depth":3,"slug":"hcp-create-infraenv_hcp-deploy-ibm-power","text":"Creating infrastructure environment resources"},{"depth":3,"slug":"hcp-adding-agents_hcp-deploy-ibm-power","text":"Adding agents to the heterogeneous cluster"},{"depth":3,"slug":"hcp-scale-the-nodepool_hcp-deploy-ibm-power","text":"Scaling the node pool"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-ibm-power";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Deploying {{ hcp }} on {{ ibm_power_title }}";
-const description = "You can deploy {{ hcp }} on {{ ibm_power_title }} by configuring a cluster to function as a hosting cluster. This configuration provides an efficient and…" || undefined;
+const description = "You can deploy hosted control planes on IBM Power by configuring a cluster to function as a hosting cluster. This configuration provides an efficient and…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +49,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-deploy"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on {{ ibm_power_title }} {#hcp-deploy-ibm-power}\n\nYou can deploy {{ hcp }} on {{ ibm_power_title }} by configuring a cluster to function as a hosting cluster. This configuration provides an efficient and scalable solution for managing many clusters. The hosting cluster is an OpenShift Container Platform cluster that hosts control planes. The hosting cluster is also known as the *management* cluster.\n\n> [!NOTE]\n> The *management* cluster is not the *managed* cluster. A managed cluster is a cluster that the hub cluster manages.\n\nThe {{ mce_short }} supports only the default `local-cluster`, which is a managed hub cluster, and the hub cluster as the hosting cluster.\n\nTo provision {{ hcp }} on bare-metal infrastructure, you can use the Agent platform. The Agent platform uses the central infrastructure management service to add compute nodes to a hosted cluster. For more information, see \"Enabling the central infrastructure management service\".\n\nYou must start each {{ ibm_power_title }} host with a Discovery image that the central infrastructure management provides. After each host starts, it runs an Agent process to discover the details of the host and completes the installation. An Agent custom resource represents each host.\n\nWhen you create a hosted cluster with the Agent platform, HyperShift installs the Agent Cluster API provider in the hosted control plane namespace.\n\n**Additional resources**\n\n- [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)\n- [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)\n- [Installing the hosted control plane command-line interface](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli)\n- [Manually enabling the {{ hcp }} feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable)\n- [Disabling the {{ hcp }} feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable)\n\n**Additional resources**\n\n- [Requirements for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements#hcp-requirements)\n- [DNS configurations on bare metal](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-dns_hcp-deploy-bm)\n- [Manually importing a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import)\n- [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)\n\n**Additional resources**\n\n- [Multi-arch release images](https://multi.ocp.releases.ci.openshift.org/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-ibm-power.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying hosted control planes on IBM Power {#hcp-deploy-ibm-power}\n\nYou can deploy hosted control planes on IBM Power by configuring a cluster to function as a hosting cluster. This configuration provides an efficient and scalable solution for managing many clusters. The hosting cluster is an OpenShift Container Platform cluster that hosts control planes. The hosting cluster is also known as the *management* cluster.\n\n> [!NOTE]\n> The *management* cluster is not the *managed* cluster. A managed cluster is a cluster that the hub cluster manages.\n\nThe multicluster engine Operator supports only the default `local-cluster`, which is a managed hub cluster, and the hub cluster as the hosting cluster.\n\nTo provision hosted control planes on bare-metal infrastructure, you can use the Agent platform. The Agent platform uses the central infrastructure management service to add compute nodes to a hosted cluster. For more information, see \"Enabling the central infrastructure management service\".\n\nYou must start each IBM Power host with a Discovery image that the central infrastructure management provides. After each host starts, it runs an Agent process to discover the details of the host and completes the installation. An Agent custom resource represents each host.\n\nWhen you create a hosted cluster with the Agent platform, HyperShift installs the Agent Cluster API provider in the hosted control plane namespace.\n\n## Prerequisites to configure hosted control planes on IBM Power {#hcp-ibm-power-prereqs_hcp-deploy-ibm-power}\n\nEnsure you meet the prerequisites to configure hosted control planes on IBM Power.\n\n- The multicluster engine for Kubernetes Operator version 2.7 and later installed on an OpenShift Container Platform cluster. The multicluster engine Operator is automatically installed when you install Red Hat Advanced Cluster Management (RHACM). You can also install the multicluster engine Operator without RHACM as an Operator from the OpenShift Container Platform software catalog.\n- The multicluster engine Operator must have at least one managed OpenShift Container Platform cluster. The `local-cluster` managed hub cluster is automatically imported in the multicluster engine Operator version 2.7 and later. For more information about `local-cluster`, see *Advanced configuration* in the RHACM documentation. You can check the status of your hub cluster by running the following command:\n\n  ```terminal\n  $ oc get managedclusters local-cluster\n  ```\n- You need a hosting cluster with at least 3 compute nodes to run the HyperShift Operator.\n- You need to enable the central infrastructure management service. For more information, see \"Enabling the central infrastructure management service\".\n- You need to install the hosted control planes command-line interface. For more information, see \"Installing the hosted control plane command-line interface\".\n\nThe hosted control planes feature is enabled by default. If you disabled the feature and want to manually enable the feature, see \"Manually enabling the hosted control planes feature\". If you need to disable the feature, see \"Disabling the hosted control planes feature\".\n\n**Additional resources**\n\n- [Advanced configuration](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine)\n- [Enabling the central infrastructure management service](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim)\n- [Installing the hosted control plane command-line interface](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli)\n- [Manually enabling the hosted control planes feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable)\n- [Disabling the hosted control planes feature](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable)\n\n## IBM Power infrastructure requirements {#hcp-ibm-power-infra-reqs_hcp-deploy-ibm-power}\n\nThe Agent platform does not create any infrastructure, but requires resources for infrastructure.\n\n- Agents: An *Agent* represents a host that boots with a Discovery image and that you can provision as an OpenShift Container Platform node.\n- DNS: The API and Ingress endpoints must be routable.\n\n## DNS configuration for hosted control planes on IBM Power {#hcp-ibm-power-dns_hcp-deploy-ibm-power}\n\nClients outside the network can access the API server for the hosted cluster. A DNS entry must exist for the `api.<hosted_cluster_name>.<basedomain>` entry that points to the destination where the API server is reachable.\n\nThe DNS entry can be as simple as a record that points to one of the nodes in the managed cluster that runs the hosted control plane.\n\nThe entry can also point to a deployed load balancer to redirect incoming traffic to the ingress pods.\n\nSee the following example of a DNS configuration:\n\n```terminal\n$ cat /var/named/<example.krnl.es.zone>\n```\n\n```terminal {title=\"Example output\"}\n$ TTL 900\n@ IN  SOA bastion.example.krnl.es.com. hostmaster.example.krnl.es.com. (\n      2019062002\n      1D 1H 1W 3H )\n  IN NS bastion.example.krnl.es.com.\n;\n;\napi                   IN A 1xx.2x.2xx.1xx\napi-int               IN A 1xx.2x.2xx.1xx\n;\n;\n*.apps.<hosted_cluster_name>.<basedomain>           IN A 1xx.2x.2xx.1xx\n;\n;EOF\n```\n\nThe `api` record refers to the IP address of the API load balancer that handles ingress and egress traffic for hosted control planes.\n\nFor IBM Power, add IP addresses that correspond to the IP address of the agent.\n\n```terminal {title=\"Example configuration\"}\ncompute-0              IN A 1xx.2x.2xx.1yy\ncompute-1              IN A 1xx.2x.2xx.1yy\n```\n\n### Defining a custom DNS name {#hcp-custom-dns_hcp-deploy-ibm-power}\n\nAs a cluster administrator, you can create a hosted cluster with an external API DNS name that differs from the internal endpoint that gets used for node bootstraps and control plane communication.\n\nYou might want to define a different DNS name for the following reasons:\n\n- To replace the user-facing TLS certificate with one from a public CA without breaking the control plane functions that bind to the internal root CA\n- To support split-horizon DNS and NAT scenarios\n- To ensure a similar experience to standalone control planes, where you can use functions, such as the `Show Login Command` function, with the correct `kubeconfig` and DNS configuration\n\nYou can define a DNS name either during your initial setup or during postinstallation operations, by entering a domain name in the `kubeAPIServerDNSName` parameter of a `HostedCluster` object.\n\n**Prerequisites**\n\n- You have a valid TLS certificate that covers the DNS name that you set in the `kubeAPIServerDNSName` parameter.\n- You have a resolvable DNS name URI that can reach and point to the correct address.\n\n**Procedure**\n\n- In the specification for the `HostedCluster` object, add the `kubeAPIServerDNSName` parameter and the address for the domain and specify which certificate to use, as shown in the following example:\n\n  ```yaml\n  #...\n  spec:\n    configuration:\n      apiServer:\n        servingCerts:\n          namedCertificates:\n          - names:\n            - xxx.example.com\n            - yyy.example.com\n            servingCertificate:\n              name: <my_serving_certificate>\n    kubeAPIServerDNSName: <custom_address>\n  ```\n\n  The value for the `kubeAPIServerDNSName` parameter must be a valid and addressable domain.\n\n  After you define the `kubeAPIServerDNSName` parameter and specify the certificate, the Control Plane Operator controllers create a `kubeconfig` file named `custom-admin-kubeconfig`, where the file gets stored in the `HostedControlPlane` namespace. The generation of certificates happen from the root CA, and the `HostedControlPlane` namespace manages their expiration and renewal.\n\n  The Control Plane Operator reports a new `kubeconfig` file named `CustomKubeconfig` in the `HostedControlPlane` namespace. That file uses the defined new server in the `kubeAPIServerDNSName` parameter.\n\n  A reference for the custom `kubeconfig` file exists in the `status` parameter as `CustomKubeconfig` of the `HostedCluster` object. The `CustomKubeConfig` parameter is optional, and you can add the parameter only if the `kubeAPIServerDNSName` parameter is not empty. After you set the `CustomKubeConfig` parameter, the parameter triggers the generation of a secret named `<hosted_cluster_name>-custom-admin-kubeconfig` in the `HostedCluster` namespace. You can use the secret to access the `HostedCluster` API server. If you remove the `CustomKubeConfig` parameter during postinstallation operations, deletion of all related secrets and status references occur.\n\n  > [!NOTE]\n  > Defining a custom DNS name does not directly impact the data plane, so no expected rollouts occur. The `HostedControlPlane` namespace receives the changes from the HyperShift Operator and deletes the corresponding parameters.\n\n  If you remove the `kubeAPIServerDNSName` parameter from the specification for the `HostedCluster` object, all newly generated secrets and the `CustomKubeconfig` reference are removed from the cluster and from the `status` parameter.\n\n## Creating a hosted cluster by using the CLI {#hcp-bm-hc_hcp-deploy-ibm-power}\n\nOn bare-metal infrastructure, you can import a hosted cluster or create one by using the command-line interface (CLI).\n\nAfter you enable the Assisted Installer as an add-on to multicluster engine Operator and you create a hosted cluster with the Agent platform, the HyperShift Operator installs the Agent Cluster API provider in the hosted control plane namespace. The Agent Cluster API provider connects a management cluster that hosts the control plane and a hosted cluster that consists of only the compute nodes.\n\n**Prerequisites**\n\n- Each hosted cluster must have a cluster-wide unique name. A hosted cluster name cannot be the same as any existing managed cluster. Otherwise, the multicluster engine Operator cannot manage the hosted cluster.\n- Do not use the word `clusters` as a hosted cluster name.\n- You cannot create a hosted cluster in the namespace of a multicluster engine Operator managed cluster.\n- For best security and management practices, create a hosted cluster separate from other hosted clusters.\n- Verify that you have a default storage class configured for your cluster. Otherwise, you might see pending persistent volume claims (PVCs).\n- By default when you use the `hcp create cluster agent` command, the command creates a hosted cluster with configured node ports. The preferred publishing strategy for hosted clusters on bare metal exposes services through a load balancer. If you create a hosted cluster by using the web console or by using Red Hat Advanced Cluster Management, to set a publishing strategy for a service besides the Kubernetes API server, you must manually specify the `servicePublishingStrategy` information in the `HostedCluster` custom resource.\n- Ensure that you meet the requirements described in \"Requirements for hosted control planes on bare metal\", which includes requirements related to infrastructure, firewalls, ports, and services. For example, those requirements describe how to add the appropriate zone labels to the bare-metal hosts in your management cluster, as shown in the following example commands:\n\n  ```terminal\n  $ oc label node [compute-node-1] topology.kubernetes.io/zone=zone1\n  ```\n\n  ```terminal\n  $ oc label node [compute-node-2] topology.kubernetes.io/zone=zone2\n  ```\n\n  ```terminal\n  $ oc label node [compute-node-3] topology.kubernetes.io/zone=zone3\n  ```\n- Ensure that you have added bare-metal nodes to a hardware inventory.\n\n**Procedure**\n\n1. Create a namespace by entering the following command:\n\n   ```terminal\n   $ oc create ns <hosted_cluster_namespace>\n   ```\n\n   Replace `<hosted_cluster_namespace>` with an identifier for your hosted cluster namespace. The HyperShift Operator creates the namespace. During the hosted cluster creation process on bare-metal infrastructure, a generated Cluster API provider role requires that the namespace already exists.\n2. Create the configuration file for your hosted cluster by entering the following command:\n\n   ```terminal\n   $ hcp create cluster agent \\\n     --name=<hosted_cluster_name> \\\n     --pull-secret=<path_to_pull_secret> \\\n     --agent-namespace=<hosted_control_plane_namespace> \\\n     --base-domain=<base_domain> \\\n     --api-server-address=api.<hosted_cluster_name>.<base_domain> \\\n     --etcd-storage-class=<etcd_storage_class> \\\n     --ssh-key=<path_to_ssh_key> \\\n     --namespace=<hosted_cluster_namespace> \\\n     --control-plane-availability-policy=HighlyAvailable \\\n     --release-image=quay.io/openshift-release-dev/ocp-release:<ocp_release_image>-multi \\\n     --node-pool-replicas=<node_pool_replica_count> \\\n     --disable-cluster-capabilities=<capability> \\\n     --enable-cluster-capabilities=<capability> \\\n     --render \\\n     --render-sensitive > hosted-cluster-config.yaml\n   ```\n\n   where:\n\n   - `--name` specifies the name of your hosted cluster, such as `example`.\n   - `--pull-secret` specifies the path to your pull secret, such as `/user/name/pullsecret`.\n   - `--agent-namespace` specifies your hosted control plane namespace, such as `clusters-example`. Ensure that agents are available in this namespace by using the `oc get agent -n <hosted_control_plane_namespace>` command.\n   - `--base-domain` specifies your base domain, such as `krnl.es`.\n   - `--api-server-address` specifies the IP address that gets used for the Kubernetes API communication in the hosted cluster. If you do not set the `--api-server-address` flag, you must log in to connect to the management cluster.\n   - `--etcd-storage-class` specifies the etcd storage class name, such as `lvm-storageclass`.\n   - `--ssh-key` specifies the path to your SSH public key. The default file path is `~/.ssh/id_rsa.pub`.\n   - `--namespace` specifies your hosted cluster namespace.\n   - `--control-plane-availability-policy` specifies the availability policy for the hosted control plane components. Supported options are `SingleReplica` and `HighlyAvailable`. The default value is `HighlyAvailable`.\n   - `--release-image` specifies the supported OpenShift Container Platform version that you want to use, such as `4.22.0-multi`. If you are using a disconnected environment, replace `<ocp_release_image>` with the digest image. To extract the OpenShift Container Platform release image digest, see \"Extracting the release image digest\".\n   - `--node-pool-replicas` specifies the node pool replica count, such as `3`. You must specify the replica count as `0` or greater to create the same number of replicas. Otherwise, you do not create node pools.\n   - `--disable-cluster-capabilities` specifies that you want to disable optional capabilities in the hosted cluster. This flag is optional. For more information, see \"Capabilities for hosted clusters\".\n   - `--enable-cluster-capabilities` specifies that you want to enable optional capabilities in the hosted cluster. This flag is optional. For more information, see \"Capabilities for hosted clusters\".\n   - `--render` renders the output as YAML to stdout instead of applying the resources to the cluster. By default, secrets are not included in the rendered output.\n   - `--render-sensitive` includes secrets in the rendered output when used with the `--render` flag.\n3. Configure the service publishing strategy. By default, hosted clusters use the `NodePort` service publishing strategy because node ports are always available without additional infrastructure. However, you can configure the service publishing strategy to use a load balancer.\n\n   - If you are using the default `NodePort` strategy, configure the DNS to point to the hosted cluster compute nodes, not the management cluster nodes. For more information, see \"DNS configurations on bare metal\".\n   - For production environments, use the `LoadBalancer` strategy because this strategy provides certificate handling and automatic DNS resolution. The following example demonstrates changing the service publishing `LoadBalancer` strategy in your hosted cluster configuration file:\n\n     ```yaml\n     apiVersion: hypershift.openshift.io/v1beta1\n     kind: HostedCluster\n     metadata:\n     # ...\n     spec:\n       services:\n       - service: APIServer\n         servicePublishingStrategy:\n           type: LoadBalancer\n       - service: Ignition\n         servicePublishingStrategy:\n           type: Route\n       - service: Konnectivity\n         servicePublishingStrategy:\n           type: Route\n       - service: OAuthServer\n         servicePublishingStrategy:\n           type: Route\n       - service: OIDC\n         servicePublishingStrategy:\n           type: Route\n       sshKey:\n         name: <ssh_key>\n     # ...\n     ```\n\n     Specify `LoadBalancer` as the API Server type. For all other services, specify `Route` as the type.\n4. If you use external load balancers, configure the ingress endpoint as shown in the following example. If you do not configure the endpoint, the default behavior is to randomize the node port that the service exposes the ingress on. To configure how the ingress controller publishes the default ingress route, set the `endpointPublishingStrategy` parameter and its underlying functions by editing the `HostedCluster` resource:\n\n   ```yaml\n   apiVersion: hypershift.openshift.io/v1beta1\n   kind: HostedCluster\n   metadata:\n   #...\n   spec:\n     operatorConfiguration:\n       ingressOperator:\n         endpointPublishingStrategy:\n           hostNetwork:\n             httpPort: 80\n             httpsPort: 443\n             protocol: TCP\n             statsPort: 1936\n           type: HostNetwork\n   #...\n   ```\n\n   The `spec.operatorConfiguration.ingressOperator.endPointPublishingStrategy.type` parameter specifies the endpoint for the load balancer. For bare-metal installations, use the `HostNetwork` type.\n5. Apply the changes to the hosted cluster configuration file by entering the following command:\n\n   ```terminal\n   $ oc apply -f hosted_cluster_config.yaml\n   ```\n6. Check for the creation of the hosted cluster, node pools, and pods by entering the following commands:\n\n   ```terminal\n   $ oc get hostedcluster \\\n     <hosted_cluster_namespace> -n \\\n     <hosted_cluster_namespace> -o \\\n     jsonpath='{.status.conditions[?(@.status==\"False\")]}' | jq .\n   ```\n\n   ```terminal\n   $ oc get nodepool \\\n     <hosted_cluster_namespace> -n \\\n     <hosted_cluster_namespace> -o \\\n     jsonpath='{.status.conditions[?(@.status==\"False\")]}' | jq .\n   ```\n\n   ```terminal\n   $ oc get pods -n <hosted_cluster_namespace>\n   ```\n7. Confirm that the hosted cluster is ready. The status of `Available: True` indicates the readiness of the cluster and the node pool status shows `AllMachinesReady: True`. These statuses indicate the healthiness of all cluster Operators.\n8. Install MetalLB in the hosted cluster:\n\n   1. Extract the `kubeconfig` file from the hosted cluster and set the environment variable for hosted cluster access by entering the following commands:\n\n      ```terminal\n      $ oc get secret \\\n        <hosted_cluster_namespace>-admin-kubeconfig \\\n        -n <hosted_cluster_namespace> \\\n        -o jsonpath='{.data.kubeconfig}' \\\n        | base64 -d > \\\n        kubeconfig-<hosted_cluster_namespace>.yaml\n      ```\n\n      ```terminal\n      $ export KUBECONFIG=\"/path/to/kubeconfig-<hosted_cluster_namespace>.yaml\"\n      ```\n   2. Install the MetalLB Operator by creating the `install-metallb-operator.yaml` file:\n\n      ```yaml\n      apiVersion: v1\n      kind: Namespace\n      metadata:\n        name: metallb-system\n      ---\n      apiVersion: operators.coreos.com/v1\n      kind: OperatorGroup\n      metadata:\n        name: metallb-operator\n        namespace: metallb-system\n      ---\n      apiVersion: operators.coreos.com/v1alpha1\n      kind: Subscription\n      metadata:\n        name: metallb-operator\n        namespace: metallb-system\n      spec:\n        channel: \"stable\"\n        name: metallb-operator\n        source: redhat-operators\n        sourceNamespace: openshift-marketplace\n        installPlanApproval: Automatic\n      # ...\n      ```\n   3. Apply the file by entering the following command:\n\n      ```terminal\n      $ oc apply -f install-metallb-operator.yaml\n      ```\n   4. Configure the MetalLB IP address pool by creating the `deploy-metallb-ipaddresspool.yaml` file:\n\n      ```yaml\n      apiVersion: metallb.io/v1beta1\n      kind: IPAddressPool\n      metadata:\n        name: metallb\n        namespace: metallb-system\n      spec:\n        autoAssign: true\n        addresses:\n        - 10.11.176.71-10.11.176.75\n      ---\n      apiVersion: metallb.io/v1beta1\n      kind: L2Advertisement\n      metadata:\n        name: l2advertisement\n        namespace: metallb-system\n      spec:\n        ipAddressPools:\n        - metallb\n      # ...\n      ```\n   5. Apply the configuration by entering the following command:\n\n      ```terminal\n      $ oc apply -f deploy-metallb-ipaddresspool.yaml\n      ```\n   6. Verify the installation of MetalLB by checking the Operator status, the IP address pool, and the `L2Advertisement` resource by entering the following commands:\n\n      ```terminal\n      $ oc get pods -n metallb-system\n      ```\n\n      ```terminal\n      $ oc get ipaddresspool -n metallb-system\n      ```\n\n      ```terminal\n      $ oc get l2advertisement -n metallb-system\n      ```\n9. Configure the load balancer for ingress:\n\n   1. Create the `ingress-loadbalancer.yaml` file:\n\n      ```yaml\n      apiVersion: v1\n      kind: Service\n      metadata:\n        annotations:\n          metallb.universe.tf/address-pool: metallb\n        name: metallb-ingress\n        namespace: openshift-ingress\n      spec:\n        ports:\n          - name: http\n            protocol: TCP\n            port: 80\n            targetPort: 80\n          - name: https\n            protocol: TCP\n            port: 443\n            targetPort: 443\n        selector:\n          ingresscontroller.operator.openshift.io/deployment-ingresscontroller: default\n        type: LoadBalancer\n      # ...\n      ```\n   2. Apply the configuration by entering the following command:\n\n      ```terminal\n      $ oc apply -f ingress-loadbalancer.yaml\n      ```\n   3. Verify that the load balancer service works as expected by entering the following command:\n\n      ```terminal\n      $ oc get svc metallb-ingress -n openshift-ingress\n      ```\n\n      ```text {title=\"Example output\"}\n      NAME              TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)                      AGE\n      metallb-ingress   LoadBalancer   172.31.127.129   10.11.176.71   80:30961/TCP,443:32090/TCP   16h\n      ```\n10. Configure the DNS to work with the load balancer:\n\n    1. Configure the DNS for the `apps` domain by pointing the `*.apps.<hosted_cluster_namespace>.<base_domain>` wildcard DNS record to the load balancer IP address.\n    2. Verify the DNS resolution by entering the following command:\n\n       ```terminal\n       $ nslookup console-openshift-console.apps.<hosted_cluster_namespace>.<base_domain> <load_balancer_ip_address>\n       ```\n\n       ```text {title=\"Example output\"}\n       Server:         10.11.176.1\n       Address:        10.11.176.1#53\n\n       Name:   console-openshift-console.apps.my-hosted-cluster.sample-base-domain.com\n       Address: 10.11.176.71\n       ```\n\n**Verification**\n\n1. Check the cluster Operators by entering the following command:\n\n   ```terminal\n   $ oc get clusteroperators\n   ```\n\n   Ensure that all Operators show `AVAILABLE: True`, `PROGRESSING: False`, and `DEGRADED: False`.\n2. Check the nodes by entering the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   Ensure that each node has the `READY` status.\n3. Test access to the console by entering the following URL in a web browser:\n\n   ```text\n   https://console-openshift-console.apps.<hosted_cluster_namespace>.<base_domain>\n   ```\n\n**Additional resources**\n\n- [Requirements for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements#hcp-requirements)\n- [DNS configurations on bare metal](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-bm-dns_hcp-deploy-bm)\n- [Manually importing a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import)\n- [Extracting the release image digest](/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm)\n\n## Capabilities for hosted clusters {#hcp-cluster-capabilities_hcp-deploy-ibm-power}\n\nTo reduce resource consumption and prevent unnecessary Operators and operands from being deployed, administrators can enable or disable optional OpenShift Container Platform components when they create a hosted cluster.\n\nWhen capabilities are not specified on a `HostedCluster` resource, the cluster uses the OpenShift Container Platform version’s `DefaultCapabilitySet` settings, excluding the `baremetal` capability. As a result, most optional components are enabled by default.\n\n> [!IMPORTANT]\n> Capabilities are immutable after cluster creation. You cannot change them after you create the `HostedCluster` resource.\n\n### Capabilities that you can enable or disable for a hosted cluster {#hcp-cluster-capabilities-ref_hcp-deploy-ibm-power}\n\nFamiliarize yourself with the supported capabilities that you can enable or disable for a `HostedCluster` resource.\n\nThe capabilities are described in the following table:\n\n| Capability | Description |\n| --- | --- |\n| `ImageRegistry` | The OpenShift Image Registry Operator and its operands, including cloud storage infrastructure, such as S3 buckets and Identity and Access Management (IAM) users. |\n| `openshift-samples` | The OpenShift Samples Operator, which manages example `ImageStreams` and templates. |\n| `Insights` | The Insights Operator, which collects and uploads cluster telemetry data. |\n| `baremetal` | The Bare Metal Infrastructure Operator. This capability is excluded from the default set. If needed, you must explicitly enable it. |\n| `Console` | The OpenShift Web Console Operator and its operands. |\n| `NodeTuning` | The Node Tuning Operator, which manages node-level performance tuning by using TuneD and performance profiles. |\n| `Ingress` | The OpenShift Ingress Operator, which manages the default router of the cluster. |\n\nThe following rules apply when you combine capability settings:\n\nNo overlap\n:   A capability cannot be in both the `enabled` and `disabled` lists simultaneously.\n\nConsole requires Ingress\n:   You can disable the `Ingress` capability only if the `Console` capability is also disabled because the console depends on Ingress.\n\nVersion requirement\n:   You must use OpenShift Container Platform 4.20 or later to disable any of the following capabilities: `openshift-samples`, `Insights`, `Console`, `NodeTuning`, and `Ingress`. You can disable `ImageRegistry` and `baremetal` on versions earlier than 4.20.\n\nBare metal default exclusion\n:   The `baremetal` capability is excluded from the default set. You can add it to the cluster by explicitly enabling it.\n\n### Setting capabilities for a hosted cluster {#hcp-cluster-capabilities-proc_hcp-deploy-ibm-power}\n\nTo reduce unnecessary resource consumption, you can control which optional capabilities are enabled for a hosted cluster when you create the cluster.\n\n> [!IMPORTANT]\n> Capabilities are immutable after cluster creation. You cannot change them after you create the `HostedCluster` resource.\n\nYou can specify which capabilities are enabled by either using the `hcp` command-line interface (CLI) or by setting the `HostedCluster` manifest.\n\n**Procedure**\n\n- To specify which capabilities are enabled in a hosted cluster by using the CLI, you can add the `--disable-cluster-capabilities` flag, the `--enable-cluster-capabilities` flag, or both. The following example shows how to disable the `ImageRegistry`, `Console`, and `Ingress` capabilities and enable the `baremetal` capability while you create a hosted cluster on AWS by using the `hcp` command-line interface:\n\n  ```terminal\n  $ hcp create cluster aws \\\n      --name my-hosted-cluster \\\n      --disable-cluster-capabilities=ImageRegistry,Console,Ingress \\\n      --enable-cluster-capabilities=baremetal\n  ```\n\n  You can specify multiple capabilities as a comma-separated list. The supported values are as follows:\n\n  - `ImageRegistry`\n  - `openshift-samples`\n  - `Insights`\n  - `baremetal`\n  - `Console`\n  - `NodeTuning`\n  - `Ingress`\n- To specify which capabilities are enabled in a hosted cluster by using the `HostedCluster` manifest at cluster creation time, see the following examples:\n\n  - To directly disable capabilities in a hosted cluster, add the `spec.capabilities.disabled` section in the `HostedCluster` resource:\n\n    ```yaml\n    apiVersion: hypershift.openshift.io/v1beta1\n    kind: HostedCluster\n    metadata:\n      name: my-hosted-cluster\n      namespace: my-cluster-namespace\n    spec:\n      capabilities:\n        disabled:\n          - ImageRegistry\n          - Console\n          - Ingress\n      # ...\n    ```\n  - To explicitly enable a capability that is not part of the default set of capabilities, such as the `baremetal` capability, see the following example:\n\n    ```yaml\n    apiVersion: hypershift.openshift.io/v1beta1\n    kind: HostedCluster\n    metadata:\n      name: my-hosted-cluster\n      namespace: my-cluster-namespace\n    spec:\n      capabilities:\n        enabled:\n          - baremetal\n      # ...\n    ```\n  - You can use both `enabled` and `disabled` if no capabilities are in both lists. See the following example:\n\n    ```yaml\n    apiVersion: hypershift.openshift.io/v1beta1\n    kind: HostedCluster\n    metadata:\n      name: my-hosted-cluster\n      namespace: my-cluster-namespace\n    spec:\n      capabilities:\n        enabled:\n          - baremetal\n        disabled:\n          - ImageRegistry\n          - openshift-samples\n      # ...\n    ```\n\n## About creating heterogeneous node pools on agent hosted clusters {#hcp-ibm-power-create-heterogeneous-nodepools-agent-hc-con_hcp-deploy-ibm-power}\n\nA node pool is a group of nodes within a cluster that share the same configuration. Heterogeneous node pools have different configurations so that you can create pools and optimize them for various workloads.\n\nYou can create heterogeneous node pools on the agent platform. The platform enables clusters to run diverse machine types, such as `x86_64` or `ppc64le`, within a single hosted cluster.\n\nCreating a heterogeneous node pool requires completion of the following general steps:\n\n- Create an `AgentServiceConfig` custom resource (CR) that informs the Operator how much storage it needs for components such as the database and filesystem. The CR also defines which OpenShift Container Platform versions to support.\n- Create an agent cluster.\n- Create the heterogeneous node pool.\n- Configure DNS for hosted control planes\n- Create an `InfraEnv` custom resource (CR) for each architecture.\n- Add agents to the heterogeneous cluster.\n\n### Creating the AgentServiceConfig custom resource {#hcp-ibm-power-create-heterogeneous-nodepools-agent-hc_hcp-deploy-ibm-power}\n\nTo create heterogeneous node pools on an agent hosted cluster, you need to create the `AgentServiceConfig` CR with two heterogeneous architecture operating system (OS) images.\n\n**Procedure**\n\n- Run the following command:\n\n  ```terminal\n  $ envsubst <<\"EOF\" | oc apply -f -\n  apiVersion: agent-install.openshift.io/v1beta1\n  kind: AgentServiceConfig\n  metadata:\n   name: agent\n  spec:\n    databaseStorage:\n      accessModes:\n      - ReadWriteOnce\n      resources:\n        requests:\n          storage: <db_volume_name>\n    filesystemStorage:\n      accessModes:\n      - ReadWriteOnce\n      resources:\n        requests:\n          storage: <fs_volume_name>\n    osImages:\n      - openshiftVersion: <ocp_version>\n        version: <ocp_release_version_x86>\n        url: <iso_url_x86>\n        rootFSUrl: <root_fs_url_x86>\n        cpuArchitecture: <arch_x86>\n      - openshiftVersion: <ocp_version>\n        version: <ocp_release_version_ppc64le>\n        url: <iso_url_ppc64le>\n        rootFSUrl: <root_fs_url_ppc64le>\n        cpuArchitecture: <arch_ppc64le>\n  EOF\n  ```\n\n  where:\n\n  `<db_volume_name>`\n  :   Specifies the multicluster engine for Kubernetes Operator `agentserviceconfig` config, database volume name.\n\n  `<fs_volume_name>`\n  :   Specifies the multicluster engine Operator `agentserviceconfig` config, filesystem volume name.\n\n  `<ocp_version>`\n  :   Specifies the current version of OpenShift Container Platform.\n\n  `<ocp_release_version_x86>`\n  :   Specifies the current OpenShift Container Platform release version for x86.\n\n  `<iso_url_x86>`\n  :   Specifies the ISO URL for x86.\n\n  `<root_fs_url_x86>`\n  :   Specifies the root filesystem URL for x86.\n\n  `<arch_x86>`\n  :   Specifies the CPU architecture for x86.\n\n  `<ocp_release_version_ppc64le>`\n  :   Specifies the OpenShift Container Platform release version for `ppc64le`.\n\n  `<iso_url_ppc64le>`\n  :   Specifies the ISO URL for `ppc64le`.\n\n  `<root_fs_url_ppc64le>`\n  :   Specifies the root filesystem URL for `ppc64le`.\n\n  `<arch_ppc64le>`\n  :   Specifies the CPU architecture for `ppc64le`.\n\n### Create an agent cluster {#hcp-ibm-power-heterogeneous-nodepools-create-agent-cluster_hcp-deploy-ibm-power}\n\nAn agent-based approach manages and provisions an agent cluster. An agent cluster can use heterogeneous node pools, allowing the use of different types of compute nodes within the same cluster.\n\n**Prerequisites**\n\n- You used a multi-architecture release image to enable support for heterogeneous node pools when creating a hosted cluster. Find the latest multi-architecture images on the \"Multi-arch release images\" page.\n\n**Procedure**\n\n1. Create an environment variable for the cluster namespace by running the following command:\n\n   ```terminal\n   $ export CLUSTERS_NAMESPACE=<hosted_cluster_namespace>\n   ```\n2. Create an environment variable for the machine classless inter-domain routing (CIDR) notation by running the following command:\n\n   ```terminal\n   $ export MACHINE_CIDR=192.168.122.0/24\n   ```\n3. Create the hosted control namespace by running the following command:\n\n   ```terminal\n   $ oc create ns <hosted_control_plane_namespace>\n   ```\n4. Create the cluster by running the following command:\n\n   ```terminal\n   $ hcp create cluster agent \\\n       --name=<hosted_cluster_name> \\\n       --pull-secret=<pull_secret_file> \\\n       --agent-namespace=<hosted_control_plane_namespace> \\\n       --base-domain=<base_domain> \\\n       --api-server-address=api.<hosted_cluster_name>.<basedomain> \\\n       --release-image=quay.io/openshift-release-dev/ocp-release:<ocp_release>\n   ```\n\n   where:\n\n   `<hosted_cluster_name>`\n   :   Specifies the hosted cluster name.\n\n   `<pull_secret_file>`\n   :   Specifies the pull secret file path.\n\n   `<hosted_control_plane_namespace>`\n   :   Specifies the namespace for the hosted control plane.\n\n   `<base_domain>`\n   :   Specifies the base domain for the hosted cluster.\n\n   `<ocp_release>`\n   :   Specifies the current OpenShift Container Platform release version.\n\n**Additional resources**\n\n- [Multi-arch release images](https://multi.ocp.releases.ci.openshift.org/)\n\n### Creating heterogeneous node pools {#hcp-create-heterogeneous-nodepools_hcp-deploy-ibm-power}\n\nYou create heterogeneous node pools by using the `NodePool` custom resource (CR), so that you can optimize costs and performance by associating different workloads to specific hardware.\n\n**Procedure**\n\n- To define a `NodePool` CR, create a YAML file similar to the following example:\n\n  ```yaml\n  envsubst <<\"EOF\" | oc apply -f -\n  apiVersion:apiVersion: hypershift.openshift.io/v1beta1\n  kind: NodePool\n  metadata:\n    name: <hosted_cluster_name>\n    namespace: <clusters_namespace>\n  spec:\n    arch: <arch_ppc64le>\n    clusterName: <hosted_cluster_name>\n    management:\n      autoRepair: false\n      upgradeType: InPlace\n    nodeDrainTimeout: 0s\n    nodeVolumeDetachTimeout: 0s\n    platform:\n      agent:\n        agentLabelSelector:\n          matchLabels:\n            inventory.agent-install.openshift.io/cpu-architecture: <arch_ppc64le>\n      type: Agent\n    release:\n      image: quay.io/openshift-release-dev/ocp-release:<ocp_release>\n    replicas: 0\n  EOF\n  ```\n\n  `<arch_ppc64le>`: The selector block selects the agents that match the specified label. To create a node pool of architecture `ppc64le` with zero replicas, specify `ppc64le`. This ensures that the selector block selects only agents from `ppc64le` architecture during a scaling operation.\n\n### DNS configuration for hosted control planes {#hcp-ibm-power-heterogeneous-nodepools-agent-hc-dns_hcp-deploy-ibm-power}\n\nA Domain Name Service (DNS) configuration for hosted control planes means that external clients can reach ingress controllers, so that the clients can route traffic to internal components. Configuring this setting ensures that traffic gets routed to either a `ppc64le` or an `x86_64` compute node.\n\nYou can point an `*.apps.<cluster_name>` record to either of the compute nodes that hosts the ingress application. Or, if you can set up a load balancer on top of the compute nodes, point the record to this load balancer. When you are creating a heterogeneous node pool, make sure the compute nodes can reach each other or keep them in the same network.\n\n### Creating infrastructure environment resources {#hcp-create-infraenv_hcp-deploy-ibm-power}\n\nFor heterogeneous node pools, you must create an `infraEnv` custom resource (CR) for each architecture. This configuration ensures that the correct architecture-specific operating system and boot artifacts get used during the node provisioning process.\n\nFor example, for node pools with `x86_64` and `ppc64le` architectures, create an `InfraEnv` CR for `x86_64` and `ppc64le`.\n\n> [!NOTE]\n> Before starting the procedure, ensure that you add the operating system images for both `x86_64` and `ppc64le` architectures to the `AgentServiceConfig` resource. After this, you can use the `InfraEnv` resources to get the minimal ISO image.\n\n**Procedure**\n\n1. Create the `InfraEnv` resource with `x86_64` architecture for heterogeneous node pools by running the following command:\n\n   ```yaml\n   $ envsubst <<\"EOF\" | oc apply -f -\n   apiVersion: agent-install.openshift.io/v1beta1\n   kind: InfraEnv\n   metadata:\n     name: <hosted_cluster_name>-<arch_x86>\n     namespace: <hosted_control_plane_namespace>\n   spec:\n     cpuArchitecture: <arch_x86>\n     pullSecretRef:\n       name: pull-secret\n     sshAuthorizedKey: <ssh_pub_key>\n   EOF\n   ```\n\n   where:\n\n   `<hosted_cluster_name>`\n   :   Specifies the hosted cluster name.\n\n   `<arch_x86>`\n   :   Specifies the `x86_64` architecture.\n\n   `<hosted_control_plane_namespace>`\n   :   Specifies the hosted control plane namespace.\n\n   `<ssh_pub_key>`\n   :   Specifies the SSH public key.\n2. Create the `InfraEnv` resource with `ppc64le` architecture for heterogeneous node pools by running the following command:\n\n   ```yaml\n   envsubst <<\"EOF\" | oc apply -f -\n   apiVersion: agent-install.openshift.io/v1beta1\n   kind: InfraEnv\n   metadata:\n     name: <hosted_cluster_name>-<arch_ppc64le>\n     namespace: <hosted_control_plane_namespace>\n   spec:\n     cpuArchitecture: <arch_ppc64le>\n     pullSecretRef:\n       name: pull-secret\n     sshAuthorizedKey: <ssh_pub_key>\n   EOF\n   ```\n\n   where:\n\n   `<hosted_cluster_name>`\n   :   Specifies the hosted cluster name.\n\n   `<arch_ppc64le>`\n   :   Specifies the `ppc64le` architecture.\n\n   `<hosted_control_plane_namespace>`\n   :   Specifies the hosted control plane namespace.\n\n   `<ssh_pub_key>`\n   :   Specifies the SSH public key.\n3. Verify the successful creation of the `InfraEnv` resources by running the following commands:\n\n   - Verify the successful creation of the `x86_64` `InfraEnv` resource:\n\n     ```terminal\n     $ oc describe InfraEnv <hosted_cluster_name>-<arch_x86>\n     ```\n   - Verify the successful creation of the `ppc64le` `InfraEnv` resource:\n\n     ```terminal\n     $ oc describe InfraEnv <hosted_cluster_name>-<arch_ppc64le>\n     ```\n4. Generate a live ISO that allows either a virtual machine or a bare-metal machine to join as agents by running the following commands:\n\n   1. Generate a live ISO for `x86_64`:\n\n      ```terminal\n      $ oc -n <hosted_control_plane_namespace> get InfraEnv <hosted_cluster_name>-<arch_x86> -ojsonpath=\"{.status.isoDownloadURL}\"\n      ```\n   2. Generate a live ISO for `ppc64le`:\n\n      ```terminal\n      $ oc -n <hosted_control_plane_namespace> get InfraEnv <hosted_cluster_name>-<arch_ppc64le> -ojsonpath=\"{.status.isoDownloadURL}\"\n      ```\n\n### Adding agents to the heterogeneous cluster {#hcp-adding-agents_hcp-deploy-ibm-power}\n\nYou add agents by manually configuring the machine to boot with a live ISO. You can download the live ISO and use it to boot a bare-metal node or a virtual machine.\n\nOn boot, the node communicates with the `assisted-service` and registers as an agent in the same namespace as the `InfraEnv` resource. After the creation of each agent, you can optionally set its `installation_disk_id` and `hostname` parameters in the specifications. You can then approve the agent to indicate the agent as ready for use.\n\n**Procedure**\n\n1. Obtain a list of agents by running the following command:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> get agents\n   ```\n\n   ```text {title=\"Example output\"}\n   NAME                                   CLUSTER   APPROVED   ROLE          STAGE\n   86f7ac75-4fc4-4b36-8130-40fa12602218                        auto-assign\n   e57a637f-745b-496e-971d-1abbf03341ba                        auto-assign\n   ```\n2. Patch an agent by running the following command:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> patch agent 86f7ac75-4fc4-4b36-8130-40fa12602218 -p '{\"spec\":{\"installation_disk_id\":\"/dev/sda\",\"approved\":true,\"hostname\":\"worker-0.example.krnl.es\"}}' --type merge\n   ```\n3. Patch the second agent by running the following command:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> patch agent 23d0c614-2caa-43f5-b7d3-0b3564688baa -p '{\"spec\":{\"installation_disk_id\":\"/dev/sda\",\"approved\":true,\"hostname\":\"worker-1.example.krnl.es\"}}' --type merge\n   ```\n4. Check the agent approval status by running the following command:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> get agents\n   ```\n\n   ```text {title=\"Example output\"}\n   NAME                                   CLUSTER   APPROVED   ROLE          STAGE\n   86f7ac75-4fc4-4b36-8130-40fa12602218             true       auto-assign\n   e57a637f-745b-496e-971d-1abbf03341ba             true       auto-assign\n   ```\n\n### Scaling the node pool {#hcp-scale-the-nodepool_hcp-deploy-ibm-power}\n\nAfter you approve your agents, you can scale the node pools. The `agentLabelSelector` value that you configured in the node pool ensures that only matching agents get added to the cluster. This also helps scale down the node pool.\n\nTo remove specific architecture nodes from the cluster, scale down the corresponding node pool.\n\n**Procedure**\n\n- Scale the node pool by running the following command:\n\n  ```terminal\n  $ oc -n <clusters_namespace> scale nodepool <nodepool_name> --replicas 2\n  ```\n\n  > [!NOTE]\n  > The Cluster API agent provider picks two agents randomly to assign to the hosted cluster. These agents pass through different states and then join the hosted cluster as OpenShift Container Platform nodes. The various agent states are `binding`, `discovering`, `insufficient`, `installing`, `installing-in-progress`, and `added-to-existing-cluster`.\n\n**Verification**\n\n1. List the agents by running the following command:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> get agent\n   ```\n\n   ```text {title=\"Example output\"}\n   NAME                                   CLUSTER         APPROVED   ROLE          STAGE\n   4dac1ab2-7dd5-4894-a220-6a3473b67ee6   hypercluster1   true       auto-assign\n   d9198891-39f4-4930-a679-65fb142b108b                   true       auto-assign\n   da503cf1-a347-44f2-875c-4960ddb04091   hypercluster1   true       auto-assign\n   ```\n2. Check the status of a specific scaled agent by running the following command:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> get agent -o jsonpath='{range .items[*]}BMH: {@.metadata.labels.agent-install\\.openshift\\.io/bmh} Agent: {@.metadata.name} State: {@.status.debugInfo.state}{\"\\n\"}{end}'\n   ```\n\n   ```text {title=\"Example output\"}\n   BMH: ocp-worker-2 Agent: 4dac1ab2-7dd5-4894-a220-6a3473b67ee6 State: binding\n   BMH: ocp-worker-0 Agent: d9198891-39f4-4930-a679-65fb142b108b State: known-unbound\n   BMH: ocp-worker-1 Agent: da503cf1-a347-44f2-875c-4960ddb04091 State: insufficient\n   ```\n3. After the agents reach the `added-to-existing-cluster` state, verify that the OpenShift Container Platform nodes are ready by running the following command:\n\n   ```terminal\n   $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes\n   ```\n\n   ```text {title=\"Example output\"}\n   NAME           STATUS   ROLES    AGE     VERSION\n   ocp-worker-1   Ready    worker   5m41s   v1.24.0+3882f8f\n   ocp-worker-2   Ready    worker   6m3s    v1.24.0+3882f8f\n   ```\n4. Adding workloads to the nodes can reconcile some cluster operators. The following command displays the creation of two machines that happened after scaling up the node pool:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> get machines\n   ```\n\n   ```text {title=\"Example output\"}\n   NAME                            CLUSTER               NODENAME       PROVIDERID                                     PHASE     AGE   VERSION\n   hypercluster1-c96b6f675-m5vch   hypercluster1-b2qhl   ocp-worker-1   agent://da503cf1-a347-44f2-875c-4960ddb04091   Running   15m   4.11.5\n   hypercluster1-c96b6f675-tl42p   hypercluster1-b2qhl   ocp-worker-2   agent://4dac1ab2-7dd5-4894-a220-6a3473b67ee6   Running   15m   4.11.5\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-ibm-power.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,31 +100,241 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-deploy-ibm-power" class="group scroll-mt-20">Deploying {"{"}{"{"} hcp {"}"}{"}"} on {"{"}{"{"} ibm_power_title {"}"}{"}"}<a href="#hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can deploy {"{"}{"{"} hcp {"}"}{"}"} on {"{"}{"{"} ibm_power_title {"}"}{"}"} by configuring a cluster to function as a hosting cluster. This configuration provides an efficient and scalable solution for managing many clusters. The hosting cluster is an OpenShift Container Platform cluster that hosts control planes. The hosting cluster is also known as the <em>management</em> cluster.</p>
+      <h1 id="hcp-deploy-ibm-power" class="group scroll-mt-20">Deploying hosted control planes on IBM Power<a href="#hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can deploy hosted control planes on IBM Power by configuring a cluster to function as a hosting cluster. This configuration provides an efficient and scalable solution for managing many clusters. The hosting cluster is an OpenShift Container Platform cluster that hosts control planes. The hosting cluster is also known as the <em>management</em> cluster.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
           <p>The <em>management</em> cluster is not the <em>managed</em> cluster. A managed cluster is a cluster that the hub cluster manages.</p>
         </AlertDescription>
       </Alert>
-      <p>The {"{"}{"{"} mce_short {"}"}{"}"} supports only the default <code>local-cluster</code>, which is a managed hub cluster, and the hub cluster as the hosting cluster.</p>
-      <p>To provision {"{"}{"{"} hcp {"}"}{"}"} on bare-metal infrastructure, you can use the Agent platform. The Agent platform uses the central infrastructure management service to add compute nodes to a hosted cluster. For more information, see "Enabling the central infrastructure management service".</p>
-      <p>You must start each {"{"}{"{"} ibm_power_title {"}"}{"}"} host with a Discovery image that the central infrastructure management provides. After each host starts, it runs an Agent process to discover the details of the host and completes the installation. An Agent custom resource represents each host.</p>
+      <p>The multicluster engine Operator supports only the default <code>local-cluster</code>, which is a managed hub cluster, and the hub cluster as the hosting cluster.</p>
+      <p>To provision hosted control planes on bare-metal infrastructure, you can use the Agent platform. The Agent platform uses the central infrastructure management service to add compute nodes to a hosted cluster. For more information, see "Enabling the central infrastructure management service".</p>
+      <p>You must start each IBM Power host with a Discovery image that the central infrastructure management provides. After each host starts, it runs an Agent process to discover the details of the host and completes the installation. An Agent custom resource represents each host.</p>
       <p>When you create a hosted cluster with the Agent platform, HyperShift installs the Agent Cluster API provider in the hosted control plane namespace.</p>
-      <p class="/modules/hcp-ibm-power-prereqs.md"></p>
+      <h2 id="hcp-ibm-power-prereqs_hcp-deploy-ibm-power" class="group scroll-mt-20">Prerequisites to configure hosted control planes on IBM Power<a href="#hcp-ibm-power-prereqs_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Ensure you meet the prerequisites to configure hosted control planes on IBM Power.</p>
+      <ul>
+      <li>The multicluster engine for Kubernetes Operator version 2.7 and later installed on an OpenShift Container Platform cluster. The multicluster engine Operator is automatically installed when you install Red Hat Advanced Cluster Management (RHACM). You can also install the multicluster engine Operator without RHACM as an Operator from the OpenShift Container Platform software catalog.</li>
+      <li>
+      The multicluster engine Operator must have at least one managed OpenShift Container Platform cluster. The <code>local-cluster</code> managed hub cluster is automatically imported in the multicluster engine Operator version 2.7 and later. For more information about <code>local-cluster</code>, see <em>Advanced configuration</em> in the RHACM documentation. You can check the status of your hub cluster by running the following command:
+      <CodeBlock code={"$ oc get managedclusters local-cluster"} lang="terminal" />
+      </li>
+      <li>You need a hosting cluster with at least 3 compute nodes to run the HyperShift Operator.</li>
+      <li>You need to enable the central infrastructure management service. For more information, see "Enabling the central infrastructure management service".</li>
+      <li>You need to install the hosted control planes command-line interface. For more information, see "Installing the hosted control plane command-line interface".</li>
+      </ul>
+      <p>The hosted control planes feature is enabled by default. If you disabled the feature and want to manually enable the feature, see "Manually enabling the hosted control planes feature". If you need to disable the feature, see "Disabling the hosted control planes feature".</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#advanced-config-engine">Advanced configuration</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html/clusters/cluster_mce_overview#enable-cim">Enabling the central infrastructure management service</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli-terminal_hcp-cli">Installing the hosted control plane command-line interface</a></li>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable">Manually enabling the {"{"}{"{"} hcp {"}"}{"}"} feature</a></li>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable">Disabling the {"{"}{"{"} hcp {"}"}{"}"} feature</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-manual_hcp-enable-disable">Manually enabling the hosted control planes feature</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-disable-feature_hcp-enable-disable">Disabling the hosted control planes feature</a></li>
       </ul>
-      <p class="/modules/hcp-ibm-power-dns.md"></p>
-      <p class="/modules/hcp-custom-dns.md"></p>
-      <p class="/modules/hcp-bm-hc.md"></p>
+      <h2 id="hcp-ibm-power-infra-reqs_hcp-deploy-ibm-power" class="group scroll-mt-20">IBM Power infrastructure requirements<a href="#hcp-ibm-power-infra-reqs_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Agent platform does not create any infrastructure, but requires resources for infrastructure.</p>
+      <ul>
+      <li>Agents: An <em>Agent</em> represents a host that boots with a Discovery image and that you can provision as an OpenShift Container Platform node.</li>
+      <li>DNS: The API and Ingress endpoints must be routable.</li>
+      </ul>
+      <h2 id="hcp-ibm-power-dns_hcp-deploy-ibm-power" class="group scroll-mt-20">DNS configuration for hosted control planes on IBM Power<a href="#hcp-ibm-power-dns_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Clients outside the network can access the API server for the hosted cluster. A DNS entry must exist for the <code>api.&lt;hosted_cluster_name&gt;.&lt;basedomain&gt;</code> entry that points to the destination where the API server is reachable.</p>
+      <p>The DNS entry can be as simple as a record that points to one of the nodes in the managed cluster that runs the hosted control plane.</p>
+      <p>The entry can also point to a deployed load balancer to redirect incoming traffic to the ingress pods.</p>
+      <p>See the following example of a DNS configuration:</p>
+      <CodeBlock code={"$ cat /var/named/<example.krnl.es.zone>"} lang="terminal" />
+      <CodeBlock code={"$ TTL 900\n@ IN  SOA bastion.example.krnl.es.com. hostmaster.example.krnl.es.com. (\n      2019062002\n      1D 1H 1W 3H )\n  IN NS bastion.example.krnl.es.com.\n;\n;\napi                   IN A 1xx.2x.2xx.1xx\napi-int               IN A 1xx.2x.2xx.1xx\n;\n;\n*.apps.<hosted_cluster_name>.<basedomain>           IN A 1xx.2x.2xx.1xx\n;\n;EOF"} lang="terminal" title="Example output" />
+      <p>The <code>api</code> record refers to the IP address of the API load balancer that handles ingress and egress traffic for hosted control planes.</p>
+      <p>For IBM Power, add IP addresses that correspond to the IP address of the agent.</p>
+      <CodeBlock code={"compute-0              IN A 1xx.2x.2xx.1yy\ncompute-1              IN A 1xx.2x.2xx.1yy"} lang="terminal" title="Example configuration" />
+      <h3 id="hcp-custom-dns_hcp-deploy-ibm-power" class="group scroll-mt-20">Defining a custom DNS name<a href="#hcp-custom-dns_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">As a cluster administrator, you can create a hosted cluster with an external API DNS name that differs from the internal endpoint that gets used for node bootstraps and control plane communication. </p>
+      <p>You might want to define a different DNS name for the following reasons:</p>
+      <ul>
+      <li>To replace the user-facing TLS certificate with one from a public CA without breaking the control plane functions that bind to the internal root CA</li>
+      <li>To support split-horizon DNS and NAT scenarios</li>
+      <li>To ensure a similar experience to standalone control planes, where you can use functions, such as the <code>Show Login Command</code> function, with the correct <code>kubeconfig</code> and DNS configuration</li>
+      </ul>
+      <p>You can define a DNS name either during your initial setup or during postinstallation operations, by entering a domain name in the <code>kubeAPIServerDNSName</code> parameter of a <code>HostedCluster</code> object.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a valid TLS certificate that covers the DNS name that you set in the <code>kubeAPIServerDNSName</code> parameter.</li>
+      <li>You have a resolvable DNS name URI that can reach and point to the correct address.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      In the specification for the <code>HostedCluster</code> object, add the <code>kubeAPIServerDNSName</code> parameter and the address for the domain and specify which certificate to use, as shown in the following example:
+      <CodeBlock code={"#...\nspec:\n  configuration:\n    apiServer:\n      servingCerts:\n        namedCertificates:\n        - names:\n          - xxx.example.com\n          - yyy.example.com\n          servingCertificate:\n            name: <my_serving_certificate>\n  kubeAPIServerDNSName: <custom_address>"} lang="yaml" />
+      <p>The value for the <code>kubeAPIServerDNSName</code> parameter must be a valid and addressable domain.</p>
+      <p>After you define the <code>kubeAPIServerDNSName</code> parameter and specify the certificate, the Control Plane Operator controllers create a <code>kubeconfig</code> file named <code>custom-admin-kubeconfig</code>, where the file gets stored in the <code>HostedControlPlane</code> namespace. The generation of certificates happen from the root CA, and the <code>HostedControlPlane</code> namespace manages their expiration and renewal.</p>
+      <p>The Control Plane Operator reports a new <code>kubeconfig</code> file named <code>CustomKubeconfig</code> in the <code>HostedControlPlane</code> namespace. That file uses the defined new server in the <code>kubeAPIServerDNSName</code> parameter.</p>
+      <p>A reference for the custom <code>kubeconfig</code> file exists in the <code>status</code> parameter as <code>CustomKubeconfig</code> of the <code>HostedCluster</code> object. The <code>CustomKubeConfig</code> parameter is optional, and you can add the parameter only if the <code>kubeAPIServerDNSName</code> parameter is not empty. After you set the <code>CustomKubeConfig</code> parameter, the parameter triggers the generation of a secret named <code>&lt;hosted_cluster_name&gt;-custom-admin-kubeconfig</code> in the <code>HostedCluster</code> namespace. You can use the secret to access the <code>HostedCluster</code> API server. If you remove the <code>CustomKubeConfig</code> parameter during postinstallation operations, deletion of all related secrets and status references occur.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Defining a custom DNS name does not directly impact the data plane, so no expected rollouts occur. The <code>HostedControlPlane</code> namespace receives the changes from the HyperShift Operator and deletes the corresponding parameters.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If you remove the <code>kubeAPIServerDNSName</code> parameter from the specification for the <code>HostedCluster</code> object, all newly generated secrets and the <code>CustomKubeconfig</code> reference are removed from the cluster and from the <code>status</code> parameter.</p>
+      </li>
+      </ul>
+      <h2 id="hcp-bm-hc_hcp-deploy-ibm-power" class="group scroll-mt-20">Creating a hosted cluster by using the CLI<a href="#hcp-bm-hc_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">On bare-metal infrastructure, you can import a hosted cluster or create one by using the command-line interface (CLI).</p>
+      <p>After you enable the Assisted Installer as an add-on to multicluster engine Operator and you create a hosted cluster with the Agent platform, the HyperShift Operator installs the Agent Cluster API provider in the hosted control plane namespace. The Agent Cluster API provider connects a management cluster that hosts the control plane and a hosted cluster that consists of only the compute nodes.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Each hosted cluster must have a cluster-wide unique name. A hosted cluster name cannot be the same as any existing managed cluster. Otherwise, the multicluster engine Operator cannot manage the hosted cluster.</li>
+      <li>Do not use the word <code>clusters</code> as a hosted cluster name.</li>
+      <li>You cannot create a hosted cluster in the namespace of a multicluster engine Operator managed cluster.</li>
+      <li>For best security and management practices, create a hosted cluster separate from other hosted clusters.</li>
+      <li>Verify that you have a default storage class configured for your cluster. Otherwise, you might see pending persistent volume claims (PVCs).</li>
+      <li>By default when you use the <code>hcp create cluster agent</code> command, the command creates a hosted cluster with configured node ports. The preferred publishing strategy for hosted clusters on bare metal exposes services through a load balancer. If you create a hosted cluster by using the web console or by using Red Hat Advanced Cluster Management, to set a publishing strategy for a service besides the Kubernetes API server, you must manually specify the <code>servicePublishingStrategy</code> information in the <code>HostedCluster</code> custom resource.</li>
+      <li>
+      Ensure that you meet the requirements described in "Requirements for hosted control planes on bare metal", which includes requirements related to infrastructure, firewalls, ports, and services. For example, those requirements describe how to add the appropriate zone labels to the bare-metal hosts in your management cluster, as shown in the following example commands:
+      <CodeBlock code={"$ oc label node [compute-node-1] topology.kubernetes.io/zone=zone1"} lang="terminal" />
+      <CodeBlock code={"$ oc label node [compute-node-2] topology.kubernetes.io/zone=zone2"} lang="terminal" />
+      <CodeBlock code={"$ oc label node [compute-node-3] topology.kubernetes.io/zone=zone3"} lang="terminal" />
+      </li>
+      <li>Ensure that you have added bare-metal nodes to a hardware inventory.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a namespace by entering the following command:
+      <CodeBlock code={"$ oc create ns <hosted_cluster_namespace>"} lang="terminal" />
+      <p>Replace <code>&lt;hosted_cluster_namespace&gt;</code> with an identifier for your hosted cluster namespace. The HyperShift Operator creates the namespace. During the hosted cluster creation process on bare-metal infrastructure, a generated Cluster API provider role requires that the namespace already exists.</p>
+      </li>
+      <li>
+      Create the configuration file for your hosted cluster by entering the following command:
+      <CodeBlock code={"$ hcp create cluster agent \\\n  --name=<hosted_cluster_name> \\\n  --pull-secret=<path_to_pull_secret> \\\n  --agent-namespace=<hosted_control_plane_namespace> \\\n  --base-domain=<base_domain> \\\n  --api-server-address=api.<hosted_cluster_name>.<base_domain> \\\n  --etcd-storage-class=<etcd_storage_class> \\\n  --ssh-key=<path_to_ssh_key> \\\n  --namespace=<hosted_cluster_namespace> \\\n  --control-plane-availability-policy=HighlyAvailable \\\n  --release-image=quay.io/openshift-release-dev/ocp-release:<ocp_release_image>-multi \\\n  --node-pool-replicas=<node_pool_replica_count> \\\n  --disable-cluster-capabilities=<capability> \\\n  --enable-cluster-capabilities=<capability> \\\n  --render \\\n  --render-sensitive > hosted-cluster-config.yaml"} lang="terminal" />
+      <p>where:</p>
+      <ul>
+      <li><code>--name</code> specifies the name of your hosted cluster, such as <code>example</code>.</li>
+      <li><code>--pull-secret</code> specifies the path to your pull secret, such as <code>/user/name/pullsecret</code>.</li>
+      <li><code>--agent-namespace</code> specifies your hosted control plane namespace, such as <code>clusters-example</code>. Ensure that agents are available in this namespace by using the <code>oc get agent -n &lt;hosted_control_plane_namespace&gt;</code> command.</li>
+      <li><code>--base-domain</code> specifies your base domain, such as <code>krnl.es</code>.</li>
+      <li><code>--api-server-address</code> specifies the IP address that gets used for the Kubernetes API communication in the hosted cluster. If you do not set the <code>--api-server-address</code> flag, you must log in to connect to the management cluster.</li>
+      <li><code>--etcd-storage-class</code> specifies the etcd storage class name, such as <code>lvm-storageclass</code>.</li>
+      <li><code>--ssh-key</code> specifies the path to your SSH public key. The default file path is <code>~/.ssh/id_rsa.pub</code>.</li>
+      <li><code>--namespace</code> specifies your hosted cluster namespace.</li>
+      <li><code>--control-plane-availability-policy</code> specifies the availability policy for the hosted control plane components. Supported options are <code>SingleReplica</code> and <code>HighlyAvailable</code>. The default value is <code>HighlyAvailable</code>.</li>
+      <li><code>--release-image</code> specifies the supported OpenShift Container Platform version that you want to use, such as <code>4.22.0-multi</code>. If you are using a disconnected environment, replace <code>&lt;ocp_release_image&gt;</code> with the digest image. To extract the OpenShift Container Platform release image digest, see "Extracting the release image digest".</li>
+      <li><code>--node-pool-replicas</code> specifies the node pool replica count, such as <code>3</code>. You must specify the replica count as <code>0</code> or greater to create the same number of replicas. Otherwise, you do not create node pools.</li>
+      <li><code>--disable-cluster-capabilities</code> specifies that you want to disable optional capabilities in the hosted cluster. This flag is optional. For more information, see "Capabilities for hosted clusters".</li>
+      <li><code>--enable-cluster-capabilities</code> specifies that you want to enable optional capabilities in the hosted cluster. This flag is optional. For more information, see "Capabilities for hosted clusters".</li>
+      <li><code>--render</code> renders the output as YAML to stdout instead of applying the resources to the cluster. By default, secrets are not included in the rendered output.</li>
+      <li><code>--render-sensitive</code> includes secrets in the rendered output when used with the <code>--render</code> flag.</li>
+      </ul>
+      </li>
+      <li>
+      Configure the service publishing strategy. By default, hosted clusters use the <code>NodePort</code> service publishing strategy because node ports are always available without additional infrastructure. However, you can configure the service publishing strategy to use a load balancer.
+      <ul>
+      <li>If you are using the default <code>NodePort</code> strategy, configure the DNS to point to the hosted cluster compute nodes, not the management cluster nodes. For more information, see "DNS configurations on bare metal".</li>
+      <li>
+      For production environments, use the <code>LoadBalancer</code> strategy because this strategy provides certificate handling and automatic DNS resolution. The following example demonstrates changing the service publishing <code>LoadBalancer</code> strategy in your hosted cluster configuration file:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n# ...\nspec:\n  services:\n  - service: APIServer\n    servicePublishingStrategy:\n      type: LoadBalancer\n  - service: Ignition\n    servicePublishingStrategy:\n      type: Route\n  - service: Konnectivity\n    servicePublishingStrategy:\n      type: Route\n  - service: OAuthServer\n    servicePublishingStrategy:\n      type: Route\n  - service: OIDC\n    servicePublishingStrategy:\n      type: Route\n  sshKey:\n    name: <ssh_key>\n# ..."} lang="yaml" />
+      <p>Specify <code>LoadBalancer</code> as the API Server type. For all other services, specify <code>Route</code> as the type.</p>
+      </li>
+      </ul>
+      </li>
+      <li>
+      If you use external load balancers, configure the ingress endpoint as shown in the following example. If you do not configure the endpoint, the default behavior is to randomize the node port that the service exposes the ingress on. To configure how the ingress controller publishes the default ingress route, set the <code>endpointPublishingStrategy</code> parameter and its underlying functions by editing the <code>HostedCluster</code> resource:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n#...\nspec:\n  operatorConfiguration:\n    ingressOperator:\n      endpointPublishingStrategy:\n        hostNetwork:\n          httpPort: 80\n          httpsPort: 443\n          protocol: TCP\n          statsPort: 1936\n        type: HostNetwork\n#..."} lang="yaml" />
+      <p>The <code>spec.operatorConfiguration.ingressOperator.endPointPublishingStrategy.type</code> parameter specifies the endpoint for the load balancer. For bare-metal installations, use the <code>HostNetwork</code> type.</p>
+      </li>
+      <li>
+      Apply the changes to the hosted cluster configuration file by entering the following command:
+      <CodeBlock code={"$ oc apply -f hosted_cluster_config.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Check for the creation of the hosted cluster, node pools, and pods by entering the following commands:
+      <CodeBlock code={"$ oc get hostedcluster \\\n  <hosted_cluster_namespace> -n \\\n  <hosted_cluster_namespace> -o \\\n  jsonpath='{.status.conditions[?(@.status==\"False\")]}' | jq ."} lang="terminal" />
+      <CodeBlock code={"$ oc get nodepool \\\n  <hosted_cluster_namespace> -n \\\n  <hosted_cluster_namespace> -o \\\n  jsonpath='{.status.conditions[?(@.status==\"False\")]}' | jq ."} lang="terminal" />
+      <CodeBlock code={"$ oc get pods -n <hosted_cluster_namespace>"} lang="terminal" />
+      </li>
+      <li>Confirm that the hosted cluster is ready. The status of <code>Available: True</code> indicates the readiness of the cluster and the node pool status shows <code>AllMachinesReady: True</code>. These statuses indicate the healthiness of all cluster Operators.</li>
+      <li>
+      Install MetalLB in the hosted cluster:
+      <ol>
+      <li>
+      Extract the <code>kubeconfig</code> file from the hosted cluster and set the environment variable for hosted cluster access by entering the following commands:
+      <CodeBlock code={"$ oc get secret \\\n  <hosted_cluster_namespace>-admin-kubeconfig \\\n  -n <hosted_cluster_namespace> \\\n  -o jsonpath='{.data.kubeconfig}' \\\n  | base64 -d > \\\n  kubeconfig-<hosted_cluster_namespace>.yaml"} lang="terminal" />
+      <CodeBlock code={"$ export KUBECONFIG=\"/path/to/kubeconfig-<hosted_cluster_namespace>.yaml\""} lang="terminal" />
+      </li>
+      <li>
+      Install the MetalLB Operator by creating the <code>install-metallb-operator.yaml</code> file:
+      <CodeBlock code={"apiVersion: v1\nkind: Namespace\nmetadata:\n  name: metallb-system\n---\napiVersion: operators.coreos.com/v1\nkind: OperatorGroup\nmetadata:\n  name: metallb-operator\n  namespace: metallb-system\n---\napiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: metallb-operator\n  namespace: metallb-system\nspec:\n  channel: \"stable\"\n  name: metallb-operator\n  source: redhat-operators\n  sourceNamespace: openshift-marketplace\n  installPlanApproval: Automatic\n# ..."} lang="yaml" />
+      </li>
+      <li>
+      Apply the file by entering the following command:
+      <CodeBlock code={"$ oc apply -f install-metallb-operator.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Configure the MetalLB IP address pool by creating the <code>deploy-metallb-ipaddresspool.yaml</code> file:
+      <CodeBlock code={"apiVersion: metallb.io/v1beta1\nkind: IPAddressPool\nmetadata:\n  name: metallb\n  namespace: metallb-system\nspec:\n  autoAssign: true\n  addresses:\n  - 10.11.176.71-10.11.176.75\n---\napiVersion: metallb.io/v1beta1\nkind: L2Advertisement\nmetadata:\n  name: l2advertisement\n  namespace: metallb-system\nspec:\n  ipAddressPools:\n  - metallb\n# ..."} lang="yaml" />
+      </li>
+      <li>
+      Apply the configuration by entering the following command:
+      <CodeBlock code={"$ oc apply -f deploy-metallb-ipaddresspool.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Verify the installation of MetalLB by checking the Operator status, the IP address pool, and the <code>L2Advertisement</code> resource by entering the following commands:
+      <CodeBlock code={"$ oc get pods -n metallb-system"} lang="terminal" />
+      <CodeBlock code={"$ oc get ipaddresspool -n metallb-system"} lang="terminal" />
+      <CodeBlock code={"$ oc get l2advertisement -n metallb-system"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Configure the load balancer for ingress:
+      <ol>
+      <li>
+      Create the <code>ingress-loadbalancer.yaml</code> file:
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  annotations:\n    metallb.universe.tf/address-pool: metallb\n  name: metallb-ingress\n  namespace: openshift-ingress\nspec:\n  ports:\n    - name: http\n      protocol: TCP\n      port: 80\n      targetPort: 80\n    - name: https\n      protocol: TCP\n      port: 443\n      targetPort: 443\n  selector:\n    ingresscontroller.operator.openshift.io/deployment-ingresscontroller: default\n  type: LoadBalancer\n# ..."} lang="yaml" />
+      </li>
+      <li>
+      Apply the configuration by entering the following command:
+      <CodeBlock code={"$ oc apply -f ingress-loadbalancer.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the load balancer service works as expected by entering the following command:
+      <CodeBlock code={"$ oc get svc metallb-ingress -n openshift-ingress"} lang="terminal" />
+      <CodeBlock code={"NAME              TYPE           CLUSTER-IP       EXTERNAL-IP    PORT(S)                      AGE\nmetallb-ingress   LoadBalancer   172.31.127.129   10.11.176.71   80:30961/TCP,443:32090/TCP   16h"} lang="text" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Configure the DNS to work with the load balancer:
+      <ol>
+      <li>Configure the DNS for the <code>apps</code> domain by pointing the <code>*.apps.&lt;hosted_cluster_namespace&gt;.&lt;base_domain&gt;</code> wildcard DNS record to the load balancer IP address.</li>
+      <li>
+      Verify the DNS resolution by entering the following command:
+      <CodeBlock code={"$ nslookup console-openshift-console.apps.<hosted_cluster_namespace>.<base_domain> <load_balancer_ip_address>"} lang="terminal" />
+      <CodeBlock code={"Server:         10.11.176.1\nAddress:        10.11.176.1#53\n\nName:   console-openshift-console.apps.my-hosted-cluster.sample-base-domain.com\nAddress: 10.11.176.71"} lang="text" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Check the cluster Operators by entering the following command:
+      <CodeBlock code={"$ oc get clusteroperators"} lang="terminal" />
+      <p>Ensure that all Operators show <code>AVAILABLE: True</code>, <code>PROGRESSING: False</code>, and <code>DEGRADED: False</code>.</p>
+      </li>
+      <li>
+      Check the nodes by entering the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <p>Ensure that each node has the <code>READY</code> status.</p>
+      </li>
+      <li>
+      Test access to the console by entering the following URL in a web browser:
+      <CodeBlock code={"https://console-openshift-console.apps.<hosted_cluster_namespace>.<base_domain>"} lang="text" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements#hcp-requirements">Requirements for hosted control planes</a></li>
@@ -125,17 +342,338 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-import#hcp-import">Manually importing a hosted cluster</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-dc-extract_hcp-deploy-dc-bm">Extracting the release image digest</a></li>
       </ul>
-      <p class="/modules/hcp-cluster-capabilities-ref.md"></p>
-      <p class="/modules/hcp-cluster-capabilities-proc.md"></p>
-      <p class="/modules/hcp-ibm-power-create-heterogeneous-nodepools-agent-hc-con.md"></p>
-      <p class="/modules/hcp-ibm-power-create-heterogeneous-nodepools-agent-hc.md"></p>
-      <p class="/modules/hcp-ibm-power-heterogeneous-nodepools-create-agent-cluster.md"></p>
+      <h2 id="hcp-cluster-capabilities_hcp-deploy-ibm-power" class="group scroll-mt-20">Capabilities for hosted clusters<a href="#hcp-cluster-capabilities_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To reduce resource consumption and prevent unnecessary Operators and operands from being deployed, administrators can enable or disable optional OpenShift Container Platform components when they create a hosted cluster.</p>
+      <p>When capabilities are not specified on a <code>HostedCluster</code> resource, the cluster uses the OpenShift Container Platform version’s <code>DefaultCapabilitySet</code> settings, excluding the <code>baremetal</code> capability. As a result, most optional components are enabled by default.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Capabilities are immutable after cluster creation. You cannot change them after you create the <code>HostedCluster</code> resource.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="hcp-cluster-capabilities-ref_hcp-deploy-ibm-power" class="group scroll-mt-20">Capabilities that you can enable or disable for a hosted cluster<a href="#hcp-cluster-capabilities-ref_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Familiarize yourself with the supported capabilities that you can enable or disable for a <code>HostedCluster</code> resource.</p>
+      <p>The capabilities are described in the following table:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Capability</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>ImageRegistry</code></TableCell>
+      <TableCell>The OpenShift Image Registry Operator and its operands, including cloud storage infrastructure, such as S3 buckets and Identity and Access Management (IAM) users.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>openshift-samples</code></TableCell>
+      <TableCell>The OpenShift Samples Operator, which manages example <code>ImageStreams</code> and templates.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Insights</code></TableCell>
+      <TableCell>The Insights Operator, which collects and uploads cluster telemetry data.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>baremetal</code></TableCell>
+      <TableCell>The Bare Metal Infrastructure Operator. This capability is excluded from the default set. If needed, you must explicitly enable it.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Console</code></TableCell>
+      <TableCell>The OpenShift Web Console Operator and its operands.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NodeTuning</code></TableCell>
+      <TableCell>The Node Tuning Operator, which manages node-level performance tuning by using TuneD and performance profiles.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Ingress</code></TableCell>
+      <TableCell>The OpenShift Ingress Operator, which manages the default router of the cluster.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>The following rules apply when you combine capability settings:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">No overlap</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A capability cannot be in both the <code>enabled</code> and <code>disabled</code> lists simultaneously.</p></dd>
+      <dt class="font-semibold">Console requires Ingress</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You can disable the <code>Ingress</code> capability only if the <code>Console</code> capability is also disabled because the console depends on Ingress.</p></dd>
+      <dt class="font-semibold">Version requirement</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You must use OpenShift Container Platform 4.20 or later to disable any of the following capabilities: <code>openshift-samples</code>, <code>Insights</code>, <code>Console</code>, <code>NodeTuning</code>, and <code>Ingress</code>. You can disable <code>ImageRegistry</code> and <code>baremetal</code> on versions earlier than 4.20.</p></dd>
+      <dt class="font-semibold">Bare metal default exclusion</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The <code>baremetal</code> capability is excluded from the default set. You can add it to the cluster by explicitly enabling it.</p></dd>
+      </dl>
+      <h3 id="hcp-cluster-capabilities-proc_hcp-deploy-ibm-power" class="group scroll-mt-20">Setting capabilities for a hosted cluster<a href="#hcp-cluster-capabilities-proc_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To reduce unnecessary resource consumption, you can control which optional capabilities are enabled for a hosted cluster when you create the cluster.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Capabilities are immutable after cluster creation. You cannot change them after you create the <code>HostedCluster</code> resource.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can specify which capabilities are enabled by either using the <code>hcp</code> command-line interface (CLI) or by setting the <code>HostedCluster</code> manifest.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To specify which capabilities are enabled in a hosted cluster by using the CLI, you can add the <code>--disable-cluster-capabilities</code> flag, the <code>--enable-cluster-capabilities</code> flag, or both. The following example shows how to disable the <code>ImageRegistry</code>, <code>Console</code>, and <code>Ingress</code> capabilities and enable the <code>baremetal</code> capability while you create a hosted cluster on AWS by using the <code>hcp</code> command-line interface:
+      <CodeBlock code={"$ hcp create cluster aws \\\n    --name my-hosted-cluster \\\n    --disable-cluster-capabilities=ImageRegistry,Console,Ingress \\\n    --enable-cluster-capabilities=baremetal"} lang="terminal" />
+      <p>You can specify multiple capabilities as a comma-separated list. The supported values are as follows:</p>
+      <ul>
+      <li><code>ImageRegistry</code></li>
+      <li><code>openshift-samples</code></li>
+      <li><code>Insights</code></li>
+      <li><code>baremetal</code></li>
+      <li><code>Console</code></li>
+      <li><code>NodeTuning</code></li>
+      <li><code>Ingress</code></li>
+      </ul>
+      </li>
+      <li>
+      To specify which capabilities are enabled in a hosted cluster by using the <code>HostedCluster</code> manifest at cluster creation time, see the following examples:
+      <ul>
+      <li>
+      To directly disable capabilities in a hosted cluster, add the <code>spec.capabilities.disabled</code> section in the <code>HostedCluster</code> resource:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-hosted-cluster\n  namespace: my-cluster-namespace\nspec:\n  capabilities:\n    disabled:\n      - ImageRegistry\n      - Console\n      - Ingress\n  # ..."} lang="yaml" />
+      </li>
+      <li>
+      To explicitly enable a capability that is not part of the default set of capabilities, such as the <code>baremetal</code> capability, see the following example:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-hosted-cluster\n  namespace: my-cluster-namespace\nspec:\n  capabilities:\n    enabled:\n      - baremetal\n  # ..."} lang="yaml" />
+      </li>
+      <li>
+      You can use both <code>enabled</code> and <code>disabled</code> if no capabilities are in both lists. See the following example:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-hosted-cluster\n  namespace: my-cluster-namespace\nspec:\n  capabilities:\n    enabled:\n      - baremetal\n    disabled:\n      - ImageRegistry\n      - openshift-samples\n  # ..."} lang="yaml" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="hcp-ibm-power-create-heterogeneous-nodepools-agent-hc-con_hcp-deploy-ibm-power" class="group scroll-mt-20">About creating heterogeneous node pools on agent hosted clusters<a href="#hcp-ibm-power-create-heterogeneous-nodepools-agent-hc-con_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A node pool is a group of nodes within a cluster that share the same configuration. Heterogeneous node pools have different configurations so that you can create pools and optimize them for various workloads.</p>
+      <p>You can create heterogeneous node pools on the agent platform. The platform enables clusters to run diverse machine types, such as <code>x86_64</code> or <code>ppc64le</code>, within a single hosted cluster.</p>
+      <p>Creating a heterogeneous node pool requires completion of the following general steps:</p>
+      <ul>
+      <li>Create an <code>AgentServiceConfig</code> custom resource (CR) that informs the Operator how much storage it needs for components such as the database and filesystem. The CR also defines which OpenShift Container Platform versions to support.</li>
+      <li>Create an agent cluster.</li>
+      <li>Create the heterogeneous node pool.</li>
+      <li>Configure DNS for hosted control planes</li>
+      <li>Create an <code>InfraEnv</code> custom resource (CR) for each architecture.</li>
+      <li>Add agents to the heterogeneous cluster.</li>
+      </ul>
+      <h3 id="hcp-ibm-power-create-heterogeneous-nodepools-agent-hc_hcp-deploy-ibm-power" class="group scroll-mt-20">Creating the AgentServiceConfig custom resource<a href="#hcp-ibm-power-create-heterogeneous-nodepools-agent-hc_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To create heterogeneous node pools on an agent hosted cluster, you need to create the <code>AgentServiceConfig</code> CR with two heterogeneous architecture operating system (OS) images.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Run the following command:
+      <CodeBlock code={"$ envsubst <<\"EOF\" | oc apply -f -\napiVersion: agent-install.openshift.io/v1beta1\nkind: AgentServiceConfig\nmetadata:\n name: agent\nspec:\n  databaseStorage:\n    accessModes:\n    - ReadWriteOnce\n    resources:\n      requests:\n        storage: <db_volume_name>\n  filesystemStorage:\n    accessModes:\n    - ReadWriteOnce\n    resources:\n      requests:\n        storage: <fs_volume_name>\n  osImages:\n    - openshiftVersion: <ocp_version>\n      version: <ocp_release_version_x86>\n      url: <iso_url_x86>\n      rootFSUrl: <root_fs_url_x86>\n      cpuArchitecture: <arch_x86>\n    - openshiftVersion: <ocp_version>\n      version: <ocp_release_version_ppc64le>\n      url: <iso_url_ppc64le>\n      rootFSUrl: <root_fs_url_ppc64le>\n      cpuArchitecture: <arch_ppc64le>\nEOF"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;db_volume_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the multicluster engine for Kubernetes Operator <code>agentserviceconfig</code> config, database volume name.</p></dd>
+      <dt class="font-semibold"><code>&lt;fs_volume_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the multicluster engine Operator <code>agentserviceconfig</code> config, filesystem volume name.</p></dd>
+      <dt class="font-semibold"><code>&lt;ocp_version&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the current version of OpenShift Container Platform.</p></dd>
+      <dt class="font-semibold"><code>&lt;ocp_release_version_x86&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the current OpenShift Container Platform release version for x86.</p></dd>
+      <dt class="font-semibold"><code>&lt;iso_url_x86&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the ISO URL for x86.</p></dd>
+      <dt class="font-semibold"><code>&lt;root_fs_url_x86&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the root filesystem URL for x86.</p></dd>
+      <dt class="font-semibold"><code>&lt;arch_x86&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the CPU architecture for x86.</p></dd>
+      <dt class="font-semibold"><code>&lt;ocp_release_version_ppc64le&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the OpenShift Container Platform release version for <code>ppc64le</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;iso_url_ppc64le&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the ISO URL for <code>ppc64le</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;root_fs_url_ppc64le&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the root filesystem URL for <code>ppc64le</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;arch_ppc64le&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the CPU architecture for <code>ppc64le</code>.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h3 id="hcp-ibm-power-heterogeneous-nodepools-create-agent-cluster_hcp-deploy-ibm-power" class="group scroll-mt-20">Create an agent cluster<a href="#hcp-ibm-power-heterogeneous-nodepools-create-agent-cluster_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">An agent-based approach manages and provisions an agent cluster. An agent cluster can use heterogeneous node pools, allowing the use of different types of compute nodes within the same cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You used a multi-architecture release image to enable support for heterogeneous node pools when creating a hosted cluster. Find the latest multi-architecture images on the "Multi-arch release images" page.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an environment variable for the cluster namespace by running the following command:
+      <CodeBlock code={"$ export CLUSTERS_NAMESPACE=<hosted_cluster_namespace>"} lang="terminal" />
+      </li>
+      <li>
+      Create an environment variable for the machine classless inter-domain routing (CIDR) notation by running the following command:
+      <CodeBlock code={"$ export MACHINE_CIDR=192.168.122.0/24"} lang="terminal" />
+      </li>
+      <li>
+      Create the hosted control namespace by running the following command:
+      <CodeBlock code={"$ oc create ns <hosted_control_plane_namespace>"} lang="terminal" />
+      </li>
+      <li>
+      Create the cluster by running the following command:
+      <CodeBlock code={"$ hcp create cluster agent \\\n    --name=<hosted_cluster_name> \\\n    --pull-secret=<pull_secret_file> \\\n    --agent-namespace=<hosted_control_plane_namespace> \\\n    --base-domain=<base_domain> \\\n    --api-server-address=api.<hosted_cluster_name>.<basedomain> \\\n    --release-image=quay.io/openshift-release-dev/ocp-release:<ocp_release>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hosted_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hosted cluster name.</p></dd>
+      <dt class="font-semibold"><code>&lt;pull_secret_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the pull secret file path.</p></dd>
+      <dt class="font-semibold"><code>&lt;hosted_control_plane_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace for the hosted control plane.</p></dd>
+      <dt class="font-semibold"><code>&lt;base_domain&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the base domain for the hosted cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;ocp_release&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the current OpenShift Container Platform release version.</p></dd>
+      </dl>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://multi.ocp.releases.ci.openshift.org/">Multi-arch release images</a></li></ul>
-      <p class="/modules/hcp-ibm-power-heterogeneous-nodepools-agent-hc-dns.md"></p>
-      <p class="/modules/hcp-create-infraenv.md"></p>
-      <p class="/modules/hcp-adding-agents.md"></p>
-      <p class="/modules/hcp-scale-the-nodepool.md"></p>
+      <h3 id="hcp-create-heterogeneous-nodepools_hcp-deploy-ibm-power" class="group scroll-mt-20">Creating heterogeneous node pools<a href="#hcp-create-heterogeneous-nodepools_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You create heterogeneous node pools by using the <code>NodePool</code> custom resource (CR), so that you can optimize costs and performance by associating different workloads to specific hardware.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To define a <code>NodePool</code> CR, create a YAML file similar to the following example:
+      <CodeBlock code={"envsubst <<\"EOF\" | oc apply -f -\napiVersion:apiVersion: hypershift.openshift.io/v1beta1\nkind: NodePool\nmetadata:\n  name: <hosted_cluster_name>\n  namespace: <clusters_namespace>\nspec:\n  arch: <arch_ppc64le>\n  clusterName: <hosted_cluster_name>\n  management:\n    autoRepair: false\n    upgradeType: InPlace\n  nodeDrainTimeout: 0s\n  nodeVolumeDetachTimeout: 0s\n  platform:\n    agent:\n      agentLabelSelector:\n        matchLabels:\n          inventory.agent-install.openshift.io/cpu-architecture: <arch_ppc64le>\n    type: Agent\n  release:\n    image: quay.io/openshift-release-dev/ocp-release:<ocp_release>\n  replicas: 0\nEOF"} lang="yaml" />
+      <p><code>&lt;arch_ppc64le&gt;</code>: The selector block selects the agents that match the specified label. To create a node pool of architecture <code>ppc64le</code> with zero replicas, specify <code>ppc64le</code>. This ensures that the selector block selects only agents from <code>ppc64le</code> architecture during a scaling operation.</p>
+      </li>
+      </ul>
+      <h3 id="hcp-ibm-power-heterogeneous-nodepools-agent-hc-dns_hcp-deploy-ibm-power" class="group scroll-mt-20">DNS configuration for hosted control planes<a href="#hcp-ibm-power-heterogeneous-nodepools-agent-hc-dns_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">A Domain Name Service (DNS) configuration for hosted control planes means that external clients can reach ingress controllers, so that the clients can route traffic to internal components. Configuring this setting ensures that traffic gets routed to either a <code>ppc64le</code> or an <code>x86_64</code> compute node.</p>
+      <p>You can point an <code>*.apps.&lt;cluster_name&gt;</code> record to either of the compute nodes that hosts the ingress application. Or, if you can set up a load balancer on top of the compute nodes, point the record to this load balancer. When you are creating a heterogeneous node pool, make sure the compute nodes can reach each other or keep them in the same network.</p>
+      <h3 id="hcp-create-infraenv_hcp-deploy-ibm-power" class="group scroll-mt-20">Creating infrastructure environment resources<a href="#hcp-create-infraenv_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">For heterogeneous node pools, you must create an <code>infraEnv</code> custom resource (CR) for each architecture. This configuration ensures that the correct architecture-specific operating system and boot artifacts get used during the node provisioning process.</p>
+      <p>For example, for node pools with <code>x86_64</code> and <code>ppc64le</code> architectures, create an <code>InfraEnv</code> CR for <code>x86_64</code> and <code>ppc64le</code>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Before starting the procedure, ensure that you add the operating system images for both <code>x86_64</code> and <code>ppc64le</code> architectures to the <code>AgentServiceConfig</code> resource. After this, you can use the <code>InfraEnv</code> resources to get the minimal ISO image.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the <code>InfraEnv</code> resource with <code>x86_64</code> architecture for heterogeneous node pools by running the following command:
+      <CodeBlock code={"$ envsubst <<\"EOF\" | oc apply -f -\napiVersion: agent-install.openshift.io/v1beta1\nkind: InfraEnv\nmetadata:\n  name: <hosted_cluster_name>-<arch_x86>\n  namespace: <hosted_control_plane_namespace>\nspec:\n  cpuArchitecture: <arch_x86>\n  pullSecretRef:\n    name: pull-secret\n  sshAuthorizedKey: <ssh_pub_key>\nEOF"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hosted_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hosted cluster name.</p></dd>
+      <dt class="font-semibold"><code>&lt;arch_x86&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>x86_64</code> architecture.</p></dd>
+      <dt class="font-semibold"><code>&lt;hosted_control_plane_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hosted control plane namespace.</p></dd>
+      <dt class="font-semibold"><code>&lt;ssh_pub_key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the SSH public key.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the <code>InfraEnv</code> resource with <code>ppc64le</code> architecture for heterogeneous node pools by running the following command:
+      <CodeBlock code={"envsubst <<\"EOF\" | oc apply -f -\napiVersion: agent-install.openshift.io/v1beta1\nkind: InfraEnv\nmetadata:\n  name: <hosted_cluster_name>-<arch_ppc64le>\n  namespace: <hosted_control_plane_namespace>\nspec:\n  cpuArchitecture: <arch_ppc64le>\n  pullSecretRef:\n    name: pull-secret\n  sshAuthorizedKey: <ssh_pub_key>\nEOF"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hosted_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hosted cluster name.</p></dd>
+      <dt class="font-semibold"><code>&lt;arch_ppc64le&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>ppc64le</code> architecture.</p></dd>
+      <dt class="font-semibold"><code>&lt;hosted_control_plane_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hosted control plane namespace.</p></dd>
+      <dt class="font-semibold"><code>&lt;ssh_pub_key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the SSH public key.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Verify the successful creation of the <code>InfraEnv</code> resources by running the following commands:
+      <ul>
+      <li>
+      Verify the successful creation of the <code>x86_64</code> <code>InfraEnv</code> resource:
+      <CodeBlock code={"$ oc describe InfraEnv <hosted_cluster_name>-<arch_x86>"} lang="terminal" />
+      </li>
+      <li>
+      Verify the successful creation of the <code>ppc64le</code> <code>InfraEnv</code> resource:
+      <CodeBlock code={"$ oc describe InfraEnv <hosted_cluster_name>-<arch_ppc64le>"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Generate a live ISO that allows either a virtual machine or a bare-metal machine to join as agents by running the following commands:
+      <ol>
+      <li>
+      Generate a live ISO for <code>x86_64</code>:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get InfraEnv <hosted_cluster_name>-<arch_x86> -ojsonpath=\"{.status.isoDownloadURL}\""} lang="terminal" />
+      </li>
+      <li>
+      Generate a live ISO for <code>ppc64le</code>:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get InfraEnv <hosted_cluster_name>-<arch_ppc64le> -ojsonpath=\"{.status.isoDownloadURL}\""} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h3 id="hcp-adding-agents_hcp-deploy-ibm-power" class="group scroll-mt-20">Adding agents to the heterogeneous cluster<a href="#hcp-adding-agents_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You add agents by manually configuring the machine to boot with a live ISO. You can download the live ISO and use it to boot a bare-metal node or a virtual machine. </p>
+      <p>On boot, the node communicates with the <code>assisted-service</code> and registers as an agent in the same namespace as the <code>InfraEnv</code> resource. After the creation of each agent, you can optionally set its <code>installation_disk_id</code> and <code>hostname</code> parameters in the specifications. You can then approve the agent to indicate the agent as ready for use.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Obtain a list of agents by running the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get agents"} lang="terminal" />
+      <CodeBlock code={"NAME                                   CLUSTER   APPROVED   ROLE          STAGE\n86f7ac75-4fc4-4b36-8130-40fa12602218                        auto-assign\ne57a637f-745b-496e-971d-1abbf03341ba                        auto-assign"} lang="text" title="Example output" />
+      </li>
+      <li>
+      Patch an agent by running the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> patch agent 86f7ac75-4fc4-4b36-8130-40fa12602218 -p '{\"spec\":{\"installation_disk_id\":\"/dev/sda\",\"approved\":true,\"hostname\":\"worker-0.example.krnl.es\"}}' --type merge"} lang="terminal" />
+      </li>
+      <li>
+      Patch the second agent by running the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> patch agent 23d0c614-2caa-43f5-b7d3-0b3564688baa -p '{\"spec\":{\"installation_disk_id\":\"/dev/sda\",\"approved\":true,\"hostname\":\"worker-1.example.krnl.es\"}}' --type merge"} lang="terminal" />
+      </li>
+      <li>
+      Check the agent approval status by running the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get agents"} lang="terminal" />
+      <CodeBlock code={"NAME                                   CLUSTER   APPROVED   ROLE          STAGE\n86f7ac75-4fc4-4b36-8130-40fa12602218             true       auto-assign\ne57a637f-745b-496e-971d-1abbf03341ba             true       auto-assign"} lang="text" title="Example output" />
+      </li>
+      </ol>
+      <h3 id="hcp-scale-the-nodepool_hcp-deploy-ibm-power" class="group scroll-mt-20">Scaling the node pool<a href="#hcp-scale-the-nodepool_hcp-deploy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">After you approve your agents, you can scale the node pools. The <code>agentLabelSelector</code> value that you configured in the node pool ensures that only matching agents get added to the cluster. This also helps scale down the node pool.</p>
+      <p>To remove specific architecture nodes from the cluster, scale down the corresponding node pool.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Scale the node pool by running the following command:
+      <CodeBlock code={"$ oc -n <clusters_namespace> scale nodepool <nodepool_name> --replicas 2"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The Cluster API agent provider picks two agents randomly to assign to the hosted cluster. These agents pass through different states and then join the hosted cluster as OpenShift Container Platform nodes. The various agent states are <code>binding</code>, <code>discovering</code>, <code>insufficient</code>, <code>installing</code>, <code>installing-in-progress</code>, and <code>added-to-existing-cluster</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      List the agents by running the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get agent"} lang="terminal" />
+      <CodeBlock code={"NAME                                   CLUSTER         APPROVED   ROLE          STAGE\n4dac1ab2-7dd5-4894-a220-6a3473b67ee6   hypercluster1   true       auto-assign  \nd9198891-39f4-4930-a679-65fb142b108b                   true       auto-assign  \nda503cf1-a347-44f2-875c-4960ddb04091   hypercluster1   true       auto-assign"} lang="text" title="Example output" />
+      </li>
+      <li>
+      Check the status of a specific scaled agent by running the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get agent -o jsonpath='{range .items[*]}BMH: {@.metadata.labels.agent-install\\.openshift\\.io/bmh} Agent: {@.metadata.name} State: {@.status.debugInfo.state}{\"\\n\"}{end}'"} lang="terminal" />
+      <CodeBlock code={"BMH: ocp-worker-2 Agent: 4dac1ab2-7dd5-4894-a220-6a3473b67ee6 State: binding\nBMH: ocp-worker-0 Agent: d9198891-39f4-4930-a679-65fb142b108b State: known-unbound\nBMH: ocp-worker-1 Agent: da503cf1-a347-44f2-875c-4960ddb04091 State: insufficient"} lang="text" title="Example output" />
+      </li>
+      <li>
+      After the agents reach the <code>added-to-existing-cluster</code> state, verify that the OpenShift Container Platform nodes are ready by running the following command:
+      <CodeBlock code={"$ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME           STATUS   ROLES    AGE     VERSION\nocp-worker-1   Ready    worker   5m41s   v1.24.0+3882f8f\nocp-worker-2   Ready    worker   6m3s    v1.24.0+3882f8f"} lang="text" title="Example output" />
+      </li>
+      <li>
+      Adding workloads to the nodes can reconcile some cluster operators. The following command displays the creation of two machines that happened after scaling up the node pool:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> get machines"} lang="terminal" />
+      <CodeBlock code={"NAME                            CLUSTER               NODENAME       PROVIDERID                                     PHASE     AGE   VERSION\nhypercluster1-c96b6f675-m5vch   hypercluster1-b2qhl   ocp-worker-1   agent://da503cf1-a347-44f2-875c-4960ddb04091   Running   15m   4.11.5\nhypercluster1-c96b6f675-tl42p   hypercluster1-b2qhl   ocp-worker-2   agent://4dac1ab2-7dd5-4894-a220-6a3473b67ee6   Running   15m   4.11.5"} lang="text" title="Example output" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

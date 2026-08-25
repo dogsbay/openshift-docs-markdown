@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-customize-web-console","text":"Customize the web console"},{"depth":2,"slug":"additional-resources_virt-customize-web-console","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-customize-web-console","text":"Customize the web console"},{"depth":2,"slug":"virt-enable-bulk-operations-web-console_virt-customize-web-console","text":"Enable bulk operations for virtual machines"},{"depth":2,"slug":"virt-create-custom-console-tabs_virt-customize-web-console","text":"Create custom tabs in the web console"},{"depth":2,"slug":"additional-resources_virt-customize-web-console","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/virt-customize-web-console";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/managing_vms"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Customize the web console {#virt-customize-web-console}\n\nAs a cluster administrator, you can customize the OpenShift Container Platform web console by integrating dynamic plugins. Virtual machine (VM) owners can then use the actions provided by these plugins from different tabs on the **Virtualization** page.\n\n## Additional resources {#additional-resources_virt-customize-web-console}\n\n- [Dynamic plugins overview](/openshift-docs-markdown/web_console/dynamic-plugin/overview-dynamic-plugin#overview-dynamic-plugin)\n- [Getting started with dynamic plugins](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugins-get-started)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-customize-web-console.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Customize the web console {#virt-customize-web-console}\n\nAs a cluster administrator, you can customize the OpenShift Container Platform web console by integrating dynamic plugins. Virtual machine (VM) owners can then use the actions provided by these plugins from different tabs on the **Virtualization** page.\n\n## Enable bulk operations for virtual machines {#virt-enable-bulk-operations-web-console_virt-customize-web-console}\n\nYou can enable virtual machine (VM) owners to perform large-scale management tasks, such as backups and storage migrations, across many virtual machines simultaneously, by creating a dynamic plugin that enables bulk actions in the web console.\n\nThis integration reduces manual tasks for multi-VM environments and ensures that custom actions are available as native, selectable bulk actions from within the **Virtualization** page.\n\n**Prerequisites**\n\n- You have created a dynamic plugin.\n- You have cluster administrator permissions.\n- You have access to an OpenShift Container Platform cluster where OpenShift Virtualization is installed.\n\n**Procedure**\n\n1. In the configuration file of your plugin, add a `console.action/provider` extension.\n\n   To enable bulk actions, you must use a `contextId` field that targets an array of `VirtualMachine` resources.\n\n   Example `console-extensions.json` file excerpt:\n\n   ```json\n   {\n      type: 'console.action/provider',\n      properties: {\n        contextId: 'kubevirt.io~v1~VirtualMachine[]',\n        provider: {\n          $codeRef: 'useSimpleBulkActions',\n        },\n      },\n    }\n   ```\n\n   - `properties.contextId` specifies a string for which the `KubeVirt` plugin declares support.\n   - `properties.provider` specifies the React hook or function in your source code that generates the action items.\n2. In the source file referenced by the extension, implement a hook that handles the array of selected resources.\n\n   Example plugin:\n\n   ```ts\n   import {\n     type ExtensionHook,\n     AccessReviewResourceAttributes,\n     Action,\n   } from '@openshift-console/dynamic-plugin-sdk';\n   import { V1VirtualMachine } from '@kubevirt-ui-ext/kubevirt-api/kubevirt';\n   import { VirtualMachineModel } from '@kubevirt-ui-ext/kubevirt-api/console';\n   import { useMemo } from 'react';\n\n   const useSimpleBulkActions: ExtensionHook<Action[], (V1VirtualMachine & { cluster?: string })[]> = (\n     vms,\n   ) => {\n     const areAllRunning = vms.every((vm) => vm.status?.printableStatus === 'Running');\n     const isCrossCluster = new Set(vms.map((vm) => vm.cluster)).size > 1;\n     const firstVm = vms[0];\n\n     const accessReview: AccessReviewResourceAttributes = useMemo(\n       () => ({\n         cluster: firstVm?.cluster,\n         group: VirtualMachineModel.apiGroup,\n         name: firstVm?.metadata?.name,\n         namespace: firstVm?.metadata?.namespace,\n         resource: VirtualMachineModel.plural,\n         verb: 'delete',\n       }),\n       [firstVm?.cluster, firstVm?.metadata?.name, firstVm?.metadata?.namespace],\n     );\n\n     const checkAllRunningAction: Action = useMemo(\n       () => ({\n         id: 'check-all-running',\n         cta: () => console.log('All selected VMs are running?', areAllRunning),\n         label: 'Check VMs are running',\n         disabled: isCrossCluster,\n         disabledTooltip: isCrossCluster ? 'VMs from different clusters detected' : '',\n         accessReview,\n       }),\n       [areAllRunning, isCrossCluster, accessReview],\n     );\n\n     const actions = useMemo(() => [checkAllRunningAction], [checkAllRunningAction]);\n     return [actions, true, null];\n   };\n\n   export default useSimpleBulkActions;\n   ```\n\n   The plugin shown in the previous example checks if all selected VMs are running and prints a log message to the console.\n3. Deploy the plugin to the cluster.\n\n**Verification**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Verify that you can apply bulk actions to VMs.\n\n   1. Go to **Virtualization** -> **VirtualMachines**.\n   2. Select the checkboxes for two or more existing VMs.\n   3. Click the **Actions** drop-down menu. Confirm that you can run the custom action you created.\n\n## Create custom tabs in the web console {#virt-create-custom-console-tabs_virt-customize-web-console}\n\nAs a cluster administrator, you can customize the OpenShift Container Platform web console by adding customized tabs to the **Virtualization** page.\n\n**Prerequisites**\n\n- You have created a dynamic plugin.\n- You have cluster administrator permissions.\n- You have access to an OpenShift Container Platform cluster where OpenShift Virtualization is installed.\n\n**Procedure**\n\n- Add the `kubevirt.tab/horizontalNav` extension to the `plugin-extensions.ts` file of the `KubeVirt` plugin:\n\n  ```typescript\n  {\n      type: 'kubevirt.tab/horizontalNav',\n      properties: {\n        model: {\n          version: 'v1',\n          group: 'kubevirt.io',\n          kind: 'VirtualMachine',\n        },\n        page: {\n          name: 'Kubevirt Test',\n          href: 'kubevirt-test',\n        },\n        isVisible: { $codeRef: 'isKubevirtTabVisible' },\n        component: { $codeRef: 'KubevirtTestTab' },\n      },\n    }\n  ```\n\n  - The `component` flag that references `KubevirtTestTab` refers to the actual tab content that you want to include.\n  - The `isVisible` flag refers to the following example code reference:\n\n    ```typescript\n    import { K8sResourceCommon } from '@openshift-console/dynamic-plugin-sdk';\n\n    const isKubevirtTabVisible = ({\n      created,\n    }: {\n      created: boolean;\n      obj: K8sResourceCommon & { cluster?: string };\n    }) => created;\n    export default isKubevirtTabVisible;\n    ```\n\n    The `KubeVirt` plugin provides this parameter, and it is `true` if the referenced object has been already created. This flag ensures that the plugin author can prevent the custom tab from being displayed on certain pages, such as the **Create Virtual Machine** page.\n\n**Verification**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Go to the **Virtualization** page and verify that the custom tab you have created is visible.\n3. Go to the **Create Virtual Machine** page and verify that your custom backup actions or tabs do not appear.\n\n## Additional resources {#additional-resources_virt-customize-web-console}\n\n- [Dynamic plugins overview](/openshift-docs-markdown/web_console/dynamic-plugin/overview-dynamic-plugin#overview-dynamic-plugin)\n- [Getting started with dynamic plugins](/openshift-docs-markdown/web_console/dynamic-plugin/dynamic-plugins-get-started#dynamic-plugins-get-started)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-customize-web-console.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +91,78 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-customize-web-console" class="group scroll-mt-20">Customize the web console<a href="#virt-customize-web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>As a cluster administrator, you can customize the OpenShift Container Platform web console by integrating dynamic plugins. Virtual machine (VM) owners can then use the actions provided by these plugins from different tabs on the <strong>Virtualization</strong> page.</p>
-      <p class="/modules/virt-enable-bulk-operations-web-console.md"></p>
-      <p class="/modules/virt-create-custom-console-tabs.md"></p>
+      <h2 id="virt-enable-bulk-operations-web-console_virt-customize-web-console" class="group scroll-mt-20">Enable bulk operations for virtual machines<a href="#virt-enable-bulk-operations-web-console_virt-customize-web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can enable virtual machine (VM) owners to perform large-scale management tasks, such as backups and storage migrations, across many virtual machines simultaneously, by creating a dynamic plugin that enables bulk actions in the web console.</p>
+      <p>This integration reduces manual tasks for multi-VM environments and ensures that custom actions are available as native, selectable bulk actions from within the <strong>Virtualization</strong> page.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have created a dynamic plugin.</li>
+      <li>You have cluster administrator permissions.</li>
+      <li>You have access to an OpenShift Container Platform cluster where OpenShift Virtualization is installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      In the configuration file of your plugin, add a <code>console.action/provider</code> extension.
+      <p>To enable bulk actions, you must use a <code>contextId</code> field that targets an array of <code>VirtualMachine</code> resources.</p>
+      <p>Example <code>console-extensions.json</code> file excerpt:</p>
+      <CodeBlock code={"{\n   type: 'console.action/provider',\n   properties: {\n     contextId: 'kubevirt.io~v1~VirtualMachine[]',\n     provider: {\n       $codeRef: 'useSimpleBulkActions',\n     },\n   },\n }"} lang="json" />
+      <ul>
+      <li><code>properties.contextId</code> specifies a string for which the <code>KubeVirt</code> plugin declares support.</li>
+      <li><code>properties.provider</code> specifies the React hook or function in your source code that generates the action items.</li>
+      </ul>
+      </li>
+      <li>
+      In the source file referenced by the extension, implement a hook that handles the array of selected resources.
+      <p>Example plugin:</p>
+      <CodeBlock code={"import {\n  type ExtensionHook,\n  AccessReviewResourceAttributes,\n  Action,\n} from '@openshift-console/dynamic-plugin-sdk';\nimport { V1VirtualMachine } from '@kubevirt-ui-ext/kubevirt-api/kubevirt';\nimport { VirtualMachineModel } from '@kubevirt-ui-ext/kubevirt-api/console';\nimport { useMemo } from 'react';\n\nconst useSimpleBulkActions: ExtensionHook<Action[], (V1VirtualMachine & { cluster?: string })[]> = (\n  vms,\n) => {\n  const areAllRunning = vms.every((vm) => vm.status?.printableStatus === 'Running');\n  const isCrossCluster = new Set(vms.map((vm) => vm.cluster)).size > 1;\n  const firstVm = vms[0];\n\n  const accessReview: AccessReviewResourceAttributes = useMemo(\n    () => ({\n      cluster: firstVm?.cluster,\n      group: VirtualMachineModel.apiGroup,\n      name: firstVm?.metadata?.name,\n      namespace: firstVm?.metadata?.namespace,\n      resource: VirtualMachineModel.plural,\n      verb: 'delete',\n    }),\n    [firstVm?.cluster, firstVm?.metadata?.name, firstVm?.metadata?.namespace],\n  );\n\n  const checkAllRunningAction: Action = useMemo(\n    () => ({\n      id: 'check-all-running',\n      cta: () => console.log('All selected VMs are running?', areAllRunning),\n      label: 'Check VMs are running',\n      disabled: isCrossCluster,\n      disabledTooltip: isCrossCluster ? 'VMs from different clusters detected' : '',\n      accessReview,\n    }),\n    [areAllRunning, isCrossCluster, accessReview],\n  );\n\n  const actions = useMemo(() => [checkAllRunningAction], [checkAllRunningAction]);\n  return [actions, true, null];\n};\n\nexport default useSimpleBulkActions;"} lang="ts" />
+      <p>The plugin shown in the previous example checks if all selected VMs are running and prints a log message to the console.</p>
+      </li>
+      <li>Deploy the plugin to the cluster.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>
+      Verify that you can apply bulk actions to VMs.
+      <ol>
+      <li>Go to <strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong>.</li>
+      <li>Select the checkboxes for two or more existing VMs.</li>
+      <li>Click the <strong>Actions</strong> drop-down menu. Confirm that you can run the custom action you created.</li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="virt-create-custom-console-tabs_virt-customize-web-console" class="group scroll-mt-20">Create custom tabs in the web console<a href="#virt-create-custom-console-tabs_virt-customize-web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">As a cluster administrator, you can customize the OpenShift Container Platform web console by adding customized tabs to the <strong>Virtualization</strong> page.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have created a dynamic plugin.</li>
+      <li>You have cluster administrator permissions.</li>
+      <li>You have access to an OpenShift Container Platform cluster where OpenShift Virtualization is installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Add the <code>kubevirt.tab/horizontalNav</code> extension to the <code>plugin-extensions.ts</code> file of the <code>KubeVirt</code> plugin:
+      <CodeBlock code={"{\n    type: 'kubevirt.tab/horizontalNav',\n    properties: {\n      model: {\n        version: 'v1',\n        group: 'kubevirt.io',\n        kind: 'VirtualMachine',\n      },\n      page: {\n        name: 'Kubevirt Test',\n        href: 'kubevirt-test',\n      },\n      isVisible: { $codeRef: 'isKubevirtTabVisible' },\n      component: { $codeRef: 'KubevirtTestTab' },\n    },\n  }"} lang="typescript" />
+      <ul>
+      <li>The <code>component</code> flag that references <code>KubevirtTestTab</code> refers to the actual tab content that you want to include.</li>
+      <li>
+      The <code>isVisible</code> flag refers to the following example code reference:
+      <CodeBlock code={"import { K8sResourceCommon } from '@openshift-console/dynamic-plugin-sdk';\n\nconst isKubevirtTabVisible = ({\n  created,\n}: {\n  created: boolean;\n  obj: K8sResourceCommon & { cluster?: string };\n}) => created;\nexport default isKubevirtTabVisible;"} lang="typescript" />
+      <p>The <code>KubeVirt</code> plugin provides this parameter, and it is <code>true</code> if the referenced object has been already created. This flag ensures that the plugin author can prevent the custom tab from being displayed on certain pages, such as the <strong>Create Virtual Machine</strong> page.</p>
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Go to the <strong>Virtualization</strong> page and verify that the custom tab you have created is visible.</li>
+      <li>Go to the <strong>Create Virtual Machine</strong> page and verify that your custom backup actions or tabs do not appear.</li>
+      </ol>
       <h2 id="additional-resources_virt-customize-web-console" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-customize-web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/web_console/dynamic-plugin/overview-dynamic-plugin#overview-dynamic-plugin">Dynamic plugins overview</a></li>

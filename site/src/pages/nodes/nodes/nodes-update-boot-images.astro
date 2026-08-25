@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"nodes-update-boot-images","text":"Boot image management"},{"depth":2,"slug":"additional-resources_nodes-update-boot-images","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"nodes-update-boot-images","text":"Boot image management"},{"depth":2,"slug":"mco-update-boot-images_nodes-update-boot-images","text":"About boot image management"},{"depth":2,"slug":"mco-update-boot-images-disable_nodes-update-boot-images","text":"Disabling boot image management"},{"depth":2,"slug":"mco-update-boot-images-configuring_nodes-update-boot-images","text":"Enabling boot image management"},{"depth":2,"slug":"additional-resources_nodes-update-boot-images","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-update-boot-images";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Boot image management";
-const description = "" || undefined;
+const description = "For supported platforms, the Machine Config Operator (MCO) can manage and update the boot image on each node to ensure the Red Hat Enterprise Linux CoreOS…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["nodes","nodes/nodes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Boot image management {#nodes-update-boot-images}\n\n## Additional resources {#additional-resources_nodes-update-boot-images}\n\n- [Disabling boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure)\n- [Enabling boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-configuring_machine-configs-configure)\n- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-update-boot-images.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Boot image management {#nodes-update-boot-images}\n\nFor supported platforms, the Machine Config Operator (MCO) can manage and update the boot image on each node to ensure the Red Hat Enterprise Linux CoreOS (RHCOS) version of the boot image matches the Red Hat Enterprise Linux CoreOS (RHCOS) version appropriate for your cluster.\n\nThe following table lists the platforms on which boot image management is available:\n\n| Platform | Worker machine sets | Control plane machine sets |\n| --- | --- | --- |\n| Google Cloud | Enabled by default | Disabled by default |\n| Amazon Web Services (AWS) | Enabled by default | Disabled by default |\n| Microsoft Azure | Enabled by default | Disabled by default |\n| VMware vSphere | Enabled by default | Not supported |\n\nFor all other platforms, the MCO does not automatically update the boot image with each cluster update. Images from the Google Cloud Marketplace or AWS Marketplace are not automatically updated.\n\nFor clusters where automatic updates are disabled or not supported, you can manually update the boot image on your cluster. See \"Manually updating the boot image\" for information. The method to update or specify the image varies by platform.\n\n## About boot image management {#mco-update-boot-images_nodes-update-boot-images}\n\nWith boot image management enabled, the Machine Config Operator (MCO) manages and updates the Red Hat Enterprise Linux CoreOS (RHCOS) version of the boot image in the machine sets for your control plane or worker nodes. This means that the MCO updates the boot image whenever you update your cluster. Without boot image management enabled, if your cluster was originally created with an older OpenShift Container Platform version, the boot image that the MCO would use to create new nodes is an older Red Hat Enterprise Linux CoreOS (RHCOS) version, even if your cluster is at a later OpenShift Container Platform version.\n\nNew nodes created after enabling the feature use the updated boot image. This feature has no effect on existing nodes.\n\n> [!NOTE]\n> The following table lists the platforms on which boot image management is available:\n>\n> | Platform | Worker machine sets | Control plane machine sets |\n> | --- | --- | --- |\n> | Google Cloud | Enabled by default | Disabled by default |\n> | Amazon Web Services (AWS) | Enabled by default | Disabled by default |\n> | Microsoft Azure | Enabled by default | Disabled by default |\n> | VMware vSphere | Enabled by default | Not supported |\n>\n> For all other platforms, the MCO does not automatically update the boot image with each cluster update. Images from the Google Cloud Marketplace or AWS Marketplace are not automatically updated.\n>\n> For clusters where automatic updates are disabled or not supported, you can manually update the boot image on your cluster. See \"Manually updating the boot image\" for information. The method to update or specify the image varies by platform.\n\nFor example, with the feature disabled, if your cluster was originally created with OpenShift Container Platform 4.16, the boot image that the MCO would use to create new nodes is the same RHCOS version that was installed for the cluster, even if your cluster is currently at a later OpenShift Container Platform version.\n\nUsing an older boot image could cause the following issues:\n\n- Extra time to start nodes\n- Certificate expiration issues\n- Version skew issues\n\nYou can disable the boot image management feature, if needed. When the feature is disabled, the boot image version no longer updates with the cluster. For example, you could disable the boot image management feature in order to use a custom boot image that you do not want changed. For information on how to disable this feature, see \"Disabling boot image management\". If you disable this feature, you can re-enable the feature at any time. For information, see \"Enabling boot image management\".\n\nHow the cluster behaves after disabling or re-enabling the feature, depends upon when you made the change, including the following scenarios:\n\n- If you disable the feature before updating to a new OpenShift Container Platform version:\n\n  - The boot image version used by the machine sets remains the same OpenShift Container Platform version as when the feature was disabled.\n  - When you scale up nodes, the new nodes use that same OpenShift Container Platform version.\n- If you disable the feature after updating to a new OpenShift Container Platform version:\n\n  - The boot image version used by the machine sets is updated to match the updated OpenShift Container Platform version.\n  - When you scale up nodes, the new nodes use the updated OpenShift Container Platform version.\n  - If you update to a later OpenShift Container Platform version, the boot image version in the machine sets remains at the current version and is not updated with the cluster.\n- If you enable the feature after disabling:\n\n  - The boot image version used by the machine sets is updated to the current OpenShift Container Platform version, if different.\n  - When you scale up nodes, the new nodes use the current OpenShift Container Platform version in the cluster.\n\n> [!NOTE]\n> Because a boot image is used only when a node is scaled up, this feature has no effect on existing nodes.\n\nTo view the current Red Hat Enterprise Linux CoreOS (RHCOS) boot image version used in your cluster, you can view the `/sysroot/.coreos-aleph-version.json` file on that node.\n\n```yaml {title=\"Example coreos-aleph-version.json file with an older boot image\"}\n{\n# ...\n    \"ref\": \"docker://ostree-image-signed:oci-archive:/rhcos-418.94.202511191518-0-ostree.x86_64.ociarchive\",\n    \"version\": \"418.94.202511191518-0\"\n}\n```\n\nwhere:\n\n`<version>`\n:   Specifies the Red Hat Enterprise Linux CoreOS (RHCOS) boot image version. In this example, the boot image is from the originally-installed OpenShift Container Platform 4.18 version, regardless of the current version of the cluster.\n\n> [!IMPORTANT]\n> If any of the machine sets for which you want to enable boot image management use a `*-user-data` secret that is based on Ignition version 2.2.0, the Machine Config Operator converts the Ignition version to 3.4.0 when you enable the feature. OpenShift Container Platform versions 4.5 and lower use Ignition version 2.2.0. If this conversion fails, the MCO or your cluster could degrade. An error message that includes *err: converting ignition stub failed: failed to parse Ignition config* is added to the output of the `oc get ClusterOperator machine-config` command. You can use the following general steps to correct the problem:\n>\n> 1. Disable the boot image management feature. For information, see \"Disabling boot image management\".\n> 2. Manually update the `*-user-data` secret to use Ignition version to 3.2.0.\n> 3. Enable the boot image management feature. For information, see \"Enabling boot image management\".\n\n## Disabling boot image management {#mco-update-boot-images-disable_nodes-update-boot-images}\n\nYou can disable the boot image management feature so that the Machine Config Operator (MCO) no longer manages or updates the boot image in the affected machine sets. For example, you could disable this feature for the worker nodes in order to use a custom boot image that you do not want changed.\n\n> [!NOTE]\n> If you are updating an Microsoft Azure or VMware vSphere cluster from OpenShift Container Platform 4.21 to 4.22, and you have not configured the `managedBootImages` parameter, the update is blocked with the message: `This cluster is Azure or vSphere but lacks a boot image configuration`. The update is intentionally blocked on Azure or vSphere clusters in order to alert you that the default boot image management behavior is changing between version 4.21 and 4.22 in order to enable boot images management by default on those platforms.\n>\n> To allow the update, perform one of the following tasks:\n>\n> - If you want to allow the feature to be enabled, acknowledge that you are aware of the change in the default behavior by patching the `admin-acks` config map by running the following command:\n>\n>   ```terminal\n>   $ oc -n openshift-config patch cm admin-acks --patch '{\"data\":{\"ack-4.21-boot-image-opt-out-in-4.22\":\"true\"}}' --type=merge\n>   ```\n> - If you do not want the boot image management feature enabled, explicitly disable the feature for worker machine sets by using the following procedure.\n\nYou disable the boot image management feature for the control plane or worker machine sets in your cluster by editing the `MachineConfiguration` object.\n\n> [!NOTE]\n> The following table lists the platforms on which boot image management is available:\n>\n> | Platform | Worker machine sets | Control plane machine sets |\n> | --- | --- | --- |\n> | Google Cloud | Enabled by default | Disabled by default |\n> | Amazon Web Services (AWS) | Enabled by default | Disabled by default |\n> | Microsoft Azure | Enabled by default | Disabled by default |\n> | VMware vSphere | Enabled by default | Not supported |\n>\n> For all other platforms, the MCO does not automatically update the boot image with each cluster update. Images from the Google Cloud Marketplace or AWS Marketplace are not automatically updated.\n>\n> For clusters where automatic updates are disabled or not supported, you can manually update the boot image on your cluster. See \"Manually updating the boot image\" for information. The method to update or specify the image varies by platform.\n\nDisabling this feature does not rollback the nodes or machine sets to the originally-installed boot image. The machine sets retain the boot image version that was present when the feature was disabled and is not updated if the cluster is upgraded to a new OpenShift Container Platform version in the future. This feature has no effect on existing nodes.\n\nIf boot image management is disabled, you must update the boot image version that is used by the boot image skew enforcement feature to ensure that the boot image is current for your cluster. For more information, see \"Boot image skew enforcement\".\n\nAfter disabling the feature, you can re-enable the feature at any time. For more information, see \"Enabling updated boot images\".\n\n**Procedure**\n\n1. Edit the `MachineConfiguration` object, named `cluster`, by using the following command::\n\n   ```terminal\n   $ oc edit MachineConfiguration cluster\n   ```\n2. Disable the feature for some or all of your machine sets by making one or both of the following changes:\n\n   - Disable the feature for nodes in the worker machine sets by adding the following parameters:\n\n     ```yaml\n     apiVersion: operator.openshift.io/v1\n     kind: MachineConfiguration\n     metadata:\n       name: cluster\n     spec:\n     # ...\n       managedBootImages:\n         machineManagers:\n         - apiGroup: machine.openshift.io\n           resource: machinesets\n           selection:\n             mode: None\n     ```\n\n     where:\n\n     `spec.managedBootImages`\n     :   Specifies the parameters for the boot image management feature.\n\n     `spec.managedBootImages.machineManagers.apiGroup`\n     :   Specifies the API group. This must be `machine.openshift.io`.\n\n     `spec.managedBootImages.machineManagers.resource`\n     :   Specifies that the `selection.mode` parameter applies to worker nodes when a value of `machinesets` is set.\n\n     `spec.managedBootImages.machineManagers.selection.mode`\n     :   When `None`, specifies that the feature is disabled for the specified machine sets.\n   - Disable the feature for nodes in the control plane machine sets by adding the following parameters:\n\n     ```yaml\n     apiVersion: operator.openshift.io/v1\n     kind: MachineConfiguration\n     metadata:\n       name: cluster\n     spec:\n     # ...\n       managedBootImages:\n         machineManagers:\n         - apiGroup: machine.openshift.io\n           resource: controlplanemachinesets\n           selection:\n             mode: None\n     ```\n\n     where:\n\n     `spec.managedBootImages`\n     :   Specifies the parameters for the boot image management feature.\n\n     `spec.managedBootImages.machineManagers.apiGroup`\n     :   Specifies the API group. This must be `machine.openshift.io`.\n\n     `spec.managedBootImages.machineManagers.resource`\n     :   Specifies that the `selection.mode` parameter applies to control plane nodes when a value of `controlplanemachinesets` is set.\n\n     `spec.managedBootImages.machineManagers.selection.mode`\n     :   When `None`, specifies that the feature is disabled for the specified machine sets.\n\n**Verification**\n\n- View the current state of the boot image management feature by using the following command to view the machine configuration object:\n\n  ```terminal\n  $ oc get machineconfiguration cluster -o yaml\n  ```\n\n  ```yaml {title=\"Example machine set with the boot image reference\"}\n  kind: MachineConfiguration\n  metadata:\n    name: cluster\n  # ...\n  status:\n    conditions:\n    - lastTransitionTime: \"2025-05-01T20:11:49Z\"\n      message: Reconciled 2 of 4 MAPI MachineSets | Reconciled 0 of 0 CAPI MachineSets\n        | Reconciled 0 of 0 CAPI MachineDeployments\n      reason: BootImageUpdateConfigurationUpdated\n      status: \"True\"\n      type: BootImageUpdateProgressing\n    - lastTransitionTime: \"2025-05-01T19:30:13Z\"\n      message: 0 Degraded MAPI MachineSets | 0 Degraded CAPI MachineSets | 0 CAPI MachineDeployments\n      reason: BootImageUpdateConfigurationUpdated\n      status: \"False\"\n      type: BootImageUpdateDegraded\n    managedBootImagesStatus:\n      machineManagers:\n      - apiGroup: machine.openshift.io\n        resource: controlplanemachinesets\n        selection:\n          mode: None\n      - apiGroup: machine.openshift.io\n        resource: machinesets\n        selection:\n          mode: All\n  ```\n\n  where:\n\n  `status.managedBootImagesStatus.machineManagers.selection.mode`\n  :   Specifies that the boot image management feature is disabled when set to `None`. In this example, the boot image management feature is disabled for control plane machine sets and enabled for worker machine sets.\n\n## Enabling boot image management {#mco-update-boot-images-configuring_nodes-update-boot-images}\n\nFor supported platforms, the Machine Config Operator (MCO) can manage and update the boot image on each node to ensure the Red Hat Enterprise Linux CoreOS (RHCOS) version of the boot image matches the Red Hat Enterprise Linux CoreOS (RHCOS) version appropriate for your cluster.\n\n> [!NOTE]\n> The following table lists the platforms on which boot image management is available:\n>\n> | Platform | Worker machine sets | Control plane machine sets |\n> | --- | --- | --- |\n> | Google Cloud | Enabled by default | Disabled by default |\n> | Amazon Web Services (AWS) | Enabled by default | Disabled by default |\n> | Microsoft Azure | Enabled by default | Disabled by default |\n> | VMware vSphere | Enabled by default | Not supported |\n>\n> For all other platforms, the MCO does not automatically update the boot image with each cluster update. Images from the Google Cloud Marketplace or AWS Marketplace are not automatically updated.\n>\n> For clusters where automatic updates are disabled or not supported, you can manually update the boot image on your cluster. See \"Manually updating the boot image\" for information. The method to update or specify the image varies by platform.\n\nTo enable the boot image management feature for control plane machine sets or to re-enable the boot image management feature for worker machine sets where it was disabled, edit the `MachineConfiguration` object. You can enable the feature for all of the machine sets in the cluster or specific machine sets.\n\n> [!NOTE]\n> Because the boot image management feature for worker nodes is default for the Google Cloud and AWS platforms, the `managedBootImages` configuration does not appear in the machine configuration object. To enable the feature for control plane machine sets without disabling the feature for worker machine sets, you must expressly add the configuration for both the control plane and worker machine sets, as shown in the following procedure. If you add only the configuration for control plane machine sets, due to default behavior, the Machine Config Operator (MCO) overwrites the configuration for the worker machine sets.\n\nEnabling the feature updates the boot image to the Red Hat Enterprise Linux CoreOS (RHCOS) boot image version appropriate for your cluster. If the cluster is again updated to a new OpenShift Container Platform version in the future, the boot image is updated again. New nodes created after enabling the feature use the updated boot image. This feature has no effect on existing nodes.\n\nWhen boot image management is enabled, the MCO automatically enables boot image skew enforcement to ensure that the boot image version is compliant for your cluster. For more information, see \"Boot image skew enforcement\".\n\n**Procedure**\n\n1. Edit the `MachineConfiguration` object, named `cluster`, by using the following command:\n\n   ```terminal\n   $ oc edit MachineConfiguration cluster\n   ```\n2. Enable the boot image management feature for some or all of your machine sets:\n\n   - Enable the boot image management feature for all machine sets:\n\n     ```yaml\n     apiVersion: operator.openshift.io/v1\n     kind: MachineConfiguration\n     metadata:\n       name: cluster\n     spec:\n     # ...\n       managedBootImages:\n         machineManagers:\n         - apiGroup: machine.openshift.io\n           resource: controlplanemachinesets\n           selection:\n             mode: All\n         - apiGroup: machine.openshift.io\n           resource: machinesets\n           selection:\n             mode: All\n     ```\n\n     where:\n\n     `spec.managedBootImages`\n     :   Configures the boot image management feature.\n\n     `spec.managedBootImages.machineManagers.apiGroup`\n     :   Specifies the API group. This must be `machine.openshift.io`.\n\n     `spec.managedBootImages.machineManagers.resource`\n     :   Specifies the resource within the specified API group to apply the change. Use one or both of the following parameters. You must add the full stanza, as shown, if you want to enable the feature for control plane and worker machine sets.\n\n         - `controlplanemachinesets`: Enables boot image management for control plane machine sets.\n         - `machinesets`: Enables boot image management for worker machine sets.\n\n     `spec.managedBootImages.machineManagers.selection.mode`\n     :   Specifies that the feature is enabled for all machine sets in the cluster.\n   - Enable the boot image management feature for specific worker machine sets:\n\n     ```yaml\n     apiVersion: operator.openshift.io/v1\n     kind: MachineConfiguration\n     metadata:\n       name: cluster\n     spec:\n     # ...\n       managedBootImages:\n         machineManagers:\n         - apiGroup: machine.openshift.io\n           resource: machinesets\n           selection:\n             mode: Partial\n             partial:\n               machineResourceSelector:\n                 matchLabels:\n                   region: \"east\"\n     ```\n\n     where:\n\n     `spec.managedBootImages`\n     :   Configures the boot image management feature.\n\n     `spec.managedBootImages.machineManagers.apiGroup`\n     :   Specifies the API group. This must be `machine.openshift.io`.\n\n     `spec.managedBootImages.machineManagers.resource`\n     :   Specifies the resource within the specified API group to apply the change. This must be `machinesets`. Partial boot image management for control plane machine sets is not supported.\n\n     `spec.managedBootImages.machineManagers.selection.mode`\n     :   Specifies that the feature is enabled for specific machine sets in the cluster. This must be `Partial`.\n\n     `spec.managedBootImages.machineManagers.selection.partial`\n     :   Specifies that the feature is enabled for machine sets with the specified label in their `MachineSet` object.\n\n**Verification**\n\n1. View the current state of the boot image management feature by using the following command to view the machine configuration object:\n\n   ```terminal\n   $ oc get machineconfiguration cluster -o yaml\n   ```\n\n   ```yaml {title=\"Example machine set with the boot image reference\"}\n   kind: MachineConfiguration\n   metadata:\n     name: cluster\n   # ...\n   status:\n     conditions:\n     - lastTransitionTime: \"2025-05-01T20:11:49Z\"\n       message: Reconciled 2 of 4 MAPI MachineSets | Reconciled 0 of 0 CAPI MachineSets\n         | Reconciled 0 of 0 CAPI MachineDeployments\n       reason: BootImageUpdateConfigurationUpdated\n       status: \"True\"\n       type: BootImageUpdateProgressing\n     - lastTransitionTime: \"2025-05-01T19:30:13Z\"\n       message: 0 Degraded MAPI MachineSets | 0 Degraded CAPI MachineSets | 0 CAPI MachineDeployments\n       reason: BootImageUpdateConfigurationUpdated\n       status: \"False\"\n       type: BootImageUpdateDegraded\n     managedBootImagesStatus:\n       machineManagers:\n       - apiGroup: machine.openshift.io\n         resource: controlplanemachinesets\n         selection:\n           mode: All\n       - apiGroup: machine.openshift.io\n         resource: machinesets\n         selection:\n           mode: All\n   ```\n\n   where:\n\n   `status.managedBootImagesStatus.machineManagers.selection.mode`\n   :   Specifies that the boot image management feature is enabled when set to `All`.\n2. Scale a machine set to create a new node by using a command similar to the following. The boot image is updated only for new nodes.\n\n   ```terminal\n   $ oc scale --replicas=2 machinesets.machine.openshift.io <machineset> -n openshift-machine-api\n   ```\n3. If your cluster was using an older boot image version, you can see the new boot image version when the new node reaches the `READY` state. View the Red Hat Enterprise Linux CoreOS (RHCOS) version on a nodes:\n\n   1. Log in to the node by using a command similar to the following:\n\n      ```terminal\n      $ oc debug node/<node_name>\n      ```\n   2. Set `/host` as the root directory within the debug shell by using the following command:\n\n      ```terminal\n      sh-5.1# chroot /host\n      ```\n   3. View the `/sysroot/.coreos-aleph-version.json` file by using a command similar to the following:\n\n      ```terminal\n      sh-5.1# cat /sysroot/.coreos-aleph-version.json\n      ```\n\n      ```yaml {title=\"Example output\"}\n      {\n      # ...\n          \"ref\": \"docker://ostree-image-signed:oci-archive:/rhcos-9.6.20251015-1-ostree.x86_64.ociarchive\",\n          \"version\": \"9.6.20251015-1\"\n      }\n      ```\n\n      where:\n\n      `<version>`\n      :   Specifies the boot image version.\n\n## Additional resources {#additional-resources_nodes-update-boot-images}\n\n- [Disabling boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure)\n- [Enabling boot image management](/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-configuring_machine-configs-configure)\n- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-update-boot-images.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,13 +100,395 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="nodes-update-boot-images" class="group scroll-mt-20">Boot image management<a href="#nodes-update-boot-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/snippets/mco-update-boot-images-abstract.md"></p>
-      <p class="/snippets/mco-update-boot-images-intro.md"></p>
-      <p class="/modules/mco-update-boot-images-about.md"></p>
-      <p class="/modules/mco-update-boot-images-disable.md"></p>
-      <p class="/modules/mco-update-boot-images-configuring.md"></p>
+      <p>For supported platforms, the Machine Config Operator (MCO) can manage and update the boot image on each node to ensure the Red Hat Enterprise Linux CoreOS (RHCOS) version of the boot image matches the Red Hat Enterprise Linux CoreOS (RHCOS) version appropriate for your cluster.</p>
+      <p>The following table lists the platforms on which boot image management is available:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Platform</TableHead>
+      <TableHead>Worker machine sets</TableHead>
+      <TableHead>Control plane machine sets</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Google Cloud</TableCell>
+      <TableCell>Enabled by default</TableCell>
+      <TableCell>Disabled by default</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Amazon Web Services (AWS)</TableCell>
+      <TableCell>Enabled by default</TableCell>
+      <TableCell>Disabled by default</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Microsoft Azure</TableCell>
+      <TableCell>Enabled by default</TableCell>
+      <TableCell>Disabled by default</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>VMware vSphere</TableCell>
+      <TableCell>Enabled by default</TableCell>
+      <TableCell>Not supported</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>For all other platforms, the MCO does not automatically update the boot image with each cluster update. Images from the Google Cloud Marketplace or AWS Marketplace are not automatically updated.</p>
+      <p>For clusters where automatic updates are disabled or not supported, you can manually update the boot image on your cluster. See "Manually updating the boot image" for information. The method to update or specify the image varies by platform.</p>
+      <h2 id="mco-update-boot-images_nodes-update-boot-images" class="group scroll-mt-20">About boot image management<a href="#mco-update-boot-images_nodes-update-boot-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">With boot image management enabled, the Machine Config Operator (MCO) manages and updates the Red Hat Enterprise Linux CoreOS (RHCOS) version of the boot image in the machine sets for your control plane or worker nodes. This means that the MCO updates the boot image whenever you update your cluster. Without boot image management enabled, if your cluster was originally created with an older OpenShift Container Platform version, the boot image that the MCO would use to create new nodes is an older Red Hat Enterprise Linux CoreOS (RHCOS) version, even if your cluster is at a later OpenShift Container Platform version. </p>
+      <p>New nodes created after enabling the feature use the updated boot image. This feature has no effect on existing nodes.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The following table lists the platforms on which boot image management is available:</p>
+          <Table class="my-4">
+          <TableHeader>
+          <TableRow>
+          <TableHead>Platform</TableHead>
+          <TableHead>Worker machine sets</TableHead>
+          <TableHead>Control plane machine sets</TableHead>
+          </TableRow>
+          </TableHeader>
+          <TableBody>
+          <TableRow>
+          <TableCell>Google Cloud</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Disabled by default</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>Amazon Web Services (AWS)</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Disabled by default</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>Microsoft Azure</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Disabled by default</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>VMware vSphere</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Not supported</TableCell>
+          </TableRow>
+          </TableBody>
+          </Table>
+          <p>For all other platforms, the MCO does not automatically update the boot image with each cluster update. Images from the Google Cloud Marketplace or AWS Marketplace are not automatically updated.</p>
+          <p>For clusters where automatic updates are disabled or not supported, you can manually update the boot image on your cluster. See "Manually updating the boot image" for information. The method to update or specify the image varies by platform.</p>
+        </AlertDescription>
+      </Alert>
+      <p>For example, with the feature disabled, if your cluster was originally created with OpenShift Container Platform 4.16, the boot image that the MCO would use to create new nodes is the same RHCOS version that was installed for the cluster, even if your cluster is currently at a later OpenShift Container Platform version.</p>
+      <p>Using an older boot image could cause the following issues:</p>
+      <ul>
+      <li>Extra time to start nodes</li>
+      <li>Certificate expiration issues</li>
+      <li>Version skew issues</li>
+      </ul>
+      <p>You can disable the boot image management feature, if needed. When the feature is disabled, the boot image version no longer updates with the cluster. For example, you could disable the boot image management feature in order to use a custom boot image that you do not want changed. For information on how to disable this feature, see "Disabling boot image management". If you disable this feature, you can re-enable the feature at any time. For information, see "Enabling boot image management".</p>
+      <p>How the cluster behaves after disabling or re-enabling the feature, depends upon when you made the change, including the following scenarios:</p>
+      <ul>
+      <li>
+      If you disable the feature before updating to a new OpenShift Container Platform version:
+      <ul>
+      <li>The boot image version used by the machine sets remains the same OpenShift Container Platform version as when the feature was disabled.</li>
+      <li>When you scale up nodes, the new nodes use that same OpenShift Container Platform version.</li>
+      </ul>
+      </li>
+      <li>
+      If you disable the feature after updating to a new OpenShift Container Platform version:
+      <ul>
+      <li>The boot image version used by the machine sets is updated to match the updated OpenShift Container Platform version.</li>
+      <li>When you scale up nodes, the new nodes use the updated OpenShift Container Platform version.</li>
+      <li>If you update to a later OpenShift Container Platform version, the boot image version in the machine sets remains at the current version and is not updated with the cluster.</li>
+      </ul>
+      </li>
+      <li>
+      If you enable the feature after disabling:
+      <ul>
+      <li>The boot image version used by the machine sets is updated to the current OpenShift Container Platform version, if different.</li>
+      <li>When you scale up nodes, the new nodes use the current OpenShift Container Platform version in the cluster.</li>
+      </ul>
+      </li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Because a boot image is used only when a node is scaled up, this feature has no effect on existing nodes.</p>
+        </AlertDescription>
+      </Alert>
+      <p>To view the current Red Hat Enterprise Linux CoreOS (RHCOS) boot image version used in your cluster, you can view the <code>/sysroot/.coreos-aleph-version.json</code> file on that node.</p>
+      <CodeBlock code={"{\n# ...\n    \"ref\": \"docker://ostree-image-signed:oci-archive:/rhcos-418.94.202511191518-0-ostree.x86_64.ociarchive\",\n    \"version\": \"418.94.202511191518-0\"\n}"} lang="yaml" title="Example coreos-aleph-version.json file with an older boot image" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;version&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Red Hat Enterprise Linux CoreOS (RHCOS) boot image version. In this example, the boot image is from the originally-installed OpenShift Container Platform 4.18 version, regardless of the current version of the cluster.</p></dd>
+      </dl>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If any of the machine sets for which you want to enable boot image management use a <code>*-user-data</code> secret that is based on Ignition version 2.2.0, the Machine Config Operator converts the Ignition version to 3.4.0 when you enable the feature. OpenShift Container Platform versions 4.5 and lower use Ignition version 2.2.0. If this conversion fails, the MCO or your cluster could degrade. An error message that includes <em>err: converting ignition stub failed: failed to parse Ignition config</em> is added to the output of the <code>oc get ClusterOperator machine-config</code> command. You can use the following general steps to correct the problem:</p>
+          <ol>
+          <li>Disable the boot image management feature. For information, see "Disabling boot image management".</li>
+          <li>Manually update the <code>*-user-data</code> secret to use Ignition version to 3.2.0.</li>
+          <li>Enable the boot image management feature. For information, see "Enabling boot image management".</li>
+          </ol>
+        </AlertDescription>
+      </Alert>
+      <h2 id="mco-update-boot-images-disable_nodes-update-boot-images" class="group scroll-mt-20">Disabling boot image management<a href="#mco-update-boot-images-disable_nodes-update-boot-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can disable the boot image management feature so that the Machine Config Operator (MCO) no longer manages or updates the boot image in the affected machine sets. For example, you could disable this feature for the worker nodes in order to use a custom boot image that you do not want changed.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you are updating an Microsoft Azure or VMware vSphere cluster from OpenShift Container Platform 4.21 to 4.22, and you have not configured the <code>managedBootImages</code> parameter, the update is blocked with the message: <code>This cluster is Azure or vSphere but lacks a boot image configuration</code>. The update is intentionally blocked on Azure or vSphere clusters in order to alert you that the default boot image management behavior is changing between version 4.21 and 4.22 in order to enable boot images management by default on those platforms.</p>
+          <p>To allow the update, perform one of the following tasks:</p>
+          <ul>
+          <li>
+          If you want to allow the feature to be enabled, acknowledge that you are aware of the change in the default behavior by patching the <code>admin-acks</code> config map by running the following command:
+          <CodeBlock code={"$ oc -n openshift-config patch cm admin-acks --patch '{\"data\":{\"ack-4.21-boot-image-opt-out-in-4.22\":\"true\"}}' --type=merge"} lang="terminal" />
+          </li>
+          <li>If you do not want the boot image management feature enabled, explicitly disable the feature for worker machine sets by using the following procedure.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <p>You disable the boot image management feature for the control plane or worker machine sets in your cluster by editing the <code>MachineConfiguration</code> object.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The following table lists the platforms on which boot image management is available:</p>
+          <Table class="my-4">
+          <TableHeader>
+          <TableRow>
+          <TableHead>Platform</TableHead>
+          <TableHead>Worker machine sets</TableHead>
+          <TableHead>Control plane machine sets</TableHead>
+          </TableRow>
+          </TableHeader>
+          <TableBody>
+          <TableRow>
+          <TableCell>Google Cloud</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Disabled by default</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>Amazon Web Services (AWS)</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Disabled by default</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>Microsoft Azure</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Disabled by default</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>VMware vSphere</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Not supported</TableCell>
+          </TableRow>
+          </TableBody>
+          </Table>
+          <p>For all other platforms, the MCO does not automatically update the boot image with each cluster update. Images from the Google Cloud Marketplace or AWS Marketplace are not automatically updated.</p>
+          <p>For clusters where automatic updates are disabled or not supported, you can manually update the boot image on your cluster. See "Manually updating the boot image" for information. The method to update or specify the image varies by platform.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Disabling this feature does not rollback the nodes or machine sets to the originally-installed boot image. The machine sets retain the boot image version that was present when the feature was disabled and is not updated if the cluster is upgraded to a new OpenShift Container Platform version in the future. This feature has no effect on existing nodes.</p>
+      <p>If boot image management is disabled, you must update the boot image version that is used by the boot image skew enforcement feature to ensure that the boot image is current for your cluster. For more information, see "Boot image skew enforcement".</p>
+      <p>After disabling the feature, you can re-enable the feature at any time. For more information, see "Enabling updated boot images".</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>MachineConfiguration</code> object, named <code>cluster</code>, by using the following command::
+      <CodeBlock code={"$ oc edit MachineConfiguration cluster"} lang="terminal" />
+      </li>
+      <li>
+      Disable the feature for some or all of your machine sets by making one or both of the following changes:
+      <ul>
+      <li>
+      Disable the feature for nodes in the worker machine sets by adding the following parameters:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: MachineConfiguration\nmetadata:\n  name: cluster\nspec:\n# ...\n  managedBootImages:\n    machineManagers:\n    - apiGroup: machine.openshift.io\n      resource: machinesets\n      selection:\n        mode: None"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.managedBootImages</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the parameters for the boot image management feature.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.apiGroup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the API group. This must be <code>machine.openshift.io</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.resource</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the <code>selection.mode</code> parameter applies to worker nodes when a value of <code>machinesets</code> is set.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.selection.mode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>When <code>None</code>, specifies that the feature is disabled for the specified machine sets.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Disable the feature for nodes in the control plane machine sets by adding the following parameters:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: MachineConfiguration\nmetadata:\n  name: cluster\nspec:\n# ...\n  managedBootImages:\n    machineManagers:\n    - apiGroup: machine.openshift.io\n      resource: controlplanemachinesets\n      selection:\n        mode: None"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.managedBootImages</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the parameters for the boot image management feature.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.apiGroup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the API group. This must be <code>machine.openshift.io</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.resource</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the <code>selection.mode</code> parameter applies to control plane nodes when a value of <code>controlplanemachinesets</code> is set.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.selection.mode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>When <code>None</code>, specifies that the feature is disabled for the specified machine sets.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      View the current state of the boot image management feature by using the following command to view the machine configuration object:
+      <CodeBlock code={"$ oc get machineconfiguration cluster -o yaml"} lang="terminal" />
+      <CodeBlock code={"kind: MachineConfiguration\nmetadata:\n  name: cluster\n# ...\nstatus:\n  conditions:\n  - lastTransitionTime: \"2025-05-01T20:11:49Z\"\n    message: Reconciled 2 of 4 MAPI MachineSets | Reconciled 0 of 0 CAPI MachineSets\n      | Reconciled 0 of 0 CAPI MachineDeployments\n    reason: BootImageUpdateConfigurationUpdated\n    status: \"True\"\n    type: BootImageUpdateProgressing\n  - lastTransitionTime: \"2025-05-01T19:30:13Z\"\n    message: 0 Degraded MAPI MachineSets | 0 Degraded CAPI MachineSets | 0 CAPI MachineDeployments\n    reason: BootImageUpdateConfigurationUpdated\n    status: \"False\"\n    type: BootImageUpdateDegraded\n  managedBootImagesStatus:\n    machineManagers:\n    - apiGroup: machine.openshift.io\n      resource: controlplanemachinesets\n      selection:\n        mode: None\n    - apiGroup: machine.openshift.io\n      resource: machinesets\n      selection:\n        mode: All"} lang="yaml" title="Example machine set with the boot image reference" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>status.managedBootImagesStatus.machineManagers.selection.mode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the boot image management feature is disabled when set to <code>None</code>. In this example, the boot image management feature is disabled for control plane machine sets and enabled for worker machine sets.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h2 id="mco-update-boot-images-configuring_nodes-update-boot-images" class="group scroll-mt-20">Enabling boot image management<a href="#mco-update-boot-images-configuring_nodes-update-boot-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>For supported platforms, the Machine Config Operator (MCO) can manage and update the boot image on each node to ensure the Red Hat Enterprise Linux CoreOS (RHCOS) version of the boot image matches the Red Hat Enterprise Linux CoreOS (RHCOS) version appropriate for your cluster.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The following table lists the platforms on which boot image management is available:</p>
+          <Table class="my-4">
+          <TableHeader>
+          <TableRow>
+          <TableHead>Platform</TableHead>
+          <TableHead>Worker machine sets</TableHead>
+          <TableHead>Control plane machine sets</TableHead>
+          </TableRow>
+          </TableHeader>
+          <TableBody>
+          <TableRow>
+          <TableCell>Google Cloud</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Disabled by default</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>Amazon Web Services (AWS)</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Disabled by default</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>Microsoft Azure</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Disabled by default</TableCell>
+          </TableRow>
+          <TableRow>
+          <TableCell>VMware vSphere</TableCell>
+          <TableCell>Enabled by default</TableCell>
+          <TableCell>Not supported</TableCell>
+          </TableRow>
+          </TableBody>
+          </Table>
+          <p>For all other platforms, the MCO does not automatically update the boot image with each cluster update. Images from the Google Cloud Marketplace or AWS Marketplace are not automatically updated.</p>
+          <p>For clusters where automatic updates are disabled or not supported, you can manually update the boot image on your cluster. See "Manually updating the boot image" for information. The method to update or specify the image varies by platform.</p>
+        </AlertDescription>
+      </Alert>
+      <p>To enable the boot image management feature for control plane machine sets or to re-enable the boot image management feature for worker machine sets where it was disabled, edit the <code>MachineConfiguration</code> object. You can enable the feature for all of the machine sets in the cluster or specific machine sets.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Because the boot image management feature for worker nodes is default for the Google Cloud and AWS platforms, the <code>managedBootImages</code> configuration does not appear in the machine configuration object. To enable the feature for control plane machine sets without disabling the feature for worker machine sets, you must expressly add the configuration for both the control plane and worker machine sets, as shown in the following procedure. If you add only the configuration for control plane machine sets, due to default behavior, the Machine Config Operator (MCO) overwrites the configuration for the worker machine sets.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Enabling the feature updates the boot image to the Red Hat Enterprise Linux CoreOS (RHCOS) boot image version appropriate for your cluster. If the cluster is again updated to a new OpenShift Container Platform version in the future, the boot image is updated again. New nodes created after enabling the feature use the updated boot image. This feature has no effect on existing nodes.</p>
+      <p>When boot image management is enabled, the MCO automatically enables boot image skew enforcement to ensure that the boot image version is compliant for your cluster. For more information, see "Boot image skew enforcement".</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>MachineConfiguration</code> object, named <code>cluster</code>, by using the following command:
+      <CodeBlock code={"$ oc edit MachineConfiguration cluster"} lang="terminal" />
+      </li>
+      <li>
+      Enable the boot image management feature for some or all of your machine sets:
+      <ul>
+      <li>
+      Enable the boot image management feature for all machine sets:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: MachineConfiguration\nmetadata:\n  name: cluster\nspec:\n# ...\n  managedBootImages:\n    machineManagers:\n    - apiGroup: machine.openshift.io\n      resource: controlplanemachinesets\n      selection:\n        mode: All\n    - apiGroup: machine.openshift.io\n      resource: machinesets\n      selection:\n        mode: All"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.managedBootImages</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Configures the boot image management feature.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.apiGroup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the API group. This must be <code>machine.openshift.io</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.resource</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the resource within the specified API group to apply the change. Use one or both of the following parameters. You must add the full stanza, as shown, if you want to enable the feature for control plane and worker machine sets.</p>
+      <ul>
+      <li><code>controlplanemachinesets</code>: Enables boot image management for control plane machine sets.</li>
+      <li><code>machinesets</code>: Enables boot image management for worker machine sets.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.selection.mode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the feature is enabled for all machine sets in the cluster.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Enable the boot image management feature for specific worker machine sets:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: MachineConfiguration\nmetadata:\n  name: cluster\nspec:\n# ...\n  managedBootImages:\n    machineManagers:\n    - apiGroup: machine.openshift.io\n      resource: machinesets\n      selection:\n        mode: Partial\n        partial:\n          machineResourceSelector: \n            matchLabels:\n              region: \"east\""} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.managedBootImages</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Configures the boot image management feature.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.apiGroup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the API group. This must be <code>machine.openshift.io</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.resource</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the resource within the specified API group to apply the change. This must be <code>machinesets</code>. Partial boot image management for control plane machine sets is not supported.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.selection.mode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the feature is enabled for specific machine sets in the cluster. This must be <code>Partial</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.managedBootImages.machineManagers.selection.partial</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the feature is enabled for machine sets with the specified label in their <code>MachineSet</code> object.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      View the current state of the boot image management feature by using the following command to view the machine configuration object:
+      <CodeBlock code={"$ oc get machineconfiguration cluster -o yaml"} lang="terminal" />
+      <CodeBlock code={"kind: MachineConfiguration\nmetadata:\n  name: cluster\n# ...\nstatus:\n  conditions:\n  - lastTransitionTime: \"2025-05-01T20:11:49Z\"\n    message: Reconciled 2 of 4 MAPI MachineSets | Reconciled 0 of 0 CAPI MachineSets\n      | Reconciled 0 of 0 CAPI MachineDeployments\n    reason: BootImageUpdateConfigurationUpdated\n    status: \"True\"\n    type: BootImageUpdateProgressing\n  - lastTransitionTime: \"2025-05-01T19:30:13Z\"\n    message: 0 Degraded MAPI MachineSets | 0 Degraded CAPI MachineSets | 0 CAPI MachineDeployments\n    reason: BootImageUpdateConfigurationUpdated\n    status: \"False\"\n    type: BootImageUpdateDegraded\n  managedBootImagesStatus:\n    machineManagers:\n    - apiGroup: machine.openshift.io\n      resource: controlplanemachinesets\n      selection:\n        mode: All\n    - apiGroup: machine.openshift.io\n      resource: machinesets\n      selection:\n        mode: All"} lang="yaml" title="Example machine set with the boot image reference" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>status.managedBootImagesStatus.machineManagers.selection.mode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the boot image management feature is enabled when set to <code>All</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Scale a machine set to create a new node by using a command similar to the following. The boot image is updated only for new nodes.
+      <CodeBlock code={"$ oc scale --replicas=2 machinesets.machine.openshift.io <machineset> -n openshift-machine-api"} lang="terminal" />
+      </li>
+      <li>
+      If your cluster was using an older boot image version, you can see the new boot image version when the new node reaches the <code>READY</code> state. View the Red Hat Enterprise Linux CoreOS (RHCOS) version on a nodes:
+      <ol>
+      <li>
+      Log in to the node by using a command similar to the following:
+      <CodeBlock code={"$ oc debug node/<node_name>"} lang="terminal" />
+      </li>
+      <li>
+      Set <code>/host</code> as the root directory within the debug shell by using the following command:
+      <CodeBlock code={"sh-5.1# chroot /host"} lang="terminal" />
+      </li>
+      <li>
+      View the <code>/sysroot/.coreos-aleph-version.json</code> file by using a command similar to the following:
+      <CodeBlock code={"sh-5.1# cat /sysroot/.coreos-aleph-version.json"} lang="terminal" />
+      <CodeBlock code={"{\n# ...\n    \"ref\": \"docker://ostree-image-signed:oci-archive:/rhcos-9.6.20251015-1-ostree.x86_64.ociarchive\",\n    \"version\": \"9.6.20251015-1\"\n}"} lang="yaml" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;version&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the boot image version.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      </ol>
       <h2 id="additional-resources_nodes-update-boot-images" class="group scroll-mt-20">Additional resources<a href="#additional-resources_nodes-update-boot-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/machine_configuration/mco-update-boot-images#mco-update-boot-images-disable_machine-configs-configure">Disabling boot image management</a></li>

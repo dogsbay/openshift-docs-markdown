@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"using-insights-operator","text":"Using the Insights Operator"}];
+const headings = [{"depth":1,"slug":"using-insights-operator","text":"Using the Insights Operator"},{"depth":2,"slug":"insights-operator-configuring_using-insights-operator","text":"The Insights Operator configuration"},{"depth":3,"slug":"insights-operator-configuring-configmap_using-insights-operator","text":"ConfigMap object configuration structure"},{"depth":2,"slug":"insights-operator-insights-config_using-insights-operator","text":"Creating the insights-config ConfigMap object"},{"depth":2,"slug":"understanding-insights-operator-alerts_using-insights-operator","text":"Viewing Insights Operator alerts"},{"depth":3,"slug":"disabling-insights-operator-alerts_using-insights-operator","text":"Disabling Insights Operator alerts"},{"depth":3,"slug":"enabling-insights-operator-alerts_using-insights-operator","text":"Enabling Insights Operator alerts"},{"depth":2,"slug":"insights-operator-downloading-archive_using-insights-operator","text":"Downloading your Insights Operator archive"},{"depth":2,"slug":"running-insights-operator-gather_using-insights-operator","text":"On-demand Insights Operator gather operations"},{"depth":3,"slug":"insights-operator-gather-duration_using-insights-operator","text":"Viewing Insights Operator gather durations"},{"depth":3,"slug":"running-insights-operator-gather-web-console_using-insights-operator","text":"Gathering data on demand with the Insights Operator from the web console"},{"depth":3,"slug":"running-insights-operator-gather-openshift-cli_using-insights-operator","text":"Gathering data on demand with the Insights Operator from the OpenShift CLI"},{"depth":3,"slug":"disabling-insights-operator-gather_using-insights-operator","text":"Disabling the Insights Operator periodic gather operations"},{"depth":3,"slug":"enabling-insights-operator-gather_using-insights-operator","text":"Re-enabling the Insights Operator periodic gather operations"},{"depth":2,"slug":"obfuscating-deployment-validation-operator-data_using-insights-operator","text":"Obfuscating Deployment Validation Operator data"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Using the Insights Operator";
-const description = "The {{ insights_operator }} periodically gathers configuration and component failure status and, by default, reports that data every two hours to Red Hat…" || undefined;
+const description = "The Insights Operator periodically gathers configuration and component failure status and, by default, reports that data every two hours to Red Hat. This…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["support","support/remote_health_monitoring"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the Insights Operator {#using-insights-operator}\n\nThe {{ insights_operator }} periodically gathers configuration and component failure status and, by default, reports that data every two hours to Red Hat. This information enables Red Hat to assess configuration and deeper failure data than is reported through Telemetry. Users of OpenShift Container Platform can display the report in the {{ insights_advisor_url }} service on {{ hybrid_console }}.\n\n**Additional resources**\n\n- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- [Using {{ red_hat_lightspeed }} to identify issues with your cluster](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)\n\n**Additional resources**\n\n- [{{ insights_operator }} Gathered Data GitHub repository](https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the Insights Operator {#using-insights-operator}\n\nThe Insights Operator periodically gathers configuration and component failure status and, by default, reports that data every two hours to Red Hat. This information enables Red Hat to assess configuration and deeper failure data than is reported through Telemetry. Users of OpenShift Container Platform can display the report in the [Advisor](https://console.redhat.com/openshift/insights/advisor/) service on Red Hat Hybrid Cloud Console.\n\n**Additional resources**\n\n- [Remote health reporting](/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting)\n- [Using Red Hat Lightspeed to identify issues with your cluster](/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster)\n\n## The Insights Operator configuration {#insights-operator-configuring_using-insights-operator}\n\nThe Insights Operator configuration combines default settings with configurations stored in either the `insights-config` `ConfigMap` in the `openshift-insights` namespace or the support secret in the `openshift-config` namespace.\n\nWhen a `ConfigMap` object or support secret exists, the contained attribute values override the default Operator configuration values. If both a `ConfigMap` object *and* a support secret exist, the Operator reads the `ConfigMap` object.\n\nThe `ConfigMap` object does not exist by default, so an OpenShift Container Platform cluster administrator must create it.\n\n### ConfigMap object configuration structure {#insights-operator-configuring-configmap_using-insights-operator}\n\nView the example of an `insights-config` `ConfigMap` object (`config.yaml` configuration) to better understand the configuration options for the `ConfigMap` object.\n\n```yaml {title=\"Example insights-config ConfigMap object \"}\napiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: insights-config\n  namespace: openshift-insights\ndata:\n  config.yaml: |\n    dataReporting:\n      uploadEndpoint: https://console.redhat.com/api/ingress/v1/upload\n      storagePath: /var/lib/insights-operator\n      downloadEndpoint: https://console.redhat.com/api/insights-results-aggregator/v2/cluster/%s/reports\n      conditionalGathererEndpoint: https://console.redhat.com/api/gathering/gathering_rules\n      disableRuntimeExtractor: true\n    sca:\n        disabled: false\n        endpoint: https://api.openshift.com/api/accounts_mgmt/v1/entitlement_certificates\n        interval: 8h0m0s\n    alerting:\n        disabled: false\n    proxy:\n        httpProxy: http://example.com\n        httpsProxy: https://example.com\n        noProxy: test.org\n```\n\nThe following table describes the available configuration attributes:\n\n> [!NOTE]\n> The `insights-config` `ConfigMap` object follows standard YAML formatting, wherein child values are below the parent attribute and indented two spaces. For the `Obfuscation` attribute, enter values as bulleted children of the parent attribute.\n\n***Insights Operator configurable attributes***\n\n<table>\n<thead>\n<tr>\n  <th>Attribute name</th>\n  <th>Description</th>\n  <th>Value type</th>\n  <th>Default value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>alerting: disabled: false</td>\n  <td>Disables Insights Operator alerts to the cluster Prometheus instance.</td>\n  <td>Boolean</td>\n  <td><code>false</code></td>\n</tr>\n<tr>\n  <td>clusterTransfer: endpoint: <url></td>\n  <td>The endpoint for checking and downloading cluster transfer data.</td>\n  <td>URL</td>\n  <td>https://api.openshift.com/api/accounts_mgmt/v1/cluster_transfers/</td>\n</tr>\n<tr>\n  <td>clusterTransfer: interval: 1h0m0s</td>\n  <td>Sets the frequency for checking available cluster transfers.</td>\n  <td>Time interval</td>\n  <td><code>24h</code></td>\n</tr>\n<tr>\n  <td>dataReporting: interval: 30m0s</td>\n  <td>Sets the data gathering and upload frequency.</td>\n  <td>Time interval</td>\n  <td><code>2h</code></td>\n</tr>\n<tr>\n  <td>dataReporting: uploadEndpoint: <url></td>\n  <td>Sets the upload endpoint.</td>\n  <td>URL</td>\n  <td>https://console.redhat.com/api/ingress/v1/upload</td>\n</tr>\n<tr>\n  <td>dataReporting: storagePath: <path></td>\n  <td>Configures the path where archived data gets stored.</td>\n  <td>File path</td>\n  <td>/var/lib/insights-operator</td>\n</tr>\n<tr>\n  <td>dataReporting: downloadEndpoint: <url></td>\n  <td>Specifies the endpoint for downloading the latest Red&#160;Hat Lightspeed analysis.</td>\n  <td>URL</td>\n  <td>https://console.redhat.com/api/ingress/v1/download</td>\n</tr>\n<tr>\n  <td>dataReporting: conditionalGathererEndpoint: <url></td>\n  <td>Sets the endpoint for providing conditional gathering rule definitions.</td>\n  <td>URL</td>\n  <td>https://console.redhat.com/api/gathering/gathering_rules</td>\n</tr>\n<tr>\n  <td>dataReporting: disableRuntimeExtractor: true</td>\n  <td>When set to true, it disables the deployment and management of all insights-runtime-extractor resources.</td>\n  <td>Boolean</td>\n  <td><code>false</code></td>\n</tr>\n<tr>\n  <td>dataReporting: obfuscation: - networking</td>\n  <td>Enables the global obfuscation of IP addresses and the cluster domain name.</td>\n  <td>String</td>\n  <td>Not applicable</td>\n</tr>\n<tr>\n  <td>dataReporting: obfuscation: - workload_names</td>\n  <td>Enables the obfuscation of Data Validation Operator data. The cluster resource ID is only visible in the archive file and not the resource name.</td>\n  <td>String</td>\n  <td>Not applicable</td>\n</tr>\n<tr>\n  <td>proxy: httpProxy: http://example.com httpsProxy: http://example.com noProxy: test.org</td>\n  <td>Set custom proxy for Insights Operator.</td>\n  <td>URL</td>\n  <td>No default</td>\n</tr>\n<tr>\n  <td>sca: interval: 8h0m0s</td>\n  <td>Specifies the frequency of the simple content access (SCA) entitlements download.</td>\n  <td>Time interval</td>\n  <td><code>2h</code></td>\n</tr>\n<tr>\n  <td>sca: endpoint: <url></td>\n  <td>Specifies the endpoint for downloading the simple content access (SCA) entitlements.</td>\n  <td>URL</td>\n  <td>https://api.openshift.com/api/accounts_mgmt/v1/entitlement_certificates</td>\n</tr>\n<tr>\n  <td>sca: disabled: false</td>\n  <td>Disables the simple content access entitlements download.</td>\n  <td>Boolean</td>\n  <td><code>false</code></td>\n</tr>\n</tbody>\n</table>\n\n## Creating the insights-config ConfigMap object {#insights-operator-insights-config_using-insights-operator}\n\nYou can create the `insights-config` `ConfigMap` object for the Insights Operator with custom configurations.\n\n> [!IMPORTANT]\n> Red Hat recommends you consult Red Hat Support before making changes to the default Insights Operator configuration.\n\n**Prerequisites**\n\n- Remote health reporting is enabled, which is the default.\n- You are logged in to the OpenShift Container Platform web console as a user with `cluster-admin` role.\n\n**Procedure**\n\n1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.\n2. Click **Create ConfigMap**.\n3. Select **Configure via: YAML view** and enter your configuration preferences, for example:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: insights-config\n     namespace: openshift-insights\n   data:\n     config.yaml: |\n       dataReporting:\n         obfuscation:\n           - networking\n           - workload_names\n       sca:\n         disabled: false\n         interval: 2h\n       alerting:\n          disabled: false\n   binaryData: {}\n   immutable: false\n   ```\n4. Optional: Select **Form view** and enter the necessary information that way.\n5. In the **ConfigMap Name** field, enter **insights-config**.\n6. In the **Key** field, enter **config.yaml**.\n7. For the **Value** field, either browse for a file to drag and drop into the field or enter your configuration parameters manually.\n8. Click **Create**. The `ConfigMap` object and configuration information are displayed.\n\n## Viewing Insights Operator alerts {#understanding-insights-operator-alerts_using-insights-operator}\n\nThe Insights Operator declares alerts through the Prometheus monitoring system to the Alertmanager. You can view these alerts in the Alerting UI in the OpenShift Container Platform web console.\n\nCurrently, Insights Operator sends the following alerts when the conditions are met:\n\n**Insights Operator alerts**\n\n| Alert | Description |\n| --- | --- |\n| `InsightsDisabled` | Insights Operator is disabled. |\n| `SimpleContentAccessNotAvailable` | Simple content access is not enabled in Red Hat Subscription Management. |\n| `InsightsRecommendationActive` | Red Hat Lightspeed has an active recommendation for the cluster. |\n\n**Procedure**\n\n- To view these alerts in the Alerting UI in the OpenShift Container Platform web console, choose one of the following methods:\n\n  - In the **Administrator** perspective, click **Observe** -> **Alerting**.\n  - In the **Developer** perspective, click **Observe** -> <project_name> -> **Alerts** tab.\n\n### Disabling Insights Operator alerts {#disabling-insights-operator-alerts_using-insights-operator}\n\nTo prevent the Insights Operator from sending alerts to the cluster Prometheus instance, you create or edit the `insights-config` `ConfigMap` object.\n\n> [!NOTE]\n> Previously, a cluster administrator would create or edit the Insights Operator configuration using a support secret in the `openshift-config` namespace. Red Hat Lightspeed now supports the creation of a `ConfigMap` object to configure the Operator. The Operator gives preference to the config map configuration over the support secret if both exist.\n\nIf the `insights-config` `ConfigMap` object does not exist, you must create it when you first add custom configurations. Note that configurations within the `ConfigMap` object take precedence over the default settings defined in the `config/pod.yaml` file.\n\n**Prerequisites**\n\n- Remote health reporting is enabled, which is the default.\n- You are logged in to the OpenShift Container Platform web console as `cluster-admin`.\n- The `insights-config` `ConfigMap` object exists in the `openshift-insights` namespace.\n\n**Procedure**\n\n1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.\n2. Click the **insights-config** `ConfigMap` object to open it.\n3. Click **Actions** and select **Edit ConfigMap**.\n4. Click the **YAML view** radio button.\n5. In the file, set the `alerting` attribute to `disabled: true`.\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   # ...\n   data:\n     config.yaml: |\n       alerting:\n         disabled: true\n   # ...\n   ```\n6. Click **Save**. The `insights-config` ConfigMap details page opens.\n7. Verify that the value of the `config.yaml` `alerting` attribute is set to `disabled: true`.\n\n   After you save the changes, Insights Operator no longer sends alerts to the cluster Prometheus instance.\n\n### Enabling Insights Operator alerts {#enabling-insights-operator-alerts_using-insights-operator}\n\nWhen alerts are disabled, the Insights Operator no longer sends alerts to the cluster Prometheus instance. You can re-enable them.\n\n> [!NOTE]\n> Previously, a cluster administrator would create or edit the Insights Operator configuration using a support secret in the `openshift-config` namespace. Red Hat Lightspeed now supports the creation of a `ConfigMap` object to configure the Insights Operator. The Insights Operator gives preference to the config map configuration over the support secret if both exist.\n\n**Prerequisites**\n\n- Remote health reporting is enabled, which is the default.\n- You are logged in to the OpenShift Container Platform web console as `cluster-admin`.\n- The `insights-config` `ConfigMap` object exists in the `openshift-insights` namespace.\n\n**Procedure**\n\n1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.\n2. Click on the `insights-config` `ConfigMap` object to open it.\n3. Click **Actions** and select **Edit ConfigMap**.\n4. Click the **YAML view** radio button.\n5. In the file, set the `alerting` attribute to `disabled: false`.\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   # ...\n   data:\n     config.yaml: |\n       alerting:\n         disabled: false\n   # ...\n   ```\n6. Click **Save**. The `insights-config` `ConfigMap` details page opens.\n7. Verify that the value of the `config.yaml` `alerting` attribute is set to `disabled: false`.\n\n   After you save the changes, Insights Operator again sends alerts to the cluster Prometheus instance.\n\n## Downloading your Insights Operator archive {#insights-operator-downloading-archive_using-insights-operator}\n\nInsights Operator stores gathered data in an archive located in the `openshift-insights` namespace of your cluster. You can download and review the data that is gathered by the Insights Operator.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Find the name of the running pod for the Insights Operator:\n\n   ```terminal\n   $ oc get pods --namespace=openshift-insights -o custom-columns=:metadata.name --no-headers  --field-selector=status.phase=Running\n   ```\n2. Copy the recent data archives collected by the Insights Operator:\n\n   ```terminal\n   $ oc cp openshift-insights/<insights_operator_pod_name>:/var/lib/insights-operator ./insights-data\n   ```\n\n   Replace `<insights_operator_pod_name>` with the pod name output from the preceding command.\n\n   The recent Insights Operator archives are now available in the `insights-data` directory.\n\n## On-demand Insights Operator gather operations {#running-insights-operator-gather_using-insights-operator}\n\nInstead of waiting for the next periodic data gather operation, you can run a custom on-demand Insights Operator data gather operation by using the OpenShift Container Platform web console or command-line interface (CLI).\n\nA periodic data gather operation uses the `InsightsDataGather` custom resource definition (CRD) for configuration instructions, whereas an on-demand equivalent requires a `DataGather` CRD to be configured.\n\nAn on-demand `DataGather` operation is:\n\n- Useful for one-off data collections that require different CRD configurations to the periodic data gathering (`InsightsDataGather`) specification.\n- Independent from the periodic data gathering. When you create an on-demand `DataGather` CRD, the configuration is independent from the `InsightsDataGather` CRD specification of your periodic data gathering job.\n\n***Custom specification options***\n\nYou can optionally customize the following items for the on-demand data gather operation:\n\n- **Enable and define data obfuscation:** By defining the `DataGather` `dataPolicy` specification, you can enable additional obfuscation of the Red Hat Lightspeed archive data, for example, the IP address or workload names.\n- **Enable persistent storage:** By default, the Insights Operator uses ephemeral storage, which means that a new pod will be created for each gather operation and the history of gather operations and data collected is not retained. You can switch to persistent storage to retain the data and history for up to the last 10 gather operations by defining the `DataGather` `storage` specification in the CRD.\n- **Exclude specific data gather operations:** You can choose to disable specific gather operations from running by defining the `DataGather` `gatherers` specification. For example, you can choose to disable the cluster authentication operation or the workload data operation.\n\n> [!IMPORTANT]\n> Excluding gather operations from the default list might reduce or limit the  recommendations offered by the Red Hat Lightspeed advisor service for your cluster.\n\nIf you do not configure any custom specification options in the `DataGather` CRD, the default Insights Operator data collection job will run. This means that all gather operations will run, the collected data will be unobfuscated and the archive file will not be retained.\n\nWhen you run a gather operation on-demand, any configuration that was previously applied to disable Insights Operator gather operations for your cluster will be overridden.\n\n> [!IMPORTANT]\n> The `DataGather` custom resource is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n> [!NOTE]\n> If you enable Technology Preview in your cluster, the Insights Operator runs gather operations in individual pods. This is part of the Technology Preview feature set for the Insights Operator and supports the new data gathering features.\n\n### Viewing Insights Operator gather durations {#insights-operator-gather-duration_using-insights-operator}\n\nYou can view the time it takes for the Insights Operator to gather the information contained in the archive. This helps you to understand Insights Operator resource usage and issues with Red Hat Lightspeed Advisor.\n\n**Prerequisites**\n\n- A recent copy of your Insights Operator archive.\n\n**Procedure**\n\n1. From your archive, open `/insights-operator/gathers.json`.\n\n   The file contains a list of Insights Operator gather operations:\n\n   ```json\n       {\n         \"name\": \"clusterconfig/authentication\",\n         \"duration_in_ms\": 730,\n         \"records_count\": 1,\n         \"errors\": null,\n         \"panic\": null\n       }\n   ```\n\n   The `duration_in_ms` field is the amount of time in milliseconds for each gather operation.\n2. Inspect each gather operation for abnormalities.\n\n### Gathering data on demand with the Insights Operator from the web console {#running-insights-operator-gather-web-console_using-insights-operator}\n\nYou can run a custom Insights Operator gather operation on-demand from the OpenShift Container Platform web console. An on-demand `DataGather` operation is useful for one-off data collections that require different configurations to the periodic data gathering (`InsightsDataGather`) specification.\n\nUse the following procedure to create a `DataGather` custom resource definition (CRD), and then run the data gather operation on demand from the web console.\n\n**Prerequisites**\n\n- You are logged in to the OpenShift Container Platform web console as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. On the console, select **Administration** > **CustomResourceDefinitions**.\n2. On the **CustomResourceDefinitions** page, in the **Search by name** field, find and then click the **DataGather** resource definition.\n3. On the **CustomResourceDefinition details** page, click the **Instances** tab.\n4. Click **Create DataGather**.\n5. To create a new `DataGather` operation where all gather operations will run, complete the following YAML specification, and then save your changes.\n\n   ```yaml\n\n   apiVersion: insights.openshift.io/v1\n   kind: DataGather\n   metadata:\n     name: <your_data_gather>\n   spec:\n   # Gatherers configuration\n     gatherers:\n       mode: All # Options: All, Custom\n   # ...\n   ```\n\n   > [!IMPORTANT]\n   > - The name you specify for your gather operation, `<your_data_gather>`, must be unique and must not include a prefix of `periodic-gathering-` because this string is reserved for other administrative operations and might impact the intended gather operation.\n   > - If the `spec` of `DataGather` CRD is undefined, the default Insights Operator data collection job will run. This means that all gather operations will run, the collected data will be unobfuscated and the archive file will not be retained.\n6. Optional: To customize the data gather operation, you can configure any of the following options in your `DataGather` YAML file:\n\n   - To disable specific gatherers, change the value of `mode` to **Custom**, and then specify the individual gatherer that you intend to disable. For example, to disable the workload gatherer, add the following example:\n\n     ```yaml\n     apiVersion: insights.openshift.io/v1\n     kind: DataGather\n     metadata:\n       name: <your_data_gather>\n     spec:\n         # Gatherers configuration\n       gatherers:\n         mode: Custom  # Options: All, Custom\n         custom:\n           configs:\n             # Essential cluster configuration gatherers\n             - name: clusterconfig/authentication\n               state: Enabled\n             - name: clusterconfig/clusteroperators\n               state: Enabled\n             - name: workloads\n               state: Disabled\n     ```\n   - To enable persistent storage to retain the data archive file and history for up to the last 10 data gathering jobs, define the `storage` specification. Set **type** to `PersistentVolume`, and define the `mountPath` and `name` of the volume, as outlined in the following example:\n\n     ```yaml\n     apiVersion: insights.openshift.io/v1\n     kind: DataGather\n     metadata:\n       name: <your_data_gather>\n     spec:\n       storage:\n         type: PersistentVolume\n         mountPath: /data\n         persistentVolume:\n           claim:\n             name: on-demand-gather-pvc\n     ```\n\n     > [!IMPORTANT]\n     > Ensure that the volume name specified matches the existing `PersistentVolumeClaim` value in the `openshift-insights` namespace. For more information, see [Persistent volume claims](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/storage/understanding-persistent-storage#persistent-volume-claims_understanding-persistent-storage).\n   - To enable data obfuscation, define the `dataPolicy` key and required values. For example, to obfuscate IP addresses and workload names, add the following configuration:\n\n     ```yaml\n     apiVersion: insights.openshift.io/v1\n     kind: DataGather\n     metadata:\n       name: <your_data_gather>\n     spec:\n       dataPolicy:\n         - ObfuscateNetworking\n         - WorkloadNames\n     ```\n\n**Verification**\n\n1. On the console, select **Workloads** > **Pods**.\n2. On the Pods page, go to the **Project** pull-down menu, and then select **Show default projects**.\n3. Select the `openshift-insights` project from the **Project** pull-down menu.\n4. Check that your new gather operation is prefixed with your chosen name under the list of pods in the `openshift-insights` project. Upon completion, the Insights Operator automatically uploads the data to Red Hat for processing.\n\n### Gathering data on demand with the Insights Operator from the OpenShift CLI {#running-insights-operator-gather-openshift-cli_using-insights-operator}\n\nYou can run a custom Insights Operator gather operation on-demand from the  OpenShift Container Platform command-line interface (CLI). An on-demand `DataGather` operation is useful for one-off data collections that require different configurations to the periodic data gathering (`InsightsDataGather`) specification.\n\nUse the following procedure to create a `DataGather` custom resource definition (CRD), and then run the data gather operation on demand from the CLI.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Create a YAML file with the following `DataGather` specification:\n\n   ```yaml\n\n   apiVersion: insights.openshift.io/v1\n   kind: DataGather\n   metadata:\n     name: <your_data_gather>\n   spec:\n   # Gatherers configuration\n     gatherers:\n       mode: All # Options: All, Custom\n   # ...\n   ```\n\n   > [!IMPORTANT]\n   > - The name you specify for your gather operation, `<your_data_gather>`, must be unique and must not include a prefix of `periodic-gathering-` because this string is reserved for other administrative operations and might impact the intended gather operation.\n   > - If the `spec` of `DataGather` CRD is undefined, the default Insights Operator data collection job will run. This means that all gather operations will run, the collected data will be unobfuscated and the archive file will not be retained.\n2. Optional: To customize the data gather operation, you can configure any of the following options in your `DataGather` YAML file:\n\n   - To disable specific gatherers, change the value of `mode` to **Custom**, and then specify the individual gatherer that you intend to disable. For example, to disable the workload gatherer, add the following example:\n\n     ```yaml\n     apiVersion: insights.openshift.io/v1\n     kind: DataGather\n     metadata:\n       name: <your_data_gather>\n     spec:\n         # Gatherers configuration\n       gatherers:\n         mode: Custom  # Options: All, Custom\n         custom:\n           configs:\n             # Essential cluster configuration gatherers\n             - name: clusterconfig/authentication\n               state: Enabled\n             - name: clusterconfig/clusteroperators\n               state: Enabled\n             - name: workloads\n               state: Disabled\n     ```\n   - To enable persistent storage to retain the data archive file and history for up to the last 10 data gathering jobs, define the `storage` specification. Set `type` to `PersistentVolume`, and define the `mountPath` and `name` of the volume:\n\n     ```yaml\n     apiVersion: insights.openshift.io/v1\n     kind: DataGather\n     metadata:\n       name: <your_data_gather>\n     spec:\n       storage:\n         type: PersistentVolume\n         mountPath: /data\n         persistentVolume:\n           claim:\n             name: on-demand-gather-pvc\n     ```\n\n     > [!IMPORTANT]\n     > Ensure that the volume name specified matches the existing `PersistentVolumeClaim` value in the `openshift-insights` namespace. For more information, see [Persistent volume claims](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/storage/understanding-persistent-storage#persistent-volume-claims_understanding-persistent-storage).\n   - To enable data obfuscation, define the `dataPolicy` key and required values. For example, to obfuscate IP addresses and workload names, add the following configuration:\n\n     ```yaml\n     apiVersion: insights.openshift.io/v1\n     kind: DataGather\n     metadata:\n       name: <your_data_gather>\n     spec:\n       dataPolicy:\n         - ObfuscateNetworking\n         - WorkloadNames\n     ```\n3. On the OpenShift Container Platform CLI, enter the following command to run the gather operation:\n\n   ```terminal\n   $ oc apply -f <your_data_gather_definition>.yaml\n   ```\n\n**Verification**\n\n- Check that your new gather operation is prefixed with your chosen name under the list of pods in the `openshift-insights` project. Upon completion, the Insights Operator automatically uploads the data to Red Hat for processing.\n\n**Additional resources**\n\n- [Insights Operator Gathered Data GitHub repository](https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md)\n\n### Disabling the Insights Operator periodic gather operations {#disabling-insights-operator-gather_using-insights-operator}\n\nYou can optionally disable the periodic `InsightsDataGather` operations that the Insights Operator runs every 2 hours by default. Disabling the periodic data gather operations increases privacy for your organization as Insights Operator will no longer gather and send Red Hat Lightspeed cluster reports to Red Hat.\n\nDisabling gather operations will also disable Red Hat Lightspeed analysis and recommendations for your cluster without affecting other core functions that require communication with Red Hat such as cluster transfers.\n\nYou can view a list of attempted gather operations for your cluster from the `/insights-operator/gathers.json` file in your Insights Operator archive. Be aware that some gather operations occur only when certain conditions are met and might not show in your most recent archive.\n\n> [!IMPORTANT]\n> The `InsightsDataGather` custom resource is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n> [!NOTE]\n> If you enable Technology Preview in your cluster, the Insights Operator runs gather operations in individual pods. This is part of the Technology Preview feature set for the Insights Operator and supports the new data gathering features.\n\n**Prerequisites**\n\n- You are logged in to the OpenShift Container Platform web console as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Navigate to **Administration** > **CustomResourceDefinitions**.\n2. On the **CustomResourceDefinitions** page, use the **Search by name** field to find the **InsightsDataGather** custom resource definition (CRD), and click to open.\n3. On the **CustomResourceDefinition details** page, click the **Instances** tab.\n4. Click **cluster**, and then click the **YAML** tab.\n5. Edit the `InsightsDataGather` CRD, and complete one of the following steps:\n\n   - To disable all the gather operations and data collection, define the `gatherers` specification and set the `mode` to `None`:\n\n     ```yaml\n\n     apiVersion: insights.openshift.io/v1\n     kind: InsightsDataGather\n     metadata:\n       name: cluster\n     spec:\n     # Gatherers configuration\n       gatherers:\n         mode: None # Options: All, None, Custom\n     ```\n   - To disable individual gather operations, under `gatherers`, set the `mode` to `Custom` and then specify the individual gatherer that you intend to disable. For example, to disable the workload gatherer, define the following specification:\n\n     ```yaml\n     apiVersion: insights.openshift.io/v1\n     kind: InsightsDataGather\n     metadata:\n       name: cluster\n     spec:\n         # Gatherers configuration\n       gatherers:\n         mode: Custom  # Options: All, None, Custom\n         custom:\n           configs:\n             # Essential cluster configuration gatherers\n             - name: clusterconfig/authentication\n               state: Enabled\n             - name: clusterconfig/clusteroperators\n               state: Enabled\n             - name: workloads\n               state: Disabled\n     ```\n6. Click **Save**.\n\n**Results**\n\nThe Insights Operator updates the gather configurations and no longer runs the operations that you disabled.\n\n> [!NOTE]\n> Disabling gather operations restricts the ability of the Red Hat Lightspeed advisor service to offer effective recommendations for your cluster.\n\n### Re-enabling the Insights Operator periodic gather operations {#enabling-insights-operator-gather_using-insights-operator}\n\nIf you disabled the default `InsightsDataGather` data gather operations, you can enable them again so that the Insights Operator resumes the periodic data collection, and sends the resulting Red Hat Lightspeed cluster reports to Red Hat.\n\n> [!IMPORTANT]\n> The `InsightsDataGather` custom resource is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n**Prerequisites**\n\n- You are logged in to the OpenShift Container Platform web console as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Navigate to **Administration** > **CustomResourceDefinitions**.\n2. On the **CustomResourceDefinitions** page, use the **Search by name** field to find the **InsightsDataGather** custom resource definition (CRD), and click to open.\n3. On the **CustomResourceDefinition details** page, click the **Instances** tab.\n4. Click **cluster**, and then click the **YAML** tab.\n5. Edit the `InsightsDataGather` CRD, and complete one of the following steps:\n\n   - To enable all disabled gather operations, under the `gatherers` specification, set the `mode` back to `All`:\n\n     ```yaml\n     apiVersion: insights.openshift.io/v1\n     kind: InsightsDataGather\n     metadata:\n       name: cluster\n     spec:\n     # Gatherers configuration\n       gatherers:\n         mode: All # Options: All, None, Custom\n     ```\n   - To enable individual gather operations that were previously disabled, find the name of the gatherer operation under the `gatherers:custom:configs` key section and change the `state` to `Enabled`. Alternatively, under the `config` specification, remove the `name` and `state` configuration lines for the operation you want to enable.\n\n     ```yaml\n     apiVersion: insights.openshift.io/v1\n     kind: InsightsDataGather\n     metadata:\n       name: cluster\n     spec:\n         # Gatherers configuration\n       gatherers:\n         mode: Custom  # Options: All, None, Custom\n         custom:\n           configs:\n             # Essential cluster configuration gatherers\n             - name: clusterconfig/authentication\n               state: Enabled\n             - name: clusterconfig/clusteroperators\n               state: Enabled\n             - name: workloads\n               state: Enabled\n     ```\n6. Click **Save**.\n\n   The Insights Operator updates the gather configurations and starts the affected gather operations.\n\n   > [!NOTE]\n   > Disabling gather operations restricts the ability of the Red Hat Lightspeed advisor service to offer effective recommendations for your cluster.\n\n## Obfuscating Deployment Validation Operator data {#obfuscating-deployment-validation-operator-data_using-insights-operator}\n\nBy default, when you install the Deployment Validation Operator (DVO), the name and unique identifier (UID) of a resource are included in the data that is captured and processed by the Insights Operator for OpenShift Container Platform. If you are a cluster administrator, you can configure the Insights Operator to obfuscate data from the Deployment Validation Operator (DVO). For example, you can obfuscate workload names in the archive file that is then sent to Red Hat.\n\nTo obfuscate the name of resources, you must manually set the `obfuscation` attribute in the `insights-config` `ConfigMap` object to include the `workload_names` value, as outlined in the following procedure.\n\n**Prerequisites**\n\n- Remote health reporting is enabled, which is the default.\n- You are logged in to the OpenShift Container Platform web console with the \"cluster-admin\" role.\n- The `insights-config` `ConfigMap` object exists in the `openshift-insights` namespace.\n- The cluster is self managed and the Deployment Validation Operator is installed.\n\n**Procedure**\n\n1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.\n2. Click the `insights-config` `ConfigMap` object to open it.\n3. Click **Actions** and select **Edit ConfigMap**.\n4. Click the **YAML view** radio button.\n5. In the file, set the `obfuscation` attribute with the `workload_names` value.\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   # ...\n   data:\n     config.yaml: |\n       dataReporting:\n         obfuscation:\n           - workload_names\n   # ...\n   ```\n6. Click **Save**. The `insights-config` ConfigMap details page opens.\n7. Verify that the value of the `config.yaml` `obfuscation` attribute is set to `- workload_names`.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,27 +101,438 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="using-insights-operator" class="group scroll-mt-20">Using the Insights Operator<a href="#using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>The {"{"}{"{"} insights_operator {"}"}{"}"} periodically gathers configuration and component failure status and, by default, reports that data every two hours to Red Hat. This information enables Red Hat to assess configuration and deeper failure data than is reported through Telemetry. Users of OpenShift Container Platform can display the report in the {"{"}{"{"} insights_advisor_url {"}"}{"}"} service on {"{"}{"{"} hybrid_console {"}"}{"}"}.</p>
+      <p>The Insights Operator periodically gathers configuration and component failure status and, by default, reports that data every two hours to Red Hat. This information enables Red Hat to assess configuration and deeper failure data than is reported through Telemetry. Users of OpenShift Container Platform can display the report in the <a href="https://console.redhat.com/openshift/insights/advisor/">Advisor</a> service on Red Hat Hybrid Cloud Console.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting#remote-health-reporting">Remote health reporting</a></li>
-      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster">Using {"{"}{"{"} red_hat_lightspeed {"}"}{"}"} to identify issues with your cluster</a></li>
+      <li><a href="/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster#using-insights-to-identify-issues-with-your-cluster">Using Red Hat Lightspeed to identify issues with your cluster</a></li>
       </ul>
-      <p class="/modules/insights-operator-configuring-configmap.md"></p>
-      <p class="/modules/insights-operator-insights-config.md"></p>
-      <p class="/modules/understanding-insights-operator-alerts.md"></p>
-      <p class="/modules/disabling-insights-operator-alerts.md"></p>
-      <p class="/modules/enabling-insights-operator-alerts.md"></p>
-      <p class="/modules/insights-operator-downloading-archive.md"></p>
-      <p class="/modules/running-insights-operator-gather.md"></p>
-      <p class="/modules/insights-operator-gather-duration.md"></p>
-      <p class="/modules/running-insights-operator-gather-web-console.md"></p>
-      <p class="/modules/running-insights-operator-gather-cli.md"></p>
+      <h2 id="insights-operator-configuring_using-insights-operator" class="group scroll-mt-20">The Insights Operator configuration<a href="#insights-operator-configuring_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Insights Operator configuration combines default settings with configurations stored in either the <code>insights-config</code> <code>ConfigMap</code> in the <code>openshift-insights</code> namespace or the support secret in the <code>openshift-config</code> namespace.</p>
+      <p>When a <code>ConfigMap</code> object or support secret exists, the contained attribute values override the default Operator configuration values. If both a <code>ConfigMap</code> object <em>and</em> a support secret exist, the Operator reads the <code>ConfigMap</code> object.</p>
+      <p>The <code>ConfigMap</code> object does not exist by default, so an OpenShift Container Platform cluster administrator must create it.</p>
+      <h3 id="insights-operator-configuring-configmap_using-insights-operator" class="group scroll-mt-20">ConfigMap object configuration structure<a href="#insights-operator-configuring-configmap_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">View the example of an <code>insights-config</code> <code>ConfigMap</code> object (<code>config.yaml</code> configuration) to better understand the configuration options for the <code>ConfigMap</code> object.</p>
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: insights-config\n  namespace: openshift-insights\ndata:\n  config.yaml: |\n    dataReporting:\n      uploadEndpoint: https://console.redhat.com/api/ingress/v1/upload\n      storagePath: /var/lib/insights-operator\n      downloadEndpoint: https://console.redhat.com/api/insights-results-aggregator/v2/cluster/%s/reports\n      conditionalGathererEndpoint: https://console.redhat.com/api/gathering/gathering_rules\n      disableRuntimeExtractor: true\n    sca:\n        disabled: false\n        endpoint: https://api.openshift.com/api/accounts_mgmt/v1/entitlement_certificates\n        interval: 8h0m0s\n    alerting:\n        disabled: false\n    proxy:\n        httpProxy: http://example.com\n        httpsProxy: https://example.com\n        noProxy: test.org"} lang="yaml" title="Example insights-config ConfigMap object " />
+      <p>The following table describes the available configuration attributes:</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>insights-config</code> <code>ConfigMap</code> object follows standard YAML formatting, wherein child values are below the parent attribute and indented two spaces. For the <code>Obfuscation</code> attribute, enter values as bulleted children of the parent attribute.</p>
+        </AlertDescription>
+      </Alert>
+      <p><em></em><em><strong>Insights Operator configurable attributes</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Attribute name</th>\n  <th>Description</th>\n  <th>Value type</th>\n  <th>Default value</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>alerting: disabled: false</td>\n  <td>Disables Insights Operator alerts to the cluster Prometheus instance.</td>\n  <td>Boolean</td>\n  <td><code>false</code></td>\n</tr>\n<tr>\n  <td>clusterTransfer: endpoint: <url></td>\n  <td>The endpoint for checking and downloading cluster transfer data.</td>\n  <td>URL</td>\n  <td>https://api.openshift.com/api/accounts_mgmt/v1/cluster_transfers/</td>\n</tr>\n<tr>\n  <td>clusterTransfer: interval: 1h0m0s</td>\n  <td>Sets the frequency for checking available cluster transfers.</td>\n  <td>Time interval</td>\n  <td><code>24h</code></td>\n</tr>\n<tr>\n  <td>dataReporting: interval: 30m0s</td>\n  <td>Sets the data gathering and upload frequency.</td>\n  <td>Time interval</td>\n  <td><code>2h</code></td>\n</tr>\n<tr>\n  <td>dataReporting: uploadEndpoint: <url></td>\n  <td>Sets the upload endpoint.</td>\n  <td>URL</td>\n  <td>https://console.redhat.com/api/ingress/v1/upload</td>\n</tr>\n<tr>\n  <td>dataReporting: storagePath: <path></td>\n  <td>Configures the path where archived data gets stored.</td>\n  <td>File path</td>\n  <td>/var/lib/insights-operator</td>\n</tr>\n<tr>\n  <td>dataReporting: downloadEndpoint: <url></td>\n  <td>Specifies the endpoint for downloading the latest Red&#160;Hat Lightspeed analysis.</td>\n  <td>URL</td>\n  <td>https://console.redhat.com/api/ingress/v1/download</td>\n</tr>\n<tr>\n  <td>dataReporting: conditionalGathererEndpoint: <url></td>\n  <td>Sets the endpoint for providing conditional gathering rule definitions.</td>\n  <td>URL</td>\n  <td>https://console.redhat.com/api/gathering/gathering_rules</td>\n</tr>\n<tr>\n  <td>dataReporting: disableRuntimeExtractor: true</td>\n  <td>When set to true, it disables the deployment and management of all insights-runtime-extractor resources.</td>\n  <td>Boolean</td>\n  <td><code>false</code></td>\n</tr>\n<tr>\n  <td>dataReporting: obfuscation: - networking</td>\n  <td>Enables the global obfuscation of IP addresses and the cluster domain name.</td>\n  <td>String</td>\n  <td>Not applicable</td>\n</tr>\n<tr>\n  <td>dataReporting: obfuscation: - workload_names</td>\n  <td>Enables the obfuscation of Data Validation Operator data. The cluster resource ID is only visible in the archive file and not the resource name.</td>\n  <td>String</td>\n  <td>Not applicable</td>\n</tr>\n<tr>\n  <td>proxy: httpProxy: http://example.com httpsProxy: http://example.com noProxy: test.org</td>\n  <td>Set custom proxy for Insights Operator.</td>\n  <td>URL</td>\n  <td>No default</td>\n</tr>\n<tr>\n  <td>sca: interval: 8h0m0s</td>\n  <td>Specifies the frequency of the simple content access (SCA) entitlements download.</td>\n  <td>Time interval</td>\n  <td><code>2h</code></td>\n</tr>\n<tr>\n  <td>sca: endpoint: <url></td>\n  <td>Specifies the endpoint for downloading the simple content access (SCA) entitlements.</td>\n  <td>URL</td>\n  <td>https://api.openshift.com/api/accounts_mgmt/v1/entitlement_certificates</td>\n</tr>\n<tr>\n  <td>sca: disabled: false</td>\n  <td>Disables the simple content access entitlements download.</td>\n  <td>Boolean</td>\n  <td><code>false</code></td>\n</tr>\n</tbody>\n</table>\n"} />
+      <h2 id="insights-operator-insights-config_using-insights-operator" class="group scroll-mt-20">Creating the insights-config ConfigMap object<a href="#insights-operator-insights-config_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create the <code>insights-config</code> <code>ConfigMap</code> object for the Insights Operator with custom configurations.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Red Hat recommends you consult Red Hat Support before making changes to the default Insights Operator configuration.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Remote health reporting is enabled, which is the default.</li>
+      <li>You are logged in to the OpenShift Container Platform web console as a user with <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to <strong>Workloads</strong> -&gt; <strong>ConfigMaps</strong> and select <strong>Project: openshift-insights</strong>.</li>
+      <li>Click <strong>Create ConfigMap</strong>.</li>
+      <li>
+      Select <strong>Configure via: YAML view</strong> and enter your configuration preferences, for example:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: insights-config\n  namespace: openshift-insights\ndata:\n  config.yaml: |\n    dataReporting:\n      obfuscation:\n        - networking\n        - workload_names\n    sca:\n      disabled: false\n      interval: 2h\n    alerting:\n       disabled: false\nbinaryData: {}\nimmutable: false"} lang="yaml" />
+      </li>
+      <li>Optional: Select <strong>Form view</strong> and enter the necessary information that way.</li>
+      <li>In the <strong>ConfigMap Name</strong> field, enter <strong>insights-config</strong>.</li>
+      <li>In the <strong>Key</strong> field, enter <strong>config.yaml</strong>.</li>
+      <li>For the <strong>Value</strong> field, either browse for a file to drag and drop into the field or enter your configuration parameters manually.</li>
+      <li>Click <strong>Create</strong>. The <code>ConfigMap</code> object and configuration information are displayed.</li>
+      </ol>
+      <h2 id="understanding-insights-operator-alerts_using-insights-operator" class="group scroll-mt-20">Viewing Insights Operator alerts<a href="#understanding-insights-operator-alerts_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Insights Operator declares alerts through the Prometheus monitoring system to the Alertmanager. You can view these alerts in the Alerting UI in the OpenShift Container Platform web console.</p>
+      <p>Currently, Insights Operator sends the following alerts when the conditions are met:</p>
+      <p><strong>Insights Operator alerts</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Alert</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>InsightsDisabled</code></TableCell>
+      <TableCell>Insights Operator is disabled.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SimpleContentAccessNotAvailable</code></TableCell>
+      <TableCell>Simple content access is not enabled in Red Hat Subscription Management.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>InsightsRecommendationActive</code></TableCell>
+      <TableCell>Red Hat Lightspeed has an active recommendation for the cluster.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To view these alerts in the Alerting UI in the OpenShift Container Platform web console, choose one of the following methods:
+      <ul>
+      <li>In the <strong>Administrator</strong> perspective, click <strong>Observe</strong> -&gt; <strong>Alerting</strong>.</li>
+      <li>In the <strong>Developer</strong> perspective, click <strong>Observe</strong> -&gt; &lt;project_name&gt; -&gt; <strong>Alerts</strong> tab.</li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="disabling-insights-operator-alerts_using-insights-operator" class="group scroll-mt-20">Disabling Insights Operator alerts<a href="#disabling-insights-operator-alerts_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To prevent the Insights Operator from sending alerts to the cluster Prometheus instance, you create or edit the <code>insights-config</code> <code>ConfigMap</code> object. </p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Previously, a cluster administrator would create or edit the Insights Operator configuration using a support secret in the <code>openshift-config</code> namespace. Red Hat Lightspeed now supports the creation of a <code>ConfigMap</code> object to configure the Operator. The Operator gives preference to the config map configuration over the support secret if both exist.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If the <code>insights-config</code> <code>ConfigMap</code> object does not exist, you must create it when you first add custom configurations. Note that configurations within the <code>ConfigMap</code> object take precedence over the default settings defined in the <code>config/pod.yaml</code> file.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Remote health reporting is enabled, which is the default.</li>
+      <li>You are logged in to the OpenShift Container Platform web console as <code>cluster-admin</code>.</li>
+      <li>The <code>insights-config</code> <code>ConfigMap</code> object exists in the <code>openshift-insights</code> namespace.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to <strong>Workloads</strong> -&gt; <strong>ConfigMaps</strong> and select <strong>Project: openshift-insights</strong>.</li>
+      <li>Click the <strong>insights-config</strong> <code>ConfigMap</code> object to open it.</li>
+      <li>Click <strong>Actions</strong> and select <strong>Edit ConfigMap</strong>.</li>
+      <li>Click the <strong>YAML view</strong> radio button.</li>
+      <li>
+      In the file, set the <code>alerting</code> attribute to <code>disabled: true</code>.
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\n# ...\ndata:\n  config.yaml: |\n    alerting:\n      disabled: true\n# ..."} lang="yaml" />
+      </li>
+      <li>Click <strong>Save</strong>. The <code>insights-config</code> ConfigMap details page opens.</li>
+      <li>
+      Verify that the value of the <code>config.yaml</code> <code>alerting</code> attribute is set to <code>disabled: true</code>.
+      <p>After you save the changes, Insights Operator no longer sends alerts to the cluster Prometheus instance.</p>
+      </li>
+      </ol>
+      <h3 id="enabling-insights-operator-alerts_using-insights-operator" class="group scroll-mt-20">Enabling Insights Operator alerts<a href="#enabling-insights-operator-alerts_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When alerts are disabled, the Insights Operator no longer sends alerts to the cluster Prometheus instance. You can re-enable them.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Previously, a cluster administrator would create or edit the Insights Operator configuration using a support secret in the <code>openshift-config</code> namespace. Red Hat Lightspeed now supports the creation of a <code>ConfigMap</code> object to configure the Insights Operator. The Insights Operator gives preference to the config map configuration over the support secret if both exist.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Remote health reporting is enabled, which is the default.</li>
+      <li>You are logged in to the OpenShift Container Platform web console as <code>cluster-admin</code>.</li>
+      <li>The <code>insights-config</code> <code>ConfigMap</code> object exists in the <code>openshift-insights</code> namespace.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to <strong>Workloads</strong> -&gt; <strong>ConfigMaps</strong> and select <strong>Project: openshift-insights</strong>.</li>
+      <li>Click on the <code>insights-config</code> <code>ConfigMap</code> object to open it.</li>
+      <li>Click <strong>Actions</strong> and select <strong>Edit ConfigMap</strong>.</li>
+      <li>Click the <strong>YAML view</strong> radio button.</li>
+      <li>
+      In the file, set the <code>alerting</code> attribute to <code>disabled: false</code>.
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\n# ...\ndata:\n  config.yaml: |\n    alerting:\n      disabled: false\n# ..."} lang="yaml" />
+      </li>
+      <li>Click <strong>Save</strong>. The <code>insights-config</code> <code>ConfigMap</code> details page opens.</li>
+      <li>
+      Verify that the value of the <code>config.yaml</code> <code>alerting</code> attribute is set to <code>disabled: false</code>.
+      <p>After you save the changes, Insights Operator again sends alerts to the cluster Prometheus instance.</p>
+      </li>
+      </ol>
+      <h2 id="insights-operator-downloading-archive_using-insights-operator" class="group scroll-mt-20">Downloading your Insights Operator archive<a href="#insights-operator-downloading-archive_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Insights Operator stores gathered data in an archive located in the <code>openshift-insights</code> namespace of your cluster. You can download and review the data that is gathered by the Insights Operator.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Find the name of the running pod for the Insights Operator:
+      <CodeBlock code={"$ oc get pods --namespace=openshift-insights -o custom-columns=:metadata.name --no-headers  --field-selector=status.phase=Running"} lang="terminal" />
+      </li>
+      <li>
+      Copy the recent data archives collected by the Insights Operator:
+      <CodeBlock code={"$ oc cp openshift-insights/<insights_operator_pod_name>:/var/lib/insights-operator ./insights-data"} lang="terminal" />
+      <p>Replace <code>&lt;insights_operator_pod_name&gt;</code> with the pod name output from the preceding command.</p>
+      <p>The recent Insights Operator archives are now available in the <code>insights-data</code> directory.</p>
+      </li>
+      </ol>
+      <h2 id="running-insights-operator-gather_using-insights-operator" class="group scroll-mt-20">On-demand Insights Operator gather operations<a href="#running-insights-operator-gather_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Instead of waiting for the next periodic data gather operation, you can run a custom on-demand Insights Operator data gather operation by using the OpenShift Container Platform web console or command-line interface (CLI).</p>
+      <p>A periodic data gather operation uses the <code>InsightsDataGather</code> custom resource definition (CRD) for configuration instructions, whereas an on-demand equivalent requires a <code>DataGather</code> CRD to be configured.</p>
+      <p>An on-demand <code>DataGather</code> operation is:</p>
+      <ul>
+      <li>Useful for one-off data collections that require different CRD configurations to the periodic data gathering (<code>InsightsDataGather</code>) specification.</li>
+      <li>Independent from the periodic data gathering. When you create an on-demand <code>DataGather</code> CRD, the configuration is independent from the <code>InsightsDataGather</code> CRD specification of your periodic data gathering job.</li>
+      </ul>
+      <p><em></em><em><strong>Custom specification options</strong></em><em></em></p>
+      <p>You can optionally customize the following items for the on-demand data gather operation:</p>
+      <ul>
+      <li><strong>Enable and define data obfuscation:</strong> By defining the <code>DataGather</code> <code>dataPolicy</code> specification, you can enable additional obfuscation of the Red Hat Lightspeed archive data, for example, the IP address or workload names.</li>
+      <li><strong>Enable persistent storage:</strong> By default, the Insights Operator uses ephemeral storage, which means that a new pod will be created for each gather operation and the history of gather operations and data collected is not retained. You can switch to persistent storage to retain the data and history for up to the last 10 gather operations by defining the <code>DataGather</code> <code>storage</code> specification in the CRD.</li>
+      <li><strong>Exclude specific data gather operations:</strong> You can choose to disable specific gather operations from running by defining the <code>DataGather</code> <code>gatherers</code> specification. For example, you can choose to disable the cluster authentication operation or the workload data operation.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Excluding gather operations from the default list might reduce or limit the  recommendations offered by the Red Hat Lightspeed advisor service for your cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If you do not configure any custom specification options in the <code>DataGather</code> CRD, the default Insights Operator data collection job will run. This means that all gather operations will run, the collected data will be unobfuscated and the archive file will not be retained.</p>
+      <p>When you run a gather operation on-demand, any configuration that was previously applied to disable Insights Operator gather operations for your cluster will be overridden.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The <code>DataGather</code> custom resource is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you enable Technology Preview in your cluster, the Insights Operator runs gather operations in individual pods. This is part of the Technology Preview feature set for the Insights Operator and supports the new data gathering features.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="insights-operator-gather-duration_using-insights-operator" class="group scroll-mt-20">Viewing Insights Operator gather durations<a href="#insights-operator-gather-duration_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can view the time it takes for the Insights Operator to gather the information contained in the archive. This helps you to understand Insights Operator resource usage and issues with Red Hat Lightspeed Advisor.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>A recent copy of your Insights Operator archive.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      From your archive, open <code>/insights-operator/gathers.json</code>.
+      <p>The file contains a list of Insights Operator gather operations:</p>
+      <CodeBlock code={"    {\n      \"name\": \"clusterconfig/authentication\",\n      \"duration_in_ms\": 730,\n      \"records_count\": 1,\n      \"errors\": null,\n      \"panic\": null\n    }"} lang="json" />
+      <p>The <code>duration_in_ms</code> field is the amount of time in milliseconds for each gather operation.</p>
+      </li>
+      <li>Inspect each gather operation for abnormalities.</li>
+      </ol>
+      <h3 id="running-insights-operator-gather-web-console_using-insights-operator" class="group scroll-mt-20">Gathering data on demand with the Insights Operator from the web console<a href="#running-insights-operator-gather-web-console_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can run a custom Insights Operator gather operation on-demand from the OpenShift Container Platform web console. An on-demand <code>DataGather</code> operation is useful for one-off data collections that require different configurations to the periodic data gathering (<code>InsightsDataGather</code>) specification.</p>
+      <p>Use the following procedure to create a <code>DataGather</code> custom resource definition (CRD), and then run the data gather operation on demand from the web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You are logged in to the OpenShift Container Platform web console as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>On the console, select <strong>Administration</strong> &gt; <strong>CustomResourceDefinitions</strong>.</li>
+      <li>On the <strong>CustomResourceDefinitions</strong> page, in the <strong>Search by name</strong> field, find and then click the <strong>DataGather</strong> resource definition.</li>
+      <li>On the <strong>CustomResourceDefinition details</strong> page, click the <strong>Instances</strong> tab.</li>
+      <li>Click <strong>Create DataGather</strong>.</li>
+      <li>
+      To create a new <code>DataGather</code> operation where all gather operations will run, complete the following YAML specification, and then save your changes.
+      <CodeBlock code={"\napiVersion: insights.openshift.io/v1\nkind: DataGather\nmetadata:\n  name: <your_data_gather>\nspec:\n# Gatherers configuration\n  gatherers:\n    mode: All # Options: All, Custom\n# ..."} lang="yaml" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>The name you specify for your gather operation, <code>&lt;your_data_gather&gt;</code>, must be unique and must not include a prefix of <code>periodic-gathering-</code> because this string is reserved for other administrative operations and might impact the intended gather operation.</li>
+          <li>If the <code>spec</code> of <code>DataGather</code> CRD is undefined, the default Insights Operator data collection job will run. This means that all gather operations will run, the collected data will be unobfuscated and the archive file will not be retained.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Optional: To customize the data gather operation, you can configure any of the following options in your <code>DataGather</code> YAML file:
+      <ul>
+      <li>
+      To disable specific gatherers, change the value of <code>mode</code> to <strong>Custom</strong>, and then specify the individual gatherer that you intend to disable. For example, to disable the workload gatherer, add the following example:
+      <CodeBlock code={"apiVersion: insights.openshift.io/v1\nkind: DataGather\nmetadata:\n  name: <your_data_gather>\nspec:\n    # Gatherers configuration\n  gatherers:\n    mode: Custom  # Options: All, Custom\n    custom:\n      configs:\n        # Essential cluster configuration gatherers\n        - name: clusterconfig/authentication\n          state: Enabled\n        - name: clusterconfig/clusteroperators\n          state: Enabled\n        - name: workloads\n          state: Disabled"} lang="yaml" />
+      </li>
+      <li>
+      To enable persistent storage to retain the data archive file and history for up to the last 10 data gathering jobs, define the <code>storage</code> specification. Set <strong>type</strong> to <code>PersistentVolume</code>, and define the <code>mountPath</code> and <code>name</code> of the volume, as outlined in the following example:
+      <CodeBlock code={"apiVersion: insights.openshift.io/v1\nkind: DataGather\nmetadata:\n  name: <your_data_gather>\nspec:\n  storage:\n    type: PersistentVolume\n    mountPath: /data\n    persistentVolume:\n      claim:\n        name: on-demand-gather-pvc"} lang="yaml" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Ensure that the volume name specified matches the existing <code>PersistentVolumeClaim</code> value in the <code>openshift-insights</code> namespace. For more information, see <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/storage/understanding-persistent-storage#persistent-volume-claims_understanding-persistent-storage">Persistent volume claims</a>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      To enable data obfuscation, define the <code>dataPolicy</code> key and required values. For example, to obfuscate IP addresses and workload names, add the following configuration:
+      <CodeBlock code={"apiVersion: insights.openshift.io/v1\nkind: DataGather\nmetadata:\n  name: <your_data_gather>\nspec:\n  dataPolicy:\n    - ObfuscateNetworking\n    - WorkloadNames"} lang="yaml" />
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>On the console, select <strong>Workloads</strong> &gt; <strong>Pods</strong>.</li>
+      <li>On the Pods page, go to the <strong>Project</strong> pull-down menu, and then select <strong>Show default projects</strong>.</li>
+      <li>Select the <code>openshift-insights</code> project from the <strong>Project</strong> pull-down menu.</li>
+      <li>Check that your new gather operation is prefixed with your chosen name under the list of pods in the <code>openshift-insights</code> project. Upon completion, the Insights Operator automatically uploads the data to Red Hat for processing.</li>
+      </ol>
+      <h3 id="running-insights-operator-gather-openshift-cli_using-insights-operator" class="group scroll-mt-20">Gathering data on demand with the Insights Operator from the OpenShift CLI<a href="#running-insights-operator-gather-openshift-cli_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can run a custom Insights Operator gather operation on-demand from the  OpenShift Container Platform command-line interface (CLI). An on-demand <code>DataGather</code> operation is useful for one-off data collections that require different configurations to the periodic data gathering (<code>InsightsDataGather</code>) specification.</p>
+      <p>Use the following procedure to create a <code>DataGather</code> custom resource definition (CRD), and then run the data gather operation on demand from the CLI.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You are logged in to OpenShift Container Platform as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file with the following <code>DataGather</code> specification:
+      <CodeBlock code={"\napiVersion: insights.openshift.io/v1\nkind: DataGather\nmetadata:\n  name: <your_data_gather>\nspec:\n# Gatherers configuration\n  gatherers:\n    mode: All # Options: All, Custom\n# ..."} lang="yaml" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>The name you specify for your gather operation, <code>&lt;your_data_gather&gt;</code>, must be unique and must not include a prefix of <code>periodic-gathering-</code> because this string is reserved for other administrative operations and might impact the intended gather operation.</li>
+          <li>If the <code>spec</code> of <code>DataGather</code> CRD is undefined, the default Insights Operator data collection job will run. This means that all gather operations will run, the collected data will be unobfuscated and the archive file will not be retained.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Optional: To customize the data gather operation, you can configure any of the following options in your <code>DataGather</code> YAML file:
+      <ul>
+      <li>
+      To disable specific gatherers, change the value of <code>mode</code> to <strong>Custom</strong>, and then specify the individual gatherer that you intend to disable. For example, to disable the workload gatherer, add the following example:
+      <CodeBlock code={"apiVersion: insights.openshift.io/v1\nkind: DataGather\nmetadata:\n  name: <your_data_gather>\nspec:\n    # Gatherers configuration\n  gatherers:\n    mode: Custom  # Options: All, Custom\n    custom:\n      configs:\n        # Essential cluster configuration gatherers\n        - name: clusterconfig/authentication\n          state: Enabled\n        - name: clusterconfig/clusteroperators\n          state: Enabled\n        - name: workloads\n          state: Disabled"} lang="yaml" />
+      </li>
+      <li>
+      To enable persistent storage to retain the data archive file and history for up to the last 10 data gathering jobs, define the <code>storage</code> specification. Set <code>type</code> to <code>PersistentVolume</code>, and define the <code>mountPath</code> and <code>name</code> of the volume:
+      <CodeBlock code={"apiVersion: insights.openshift.io/v1\nkind: DataGather\nmetadata:\n  name: <your_data_gather>\nspec:\n  storage:\n    type: PersistentVolume\n    mountPath: /data\n    persistentVolume:\n      claim:\n        name: on-demand-gather-pvc"} lang="yaml" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Ensure that the volume name specified matches the existing <code>PersistentVolumeClaim</code> value in the <code>openshift-insights</code> namespace. For more information, see <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/storage/understanding-persistent-storage#persistent-volume-claims_understanding-persistent-storage">Persistent volume claims</a>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      To enable data obfuscation, define the <code>dataPolicy</code> key and required values. For example, to obfuscate IP addresses and workload names, add the following configuration:
+      <CodeBlock code={"apiVersion: insights.openshift.io/v1\nkind: DataGather\nmetadata:\n  name: <your_data_gather>\nspec:\n  dataPolicy:\n    - ObfuscateNetworking\n    - WorkloadNames"} lang="yaml" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      On the OpenShift Container Platform CLI, enter the following command to run the gather operation:
+      <CodeBlock code={"$ oc apply -f <your_data_gather_definition>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>Check that your new gather operation is prefixed with your chosen name under the list of pods in the <code>openshift-insights</code> project. Upon completion, the Insights Operator automatically uploads the data to Red Hat for processing.</li></ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md">{"{"}{"{"} insights_operator {"}"}{"}"} Gathered Data GitHub repository</a></li></ul>
-      <p class="/modules/enabling-insights-operator-gather.md"></p>
-      <p class="/modules/obfuscating-dvo-data.md"></p>
+      <ul><li><a href="https://github.com/openshift/insights-operator/blob/master/docs/gathered-data.md">Insights Operator Gathered Data GitHub repository</a></li></ul>
+      <h3 id="disabling-insights-operator-gather_using-insights-operator" class="group scroll-mt-20">Disabling the Insights Operator periodic gather operations<a href="#disabling-insights-operator-gather_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can optionally disable the periodic <code>InsightsDataGather</code> operations that the Insights Operator runs every 2 hours by default. Disabling the periodic data gather operations increases privacy for your organization as Insights Operator will no longer gather and send Red Hat Lightspeed cluster reports to Red Hat.</p>
+      <p>Disabling gather operations will also disable Red Hat Lightspeed analysis and recommendations for your cluster without affecting other core functions that require communication with Red Hat such as cluster transfers.</p>
+      <p>You can view a list of attempted gather operations for your cluster from the <code>/insights-operator/gathers.json</code> file in your Insights Operator archive. Be aware that some gather operations occur only when certain conditions are met and might not show in your most recent archive.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The <code>InsightsDataGather</code> custom resource is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you enable Technology Preview in your cluster, the Insights Operator runs gather operations in individual pods. This is part of the Technology Preview feature set for the Insights Operator and supports the new data gathering features.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You are logged in to the OpenShift Container Platform web console as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Administration</strong> &gt; <strong>CustomResourceDefinitions</strong>.</li>
+      <li>On the <strong>CustomResourceDefinitions</strong> page, use the <strong>Search by name</strong> field to find the <strong>InsightsDataGather</strong> custom resource definition (CRD), and click to open.</li>
+      <li>On the <strong>CustomResourceDefinition details</strong> page, click the <strong>Instances</strong> tab.</li>
+      <li>Click <strong>cluster</strong>, and then click the <strong>YAML</strong> tab.</li>
+      <li>
+      Edit the <code>InsightsDataGather</code> CRD, and complete one of the following steps:
+      <ul>
+      <li>
+      To disable all the gather operations and data collection, define the <code>gatherers</code> specification and set the <code>mode</code> to <code>None</code>:
+      <CodeBlock code={"\napiVersion: insights.openshift.io/v1\nkind: InsightsDataGather\nmetadata:\n  name: cluster\nspec:\n# Gatherers configuration\n  gatherers:\n    mode: None # Options: All, None, Custom"} lang="yaml" />
+      </li>
+      <li>
+      To disable individual gather operations, under <code>gatherers</code>, set the <code>mode</code> to <code>Custom</code> and then specify the individual gatherer that you intend to disable. For example, to disable the workload gatherer, define the following specification:
+      <CodeBlock code={"apiVersion: insights.openshift.io/v1\nkind: InsightsDataGather\nmetadata:\n  name: cluster\nspec:\n    # Gatherers configuration\n  gatherers:\n    mode: Custom  # Options: All, None, Custom\n    custom:\n      configs:\n        # Essential cluster configuration gatherers\n        - name: clusterconfig/authentication\n          state: Enabled\n        - name: clusterconfig/clusteroperators\n          state: Enabled\n        - name: workloads\n          state: Disabled"} lang="yaml" />
+      </li>
+      </ul>
+      </li>
+      <li>Click <strong>Save</strong>.</li>
+      </ol>
+      <p><strong>Results</strong></p>
+      <p>The Insights Operator updates the gather configurations and no longer runs the operations that you disabled.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Disabling gather operations restricts the ability of the Red Hat Lightspeed advisor service to offer effective recommendations for your cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="enabling-insights-operator-gather_using-insights-operator" class="group scroll-mt-20">Re-enabling the Insights Operator periodic gather operations<a href="#enabling-insights-operator-gather_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">If you disabled the default <code>InsightsDataGather</code> data gather operations, you can enable them again so that the Insights Operator resumes the periodic data collection, and sends the resulting Red Hat Lightspeed cluster reports to Red Hat.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The <code>InsightsDataGather</code> custom resource is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You are logged in to the OpenShift Container Platform web console as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Administration</strong> &gt; <strong>CustomResourceDefinitions</strong>.</li>
+      <li>On the <strong>CustomResourceDefinitions</strong> page, use the <strong>Search by name</strong> field to find the <strong>InsightsDataGather</strong> custom resource definition (CRD), and click to open.</li>
+      <li>On the <strong>CustomResourceDefinition details</strong> page, click the <strong>Instances</strong> tab.</li>
+      <li>Click <strong>cluster</strong>, and then click the <strong>YAML</strong> tab.</li>
+      <li>
+      Edit the <code>InsightsDataGather</code> CRD, and complete one of the following steps:
+      <ul>
+      <li>
+      To enable all disabled gather operations, under the <code>gatherers</code> specification, set the <code>mode</code> back to <code>All</code>:
+      <CodeBlock code={"apiVersion: insights.openshift.io/v1\nkind: InsightsDataGather\nmetadata:\n  name: cluster\nspec:\n# Gatherers configuration\n  gatherers:\n    mode: All # Options: All, None, Custom"} lang="yaml" />
+      </li>
+      <li>
+      To enable individual gather operations that were previously disabled, find the name of the gatherer operation under the <code>gatherers:custom:configs</code> key section and change the <code>state</code> to <code>Enabled</code>. Alternatively, under the <code>config</code> specification, remove the <code>name</code> and <code>state</code> configuration lines for the operation you want to enable.
+      <CodeBlock code={"apiVersion: insights.openshift.io/v1\nkind: InsightsDataGather\nmetadata:\n  name: cluster\nspec:\n    # Gatherers configuration\n  gatherers:\n    mode: Custom  # Options: All, None, Custom\n    custom:\n      configs:\n        # Essential cluster configuration gatherers\n        - name: clusterconfig/authentication\n          state: Enabled\n        - name: clusterconfig/clusteroperators\n          state: Enabled\n        - name: workloads\n          state: Enabled"} lang="yaml" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Click <strong>Save</strong>.
+      <p>The Insights Operator updates the gather configurations and starts the affected gather operations.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Disabling gather operations restricts the ability of the Red Hat Lightspeed advisor service to offer effective recommendations for your cluster.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="obfuscating-deployment-validation-operator-data_using-insights-operator" class="group scroll-mt-20">Obfuscating Deployment Validation Operator data<a href="#obfuscating-deployment-validation-operator-data_using-insights-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By default, when you install the Deployment Validation Operator (DVO), the name and unique identifier (UID) of a resource are included in the data that is captured and processed by the Insights Operator for OpenShift Container Platform. If you are a cluster administrator, you can configure the Insights Operator to obfuscate data from the Deployment Validation Operator (DVO). For example, you can obfuscate workload names in the archive file that is then sent to Red Hat.</p>
+      <p>To obfuscate the name of resources, you must manually set the <code>obfuscation</code> attribute in the <code>insights-config</code> <code>ConfigMap</code> object to include the <code>workload_names</code> value, as outlined in the following procedure.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Remote health reporting is enabled, which is the default.</li>
+      <li>You are logged in to the OpenShift Container Platform web console with the "cluster-admin" role.</li>
+      <li>The <code>insights-config</code> <code>ConfigMap</code> object exists in the <code>openshift-insights</code> namespace.</li>
+      <li>The cluster is self managed and the Deployment Validation Operator is installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to <strong>Workloads</strong> -&gt; <strong>ConfigMaps</strong> and select <strong>Project: openshift-insights</strong>.</li>
+      <li>Click the <code>insights-config</code> <code>ConfigMap</code> object to open it.</li>
+      <li>Click <strong>Actions</strong> and select <strong>Edit ConfigMap</strong>.</li>
+      <li>Click the <strong>YAML view</strong> radio button.</li>
+      <li>
+      In the file, set the <code>obfuscation</code> attribute with the <code>workload_names</code> value.
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\n# ...\ndata:\n  config.yaml: |\n    dataReporting:\n      obfuscation:\n        - workload_names\n# ..."} lang="yaml" />
+      </li>
+      <li>Click <strong>Save</strong>. The <code>insights-config</code> ConfigMap details page opens.</li>
+      <li>Verify that the value of the <code>config.yaml</code> <code>obfuscation</code> attribute is set to <code>- workload_names</code>.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

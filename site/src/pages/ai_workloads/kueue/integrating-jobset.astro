@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"integrating-jobset","text":"Integrating the {{ js_operator }}"}];
+const headings = [{"depth":1,"slug":"integrating-jobset","text":"Integrating the JobSet Operator"},{"depth":2,"slug":"kueue-installing-jobset_integrating-jobset","text":"Installing JobSet Operator with Red Hat build of Kueue"},{"depth":2,"slug":"kueue-running-jobset_integrating-jobset","text":"Running JobSet Operator with Red Hat build of Kueue"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/integrating-jobset";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Integrating the {{ js_operator }}";
-const description = "You can integrate {{ js_operator }} with {{ kueue_name }} so you can leverage the scheduling and resource management functionality provided by {{…" || undefined;
+const description = "You can integrate JobSet Operator with Red Hat build of Kueue so you can leverage the scheduling and resource management functionality provided by Red Hat…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Integrating the {{ js_operator }} {#integrating-jobset}\n\nYou can integrate {{ js_operator }} with {{ kueue_name }} so you can leverage the scheduling and resource management functionality provided by {{ kueue_name }} when running the {{ js_operator }}.\n\nYou can use the {{ js_operator }} to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training.\n\nThe {{ js_operator }} models a distributed batch workload as a group of Kubernetes Jobs. This allows you to easily specify different pod templates for different distinct groups of pods, for example, a leader, workers, parameter servers, and so on.\n\n **Additional resources**\n\n- [About the {{ js_operator }}](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about_js-about)\n- [Run A JobSet (Kubernetes documentation)](https://kueue.sigs.k8s.io/docs/tasks/run/jobsets/)\n- [Installing the {{ cert_manager_operator }} by using the web console](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)\n\n **Additional resources**\n\n- [Configuring a cluster queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)\n- [Configuring a resource flavor](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)\n- [Configuring a local queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-localqueues_configuring-quotas)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/integrating-jobset.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Integrating the JobSet Operator {#integrating-jobset}\n\nYou can integrate JobSet Operator with Red Hat build of Kueue so you can leverage the scheduling and resource management functionality provided by Red Hat build of Kueue when running the JobSet Operator.\n\nYou can use the JobSet Operator to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training.\n\nThe JobSet Operator models a distributed batch workload as a group of Kubernetes Jobs. This allows you to easily specify different pod templates for different distinct groups of pods, for example, a leader, workers, parameter servers, and so on.\n\n## Installing JobSet Operator with Red Hat build of Kueue {#kueue-installing-jobset_integrating-jobset}\n\nYou can configure Red Hat build of Kueue to work with the JobSet Operator.\n\n**Prerequisites**\n\n- You have installed Red Hat build of Kueue using the Red Hat Build of Kueue Operator in the software catalog.\n- You have installed JobSet Operator in the software catalog.\n- You have cluster administrator permissions and the `kueue-batch-admin-role` role.\n- You have access to the OpenShift Container Platform web console.\n- You have installed the cert-manager Operator for Red Hat OpenShift for your cluster.\n\n**Procedure**\n\n- Add `JobSet` to the `config.integrations.frameworks` section of the Red Hat build of Kueue cluster object, as shown in the following example:\n\n  ```yaml\n  apiVersion: kueue.openshift.io/v1\n  kind: Kueue\n  metadata:\n    name: cluster\n    namespace: openshift-kueue-operator\n  spec:\n    managementState: Managed\n    config:\n      integrations:\n        frameworks:\n        - JobSet\n  ```\n\n**Additional resources**\n\n- [About the JobSet Operator](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about_js-about)\n- [Run A JobSet (Kubernetes documentation)](https://kueue.sigs.k8s.io/docs/tasks/run/jobsets/)\n- [Installing the cert-manager Operator for Red Hat OpenShift by using the web console](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)\n\n## Running JobSet Operator with Red Hat build of Kueue {#kueue-running-jobset_integrating-jobset}\n\nYou can add and run JobSet Operator to your existing frameworks.\n\n**Prerequisites**\n\n- Red Hat build of Kueue using the Red Hat Build of Kueue Operator is installed.\n- JobSet Operator is installed.\n- The cert-manager Operator for Red Hat OpenShift is installed.\n- The `namespace` where `JobSet` will be created is labeled using `kueue.openshift.io/managed=true`.\n- Ensure that the following objects have been configured:\n\n  - `ClusterQueue`\n  - `ResourceFlavor`\n  - `LocalQueue`\n  - `Namespace`\n\n**Procedure**\n\n1. Create a file named `jobset.yaml`.\n\n   ```yaml {title=\"Example of a JobSet\"}\n   apiVersion: jobset.x-k8s.io/v1alpha2\n   kind: JobSet\n   metadata:\n     name: jobset\n     namespace: my-namespace\n   spec:\n     replicatedJobs:\n       - name: workers\n         replicas: 1\n         template:\n           spec:\n             parallelism: 3\n             completions: 3\n             backoffLimit: 1\n             template:\n               spec:\n                 containers:\n                   - name: sleep\n                     image: busybox\n                     resources:\n                       requests:\n                         cpu: 200m\n                         memory: \"200Mi\"\n                     command:\n                       - sleep\n                     args:\n                       - 220s\n       - name: driver\n         template:\n           spec:\n             parallelism: 1\n             completions: 1\n             backoffLimit: 0\n             template:\n               spec:\n                 containers:\n                   - name: sleep\n                     image: busybox\n                     resources:\n                       requests:\n                         cpu: 200m\n                         memory: \"200Mi\"\n                     command:\n                       - sleep\n                     args:\n                       - 220s\n   ```\n2. Specify the target local queue in the `metadata.labels` section of the `JobSet` configuration.\n\n   ```yaml\n   metadata:\n     labels:\n       kueue.x-k8s.io/queue-name: <local-queue-name>\n   ```\n3. Apply the JobSet configuration by running the following command:\n\n   ```terminal\n   $ oc apply -f jobset.yaml\n   ```\n\n**Additional resources**\n\n- [Configuring a cluster queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)\n- [Configuring a resource flavor](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)\n- [Configuring a local queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-localqueues_configuring-quotas)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/integrating-jobset.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,18 +91,67 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="integrating-jobset" class="group scroll-mt-20">Integrating the {"{"}{"{"} js_operator {"}"}{"}"}<a href="#integrating-jobset" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can integrate {"{"}{"{"} js_operator {"}"}{"}"} with {"{"}{"{"} kueue_name {"}"}{"}"} so you can leverage the scheduling and resource management functionality provided by {"{"}{"{"} kueue_name {"}"}{"}"} when running the {"{"}{"{"} js_operator {"}"}{"}"}.</p>
-      <p>You can use the {"{"}{"{"} js_operator {"}"}{"}"} to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training.</p>
-      <p>The {"{"}{"{"} js_operator {"}"}{"}"} models a distributed batch workload as a group of Kubernetes Jobs. This allows you to easily specify different pod templates for different distinct groups of pods, for example, a leader, workers, parameter servers, and so on.</p>
-      <p class="/modules/kueue-installing-jobset.md"> <strong>Additional resources</strong></p>
+      <h1 id="integrating-jobset" class="group scroll-mt-20">Integrating the JobSet Operator<a href="#integrating-jobset" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can integrate JobSet Operator with Red Hat build of Kueue so you can leverage the scheduling and resource management functionality provided by Red Hat build of Kueue when running the JobSet Operator.</p>
+      <p>You can use the JobSet Operator to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training.</p>
+      <p>The JobSet Operator models a distributed batch workload as a group of Kubernetes Jobs. This allows you to easily specify different pod templates for different distinct groups of pods, for example, a leader, workers, parameter servers, and so on.</p>
+      <h2 id="kueue-installing-jobset_integrating-jobset" class="group scroll-mt-20">Installing JobSet Operator with Red Hat build of Kueue<a href="#kueue-installing-jobset_integrating-jobset" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure Red Hat build of Kueue to work with the JobSet Operator.</p>
+      <p><strong>Prerequisites</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about_js-about">About the {"{"}{"{"} js_operator {"}"}{"}"}</a></li>
-      <li><a href="https://kueue.sigs.k8s.io/docs/tasks/run/jobsets/">Run A JobSet (Kubernetes documentation)</a></li>
-      <li><a href="/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift">Installing the {"{"}{"{"} cert_manager_operator {"}"}{"}"} by using the web console</a></li>
+      <li>You have installed Red Hat build of Kueue using the Red Hat Build of Kueue Operator in the software catalog.</li>
+      <li>You have installed JobSet Operator in the software catalog.</li>
+      <li>You have cluster administrator permissions and the <code>kueue-batch-admin-role</code> role.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      <li>You have installed the cert-manager Operator for Red Hat OpenShift for your cluster.</li>
       </ul>
-      <p class="/modules/kueue-running-jobset.md"> <strong>Additional resources</strong></p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Add <code>JobSet</code> to the <code>config.integrations.frameworks</code> section of the Red Hat build of Kueue cluster object, as shown in the following example:
+      <CodeBlock code={"apiVersion: kueue.openshift.io/v1\nkind: Kueue\nmetadata:\n  name: cluster\n  namespace: openshift-kueue-operator\nspec:\n  managementState: Managed\n  config:\n    integrations:\n      frameworks:\n      - JobSet"} lang="yaml" />
+      </li>
+      </ul>
+      <p><strong>Additional resources</strong></p>
+      <ul>
+      <li><a href="/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about_js-about">About the JobSet Operator</a></li>
+      <li><a href="https://kueue.sigs.k8s.io/docs/tasks/run/jobsets/">Run A JobSet (Kubernetes documentation)</a></li>
+      <li><a href="/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift">Installing the cert-manager Operator for Red Hat OpenShift by using the web console</a></li>
+      </ul>
+      <h2 id="kueue-running-jobset_integrating-jobset" class="group scroll-mt-20">Running JobSet Operator with Red Hat build of Kueue<a href="#kueue-running-jobset_integrating-jobset" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add and run JobSet Operator to your existing frameworks.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Red Hat build of Kueue using the Red Hat Build of Kueue Operator is installed.</li>
+      <li>JobSet Operator is installed.</li>
+      <li>The cert-manager Operator for Red Hat OpenShift is installed.</li>
+      <li>The <code>namespace</code> where <code>JobSet</code> will be created is labeled using <code>kueue.openshift.io/managed=true</code>.</li>
+      <li>
+      Ensure that the following objects have been configured:
+      <ul>
+      <li><code>ClusterQueue</code></li>
+      <li><code>ResourceFlavor</code></li>
+      <li><code>LocalQueue</code></li>
+      <li><code>Namespace</code></li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a file named <code>jobset.yaml</code>.
+      <CodeBlock code={"apiVersion: jobset.x-k8s.io/v1alpha2\nkind: JobSet\nmetadata:\n  name: jobset\n  namespace: my-namespace\nspec:\n  replicatedJobs:\n    - name: workers\n      replicas: 1\n      template:\n        spec:\n          parallelism: 3\n          completions: 3\n          backoffLimit: 1\n          template:\n            spec:\n              containers:\n                - name: sleep\n                  image: busybox\n                  resources:\n                    requests:\n                      cpu: 200m\n                      memory: \"200Mi\"\n                  command:\n                    - sleep\n                  args:\n                    - 220s\n    - name: driver\n      template:\n        spec:\n          parallelism: 1\n          completions: 1\n          backoffLimit: 0\n          template:\n            spec:\n              containers:\n                - name: sleep\n                  image: busybox\n                  resources:\n                    requests:\n                      cpu: 200m\n                      memory: \"200Mi\"\n                  command:\n                    - sleep\n                  args:\n                    - 220s"} lang="yaml" title="Example of a JobSet" />
+      </li>
+      <li>
+      Specify the target local queue in the <code>metadata.labels</code> section of the <code>JobSet</code> configuration.
+      <CodeBlock code={"metadata:\n  labels:\n    kueue.x-k8s.io/queue-name: <local-queue-name>"} lang="yaml" />
+      </li>
+      <li>
+      Apply the JobSet configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f jobset.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas">Configuring a cluster queue</a></li>
       <li><a href="/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas">Configuring a resource flavor</a></li>

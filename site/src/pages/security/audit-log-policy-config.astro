@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"audit-log-policy-config","text":"Configuring the audit log policy"}];
+const headings = [{"depth":1,"slug":"audit-log-policy-config","text":"Configuring the audit log policy"},{"depth":2,"slug":"about-audit-log-profiles_audit-log-policy-config","text":"About audit log policy profiles"},{"depth":2,"slug":"configuring-audit-policy_audit-log-policy-config","text":"Configuring the audit log policy"},{"depth":2,"slug":"configuring-audit-policy-custom_audit-log-policy-config","text":"Configuring the audit log policy with custom rules"},{"depth":2,"slug":"configuring-audit-policy-disable_audit-log-policy-config","text":"Disabling audit logging"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/audit-log-policy-config";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["security"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the audit log policy {#audit-log-policy-config}\n\nYou can control the amount of information that is logged to the API server audit logs by choosing the audit log policy profile to use.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/audit-log-policy-config.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the audit log policy {#audit-log-policy-config}\n\nYou can control the amount of information that is logged to the API server audit logs by choosing the audit log policy profile to use.\n\n## About audit log policy profiles {#about-audit-log-profiles_audit-log-policy-config}\n\nTo monitor activity and maintain compliance, you can apply audit log profiles that define the level of detail recorded for API server requests. While more comprehensive profiles provide request bodies for troubleshooting, they also increase resource overhead on the host system.\n\nAudit log profiles define how to log requests that come to the OpenShift API server, Kubernetes API server, OpenShift OAuth API server, and OpenShift OAuth server.\n\nOpenShift Container Platform provides the following predefined audit policy profiles:\n\n<table>\n<thead>\n<tr>\n  <th>Profile</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>Default</code></td>\n  <td>Logs only metadata for read and write requests; does not log request bodies except for OAuth access token requests. This is the default policy.</td>\n</tr>\n<tr>\n  <td><code>WriteRequestBodies</code></td>\n  <td>In addition to logging metadata for all requests, logs request bodies for every write request to the API servers (<code>create</code>, <code>update</code>, <code>patch</code>, <code>delete</code>, <code>deletecollection</code>). This profile has more resource overhead than the <code>Default</code> profile. ^[1]^</td>\n</tr>\n<tr>\n  <td><code>AllRequestBodies</code></td>\n  <td>In addition to logging metadata for all requests, logs request bodies for  every read and write request to the API servers (<code>get</code>, <code>list</code>, <code>create</code>, <code>update</code>, <code>patch</code>). This profile has the most resource overhead. ^[1]^</td>\n</tr>\n<tr>\n  <td><code>None</code></td>\n  <td>No requests are logged, including OAuth access token requests and OAuth authorize token requests. Custom rules are ignored when this profile is set.</td>\n</tr>\n<tr>\n\n</tr>\n</tbody>\n</table>\n\n1. Sensitive resources, such as `Secret`, `Route`, and `OAuthClient` objects, are only logged at the metadata level. OpenShift OAuth server events are only logged at the metadata level.\n\nBy default, OpenShift Container Platform uses the `Default` audit log profile. You can use another audit policy profile that also logs request bodies, but be aware of the increased resource usage such as CPU, memory, and I/O.\n\n## Configuring the audit log policy {#configuring-audit-policy_audit-log-policy-config}\n\nYou can configure the audit log policy to use when logging requests that come to the API servers.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Edit the `APIServer` resource:\n\n   ```terminal\n   $ oc edit apiserver cluster\n   ```\n2. Update the `spec.audit.profile` field:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: APIServer\n   metadata:\n   ...\n   spec:\n     audit:\n       profile: WriteRequestBodies\n   ```\n\n   where:\n\n   `profile`\n   :   Set to `Default`, `WriteRequestBodies`, `AllRequestBodies`, or `None`. The default profile is `Default`.\n\n   > [!WARNING]\n   > It is not recommended to disable audit logging by using the `None` profile unless you are fully aware of the risks of not logging data that can be beneficial when troubleshooting issues. If you disable audit logging and a support situation arises, you might need to enable audit logging and reproduce the issue in order to troubleshoot properly.\n3. Save the file to apply the changes.\n\n**Verification**\n\n- Verify that a new revision of the Kubernetes API server pods is rolled out. It can take several minutes for all nodes to update to the new revision.\n\n  ```terminal\n  $ oc get kubeapiserver -o=jsonpath='{range .items[0].status.conditions[?(@.type==\"NodeInstallerProgressing\")]}{.reason}{\"\\n\"}{.message}{\"\\n\"}'\n  ```\n\n  Review the `NodeInstallerProgressing` status condition for the Kubernetes API server to verify that all nodes are at the latest revision. The output shows `AllNodesAtLatestRevision` upon successful update:\n\n  ```terminal\n  AllNodesAtLatestRevision\n  3 nodes are at revision 12\n  ```\n\n  In this example, the latest revision number is `12`.\n\n  If the output shows a message similar to one of the following messages, the update is still in progress. Wait a few minutes and try again.\n\n  - `3 nodes are at revision 11; 0 nodes have achieved new revision 12`\n  - `2 nodes are at revision 11; 1 nodes are at revision 12`\n\n## Configuring the audit log policy with custom rules {#configuring-audit-policy-custom_audit-log-policy-config}\n\nYou can configure an audit log policy that defines custom rules. You can specify multiple groups and define which profile to use for that group.\n\nThese custom rules take precedence over the top-level profile field. The custom rules are evaluated from top to bottom, and the first that matches is applied.\n\n> [!IMPORTANT]\n> If you set the top-level profile field to `None`, an API server, such as the Kubernetes API server, ignores custom rules and disables audit logging.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Edit the `APIServer` resource:\n\n   ```terminal\n   $ oc edit apiserver cluster\n   ```\n2. Add the `spec.audit.customRules` field:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: APIServer\n   metadata:\n   ...\n   spec:\n     audit:\n       customRules:\n       - group: system:authenticated:oauth\n         profile: WriteRequestBodies\n       - group: system:authenticated\n         profile: AllRequestBodies\n       profile: Default\n   ```\n\n   where:\n\n   `customRules`\n   :   Add one or more groups and specify the profile to use for that group. These custom rules take precedence over the top-level profile field. The custom rules are evaluated from top to bottom, and the first that matches is applied.\n\n   `profile`\n   :   Set to `Default`, `WriteRequestBodies`, or `AllRequestBodies`. If you do not set this top-level profile field, it defaults to the `Default` profile.\n3. Save the file to apply the changes.\n\n**Verification**\n\n- Verify that a new revision of the Kubernetes API server pods is rolled out. It can take several minutes for all nodes to update to the new revision.\n\n  ```terminal\n  $ oc get kubeapiserver -o=jsonpath='{range .items[0].status.conditions[?(@.type==\"NodeInstallerProgressing\")]}{.reason}{\"\\n\"}{.message}{\"\\n\"}'\n  ```\n\n  Review the `NodeInstallerProgressing` status condition for the Kubernetes API server to verify that all nodes are at the latest revision. The output shows `AllNodesAtLatestRevision` upon successful update:\n\n  ```terminal\n  AllNodesAtLatestRevision\n  3 nodes are at revision 12\n  ```\n\n  In this example, the latest revision number is `12`.\n\n  If the output shows a message similar to one of the following messages, the update is still in progress. Wait a few minutes and try again.\n\n  - `3 nodes are at revision 11; 0 nodes have achieved new revision 12`\n  - `2 nodes are at revision 11; 1 nodes are at revision 12`\n\n## Disabling audit logging {#configuring-audit-policy-disable_audit-log-policy-config}\n\nYou can disable audit logging for OpenShift Container Platform. When you disable audit logging, even OAuth access token requests and OAuth authorize token requests are not logged.\n\n> [!WARNING]\n> It is not recommended to disable audit logging by using the `None` profile unless you are fully aware of the risks of not logging data that can be beneficial when troubleshooting issues. If you disable audit logging and a support situation arises, you might need to enable audit logging and reproduce the issue in order to troubleshoot properly.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Edit the `APIServer` resource:\n\n   ```terminal\n   $ oc edit apiserver cluster\n   ```\n2. Set the `spec.audit.profile` field to `None`:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: APIServer\n   metadata:\n   ...\n   spec:\n     audit:\n       profile: None\n   ```\n\n   > [!NOTE]\n   > You can also disable audit logging only for specific groups by specifying custom rules in the `spec.audit.customRules` field.\n3. Save the file to apply the changes.\n\n**Verification**\n\n- Verify that a new revision of the Kubernetes API server pods is rolled out. It can take several minutes for all nodes to update to the new revision.\n\n  ```terminal\n  $ oc get kubeapiserver -o=jsonpath='{range .items[0].status.conditions[?(@.type==\"NodeInstallerProgressing\")]}{.reason}{\"\\n\"}{.message}{\"\\n\"}'\n  ```\n\n  Review the `NodeInstallerProgressing` status condition for the Kubernetes API server to verify that all nodes are at the latest revision. The output shows `AllNodesAtLatestRevision` upon successful update:\n\n  ```terminal\n  AllNodesAtLatestRevision\n  3 nodes are at revision 12\n  ```\n\n  In this example, the latest revision number is `12`.\n\n  If the output shows a message similar to one of the following messages, the update is still in progress. Wait a few minutes and try again.\n\n  - `3 nodes are at revision 11; 0 nodes have achieved new revision 12`\n  - `2 nodes are at revision 11; 1 nodes are at revision 12`\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/audit-log-policy-config.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,145 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="audit-log-policy-config" class="group scroll-mt-20">Configuring the audit log policy<a href="#audit-log-policy-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can control the amount of information that is logged to the API server audit logs by choosing the audit log policy profile to use.</p>
-      <p class="/modules/nodes-nodes-audit-config-about.md"></p>
-      <p class="/modules/nodes-nodes-audit-policy.md"></p>
-      <p class="/modules/nodes-nodes-audit-policy-custom.md"></p>
-      <p class="/modules/nodes-nodes-audit-policy-disable.md"></p>
+      <h2 id="about-audit-log-profiles_audit-log-policy-config" class="group scroll-mt-20">About audit log policy profiles<a href="#about-audit-log-profiles_audit-log-policy-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To monitor activity and maintain compliance, you can apply audit log profiles that define the level of detail recorded for API server requests. While more comprehensive profiles provide request bodies for troubleshooting, they also increase resource overhead on the host system.</p>
+      <p>Audit log profiles define how to log requests that come to the OpenShift API server, Kubernetes API server, OpenShift OAuth API server, and OpenShift OAuth server.</p>
+      <p>OpenShift Container Platform provides the following predefined audit policy profiles:</p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Profile</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>Default</code></td>\n  <td>Logs only metadata for read and write requests; does not log request bodies except for OAuth access token requests. This is the default policy.</td>\n</tr>\n<tr>\n  <td><code>WriteRequestBodies</code></td>\n  <td>In addition to logging metadata for all requests, logs request bodies for every write request to the API servers (<code>create</code>, <code>update</code>, <code>patch</code>, <code>delete</code>, <code>deletecollection</code>). This profile has more resource overhead than the <code>Default</code> profile. ^[1]^</td>\n</tr>\n<tr>\n  <td><code>AllRequestBodies</code></td>\n  <td>In addition to logging metadata for all requests, logs request bodies for  every read and write request to the API servers (<code>get</code>, <code>list</code>, <code>create</code>, <code>update</code>, <code>patch</code>). This profile has the most resource overhead. ^[1]^</td>\n</tr>\n<tr>\n  <td><code>None</code></td>\n  <td>No requests are logged, including OAuth access token requests and OAuth authorize token requests. Custom rules are ignored when this profile is set.</td>\n</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n</tbody>\n</table>\n"} />
+      <ol><li>Sensitive resources, such as <code>Secret</code>, <code>Route</code>, and <code>OAuthClient</code> objects, are only logged at the metadata level. OpenShift OAuth server events are only logged at the metadata level.</li></ol>
+      <p>By default, OpenShift Container Platform uses the <code>Default</code> audit log profile. You can use another audit policy profile that also logs request bodies, but be aware of the increased resource usage such as CPU, memory, and I/O.</p>
+      <h2 id="configuring-audit-policy_audit-log-policy-config" class="group scroll-mt-20">Configuring the audit log policy<a href="#configuring-audit-policy_audit-log-policy-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure the audit log policy to use when logging requests that come to the API servers.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>APIServer</code> resource:
+      <CodeBlock code={"$ oc edit apiserver cluster"} lang="terminal" />
+      </li>
+      <li>
+      Update the <code>spec.audit.profile</code> field:
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: APIServer\nmetadata:\n...\nspec:\n  audit:\n    profile: WriteRequestBodies"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>profile</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Set to <code>Default</code>, <code>WriteRequestBodies</code>, <code>AllRequestBodies</code>, or <code>None</code>. The default profile is <code>Default</code>.</p></dd>
+      </dl>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>It is not recommended to disable audit logging by using the <code>None</code> profile unless you are fully aware of the risks of not logging data that can be beneficial when troubleshooting issues. If you disable audit logging and a support situation arises, you might need to enable audit logging and reproduce the issue in order to troubleshoot properly.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Save the file to apply the changes.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that a new revision of the Kubernetes API server pods is rolled out. It can take several minutes for all nodes to update to the new revision.
+      <CodeBlock code={"$ oc get kubeapiserver -o=jsonpath='{range .items[0].status.conditions[?(@.type==\"NodeInstallerProgressing\")]}{.reason}{\"\\n\"}{.message}{\"\\n\"}'"} lang="terminal" />
+      <p>Review the <code>NodeInstallerProgressing</code> status condition for the Kubernetes API server to verify that all nodes are at the latest revision. The output shows <code>AllNodesAtLatestRevision</code> upon successful update:</p>
+      <CodeBlock code={"AllNodesAtLatestRevision\n3 nodes are at revision 12"} lang="terminal" />
+      <p>In this example, the latest revision number is <code>12</code>.</p>
+      <p>If the output shows a message similar to one of the following messages, the update is still in progress. Wait a few minutes and try again.</p>
+      <ul>
+      <li><code>3 nodes are at revision 11; 0 nodes have achieved new revision 12</code></li>
+      <li><code>2 nodes are at revision 11; 1 nodes are at revision 12</code></li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="configuring-audit-policy-custom_audit-log-policy-config" class="group scroll-mt-20">Configuring the audit log policy with custom rules<a href="#configuring-audit-policy-custom_audit-log-policy-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure an audit log policy that defines custom rules. You can specify multiple groups and define which profile to use for that group.</p>
+      <p>These custom rules take precedence over the top-level profile field. The custom rules are evaluated from top to bottom, and the first that matches is applied.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If you set the top-level profile field to <code>None</code>, an API server, such as the Kubernetes API server, ignores custom rules and disables audit logging.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>APIServer</code> resource:
+      <CodeBlock code={"$ oc edit apiserver cluster"} lang="terminal" />
+      </li>
+      <li>
+      Add the <code>spec.audit.customRules</code> field:
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: APIServer\nmetadata:\n...\nspec:\n  audit:\n    customRules:\n    - group: system:authenticated:oauth\n      profile: WriteRequestBodies\n    - group: system:authenticated\n      profile: AllRequestBodies\n    profile: Default"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>customRules</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Add one or more groups and specify the profile to use for that group. These custom rules take precedence over the top-level profile field. The custom rules are evaluated from top to bottom, and the first that matches is applied.</p></dd>
+      <dt class="font-semibold"><code>profile</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Set to <code>Default</code>, <code>WriteRequestBodies</code>, or <code>AllRequestBodies</code>. If you do not set this top-level profile field, it defaults to the <code>Default</code> profile.</p></dd>
+      </dl>
+      </li>
+      <li>Save the file to apply the changes.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that a new revision of the Kubernetes API server pods is rolled out. It can take several minutes for all nodes to update to the new revision.
+      <CodeBlock code={"$ oc get kubeapiserver -o=jsonpath='{range .items[0].status.conditions[?(@.type==\"NodeInstallerProgressing\")]}{.reason}{\"\\n\"}{.message}{\"\\n\"}'"} lang="terminal" />
+      <p>Review the <code>NodeInstallerProgressing</code> status condition for the Kubernetes API server to verify that all nodes are at the latest revision. The output shows <code>AllNodesAtLatestRevision</code> upon successful update:</p>
+      <CodeBlock code={"AllNodesAtLatestRevision\n3 nodes are at revision 12"} lang="terminal" />
+      <p>In this example, the latest revision number is <code>12</code>.</p>
+      <p>If the output shows a message similar to one of the following messages, the update is still in progress. Wait a few minutes and try again.</p>
+      <ul>
+      <li><code>3 nodes are at revision 11; 0 nodes have achieved new revision 12</code></li>
+      <li><code>2 nodes are at revision 11; 1 nodes are at revision 12</code></li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="configuring-audit-policy-disable_audit-log-policy-config" class="group scroll-mt-20">Disabling audit logging<a href="#configuring-audit-policy-disable_audit-log-policy-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can disable audit logging for OpenShift Container Platform. When you disable audit logging, even OAuth access token requests and OAuth authorize token requests are not logged.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>It is not recommended to disable audit logging by using the <code>None</code> profile unless you are fully aware of the risks of not logging data that can be beneficial when troubleshooting issues. If you disable audit logging and a support situation arises, you might need to enable audit logging and reproduce the issue in order to troubleshoot properly.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>APIServer</code> resource:
+      <CodeBlock code={"$ oc edit apiserver cluster"} lang="terminal" />
+      </li>
+      <li>
+      Set the <code>spec.audit.profile</code> field to <code>None</code>:
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: APIServer\nmetadata:\n...\nspec:\n  audit:\n    profile: None"} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can also disable audit logging only for specific groups by specifying custom rules in the <code>spec.audit.customRules</code> field.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Save the file to apply the changes.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that a new revision of the Kubernetes API server pods is rolled out. It can take several minutes for all nodes to update to the new revision.
+      <CodeBlock code={"$ oc get kubeapiserver -o=jsonpath='{range .items[0].status.conditions[?(@.type==\"NodeInstallerProgressing\")]}{.reason}{\"\\n\"}{.message}{\"\\n\"}'"} lang="terminal" />
+      <p>Review the <code>NodeInstallerProgressing</code> status condition for the Kubernetes API server to verify that all nodes are at the latest revision. The output shows <code>AllNodesAtLatestRevision</code> upon successful update:</p>
+      <CodeBlock code={"AllNodesAtLatestRevision\n3 nodes are at revision 12"} lang="terminal" />
+      <p>In this example, the latest revision number is <code>12</code>.</p>
+      <p>If the output shows a message similar to one of the following messages, the update is still in progress. Wait a few minutes and try again.</p>
+      <ul>
+      <li><code>3 nodes are at revision 11; 0 nodes have achieved new revision 12</code></li>
+      <li><code>2 nodes are at revision 11; 1 nodes are at revision 12</code></li>
+      </ul>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

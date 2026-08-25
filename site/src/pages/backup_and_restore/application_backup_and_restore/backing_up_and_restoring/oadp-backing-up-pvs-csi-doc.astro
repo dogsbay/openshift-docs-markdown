@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"oadp-backing-up-pvs-csi-doc","text":"Backing up persistent volumes with CSI snapshots"}];
+const headings = [{"depth":1,"slug":"oadp-backing-up-pvs-csi-doc","text":"Backing up persistent volumes with CSI snapshots"},{"depth":2,"slug":"backingup-persistent-volumes_backing-up-applications","text":"Backing up persistent volumes with CSI snapshots"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up persistent volumes with CSI snapshots {#oadp-backing-up-pvs-csi-doc}\n\nBack up persistent volumes with Container Storage Interface (CSI) snapshots by editing the `VolumeSnapshotClass` custom resource (CR) before you create the `Backup` CR. This helps you to leverage cloud-native snapshot capabilities for faster and more efficient backups.\n\nFor more information, see *CSI volume snapshots* and *Creating a Backup CR*.\n\n**Additional resources**\n\n- [CSI volume snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots-overview_persistent-storage-csi-snapshots)\n- [Creating a Backup CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up persistent volumes with CSI snapshots {#oadp-backing-up-pvs-csi-doc}\n\nBack up persistent volumes with Container Storage Interface (CSI) snapshots by editing the `VolumeSnapshotClass` custom resource (CR) before you create the `Backup` CR. This helps you to leverage cloud-native snapshot capabilities for faster and more efficient backups.\n\nFor more information, see *CSI volume snapshots* and *Creating a Backup CR*.\n\n## Backing up persistent volumes with CSI snapshots {#backingup-persistent-volumes_backing-up-applications}\n\nConfigure the `VolumeSnapshotClass` custom resource (CR) to back up persistent volumes with Container Storage Interface (CSI) snapshots. This helps you to prepare your cloud storage for CSI-based backup operations.\n\n**Prerequisites**\n\n- The cloud provider must support CSI snapshots.\n- You must enable CSI in the `DataProtectionApplication` CR.\n\n**Procedure**\n\n- Add the `metadata.labels.velero.io/csi-volumesnapshot-class: \"true\"` key-value pair to the `VolumeSnapshotClass` CR:\n\n  ```yaml {title=\"Example configuration file\"}\n  apiVersion: snapshot.storage.k8s.io/v1\n  kind: VolumeSnapshotClass\n  metadata:\n    name: <volume_snapshot_class_name>\n    labels:\n      velero.io/csi-volumesnapshot-class: \"true\"\n    annotations:\n      snapshot.storage.kubernetes.io/is-default-class: true\n  driver: <csi_driver>\n  deletionPolicy: <deletion_policy_type>\n  ```\n\n  where:\n\n  `velero.io/csi-volumesnapshot-class: \"true\"`\n  :   Must be set to `true`.\n\n  `snapshot.storage.kubernetes.io/is-default-class: true`\n  :   If you are restoring this volume in another cluster with the same driver, make sure that you set the `snapshot.storage.kubernetes.io/is-default-class` parameter to `false` instead of setting it to `true`. Otherwise, the restore will partially fail.\n\n  `<deletion_policy_type>`\n  :   Specifies the deletion policy type. OADP supports the `Retain` and `Delete` deletion policy types for CSI and Data Mover backup and restore.\n\n**Next steps**\n\n- You can now create a `Backup` CR.\n\n**Additional resources**\n\n- [CSI volume snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots-overview_persistent-storage-csi-snapshots)\n- [Creating a Backup CR](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-creating-backup-cr#oadp-creating-backup-cr-doc)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-pvs-csi-doc.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,33 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-backing-up-pvs-csi-doc" class="group scroll-mt-20">Backing up persistent volumes with CSI snapshots<a href="#oadp-backing-up-pvs-csi-doc" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Back up persistent volumes with Container Storage Interface (CSI) snapshots by editing the <code>VolumeSnapshotClass</code> custom resource (CR) before you create the <code>Backup</code> CR. This helps you to leverage cloud-native snapshot capabilities for faster and more efficient backups.</p>
       <p>For more information, see <em>CSI volume snapshots</em> and <em>Creating a Backup CR</em>.</p>
-      <p class="/modules/oadp-backingup-persistent-volumes.md"></p>
+      <h2 id="backingup-persistent-volumes_backing-up-applications" class="group scroll-mt-20">Backing up persistent volumes with CSI snapshots<a href="#backingup-persistent-volumes_backing-up-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>VolumeSnapshotClass</code> custom resource (CR) to back up persistent volumes with Container Storage Interface (CSI) snapshots. This helps you to prepare your cloud storage for CSI-based backup operations.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The cloud provider must support CSI snapshots.</li>
+      <li>You must enable CSI in the <code>DataProtectionApplication</code> CR.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Add the <code>metadata.labels.velero.io/csi-volumesnapshot-class: "true"</code> key-value pair to the <code>VolumeSnapshotClass</code> CR:
+      <CodeBlock code={"apiVersion: snapshot.storage.k8s.io/v1\nkind: VolumeSnapshotClass\nmetadata:\n  name: <volume_snapshot_class_name>\n  labels:\n    velero.io/csi-volumesnapshot-class: \"true\"\n  annotations:\n    snapshot.storage.kubernetes.io/is-default-class: true\ndriver: <csi_driver>\ndeletionPolicy: <deletion_policy_type>"} lang="yaml" title="Example configuration file" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>velero.io/csi-volumesnapshot-class: "true"</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Must be set to <code>true</code>.</p></dd>
+      <dt class="font-semibold"><code>snapshot.storage.kubernetes.io/is-default-class: true</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>If you are restoring this volume in another cluster with the same driver, make sure that you set the <code>snapshot.storage.kubernetes.io/is-default-class</code> parameter to <code>false</code> instead of setting it to <code>true</code>. Otherwise, the restore will partially fail.</p></dd>
+      <dt class="font-semibold"><code>&lt;deletion_policy_type&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the deletion policy type. OADP supports the <code>Retain</code> and <code>Delete</code> deletion policy types for CSI and Data Mover backup and restore.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <p><strong>Next steps</strong></p>
+      <ul><li>You can now create a <code>Backup</code> CR.</li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots-overview_persistent-storage-csi-snapshots">CSI volume snapshots</a></li>

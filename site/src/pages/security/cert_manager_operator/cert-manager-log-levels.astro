@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"cert-manager-log-levels","text":"Configuring log levels for cert-manager and the {{ cert_manager_operator }}"},{"depth":2,"slug":"cert-manager-log-levels_additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"cert-manager-log-levels","text":"Configuring log levels for cert-manager and the {{ cert_manager_operator }}"},{"depth":2,"slug":"cert-manager-enable-operand-log-level_cert-manager-log-levels","text":"Setting a log level for cert-manager"},{"depth":2,"slug":"cert-manager-enable-operator-log-level_cert-manager-log-levels","text":"Setting a log level for the cert-manager Operator for Red Hat OpenShift"},{"depth":2,"slug":"cert-manager-log-levels_additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/cert_manager_operator/cert-manager-log-levels";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring log levels for cert-manager and the {{ cert_manager_operator }}";
-const description = "To troubleshoot issues with the cert-manager components and the {{ cert_manager_operator }}, you can configure the log level verbosity." || undefined;
+const description = "To troubleshoot issues with the cert-manager components and the cert-manager Operator for Red Hat OpenShift, you can configure the log level verbosity." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["security","security/cert_manager_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring log levels for cert-manager and the {{ cert_manager_operator }} {#cert-manager-log-levels}\n\nTo troubleshoot issues with the cert-manager components and the {{ cert_manager_operator }}, you can configure the log level verbosity.\n\n> [!NOTE]\n> To use different log levels for different cert-manager components, see *Customizing cert-manager Operator API fields*.\n\n## Additional resources {#cert-manager-log-levels_additional-resources}\n\n- [Customizing cert-manager Operator API fields](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-customizing-api-fields)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/cert_manager_operator/cert-manager-log-levels.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring log levels for cert-manager and the {{ cert_manager_operator }} {#cert-manager-log-levels}\n\nTo troubleshoot issues with the cert-manager components and the cert-manager Operator for Red Hat OpenShift, you can configure the log level verbosity.\n\n> [!NOTE]\n> To use different log levels for different cert-manager components, see *Customizing cert-manager Operator API fields*.\n\n## Setting a log level for cert-manager {#cert-manager-enable-operand-log-level_cert-manager-log-levels}\n\nTo troubleshoot issues and control log volume, configure the log level for the cert-manager Operator for Red Hat OpenShift. You can set specific verbosity levels to capture the necessary details for debugging or to reduce noise in your cluster logs.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have installed version 1.11.1 or later of the cert-manager Operator for Red Hat OpenShift.\n\n**Procedure**\n\n1. Edit the `CertManager` resource by running the following command:\n\n   ```terminal\n   $ oc edit certmanager.operator cluster\n   ```\n2. Set the log level value by editing the `spec.logLevel` section:\n\n   ```yaml\n   apiVersion: operator.openshift.io/v1alpha1\n   kind: CertManager\n   ...\n   spec:\n     logLevel: <log_level>\n   ```\n\n   The `CertManager` resource supports the following `logLevel` values:\n\n   `Normal`\n   :   Audits logs and records common operations. The default setting. Use this level when there are no issues.\n\n   `Debug`\n   :   Provides verbose logs. Use this level to troubleshoot minor issues.\n\n   `Trace`\n   :   Provides highly verbose logs. Use this level to troubleshoot major issues.\n\n   `TraceAll`\n   :   Provides maximum log detail. Use this level to troubleshoot serious issues.\n\n   > [!NOTE]\n   > `TraceAll` generates huge amount of logs. After setting `logLevel` to `TraceAll`, you might experience performance issues.\n3. Save your changes and quit the text editor to apply your changes.\n\n   After applying the changes, the verbosity level for the cert-manager components controller, CA injector, and webhook is updated.\n\n## Setting a log level for the cert-manager Operator for Red Hat OpenShift {#cert-manager-enable-operator-log-level_cert-manager-log-levels}\n\nTo troubleshoot issues and control log volume, set the log level for the cert-manager Operator for Red Hat OpenShift. You can configure the verbosity of the Operator log messages to capture the specific details required for your environment.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have installed version 1.11.1 or later of the cert-manager Operator for Red Hat OpenShift.\n\n**Procedure**\n\n- Update the subscription object for cert-manager Operator for Red Hat OpenShift to provide the verbosity level for the operator logs by running the following command:\n\n  ```terminal\n  $ oc -n cert-manager-operator patch subscription openshift-cert-manager-operator --type='merge' -p '{\"spec\":{\"config\":{\"env\":[{\"name\":\"OPERATOR_LOG_LEVEL\",\"value\":\"v\"}]}}}'\n  ```\n\n  Replace `v` with the desired log level number. The valid values for `v` can range from `1`to `10`. The default value is `2`.\n\n**Verification**\n\n1. The cert-manager Operator pod is redeployed. Verify that the log level of the cert-manager Operator for Red Hat OpenShift is updated by running the following command:\n\n   ```terminal\n   $ oc set env deploy/cert-manager-operator-controller-manager -n cert-manager-operator --list | grep -e OPERATOR_LOG_LEVEL -e container\n   ```\n\n   ```terminal {title=\"Example output\"}\n   # deployments/cert-manager-operator-controller-manager, container kube-rbac-proxy\n   OPERATOR_LOG_LEVEL=9\n   # deployments/cert-manager-operator-controller-manager, container cert-manager-operator\n   OPERATOR_LOG_LEVEL=9\n   ```\n2. Verify that the log level of the cert-manager Operator for Red Hat OpenShift is updated by running the `oc logs` command:\n\n   ```terminal\n   $ oc logs deploy/cert-manager-operator-controller-manager -n cert-manager-operator\n   ```\n\n## Additional resources {#cert-manager-log-levels_additional-resources}\n\n- [Customizing cert-manager Operator API fields](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-customizing-api-fields)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/cert_manager_operator/cert-manager-log-levels.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,16 +95,79 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cert-manager-log-levels" class="group scroll-mt-20">Configuring log levels for cert-manager and the {"{"}{"{"} cert_manager_operator {"}"}{"}"}<a href="#cert-manager-log-levels" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>To troubleshoot issues with the cert-manager components and the {"{"}{"{"} cert_manager_operator {"}"}{"}"}, you can configure the log level verbosity.</p>
+      <p>To troubleshoot issues with the cert-manager components and the cert-manager Operator for Red Hat OpenShift, you can configure the log level verbosity.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
           <p>To use different log levels for different cert-manager components, see <em>Customizing cert-manager Operator API fields</em>.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/cert-manager-enable-operand-log-level.md"></p>
-      <p class="/modules/cert-manager-enable-operator-log-level.md"></p>
+      <h2 id="cert-manager-enable-operand-log-level_cert-manager-log-levels" class="group scroll-mt-20">Setting a log level for cert-manager<a href="#cert-manager-enable-operand-log-level_cert-manager-log-levels" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To troubleshoot issues and control log volume, configure the log level for the cert-manager Operator for Red Hat OpenShift. You can set specific verbosity levels to capture the necessary details for debugging or to reduce noise in your cluster logs.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have installed version 1.11.1 or later of the cert-manager Operator for Red Hat OpenShift.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>CertManager</code> resource by running the following command:
+      <CodeBlock code={"$ oc edit certmanager.operator cluster"} lang="terminal" />
+      </li>
+      <li>
+      Set the log level value by editing the <code>spec.logLevel</code> section:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: CertManager\n...\nspec:\n  logLevel: <log_level>"} lang="yaml" />
+      <p>The <code>CertManager</code> resource supports the following <code>logLevel</code> values:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>Normal</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Audits logs and records common operations. The default setting. Use this level when there are no issues.</p></dd>
+      <dt class="font-semibold"><code>Debug</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Provides verbose logs. Use this level to troubleshoot minor issues.</p></dd>
+      <dt class="font-semibold"><code>Trace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Provides highly verbose logs. Use this level to troubleshoot major issues.</p></dd>
+      <dt class="font-semibold"><code>TraceAll</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Provides maximum log detail. Use this level to troubleshoot serious issues.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p><code>TraceAll</code> generates huge amount of logs. After setting <code>logLevel</code> to <code>TraceAll</code>, you might experience performance issues.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Save your changes and quit the text editor to apply your changes.
+      <p>After applying the changes, the verbosity level for the cert-manager components controller, CA injector, and webhook is updated.</p>
+      </li>
+      </ol>
+      <h2 id="cert-manager-enable-operator-log-level_cert-manager-log-levels" class="group scroll-mt-20">Setting a log level for the cert-manager Operator for Red Hat OpenShift<a href="#cert-manager-enable-operator-log-level_cert-manager-log-levels" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To troubleshoot issues and control log volume, set the log level for the cert-manager Operator for Red Hat OpenShift. You can configure the verbosity of the Operator log messages to capture the specific details required for your environment.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have installed version 1.11.1 or later of the cert-manager Operator for Red Hat OpenShift.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Update the subscription object for cert-manager Operator for Red Hat OpenShift to provide the verbosity level for the operator logs by running the following command:
+      <CodeBlock code={"$ oc -n cert-manager-operator patch subscription openshift-cert-manager-operator --type='merge' -p '{\"spec\":{\"config\":{\"env\":[{\"name\":\"OPERATOR_LOG_LEVEL\",\"value\":\"v\"}]}}}'"} lang="terminal" />
+      <p>Replace <code>v</code> with the desired log level number. The valid values for <code>v</code> can range from <code>1</code>to <code>10</code>. The default value is <code>2</code>.</p>
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      The cert-manager Operator pod is redeployed. Verify that the log level of the cert-manager Operator for Red Hat OpenShift is updated by running the following command:
+      <CodeBlock code={"$ oc set env deploy/cert-manager-operator-controller-manager -n cert-manager-operator --list | grep -e OPERATOR_LOG_LEVEL -e container"} lang="terminal" />
+      <CodeBlock code={"# deployments/cert-manager-operator-controller-manager, container kube-rbac-proxy\nOPERATOR_LOG_LEVEL=9\n# deployments/cert-manager-operator-controller-manager, container cert-manager-operator\nOPERATOR_LOG_LEVEL=9"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Verify that the log level of the cert-manager Operator for Red Hat OpenShift is updated by running the <code>oc logs</code> command:
+      <CodeBlock code={"$ oc logs deploy/cert-manager-operator-controller-manager -n cert-manager-operator"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="cert-manager-log-levels_additional-resources" class="group scroll-mt-20">Additional resources<a href="#cert-manager-log-levels_additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/security/cert_manager_operator/cert-manager-customizing-api-fields#cert-manager-customizing-api-fields">Customizing cert-manager Operator API fields</a></li></ul>
     </article>

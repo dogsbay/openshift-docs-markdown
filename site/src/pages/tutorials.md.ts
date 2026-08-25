@@ -2,7 +2,7 @@
 // Source: tutorials.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Tutorials overview\n---\n\n# Tutorials overview {#tutorials-overview}\n\nTo learn how to use OpenShift Container Platform, review the tutorials and other learning resources that are available.\n";
+const body = "---\ntitle: Tutorials overview\n---\n\n# Tutorials overview {#tutorials-overview}\n\nTo learn how to use OpenShift Container Platform, review the tutorials and other learning resources that are available.\n\n## Tutorials for developers {#tutorial-dev-tutorials_tutorials-overview}\n\nYou can follow an end-to-end example of deploying an application on OpenShift Container Platform either by using the OpenShift CLI (`oc`) or the web console.\n\nChoose one of the following tutorials:\n\n- [Tutorial: Deploying an application by using the CLI](/openshift-docs-markdown/tutorials/dev-app-cli#dev-app-cli)\n- [Tutorial: Deploying an application by using the web console](/openshift-docs-markdown/tutorials/dev-app-web-console#dev-app-web-console)\n\n## Additional learning resources {#tutorial-additional-learning_tutorials-overview}\n\nExplore the additional learning resources that are available for OpenShift Container Platform.\n\nTo review the Red Hat Developer learning paths, training courses, and cheat sheets for OpenShift Container Platform, see [Additional hands-on learning](/openshift-docs-markdown/tutorials/additional-tutorials#additional-tutorials).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

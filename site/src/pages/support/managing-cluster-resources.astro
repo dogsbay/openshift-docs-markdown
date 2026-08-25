@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"managing-cluster-resources","text":"Managing your cluster resources"}];
+const headings = [{"depth":1,"slug":"managing-cluster-resources","text":"Managing your cluster resources"},{"depth":2,"slug":"support-cluster-resources_managing-cluster-resources","text":"Interacting with your cluster resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/support/managing-cluster-resources";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["support"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing your cluster resources {#managing-cluster-resources}\n\nTo keep consistent behavior across your OpenShift Container Platform cluster, set global configuration options that Operators apply to all nodes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/managing-cluster-resources.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing your cluster resources {#managing-cluster-resources}\n\nTo keep consistent behavior across your OpenShift Container Platform cluster, set global configuration options that Operators apply to all nodes.\n\n## Interacting with your cluster resources {#support-cluster-resources_managing-cluster-resources}\n\nTo view and edit the global configuration of your OpenShift Container Platform cluster, use the OpenShift CLI (`oc`) to query and change cluster resources.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have access to the web console or you have installed the `oc` CLI tool.\n\n**Procedure**\n\n1. To check which configuration Operators apply to your cluster, run the following command:\n\n   ```terminal\n   $ oc api-resources -o name | grep config.openshift.io\n   ```\n2. To see what cluster resources you can configure, run the following command:\n\n   ```terminal\n   $ oc explain <resource_name>.config.openshift.io\n   ```\n3. To see the configuration of custom resource definition (CRD) objects in the cluster, run the following command:\n\n   ```terminal\n   $ oc get <resource_name>.config -o yaml\n   ```\n4. To edit the cluster resource configuration, run the following command:\n\n   ```terminal\n   $ oc edit <resource_name>.config -o yaml\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/managing-cluster-resources.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,33 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="managing-cluster-resources" class="group scroll-mt-20">Managing your cluster resources<a href="#managing-cluster-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To keep consistent behavior across your OpenShift Container Platform cluster, set global configuration options that Operators apply to all nodes.</p>
-      <p class="/modules/cluster-resources.md"></p>
+      <h2 id="support-cluster-resources_managing-cluster-resources" class="group scroll-mt-20">Interacting with your cluster resources<a href="#support-cluster-resources_managing-cluster-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To view and edit the global configuration of your OpenShift Container Platform cluster, use the OpenShift CLI (<code>oc</code>) to query and change cluster resources.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have access to the web console or you have installed the <code>oc</code> CLI tool.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To check which configuration Operators apply to your cluster, run the following command:
+      <CodeBlock code={"$ oc api-resources -o name | grep config.openshift.io"} lang="terminal" />
+      </li>
+      <li>
+      To see what cluster resources you can configure, run the following command:
+      <CodeBlock code={"$ oc explain <resource_name>.config.openshift.io"} lang="terminal" />
+      </li>
+      <li>
+      To see the configuration of custom resource definition (CRD) objects in the cluster, run the following command:
+      <CodeBlock code={"$ oc get <resource_name>.config -o yaml"} lang="terminal" />
+      </li>
+      <li>
+      To edit the cluster resource configuration, run the following command:
+      <CodeBlock code={"$ oc edit <resource_name>.config -o yaml"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

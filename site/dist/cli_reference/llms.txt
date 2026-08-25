@@ -2,25 +2,25 @@
 
 ## CLI tools
 
-- [CLI tools overview](https://dogsbay.github.io/openshift-docs-markdown/cli_reference.md)
-- [Getting started with the OpenShift CLI](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli.md)
-- [Configuring the OpenShift CLI](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/configuring-cli.md)
-- [Usage of oc and kubectl commands](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/usage-oc-kubectl.md)
-- [Managing CLI profiles](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/managing-cli-profiles.md)
-- [Extending the OpenShift CLI with plugins](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/extending-cli-plugins.md)
-- [OpenShift CLI developer command reference](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands.md)
-- [OpenShift CLI administrator command reference](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands.md)
-- [OpenShift CLI Manager overview](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager.md)
-- [OpenShift CLI Manager release notes](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-release-notes.md)
-- [Installing the Openshift CLI Manager](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-install.md)
-- [Using the OpenShift CLI Manager](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-using.md)
-- [Uninstalling the OpenShift CLI Manager](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-uninstall.md)
-- [Developer CLI (odo)](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/odo-important-update.md)
-- [Knative CLI (kn) for use with OpenShift Serverless](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/kn-cli-tools.md)
-- [Installing tkn](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/installing-tkn.md)
-- [Configuring tkn](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/op-configuring-tkn.md)
-- [Basic tkn commands](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/op-tkn-reference.md)
-- [GitOps CLI (argocd) for use with OpenShift GitOps](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/gitops-argocd-cli-tools.md)
-- [Installing the opm CLI](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/opm/cli-opm-install.md)
-- [opm CLI reference](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/opm/cli-opm-ref.md)
-- [Hosted control planes CLI](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/hcp-cli-ref.md)
+- [CLI tools overview](https://dogsbay.github.io/openshift-docs-markdown/cli_reference.md): OpenShift Container Platform offers a set of command-line interface (CLI) tools that enable users to perform various administration and development operations…
+- [Getting started with the OpenShift CLI](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/getting-started-cli.md): Install and configure the OpenShift CLI (oc) to manage OpenShift Container Platform clusters and deploy applications directly from a terminal.
+- [Configuring the OpenShift CLI](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/configuring-cli.md): You can customize your command-line environment after installing the OpenShift CLI (oc).
+- [Usage of oc and kubectl commands](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/usage-oc-kubectl.md): Because OpenShift Container Platform is a certified Kubernetes distribution, you can use the Kubernetes CLI (kubectl) that ships with OpenShift Container…
+- [Managing CLI profiles](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/managing-cli-profiles.md): You can use a CLI configuration file to create different profiles, or contexts, for use with the OpenShift CLI (oc). A context consists of user authentication…
+- [Extending the OpenShift CLI with plugins](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/extending-cli-plugins.md): You can write and install plugins to build on the default oc commands, allowing you to perform new and more complex tasks with the OpenShift CLI (oc).
+- [OpenShift CLI developer command reference](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands.md): To learn more about the OpenShift CLI (oc) developer commands, review their descriptions and example commands.
+- [OpenShift CLI administrator command reference](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/administrator-cli-commands.md): To learn more about the OpenShift CLI (oc) administrator commands, review their descriptions and example commands. You must have cluster-admin or equivalent…
+- [OpenShift CLI Manager overview](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager.md): To install and update CLI plugins in both connected and disconnected environments, you can use the CLI Manager Operator.
+- [OpenShift CLI Manager release notes](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-release-notes.md): Track the development of the CLI Manager Operator for OpenShift Container Platform, which enables you to install CLI plugins in both connected and disconnected…
+- [Installing the Openshift CLI Manager](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-install.md): You can simplify the installation and management of CLI plugins in connected and disconnected environments with the CLI Manager Operator. The CLI Manager…
+- [Using the OpenShift CLI Manager](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-using.md): To install, update, and uninstall CLI plugins in OpenShift Container Platform, you can set up and configure the CLI Manager Operator.
+- [Uninstalling the OpenShift CLI Manager](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-uninstall.md): You can remove the CLI Manager Operator from OpenShift Container Platform by uninstalling the CLI Manager Operator and removing its related resources.
+- [Developer CLI (odo)](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/odo-important-update.md): Red Hat does not provide information about {{ odo_title }} on the OpenShift Container Platform documentation site. See the documentation maintained by Red Hat…
+- [Knative CLI (kn) for use with OpenShift Serverless](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/kn-cli-tools.md): The Knative (kn) CLI enables simple interaction with Knative components on OpenShift Container Platform.
+- [Installing tkn](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/installing-tkn.md): Use the CLI tool to manage Red Hat OpenShift Pipelines from a terminal. The following section describes how to install the CLI tool on different platforms.
+- [Configuring tkn](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/op-configuring-tkn.md): Configure the Red Hat OpenShift Pipelines tkn CLI to enable tab completion.
+- [Basic tkn commands](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/op-tkn-reference.md): This section lists the basic tkn CLI commands.
+- [GitOps CLI (argocd) for use with OpenShift GitOps](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/gitops-argocd-cli-tools.md): The GitOps argocd CLI is a tool for configuring and managing Red Hat OpenShift GitOps and Argo CD resources from a terminal.
+- [Installing the opm CLI](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/opm/cli-opm-install.md): The opm CLI is an Operator Framework tool for creating and maintaining Operator catalogs from bundle images in OpenShift Container Platform. You can use it to…
+- [opm CLI reference](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/opm/cli-opm-ref.md): The opm command-line interface (CLI) is a tool for creating and maintaining Operator catalogs.
+- [Hosted control planes CLI](https://dogsbay.github.io/openshift-docs-markdown/cli_reference/hcp-cli-ref.md): The hosted control planes command-line interface, hcp, is a tool that you can use to get started with hosted control planes. For Day 2 operations, such as…

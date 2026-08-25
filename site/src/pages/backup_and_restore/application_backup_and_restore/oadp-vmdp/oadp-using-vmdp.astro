@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"oadp-using-vmdp","text":"Using {{ oadp_short }} virtual machine data protection"}];
+const headings = [{"depth":1,"slug":"oadp-using-vmdp","text":"Using OADP virtual machine data protection"},{"depth":2,"slug":"oadp-vmdp-installing-cli_oadp-using-vmdp","text":"Installing the OADP virtual machine data protection CLI"},{"depth":2,"slug":"oadp-vmdp-creating-bsl-s3_oadp-using-vmdp","text":"Creating a backup storage location with S3-compatible storage by using the VMDP CLI"},{"depth":2,"slug":"oadp-vmdp-creating-bsl-filesystem_oadp-using-vmdp","text":"Creating a backup storage location with file system storage by using the VMDP CLI"},{"depth":2,"slug":"oadp-vmdp-backing-up-data_oadp-using-vmdp","text":"Backing up data from a virtual machine by using the VMDP CLI"},{"depth":2,"slug":"oadp-vmdp-restoring-data_oadp-using-vmdp","text":"Restoring data to a virtual machine by using the VMDP CLI"},{"depth":2,"slug":"oadp-vmdp-managing-bsl_oadp-using-vmdp","text":"OADP VMDP BSL management commands"},{"depth":2,"slug":"oadp-vmdp-troubleshooting_oadp-using-vmdp","text":"Troubleshooting OADP virtual machine data protection"},{"depth":3,"slug":"_not_connected_to_a_backup_storage_location","text":"Not connected to a backup storage location"},{"depth":3,"slug":"_prefix_must_not_contain_oadp-vmdp","text":"Prefix must not contain oadp-vmdp"},{"depth":3,"slug":"_s3_connection_issues","text":"S3 connection issues"},{"depth":3,"slug":"_getting_help","text":"Getting help"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-vmdp/oadp-using-vmdp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Using {{ oadp_short }} virtual machine data protection";
-const description = "Install the {{ oadp_full }} virtual machine data protection (VMDP) command-line interface (CLI), configure a backup storage location, and back up and…" || undefined;
+const description = "Install the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI), configure a backup storage location…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using {{ oadp_short }} virtual machine data protection {#oadp-using-vmdp}\n\nInstall the {{ oadp_full }} virtual machine data protection (VMDP) command-line interface (CLI), configure a backup storage location, and back up and restore data from within your VM. This helps you to manage your own VM backups independently.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-vmdp/oadp-using-vmdp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using OADP virtual machine data protection {#oadp-using-vmdp}\n\nInstall the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI), configure a backup storage location, and back up and restore data from within your VM. This helps you to manage your own VM backups independently.\n\n## Installing the OADP virtual machine data protection CLI {#oadp-vmdp-installing-cli_oadp-using-vmdp}\n\nInstall the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI) inside your VM to back up and restore data. This helps you to download the correct binary for your VM guest operating system.\n\nThe OADP Operator deploys a download server in the cluster as the `openshift-adp-vmdp-server` service in the `openshift-adp` namespace. A `ConsoleCLIDownload` resource links to the download server routes, and users can access the download links from the OpenShift Container Platform web console or by using HTTP directly.\n\n**Prerequisites**\n\n- You have installed the OADP Operator.\n- You have a running VM on OpenShift Virtualization with a supported guest operating system.\n- You have installed the `virtctl` CLI tool.\n\n**Procedure**\n\n1. Get the cluster IP of the VMDP download server by running the following command:\n\n   ```terminal\n   $ oc get svc -n openshift-adp openshift-adp-vmdp-server\n   ```\n\n   Make a note of the `CLUSTER-IP` value from the output.\n2. Install the VMDP CLI:\n\n   - For Linux VMs, download the VMDP binary and make it executable inside the VM by running the following command:\n\n     ```terminal\n     $ virtctl ssh <vm_user>@<vm_name> -n <vm_namespace> \\\n       --command \"curl -kLf 'http://<cluster_ip>:80/download/oadp-vmdp_linux_amd64' \\\n       -o oadp-vmdp_linux_amd64 && chmod +x oadp-vmdp_linux_amd64\"\n     ```\n\n     where:\n\n     `<vm_user>`\n     :   Specifies the username for the VM. For example, `fedora`.\n\n     `<vm_name>`\n     :   Specifies the name of the VM.\n\n     `<vm_namespace>`\n     :   Specifies the namespace of the VM.\n\n     `<cluster_ip>`\n     :   Specifies the `CLUSTER-IP` value of the `openshift-adp-vmdp-server` service.\n   - For Microsoft Windows VMs, access the VM by using Remote Desktop Protocol (RDP) or the VNC console, open PowerShell, and download the VMDP binary by running the following command:\n\n     ```powershell\n     PS> curl.exe -L -o oadp-vmdp.exe \"http://<cluster_ip>:80/download/oadp-vmdp_windows_amd64.exe\"\n     ```\n\n     Replace `<cluster_ip>` with the `CLUSTER-IP` value of the `openshift-adp-vmdp-server` service.\n\n**Verification**\n\n- Depending on your operating system, use one of the following steps to verify the installation:\n\n  - For Linux VMs, verify that the binary is installed and working by running the following command:\n\n    ```terminal\n    $ virtctl ssh <vm_user>@<vm_name> -n <vm_namespace> \\\n      --command \"./oadp-vmdp_linux_amd64 --help\"\n    ```\n\n    ```terminal\n    usage: oadp-vmdp [<flags>] <command> [<args> ...]\n    OADP VM Data Protection - Virtual Machine Data Protection for OpenShift\n        Virtualization\n\n    Flags:\n      --[no-]help                Show context-sensitive help (also try --help-long\n                                 and --help-man).\n      --[no-]version             Show application version.\n      --log-file=LOG-FILE        Override log file.\n      --[no-]disable-file-logging\n                                 Disable file-based logging.\n      ....\n    ```\n  - For Microsoft Windows VMs, open PowerShell and verify the binary by running the following command:\n\n    ```powershell\n    PS> .\\oadp-vmdp.exe --help\n    ```\n\n## Creating a backup storage location with S3-compatible storage by using the VMDP CLI {#oadp-vmdp-creating-bsl-s3_oadp-using-vmdp}\n\nCreate a backup storage location (BSL) with S3-compatible storage to set up an encrypted repository for storing your virtual machine (VM) backups. This helps you to configure remote S3-compatible storage for your data.\n\nWhen you create a BSL, the virtual machine data protection (VMDP) command-line interface (CLI) creates a personal encrypted repository in the specified storage backend. You provide the encryption password, which is used to encrypt all backup data. Only users with this password can access the backup data.\n\n**Prerequisites**\n\n- You have installed the VMDP CLI inside your VM.\n- You have the storage credentials for your S3-compatible storage.\n\n**Procedure**\n\n1. To create a BSL with S3-compatible storage, run the following command:\n\n   ```terminal\n   $ sshpass -p <vm_password> virtctl ssh vm/<vm_name> -n <vm_namespace> \\\n     --username <vm_username> \\\n     --local-ssh-opts=-oUserKnownHostsFile=/dev/null \\\n     --local-ssh-opts=-oStrictHostKeyChecking=no \\\n     --local-ssh-opts=-oPreferredAuthentications=password \\\n     --local-ssh-opts=-oPubkeyAuthentication=no \\\n     --command \"./oadp-vmdp_linux_amd64 bsl create s3 --bucket <bucket_name> --endpoint <s3_endpoint> --access-key <access_key> --secret-access-key <secret_access_key> --disable-tls\"\n   ```\n\n   where:\n\n   `<vm_password>`\n   :   Specifies the password for the VM user.\n\n   `<vm_name>`\n   :   Specifies the name of the VM.\n\n   `<vm_namespace>`\n   :   Specifies the namespace of the VM.\n\n   `<vm_username>`\n   :   Specifies the username for the VM. For example, `fedora`.\n\n   `<bucket_name>`\n   :   Specifies the name of the S3 bucket.\n\n   `<s3_endpoint>`\n   :   Specifies the S3 endpoint URL.\n\n   `<access_key>`\n   :   Specifies the access key ID.\n\n   `<secret_access_key>`\n   :   Specifies the secret access key.\n\n   You should see an output similar to the following example:\n\n   ```terminal\n   Initializing repository with:\n     block hash:          BLAKE2B-256-128\n     encryption:          AES256-GCM-HMAC-SHA256\n     key derivation:      scrypt-65536-8-1\n     splitter:            DYNAMIC-4M-BUZHASH\n   ```\n2. Create an alias for the VMDP binary and name it `oadp-vmdp`.\n\n**Verification**\n\n- To verify the BSL connection status, run the following command:\n\n  ```terminal\n  $ oadp-vmdp bsl status\n  ```\n\n## Creating a backup storage location with file system storage by using the VMDP CLI {#oadp-vmdp-creating-bsl-filesystem_oadp-using-vmdp}\n\nCreate a backup storage location (BSL) with file system storage to set up an encrypted repository for storing your virtual machine (VM) backups. This helps you to configure local file system storage for your data.\n\nWhen you create a BSL, the virtual machine data protection (VMDP) command-line interface (CLI) creates a personal encrypted repository in the specified storage backend. You provide the encryption password, which is used to encrypt all backup data. Only users with this password can access the backup data.\n\n**Prerequisites**\n\n- You have installed the VMDP CLI inside your VM.\n- You have created an alias called `oadp-vmdp` for the VMDP CLI binary.\n- You have access to a local file system path for backup storage.\n\n**Procedure**\n\n- To create a BSL with file system storage, run the following command:\n\n  ```terminal\n  $ oadp-vmdp bsl create filesystem \\\n    --path <storage_directory_path>\n  ```\n\n  Replace `<storage_directory_path>` with the absolute path to the storage directory.\n\n**Verification**\n\n- To verify the BSL connection status, run the following command:\n\n  ```terminal\n  $ oadp-vmdp bsl status\n  ```\n\n## Backing up data from a virtual machine by using the VMDP CLI {#oadp-vmdp-backing-up-data_oadp-using-vmdp}\n\nBack up files and directories from within your virtual machine (VM) by using the OpenShift API for Data Protection VM data protection (VMDP) command-line interface (CLI). This helps you to protect user data, including data accessible over network file systems such as CIFS and NFS shares.\n\nVMDP uses data deduplication to store data efficiently. If the same data exists in multiple locations, subsequent backups complete faster because only unique data blocks are stored.\n\n**Prerequisites**\n\n- You are connected to your virtual machine (VM) by using SSH.\n- You have installed the VMDP CLI inside your VM.\n- You have created an alias called `oadp-vmdp` for the VMDP CLI binary.\n- You have created and connected to a backup storage location.\n\n**Procedure**\n\n1. To create a backup of a directory, run the following command:\n\n   ```terminal\n   $ oadp-vmdp backup create <path_to_data>\n   ```\n\n   Replace `<path_to_data>` with the path to the directory or files to back up.\n2. To list all available backups, run the following command:\n\n   ```terminal\n   $ oadp-vmdp backup list\n   ```\n3. To delete a specific backup, run the following command:\n\n   ```terminal\n   $ oadp-vmdp backup delete <backup_id>\n   ```\n\n   Replace `<backup_id>` with the ID of the backup to delete.\n\n   > [!IMPORTANT]\n   > After you delete backups, orphaned data objects such as pack blobs are not automatically cleaned up from the underlying storage backend. You must manually remove these orphaned objects directly from your storage backend, for example, by deleting them from your S3 bucket.\n\n## Restoring data to a virtual machine by using the VMDP CLI {#oadp-vmdp-restoring-data_oadp-using-vmdp}\n\nRestore data from a backup to your virtual machine (VM) by using the OpenShift API for Data Protection VM data protection (VMDP) command-line interface (CLI). This helps you to recover files to the original location or to a different directory.\n\nYou can restore from the most recent backup or from a specific backup by specifying its ID. You can also restore to a different VM by connecting to the BSL of the new VM.\n\n**Prerequisites**\n\n- You are connected to your VM by using SSH.\n- You have installed the VMDP CLI inside your VM.\n- You have created an alias called `oadp-vmdp` for the VMDP CLI binary.\n- You have connected to the backup storage location that contains the backup.\n\n**Procedure**\n\n- Depending on your specific use case, use one of the following steps to restore data:\n\n  - To restore data from the most recent backup, run the following command:\n\n    ```terminal\n    $ oadp-vmdp restore <path_to_restore>\n    ```\n\n    Replace `<path_to_restore>` with the path to restore.\n  - To restore a specific backup to a custom location, run the following commands:\n\n    1. Retrieve the source backup ID:\n\n       ```terminal\n       $ oadp-vmdp backup list\n       ```\n    2. Restore the backup by running the following command:\n\n       ```terminal\n       $ oadp-vmdp restore <source_id> <restore_path>\n       ```\n\n       where:\n\n       `<source_id>`\n       :   Specifies the ID of the backup to restore.\n\n       `<restore_path>`\n       :   Specifies the directory path where the data is restored.\n  - To restore data from a different VM, run the following commands:\n\n    1. To connect to the existing BSL from the new VM, run the following command:\n\n       ```terminal\n       $ oadp-vmdp bsl connect s3 \\\n         --bucket <bucket_name> \\\n         --endpoint <s3_endpoint> \\\n         --access-key <access_key> \\\n         --secret-access-key <secret_access_key>\n       ```\n    2. Restore from the BSL by running the following command:\n\n       ```terminal\n       $ oadp-vmdp restore <path_to_data>\n       ```\n\n## OADP VMDP BSL management commands {#oadp-vmdp-managing-bsl_oadp-using-vmdp}\n\nReview the available commands for managing backup storage locations (BSL) with the virtual machine data protection (VMDP) command-line interface (CLI). This helps you to connect, disconnect, and manage your BSL connections.\n\n**BSL management commands**\n\n| Command | Description |\n| --- | --- |\n| `oadp-vmdp bsl create` | Create and connect to a new BSL. |\n| `oadp-vmdp bsl connect` | Connect to an existing BSL. |\n| `oadp-vmdp bsl disconnect` | Disconnect from the current BSL. |\n| `oadp-vmdp bsl status` | Show the current BSL connection status. |\n| `oadp-vmdp bsl change-password` | Change the BSL encryption password. |\n\n## Troubleshooting OADP virtual machine data protection {#oadp-vmdp-troubleshooting_oadp-using-vmdp}\n\nTroubleshoot common issues and solutions for the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI). This helps you to resolve connection and configuration problems.\n\n### Not connected to a backup storage location {#_not_connected_to_a_backup_storage_location}\n\nIf you receive a `Not connected to a Backup Storage Location` error message, check the connection status and reconnect:\n\n```terminal\n$ oadp-vmdp bsl status\n```\n\n```terminal\n$ oadp-vmdp bsl connect s3 \\\n  --bucket <bucket_name> \\\n  --endpoint <s3_endpoint> \\\n  --access-key <access_key> \\\n  --secret-access-key <secret_access_key>\n```\n\n### Prefix must not contain oadp-vmdp {#_prefix_must_not_contain_oadp-vmdp}\n\nThe `oadp-vmdp/` prefix is added automatically. Do not include `oadp-vmdp` as a path segment in the `--prefix` option. Ensure that the `--prefix` value does not start or end with whitespace.\n\n### S3 connection issues {#_s3_connection_issues}\n\nFor S3-compatible services, you might need to use the following options:\n\n- `--disable-tls` for non-HTTPS endpoints.\n- `--disable-tls-verification` for self-signed certificates.\n- `--root-ca-pem-path` to specify a custom CA certificate.\n\n### Getting help {#_getting_help}\n\n- To view available commands and options, run the following command:\n\n```terminal\n$ oadp-vmdp --help\n```\n\n- To view help for a specific command, run the following command:\n\n```terminal\n$ oadp-vmdp <command> --help\n```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-vmdp/oadp-using-vmdp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,16 +100,277 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="oadp-using-vmdp" class="group scroll-mt-20">Using {"{"}{"{"} oadp_short {"}"}{"}"} virtual machine data protection<a href="#oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Install the {"{"}{"{"} oadp_full {"}"}{"}"} virtual machine data protection (VMDP) command-line interface (CLI), configure a backup storage location, and back up and restore data from within your VM. This helps you to manage your own VM backups independently.</p>
-      <p class="/modules/oadp-vmdp-installing-cli.md"></p>
-      <p class="/modules/oadp-vmdp-creating-bsl-s3.md"></p>
-      <p class="/modules/oadp-vmdp-creating-bsl-filesystem.md"></p>
-      <p class="/modules/oadp-vmdp-backing-up-data.md"></p>
-      <p class="/modules/oadp-vmdp-restoring-data.md"></p>
-      <p class="/modules/oadp-vmdp-managing-bsl.md"></p>
-      <p class="/modules/oadp-vmdp-troubleshooting.md"></p>
+      <h1 id="oadp-using-vmdp" class="group scroll-mt-20">Using OADP virtual machine data protection<a href="#oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Install the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI), configure a backup storage location, and back up and restore data from within your VM. This helps you to manage your own VM backups independently.</p>
+      <h2 id="oadp-vmdp-installing-cli_oadp-using-vmdp" class="group scroll-mt-20">Installing the OADP virtual machine data protection CLI<a href="#oadp-vmdp-installing-cli_oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Install the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI) inside your VM to back up and restore data. This helps you to download the correct binary for your VM guest operating system.</p>
+      <p>The OADP Operator deploys a download server in the cluster as the <code>openshift-adp-vmdp-server</code> service in the <code>openshift-adp</code> namespace. A <code>ConsoleCLIDownload</code> resource links to the download server routes, and users can access the download links from the OpenShift Container Platform web console or by using HTTP directly.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have a running VM on OpenShift Virtualization with a supported guest operating system.</li>
+      <li>You have installed the <code>virtctl</code> CLI tool.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Get the cluster IP of the VMDP download server by running the following command:
+      <CodeBlock code={"$ oc get svc -n openshift-adp openshift-adp-vmdp-server"} lang="terminal" />
+      <p>Make a note of the <code>CLUSTER-IP</code> value from the output.</p>
+      </li>
+      <li>
+      Install the VMDP CLI:
+      <ul>
+      <li>
+      For Linux VMs, download the VMDP binary and make it executable inside the VM by running the following command:
+      <CodeBlock code={"$ virtctl ssh <vm_user>@<vm_name> -n <vm_namespace> \\\n  --command \"curl -kLf 'http://<cluster_ip>:80/download/oadp-vmdp_linux_amd64' \\\n  -o oadp-vmdp_linux_amd64 && chmod +x oadp-vmdp_linux_amd64\""} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;vm_user&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the username for the VM. For example, <code>fedora</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;vm_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the VM.</p></dd>
+      <dt class="font-semibold"><code>&lt;vm_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace of the VM.</p></dd>
+      <dt class="font-semibold"><code>&lt;cluster_ip&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>CLUSTER-IP</code> value of the <code>openshift-adp-vmdp-server</code> service.</p></dd>
+      </dl>
+      </li>
+      <li>
+      For Microsoft Windows VMs, access the VM by using Remote Desktop Protocol (RDP) or the VNC console, open PowerShell, and download the VMDP binary by running the following command:
+      <CodeBlock code={"PS> curl.exe -L -o oadp-vmdp.exe \"http://<cluster_ip>:80/download/oadp-vmdp_windows_amd64.exe\""} lang="powershell" />
+      <p>Replace <code>&lt;cluster_ip&gt;</code> with the <code>CLUSTER-IP</code> value of the <code>openshift-adp-vmdp-server</code> service.</p>
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Depending on your operating system, use one of the following steps to verify the installation:
+      <ul>
+      <li>
+      For Linux VMs, verify that the binary is installed and working by running the following command:
+      <CodeBlock code={"$ virtctl ssh <vm_user>@<vm_name> -n <vm_namespace> \\\n  --command \"./oadp-vmdp_linux_amd64 --help\""} lang="terminal" />
+      <CodeBlock code={"usage: oadp-vmdp [<flags>] <command> [<args> ...]\nOADP VM Data Protection - Virtual Machine Data Protection for OpenShift\n    Virtualization\n\nFlags:\n  --[no-]help                Show context-sensitive help (also try --help-long\n                             and --help-man).\n  --[no-]version             Show application version.\n  --log-file=LOG-FILE        Override log file.\n  --[no-]disable-file-logging\n                             Disable file-based logging.\n  ...."} lang="terminal" />
+      </li>
+      <li>
+      For Microsoft Windows VMs, open PowerShell and verify the binary by running the following command:
+      <CodeBlock code={"PS> .\\oadp-vmdp.exe --help"} lang="powershell" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="oadp-vmdp-creating-bsl-s3_oadp-using-vmdp" class="group scroll-mt-20">Creating a backup storage location with S3-compatible storage by using the VMDP CLI<a href="#oadp-vmdp-creating-bsl-s3_oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Create a backup storage location (BSL) with S3-compatible storage to set up an encrypted repository for storing your virtual machine (VM) backups. This helps you to configure remote S3-compatible storage for your data.</p>
+      <p>When you create a BSL, the virtual machine data protection (VMDP) command-line interface (CLI) creates a personal encrypted repository in the specified storage backend. You provide the encryption password, which is used to encrypt all backup data. Only users with this password can access the backup data.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the VMDP CLI inside your VM.</li>
+      <li>You have the storage credentials for your S3-compatible storage.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To create a BSL with S3-compatible storage, run the following command:
+      <CodeBlock code={"$ sshpass -p <vm_password> virtctl ssh vm/<vm_name> -n <vm_namespace> \\\n  --username <vm_username> \\\n  --local-ssh-opts=-oUserKnownHostsFile=/dev/null \\\n  --local-ssh-opts=-oStrictHostKeyChecking=no \\\n  --local-ssh-opts=-oPreferredAuthentications=password \\\n  --local-ssh-opts=-oPubkeyAuthentication=no \\\n  --command \"./oadp-vmdp_linux_amd64 bsl create s3 --bucket <bucket_name> --endpoint <s3_endpoint> --access-key <access_key> --secret-access-key <secret_access_key> --disable-tls\""} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;vm_password&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the password for the VM user.</p></dd>
+      <dt class="font-semibold"><code>&lt;vm_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the VM.</p></dd>
+      <dt class="font-semibold"><code>&lt;vm_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace of the VM.</p></dd>
+      <dt class="font-semibold"><code>&lt;vm_username&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the username for the VM. For example, <code>fedora</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;bucket_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the S3 bucket.</p></dd>
+      <dt class="font-semibold"><code>&lt;s3_endpoint&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the S3 endpoint URL.</p></dd>
+      <dt class="font-semibold"><code>&lt;access_key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the access key ID.</p></dd>
+      <dt class="font-semibold"><code>&lt;secret_access_key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the secret access key.</p></dd>
+      </dl>
+      <p>You should see an output similar to the following example:</p>
+      <CodeBlock code={"Initializing repository with:\n  block hash:          BLAKE2B-256-128\n  encryption:          AES256-GCM-HMAC-SHA256\n  key derivation:      scrypt-65536-8-1\n  splitter:            DYNAMIC-4M-BUZHASH"} lang="terminal" />
+      </li>
+      <li>Create an alias for the VMDP binary and name it <code>oadp-vmdp</code>.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify the BSL connection status, run the following command:
+      <CodeBlock code={"$ oadp-vmdp bsl status"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="oadp-vmdp-creating-bsl-filesystem_oadp-using-vmdp" class="group scroll-mt-20">Creating a backup storage location with file system storage by using the VMDP CLI<a href="#oadp-vmdp-creating-bsl-filesystem_oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Create a backup storage location (BSL) with file system storage to set up an encrypted repository for storing your virtual machine (VM) backups. This helps you to configure local file system storage for your data.</p>
+      <p>When you create a BSL, the virtual machine data protection (VMDP) command-line interface (CLI) creates a personal encrypted repository in the specified storage backend. You provide the encryption password, which is used to encrypt all backup data. Only users with this password can access the backup data.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the VMDP CLI inside your VM.</li>
+      <li>You have created an alias called <code>oadp-vmdp</code> for the VMDP CLI binary.</li>
+      <li>You have access to a local file system path for backup storage.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To create a BSL with file system storage, run the following command:
+      <CodeBlock code={"$ oadp-vmdp bsl create filesystem \\\n  --path <storage_directory_path>"} lang="terminal" />
+      <p>Replace <code>&lt;storage_directory_path&gt;</code> with the absolute path to the storage directory.</p>
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify the BSL connection status, run the following command:
+      <CodeBlock code={"$ oadp-vmdp bsl status"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="oadp-vmdp-backing-up-data_oadp-using-vmdp" class="group scroll-mt-20">Backing up data from a virtual machine by using the VMDP CLI<a href="#oadp-vmdp-backing-up-data_oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Back up files and directories from within your virtual machine (VM) by using the OpenShift API for Data Protection VM data protection (VMDP) command-line interface (CLI). This helps you to protect user data, including data accessible over network file systems such as CIFS and NFS shares.</p>
+      <p>VMDP uses data deduplication to store data efficiently. If the same data exists in multiple locations, subsequent backups complete faster because only unique data blocks are stored.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are connected to your virtual machine (VM) by using SSH.</li>
+      <li>You have installed the VMDP CLI inside your VM.</li>
+      <li>You have created an alias called <code>oadp-vmdp</code> for the VMDP CLI binary.</li>
+      <li>You have created and connected to a backup storage location.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To create a backup of a directory, run the following command:
+      <CodeBlock code={"$ oadp-vmdp backup create <path_to_data>"} lang="terminal" />
+      <p>Replace <code>&lt;path_to_data&gt;</code> with the path to the directory or files to back up.</p>
+      </li>
+      <li>
+      To list all available backups, run the following command:
+      <CodeBlock code={"$ oadp-vmdp backup list"} lang="terminal" />
+      </li>
+      <li>
+      To delete a specific backup, run the following command:
+      <CodeBlock code={"$ oadp-vmdp backup delete <backup_id>"} lang="terminal" />
+      <p>Replace <code>&lt;backup_id&gt;</code> with the ID of the backup to delete.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>After you delete backups, orphaned data objects such as pack blobs are not automatically cleaned up from the underlying storage backend. You must manually remove these orphaned objects directly from your storage backend, for example, by deleting them from your S3 bucket.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="oadp-vmdp-restoring-data_oadp-using-vmdp" class="group scroll-mt-20">Restoring data to a virtual machine by using the VMDP CLI<a href="#oadp-vmdp-restoring-data_oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Restore data from a backup to your virtual machine (VM) by using the OpenShift API for Data Protection VM data protection (VMDP) command-line interface (CLI). This helps you to recover files to the original location or to a different directory.</p>
+      <p>You can restore from the most recent backup or from a specific backup by specifying its ID. You can also restore to a different VM by connecting to the BSL of the new VM.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are connected to your VM by using SSH.</li>
+      <li>You have installed the VMDP CLI inside your VM.</li>
+      <li>You have created an alias called <code>oadp-vmdp</code> for the VMDP CLI binary.</li>
+      <li>You have connected to the backup storage location that contains the backup.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Depending on your specific use case, use one of the following steps to restore data:
+      <ul>
+      <li>
+      To restore data from the most recent backup, run the following command:
+      <CodeBlock code={"$ oadp-vmdp restore <path_to_restore>"} lang="terminal" />
+      <p>Replace <code>&lt;path_to_restore&gt;</code> with the path to restore.</p>
+      </li>
+      <li>
+      To restore a specific backup to a custom location, run the following commands:
+      <ol>
+      <li>
+      Retrieve the source backup ID:
+      <CodeBlock code={"$ oadp-vmdp backup list"} lang="terminal" />
+      </li>
+      <li>
+      Restore the backup by running the following command:
+      <CodeBlock code={"$ oadp-vmdp restore <source_id> <restore_path>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;source_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the ID of the backup to restore.</p></dd>
+      <dt class="font-semibold"><code>&lt;restore_path&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the directory path where the data is restored.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      <li>
+      To restore data from a different VM, run the following commands:
+      <ol>
+      <li>
+      To connect to the existing BSL from the new VM, run the following command:
+      <CodeBlock code={"$ oadp-vmdp bsl connect s3 \\\n  --bucket <bucket_name> \\\n  --endpoint <s3_endpoint> \\\n  --access-key <access_key> \\\n  --secret-access-key <secret_access_key>"} lang="terminal" />
+      </li>
+      <li>
+      Restore from the BSL by running the following command:
+      <CodeBlock code={"$ oadp-vmdp restore <path_to_data>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="oadp-vmdp-managing-bsl_oadp-using-vmdp" class="group scroll-mt-20">OADP VMDP BSL management commands<a href="#oadp-vmdp-managing-bsl_oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the available commands for managing backup storage locations (BSL) with the virtual machine data protection (VMDP) command-line interface (CLI). This helps you to connect, disconnect, and manage your BSL connections.</p>
+      <p><strong>BSL management commands</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Command</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>oadp-vmdp bsl create</code></TableCell>
+      <TableCell>Create and connect to a new BSL.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>oadp-vmdp bsl connect</code></TableCell>
+      <TableCell>Connect to an existing BSL.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>oadp-vmdp bsl disconnect</code></TableCell>
+      <TableCell>Disconnect from the current BSL.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>oadp-vmdp bsl status</code></TableCell>
+      <TableCell>Show the current BSL connection status.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>oadp-vmdp bsl change-password</code></TableCell>
+      <TableCell>Change the BSL encryption password.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="oadp-vmdp-troubleshooting_oadp-using-vmdp" class="group scroll-mt-20">Troubleshooting OADP virtual machine data protection<a href="#oadp-vmdp-troubleshooting_oadp-using-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Troubleshoot common issues and solutions for the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI). This helps you to resolve connection and configuration problems.</p>
+      <h3 id="_not_connected_to_a_backup_storage_location" class="group scroll-mt-20">Not connected to a backup storage location<a href="#_not_connected_to_a_backup_storage_location" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>If you receive a <code>Not connected to a Backup Storage Location</code> error message, check the connection status and reconnect:</p>
+      <CodeBlock code={"$ oadp-vmdp bsl status"} lang="terminal" />
+      <CodeBlock code={"$ oadp-vmdp bsl connect s3 \\\n  --bucket <bucket_name> \\\n  --endpoint <s3_endpoint> \\\n  --access-key <access_key> \\\n  --secret-access-key <secret_access_key>"} lang="terminal" />
+      <h3 id="_prefix_must_not_contain_oadp-vmdp" class="group scroll-mt-20">Prefix must not contain oadp-vmdp<a href="#_prefix_must_not_contain_oadp-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The <code>oadp-vmdp/</code> prefix is added automatically. Do not include <code>oadp-vmdp</code> as a path segment in the <code>--prefix</code> option. Ensure that the <code>--prefix</code> value does not start or end with whitespace.</p>
+      <h3 id="_s3_connection_issues" class="group scroll-mt-20">S3 connection issues<a href="#_s3_connection_issues" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>For S3-compatible services, you might need to use the following options:</p>
+      <ul>
+      <li><code>--disable-tls</code> for non-HTTPS endpoints.</li>
+      <li><code>--disable-tls-verification</code> for self-signed certificates.</li>
+      <li><code>--root-ca-pem-path</code> to specify a custom CA certificate.</li>
+      </ul>
+      <h3 id="_getting_help" class="group scroll-mt-20">Getting help<a href="#_getting_help" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul><li>To view available commands and options, run the following command:</li></ul>
+      <CodeBlock code={"$ oadp-vmdp --help"} lang="terminal" />
+      <ul><li>To view help for a specific command, run the following command:</li></ul>
+      <CodeBlock code={"$ oadp-vmdp <command> --help"} lang="terminal" />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

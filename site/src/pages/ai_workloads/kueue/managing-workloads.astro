@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"managing-workloads","text":"Managing jobs and workloads"}];
+const headings = [{"depth":1,"slug":"managing-workloads","text":"Managing jobs and workloads"},{"depth":2,"slug":"label-namespaces_managing-workloads","text":"Labeling namespaces to allow Red Hat build of Kueue to manage jobs"},{"depth":2,"slug":"configuring-labelpolicy_managing-workloads","text":"Configuring label policies for jobs"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/managing-workloads";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Managing jobs and workloads";
-const description = "When you create jobs in your cluster, {{ kueue_name }} represents each job as a Workload object to track resource requirements, decisions, and statuses." || undefined;
+const description = "When you create jobs in your cluster, Red Hat build of Kueue represents each job as a Workload object to track resource requirements, decisions, and…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing jobs and workloads {#managing-workloads}\n\nWhen you create jobs in your cluster, {{ kueue_name }} represents each job as a `Workload` object to track resource requirements, decisions, and statuses.\n\n{{ kueue_name }} does not directly manipulate your jobs. Instead, {{ kueue_name }} manages `Workload` objects that represent the resource requirements of a job, and syncs any decisions and statuses between the two objects.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/managing-workloads.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing jobs and workloads {#managing-workloads}\n\nWhen you create jobs in your cluster, Red Hat build of Kueue represents each job as a `Workload` object to track resource requirements, decisions, and statuses.\n\nRed Hat build of Kueue does not directly manipulate your jobs. Instead, Red Hat build of Kueue manages `Workload` objects that represent the resource requirements of a job, and syncs any decisions and statuses between the two objects.\n\n## Labeling namespaces to allow Red Hat build of Kueue to manage jobs {#label-namespaces_managing-workloads}\n\nYou must add the `kueue.openshift.io/managed=true` label to each namespace where you want Red Hat build of Kueue to manage jobs, because the Operator only enforces policies on labeled namespaces.\n\n**Prerequisites**\n\n- You have cluster administrator permissions.\n- The Red Hat build of Kueue Operator is installed on your cluster, and you have created a `Kueue` custom resource (CR).\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Add the `kueue.openshift.io/managed=true` label to a namespace by running the following command:\n\n  ```terminal\n  $ oc label namespace <namespace> kueue.openshift.io/managed=true\n  ```\n\n  When you add this label, you instruct the Red Hat build of Kueue Operator that the namespace is managed by its webhook admission controllers. As a result, any Red Hat build of Kueue resources within that namespace are properly validated and mutated.\n\n## Configuring label policies for jobs {#configuring-labelpolicy_managing-workloads}\n\nYou can configure the `spec.config.workloadManagement.labelPolicy` field in the `Kueue` CR to control whether Red Hat build of Kueue manages or ignores specific jobs.\n\nThe allowed values are `QueueName`, `None`, and empty (`\"\"`).\n\nIf the `labelPolicy` setting is omitted or empty (`\"\"`), the default policy is that Red Hat build of Kueue manages jobs that have a `kueue.x-k8s.io/queue-name` label, and ignores jobs that do not have the `kueue.x-k8s.io/queue-name` label. This is the same workflow as if the `labelPolicy` is set to `QueueName`.\n\nIf the `labelPolicy` setting is set to `None`, jobs are managed by Red Hat build of Kueue even if they do not have the `kueue.x-k8s.io/queue-name` label.\n\n```yaml {title=\"Example workloadManagement spec configuration\"}\napiVersion: kueue.openshift.io/v1\nkind: Kueue\nmetadata:\n  labels:\n    app.kubernetes.io/name: kueue-operator\n    app.kubernetes.io/managed-by: kustomize\n  name: cluster\n  namespace: openshift-kueue-operator\nspec:\n  config:\n    workloadManagement:\n      labelPolicy: QueueName\n# ...\n```\n\n```yaml {title=\"Example user-created Job object containing the kueue.x-k8s.io/queue-name label\"}\napiVersion: batch/v1\nkind: Job\nmetadata:\n  generateName: sample-job-\n  namespace: my-namespace\n  labels:\n    kueue.x-k8s.io/queue-name: user-queue\nspec:\n# ...\n```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/managing-workloads.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,12 +91,32 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="managing-workloads" class="group scroll-mt-20">Managing jobs and workloads<a href="#managing-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>When you create jobs in your cluster, {"{"}{"{"} kueue_name {"}"}{"}"} represents each job as a <code>Workload</code> object to track resource requirements, decisions, and statuses.</p>
-      <p>{"{"}{"{"} kueue_name {"}"}{"}"} does not directly manipulate your jobs. Instead, {"{"}{"{"} kueue_name {"}"}{"}"} manages <code>Workload</code> objects that represent the resource requirements of a job, and syncs any decisions and statuses between the two objects.</p>
-      <p class="/modules/kueue-label-namespaces.md"></p>
-      <p class="/modules/kueue-configuring-labelpolicy.md"></p>
+      <p>When you create jobs in your cluster, Red Hat build of Kueue represents each job as a <code>Workload</code> object to track resource requirements, decisions, and statuses.</p>
+      <p>Red Hat build of Kueue does not directly manipulate your jobs. Instead, Red Hat build of Kueue manages <code>Workload</code> objects that represent the resource requirements of a job, and syncs any decisions and statuses between the two objects.</p>
+      <h2 id="label-namespaces_managing-workloads" class="group scroll-mt-20">Labeling namespaces to allow Red Hat build of Kueue to manage jobs<a href="#label-namespaces_managing-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You must add the <code>kueue.openshift.io/managed=true</code> label to each namespace where you want Red Hat build of Kueue to manage jobs, because the Operator only enforces policies on labeled namespaces.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have cluster administrator permissions.</li>
+      <li>The Red Hat build of Kueue Operator is installed on your cluster, and you have created a <code>Kueue</code> custom resource (CR).</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Add the <code>kueue.openshift.io/managed=true</code> label to a namespace by running the following command:
+      <CodeBlock code={"$ oc label namespace <namespace> kueue.openshift.io/managed=true"} lang="terminal" />
+      <p>When you add this label, you instruct the Red Hat build of Kueue Operator that the namespace is managed by its webhook admission controllers. As a result, any Red Hat build of Kueue resources within that namespace are properly validated and mutated.</p>
+      </li>
+      </ul>
+      <h2 id="configuring-labelpolicy_managing-workloads" class="group scroll-mt-20">Configuring label policies for jobs<a href="#configuring-labelpolicy_managing-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure the <code>spec.config.workloadManagement.labelPolicy</code> field in the <code>Kueue</code> CR to control whether Red Hat build of Kueue manages or ignores specific jobs.</p>
+      <p>The allowed values are <code>QueueName</code>, <code>None</code>, and empty (<code>""</code>).</p>
+      <p>If the <code>labelPolicy</code> setting is omitted or empty (<code>""</code>), the default policy is that Red Hat build of Kueue manages jobs that have a <code>kueue.x-k8s.io/queue-name</code> label, and ignores jobs that do not have the <code>kueue.x-k8s.io/queue-name</code> label. This is the same workflow as if the <code>labelPolicy</code> is set to <code>QueueName</code>.</p>
+      <p>If the <code>labelPolicy</code> setting is set to <code>None</code>, jobs are managed by Red Hat build of Kueue even if they do not have the <code>kueue.x-k8s.io/queue-name</code> label.</p>
+      <CodeBlock code={"apiVersion: kueue.openshift.io/v1\nkind: Kueue\nmetadata:\n  labels:\n    app.kubernetes.io/name: kueue-operator\n    app.kubernetes.io/managed-by: kustomize\n  name: cluster\n  namespace: openshift-kueue-operator\nspec:\n  config:\n    workloadManagement:\n      labelPolicy: QueueName\n# ..."} lang="yaml" title="Example workloadManagement spec configuration" />
+      <CodeBlock code={"apiVersion: batch/v1\nkind: Job\nmetadata:\n  generateName: sample-job-\n  namespace: my-namespace\n  labels:\n    kueue.x-k8s.io/queue-name: user-queue\nspec:\n# ..."} lang="yaml" title="Example user-created Job object containing the kueue.x-k8s.io/queue-name label" />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

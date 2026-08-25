@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"ossm-gateway-migration","text":"Gateway migration"},{"depth":2,"slug":"additional-resources_gateway-migration","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"ossm-gateway-migration","text":"Gateway migration"},{"depth":2,"slug":"ossm-about-gateway-migration_gateway-migration","text":"About gateway migration"},{"depth":2,"slug":"ossm-migrating-from-smcp-defined-gateways-to-gateway-injection_gateway-migration","text":"Migrate from SMCP-Defined gateways to gateway injection"},{"depth":2,"slug":"additional-resources_gateway-migration","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/service_mesh/v2x/ossm-gateway-migration";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Gateway migration {#ossm-gateway-migration}\n\nAs a network administrator, the preferred method for deploying ingress and egress gateways is with a `Deployment` resource using gateway injection.\n\n## Additional resources {#additional-resources_gateway-migration}\n\n- [Enabling gateway injection](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-automatic-gateway-injection_traffic-management)\n- [Deploying automatic gateway injection](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-deploying-automatic-gateway-injection_traffic-management)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-gateway-migration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Gateway migration {#ossm-gateway-migration}\n\nAs a network administrator, the preferred method for deploying ingress and egress gateways is with a `Deployment` resource using gateway injection.\n\n## About gateway migration {#ossm-about-gateway-migration_gateway-migration}\n\nIn Red Hat OpenShift Service Mesh 2.x, the Service Mesh Operator creates an ingress and egress gateway in the control plane namespace by default. You can define additional gateways in the `ServiceMeshControlPlane` resource.\n\nDeploying ingress and egress gateways with a `Deployment` resource using gateway injection provides greater flexibility and control. This deployment approach is a better practice because it allows you to manage gateways alongside the corresponding applications rather than in the control plane resource. Therefore, you should disable the default gateways, move away from the Service Mesh Control Plane declaration, and begin to use gateway injection.\n\n## Migrate from SMCP-Defined gateways to gateway injection {#ossm-migrating-from-smcp-defined-gateways-to-gateway-injection_gateway-migration}\n\nThis procedure explains how to migrate with zero downtime from gateways defined in the `ServiceMeshControlPlane` resource to gateways that are managed using gateway injection. This migration is achieved by using the existing gateway `Service` object to target a new gateway deployment that is created using gateway injection.\n\n**Prerequisites**\n\n- You are logged in to the OpenShift Container Platform web console as `cluster-admin`.\n- The Red Hat OpenShift Service Mesh Operator must be installed.\n- The `ServiceMeshControlPlane` resource must be deployed and an ingress gateway exists in the configuration.\n\n**Procedure**\n\n1. Create a new ingress gateway that is configured to use gateway injection.\n\n   > [!NOTE]\n   > This procedure migrates away from the default ingress gateway deployment defined in the `ServiceMeshControlPlane` resource to gateway injection. The procedure may be modified to migrate from additional ingress gateways configured in the SMCP.\n\n   ```yaml {title=\"Example ingress gateway resource with gateway injection\"}\n   apiVersion: apps/v1\n   kind: Deployment\n   metadata:\n     name: istio-ingressgateway-canary\n     namespace: istio-system (1)\n   spec:\n     selector:\n       matchLabels:\n         app: istio-ingressgateway\n         istio: ingressgateway\n     template:\n       metadata:\n         annotations:\n           inject.istio.io/templates: gateway\n         labels: (2)\n           app: istio-ingressgateway\n           istio: ingressgateway\n           sidecar.istio.io/inject: \"true\"\n       spec:\n         containers:\n           - name: istio-proxy\n             image: auto\n         serviceAccountName: istio-ingressgateway\n   ---\n   apiVersion: v1\n   kind: ServiceAccount\n   metadata:\n     name: istio-ingressgateway\n     namespace: istio-system\n   ---\n   apiVersion: rbac.authorization.k8s.io/v1\n   kind: Role\n   metadata:\n     name: secret-reader\n     namespace: istio-system\n   rules:\n     - apiGroups: [\"\"]\n       resources: [\"secrets\"]\n       verbs: [\"get\", \"watch\", \"list\"]\n   ---\n   apiVersion: rbac.authorization.k8s.io/v1\n   kind: RoleBinding\n   metadata:\n     name: istio-ingressgateway-secret-reader\n     namespace: istio-system\n   roleRef:\n     apiGroup: rbac.authorization.k8s.io\n     kind: Role\n     name: secret-reader\n   subjects:\n     - kind: ServiceAccount\n       name: istio-ingressgateway\n   ---\n   apiVersion: networking.k8s.io/v1\n   kind: NetworkPolicy (3)\n   metadata:\n     name: gatewayingress\n     namespace: istio-system\n   spec:\n     podSelector:\n       matchLabels:\n         istio: ingressgateway\n     ingress:\n       - {}\n     policyTypes:\n       - Ingress\n   ```\n\n   1. The gateway injection deployment and all supporting resources should be deployed in the same namespace as the SMCP-defined gateway.\n   2. Ensure that the labels specified in the pod template include all of the label selectors specified in the `Service` object associated with the existing SMCP-defined gateway.\n   3. Grant access to the new gateway from outside the cluster. This access is required whenever the `spec.security.manageNetworkPolicy` of the `ServiceMeshControlPlane` resource is set to `true`, which is the default setting.\n2. Verify that the new gateway deployment is successfully handling requests.\n\n   If access logging was configured in the `ServiceMeshControlPlane` resource, view the access logs of the new gateway deployment to confirm the behavior.\n3. Scale down the old deployment and scale up the new deployment.\n\n   Gradually shift traffic from the old gateway deployment to the new gateway deployment by performing the following steps:\n\n   1. Increase the number of replicas for the new gateway deployment by running the following command:\n\n      ```terminal\n      $ oc scale -n istio-system deployment/<new_gateway_deployment> --replicas <new_number_of_replicas>\n      ```\n   2. Decrease the number of replicas for the old gateway deployment by running the following command:\n\n      ```terminal\n      $ oc scale -n istio-system deployment/<old_gateway_deployment> --replicas <new_number_of_replicas>\n      ```\n   3. Repeat running the previous two commands. Each time, increase the number of replicas for the new gateway deployment and decrease the number of replicas for the old gateway deployment. Continue repeating until the new gateway deployment handles all traffic to the gateway `Service` object.\n4. Remove the `app.kubernetes.io/managed-by` label from the gateway `Service` object by running the following command:\n\n   ```terminal\n   $ oc label service -n istio-system istio-ingressgateway app.kubernetes.io/managed-by-\n   ```\n\n   Removing the label prevents the service from being deleted when the gateway is disabled in the `ServiceMeshControlPlane` resource.\n5. Remove the `ownerReferences` object from the gateway `Service` object by running the following command:\n\n   ```terminal\n   $ oc patch service -n istio-system istio-ingressgateway --type='json' -p='[{\"op\": \"remove\", \"path\": \"/metadata/ownerReferences\"}]'\n   ```\n\n   Removing this object prevents the service from being garbage collected when the `ServiceMeshControlPlane` resource is deleted.\n6. Disable the old gateway deployment that was managed by the `ServiceMeshControlPlane` resource by running the following command:\n\n   ```terminal\n   $ oc patch smcp -n istio-system <smcp_name> --type='json' -p='[{\"op\": \"replace\", \"path\": \"/spec/gateways/ingress/enabled\", \"value\": false}]'\n   ```\n\n   > [!NOTE]\n   > - When the old ingress gateway `Service` object is disabled it is not deleted. You may save this `Service` object to a file and manage it alongside the new gateway injection resources.\n   > - The `/spec/gateways/ingress/enabled` path is available if you explicitly set it for the `ServiceMeshControlPlane` resource. If you are using the default value, you must patch the `/spec/gateways/enabled` path for both ingress and egress gateways.\n\n## Additional resources {#additional-resources_gateway-migration}\n\n- [Enabling gateway injection](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-automatic-gateway-injection_traffic-management)\n- [Deploying automatic gateway injection](/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-deploying-automatic-gateway-injection_traffic-management)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-gateway-migration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,78 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ossm-gateway-migration" class="group scroll-mt-20">Gateway migration<a href="#ossm-gateway-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As a network administrator, the preferred method for deploying ingress and egress gateways is with a <code>Deployment</code> resource using gateway injection.</p>
-      <p class="/modules/ossm-about-gateway-migration.md"></p>
-      <p class="/modules/ossm-migrating-from-smcp-defined-gateways-to-gateway-injection.md"></p>
+      <h2 id="ossm-about-gateway-migration_gateway-migration" class="group scroll-mt-20">About gateway migration<a href="#ossm-about-gateway-migration_gateway-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>In Red Hat OpenShift Service Mesh 2.x, the Service Mesh Operator creates an ingress and egress gateway in the control plane namespace by default. You can define additional gateways in the <code>ServiceMeshControlPlane</code> resource.</p>
+      <p>Deploying ingress and egress gateways with a <code>Deployment</code> resource using gateway injection provides greater flexibility and control. This deployment approach is a better practice because it allows you to manage gateways alongside the corresponding applications rather than in the control plane resource. Therefore, you should disable the default gateways, move away from the Service Mesh Control Plane declaration, and begin to use gateway injection.</p>
+      <h2 id="ossm-migrating-from-smcp-defined-gateways-to-gateway-injection_gateway-migration" class="group scroll-mt-20">Migrate from SMCP-Defined gateways to gateway injection<a href="#ossm-migrating-from-smcp-defined-gateways-to-gateway-injection_gateway-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>This procedure explains how to migrate with zero downtime from gateways defined in the <code>ServiceMeshControlPlane</code> resource to gateways that are managed using gateway injection. This migration is achieved by using the existing gateway <code>Service</code> object to target a new gateway deployment that is created using gateway injection.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to the OpenShift Container Platform web console as <code>cluster-admin</code>.</li>
+      <li>The Red Hat OpenShift Service Mesh Operator must be installed.</li>
+      <li>The <code>ServiceMeshControlPlane</code> resource must be deployed and an ingress gateway exists in the configuration.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a new ingress gateway that is configured to use gateway injection.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This procedure migrates away from the default ingress gateway deployment defined in the <code>ServiceMeshControlPlane</code> resource to gateway injection. The procedure may be modified to migrate from additional ingress gateways configured in the SMCP.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: istio-ingressgateway-canary\n  namespace: istio-system (1)\nspec:\n  selector:\n    matchLabels:\n      app: istio-ingressgateway\n      istio: ingressgateway\n  template:\n    metadata:\n      annotations:\n        inject.istio.io/templates: gateway\n      labels: (2)\n        app: istio-ingressgateway\n        istio: ingressgateway\n        sidecar.istio.io/inject: \"true\"\n    spec:\n      containers:\n        - name: istio-proxy\n          image: auto\n      serviceAccountName: istio-ingressgateway\n---\napiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: istio-ingressgateway\n  namespace: istio-system\n---\napiVersion: rbac.authorization.k8s.io/v1\nkind: Role\nmetadata:\n  name: secret-reader\n  namespace: istio-system\nrules:\n  - apiGroups: [\"\"]\n    resources: [\"secrets\"]\n    verbs: [\"get\", \"watch\", \"list\"]\n---\napiVersion: rbac.authorization.k8s.io/v1\nkind: RoleBinding\nmetadata:\n  name: istio-ingressgateway-secret-reader\n  namespace: istio-system\nroleRef:\n  apiGroup: rbac.authorization.k8s.io\n  kind: Role\n  name: secret-reader\nsubjects:\n  - kind: ServiceAccount\n    name: istio-ingressgateway\n---\napiVersion: networking.k8s.io/v1\nkind: NetworkPolicy (3)\nmetadata:\n  name: gatewayingress\n  namespace: istio-system\nspec:\n  podSelector:\n    matchLabels:\n      istio: ingressgateway\n  ingress:\n    - {}\n  policyTypes:\n    - Ingress"} lang="yaml" title="Example ingress gateway resource with gateway injection" />
+      <ol>
+      <li>The gateway injection deployment and all supporting resources should be deployed in the same namespace as the SMCP-defined gateway.</li>
+      <li>Ensure that the labels specified in the pod template include all of the label selectors specified in the <code>Service</code> object associated with the existing SMCP-defined gateway.</li>
+      <li>Grant access to the new gateway from outside the cluster. This access is required whenever the <code>spec.security.manageNetworkPolicy</code> of the <code>ServiceMeshControlPlane</code> resource is set to <code>true</code>, which is the default setting.</li>
+      </ol>
+      </li>
+      <li>
+      Verify that the new gateway deployment is successfully handling requests.
+      <p>If access logging was configured in the <code>ServiceMeshControlPlane</code> resource, view the access logs of the new gateway deployment to confirm the behavior.</p>
+      </li>
+      <li>
+      Scale down the old deployment and scale up the new deployment.
+      <p>Gradually shift traffic from the old gateway deployment to the new gateway deployment by performing the following steps:</p>
+      <ol>
+      <li>
+      Increase the number of replicas for the new gateway deployment by running the following command:
+      <CodeBlock code={"$ oc scale -n istio-system deployment/<new_gateway_deployment> --replicas <new_number_of_replicas>"} lang="terminal" />
+      </li>
+      <li>
+      Decrease the number of replicas for the old gateway deployment by running the following command:
+      <CodeBlock code={"$ oc scale -n istio-system deployment/<old_gateway_deployment> --replicas <new_number_of_replicas>"} lang="terminal" />
+      </li>
+      <li>Repeat running the previous two commands. Each time, increase the number of replicas for the new gateway deployment and decrease the number of replicas for the old gateway deployment. Continue repeating until the new gateway deployment handles all traffic to the gateway <code>Service</code> object.</li>
+      </ol>
+      </li>
+      <li>
+      Remove the <code>app.kubernetes.io/managed-by</code> label from the gateway <code>Service</code> object by running the following command:
+      <CodeBlock code={"$ oc label service -n istio-system istio-ingressgateway app.kubernetes.io/managed-by-"} lang="terminal" />
+      <p>Removing the label prevents the service from being deleted when the gateway is disabled in the <code>ServiceMeshControlPlane</code> resource.</p>
+      </li>
+      <li>
+      Remove the <code>ownerReferences</code> object from the gateway <code>Service</code> object by running the following command:
+      <CodeBlock code={"$ oc patch service -n istio-system istio-ingressgateway --type='json' -p='[{\"op\": \"remove\", \"path\": \"/metadata/ownerReferences\"}]'"} lang="terminal" />
+      <p>Removing this object prevents the service from being garbage collected when the <code>ServiceMeshControlPlane</code> resource is deleted.</p>
+      </li>
+      <li>
+      Disable the old gateway deployment that was managed by the <code>ServiceMeshControlPlane</code> resource by running the following command:
+      <CodeBlock code={"$ oc patch smcp -n istio-system <smcp_name> --type='json' -p='[{\"op\": \"replace\", \"path\": \"/spec/gateways/ingress/enabled\", \"value\": false}]'"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>When the old ingress gateway <code>Service</code> object is disabled it is not deleted. You may save this <code>Service</code> object to a file and manage it alongside the new gateway injection resources.</li>
+          <li>The <code>/spec/gateways/ingress/enabled</code> path is available if you explicitly set it for the <code>ServiceMeshControlPlane</code> resource. If you are using the default value, you must patch the <code>/spec/gateways/enabled</code> path for both ingress and egress gateways.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
       <h2 id="additional-resources_gateway-migration" class="group scroll-mt-20">Additional resources<a href="#additional-resources_gateway-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/service_mesh/v2x/ossm-traffic-manage#ossm-automatic-gateway-injection_traffic-management">Enabling gateway injection</a></li>

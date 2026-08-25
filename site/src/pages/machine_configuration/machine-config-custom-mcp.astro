@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"machine-config-creating-custom-mcp","text":"Creating custom machine config pools"},{"depth":2,"slug":"additional-resources_machine-config-creating-custom-mcp","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"machine-config-creating-custom-mcp","text":"Creating custom machine config pools"},{"depth":2,"slug":"machine-config-custom-mcp-automatic_machine-config-creating-custom-mcp","text":"Creating a custom machine config pool with a new node"},{"depth":2,"slug":"machine-config-custom-mcp-existing_machine-config-creating-custom-mcp","text":"Creating a custom machine config pool for an existing node"},{"depth":2,"slug":"additional-resources_machine-config-creating-custom-mcp","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_configuration/machine-config-custom-mcp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["machine_configuration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating custom machine config pools {#machine-config-creating-custom-mcp}\n\nYou can create custom machine config pools (MCP) to manage compute nodes for custom use cases that extend outside of the default node types. By using a custom machine config pool, you can deploy changes targeted only at nodes in the custom pool.\n\nCustom machine config pools inherit their configurations from the `worker` machine config pool. Changes made to the `worker` machine config pool apply to nodes in the custom pool. However, changes made to the custom machine config pool apply only to the nodes in the custom pool. For more information on custom machine config pools, see \"Node configuration management with machine config pools\".\n\n> [!NOTE]\n> Custom machine config pools for the control plane nodes are not supported.\n\nFor example, you could use a custom machine config pool to create an *infrastructure* node. Components that you move to an infrastructure node do not need to be accounted for during sizing. For more information on infrastructure nodes, see \"Creating infrastructure machine sets\".\n\nAfter you create the custom machine config pool, you can boot new nodes directly to the pool by creating a new machine set. Or, you can add existing nodes to the custom pool by using labels.\n\n## Additional resources {#additional-resources_machine-config-creating-custom-mcp}\n\n- [Node configuration management with machine config pools](/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)\n- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)\n- [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_configuration/machine-config-custom-mcp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating custom machine config pools {#machine-config-creating-custom-mcp}\n\nYou can create custom machine config pools (MCP) to manage compute nodes for custom use cases that extend outside of the default node types. By using a custom machine config pool, you can deploy changes targeted only at nodes in the custom pool.\n\nCustom machine config pools inherit their configurations from the `worker` machine config pool. Changes made to the `worker` machine config pool apply to nodes in the custom pool. However, changes made to the custom machine config pool apply only to the nodes in the custom pool. For more information on custom machine config pools, see \"Node configuration management with machine config pools\".\n\n> [!NOTE]\n> Custom machine config pools for the control plane nodes are not supported.\n\nFor example, you could use a custom machine config pool to create an *infrastructure* node. Components that you move to an infrastructure node do not need to be accounted for during sizing. For more information on infrastructure nodes, see \"Creating infrastructure machine sets\".\n\nAfter you create the custom machine config pool, you can boot new nodes directly to the pool by creating a new machine set. Or, you can add existing nodes to the custom pool by using labels.\n\n## Creating a custom machine config pool with a new node {#machine-config-custom-mcp-automatic_machine-config-creating-custom-mcp}\n\nYou can create a custom machine config pool (MCP) and launch a new node directly into that pool. By launching the node directly into the new pool, you save a node reboot cycle that would be required when moving the nodes from the worker machine config pool to the custom pool.\n\nUse the `userDataSecret` parameter in the machine set to instruct the Machine Config Operator (MCO) to add the node to a specific machine config pool. The secret contains the endpoint of the custom machine config pool. You must prefix the name of this new secret with the name of the custom machine config pool.\n\nThe following procedure shows you how to create a new custom machine config pool and launch a new node into that pool.\n\n**Procedure**\n\n1. Create a custom machine config pool:\n\n   1. Create a YAML file similar to the following:\n\n      ```yaml\n      apiVersion: machineconfiguration.openshift.io/v1\n      kind: MachineConfigPool\n      metadata:\n        name: custom\n      spec:\n        machineConfigSelector:\n          matchExpressions:\n            - {key: machineconfiguration.openshift.io/role, operator: In, values: [custom,worker]}\n        nodeSelector:\n          matchLabels:\n            node-role.kubernetes.io/custom: \"\"\n      ```\n\n      where:\n\n      `metadata.name`\n      :   Specifies a name for the custom machine config pool.\n\n      `spec.machineConfigSelector.matchExpressions`\n      :   Specifies the node roles for the new node. This must include the `worker` role and the custom role.\n\n      `spec.nodeSelector.matchLabels`\n      :   Specifies a node selector to use when adding nodes to this pool.\n   2. Create the machine config pool by running the following command:\n\n      ```terminal\n      $ oc create -f <file_name>.yaml\n      ```\n2. Create a new machine set that creates a new node in the new custom machine config pool:\n\n   1. Create a YAML file, for example by making a copy of an existing compute machine set YAML and making the following changes:\n\n      ```yaml\n      apiVersion: machine.openshift.io/v1beta1\n      kind: MachineSet\n      metadata:\n      # ...\n        name: <machineset_name>\n        namespace: openshift-machine-api\n      # ...\n      spec:\n      # ...\n        template:\n      # ...\n          spec:\n      # ...\n            providerSpec:\n      # ...\n              value:\n      # ...\n                userDataSecret:\n                  name: <mcp_name>-user-data-managed\n      # ...\n      ```\n\n      where:\n\n      `metadata.name`\n      :   Specifies a name for the machine set.\n\n      `metadata.namespace`\n      :   Specifies a namespace for the machine set. This must be `openshift-machine-api`.\n\n      `spec.template.spec.providerSpec.value.userDataSecret`\n      :   Specifies a name for the user data secret that is created. The name of the secret must start with the name of the custom machine config pool and end with `-user-data-managed`. For example `custom-user-data-managed`.\n\n      These are the minimum changes required to create the new machine set. For more configuration options or to configure an all-new machine set, see \"Creating infrastructure machine sets\" for your platform.\n\n      > [!NOTE]\n      > When creating a new machine set, you should specify the latest image to use for the boot image. For more information about configuring the boot image on your cluster, see \"Manually updating the boot image\" for your platform. The method to specify the image varies by provider.\n   2. Create the machine set by running the following command:\n\n      ```terminal\n      $ oc create -f <file_name>.yaml\n      ```\n\n      The MCO creates a new node in the new custom machine config pool.\n\n**Verification**\n\n1. Check to see that the MCO created the new machine config pool by running the following command:\n\n   ```terminal\n   $ oc get mcp\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME      CONFIG                                              UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\n   custom    rendered-custom-72be15c95699b6d39f70fce525f51bb2    True      False      False      1              1                   1                     0                      12s\n   master    rendered-master-9e25b616b551d6c77f490191f45161d7    True      False      False      3              3                   3                     0                      32m\n   worker    rendered-worker-72be15c95699b6d39f70fce525f51bb2    True      False      False      2              2                   2                     0                      32m\n   ```\n\n   In this example, `custom` is the new machine config pool.\n2. Check to see that the MCO created the new machine set by running the following command:\n\n   ```terminal\n   $ oc get machineset -n openshift-machine-api\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                  DESIRED   CURRENT   READY   AVAILABLE   AGE\n   ci-ln-7x179fk-72292-tc5qz-custom-a    1         1         1       1           62s\n   ci-ln-7x179fk-72292-tc5qz-worker-a    1         1         1       1           91m\n   ci-ln-7x179fk-72292-tc5qz-worker-b    1         1         1       1           91m\n   ci-ln-7x179fk-72292-tc5qz-worker-f    1         1         1       1           91m\n   ```\n\n   In this example, `ci-ln-7x179fk-72292-tc5qz-custom-a` is the new machine set.\n3. Check that the MCO created the required secret by running the following command:\n\n   ```terminal\n   $ oc get secrets -n openshift-machine-api\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                                  TYPE                      DATA   AGE\n   # ...\n   custom-user-data-managed                              Opaque                    2      9m\n   # ...\n   ```\n4. Check to see that the node is in the new custom machine config pool by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                        STATUS   ROLES                    AGE   VERSION\n   ci-ln-i61xqwb-72292-hz2mw-custom-9r496      Ready    custom,worker             9m   v1.35.3\n   ci-ln-i61xqwb-72292-ftjn8-master-0          Ready    control-plane,master     42m   v1.35.3\n   ci-ln-i61xqwb-72292-ftjn8-master-1          Ready    control-plane,master     44m   v1.35.3\n   ci-ln-i61xqwb-72292-ftjn8-master-2          Ready    control-plane,master     43m   v1.35.3\n   ci-ln-i61xqwb-72292-ftjn8-worker-c-2lhcl    Ready    worker                   36m   v1.35.3\n   ci-ln-i61xqwb-72292-ftjn8-worker-f-qgdb7    Ready    worker                   36m   v1.35.3\n   ```\n\n   In this example, the `ci-ln-i61xqwb-72292--hz2mw-custom-9r496` is a new node that was added to the `custom` machine config pool.\n\n## Creating a custom machine config pool for an existing node {#machine-config-custom-mcp-existing_machine-config-creating-custom-mcp}\n\nYou can create custom machine config pools (MCP) and manually add an existing node into that pool. With custom machine config pools, you can deploy changes targeted at the nodes in the custom pool.\n\nThe following procedure shows you how to create a new custom machine config pool and add an existing node into that pool.\n\n**Procedure**\n\n1. Create a custom machine config pool:\n\n   1. Create a YAML file similar to the following:\n\n      ```yaml\n      apiVersion: machineconfiguration.openshift.io/v1\n      kind: MachineConfigPool\n      metadata:\n        name: custom\n      spec:\n        machineConfigSelector:\n          matchExpressions:\n            - {key: machineconfiguration.openshift.io/role, operator: In, values: [custom,worker]}\n        nodeSelector:\n          matchLabels:\n            node-role.kubernetes.io/custom: \"\"\n      ```\n\n      where:\n\n      `metadata.name`\n      :   Specifies a name for the machine config pool.\n\n      `spec.machineConfigSelector.matchExpressions`\n      :   Specifies the node roles for the new node. This must include the `worker` role and the custom role.\n\n      `spec.nodeSelector.matchLabels`\n      :   Specifies a node selector to use when adding nodes to this pool.\n   2. Create the machine config pool by running the following command:\n\n      ```terminal\n      $ oc create -f <file_name>.yaml\n      ```\n2. Add a label to the worker nodes that you want to move to the new custom pool by running the following command:\n\n   ```terminal\n   $ oc label node <node_name> <node_selector>\n   ```\n\n   Replace `<node_name>` with the name of the node that you want to move and replace `<node-selector>` with the node selector you added to the machine config pool.\n\n   ```terminal {title=\"Example command\"}\n   $ oc label node ci-ln-g5tpp5k-72292-hz2mw-worker-b-ps8xh node-role.kubernetes.io/custom=\"\"\n   ```\n\n**Verification**\n\n1. Check to see that the MCO created the new machine config pool by running the following command:\n\n   ```terminal\n   $ oc get mcp\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME      CONFIG                                              UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\n   custom    rendered-custom-72be15c95699b6d39f70fce525f51bb2    True      False      False      1              1                   1                     0                      12s\n   master    rendered-master-9e25b616b551d6c77f490191f45161d7    True      False      False      3              3                   3                     0                      32m\n   worker    rendered-worker-72be15c95699b6d39f70fce525f51bb2    True      False      False      2              2                   2                     0                      32m\n   ```\n\n   In this example, `custom` is the new machine config pool.\n2. Check to see if the node is in that pool by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                       STATUS   ROLES                  AGE   VERSION\n   ci-ln-i61xqwb-72292-ftjn8-master-0         Ready    control-plane,master   42m   v1.35.3\n   ci-ln-i61xqwb-72292-ftjn8-master-1         Ready    control-plane,master   44m   v1.35.3\n   ci-ln-i61xqwb-72292-ftjn8-master-2         Ready    control-plane,master   43m   v1.35.3\n   ci-ln-g5tpp5k-72292-hz2mw-worker-b-ps8xh   Ready    custom,worker          36m   v1.35.3\n   ci-ln-i61xqwb-72292-ftjn8-worker-c-2lhcl   Ready    worker                 36m   v1.35.3\n   ci-ln-i61xqwb-72292-ftjn8-worker-f-qgdb7   Ready    worker                 36m   v1.35.3\n   ```\n\n   In this example, the `ci-ln-g5tpp5k-72292-hz2mw-worker-b-ps8xh` node is an existing node that was moved to the `custom` machine config pool.\n\n## Additional resources {#additional-resources_machine-config-creating-custom-mcp}\n\n- [Node configuration management with machine config pools](/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)\n- [Manually updating the boot image](/openshift-docs-markdown/machine_configuration/mco-update-boot-images-manual#mco-update-boot-images-manual)\n- [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_configuration/machine-config-custom-mcp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="machine-config-creating-custom-mcp" class="group scroll-mt-20">Creating custom machine config pools<a href="#machine-config-creating-custom-mcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can create custom machine config pools (MCP) to manage compute nodes for custom use cases that extend outside of the default node types. By using a custom machine config pool, you can deploy changes targeted only at nodes in the custom pool.</p>
       <p>Custom machine config pools inherit their configurations from the <code>worker</code> machine config pool. Changes made to the <code>worker</code> machine config pool apply to nodes in the custom pool. However, changes made to the custom machine config pool apply only to the nodes in the custom pool. For more information on custom machine config pools, see "Node configuration management with machine config pools".</p>
       <Alert variant="note" class="my-4">
@@ -105,7 +105,140 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p>For example, you could use a custom machine config pool to create an <em>infrastructure</em> node. Components that you move to an infrastructure node do not need to be accounted for during sizing. For more information on infrastructure nodes, see "Creating infrastructure machine sets".</p>
       <p>After you create the custom machine config pool, you can boot new nodes directly to the pool by creating a new machine set. Or, you can add existing nodes to the custom pool by using labels.</p>
-      <p class="/modules/machine-config-custom-mcp-existing.md /modules/machine-config-custom-mcp-automatic.md"></p>
+      <h2 id="machine-config-custom-mcp-automatic_machine-config-creating-custom-mcp" class="group scroll-mt-20">Creating a custom machine config pool with a new node<a href="#machine-config-custom-mcp-automatic_machine-config-creating-custom-mcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a custom machine config pool (MCP) and launch a new node directly into that pool. By launching the node directly into the new pool, you save a node reboot cycle that would be required when moving the nodes from the worker machine config pool to the custom pool. </p>
+      <p>Use the <code>userDataSecret</code> parameter in the machine set to instruct the Machine Config Operator (MCO) to add the node to a specific machine config pool. The secret contains the endpoint of the custom machine config pool. You must prefix the name of this new secret with the name of the custom machine config pool.</p>
+      <p>The following procedure shows you how to create a new custom machine config pool and launch a new node into that pool.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a custom machine config pool:
+      <ol>
+      <li>
+      Create a YAML file similar to the following:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfigPool\nmetadata:\n  name: custom\nspec:\n  machineConfigSelector:\n    matchExpressions:\n      - {key: machineconfiguration.openshift.io/role, operator: In, values: [custom,worker]}\n  nodeSelector:\n    matchLabels:\n      node-role.kubernetes.io/custom: \"\""} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the custom machine config pool.</p></dd>
+      <dt class="font-semibold"><code>spec.machineConfigSelector.matchExpressions</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node roles for the new node. This must include the <code>worker</code> role and the custom role.</p></dd>
+      <dt class="font-semibold"><code>spec.nodeSelector.matchLabels</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a node selector to use when adding nodes to this pool.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the machine config pool by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a new machine set that creates a new node in the new custom machine config pool:
+      <ol>
+      <li>
+      Create a YAML file, for example by making a copy of an existing compute machine set YAML and making the following changes:
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: MachineSet\nmetadata:\n# ...\n  name: <machineset_name>\n  namespace: openshift-machine-api\n# ...\nspec:\n# ...\n  template:\n# ...\n    spec:\n# ...\n      providerSpec:\n# ...\n        value:\n# ...\n          userDataSecret:\n            name: <mcp_name>-user-data-managed\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the machine set.</p></dd>
+      <dt class="font-semibold"><code>metadata.namespace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a namespace for the machine set. This must be <code>openshift-machine-api</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.providerSpec.value.userDataSecret</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the user data secret that is created. The name of the secret must start with the name of the custom machine config pool and end with <code>-user-data-managed</code>. For example <code>custom-user-data-managed</code>.</p></dd>
+      </dl>
+      <p>These are the minimum changes required to create the new machine set. For more configuration options or to configure an all-new machine set, see "Creating infrastructure machine sets" for your platform.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When creating a new machine set, you should specify the latest image to use for the boot image. For more information about configuring the boot image on your cluster, see "Manually updating the boot image" for your platform. The method to specify the image varies by provider.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Create the machine set by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      <p>The MCO creates a new node in the new custom machine config pool.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Check to see that the MCO created the new machine config pool by running the following command:
+      <CodeBlock code={"$ oc get mcp"} lang="terminal" />
+      <CodeBlock code={"NAME      CONFIG                                              UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\ncustom    rendered-custom-72be15c95699b6d39f70fce525f51bb2    True      False      False      1              1                   1                     0                      12s\nmaster    rendered-master-9e25b616b551d6c77f490191f45161d7    True      False      False      3              3                   3                     0                      32m\nworker    rendered-worker-72be15c95699b6d39f70fce525f51bb2    True      False      False      2              2                   2                     0                      32m"} lang="terminal" title="Example output" />
+      <p>In this example, <code>custom</code> is the new machine config pool.</p>
+      </li>
+      <li>
+      Check to see that the MCO created the new machine set by running the following command:
+      <CodeBlock code={"$ oc get machineset -n openshift-machine-api"} lang="terminal" />
+      <CodeBlock code={"NAME                                  DESIRED   CURRENT   READY   AVAILABLE   AGE\nci-ln-7x179fk-72292-tc5qz-custom-a    1         1         1       1           62s\nci-ln-7x179fk-72292-tc5qz-worker-a    1         1         1       1           91m\nci-ln-7x179fk-72292-tc5qz-worker-b    1         1         1       1           91m\nci-ln-7x179fk-72292-tc5qz-worker-f    1         1         1       1           91m"} lang="terminal" title="Example output" />
+      <p>In this example, <code>ci-ln-7x179fk-72292-tc5qz-custom-a</code> is the new machine set.</p>
+      </li>
+      <li>
+      Check that the MCO created the required secret by running the following command:
+      <CodeBlock code={"$ oc get secrets -n openshift-machine-api"} lang="terminal" />
+      <CodeBlock code={"NAME                                                  TYPE                      DATA   AGE\n# ...\ncustom-user-data-managed                              Opaque                    2      9m\n# ..."} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check to see that the node is in the new custom machine config pool by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME                                        STATUS   ROLES                    AGE   VERSION\nci-ln-i61xqwb-72292-hz2mw-custom-9r496      Ready    custom,worker             9m   v1.35.3\nci-ln-i61xqwb-72292-ftjn8-master-0          Ready    control-plane,master     42m   v1.35.3\nci-ln-i61xqwb-72292-ftjn8-master-1          Ready    control-plane,master     44m   v1.35.3\nci-ln-i61xqwb-72292-ftjn8-master-2          Ready    control-plane,master     43m   v1.35.3\nci-ln-i61xqwb-72292-ftjn8-worker-c-2lhcl    Ready    worker                   36m   v1.35.3\nci-ln-i61xqwb-72292-ftjn8-worker-f-qgdb7    Ready    worker                   36m   v1.35.3"} lang="terminal" title="Example output" />
+      <p>In this example, the <code>ci-ln-i61xqwb-72292--hz2mw-custom-9r496</code> is a new node that was added to the <code>custom</code> machine config pool.</p>
+      </li>
+      </ol>
+      <h2 id="machine-config-custom-mcp-existing_machine-config-creating-custom-mcp" class="group scroll-mt-20">Creating a custom machine config pool for an existing node<a href="#machine-config-custom-mcp-existing_machine-config-creating-custom-mcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create custom machine config pools (MCP) and manually add an existing node into that pool. With custom machine config pools, you can deploy changes targeted at the nodes in the custom pool.</p>
+      <p>The following procedure shows you how to create a new custom machine config pool and add an existing node into that pool.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a custom machine config pool:
+      <ol>
+      <li>
+      Create a YAML file similar to the following:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfigPool\nmetadata:\n  name: custom\nspec:\n  machineConfigSelector:\n    matchExpressions:\n      - {key: machineconfiguration.openshift.io/role, operator: In, values: [custom,worker]}\n  nodeSelector:\n    matchLabels:\n      node-role.kubernetes.io/custom: \"\""} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the machine config pool.</p></dd>
+      <dt class="font-semibold"><code>spec.machineConfigSelector.matchExpressions</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node roles for the new node. This must include the <code>worker</code> role and the custom role.</p></dd>
+      <dt class="font-semibold"><code>spec.nodeSelector.matchLabels</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a node selector to use when adding nodes to this pool.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the machine config pool by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Add a label to the worker nodes that you want to move to the new custom pool by running the following command:
+      <CodeBlock code={"$ oc label node <node_name> <node_selector>"} lang="terminal" />
+      <p>Replace <code>&lt;node_name&gt;</code> with the name of the node that you want to move and replace <code>&lt;node-selector&gt;</code> with the node selector you added to the machine config pool.</p>
+      <CodeBlock code={"$ oc label node ci-ln-g5tpp5k-72292-hz2mw-worker-b-ps8xh node-role.kubernetes.io/custom=\"\""} lang="terminal" title="Example command" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Check to see that the MCO created the new machine config pool by running the following command:
+      <CodeBlock code={"$ oc get mcp"} lang="terminal" />
+      <CodeBlock code={"NAME      CONFIG                                              UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\ncustom    rendered-custom-72be15c95699b6d39f70fce525f51bb2    True      False      False      1              1                   1                     0                      12s\nmaster    rendered-master-9e25b616b551d6c77f490191f45161d7    True      False      False      3              3                   3                     0                      32m\nworker    rendered-worker-72be15c95699b6d39f70fce525f51bb2    True      False      False      2              2                   2                     0                      32m"} lang="terminal" title="Example output" />
+      <p>In this example, <code>custom</code> is the new machine config pool.</p>
+      </li>
+      <li>
+      Check to see if the node is in that pool by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME                                       STATUS   ROLES                  AGE   VERSION\nci-ln-i61xqwb-72292-ftjn8-master-0         Ready    control-plane,master   42m   v1.35.3\nci-ln-i61xqwb-72292-ftjn8-master-1         Ready    control-plane,master   44m   v1.35.3\nci-ln-i61xqwb-72292-ftjn8-master-2         Ready    control-plane,master   43m   v1.35.3\nci-ln-g5tpp5k-72292-hz2mw-worker-b-ps8xh   Ready    custom,worker          36m   v1.35.3\nci-ln-i61xqwb-72292-ftjn8-worker-c-2lhcl   Ready    worker                 36m   v1.35.3\nci-ln-i61xqwb-72292-ftjn8-worker-f-qgdb7   Ready    worker                 36m   v1.35.3"} lang="terminal" title="Example output" />
+      <p>In this example, the <code>ci-ln-g5tpp5k-72292-hz2mw-worker-b-ps8xh</code> node is an existing node that was moved to the <code>custom</code> machine config pool.</p>
+      </li>
+      </ol>
       <h2 id="additional-resources_machine-config-creating-custom-mcp" class="group scroll-mt-20">Additional resources<a href="#additional-resources_machine-config-creating-custom-mcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview">Node configuration management with machine config pools</a></li>

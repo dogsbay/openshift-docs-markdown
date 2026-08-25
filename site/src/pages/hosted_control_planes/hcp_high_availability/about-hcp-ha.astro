@@ -15,8 +15,14 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"about-hcp-ha","text":"About high availability for {{ hcp }}"}];
+const headings = [{"depth":1,"slug":"about-hcp-ha","text":"About high availability for hosted control planes"},{"depth":2,"slug":"hcp-mgmt-component-loss-impact_about-hcp-ha","text":"Impact of the failed management cluster component"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/about-hcp-ha";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +32,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "About high availability for {{ hcp }}";
-const description = "You can maintain high availability (HA) for {{ hcp }} by recovering etcd members for a hosted cluster, backing up and restoring etcd for a hosted cluster…" || undefined;
+const description = "You can maintain high availability (HA) for hosted control planes by recovering etcd members for a hosted cluster, backing up and restoring etcd for a…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +45,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp_high_av
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About high availability for {{ hcp }} {#about-hcp-ha}\n\nYou can maintain high availability (HA) for {{ hcp }} by recovering etcd members for a hosted cluster, backing up and restoring etcd for a hosted cluster, and completing a disaster recovery process for a hosted cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/about-hcp-ha.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About high availability for hosted control planes {#about-hcp-ha}\n\nYou can maintain high availability (HA) for hosted control planes by recovering etcd members for a hosted cluster, backing up and restoring etcd for a hosted cluster, and completing a disaster recovery process for a hosted cluster.\n\n## Impact of the failed management cluster component {#hcp-mgmt-component-loss-impact_about-hcp-ha}\n\nIf the management cluster component fails, your workload remains unaffected. In the OpenShift Container Platform management cluster, the control plane is decoupled from the data plane to provide resiliency.\n\nThe following table covers the impact of a failed management cluster component on the control plane and the data plane. However, the table does not cover all scenarios for the management cluster component failures.\n\n**Impact of the failed component on hosted control planes**\n\n| Name of the failed component | Hosted control plane API status | Hosted cluster data plane status |\n| --- | --- | --- |\n| Worker node | Available | Available |\n| Availability zone | Available | Available |\n| Management cluster control plane | Available | Available |\n| Management cluster control plane and worker nodes | Not available | Available |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/about-hcp-ha.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +81,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +96,43 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="about-hcp-ha" class="group scroll-mt-20">About high availability for {"{"}{"{"} hcp {"}"}{"}"}<a href="#about-hcp-ha" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can maintain high availability (HA) for {"{"}{"{"} hcp {"}"}{"}"} by recovering etcd members for a hosted cluster, backing up and restoring etcd for a hosted cluster, and completing a disaster recovery process for a hosted cluster.</p>
-      <p class="/modules/hcp-mgmt-component-loss-impact.md"></p>
+      <h1 id="about-hcp-ha" class="group scroll-mt-20">About high availability for hosted control planes<a href="#about-hcp-ha" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can maintain high availability (HA) for hosted control planes by recovering etcd members for a hosted cluster, backing up and restoring etcd for a hosted cluster, and completing a disaster recovery process for a hosted cluster.</p>
+      <h2 id="hcp-mgmt-component-loss-impact_about-hcp-ha" class="group scroll-mt-20">Impact of the failed management cluster component<a href="#hcp-mgmt-component-loss-impact_about-hcp-ha" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If the management cluster component fails, your workload remains unaffected. In the OpenShift Container Platform management cluster, the control plane is decoupled from the data plane to provide resiliency.</p>
+      <p>The following table covers the impact of a failed management cluster component on the control plane and the data plane. However, the table does not cover all scenarios for the management cluster component failures.</p>
+      <p><strong>Impact of the failed component on hosted control planes</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name of the failed component</TableHead>
+      <TableHead>Hosted control plane API status</TableHead>
+      <TableHead>Hosted cluster data plane status</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Worker node</TableCell>
+      <TableCell>Available</TableCell>
+      <TableCell>Available</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Availability zone</TableCell>
+      <TableCell>Available</TableCell>
+      <TableCell>Available</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Management cluster control plane</TableCell>
+      <TableCell>Available</TableCell>
+      <TableCell>Available</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Management cluster control plane and worker nodes</TableCell>
+      <TableCell>Not available</TableCell>
+      <TableCell>Available</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -19,7 +19,7 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"user-managed-encryption-ibm-cloud","text":"User-managed encryption for {{ ibm_cloud_title }}"},{"depth":2,"slug":"additional-resources_user-managed-encryption-ibm-cloud","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"user-managed-encryption-ibm-cloud","text":"User-managed encryption for IBM Cloud"},{"depth":2,"slug":"additional-resources_user-managed-encryption-ibm-cloud","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_ibm_cloud/user-managed-encryption-ibm-cloud";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +42,7 @@ const pageCategory = ["installing","installing/installing_ibm_cloud"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# User-managed encryption for {{ ibm_cloud_title }} {#user-managed-encryption-ibm-cloud}\n\nBy default, OpenShift Container Platform uses provider-managed encryption to secure the root volumes and persistent data volumes of a cluster. You can override this by specifying an {{ ibm_name }} Key Protect root key by using the `encryptionKey` parameter in the `install-config.yaml` file.\n\nYou can specify that:\n\n- The same root key applies to all cluster machines by specifying the key as part of the cluster’s default machine configuration. All managed storage classes are updated with this key, so data volumes provisioned after installation are also encrypted by using this key.\n- Separate root keys apply to the control plane and compute machine pools.\n\nWhen you bring your own root key, you change the `install-config.yaml` file to specify the Cloud Resource Name (CRN) of the root key by using the `encryptionKey` parameter.\n\n> [!NOTE]\n> Make sure you have integrated Key Protect with your {{ ibm_cloud_title }} Block Storage service. For more information, see \"Key Protect documentation\".\n\n## Additional resources {#additional-resources_user-managed-encryption-ibm-cloud}\n\n- [Key Protect documentation](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-services#grant-access)\n- [Additional {{ ibm_cloud_title }} configuration parameters](/openshift-docs-markdown/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc)\n- [Installing a cluster on {{ ibm_cloud_title }} with customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)\n- [Installing a cluster on {{ ibm_cloud_title }} with network customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)\n- [Installing a cluster on {{ ibm_cloud_title }} into an existing VPC](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-vpc#installing-ibm-cloud-vpc)\n- [Installing a private cluster on {{ ibm_cloud_title }}](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-private#installing-ibm-cloud-private)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_cloud/user-managed-encryption-ibm-cloud.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# User-managed encryption for IBM Cloud {#user-managed-encryption-ibm-cloud}\n\nBy default, OpenShift Container Platform uses provider-managed encryption to secure the root volumes and persistent data volumes of a cluster. You can override this by specifying an IBM(R) Key Protect root key by using the `encryptionKey` parameter in the `install-config.yaml` file.\n\nYou can specify that:\n\n- The same root key applies to all cluster machines by specifying the key as part of the cluster’s default machine configuration. All managed storage classes are updated with this key, so data volumes provisioned after installation are also encrypted by using this key.\n- Separate root keys apply to the control plane and compute machine pools.\n\nWhen you bring your own root key, you change the `install-config.yaml` file to specify the Cloud Resource Name (CRN) of the root key by using the `encryptionKey` parameter.\n\n> [!NOTE]\n> Make sure you have integrated Key Protect with your IBM Cloud Block Storage service. For more information, see \"Key Protect documentation\".\n\n## Additional resources {#additional-resources_user-managed-encryption-ibm-cloud}\n\n- [Key Protect documentation](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-services#grant-access)\n- [Additional IBM Cloud configuration parameters](/openshift-docs-markdown/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc)\n- [Installing a cluster on IBM Cloud with customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)\n- [Installing a cluster on IBM Cloud with network customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)\n- [Installing a cluster on IBM Cloud into an existing VPC](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-vpc#installing-ibm-cloud-vpc)\n- [Installing a private cluster on IBM Cloud](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-private#installing-ibm-cloud-private)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_cloud/user-managed-encryption-ibm-cloud.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,9 +93,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="user-managed-encryption-ibm-cloud" class="group scroll-mt-20">User-managed encryption for {"{"}{"{"} ibm_cloud_title {"}"}{"}"}<a href="#user-managed-encryption-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>By default, OpenShift Container Platform uses provider-managed encryption to secure the root volumes and persistent data volumes of a cluster. You can override this by specifying an {"{"}{"{"} ibm_name {"}"}{"}"} Key Protect root key by using the <code>encryptionKey</code> parameter in the <code>install-config.yaml</code> file.</p>
+      <h1 id="user-managed-encryption-ibm-cloud" class="group scroll-mt-20">User-managed encryption for IBM Cloud<a href="#user-managed-encryption-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>By default, OpenShift Container Platform uses provider-managed encryption to secure the root volumes and persistent data volumes of a cluster. You can override this by specifying an IBM(R) Key Protect root key by using the <code>encryptionKey</code> parameter in the <code>install-config.yaml</code> file.</p>
       <p>You can specify that:</p>
       <ul>
       <li>The same root key applies to all cluster machines by specifying the key as part of the cluster’s default machine configuration. All managed storage classes are updated with this key, so data volumes provisioned after installation are also encrypted by using this key.</li>
@@ -105,17 +104,17 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Make sure you have integrated Key Protect with your {"{"}{"{"} ibm_cloud_title {"}"}{"}"} Block Storage service. For more information, see "Key Protect documentation".</p>
+          <p>Make sure you have integrated Key Protect with your IBM Cloud Block Storage service. For more information, see "Key Protect documentation".</p>
         </AlertDescription>
       </Alert>
       <h2 id="additional-resources_user-managed-encryption-ibm-cloud" class="group scroll-mt-20">Additional resources<a href="#additional-resources_user-managed-encryption-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-services#grant-access">Key Protect documentation</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc">Additional {"{"}{"{"} ibm_cloud_title {"}"}{"}"} configuration parameters</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations">Installing a cluster on {"{"}{"{"} ibm_cloud_title {"}"}{"}"} with customizations</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations">Installing a cluster on {"{"}{"{"} ibm_cloud_title {"}"}{"}"} with network customizations</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-vpc#installing-ibm-cloud-vpc">Installing a cluster on {"{"}{"{"} ibm_cloud_title {"}"}{"}"} into an existing VPC</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-private#installing-ibm-cloud-private">Installing a private cluster on {"{"}{"{"} ibm_cloud_title {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc">Additional IBM Cloud configuration parameters</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations">Installing a cluster on IBM Cloud with customizations</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations">Installing a cluster on IBM Cloud with network customizations</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-vpc#installing-ibm-cloud-vpc">Installing a cluster on IBM Cloud into an existing VPC</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-private#installing-ibm-cloud-private">Installing a private cluster on IBM Cloud</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

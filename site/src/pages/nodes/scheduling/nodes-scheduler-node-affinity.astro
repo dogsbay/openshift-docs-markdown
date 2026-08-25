@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-scheduler-node-affinity","text":"Controlling pod placement on nodes using node affinity rules"},{"depth":2,"slug":"nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"nodes-scheduler-node-affinity","text":"Controlling pod placement on nodes using node affinity rules"},{"depth":2,"slug":"nodes-scheduler-node-affinity-about_nodes-scheduler-node-affinity","text":"Understanding node affinity"},{"depth":2,"slug":"nodes-scheduler-node-affinity-configuring-required_nodes-scheduler-node-affinity","text":"Configuring a required node affinity rule"},{"depth":2,"slug":"nodes-scheduler-node-affinity-configuring-preferred_nodes-scheduler-node-affinity","text":"Configuring a preferred node affinity rule"},{"depth":2,"slug":"nodes-scheduler-node-affinity-example_nodes-scheduler-node-affinity","text":"Sample node affinity rules"},{"depth":3,"slug":"admin-guide-sched-affinity-examples1_nodes-scheduler-node-affinity","text":"Node affinity with matching labels"},{"depth":3,"slug":"admin-guide-sched-affinity-examples2_nodes-scheduler-node-affinity","text":"Node affinity with no matching labels"},{"depth":2,"slug":"_using_node_affinity_to_control_where_an_operator_is_installed","text":"Using node affinity to control where an Operator is installed"},{"depth":2,"slug":"nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/scheduling"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Controlling pod placement on nodes using node affinity rules {#nodes-scheduler-node-affinity}\n\nYou can use a node affinity to control which nodes your pod can be scheduled on based on node labels. Node affinity helps you ensure your applications run on nodes with specific capabilities or configurations.\n\nIn OpenShift Container Platform node affinity is a set of rules used by the scheduler to determine where a pod can be placed. The rules are defined using custom labels on the nodes and label selectors specified in pods.\n\n## Additional resources {#nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity}\n\n- [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Controlling pod placement on nodes using node affinity rules {#nodes-scheduler-node-affinity}\n\nYou can use a node affinity to control which nodes your pod can be scheduled on based on node labels. Node affinity helps you ensure your applications run on nodes with specific capabilities or configurations.\n\nIn OpenShift Container Platform node affinity is a set of rules used by the scheduler to determine where a pod can be placed. The rules are defined using custom labels on the nodes and label selectors specified in pods.\n\n## Understanding node affinity {#nodes-scheduler-node-affinity-about_nodes-scheduler-node-affinity}\n\nTo specify a preference towards a group of nodes that a pod can be placed on, you can use a node affinity in the pod spec. For example, you could configure a pod to run only on a node with a specific CPU or in a specific availability zone. The node does not have control over the placement.\n\nThere are two types of node affinity rules: *required* and *preferred*.\n\nRequired rules **must** be met before a pod can be scheduled on a node. Preferred rules specify that, if the rule is met, the scheduler tries to enforce the rules, but does not guarantee enforcement.\n\n> [!NOTE]\n> If labels on a node change at runtime that results in an node affinity rule on a pod no longer being met, the pod continues to run on the node.\n\nYou configure node affinity through the `Pod` spec file. You can specify a required rule, a preferred rule, or both. If you specify both, the node must first meet the required rule, then attempts to meet the preferred rule.\n\nThe following example is a `Pod` spec with a rule that requires the pod be placed on a node with a label whose key is `e2e-az-NorthSouth` and whose value is either `e2e-az-North` or `e2e-az-South`:\n\n```yaml {title=\"Example pod configuration file with a node affinity required rule\"}\napiVersion: v1\nkind: Pod\nmetadata:\n  name: with-node-affinity\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  affinity:\n    nodeAffinity:\n      requiredDuringSchedulingIgnoredDuringExecution:\n        nodeSelectorTerms:\n        - matchExpressions:\n          - key: e2e-az-NorthSouth\n            operator: In\n            values:\n            - e2e-az-North\n            - e2e-az-South\n  containers:\n  - name: with-node-affinity\n    image: docker.io/ocpqe/hello-pod\n    securityContext:\n      allowPrivilegeEscalation: false\n      capabilities:\n        drop: [ALL]\n# ...\n```\n\nwhere:\n\n`spec.affinity.nodeAffinity`\n:   Specifies the stanza to configure node affinity.\n\n`spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution`\n:   Specifies a *required* rule. Configure the following `nodeSelectorTerms.matchExpressions` parameters:\n\n`key`\n:   Specifies the key of the key/value pair (label) that must be matched to apply the rule.\n\n`operator`\n:   Specifies the relationship between the label on the node and the set of values in the `matchExpression` parameters in the `Pod` spec. This value can be `In`, `NotIn`, `Exists`, or `DoesNotExist`, `Lt`, or `Gt`.\n\n`values`\n:   Specifies the value of the key/value pair (label) that must be matched to apply the rule.\n\nThe following example is a node specification with a preferred rule that a node with a label whose key is `e2e-az-EastWest` and whose value is either `e2e-az-East` or `e2e-az-West` is preferred for the pod:\n\n```yaml {title=\"Example pod configuration file with a node affinity preferred rule\"}\napiVersion: v1\nkind: Pod\nmetadata:\n  name: with-node-affinity\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  affinity:\n    nodeAffinity:\n      preferredDuringSchedulingIgnoredDuringExecution:\n      - weight: 1\n        preference:\n          matchExpressions:\n          - key: e2e-az-EastWest\n            operator: In\n            values:\n            - e2e-az-East\n            - e2e-az-West\n  containers:\n  - name: with-node-affinity\n    image: docker.io/ocpqe/hello-pod\n    securityContext:\n      allowPrivilegeEscalation: false\n      capabilities:\n        drop: [ALL]\n# ...\n```\n\nwhere:\n\n`spec.affinity.nodeAffinity`\n:   Specifies the stanza to configure node affinity.\n\n`spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution`\n:   Specifies a *preferred* rule. Configure a weight and the following `preference.matchExpression` parameters:\n\n`weight`\n:   Specifies a weight for a preferred rule. The node with highest weight is preferred.\n\n`key`\n:   Specifies the key of the key/value pair (label) that must be matched to apply the rule.\n\n`operator`\n:   Specifies the relationship between the label on the node and the set of values in the `matchExpression` parameters in the `Pod` spec. This value can be `In`, `NotIn`, `Exists`, or `DoesNotExist`, `Lt`, or `Gt`. There is no explicit *node anti-affinity* concept, but using the `NotIn` or `DoesNotExist` operator replicates that behavior.\n\n`values`\n:   Specifies the value of the key/value pair (label) that must be matched to apply the rule.\n\n> [!NOTE]\n> If you are using node affinity and node selectors in the same pod configuration, note the following:\n>\n> - If you configure both `nodeSelector` and `nodeAffinity`, both conditions must be satisfied for the pod to be scheduled onto a candidate node.\n> - If you specify multiple `nodeSelectorTerms` associated with `nodeAffinity` types, then the pod can be scheduled onto a node if one of the `nodeSelectorTerms` is satisfied.\n> - If you specify multiple `matchExpressions` associated with `nodeSelectorTerms`, then the pod can be scheduled onto a node only if all `matchExpressions` are satisfied.\n\n## Configuring a required node affinity rule {#nodes-scheduler-node-affinity-configuring-required_nodes-scheduler-node-affinity}\n\nYou can use a *required* rule to instruct the scheduler that the rules **must** be met before a pod can be scheduled on a node.\n\nThe following steps demonstrate a simple configuration that creates a node and a pod that the scheduler is required to place on the node.\n\n**Procedure**\n\n1. Add a label to a node using the `oc label node` command:\n\n   ```terminal\n   $ oc label node node1 e2e-az-name=e2e-az1\n   ```\n\n   > [!TIP]\n   > You can alternatively apply the following YAML to add the label:\n   >\n   > ```yaml\n   > kind: Node\n   > apiVersion: v1\n   > metadata:\n   >   name: <node_name>\n   >   labels:\n   >     e2e-az-name: e2e-az1\n   > #...\n   > ```\n2. Create a pod with a specific label in the pod spec:\n\n   1. Create a YAML file with the following content:\n\n      > [!NOTE]\n      > You cannot add an affinity directly to a scheduled pod.\n\n      ```yaml {title=\"Example output\"}\n      apiVersion: v1\n      kind: Pod\n      metadata:\n        name: s1\n      spec:\n        affinity:\n          nodeAffinity:\n            requiredDuringSchedulingIgnoredDuringExecution:\n              nodeSelectorTerms:\n              - matchExpressions:\n                - key: e2e-az-name\n                  values:\n                  - e2e-az1\n                  - e2e-az2\n                  operator: In\n      #...\n      ```\n\n      where:\n\n      `spec.affinity.nodeAffinity`\n      :   Specifies the stanza to configure node affinity.\n\n      `spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution`\n      :   Specifies a *required* rule. Configure the following `nodeSelectorTerms.matchExpressions` parameters:\n\n      `key`\n      :   Specifies the key of the key/value pair (label) that must be matched to apply the rule.\n\n      `operator`\n      :   Specifies the relationship between the label on the node and the set of values in the `matchExpression` parameters in the `Pod` spec. This value can be `In`, `NotIn`, `Exists`, or `DoesNotExist`, `Lt`, or `Gt`. There is no explicit *node anti-affinity* concept, but using the `NotIn` or `DoesNotExist` operator replicates that behavior.\n\n      `values`\n      :   Specifies the value of the key/value pair (label) that must be matched to apply the rule.\n   2. Create the pod:\n\n      ```terminal\n      $ oc create -f <file-name>.yaml\n      ```\n\n## Configuring a preferred node affinity rule {#nodes-scheduler-node-affinity-configuring-preferred_nodes-scheduler-node-affinity}\n\nYou can use a *preferred* rule to instruct the scheduler that if a matching node is not available, schedule the pod on a different node to ensure the workload application runs.\n\nFor a preferred rule, the scheduler tries to enforce the rule, but does not guarantee enforcement.\n\nThe following procedure demonstrates a simple configuration that creates a node and a pod that the scheduler tries to place on the node.\n\n**Procedure**\n\n1. Add a label to a node using the `oc label node` command:\n\n   ```terminal\n   $ oc label node node1 e2e-az-name=e2e-az3\n   ```\n2. Create a pod with a specific label:\n\n   1. Create a YAML file with the following content:\n\n      > [!NOTE]\n      > You cannot add an affinity directly to a scheduled pod.\n\n      ```yaml\n      apiVersion: v1\n      kind: Pod\n      metadata:\n        name: s1\n      spec:\n        affinity:\n          nodeAffinity:\n            preferredDuringSchedulingIgnoredDuringExecution:\n            - weight:\n              preference:\n                matchExpressions:\n                - key: e2e-az-name\n                  values:\n                  - e2e-az3\n                  operator: In\n      #...\n      ```\n\n      where:\n\n      `spec.affinity.nodeAffinity`\n      :   Specifies the stanza to configure node affinity.\n\n      `spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution`\n      :   Specifies a *preferred* rule. Configure a weight and the following `preference.matchExpressions` parameters. If you want the new pod to be scheduled on the node you edited, use the same `key` and `values` parameters as the label in the node.\n\n      `weight`\n      :   Specifies a weight for the node, as a number 1-100. The node with highest weight is preferred.\n\n      `key`\n      :   Specifies the key of the key/value pair (label) that must be matched to apply the rule.\n\n      `operator`\n      :   Specifies the relationship between the label on the node and the set of values in the `matchExpression` parameters in the `Pod` spec. This value can be `In`, `NotIn`, `Exists`, or `DoesNotExist`, `Lt`, or `Gt`. There is no explicit *node anti-affinity* concept, but using the `NotIn` or `DoesNotExist` operator replicates that behavior.\n\n      `values`\n      :   Specifies the value of the key/value pair (label) that must be matched to apply the rule.\n   2. Create the pod.\n\n      ```terminal\n      $ oc create -f <file-name>.yaml\n      ```\n\n## Sample node affinity rules {#nodes-scheduler-node-affinity-example_nodes-scheduler-node-affinity}\n\nTo use node affinity, the pod spec that you want to schedule on a node must have a node selector that matches a label on the node.\n\nThe following examples demonstrate node affinity with or without matching labels.\n\n### Node affinity with matching labels {#admin-guide-sched-affinity-examples1_nodes-scheduler-node-affinity}\n\nThe following example demonstrates node affinity for a node and pod with matching labels:\n\n- The Node1 node has the label `zone:us`:\n\n  ```terminal\n  $ oc label node node1 zone=us\n  ```\n\n  > [!TIP]\n  > You can alternatively apply the following YAML to add the label:\n  >\n  > ```yaml\n  > kind: Node\n  > apiVersion: v1\n  > metadata:\n  >   name: <node_name>\n  >   labels:\n  >     zone: us\n  > #...\n  > ```\n- The pod-s1 pod has the `zone` and `us` key/value pair under a required node affinity rule:\n\n  ```terminal\n  $ cat pod-s1.yaml\n  ```\n\n  ```yaml {title=\"Example output\"}\n  apiVersion: v1\n  kind: Pod\n  metadata:\n    name: pod-s1\n  spec:\n    securityContext:\n      runAsNonRoot: true\n      seccompProfile:\n        type: RuntimeDefault\n    containers:\n      - image: \"docker.io/ocpqe/hello-pod\"\n        name: hello-pod\n        securityContext:\n          allowPrivilegeEscalation: false\n          capabilities:\n            drop: [ALL]\n    affinity:\n      nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n            - matchExpressions:\n              - key: \"zone\"\n                operator: In\n                values:\n                - us\n  #...\n  ```\n- The pod-s1 pod can be scheduled on Node1:\n\n  ```terminal\n  $ oc get pod -o wide\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME     READY     STATUS       RESTARTS   AGE      IP      NODE\n  pod-s1   1/1       Running      0          4m       IP1     node1\n  ```\n\n### Node affinity with no matching labels {#admin-guide-sched-affinity-examples2_nodes-scheduler-node-affinity}\n\nThe following example demonstrates node affinity for a node and pod without matching labels:\n\n- The Node1 node has the label `zone:emea`:\n\n  ```terminal\n  $ oc label node node1 zone=emea\n  ```\n\n  > [!TIP]\n  > You can alternatively apply the following YAML to add the label:\n  >\n  > ```yaml\n  > kind: Node\n  > apiVersion: v1\n  > metadata:\n  >   name: <node_name>\n  >   labels:\n  >     zone: emea\n  > #...\n  > ```\n- The pod-s1 pod has the `zone` and `us` key/value pair under a required node affinity rule:\n\n  ```terminal\n  $ cat pod-s1.yaml\n  ```\n\n  ```yaml {title=\"Example output\"}\n  apiVersion: v1\n  kind: Pod\n  metadata:\n    name: pod-s1\n  spec:\n    securityContext:\n      runAsNonRoot: true\n      seccompProfile:\n        type: RuntimeDefault\n    containers:\n      - image: \"docker.io/ocpqe/hello-pod\"\n        name: hello-pod\n        securityContext:\n          allowPrivilegeEscalation: false\n          capabilities:\n            drop: [ALL]\n    affinity:\n      nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n            - matchExpressions:\n              - key: \"zone\"\n                operator: In\n                values:\n                - us\n  #...\n  ```\n- The pod-s1 pod cannot be scheduled on Node1:\n\n  ```terminal\n  $ oc describe pod pod-s1\n  ```\n\n  ```terminal {title=\"Example output\"}\n  ...\n\n  Events:\n   FirstSeen LastSeen Count From              SubObjectPath  Type                Reason\n   --------- -------- ----- ----              -------------  --------            ------\n   1m        33s      8     default-scheduler Warning        FailedScheduling    No nodes are available that match all of the following predicates:: MatchNodeSelector (1).\n  ```\n\n## Using node affinity to control where an Operator is installed {#_using_node_affinity_to_control_where_an_operator_is_installed}\n\nYou can use affinities to schedule an Operator pod on a specific node or set of nodes.\n\nBy default, when you install an Operator, OpenShift Container Platform installs the Operator pod on one of your compute nodes randomly. However, the following examples describe situations where you might want to schedule an Operator pod to a specific node or set of nodes:\n\n- If an Operator requires a particular platform, such as `amd64` or `arm64`\n- If an Operator requires a particular operating system, such as Linux or Windows\n- If you want Operators that work together scheduled on the same host or on hosts located on the same rack\n- If you want Operators dispersed throughout the infrastructure to avoid downtime due to network or hardware issues\n\nYou can control where an Operator pod is installed by adding a node affinity constraints to the Operator’s `Subscription` object.\n\nThe following examples show how to use node affinity to install an instance of the Custom Metrics Autoscaler Operator to a specific node in the cluster:\n\nThe following node affinity example places the Operator pod on a specific node:\n\n```yaml\napiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: openshift-custom-metrics-autoscaler-operator\n  namespace: openshift-keda\nspec:\n  name: my-package\n  source: my-operators\n  sourceNamespace: operator-registries\n  config:\n    affinity:\n      nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n          - matchExpressions:\n            - key: kubernetes.io/hostname\n              operator: In\n              values:\n              - ip-10-0-163-94.us-west-2.compute.internal\n#...\n```\n\nThis node affinity requires the Operator’s pod be scheduled on a node named `ip-10-0-163-94.us-west-2.compute.internal`.\n\nThe following node affinity example places the Operator pod on a node with a specific platform:\n\n```yaml\napiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: openshift-custom-metrics-autoscaler-operator\n  namespace: openshift-keda\nspec:\n  name: my-package\n  source: my-operators\n  sourceNamespace: operator-registries\n  config:\n    affinity:\n      nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n          - matchExpressions:\n            - key: kubernetes.io/arch\n              operator: In\n              values:\n              - arm64\n            - key: kubernetes.io/os\n              operator: In\n              values:\n              - linux\n#...\n```\n\nThis node affinity requires the Operator’s pod be scheduled on a node with the `kubernetes.io/arch=arm64` and `kubernetes.io/os=linux` labels.\n\nTo control the placement of an Operator pod, complete the following steps.\n\n**Procedure**\n\n1. Install the Operator as usual.\n2. If needed, ensure that your nodes are labeled to properly respond to the affinity.\n3. Edit the Operator `Subscription` object to add an affinity:\n\n   ````\n   ```yaml\n   apiVersion: operators.coreos.com/v1alpha1\n   kind: Subscription\n   metadata:\n     name: openshift-custom-metrics-autoscaler-operator\n     namespace: openshift-keda\n   spec:\n     name: my-package\n     source: my-operators\n     sourceNamespace: operator-registries\n     config:\n       affinity:\n         nodeAffinity:\n           requiredDuringSchedulingIgnoredDuringExecution:\n             nodeSelectorTerms:\n             - matchExpressions:\n               - key: kubernetes.io/hostname\n                 operator: In\n                 values:\n                 - ip-10-0-185-229.ec2.internal\n   #...\n   ```\n   ````\n\n   where:\n\n`spec.config.affinity`\n:   Specifies a `nodeAffinity`.\n\n**Verification**\n\n- To ensure that the pod is deployed on the specific node, run the following command:\n\n  ```yaml\n  $ oc get pods -o wide\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                                                  READY   STATUS    RESTARTS   AGE   IP            NODE                           NOMINATED NODE   READINESS GATES\n  custom-metrics-autoscaler-operator-5dcc45d656-bhshg   1/1     Running   0          50s   10.131.0.20   ip-10-0-185-229.ec2.internal   <none>           <none>\n  ```\n\n## Additional resources {#nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity}\n\n- [Understanding how to update labels on nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,249 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-scheduler-node-affinity" class="group scroll-mt-20">Controlling pod placement on nodes using node affinity rules<a href="#nodes-scheduler-node-affinity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can use a node affinity to control which nodes your pod can be scheduled on based on node labels. Node affinity helps you ensure your applications run on nodes with specific capabilities or configurations.</p>
       <p>In OpenShift Container Platform node affinity is a set of rules used by the scheduler to determine where a pod can be placed. The rules are defined using custom labels on the nodes and label selectors specified in pods.</p>
-      <p class="/modules/nodes-scheduler-node-affinity-about.md"></p>
-      <p class="/modules/nodes-scheduler-node-affinity-configuring-required.md"></p>
-      <p class="/modules/nodes-scheduler-node-affinity-configuring-preferred.md"></p>
-      <p class="/modules/nodes-scheduler-node-affinity-example.md"></p>
-      <p class="/modules/olm-overriding-operator-pod-affinity.md"></p>
+      <h2 id="nodes-scheduler-node-affinity-about_nodes-scheduler-node-affinity" class="group scroll-mt-20">Understanding node affinity<a href="#nodes-scheduler-node-affinity-about_nodes-scheduler-node-affinity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To specify a preference towards a group of nodes that a pod can be placed on, you can use a node affinity in the pod spec. For example, you could configure a pod to run only on a node with a specific CPU or in a specific availability zone. The node does not have control over the placement.</p>
+      <p>There are two types of node affinity rules: <em>required</em> and <em>preferred</em>.</p>
+      <p>Required rules <strong>must</strong> be met before a pod can be scheduled on a node. Preferred rules specify that, if the rule is met, the scheduler tries to enforce the rules, but does not guarantee enforcement.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If labels on a node change at runtime that results in an node affinity rule on a pod no longer being met, the pod continues to run on the node.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You configure node affinity through the <code>Pod</code> spec file. You can specify a required rule, a preferred rule, or both. If you specify both, the node must first meet the required rule, then attempts to meet the preferred rule.</p>
+      <p>The following example is a <code>Pod</code> spec with a rule that requires the pod be placed on a node with a label whose key is <code>e2e-az-NorthSouth</code> and whose value is either <code>e2e-az-North</code> or <code>e2e-az-South</code>:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: with-node-affinity\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  affinity:\n    nodeAffinity:\n      requiredDuringSchedulingIgnoredDuringExecution:\n        nodeSelectorTerms:\n        - matchExpressions:\n          - key: e2e-az-NorthSouth\n            operator: In\n            values:\n            - e2e-az-North\n            - e2e-az-South\n  containers:\n  - name: with-node-affinity\n    image: docker.io/ocpqe/hello-pod\n    securityContext:\n      allowPrivilegeEscalation: false\n      capabilities:\n        drop: [ALL]\n# ..."} lang="yaml" title="Example pod configuration file with a node affinity required rule" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.affinity.nodeAffinity</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the stanza to configure node affinity.</p></dd>
+      <dt class="font-semibold"><code>spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a <em>required</em> rule. Configure the following <code>nodeSelectorTerms.matchExpressions</code> parameters:</p></dd>
+      <dt class="font-semibold"><code>key</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the key of the key/value pair (label) that must be matched to apply the rule.</p></dd>
+      <dt class="font-semibold"><code>operator</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the relationship between the label on the node and the set of values in the <code>matchExpression</code> parameters in the <code>Pod</code> spec. This value can be <code>In</code>, <code>NotIn</code>, <code>Exists</code>, or <code>DoesNotExist</code>, <code>Lt</code>, or <code>Gt</code>.</p></dd>
+      <dt class="font-semibold"><code>values</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the value of the key/value pair (label) that must be matched to apply the rule.</p></dd>
+      </dl>
+      <p>The following example is a node specification with a preferred rule that a node with a label whose key is <code>e2e-az-EastWest</code> and whose value is either <code>e2e-az-East</code> or <code>e2e-az-West</code> is preferred for the pod:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: with-node-affinity\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  affinity:\n    nodeAffinity:\n      preferredDuringSchedulingIgnoredDuringExecution:\n      - weight: 1\n        preference:\n          matchExpressions:\n          - key: e2e-az-EastWest\n            operator: In\n            values:\n            - e2e-az-East\n            - e2e-az-West\n  containers:\n  - name: with-node-affinity\n    image: docker.io/ocpqe/hello-pod\n    securityContext:\n      allowPrivilegeEscalation: false\n      capabilities:\n        drop: [ALL]\n# ..."} lang="yaml" title="Example pod configuration file with a node affinity preferred rule" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.affinity.nodeAffinity</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the stanza to configure node affinity.</p></dd>
+      <dt class="font-semibold"><code>spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a <em>preferred</em> rule. Configure a weight and the following <code>preference.matchExpression</code> parameters:</p></dd>
+      <dt class="font-semibold"><code>weight</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a weight for a preferred rule. The node with highest weight is preferred.</p></dd>
+      <dt class="font-semibold"><code>key</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the key of the key/value pair (label) that must be matched to apply the rule.</p></dd>
+      <dt class="font-semibold"><code>operator</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the relationship between the label on the node and the set of values in the <code>matchExpression</code> parameters in the <code>Pod</code> spec. This value can be <code>In</code>, <code>NotIn</code>, <code>Exists</code>, or <code>DoesNotExist</code>, <code>Lt</code>, or <code>Gt</code>. There is no explicit <em>node anti-affinity</em> concept, but using the <code>NotIn</code> or <code>DoesNotExist</code> operator replicates that behavior.</p></dd>
+      <dt class="font-semibold"><code>values</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the value of the key/value pair (label) that must be matched to apply the rule.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you are using node affinity and node selectors in the same pod configuration, note the following:</p>
+          <ul>
+          <li>If you configure both <code>nodeSelector</code> and <code>nodeAffinity</code>, both conditions must be satisfied for the pod to be scheduled onto a candidate node.</li>
+          <li>If you specify multiple <code>nodeSelectorTerms</code> associated with <code>nodeAffinity</code> types, then the pod can be scheduled onto a node if one of the <code>nodeSelectorTerms</code> is satisfied.</li>
+          <li>If you specify multiple <code>matchExpressions</code> associated with <code>nodeSelectorTerms</code>, then the pod can be scheduled onto a node only if all <code>matchExpressions</code> are satisfied.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <h2 id="nodes-scheduler-node-affinity-configuring-required_nodes-scheduler-node-affinity" class="group scroll-mt-20">Configuring a required node affinity rule<a href="#nodes-scheduler-node-affinity-configuring-required_nodes-scheduler-node-affinity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use a <em>required</em> rule to instruct the scheduler that the rules <strong>must</strong> be met before a pod can be scheduled on a node.</p>
+      <p>The following steps demonstrate a simple configuration that creates a node and a pod that the scheduler is required to place on the node.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add a label to a node using the <code>oc label node</code> command:
+      <CodeBlock code={"$ oc label node node1 e2e-az-name=e2e-az1"} lang="terminal" />
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can alternatively apply the following YAML to add the label:</p>
+          <CodeBlock code={"kind: Node\napiVersion: v1\nmetadata:\n  name: <node_name>\n  labels:\n    e2e-az-name: e2e-az1\n#..."} lang="yaml" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Create a pod with a specific label in the pod spec:
+      <ol>
+      <li>
+      Create a YAML file with the following content:
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You cannot add an affinity directly to a scheduled pod.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: s1\nspec:\n  affinity:\n    nodeAffinity:\n      requiredDuringSchedulingIgnoredDuringExecution:\n        nodeSelectorTerms:\n        - matchExpressions:\n          - key: e2e-az-name\n            values:\n            - e2e-az1\n            - e2e-az2\n            operator: In\n#..."} lang="yaml" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.affinity.nodeAffinity</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the stanza to configure node affinity.</p></dd>
+      <dt class="font-semibold"><code>spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a <em>required</em> rule. Configure the following <code>nodeSelectorTerms.matchExpressions</code> parameters:</p></dd>
+      <dt class="font-semibold"><code>key</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the key of the key/value pair (label) that must be matched to apply the rule.</p></dd>
+      <dt class="font-semibold"><code>operator</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the relationship between the label on the node and the set of values in the <code>matchExpression</code> parameters in the <code>Pod</code> spec. This value can be <code>In</code>, <code>NotIn</code>, <code>Exists</code>, or <code>DoesNotExist</code>, <code>Lt</code>, or <code>Gt</code>. There is no explicit <em>node anti-affinity</em> concept, but using the <code>NotIn</code> or <code>DoesNotExist</code> operator replicates that behavior.</p></dd>
+      <dt class="font-semibold"><code>values</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the value of the key/value pair (label) that must be matched to apply the rule.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the pod:
+      <CodeBlock code={"$ oc create -f <file-name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="nodes-scheduler-node-affinity-configuring-preferred_nodes-scheduler-node-affinity" class="group scroll-mt-20">Configuring a preferred node affinity rule<a href="#nodes-scheduler-node-affinity-configuring-preferred_nodes-scheduler-node-affinity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use a <em>preferred</em> rule to instruct the scheduler that if a matching node is not available, schedule the pod on a different node to ensure the workload application runs.</p>
+      <p>For a preferred rule, the scheduler tries to enforce the rule, but does not guarantee enforcement.</p>
+      <p>The following procedure demonstrates a simple configuration that creates a node and a pod that the scheduler tries to place on the node.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add a label to a node using the <code>oc label node</code> command:
+      <CodeBlock code={"$ oc label node node1 e2e-az-name=e2e-az3"} lang="terminal" />
+      </li>
+      <li>
+      Create a pod with a specific label:
+      <ol>
+      <li>
+      Create a YAML file with the following content:
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You cannot add an affinity directly to a scheduled pod.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: s1\nspec:\n  affinity:\n    nodeAffinity:\n      preferredDuringSchedulingIgnoredDuringExecution:\n      - weight:\n        preference:\n          matchExpressions:\n          - key: e2e-az-name\n            values:\n            - e2e-az3\n            operator: In\n#..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.affinity.nodeAffinity</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the stanza to configure node affinity.</p></dd>
+      <dt class="font-semibold"><code>spec.affinity.nodeAffinity.preferredDuringSchedulingIgnoredDuringExecution</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a <em>preferred</em> rule. Configure a weight and the following <code>preference.matchExpressions</code> parameters. If you want the new pod to be scheduled on the node you edited, use the same <code>key</code> and <code>values</code> parameters as the label in the node.</p></dd>
+      <dt class="font-semibold"><code>weight</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a weight for the node, as a number 1-100. The node with highest weight is preferred.</p></dd>
+      <dt class="font-semibold"><code>key</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the key of the key/value pair (label) that must be matched to apply the rule.</p></dd>
+      <dt class="font-semibold"><code>operator</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the relationship between the label on the node and the set of values in the <code>matchExpression</code> parameters in the <code>Pod</code> spec. This value can be <code>In</code>, <code>NotIn</code>, <code>Exists</code>, or <code>DoesNotExist</code>, <code>Lt</code>, or <code>Gt</code>. There is no explicit <em>node anti-affinity</em> concept, but using the <code>NotIn</code> or <code>DoesNotExist</code> operator replicates that behavior.</p></dd>
+      <dt class="font-semibold"><code>values</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the value of the key/value pair (label) that must be matched to apply the rule.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the pod.
+      <CodeBlock code={"$ oc create -f <file-name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="nodes-scheduler-node-affinity-example_nodes-scheduler-node-affinity" class="group scroll-mt-20">Sample node affinity rules<a href="#nodes-scheduler-node-affinity-example_nodes-scheduler-node-affinity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To use node affinity, the pod spec that you want to schedule on a node must have a node selector that matches a label on the node.</p>
+      <p>The following examples demonstrate node affinity with or without matching labels.</p>
+      <h3 id="admin-guide-sched-affinity-examples1_nodes-scheduler-node-affinity" class="group scroll-mt-20">Node affinity with matching labels<a href="#admin-guide-sched-affinity-examples1_nodes-scheduler-node-affinity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example demonstrates node affinity for a node and pod with matching labels:</p>
+      <ul>
+      <li>
+      The Node1 node has the label <code>zone:us</code>:
+      <CodeBlock code={"$ oc label node node1 zone=us"} lang="terminal" />
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can alternatively apply the following YAML to add the label:</p>
+          <CodeBlock code={"kind: Node\napiVersion: v1\nmetadata:\n  name: <node_name>\n  labels:\n    zone: us\n#..."} lang="yaml" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      The pod-s1 pod has the <code>zone</code> and <code>us</code> key/value pair under a required node affinity rule:
+      <CodeBlock code={"$ cat pod-s1.yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: pod-s1\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n    - image: \"docker.io/ocpqe/hello-pod\"\n      name: hello-pod\n      securityContext:\n        allowPrivilegeEscalation: false\n        capabilities:\n          drop: [ALL]\n  affinity:\n    nodeAffinity:\n      requiredDuringSchedulingIgnoredDuringExecution:\n        nodeSelectorTerms:\n          - matchExpressions:\n            - key: \"zone\"\n              operator: In\n              values:\n              - us\n#..."} lang="yaml" title="Example output" />
+      </li>
+      <li>
+      The pod-s1 pod can be scheduled on Node1:
+      <CodeBlock code={"$ oc get pod -o wide"} lang="terminal" />
+      <CodeBlock code={"NAME     READY     STATUS       RESTARTS   AGE      IP      NODE\npod-s1   1/1       Running      0          4m       IP1     node1"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h3 id="admin-guide-sched-affinity-examples2_nodes-scheduler-node-affinity" class="group scroll-mt-20">Node affinity with no matching labels<a href="#admin-guide-sched-affinity-examples2_nodes-scheduler-node-affinity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example demonstrates node affinity for a node and pod without matching labels:</p>
+      <ul>
+      <li>
+      The Node1 node has the label <code>zone:emea</code>:
+      <CodeBlock code={"$ oc label node node1 zone=emea"} lang="terminal" />
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can alternatively apply the following YAML to add the label:</p>
+          <CodeBlock code={"kind: Node\napiVersion: v1\nmetadata:\n  name: <node_name>\n  labels:\n    zone: emea\n#..."} lang="yaml" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      The pod-s1 pod has the <code>zone</code> and <code>us</code> key/value pair under a required node affinity rule:
+      <CodeBlock code={"$ cat pod-s1.yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: pod-s1\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n    - image: \"docker.io/ocpqe/hello-pod\"\n      name: hello-pod\n      securityContext:\n        allowPrivilegeEscalation: false\n        capabilities:\n          drop: [ALL]\n  affinity:\n    nodeAffinity:\n      requiredDuringSchedulingIgnoredDuringExecution:\n        nodeSelectorTerms:\n          - matchExpressions:\n            - key: \"zone\"\n              operator: In\n              values:\n              - us\n#..."} lang="yaml" title="Example output" />
+      </li>
+      <li>
+      The pod-s1 pod cannot be scheduled on Node1:
+      <CodeBlock code={"$ oc describe pod pod-s1"} lang="terminal" />
+      <CodeBlock code={"...\n\nEvents:\n FirstSeen LastSeen Count From              SubObjectPath  Type                Reason\n --------- -------- ----- ----              -------------  --------            ------\n 1m        33s      8     default-scheduler Warning        FailedScheduling    No nodes are available that match all of the following predicates:: MatchNodeSelector (1)."} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="_using_node_affinity_to_control_where_an_operator_is_installed" class="group scroll-mt-20">Using node affinity to control where an Operator is installed<a href="#_using_node_affinity_to_control_where_an_operator_is_installed" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use affinities to schedule an Operator pod on a specific node or set of nodes.</p>
+      <p>By default, when you install an Operator, OpenShift Container Platform installs the Operator pod on one of your compute nodes randomly. However, the following examples describe situations where you might want to schedule an Operator pod to a specific node or set of nodes:</p>
+      <ul>
+      <li>If an Operator requires a particular platform, such as <code>amd64</code> or <code>arm64</code></li>
+      <li>If an Operator requires a particular operating system, such as Linux or Windows</li>
+      <li>If you want Operators that work together scheduled on the same host or on hosts located on the same rack</li>
+      <li>If you want Operators dispersed throughout the infrastructure to avoid downtime due to network or hardware issues</li>
+      </ul>
+      <p>You can control where an Operator pod is installed by adding a node affinity constraints to the Operator’s <code>Subscription</code> object.</p>
+      <p>The following examples show how to use node affinity to install an instance of the Custom Metrics Autoscaler Operator to a specific node in the cluster:</p>
+      <p>The following node affinity example places the Operator pod on a specific node:</p>
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: openshift-custom-metrics-autoscaler-operator\n  namespace: openshift-keda\nspec:\n  name: my-package\n  source: my-operators\n  sourceNamespace: operator-registries\n  config:\n    affinity:\n      nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n          - matchExpressions:\n            - key: kubernetes.io/hostname\n              operator: In\n              values:\n              - ip-10-0-163-94.us-west-2.compute.internal\n#..."} lang="yaml" />
+      <p>This node affinity requires the Operator’s pod be scheduled on a node named <code>ip-10-0-163-94.us-west-2.compute.internal</code>.</p>
+      <p>The following node affinity example places the Operator pod on a node with a specific platform:</p>
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: openshift-custom-metrics-autoscaler-operator\n  namespace: openshift-keda\nspec:\n  name: my-package\n  source: my-operators\n  sourceNamespace: operator-registries\n  config:\n    affinity:\n      nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n          - matchExpressions:\n            - key: kubernetes.io/arch\n              operator: In\n              values:\n              - arm64\n            - key: kubernetes.io/os\n              operator: In\n              values:\n              - linux\n#..."} lang="yaml" />
+      <p>This node affinity requires the Operator’s pod be scheduled on a node with the <code>kubernetes.io/arch=arm64</code> and <code>kubernetes.io/os=linux</code> labels.</p>
+      <p>To control the placement of an Operator pod, complete the following steps.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Install the Operator as usual.</li>
+      <li>If needed, ensure that your nodes are labeled to properly respond to the affinity.</li>
+      <li>
+      Edit the Operator <code>Subscription</code> object to add an affinity:
+      <CodeBlock code={"```yaml\napiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: openshift-custom-metrics-autoscaler-operator\n  namespace: openshift-keda\nspec:\n  name: my-package\n  source: my-operators\n  sourceNamespace: operator-registries\n  config:\n    affinity:\n      nodeAffinity:\n        requiredDuringSchedulingIgnoredDuringExecution:\n          nodeSelectorTerms:\n          - matchExpressions:\n            - key: kubernetes.io/hostname\n              operator: In\n              values:\n              - ip-10-0-185-229.ec2.internal\n#...\n```"} lang="plaintext" />
+      <p>where:</p>
+      </li>
+      </ol>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.config.affinity</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a <code>nodeAffinity</code>.</p></dd>
+      </dl>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To ensure that the pod is deployed on the specific node, run the following command:
+      <CodeBlock code={"$ oc get pods -o wide"} lang="yaml" />
+      <CodeBlock code={"NAME                                                  READY   STATUS    RESTARTS   AGE   IP            NODE                           NOMINATED NODE   READINESS GATES\ncustom-metrics-autoscaler-operator-5dcc45d656-bhshg   1/1     Running   0          50s   10.131.0.20   ip-10-0-185-229.ec2.internal   <none>           <none>"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
       <h2 id="nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity" class="group scroll-mt-20">Additional resources<a href="#nodes-scheduler-node-affinity-addtl-resources_nodes-scheduler-node-affinity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-updating_nodes-nodes-working">Understanding how to update labels on nodes</a></li></ul>
     </article>

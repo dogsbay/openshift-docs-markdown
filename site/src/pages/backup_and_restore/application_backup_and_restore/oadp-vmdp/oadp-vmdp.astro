@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"oadp-vmdp","text":"{{ oadp_short }} virtual machine data protection"}];
+const headings = [{"depth":1,"slug":"oadp-vmdp","text":"OADP virtual machine data protection"},{"depth":2,"slug":"oadp-vmdp-overview_oadp-vmdp","text":"About OADP virtual machine data protection"},{"depth":3,"slug":"_what_problem_is_vmdp_solving","text":"What problem is VMDP solving"},{"depth":3,"slug":"_what_vmdp_does","text":"What VMDP does"},{"depth":3,"slug":"_who_uses_vmdp","text":"Who uses VMDP"},{"depth":3,"slug":"_vmdp_and_vmfr_comparison","text":"VMDP and VMFR comparison"},{"depth":2,"slug":"oadp-vmdp-supported-platforms_oadp-vmdp","text":"Supported platforms for OADP virtual machine data protection"},{"depth":2,"slug":"oadp-vmdp-storage-backends_oadp-vmdp","text":"OADP virtual machine data protection backend storage"},{"depth":3,"slug":"_s3-compatible_storage","text":"S3-compatible storage"},{"depth":3,"slug":"_filesystem_storage","text":"Filesystem storage"},{"depth":2,"slug":"oadp-vmdp-configuration_oadp-vmdp","text":"OADP virtual machine data protection configuration"},{"depth":3,"slug":"_environment_variables","text":"Environment variables"},{"depth":3,"slug":"_file_locations","text":"File locations"},{"depth":3,"slug":"_kopia_compatibility","text":"Kopia compatibility"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-vmdp/oadp-vmdp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ oadp_short }} virtual machine data protection";
-const description = "Use {{ oadp_full }} virtual machine data protection (VMDP) to back up and restore user data from within VMs on {{ VirtProductName }}. This helps you to…" || undefined;
+const description = "Use OpenShift API for Data Protection virtual machine data protection (VMDP) to back up and restore user data from within VMs on OpenShift Virtualization…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ oadp_short }} virtual machine data protection {#oadp-vmdp}\n\nUse {{ oadp_full }} virtual machine data protection (VMDP) to back up and restore user data from within VMs on {{ VirtProductName }}. This helps you to protect files and directories without relying on cluster administrators.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-vmdp/oadp-vmdp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OADP virtual machine data protection {#oadp-vmdp}\n\nUse OpenShift API for Data Protection virtual machine data protection (VMDP) to back up and restore user data from within VMs on OpenShift Virtualization. This helps you to protect files and directories without relying on cluster administrators.\n\n## About OADP virtual machine data protection {#oadp-vmdp-overview_oadp-vmdp}\n\nYou can independently back up and restore your own data from within a virtual machine (VM) by using the OADP VM data protection (VMDP) command-line tool. This approach helps you secure specific files and directories in your encrypted repository without requiring cluster administrator privileges.\n\n### What problem is VMDP solving {#_what_problem_is_vmdp_solving}\n\nCluster administrators manage traditional OADP backups. The administrator owns the backup storage location, controls what to back up, and manages the restore process. This means that VM users must rely on an administrator to recover their data, and the backup scope is limited to the persistent volume claims (PVCs) attached to the VM at the time of backup.\n\nVMDP addresses this gap by shifting data ownership to the VM user. The user creates their own encrypted backup repository, chooses what data to protect, and restores data without administrator involvement. This follows zero-trust architecture principles where the user owns the data, the backup, and the encryption keys. Administrators cannot access or restore the user’s backup data.\n\n### What VMDP does {#_what_vmdp_does}\n\nVMDP is a command-line tool that runs inside virtual machines on OpenShift Virtualization. With VMDP, you can complete the following tasks:\n\n- Back up and restore files and directories from within the VM by using a single command.\n- Protect data accessible over network file systems such as Common Internet File System (CIFS) and Network File System (NFS) shares, which standard OADP backups typically exclude.\n- Create a personal encrypted repository in S3-compatible or file system storage.\n- Use data deduplication for efficient storage and fast incremental backups.\n\nVMDP is based on Kopia and uses the same repository format.\n\n### Who uses VMDP {#_who_uses_vmdp}\n\nVMDP is designed for VM users who need to manage their own backups independently. The user is responsible for:\n\n- Providing their own credentials to create an encrypted backup repository.\n- Choosing what data to back up and restore.\n- Managing backup lifecycle operations such as listing, deleting, and restoring backups.\n\nCluster administrators are not involved in the backup and restore process. Their role is limited to deploying the OADP Operator. The OADP Operator has the VMDP CLI available for download.\n\n### VMDP and VMFR comparison {#_vmdp_and_vmfr_comparison}\n\nOADP provides two complementary features for VM data recovery:\n\nVMDP (VM data protection)\n:   The VM user, without `cluster-admin` privileges, owns the data. The user creates encrypted backups of selected files and directories from within the VM. The user holds the encryption keys and manages the backup lifecycle independently.\n\nVMFR (VM file restore)\n:   The cluster administrator manages the backups and file recovery. VMFR enables file-level recovery from admin-created Velero backups of entire VMs, including all PVCs. The administrator controls the backup and restore process.\n\n## Supported platforms for OADP virtual machine data protection {#oadp-vmdp-supported-platforms_oadp-vmdp}\n\nReview the supported guest operating systems and architectures for the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface. This helps you to verify that your VM environment is compatible.\n\nVMDP is built for [OpenShift Virtualization certified guest operating systems](https://access.redhat.com/articles/4234591) on the following platforms:\n\n**Supported guest operating systems**\n\n| Guest operating system | Architectures |\n| --- | --- |\n| Red Hat Enterprise Linux | x86_64, AArch64 |\n| Microsoft Windows | x86_64, AArch64 |\n\nEach binary is statically linked and includes a SHA256 checksum for integrity verification.\n\n## OADP virtual machine data protection backend storage {#oadp-vmdp-storage-backends_oadp-vmdp}\n\nReview the backend storage options for OpenShift API for Data Protection virtual machine data protection (VMDP) backup storage locations. This helps you to configure S3-compatible or file system storage for your backup repository.\n\n### S3-compatible storage {#_s3-compatible_storage}\n\n**S3 storage options**\n\n| Option | Description | Default |\n| --- | --- | --- |\n| `--bucket` | Name of the S3 bucket. | (required) |\n| `--access-key` | Access key ID. | (required) |\n| `--secret-access-key` | Secret access key. | (required) |\n| `--endpoint` | S3 endpoint URL. | `s3.amazonaws.com` |\n| `--region` | S3 region. | Auto-detect |\n| `--prefix` | Object prefix in the bucket. | None |\n| `--session-token` | Session token for temporary credentials. | None |\n| `--disable-tls` | Disable HTTPS. | `false` |\n| `--disable-tls-verification` | Skip TLS certificate verification. | `false` |\n| `--root-ca-pem-path` | Path to a custom CA certificate file. | None |\n| `--root-ca-pem-base64` | Base64-encoded CA certificate. | None |\n\n> [!NOTE]\n> VMDP automatically prepends `oadp-vmdp/` to your prefix.\n\n### Filesystem storage {#_filesystem_storage}\n\n**Filesystem storage options**\n\n| Option | Description | Default |\n| --- | --- | --- |\n| `--path` | Absolute path to the storage directory. | (required) |\n| `--owner-uid` | User ID for new files. | Current user |\n| `--owner-gid` | Group ID for new files. | Current group |\n| `--file-mode` | Permission mode for files. | `0600` |\n| `--dir-mode` | Permission mode for directories. | `0700` |\n\n## OADP virtual machine data protection configuration {#oadp-vmdp-configuration_oadp-vmdp}\n\nReview the environment variables and file locations for the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI). This helps you to configure credentials, logging, and behavioral settings.\n\n### Environment variables {#_environment_variables}\n\n**Credential environment variables**\n\n| Variable | Description |\n| --- | --- |\n| `BSLS_PASSWORD` | BSL encryption password. Set this variable to avoid interactive prompts. |\n| `AWS_ACCESS_KEY_ID` | Access key for S3 storage |\n| `AWS_SECRET_ACCESS_KEY` | Secret key for S3 storage |\n| `AWS_SESSION_TOKEN` | Session token for temporary credentials |\n\n**Configuration environment variables**\n\n| Variable | Description | Default |\n| --- | --- | --- |\n| `OADP_CONFIG_PATH` | Path to the configuration file | `~/.config/oadp/repository.config` |\n| `OADP_CACHE_DIRECTORY` | Path to the cache directory | System-dependent |\n| `OADP_LOG_DIR` | Directory for log files | `~/.cache/oadp/` |\n\n**Behavior environment variables**\n\n| Variable | Description | Default |\n| --- | --- | --- |\n| `OADP_CHECK_FOR_UPDATES` | Enable or disable update checks | `true` |\n| `OADP_PERSIST_CREDENTIALS_ON_CONNECT` | Save credentials after connecting | `true` |\n| `OADP_USE_KEYRING` | Use the system keyring for password storage | `false` |\n| `OADP_BACKUP_FAIL_FAST` | Fail immediately on the first error | `false` |\n\n**Logging environment variables**\n\n| Variable | Description | Default |\n| --- | --- | --- |\n| `OADP_LOG_DIR_MAX_FILES` | Maximum number of log files | `1000` |\n| `OADP_LOG_DIR_MAX_AGE` | Maximum age of log files | `720h` |\n| `OADP_LOG_DIR_MAX_SIZE_MB` | Maximum total size of log files in MB | `1000` |\n\n### File locations {#_file_locations}\n\n**Default file locations**\n\n| Type | Linux | Windows |\n| --- | --- | --- |\n| Configuration | `~/.config/oadp/repository.config` | `%APPDATA%\\oadp\\repository.config` |\n| Logs | `~/.cache/oadp/` | `%LOCALAPPDATA%\\oadp\\` |\n\n### Kopia compatibility {#_kopia_compatibility}\n\nVMDP is based on Kopia and uses the same repository format. Repositories are fully compatible between the two tools.\n\n**Command mapping between VMDP and Kopia**\n\n| VMDP command | Kopia equivalent |\n| --- | --- |\n| `bsl` | `repository` |\n| `backup` | `snapshot` |\n\nWhen you connect to a VMDP repository by using the Kopia CLI, include the `oadp-vmdp/` prefix that VMDP adds automatically. For example:\n\n```terminal\n$ kopia repository connect s3 \\\n  --bucket <bucket_name> \\\n  --prefix oadp-vmdp/<your_prefix>/ \\\n  ...\n```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-vmdp/oadp-vmdp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,13 +100,337 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="oadp-vmdp" class="group scroll-mt-20">{"{"}{"{"} oadp_short {"}"}{"}"} virtual machine data protection<a href="#oadp-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Use {"{"}{"{"} oadp_full {"}"}{"}"} virtual machine data protection (VMDP) to back up and restore user data from within VMs on {"{"}{"{"} VirtProductName {"}"}{"}"}. This helps you to protect files and directories without relying on cluster administrators.</p>
-      <p class="/modules/oadp-vmdp-overview.md"></p>
-      <p class="/modules/oadp-vmdp-supported-platforms.md"></p>
-      <p class="/modules/oadp-vmdp-storage-backends.md"></p>
-      <p class="/modules/oadp-vmdp-configuration.md"></p>
+      <h1 id="oadp-vmdp" class="group scroll-mt-20">OADP virtual machine data protection<a href="#oadp-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Use OpenShift API for Data Protection virtual machine data protection (VMDP) to back up and restore user data from within VMs on OpenShift Virtualization. This helps you to protect files and directories without relying on cluster administrators.</p>
+      <h2 id="oadp-vmdp-overview_oadp-vmdp" class="group scroll-mt-20">About OADP virtual machine data protection<a href="#oadp-vmdp-overview_oadp-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can independently back up and restore your own data from within a virtual machine (VM) by using the OADP VM data protection (VMDP) command-line tool. This approach helps you secure specific files and directories in your encrypted repository without requiring cluster administrator privileges.</p>
+      <h3 id="_what_problem_is_vmdp_solving" class="group scroll-mt-20">What problem is VMDP solving<a href="#_what_problem_is_vmdp_solving" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Cluster administrators manage traditional OADP backups. The administrator owns the backup storage location, controls what to back up, and manages the restore process. This means that VM users must rely on an administrator to recover their data, and the backup scope is limited to the persistent volume claims (PVCs) attached to the VM at the time of backup.</p>
+      <p>VMDP addresses this gap by shifting data ownership to the VM user. The user creates their own encrypted backup repository, chooses what data to protect, and restores data without administrator involvement. This follows zero-trust architecture principles where the user owns the data, the backup, and the encryption keys. Administrators cannot access or restore the user’s backup data.</p>
+      <h3 id="_what_vmdp_does" class="group scroll-mt-20">What VMDP does<a href="#_what_vmdp_does" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>VMDP is a command-line tool that runs inside virtual machines on OpenShift Virtualization. With VMDP, you can complete the following tasks:</p>
+      <ul>
+      <li>Back up and restore files and directories from within the VM by using a single command.</li>
+      <li>Protect data accessible over network file systems such as Common Internet File System (CIFS) and Network File System (NFS) shares, which standard OADP backups typically exclude.</li>
+      <li>Create a personal encrypted repository in S3-compatible or file system storage.</li>
+      <li>Use data deduplication for efficient storage and fast incremental backups.</li>
+      </ul>
+      <p>VMDP is based on Kopia and uses the same repository format.</p>
+      <h3 id="_who_uses_vmdp" class="group scroll-mt-20">Who uses VMDP<a href="#_who_uses_vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>VMDP is designed for VM users who need to manage their own backups independently. The user is responsible for:</p>
+      <ul>
+      <li>Providing their own credentials to create an encrypted backup repository.</li>
+      <li>Choosing what data to back up and restore.</li>
+      <li>Managing backup lifecycle operations such as listing, deleting, and restoring backups.</li>
+      </ul>
+      <p>Cluster administrators are not involved in the backup and restore process. Their role is limited to deploying the OADP Operator. The OADP Operator has the VMDP CLI available for download.</p>
+      <h3 id="_vmdp_and_vmfr_comparison" class="group scroll-mt-20">VMDP and VMFR comparison<a href="#_vmdp_and_vmfr_comparison" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>OADP provides two complementary features for VM data recovery:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">VMDP (VM data protection)</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The VM user, without <code>cluster-admin</code> privileges, owns the data. The user creates encrypted backups of selected files and directories from within the VM. The user holds the encryption keys and manages the backup lifecycle independently.</p></dd>
+      <dt class="font-semibold">VMFR (VM file restore)</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The cluster administrator manages the backups and file recovery. VMFR enables file-level recovery from admin-created Velero backups of entire VMs, including all PVCs. The administrator controls the backup and restore process.</p></dd>
+      </dl>
+      <h2 id="oadp-vmdp-supported-platforms_oadp-vmdp" class="group scroll-mt-20">Supported platforms for OADP virtual machine data protection<a href="#oadp-vmdp-supported-platforms_oadp-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the supported guest operating systems and architectures for the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface. This helps you to verify that your VM environment is compatible.</p>
+      <p>VMDP is built for <a href="https://access.redhat.com/articles/4234591">OpenShift Virtualization certified guest operating systems</a> on the following platforms:</p>
+      <p><strong>Supported guest operating systems</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Guest operating system</TableHead>
+      <TableHead>Architectures</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Red Hat Enterprise Linux</TableCell>
+      <TableCell>x86_64, AArch64</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Microsoft Windows</TableCell>
+      <TableCell>x86_64, AArch64</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>Each binary is statically linked and includes a SHA256 checksum for integrity verification.</p>
+      <h2 id="oadp-vmdp-storage-backends_oadp-vmdp" class="group scroll-mt-20">OADP virtual machine data protection backend storage<a href="#oadp-vmdp-storage-backends_oadp-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the backend storage options for OpenShift API for Data Protection virtual machine data protection (VMDP) backup storage locations. This helps you to configure S3-compatible or file system storage for your backup repository.</p>
+      <h3 id="_s3-compatible_storage" class="group scroll-mt-20">S3-compatible storage<a href="#_s3-compatible_storage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p><strong>S3 storage options</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Option</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Default</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>--bucket</code></TableCell>
+      <TableCell>Name of the S3 bucket.</TableCell>
+      <TableCell>(required)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--access-key</code></TableCell>
+      <TableCell>Access key ID.</TableCell>
+      <TableCell>(required)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--secret-access-key</code></TableCell>
+      <TableCell>Secret access key.</TableCell>
+      <TableCell>(required)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--endpoint</code></TableCell>
+      <TableCell>S3 endpoint URL.</TableCell>
+      <TableCell><code>s3.amazonaws.com</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--region</code></TableCell>
+      <TableCell>S3 region.</TableCell>
+      <TableCell>Auto-detect</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--prefix</code></TableCell>
+      <TableCell>Object prefix in the bucket.</TableCell>
+      <TableCell>None</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--session-token</code></TableCell>
+      <TableCell>Session token for temporary credentials.</TableCell>
+      <TableCell>None</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--disable-tls</code></TableCell>
+      <TableCell>Disable HTTPS.</TableCell>
+      <TableCell><code>false</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--disable-tls-verification</code></TableCell>
+      <TableCell>Skip TLS certificate verification.</TableCell>
+      <TableCell><code>false</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--root-ca-pem-path</code></TableCell>
+      <TableCell>Path to a custom CA certificate file.</TableCell>
+      <TableCell>None</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--root-ca-pem-base64</code></TableCell>
+      <TableCell>Base64-encoded CA certificate.</TableCell>
+      <TableCell>None</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>VMDP automatically prepends <code>oadp-vmdp/</code> to your prefix.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="_filesystem_storage" class="group scroll-mt-20">Filesystem storage<a href="#_filesystem_storage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p><strong>Filesystem storage options</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Option</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Default</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>--path</code></TableCell>
+      <TableCell>Absolute path to the storage directory.</TableCell>
+      <TableCell>(required)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--owner-uid</code></TableCell>
+      <TableCell>User ID for new files.</TableCell>
+      <TableCell>Current user</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--owner-gid</code></TableCell>
+      <TableCell>Group ID for new files.</TableCell>
+      <TableCell>Current group</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--file-mode</code></TableCell>
+      <TableCell>Permission mode for files.</TableCell>
+      <TableCell><code>0600</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--dir-mode</code></TableCell>
+      <TableCell>Permission mode for directories.</TableCell>
+      <TableCell><code>0700</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="oadp-vmdp-configuration_oadp-vmdp" class="group scroll-mt-20">OADP virtual machine data protection configuration<a href="#oadp-vmdp-configuration_oadp-vmdp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the environment variables and file locations for the OpenShift API for Data Protection virtual machine data protection (VMDP) command-line interface (CLI). This helps you to configure credentials, logging, and behavioral settings.</p>
+      <h3 id="_environment_variables" class="group scroll-mt-20">Environment variables<a href="#_environment_variables" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p><strong>Credential environment variables</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Variable</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>BSLS_PASSWORD</code></TableCell>
+      <TableCell>BSL encryption password. Set this variable to avoid interactive prompts.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AWS_ACCESS_KEY_ID</code></TableCell>
+      <TableCell>Access key for S3 storage</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AWS_SECRET_ACCESS_KEY</code></TableCell>
+      <TableCell>Secret key for S3 storage</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AWS_SESSION_TOKEN</code></TableCell>
+      <TableCell>Session token for temporary credentials</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Configuration environment variables</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Variable</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Default</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>OADP_CONFIG_PATH</code></TableCell>
+      <TableCell>Path to the configuration file</TableCell>
+      <TableCell><code>~/.config/oadp/repository.config</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OADP_CACHE_DIRECTORY</code></TableCell>
+      <TableCell>Path to the cache directory</TableCell>
+      <TableCell>System-dependent</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OADP_LOG_DIR</code></TableCell>
+      <TableCell>Directory for log files</TableCell>
+      <TableCell><code>~/.cache/oadp/</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Behavior environment variables</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Variable</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Default</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>OADP_CHECK_FOR_UPDATES</code></TableCell>
+      <TableCell>Enable or disable update checks</TableCell>
+      <TableCell><code>true</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OADP_PERSIST_CREDENTIALS_ON_CONNECT</code></TableCell>
+      <TableCell>Save credentials after connecting</TableCell>
+      <TableCell><code>true</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OADP_USE_KEYRING</code></TableCell>
+      <TableCell>Use the system keyring for password storage</TableCell>
+      <TableCell><code>false</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OADP_BACKUP_FAIL_FAST</code></TableCell>
+      <TableCell>Fail immediately on the first error</TableCell>
+      <TableCell><code>false</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Logging environment variables</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Variable</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Default</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>OADP_LOG_DIR_MAX_FILES</code></TableCell>
+      <TableCell>Maximum number of log files</TableCell>
+      <TableCell><code>1000</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OADP_LOG_DIR_MAX_AGE</code></TableCell>
+      <TableCell>Maximum age of log files</TableCell>
+      <TableCell><code>720h</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OADP_LOG_DIR_MAX_SIZE_MB</code></TableCell>
+      <TableCell>Maximum total size of log files in MB</TableCell>
+      <TableCell><code>1000</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="_file_locations" class="group scroll-mt-20">File locations<a href="#_file_locations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p><strong>Default file locations</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Type</TableHead>
+      <TableHead>Linux</TableHead>
+      <TableHead>Windows</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Configuration</TableCell>
+      <TableCell><code>~/.config/oadp/repository.config</code></TableCell>
+      <TableCell><code>%APPDATA%\oadp\repository.config</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Logs</TableCell>
+      <TableCell><code>~/.cache/oadp/</code></TableCell>
+      <TableCell><code>%LOCALAPPDATA%\oadp\</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="_kopia_compatibility" class="group scroll-mt-20">Kopia compatibility<a href="#_kopia_compatibility" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>VMDP is based on Kopia and uses the same repository format. Repositories are fully compatible between the two tools.</p>
+      <p><strong>Command mapping between VMDP and Kopia</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>VMDP command</TableHead>
+      <TableHead>Kopia equivalent</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>bsl</code></TableCell>
+      <TableCell><code>repository</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>backup</code></TableCell>
+      <TableCell><code>snapshot</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>When you connect to a VMDP repository by using the Kopia CLI, include the <code>oadp-vmdp/</code> prefix that VMDP adds automatically. For example:</p>
+      <CodeBlock code={"$ kopia repository connect s3 \\\n  --bucket <bucket_name> \\\n  --prefix oadp-vmdp/<your_prefix>/ \\\n  ..."} lang="terminal" />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

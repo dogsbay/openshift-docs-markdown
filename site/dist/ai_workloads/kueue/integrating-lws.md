@@ -2,19 +2,125 @@
 title: Integrating the {{ lws_operator }}
 ---
 
-# Integrating the {{ lws_operator }} {#integrating-lws}
+# Integrating the Leader Worker Set Operator {#integrating-lws}
 
-You can integrate the {{ lws_operator }} with {{ kueue_name }} so you can leverage the scheduling and resource management functionality when running LeaderWorkerSets.
+You can integrate the Leader Worker Set Operator with Red Hat build of Kueue so you can leverage the scheduling and resource management functionality when running LeaderWorkerSets.
 
-The {{ lws_operator }} allows you to manage multi-node AI/ML inference deployments efficiently. {{ kueue_name }} provides scheduling and resource management capabilities for these deployments. You can configure {{ lws_operator }} to leverage these capabilities when running the `LeaderWorkerSet` API for deploying a group of pods as a unit of replication.
+The Leader Worker Set Operator allows you to manage multi-node AI/ML inference deployments efficiently. Red Hat build of Kueue provides scheduling and resource management capabilities for these deployments. You can configure Leader Worker Set Operator to leverage these capabilities when running the `LeaderWorkerSet` API for deploying a group of pods as a unit of replication.
 
- **Additional resources**
+## Installing Leader Worker Set Operator with Red Hat build of Kueue {#kueue-installing-lws_integrating-lws}
 
-- [About the {{ lws_operator }}](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about)
+You can configure Red Hat build of Kueue to work with the Leader Worker Set Operator.
+
+**Prerequisites**
+
+- You have installed Red Hat build of Kueue using the Red Hat Build of Kueue Operator in the software catalog.
+- You have installed Leader Worker Set Operator and Operand in the software catalog.
+- You have cluster administrator permissions and the `kueue-batch-admin-role` role.
+- You have access to the OpenShift Container Platform web console.
+- You have installed the cert-manager Operator for Red Hat OpenShift for your cluster.
+
+**Procedure**
+
+- Add `LeaderWorkerSet` to the `config.integrations.framework` section of the Red Hat build of Kueue cluster object, as shown in the following example:
+
+  ```yaml
+  apiVersion: kueue.openshift.io/v1
+  kind: Kueue
+  metadata:
+    labels:
+      app.kubernetes.io/name: kueue-operator
+      app.kubernetes.io/managed-by: kustomize
+    name: cluster
+    namespace: openshift-kueue-operator
+  spec:
+    managementState: Managed
+    config:
+      integrations:
+        frameworks:
+        - BatchJob
+        - LeaderWorkerSet
+  ```
+
+**Additional resources**
+
+- [About the Leader Worker Set Operator](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about)
 - [LeaderWorkerSet API (Kubernetes documentation)](https://lws.sigs.k8s.io/docs/reference/leaderworkerset.v1/)
-- [Installing the {{ cert_manager_operator }} by using the web console](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)
+- [Installing the cert-manager Operator for Red Hat OpenShift by using the web console](/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-install#installing-the-cert-manager-operator-for-red-hat-openshift)
 
- **Additional resources**
+## Running Leader Worker Set Operator with Red Hat build of Kueue {#kueue-running-lws_integrating-lws}
+
+You can add and run the Leader Worker Set Operator to your existing frameworks.
+
+**Prerequisites**
+
+- Red Hat build of Kueue using the Red Hat Build of Kueue Operator is installed.
+- Leader Worker Set Operator and Operand are installed.
+- The cert-manager Operator for Red Hat OpenShift is installed.
+- The `namespace` where `LeaderWorkerSet` will be created is labeled using `kueue.openshift.io/managed=true`.
+- Ensure that the following objects have been configured:
+
+  - `ClusterQueue`
+  - `ResourceFlavor`
+  - `LocalQueue`
+  - `Namespace`
+
+**Procedure**
+
+1. Create a file named `leaderworkerset.yaml`.
+
+   ```yaml {title="Example of a LeaderWorkerSet"}
+   apiVersion: leaderworkerset.x-k8s.io/v1
+   kind: LeaderWorkerSet
+   metadata:
+     generation: 1
+     name: my-lws
+     namespace: my-namespace
+   spec:
+     leaderWorkerTemplate:
+       leaderTemplate:
+         metadata: {}
+         spec:
+           containers:
+           - image: nginxinc/nginx-unprivileged:1.27
+             name: leader
+             resources: {}
+       restartPolicy: RecreateGroupOnPodRestart
+       size: 3
+       workerTemplate:
+         metadata: {}
+         spec:
+           containers:
+           - image: nginxinc/nginx-unprivileged:1.27
+             name: worker
+             ports:
+             - containerPort: 8080
+               protocol: TCP
+             resources: {}
+     networkConfig:
+       subdomainPolicy: Shared
+     replicas: 2
+     rolloutStrategy:
+       rollingUpdateConfiguration:
+         maxSurge: 1
+         maxUnavailable: 1
+       type: RollingUpdate
+     startupPolicy: LeaderCreated
+   ```
+2. Specify the target local queue in the `metadata.labels` section of the `LeaderWorkerSet` configuration.
+
+   ```yaml
+   metadata:
+     labels:
+       kueue.x-k8s.io/queue-name: user-queue
+   ```
+3. Apply the leader worker set configuration by running the following command:
+
+   ```terminal
+   $ oc apply -f leaderworkerset.yaml
+   ```
+
+**Additional resources**
 
 - [Configuring a cluster queue](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-clusterqueues_configuring-quotas)
 - [Configuring a resource flavor](/openshift-docs-markdown/ai_workloads/kueue/configuring-quotas#configuring-resourceflavors_configuring-quotas)

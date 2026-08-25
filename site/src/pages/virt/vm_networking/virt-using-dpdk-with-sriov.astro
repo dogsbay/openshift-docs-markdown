@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-using-dpdk-with-sriov","text":"Using DPDK with SR-IOV"},{"depth":2,"slug":"additional-resources_virt-using-dpdk-with-sriov","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-using-dpdk-with-sriov","text":"Using DPDK with SR-IOV"},{"depth":2,"slug":"virt-configuring-cluster-dpdk_virt-using-dpdk-with-sriov","text":"Configuring a cluster for DPDK workloads"},{"depth":2,"slug":"virt-removing-custom-mcp_virt-using-dpdk-with-sriov","text":"Removing a custom machine config pool for high-availability clusters"},{"depth":2,"slug":"virt-configuring-vm-project-dpdk_virt-using-dpdk-with-sriov","text":"Configuring a project for DPDK workloads"},{"depth":2,"slug":"virt-configuring-vm-dpdk_virt-using-dpdk-with-sriov","text":"Configuring a virtual machine for DPDK workloads"},{"depth":2,"slug":"additional-resources_virt-using-dpdk-with-sriov","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/vm_networking/virt-using-dpdk-with-sriov";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/vm_networking"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using DPDK with SR-IOV {#virt-using-dpdk-with-sriov}\n\nThe Data Plane Development Kit (DPDK) provides a set of libraries and drivers for fast packet processing. You can configure clusters and virtual machines (VMs) to run ultra-low latency packet processing workloads by using DPDK drivers with SR-IOV hardware.\n\n## Additional resources {#additional-resources_virt-using-dpdk-with-sriov}\n\n- [Using CPU Manager and Topology Manager](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#using-cpu-manager)\n- [Optimizing memory management for workloads by using huge pages](/openshift-docs-markdown/scalability_and_performance/what-huge-pages-do-and-how-they-are-consumed-by-apps#what-huge-pages-do-and-how-they-are-consumed)\n- [Creating a custom machine config pool](https://access.redhat.com/solutions/5688941)\n- [Working with projects](/openshift-docs-markdown/applications/projects/working-with-projects#working-with-projects)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-using-dpdk-with-sriov.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using DPDK with SR-IOV {#virt-using-dpdk-with-sriov}\n\nThe Data Plane Development Kit (DPDK) provides a set of libraries and drivers for fast packet processing. You can configure clusters and virtual machines (VMs) to run ultra-low latency packet processing workloads by using DPDK drivers with SR-IOV hardware.\n\n## Configuring a cluster for DPDK workloads {#virt-configuring-cluster-dpdk_virt-using-dpdk-with-sriov}\n\nYou can configure an OpenShift Container Platform cluster to run Data Plane Development Kit (DPDK) workloads for improved network performance.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with `cluster-admin` permissions.\n- You have installed the OpenShift CLI (`oc`).\n- You have installed the SR-IOV Network Operator.\n- You have installed the Node Tuning Operator.\n\n**Procedure**\n\n1. Map your compute nodes topology to determine which Non-Uniform Memory Access (NUMA) CPUs are isolated for DPDK applications and which ones are reserved for the operating system (OS).\n2. If your OpenShift Container Platform cluster uses separate control plane and compute nodes for high-availability:\n\n   1. Label a subset of the compute nodes with a custom role; for example, `worker-dpdk`:\n\n      ```terminal\n      $ oc label node <node_name> node-role.kubernetes.io/worker-dpdk=\"\"\n      ```\n   2. Create a new `MachineConfigPool` manifest that contains the `worker-dpdk` label in the `spec.machineConfigSelector` object.\n\n      Example `MachineConfigPool` manifest:\n\n      ```yaml\n      apiVersion: machineconfiguration.openshift.io/v1\n      kind: MachineConfigPool\n      metadata:\n        name: worker-dpdk\n        labels:\n          machineconfiguration.openshift.io/role: worker-dpdk\n      spec:\n        machineConfigSelector:\n          matchExpressions:\n            - key: machineconfiguration.openshift.io/role\n              operator: In\n              values:\n                - worker\n                - worker-dpdk\n        nodeSelector:\n          matchLabels:\n            node-role.kubernetes.io/worker-dpdk: \"\"\n      ```\n3. Create a `PerformanceProfile` manifest that applies to the labeled nodes and the machine config pool that you created in the previous steps. The performance profile specifies the CPUs that are isolated for DPDK applications and the CPUs that are reserved for house keeping.\n\n   Example `PerformanceProfile` manifest:\n\n   ```yaml\n   apiVersion: performance.openshift.io/v2\n   kind: PerformanceProfile\n   metadata:\n     name: profile-1\n   spec:\n     cpu:\n       isolated: 4-39,44-79\n       reserved: 0-3,40-43\n     globallyDisableIrqLoadBalancing: true\n     hugepages:\n       defaultHugepagesSize: 1G\n       pages:\n       - count: 8\n         node: 0\n         size: 1G\n     net:\n       userLevelNetworking: true\n     nodeSelector:\n       node-role.kubernetes.io/worker-dpdk: \"\"\n     numa:\n       topologyPolicy: single-numa-node\n   ```\n\n   > [!NOTE]\n   > The compute nodes automatically restart after you apply the `MachineConfigPool` and `PerformanceProfile` manifests.\n4. Retrieve the name of the generated `RuntimeClass` resource from the `status.runtimeClass` field of the `PerformanceProfile` object:\n\n   ```terminal\n   $ oc get performanceprofiles.performance.openshift.io profile-1 -o=jsonpath='{.status.runtimeClass}{\"\\n\"}'\n   ```\n5. Set the previously obtained `RuntimeClass` name as the default container runtime class for the `virt-launcher` pods by editing the `HyperConverged` custom resource (CR):\n\n   ```terminal\n   $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \\\n       --type='json' -p='[{\"op\": \"add\", \"path\": \"/spec/defaultRuntimeClass\", \"value\":\"<runtimeclass-name>\"}]'\n   ```\n\n   > [!NOTE]\n   > Editing the `HyperConverged` CR changes a global setting that affects all VMs that are created after the change is applied.\n6. If your DPDK-enabled compute nodes use Simultaneous multithreading (SMT), enable the `AlignCPUs` enabler by editing the `HyperConverged` CR:\n\n   ```terminal\n   $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \\\n       --type='json' -p='[{\"op\": \"replace\", \"path\": \"/spec/featureGates/alignCPUs\", \"value\": true}]'\n   ```\n\n   > [!NOTE]\n   > Enabling `AlignCPUs` allows OpenShift Virtualization to request up to two additional dedicated CPUs to bring the total CPU count to an even parity when using emulator thread isolation.\n7. Create an `SriovNetworkNodePolicy` object with the `spec.deviceType` field set to `vfio-pci`.\n\n   Example `SriovNetworkNodePolicy` manifest:\n\n   ```yaml\n   apiVersion: sriovnetwork.openshift.io/v1\n   kind: SriovNetworkNodePolicy\n   metadata:\n     name: policy-1\n     namespace: openshift-sriov-network-operator\n   spec:\n     resourceName: intel_nics_dpdk\n     deviceType: vfio-pci\n     mtu: 9000\n     numVfs: 4\n     priority: 99\n     nicSelector:\n       vendor: \"8086\"\n       deviceID: \"1572\"\n       pfNames:\n         - eno3\n       rootDevices:\n         - \"0000:19:00.2\"\n     nodeSelector:\n       feature.node.kubernetes.io/network-sriov.capable: \"true\"\n   ```\n\n## Removing a custom machine config pool for high-availability clusters {#virt-removing-custom-mcp_virt-using-dpdk-with-sriov}\n\nYou can delete a custom machine config pool that you previously created for your high-availability cluster.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with `cluster-admin` permissions.\n- You have installed the OpenShift CLI (`oc`).\n- You have created a custom machine config pool by labeling a subset of the compute nodes with a custom role and creating a `MachineConfigPool` manifest with that label.\n\n**Procedure**\n\n1. Remove the `worker-dpdk` label from the compute nodes by running the following command:\n\n   ```terminal\n   $ oc label node <node_name> node-role.kubernetes.io/worker-dpdk-\n   ```\n2. Delete the `MachineConfigPool` manifest that contains the `worker-dpdk` label by entering the following command:\n\n   ```terminal\n   $ oc delete mcp worker-dpdk\n   ```\n\n## Configuring a project for DPDK workloads {#virt-configuring-vm-project-dpdk_virt-using-dpdk-with-sriov}\n\nYou can configure the project to run DPDK workloads on SR-IOV hardware.\n\n**Prerequisites**\n\n- Your cluster is configured to run DPDK workloads.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a namespace for your DPDK applications:\n\n   ```terminal\n   $ oc create ns dpdk-ns\n   ```\n2. Create an `SriovNetwork` object that references the `SriovNetworkNodePolicy` object. When you create an `SriovNetwork` object, the SR-IOV Network Operator automatically creates a `NetworkAttachmentDefinition` object.\n\n   Example `SriovNetwork` manifest:\n\n   ```yaml\n   apiVersion: sriovnetwork.openshift.io/v1\n   kind: SriovNetwork\n   metadata:\n     name: dpdk-sriovnetwork\n     namespace: openshift-sriov-network-operator\n   spec:\n     ipam: |\n       {\n         \"type\": \"host-local\",\n         \"subnet\": \"10.56.217.0/24\",\n         \"rangeStart\": \"10.56.217.171\",\n         \"rangeEnd\": \"10.56.217.181\",\n         \"routes\": [{\n           \"dst\": \"0.0.0.0/0\"\n         }],\n         \"gateway\": \"10.56.217.1\"\n       }\n     networkNamespace: dpdk-ns\n     resourceName: intel_nics_dpdk\n     spoofChk: \"off\"\n     trust: \"on\"\n     vlan: 1019\n   ```\n\n   - `spec.networkNamespace` defines the namespace where the `NetworkAttachmentDefinition` object is deployed.\n   - `spec.resourceName` defines the value of the `spec.resourceName` attribute of the `SriovNetworkNodePolicy` object that was created when configuring the cluster for DPDK workloads.\n\n## Configuring a virtual machine for DPDK workloads {#virt-configuring-vm-dpdk_virt-using-dpdk-with-sriov}\n\nYou can run Data Packet Development Kit (DPDK) workloads on virtual machines (VMs) to achieve lower latency and higher throughput for faster packet processing in the user space. DPDK uses the SR-IOV network for hardware-based I/O sharing.\n\n**Prerequisites**\n\n- Your cluster is configured to run DPDK workloads.\n- You have created and configured the project in which the VM will run.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Edit the `VirtualMachine` manifest to include information about the SR-IOV network interface, CPU topology, CRI-O annotations, and huge pages.\n\n   Example `VirtualMachine` manifest:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: rhel-dpdk-vm\n   spec:\n     runStrategy: Always\n     template:\n       metadata:\n         annotations:\n           cpu-load-balancing.crio.io: disable\n           cpu-quota.crio.io: disable\n           irq-load-balancing.crio.io: disable\n       spec:\n         domain:\n           cpu:\n             sockets: 1\n             cores: 5\n             threads: 2\n             dedicatedCpuPlacement: true\n             isolateEmulatorThread: true\n           interfaces:\n             - masquerade: {}\n               name: default\n             - model: virtio\n               name: nic-east\n               pciAddress: '0000:07:00.0'\n               sriov: {}\n             networkInterfaceMultiqueue: true\n             rng: {}\n         memory:\n           hugepages:\n             pageSize: 1Gi\n             guest: 8Gi\n         networks:\n           - name: default\n             pod: {}\n           - multus:\n               networkName: dpdk-net\n             name: nic-east\n   # ...\n   ```\n\n   - `spec.template.metadata.annotations.cpu-load-balancing.crio.io` specifies that load balancing is disabled for CPUs that are used by the container.\n   - `spec.template.metadata.annotations.cpu-quota.crio.io` specifies that the CPU quota is disabled for CPUs that are used by the container.\n   - `spec.template.metadata.annotations.irq-load-balancing.crio.io` specifies that Interrupt Request (IRQ) load balancing is disabled for CPUs that are used by the container.\n   - `spec.template.spec.domain.cpu.sockets` defines the number of sockets inside the VM. This field must be set to `1` for the CPUs to be scheduled from the same Non-Uniform Memory Access (NUMA) node.\n   - `spec.template.spec.domain.cpu.cores` defines the number of cores inside the VM. This must be a value greater than or equal to `1`. In this example, the VM is scheduled with 5 hyper-threads or 10 CPUs.\n   - `spec.template.spec.domain.memory.hugepages.pageSize` defines the size of the huge pages. The possible values for x86-64 architecture are 1Gi and 2Mi. In this example, the request is for 8 huge pages of size 1Gi.\n   - `spec.template.spec.networks.multus.networkName` defines the name of the SR-IOV `NetworkAttachmentDefinition` object.\n2. Save and exit the editor.\n3. Apply the `VirtualMachine` manifest:\n\n   ```terminal\n   $ oc apply -f <file_name>.yaml\n   ```\n4. Configure the guest operating system. The following example shows the configuration steps for RHEL 9 operating system:\n\n   1. Configure huge pages by using the GRUB bootloader command-line interface. In the following example, 8 1G huge pages are specified.\n\n      ```terminal\n      $ grubby --update-kernel=ALL --args=\"default_hugepagesz=1GB hugepagesz=1G hugepages=8\"\n      ```\n   2. To achieve low-latency tuning by using the `cpu-partitioning` profile in the TuneD application, run the following commands:\n\n      ```terminal\n      $ dnf install -y tuned-profiles-cpu-partitioning\n      ```\n\n      ```terminal\n      $ echo isolated_cores=2-9 > /etc/tuned/cpu-partitioning-variables.conf\n      ```\n\n      The first two CPUs (0 and 1) are set aside for house keeping tasks and the rest are isolated for the DPDK application.\n\n      ```terminal\n      $ tuned-adm profile cpu-partitioning\n      ```\n   3. Override the SR-IOV NIC driver by using the `driverctl` device driver control utility:\n\n      ```terminal\n      $ dnf install -y driverctl\n      ```\n\n      ```terminal\n      $ driverctl set-override 0000:07:00.0 vfio-pci\n      ```\n5. Restart the VM to apply the changes.\n\n## Additional resources {#additional-resources_virt-using-dpdk-with-sriov}\n\n- [Using CPU Manager and Topology Manager](/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#using-cpu-manager)\n- [Optimizing memory management for workloads by using huge pages](/openshift-docs-markdown/scalability_and_performance/what-huge-pages-do-and-how-they-are-consumed-by-apps#what-huge-pages-do-and-how-they-are-consumed)\n- [Creating a custom machine config pool](https://access.redhat.com/solutions/5688941)\n- [Working with projects](/openshift-docs-markdown/applications/projects/working-with-projects#working-with-projects)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-using-dpdk-with-sriov.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,168 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-using-dpdk-with-sriov" class="group scroll-mt-20">Using DPDK with SR-IOV<a href="#virt-using-dpdk-with-sriov" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The Data Plane Development Kit (DPDK) provides a set of libraries and drivers for fast packet processing. You can configure clusters and virtual machines (VMs) to run ultra-low latency packet processing workloads by using DPDK drivers with SR-IOV hardware.</p>
-      <p class="/modules/virt-configuring-cluster-dpdk.md"></p>
-      <p class="/modules/virt-removing-custom-mcp.md"></p>
-      <p class="/modules/virt-configuring-vm-project-dpdk.md"></p>
-      <p class="/modules/virt-configuring-vm-dpdk.md"></p>
+      <h2 id="virt-configuring-cluster-dpdk_virt-using-dpdk-with-sriov" class="group scroll-mt-20">Configuring a cluster for DPDK workloads<a href="#virt-configuring-cluster-dpdk_virt-using-dpdk-with-sriov" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure an OpenShift Container Platform cluster to run Data Plane Development Kit (DPDK) workloads for improved network performance.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with <code>cluster-admin</code> permissions.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have installed the SR-IOV Network Operator.</li>
+      <li>You have installed the Node Tuning Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Map your compute nodes topology to determine which Non-Uniform Memory Access (NUMA) CPUs are isolated for DPDK applications and which ones are reserved for the operating system (OS).</li>
+      <li>
+      If your OpenShift Container Platform cluster uses separate control plane and compute nodes for high-availability:
+      <ol>
+      <li>
+      Label a subset of the compute nodes with a custom role; for example, <code>worker-dpdk</code>:
+      <CodeBlock code={"$ oc label node <node_name> node-role.kubernetes.io/worker-dpdk=\"\""} lang="terminal" />
+      </li>
+      <li>
+      Create a new <code>MachineConfigPool</code> manifest that contains the <code>worker-dpdk</code> label in the <code>spec.machineConfigSelector</code> object.
+      <p>Example <code>MachineConfigPool</code> manifest:</p>
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfigPool\nmetadata:\n  name: worker-dpdk\n  labels:\n    machineconfiguration.openshift.io/role: worker-dpdk\nspec:\n  machineConfigSelector:\n    matchExpressions:\n      - key: machineconfiguration.openshift.io/role\n        operator: In\n        values:\n          - worker\n          - worker-dpdk\n  nodeSelector:\n    matchLabels:\n      node-role.kubernetes.io/worker-dpdk: \"\""} lang="yaml" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a <code>PerformanceProfile</code> manifest that applies to the labeled nodes and the machine config pool that you created in the previous steps. The performance profile specifies the CPUs that are isolated for DPDK applications and the CPUs that are reserved for house keeping.
+      <p>Example <code>PerformanceProfile</code> manifest:</p>
+      <CodeBlock code={"apiVersion: performance.openshift.io/v2\nkind: PerformanceProfile\nmetadata:\n  name: profile-1\nspec:\n  cpu:\n    isolated: 4-39,44-79\n    reserved: 0-3,40-43\n  globallyDisableIrqLoadBalancing: true\n  hugepages:\n    defaultHugepagesSize: 1G\n    pages:\n    - count: 8\n      node: 0\n      size: 1G\n  net:\n    userLevelNetworking: true\n  nodeSelector:\n    node-role.kubernetes.io/worker-dpdk: \"\"\n  numa:\n    topologyPolicy: single-numa-node"} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The compute nodes automatically restart after you apply the <code>MachineConfigPool</code> and <code>PerformanceProfile</code> manifests.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Retrieve the name of the generated <code>RuntimeClass</code> resource from the <code>status.runtimeClass</code> field of the <code>PerformanceProfile</code> object:
+      <CodeBlock code={"$ oc get performanceprofiles.performance.openshift.io profile-1 -o=jsonpath='{.status.runtimeClass}{\"\\n\"}'"} lang="terminal" />
+      </li>
+      <li>
+      Set the previously obtained <code>RuntimeClass</code> name as the default container runtime class for the <code>virt-launcher</code> pods by editing the <code>HyperConverged</code> custom resource (CR):
+      <CodeBlock code={"$ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \\\n    --type='json' -p='[{\"op\": \"add\", \"path\": \"/spec/defaultRuntimeClass\", \"value\":\"<runtimeclass-name>\"}]'"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Editing the <code>HyperConverged</code> CR changes a global setting that affects all VMs that are created after the change is applied.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      If your DPDK-enabled compute nodes use Simultaneous multithreading (SMT), enable the <code>AlignCPUs</code> enabler by editing the <code>HyperConverged</code> CR:
+      <CodeBlock code={"$ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \\\n    --type='json' -p='[{\"op\": \"replace\", \"path\": \"/spec/featureGates/alignCPUs\", \"value\": true}]'"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Enabling <code>AlignCPUs</code> allows OpenShift Virtualization to request up to two additional dedicated CPUs to bring the total CPU count to an even parity when using emulator thread isolation.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Create an <code>SriovNetworkNodePolicy</code> object with the <code>spec.deviceType</code> field set to <code>vfio-pci</code>.
+      <p>Example <code>SriovNetworkNodePolicy</code> manifest:</p>
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetworkNodePolicy\nmetadata:\n  name: policy-1\n  namespace: openshift-sriov-network-operator\nspec:\n  resourceName: intel_nics_dpdk\n  deviceType: vfio-pci\n  mtu: 9000\n  numVfs: 4\n  priority: 99\n  nicSelector:\n    vendor: \"8086\"\n    deviceID: \"1572\"\n    pfNames:\n      - eno3\n    rootDevices:\n      - \"0000:19:00.2\"\n  nodeSelector:\n    feature.node.kubernetes.io/network-sriov.capable: \"true\""} lang="yaml" />
+      </li>
+      </ol>
+      <h2 id="virt-removing-custom-mcp_virt-using-dpdk-with-sriov" class="group scroll-mt-20">Removing a custom machine config pool for high-availability clusters<a href="#virt-removing-custom-mcp_virt-using-dpdk-with-sriov" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can delete a custom machine config pool that you previously created for your high-availability cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with <code>cluster-admin</code> permissions.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have created a custom machine config pool by labeling a subset of the compute nodes with a custom role and creating a <code>MachineConfigPool</code> manifest with that label.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Remove the <code>worker-dpdk</code> label from the compute nodes by running the following command:
+      <CodeBlock code={"$ oc label node <node_name> node-role.kubernetes.io/worker-dpdk-"} lang="terminal" />
+      </li>
+      <li>
+      Delete the <code>MachineConfigPool</code> manifest that contains the <code>worker-dpdk</code> label by entering the following command:
+      <CodeBlock code={"$ oc delete mcp worker-dpdk"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-configuring-vm-project-dpdk_virt-using-dpdk-with-sriov" class="group scroll-mt-20">Configuring a project for DPDK workloads<a href="#virt-configuring-vm-project-dpdk_virt-using-dpdk-with-sriov" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure the project to run DPDK workloads on SR-IOV hardware.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Your cluster is configured to run DPDK workloads.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a namespace for your DPDK applications:
+      <CodeBlock code={"$ oc create ns dpdk-ns"} lang="terminal" />
+      </li>
+      <li>
+      Create an <code>SriovNetwork</code> object that references the <code>SriovNetworkNodePolicy</code> object. When you create an <code>SriovNetwork</code> object, the SR-IOV Network Operator automatically creates a <code>NetworkAttachmentDefinition</code> object.
+      <p>Example <code>SriovNetwork</code> manifest:</p>
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetwork\nmetadata:\n  name: dpdk-sriovnetwork\n  namespace: openshift-sriov-network-operator\nspec:\n  ipam: |\n    {\n      \"type\": \"host-local\",\n      \"subnet\": \"10.56.217.0/24\",\n      \"rangeStart\": \"10.56.217.171\",\n      \"rangeEnd\": \"10.56.217.181\",\n      \"routes\": [{\n        \"dst\": \"0.0.0.0/0\"\n      }],\n      \"gateway\": \"10.56.217.1\"\n    }\n  networkNamespace: dpdk-ns\n  resourceName: intel_nics_dpdk\n  spoofChk: \"off\"\n  trust: \"on\"\n  vlan: 1019"} lang="yaml" />
+      <ul>
+      <li><code>spec.networkNamespace</code> defines the namespace where the <code>NetworkAttachmentDefinition</code> object is deployed.</li>
+      <li><code>spec.resourceName</code> defines the value of the <code>spec.resourceName</code> attribute of the <code>SriovNetworkNodePolicy</code> object that was created when configuring the cluster for DPDK workloads.</li>
+      </ul>
+      </li>
+      </ol>
+      <h2 id="virt-configuring-vm-dpdk_virt-using-dpdk-with-sriov" class="group scroll-mt-20">Configuring a virtual machine for DPDK workloads<a href="#virt-configuring-vm-dpdk_virt-using-dpdk-with-sriov" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can run Data Packet Development Kit (DPDK) workloads on virtual machines (VMs) to achieve lower latency and higher throughput for faster packet processing in the user space. DPDK uses the SR-IOV network for hardware-based I/O sharing.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Your cluster is configured to run DPDK workloads.</li>
+      <li>You have created and configured the project in which the VM will run.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>VirtualMachine</code> manifest to include information about the SR-IOV network interface, CPU topology, CRI-O annotations, and huge pages.
+      <p>Example <code>VirtualMachine</code> manifest:</p>
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: rhel-dpdk-vm\nspec:\n  runStrategy: Always\n  template:\n    metadata:\n      annotations:\n        cpu-load-balancing.crio.io: disable\n        cpu-quota.crio.io: disable\n        irq-load-balancing.crio.io: disable\n    spec:\n      domain:\n        cpu:\n          sockets: 1\n          cores: 5\n          threads: 2\n          dedicatedCpuPlacement: true\n          isolateEmulatorThread: true\n        interfaces:\n          - masquerade: {}\n            name: default\n          - model: virtio\n            name: nic-east\n            pciAddress: '0000:07:00.0'\n            sriov: {}\n          networkInterfaceMultiqueue: true\n          rng: {}\n      memory:\n        hugepages:\n          pageSize: 1Gi\n          guest: 8Gi\n      networks:\n        - name: default\n          pod: {}\n        - multus:\n            networkName: dpdk-net\n          name: nic-east\n# ..."} lang="yaml" />
+      <ul>
+      <li><code>spec.template.metadata.annotations.cpu-load-balancing.crio.io</code> specifies that load balancing is disabled for CPUs that are used by the container.</li>
+      <li><code>spec.template.metadata.annotations.cpu-quota.crio.io</code> specifies that the CPU quota is disabled for CPUs that are used by the container.</li>
+      <li><code>spec.template.metadata.annotations.irq-load-balancing.crio.io</code> specifies that Interrupt Request (IRQ) load balancing is disabled for CPUs that are used by the container.</li>
+      <li><code>spec.template.spec.domain.cpu.sockets</code> defines the number of sockets inside the VM. This field must be set to <code>1</code> for the CPUs to be scheduled from the same Non-Uniform Memory Access (NUMA) node.</li>
+      <li><code>spec.template.spec.domain.cpu.cores</code> defines the number of cores inside the VM. This must be a value greater than or equal to <code>1</code>. In this example, the VM is scheduled with 5 hyper-threads or 10 CPUs.</li>
+      <li><code>spec.template.spec.domain.memory.hugepages.pageSize</code> defines the size of the huge pages. The possible values for x86-64 architecture are 1Gi and 2Mi. In this example, the request is for 8 huge pages of size 1Gi.</li>
+      <li><code>spec.template.spec.networks.multus.networkName</code> defines the name of the SR-IOV <code>NetworkAttachmentDefinition</code> object.</li>
+      </ul>
+      </li>
+      <li>Save and exit the editor.</li>
+      <li>
+      Apply the <code>VirtualMachine</code> manifest:
+      <CodeBlock code={"$ oc apply -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Configure the guest operating system. The following example shows the configuration steps for RHEL 9 operating system:
+      <ol>
+      <li>
+      Configure huge pages by using the GRUB bootloader command-line interface. In the following example, 8 1G huge pages are specified.
+      <CodeBlock code={"$ grubby --update-kernel=ALL --args=\"default_hugepagesz=1GB hugepagesz=1G hugepages=8\""} lang="terminal" />
+      </li>
+      <li>
+      To achieve low-latency tuning by using the <code>cpu-partitioning</code> profile in the TuneD application, run the following commands:
+      <CodeBlock code={"$ dnf install -y tuned-profiles-cpu-partitioning"} lang="terminal" />
+      <CodeBlock code={"$ echo isolated_cores=2-9 > /etc/tuned/cpu-partitioning-variables.conf"} lang="terminal" />
+      <p>The first two CPUs (0 and 1) are set aside for house keeping tasks and the rest are isolated for the DPDK application.</p>
+      <CodeBlock code={"$ tuned-adm profile cpu-partitioning"} lang="terminal" />
+      </li>
+      <li>
+      Override the SR-IOV NIC driver by using the <code>driverctl</code> device driver control utility:
+      <CodeBlock code={"$ dnf install -y driverctl"} lang="terminal" />
+      <CodeBlock code={"$ driverctl set-override 0000:07:00.0 vfio-pci"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>Restart the VM to apply the changes.</li>
+      </ol>
       <h2 id="additional-resources_virt-using-dpdk-with-sriov" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-using-dpdk-with-sriov" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/scalability_and_performance/using-cpu-manager#using-cpu-manager">Using CPU Manager and Topology Manager</a></li>

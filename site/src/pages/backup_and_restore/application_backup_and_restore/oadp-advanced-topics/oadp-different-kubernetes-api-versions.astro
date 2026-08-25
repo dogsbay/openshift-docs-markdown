@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"oadp-different-kubernetes-api-versions","text":"Working with different Kubernetes API versions on the same cluster"}];
+const headings = [{"depth":1,"slug":"oadp-different-kubernetes-api-versions","text":"Working with different Kubernetes API versions on the same cluster"},{"depth":2,"slug":"oadp-checking-api-group-versions_oadp-different-kubernetes-api-versions","text":"Listing the Kubernetes API group versions on a cluster"},{"depth":2,"slug":"oadp-about-enable-api-group-versions_oadp-different-kubernetes-api-versions","text":"About Enable API Group Versions"},{"depth":2,"slug":"oadp-using-enable-api-group-versions_oadp-different-kubernetes-api-versions","text":"Using Enable API Group Versions"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-advanced-topics/oadp-different-kubernetes-api-versions";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Working with different Kubernetes API versions on the same cluster {#oadp-different-kubernetes-api-versions}\n\nManage different Kubernetes API versions on your cluster during backup and restore operations. Enabling Velero to back up all supported API group versions helps you maintain compatibility when moving resources to a new destination cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-advanced-topics/oadp-different-kubernetes-api-versions.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Working with different Kubernetes API versions on the same cluster {#oadp-different-kubernetes-api-versions}\n\nManage different Kubernetes API versions on your cluster during backup and restore operations. Enabling Velero to back up all supported API group versions helps you maintain compatibility when moving resources to a new destination cluster.\n\n## Listing the Kubernetes API group versions on a cluster {#oadp-checking-api-group-versions_oadp-different-kubernetes-api-versions}\n\nIdentify the preferred Kubernetes API group versions on your source cluster. This helps you select the correct API version when multiple API versions are available for a single API.\n\nA source cluster might offer multiple versions of an API, where one of these versions is the preferred API version. For example, a source cluster with an API named `Example` might be available in the `example.com/v1` and `example.com/v1beta2` API groups.\n\nIf you use Velero to back up and restore such a source cluster, Velero backs up only the version of that resource that uses the preferred version of its Kubernetes API.\n\nTo return to the above example, if `example.com/v1` is the preferred API, then Velero only backs up the version of a resource that uses `example.com/v1`. Moreover, the target cluster needs to have `example.com/v1` registered in its set of available API resources in order for Velero to restore the resource on the target cluster.\n\nTherefore, you need to generate a list of the Kubernetes API group versions on your target cluster to be sure the preferred API version is registered in its set of available API resources.\n\n**Procedure**\n\n- Enter the following command:\n\n  ```terminal\n  $ oc api-resources\n  ```\n\n## About Enable API Group Versions {#oadp-about-enable-api-group-versions_oadp-different-kubernetes-api-versions}\n\nEnable the API Group Versions feature to back up all supported Kubernetes API versions on your cluster, rather than just the preferred one. This helps you maintain complete API compatibility when restoring data to a destination cluster.\n\nBy default, Velero only backs up resources that use the preferred version of the Kubernetes API. However, Velero also includes the Enable API Group Versions feature that overcomes this limitation. When enabled on the source cluster, this feature causes Velero to back up *all* Kubernetes API group versions that are supported on the cluster, not only the preferred one. After the versions are stored in the backup .tar file, they are available to be restored on the destination cluster.\n\nFor example, a source cluster with an API named `Example` might be available in the `example.com/v1` and `example.com/v1beta2` API groups, with `example.com/v1` being the preferred API.\n\nWithout the Enable API Group Versions feature enabled, Velero backs up only the preferred API group version for `Example`, which is `example.com/v1`. With the feature enabled, Velero also backs up `example.com/v1beta2`.\n\nWhen the Enable API Group Versions feature is enabled on the destination cluster, Velero selects the version to restore on the basis of the order of priority of API group versions.\n\n> [!NOTE]\n> Enable API Group Versions is still in beta.\n\nVelero uses the following algorithm to assign priorities to API versions, with `1` as the top priority:\n\n1. Preferred version of the *destination* cluster\n2. Preferred version of the source\\_ cluster\n3. Common non-preferred supported version with the highest Kubernetes version priority\n\n- [Enable API Group Versions Feature](https://velero.io/docs/v1.9/enable-api-group-versions-feature/)\n\n## Using Enable API Group Versions {#oadp-using-enable-api-group-versions_oadp-different-kubernetes-api-versions}\n\nConfigure the `EnableAPIGroupVersions` feature flag to back up all Kubernetes API group versions that are supported on a cluster, not only the preferred one. This helps you maintain compatibility across different API groups in your cluster.\n\n> [!NOTE]\n> Enable API Group Versions is still in beta.\n\n**Procedure**\n\n- Configure the `EnableAPIGroupVersions` feature flag:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/vialpha1\n  kind: DataProtectionApplication\n  ...\n  spec:\n    configuration:\n      velero:\n        featureFlags:\n        - EnableAPIGroupVersions\n  ```\n\n- [Enable API Group Versions Feature](https://velero.io/docs/v1.9/enable-api-group-versions-feature/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-advanced-topics/oadp-different-kubernetes-api-versions.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,61 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-different-kubernetes-api-versions" class="group scroll-mt-20">Working with different Kubernetes API versions on the same cluster<a href="#oadp-different-kubernetes-api-versions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Manage different Kubernetes API versions on your cluster during backup and restore operations. Enabling Velero to back up all supported API group versions helps you maintain compatibility when moving resources to a new destination cluster.</p>
-      <p class="/modules/oadp-checking-api-group-versions.md"></p>
-      <p class="/modules/oadp-about-enable-api-group-versions.md"></p>
-      <p class="/modules/oadp-using-enable-api-group-versions.md"></p>
+      <h2 id="oadp-checking-api-group-versions_oadp-different-kubernetes-api-versions" class="group scroll-mt-20">Listing the Kubernetes API group versions on a cluster<a href="#oadp-checking-api-group-versions_oadp-different-kubernetes-api-versions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Identify the preferred Kubernetes API group versions on your source cluster. This helps you select the correct API version when multiple API versions are available for a single API.</p>
+      <p>A source cluster might offer multiple versions of an API, where one of these versions is the preferred API version. For example, a source cluster with an API named <code>Example</code> might be available in the <code>example.com/v1</code> and <code>example.com/v1beta2</code> API groups.</p>
+      <p>If you use Velero to back up and restore such a source cluster, Velero backs up only the version of that resource that uses the preferred version of its Kubernetes API.</p>
+      <p>To return to the above example, if <code>example.com/v1</code> is the preferred API, then Velero only backs up the version of a resource that uses <code>example.com/v1</code>. Moreover, the target cluster needs to have <code>example.com/v1</code> registered in its set of available API resources in order for Velero to restore the resource on the target cluster.</p>
+      <p>Therefore, you need to generate a list of the Kubernetes API group versions on your target cluster to be sure the preferred API version is registered in its set of available API resources.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Enter the following command:
+      <CodeBlock code={"$ oc api-resources"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="oadp-about-enable-api-group-versions_oadp-different-kubernetes-api-versions" class="group scroll-mt-20">About Enable API Group Versions<a href="#oadp-about-enable-api-group-versions_oadp-different-kubernetes-api-versions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enable the API Group Versions feature to back up all supported Kubernetes API versions on your cluster, rather than just the preferred one. This helps you maintain complete API compatibility when restoring data to a destination cluster.</p>
+      <p>By default, Velero only backs up resources that use the preferred version of the Kubernetes API. However, Velero also includes the Enable API Group Versions feature that overcomes this limitation. When enabled on the source cluster, this feature causes Velero to back up <em>all</em> Kubernetes API group versions that are supported on the cluster, not only the preferred one. After the versions are stored in the backup .tar file, they are available to be restored on the destination cluster.</p>
+      <p>For example, a source cluster with an API named <code>Example</code> might be available in the <code>example.com/v1</code> and <code>example.com/v1beta2</code> API groups, with <code>example.com/v1</code> being the preferred API.</p>
+      <p>Without the Enable API Group Versions feature enabled, Velero backs up only the preferred API group version for <code>Example</code>, which is <code>example.com/v1</code>. With the feature enabled, Velero also backs up <code>example.com/v1beta2</code>.</p>
+      <p>When the Enable API Group Versions feature is enabled on the destination cluster, Velero selects the version to restore on the basis of the order of priority of API group versions.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Enable API Group Versions is still in beta.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Velero uses the following algorithm to assign priorities to API versions, with <code>1</code> as the top priority:</p>
+      <ol>
+      <li>Preferred version of the <em>destination</em> cluster</li>
+      <li>Preferred version of the source_ cluster</li>
+      <li>Common non-preferred supported version with the highest Kubernetes version priority</li>
+      </ol>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://velero.io/docs/v1.9/enable-api-group-versions-feature/">Enable API Group Versions Feature</a></li></ul>
+      </section>
+      <h2 id="oadp-using-enable-api-group-versions_oadp-different-kubernetes-api-versions" class="group scroll-mt-20">Using Enable API Group Versions<a href="#oadp-using-enable-api-group-versions_oadp-different-kubernetes-api-versions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>EnableAPIGroupVersions</code> feature flag to back up all Kubernetes API group versions that are supported on a cluster, not only the preferred one. This helps you maintain compatibility across different API groups in your cluster.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Enable API Group Versions is still in beta.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Configure the <code>EnableAPIGroupVersions</code> feature flag:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/vialpha1\nkind: DataProtectionApplication\n...\nspec:\n  configuration:\n    velero:\n      featureFlags:\n      - EnableAPIGroupVersions"} lang="yaml" />
+      </li>
+      </ul>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://velero.io/docs/v1.9/enable-api-group-versions-feature/">Enable API Group Versions Feature</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

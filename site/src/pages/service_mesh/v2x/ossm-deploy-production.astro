@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"ossm-production","text":"Configuring Service Mesh for production"},{"depth":2,"slug":"additional-resources_ossm-production","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"ossm-production","text":"Configuring Service Mesh for production"},{"depth":2,"slug":"ossm-smcp-prod_ossm-architecture","text":"Configuring your ServiceMeshControlPlane resource for production"},{"depth":2,"slug":"additional-resources_ossm-production","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/service_mesh/v2x/ossm-deploy-production";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring Service Mesh for production {#ossm-production}\n\nWhen you are ready to move from a basic installation to production, you must configure your control plane, tracing, and security certificates to meet production requirements.\n\n**Prerequisites**\n\n- Install and configure {{ SMProductName }}.\n- Test your configuration in a staging environment.\n\n## Additional resources {#additional-resources_ossm-production}\n\n- For more information about tuning {{ SMProductShortName }} for performance, see [Performance and scalability](/openshift-docs-markdown/service_mesh/v2x/ossm-performance-scalability#ossm-performance-scalability).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-deploy-production.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring Service Mesh for production {#ossm-production}\n\nWhen you are ready to move from a basic installation to production, you must configure your control plane, tracing, and security certificates to meet production requirements.\n\n**Prerequisites**\n\n- Install and configure Red Hat OpenShift Service Mesh.\n- Test your configuration in a staging environment.\n\n## Configuring your ServiceMeshControlPlane resource for production {#ossm-smcp-prod_ossm-architecture}\n\nIf you have installed a basic `ServiceMeshControlPlane` resource to test Service Mesh, you must configure it to production specification before you use Red Hat OpenShift Service Mesh in production.\n\nYou cannot change the `metadata.name` field of an existing `ServiceMeshControlPlane` resource. For production deployments, you must customize the default template.\n\n**Procedure**\n\n1. Configure the Distributed Tracing Platform (Jaeger) for production.\n\n   1. Edit the `ServiceMeshControlPlane` resource to use the `production` deployment strategy, by setting `spec.addons.jaeger.install.storage.type` to `Elasticsearch` and specify additional configuration options under `install`. You can create and configure your Jaeger instance and set `spec.addons.jaeger.name` to the name of the Jaeger instance.\n\n      ```yaml {title=\"Default Jaeger parameters including Elasticsearch\"}\n      apiVersion: maistra.io/v2\n      kind: ServiceMeshControlPlane\n      metadata:\n        name: basic\n      spec:\n        version: v{{ MaistraVersion }}\n        tracing:\n          sampling: 100\n          type: Jaeger\n        addons:\n          jaeger:\n            name: MyJaeger\n            install:\n              storage:\n                type: Elasticsearch\n              ingress:\n                enabled: true\n        runtime:\n          components:\n            tracing.jaeger.elasticsearch: # only supports resources and image name\n              container:\n                resources: {}\n      ```\n   2. Configure the sampling rate for production. For more information, see the Performance and scalability section.\n2. Ensure your security certificates are production ready by installing security certificates from an external certificate authority. For more information, see the Security section.\n\n**Verification**\n\n1. Enter the following command to verify that the `ServiceMeshControlPlane` resource updated properly. In this example, `basic` is the name of the `ServiceMeshControlPlane` resource.\n\n   ```terminal\n   $ oc get smcp basic -o yaml\n   ```\n\n## Additional resources {#additional-resources_ossm-production}\n\n- For more information about tuning Service Mesh for performance, see [Performance and scalability](/openshift-docs-markdown/service_mesh/v2x/ossm-performance-scalability#ossm-performance-scalability).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-deploy-production.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,15 +92,38 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ossm-production" class="group scroll-mt-20">Configuring Service Mesh for production<a href="#ossm-production" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>When you are ready to move from a basic installation to production, you must configure your control plane, tracing, and security certificates to meet production requirements.</p>
       <p><strong>Prerequisites</strong></p>
       <ul>
-      <li>Install and configure {"{"}{"{"} SMProductName {"}"}{"}"}.</li>
+      <li>Install and configure Red Hat OpenShift Service Mesh.</li>
       <li>Test your configuration in a staging environment.</li>
       </ul>
+      <h2 id="ossm-smcp-prod_ossm-architecture" class="group scroll-mt-20">Configuring your ServiceMeshControlPlane resource for production<a href="#ossm-smcp-prod_ossm-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>If you have installed a basic <code>ServiceMeshControlPlane</code> resource to test Service Mesh, you must configure it to production specification before you use Red Hat OpenShift Service Mesh in production.</p>
+      <p>You cannot change the <code>metadata.name</code> field of an existing <code>ServiceMeshControlPlane</code> resource. For production deployments, you must customize the default template.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Configure the Distributed Tracing Platform (Jaeger) for production.
+      <ol>
+      <li>
+      Edit the <code>ServiceMeshControlPlane</code> resource to use the <code>production</code> deployment strategy, by setting <code>spec.addons.jaeger.install.storage.type</code> to <code>Elasticsearch</code> and specify additional configuration options under <code>install</code>. You can create and configure your Jaeger instance and set <code>spec.addons.jaeger.name</code> to the name of the Jaeger instance.
+      <CodeBlock code={"apiVersion: maistra.io/v2\nkind: ServiceMeshControlPlane\nmetadata:\n  name: basic\nspec:\n  version: v{{ MaistraVersion }}\n  tracing:\n    sampling: 100\n    type: Jaeger\n  addons:\n    jaeger:\n      name: MyJaeger\n      install:\n        storage:\n          type: Elasticsearch\n        ingress:\n          enabled: true\n  runtime:\n    components:\n      tracing.jaeger.elasticsearch: # only supports resources and image name\n        container:\n          resources: {}"} lang="yaml" title="Default Jaeger parameters including Elasticsearch" />
+      </li>
+      <li>Configure the sampling rate for production. For more information, see the Performance and scalability section.</li>
+      </ol>
+      </li>
+      <li>Ensure your security certificates are production ready by installing security certificates from an external certificate authority. For more information, see the Security section.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Enter the following command to verify that the <code>ServiceMeshControlPlane</code> resource updated properly. In this example, <code>basic</code> is the name of the <code>ServiceMeshControlPlane</code> resource.
+      <CodeBlock code={"$ oc get smcp basic -o yaml"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="additional-resources_ossm-production" class="group scroll-mt-20">Additional resources<a href="#additional-resources_ossm-production" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li>For more information about tuning {"{"}{"{"} SMProductShortName {"}"}{"}"} for performance, see <a href="/openshift-docs-markdown/service_mesh/v2x/ossm-performance-scalability#ossm-performance-scalability">Performance and scalability</a>.</li></ul>
+      <ul><li>For more information about tuning Service Mesh for performance, see <a href="/openshift-docs-markdown/service_mesh/v2x/ossm-performance-scalability#ossm-performance-scalability">Performance and scalability</a>.</li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"kms-disabling","text":"Disabling {{ KMS }}"},{"depth":2,"slug":"additional-resources_kms-disabling","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"kms-disabling","text":"Disabling Kubernetes KMS v2"},{"depth":2,"slug":"kms-disabling-encryption_kms-disabling","text":"Disable KMS encryption"},{"depth":2,"slug":"additional-resources_kms-disabling","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/etcd/KMS_v2/kms-disabling";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["etcd","etcd/KMS_v2"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling {{ KMS }} {#kms-disabling}\n\nYou can disable KMS encryption and migrate to local etcd encryption to simplify operations or resolve external KMS connectivity issues.\n\n## Additional resources {#additional-resources_kms-disabling}\n\n- [Using a KMS provider for data encryption](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)\n- [HashiCorp Vault Transit Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/transit)\n- [Use Vault as a Kubernetes KMS provider](https://developer.hashicorp.com/vault/docs/deploy/kubernetes/kms)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/etcd/KMS_v2/kms-disabling.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling Kubernetes KMS v2 {#kms-disabling}\n\nYou can disable KMS encryption and migrate to local etcd encryption to simplify operations or resolve external KMS connectivity issues.\n\n> [!IMPORTANT]\n> Kubernetes KMS v2 is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Disable KMS encryption {#kms-disabling-encryption_kms-disabling}\n\nYou can disable external KMS encryption and migrate to local encryption to simplify operations or resolve KMS connectivity issues.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have created an etcd backup.\n\n> [!WARNING]\n> Re-encryption of all etcd data will occur.\n\n**Procedure**\n\n1. Edit the `APIServer` custom resource by entering the following command:\n\n   ```terminal\n   $ oc edit apiserver cluster\n   ```\n2. Change the encryption configuration:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: APIServer\n   metadata:\n     name: cluster\n   spec:\n     encryption:\n       type: <encryption>\n   ```\n\n   Replace `<encryption>` with `aescbc`, `aesgcm`, or `identity`.\n3. Save and exit.\n\n   OpenShift Container Platform automatically migrates etcd data. Migration time depends on etcd size and secret count.\n4. Monitor the migration progress by entering the following command:\n\n   ```terminal\n   $ oc get openshiftapiserver -o=jsonpath='{range .items[0].status.conditions[?(@.type==\"Encrypted\")]}{.reason}{\"\\n\"}{.message}{\"\\n\"}{end}'\n   ```\n\n   Wait until the output shows `EncryptionCompleted`.\n5. Verify kube-apiserver pods rolled out by entering the following command:\n\n   ```terminal\n   $ oc get pods -n openshift-kube-apiserver -l app=openshift-kube-apiserver\n   ```\n6. Remove the static pod manifest from each control plane node by running the following command:\n\n   ```terminal\n   $ for node in $(oc get nodes --selector=node-role.kubernetes.io/master -o name | cut -d/ -f2); do\n       echo \"Removing static pod from $node...\"\n       oc debug node/$node -- chroot /host \\\n         rm -f /etc/kubernetes/manifests/vault-kms-plugin.yaml\n     done\n   ```\n\n   The kubelet automatically stops static pods when their manifest is removed from `/etc/kubernetes/manifests/`.\n7. Clean up the socket directory by running the following command:\n\n   ```terminal\n   $ for node in $(oc get nodes --selector=node-role.kubernetes.io/master -o name | cut -d/ -f2); do\n       oc debug node/$node -- chroot /host rm -rf /var/run/kmsplugin\n     done\n   ```\n8. After backup retention period passes, decommission the KMS key.\n\n**Verification**\n\n1. Verify the encryption type by entering the following command:\n\n   ```terminal\n   $ oc get apiserver cluster -o jsonpath='{.spec.encryption.type}'\n   ```\n2. Verify that a test secret uses the new encryption type:\n\n   1. Create a test secret by entering the following command:\n\n      ```terminal\n      $ oc create secret generic encryption-test --from-literal=key=value -n default\n      ```\n   2. Get an etcd pod name by entering the following command:\n\n      ```terminal\n      $ oc get pods -n openshift-etcd -l app=etcd -o name | head -1\n      ```\n   3. Check the encryption prefix by entering the following command:\n\n      ```terminal\n      $ oc exec -n openshift-etcd <etcd_pod_name> -- etcdctl get /kubernetes.io/secrets/default/encryption-test --print-value-only | hexdump -C | head -1\n      ```\n\n      Output should begin with `k8s:enc:aescbc:v1:`, `k8s:enc:aesgcm:v1:`, or show readable JSON for `identity`.\n   4. Delete the test secret by entering the following command:\n\n      ```terminal\n      $ oc delete secret encryption-test -n default\n      ```\n\n> [!NOTE]\n> Do not delete the KMS key until migration completes successfully.\n\n## Additional resources {#additional-resources_kms-disabling}\n\n- [Using a KMS provider for data encryption](https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/)\n- [HashiCorp Vault Transit Secrets Engine](https://developer.hashicorp.com/vault/docs/secrets/transit)\n- [Use Vault as a Kubernetes KMS provider](https://developer.hashicorp.com/vault/docs/deploy/kubernetes/kms)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/etcd/KMS_v2/kms-disabling.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +94,98 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="kms-disabling" class="group scroll-mt-20">Disabling {"{"}{"{"} KMS {"}"}{"}"}<a href="#kms-disabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/snippets/technology-preview.md">You can disable KMS encryption and migrate to local etcd encryption to simplify operations or resolve external KMS connectivity issues.</p>
-      <p class="/modules/proc_kms-disabling-encryption.md"></p>
+      <h1 id="kms-disabling" class="group scroll-mt-20">Disabling Kubernetes KMS v2<a href="#kms-disabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can disable KMS encryption and migrate to local etcd encryption to simplify operations or resolve external KMS connectivity issues.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Kubernetes KMS v2 is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="kms-disabling-encryption_kms-disabling" class="group scroll-mt-20">Disable KMS encryption<a href="#kms-disabling-encryption_kms-disabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can disable external KMS encryption and migrate to local encryption to simplify operations or resolve KMS connectivity issues.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have created an etcd backup.</li>
+      </ul>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Re-encryption of all etcd data will occur.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>APIServer</code> custom resource by entering the following command:
+      <CodeBlock code={"$ oc edit apiserver cluster"} lang="terminal" />
+      </li>
+      <li>
+      Change the encryption configuration:
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: APIServer\nmetadata:\n  name: cluster\nspec:\n  encryption:\n    type: <encryption>"} lang="yaml" />
+      <p>Replace <code>&lt;encryption&gt;</code> with <code>aescbc</code>, <code>aesgcm</code>, or <code>identity</code>.</p>
+      </li>
+      <li>
+      Save and exit.
+      <p>OpenShift Container Platform automatically migrates etcd data. Migration time depends on etcd size and secret count.</p>
+      </li>
+      <li>
+      Monitor the migration progress by entering the following command:
+      <CodeBlock code={"$ oc get openshiftapiserver -o=jsonpath='{range .items[0].status.conditions[?(@.type==\"Encrypted\")]}{.reason}{\"\\n\"}{.message}{\"\\n\"}{end}'"} lang="terminal" />
+      <p>Wait until the output shows <code>EncryptionCompleted</code>.</p>
+      </li>
+      <li>
+      Verify kube-apiserver pods rolled out by entering the following command:
+      <CodeBlock code={"$ oc get pods -n openshift-kube-apiserver -l app=openshift-kube-apiserver"} lang="terminal" />
+      </li>
+      <li>
+      Remove the static pod manifest from each control plane node by running the following command:
+      <CodeBlock code={"$ for node in $(oc get nodes --selector=node-role.kubernetes.io/master -o name | cut -d/ -f2); do\n    echo \"Removing static pod from $node...\"\n    oc debug node/$node -- chroot /host \\\n      rm -f /etc/kubernetes/manifests/vault-kms-plugin.yaml\n  done"} lang="terminal" />
+      <p>The kubelet automatically stops static pods when their manifest is removed from <code>/etc/kubernetes/manifests/</code>.</p>
+      </li>
+      <li>
+      Clean up the socket directory by running the following command:
+      <CodeBlock code={"$ for node in $(oc get nodes --selector=node-role.kubernetes.io/master -o name | cut -d/ -f2); do\n    oc debug node/$node -- chroot /host rm -rf /var/run/kmsplugin\n  done"} lang="terminal" />
+      </li>
+      <li>After backup retention period passes, decommission the KMS key.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify the encryption type by entering the following command:
+      <CodeBlock code={"$ oc get apiserver cluster -o jsonpath='{.spec.encryption.type}'"} lang="terminal" />
+      </li>
+      <li>
+      Verify that a test secret uses the new encryption type:
+      <ol>
+      <li>
+      Create a test secret by entering the following command:
+      <CodeBlock code={"$ oc create secret generic encryption-test --from-literal=key=value -n default"} lang="terminal" />
+      </li>
+      <li>
+      Get an etcd pod name by entering the following command:
+      <CodeBlock code={"$ oc get pods -n openshift-etcd -l app=etcd -o name | head -1"} lang="terminal" />
+      </li>
+      <li>
+      Check the encryption prefix by entering the following command:
+      <CodeBlock code={"$ oc exec -n openshift-etcd <etcd_pod_name> -- etcdctl get /kubernetes.io/secrets/default/encryption-test --print-value-only | hexdump -C | head -1"} lang="terminal" />
+      <p>Output should begin with <code>k8s:enc:aescbc:v1:</code>, <code>k8s:enc:aesgcm:v1:</code>, or show readable JSON for <code>identity</code>.</p>
+      </li>
+      <li>
+      Delete the test secret by entering the following command:
+      <CodeBlock code={"$ oc delete secret encryption-test -n default"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Do not delete the KMS key until migration completes successfully.</p>
+        </AlertDescription>
+      </Alert>
       <h2 id="additional-resources_kms-disabling" class="group scroll-mt-20">Additional resources<a href="#additional-resources_kms-disabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://kubernetes.io/docs/tasks/administer-cluster/kms-provider/">Using a KMS provider for data encryption</a></li>

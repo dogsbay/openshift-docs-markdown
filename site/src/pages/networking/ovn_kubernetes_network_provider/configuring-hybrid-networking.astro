@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-hybrid-networking","text":"Configuring hybrid networking"},{"depth":2,"slug":"configuring-hybrid-networking-additional-resources_configuring-hybrid-networking","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"configuring-hybrid-networking","text":"Configuring hybrid networking"},{"depth":2,"slug":"configuring-hybrid-ovnkubernetes_configuring-hybrid-networking","text":"Configuring hybrid networking with OVN-Kubernetes"},{"depth":2,"slug":"configuring-hybrid-networking-additional-resources_configuring-hybrid-networking","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["networking","networking/ovn_kubernetes_network_provider"]
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring hybrid networking {#configuring-hybrid-networking}\n\nIn OpenShift Container Platform, you can configure OVN-Kubernetes hybrid networking so Linux and Windows nodes run Linux and Windows workloads in the same cluster.\n\n## Additional resources {#configuring-hybrid-networking-additional-resources_configuring-hybrid-networking}\n\n- [Installing a cluster on AWS with network customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)\n- [Installing a cluster on Azure with customizations](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring hybrid networking {#configuring-hybrid-networking}\n\nIn OpenShift Container Platform, you can configure OVN-Kubernetes hybrid networking so Linux and Windows nodes run Linux and Windows workloads in the same cluster.\n\n## Configuring hybrid networking with OVN-Kubernetes {#configuring-hybrid-ovnkubernetes_configuring-hybrid-networking}\n\nTo configure hybrid networking with OVN-Kubernetes, you can set `hybridOverlayConfig` during installation or patch the Cluster Network Operator (CNO) after installation.\n\n> [!NOTE]\n> This configuration is necessary to run both Linux and Windows nodes in the same cluster.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n- Log in to the cluster as a user with `cluster-admin` privileges.\n- Ensure that the cluster uses the OVN-Kubernetes network plugin.\n\n**Procedure**\n\n1. To configure the OVN-Kubernetes hybrid network overlay, enter the following command:\n\n   ```terminal\n   $ oc patch networks.operator.openshift.io cluster --type=merge \\\n     -p '{\n       \"spec\":{\n         \"defaultNetwork\":{\n           \"ovnKubernetesConfig\":{\n             \"hybridOverlayConfig\":{\n               \"hybridClusterNetwork\":[\n                 {\n                   \"cidr\": \"<cidr>\",\n                   \"hostPrefix\": <prefix>\n                 }\n               ],\n               \"hybridOverlayVXLANPort\": <overlay_port>\n             }\n           }\n         }\n       }\n     }'\n   ```\n\n   where:\n\n   `<cidr>`\n   :   Specifies the CIDR configuration used for nodes on the additional overlay network. This CIDR must not overlap with the cluster network CIDR.\n\n   `<prefix>`\n   :   Specifies the subnet prefix length to assign to each individual node. For example, if `hostPrefix` is set to `23`, then each node is assigned a `/23` subnet out of the given `cidr`, which allows for 510 (2^(32 - 23) - 2) pod IP addresses. If you are required to provide access to nodes from an external network, configure load balancers and routers to manage the traffic.\n\n   `<overlay_port>`\n   :   Specifies a custom VXLAN port for the additional overlay network. This is required for running Windows nodes in a cluster installed on vSphere, and must not be configured for any other cloud provider. The custom port can be any open port excluding the default `6081` port. For more information on this requirement, see [Pod-to-pod connectivity between hosts is broken](https://docs.microsoft.com/en-us/virtualization/windowscontainers/kubernetes/common-problems#pod-to-pod-connectivity-between-hosts-is-broken-on-my-kubernetes-cluster-running-on-vsphere) in the Microsoft documentation.\n\n   > [!NOTE]\n   > Windows Server Long-Term Servicing Channel (LTSC): Windows Server 2019 is not supported on clusters with a custom `hybridOverlayVXLANPort` value because this Windows server version does not support selecting a custom VXLAN port.\n\n   ```text {title=\"Example output\"}\n   network.operator.openshift.io/cluster patched\n   ```\n2. To confirm that the configuration is active, enter the following command. It can take several minutes for the update to apply.\n\n   ```terminal\n   $ oc get network.operator.openshift.io -o jsonpath=\"{.items[0].spec.defaultNetwork.ovnKubernetesConfig}\"\n   ```\n\n## Additional resources {#configuring-hybrid-networking-additional-resources_configuring-hybrid-networking}\n\n- [Installing a cluster on AWS with network customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)\n- [Installing a cluster on Azure with customizations](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configuring-hybrid-networking.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,48 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-hybrid-networking" class="group scroll-mt-20">Configuring hybrid networking<a href="#configuring-hybrid-networking" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>In OpenShift Container Platform, you can configure OVN-Kubernetes hybrid networking so Linux and Windows nodes run Linux and Windows workloads in the same cluster.</p>
-      <p class="/modules/configuring-hybrid-ovnkubernetes.md"></p>
+      <h2 id="configuring-hybrid-ovnkubernetes_configuring-hybrid-networking" class="group scroll-mt-20">Configuring hybrid networking with OVN-Kubernetes<a href="#configuring-hybrid-ovnkubernetes_configuring-hybrid-networking" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To configure hybrid networking with OVN-Kubernetes, you can set <code>hybridOverlayConfig</code> during installation or patch the Cluster Network Operator (CNO) after installation.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This configuration is necessary to run both Linux and Windows nodes in the same cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Log in to the cluster as a user with <code>cluster-admin</code> privileges.</li>
+      <li>Ensure that the cluster uses the OVN-Kubernetes network plugin.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To configure the OVN-Kubernetes hybrid network overlay, enter the following command:
+      <CodeBlock code={"$ oc patch networks.operator.openshift.io cluster --type=merge \\\n  -p '{\n    \"spec\":{\n      \"defaultNetwork\":{\n        \"ovnKubernetesConfig\":{\n          \"hybridOverlayConfig\":{\n            \"hybridClusterNetwork\":[\n              {\n                \"cidr\": \"<cidr>\",\n                \"hostPrefix\": <prefix>\n              }\n            ],\n            \"hybridOverlayVXLANPort\": <overlay_port>\n          }\n        }\n      }\n    }\n  }'"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;cidr&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the CIDR configuration used for nodes on the additional overlay network. This CIDR must not overlap with the cluster network CIDR.</p></dd>
+      <dt class="font-semibold"><code>&lt;prefix&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the subnet prefix length to assign to each individual node. For example, if <code>hostPrefix</code> is set to <code>23</code>, then each node is assigned a <code>/23</code> subnet out of the given <code>cidr</code>, which allows for 510 (2^(32 - 23) - 2) pod IP addresses. If you are required to provide access to nodes from an external network, configure load balancers and routers to manage the traffic.</p></dd>
+      <dt class="font-semibold"><code>&lt;overlay_port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a custom VXLAN port for the additional overlay network. This is required for running Windows nodes in a cluster installed on vSphere, and must not be configured for any other cloud provider. The custom port can be any open port excluding the default <code>6081</code> port. For more information on this requirement, see <a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/kubernetes/common-problems#pod-to-pod-connectivity-between-hosts-is-broken-on-my-kubernetes-cluster-running-on-vsphere">Pod-to-pod connectivity between hosts is broken</a> in the Microsoft documentation.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Windows Server Long-Term Servicing Channel (LTSC): Windows Server 2019 is not supported on clusters with a custom <code>hybridOverlayVXLANPort</code> value because this Windows server version does not support selecting a custom VXLAN port.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"network.operator.openshift.io/cluster patched"} lang="text" title="Example output" />
+      </li>
+      <li>
+      To confirm that the configuration is active, enter the following command. It can take several minutes for the update to apply.
+      <CodeBlock code={"$ oc get network.operator.openshift.io -o jsonpath=\"{.items[0].spec.defaultNetwork.ovnKubernetesConfig}\""} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="configuring-hybrid-networking-additional-resources_configuring-hybrid-networking" class="group scroll-mt-20">Additional resources<a href="#configuring-hybrid-networking-additional-resources_configuring-hybrid-networking" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations">Installing a cluster on AWS with network customizations</a></li>

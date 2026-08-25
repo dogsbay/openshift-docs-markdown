@@ -4,7 +4,12 @@ title: Understanding virtualized control planes
 
 # Understanding virtualized control planes {#vcp-overview}
 
-A virtualized control plane deployment is an OpenShift Container Platform cluster whose control plane nodes run as virtual machines (VMs) on a hosting cluster with {{ VirtProductName }}.
+A virtualized control plane deployment is an OpenShift Container Platform cluster whose control plane nodes run as virtual machines (VMs) on a hosting cluster with OpenShift Virtualization.
+
+> [!IMPORTANT]
+> KubeVirt Redfish is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+>
+> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
 This architecture is useful in the following example scenarios:
 
@@ -15,17 +20,40 @@ This architecture is useful in the following example scenarios:
 In a virtualized control plane deployment, you have two clusters:
 
 Hosting cluster
-:   An existing OpenShift Container Platform cluster running {{ VirtProductName }} that hosts the control plane VMs.
+:   An existing OpenShift Container Platform cluster running OpenShift Virtualization that hosts the control plane VMs.
 
 Target cluster
 :   The OpenShift Container Platform cluster with control planes running on the VMs.
 
 KubeVirt Redfish runs on the hosting cluster and exposes the VMs through the standard Redfish API endpoints.
 
-With this approach, you can use installation workflows such as Agent-based Installer or {{ ztp_first }}, to deploy virtualized control planes exactly like physical servers with baseboard management controllers (BMCs).
+With this approach, you can use installation workflows such as Agent-based Installer or GitOps Zero Touch Provisioning (ZTP), to deploy virtualized control planes exactly like physical servers with baseboard management controllers (BMCs).
 
 > [!NOTE]
-> Virtualized control planes differ from {{ hcp_capital }}. With virtualized control planes, the control plane runs as VMs with hypervisor-level isolation. With {{ hcp_capital }}, the control plane runs as pods with container-level isolation.
+> Virtualized control planes differ from Hosted control planes. With virtualized control planes, the control plane runs as VMs with hypervisor-level isolation. With Hosted control planes, the control plane runs as pods with container-level isolation.
+
+## Virtualized control plane architecture {#con_virt-vcp-architecture_vcp-overview}
+
+A virtualized control plane deployment runs control plane components as VMs on a hosting cluster, providing hypervisor-level isolation between clusters.
+
+A single hosting cluster can support multiple target clusters by running each cluster’s control plane VMs in separate namespaces. This consolidation reduces hardware costs while maintaining isolation. The target cluster’s worker nodes run on separate infrastructure, either physical servers or VMs on different hosts.
+
+For high availability, distribute control plane VMs across different physical nodes on the hosting cluster. This anti-affinity placement ensures that if a physical node fails, only one control plane VM is affected and the remaining nodes maintain etcd quorum. Configure anti-affinity using pod anti-affinity rules or topology spread constraints in the VM specifications.
+
+## Virtualized control plane deployment workflow {#con_virt-vcp-deployment-workflow_vcp-overview}
+
+Deploy a virtualized control plane cluster by installing KubeVirt Redfish on your hosting cluster, configuring it to expose your VMs, and running your preferred installation method.
+
+> [!NOTE]
+> Virtualized control planes require an OpenShift Container Platform cluster with OpenShift Virtualization installed and operational, which operates as the hosting cluster.
+
+See the following high-level steps to deploy a virtualized control plane cluster:
+
+1. Install and configure KubeVirt Redfish on the hosting cluster. This includes defining which VMs to expose through the Redfish API, configuring authentication credentials, and creating a `Route` CR to expose the endpoint externally.
+2. Create the control plane VMs on the hosting cluster. Configure the VMs with appropriate resources and network settings, and ensure they remain powered off until the installation begins.
+3. Configure your installation method to use KubeVirt Redfish. In your configuration files, specify BMC addresses using the KubeVirt Redfish route URL for the virtualized control plane nodes, for example: `redfish-virtualmedia+https://<kubevirt_redfish_route>/redfish/v1/Systems/<vm_namespace>.<vm_name>`.
+4. Run the installation. The VMs boot from the installation media and communicate with each other to form the cluster. Depending on the installation method, this process is either fully automated or requires manual intervention to boot each node.
+5. After installation completes, a new OpenShift Container Platform cluster is deployed with its control plane running on VMs hosted by the original OpenShift Virtualization cluster.
 
 ## Additional resources {#additional-resources_vcp-overview}
 

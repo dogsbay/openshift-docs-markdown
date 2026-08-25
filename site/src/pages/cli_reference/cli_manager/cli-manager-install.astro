@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"cli-manager-install","text":"Installing the {{ cli_manager }}"}];
+const headings = [{"depth":1,"slug":"cli-manager-install","text":"Installing the {{ cli_manager }}"},{"depth":2,"slug":"cli-manager-installing_cli-manager-install","text":"Installing the CLI Manager Operator"},{"depth":2,"slug":"cli-manager-custom-index_cli-manager-install","text":"Adding the CLI Manager Operator custom index to Krew"},{"depth":2,"slug":"cli-manager-adding-plugin-yamls_cli-manager-install","text":"Adding a plugin to the CLI Manager Operator"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Installing the {{ cli_manager }}";
-const description = "You can simplify the installation and management of CLI plugins in connected and disconnected environments with the {{ cli_manager }}. The {{ cli_manager…" || undefined;
+const description = "You can simplify the installation and management of CLI plugins in connected and disconnected environments with the CLI Manager Operator. The CLI Manager…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["cli_reference","cli_reference/cli_manager"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the {{ cli_manager }} {#cli-manager-install}\n\nYou can simplify the installation and management of CLI plugins in connected and disconnected environments with the {{ cli_manager }}. The {{ cli_manager }} makes Krew compatible with the `oc` CLI, allowing cluster administrators to manage custom CLI plugin resources.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the {{ cli_manager }} {#cli-manager-install}\n\nYou can simplify the installation and management of CLI plugins in connected and disconnected environments with the CLI Manager Operator. The CLI Manager Operator makes Krew compatible with the `oc` CLI, allowing cluster administrators to manage custom CLI plugin resources.\n\n> [!IMPORTANT]\n> Using the CLI Manager Operator to install and manage plugins for the OpenShift CLI is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Installing the CLI Manager Operator {#cli-manager-installing_cli-manager-install}\n\nYou can install the CLI Manager Operator to facilitate adding CLI plugins in both connected and disconnected environments.\n\n> [!NOTE]\n> Krew always works with OpenShift CLI (`oc`) without the CLI Manager Operator installed. You can use the same commands outlined in this documentation to use Krew with `oc`. For more information, see [Krew documentation](https://krew.sigs.k8s.io/docs/).\n\n**Prerequisites**\n\n- [Krew is installed](https://krew.sigs.k8s.io/docs/user-guide/setup/install).\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- You have access to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Create the required namespace for the CLI Manager Operator:\n\n   1. Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.\n   2. In the **Name** field, enter `openshift-cli-manager-operator` and click **Create**.\n3. Install the CLI Manager Operator:\n\n   1. Navigate to **Ecosystem** -> **Software Catalog**.\n   2. In the filter box, enter **CLI Manager Operator**.\n   3. Select the **CLI Manager Operator** and click **Install**.\n   4. On the **Install Operator** page, complete the following steps:\n\n      1. Ensure that the **Update channel** is set to **tech preview**, which installs the latest Technology Preview release of the CLI Manager Operator.\n      2. From the drop-down menu, select **A specific namespace on the cluster** and select **openshift-cli-manager-operator**.\n      3. Click **Install**.\n4. Create the `CliManager` resource by completing the following steps:\n\n   1. Navigate to **Installed Operators**.\n   2. Select **CLI Manager Operator**.\n   3. Select the **CLI Manager** tab.\n   4. Click **Create CliManager**.\n   5. Use the default **Name**.\n   6. Click **Create**.\n\n      1. The new `CliManager` resource is listed in the **CLI Manager** tab.\n\n**Verification**\n\n1. Navigate to **Ecosystem** -> **Installed Operators**.\n2. Verify that **CLI Manager Operator** is listed with a **Status** of **Succeeded**.\n\n## Adding the CLI Manager Operator custom index to Krew {#cli-manager-custom-index_cli-manager-install}\n\nYou can use the terminal to add the CLI Manager Operator custom index to Krew so that the CLI Manager Operator will work in disconnected environments. This procedure is required for the CLI Manager Operator to function correctly and needs to be done only once.\n\n> [!NOTE]\n> If you use self-signed certificates, mark the certificate as trusted on your local operating system to use Krew.\n\n**Prerequisites**\n\n- [Krew is installed](https://krew.sigs.k8s.io/docs/user-guide/setup/install).\n- The CLI Manager Operator is installed.\n\n**Procedure**\n\n1. To establish the `ROUTE` variable, enter the following command:\n\n   ```terminal\n   $ ROUTE=$(oc get route/openshift-cli-manager -n openshift-cli-manager-operator -o=jsonpath='{.spec.host}')\n   ```\n2. To add the custom index to Krew, enter the following command:\n\n   ```terminal\n   $ oc krew index add <custom_index_name> https://$ROUTE/cli-manager\n   ```\n3. To update Krew, enter the following command and check for any errors:\n\n   ```terminal\n   $ oc krew update\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Updated the local copy of plugin index.\n   Updated the local copy of plugin index <custom_index_name>.\n   New plugins available:\n   * ocp/<plugin_name>\n   ```\n\n## Adding a plugin to the CLI Manager Operator {#cli-manager-adding-plugin-yamls_cli-manager-install}\n\nYou can add a CLI plugin to the CLI Manager Operator by creating a new plugin resource in the OpenShift Container Platform web console’s YAML view.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- The CLI Manager Operator is installed.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Navigate to **Ecosystem** -> **Installed Operators**.\n3. From the list, select **CLI Manager Operator**.\n4. Select the **CLI Plugin** tab.\n5. Click **Create Plugin**.\n6. In the text box, enter the information for the plugin you are installing. See the following example YAML file.\n\n```yaml {title=\"Example YAML file to add a plugin\"}\napiVersion: config.openshift.io/v1alpha1\nkind: Plugin\nmetadata:\n  name: <plugin_name>\nspec:\n  description: <description_of_plugin>\n  homepage: <plugin_homepage>\n  platforms:\n  - bin:\n    files:\n    - from: <plugin_file_path>\n      to: .\n    image: <plugin_image>\n    imagePullSecret:\n    platform: <platform>\n  shortDescription: <short_description_of_plugin>\n  version: <version>\n```\n\nwhere:\n\n`<plugin_name>`\n:   Specifies the name of the plugin you plan to use in commands.\n\n`bin`\n:   Specifies the path to the plugin executable.\n\n`imagePullSecret`\n:   Optional field if the registry is not public to add a pull secret to access your plugin image.\n\n`<platform>`\n:   Add the architecture for your system; for example, `linux/amd64`, `darwin/arm64`, `windows/amd64`, or another architecture.\n\n`<version>`\n:   The version must be in v0.0.0 format.\n\n1. Click **Save**.\n\n**Verification**\n\n- Enter the following command to see if the plugin is listed and has been added successfully:\n\n```terminal\n$ oc get plugin/<plugin_name> -o yaml\n```\n\n- Example output:\n\n```terminal\n<plugin_name> ready to be served.\n```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,139 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cli-manager-install" class="group scroll-mt-20">Installing the {"{"}{"{"} cli_manager {"}"}{"}"}<a href="#cli-manager-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/snippets/technology-preview.md">You can simplify the installation and management of CLI plugins in connected and disconnected environments with the {"{"}{"{"} cli_manager {"}"}{"}"}. The {"{"}{"{"} cli_manager {"}"}{"}"} makes Krew compatible with the <code>oc</code> CLI, allowing cluster administrators to manage custom CLI plugin resources.</p>
-      <p class="/modules/cli-manager-installing.md"></p>
-      <p class="/modules/cli-manager-custom-index-krew.md"></p>
-      <p class="/modules/cli-manager-adding-plugin-yaml.md"></p>
+      <p>You can simplify the installation and management of CLI plugins in connected and disconnected environments with the CLI Manager Operator. The CLI Manager Operator makes Krew compatible with the <code>oc</code> CLI, allowing cluster administrators to manage custom CLI plugin resources.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Using the CLI Manager Operator to install and manage plugins for the OpenShift CLI is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="cli-manager-installing_cli-manager-install" class="group scroll-mt-20">Installing the CLI Manager Operator<a href="#cli-manager-installing_cli-manager-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can install the CLI Manager Operator to facilitate adding CLI plugins in both connected and disconnected environments.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Krew always works with OpenShift CLI (<code>oc</code>) without the CLI Manager Operator installed. You can use the same commands outlined in this documentation to use Krew with <code>oc</code>. For more information, see <a href="https://krew.sigs.k8s.io/docs/">Krew documentation</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li><a href="https://krew.sigs.k8s.io/docs/user-guide/setup/install">Krew is installed</a>.</li>
+      <li>You are logged in to OpenShift Container Platform as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>
+      Create the required namespace for the CLI Manager Operator:
+      <ol>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>Namespaces</strong> and click <strong>Create Namespace</strong>.</li>
+      <li>In the <strong>Name</strong> field, enter <code>openshift-cli-manager-operator</code> and click <strong>Create</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Install the CLI Manager Operator:
+      <ol>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong>.</li>
+      <li>In the filter box, enter <strong>CLI Manager Operator</strong>.</li>
+      <li>Select the <strong>CLI Manager Operator</strong> and click <strong>Install</strong>.</li>
+      <li>
+      On the <strong>Install Operator</strong> page, complete the following steps:
+      <ol>
+      <li>Ensure that the <strong>Update channel</strong> is set to <strong>tech preview</strong>, which installs the latest Technology Preview release of the CLI Manager Operator.</li>
+      <li>From the drop-down menu, select <strong>A specific namespace on the cluster</strong> and select <strong>openshift-cli-manager-operator</strong>.</li>
+      <li>Click <strong>Install</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the <code>CliManager</code> resource by completing the following steps:
+      <ol>
+      <li>Navigate to <strong>Installed Operators</strong>.</li>
+      <li>Select <strong>CLI Manager Operator</strong>.</li>
+      <li>Select the <strong>CLI Manager</strong> tab.</li>
+      <li>Click <strong>Create CliManager</strong>.</li>
+      <li>Use the default <strong>Name</strong>.</li>
+      <li>
+      Click <strong>Create</strong>.
+      <ol><li>The new <code>CliManager</code> resource is listed in the <strong>CLI Manager</strong> tab.</li></ol>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Verify that <strong>CLI Manager Operator</strong> is listed with a <strong>Status</strong> of <strong>Succeeded</strong>.</li>
+      </ol>
+      <h2 id="cli-manager-custom-index_cli-manager-install" class="group scroll-mt-20">Adding the CLI Manager Operator custom index to Krew<a href="#cli-manager-custom-index_cli-manager-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the terminal to add the CLI Manager Operator custom index to Krew so that the CLI Manager Operator will work in disconnected environments. This procedure is required for the CLI Manager Operator to function correctly and needs to be done only once.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you use self-signed certificates, mark the certificate as trusted on your local operating system to use Krew.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li><a href="https://krew.sigs.k8s.io/docs/user-guide/setup/install">Krew is installed</a>.</li>
+      <li>The CLI Manager Operator is installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To establish the <code>ROUTE</code> variable, enter the following command:
+      <CodeBlock code={"$ ROUTE=$(oc get route/openshift-cli-manager -n openshift-cli-manager-operator -o=jsonpath='{.spec.host}')"} lang="terminal" />
+      </li>
+      <li>
+      To add the custom index to Krew, enter the following command:
+      <CodeBlock code={"$ oc krew index add <custom_index_name> https://$ROUTE/cli-manager"} lang="terminal" />
+      </li>
+      <li>
+      To update Krew, enter the following command and check for any errors:
+      <CodeBlock code={"$ oc krew update"} lang="terminal" />
+      <CodeBlock code={"Updated the local copy of plugin index.\nUpdated the local copy of plugin index <custom_index_name>.\nNew plugins available:\n* ocp/<plugin_name>"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="cli-manager-adding-plugin-yamls_cli-manager-install" class="group scroll-mt-20">Adding a plugin to the CLI Manager Operator<a href="#cli-manager-adding-plugin-yamls_cli-manager-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add a CLI plugin to the CLI Manager Operator by creating a new plugin resource in the OpenShift Container Platform web console’s YAML view.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to OpenShift Container Platform as a user with the <code>cluster-admin</code> role.</li>
+      <li>The CLI Manager Operator is installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>From the list, select <strong>CLI Manager Operator</strong>.</li>
+      <li>Select the <strong>CLI Plugin</strong> tab.</li>
+      <li>Click <strong>Create Plugin</strong>.</li>
+      <li>In the text box, enter the information for the plugin you are installing. See the following example YAML file.</li>
+      </ol>
+      <CodeBlock code={"apiVersion: config.openshift.io/v1alpha1\nkind: Plugin\nmetadata:\n  name: <plugin_name>\nspec:\n  description: <description_of_plugin>\n  homepage: <plugin_homepage>\n  platforms:\n  - bin:\n    files:\n    - from: <plugin_file_path>\n      to: .\n    image: <plugin_image>\n    imagePullSecret:\n    platform: <platform>\n  shortDescription: <short_description_of_plugin>\n  version: <version>"} lang="yaml" title="Example YAML file to add a plugin" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;plugin_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the plugin you plan to use in commands.</p></dd>
+      <dt class="font-semibold"><code>bin</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the plugin executable.</p></dd>
+      <dt class="font-semibold"><code>imagePullSecret</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional field if the registry is not public to add a pull secret to access your plugin image.</p></dd>
+      <dt class="font-semibold"><code>&lt;platform&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Add the architecture for your system; for example, <code>linux/amd64</code>, <code>darwin/arm64</code>, <code>windows/amd64</code>, or another architecture.</p></dd>
+      <dt class="font-semibold"><code>&lt;version&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The version must be in v0.0.0 format.</p></dd>
+      </dl>
+      <ol><li>Click <strong>Save</strong>.</li></ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>Enter the following command to see if the plugin is listed and has been added successfully:</li></ul>
+      <CodeBlock code={"$ oc get plugin/<plugin_name> -o yaml"} lang="terminal" />
+      <ul><li>Example output:</li></ul>
+      <CodeBlock code={"<plugin_name> ready to be served."} lang="terminal" />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

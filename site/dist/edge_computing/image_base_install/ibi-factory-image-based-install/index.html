@@ -1,14 +1,14 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Preinstalling {{ sno }} using an image-based installation | OpenShift Container Platform</title><meta name="description" content="Use the openshift-install program to create a live installation ISO for preinstalling {{ sno }} on bare-metal hosts. For more information about…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Preinstalling {{ sno }} using an image-based installation"><meta property="og:description" content="Use the openshift-install program to create a live installation ISO for preinstalling {{ sno }} on bare-metal hosts. For more information about…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Preinstalling {{ sno }} using an image-based installation"><meta name="twitter:description" content="Use the openshift-install program to create a live installation ISO for preinstalling {{ sno }} on bare-metal hosts. For more information about…"><script>
+<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Preinstalling {{ sno }} using an image-based installation | OpenShift Container Platform</title><meta name="description" content="Use the openshift-install program to create a live installation ISO for preinstalling single-node OpenShift on bare-metal hosts. For more information…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Preinstalling {{ sno }} using an image-based installation"><meta property="og:description" content="Use the openshift-install program to create a live installation ISO for preinstalling single-node OpenShift on bare-metal hosts. For more information…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Preinstalling {{ sno }} using an image-based installation"><meta name="twitter:description" content="Use the openshift-install program to create a live installation ISO for preinstalling single-node OpenShift on bare-metal hosts. For more information…"><script>
       if (localStorage.getItem("theme") === "dark") {
         document.documentElement.classList.add("dark");
       }
-    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BTNukzuO.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Preinstalling {{ sno }} using an image-based installation</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Preinstalling {{ sno }} using an image-based installation {#ibi-factory-image-based-install}
+    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BrFMoueR.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Preinstalling {{ sno }} using an image-based installation</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Preinstalling {{ sno }} using an image-based installation {#ibi-factory-image-based-install}
 
-Use the `openshift-install` program to create a live installation ISO for preinstalling {{ sno }} on bare-metal hosts. For more information about downloading the installation program, see &quot;Installation process&quot; in the &quot;Additional resources&quot; section.
+Use the `openshift-install` program to create a live installation ISO for preinstalling single-node OpenShift on bare-metal hosts. For more information about downloading the installation program, see &quot;Installation process&quot; in the &quot;Additional resources&quot; section.
 
 The installation program takes a seed image URL and other inputs, such as the release version of the seed image and the disk to use for the installation process, and creates a live installation ISO. You can then start the host using the live installation ISO to begin preinstallation. When preinstallation is complete, the host is ready to ship to a remote site for the final site-specific configuration and deployment.
 
-The following are the high-level steps to preinstall a {{ sno }} cluster using an image-based installation:
+The following are the high-level steps to preinstall a single-node OpenShift cluster using an image-based installation:
 
 - Generate a seed image.
 - Create a live installation ISO using the `openshift-install` installation program.
@@ -18,11 +18,721 @@ The following are the high-level steps to preinstall a {{ sno }} cluster using a
 
 - [Installation process](/openshift-docs-markdown/installing/overview/index#installation-process_ocp-installation-overview)
 
+## Creating a live installation ISO for a single-node OpenShift image-based installation {#ibi-create-iso-for-bmh_ibi-factory-image-based-install}
+
+You can embed your single-node OpenShift seed image URL, and other installation artifacts, in a live installation ISO by using the `openshift-install` program.
+
+> [!NOTE]
+> For more information about the specification for the `image-based-installation-config.yaml` manifest, see the section &quot;Reference specifications for the `image-based-installation-config.yaml` manifest&quot;.
+
+**Prerequisites**
+
+- You generated a seed image from a single-node OpenShift seed cluster.
+- You downloaded the `openshift-install` program. The version of the `openshift-install` program must match the OpenShift Container Platform version in your seed image.
+- The target host has network access to the seed image URL and all other installation artifacts.
+- If you require static networking, you must install the `nmstatectl` library on the host that creates the live installation ISO.
+
+**Procedure**
+
+1. Create a live installation ISO and embed your single-node OpenShift seed image URL and other installation artifacts:
+
+   1. Create a working directory by running the following:
+
+      ```terminal
+      $ mkdir <working_directory>
+      ```
+
+      where `<working_directory>` is the name of your working directory, for example `ibi-iso-workdir`.
+   2. Optional. Create an installation configuration template to use as a reference when configuring the `ImageBasedInstallationConfig` resource:
+
+      ```terminal
+      $ openshift-install image-based create image-config-template --dir <working_directory>
+      ```
+
+      where `<working_directory>` is the name of your working directory, for example `ibi-iso-workdir`. If you do not specify a working directory, the command uses the current directory.
+
+      Example output:
+
+      ```terminal
+      INFO Image-Config-Template created in: ibi-iso-workdir
+      ```
+
+      The command creates the `image-based-installation-config.yaml` installation configuration template in your target directory:
+
+      ```yaml
+      #
+      # Note: This is a sample ImageBasedInstallationConfig file showing
+      # which fields are available to aid you in creating your
+      # own image-based-installation-config.yaml file.
+      #
+      apiVersion: v1beta1
+      kind: ImageBasedInstallationConfig
+      metadata:
+        name: example-image-based-installation-config
+      # The following fields are required
+      seedImage: quay.io/openshift-kni/seed-image:4.22.0
+      seedVersion: 4.22.0
+      installationDisk: /dev/vda
+      pullSecret: '<your_pull_secret>'
+      # networkConfig is optional and contains the network configuration for the host in NMState format.
+      # See https://nmstate.io/examples.html for examples.
+      # networkConfig:
+      #   interfaces:
+      #     - name: eth0
+      #       type: ethernet
+      #       state: up
+      #       mac-address: 00:00:00:00:00:00
+      #       ipv4:
+      #         enabled: true
+      #         address:
+      #           - ip: 192.168.122.2
+      #             prefix-length: 23
+      #         dhcp: false
+      ```
+   3. Edit your installation configuration file:
+
+      Example `image-based-installation-config.yaml` file:
+
+      ```yaml
+      apiVersion: v1beta1
+      kind: ImageBasedInstallationConfig
+      metadata:
+        name: example-image-based-installation-config
+      seedImage: quay.io/repo-id/seed:latest
+      seedVersion: &quot;4.22.0&quot;
+      extraPartitionStart: &quot;-240G&quot;
+      installationDisk: /dev/disk/by-id/wwn-0x62c...
+      sshKey: 'ssh-ed25519 AAAA...'
+      pullSecret: '{&quot;auths&quot;: ...}'
+      networkConfig:
+          interfaces:
+            - name: ens1f0
+              type: ethernet
+              state: up
+              ipv4:
+                enabled: true
+                dhcp: false
+                auto-dns: false
+                address:
+                  - ip: 192.168.200.25
+                    prefix-length: 24
+              ipv6:
+                enabled: false
+          dns-resolver:
+            config:
+              server:
+                - 192.168.15.47
+                - 192.168.15.48
+          routes:
+            config:
+            - destination: 0.0.0.0/0
+              metric: 150
+              next-hop-address: 192.168.200.254
+              next-hop-interface: ens1f0
+      ```
+   4. Create the live installation ISO by running the following command:
+
+      ```terminal
+      $ openshift-install image-based create image --dir ibi-iso-workdir
+      ```
+
+      Example output:
+
+      ```terminal
+      INFO Consuming Image-based Installation ISO Config from target directory
+      INFO Creating Image-based Installation ISO with embedded ignition
+      ```
+
+**Verification**
+
+- View the output in the working directory:
+
+  ```text
+  ibi-iso-workdir/
+    └── rhcos-ibi.iso
+  ```
+
 **Additional resources**
 
 - [Reference specifications for the `image-based-installation-config.yaml` manifest](/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install)
 
+### Configuring additional partitions on the target host {#ibi-extra-partition-ibi-install-iso_ibi-factory-image-based-install}
+
+The installation ISO creates a partition for the `/var/lib/containers` directory as part of the image-based installation process.
+
+You can create additional partitions by using the `coreosInstallerArgs` specification. For example, in hard disks with adequate storage, you might need an additional partition for storage options, such as Logical Volume Manager (LVM) Storage.
+
+> [!NOTE]
+> The `/var/lib/containers` partition requires at least 500 GB to ensure adequate disk space for precached images. You must create additional partitions with a starting position larger than the partition for `/var/lib/containers`.
+
+**Procedure**
+
+1. Edit the `image-based-installation-config.yaml` file to configure additional partitions:
+
+   Example `image-based-installation-config.yaml` file:
+
+   ```yaml
+   apiVersion: v1beta1
+   kind: ImageBasedInstallationConfig
+   metadata:
+     name: example-extra-partition
+   seedImage: quay.io/repo-id/seed:latest
+   seedVersion: &quot;4.22.0&quot;
+   installationDisk: /dev/sda
+   pullSecret: '{&quot;auths&quot;: ...}'
+   # ...
+   skipDiskCleanup: <skip_disk_cleanup>
+   coreosInstallerArgs:
+      - &quot;--save-partindex&quot;
+      - &quot;<partition_index>&quot;
+   ignitionConfigOverride: |
+     {
+       &quot;ignition&quot;: {
+         &quot;version&quot;: &quot;3.2.0&quot;
+       },
+       &quot;storage&quot;: {
+         &quot;disks&quot;: [
+           {
+             &quot;device&quot;: &quot;<installation_disk>&quot;,
+             &quot;partitions&quot;: [
+               {
+                 &quot;label&quot;: &quot;<partition_label>&quot;,
+                 &quot;number&quot;: <partition_number>,
+                 &quot;sizeMiB&quot;: <partition_size>,
+                 &quot;startMiB&quot;: <starting_position>
+               }
+             ]
+           }
+         ]
+       }
+     }
+   ```
+
+   where:
+
+   `<skip_disk_cleanup>`
+   :   Specifies whether to skip disk formatting during the installation process. Set to `true` to skip.
+
+   `&quot;--save-partindex&quot;`
+   :   Specifies the argument to preserve a partition.
+
+   `<partition_index>`
+   :   Specifies the additional partition to preserve. The live installation ISO requires five partitions. Set a number greater than five, for example `6`.
+
+   `<installation_disk>`
+   :   Specifies the installation disk on the target host, for example `/dev/sda`.
+
+   `<partition_label>`
+   :   Specifies the label for the partition, for example `storage`.
+
+   `<partition_number>`
+   :   Specifies the number for the partition, for example `6`.
+
+   `<partition_size>`
+   :   Specifies the size of partition in MiB, for example `380000`.
+
+   `<starting_position>`
+   :   Specifies the starting position on the disk in MiB for the additional partition. You must specify a starting point larger than the partition for `/var/lib/containers`, for example `500000`.
+
+**Verification**
+
+- When you complete the preinstallation of the host with the live installation ISO, login to the target host and run the following command to view the partitions:
+
+  ```terminal
+  $ lsblk
+  ```
+
+  Example output:
+
+  ```terminal
+  sda    8:0    0  140G  0 disk
+  ├─sda1 8:1    0    1M  0 part
+  ├─sda2 8:2    0  127M  0 part
+  ├─sda3 8:3    0  384M  0 part /var/mnt/boot
+  ├─sda4 8:4    0  120G  0 part /var/mnt
+  ├─sda5 8:5    0  500G  0 part /var/lib/containers
+  └─sda6 8:6    0  380G  0 part
+  ```
+
+## Provisioning the live installation ISO to a host {#ibi-provision-install-iso-to-bmh_ibi-factory-image-based-install}
+
+You can provision a live installation ISO to a bare-metal host to preinstall single-node OpenShift.
+
+**Procedure**
+
+- Using your preferred method, boot the target bare-metal host from the `rhcos-ibi.iso` live installation ISO to preinstall single-node OpenShift.
+
+**Verification**
+
+1. Login to the target host.
+2. View the system logs by running the following command:
+
+   ```terminal
+   $ journalctl -b
+   ```
+
+   Example output:
+
+   ```terminal
+   Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;All the precaching threads have finished.&quot;
+   Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;Total Images: 125&quot;
+   Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;Images Pulled Successfully: 125&quot;
+   Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;Images Failed to Pull: 0&quot;
+   Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;Completed executing pre-caching&quot;
+   Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;Pre-cached images successfully.&quot;
+   Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13 17:01:44&quot; level=info msg=&quot;Skipping shutdown&quot;
+   Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13 17:01:44&quot; level=info msg=&quot;IBI preparation process finished successfully!&quot;
+   Aug 13 17:01:44 10.46.26.129 systemd[1]: var-lib-containers-storage-overlay.mount: Deactivated successfully.
+   Aug 13 17:01:44 10.46.26.129 systemd[1]: Finished SNO Image-based Installation.
+   Aug 13 17:01:44 10.46.26.129 systemd[1]: Reached target Multi-User System.
+   Aug 13 17:01:44 10.46.26.129 systemd[1]: Reached target Graphical Interface.
+   ```
+
+## Reference specifications for the image-based-installation-config.yaml manifest {#ibi-installer-installation-config_ibi-factory-image-based-install}
+
+The following content describes the specifications for the `image-based-installation-config.yaml` manifest.
+
+The `openshift-install` program uses the `image-based-installation-config.yaml` manifest to create a live installation ISO for image-based installations of single-node OpenShift.
+
+**Required specifications**
+
+<table>
+<tbody>
+<tr>
+  <td>Specification</td>
+  <td>Type</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><code>seedImage</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the seed image to use in the ISO generation process.</td>
+</tr>
+<tr>
+  <td><code>seedVersion</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the OpenShift Container Platform release version of the seed image. The release version in the seed image must match the release version that you specify in the <code>seedVersion</code> field.</td>
+</tr>
+<tr>
+  <td><code>installationDisk</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the disk that will be used for the installation process.</td>
+</tr>
+<tr>
+  <td><code>pullSecret</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the pull secret to use during the precache process. The pull secret contains authentication credentials for pulling the release payload images from the container registry.</td>
+</tr>
+</tbody>
+</table>
+
+**Optional specifications**
+
+<table>
+<tbody>
+<tr>
+  <td>Specification</td>
+  <td>Type</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><code>shutdown</code></td>
+  <td><code>boolean</code></td>
+  <td>Specifies if the host shuts down after the installation process completes. The default value is <code>false</code>.</td>
+</tr>
+<tr>
+  <td><code>extraPartitionStart</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the start of the extra partition used for <code>/var/lib/containers</code>. The default value is <code>-40G</code>, which means that the partition will be exactly 40GiB in size and uses the space 40GiB from the end of the disk. If you specify a positive value, the partition will start at that position of the disk and extend to the end of the disk.</td>
+</tr>
+<tr>
+  <td><code>extraPartitionLabel</code></td>
+  <td><code>string</code></td>
+  <td>The label of the extra partition you use for <code>/var/lib/containers</code>. The default partition label is <code>var-lib-containers</code>.</td>
+</tr>
+<tr>
+  <td><code>extraPartitionNumber</code></td>
+  <td><code>unsigned integer</code></td>
+  <td>The number of the extra partition you use for <code>/var/lib/containers</code>. The default number is <code>5</code>.</td>
+</tr>
+<tr>
+  <td><code>skipDiskCleanup</code></td>
+  <td><code>boolean</code></td>
+  <td>The installation process formats the disk on the host. Set this specification to 'true' to skip this step. The default is <code>false</code>.</td>
+</tr>
+<tr>
+  <td><code>networkConfig</code></td>
+  <td><code>string</code></td>
+  <td>Specifies networking configurations for the host, for example:</td>
+</tr>
+<tr>
+  <td><code>proxy</code></td>
+  <td><code>string</code></td>
+  <td>Specifies proxy settings to use during the installation ISO generation, for example:</td>
+</tr>
+<tr>
+  <td><code>imageDigestSources</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the sources or repositories for the release-image content, for example:</td>
+</tr>
+<tr>
+  <td><code>additionalTrustBundle</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the PEM-encoded X.509 certificate bundle. The installation program adds this to the <code>/etc/pki/ca-trust/source/anchors/</code> directory in the installation ISO.</td>
+</tr>
+<tr>
+  <td>additionalTrustBundle: \</td>
+  <td> -----BEGIN CERTIFICATE----- MTICLDCCAdKgAwfBAgIBAGAKBggqhkjOPQRDAjB9MQswCQYRVEQGE ... l2wOuDwKQa+upc4GftXE7C//4mKBNBC6Ty01gUaTIpo= -----END CERTIFICATE----- ----</td>
+  <td><code>sshKey</code></td>
+</tr>
+<tr>
+  <td><code>string</code></td>
+  <td>Specifies the SSH key to authenticate access to the host.</td>
+  <td><code>ignitionConfigOverride</code></td>
+</tr>
+<tr>
+  <td><code>string</code></td>
+  <td>Specifies a JSON string containing the user overrides for the Ignition config. The configuration merges with the Ignition config file generated by the installation program. This feature requires Ignition version is 3.2 or later.</td>
+  <td><code>coreosInstallerArgs</code></td>
+</tr>
+<tr>
+  <td><code>string</code></td>
+  <td>Specifies custom arguments for the <code>coreos-install</code> command that you can use to configure kernel arguments and disk partitioning options.</td>
+</tr>
+</tbody>
+</table>
+
 **Additional resources**
 
 - [Configuring a shared container partition between ostree stateroots](/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install)
-"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fimage_base_install%2Fibi-factory-image-based-install.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fimage_base_install%2Fibi-factory-image-based-install.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fimage_base_install%2Fibi-factory-image-based-install.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fimage_base_install%2Fibi-factory-image-based-install.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:edge_computing" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:edge_computing/image_base_install" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><article class="docs-prose"><h1 id="ibi-factory-image-based-install" class="group scroll-mt-20">Preinstalling {{ sno }} using an image-based installation<a href="#ibi-factory-image-based-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p class="/_attributes/common-attributes.md"></p><p>Use the <code>openshift-install</code> program to create a live installation ISO for preinstalling {{ sno }} on bare-metal hosts. For more information about downloading the installation program, see "Installation process" in the "Additional resources" section.</p><p>The installation program takes a seed image URL and other inputs, such as the release version of the seed image and the disk to use for the installation process, and creates a live installation ISO. You can then start the host using the live installation ISO to begin preinstallation. When preinstallation is complete, the host is ready to ship to a remote site for the final site-specific configuration and deployment.</p><p>The following are the high-level steps to preinstall a {{ sno }} cluster using an image-based installation:</p><ul><li>Generate a seed image.</li><li>Create a live installation ISO using the <code>openshift-install</code> installation program.</li><li>Boot the host using the live installation ISO to preinstall the host.</li></ul><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/installing/overview/index#installation-process_ocp-installation-overview">Installation process</a></li></ul><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install">Reference specifications for the <code>image-based-installation-config.yaml</code> manifest</a></li></ul><p class="/modules/ibi-provision-install-iso-to-bmh.md"></p><p class="/modules/ibi-installer-installation-config.md"></p><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install">Configuring a shared container partition between ostree stateroots</a></li></ul></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Preparing for a single-node OpenShift image-based installation</div></div></a><a href="/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Deploying managed single-node OpenShift using the IBI Operator</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>
+"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/image_base_install/ibi-factory-image-based-install.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fimage_base_install%2Fibi-factory-image-based-install.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fimage_base_install%2Fibi-factory-image-based-install.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fimage_base_install%2Fibi-factory-image-based-install.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fimage_base_install%2Fibi-factory-image-based-install.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:edge_computing" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:edge_computing/image_base_install" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><details class="dba-toc-top not-prose mb-6 rounded-md border" data-toc-top data-astro-cid-vg5xjwtk><summary class="cursor-pointer list-none px-3 py-2 text-sm font-medium text-muted-foreground" data-astro-cid-vg5xjwtk>On this page</summary><div class="border-t px-3 py-2" data-astro-cid-vg5xjwtk><nav class="text-sm" aria-label="Table of contents"><ul class="mt-2 space-y-1"><li><a href="#ibi-create-iso-for-bmh_ibi-factory-image-based-install" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ibi-create-iso-for-bmh_ibi-factory-image-based-install">Creating a live installation ISO for a single-node OpenShift image-based installation</a></li><li><a href="#ibi-extra-partition-ibi-install-iso_ibi-factory-image-based-install" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="ibi-extra-partition-ibi-install-iso_ibi-factory-image-based-install">Configuring additional partitions on the target host</a></li><li><a href="#ibi-provision-install-iso-to-bmh_ibi-factory-image-based-install" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ibi-provision-install-iso-to-bmh_ibi-factory-image-based-install">Provisioning the live installation ISO to a host</a></li><li><a href="#ibi-installer-installation-config_ibi-factory-image-based-install" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ibi-installer-installation-config_ibi-factory-image-based-install">Reference specifications for the image-based-installation-config.yaml manifest</a></li></ul></nav></div></details><article class="docs-prose"><h1 id="ibi-factory-image-based-install" class="group scroll-mt-20">Preinstalling {{ sno }} using an image-based installation<a href="#ibi-factory-image-based-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>Use the <code>openshift-install</code> program to create a live installation ISO for preinstalling single-node OpenShift on bare-metal hosts. For more information about downloading the installation program, see "Installation process" in the "Additional resources" section.</p><p>The installation program takes a seed image URL and other inputs, such as the release version of the seed image and the disk to use for the installation process, and creates a live installation ISO. You can then start the host using the live installation ISO to begin preinstallation. When preinstallation is complete, the host is ready to ship to a remote site for the final site-specific configuration and deployment.</p><p>The following are the high-level steps to preinstall a single-node OpenShift cluster using an image-based installation:</p><ul><li>Generate a seed image.</li><li>Create a live installation ISO using the <code>openshift-install</code> installation program.</li><li>Boot the host using the live installation ISO to preinstall the host.</li></ul><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/installing/overview/index#installation-process_ocp-installation-overview">Installation process</a></li></ul><h2 id="ibi-create-iso-for-bmh_ibi-factory-image-based-install" class="group scroll-mt-20">Creating a live installation ISO for a single-node OpenShift image-based installation<a href="#ibi-create-iso-for-bmh_ibi-factory-image-based-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can embed your single-node OpenShift seed image URL, and other installation artifacts, in a live installation ISO by using the <code>openshift-install</code> program.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>For more information about the specification for the <code>image-based-installation-config.yaml</code> manifest, see the section "Reference specifications for the <code>image-based-installation-config.yaml</code> manifest".</p></div></div><p><strong>Prerequisites</strong></p><ul><li>You generated a seed image from a single-node OpenShift seed cluster.</li><li>You downloaded the <code>openshift-install</code> program. The version of the <code>openshift-install</code> program must match the OpenShift Container Platform version in your seed image.</li><li>The target host has network access to the seed image URL and all other installation artifacts.</li><li>If you require static networking, you must install the <code>nmstatectl</code> library on the host that creates the live installation ISO.</li></ul><p><strong>Procedure</strong></p><ol><li>Create a live installation ISO and embed your single-node OpenShift seed image URL and other installation artifacts:<ol><li>Create a working directory by running the following:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ mkdir <working_directory>" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> mkdir</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> &#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">working_director</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">y</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span></span></code></pre></div></div><script type="module">function e(){document.querySelectorAll(`[data-component='code-block'] [data-part='copy']`).forEach(e=>{e.__copyBound||(e.__copyBound=!0,e.addEventListener(`click`,async()=>{let t=e.getAttribute(`data-copy-text`)||``;try{await navigator.clipboard.writeText(t);let n=e.querySelector(`[data-copy-icon]`),r=e.querySelector(`[data-check-icon]`);n&&r&&(n.classList.add(`hidden`),r.classList.remove(`hidden`),setTimeout(()=>{n.classList.remove(`hidden`),r.classList.add(`hidden`)},2e3))}catch{}}))})}e(),document.addEventListener(`astro:after-swap`,e);</script><p>where <code>&lt;working_directory&gt;</code> is the name of your working directory, for example <code>ibi-iso-workdir</code>.</p></li><li>Optional. Create an installation configuration template to use as a reference when configuring the <code>ImageBasedInstallationConfig</code> resource:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ openshift-install image-based create image-config-template --dir <working_directory>" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> openshift-install</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> image-based</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> create</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> image-config-template</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --dir</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> &#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">working_director</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">y</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span></span></code></pre></div></div><p>where <code>&lt;working_directory&gt;</code> is the name of your working directory, for example <code>ibi-iso-workdir</code>. If you do not specify a working directory, the command uses the current directory.</p><p>Example output:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="INFO Image-Config-Template created in: ibi-iso-workdir" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">INFO</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Image-Config-Template</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> created</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> in:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> ibi-iso-workdir</span></span></code></pre></div></div><p>The command creates the <code>image-based-installation-config.yaml</code> installation configuration template in your target directory:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="#
+# Note: This is a sample ImageBasedInstallationConfig file showing
+# which fields are available to aid you in creating your
+# own image-based-installation-config.yaml file.
+#
+apiVersion: v1beta1
+kind: ImageBasedInstallationConfig
+metadata:
+  name: example-image-based-installation-config
+# The following fields are required
+seedImage: quay.io/openshift-kni/seed-image:4.22.0
+seedVersion: 4.22.0
+installationDisk: /dev/vda
+pullSecret: '<your_pull_secret>'
+# networkConfig is optional and contains the network configuration for the host in NMState format.
+# See https://nmstate.io/examples.html for examples.
+# networkConfig:
+#   interfaces:
+#     - name: eth0
+#       type: ethernet
+#       state: up
+#       mac-address: 00:00:00:00:00:00
+#       ipv4:
+#         enabled: true
+#         address:
+#           - ip: 192.168.122.2
+#             prefix-length: 23
+#         dhcp: false" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># Note: This is a sample ImageBasedInstallationConfig file showing</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># which fields are available to aid you in creating your</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># own image-based-installation-config.yaml file.</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">v1beta1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ImageBasedInstallationConfig</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">example-image-based-installation-config</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># The following fields are required</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">seedImage</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">quay.io/openshift-kni/seed-image:4.22.0</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">seedVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">4.22.0</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">installationDisk</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">/dev/vda</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">pullSecret</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">'&#x3C;your_pull_secret>'</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># networkConfig is optional and contains the network configuration for the host in NMState format.</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># See https://nmstate.io/examples.html for examples.</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># networkConfig:</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#   interfaces:</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#     - name: eth0</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#       type: ethernet</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#       state: up</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#       mac-address: 00:00:00:00:00:00</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#       ipv4:</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#         enabled: true</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#         address:</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#           - ip: 192.168.122.2</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#             prefix-length: 23</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">#         dhcp: false</span></span></code></pre></div></div></li><li>Edit your installation configuration file:<p>Example <code>image-based-installation-config.yaml</code> file:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: v1beta1
+kind: ImageBasedInstallationConfig
+metadata:
+  name: example-image-based-installation-config
+seedImage: quay.io/repo-id/seed:latest
+seedVersion: &quot;4.22.0&quot;
+extraPartitionStart: &quot;-240G&quot;
+installationDisk: /dev/disk/by-id/wwn-0x62c...
+sshKey: 'ssh-ed25519 AAAA...'
+pullSecret: '{&quot;auths&quot;: ...}'
+networkConfig:
+    interfaces:
+      - name: ens1f0
+        type: ethernet
+        state: up
+        ipv4:
+          enabled: true
+          dhcp: false
+          auto-dns: false
+          address:
+            - ip: 192.168.200.25
+              prefix-length: 24
+        ipv6:
+          enabled: false
+    dns-resolver:
+      config:
+        server:
+          - 192.168.15.47
+          - 192.168.15.48
+    routes:
+      config:
+      - destination: 0.0.0.0/0
+        metric: 150
+        next-hop-address: 192.168.200.254
+        next-hop-interface: ens1f0
+" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">v1beta1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ImageBasedInstallationConfig</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">example-image-based-installation-config</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">seedImage</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">quay.io/repo-id/seed:latest</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">seedVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"4.22.0"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">extraPartitionStart</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"-240G"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">installationDisk</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">/dev/disk/by-id/wwn-0x62c...</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">sshKey</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">'ssh-ed25519 AAAA...'</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">pullSecret</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">'{"auths": ...}'</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">networkConfig</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    interfaces</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">      - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ens1f0</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        type</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ethernet</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        state</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">up</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        ipv4</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          enabled</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">true</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          dhcp</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">false</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          auto-dns</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">false</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          address</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">            - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">ip</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">192.168.200.25</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              prefix-length</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">24</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        ipv6</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          enabled</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">false</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    dns-resolver</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      config</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        server</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">          - </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">192.168.15.47</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">          - </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">192.168.15.48</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    routes</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      config</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">      - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">destination</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">0.0.0.0/0</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        metric</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">150</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        next-hop-address</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">192.168.200.254</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        next-hop-interface</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ens1f0</span></span></code></pre></div></div></li><li>Create the live installation ISO by running the following command:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ openshift-install image-based create image --dir ibi-iso-workdir" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> openshift-install</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> image-based</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> create</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> image</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --dir</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> ibi-iso-workdir</span></span></code></pre></div></div><p>Example output:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="INFO Consuming Image-based Installation ISO Config from target directory
+INFO Creating Image-based Installation ISO with embedded ignition" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">INFO</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Consuming</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Image-based</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Installation</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> ISO</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Config</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> from</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> target</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> directory</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">INFO</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Creating</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Image-based</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Installation</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> ISO</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> with</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> embedded</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> ignition</span></span></code></pre></div></div></li></ol></li></ol><p><strong>Verification</strong></p><ul><li>View the output in the working directory:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">text</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="ibi-iso-workdir/
+  └── rhcos-ibi.iso" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="text"><code><span class="line"><span>ibi-iso-workdir/</span></span>
+<span class="line"><span>  └── rhcos-ibi.iso</span></span></code></pre></div></div></li></ul><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install-standalone#ibi-installer-configuration-config_ibi-edge-image-based-install">Reference specifications for the <code>image-based-installation-config.yaml</code> manifest</a></li></ul><h3 id="ibi-extra-partition-ibi-install-iso_ibi-factory-image-based-install" class="group scroll-mt-20">Configuring additional partitions on the target host<a href="#ibi-extra-partition-ibi-install-iso_ibi-factory-image-based-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p class="_abstract">The installation ISO creates a partition for the <code>/var/lib/containers</code> directory as part of the image-based installation process.</p><p>You can create additional partitions by using the <code>coreosInstallerArgs</code> specification. For example, in hard disks with adequate storage, you might need an additional partition for storage options, such as Logical Volume Manager (LVM) Storage.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The <code>/var/lib/containers</code> partition requires at least 500 GB to ensure adequate disk space for precached images. You must create additional partitions with a starting position larger than the partition for <code>/var/lib/containers</code>.</p></div></div><p><strong>Procedure</strong></p><ol><li>Edit the <code>image-based-installation-config.yaml</code> file to configure additional partitions:<p>Example <code>image-based-installation-config.yaml</code> file:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: v1beta1
+kind: ImageBasedInstallationConfig
+metadata:
+  name: example-extra-partition
+seedImage: quay.io/repo-id/seed:latest
+seedVersion: &quot;4.22.0&quot;
+installationDisk: /dev/sda
+pullSecret: '{&quot;auths&quot;: ...}'
+# ...
+skipDiskCleanup: <skip_disk_cleanup>
+coreosInstallerArgs:
+   - &quot;--save-partindex&quot;
+   - &quot;<partition_index>&quot;
+ignitionConfigOverride: |
+  {
+    &quot;ignition&quot;: {
+      &quot;version&quot;: &quot;3.2.0&quot;
+    },
+    &quot;storage&quot;: {
+      &quot;disks&quot;: [
+        {
+          &quot;device&quot;: &quot;<installation_disk>&quot;,
+          &quot;partitions&quot;: [
+            {
+              &quot;label&quot;: &quot;<partition_label>&quot;,
+              &quot;number&quot;: <partition_number>,
+              &quot;sizeMiB&quot;: <partition_size>,
+              &quot;startMiB&quot;: <starting_position>
+            }
+          ]
+        }
+      ]
+    }
+  }
+" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">v1beta1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ImageBasedInstallationConfig</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">example-extra-partition</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">seedImage</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">quay.io/repo-id/seed:latest</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">seedVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"4.22.0"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">installationDisk</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">/dev/sda</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">pullSecret</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">'{"auths": ...}'</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E"># ...</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">skipDiskCleanup</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">&#x3C;skip_disk_cleanup></span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">coreosInstallerArgs</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">   - </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"--save-partindex"</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">   - </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"&#x3C;partition_index>"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">ignitionConfigOverride</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">|</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  {</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    "ignition": {</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">      "version": "3.2.0"</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    },</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    "storage": {</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">      "disks": [</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">        {</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">          "device": "&#x3C;installation_disk>",</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">          "partitions": [</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">            {</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              "label": "&#x3C;partition_label>",</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              "number": &#x3C;partition_number>,</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              "sizeMiB": &#x3C;partition_size>,</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              "startMiB": &#x3C;starting_position></span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">            }</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">          ]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">        }</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">      ]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    }</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  }</span></span></code></pre></div></div><p>where:</p><dl class="my-4 space-y-2"><dt class="font-semibold"><code>&lt;skip_disk_cleanup&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies whether to skip disk formatting during the installation process. Set to <code>true</code> to skip.</p></dd><dt class="font-semibold"><code>"--save-partindex"</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the argument to preserve a partition.</p></dd><dt class="font-semibold"><code>&lt;partition_index&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the additional partition to preserve. The live installation ISO requires five partitions. Set a number greater than five, for example <code>6</code>.</p></dd><dt class="font-semibold"><code>&lt;installation_disk&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the installation disk on the target host, for example <code>/dev/sda</code>.</p></dd><dt class="font-semibold"><code>&lt;partition_label&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the label for the partition, for example <code>storage</code>.</p></dd><dt class="font-semibold"><code>&lt;partition_number&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the number for the partition, for example <code>6</code>.</p></dd><dt class="font-semibold"><code>&lt;partition_size&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the size of partition in MiB, for example <code>380000</code>.</p></dd><dt class="font-semibold"><code>&lt;starting_position&gt;</code></dt><dd class="ml-6 text-muted-foreground"><p>Specifies the starting position on the disk in MiB for the additional partition. You must specify a starting point larger than the partition for <code>/var/lib/containers</code>, for example <code>500000</code>.</p></dd></dl></li></ol><p><strong>Verification</strong></p><ul><li>When you complete the preinstallation of the host with the live installation ISO, login to the target host and run the following command to view the partitions:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ lsblk" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> lsblk</span></span></code></pre></div></div><p>Example output:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="sda    8:0    0  140G  0 disk
+├─sda1 8:1    0    1M  0 part
+├─sda2 8:2    0  127M  0 part
+├─sda3 8:3    0  384M  0 part /var/mnt/boot
+├─sda4 8:4    0  120G  0 part /var/mnt
+├─sda5 8:5    0  500G  0 part /var/lib/containers
+└─sda6 8:6    0  380G  0 part" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">sda</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    8:0</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">    0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  140G</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">  0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> disk</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">├─sda1</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 8:1</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">    0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    1M</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">  0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> part</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">├─sda2</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 8:2</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">    0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  127M</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">  0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> part</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">├─sda3</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 8:3</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">    0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  384M</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">  0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> part</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> /var/mnt/boot</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">├─sda4</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 8:4</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">    0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  120G</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">  0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> part</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> /var/mnt</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">├─sda5</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 8:5</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">    0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  500G</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">  0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> part</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> /var/lib/containers</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">└─sda6</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 8:6</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">    0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  380G</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">  0</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> part</span></span></code></pre></div></div></li></ul><h2 id="ibi-provision-install-iso-to-bmh_ibi-factory-image-based-install" class="group scroll-mt-20">Provisioning the live installation ISO to a host<a href="#ibi-provision-install-iso-to-bmh_ibi-factory-image-based-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can provision a live installation ISO to a bare-metal host to preinstall single-node OpenShift.</p><p><strong>Procedure</strong></p><ul><li>Using your preferred method, boot the target bare-metal host from the <code>rhcos-ibi.iso</code> live installation ISO to preinstall single-node OpenShift.</li></ul><p><strong>Verification</strong></p><ol><li>Login to the target host.</li><li>View the system logs by running the following command:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ journalctl -b" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> journalctl</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -b</span></span></code></pre></div></div><p>Example output:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;All the precaching threads have finished.&quot;
+Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;Total Images: 125&quot;
+Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;Images Pulled Successfully: 125&quot;
+Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;Images Failed to Pull: 0&quot;
+Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;Completed executing pre-caching&quot;
+Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13T17:01:44Z&quot; level=info msg=&quot;Pre-cached images successfully.&quot;
+Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13 17:01:44&quot; level=info msg=&quot;Skipping shutdown&quot;
+Aug 13 17:01:44 10.46.26.129 install-rhcos-and-restore-seed.sh[2876]: time=&quot;2024-08-13 17:01:44&quot; level=info msg=&quot;IBI preparation process finished successfully!&quot;
+Aug 13 17:01:44 10.46.26.129 systemd[1]: var-lib-containers-storage-overlay.mount: Deactivated successfully.
+Aug 13 17:01:44 10.46.26.129 systemd[1]: Finished SNO Image-based Installation.
+Aug 13 17:01:44 10.46.26.129 systemd[1]: Reached target Multi-User System.
+Aug 13 17:01:44 10.46.26.129 systemd[1]: Reached target Graphical Interface." type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> install-rhcos-and-restore-seed.sh[2876]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> time="2024-08-13T17:01:44Z"</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> level=info</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> msg="All the precaching threads have finished."</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> install-rhcos-and-restore-seed.sh[2876]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> time="2024-08-13T17:01:44Z"</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> level=info</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> msg="Total Images: 125"</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> install-rhcos-and-restore-seed.sh[2876]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> time="2024-08-13T17:01:44Z"</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> level=info</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> msg="Images Pulled Successfully: 125"</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> install-rhcos-and-restore-seed.sh[2876]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> time="2024-08-13T17:01:44Z"</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> level=info</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> msg="Images Failed to Pull: 0"</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> install-rhcos-and-restore-seed.sh[2876]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> time="2024-08-13T17:01:44Z"</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> level=info</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> msg="Completed executing pre-caching"</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> install-rhcos-and-restore-seed.sh[2876]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> time="2024-08-13T17:01:44Z"</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> level=info</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> msg="Pre-cached images successfully."</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> install-rhcos-and-restore-seed.sh[2876]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> time="2024-08-13 17:01:44"</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> level=info</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> msg="Skipping shutdown"</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> install-rhcos-and-restore-seed.sh[2876]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> time="2024-08-13 17:01:44"</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> level=info</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> msg="IBI preparation process finished successfully!"</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> systemd[1]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> var-lib-containers-storage-overlay.mount:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Deactivated</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> successfully.</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> systemd[1]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Finished</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> SNO</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Image-based</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Installation.</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> systemd[1]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Reached</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> target</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Multi-User</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> System.</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">Aug</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 13</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> 17:01:44</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> 10.46.26.129</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> systemd[1]:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Reached</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> target</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Graphical</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> Interface.</span></span></code></pre></div></div></li></ol><h2 id="ibi-installer-installation-config_ibi-factory-image-based-install" class="group scroll-mt-20">Reference specifications for the image-based-installation-config.yaml manifest<a href="#ibi-installer-installation-config_ibi-factory-image-based-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">The following content describes the specifications for the <code>image-based-installation-config.yaml</code> manifest. </p><p>The <code>openshift-install</code> program uses the <code>image-based-installation-config.yaml</code> manifest to create a live installation ISO for image-based installations of single-node OpenShift.</p><p><strong>Required specifications</strong></p><table>
+<tbody>
+<tr>
+  <td>Specification</td>
+  <td>Type</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><code>seedImage</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the seed image to use in the ISO generation process.</td>
+</tr>
+<tr>
+  <td><code>seedVersion</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the OpenShift Container Platform release version of the seed image. The release version in the seed image must match the release version that you specify in the <code>seedVersion</code> field.</td>
+</tr>
+<tr>
+  <td><code>installationDisk</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the disk that will be used for the installation process.</td>
+</tr>
+<tr>
+  <td><code>pullSecret</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the pull secret to use during the precache process. The pull secret contains authentication credentials for pulling the release payload images from the container registry.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Optional specifications</strong></p><table>
+<tbody>
+<tr>
+  <td>Specification</td>
+  <td>Type</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><code>shutdown</code></td>
+  <td><code>boolean</code></td>
+  <td>Specifies if the host shuts down after the installation process completes. The default value is <code>false</code>.</td>
+</tr>
+<tr>
+  <td><code>extraPartitionStart</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the start of the extra partition used for <code>/var/lib/containers</code>. The default value is <code>-40G</code>, which means that the partition will be exactly 40GiB in size and uses the space 40GiB from the end of the disk. If you specify a positive value, the partition will start at that position of the disk and extend to the end of the disk.</td>
+</tr>
+<tr>
+  <td><code>extraPartitionLabel</code></td>
+  <td><code>string</code></td>
+  <td>The label of the extra partition you use for <code>/var/lib/containers</code>. The default partition label is <code>var-lib-containers</code>.</td>
+</tr>
+<tr>
+  <td><code>extraPartitionNumber</code></td>
+  <td><code>unsigned integer</code></td>
+  <td>The number of the extra partition you use for <code>/var/lib/containers</code>. The default number is <code>5</code>.</td>
+</tr>
+<tr>
+  <td><code>skipDiskCleanup</code></td>
+  <td><code>boolean</code></td>
+  <td>The installation process formats the disk on the host. Set this specification to 'true' to skip this step. The default is <code>false</code>.</td>
+</tr>
+<tr>
+  <td><code>networkConfig</code></td>
+  <td><code>string</code></td>
+  <td>Specifies networking configurations for the host, for example:</td>
+</tr>
+<tr>
+  <td><code>proxy</code></td>
+  <td><code>string</code></td>
+  <td>Specifies proxy settings to use during the installation ISO generation, for example:</td>
+</tr>
+<tr>
+  <td><code>imageDigestSources</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the sources or repositories for the release-image content, for example:</td>
+</tr>
+<tr>
+  <td><code>additionalTrustBundle</code></td>
+  <td><code>string</code></td>
+  <td>Specifies the PEM-encoded X.509 certificate bundle. The installation program adds this to the <code>/etc/pki/ca-trust/source/anchors/</code> directory in the installation ISO.</td>
+</tr>
+<tr>
+  <td>additionalTrustBundle: \</td>
+  <td> -----BEGIN CERTIFICATE----- MTICLDCCAdKgAwfBAgIBAGAKBggqhkjOPQRDAjB9MQswCQYRVEQGE ... l2wOuDwKQa+upc4GftXE7C//4mKBNBC6Ty01gUaTIpo= -----END CERTIFICATE----- ----</td>
+  <td><code>sshKey</code></td>
+</tr>
+<tr>
+  <td><code>string</code></td>
+  <td>Specifies the SSH key to authenticate access to the host.</td>
+  <td><code>ignitionConfigOverride</code></td>
+</tr>
+<tr>
+  <td><code>string</code></td>
+  <td>Specifies a JSON string containing the user overrides for the Ignition config. The configuration merges with the Ignition config file generated by the installation program. This feature requires Ignition version is 3.2 or later.</td>
+  <td><code>coreosInstallerArgs</code></td>
+</tr>
+<tr>
+  <td><code>string</code></td>
+  <td>Specifies custom arguments for the <code>coreos-install</code> command that you can use to configure kernel arguments and disk partitioning options.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install#cnf-image-based-upgrade-shared-container-partition_ibi-preparing-image-based-install">Configuring a shared container partition between ostree stateroots</a></li></ul></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/edge_computing/image_base_install/ibi-preparing-for-image-based-install" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Preparing for a single-node OpenShift image-based installation</div></div></a><a href="/openshift-docs-markdown/edge_computing/image_base_install/ibi_deploying_sno_clusters/ibi-edge-image-based-install" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Deploying managed single-node OpenShift using the IBI Operator</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>

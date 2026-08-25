@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"installing-on-prem-assisted","text":"Installing an on-premise cluster using the {{ ai_full }}"}];
+const headings = [{"depth":1,"slug":"installing-on-prem-assisted","text":"Installing an on-premise cluster using the Assisted Installer"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_on_prem_assisted/installing-on-prem-assisted";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Installing an on-premise cluster using the {{ ai_full }}";
-const description = "You can install OpenShift Container Platform on on-premise hardware or on-premise VMs by using the {{ ai_full }} for OpenShift Container Platform." || undefined;
+const description = "You can install OpenShift Container Platform on on-premise hardware or on-premise VMs by using the Assisted Installer for OpenShift Container Platform." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["installing","installing/installing_on_prem_assisted"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing an on-premise cluster using the {{ ai_full }} {#installing-on-prem-assisted}\n\nYou can install OpenShift Container Platform on on-premise hardware or on-premise VMs by using the {{ ai_full }} for OpenShift Container Platform.\n\nThe {{ ai_full }} is a user-friendly installation solution offered on the {{ hybrid_console_second }}. The {{ ai_full }} reduces installation complexity, enabling users to deploy and configure OpenShift Container Platform clusters with minimal manual intervention.\n\nFor access to the {{ ai_full }} user interface and documentation, see *Additional resources*.\n\n**Additional resources**\n\n- [{{ ai_full }} user interface](https://console.redhat.com/openshift/assisted-installer/clusters/~new)\n- [{{ ai_full }} documentation](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)\n- [{{ hybrid_console }}](https://console.redhat.com)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_on_prem_assisted/installing-on-prem-assisted.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing an on-premise cluster using the Assisted Installer {#installing-on-prem-assisted}\n\nYou can install OpenShift Container Platform on on-premise hardware or on-premise VMs by using the Assisted Installer for OpenShift Container Platform.\n\nThe Assisted Installer is a user-friendly installation solution offered on the Hybrid Cloud Console. The Assisted Installer reduces installation complexity, enabling users to deploy and configure OpenShift Container Platform clusters with minimal manual intervention.\n\nFor access to the Assisted Installer user interface and documentation, see *Additional resources*.\n\n**Additional resources**\n\n- [Assisted Installer user interface](https://console.redhat.com/openshift/assisted-installer/clusters/~new)\n- [Assisted Installer documentation](https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform)\n- [Red Hat Hybrid Cloud Console](https://console.redhat.com)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_on_prem_assisted/installing-on-prem-assisted.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,16 +90,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="installing-on-prem-assisted" class="group scroll-mt-20">Installing an on-premise cluster using the {"{"}{"{"} ai_full {"}"}{"}"}<a href="#installing-on-prem-assisted" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can install OpenShift Container Platform on on-premise hardware or on-premise VMs by using the {"{"}{"{"} ai_full {"}"}{"}"} for OpenShift Container Platform.</p>
-      <p>The {"{"}{"{"} ai_full {"}"}{"}"} is a user-friendly installation solution offered on the {"{"}{"{"} hybrid_console_second {"}"}{"}"}. The {"{"}{"{"} ai_full {"}"}{"}"} reduces installation complexity, enabling users to deploy and configure OpenShift Container Platform clusters with minimal manual intervention.</p>
-      <p>For access to the {"{"}{"{"} ai_full {"}"}{"}"} user interface and documentation, see <em>Additional resources</em>.</p>
+      <h1 id="installing-on-prem-assisted" class="group scroll-mt-20">Installing an on-premise cluster using the Assisted Installer<a href="#installing-on-prem-assisted" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can install OpenShift Container Platform on on-premise hardware or on-premise VMs by using the Assisted Installer for OpenShift Container Platform.</p>
+      <p>The Assisted Installer is a user-friendly installation solution offered on the Hybrid Cloud Console. The Assisted Installer reduces installation complexity, enabling users to deploy and configure OpenShift Container Platform clusters with minimal manual intervention.</p>
+      <p>For access to the Assisted Installer user interface and documentation, see <em>Additional resources</em>.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="https://console.redhat.com/openshift/assisted-installer/clusters/~new">{"{"}{"{"} ai_full {"}"}{"}"} user interface</a></li>
-      <li><a href="https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform">{"{"}{"{"} ai_full {"}"}{"}"} documentation</a></li>
-      <li><a href="https://console.redhat.com">{"{"}{"{"} hybrid_console {"}"}{"}"}</a></li>
+      <li><a href="https://console.redhat.com/openshift/assisted-installer/clusters/~new">Assisted Installer user interface</a></li>
+      <li><a href="https://access.redhat.com/documentation/en-us/assisted_installer_for_openshift_container_platform">Assisted Installer documentation</a></li>
+      <li><a href="https://console.redhat.com">Red Hat Hybrid Cloud Console</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

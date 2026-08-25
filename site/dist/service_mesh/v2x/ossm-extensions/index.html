@@ -1,11 +1,972 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Extensions | OpenShift Container Platform</title><meta name="description" content="You can use WebAssembly extensions to add new features directly into the {{ SMProductName }} proxies. This lets you move even more common functionality…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-extensions/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/service_mesh/v2x/ossm-extensions.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Extensions"><meta property="og:description" content="You can use WebAssembly extensions to add new features directly into the {{ SMProductName }} proxies. This lets you move even more common functionality…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-extensions/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Extensions"><meta name="twitter:description" content="You can use WebAssembly extensions to add new features directly into the {{ SMProductName }} proxies. This lets you move even more common functionality…"><script>
+<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Extensions | OpenShift Container Platform</title><meta name="description" content="You can use WebAssembly extensions to add new features directly into the Red Hat OpenShift Service Mesh proxies. This lets you move even more common…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-extensions/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/service_mesh/v2x/ossm-extensions.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Extensions"><meta property="og:description" content="You can use WebAssembly extensions to add new features directly into the Red Hat OpenShift Service Mesh proxies. This lets you move even more common…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-extensions/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Extensions"><meta name="twitter:description" content="You can use WebAssembly extensions to add new features directly into the Red Hat OpenShift Service Mesh proxies. This lets you move even more common…"><script>
       if (localStorage.getItem("theme") === "dark") {
         document.documentElement.classList.add("dark");
       }
-    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BTNukzuO.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/service_mesh/v2x/ossm-extensions" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Extensions</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Extensions {#ossm-extensions}
+    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BrFMoueR.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/service_mesh/v2x/ossm-extensions" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Extensions</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Extensions {#ossm-extensions}
 
-You can use WebAssembly extensions to add new features directly into the {{ SMProductName }} proxies. This lets you move even more common functionality out of your applications, and implement them in a single language that compiles to WebAssembly bytecode.
+You can use WebAssembly extensions to add new features directly into the Red Hat OpenShift Service Mesh proxies. This lets you move even more common functionality out of your applications, and implement them in a single language that compiles to WebAssembly bytecode.
 
 > [!NOTE]
-> WebAssembly extensions are not supported on {{ ibm_z_name }} and {{ ibm_power_name }}.
-"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-extensions.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fservice_mesh%2Fv2x%2Fossm-extensions.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fservice_mesh%2Fv2x%2Fossm-extensions.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fservice_mesh%2Fv2x%2Fossm-extensions.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fservice_mesh%2Fv2x%2Fossm-extensions.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:service_mesh" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:service_mesh/v2x" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><article class="docs-prose"><h1 id="ossm-extensions" class="group scroll-mt-20">Extensions<a href="#ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p class="/_attributes/common-attributes.md"></p><p>You can use WebAssembly extensions to add new features directly into the {{ SMProductName }} proxies. This lets you move even more common functionality out of your applications, and implement them in a single language that compiles to WebAssembly bytecode.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>WebAssembly extensions are not supported on {{ ibm_z_name }} and {{ ibm_power_name }}.</p></div></div><p class="/modules/ossm-extensions-overview.md"></p><p class="/modules/ossm-extensions-wasmplugin-format.md"></p><p class="/modules/ossm-extensions-ref-wasmplugin.md"></p><p class="/modules/ossm-extensions-wasmplugin-deploy.md"></p><p class="/modules/ossm-extensions-smextension-format.md"></p><p class="/modules/ossm-extensions-ref-smextension.md"></p><p class="/modules/ossm-extensions-smextension-deploy.md"></p><p class="/modules/ossm-extensions-migration-overview.md"></p><p class="/modules/ossm-extensions-migrating-to-wasmplugin.md"></p></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/service_mesh/v2x/ossm-federation" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Federation</div></div></a><a href="/openshift-docs-markdown/service_mesh/v2x/ossm-kiali-ossmc-plugin" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>OpenShift Service Mesh Console plugin</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>
+> WebAssembly extensions are not supported on IBM Z(R) and IBM Power(R).
+
+## WebAssembly modules overview {#ossm-extensions-overview_ossm-extensions}
+
+WebAssembly modules can be run on many platforms, including proxies, and have broad language support, fast execution, and a sandboxed-by-default security model.
+
+Red Hat OpenShift Service Mesh extensions are [Envoy HTTP Filters](https://www.envoyproxy.io/docs/envoy/v1.20.0/intro/arch_overview/http/http_filters#arch-overview-http-filters), giving them a wide range of capabilities:
+
+- Manipulating the body and headers of requests and responses.
+- Out-of-band HTTP requests to services not in the request path, such as authentication or policy checking.
+- Side-channel data storage and queues for filters to communicate with each other.
+
+> [!NOTE]
+> When creating new WebAssembly extensions, use the `WasmPlugin` API. The `ServiceMeshExtension` API was deprecated in Red Hat OpenShift Service Mesh version 2.2 and was removed in Red Hat OpenShift Service Mesh version 2.3.
+
+There are two parts to writing a Red Hat OpenShift Service Mesh extension:
+
+1. You must write your extension using an SDK that exposes the [proxy-wasm API](https://github.com/proxy-wasm/spec) and compile it to a WebAssembly module.
+2. You must then package the module into a container.
+
+**Supported languages**
+
+You can use any language that compiles to WebAssembly bytecode to write a Red Hat OpenShift Service Mesh extension, but the following languages have existing SDKs that expose the proxy-wasm API so that it can be consumed directly.
+
+**Supported languages**
+
+| Language | Maintainer | Repository |
+| --- | --- | --- |
+| AssemblyScript | solo.io | [solo-io/proxy-runtime](https://github.com/solo-io/proxy-runtime) |
+| C++ | proxy-wasm team (Istio Community) | [proxy-wasm/proxy-wasm-cpp-sdk](https://github.com/proxy-wasm/proxy-wasm-cpp-sdk) |
+| Go | tetrate.io | [tetratelabs/proxy-wasm-go-sdk](https://github.com/tetratelabs/proxy-wasm-go-sdk) |
+| Rust | proxy-wasm team (Istio Community) | [proxy-wasm/proxy-wasm-rust-sdk](https://github.com/proxy-wasm/proxy-wasm-rust-sdk) |
+
+## `WasmPlugin` container format {#ossm-extensions-wasmplugin-format_ossm-extensions}
+
+Istio supports Open Container Initiative (OCI) images in its Wasm Plugin mechanism. You can distribute your Wasm Plugins as a container image, and you can use the `spec.url` field to refer to a container registry location.  For example, `quay.io/my-username/my-plugin:latest`.
+
+Because each execution environment (runtime) for a WASM module can have runtime-specific configuration parameters, a WASM image can be composed of two layers:
+
+- **plugin.wasm** (Required) - Content layer. This layer consists of a `.wasm` binary containing the bytecode of your WebAssembly module, to be loaded by the runtime.  You must name this file `plugin.wasm`.
+- **runtime-config.json** (Optional) - Configuration layer. This layer consists of a JSON-formatted string that describes metadata about the module for the target runtime. The config layer might also contain additional data, depending on the target runtime. For example, the config for a WASM Envoy Filter contains root_ids available on the filter.
+
+## WasmPlugin API reference {#ossm-wasm-ref-wasmplugin_ossm-extensions}
+
+The WasmPlugins API provides a mechanism to extend the functionality provided by the Istio proxy through WebAssembly filters.
+
+You can deploy multiple WasmPlugins. The `phase` and `priority` settings determine the order of execution (as part of Envoy’s filter chain), allowing the configuration of complex interactions between user-supplied WasmPlugins and Istio’s internal filters.
+
+In the following example, an authentication filter implements an OpenID flow and populates the Authorization header with a JSON Web Token (JWT). Istio authentication consumes this token and deploys it to the ingress gateway. The WasmPlugin file lives in the proxy sidecar filesystem. Note the field `url`.
+
+```yaml
+apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: openid-connect
+  namespace: istio-ingress
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  url: file:///opt/filters/openid.wasm
+  sha256: 1ef0c9a92b0420cf25f7fe5d481b231464bc88f486ca3b9c83ed5cc21d2f6210
+  phase: AUTHN
+  pluginConfig:
+    openid_server: authn
+    openid_realm: ingress
+```
+
+Below is the same example, but this time an Open Container Initiative (OCI) image is used instead of a file in the filesystem. Note the fields `url`, `imagePullPolicy`, and `imagePullSecret`.
+
+```yaml
+apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: openid-connect
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  url: oci://private-registry:5000/openid-connect/openid:latest
+  imagePullPolicy: IfNotPresent
+  imagePullSecret: private-registry-pull-secret
+  phase: AUTHN
+  pluginConfig:
+    openid_server: authn
+    openid_realm: ingress
+```
+
+**WasmPlugin Field Reference**
+
+<table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Type</td>
+  <td>Description</td>
+  <td>Required</td>
+</tr>
+<tr>
+  <td>spec.selector</td>
+  <td>WorkloadSelector</td>
+  <td>Criteria used to select the specific set of pods/VMs on which this plugin configuration should be applied. If omitted, this configuration will be applied to all workload instances in the same namespace. If the <code>WasmPlugin</code> field is present in the config root namespace, it will be applied to all applicable workloads in any namespace.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.url</td>
+  <td>string</td>
+  <td>URL of a Wasm module or OCI container. If no scheme is present, defaults to <code>oci://</code>, referencing an OCI image. Other valid schemes are <code>file://</code> for referencing .wasm module files present locally within the proxy container, and <code>http[s]://</code> for .wasm module files hosted remotely.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.sha256</td>
+  <td>string</td>
+  <td>SHA256 checksum that will be used to verify the Wasm module or OCI container. If the <code>url</code> field already references a SHA256 (using the <code>@sha256:</code> notation), it must match the value of this field. If an OCI image is referenced by tag and this field is set, its checksum will be verified against the contents of this field after pulling.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.imagePullPolicy</td>
+  <td>PullPolicy</td>
+  <td>The pull behavior to be applied when fetching an OCI image. Only relevant when images are referenced by tag instead of SHA. Defaults to the value <code>IfNotPresent</code>, except when an OCI image is referenced in the <code>url</code> field and the <code>latest</code> tag is used, in which case the value <code>Always</code> is the default, mirroring K8s behavior. Setting is ignored if the <code>url</code> field is referencing a Wasm module directly using <code>file://</code> or <code>http[s]://</code>.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.imagePullSecret</td>
+  <td>string</td>
+  <td>Credentials to use for OCI image pulling. The name of a secret in the same namespace as the <code>WasmPlugin</code> object that contains a pull secret for authenticating against the registry when pulling the image.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.phase</td>
+  <td>PluginPhase</td>
+  <td>Determines where in the filter chain this <code>WasmPlugin</code> object is injected.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.priority</td>
+  <td><code>int64</code></td>
+  <td>Determines the ordering of <code>WasmPlugins</code> objects that have the same <code>phase</code> value. When multiple <code>WasmPlugins</code> objects are applied to the same workload in the same phase, they will be applied by priority and in descending order. If the <code>priority</code> field is not set, or two <code>WasmPlugins</code> objects with the same value, the ordering will be determined from the name and namespace of the <code>WasmPlugins</code> objects. Defaults to the value <code>0</code>.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.pluginName</td>
+  <td>string</td>
+  <td>The plugin name used in the Envoy configuration. Some Wasm modules might require this value to select the Wasm plugin to execute.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.pluginConfig</td>
+  <td>Struct</td>
+  <td>The configuration that will be passed on to the plugin.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.pluginConfig.verificationKey</td>
+  <td>string</td>
+  <td>The public key used to verify signatures of signed OCI images or Wasm modules. Must be supplied in PEM format.</td>
+  <td>No</td>
+</tr>
+</tbody>
+</table>
+
+The `WorkloadSelector` object specifies the criteria used to determine if a filter can be applied to a proxy. The matching criteria includes the metadata associated with a proxy, workload instance information such as labels attached to the pod/VM, or any other information that the proxy provides to Istio during the initial handshake. If multiple conditions are specified, all conditions need to match in order for the workload instance to be selected. Currently, only label based selection mechanism is supported.
+
+**WorkloadSelector**
+
+<table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Type</td>
+  <td>Description</td>
+  <td>Required</td>
+</tr>
+<tr>
+  <td>matchLabels</td>
+  <td>map<string, string></td>
+  <td>One or more labels that indicate a specific set of pods/VMs on which a policy should be applied. The scope of label search is restricted to the configuration namespace in which the resource is present.</td>
+  <td>Yes</td>
+</tr>
+</tbody>
+</table>
+
+The `PullPolicy` object specifies the pull behavior to be applied when fetching an OCI image.
+
+**PullPolicy**
+
+<table>
+<tbody>
+<tr>
+  <td>Value</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><empty></td>
+  <td>Defaults to the value <code>IfNotPresent</code>, except for OCI images with tag latest, for which the default will be the value <code>Always</code>.</td>
+</tr>
+<tr>
+  <td>IfNotPresent</td>
+  <td>If an existing version of the image has been pulled before, that will be used. If no version of the image is present locally, we will pull the latest version.</td>
+</tr>
+<tr>
+  <td>Always</td>
+  <td>Always pull the latest version of an image when applying this plugin.</td>
+</tr>
+</tbody>
+</table>
+
+`Struct` represents a structured data value, consisting of fields which map to dynamically typed values. In some languages, Struct might be supported by a native representation. For example, in scripting languages like JavaScript a struct is represented as an object.
+
+**Struct**
+
+<table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Type</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td>fields</td>
+  <td>map<string, Value></td>
+  <td>Map of dynamically typed values.</td>
+</tr>
+</tbody>
+</table>
+
+`PluginPhase` specifies the phase in the filter chain where the plugin will be injected.
+
+**PluginPhase**
+
+<table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><empty></td>
+  <td>Control plane decides where to insert the plugin. This will generally be at the end of the filter chain, right before the Router. Do not specify PluginPhase if the plugin is independent of others.</td>
+</tr>
+<tr>
+  <td>AUTHN</td>
+  <td>Insert plugin before Istio authentication filters.</td>
+</tr>
+<tr>
+  <td>AUTHZ</td>
+  <td>Insert plugin before Istio authorization filters and after Istio authentication filters.</td>
+</tr>
+<tr>
+  <td>STATS</td>
+  <td>Insert plugin before Istio stats filters and after Istio authorization filters.</td>
+</tr>
+</tbody>
+</table>
+
+### Deploying `WasmPlugin` resources {#ossm-wasmplugin-deploy_ossm-extensions}
+
+You can enable Red Hat OpenShift Service Mesh extensions using the `WasmPlugin` resource. In this example, `istio-system` is the name of the Service Mesh control plane project. The following example creates an `openid-connect` filter that performs an OpenID Connect flow to authenticate the user.
+
+**Procedure**
+
+1. Create the following example resource:
+
+   ```yaml {title=&quot;Example plugin.yaml&quot;}
+   apiVersion: extensions.istio.io/v1alpha1
+   kind: WasmPlugin
+   metadata:
+     name: openid-connect
+     namespace: istio-system
+   spec:
+     selector:
+       matchLabels:
+         istio: ingressgateway
+     url: oci://private-registry:5000/openid-connect/openid:latest
+     imagePullPolicy: IfNotPresent
+     imagePullSecret: private-registry-pull-secret
+     phase: AUTHN
+     pluginConfig:
+       openid_server: authn
+       openid_realm: ingress
+   ```
+2. Apply your `plugin.yaml` file with the following command:
+
+   ```terminal
+   $ oc apply -f plugin.yaml
+   ```
+
+## `ServiceMeshExtension` container format {#ossm-extensions-smextension-format_ossm-extensions}
+
+You must have a `.wasm` file containing the bytecode of your WebAssembly module, and a `manifest.yaml` file in the root of the container filesystem to make your container image a valid extension image.
+
+> [!NOTE]
+> When creating new WebAssembly extensions, use the `WasmPlugin` API. The `ServiceMeshExtension` API was deprecated in Red Hat OpenShift Service Mesh version 2.2 and was removed in Red Hat OpenShift Service Mesh version 2.3.
+
+```yaml {title=&quot;manifest.yaml&quot;}
+schemaVersion: 1
+
+name: <your-extension>
+description: <description>
+version: 1.0.0
+phase: PreAuthZ
+priority: 100
+module: extension.wasm
+```
+
+**Field Reference for manifest.yml**
+
+<table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Description</td>
+  <td>Required</td>
+</tr>
+<tr>
+  <td>schemaVersion</td>
+  <td>Used for versioning of the manifest schema. Currently the only possible value is <code>1</code>.</td>
+  <td>This is a required field.</td>
+</tr>
+<tr>
+  <td>name</td>
+  <td>The name of your extension.</td>
+  <td>This field is just metadata and currently unused.</td>
+</tr>
+<tr>
+  <td>description</td>
+  <td>The description of your extension.</td>
+  <td>This field is just metadata and currently unused.</td>
+</tr>
+<tr>
+  <td>version</td>
+  <td>The version of your extension.</td>
+  <td>This field is just metadata and currently unused.</td>
+</tr>
+<tr>
+  <td>phase</td>
+  <td>The default execution phase of your extension.</td>
+  <td>This is a required field.</td>
+</tr>
+<tr>
+  <td>priority</td>
+  <td>The default priority of your extension.</td>
+  <td>This is a required field.</td>
+</tr>
+<tr>
+  <td>module</td>
+  <td>The relative path from the container filesystem's root to your WebAssembly module.</td>
+  <td>This is a required field.</td>
+</tr>
+</tbody>
+</table>
+
+## ServiceMeshExtension reference {#ossm-wasm-ref-smextension_ossm-extensions}
+
+The ServiceMeshExtension API provides a mechanism to extend the functionality provided by the Istio proxy through WebAssembly filters. There are two parts to writing a WebAssembly extension:
+
+1. Write your extension using an SDK that exposes the proxy-wasm API and compile it to a WebAssembly module.
+2. Package it into a container.
+
+> [!NOTE]
+> When creating new WebAssembly extensions, use the `WasmPlugin` API. The `ServiceMeshExtension` API, which was deprecated in Red Hat OpenShift Service Mesh version 2.2, was removed in Red Hat OpenShift Service Mesh version 2.3.
+
+**ServiceMeshExtension Field Reference**
+
+<table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td>metadata.namespace</td>
+  <td>The <code>metadata.namespace</code> field of a <code>ServiceMeshExtension</code> source has a special semantic: if it equals the Control Plane Namespace, the extension will be applied to all workloads in the Service Mesh that match its <code>workloadSelector</code> value. When deployed to any other Mesh Namespace, it will only be applied to workloads in that same Namespace.</td>
+</tr>
+<tr>
+  <td>spec.workloadSelector</td>
+  <td>The <code>spec.workloadSelector</code> field has the same semantic as the <code>spec.selector</code> field of the <a href=&quot;https://istio.io/v1.6/docs/reference/config/networking/gateway/#Gateway&quot;>Istio Gateway resource</a>. It will match a workload based on its Pod labels. If no <code>workloadSelector</code> value is specified, the extension will be applied to all workloads in the namespace.</td>
+</tr>
+<tr>
+  <td>spec.config</td>
+  <td>This is a structured field that will be handed over to the extension, with the semantics dependent on the extension you are deploying.</td>
+</tr>
+<tr>
+  <td>spec.image</td>
+  <td>A container image URI pointing to the image that holds the extension.</td>
+</tr>
+<tr>
+  <td>spec.phase</td>
+  <td>The phase determines where in the filter chain the extension is injected, in relation to existing Istio functionality like Authentication, Authorization and metrics generation. Valid values are: PreAuthN, PostAuthN, PreAuthZ, PostAuthZ, PreStats, PostStats. This field defaults to the value set in the <code>manifest.yaml</code> file of the extension, but can be overwritten by the user.</td>
+</tr>
+<tr>
+  <td>spec.priority</td>
+  <td>If multiple extensions with the same <code>spec.phase</code> value are applied to the same workload instance, the <code>spec.priority</code> value determines the ordering of execution. Extensions with higher priority will be executed first. This allows for inter-dependent extensions. This field defaults to the value set in the <code>manifest.yaml</code> file of the extension, but can be overwritten by the user.</td>
+</tr>
+</tbody>
+</table>
+
+### Deploying `ServiceMeshExtension` resources {#ossm-smextensions-deploy_ossm-extensions}
+
+You can enable Red Hat OpenShift Service Mesh extensions using the `ServiceMeshExtension` resource. In this example, `istio-system` is the name of the Service Mesh control plane project.
+
+> [!NOTE]
+> When creating new WebAssembly extensions, use the `WasmPlugin` API. The `ServiceMeshExtension` API was deprecated in Red Hat OpenShift Service Mesh version 2.2 and removed in Red Hat OpenShift Service Mesh version 2.3.
+
+For a complete example that was built using the Rust SDK, take a look at the [header-append-filter](https://github.com/maistra/header-append-filter). It is a simple filter that appends one or more headers to the HTTP responses, with their names and values taken out from the `config` field of the extension. See a sample configuration in the snippet below.
+
+**Procedure**
+
+1. Create the following example resource:
+
+   ```yaml {title=&quot;Example ServiceMeshExtension resource extension.yaml&quot;}
+   apiVersion: maistra.io/v1
+   kind: ServiceMeshExtension
+   metadata:
+     name: header-append
+     namespace: istio-system
+   spec:
+     workloadSelector:
+       labels:
+         app: httpbin
+     config:
+       first-header: some-value
+       another-header: another-value
+     image: quay.io/maistra-dev/header-append-filter:2.1
+     phase: PostAuthZ
+     priority: 100
+   ```
+2. Apply your `extension.yaml` file with the following command:
+
+   ```terminal
+   $ oc apply -f <extension>.yaml
+   ```
+
+## Migrating from `ServiceMeshExtension` to `WasmPlugin` resources {#ossm-extensions-migration-overview_ossm-extensions}
+
+The `ServiceMeshExtension` API, which was deprecated in Red Hat OpenShift Service Mesh version 2.2, was removed in Red Hat OpenShift Service Mesh version 2.3. If you are using the `ServiceMeshExtension` API, you must migrate to the `WasmPlugin` API to continue using your WebAssembly extensions.
+
+The APIs are very similar. The migration consists of two steps:
+
+1. Renaming your plugin file and updating the module packaging.
+2. Creating a `WasmPlugin` resource that references the updated container image.
+
+### API changes {#ossm-extensions-migration-api-changes_ossm-extensions}
+
+The new `WasmPlugin` API is similar to the `ServiceMeshExtension`, but with a few differences, especially in the field names:
+
+**Field changes between `ServiceMeshExtensions` and `WasmPlugin`**
+
+<table>
+<tbody>
+<tr>
+  <td>ServiceMeshExtension</td>
+  <td>WasmPlugin</td>
+</tr>
+<tr>
+  <td><code>spec.config</code></td>
+  <td><code>spec.pluginConfig</code></td>
+</tr>
+<tr>
+  <td><code>spec.workloadSelector</code></td>
+  <td><code>spec.selector</code></td>
+</tr>
+<tr>
+  <td><code>spec.image</code></td>
+  <td><code>spec.url</code></td>
+</tr>
+<tr>
+  <td><code>spec.phase</code> valid values: PreAuthN, PostAuthN, PreAuthZ, PostAuthZ, PreStats, PostStats</td>
+  <td><code>spec.phase</code> valid values: <empty>, AUTHN, AUTHZ, STATS</td>
+</tr>
+</tbody>
+</table>
+
+The following is an example of how a `ServiceMeshExtension` resource could be converted into a `WasmPlugin` resource.
+
+```yaml {title=&quot;ServiceMeshExtension resource&quot;}
+apiVersion: maistra.io/v1
+kind: ServiceMeshExtension
+metadata:
+  name: header-append
+  namespace: istio-system
+spec:
+  workloadSelector:
+    labels:
+      app: httpbin
+  config:
+    first-header: some-value
+    another-header: another-value
+  image: quay.io/maistra-dev/header-append-filter:2.2
+  phase: PostAuthZ
+  priority: 100
+```
+
+```yaml {title=&quot;New WasmPlugin resource equivalent to the ServiceMeshExtension above&quot;}
+apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: header-append
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      app: httpbin
+  url: oci://quay.io/maistra-dev/header-append-filter:2.2
+  phase: STATS
+  pluginConfig:
+    first-header: some-value
+    another-header: another-value
+```
+
+### Container image format changes {#ossm-extensions-migration-format-changes_ossm-extensions}
+
+The new `WasmPlugin` container image format is similar to the `ServiceMeshExtensions`, with the following differences:
+
+- The `ServiceMeshExtension` container format required a metadata file named `manifest.yaml` in the root directory of the container filesystem. The `WasmPlugin` container format does not require a `manifest.yaml` file.
+- The `.wasm` file (the actual plugin) that previously could have any filename now must be named `plugin.wasm` and must be located in the root directory of the container filesystem.
+
+### Migrating to `WasmPlugin` resources {#ossm-extensions-migrating-to-wasmplugin_ossm-extensions}
+
+To upgrade your WebAssembly extensions from the `ServiceMeshExtension` API to the `WasmPlugin` API, you rename your plugin file.
+
+**Prerequisites**
+
+- `ServiceMeshControlPlane` is upgraded to version 2.2 or later.
+
+**Procedure**
+
+1. Update your container image. If the plugin is already in `/plugin.wasm` inside the container, skip to the next step.  If not:
+
+   1. Ensure the plugin file is named `plugin.wasm`. You must name the extension file `plugin.wasm`.
+   2. Ensure the plugin file is located in the root (/) directory. You must store extension files in the root of the container filesystem..
+   3. Rebuild your container image and push it to a container registry.
+2. Remove the `ServiceMeshExtension` resource and create a `WasmPlugin` resource that refers to the new container image you built.
+"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-extensions.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fservice_mesh%2Fv2x%2Fossm-extensions.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fservice_mesh%2Fv2x%2Fossm-extensions.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fservice_mesh%2Fv2x%2Fossm-extensions.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fservice_mesh%2Fv2x%2Fossm-extensions.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:service_mesh" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:service_mesh/v2x" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><details class="dba-toc-top not-prose mb-6 rounded-md border" data-toc-top data-astro-cid-vg5xjwtk><summary class="cursor-pointer list-none px-3 py-2 text-sm font-medium text-muted-foreground" data-astro-cid-vg5xjwtk>On this page</summary><div class="border-t px-3 py-2" data-astro-cid-vg5xjwtk><nav class="text-sm" aria-label="Table of contents"><ul class="mt-2 space-y-1"><li><a href="#ossm-extensions-overview_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ossm-extensions-overview_ossm-extensions">WebAssembly modules overview</a></li><li><a href="#ossm-extensions-wasmplugin-format_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ossm-extensions-wasmplugin-format_ossm-extensions">container format</a></li><li><a href="#ossm-wasm-ref-wasmplugin_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ossm-wasm-ref-wasmplugin_ossm-extensions">WasmPlugin API reference</a></li><li><a href="#ossm-wasmplugin-deploy_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="ossm-wasmplugin-deploy_ossm-extensions">Deploying  resources</a></li><li><a href="#ossm-extensions-smextension-format_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ossm-extensions-smextension-format_ossm-extensions">container format</a></li><li><a href="#ossm-wasm-ref-smextension_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ossm-wasm-ref-smextension_ossm-extensions">ServiceMeshExtension reference</a></li><li><a href="#ossm-smextensions-deploy_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="ossm-smextensions-deploy_ossm-extensions">Deploying  resources</a></li><li><a href="#ossm-extensions-migration-overview_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ossm-extensions-migration-overview_ossm-extensions">Migrating from  to  resources</a></li><li><a href="#ossm-extensions-migration-api-changes_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="ossm-extensions-migration-api-changes_ossm-extensions">API changes</a></li><li><a href="#ossm-extensions-migration-format-changes_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="ossm-extensions-migration-format-changes_ossm-extensions">Container image format changes</a></li><li><a href="#ossm-extensions-migrating-to-wasmplugin_ossm-extensions" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="ossm-extensions-migrating-to-wasmplugin_ossm-extensions">Migrating to  resources</a></li></ul></nav></div></details><article class="docs-prose"><h1 id="ossm-extensions" class="group scroll-mt-20">Extensions<a href="#ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>You can use WebAssembly extensions to add new features directly into the Red Hat OpenShift Service Mesh proxies. This lets you move even more common functionality out of your applications, and implement them in a single language that compiles to WebAssembly bytecode.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>WebAssembly extensions are not supported on IBM Z(R) and IBM Power(R).</p></div></div><h2 id="ossm-extensions-overview_ossm-extensions" class="group scroll-mt-20">WebAssembly modules overview<a href="#ossm-extensions-overview_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p>WebAssembly modules can be run on many platforms, including proxies, and have broad language support, fast execution, and a sandboxed-by-default security model.</p><p>Red Hat OpenShift Service Mesh extensions are <a href="https://www.envoyproxy.io/docs/envoy/v1.20.0/intro/arch_overview/http/http_filters#arch-overview-http-filters">Envoy HTTP Filters</a>, giving them a wide range of capabilities:</p><ul><li>Manipulating the body and headers of requests and responses.</li><li>Out-of-band HTTP requests to services not in the request path, such as authentication or policy checking.</li><li>Side-channel data storage and queues for filters to communicate with each other.</li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>When creating new WebAssembly extensions, use the <code>WasmPlugin</code> API. The <code>ServiceMeshExtension</code> API was deprecated in Red Hat OpenShift Service Mesh version 2.2 and was removed in Red Hat OpenShift Service Mesh version 2.3.</p></div></div><p>There are two parts to writing a Red Hat OpenShift Service Mesh extension:</p><ol><li>You must write your extension using an SDK that exposes the <a href="https://github.com/proxy-wasm/spec">proxy-wasm API</a> and compile it to a WebAssembly module.</li><li>You must then package the module into a container.</li></ol><p><strong>Supported languages</strong></p><p>You can use any language that compiles to WebAssembly bytecode to write a Red Hat OpenShift Service Mesh extension, but the following languages have existing SDKs that expose the proxy-wasm API so that it can be consumed directly.</p><p><strong>Supported languages</strong></p><div class="relative w-full overflow-x-auto"><table class="w-full caption-bottom text-sm my-4"><thead class="[&amp;_tr]:border-b"><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><th class="px-2 py-2 text-left align-bottom font-semibold text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Language</th><th class="px-2 py-2 text-left align-bottom font-semibold text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Maintainer</th><th class="px-2 py-2 text-left align-bottom font-semibold text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Repository</th></tr></thead><tbody class="[&amp;_tr:last-child]:border-0"><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">AssemblyScript</td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">solo.io</td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><a href="https://github.com/solo-io/proxy-runtime">solo-io/proxy-runtime</a></td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">C++</td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">proxy-wasm team (Istio Community)</td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><a href="https://github.com/proxy-wasm/proxy-wasm-cpp-sdk">proxy-wasm/proxy-wasm-cpp-sdk</a></td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">Go</td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">tetrate.io</td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><a href="https://github.com/tetratelabs/proxy-wasm-go-sdk">tetratelabs/proxy-wasm-go-sdk</a></td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">Rust</td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">proxy-wasm team (Istio Community)</td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><a href="https://github.com/proxy-wasm/proxy-wasm-rust-sdk">proxy-wasm/proxy-wasm-rust-sdk</a></td></tr></tbody></table></div><h2 id="ossm-extensions-wasmplugin-format_ossm-extensions" class="group scroll-mt-20"><code>WasmPlugin</code> container format<a href="#ossm-extensions-wasmplugin-format_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p>Istio supports Open Container Initiative (OCI) images in its Wasm Plugin mechanism. You can distribute your Wasm Plugins as a container image, and you can use the <code>spec.url</code> field to refer to a container registry location.  For example, <code>quay.io/my-username/my-plugin:latest</code>.</p><p>Because each execution environment (runtime) for a WASM module can have runtime-specific configuration parameters, a WASM image can be composed of two layers:</p><ul><li><strong>plugin.wasm</strong> (Required) - Content layer. This layer consists of a <code>.wasm</code> binary containing the bytecode of your WebAssembly module, to be loaded by the runtime.  You must name this file <code>plugin.wasm</code>.</li><li><strong>runtime-config.json</strong> (Optional) - Configuration layer. This layer consists of a JSON-formatted string that describes metadata about the module for the target runtime. The config layer might also contain additional data, depending on the target runtime. For example, the config for a WASM Envoy Filter contains root_ids available on the filter.</li></ul><h2 id="ossm-wasm-ref-wasmplugin_ossm-extensions" class="group scroll-mt-20">WasmPlugin API reference<a href="#ossm-wasm-ref-wasmplugin_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p>The WasmPlugins API provides a mechanism to extend the functionality provided by the Istio proxy through WebAssembly filters.</p><p>You can deploy multiple WasmPlugins. The <code>phase</code> and <code>priority</code> settings determine the order of execution (as part of Envoy’s filter chain), allowing the configuration of complex interactions between user-supplied WasmPlugins and Istio’s internal filters.</p><p>In the following example, an authentication filter implements an OpenID flow and populates the Authorization header with a JSON Web Token (JWT). Istio authentication consumes this token and deploys it to the ingress gateway. The WasmPlugin file lives in the proxy sidecar filesystem. Note the field <code>url</code>.</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: openid-connect
+  namespace: istio-ingress
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  url: file:///opt/filters/openid.wasm
+  sha256: 1ef0c9a92b0420cf25f7fe5d481b231464bc88f486ca3b9c83ed5cc21d2f6210
+  phase: AUTHN
+  pluginConfig:
+    openid_server: authn
+    openid_realm: ingress" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">extensions.istio.io/v1alpha1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">WasmPlugin</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">openid-connect</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">istio-ingress</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  selector</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    matchLabels</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      istio</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ingressgateway</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  url</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">file:///opt/filters/openid.wasm</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  sha256</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">1ef0c9a92b0420cf25f7fe5d481b231464bc88f486ca3b9c83ed5cc21d2f6210</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  phase</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">AUTHN</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  pluginConfig</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    openid_server</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">authn</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    openid_realm</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ingress</span></span></code></pre></div></div><script type="module">function e(){document.querySelectorAll(`[data-component='code-block'] [data-part='copy']`).forEach(e=>{e.__copyBound||(e.__copyBound=!0,e.addEventListener(`click`,async()=>{let t=e.getAttribute(`data-copy-text`)||``;try{await navigator.clipboard.writeText(t);let n=e.querySelector(`[data-copy-icon]`),r=e.querySelector(`[data-check-icon]`);n&&r&&(n.classList.add(`hidden`),r.classList.remove(`hidden`),setTimeout(()=>{n.classList.remove(`hidden`),r.classList.add(`hidden`)},2e3))}catch{}}))})}e(),document.addEventListener(`astro:after-swap`,e);</script><p>Below is the same example, but this time an Open Container Initiative (OCI) image is used instead of a file in the filesystem. Note the fields <code>url</code>, <code>imagePullPolicy</code>, and <code>imagePullSecret</code>.</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: openid-connect
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  url: oci://private-registry:5000/openid-connect/openid:latest
+  imagePullPolicy: IfNotPresent
+  imagePullSecret: private-registry-pull-secret
+  phase: AUTHN
+  pluginConfig:
+    openid_server: authn
+    openid_realm: ingress" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">extensions.istio.io/v1alpha1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">WasmPlugin</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">openid-connect</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">istio-system</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  selector</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    matchLabels</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      istio</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ingressgateway</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  url</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">oci://private-registry:5000/openid-connect/openid:latest</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  imagePullPolicy</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">IfNotPresent</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  imagePullSecret</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">private-registry-pull-secret</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  phase</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">AUTHN</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  pluginConfig</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    openid_server</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">authn</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    openid_realm</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ingress</span></span></code></pre></div></div><p><strong>WasmPlugin Field Reference</strong></p><table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Type</td>
+  <td>Description</td>
+  <td>Required</td>
+</tr>
+<tr>
+  <td>spec.selector</td>
+  <td>WorkloadSelector</td>
+  <td>Criteria used to select the specific set of pods/VMs on which this plugin configuration should be applied. If omitted, this configuration will be applied to all workload instances in the same namespace. If the <code>WasmPlugin</code> field is present in the config root namespace, it will be applied to all applicable workloads in any namespace.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.url</td>
+  <td>string</td>
+  <td>URL of a Wasm module or OCI container. If no scheme is present, defaults to <code>oci://</code>, referencing an OCI image. Other valid schemes are <code>file://</code> for referencing .wasm module files present locally within the proxy container, and <code>http[s]://</code> for .wasm module files hosted remotely.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.sha256</td>
+  <td>string</td>
+  <td>SHA256 checksum that will be used to verify the Wasm module or OCI container. If the <code>url</code> field already references a SHA256 (using the <code>@sha256:</code> notation), it must match the value of this field. If an OCI image is referenced by tag and this field is set, its checksum will be verified against the contents of this field after pulling.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.imagePullPolicy</td>
+  <td>PullPolicy</td>
+  <td>The pull behavior to be applied when fetching an OCI image. Only relevant when images are referenced by tag instead of SHA. Defaults to the value <code>IfNotPresent</code>, except when an OCI image is referenced in the <code>url</code> field and the <code>latest</code> tag is used, in which case the value <code>Always</code> is the default, mirroring K8s behavior. Setting is ignored if the <code>url</code> field is referencing a Wasm module directly using <code>file://</code> or <code>http[s]://</code>.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.imagePullSecret</td>
+  <td>string</td>
+  <td>Credentials to use for OCI image pulling. The name of a secret in the same namespace as the <code>WasmPlugin</code> object that contains a pull secret for authenticating against the registry when pulling the image.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.phase</td>
+  <td>PluginPhase</td>
+  <td>Determines where in the filter chain this <code>WasmPlugin</code> object is injected.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.priority</td>
+  <td><code>int64</code></td>
+  <td>Determines the ordering of <code>WasmPlugins</code> objects that have the same <code>phase</code> value. When multiple <code>WasmPlugins</code> objects are applied to the same workload in the same phase, they will be applied by priority and in descending order. If the <code>priority</code> field is not set, or two <code>WasmPlugins</code> objects with the same value, the ordering will be determined from the name and namespace of the <code>WasmPlugins</code> objects. Defaults to the value <code>0</code>.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.pluginName</td>
+  <td>string</td>
+  <td>The plugin name used in the Envoy configuration. Some Wasm modules might require this value to select the Wasm plugin to execute.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.pluginConfig</td>
+  <td>Struct</td>
+  <td>The configuration that will be passed on to the plugin.</td>
+  <td>No</td>
+</tr>
+<tr>
+  <td>spec.pluginConfig.verificationKey</td>
+  <td>string</td>
+  <td>The public key used to verify signatures of signed OCI images or Wasm modules. Must be supplied in PEM format.</td>
+  <td>No</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>WorkloadSelector</code> object specifies the criteria used to determine if a filter can be applied to a proxy. The matching criteria includes the metadata associated with a proxy, workload instance information such as labels attached to the pod/VM, or any other information that the proxy provides to Istio during the initial handshake. If multiple conditions are specified, all conditions need to match in order for the workload instance to be selected. Currently, only label based selection mechanism is supported.</p><p><strong>WorkloadSelector</strong></p><table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Type</td>
+  <td>Description</td>
+  <td>Required</td>
+</tr>
+<tr>
+  <td>matchLabels</td>
+  <td>map<string, string></td>
+  <td>One or more labels that indicate a specific set of pods/VMs on which a policy should be applied. The scope of label search is restricted to the configuration namespace in which the resource is present.</td>
+  <td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>PullPolicy</code> object specifies the pull behavior to be applied when fetching an OCI image.</p><p><strong>PullPolicy</strong></p><table>
+<tbody>
+<tr>
+  <td>Value</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><empty></td>
+  <td>Defaults to the value <code>IfNotPresent</code>, except for OCI images with tag latest, for which the default will be the value <code>Always</code>.</td>
+</tr>
+<tr>
+  <td>IfNotPresent</td>
+  <td>If an existing version of the image has been pulled before, that will be used. If no version of the image is present locally, we will pull the latest version.</td>
+</tr>
+<tr>
+  <td>Always</td>
+  <td>Always pull the latest version of an image when applying this plugin.</td>
+</tr>
+</tbody>
+</table>
+<p><code>Struct</code> represents a structured data value, consisting of fields which map to dynamically typed values. In some languages, Struct might be supported by a native representation. For example, in scripting languages like JavaScript a struct is represented as an object.</p><p><strong>Struct</strong></p><table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Type</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td>fields</td>
+  <td>map<string, Value></td>
+  <td>Map of dynamically typed values.</td>
+</tr>
+</tbody>
+</table>
+<p><code>PluginPhase</code> specifies the phase in the filter chain where the plugin will be injected.</p><p><strong>PluginPhase</strong></p><table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td><empty></td>
+  <td>Control plane decides where to insert the plugin. This will generally be at the end of the filter chain, right before the Router. Do not specify PluginPhase if the plugin is independent of others.</td>
+</tr>
+<tr>
+  <td>AUTHN</td>
+  <td>Insert plugin before Istio authentication filters.</td>
+</tr>
+<tr>
+  <td>AUTHZ</td>
+  <td>Insert plugin before Istio authorization filters and after Istio authentication filters.</td>
+</tr>
+<tr>
+  <td>STATS</td>
+  <td>Insert plugin before Istio stats filters and after Istio authorization filters.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ossm-wasmplugin-deploy_ossm-extensions" class="group scroll-mt-20">Deploying <code>WasmPlugin</code> resources<a href="#ossm-wasmplugin-deploy_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>You can enable Red Hat OpenShift Service Mesh extensions using the <code>WasmPlugin</code> resource. In this example, <code>istio-system</code> is the name of the Service Mesh control plane project. The following example creates an <code>openid-connect</code> filter that performs an OpenID Connect flow to authenticate the user.</p><p><strong>Procedure</strong></p><ol><li>Create the following example resource:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">Example plugin.yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: openid-connect
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      istio: ingressgateway
+  url: oci://private-registry:5000/openid-connect/openid:latest
+  imagePullPolicy: IfNotPresent
+  imagePullSecret: private-registry-pull-secret
+  phase: AUTHN
+  pluginConfig:
+    openid_server: authn
+    openid_realm: ingress" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">extensions.istio.io/v1alpha1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">WasmPlugin</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">openid-connect</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">istio-system</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  selector</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    matchLabels</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      istio</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ingressgateway</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  url</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">oci://private-registry:5000/openid-connect/openid:latest</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  imagePullPolicy</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">IfNotPresent</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  imagePullSecret</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">private-registry-pull-secret</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  phase</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">AUTHN</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  pluginConfig</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    openid_server</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">authn</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    openid_realm</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ingress</span></span></code></pre></div></div></li><li>Apply your <code>plugin.yaml</code> file with the following command:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc apply -f plugin.yaml" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> apply</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -f</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> plugin.yaml</span></span></code></pre></div></div></li></ol><h2 id="ossm-extensions-smextension-format_ossm-extensions" class="group scroll-mt-20"><code>ServiceMeshExtension</code> container format<a href="#ossm-extensions-smextension-format_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p>You must have a <code>.wasm</code> file containing the bytecode of your WebAssembly module, and a <code>manifest.yaml</code> file in the root of the container filesystem to make your container image a valid extension image.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>When creating new WebAssembly extensions, use the <code>WasmPlugin</code> API. The <code>ServiceMeshExtension</code> API was deprecated in Red Hat OpenShift Service Mesh version 2.2 and was removed in Red Hat OpenShift Service Mesh version 2.3.</p></div></div><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">manifest.yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="schemaVersion: 1
+
+name: <your-extension>
+description: <description>
+version: 1.0.0
+phase: PreAuthZ
+priority: 100
+module: extension.wasm" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">schemaVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">1</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">&#x3C;your-extension></span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">description</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">&#x3C;description></span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">version</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">1.0.0</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">phase</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">PreAuthZ</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">priority</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">100</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">module</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">extension.wasm</span></span></code></pre></div></div><p><strong>Field Reference for manifest.yml</strong></p><table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Description</td>
+  <td>Required</td>
+</tr>
+<tr>
+  <td>schemaVersion</td>
+  <td>Used for versioning of the manifest schema. Currently the only possible value is <code>1</code>.</td>
+  <td>This is a required field.</td>
+</tr>
+<tr>
+  <td>name</td>
+  <td>The name of your extension.</td>
+  <td>This field is just metadata and currently unused.</td>
+</tr>
+<tr>
+  <td>description</td>
+  <td>The description of your extension.</td>
+  <td>This field is just metadata and currently unused.</td>
+</tr>
+<tr>
+  <td>version</td>
+  <td>The version of your extension.</td>
+  <td>This field is just metadata and currently unused.</td>
+</tr>
+<tr>
+  <td>phase</td>
+  <td>The default execution phase of your extension.</td>
+  <td>This is a required field.</td>
+</tr>
+<tr>
+  <td>priority</td>
+  <td>The default priority of your extension.</td>
+  <td>This is a required field.</td>
+</tr>
+<tr>
+  <td>module</td>
+  <td>The relative path from the container filesystem's root to your WebAssembly module.</td>
+  <td>This is a required field.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ossm-wasm-ref-smextension_ossm-extensions" class="group scroll-mt-20">ServiceMeshExtension reference<a href="#ossm-wasm-ref-smextension_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p>The ServiceMeshExtension API provides a mechanism to extend the functionality provided by the Istio proxy through WebAssembly filters. There are two parts to writing a WebAssembly extension:</p><ol><li>Write your extension using an SDK that exposes the proxy-wasm API and compile it to a WebAssembly module.</li><li>Package it into a container.</li></ol><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>When creating new WebAssembly extensions, use the <code>WasmPlugin</code> API. The <code>ServiceMeshExtension</code> API, which was deprecated in Red Hat OpenShift Service Mesh version 2.2, was removed in Red Hat OpenShift Service Mesh version 2.3.</p></div></div><p><strong>ServiceMeshExtension Field Reference</strong></p><table>
+<tbody>
+<tr>
+  <td>Field</td>
+  <td>Description</td>
+</tr>
+<tr>
+  <td>metadata.namespace</td>
+  <td>The <code>metadata.namespace</code> field of a <code>ServiceMeshExtension</code> source has a special semantic: if it equals the Control Plane Namespace, the extension will be applied to all workloads in the Service Mesh that match its <code>workloadSelector</code> value. When deployed to any other Mesh Namespace, it will only be applied to workloads in that same Namespace.</td>
+</tr>
+<tr>
+  <td>spec.workloadSelector</td>
+  <td>The <code>spec.workloadSelector</code> field has the same semantic as the <code>spec.selector</code> field of the <a href="https://istio.io/v1.6/docs/reference/config/networking/gateway/#Gateway">Istio Gateway resource</a>. It will match a workload based on its Pod labels. If no <code>workloadSelector</code> value is specified, the extension will be applied to all workloads in the namespace.</td>
+</tr>
+<tr>
+  <td>spec.config</td>
+  <td>This is a structured field that will be handed over to the extension, with the semantics dependent on the extension you are deploying.</td>
+</tr>
+<tr>
+  <td>spec.image</td>
+  <td>A container image URI pointing to the image that holds the extension.</td>
+</tr>
+<tr>
+  <td>spec.phase</td>
+  <td>The phase determines where in the filter chain the extension is injected, in relation to existing Istio functionality like Authentication, Authorization and metrics generation. Valid values are: PreAuthN, PostAuthN, PreAuthZ, PostAuthZ, PreStats, PostStats. This field defaults to the value set in the <code>manifest.yaml</code> file of the extension, but can be overwritten by the user.</td>
+</tr>
+<tr>
+  <td>spec.priority</td>
+  <td>If multiple extensions with the same <code>spec.phase</code> value are applied to the same workload instance, the <code>spec.priority</code> value determines the ordering of execution. Extensions with higher priority will be executed first. This allows for inter-dependent extensions. This field defaults to the value set in the <code>manifest.yaml</code> file of the extension, but can be overwritten by the user.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ossm-smextensions-deploy_ossm-extensions" class="group scroll-mt-20">Deploying <code>ServiceMeshExtension</code> resources<a href="#ossm-smextensions-deploy_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>You can enable Red Hat OpenShift Service Mesh extensions using the <code>ServiceMeshExtension</code> resource. In this example, <code>istio-system</code> is the name of the Service Mesh control plane project.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>When creating new WebAssembly extensions, use the <code>WasmPlugin</code> API. The <code>ServiceMeshExtension</code> API was deprecated in Red Hat OpenShift Service Mesh version 2.2 and removed in Red Hat OpenShift Service Mesh version 2.3.</p></div></div><p>For a complete example that was built using the Rust SDK, take a look at the <a href="https://github.com/maistra/header-append-filter">header-append-filter</a>. It is a simple filter that appends one or more headers to the HTTP responses, with their names and values taken out from the <code>config</code> field of the extension. See a sample configuration in the snippet below.</p><p><strong>Procedure</strong></p><ol><li>Create the following example resource:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">Example ServiceMeshExtension resource extension.yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: maistra.io/v1
+kind: ServiceMeshExtension
+metadata:
+  name: header-append
+  namespace: istio-system
+spec:
+  workloadSelector:
+    labels:
+      app: httpbin
+  config:
+    first-header: some-value
+    another-header: another-value
+  image: quay.io/maistra-dev/header-append-filter:2.1
+  phase: PostAuthZ
+  priority: 100" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">maistra.io/v1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ServiceMeshExtension</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">header-append</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">istio-system</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  workloadSelector</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    labels</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      app</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">httpbin</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  config</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    first-header</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">some-value</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    another-header</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">another-value</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  image</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">quay.io/maistra-dev/header-append-filter:2.1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  phase</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">PostAuthZ</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  priority</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">100</span></span></code></pre></div></div></li><li>Apply your <code>extension.yaml</code> file with the following command:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc apply -f <extension>.yaml" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> apply</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -f</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> &#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">extensio</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">n</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">.yaml</span></span></code></pre></div></div></li></ol><h2 id="ossm-extensions-migration-overview_ossm-extensions" class="group scroll-mt-20">Migrating from <code>ServiceMeshExtension</code> to <code>WasmPlugin</code> resources<a href="#ossm-extensions-migration-overview_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p>The <code>ServiceMeshExtension</code> API, which was deprecated in Red Hat OpenShift Service Mesh version 2.2, was removed in Red Hat OpenShift Service Mesh version 2.3. If you are using the <code>ServiceMeshExtension</code> API, you must migrate to the <code>WasmPlugin</code> API to continue using your WebAssembly extensions.</p><p>The APIs are very similar. The migration consists of two steps:</p><ol><li>Renaming your plugin file and updating the module packaging.</li><li>Creating a <code>WasmPlugin</code> resource that references the updated container image.</li></ol><h3 id="ossm-extensions-migration-api-changes_ossm-extensions" class="group scroll-mt-20">API changes<a href="#ossm-extensions-migration-api-changes_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>The new <code>WasmPlugin</code> API is similar to the <code>ServiceMeshExtension</code>, but with a few differences, especially in the field names:</p><p><strong>Field changes between </strong><code>ServiceMeshExtensions</code><strong> and </strong><code>WasmPlugin</code></p><table>
+<tbody>
+<tr>
+  <td>ServiceMeshExtension</td>
+  <td>WasmPlugin</td>
+</tr>
+<tr>
+  <td><code>spec.config</code></td>
+  <td><code>spec.pluginConfig</code></td>
+</tr>
+<tr>
+  <td><code>spec.workloadSelector</code></td>
+  <td><code>spec.selector</code></td>
+</tr>
+<tr>
+  <td><code>spec.image</code></td>
+  <td><code>spec.url</code></td>
+</tr>
+<tr>
+  <td><code>spec.phase</code> valid values: PreAuthN, PostAuthN, PreAuthZ, PostAuthZ, PreStats, PostStats</td>
+  <td><code>spec.phase</code> valid values: <empty>, AUTHN, AUTHZ, STATS</td>
+</tr>
+</tbody>
+</table>
+<p>The following is an example of how a <code>ServiceMeshExtension</code> resource could be converted into a <code>WasmPlugin</code> resource.</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">ServiceMeshExtension resource</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: maistra.io/v1
+kind: ServiceMeshExtension
+metadata:
+  name: header-append
+  namespace: istio-system
+spec:
+  workloadSelector:
+    labels:
+      app: httpbin
+  config:
+    first-header: some-value
+    another-header: another-value
+  image: quay.io/maistra-dev/header-append-filter:2.2
+  phase: PostAuthZ
+  priority: 100" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">maistra.io/v1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ServiceMeshExtension</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">header-append</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">istio-system</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  workloadSelector</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    labels</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      app</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">httpbin</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  config</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    first-header</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">some-value</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    another-header</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">another-value</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  image</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">quay.io/maistra-dev/header-append-filter:2.2</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  phase</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">PostAuthZ</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  priority</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">100</span></span></code></pre></div></div><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">New WasmPlugin resource equivalent to the ServiceMeshExtension above</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: extensions.istio.io/v1alpha1
+kind: WasmPlugin
+metadata:
+  name: header-append
+  namespace: istio-system
+spec:
+  selector:
+    matchLabels:
+      app: httpbin
+  url: oci://quay.io/maistra-dev/header-append-filter:2.2
+  phase: STATS
+  pluginConfig:
+    first-header: some-value
+    another-header: another-value" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">extensions.istio.io/v1alpha1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">WasmPlugin</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">header-append</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">istio-system</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  selector</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    matchLabels</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      app</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">httpbin</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  url</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">oci://quay.io/maistra-dev/header-append-filter:2.2</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  phase</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">STATS</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  pluginConfig</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    first-header</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">some-value</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    another-header</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">another-value</span></span></code></pre></div></div><h3 id="ossm-extensions-migration-format-changes_ossm-extensions" class="group scroll-mt-20">Container image format changes<a href="#ossm-extensions-migration-format-changes_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>The new <code>WasmPlugin</code> container image format is similar to the <code>ServiceMeshExtensions</code>, with the following differences:</p><ul><li>The <code>ServiceMeshExtension</code> container format required a metadata file named <code>manifest.yaml</code> in the root directory of the container filesystem. The <code>WasmPlugin</code> container format does not require a <code>manifest.yaml</code> file.</li><li>The <code>.wasm</code> file (the actual plugin) that previously could have any filename now must be named <code>plugin.wasm</code> and must be located in the root directory of the container filesystem.</li></ul><h3 id="ossm-extensions-migrating-to-wasmplugin_ossm-extensions" class="group scroll-mt-20">Migrating to <code>WasmPlugin</code> resources<a href="#ossm-extensions-migrating-to-wasmplugin_ossm-extensions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>To upgrade your WebAssembly extensions from the <code>ServiceMeshExtension</code> API to the <code>WasmPlugin</code> API, you rename your plugin file.</p><p><strong>Prerequisites</strong></p><ul><li><code>ServiceMeshControlPlane</code> is upgraded to version 2.2 or later.</li></ul><p><strong>Procedure</strong></p><ol><li>Update your container image. If the plugin is already in <code>/plugin.wasm</code> inside the container, skip to the next step.  If not:<ol><li>Ensure the plugin file is named <code>plugin.wasm</code>. You must name the extension file <code>plugin.wasm</code>.</li><li>Ensure the plugin file is located in the root (/) directory. You must store extension files in the root of the container filesystem..</li><li>Rebuild your container image and push it to a container registry.</li></ol></li><li>Remove the <code>ServiceMeshExtension</code> resource and create a <code>WasmPlugin</code> resource that refers to the new container image you built.</li></ol></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/service_mesh/v2x/ossm-federation" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Federation</div></div></a><a href="/openshift-docs-markdown/service_mesh/v2x/ossm-kiali-ossmc-plugin" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>OpenShift Service Mesh Console plugin</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>

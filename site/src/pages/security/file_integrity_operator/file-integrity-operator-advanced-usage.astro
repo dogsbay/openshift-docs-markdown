@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"file-integrity-operator-advanced-usage","text":"Performing advanced Custom File Integrity Operator tasks"}];
+const headings = [{"depth":1,"slug":"file-integrity-operator-advanced-usage","text":"Performing advanced Custom File Integrity Operator tasks"},{"depth":2,"slug":"file-integrity-operator-reinitializing-database_file-integrity-operator","text":"Reinitializing the database"},{"depth":2,"slug":"file-integrity-operator-machine-config-integration_file-integrity-operator","text":"Machine config integration"},{"depth":2,"slug":"file-integrity-operator-exploring-daemon-sets_file-integrity-operator","text":"Exploring the daemon sets"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-advanced-usage";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["security","security/file_integrity_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Performing advanced Custom File Integrity Operator tasks {#file-integrity-operator-advanced-usage}\n\nThis document describes advanced tasks for the Custom File Integrity Operator.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-advanced-usage.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Performing advanced Custom File Integrity Operator tasks {#file-integrity-operator-advanced-usage}\n\nThis document describes advanced tasks for the Custom File Integrity Operator.\n\n## Reinitializing the database {#file-integrity-operator-reinitializing-database_file-integrity-operator}\n\nIf the File Integrity Operator detects a change that was planned, it might be required to reinitialize the database.\n\n**Procedure**\n\n- Annotate the `FileIntegrity` custom resource (CR) with `file-integrity.openshift.io/re-init`:\n\n  ```terminal\n  $ oc annotate fileintegrities/worker-fileintegrity file-integrity.openshift.io/re-init=\n  ```\n\n  The old database and log files are backed up and a new database is initialized. The old database and logs are retained on the nodes under `/etc/kubernetes`, as seen in the following output from a pod spawned using `oc debug`:\n\n  ```terminal {title=\"Example output\"}\n   ls -lR /host/etc/kubernetes/aide.*\n  -rw-------. 1 root root 1839782 Sep 17 15:08 /host/etc/kubernetes/aide.db.gz\n  -rw-------. 1 root root 1839783 Sep 17 14:30 /host/etc/kubernetes/aide.db.gz.backup-20200917T15_07_38\n  -rw-------. 1 root root   73728 Sep 17 15:07 /host/etc/kubernetes/aide.db.gz.backup-20200917T15_07_55\n  -rw-r--r--. 1 root root       0 Sep 17 15:08 /host/etc/kubernetes/aide.log\n  -rw-------. 1 root root     613 Sep 17 15:07 /host/etc/kubernetes/aide.log.backup-20200917T15_07_38\n  -rw-r--r--. 1 root root       0 Sep 17 15:07 /host/etc/kubernetes/aide.log.backup-20200917T15_07_55\n  ```\n\n  To provide some permanence of record, the resulting config maps are not owned by the `FileIntegrity` object, so manual cleanup is necessary. As a result, any previous integrity failures would still be visible in the `FileIntegrityNodeStatus` object.\n\n## Machine config integration {#file-integrity-operator-machine-config-integration_file-integrity-operator}\n\nIn OpenShift Container Platform 4.22, the cluster node configuration is delivered through `MachineConfig` objects. You can assume that the changes to files that are caused by a `MachineConfig` object are expected and should not cause the file integrity scan to fail.\n\nTo suppress changes to files caused by `MachineConfig` object updates, the File Integrity Operator watches the node objects; when a node is being updated, the AIDE scans are suspended for the duration of the update. When the update finishes, the database is reinitialized and the scans resume.\n\nThis pause and resume logic only applies to updates through the `MachineConfig` API, as they are reflected in the node object annotations.\n\n## Exploring the daemon sets {#file-integrity-operator-exploring-daemon-sets_file-integrity-operator}\n\nEach `FileIntegrity` object represents a scan on several nodes. The scan itself is performed by pods managed by a daemon set. The config maps created by the AIDE daemon are not retained and are deleted after the File Integrity Operator processes them. However, on failure and error, the contents of these config maps are copied to the config map that the `FileIntegrityNodeStatus` object points to.\n\n**Procedure**\n\n1. To find the daemon set that represents a `FileIntegrity` object, run:\n\n   ```terminal\n   $ oc -n openshift-file-integrity get ds/aide-worker-fileintegrity\n   ```\n2. To list the pods in that daemon set, run:\n\n   ```terminal\n   $ oc -n openshift-file-integrity get pods -lapp=aide-worker-fileintegrity\n   ```\n3. To view logs of a single AIDE pod, call `oc logs` on one of the pods:\n\n   ```terminal\n   $ oc -n openshift-file-integrity logs pod/aide-worker-fileintegrity-mr8x6\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Starting the AIDE runner daemon\n   initializing AIDE db\n   initialization finished\n   running aide check\n   ...\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-advanced-usage.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +92,41 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="file-integrity-operator-advanced-usage" class="group scroll-mt-20">Performing advanced Custom File Integrity Operator tasks<a href="#file-integrity-operator-advanced-usage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>This document describes advanced tasks for the Custom File Integrity Operator.</p>
-      <p class="/modules/file-integrity-operator-reinitializing-database.md"></p>
-      <p class="/modules/file-integrity-operator-machine-config-integration.md"></p>
-      <p class="/modules/file-integrity-operator-exploring-daemon-sets.md"></p>
+      <h2 id="file-integrity-operator-reinitializing-database_file-integrity-operator" class="group scroll-mt-20">Reinitializing the database<a href="#file-integrity-operator-reinitializing-database_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If the File Integrity Operator detects a change that was planned, it might be required to reinitialize the database.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Annotate the <code>FileIntegrity</code> custom resource (CR) with <code>file-integrity.openshift.io/re-init</code>:
+      <CodeBlock code={"$ oc annotate fileintegrities/worker-fileintegrity file-integrity.openshift.io/re-init="} lang="terminal" />
+      <p>The old database and log files are backed up and a new database is initialized. The old database and logs are retained on the nodes under <code>/etc/kubernetes</code>, as seen in the following output from a pod spawned using <code>oc debug</code>:</p>
+      <CodeBlock code={" ls -lR /host/etc/kubernetes/aide.*\n-rw-------. 1 root root 1839782 Sep 17 15:08 /host/etc/kubernetes/aide.db.gz\n-rw-------. 1 root root 1839783 Sep 17 14:30 /host/etc/kubernetes/aide.db.gz.backup-20200917T15_07_38\n-rw-------. 1 root root   73728 Sep 17 15:07 /host/etc/kubernetes/aide.db.gz.backup-20200917T15_07_55\n-rw-r--r--. 1 root root       0 Sep 17 15:08 /host/etc/kubernetes/aide.log\n-rw-------. 1 root root     613 Sep 17 15:07 /host/etc/kubernetes/aide.log.backup-20200917T15_07_38\n-rw-r--r--. 1 root root       0 Sep 17 15:07 /host/etc/kubernetes/aide.log.backup-20200917T15_07_55"} lang="terminal" title="Example output" />
+      <p>To provide some permanence of record, the resulting config maps are not owned by the <code>FileIntegrity</code> object, so manual cleanup is necessary. As a result, any previous integrity failures would still be visible in the <code>FileIntegrityNodeStatus</code> object.</p>
+      </li>
+      </ul>
+      <h2 id="file-integrity-operator-machine-config-integration_file-integrity-operator" class="group scroll-mt-20">Machine config integration<a href="#file-integrity-operator-machine-config-integration_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In OpenShift Container Platform 4.22, the cluster node configuration is delivered through <code>MachineConfig</code> objects. You can assume that the changes to files that are caused by a <code>MachineConfig</code> object are expected and should not cause the file integrity scan to fail.</p>
+      <p>To suppress changes to files caused by <code>MachineConfig</code> object updates, the File Integrity Operator watches the node objects; when a node is being updated, the AIDE scans are suspended for the duration of the update. When the update finishes, the database is reinitialized and the scans resume.</p>
+      <p>This pause and resume logic only applies to updates through the <code>MachineConfig</code> API, as they are reflected in the node object annotations.</p>
+      <h2 id="file-integrity-operator-exploring-daemon-sets_file-integrity-operator" class="group scroll-mt-20">Exploring the daemon sets<a href="#file-integrity-operator-exploring-daemon-sets_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Each <code>FileIntegrity</code> object represents a scan on several nodes. The scan itself is performed by pods managed by a daemon set. The config maps created by the AIDE daemon are not retained and are deleted after the File Integrity Operator processes them. However, on failure and error, the contents of these config maps are copied to the config map that the <code>FileIntegrityNodeStatus</code> object points to.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To find the daemon set that represents a <code>FileIntegrity</code> object, run:
+      <CodeBlock code={"$ oc -n openshift-file-integrity get ds/aide-worker-fileintegrity"} lang="terminal" />
+      </li>
+      <li>
+      To list the pods in that daemon set, run:
+      <CodeBlock code={"$ oc -n openshift-file-integrity get pods -lapp=aide-worker-fileintegrity"} lang="terminal" />
+      </li>
+      <li>
+      To view logs of a single AIDE pod, call <code>oc logs</code> on one of the pods:
+      <CodeBlock code={"$ oc -n openshift-file-integrity logs pod/aide-worker-fileintegrity-mr8x6"} lang="terminal" />
+      <CodeBlock code={"Starting the AIDE runner daemon\ninitializing AIDE db\ninitialization finished\nrunning aide check\n..."} lang="terminal" title="Example output" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

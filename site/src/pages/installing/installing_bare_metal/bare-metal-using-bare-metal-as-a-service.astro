@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"bare-metal-using-bare-metal-as-a-service","text":"Using {{ bmaas_first }}"}];
+const headings = [{"depth":1,"slug":"bare-metal-using-bare-metal-as-a-service","text":"Using {{ bmaas_first }}"},{"depth":2,"slug":"bmaas-prerequisites_bare-metal-using-bmaas","text":"Prerequisites for using Red Hat Bare Metal as a Service for OpenShift"},{"depth":2,"slug":"bmaas-using-the-bmo-to-manage-resources-across-all-namespaces_bare-metal-using-bmaas","text":"Using the Bare Metal Operator to manage resources across all namespaces"},{"depth":2,"slug":"bmaas-setting-up-a-dedicated-namespace_bare-metal-using-bmaas","text":"Setting up a dedicated namespace"},{"depth":2,"slug":"bmo-creating-a-bmc-secret_bare-metal-using-bmaas","text":"Creating a BMC secret"},{"depth":2,"slug":"bmo-creating-a-bare-metal-host-resource_bare-metal-using-bmaas","text":"Creating a bare-metal host resource"},{"depth":2,"slug":"bmo-configuring-users-for-bmaas-hosts_bare-metal-using-bmaas","text":"Configuring users for Red Hat Bare Metal as a Service for OpenShift hosts"},{"depth":2,"slug":"bmo-configuring-the-networkdata-parameter-in-the-bmo-cr_bare-metal-using-bmaas","text":"Configuring the networkData parameter in the BareMetalHost resource"},{"depth":2,"slug":"bmo-deploying-an-image-to-the-bare-metal-host_bare-metal-using-bmaas","text":"Deploying an image to the bare-metal host"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_bare_metal"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using {{ bmaas_first }} {#bare-metal-using-bare-metal-as-a-service}\n\nYou can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the OpenShift Container Platform cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access.\n\n{{ bmaas_first }} has the following capabilities:\n\n- Provisioning of bare-metal hosts, including initial configuration.\n- Lifecycle management such as power management, firmware updates, and decommissioning by using the BMO.\n\nAs standalone systems, these hosts operate independently of the OpenShift Container Platform cluster and support diverse workloads by integrating bare metal resources with containerized and virtualized applications. {{ bmaas_first }} can run other operating systems, but only {{ op_system_base_full }} and CentOS Stream 9 were tested.\n\n**Additional resources**\n\n- [About BMC addressing](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using {{ bmaas_first }} {#bare-metal-using-bare-metal-as-a-service}\n\nYou can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the OpenShift Container Platform cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access.\n\nRed Hat Bare Metal as a Service for OpenShift has the following capabilities:\n\n- Provisioning of bare-metal hosts, including initial configuration.\n- Lifecycle management such as power management, firmware updates, and decommissioning by using the BMO.\n\nAs standalone systems, these hosts operate independently of the OpenShift Container Platform cluster and support diverse workloads by integrating bare metal resources with containerized and virtualized applications. Red Hat Bare Metal as a Service for OpenShift can run other operating systems, but only Red Hat Enterprise Linux (RHEL) and CentOS Stream 9 were tested.\n\n## Prerequisites for using Red Hat Bare Metal as a Service for OpenShift {#bmaas-prerequisites_bare-metal-using-bmaas}\n\nRed Hat Bare Metal as a Service for OpenShift lets you apply cloud-native management practices to bare-metal infrastructure, enabling automated provisioning and lifecycle management for workloads that require physical hardware. To use Red Hat Bare Metal as a Service for OpenShift, complete the following prerequisites:\n\nBareMetalHost Configuration\n:   All bare-metal hosts must use a Baseboard Management Controller (BMC) configured with the Redfish protocol and virtual media (`redfish-virtualmedia`) driver. Each bare-metal host requires a boot interface with a MAC address configured to receive an IP address lease.\n\nNetwork Requirements\n:   A DHCP server, separate from the OpenShift Container Platform and Metal^3^ infrastructure, must be operational on the same Layer 2 network as the bare-metal hosts. The DHCP server must be configured to match the MAC addresses of the boot interfaces on the bare-metal hosts, enabling IP address assignment for communication with Metal^3^ components.\n\nCluster Privileges\n:   You must have `cluster-admin` privileges on the OpenShift Container Platform cluster to perform configuration tasks.\n\nWeb server with images\n:   Red Hat Bare Metal as a Service for OpenShift does not provide images for deployment on hardware. You must configure a web server with the images and checksums you want to use. The `image` field of the `BareMetalHost` spec references these images during deployment. Ensure that the bare-metal hosts can reach the web server URL. Alternatively, you can access images from an OCI registry as a Technology Preview. This can be done by accessing a public registry such as Quay.io, or by hosting OCI images from the built-in registry in your cluster. The following is an example of images and checksums you might include:\n\n    - `http://example.com/rhel9.qcow2`\n    - `http://example.com/rhel9.qcow2.sha512sum`\n    - `http://example.com/stream9.qcow2`\n    - `http://example.com/stream9.qcow2.sha512sum`\n    - `oci://quay.io/example/image:version`\n\nThese prerequisites ensure that Red Hat Bare Metal as a Service for OpenShift can provision and manage bare-metal hosts effectively.\n\n> [!IMPORTANT]\n> Accessing images from an OCI registry is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Using the Bare Metal Operator to manage resources across all namespaces {#bmaas-using-the-bmo-to-manage-resources-across-all-namespaces_bare-metal-using-bmaas}\n\nFor the Bare Metal Operator (BMO) to manage `BareMetalHost` resources across all namespaces in your OpenShift Container Platform cluster, you must configure the Operator to watch all namespaces. This configuration is important to avoid mixing non-OpenShift Container Platform workloads with other components in the same namespace.\n\n**Prerequisites**\n\n- If you are using user-provisioned installation and the Provisioning CR does not exist, you must create it manually. For instructions, see [Configuring a provisioning resource to scale user-provisioned clusters](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html-single/installing_on_bare_metal/index#scaling-a-user-provisioned-cluster-with-the-bare-metal-operator). For installer-provisioned installations, the installation program creates the Provisioning custom resource (CR) automatically.\n\n**Procedure**\n\n- Patch the provisioning configuration to enable watching all namespaces by running the following command:\n\n  ```terminal\n  $ oc patch provisioning/provisioning-configuration \\\n    --type merge -p '{\"spec\": {\"watchAllNamespaces\": true}}'\n  ```\n\n  The BMO applies this change automatically.\n\n## Setting up a dedicated namespace {#bmaas-setting-up-a-dedicated-namespace_bare-metal-using-bmaas}\n\nTo prevent accidental interference between Red Hat Bare Metal as a Service for OpenShift workloads and the OpenShift Container Platform infrastructure, set up a dedicated namespace. Repeat this procedure for every project where you intend to use Red Hat Bare Metal as a Service for OpenShift.\n\n**Prerequisites**\n\n- You have [configured an identify provider](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html-single/authentication_and_authorization/index#configuring-identity-providers).\n\n**Procedure**\n\n1. Configure a `bmadmin` user in the identity provider and create a secret in OpenShift:\n\n   1. Create the `bmadmin` user in the identity provider. For example, if using the `htpasswd` identity provider, run the following command:\n\n      ```terminal\n      $ htpasswd -c -B -b ./users_htpasswd <username> <password>\n      ```\n\n      <username>\n      :   The user name for the identity provider. Replace `<username>` with your preferred user name. This example uses `bmadmin`.\n\n      <password>\n      :   The password for the user. Replace `<password>` with a secure password.\n   2. Create a secret in the `openshift-config` namespace to store the identity provider configuration by running the following command:\n\n      ```terminal\n      $ oc create secret generic <identity_provider_arguments> -n openshift-config\n      ```\n\n      For example, when using the `htpasswd` identity provider, run the following command:\n\n      ```terminal\n      $ oc create secret generic htpass-secret --from-file=htpasswd=users_htpasswd -n openshift-config\n      ```\n\n      <identity_provider_arguments>\n      :   The arguments specific to the identity provider secret. Replace `<identity_provider_arguments>` with the appropriate arguments for your identity provider.\n2. Configure OAuth to use the identity provider:\n\n   1. Edit the OAuth resource by running the following command:\n\n      ```terminal\n      $ oc edit oauth cluster\n      ```\n\n      The editor opens and displays the Oauth resource.\n   2. Add the identity provider configuration to the `spec.identityProviders` list:\n\n      ***Identity provider configuration examples***\n\n<table>\n<thead>\n<tr>\n  <th>Type</th>\n  <th>Example</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>htpasswd</td>\n  <td><pre># ...&#10;- name: my_bmaas_provider&#10;  mappingMethod: claim&#10;  type: htpasswd&#10;  htpasswd:&#10;    fileData:&#10;      name: &lt;secret&gt;&#10;# ...</pre></td>\n</tr>\n<tr>\n  <td>LDAP</td>\n  <td><pre># ...&#10;- name: my_bmaas_provider&#10;  mappingMethod: claim&#10;  type: ldap&#10;  ldap:&#10;    attributes:&#10;      id:&#10;      - dn&#10;      email:&#10;      - mail&#10;      name:&#10;      - cn&#10;      preferredUsername:&#10;      - uid&#10;# ...</pre></td>\n</tr>\n<tr>\n  <td>GitHub</td>\n  <td><pre># ...&#10;- name: my_bmaas_provider&#10;  mappingMethod: claim&#10;  type: GitHub&#10;    github:&#10;      ca:&#10;        name: ca-config-map&#10;      clientID: {...}&#10;      clientSecret:&#10;        name: github-secret&#10;      hostname: ...&#10;      organizations:&#10;      - myorganization1&#10;      - myorganization2&#10;      teams:&#10;      - myorganization1/team-a&#10;      - myorganization2/team-b&#10;# ...</pre></td>\n</tr>\n</tbody>\n</table>\n\n```\n    For more information about identify providers, see [Authentication and authorization](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html-single/authentication_and_authorization/index).\n1.  Save and exit the editor.\n```\n\n1. Create a `bmadmin` user by running the following command:\n\n   ```terminal\n   $ oc create user <username>\n   ```\n\n   <username>\n   :   The user name. Replace `<username>` with your username. The following examples use `bmadmin` as the username.\n2. Create a dedicated `bmaas` namespace for Red Hat Bare Metal as a Service for OpenShift hosts by running the following command:\n\n   ```terminal\n   $ oc new-project <namespace>\n   ```\n\n   `<namespace>`\n   :   Replace <namespace> with the namespace name that you want to use. This example uses `bmaas`.\n3. Assign the `edit` role to the `bmadmin` user in the `bmaas` namespace by running the following command:\n\n   ```terminal\n   $ oc adm policy add-role-to-user edit <username> -n bmaas\n   ```\n4. Clone the `baremetal-operator` repository to obtain the role-based access control (RBAC) role definitions by running the following command:\n\n   ```terminal\n   $ git clone -b release-{{ product_version }} https://github.com/openshift/baremetal-operator.git\n   ```\n5. For each role you want to add, apply the appropriate RBAC role YAML file from the repository by running the following command:\n\n   ```terminal\n   $ oc apply -f baremetal-operator/config/base/rbac/<role_filename>.yaml\n   ```\n6. Assign the custom RBAC roles to the `bmadmin` user in the `bmaas` namespace by running the following command:\n\n   ```terminal\n   $ oc adm policy add-role-to-user <role_name> bmadmin -n bmaas\n   ```\n7. Login as the `bmadmin` user by running the following command:\n\n   ```terminal\n   $ oc login <api_server_url>:6443\n   ```\n\n   `<api_server_url>`\n   :   The URL to the Kubernetes API.\n\n## Creating a BMC secret {#bmo-creating-a-bmc-secret_bare-metal-using-bmaas}\n\nTo deploy a bare-metal host, you must create a secret to access the baseboard management controller (BMC). This means you can remotely provision or manage the physical hardware.\n\n**Procedure**\n\n1. Create a BMC secret file by running the following command:\n\n   ```terminal\n   $ vim bmaas-<name>-bmc-secret.yaml\n   ```\n\n   Replace `<name>` with the name of the bare-metal host.\n2. Edit the secret:\n\n   ```yaml\n   apiVersion: v1\n   kind: Secret\n   metadata:\n     name: bmaas-<name>-bmc-secret\n     namespace: bmaas\n   type: Opaque\n   data:\n     username: <base64_of_uid>\n     password: <base64_of_pwd>\n   ```\n\n   <base64_of_uid>\n   :   Replace `<base64_of_uid>` with the BMC user name as a Base64-encoded string.\n\n   <base64_of_pwd>\n   :   Replace `<base64_of_pwd>` with the BMC password as a Base64-encoded string.\n3. Apply the BMC secret by running the following command:\n\n   ```terminal\n   $ oc apply -f bmaas-<name>-bmc-secret.yaml\n   ```\n\n**Additional resources**\n\n- [About BMC addressing](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow)\n\n## Creating a bare-metal host resource {#bmo-creating-a-bare-metal-host-resource_bare-metal-using-bmaas}\n\nTo deploy a bare-metal host, you must create a `BareMetalHost` resource.\n\n**Procedure**\n\n1. Create a `BareMetalHost` custom resource (CR) file by running the following command:\n\n   ```terminal\n   $ vim bmaas-<name>-bmh.yaml\n   ```\n\n   <name>\n   :   ```\n         Replace `<name>` with the name of the bare-metal host.\n       ```\n2. Edit the CR:\n\n   ```yaml\n   apiVersion: metal3.io/v1alpha1\n   kind: BareMetalHost\n   metadata:\n     name: bmaas-<name>\n     namespace:  bmaas\n   spec:\n     online: true\n     bootMACAddress: <mac_addr>\n     bmc:\n       address: redfish-virtualmedia+<address>/redfish/v1/Systems/System.Embedded.1\n       credentialsName: bmaas-<num>-bmc-secret\n   ```\n\n   <mac_addr>\n   :   ```\n         Replace `<mac_addr>` with the MAC address of the first NIC on the bare-metal host.\n       ```\n\n   <address>\n   :   ```\n         Replace `<address>` with IP address or FQDN of the host.\n       ```\n3. Apply the CR by running the following command:\n\n   ```terminal\n   $ oc apply -f bmaas-<name>-bmh.yaml\n   ```\n\n**Verification**\n\n- Check the `BareMetalHost` state by running the following command:\n\n  ```terminal\n  $ oc get baremetalhost -n bmaas\n  ```\n\n  The state progresses from **registering**, to **inspecting**, and finally to **available**.\n\n## Configuring users for Red Hat Bare Metal as a Service for OpenShift hosts {#bmo-configuring-users-for-bmaas-hosts_bare-metal-using-bmaas}\n\nConfigure bare-metal host users and add them to a Kubernetes secret. Then, create and apply the secret to customize the host. With configured users you can access or manage the bare-metal host after it is provisioned.\n\n**Procedure**\n\n1. Create a file named `<hostname>-user-data.yaml`, where `<hostname>` is the name of the bare-metal host, with the following content:\n\n   ```yaml\n   users:\n     - name: <name>\n       sudo: [<sudo_config>]\n       ssh_authorized_keys:\n         - <key_type>\n         <key>\n       shell: <shell_path>\n       groups: [<groups>]\n       lock_passwd: true|false\n   ```\n\n   `users.name`\n   :   The user name.\n\n   `users.sudo`\n   :   The sudo configuration for the user.\n\n   `users.ssh_authorized_keys.<key_type>`\n   :   The SSH key type.\n\n   `users.ssh_authorized_keys.<key>`\n   :   The public SSH key to use when accessing this host as the `<name>` user.\n\n   `users.shell`\n   :   The shell to use when accessing the host.\n\n   `users.groups`\n   :   The groups the user belongs to.\n\n   `users.lock_passwd`\n   :   Whether the user password is locked. If `true`, the user cannot log in by using the password, but can still use SSH.\n\n   ```yaml {title=\"Example user\"}\n   users:\n     - name: sysadmin\n       sudo: [\"ALL=(ALL) NOPASSWD:ALL\"]\n       ssh_authorized_keys:\n         - ssh-rsa AAAAB3NzaC1yc2E... sysadmin@workstation.example.com\n       shell: /bin/bash\n       groups: [adm, sudo]\n       lock_passwd: true\n   ```\n2. Create a secret from the `<hostname>-user-data.yaml` file by running the following command:\n\n   ```terminal\n   $ oc create secret generic <hostname>-user-data \\\n     --from-file=userData=<hostname>-user-data.yaml -n bmaas\n   ```\n\n   `<hostname>`\n   :   ```\n       The name of the bare-metal host.\n       ```\n3. Configure the `BareMetalHost` to use the `<hostname>-user-data.yaml` file by running the following command:\n\n   ```terminal\n   $ oc patch baremetalhost <hostname> -n bmaas \\\n        --type merge -p '{\"spec\":{\"userData\":{\"name\":\"<hostname>-user-data\"}}}'\n   ```\n\n   `<hostname>`\n   :   ```\n       The name of the bare-metal host.\n       ```\n\n## Configuring the networkData parameter in the BareMetalHost resource {#bmo-configuring-the-networkdata-parameter-in-the-bmo-cr_bare-metal-using-bmaas}\n\nThe `networkData` field in the `BareMetalHost` custom resource (CR) allows you to control the network configuration of the bare-metal host at creation time. For most operating systems, this is achieved using a configuration file encapsulated in a Kubernetes secret. Then, the `cloud-init` service uses it to customize services.\n\n**Procedure**\n\n1. Create a file named `network-data.yaml` with the following content:\n\n   ```yaml\n   links:\n     - id: <interface_id>\n       type: phy\n       ethernet_mac_address: <mac_address>\n   networks:\n     - id: <interface_id>\n       link: <interface_id>\n       type: ipv4_dhcp\n   services:\n     - type: dns\n       address: <dns_server>\n   ```\n\n   `<interface_id>`\n   :   The ID of the network interface, such as `enp2s0`.\n\n   `<mac_address>`\n   :   The MAC address of the network interface.\n\n   `<dns_server>`\n   :   The IP address of the DNS server.\n2. Create a secret from the `networkData` file by running the following command:\n\n   ```terminal\n   $ oc create secret generic <hostname>-network-data \\\n     --from-file=networkData=network-data.yaml -n bmaas\n   ```\n\n   `<hostname>`\n   :   The hostname of the bare-metal host.\n3. Configure the `BareMetalHost` to use the `networkData` file by running the following command:\n\n   ```terminal\n   $ oc patch baremetalhost <hostname> -n bmaas \\\n     --type merge -p '{\"spec\":{\"networkData\":{\"name\":\"<hostname>-network-data\"}}}'\n   ```\n\n## Deploying an image to the bare-metal host {#bmo-deploying-an-image-to-the-bare-metal-host_bare-metal-using-bmaas}\n\nTo deploy the image to the host, update the `image` field in the `spec` section of the `BareMetalHost` resource. Once you update the `image` field, provisioning begins immediately. Deploying an image transforms bare hardware into a functional system ready to run your workloads, in an automated and repeatable way.\n\n**Procedure**\n\n- Update the `image` field in the `BareMetalHost` CR by running the following command:\n\n  ```terminal\n  $ oc patch baremetalhost <hostname> \\\n    --type merge -p '{\"spec\": {\"image\": {\"url\": \"<image_url>\", \"checksum\": \"<checksum_url>\", \"checksumType\": \"auto\"}}}'\n  ```\n\n  `<hostname>`\n  :   The name of your `BareMetalHost` resource.\n\n  `<image_url>`\n  :   The URL of the image to deploy. You can access images using the HTTP and OCI protocols. Accessing images using the OCI protocol is available as a Technology Preview.\n\n  `<checksum_url>`\n  :   The URL of the checksum file for the image.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-using-bare-metal-as-a-service.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,23 +95,293 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="bare-metal-using-bare-metal-as-a-service" class="group scroll-mt-20">Using {"{"}{"{"} bmaas_first {"}"}{"}"}<a href="#bare-metal-using-bare-metal-as-a-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can provision and manage bare-metal hosts by using the Metal^3^ API and the Bare Metal Operator (BMO). These hosts, external to the OpenShift Container Platform cluster, can run workloads that might not be suitable for containerization or virtualization, such as legacy applications or applications that require direct hardware access.</p>
-      <p>{"{"}{"{"} bmaas_first {"}"}{"}"} has the following capabilities:</p>
+      <p>Red Hat Bare Metal as a Service for OpenShift has the following capabilities:</p>
       <ul>
       <li>Provisioning of bare-metal hosts, including initial configuration.</li>
       <li>Lifecycle management such as power management, firmware updates, and decommissioning by using the BMO.</li>
       </ul>
-      <p>As standalone systems, these hosts operate independently of the OpenShift Container Platform cluster and support diverse workloads by integrating bare metal resources with containerized and virtualized applications. {"{"}{"{"} bmaas_first {"}"}{"}"} can run other operating systems, but only {"{"}{"{"} op_system_base_full {"}"}{"}"} and CentOS Stream 9 were tested.</p>
-      <p class="/modules/bmaas-prerequisites.md"></p>
-      <p class="/modules/bmaas-using-the-bmo-to-manage-resources-across-all-namespaces.md"></p>
-      <p class="/modules/bmaas-setting-up-a-dedicated-namespace.md"></p>
-      <p class="/modules/bmo-creating-a-bmc-secret.md"></p>
+      <p>As standalone systems, these hosts operate independently of the OpenShift Container Platform cluster and support diverse workloads by integrating bare metal resources with containerized and virtualized applications. Red Hat Bare Metal as a Service for OpenShift can run other operating systems, but only Red Hat Enterprise Linux (RHEL) and CentOS Stream 9 were tested.</p>
+      <h2 id="bmaas-prerequisites_bare-metal-using-bmaas" class="group scroll-mt-20">Prerequisites for using Red Hat Bare Metal as a Service for OpenShift<a href="#bmaas-prerequisites_bare-metal-using-bmaas" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Red Hat Bare Metal as a Service for OpenShift lets you apply cloud-native management practices to bare-metal infrastructure, enabling automated provisioning and lifecycle management for workloads that require physical hardware. To use Red Hat Bare Metal as a Service for OpenShift, complete the following prerequisites:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">BareMetalHost Configuration</dt>
+      <dd class="ml-6 text-muted-foreground"><p>All bare-metal hosts must use a Baseboard Management Controller (BMC) configured with the Redfish protocol and virtual media (<code>redfish-virtualmedia</code>) driver. Each bare-metal host requires a boot interface with a MAC address configured to receive an IP address lease.</p></dd>
+      <dt class="font-semibold">Network Requirements</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A DHCP server, separate from the OpenShift Container Platform and Metal^3^ infrastructure, must be operational on the same Layer 2 network as the bare-metal hosts. The DHCP server must be configured to match the MAC addresses of the boot interfaces on the bare-metal hosts, enabling IP address assignment for communication with Metal^3^ components.</p></dd>
+      <dt class="font-semibold">Cluster Privileges</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You must have <code>cluster-admin</code> privileges on the OpenShift Container Platform cluster to perform configuration tasks.</p></dd>
+      <dt class="font-semibold">Web server with images</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Red Hat Bare Metal as a Service for OpenShift does not provide images for deployment on hardware. You must configure a web server with the images and checksums you want to use. The <code>image</code> field of the <code>BareMetalHost</code> spec references these images during deployment. Ensure that the bare-metal hosts can reach the web server URL. Alternatively, you can access images from an OCI registry as a Technology Preview. This can be done by accessing a public registry such as Quay.io, or by hosting OCI images from the built-in registry in your cluster. The following is an example of images and checksums you might include:</p>
+      <ul>
+      <li><code>http://example.com/rhel9.qcow2</code></li>
+      <li><code>http://example.com/rhel9.qcow2.sha512sum</code></li>
+      <li><code>http://example.com/stream9.qcow2</code></li>
+      <li><code>http://example.com/stream9.qcow2.sha512sum</code></li>
+      <li><code>oci://quay.io/example/image:version</code></li>
+      </ul>
+      </dd>
+      </dl>
+      <p>These prerequisites ensure that Red Hat Bare Metal as a Service for OpenShift can provision and manage bare-metal hosts effectively.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Accessing images from an OCI registry is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="bmaas-using-the-bmo-to-manage-resources-across-all-namespaces_bare-metal-using-bmaas" class="group scroll-mt-20">Using the Bare Metal Operator to manage resources across all namespaces<a href="#bmaas-using-the-bmo-to-manage-resources-across-all-namespaces_bare-metal-using-bmaas" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">For the Bare Metal Operator (BMO) to manage <code>BareMetalHost</code> resources across all namespaces in your OpenShift Container Platform cluster, you must configure the Operator to watch all namespaces. This configuration is important to avoid mixing non-OpenShift Container Platform workloads with other components in the same namespace.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>If you are using user-provisioned installation and the Provisioning CR does not exist, you must create it manually. For instructions, see <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html-single/installing_on_bare_metal/index#scaling-a-user-provisioned-cluster-with-the-bare-metal-operator">Configuring a provisioning resource to scale user-provisioned clusters</a>. For installer-provisioned installations, the installation program creates the Provisioning custom resource (CR) automatically.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Patch the provisioning configuration to enable watching all namespaces by running the following command:
+      <CodeBlock code={"$ oc patch provisioning/provisioning-configuration \\\n  --type merge -p '{\"spec\": {\"watchAllNamespaces\": true}}'"} lang="terminal" />
+      <p>The BMO applies this change automatically.</p>
+      </li>
+      </ul>
+      <h2 id="bmaas-setting-up-a-dedicated-namespace_bare-metal-using-bmaas" class="group scroll-mt-20">Setting up a dedicated namespace<a href="#bmaas-setting-up-a-dedicated-namespace_bare-metal-using-bmaas" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To prevent accidental interference between Red Hat Bare Metal as a Service for OpenShift workloads and the OpenShift Container Platform infrastructure, set up a dedicated namespace. Repeat this procedure for every project where you intend to use Red Hat Bare Metal as a Service for OpenShift.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html-single/authentication_and_authorization/index#configuring-identity-providers">configured an identify provider</a>.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Configure a <code>bmadmin</code> user in the identity provider and create a secret in OpenShift:
+      <ol>
+      <li>
+      Create the <code>bmadmin</code> user in the identity provider. For example, if using the <code>htpasswd</code> identity provider, run the following command:
+      <CodeBlock code={"$ htpasswd -c -B -b ./users_htpasswd <username> <password>"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">&lt;username&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The user name for the identity provider. Replace <code>&lt;username&gt;</code> with your preferred user name. This example uses <code>bmadmin</code>.</p></dd>
+      <dt class="font-semibold">&lt;password&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The password for the user. Replace <code>&lt;password&gt;</code> with a secure password.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create a secret in the <code>openshift-config</code> namespace to store the identity provider configuration by running the following command:
+      <CodeBlock code={"$ oc create secret generic <identity_provider_arguments> -n openshift-config"} lang="terminal" />
+      <p>For example, when using the <code>htpasswd</code> identity provider, run the following command:</p>
+      <CodeBlock code={"$ oc create secret generic htpass-secret --from-file=htpasswd=users_htpasswd -n openshift-config"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">&lt;identity_provider_arguments&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The arguments specific to the identity provider secret. Replace <code>&lt;identity_provider_arguments&gt;</code> with the appropriate arguments for your identity provider.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Configure OAuth to use the identity provider:
+      <ol>
+      <li>
+      Edit the OAuth resource by running the following command:
+      <CodeBlock code={"$ oc edit oauth cluster"} lang="terminal" />
+      <p>The editor opens and displays the Oauth resource.</p>
+      </li>
+      <li>
+      Add the identity provider configuration to the <code>spec.identityProviders</code> list:
+      <p><em></em><em><strong>Identity provider configuration examples</strong></em><em></em></p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Type</th>\n  <th>Example</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>htpasswd</td>\n  <td><pre># ...&#10;- name: my_bmaas_provider&#10;  mappingMethod: claim&#10;  type: htpasswd&#10;  htpasswd:&#10;    fileData:&#10;      name: &lt;secret&gt;&#10;# ...</pre></td>\n</tr>\n<tr>\n  <td>LDAP</td>\n  <td><pre># ...&#10;- name: my_bmaas_provider&#10;  mappingMethod: claim&#10;  type: ldap&#10;  ldap:&#10;    attributes:&#10;      id:&#10;      - dn&#10;      email:&#10;      - mail&#10;      name:&#10;      - cn&#10;      preferredUsername:&#10;      - uid&#10;# ...</pre></td>\n</tr>\n<tr>\n  <td>GitHub</td>\n  <td><pre># ...&#10;- name: my_bmaas_provider&#10;  mappingMethod: claim&#10;  type: GitHub&#10;    github:&#10;      ca:&#10;        name: ca-config-map&#10;      clientID: {...}&#10;      clientSecret:&#10;        name: github-secret&#10;      hostname: ...&#10;      organizations:&#10;      - myorganization1&#10;      - myorganization2&#10;      teams:&#10;      - myorganization1/team-a&#10;      - myorganization2/team-b&#10;# ...</pre></td>\n</tr>\n</tbody>\n</table>\n"} />
+      <CodeBlock code={"    For more information about identify providers, see [Authentication and authorization](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html-single/authentication_and_authorization/index).\n1.  Save and exit the editor."} lang="plaintext" />
+      <ol>
+      <li>
+      Create a <code>bmadmin</code> user by running the following command:
+      <CodeBlock code={"$ oc create user <username>"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">&lt;username&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The user name. Replace <code>&lt;username&gt;</code> with your username. The following examples use <code>bmadmin</code> as the username.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create a dedicated <code>bmaas</code> namespace for Red Hat Bare Metal as a Service for OpenShift hosts by running the following command:
+      <CodeBlock code={"$ oc new-project <namespace>"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Replace &lt;namespace&gt; with the namespace name that you want to use. This example uses <code>bmaas</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Assign the <code>edit</code> role to the <code>bmadmin</code> user in the <code>bmaas</code> namespace by running the following command:
+      <CodeBlock code={"$ oc adm policy add-role-to-user edit <username> -n bmaas"} lang="terminal" />
+      </li>
+      <li>
+      Clone the <code>baremetal-operator</code> repository to obtain the role-based access control (RBAC) role definitions by running the following command:
+      <CodeBlock code={"$ git clone -b release-{{ product_version }} https://github.com/openshift/baremetal-operator.git"} lang="terminal" />
+      </li>
+      <li>
+      For each role you want to add, apply the appropriate RBAC role YAML file from the repository by running the following command:
+      <CodeBlock code={"$ oc apply -f baremetal-operator/config/base/rbac/<role_filename>.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Assign the custom RBAC roles to the <code>bmadmin</code> user in the <code>bmaas</code> namespace by running the following command:
+      <CodeBlock code={"$ oc adm policy add-role-to-user <role_name> bmadmin -n bmaas"} lang="terminal" />
+      </li>
+      <li>
+      Login as the <code>bmadmin</code> user by running the following command:
+      <CodeBlock code={"$ oc login <api_server_url>:6443"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;api_server_url&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The URL to the Kubernetes API.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <h2 id="bmo-creating-a-bmc-secret_bare-metal-using-bmaas" class="group scroll-mt-20">Creating a BMC secret<a href="#bmo-creating-a-bmc-secret_bare-metal-using-bmaas" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To deploy a bare-metal host, you must create a secret to access the baseboard management controller (BMC). This means you can remotely provision or manage the physical hardware.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a BMC secret file by running the following command:
+      <CodeBlock code={"$ vim bmaas-<name>-bmc-secret.yaml"} lang="terminal" />
+      <p>Replace <code>&lt;name&gt;</code> with the name of the bare-metal host.</p>
+      </li>
+      <li>
+      Edit the secret:
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n  name: bmaas-<name>-bmc-secret\n  namespace: bmaas\ntype: Opaque\ndata:\n  username: <base64_of_uid>\n  password: <base64_of_pwd>"} lang="yaml" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">&lt;base64_of_uid&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Replace <code>&lt;base64_of_uid&gt;</code> with the BMC user name as a Base64-encoded string.</p></dd>
+      <dt class="font-semibold">&lt;base64_of_pwd&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Replace <code>&lt;base64_of_pwd&gt;</code> with the BMC password as a Base64-encoded string.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the BMC secret by running the following command:
+      <CodeBlock code={"$ oc apply -f bmaas-<name>-bmc-secret.yaml"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#bmc-addressing_ipi-install-installation-workflow">About BMC addressing</a></li></ul>
-      <p class="/modules/bmo-configuring-users-for-bmaas-hosts.md"></p>
-      <p class="/modules/bmo-configuring-the-networkdata-parameter-in-the-bmo-cr.md"></p>
-      <p class="/modules/bmo-deploying-an-image-to-the-bare-metal-host.md"></p>
+      <h2 id="bmo-creating-a-bare-metal-host-resource_bare-metal-using-bmaas" class="group scroll-mt-20">Creating a bare-metal host resource<a href="#bmo-creating-a-bare-metal-host-resource_bare-metal-using-bmaas" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To deploy a bare-metal host, you must create a <code>BareMetalHost</code> resource.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>BareMetalHost</code> custom resource (CR) file by running the following command:
+      <CodeBlock code={"$ vim bmaas-<name>-bmh.yaml"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">&lt;name&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"  Replace `<name>` with the name of the bare-metal host."} lang="plaintext" /></dd>
+      </dl>
+      </li>
+      <li>
+      Edit the CR:
+      <CodeBlock code={"apiVersion: metal3.io/v1alpha1\nkind: BareMetalHost\nmetadata:\n  name: bmaas-<name>\n  namespace:  bmaas\nspec:\n  online: true\n  bootMACAddress: <mac_addr>\n  bmc:\n    address: redfish-virtualmedia+<address>/redfish/v1/Systems/System.Embedded.1 \n    credentialsName: bmaas-<num>-bmc-secret"} lang="yaml" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">&lt;mac_addr&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"  Replace `<mac_addr>` with the MAC address of the first NIC on the bare-metal host."} lang="plaintext" /></dd>
+      <dt class="font-semibold">&lt;address&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"  Replace `<address>` with IP address or FQDN of the host."} lang="plaintext" /></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the CR by running the following command:
+      <CodeBlock code={"$ oc apply -f bmaas-<name>-bmh.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Check the <code>BareMetalHost</code> state by running the following command:
+      <CodeBlock code={"$ oc get baremetalhost -n bmaas"} lang="terminal" />
+      <p>The state progresses from <strong>registering</strong>, to <strong>inspecting</strong>, and finally to <strong>available</strong>.</p>
+      </li>
+      </ul>
+      <h2 id="bmo-configuring-users-for-bmaas-hosts_bare-metal-using-bmaas" class="group scroll-mt-20">Configuring users for Red Hat Bare Metal as a Service for OpenShift hosts<a href="#bmo-configuring-users-for-bmaas-hosts_bare-metal-using-bmaas" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure bare-metal host users and add them to a Kubernetes secret. Then, create and apply the secret to customize the host. With configured users you can access or manage the bare-metal host after it is provisioned.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a file named <code>&lt;hostname&gt;-user-data.yaml</code>, where <code>&lt;hostname&gt;</code> is the name of the bare-metal host, with the following content:
+      <CodeBlock code={"users:\n  - name: <name>\n    sudo: [<sudo_config>]\n    ssh_authorized_keys:\n      - <key_type>\n      <key>\n    shell: <shell_path>\n    groups: [<groups>]\n    lock_passwd: true|false"} lang="yaml" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>users.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The user name.</p></dd>
+      <dt class="font-semibold"><code>users.sudo</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The sudo configuration for the user.</p></dd>
+      <dt class="font-semibold"><code>users.ssh_authorized_keys.&lt;key_type&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The SSH key type.</p></dd>
+      <dt class="font-semibold"><code>users.ssh_authorized_keys.&lt;key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The public SSH key to use when accessing this host as the <code>&lt;name&gt;</code> user.</p></dd>
+      <dt class="font-semibold"><code>users.shell</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The shell to use when accessing the host.</p></dd>
+      <dt class="font-semibold"><code>users.groups</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The groups the user belongs to.</p></dd>
+      <dt class="font-semibold"><code>users.lock_passwd</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Whether the user password is locked. If <code>true</code>, the user cannot log in by using the password, but can still use SSH.</p></dd>
+      </dl>
+      <CodeBlock code={"users:\n  - name: sysadmin\n    sudo: [\"ALL=(ALL) NOPASSWD:ALL\"]\n    ssh_authorized_keys:\n      - ssh-rsa AAAAB3NzaC1yc2E... sysadmin@workstation.example.com\n    shell: /bin/bash\n    groups: [adm, sudo]\n    lock_passwd: true"} lang="yaml" title="Example user" />
+      </li>
+      <li>
+      Create a secret from the <code>&lt;hostname&gt;-user-data.yaml</code> file by running the following command:
+      <CodeBlock code={"$ oc create secret generic <hostname>-user-data \\\n  --from-file=userData=<hostname>-user-data.yaml -n bmaas"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hostname&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"The name of the bare-metal host."} lang="plaintext" /></dd>
+      </dl>
+      </li>
+      <li>
+      Configure the <code>BareMetalHost</code> to use the <code>&lt;hostname&gt;-user-data.yaml</code> file by running the following command:
+      <CodeBlock code={"$ oc patch baremetalhost <hostname> -n bmaas \\\n     --type merge -p '{\"spec\":{\"userData\":{\"name\":\"<hostname>-user-data\"}}}'"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hostname&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"The name of the bare-metal host."} lang="plaintext" /></dd>
+      </dl>
+      </li>
+      </ol>
+      <h2 id="bmo-configuring-the-networkdata-parameter-in-the-bmo-cr_bare-metal-using-bmaas" class="group scroll-mt-20">Configuring the networkData parameter in the BareMetalHost resource<a href="#bmo-configuring-the-networkdata-parameter-in-the-bmo-cr_bare-metal-using-bmaas" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The <code>networkData</code> field in the <code>BareMetalHost</code> custom resource (CR) allows you to control the network configuration of the bare-metal host at creation time. For most operating systems, this is achieved using a configuration file encapsulated in a Kubernetes secret. Then, the <code>cloud-init</code> service uses it to customize services.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a file named <code>network-data.yaml</code> with the following content:
+      <CodeBlock code={"links:\n  - id: <interface_id>\n    type: phy\n    ethernet_mac_address: <mac_address>\nnetworks:\n  - id: <interface_id>\n    link: <interface_id>\n    type: ipv4_dhcp\nservices:\n  - type: dns\n    address: <dns_server>"} lang="yaml" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;interface_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The ID of the network interface, such as <code>enp2s0</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;mac_address&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The MAC address of the network interface.</p></dd>
+      <dt class="font-semibold"><code>&lt;dns_server&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The IP address of the DNS server.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create a secret from the <code>networkData</code> file by running the following command:
+      <CodeBlock code={"$ oc create secret generic <hostname>-network-data \\\n  --from-file=networkData=network-data.yaml -n bmaas"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hostname&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The hostname of the bare-metal host.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Configure the <code>BareMetalHost</code> to use the <code>networkData</code> file by running the following command:
+      <CodeBlock code={"$ oc patch baremetalhost <hostname> -n bmaas \\\n  --type merge -p '{\"spec\":{\"networkData\":{\"name\":\"<hostname>-network-data\"}}}'"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="bmo-deploying-an-image-to-the-bare-metal-host_bare-metal-using-bmaas" class="group scroll-mt-20">Deploying an image to the bare-metal host<a href="#bmo-deploying-an-image-to-the-bare-metal-host_bare-metal-using-bmaas" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To deploy the image to the host, update the <code>image</code> field in the <code>spec</code> section of the <code>BareMetalHost</code> resource. Once you update the <code>image</code> field, provisioning begins immediately. Deploying an image transforms bare hardware into a functional system ready to run your workloads, in an automated and repeatable way.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Update the <code>image</code> field in the <code>BareMetalHost</code> CR by running the following command:
+      <CodeBlock code={"$ oc patch baremetalhost <hostname> \\\n  --type merge -p '{\"spec\": {\"image\": {\"url\": \"<image_url>\", \"checksum\": \"<checksum_url>\", \"checksumType\": \"auto\"}}}'"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hostname&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The name of your <code>BareMetalHost</code> resource.</p></dd>
+      <dt class="font-semibold"><code>&lt;image_url&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The URL of the image to deploy. You can access images using the HTTP and OCI protocols. Accessing images using the OCI protocol is available as a Technology Preview.</p></dd>
+      <dt class="font-semibold"><code>&lt;checksum_url&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The URL of the checksum file for the image.</p></dd>
+      </dl>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

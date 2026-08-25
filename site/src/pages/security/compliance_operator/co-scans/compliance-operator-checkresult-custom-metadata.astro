@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"compliance-operator-checkresult-custom-metadata","text":"Propagating custom metadata to ComplianceCheckResult objects"}];
+const headings = [{"depth":1,"slug":"compliance-operator-checkresult-custom-metadata","text":"Propagating custom metadata to ComplianceCheckResult objects"},{"depth":2,"slug":"compliance-operator-checkresult-custom-metadata-overview_compliance-operator-checkresult-metadata","text":"Understanding custom metadata on rules and check results"},{"depth":2,"slug":"compliance-operator-checkresult-custom-metadata-configure-rules_compliance-operator-checkresult-metadata","text":"Adding custom labels and annotations to a Rule object"},{"depth":2,"slug":"compliance-operator-checkresult-custom-metadata-configure-customrules_compliance-operator-checkresult-metadata","text":"Adding custom labels and annotations to a CustomRule object"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-checkresult-custom-metadata";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["security","security/compliance_operator","security/compli
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Propagating custom metadata to ComplianceCheckResult objects {#compliance-operator-checkresult-custom-metadata}\n\nStarting in Compliance Operator 1.9.0, add labels and annotations to `Rule` and `CustomRule` objects so matching metadata is displayed on `ComplianceCheckResult` objects after a scan. Downstream tools, dashboards, and ticketing workflows can use this metadata without maintaining a separate mapping.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-checkresult-custom-metadata.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Propagating custom metadata to ComplianceCheckResult objects {#compliance-operator-checkresult-custom-metadata}\n\nStarting in Compliance Operator 1.9.0, add labels and annotations to `Rule` and `CustomRule` objects so matching metadata is displayed on `ComplianceCheckResult` objects after a scan. Downstream tools, dashboards, and ticketing workflows can use this metadata without maintaining a separate mapping.\n\n## Understanding custom metadata on rules and check results {#compliance-operator-checkresult-custom-metadata-overview_compliance-operator-checkresult-metadata}\n\nWhen the Compliance Operator creates or updates a `ComplianceCheckResult` object for a check that Open Security Content Automation Protocol (OpenSCAP) evaluates, it copies custom labels and annotations from the corresponding `Rule` object in the same namespace.\n\nFor checks that the Common Expression Language (CEL) scanner evaluates from a `CustomRule`, the Operator copies custom metadata from that `CustomRule` instead.\n\nCustom metadata is any label or annotation whose name is not managed by the Compliance Operator or core Kubernetes namespaces. Some keys are reserved, so user-supplied values never replace the Operator values for those keys. Examples include the following:\n\n- Keys starting with `compliance.openshift.io/`\n- Keys starting with `complianceoperator.openshift.io/`\n- Keys starting with `complianceascode.io/`\n- Keys where the domain contains `kubernetes.io/` (such as `kubernetes.io/name` or `app.kubernetes.io/`)\n- Keys where the domain contains `k8s.io/` (such as `k8s.io/component` or `node.k8s.io/instance-type`)\n\n> [!NOTE]\n> Metadata that you set on `TailoredProfile`, `ScanSettingBinding`, or other orchestration resources is not propagated to individual `ComplianceCheckResult` objects. Attach metadata on the `Rule` or `CustomRule` that owns the check.\n\n> [!NOTE]\n> Custom metadata on `ComplianceRemediation` objects is not covered by this feature.\n\nProfile bundle updates\n:   When a `ProfileBundle` refreshes profile content, the Operator merges user-defined annotations on `Rule` objects with parser-managed annotations so your keys remain while Operator and content fields stay current.\n\nFailure behavior\n:   If the Operator cannot build its in-memory index of `Rule` objects during aggregation, it logs a warning and still creates scan results without your custom metadata. If a label value violates Kubernetes length or syntax rules, the Operator can fail to create that specific `ComplianceCheckResult` while other results continue.\n\nFor more background on the enhancement, see Additional resources.\n\n## Adding custom labels and annotations to a Rule object {#compliance-operator-checkresult-custom-metadata-configure-rules_compliance-operator-checkresult-metadata}\n\nYou can attach custom labels and annotations to a `Rule` that Open Security Content Automation Protocol (OpenSCAP) evaluates, and verify that they are displayed on the aggregated `ComplianceCheckResult` after the next scan.\n\n**Prerequisites**\n\n- You have installed Compliance Operator 1.9.0 or later.\n- You have access to the `openshift-compliance` namespace (or the namespace where your rules and scans run).\n- You identified the `Rule` object name and the `ComplianceScan` that evaluates it.\n\n**Procedure**\n\n1. Add custom labels to the rule. Replace `<rule_name>` with your `Rule` object name, and adjust labels as needed with the following command:\n\n   ```terminal\n   $ oc label rule.compliance/<rule_name> \\\n     business-unit=payments \\\n     risk-tier=critical \\\n     -n openshift-compliance\n   ```\n2. Add custom annotations with the following command:\n\n   ```terminal\n   $ oc annotate rule.compliance/<rule_name> \\\n     internal-id=SEC-4021 \\\n     exception-ticket=JIRA-123 \\\n     -n openshift-compliance\n   ```\n\n   Long or free-form values are better suited to annotations than labels because of Kubernetes label length limits.\n3. Trigger a new scan or wait for the next scheduled run. For example, to request a rescan of an existing `ComplianceScan` named `ocp4-cis` use the following command:\n\n   ```terminal\n   $ oc annotate compliancescan ocp4-cis \\\n     compliance.openshift.io/rescan= \\\n     -n openshift-compliance\n   ```\n4. After the scan finishes, list `ComplianceCheckResult` objects that carry your label using the following command:\n\n   ```terminal\n   $ oc get compliancecheckresults \\\n     -l business-unit=payments \\\n     -n openshift-compliance\n   ```\n5. Confirm an annotation on a specific result with the following command:\n\n   ```terminal\n   $ oc get compliancecheckresult <result_name> \\\n     -o jsonpath='{.metadata.annotations.internal-id}' \\\n     -n openshift-compliance\n   ```\n\n   Replace `<result_name>` with the `ComplianceCheckResult` name for your rule.\n6. Optional: Verify that a user annotation survives a `ProfileBundle` content image update using the following command.\n\n   ```terminal\n   $ oc get rule.compliance/<rule_name> \\\n     -o jsonpath='{.metadata.annotations.exception-ticket}' \\\n     -n openshift-compliance\n   ```\n\n   After the profile parser reconciles the `Rule`, your key should still be present.\n\n## Adding custom labels and annotations to a CustomRule object {#compliance-operator-checkresult-custom-metadata-configure-customrules_compliance-operator-checkresult-metadata}\n\nFor platform checks implemented as a `CustomRule` object and evaluated by the Common Expression Language (CEL) scanner, define labels and annotations on the `CustomRule` metadata. The Compliance Operator copies non-reserved entries onto each generated `ComplianceCheckResult`.\n\n**Prerequisites**\n\n- You have installed Compliance Operator 1.9.0 or later.\n- You use a `TailoredProfile` (or equivalent workflow) that enables your `CustomRule` for a CEL profile scan.\n\n**Procedure**\n\n1. Create a `CustomRule` object that includes your metadata in `metadata.labels` and `metadata.annotations`. The following example defines a platform CEL check; replace names, expressions, and metadata with values appropriate for your environment:\n\n   ```yaml\n   apiVersion: compliance.openshift.io/v1alpha1\n   kind: CustomRule\n   metadata:\n     name: check-pod-security-standard\n     namespace: openshift-compliance\n     labels:\n       break_severity: critical\n       weakness_score: \"9.5\"\n     annotations:\n       internal-id: SEC-5500\n       audit-contact: platform-security-team\n   spec:\n     id: check-pod-security-standard\n     title: \"Ensure Pod Security Standards are enforced\"\n     severity: high\n     checkType: Platform\n     scannerType: CEL\n     expression: |\n       namespaces.items.all(ns,\n         has(ns.metadata.labels) &&\n         \"pod-security.kubernetes.io/enforce\" in ns.metadata.labels\n       )\n     failureReason: \"One or more namespaces do not enforce Pod Security Standards\"\n     inputs:\n       - name: namespaces\n         kubernetesInputSpec:\n           apiVersion: v1\n           resource: namespaces\n   ```\n2. Apply the manifest by running the following command:\n\n   ```terminal\n   $ oc apply -f custom-rule.yaml\n   ```\n3. Reference the `CustomRule` object from a `TailoredProfile`, for example:\n\n   ```yaml\n   apiVersion: compliance.openshift.io/v1alpha1\n   kind: TailoredProfile\n   metadata:\n     name: custom-cel-profile\n     namespace: openshift-compliance\n   spec:\n     title: \"Custom CEL profile\"\n     description: \"Profile with custom CEL rules\"\n     enableRules:\n       - name: check-pod-security-standard\n         rationale: \"Enforce pod security standards\"\n         kind: CustomRule\n   ```\n4. Bind the tailored profile with a `ScanSettingBinding` and run the scan using your normal workflow.\n5. After the scan completes, query results by a custom label by running the following command:\n\n   ```terminal\n   $ oc get compliancecheckresults \\\n     -l break_severity=critical \\\n     -n openshift-compliance\n   ```\n6. Identify the `ComplianceCheckResult` name for your `CustomRule` object in the scan output, for example by listing results in the namespace and filtering by labels or name.\n7. Read a propagated annotation from that object by running the following command:\n\n   ```terminal\n   $ oc get compliancecheckresult <result_name> \\\n     -o jsonpath='{.metadata.annotations.internal-id}' \\\n     -n openshift-compliance\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-scans/compliance-operator-checkresult-custom-metadata.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,107 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="compliance-operator-checkresult-custom-metadata" class="group scroll-mt-20">Propagating custom metadata to ComplianceCheckResult objects<a href="#compliance-operator-checkresult-custom-metadata" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Starting in Compliance Operator 1.9.0, add labels and annotations to <code>Rule</code> and <code>CustomRule</code> objects so matching metadata is displayed on <code>ComplianceCheckResult</code> objects after a scan. Downstream tools, dashboards, and ticketing workflows can use this metadata without maintaining a separate mapping.</p>
-      <p class="/modules/compliance-operator-checkresult-custom-metadata-overview.md"></p>
-      <p class="/modules/compliance-operator-checkresult-custom-metadata-configure-rules.md"></p>
-      <p class="/modules/compliance-operator-checkresult-custom-metadata-configure-customrules.md"></p>
+      <h2 id="compliance-operator-checkresult-custom-metadata-overview_compliance-operator-checkresult-metadata" class="group scroll-mt-20">Understanding custom metadata on rules and check results<a href="#compliance-operator-checkresult-custom-metadata-overview_compliance-operator-checkresult-metadata" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When the Compliance Operator creates or updates a <code>ComplianceCheckResult</code> object for a check that Open Security Content Automation Protocol (OpenSCAP) evaluates, it copies custom labels and annotations from the corresponding <code>Rule</code> object in the same namespace.</p>
+      <p>For checks that the Common Expression Language (CEL) scanner evaluates from a <code>CustomRule</code>, the Operator copies custom metadata from that <code>CustomRule</code> instead.</p>
+      <p>Custom metadata is any label or annotation whose name is not managed by the Compliance Operator or core Kubernetes namespaces. Some keys are reserved, so user-supplied values never replace the Operator values for those keys. Examples include the following:</p>
+      <ul>
+      <li>Keys starting with <code>compliance.openshift.io/</code></li>
+      <li>Keys starting with <code>complianceoperator.openshift.io/</code></li>
+      <li>Keys starting with <code>complianceascode.io/</code></li>
+      <li>Keys where the domain contains <code>kubernetes.io/</code> (such as <code>kubernetes.io/name</code> or <code>app.kubernetes.io/</code>)</li>
+      <li>Keys where the domain contains <code>k8s.io/</code> (such as <code>k8s.io/component</code> or <code>node.k8s.io/instance-type</code>)</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Metadata that you set on <code>TailoredProfile</code>, <code>ScanSettingBinding</code>, or other orchestration resources is not propagated to individual <code>ComplianceCheckResult</code> objects. Attach metadata on the <code>Rule</code> or <code>CustomRule</code> that owns the check.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Custom metadata on <code>ComplianceRemediation</code> objects is not covered by this feature.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Profile bundle updates</dt>
+      <dd class="ml-6 text-muted-foreground"><p>When a <code>ProfileBundle</code> refreshes profile content, the Operator merges user-defined annotations on <code>Rule</code> objects with parser-managed annotations so your keys remain while Operator and content fields stay current.</p></dd>
+      <dt class="font-semibold">Failure behavior</dt>
+      <dd class="ml-6 text-muted-foreground"><p>If the Operator cannot build its in-memory index of <code>Rule</code> objects during aggregation, it logs a warning and still creates scan results without your custom metadata. If a label value violates Kubernetes length or syntax rules, the Operator can fail to create that specific <code>ComplianceCheckResult</code> while other results continue.</p></dd>
+      </dl>
+      <p>For more background on the enhancement, see Additional resources.</p>
+      <h2 id="compliance-operator-checkresult-custom-metadata-configure-rules_compliance-operator-checkresult-metadata" class="group scroll-mt-20">Adding custom labels and annotations to a Rule object<a href="#compliance-operator-checkresult-custom-metadata-configure-rules_compliance-operator-checkresult-metadata" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can attach custom labels and annotations to a <code>Rule</code> that Open Security Content Automation Protocol (OpenSCAP) evaluates, and verify that they are displayed on the aggregated <code>ComplianceCheckResult</code> after the next scan.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed Compliance Operator 1.9.0 or later.</li>
+      <li>You have access to the <code>openshift-compliance</code> namespace (or the namespace where your rules and scans run).</li>
+      <li>You identified the <code>Rule</code> object name and the <code>ComplianceScan</code> that evaluates it.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add custom labels to the rule. Replace <code>&lt;rule_name&gt;</code> with your <code>Rule</code> object name, and adjust labels as needed with the following command:
+      <CodeBlock code={"$ oc label rule.compliance/<rule_name> \\\n  business-unit=payments \\\n  risk-tier=critical \\\n  -n openshift-compliance"} lang="terminal" />
+      </li>
+      <li>
+      Add custom annotations with the following command:
+      <CodeBlock code={"$ oc annotate rule.compliance/<rule_name> \\\n  internal-id=SEC-4021 \\\n  exception-ticket=JIRA-123 \\\n  -n openshift-compliance"} lang="terminal" />
+      <p>Long or free-form values are better suited to annotations than labels because of Kubernetes label length limits.</p>
+      </li>
+      <li>
+      Trigger a new scan or wait for the next scheduled run. For example, to request a rescan of an existing <code>ComplianceScan</code> named <code>ocp4-cis</code> use the following command:
+      <CodeBlock code={"$ oc annotate compliancescan ocp4-cis \\\n  compliance.openshift.io/rescan= \\\n  -n openshift-compliance"} lang="terminal" />
+      </li>
+      <li>
+      After the scan finishes, list <code>ComplianceCheckResult</code> objects that carry your label using the following command:
+      <CodeBlock code={"$ oc get compliancecheckresults \\\n  -l business-unit=payments \\\n  -n openshift-compliance"} lang="terminal" />
+      </li>
+      <li>
+      Confirm an annotation on a specific result with the following command:
+      <CodeBlock code={"$ oc get compliancecheckresult <result_name> \\\n  -o jsonpath='{.metadata.annotations.internal-id}' \\\n  -n openshift-compliance"} lang="terminal" />
+      <p>Replace <code>&lt;result_name&gt;</code> with the <code>ComplianceCheckResult</code> name for your rule.</p>
+      </li>
+      <li>
+      Optional: Verify that a user annotation survives a <code>ProfileBundle</code> content image update using the following command.
+      <CodeBlock code={"$ oc get rule.compliance/<rule_name> \\\n  -o jsonpath='{.metadata.annotations.exception-ticket}' \\\n  -n openshift-compliance"} lang="terminal" />
+      <p>After the profile parser reconciles the <code>Rule</code>, your key should still be present.</p>
+      </li>
+      </ol>
+      <h2 id="compliance-operator-checkresult-custom-metadata-configure-customrules_compliance-operator-checkresult-metadata" class="group scroll-mt-20">Adding custom labels and annotations to a CustomRule object<a href="#compliance-operator-checkresult-custom-metadata-configure-customrules_compliance-operator-checkresult-metadata" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">For platform checks implemented as a <code>CustomRule</code> object and evaluated by the Common Expression Language (CEL) scanner, define labels and annotations on the <code>CustomRule</code> metadata. The Compliance Operator copies non-reserved entries onto each generated <code>ComplianceCheckResult</code>.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed Compliance Operator 1.9.0 or later.</li>
+      <li>You use a <code>TailoredProfile</code> (or equivalent workflow) that enables your <code>CustomRule</code> for a CEL profile scan.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>CustomRule</code> object that includes your metadata in <code>metadata.labels</code> and <code>metadata.annotations</code>. The following example defines a platform CEL check; replace names, expressions, and metadata with values appropriate for your environment:
+      <CodeBlock code={"apiVersion: compliance.openshift.io/v1alpha1\nkind: CustomRule\nmetadata:\n  name: check-pod-security-standard\n  namespace: openshift-compliance\n  labels:\n    break_severity: critical\n    weakness_score: \"9.5\"\n  annotations:\n    internal-id: SEC-5500\n    audit-contact: platform-security-team\nspec:\n  id: check-pod-security-standard\n  title: \"Ensure Pod Security Standards are enforced\"\n  severity: high\n  checkType: Platform\n  scannerType: CEL\n  expression: |\n    namespaces.items.all(ns,\n      has(ns.metadata.labels) &&\n      \"pod-security.kubernetes.io/enforce\" in ns.metadata.labels\n    )\n  failureReason: \"One or more namespaces do not enforce Pod Security Standards\"\n  inputs:\n    - name: namespaces\n      kubernetesInputSpec:\n        apiVersion: v1\n        resource: namespaces"} lang="yaml" />
+      </li>
+      <li>
+      Apply the manifest by running the following command:
+      <CodeBlock code={"$ oc apply -f custom-rule.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Reference the <code>CustomRule</code> object from a <code>TailoredProfile</code>, for example:
+      <CodeBlock code={"apiVersion: compliance.openshift.io/v1alpha1\nkind: TailoredProfile\nmetadata:\n  name: custom-cel-profile\n  namespace: openshift-compliance\nspec:\n  title: \"Custom CEL profile\"\n  description: \"Profile with custom CEL rules\"\n  enableRules:\n    - name: check-pod-security-standard\n      rationale: \"Enforce pod security standards\"\n      kind: CustomRule"} lang="yaml" />
+      </li>
+      <li>Bind the tailored profile with a <code>ScanSettingBinding</code> and run the scan using your normal workflow.</li>
+      <li>
+      After the scan completes, query results by a custom label by running the following command:
+      <CodeBlock code={"$ oc get compliancecheckresults \\\n  -l break_severity=critical \\\n  -n openshift-compliance"} lang="terminal" />
+      </li>
+      <li>Identify the <code>ComplianceCheckResult</code> name for your <code>CustomRule</code> object in the scan output, for example by listing results in the namespace and filtering by labels or name.</li>
+      <li>
+      Read a propagated annotation from that object by running the following command:
+      <CodeBlock code={"$ oc get compliancecheckresult <result_name> \\\n  -o jsonpath='{.metadata.annotations.internal-id}' \\\n  -n openshift-compliance"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

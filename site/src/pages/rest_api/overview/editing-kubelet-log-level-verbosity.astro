@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"editing-kubelet-log-level-verbosity","text":"Editing kubelet log level verbosity and gathering logs"}];
+const headings = [{"depth":1,"slug":"editing-kubelet-log-level-verbosity","text":"Editing kubelet log level verbosity and gathering logs"},{"depth":2,"slug":"modifying-kubelet-one-time_editing-kubelet-log-level-verbosity","text":"Modifying the kubelet as a one-time scenario"},{"depth":2,"slug":"persistent-kubelet-log-level-configuration_editing-kubelet-log-level-verbosity","text":"Persistent kubelet log level configuration"},{"depth":2,"slug":"log-verbosity-descriptions_editing-kubelet-log-level-verbosity","text":"Log verbosity descriptions"},{"depth":2,"slug":"gathering-kubelet-logs_editing-kubelet-log-level-verbosity","text":"Gathering kubelet logs"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/rest_api/overview/editing-kubelet-log-level-verbosity";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["rest_api","rest_api/overview"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Editing kubelet log level verbosity and gathering logs {#editing-kubelet-log-level-verbosity}\n\nTo troubleshoot some issues with nodes, establish the kubelet’s log level verbosity depending on the issue to be tracked.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/overview/editing-kubelet-log-level-verbosity.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Editing kubelet log level verbosity and gathering logs {#editing-kubelet-log-level-verbosity}\n\nTo troubleshoot some issues with nodes, establish the kubelet’s log level verbosity depending on the issue to be tracked.\n\n## Modifying the kubelet as a one-time scenario {#modifying-kubelet-one-time_editing-kubelet-log-level-verbosity}\n\nTo modify the kubelet in a one-time scenario without rebooting the node due to the change of `machine-config(spec\":{\"paused\":false}})`, allowing you to modify the kubelet without affecting the service, follow this procedure.\n\n**Procedure**\n\n1. Connect to the node in debug mode:\n\n   ```terminal\n   $ oc debug node/<node>\n   ```\n\n   ```terminal\n   $ chroot /host\n   ```\n\n   Alternatively, it is possible to SSH to the node and become root.\n2. After access is established, check the default log level:\n\n   ```terminal\n   $ systemctl cat kubelet\n   ```\n\n   ```terminal {title=\"Example output\"}\n   # /etc/systemd/system/kubelet.service.d/20-logging.conf\n   [Service]\n   Environment=\"KUBELET_LOG_LEVEL=2\"\n   ```\n3. Define the new verbosity required in a new `/etc/systemd/system/kubelet.service.d/30-logging.conf` file, which overrides `/etc/systemd/system/kubelet.service.d/20-logging.conf`. In this example, the verbosity is changed from `2` to `8`:\n\n   ```terminal\n   $ echo -e \"[Service]\\nEnvironment=\\\"KUBELET_LOG_LEVEL=8\\\"\" > /etc/systemd/system/kubelet.service.d/30-logging.conf\n   ```\n4. Reload systemd and restart the service:\n\n   ```terminal\n   $ systemctl daemon-reload\n   ```\n\n   ```terminal\n   $ systemctl restart kubelet\n   ```\n5. Gather the logs, and then revert the log level increase:\n\n   ```terminal\n   $ rm -f /etc/systemd/system/kubelet.service.d/30-logging.conf\n   ```\n\n   ```terminal\n   $ systemctl daemon-reload\n   ```\n\n   ```terminal\n   $ systemctl restart kubelet\n   ```\n\n## Persistent kubelet log level configuration {#persistent-kubelet-log-level-configuration_editing-kubelet-log-level-verbosity}\n\n**Procedure**\n\n- Use the following `MachineConfig` object for persistent kubelet log level configuration:\n\n  ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: master\n     name: 99-master-kubelet-loglevel\n   spec:\n     config:\n       ignition:\n         version: 3.2.0\n       systemd:\n         units:\n           - name: kubelet.service\n             enabled: true\n             dropins:\n               - name: 30-logging.conf\n                 contents: |\n                   [Service]\n                   Environment=\"KUBELET_LOG_LEVEL=2\"\n  ```\n\n  Generally, it is recommended to apply `0-4` as debug-level logs and `5-8` as trace-level logs.\n\n## Log verbosity descriptions {#log-verbosity-descriptions_editing-kubelet-log-level-verbosity}\n\n<table>\n<thead>\n<tr>\n  <th>Log verbosity</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>--v=0</code></td>\n  <td>Always visible to an Operator.</td>\n</tr>\n<tr>\n  <td><code>--v=1</code></td>\n  <td>A reasonable default log level if you do not want verbosity.</td>\n</tr>\n<tr>\n  <td><code>--v=2</code></td>\n  <td>Useful steady state information about the service and important log messages that might correlate to significant changes in the system. This is the recommended default log level.</td>\n</tr>\n<tr>\n  <td><code>--v=3</code></td>\n  <td>Extended information about changes.</td>\n</tr>\n<tr>\n  <td><code>--v=4</code></td>\n  <td>Debug level verbosity.</td>\n</tr>\n<tr>\n  <td><code>--v=6</code></td>\n  <td>Display requested resources.</td>\n</tr>\n<tr>\n  <td><code>--v=7</code></td>\n  <td>Display HTTP request headers.</td>\n</tr>\n<tr>\n  <td><code>--v=8</code></td>\n  <td>Display HTTP request contents.</td>\n</tr>\n</tbody>\n</table>\n\n## Gathering kubelet logs {#gathering-kubelet-logs_editing-kubelet-log-level-verbosity}\n\n**Procedure**\n\n- After the kubelet’s log level verbosity is configured properly, you can gather logs by running the following commands:\n\n  ```terminal\n  $ oc adm node-logs --role master -u kubelet\n  ```\n\n  ```terminal\n  $ oc adm node-logs --role worker -u kubelet\n  ```\n\n  Alternatively, inside the node, run the following command:\n\n  ```terminal\n  $ journalctl -b -f -u kubelet.service\n  ```\n- To collect master container logs, run the following command:\n\n  ```terminal\n  $ sudo tail -f /var/log/containers/*\n  ```\n- To directly gather the logs of all nodes, run the following command:\n\n  ```terminal\n  - for n in $(oc get node --no-headers | awk '{print $1}'); do oc adm node-logs $n | gzip > $n.log.gz; done\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/rest_api/overview/editing-kubelet-log-level-verbosity.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +92,68 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="editing-kubelet-log-level-verbosity" class="group scroll-mt-20">Editing kubelet log level verbosity and gathering logs<a href="#editing-kubelet-log-level-verbosity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To troubleshoot some issues with nodes, establish the kubelet’s log level verbosity depending on the issue to be tracked.</p>
-      <p class="/modules/modifying-kubelet-as-one-time-scenario.md"></p>
-      <p class="/modules/persistent-kubelet-log-level-configuration.md"></p>
-      <p class="/modules/log-verbosity-descriptions.md"></p>
-      <p class="/modules/gathering-kubelet-logs.md"></p>
+      <h2 id="modifying-kubelet-one-time_editing-kubelet-log-level-verbosity" class="group scroll-mt-20">Modifying the kubelet as a one-time scenario<a href="#modifying-kubelet-one-time_editing-kubelet-log-level-verbosity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>To modify the kubelet in a one-time scenario without rebooting the node due to the change of <code>machine-config(spec":{"{"}"paused":false{"}"}{"}"})</code>, allowing you to modify the kubelet without affecting the service, follow this procedure.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Connect to the node in debug mode:
+      <CodeBlock code={"$ oc debug node/<node>"} lang="terminal" />
+      <CodeBlock code={"$ chroot /host"} lang="terminal" />
+      <p>Alternatively, it is possible to SSH to the node and become root.</p>
+      </li>
+      <li>
+      After access is established, check the default log level:
+      <CodeBlock code={"$ systemctl cat kubelet"} lang="terminal" />
+      <CodeBlock code={"# /etc/systemd/system/kubelet.service.d/20-logging.conf\n[Service]\nEnvironment=\"KUBELET_LOG_LEVEL=2\""} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Define the new verbosity required in a new <code>/etc/systemd/system/kubelet.service.d/30-logging.conf</code> file, which overrides <code>/etc/systemd/system/kubelet.service.d/20-logging.conf</code>. In this example, the verbosity is changed from <code>2</code> to <code>8</code>:
+      <CodeBlock code={"$ echo -e \"[Service]\\nEnvironment=\\\"KUBELET_LOG_LEVEL=8\\\"\" > /etc/systemd/system/kubelet.service.d/30-logging.conf"} lang="terminal" />
+      </li>
+      <li>
+      Reload systemd and restart the service:
+      <CodeBlock code={"$ systemctl daemon-reload"} lang="terminal" />
+      <CodeBlock code={"$ systemctl restart kubelet"} lang="terminal" />
+      </li>
+      <li>
+      Gather the logs, and then revert the log level increase:
+      <CodeBlock code={"$ rm -f /etc/systemd/system/kubelet.service.d/30-logging.conf"} lang="terminal" />
+      <CodeBlock code={"$ systemctl daemon-reload"} lang="terminal" />
+      <CodeBlock code={"$ systemctl restart kubelet"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="persistent-kubelet-log-level-configuration_editing-kubelet-log-level-verbosity" class="group scroll-mt-20">Persistent kubelet log level configuration<a href="#persistent-kubelet-log-level-configuration_editing-kubelet-log-level-verbosity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Use the following <code>MachineConfig</code> object for persistent kubelet log level configuration:
+      <CodeBlock code={" apiVersion: machineconfiguration.openshift.io/v1\n kind: MachineConfig\n metadata:\n   labels:\n     machineconfiguration.openshift.io/role: master\n   name: 99-master-kubelet-loglevel\n spec:\n   config:\n     ignition:\n       version: 3.2.0\n     systemd:\n       units:\n         - name: kubelet.service\n           enabled: true\n           dropins:\n             - name: 30-logging.conf\n               contents: |\n                 [Service]\n                 Environment=\"KUBELET_LOG_LEVEL=2\""} lang="yaml" />
+      <p>Generally, it is recommended to apply <code>0-4</code> as debug-level logs and <code>5-8</code> as trace-level logs.</p>
+      </li>
+      </ul>
+      <h2 id="log-verbosity-descriptions_editing-kubelet-log-level-verbosity" class="group scroll-mt-20">Log verbosity descriptions<a href="#log-verbosity-descriptions_editing-kubelet-log-level-verbosity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Log verbosity</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>--v=0</code></td>\n  <td>Always visible to an Operator.</td>\n</tr>\n<tr>\n  <td><code>--v=1</code></td>\n  <td>A reasonable default log level if you do not want verbosity.</td>\n</tr>\n<tr>\n  <td><code>--v=2</code></td>\n  <td>Useful steady state information about the service and important log messages that might correlate to significant changes in the system. This is the recommended default log level.</td>\n</tr>\n<tr>\n  <td><code>--v=3</code></td>\n  <td>Extended information about changes.</td>\n</tr>\n<tr>\n  <td><code>--v=4</code></td>\n  <td>Debug level verbosity.</td>\n</tr>\n<tr>\n  <td><code>--v=6</code></td>\n  <td>Display requested resources.</td>\n</tr>\n<tr>\n  <td><code>--v=7</code></td>\n  <td>Display HTTP request headers.</td>\n</tr>\n<tr>\n  <td><code>--v=8</code></td>\n  <td>Display HTTP request contents.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <h2 id="gathering-kubelet-logs_editing-kubelet-log-level-verbosity" class="group scroll-mt-20">Gathering kubelet logs<a href="#gathering-kubelet-logs_editing-kubelet-log-level-verbosity" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      After the kubelet’s log level verbosity is configured properly, you can gather logs by running the following commands:
+      <CodeBlock code={"$ oc adm node-logs --role master -u kubelet"} lang="terminal" />
+      <CodeBlock code={"$ oc adm node-logs --role worker -u kubelet"} lang="terminal" />
+      <p>Alternatively, inside the node, run the following command:</p>
+      <CodeBlock code={"$ journalctl -b -f -u kubelet.service"} lang="terminal" />
+      </li>
+      <li>
+      To collect master container logs, run the following command:
+      <CodeBlock code={"$ sudo tail -f /var/log/containers/*"} lang="terminal" />
+      </li>
+      <li>
+      To directly gather the logs of all nodes, run the following command:
+      <CodeBlock code={"- for n in $(oc get node --no-headers | awk '{print $1}'); do oc adm node-logs $n | gzip > $n.log.gz; done"} lang="terminal" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

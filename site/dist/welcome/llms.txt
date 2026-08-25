@@ -2,12 +2,12 @@
 
 ## Overview
 
-- [Welcome](https://dogsbay.github.io/openshift-docs-markdown/welcome.md)
-- [Introduction to OpenShift Container Platform](https://dogsbay.github.io/openshift-docs-markdown/welcome/ocp-overview.md)
-- [Learn more about OpenShift Container Platform](https://dogsbay.github.io/openshift-docs-markdown/welcome/learn_more_about_openshift.md)
-- [Kubernetes overview](https://dogsbay.github.io/openshift-docs-markdown/welcome/kubernetes-overview.md)
-- [OpenShift editions](https://dogsbay.github.io/openshift-docs-markdown/welcome/openshift-editions.md)
-- [Glossary](https://dogsbay.github.io/openshift-docs-markdown/welcome/glossary.md)
-- [OpenShift Kubernetes Engine overview](https://dogsbay.github.io/openshift-docs-markdown/welcome/oke_about.md)
-- [Providing documentation feedback](https://dogsbay.github.io/openshift-docs-markdown/welcome/providing-feedback-on-red-hat-documentation.md)
-- [Legal notice](https://dogsbay.github.io/openshift-docs-markdown/welcome/legal-notice.md)
+- [Welcome](https://dogsbay.github.io/openshift-docs-markdown/welcome.md): true
+- [Introduction to OpenShift Container Platform](https://dogsbay.github.io/openshift-docs-markdown/welcome/ocp-overview.md): With OpenShift Container Platform, you can expand your application environment from just a few machines and applications to thousands of machines that serve…
+- [Learn more about OpenShift Container Platform](https://dogsbay.github.io/openshift-docs-markdown/welcome/learn_more_about_openshift.md): To better use OpenShift Container Platform, you should first learn about and better understand how OpenShift Container Platform functions.
+- [Kubernetes overview](https://dogsbay.github.io/openshift-docs-markdown/welcome/kubernetes-overview.md): You can run and manage container-based workloads by using Kubernetes, an open source container orchestration tool developed by Google.
+- [OpenShift editions](https://dogsbay.github.io/openshift-docs-markdown/welcome/openshift-editions.md): To help you choose the ideal deployment model for your organization, you can compare the available Red Hat OpenShift editions.
+- [Glossary](https://dogsbay.github.io/openshift-docs-markdown/welcome/glossary.md): To better use OpenShift Container Platform, you should first understand common Kubernetes and OpenShift Container Platform terms.
+- [OpenShift Kubernetes Engine overview](https://dogsbay.github.io/openshift-docs-markdown/welcome/oke_about.md): You can use the Red Hat OpenShift Kubernetes Engine as a way to launch containers in an enterprise-class Kubernetes production platform.
+- [Providing documentation feedback](https://dogsbay.github.io/openshift-docs-markdown/welcome/providing-feedback-on-red-hat-documentation.md): To report an error or to improve our documentation, log in to your Red Hat Jira account and submit an issue. If you do not have a Red Hat Jira account, then…
+- [Legal notice](https://dogsbay.github.io/openshift-docs-markdown/welcome/legal-notice.md): Copyright © 2024 Red Hat, Inc.

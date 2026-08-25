@@ -15,8 +15,13 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"update-api","text":"Verifying cluster API versions between update versions"}];
+const headings = [{"depth":1,"slug":"update-api","text":"Verifying cluster API versions between update versions"},{"depth":2,"slug":"update-openshift-container-platform-api-compatibility_update-api","text":"OpenShift Container Platform API compatibility"},{"depth":2,"slug":"update-determining-the-cluster-version-update-path_update-api","text":"Determining the cluster version update path"},{"depth":2,"slug":"update-selecting-the-target-release_update-api","text":"Selecting the target release"},{"depth":3,"slug":"update-determining-available-z-streams_update-api","text":"Determining what z-stream updates are available"},{"depth":3,"slug":"update-changing-channel-eus-to-eus_update-api","text":"Changing the channel for a Control Plane Only update"},{"depth":3,"slug":"update-changing-channel-early-eus-to-eus_update-api","text":"Changing the channel for an early EUS to EUS update"},{"depth":3,"slug":"update-updating-y-stream_update-api","text":"Changing the channel for a y-stream update"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +44,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Verifying cluster API versions between update versions {#update-api}\n\nAPIs change over time as components are updated. It is important to verify that your application APIs are compatible with the updated cluster version.\n\n**Additional resources**\n\n- [Understanding API tiers](/openshift-docs-markdown/rest_api/overview/understanding-api-support-tiers#understanding-api-support-tiers)\n- [Kubernetes version skew policy](https://kubernetes.io/releases/version-skew-policy/)\n\n**Additional resources**\n\n- [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Verifying cluster API versions between update versions {#update-api}\n\nAPIs change over time as components are updated. It is important to verify that your application APIs are compatible with the updated cluster version.\n\n## OpenShift Container Platform API compatibility {#update-openshift-container-platform-api-compatibility_update-api}\n\nWhen considering what z-stream release to update to as part of a new y-stream update, you must be sure that all the patches that are in the z-stream version you are moving from are in the new z-stream version. If the version you update to does not have all the required patches, the built-in compatibility of Kubernetes is broken.\n\nFor example, if the cluster version is 4.15.32, you must update to 4.16 z-stream release that has all of the patches that are applied to 4.15.32.\n\nEach cluster Operator supports specific API versions. Kubernetes APIs evolve over time, and newer versions can be deprecated or change existing APIs. This is referred to as \"version skew\". For every new release, you must review the API changes. The APIs might be compatible across several releases of an Operator, but compatibility is not guaranteed. To mitigate against problems that arise from version skew, follow a well-defined update strategy.\n\n**Additional resources**\n\n- [Understanding API tiers](/openshift-docs-markdown/rest_api/overview/understanding-api-support-tiers#understanding-api-support-tiers)\n- [Kubernetes version skew policy](https://kubernetes.io/releases/version-skew-policy/)\n\n## Determining the cluster version update path {#update-determining-the-cluster-version-update-path_update-api}\n\nUse the [Red Hat OpenShift Container Platform Update Graph](https://access.redhat.com/labs/ocpupgradegraph/update_path/) tool to determine if the path is valid for the z-stream release you want to update to.\n\n> [!IMPORTANT]\n> The <4.y+1.z> or <4.y+2.z> version that you update to must have the same patch level as the <4.y.z> release you are updating from.\n>\n> The OpenShift Container Platform update process mandates that if a fix is present in a specific <4.y.z> release, then the that fix must be present in the <4.y+1.z> release that you update to.\n\n**Figure 1. Bug fix backporting and the update graph**\n\n![Bug fix backporting and the update graph](/openshift-docs-markdown/_assets/images/openshift-bug-fix-backporting-update-graph.png)\n\n> [!IMPORTANT]\n> OpenShift Container Platform development has a strict backport policy that prevents regressions. For example, a bug must be fixed in 4.16.z before it is fixed in 4.15.z. This means that the update graph does not allow for updates to chronologically older releases even if the minor version is greater, for example, updating from 4.15.24 to 4.16.2.\n\n**Additional resources**\n\n- [Understanding update channels and releases](/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases)\n\n## Selecting the target release {#update-selecting-the-target-release_update-api}\n\nUse the [Red Hat OpenShift Container Platform Update Graph](https://access.redhat.com/labs/ocpupgradegraph/update_path) or the [cincinnati-graph-data repository](https://github.com/openshift/cincinnati-graph-data/tree/master/channels) to determine what release to update to.\n\n### Determining what z-stream updates are available {#update-determining-available-z-streams_update-api}\n\nBefore you can update to a new z-stream release, you need to know what versions are available.\n\n> [!NOTE]\n> You do not need to change the channel when performing a z-stream update.\n\n1. Determine which z-stream releases are available. Run the following command:\n\n   ```terminal\n   $ oc adm upgrade\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Cluster version is 4.14.34\n\n   Upstream is unset, so the cluster will use an appropriate default.\n   Channel: stable-4.14 (available channels: candidate-4.14, candidate-4.15, eus-4.14, eus-4.16, fast-4.14, fast-4.15, stable-4.14, stable-4.15)\n\n   Recommended updates:\n\n     VERSION     IMAGE\n     4.14.37     quay.io/openshift-release-dev/ocp-release@sha256:14e6ba3975e6c73b659fa55af25084b20ab38a543772ca70e184b903db73092b\n     4.14.36     quay.io/openshift-release-dev/ocp-release@sha256:4bc4925e8028158e3f313aa83e59e181c94d88b4aa82a3b00202d6f354e8dfed\n     4.14.35     quay.io/openshift-release-dev/ocp-release@sha256:883088e3e6efa7443b0ac28cd7682c2fdbda889b576edad626769bf956ac0858\n   ```\n\n### Changing the channel for a Control Plane Only update {#update-changing-channel-eus-to-eus_update-api}\n\nYou must change the channel to the required version for a Control Plane Only update.\n\n> [!NOTE]\n> You do not need to change the channel when performing a z-stream update.\n\n1. Determine the currently configured update channel by running the following command:\n\n   ```terminal\n   $ oc get clusterversion -o=jsonpath='{.items[*].spec}' | jq\n   ```\n\n   ```terminal {title=\"Example output\"}\n   {\n     \"channel\": \"stable-4.14\",\n     \"clusterID\": \"01eb9a57-2bfb-4f50-9d37-dc04bd5bac75\"\n   }\n   ```\n2. Change the channel to point to the new channel you want to update to by running the following command:\n\n   ```terminal\n   $ oc adm upgrade channel eus-4.16\n   ```\n3. Confirm the updated channel by running the following command:\n\n   ```terminal\n   $ oc get clusterversion -o=jsonpath='{.items[*].spec}' | jq\n   ```\n\n   ```terminal {title=\"Example output\"}\n   {\n     \"channel\": \"eus-4.16\",\n     \"clusterID\": \"01eb9a57-2bfb-4f50-9d37-dc04bd5bac75\"\n   }\n   ```\n\n### Changing the channel for an early EUS to EUS update {#update-changing-channel-early-eus-to-eus_update-api}\n\nThe update path to a brand new release of OpenShift Container Platform is not available in either the EUS channel or the stable channel until 45 to 90 days after the initial GA of a minor release.\n\nTo begin testing an update to a new release, you can use the fast channel.\n\n1. Change the channel to `fast-<y+1>`. For example, run the following command:\n\n   ```terminal\n   $ oc adm upgrade channel fast-4.16\n   ```\n2. Check the update path from the new channel. Run the following command:\n\n   ```terminal\n   $ oc adm upgrade\n   ```\n\n   ```terminal\n   Cluster version is 4.15.33\n\n   Upgradeable=False\n\n     Reason: AdminAckRequired\n     Message: Kubernetes 1.28 and therefore {product-title} 4.16 remove several APIs which require admin consideration. Please see the knowledge article https://access.redhat.com/articles/6958394 for details and instructions.\n\n   Upstream is unset, so the cluster will use an appropriate default.\n   Channel: fast-4.16 (available channels: candidate-4.15, candidate-4.16, eus-4.15, eus-4.16, fast-4.15, fast-4.16, stable-4.15, stable-4.16)\n\n   Recommended updates:\n\n     VERSION     IMAGE\n     4.16.14     quay.io/openshift-release-dev/ocp-release@sha256:6618dd3c0f5\n     4.16.13     quay.io/openshift-release-dev/ocp-release@sha256:7a72abc3\n     4.16.12     quay.io/openshift-release-dev/ocp-release@sha256:1c8359fc2\n     4.16.11     quay.io/openshift-release-dev/ocp-release@sha256:bc9006febfe\n     4.16.10     quay.io/openshift-release-dev/ocp-release@sha256:dece7b61b1\n     4.15.36     quay.io/openshift-release-dev/ocp-release@sha256:c31a56d19\n     4.15.35     quay.io/openshift-release-dev/ocp-release@sha256:f21253\n     4.15.34     quay.io/openshift-release-dev/ocp-release@sha256:2dd69c5\n   ```\n3. Follow the update procedure to get to version 4.16 (<y+1> from version 4.15)\n\n   > [!NOTE]\n   > You can keep your worker nodes paused between EUS releases even if you are using the fast channel.\n4. When you get to the required <y+1> release, change the channel again, this time to `fast-<y+2>`.\n5. Follow the EUS update procedure to get to the required <y+2> release.\n\n### Changing the channel for a y-stream update {#update-updating-y-stream_update-api}\n\nIn a y-stream update you change the channel to the next release channel.\n\n> [!NOTE]\n> Use the stable or EUS release channels for production clusters.\n\n1. Change the update channel by running the following command:\n\n   ```terminal\n   $ oc adm upgrade channel stable-4.15\n   ```\n2. Check the update path from the new channel. Run the following command:\n\n   ```terminal\n   $ oc adm upgrade\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Cluster version is 4.14.34\n\n   Upgradeable=False\n\n     Reason: AdminAckRequired\n     Message: Kubernetes 1.27 and therefore {product-title} 4.15 remove several APIs which require admin consideration. Please see the knowledge article https://access.redhat.com/articles/6958394 for details and instructions.\n\n   Upstream is unset, so the cluster will use an appropriate default.\n   Channel: stable-4.15 (available channels: candidate-4.14, candidate-4.15, eus-4.14, eus-4.15, fast-4.14, fast-4.15, stable-4.14, stable-4.15)\n\n   Recommended updates:\n\n     VERSION     IMAGE\n     4.15.33     quay.io/openshift-release-dev/ocp-release@sha256:7142dd4b560\n     4.15.32     quay.io/openshift-release-dev/ocp-release@sha256:cda8ea5b13dc9\n     4.15.31     quay.io/openshift-release-dev/ocp-release@sha256:07cf61e67d3eeee\n     4.15.30     quay.io/openshift-release-dev/ocp-release@sha256:6618dd3c0f5\n     4.15.29     quay.io/openshift-release-dev/ocp-release@sha256:7a72abc3\n     4.15.28     quay.io/openshift-release-dev/ocp-release@sha256:1c8359fc2\n     4.15.27     quay.io/openshift-release-dev/ocp-release@sha256:bc9006febfe\n     4.15.26     quay.io/openshift-release-dev/ocp-release@sha256:dece7b61b1\n     4.14.38     quay.io/openshift-release-dev/ocp-release@sha256:c93914c62d7\n     4.14.37     quay.io/openshift-release-dev/ocp-release@sha256:c31a56d19\n     4.14.36     quay.io/openshift-release-dev/ocp-release@sha256:f21253\n     4.14.35     quay.io/openshift-release-dev/ocp-release@sha256:2dd69c5\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-api.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,16 +96,120 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="update-api" class="group scroll-mt-20">Verifying cluster API versions between update versions<a href="#update-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>APIs change over time as components are updated. It is important to verify that your application APIs are compatible with the updated cluster version.</p>
-      <p class="/modules/update-api-compatibility.md"></p>
+      <h2 id="update-openshift-container-platform-api-compatibility_update-api" class="group scroll-mt-20">OpenShift Container Platform API compatibility<a href="#update-openshift-container-platform-api-compatibility_update-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When considering what z-stream release to update to as part of a new y-stream update, you must be sure that all the patches that are in the z-stream version you are moving from are in the new z-stream version. If the version you update to does not have all the required patches, the built-in compatibility of Kubernetes is broken.</p>
+      <p>For example, if the cluster version is 4.15.32, you must update to 4.16 z-stream release that has all of the patches that are applied to 4.15.32.</p>
+      <p>Each cluster Operator supports specific API versions. Kubernetes APIs evolve over time, and newer versions can be deprecated or change existing APIs. This is referred to as "version skew". For every new release, you must review the API changes. The APIs might be compatible across several releases of an Operator, but compatibility is not guaranteed. To mitigate against problems that arise from version skew, follow a well-defined update strategy.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/rest_api/overview/understanding-api-support-tiers#understanding-api-support-tiers">Understanding API tiers</a></li>
       <li><a href="https://kubernetes.io/releases/version-skew-policy/">Kubernetes version skew policy</a></li>
       </ul>
+      <h2 id="update-determining-the-cluster-version-update-path_update-api" class="group scroll-mt-20">Determining the cluster version update path<a href="#update-determining-the-cluster-version-update-path_update-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the <a href="https://access.redhat.com/labs/ocpupgradegraph/update_path/">Red Hat OpenShift Container Platform Update Graph</a> tool to determine if the path is valid for the z-stream release you want to update to.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The &lt;4.y+1.z&gt; or &lt;4.y+2.z&gt; version that you update to must have the same patch level as the &lt;4.y.z&gt; release you are updating from.</p>
+          <p>The OpenShift Container Platform update process mandates that if a fix is present in a specific &lt;4.y.z&gt; release, then the that fix must be present in the &lt;4.y+1.z&gt; release that you update to.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Figure 1. Bug fix backporting and the update graph</strong></p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/openshift-bug-fix-backporting-update-graph.png" alt="Bug fix backporting and the update graph" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>OpenShift Container Platform development has a strict backport policy that prevents regressions. For example, a bug must be fixed in 4.16.z before it is fixed in 4.15.z. This means that the update graph does not allow for updates to chronologically older releases even if the minor version is greater, for example, updating from 4.15.24 to 4.16.2.</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/updating/understanding_updates/understanding-update-channels-release#understanding-update-channels-releases">Understanding update channels and releases</a></li></ul>
+      <h2 id="update-selecting-the-target-release_update-api" class="group scroll-mt-20">Selecting the target release<a href="#update-selecting-the-target-release_update-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the <a href="https://access.redhat.com/labs/ocpupgradegraph/update_path">Red Hat OpenShift Container Platform Update Graph</a> or the <a href="https://github.com/openshift/cincinnati-graph-data/tree/master/channels">cincinnati-graph-data repository</a> to determine what release to update to.</p>
+      <h3 id="update-determining-available-z-streams_update-api" class="group scroll-mt-20">Determining what z-stream updates are available<a href="#update-determining-available-z-streams_update-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Before you can update to a new z-stream release, you need to know what versions are available.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You do not need to change the channel when performing a z-stream update.</p>
+        </AlertDescription>
+      </Alert>
+      <ol>
+      <li>
+      Determine which z-stream releases are available. Run the following command:
+      <CodeBlock code={"$ oc adm upgrade"} lang="terminal" />
+      <CodeBlock code={"Cluster version is 4.14.34\n\nUpstream is unset, so the cluster will use an appropriate default.\nChannel: stable-4.14 (available channels: candidate-4.14, candidate-4.15, eus-4.14, eus-4.16, fast-4.14, fast-4.15, stable-4.14, stable-4.15)\n\nRecommended updates:\n\n  VERSION     IMAGE\n  4.14.37     quay.io/openshift-release-dev/ocp-release@sha256:14e6ba3975e6c73b659fa55af25084b20ab38a543772ca70e184b903db73092b\n  4.14.36     quay.io/openshift-release-dev/ocp-release@sha256:4bc4925e8028158e3f313aa83e59e181c94d88b4aa82a3b00202d6f354e8dfed\n  4.14.35     quay.io/openshift-release-dev/ocp-release@sha256:883088e3e6efa7443b0ac28cd7682c2fdbda889b576edad626769bf956ac0858"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h3 id="update-changing-channel-eus-to-eus_update-api" class="group scroll-mt-20">Changing the channel for a Control Plane Only update<a href="#update-changing-channel-eus-to-eus_update-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You must change the channel to the required version for a Control Plane Only update.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You do not need to change the channel when performing a z-stream update.</p>
+        </AlertDescription>
+      </Alert>
+      <ol>
+      <li>
+      Determine the currently configured update channel by running the following command:
+      <CodeBlock code={"$ oc get clusterversion -o=jsonpath='{.items[*].spec}' | jq"} lang="terminal" />
+      <CodeBlock code={"{\n  \"channel\": \"stable-4.14\",\n  \"clusterID\": \"01eb9a57-2bfb-4f50-9d37-dc04bd5bac75\"\n}"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Change the channel to point to the new channel you want to update to by running the following command:
+      <CodeBlock code={"$ oc adm upgrade channel eus-4.16"} lang="terminal" />
+      </li>
+      <li>
+      Confirm the updated channel by running the following command:
+      <CodeBlock code={"$ oc get clusterversion -o=jsonpath='{.items[*].spec}' | jq"} lang="terminal" />
+      <CodeBlock code={"{\n  \"channel\": \"eus-4.16\",\n  \"clusterID\": \"01eb9a57-2bfb-4f50-9d37-dc04bd5bac75\"\n}"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h3 id="update-changing-channel-early-eus-to-eus_update-api" class="group scroll-mt-20">Changing the channel for an early EUS to EUS update<a href="#update-changing-channel-early-eus-to-eus_update-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The update path to a brand new release of OpenShift Container Platform is not available in either the EUS channel or the stable channel until 45 to 90 days after the initial GA of a minor release.</p>
+      <p>To begin testing an update to a new release, you can use the fast channel.</p>
+      <ol>
+      <li>
+      Change the channel to <code>fast-&lt;y+1&gt;</code>. For example, run the following command:
+      <CodeBlock code={"$ oc adm upgrade channel fast-4.16"} lang="terminal" />
+      </li>
+      <li>
+      Check the update path from the new channel. Run the following command:
+      <CodeBlock code={"$ oc adm upgrade"} lang="terminal" />
+      <CodeBlock code={"Cluster version is 4.15.33\n\nUpgradeable=False\n\n  Reason: AdminAckRequired\n  Message: Kubernetes 1.28 and therefore {product-title} 4.16 remove several APIs which require admin consideration. Please see the knowledge article https://access.redhat.com/articles/6958394 for details and instructions.\n\nUpstream is unset, so the cluster will use an appropriate default.\nChannel: fast-4.16 (available channels: candidate-4.15, candidate-4.16, eus-4.15, eus-4.16, fast-4.15, fast-4.16, stable-4.15, stable-4.16)\n\nRecommended updates:\n\n  VERSION     IMAGE\n  4.16.14     quay.io/openshift-release-dev/ocp-release@sha256:6618dd3c0f5\n  4.16.13     quay.io/openshift-release-dev/ocp-release@sha256:7a72abc3\n  4.16.12     quay.io/openshift-release-dev/ocp-release@sha256:1c8359fc2\n  4.16.11     quay.io/openshift-release-dev/ocp-release@sha256:bc9006febfe\n  4.16.10     quay.io/openshift-release-dev/ocp-release@sha256:dece7b61b1\n  4.15.36     quay.io/openshift-release-dev/ocp-release@sha256:c31a56d19\n  4.15.35     quay.io/openshift-release-dev/ocp-release@sha256:f21253\n  4.15.34     quay.io/openshift-release-dev/ocp-release@sha256:2dd69c5"} lang="terminal" />
+      </li>
+      <li>
+      Follow the update procedure to get to version 4.16 (&lt;y+1&gt; from version 4.15)
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can keep your worker nodes paused between EUS releases even if you are using the fast channel.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>When you get to the required &lt;y+1&gt; release, change the channel again, this time to <code>fast-&lt;y+2&gt;</code>.</li>
+      <li>Follow the EUS update procedure to get to the required &lt;y+2&gt; release.</li>
+      </ol>
+      <h3 id="update-updating-y-stream_update-api" class="group scroll-mt-20">Changing the channel for a y-stream update<a href="#update-updating-y-stream_update-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>In a y-stream update you change the channel to the next release channel.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Use the stable or EUS release channels for production clusters.</p>
+        </AlertDescription>
+      </Alert>
+      <ol>
+      <li>
+      Change the update channel by running the following command:
+      <CodeBlock code={"$ oc adm upgrade channel stable-4.15"} lang="terminal" />
+      </li>
+      <li>
+      Check the update path from the new channel. Run the following command:
+      <CodeBlock code={"$ oc adm upgrade"} lang="terminal" />
+      <CodeBlock code={"Cluster version is 4.14.34\n\nUpgradeable=False\n\n  Reason: AdminAckRequired\n  Message: Kubernetes 1.27 and therefore {product-title} 4.15 remove several APIs which require admin consideration. Please see the knowledge article https://access.redhat.com/articles/6958394 for details and instructions.\n\nUpstream is unset, so the cluster will use an appropriate default.\nChannel: stable-4.15 (available channels: candidate-4.14, candidate-4.15, eus-4.14, eus-4.15, fast-4.14, fast-4.15, stable-4.14, stable-4.15)\n\nRecommended updates:\n\n  VERSION     IMAGE\n  4.15.33     quay.io/openshift-release-dev/ocp-release@sha256:7142dd4b560\n  4.15.32     quay.io/openshift-release-dev/ocp-release@sha256:cda8ea5b13dc9\n  4.15.31     quay.io/openshift-release-dev/ocp-release@sha256:07cf61e67d3eeee\n  4.15.30     quay.io/openshift-release-dev/ocp-release@sha256:6618dd3c0f5\n  4.15.29     quay.io/openshift-release-dev/ocp-release@sha256:7a72abc3\n  4.15.28     quay.io/openshift-release-dev/ocp-release@sha256:1c8359fc2\n  4.15.27     quay.io/openshift-release-dev/ocp-release@sha256:bc9006febfe\n  4.15.26     quay.io/openshift-release-dev/ocp-release@sha256:dece7b61b1\n  4.14.38     quay.io/openshift-release-dev/ocp-release@sha256:c93914c62d7\n  4.14.37     quay.io/openshift-release-dev/ocp-release@sha256:c31a56d19\n  4.14.36     quay.io/openshift-release-dev/ocp-release@sha256:f21253\n  4.14.35     quay.io/openshift-release-dev/ocp-release@sha256:2dd69c5"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

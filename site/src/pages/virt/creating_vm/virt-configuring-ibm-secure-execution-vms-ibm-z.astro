@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-configuring-ibm-secure-execution-vms-ibm-z","text":"Configuring {{ ibm_title }} Secure Execution virtual machines on {{ ibm_z_title }} and {{ ibm_linuxone_title }}"},{"depth":2,"slug":"additional-resources_virt-configuring-ibm-secure-execution-vms-ibm-z","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-configuring-ibm-secure-execution-vms-ibm-z","text":"Configuring IBM Secure Execution virtual machines on IBM Z and IBM LinuxONE"},{"depth":2,"slug":"virt-enabling-vms-ibm-secure-execution-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z","text":"Enabling VMs to run IBM Secure Execution on IBM Z and IBM LinuxONE"},{"depth":2,"slug":"virt-launching-ibm-secure-execution-vm-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z","text":"Launching an IBM Secure Execution VM on IBM Z and IBM LinuxONE"},{"depth":3,"slug":"virt-launching-ibm-secure-execution-vm-using-cli-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z","text":"Launching an IBM Secure Execution VM by using the CLI"},{"depth":3,"slug":"virt-launching-ibm-secure-execution-vm-using-common-instance-type-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z","text":"Launching an IBM Secure Execution VM by using a common instance type"},{"depth":2,"slug":"virt-creating-bootable-encrypted-ibm-secure-execution-vm-image-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z","text":"Creating a bootable and encrypted IBM Secure Execution VM image on IBM Z and IBM LinuxONE"},{"depth":2,"slug":"additional-resources_virt-configuring-ibm-secure-execution-vms-ibm-z","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/creating_vm/virt-configuring-ibm-secure-execution-vms-ibm-z";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring {{ ibm_title }} Secure Execution virtual machines on {{ ibm_z_title }} and {{ ibm_linuxone_title }}";
-const description = "You can configure {{ ibm_name }} Secure Execution virtual machines (VMs) on {{ ibm_z_name }} and {{ ibm_linuxone_name }}." || undefined;
+const description = "You can configure IBM(R) Secure Execution virtual machines (VMs) on IBM Z(R) and IBM(R) LinuxONE." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/creating_vm"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring {{ ibm_title }} Secure Execution virtual machines on {{ ibm_z_title }} and {{ ibm_linuxone_title }} {#virt-configuring-ibm-secure-execution-vms-ibm-z}\n\nYou can configure {{ ibm_name }} Secure Execution virtual machines (VMs) on {{ ibm_z_name }} and {{ ibm_linuxone_name }}.\n\n{{ ibm_name }} Secure Execution for Linux is a s390x security technology that is introduced with {{ ibm_name }} z15 and {{ ibm_linuxone_name }} III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment.\n\nHardware administrators, KVM administrators, and KVM code cannot access data in an {{ ibm_name }} Secure Execution guest VM.\n\n## Additional resources {#additional-resources_virt-configuring-ibm-secure-execution-vms-ibm-z}\n\n- [What is IBM Secure Execution?](https://www.ibm.com/docs/en/linux-on-systems?topic=execution-introduction)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-configuring-ibm-secure-execution-vms-ibm-z.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring IBM Secure Execution virtual machines on IBM Z and IBM LinuxONE {#virt-configuring-ibm-secure-execution-vms-ibm-z}\n\nYou can configure IBM(R) Secure Execution virtual machines (VMs) on IBM Z(R) and IBM(R) LinuxONE.\n\nIBM(R) Secure Execution for Linux is a s390x security technology that is introduced with IBM(R) z15 and IBM(R) LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment.\n\nHardware administrators, KVM administrators, and KVM code cannot access data in an IBM(R) Secure Execution guest VM.\n\n## Enabling VMs to run IBM Secure Execution on IBM Z and IBM LinuxONE {#virt-enabling-vms-ibm-secure-execution-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}\n\nTo enable IBM(R) Secure Execution virtual machines (VMs) on IBM Z(R) and IBM(R) LinuxONE on the compute nodes of your cluster, you must ensure that you meet the prerequisites and complete the following steps.\n\n**Prerequisites**\n\n- Your cluster has logical partition (LPAR) nodes running on IBM(R) z15 or later, or IBM(R) LinuxONE III or later.\n- You have IBM(R) Secure Execution workloads available to run on the cluster.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. To run IBM(R) Secure Execution VMs, you must add the `prot_virt=1` kernel parameter for each compute node. To enable all compute nodes, create a file named `secure-execution.yaml` that contains the following machine config manifest:\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     name: secure-execution\n     labels:\n       machineconfiguration.openshift.io/role: worker\n   spec:\n     kernelArguments:\n       - prot_virt=1\n   ```\n\n   where:\n\n   `prot_virt=1`\n   :   Specifies that the ultravisor can store memory security information.\n2. Apply the changes by running the following command:\n\n   ```terminal\n   $ oc apply -f secure-execution.yaml\n   ```\n\n   The Machine Config Operator (MCO) applies the changes and reboots the nodes in a controlled rollout.\n\n## Launching an IBM Secure Execution VM on IBM Z and IBM LinuxONE {#virt-launching-ibm-secure-execution-vm-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}\n\nBefore launching an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE, you must add the `launchSecurity` parameter to the VM manifest. Otherwise, the VM does not start correctly because it does not have access to the devices.\n\n### Launching an IBM Secure Execution VM by using the CLI {#virt-launching-ibm-secure-execution-vm-using-cli-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}\n\nYou can launch an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE by using the command-line interface.\n\nTo launch IBM(R) Secure Execution VMs, you must include the `launchSecurity` parameter to the `VirtualMachine` manifest. The rest of the VM manifest depends on your setup.\n\n**Procedure**\n\n- Apply a `VirtualMachine` manifest similar to the following, to the cluster:\n\n  ```yaml\n  apiVersion: kubevirt.io/v1\n  kind: VirtualMachine\n  metadata:\n    labels:\n      kubevirt.io/vm: f41-se\n    name: f41-se\n  spec:\n    runStrategy: Always\n    template:\n      metadata:\n        labels:\n          kubevirt.io/vm: f41-se\n      spec:\n        domain:\n          launchSecurity: {}\n          devices:\n            disks:\n            - disk:\n                bus: virtio\n              name: rootfs\n          machine:\n            type: \"\"\n          resources:\n            requests:\n              memory: 4Gi\n        terminationGracePeriodSeconds: 0\n        volumes:\n          - name: rootfs\n            dataVolume:\n              name: f41-se\n  ```\n\n  where:\n\n  `spec.template.spec.domain.launchSecurity`\n  :   Specifies to enable hardware-based memory encryption.\n\n  > [!NOTE]\n  > Because the memory of the VM is protected, you cannot live migrate IBM(R) Secure Execution VMs. The VMs can only be migrated offline.\n\n### Launching an IBM Secure Execution VM by using a common instance type  {#virt-launching-ibm-secure-execution-vm-using-common-instance-type-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}\n\nYou can launch an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE by using a common instance type.\n\n**Prerequisites**\n\n- You have followed the procedure described in \"Creating a VM from an instance type by using the web console\" and performed the required steps.\n- You are using an IBM(R) Secure Execution enabled VM image.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **Catalog** in the web console.\n2. Click the **Customize VirtualMachine** button.\n3. Click the **YAML** tab, and include the `launchSecurity: {}` parameter in the YAML.\n\n   ```yaml\n   spec:\n     template:\n       spec:\n          domain:\n            launchSecurity: {}\n   ```\n4. Click **Save**.\n5. Click **Create VirtualMachine**.\n\n## Creating a bootable and encrypted IBM Secure Execution VM image on IBM Z and IBM LinuxONE {#virt-creating-bootable-encrypted-ibm-secure-execution-vm-image-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z}\n\nYou can create a bootable and encrypted IBM Secure Execution VM image for Red Hat Enterprise Linux (RHEL) on IBM Z and IBM LinuxONE.\n\n**Prerequisites**\n\n- You are using an IBM(R) Secure Execution enabled VM image.\n\n**Procedure**\n\n1. On a trusted instance, create the `install.ks` kickstart file in the `/var/lib/libvirt/image/` directory with the following content:\n\n   ```terminal\n   [trusted instance ~]\n   text\n   lang en_US.UTF-8\n   keyboard us\n   network --bootproto=dhcp\n   rootpw --plaintext <password>\n   timezone <>\n   firewall --enabled\n   selinux --enforcing\n   bootloader --location=mbr\n   reboot\n\n   # Wipe and partition the disk\n   clearpart --all --initlabel\n   zerombr\n\n   # /boot gets encrypted on post reboot\n   part /boot --fstype ext4 --size=512 --label=boot\n   # Root (/) is LUKS-encrypted\n   part / --fstype xfs --size=3000 --pbkdf=pbkdf2 --encrypted --passphrase <passphrase>\n   # SE (/se) Non Encrypted for encrypted boot image.\n   part /se --fstype xfs --size=512 --label=se\n   #Packages\n   %packages\n   @core\n   dracut\n   s390-tools\n   %end\n   ```\n2. Create the VM with the RHEL image by running the following command:\n\n   ```terminal\n   [trusted instance ~]$ qemu-img create -f qcow2 <path to qcow2 image> <size>G\n   ```\n3. Run the `virt-install` command with the following parameters:\n\n   ```terminal\n   [trusted instance ~]virt-install\n       --name <guest_vm_name> \\\n       --memory 4096 --vcpus 2 \\\n       --disk path=<path_to_qcow2_image>,format=qcow2,bus=virtio,cache=none \\\n       --location <path_to_os>  \\\n       --initrd-inject=<path_to_kickstart_file> \\\n       --extra-args=\"inst.ks=file:/<kickstart_file_name> console=ttyS0 \\\n       --inst.text inst.noninteractive\" \\\n       --os-variant=<os_variant> \\\n       --launchSecurity type=s390-pv \\\n       --graphics none\n   ```\n4. Run the `virsh start` command to access the system console.\n5. Run the `sudo -s` command to achieve root user privileges.\n6. Generate keyfiles for the root and the boot partition by running the following commands:\n\n   ```terminal\n   [secure guest ~]$ mkdir -p /etc/luks\n   ```\n\n   ```terminal\n   [secure guest ~]$ chmod 700 /etc/luks\n   ```\n\n   ```terminal\n   [secure guest ~]$ dd if=/dev/urandom of=/etc/luks/root_keyfile.bin bs=1024 count=4\n   ```\n\n   ```terminal\n   [secure guest ~]$ dd if=/dev/urandom of=/etc/luks/boot_keyfile.bin bs=1024 count=4\n   ```\n\n   ```terminal\n   [secure guest ~]$ cryptsetup luksAddkey <root_partition_device> /etc/luks/root_keyfile.bin --pbkdf pbkdf2\n   ```\n7. Obtain the LUKS device name and UUID by running the following command:\n\n   ```terminal\n   $ lsblk -f\n   ```\n8. Rename the existing fstab file to `/etc/fstab_bak`.\n9. Create new crypttab and fstab files similar to the following examples:\n\n   Crypttab example output:\n\n   ```screen\n   luks device name   UUID                                       KEYFILE \t\t\t      OPTIONS\n   root \t\t       UUID=9cb04587-a670-458a-97eb-52fc0f4008ae  /etc/luks/keyfile.bin   luks\n   ```\n\n   Fstab example output:\n\n   ```screen\n   /dev/mapper/root /          xfs\t  defaults 0 1\n   ```\n10. Add the SE boot filesystem entry into the `/etc/fstab` file by running the following command:\n\n    ```terminal\n    [secure guest ~]$ grep ‘/se’ /etc/fstab_bak >> /etc/fstab\n    ```\n11. Add entries to the `initramfs` by running the following commands:\n\n    ```terminal\n    [secure guest ~]$ cat > /etc/dracut.conf.d/10-lukskey.conf <<'EOF'\n        install_items+=\" /etc/luks/root_keyfile.bin /etc/luks/boot_keyfile.bin \"\n        EOF\n    ```\n\n    ```terminal\n    [secure guest ~]$ dracut -f --regenerate-all\n    ```\n12. Verify that the key files are present in `initramfs` by running the following command:\n\n    ```terminal\n    [secure guest ~]$ lsinitrd /boot/initramfs-$(uname-r) | grep -i luks\n    ```\n13. LUKS Encrypt the `/boot` volume.\n\n    1. Change into the boot directory by running the following command:\n\n       ```terminal\n       [secure guest ~]$ cd /boot\n       ```\n    2. Backup the existing boot volume content by running the following commands:\n\n       ```terminal\n       [secure guest /boot ~]$ tar -cf /root/boot_backup.tar\n       ```\n\n       ```terminal\n       [secure guest /boot ~]$ cd\n       ```\n\n       ```terminal\n       [secure guest ~]$ umount /boot\n       ```\n    3. Encrypt the boot volume by running the following commands:\n\n       ```terminal\n       [secure guest ~]$ cryptsetup -q luksFormat <boot_partition> --key-file /etc/luks/boot_keyfile.bin\n       ```\n\n       ```terminal\n       [secure guest ~]$ cryptsetup luksOpen <boot_partition> boot -–key-file /etc/luks/boot_keyfile.bin\n       ```\n    4. Create the file system by running the following command:\n\n       ```terminal\n       [secure guest ~]$ mke2fs –t ext4 /dev/mapper/boot\n       ```\n    5. Obtain the boot UUID by running the following command:\n\n       ```terminal\n       [secure guest ~]$ blkid –s UUID  -o value <boot_partition>\n       ```\n    6. Add the boot partition with the key file to `/etc/crypttab` by running the following command:\n\n       ```terminal\n       [secure guest ~]$ echo “boot <UUID> /etc/luks/boot_keyfile.bin luks” >>  /etc/crypttab\n       ```\n    7. Add the mount entry to the fstab file by running the following command:\n\n       ```terminal\n       [secure guest ~]$ echo “/dev/mapper/boot  /boot ext4 defaults 1 2” >> /etc/fstab\n       ```\n    8. Mount the boot volume by running the following command:\n\n       ```terminal\n       [secure guest ~]$ mount /dev/mapper/boot /boot\n       ```\n    9. Change into the boot directory by running the following command:\n\n       ```terminal\n       [secure guest ~]$ cd /boot\n       ```\n    10. Restore the boot backup file by running the following command:\n\n        ```terminal\n        [secure guest /boot~]$ tar -xvf /root/boot_backup.tar\n        ```\n14. Set up SSH key login for the local user and disable password login and root login.\n15. Security hardening the VM.\n\n    1. To disable login on consoles by disabling serial and virtual TTYs, run the following commands:\n\n       ```terminal\n       [secure guest ~]$ mkdir -p /etc/systemd/system/serial-getty@.service.d\n       ```\n\n       ```terminal\n       [secure guest ~]$ echo -e \"[Unit]\\nConditionKernelCommandLine=allowlocallogin\" | tee /etc/systemd/system/serial-getty@.service.d/disable.conf\n       ```\n\n       ```terminal\n       [secure guest ~]$ mkdir -p /etc/systemd/system/autovt@.service.d\n       ```\n\n       ```terminal\n       [secure guest ~]$ echo -e \"[Unit]\\nConditionKernelCommandLine=allowlocallogin\" | tee /etc/systemd/system/autovt@.service.d/disable.conf\n       ```\n    2. Disable debug, emergency, and rescue shells by running the following commands:\n\n       ```terminal\n       [secure guest ~]$ systemctl mask emergency.service\n       ```\n\n       ```terminal\n       [secure guest ~]$ systemctl mask emergency.target\n       ```\n\n       ```terminal\n       [secure guest ~]$ systemctl mask rescue.service\n       ```\n\n       ```terminal\n       [secure guest ~]$ systemctl mask rescue.target\n       ```\n    3. Disable the `virtio-rng` device by running the following command:\n\n       ```terminal\n       [secure guest ~]$ echo \"blacklist virtio-rng\" | tee /etc/modprobe.d/virtio-rng.conf\n       ```\n16. Enable IBM Secure Execution for the guest.\n\n    1. Copy the current command line to a file by running the following command:\n\n       ```terminal\n       [secure guest ~]$ cat /proc/cmdline > parmfile\n       ```\n    2. Append the following parameters to the `parmfile`:\n\n       ```terminal\n       loglevel=0 systemd.show_status=0 panic=0 crashkernel=196M swiotlb=262144\n       ```\n    3. Generate the IBM SEL image on the `/se` partition by running the following command:\n\n       ```terminal\n       [secure guest ~]$ genprotimg -i <image> \\\n                                    -r <ramdisk> \\\n                                    -p <parmfile> \\\n                                    -k </path/to/host-key-doc.crt> \\\n                                    --cert <ibm_signkey>  \\\n                                    -o /se/secure-linux.img\n       ```\n\n       where:\n\n       `<image>`\n       :   Specifies the original guest kernel image.\n\n       `<ramdisk>`\n       :   Specifies the original initial RAM file system.\n\n       `<parmfile>`\n       :   Specifies the file that contains the kernel parameters.\n\n       `</path/to/host-key-doc.crt>`\n       :   Specifies the public host key document.\n\n       `<ibm_signkey>`\n       :   Specifies the IBM Z(R) signing-key certificate and the DigiCert intermediate certificate for the verification of the host key documents.\n    4. Update the boot configuration by running the following command:\n\n       ```terminal\n       [secure guest ~]$ zipl -i /se/secure-linux.img -t /se\n       ```\n    5. Reboot the VM by running the following command:\n\n       ```terminal\n       [secure guest ~]$ reboot\n       ```\n    6. Verify that the guest VM is secure by running the following command:\n\n       ```terminal\n       [secure guest ~]$ cat /sys/firmware/uv/prot_virt_guest\n       ```\n\n       Example output:\n\n       ```terminal\n       1\n       ```\n\n       The value of this attribute is 1 for Linux instances that detect their environment as consistent with that of a secure host. For other instances, the value is 0.\n\n## Additional resources {#additional-resources_virt-configuring-ibm-secure-execution-vms-ibm-z}\n\n- [What is IBM Secure Execution?](https://www.ibm.com/docs/en/linux-on-systems?topic=execution-introduction)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-configuring-ibm-secure-execution-vms-ibm-z.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,16 +94,247 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="virt-configuring-ibm-secure-execution-vms-ibm-z" class="group scroll-mt-20">Configuring {"{"}{"{"} ibm_title {"}"}{"}"} Secure Execution virtual machines on {"{"}{"{"} ibm_z_title {"}"}{"}"} and {"{"}{"{"} ibm_linuxone_title {"}"}{"}"}<a href="#virt-configuring-ibm-secure-execution-vms-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can configure {"{"}{"{"} ibm_name {"}"}{"}"} Secure Execution virtual machines (VMs) on {"{"}{"{"} ibm_z_name {"}"}{"}"} and {"{"}{"{"} ibm_linuxone_name {"}"}{"}"}.</p>
-      <p>{"{"}{"{"} ibm_name {"}"}{"}"} Secure Execution for Linux is a s390x security technology that is introduced with {"{"}{"{"} ibm_name {"}"}{"}"} z15 and {"{"}{"{"} ibm_linuxone_name {"}"}{"}"} III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment.</p>
-      <p>Hardware administrators, KVM administrators, and KVM code cannot access data in an {"{"}{"{"} ibm_name {"}"}{"}"} Secure Execution guest VM.</p>
-      <p class="/modules/virt-enabling-vms-ibm-secure-execution-ibm-z.md"></p>
-      <p class="/modules/virt-launching-ibm-secure-execution-vm-ibm-z.md"></p>
-      <p class="/modules/virt-launching-ibm-secure-execution-vm-using-cli-ibm-z.md"></p>
-      <p class="/modules/virt-launching-ibm-secure-execution-vm-using-common-instance-type-ibm-z.md"></p>
-      <p class="/modules/virt-creating-bootable-encrypted-ibm-secure-execution-vm-image-ibm-z.md"></p>
+      <h1 id="virt-configuring-ibm-secure-execution-vms-ibm-z" class="group scroll-mt-20">Configuring IBM Secure Execution virtual machines on IBM Z and IBM LinuxONE<a href="#virt-configuring-ibm-secure-execution-vms-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can configure IBM(R) Secure Execution virtual machines (VMs) on IBM Z(R) and IBM(R) LinuxONE.</p>
+      <p>IBM(R) Secure Execution for Linux is a s390x security technology that is introduced with IBM(R) z15 and IBM(R) LinuxONE III. It protects data of workloads that run in a KVM guest from being inspected or modified by the server environment.</p>
+      <p>Hardware administrators, KVM administrators, and KVM code cannot access data in an IBM(R) Secure Execution guest VM.</p>
+      <h2 id="virt-enabling-vms-ibm-secure-execution-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z" class="group scroll-mt-20">Enabling VMs to run IBM Secure Execution on IBM Z and IBM LinuxONE<a href="#virt-enabling-vms-ibm-secure-execution-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To enable IBM(R) Secure Execution virtual machines (VMs) on IBM Z(R) and IBM(R) LinuxONE on the compute nodes of your cluster, you must ensure that you meet the prerequisites and complete the following steps.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Your cluster has logical partition (LPAR) nodes running on IBM(R) z15 or later, or IBM(R) LinuxONE III or later.</li>
+      <li>You have IBM(R) Secure Execution workloads available to run on the cluster.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To run IBM(R) Secure Execution VMs, you must add the <code>prot_virt=1</code> kernel parameter for each compute node. To enable all compute nodes, create a file named <code>secure-execution.yaml</code> that contains the following machine config manifest:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  name: secure-execution\n  labels:\n    machineconfiguration.openshift.io/role: worker\nspec:\n  kernelArguments:\n    - prot_virt=1"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>prot_virt=1</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the ultravisor can store memory security information.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the changes by running the following command:
+      <CodeBlock code={"$ oc apply -f secure-execution.yaml"} lang="terminal" />
+      <p>The Machine Config Operator (MCO) applies the changes and reboots the nodes in a controlled rollout.</p>
+      </li>
+      </ol>
+      <h2 id="virt-launching-ibm-secure-execution-vm-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z" class="group scroll-mt-20">Launching an IBM Secure Execution VM on IBM Z and IBM LinuxONE<a href="#virt-launching-ibm-secure-execution-vm-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Before launching an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE, you must add the <code>launchSecurity</code> parameter to the VM manifest. Otherwise, the VM does not start correctly because it does not have access to the devices.</p>
+      <h3 id="virt-launching-ibm-secure-execution-vm-using-cli-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z" class="group scroll-mt-20">Launching an IBM Secure Execution VM by using the CLI<a href="#virt-launching-ibm-secure-execution-vm-using-cli-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can launch an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE by using the command-line interface.</p>
+      <p>To launch IBM(R) Secure Execution VMs, you must include the <code>launchSecurity</code> parameter to the <code>VirtualMachine</code> manifest. The rest of the VM manifest depends on your setup.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Apply a <code>VirtualMachine</code> manifest similar to the following, to the cluster:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  labels:\n    kubevirt.io/vm: f41-se\n  name: f41-se\nspec:\n  runStrategy: Always\n  template:\n    metadata:\n      labels:\n        kubevirt.io/vm: f41-se\n    spec:\n      domain:\n        launchSecurity: {}\n        devices:\n          disks:\n          - disk:\n              bus: virtio\n            name: rootfs\n        machine:\n          type: \"\"\n        resources:\n          requests:\n            memory: 4Gi\n      terminationGracePeriodSeconds: 0\n      volumes:\n        - name: rootfs\n          dataVolume:\n            name: f41-se"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.template.spec.domain.launchSecurity</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies to enable hardware-based memory encryption.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Because the memory of the VM is protected, you cannot live migrate IBM(R) Secure Execution VMs. The VMs can only be migrated offline.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h3 id="virt-launching-ibm-secure-execution-vm-using-common-instance-type-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z" class="group scroll-mt-20">Launching an IBM Secure Execution VM by using a common instance type <a href="#virt-launching-ibm-secure-execution-vm-using-common-instance-type-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can launch an IBM(R) Secure Execution VM on IBM Z(R) and IBM(R) LinuxONE by using a common instance type.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have followed the procedure described in "Creating a VM from an instance type by using the web console" and performed the required steps.</li>
+      <li>You are using an IBM(R) Secure Execution enabled VM image.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>Catalog</strong> in the web console.</li>
+      <li>Click the <strong>Customize VirtualMachine</strong> button.</li>
+      <li>
+      Click the <strong>YAML</strong> tab, and include the <code>launchSecurity: {"{"}{"}"}</code> parameter in the YAML.
+      <CodeBlock code={"spec:\n  template:\n    spec:\n       domain:\n         launchSecurity: {}"} lang="yaml" />
+      </li>
+      <li>Click <strong>Save</strong>.</li>
+      <li>Click <strong>Create VirtualMachine</strong>.</li>
+      </ol>
+      <h2 id="virt-creating-bootable-encrypted-ibm-secure-execution-vm-image-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z" class="group scroll-mt-20">Creating a bootable and encrypted IBM Secure Execution VM image on IBM Z and IBM LinuxONE<a href="#virt-creating-bootable-encrypted-ibm-secure-execution-vm-image-ibm-z_virt-configuring-ibm-secure-execution-vms-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a bootable and encrypted IBM Secure Execution VM image for Red Hat Enterprise Linux (RHEL) on IBM Z and IBM LinuxONE.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You are using an IBM(R) Secure Execution enabled VM image.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      On a trusted instance, create the <code>install.ks</code> kickstart file in the <code>/var/lib/libvirt/image/</code> directory with the following content:
+      <CodeBlock code={"[trusted instance ~]\ntext\nlang en_US.UTF-8\nkeyboard us \nnetwork --bootproto=dhcp \nrootpw --plaintext <password>\ntimezone <>\nfirewall --enabled\nselinux --enforcing\nbootloader --location=mbr\nreboot   \n\n# Wipe and partition the disk\nclearpart --all --initlabel \nzerombr  \n\n# /boot gets encrypted on post reboot\npart /boot --fstype ext4 --size=512 --label=boot  \n# Root (/) is LUKS-encrypted \npart / --fstype xfs --size=3000 --pbkdf=pbkdf2 --encrypted --passphrase <passphrase>\n# SE (/se) Non Encrypted for encrypted boot image.\npart /se --fstype xfs --size=512 --label=se\n#Packages\n%packages\n@core\ndracut\ns390-tools\n%end "} lang="terminal" />
+      </li>
+      <li>
+      Create the VM with the RHEL image by running the following command:
+      <CodeBlock code={"[trusted instance ~]$ qemu-img create -f qcow2 <path to qcow2 image> <size>G"} lang="terminal" />
+      </li>
+      <li>
+      Run the <code>virt-install</code> command with the following parameters:
+      <CodeBlock code={"[trusted instance ~]virt-install \n    --name <guest_vm_name> \\\n    --memory 4096 --vcpus 2 \\\n    --disk path=<path_to_qcow2_image>,format=qcow2,bus=virtio,cache=none \\ \n    --location <path_to_os>  \\\n    --initrd-inject=<path_to_kickstart_file> \\ \n    --extra-args=\"inst.ks=file:/<kickstart_file_name> console=ttyS0 \\ \n    --inst.text inst.noninteractive\" \\\n    --os-variant=<os_variant> \\ \n    --launchSecurity type=s390-pv \\ \n    --graphics none "} lang="terminal" />
+      </li>
+      <li>Run the <code>virsh start</code> command to access the system console.</li>
+      <li>Run the <code>sudo -s</code> command to achieve root user privileges.</li>
+      <li>
+      Generate keyfiles for the root and the boot partition by running the following commands:
+      <CodeBlock code={"[secure guest ~]$ mkdir -p /etc/luks"} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ chmod 700 /etc/luks"} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ dd if=/dev/urandom of=/etc/luks/root_keyfile.bin bs=1024 count=4"} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ dd if=/dev/urandom of=/etc/luks/boot_keyfile.bin bs=1024 count=4"} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ cryptsetup luksAddkey <root_partition_device> /etc/luks/root_keyfile.bin --pbkdf pbkdf2"} lang="terminal" />
+      </li>
+      <li>
+      Obtain the LUKS device name and UUID by running the following command:
+      <CodeBlock code={"$ lsblk -f"} lang="terminal" />
+      </li>
+      <li>Rename the existing fstab file to <code>/etc/fstab_bak</code>.</li>
+      <li>
+      Create new crypttab and fstab files similar to the following examples:
+      <p>Crypttab example output:</p>
+      <CodeBlock code={"luks device name   UUID                                       KEYFILE \t\t\t      OPTIONS\nroot \t\t       UUID=9cb04587-a670-458a-97eb-52fc0f4008ae  /etc/luks/keyfile.bin   luks"} lang="screen" />
+      <p>Fstab example output:</p>
+      <CodeBlock code={"/dev/mapper/root /          xfs\t  defaults 0 1"} lang="screen" />
+      </li>
+      <li>
+      Add the SE boot filesystem entry into the <code>/etc/fstab</code> file by running the following command:
+      <CodeBlock code={"[secure guest ~]$ grep ‘/se’ /etc/fstab_bak >> /etc/fstab"} lang="terminal" />
+      </li>
+      <li>
+      Add entries to the <code>initramfs</code> by running the following commands:
+      <CodeBlock code={"[secure guest ~]$ cat > /etc/dracut.conf.d/10-lukskey.conf <<'EOF' \n    install_items+=\" /etc/luks/root_keyfile.bin /etc/luks/boot_keyfile.bin \"  \n    EOF "} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ dracut -f --regenerate-all"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the key files are present in <code>initramfs</code> by running the following command:
+      <CodeBlock code={"[secure guest ~]$ lsinitrd /boot/initramfs-$(uname-r) | grep -i luks"} lang="terminal" />
+      </li>
+      <li>
+      LUKS Encrypt the <code>/boot</code> volume.
+      <ol>
+      <li>
+      Change into the boot directory by running the following command:
+      <CodeBlock code={"[secure guest ~]$ cd /boot"} lang="terminal" />
+      </li>
+      <li>
+      Backup the existing boot volume content by running the following commands:
+      <CodeBlock code={"[secure guest /boot ~]$ tar -cf /root/boot_backup.tar"} lang="terminal" />
+      <CodeBlock code={"[secure guest /boot ~]$ cd"} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ umount /boot"} lang="terminal" />
+      </li>
+      <li>
+      Encrypt the boot volume by running the following commands:
+      <CodeBlock code={"[secure guest ~]$ cryptsetup -q luksFormat <boot_partition> --key-file /etc/luks/boot_keyfile.bin"} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ cryptsetup luksOpen <boot_partition> boot -–key-file /etc/luks/boot_keyfile.bin"} lang="terminal" />
+      </li>
+      <li>
+      Create the file system by running the following command:
+      <CodeBlock code={"[secure guest ~]$ mke2fs –t ext4 /dev/mapper/boot"} lang="terminal" />
+      </li>
+      <li>
+      Obtain the boot UUID by running the following command:
+      <CodeBlock code={"[secure guest ~]$ blkid –s UUID  -o value <boot_partition>"} lang="terminal" />
+      </li>
+      <li>
+      Add the boot partition with the key file to <code>/etc/crypttab</code> by running the following command:
+      <CodeBlock code={"[secure guest ~]$ echo “boot <UUID> /etc/luks/boot_keyfile.bin luks” >>  /etc/crypttab"} lang="terminal" />
+      </li>
+      <li>
+      Add the mount entry to the fstab file by running the following command:
+      <CodeBlock code={"[secure guest ~]$ echo “/dev/mapper/boot  /boot ext4 defaults 1 2” >> /etc/fstab"} lang="terminal" />
+      </li>
+      <li>
+      Mount the boot volume by running the following command:
+      <CodeBlock code={"[secure guest ~]$ mount /dev/mapper/boot /boot"} lang="terminal" />
+      </li>
+      <li>
+      Change into the boot directory by running the following command:
+      <CodeBlock code={"[secure guest ~]$ cd /boot"} lang="terminal" />
+      </li>
+      <li>
+      Restore the boot backup file by running the following command:
+      <CodeBlock code={"[secure guest /boot~]$ tar -xvf /root/boot_backup.tar"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>Set up SSH key login for the local user and disable password login and root login.</li>
+      <li>
+      Security hardening the VM.
+      <ol>
+      <li>
+      To disable login on consoles by disabling serial and virtual TTYs, run the following commands:
+      <CodeBlock code={"[secure guest ~]$ mkdir -p /etc/systemd/system/serial-getty@.service.d"} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ echo -e \"[Unit]\\nConditionKernelCommandLine=allowlocallogin\" | tee /etc/systemd/system/serial-getty@.service.d/disable.conf "} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ mkdir -p /etc/systemd/system/autovt@.service.d"} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ echo -e \"[Unit]\\nConditionKernelCommandLine=allowlocallogin\" | tee /etc/systemd/system/autovt@.service.d/disable.conf"} lang="terminal" />
+      </li>
+      <li>
+      Disable debug, emergency, and rescue shells by running the following commands:
+      <CodeBlock code={"[secure guest ~]$ systemctl mask emergency.service"} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ systemctl mask emergency.target "} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ systemctl mask rescue.service"} lang="terminal" />
+      <CodeBlock code={"[secure guest ~]$ systemctl mask rescue.target "} lang="terminal" />
+      </li>
+      <li>
+      Disable the <code>virtio-rng</code> device by running the following command:
+      <CodeBlock code={"[secure guest ~]$ echo \"blacklist virtio-rng\" | tee /etc/modprobe.d/virtio-rng.conf"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Enable IBM Secure Execution for the guest.
+      <ol>
+      <li>
+      Copy the current command line to a file by running the following command:
+      <CodeBlock code={"[secure guest ~]$ cat /proc/cmdline > parmfile"} lang="terminal" />
+      </li>
+      <li>
+      Append the following parameters to the <code>parmfile</code>:
+      <CodeBlock code={"loglevel=0 systemd.show_status=0 panic=0 crashkernel=196M swiotlb=262144"} lang="terminal" />
+      </li>
+      <li>
+      Generate the IBM SEL image on the <code>/se</code> partition by running the following command:
+      <CodeBlock code={"[secure guest ~]$ genprotimg -i <image> \\\n                             -r <ramdisk> \\\n                             -p <parmfile> \\\n                             -k </path/to/host-key-doc.crt> \\\n                             --cert <ibm_signkey>  \\\n                             -o /se/secure-linux.img\n"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;image&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the original guest kernel image.</p></dd>
+      <dt class="font-semibold"><code>&lt;ramdisk&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the original initial RAM file system.</p></dd>
+      <dt class="font-semibold"><code>&lt;parmfile&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the file that contains the kernel parameters.</p></dd>
+      <dt class="font-semibold"><code>&lt;/path/to/host-key-doc.crt&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the public host key document.</p></dd>
+      <dt class="font-semibold"><code>&lt;ibm_signkey&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the IBM Z(R) signing-key certificate and the DigiCert intermediate certificate for the verification of the host key documents.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Update the boot configuration by running the following command:
+      <CodeBlock code={"[secure guest ~]$ zipl -i /se/secure-linux.img -t /se"} lang="terminal" />
+      </li>
+      <li>
+      Reboot the VM by running the following command:
+      <CodeBlock code={"[secure guest ~]$ reboot"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the guest VM is secure by running the following command:
+      <CodeBlock code={"[secure guest ~]$ cat /sys/firmware/uv/prot_virt_guest"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"1"} lang="terminal" />
+      <p>The value of this attribute is 1 for Linux instances that detect their environment as consistent with that of a secure host. For other instances, the value is 0.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
       <h2 id="additional-resources_virt-configuring-ibm-secure-execution-vms-ibm-z" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-configuring-ibm-secure-execution-vms-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=execution-introduction">What is IBM Secure Execution?</a></li></ul>
     </article>

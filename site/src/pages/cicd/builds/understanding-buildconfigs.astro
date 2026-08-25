@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"understanding-buildconfigs","text":"Understanding build configurations"}];
+const headings = [{"depth":1,"slug":"understanding-buildconfigs","text":"Understanding build configurations"},{"depth":2,"slug":"builds-buildconfig_understanding-builds","text":"BuildConfigs"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cicd/builds/understanding-buildconfigs";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["cicd","cicd/builds"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding build configurations {#understanding-buildconfigs}\n\nThe following sections define the concept of a build, build configuration, and outline the primary build strategies available.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/understanding-buildconfigs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding build configurations {#understanding-buildconfigs}\n\nThe following sections define the concept of a build, build configuration, and outline the primary build strategies available.\n\n## BuildConfigs {#builds-buildconfig_understanding-builds}\n\nA build configuration describes a single build definition and a set of triggers for when a new build is created. Build configurations are defined by a `BuildConfig`, which is a REST object that can be used in a POST to the API server to create a new instance.\n\nA build configuration, or `BuildConfig`, is characterized by a build strategy and one or more sources. The strategy determines the process, while the sources provide its input.\n\nDepending on how you choose to create your application using OpenShift Container Platform, a `BuildConfig` is typically generated automatically for you if you use the web console or CLI, and it can be edited at any time. Understanding the parts that make up a `BuildConfig` and their available options can help if you choose to manually change your configuration later.\n\nThe following example `BuildConfig` results in a new build every time a container image tag or the source code changes:\n\n```yaml {title=\"BuildConfig object definition\"}\nkind: BuildConfig\napiVersion: build.openshift.io/v1\nmetadata:\n  name: \"ruby-sample-build\" (1)\nspec:\n  runPolicy: \"Serial\" (2)\n  triggers: (3)\n    -\n      type: \"GitHub\"\n      github:\n        secret: \"secret101\"\n    - type: \"Generic\"\n      generic:\n        secret: \"secret101\"\n    -\n      type: \"ImageChange\"\n  source: (4)\n    git:\n      uri: \"https://github.com/openshift/ruby-hello-world\"\n  strategy: (5)\n    sourceStrategy:\n      from:\n        kind: \"ImageStreamTag\"\n        name: \"ruby-20-centos7:latest\"\n  output: (6)\n    to:\n      kind: \"ImageStreamTag\"\n      name: \"origin-ruby-sample:latest\"\n  postCommit: (7)\n      script: \"bundle exec rake test\"\n```\n\n1. This specification creates a new `BuildConfig` named `ruby-sample-build`.\n2. The `runPolicy` field controls whether builds created from this build configuration can be run simultaneously. The default value is `Serial`, which means new builds run sequentially, not simultaneously.\n3. You can specify a list of triggers, which cause a new build to be created.\n4. The `source` section defines the source of the build. The source type determines the primary source of input, and can be either `Git`, to point to a code repository location, `Dockerfile`, to build from an inline Dockerfile,\n\nor `Binary`, to accept binary payloads. It is possible to have multiple sources at once. See the documentation for each source type for details.\n\n1. The `strategy` section describes the build strategy used to execute the build. You can specify a `Source` , `Docker`, or `Custom`\n\nstrategy here. This example uses the `ruby-20-centos7` container image that Source-to-image (S2I) uses for the application build.\n\n1. After the container image is successfully built, it is pushed into the repository described in the `output` section.\n2. The `postCommit` section defines an optional build hook.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/understanding-buildconfigs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,26 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="understanding-buildconfigs" class="group scroll-mt-20">Understanding build configurations<a href="#understanding-buildconfigs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The following sections define the concept of a build, build configuration, and outline the primary build strategies available.</p>
-      <p class="/modules/builds-buildconfig.md"></p>
+      <h2 id="builds-buildconfig_understanding-builds" class="group scroll-mt-20">BuildConfigs<a href="#builds-buildconfig_understanding-builds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>A build configuration describes a single build definition and a set of triggers for when a new build is created. Build configurations are defined by a <code>BuildConfig</code>, which is a REST object that can be used in a POST to the API server to create a new instance.</p>
+      <p>A build configuration, or <code>BuildConfig</code>, is characterized by a build strategy and one or more sources. The strategy determines the process, while the sources provide its input.</p>
+      <p>Depending on how you choose to create your application using OpenShift Container Platform, a <code>BuildConfig</code> is typically generated automatically for you if you use the web console or CLI, and it can be edited at any time. Understanding the parts that make up a <code>BuildConfig</code> and their available options can help if you choose to manually change your configuration later.</p>
+      <p>The following example <code>BuildConfig</code> results in a new build every time a container image tag or the source code changes:</p>
+      <CodeBlock code={"kind: BuildConfig\napiVersion: build.openshift.io/v1\nmetadata:\n  name: \"ruby-sample-build\" (1)\nspec:\n  runPolicy: \"Serial\" (2)\n  triggers: (3)\n    -\n      type: \"GitHub\"\n      github:\n        secret: \"secret101\"\n    - type: \"Generic\"\n      generic:\n        secret: \"secret101\"\n    -\n      type: \"ImageChange\"\n  source: (4)\n    git:\n      uri: \"https://github.com/openshift/ruby-hello-world\"\n  strategy: (5)\n    sourceStrategy:\n      from:\n        kind: \"ImageStreamTag\"\n        name: \"ruby-20-centos7:latest\"\n  output: (6)\n    to:\n      kind: \"ImageStreamTag\"\n      name: \"origin-ruby-sample:latest\"\n  postCommit: (7)\n      script: \"bundle exec rake test\""} lang="yaml" title="BuildConfig object definition" />
+      <ol>
+      <li>This specification creates a new <code>BuildConfig</code> named <code>ruby-sample-build</code>.</li>
+      <li>The <code>runPolicy</code> field controls whether builds created from this build configuration can be run simultaneously. The default value is <code>Serial</code>, which means new builds run sequentially, not simultaneously.</li>
+      <li>You can specify a list of triggers, which cause a new build to be created.</li>
+      <li>The <code>source</code> section defines the source of the build. The source type determines the primary source of input, and can be either <code>Git</code>, to point to a code repository location, <code>Dockerfile</code>, to build from an inline Dockerfile,</li>
+      </ol>
+      <p>or <code>Binary</code>, to accept binary payloads. It is possible to have multiple sources at once. See the documentation for each source type for details.</p>
+      <ol><li>The <code>strategy</code> section describes the build strategy used to execute the build. You can specify a <code>Source</code> , <code>Docker</code>, or <code>Custom</code></li></ol>
+      <p>strategy here. This example uses the <code>ruby-20-centos7</code> container image that Source-to-image (S2I) uses for the application build.</p>
+      <ol>
+      <li>After the container image is successfully built, it is pushed into the repository described in the <code>output</code> section.</li>
+      <li>The <code>postCommit</code> section defines an optional build hook.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

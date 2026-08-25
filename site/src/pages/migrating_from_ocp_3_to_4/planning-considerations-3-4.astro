@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"planning-considerations-3-4","text":"Network considerations"},{"depth":2,"slug":"dns-considerations_planning-considerations-3-4","text":"DNS considerations"}];
+const headings = [{"depth":1,"slug":"planning-considerations-3-4","text":"Network considerations"},{"depth":2,"slug":"dns-considerations_planning-considerations-3-4","text":"DNS considerations"},{"depth":3,"slug":"migration-isolating-dns-domain-of-target-cluster-from-clients_planning-considerations-3-4","text":"Isolating the DNS domain of the target cluster from the clients"},{"depth":3,"slug":"migration-setting-up-target-cluster-to-accept-source-dns-domain_planning-considerations-3-4","text":"Setting up the target cluster to accept the source DNS domain"},{"depth":2,"slug":"migration-network-traffic-redirection-strategies_planning-considerations-3-4","text":"Network traffic redirection strategies"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/migrating_from_ocp_3_to_4/planning-considerations-3-4";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["migrating_from_ocp_3_to_4"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network considerations {#planning-considerations-3-4}\n\nReview the strategies for redirecting your application network traffic after migration.\n\n## DNS considerations {#dns-considerations_planning-considerations-3-4}\n\nThe DNS domain of the target cluster is different from the domain of the source cluster. By default, applications get FQDNs of the target cluster after migration.\n\nTo preserve the source DNS domain of migrated applications, select one of the two options described below.\n\n**Additional resources**\n\n- See [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress) for more information.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/migrating_from_ocp_3_to_4/planning-considerations-3-4.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network considerations {#planning-considerations-3-4}\n\nReview the strategies for redirecting your application network traffic after migration.\n\n## DNS considerations {#dns-considerations_planning-considerations-3-4}\n\nThe DNS domain of the target cluster is different from the domain of the source cluster. By default, applications get FQDNs of the target cluster after migration.\n\nTo preserve the source DNS domain of migrated applications, select one of the two options described below.\n\n### Isolating the DNS domain of the target cluster from the clients {#migration-isolating-dns-domain-of-target-cluster-from-clients_planning-considerations-3-4}\n\nYou can allow the clients' requests sent to the DNS domain of the source cluster to reach the DNS domain of the target cluster without exposing the target cluster to the clients.\n\n**Procedure**\n\n1. Place an exterior network component, such as an application load balancer or a reverse proxy, between the clients and the target cluster.\n2. Update the application FQDN on the source cluster in the DNS server to return the IP address of the exterior network component.\n3. Configure the network component to send requests received for the application in the source domain to the load balancer in the target cluster domain.\n4. Create a wildcard DNS record for the `*.apps.source.example.com` domain that points to the IP address of the load balancer of the source cluster.\n5. Create a DNS record for each application that points to the IP address of the exterior network component in front of the target cluster. A specific DNS record has higher priority than a wildcard record, so no conflict arises when the application FQDN is resolved.\n\n> [!NOTE]\n> - The exterior network component must terminate all secure TLS connections. If the connections pass through to the target cluster load balancer, the FQDN of the target application is exposed to the client and certificate errors occur.\n> - The applications must not return links referencing the target cluster domain to the clients. Otherwise, parts of the application might not load or work properly.\n\n### Setting up the target cluster to accept the source DNS domain {#migration-setting-up-target-cluster-to-accept-source-dns-domain_planning-considerations-3-4}\n\nYou can set up the target cluster to accept requests for a migrated application in the DNS domain of the source cluster.\n\n**Procedure**\n\nFor both non-secure HTTP access and secure HTTPS access, perform the following steps:\n\n1. Create a route in the target cluster’s project that is configured to accept requests addressed to the application’s FQDN in the source cluster:\n\n   ```terminal\n   $ oc expose svc <app1-svc> --hostname <app1.apps.source.example.com> \\\n    -n <app1-namespace>\n   ```\n\n   With this new route in place, the server accepts any request for that FQDN and sends it to the corresponding application pods. In addition, when you migrate the application, another route is created in the target cluster domain. Requests reach the migrated application using either of these hostnames.\n2. Create a DNS record with your DNS provider that points the application’s FQDN in the source cluster to the IP address of the default load balancer of the target cluster. This will redirect traffic away from your source cluster to your target cluster.\n\n   The FQDN of the application resolves to the load balancer of the target cluster. The default Ingress Controller router accept requests for that FQDN because a route for that hostname is exposed.\n\nFor secure HTTPS access, perform the following additional step:\n\n1. Replace the x509 certificate of the default Ingress Controller created during the installation process with a custom certificate.\n2. Configure this certificate to include the wildcard DNS domains for both the source and target clusters in the `subjectAltName` field.\n\n   The new certificate is valid for securing connections made using either DNS domain.\n\n**Additional resources**\n\n- See [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress) for more information.\n\n## Network traffic redirection strategies {#migration-network-traffic-redirection-strategies_planning-considerations-3-4}\n\nAfter a successful migration, you must redirect network traffic of your stateless applications from the source cluster to the target cluster.\n\nThe strategies for redirecting network traffic are based on the following assumptions:\n\n- The application pods are running on both the source and target clusters.\n- Each application has a route that contains the source cluster hostname.\n- The route with the source cluster hostname contains a CA certificate.\n- For HTTPS, the target router CA certificate contains a Subject Alternative Name for the wildcard DNS record of the source cluster.\n\nConsider the following strategies and select the one that meets your objectives.\n\n- Redirecting all network traffic for all applications at the same time\n\n  Change the wildcard DNS record of the source cluster to point to the target cluster router’s virtual IP address (VIP).\n\n  This strategy is suitable for simple applications or small migrations.\n- Redirecting network traffic for individual applications\n\n  Create a DNS record for each application with the source cluster hostname pointing to the target cluster router’s VIP. This DNS record takes precedence over the source cluster wildcard DNS record.\n- Redirecting network traffic gradually for individual applications\n\n  1. Create a proxy that can direct traffic to both the source cluster router’s VIP and the target cluster router’s VIP, for each application.\n  2. Create a DNS record for each application with the source cluster hostname pointing to the proxy.\n  3. Configure the proxy entry for the application to route a percentage of the traffic to the target cluster router’s VIP and the rest of the traffic to the source cluster router’s VIP.\n  4. Gradually increase the percentage of traffic that you route to the target cluster router’s VIP until all the network traffic is redirected.\n- User-based redirection of traffic for individual applications\n\n  Using this strategy, you can filter TCP/IP headers of user requests to redirect network traffic for predefined groups of users. This allows you to test the redirection process on specific populations of users before redirecting the entire network traffic.\n\n  1. Create a proxy that can direct traffic to both the source cluster router’s VIP and the target cluster router’s VIP, for each application.\n  2. Create a DNS record for each application with the source cluster hostname pointing to the proxy.\n  3. Configure the proxy entry for the application to route traffic matching a given header pattern, such as `test customers`, to the target cluster router’s VIP and the rest of the traffic to the source cluster router’s VIP.\n  4. Redirect traffic to the target cluster router’s VIP in stages until all the traffic is on the target cluster router’s VIP.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/migrating_from_ocp_3_to_4/planning-considerations-3-4.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,94 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="planning-considerations-3-4" class="group scroll-mt-20">Network considerations<a href="#planning-considerations-3-4" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Review the strategies for redirecting your application network traffic after migration.</p>
       <h2 id="dns-considerations_planning-considerations-3-4" class="group scroll-mt-20">DNS considerations<a href="#dns-considerations_planning-considerations-3-4" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>The DNS domain of the target cluster is different from the domain of the source cluster. By default, applications get FQDNs of the target cluster after migration.</p>
       <p>To preserve the source DNS domain of migrated applications, select one of the two options described below.</p>
-      <p class="/modules/migration-setting-up-target-cluster-to-accept-source-dns-domain.md /modules/migration-isolating-dns-domain-of-target-cluster-from-clients.md"></p>
+      <h3 id="migration-isolating-dns-domain-of-target-cluster-from-clients_planning-considerations-3-4" class="group scroll-mt-20">Isolating the DNS domain of the target cluster from the clients<a href="#migration-isolating-dns-domain-of-target-cluster-from-clients_planning-considerations-3-4" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can allow the clients' requests sent to the DNS domain of the source cluster to reach the DNS domain of the target cluster without exposing the target cluster to the clients.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Place an exterior network component, such as an application load balancer or a reverse proxy, between the clients and the target cluster.</li>
+      <li>Update the application FQDN on the source cluster in the DNS server to return the IP address of the exterior network component.</li>
+      <li>Configure the network component to send requests received for the application in the source domain to the load balancer in the target cluster domain.</li>
+      <li>Create a wildcard DNS record for the <code>*.apps.source.example.com</code> domain that points to the IP address of the load balancer of the source cluster.</li>
+      <li>Create a DNS record for each application that points to the IP address of the exterior network component in front of the target cluster. A specific DNS record has higher priority than a wildcard record, so no conflict arises when the application FQDN is resolved.</li>
+      </ol>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>The exterior network component must terminate all secure TLS connections. If the connections pass through to the target cluster load balancer, the FQDN of the target application is exposed to the client and certificate errors occur.</li>
+          <li>The applications must not return links referencing the target cluster domain to the clients. Otherwise, parts of the application might not load or work properly.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <h3 id="migration-setting-up-target-cluster-to-accept-source-dns-domain_planning-considerations-3-4" class="group scroll-mt-20">Setting up the target cluster to accept the source DNS domain<a href="#migration-setting-up-target-cluster-to-accept-source-dns-domain_planning-considerations-3-4" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can set up the target cluster to accept requests for a migrated application in the DNS domain of the source cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <p>For both non-secure HTTP access and secure HTTPS access, perform the following steps:</p>
+      <ol>
+      <li>
+      Create a route in the target cluster’s project that is configured to accept requests addressed to the application’s FQDN in the source cluster:
+      <CodeBlock code={"$ oc expose svc <app1-svc> --hostname <app1.apps.source.example.com> \\\n -n <app1-namespace>"} lang="terminal" />
+      <p>With this new route in place, the server accepts any request for that FQDN and sends it to the corresponding application pods. In addition, when you migrate the application, another route is created in the target cluster domain. Requests reach the migrated application using either of these hostnames.</p>
+      </li>
+      <li>
+      Create a DNS record with your DNS provider that points the application’s FQDN in the source cluster to the IP address of the default load balancer of the target cluster. This will redirect traffic away from your source cluster to your target cluster.
+      <p>The FQDN of the application resolves to the load balancer of the target cluster. The default Ingress Controller router accept requests for that FQDN because a route for that hostname is exposed.</p>
+      </li>
+      </ol>
+      <p>For secure HTTPS access, perform the following additional step:</p>
+      <ol>
+      <li>Replace the x509 certificate of the default Ingress Controller created during the installation process with a custom certificate.</li>
+      <li>
+      Configure this certificate to include the wildcard DNS domains for both the source and target clusters in the <code>subjectAltName</code> field.
+      <p>The new certificate is valid for securing connections made using either DNS domain.</p>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li>See <a href="/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress">Replacing the default ingress certificate</a> for more information.</li></ul>
+      <h2 id="migration-network-traffic-redirection-strategies_planning-considerations-3-4" class="group scroll-mt-20">Network traffic redirection strategies<a href="#migration-network-traffic-redirection-strategies_planning-considerations-3-4" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>After a successful migration, you must redirect network traffic of your stateless applications from the source cluster to the target cluster.</p>
+      <p>The strategies for redirecting network traffic are based on the following assumptions:</p>
+      <ul>
+      <li>The application pods are running on both the source and target clusters.</li>
+      <li>Each application has a route that contains the source cluster hostname.</li>
+      <li>The route with the source cluster hostname contains a CA certificate.</li>
+      <li>For HTTPS, the target router CA certificate contains a Subject Alternative Name for the wildcard DNS record of the source cluster.</li>
+      </ul>
+      <p>Consider the following strategies and select the one that meets your objectives.</p>
+      <ul>
+      <li>
+      Redirecting all network traffic for all applications at the same time
+      <p>Change the wildcard DNS record of the source cluster to point to the target cluster router’s virtual IP address (VIP).</p>
+      <p>This strategy is suitable for simple applications or small migrations.</p>
+      </li>
+      <li>
+      Redirecting network traffic for individual applications
+      <p>Create a DNS record for each application with the source cluster hostname pointing to the target cluster router’s VIP. This DNS record takes precedence over the source cluster wildcard DNS record.</p>
+      </li>
+      <li>
+      Redirecting network traffic gradually for individual applications
+      <ol>
+      <li>Create a proxy that can direct traffic to both the source cluster router’s VIP and the target cluster router’s VIP, for each application.</li>
+      <li>Create a DNS record for each application with the source cluster hostname pointing to the proxy.</li>
+      <li>Configure the proxy entry for the application to route a percentage of the traffic to the target cluster router’s VIP and the rest of the traffic to the source cluster router’s VIP.</li>
+      <li>Gradually increase the percentage of traffic that you route to the target cluster router’s VIP until all the network traffic is redirected.</li>
+      </ol>
+      </li>
+      <li>
+      User-based redirection of traffic for individual applications
+      <p>Using this strategy, you can filter TCP/IP headers of user requests to redirect network traffic for predefined groups of users. This allows you to test the redirection process on specific populations of users before redirecting the entire network traffic.</p>
+      <ol>
+      <li>Create a proxy that can direct traffic to both the source cluster router’s VIP and the target cluster router’s VIP, for each application.</li>
+      <li>Create a DNS record for each application with the source cluster hostname pointing to the proxy.</li>
+      <li>Configure the proxy entry for the application to route traffic matching a given header pattern, such as <code>test customers</code>, to the target cluster router’s VIP and the rest of the traffic to the source cluster router’s VIP.</li>
+      <li>Redirect traffic to the target cluster router’s VIP in stages until all the traffic is on the target cluster router’s VIP.</li>
+      </ol>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

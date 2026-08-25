@@ -4,11 +4,11 @@ title: Red Hat OpenShift Cluster Manager
 
 # Red Hat OpenShift Cluster Manager {#ocm-overview-ocp}
 
-{{ cluster_manager_first }} is a managed service where you can install, modify, operate, and upgrade your Red Hat OpenShift clusters. This service allows you to work with all of your organization´s clusters from a single dashboard.
+Red Hat OpenShift Cluster Manager is a managed service where you can install, modify, operate, and upgrade your Red Hat OpenShift clusters. This service allows you to work with all of your organization´s clusters from a single dashboard.
 
-{{ cluster_manager }} guides you to install {{ OCP }}, {{ rosa_classic_title }}, {{ hcp_title_first }}, and {{ dedicated }} clusters. It is also responsible for managing both {{ OCP }} clusters after self-installation as well as your {{ rosa_classic_title }} and {{ dedicated }} clusters.
+OpenShift Cluster Manager guides you to install OpenShift Container Platform, Red Hat OpenShift Service on AWS (classic architecture), Red Hat OpenShift Service on AWS, and OpenShift Dedicated clusters. It is also responsible for managing both OpenShift Container Platform clusters after self-installation as well as your Red Hat OpenShift Service on AWS (classic architecture) and OpenShift Dedicated clusters.
 
-You can use {{ cluster_manager }} to do the following actions:
+You can use OpenShift Cluster Manager to do the following actions:
 
 - Create new clusters
 - View cluster details and metrics
@@ -16,6 +16,19 @@ You can use {{ cluster_manager }} to do the following actions:
 - Manage access control
 - Monitor clusters
 - Schedule upgrades
+
+## Accessing Red Hat OpenShift Cluster Manager {#accessing-ocm_ocm-overview-ocp}
+
+You can access OpenShift Cluster Manager with your configured OpenShift account.
+
+**Prerequisites**
+
+- You have an account that is part of an OpenShift organization.
+- If you are creating a cluster, your organization has a specified quota.
+
+**Procedure**
+
+- Log in to [OpenShift Cluster Manager](https://console.redhat.com/openshift) using your login credentials.
 
 ## General actions {#ocm-general-actions-ocp}
 
@@ -34,10 +47,61 @@ Selecting an active, installed cluster shows tabs associated with that cluster. 
 - Add-ons
 - Networking
 - Machine pools
-- {{ red_hat_lightspeed }} Advisor
+- Red Hat Lightspeed Advisor
 - Support
 - Settings
 
+### Overview tab {#ocm-overview-tab_ocm-overview-ocp}
+
+The ***Overview*** tab provides information about how the cluster was configured:
+
+- ***Cluster ID*** is the unique identification for the created cluster. This ID can be used when issuing commands to the cluster from the command line.
+- ***Domain prefix*** is the prefix that is used throughout the cluster. The default value is the cluster’s name.
+- ***Type*** shows the type of cluster, for example Red Hat OpenShift Service on AWS (classic architecture), Red Hat OpenShift Service on AWS, or OpenShift Dedicated.
+- ***Control plane type*** is the architecture type of the cluster. The field only displays if the cluster uses a hosted control plane architecture.
+- ***Region*** is the server region.
+- ***Version*** is the OpenShift version that is installed on the cluster. If there is an update available, you can update from this field.
+- ***Created at*** shows the date and time that the cluster was created.
+- ***Owner*** identifies who created the cluster and has owner rights.
+- ***Delete Protection: <status>*** shows whether or not the cluster’s delete protection is enabled.
+- ***Total vCPU*** shows the total available virtual CPU for this cluster.
+- ***Total memory*** shows the total available memory for this cluster.
+- ***Infrastructure AWS account*** displays the AWS account that is responsible for cluster creation and maintenance.
+- ***Nodes*** shows the actual and desired nodes on the cluster. These numbers might not match due to cluster scaling.
+- ***Network*** field shows the address and prefixes for network connectivity.
+- ***OIDC configuration*** field shows the Open ID Connect configuration for the cluster.
+- ***Resource usage*** section of the tab displays the resources in use with a graph.
+- ***Advisor recommendations*** section gives insight in relation to security, performance, availability, and stability. This section requires the use of remote health functionality. See *Using Red Hat Lightspeed to identify issues with the cluster* in the *Additional resources* section.
+
+### Access control tab {#ocm-accesscontrol-tab_ocm-overview-ocp}
+
+The ***Access control*** tab allows the cluster owner to set up an identity provider, grant elevated permissions, and grant roles to other users.
+
+### Add-ons tab {#ocm-addons-tab_ocm-overview-ocp}
+
+### Red Hat Lightspeed Advisor tab {#ocm-insightsadvisor-tab_ocm-overview-ocp}
+
+The ***Red Hat Lightspeed Advisor*** tab uses the Remote Health functionality of the OpenShift Container Platform to identify and mitigate risks to security, performance, availability, and stability. See [Using Red Hat Lightspeed to identify issues with your cluster](https://docs.openshift.com/container-platform/latest/support/getting-support.html) in the OpenShift Container Platform documentation.
+
+### Machine pools tab {#ocm-machinepools-tab_ocm-overview-ocp}
+
+The ***Machine pools*** tab allows the cluster owner to create new machine pools if there is enough available quota, or edit an existing machine pool.
+
+Selecting the ![title=Other options](/openshift-docs-markdown/_assets/images/kebab.png) > ***Edit*** option opens the "Edit machine pool" dialog. In this dialog, you can change the node count per availability zone, edit node labels and taints, and view any associated AWS security groups.
+
+### Support tab {#ocm-support-tab_ocm-overview-ocp}
+
+In the **Support** tab, you can add notification contacts for individuals that should receive cluster notifications. The username or email address that you provide must relate to a user account in the Red Hat organization where the cluster is deployed.
+
+Also from this tab, you can open a support case to request technical support for your cluster.
+
+### Settings tab {#ocm-settings-tab_ocm-overview-ocp}
+
+The ***Settings*** tab provides a few options for the cluster owner:
+
+- ***Update strategy*** allows you to determine if the cluster automatically updates on a certain day of the week at a specified time or if all updates are scheduled manually.
+- ***Update status*** shows the current version and if there are any updates available.
+
 ## Additional resources {#ocm-additional-resources-ocp}
 
-- For the complete documentation for {{ cluster_manager }}, see [{{ cluster_manager }} documentation](https://access.redhat.com/documentation/en-us/openshift_cluster_manager/2022/html-single/managing_clusters/index).
+- For the complete documentation for OpenShift Cluster Manager, see [OpenShift Cluster Manager documentation](https://access.redhat.com/documentation/en-us/openshift_cluster_manager/2022/html-single/managing_clusters/index).

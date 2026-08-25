@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-ingress-cluster-traffic-service-external-ip","text":"Configuring ingress cluster traffic for a service external IP"},{"depth":2,"slug":"configuring-ingress-cluster-traffic-service-external-ip-additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"configuring-ingress-cluster-traffic-service-external-ip","text":"Configuring ingress cluster traffic for a service external IP"},{"depth":2,"slug":"nw-service-externalip-create_configuring-ingress-cluster-traffic-service-external-ip","text":"Attaching an ExternalIP to a service"},{"depth":2,"slug":"configuring-ingress-cluster-traffic-service-external-ip-additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-service-external-ip";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["networking","networking/ingress_load_balancing","networki
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring ingress cluster traffic for a service external IP {#configuring-ingress-cluster-traffic-service-external-ip}\n\nYou can use either a MetalLB implementation or an IP failover deployment to attach an ExternalIP resource to a service so that the service is available to traffic outside your OpenShift Container Platform cluster.\n\nHosting an external IP address in this way is only applicable for a cluster installed on bare-metal hardware.\n\nYou must ensure that you correctly configure the external network infrastructure to route traffic to the service.\n\nBefore you begin the procedure, ensure that you meet the following prerequisite:\n\n- You configured your cluster with ExternalIPs enabled. For more information, see \"Configuring ExternalIPs for services\" in the *Additional resources* section.\n\n> [!NOTE]\n> Do not use the same ExternalIP for the egress IP.\n\n## Additional resources {#configuring-ingress-cluster-traffic-service-external-ip-additional-resources}\n\n[Configuring ExternalIPs for services](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip)\n\n- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)\n- [Configuring IP failover](/openshift-docs-markdown/networking/configuring_network_settings/configuring-ipfailover#configuring-ipfailover)\n- [Configuring ExternalIPs for services](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-service-external-ip.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring ingress cluster traffic for a service external IP {#configuring-ingress-cluster-traffic-service-external-ip}\n\nYou can use either a MetalLB implementation or an IP failover deployment to attach an ExternalIP resource to a service so that the service is available to traffic outside your OpenShift Container Platform cluster.\n\nHosting an external IP address in this way is only applicable for a cluster installed on bare-metal hardware.\n\nYou must ensure that you correctly configure the external network infrastructure to route traffic to the service.\n\nBefore you begin the procedure, ensure that you meet the following prerequisite:\n\n- You configured your cluster with ExternalIPs enabled. For more information, see \"Configuring ExternalIPs for services\" in the *Additional resources* section.\n\n> [!NOTE]\n> Do not use the same ExternalIP for the egress IP.\n\n## Attaching an ExternalIP to a service {#nw-service-externalip-create_configuring-ingress-cluster-traffic-service-external-ip}\n\nYou can attach an ExternalIP resource to a service. If you configured your cluster to automatically attach the resource to a service, you might not need to manually attach an ExternalIP to the service.\n\nThe examples in the procedure use a scenario that manually attaches an ExternalIP resource to a service in a cluster with an IP failover configuration.\n\n**Procedure**\n\n1. Confirm compatible IP address ranges for the ExternalIP resource by entering the following command in your CLI:\n\n   ```terminal\n   $ oc get networks.config cluster -o jsonpath='{.spec.externalIP}{\"\\n\"}'\n   ```\n\n   > [!NOTE]\n   > If `autoAssignCIDRs` is set and you did not specify a value for `spec.externalIPs` in the ExternalIP resource, OpenShift Container Platform automatically assigns ExternalIP to a new `Service` object.\n2. Choose one of the following options to attach an ExternalIP resource to the service:\n\n   1. If you are creating a new service, specify a value in the `spec.externalIPs` parameter and array of one or more valid IP addresses in the `allowedCIDRs` parameter.\n\n      ```yaml {title=\"Example of service YAML configuration file that supports an ExternalIP resource\"}\n      apiVersion: v1\n      kind: Service\n      metadata:\n        name: svc-with-externalip\n      spec:\n        externalIPs:\n          policy:\n            allowedCIDRs:\n            - 192.168.123.0/28\n      # ...\n      ```\n   2. If you are attaching an ExternalIP to an existing service, enter the following command. Replace `<name>` with the service name. Replace `<ip_address>` with a valid ExternalIP address. You can provide multiple IP addresses separated by commas.\n\n      ```terminal\n      $ oc patch svc <name> -p \\\n        '{\n          \"spec\": {\n            \"externalIPs\": [ \"<ip_address>\" ]\n          }\n        }'\n      ```\n\n      For example:\n\n      ```terminal\n      $ oc patch svc mysql-55-rhel7 -p '{\"spec\":{\"externalIPs\":[\"192.174.120.10\"]}}'\n      ```\n\n      ```terminal {title=\"Example output\"}\n      \"mysql-55-rhel7\" patched\n      ```\n3. To confirm that an ExternalIP address is attached to the service, enter the following command. If you specified an ExternalIP for a new service, you must create the service first.\n\n   ```terminal\n   $ oc get svc\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME               CLUSTER-IP      EXTERNAL-IP     PORT(S)    AGE\n   mysql-55-rhel7     172.30.131.89   192.174.120.10  3306/TCP   13m\n   ```\n\n## Additional resources {#configuring-ingress-cluster-traffic-service-external-ip-additional-resources}\n\n[Configuring ExternalIPs for services](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip)\n\n- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)\n- [Configuring IP failover](/openshift-docs-markdown/networking/configuring_network_settings/configuring-ipfailover#configuring-ipfailover)\n- [Configuring ExternalIPs for services](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-service-external-ip.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-ingress-cluster-traffic-service-external-ip" class="group scroll-mt-20">Configuring ingress cluster traffic for a service external IP<a href="#configuring-ingress-cluster-traffic-service-external-ip" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can use either a MetalLB implementation or an IP failover deployment to attach an ExternalIP resource to a service so that the service is available to traffic outside your OpenShift Container Platform cluster.</p>
       <p>Hosting an external IP address in this way is only applicable for a cluster installed on bare-metal hardware.</p>
       <p>You must ensure that you correctly configure the external network infrastructure to route traffic to the service.</p>
@@ -106,7 +106,43 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Do not use the same ExternalIP for the egress IP.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/nw-service-externalip-create.md"></p>
+      <h2 id="nw-service-externalip-create_configuring-ingress-cluster-traffic-service-external-ip" class="group scroll-mt-20">Attaching an ExternalIP to a service<a href="#nw-service-externalip-create_configuring-ingress-cluster-traffic-service-external-ip" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can attach an ExternalIP resource to a service. If you configured your cluster to automatically attach the resource to a service, you might not need to manually attach an ExternalIP to the service.</p>
+      <p>The examples in the procedure use a scenario that manually attaches an ExternalIP resource to a service in a cluster with an IP failover configuration.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Confirm compatible IP address ranges for the ExternalIP resource by entering the following command in your CLI:
+      <CodeBlock code={"$ oc get networks.config cluster -o jsonpath='{.spec.externalIP}{\"\\n\"}'"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If <code>autoAssignCIDRs</code> is set and you did not specify a value for <code>spec.externalIPs</code> in the ExternalIP resource, OpenShift Container Platform automatically assigns ExternalIP to a new <code>Service</code> object.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Choose one of the following options to attach an ExternalIP resource to the service:
+      <ol>
+      <li>
+      If you are creating a new service, specify a value in the <code>spec.externalIPs</code> parameter and array of one or more valid IP addresses in the <code>allowedCIDRs</code> parameter.
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  name: svc-with-externalip\nspec:\n  externalIPs:\n    policy:\n      allowedCIDRs:\n      - 192.168.123.0/28\n# ..."} lang="yaml" title="Example of service YAML configuration file that supports an ExternalIP resource" />
+      </li>
+      <li>
+      If you are attaching an ExternalIP to an existing service, enter the following command. Replace <code>&lt;name&gt;</code> with the service name. Replace <code>&lt;ip_address&gt;</code> with a valid ExternalIP address. You can provide multiple IP addresses separated by commas.
+      <CodeBlock code={"$ oc patch svc <name> -p \\\n  '{\n    \"spec\": {\n      \"externalIPs\": [ \"<ip_address>\" ]\n    }\n  }'"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc patch svc mysql-55-rhel7 -p '{\"spec\":{\"externalIPs\":[\"192.174.120.10\"]}}'"} lang="terminal" />
+      <CodeBlock code={"\"mysql-55-rhel7\" patched"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      To confirm that an ExternalIP address is attached to the service, enter the following command. If you specified an ExternalIP for a new service, you must create the service first.
+      <CodeBlock code={"$ oc get svc"} lang="terminal" />
+      <CodeBlock code={"NAME               CLUSTER-IP      EXTERNAL-IP     PORT(S)    AGE\nmysql-55-rhel7     172.30.131.89   192.174.120.10  3306/TCP   13m"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
       <h2 id="configuring-ingress-cluster-traffic-service-external-ip-additional-resources" class="group scroll-mt-20">Additional resources<a href="#configuring-ingress-cluster-traffic-service-external-ip-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-externalip#configuring-externalip">Configuring ExternalIPs for services</a></p>
       <ul>

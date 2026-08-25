@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"installing-gcp-account","text":"Configuring a {{ gcp_short }} project"},{"depth":2,"slug":"_next_steps","text":"Next steps"}];
+const headings = [{"depth":1,"slug":"installing-gcp-account","text":"Configuring a Google Cloud project"},{"depth":2,"slug":"installation-gcp-project_installing-gcp-account","text":"Creating a Google Cloud project"},{"depth":2,"slug":"installation-gcp-enabling-api-services_installing-gcp-account","text":"Enabling API services in Google Cloud"},{"depth":2,"slug":"installation-gcp-dns_installing-gcp-account","text":"Configuring DNS for Google Cloud"},{"depth":2,"slug":"installation-gcp-limits_installing-gcp-account","text":"Google Cloud account limits"},{"depth":2,"slug":"installation-gcp-service-account_installing-gcp-account","text":"Creating a service account in Google Cloud"},{"depth":3,"slug":"installation-gcp-permissions_installing-gcp-account","text":"Required Google Cloud roles"},{"depth":3,"slug":"minimum-required-permissions-ipi-gcp_installing-gcp-account","text":"Required Google Cloud permissions for installer-provisioned infrastructure"},{"depth":3,"slug":"minimum-required-permissions-ipi-gcp-xpn_installing-gcp-account","text":"Required Google Cloud permissions for shared VPC installations"},{"depth":3,"slug":"minimum-required-permissions-ipi-gcp-provided-sas_installing-gcp-account","text":"Required Google Cloud permissions for user-provided service accounts"},{"depth":2,"slug":"installation-gcp-user-managed-firewall-rules_installing-gcp-account","text":"Managing your own firewall rules"},{"depth":2,"slug":"installation-gcp-organization-policies_installing-gcp-account","text":"Configuring Google Cloud organization policies and VPC service controls"},{"depth":2,"slug":"installation-gcp-regions_installing-gcp-account","text":"Supported Google Cloud regions"},{"depth":2,"slug":"_next_steps","text":"Next steps"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_gcp/installing-gcp-account";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring a {{ gcp_short }} project";
-const description = "Before you can install OpenShift Container Platform, you must configure a {{ gcp_first }} project to host it. You can configure custom roles and…" || undefined;
+const description = "Before you can install OpenShift Container Platform, you must configure a Google Cloud project to host it. You can configure custom roles and permissions…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["installing","installing/installing_gcp"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring a {{ gcp_short }} project {#installing-gcp-account}\n\nBefore you can install OpenShift Container Platform, you must configure a {{ gcp_first }} project to host it. You can configure custom roles and permissions, DNS configuration, and manage your own {{ gcp_short }} firewall rules.\n\n**Additional resources**\n\n- [Reducing permissions while using the {{ gcp_short }} CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-gcp-pd#persistent-storage-csi-gcp-pd-reduce-permissions_persistent-storage-csi-gcp-pd)\n\n## Next steps {#_next_steps}\n\n- Install an OpenShift Container Platform cluster on {{ gcp_short }}. You can [install a customized cluster](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations) or [quickly install a cluster](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-default#installing-gcp-default) with default options.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_gcp/installing-gcp-account.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring a Google Cloud project {#installing-gcp-account}\n\nBefore you can install OpenShift Container Platform, you must configure a Google Cloud project to host it. You can configure custom roles and permissions, DNS configuration, and manage your own Google Cloud firewall rules.\n\n## Creating a Google Cloud project {#installation-gcp-project_installing-gcp-account}\n\nTo install OpenShift Container Platform, you must create a project in your Google Cloud account to host the cluster.\n\n**Procedure**\n\n- Create a project to host your OpenShift Container Platform cluster. See [Creating and Managing Projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects) in the Google Cloud documentation.\n\n  > [!IMPORTANT]\n  > Your Google Cloud project must use the Premium Network Service Tier if you are using installer-provisioned infrastructure. The Standard Network Service Tier is not supported for clusters installed using the installation program. The installation program configures internal load balancing for the `api-int.<cluster_name>.<base_domain>` URL; the Premium Tier is required for internal load balancing.\n\n## Enabling API services in Google Cloud {#installation-gcp-enabling-api-services_installing-gcp-account}\n\nYour Google Cloud project requires access to several API services to complete OpenShift Container Platform installation.\n\n**Prerequisites**\n\n- You created a project to host your cluster.\n\n**Procedure**\n\n- Enable the following required API services in the project that hosts your cluster. You may also enable optional API services which are not required for installation. See [Enabling services](https://cloud.google.com/service-usage/docs/enable-disable#enabling) in the Google Cloud documentation.\n\n  ***Required API services***\n\n<table>\n<thead>\n<tr>\n  <th>API service</th>\n  <th>Console service name</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Compute Engine API</td>\n  <td><code>compute.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Cloud Resource Manager API</td>\n  <td><code>cloudresourcemanager.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Cloud DNS API</td>\n  <td><code>dns.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>IAM Service Account Credentials API</td>\n  <td><code>iamcredentials.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Identity and Access Management (IAM) API</td>\n  <td><code>iam.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Service Usage API</td>\n  <td><code>serviceusage.googleapis.com</code></td>\n</tr>\n</tbody>\n</table>\n\n```\n***Optional API services***\n```\n\n<table>\n<thead>\n<tr>\n  <th>API service</th>\n  <th>Console service name</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n\n</tr>\n<tr>\n  <td>Google Cloud APIs</td>\n  <td><code>cloudapis.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Service Management API</td>\n  <td><code>servicemanagement.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Google Cloud Storage JSON API</td>\n  <td><code>storage-api.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Cloud Storage</td>\n  <td><code>storage-component.googleapis.com</code></td>\n</tr>\n</tbody>\n</table>\n\n## Configuring DNS for Google Cloud {#installation-gcp-dns_installing-gcp-account}\n\nTo install OpenShift Container Platform, the Google Cloud account you use must have a dedicated public hosted zone in the same project that you host the OpenShift Container Platform cluster.\n\nThis zone must be authoritative for the domain. The DNS service provides cluster DNS resolution and name lookup for external connections to the cluster.\n\n**Procedure**\n\n1. Identify your domain, or subdomain, and registrar. You can transfer an existing domain and registrar or obtain a new one through Google Cloud or another source.\n\n   > [!NOTE]\n   > If you purchase a new domain, it can take time for the relevant DNS changes to propagate. For more information about purchasing domains through Google, see [Google Domains](https://domains.google/).\n2. Create a public hosted zone for your domain or subdomain in your Google Cloud project. See [Creating public zones](https://cloud.google.com/dns/zones/#creating_public_zones) in the Google Cloud documentation.\n\n   Use an appropriate root domain, such as `openshiftcorp.com`, or subdomain, such as `clusters.openshiftcorp.com`.\n3. Extract the new authoritative name servers from the hosted zone records. See [Look up your Cloud DNS name servers](https://cloud.google.com/dns/docs/update-name-servers#look_up_your_name_servers) in the Google Cloud documentation.\n\n   You typically have four name servers.\n4. Update the registrar records for the name servers that your domain uses. For example, if you registered your domain to Google Domains, see the following topic in the Google Domains Help: [How to switch to custom name servers](https://support.google.com/domains/answer/3290309?hl=en).\n5. If you migrated your root domain to Google Cloud DNS, migrate your DNS records. See [Migrating to Cloud DNS](https://cloud.google.com/dns/docs/migrating) in the Google Cloud documentation.\n6. If you use a subdomain, follow your company’s procedures to add its delegation records to the parent domain. This process might include a request to your company’s IT department or the division that controls the root domain and DNS services for your company.\n\n## Google Cloud account limits {#installation-gcp-limits_installing-gcp-account}\n\nThe OpenShift Container Platform cluster uses a number of Google Cloud components, but the default [Quotas](https://cloud.google.com/docs/quota) do not affect your ability to install a default OpenShift Container Platform cluster.\n\nA default cluster, which contains three compute and three control plane machines, uses the following resources. Note that some resources are required only during the bootstrap process and are removed after the cluster deploys.\n\n**Google Cloud resources used in a default cluster**\n\n<table>\n<thead>\n<tr>\n  <th>Service</th>\n  <th>Component</th>\n  <th>Location</th>\n  <th>Total resources required</th>\n  <th>Resources removed after bootstrap</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Service account</td>\n  <td>IAM</td>\n  <td>Global</td>\n  <td>6</td>\n  <td>1</td>\n</tr>\n<tr>\n  <td>Firewall rules</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>11</td>\n  <td>1</td>\n</tr>\n<tr>\n  <td>Forwarding rules</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>2</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>In-use global IP addresses</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>4</td>\n  <td>1</td>\n</tr>\n<tr>\n  <td>Health checks</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>3</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Images</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>1</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Networks</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>2</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Static IP addresses</td>\n  <td>Compute</td>\n  <td>Region</td>\n  <td>4</td>\n  <td>1</td>\n</tr>\n<tr>\n  <td>Routers</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>1</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Routes</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>2</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Subnetworks</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>2</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Target pools</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>3</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>CPUs</td>\n  <td>Compute</td>\n  <td>Region</td>\n  <td>28</td>\n  <td>4</td>\n</tr>\n<tr>\n  <td>Persistent disk SSD (GB)</td>\n  <td>Compute</td>\n  <td>Region</td>\n  <td>896</td>\n  <td>128</td>\n</tr>\n<tr>\n\n</tr>\n<tr>\n\n</tr>\n<tr>\n\n</tr>\n<tr>\n\n</tr>\n<tr>\n\n</tr>\n<tr>\n\n</tr>\n<tr>\n\n</tr>\n<tr>\n\n</tr>\n<tr>\n\n</tr>\n<tr>\n\n</tr>\n</tbody>\n</table>\n\n> [!NOTE]\n> If any of the quotas are insufficient during installation, the installation program displays an error that states both which quota was exceeded and the region.\n\nBe sure to consider your actual cluster size, planned cluster growth, and any usage from other clusters that are associated with your account. The CPU, static IP addresses, and persistent disk SSD (storage) quotas are the ones that are most likely to be insufficient.\n\nIf you plan to deploy your cluster in one of the following regions, you will exceed the maximum storage quota and are likely to exceed the CPU quota limit:\n\n- `asia-east2`\n- `asia-northeast2`\n- `asia-south1`\n- `australia-southeast1`\n- `europe-north1`\n- `europe-west2`\n- `europe-west3`\n- `europe-west6`\n- `northamerica-northeast1`\n- `southamerica-east1`\n- `us-west2`\n\nYou can increase resource quotas from the [Google Cloud console](https://console.cloud.google.com/iam-admin/quotas), but you might need to file a support ticket. Be sure to plan your cluster size early so that you can allow time to resolve the support ticket before you install your OpenShift Container Platform cluster.\n\n## Creating a service account in Google Cloud {#installation-gcp-service-account_installing-gcp-account}\n\n\\[role=\"\\_abstract\"\\] OpenShift Container Platform requires a Google Cloud service account that provides authentication and authorization to access data in the Google APIs. If you do not have an existing IAM service account that contains the required roles in your project, you must create one.\n\n> [!NOTE]\n> To reduce the scope of permissions granted to the main service account in your Google Cloud project while still being able to use the Google Cloud Container Storage Interface (CSI) Driver Operator, you can transfer the control of permissions from the project-wide service account to the control plane and compute node service accounts instead, thus reducing the scope of the permission. For more information, see Section *Reducing permissions while using the Google Cloud CSI Driver Operator*.\n\n**Prerequisites**\n\n- You created a project to host your cluster.\n\n**Procedure**\n\n1. Create a service account in the project that you use to host your OpenShift Container Platform cluster. See [Creating a service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account) in the Google Cloud documentation.\n2. Grant the service account the appropriate permissions. You can either grant the individual permissions that follow or assign the `Owner` role to it. See [Granting roles to a service account for specific resources](https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource).\n\n   > [!NOTE]\n   > While making the service account an owner of the project is the easiest way to gain the required permissions, it means that service account has complete control over the project. You must determine if the risk that comes from offering that power is acceptable.\n3. You can create the service account key in JSON format, or attach the service account to a Google Cloud virtual machine. See [Creating service account keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys) and [Creating and enabling service accounts for instances](https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances) in the Google Cloud documentation.\n\n   > [!NOTE]\n   > If you use a virtual machine with an attached service account to create your cluster, you must set `credentialsMode: Manual` in the `install-config.yaml` file before installation.\n\n**Additional resources**\n\n- [Reducing permissions while using the Google Cloud CSI Driver Operator](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-gcp-pd#persistent-storage-csi-gcp-pd-reduce-permissions_persistent-storage-csi-gcp-pd)\n\n### Required Google Cloud roles {#installation-gcp-permissions_installing-gcp-account}\n\nWhen you attach the `Owner` role to the service account that you create, you grant that service account all permissions, including those that are required to install OpenShift Container Platform. If your organization’s security policies require a more restrictive set of permissions, you can create a service account with the following permissions. If you deploy your cluster into an existing virtual private cloud (VPC), the service account does not require certain networking permissions, which are noted in the following lists:\n\n**Required roles for the installation program**\n\n- Compute Admin\n- Role Administrator\n- Security Admin\n- Service Account Admin\n- Service Account Key Admin\n- Service Account User\n- Storage Admin\n\n**Required roles for creating network resources during installation**\n\n- DNS Administrator\n\n**Required roles for using the Cloud Credential Operator in passthrough mode**\n\n- Compute Load Balancer Admin\n- Tag User\n\nThe following roles are applied to the service accounts that the control plane and compute machines use:\n\n***Google Cloud service account roles***\n\n<table>\n<thead>\n<tr>\n  <th>Account</th>\n  <th>Roles</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>.5+</td>\n  <td>Control Plane</td>\n</tr>\n<tr>\n  <td><code>roles/compute.instanceAdmin</code></td>\n  <td><code>roles/compute.networkAdmin</code></td>\n</tr>\n<tr>\n  <td><code>roles/compute.securityAdmin</code></td>\n  <td><code>roles/storage.admin</code></td>\n</tr>\n<tr>\n  <td><code>roles/iam.serviceAccountUser</code>.3+</td>\n  <td>Compute</td>\n</tr>\n<tr>\n  <td><code>roles/compute.viewer</code></td>\n  <td><code>roles/storage.admin</code></td>\n</tr>\n<tr>\n  <td><code>roles/artifactregistry.reader</code></td>\n</tr>\n</tbody>\n</table>\n\n### Required Google Cloud permissions for installer-provisioned infrastructure {#minimum-required-permissions-ipi-gcp_installing-gcp-account}\n\nWhen you attach the `Owner` role to the service account that you create, you grant that service account all permissions, including those that are required to install OpenShift Container Platform. If your organization’s security policies require a more restrictive set of permissions, you can create [custom roles](https://cloud.google.com/iam/docs/creating-custom-roles) with the necessary permissions.\n\nThe following permissions are required for the installer-provisioned infrastructure for creating and deleting the OpenShift Container Platform cluster.\n\n<details>\n<summary>Required permissions for creating network resources</summary>\n\n- `compute.addresses.create`\n- `compute.addresses.createInternal`\n- `compute.addresses.delete`\n- `compute.addresses.get`\n- `compute.addresses.list`\n- `compute.addresses.use`\n- `compute.addresses.useInternal`\n- `compute.firewalls.create`\n\n  - This permission is not required if you install into an existing VPC and manage your own firewall rules. See the *Managing your own firewall rules* section.\n- `compute.firewalls.delete`\n\n  - This permission is not required if you install into an existing VPC and manage your own firewall rules. See the *Managing your own firewall rules* section.\n- `compute.firewalls.get`\n- `compute.firewalls.list`\n- `compute.forwardingRules.create`\n- `compute.forwardingRules.get`\n- `compute.forwardingRules.list`\n- `compute.forwardingRules.setLabels`\n- `compute.globalAddresses.create`\n- `compute.globalAddresses.get`\n- `compute.globalAddresses.use`\n- `compute.globalForwardingRules.create`\n- `compute.globalForwardingRules.get`\n- `compute.globalForwardingRules.setLabels`\n- `compute.networks.create`\n- `compute.networks.get`\n- `compute.networks.list`\n- `compute.networks.updatePolicy`\n- `compute.networks.use`\n- `compute.routers.create`\n- `compute.routers.get`\n- `compute.routers.list`\n- `compute.routers.update`\n- `compute.routes.list`\n- `compute.subnetworks.create`\n- `compute.subnetworks.get`\n- `compute.subnetworks.list`\n- `compute.subnetworks.use`\n- `compute.subnetworks.useExternalIp`\n\n</details>\n\n<details>\n<summary>Required permissions for creating load balancer resources</summary>\n\n- `compute.backendServices.create`\n- `compute.backendServices.get`\n- `compute.backendServices.list`\n- `compute.backendServices.update`\n- `compute.backendServices.use`\n- `compute.regionBackendServices.create`\n- `compute.regionBackendServices.get`\n- `compute.regionBackendServices.list`\n- `compute.regionBackendServices.update`\n- `compute.regionBackendServices.use`\n- `compute.targetPools.addInstance`\n- `compute.targetPools.create`\n- `compute.targetPools.get`\n- `compute.targetPools.list`\n- `compute.targetPools.removeInstance`\n- `compute.targetPools.use`\n- `compute.targetTcpProxies.create`\n- `compute.targetTcpProxies.get`\n- `compute.targetTcpProxies.use`\n\n</details>\n\n<details>\n<summary>Required permissions for creating DNS resources</summary>\n\n- `dns.changes.create`\n- `dns.changes.get`\n- `dns.managedZones.create`\n- `dns.managedZones.get`\n- `dns.managedZones.list`\n- `dns.networks.bindPrivateDNSZone`\n- `dns.resourceRecordSets.create`\n- `dns.resourceRecordSets.list`\n\n</details>\n\n<details>\n<summary>Required permissions for creating Service Account resources</summary>\n\n- `iam.serviceAccountKeys.create`\n- `iam.serviceAccountKeys.delete`\n- `iam.serviceAccountKeys.get`\n- `iam.serviceAccountKeys.list`\n- `iam.serviceAccounts.actAs`\n\n  - This permission can be limited to act as the control plane and compute service accounts. Alternatively, you may grant the service account that the installation program uses the `iam.serviceAccountUser` role on the control plane and compute service accounts.\n- `iam.serviceAccounts.create`\n- `iam.serviceAccounts.delete`\n- `iam.serviceAccounts.get`\n- `iam.serviceAccounts.list`\n- `resourcemanager.projects.get`\n- `resourcemanager.projects.getIamPolicy`\n- `resourcemanager.projects.setIamPolicy`\n\n  - This permission is not required if you use `credentialsMode: Manual` and supply your own service accounts for compute and control plane nodes.\n\n</details>\n\n<details>\n<summary>Required permissions for creating compute resources</summary>\n\n- `compute.disks.create`\n- `compute.disks.get`\n- `compute.disks.list`\n- `compute.disks.setLabels`\n- `compute.instanceGroups.create`\n- `compute.instanceGroups.delete`\n- `compute.instanceGroups.get`\n- `compute.instanceGroups.list`\n- `compute.instanceGroups.update`\n- `compute.instanceGroups.use`\n- `compute.instances.create`\n- `compute.instances.delete`\n- `compute.instances.get`\n- `compute.instances.list`\n- `compute.instances.setLabels`\n- `compute.instances.setMetadata`\n- `compute.instances.setServiceAccount`\n- `compute.instances.setTags`\n- `compute.instances.use`\n- `compute.machineTypes.get`\n- `compute.machineTypes.list`\n\n</details>\n\n<details>\n<summary>Required for creating storage resources</summary>\n\n- `storage.buckets.create`\n- `storage.buckets.delete`\n- `storage.buckets.get`\n- `storage.buckets.list`\n- `storage.objects.create`\n- `storage.objects.delete`\n- `storage.objects.get`\n- `storage.objects.list`\n\n</details>\n\n<details>\n<summary>Required permissions for creating health check resources</summary>\n\n- `compute.healthChecks.create`\n- `compute.healthChecks.get`\n- `compute.healthChecks.list`\n- `compute.healthChecks.useReadOnly`\n- `compute.httpHealthChecks.create`\n- `compute.httpHealthChecks.get`\n- `compute.httpHealthChecks.list`\n- `compute.httpHealthChecks.useReadOnly`\n- `compute.regionHealthChecks.create`\n- `compute.regionHealthChecks.get`\n- `compute.regionHealthChecks.useReadOnly`\n\n</details>\n\n<details>\n<summary>Required permissions to get {gcp-short} zone and region related information</summary>\n\n- `compute.globalOperations.get`\n- `compute.regionOperations.get`\n- `compute.regions.get`\n- `compute.regions.list`\n- `compute.zoneOperations.get`\n- `compute.zones.get`\n- `compute.zones.list`\n\n</details>\n\n<details>\n<summary>Required permissions for checking services and quotas</summary>\n\n- `monitoring.timeSeries.list`\n- `serviceusage.quotas.get`\n- `serviceusage.services.list`\n\n</details>\n\n<details>\n<summary>Required IAM permissions for installation</summary>\n\n- `iam.roles.create`\n- `iam.roles.get`\n- `iam.roles.update`\n\n</details>\n\n<details>\n<summary>Required permissions when authenticating without a service account key</summary>\n\n- `iam.serviceAccounts.signBlob`\n\n</details>\n\n<details>\n<summary>Required permissions when providing Key Management Service (KMS) key rings</summary>\n\n- `cloudkms.keyRings.list`\n\n</details>\n\n<details>\n<summary>Optional Images permissions for installation</summary>\n\n- `compute.images.list`\n\n</details>\n\n<details>\n<summary>Optional permission for running gather bootstrap</summary>\n\n- `compute.instances.getSerialPortOutput`\n\n</details>\n\n<details>\n<summary>Required permissions for deleting network resources</summary>\n\n- `compute.addresses.delete`\n- `compute.addresses.deleteInternal`\n- `compute.addresses.list`\n- `compute.addresses.setLabels`\n- `compute.firewalls.delete`\n- `compute.firewalls.list`\n- `compute.forwardingRules.delete`\n- `compute.forwardingRules.list`\n- `compute.globalAddresses.delete`\n- `compute.globalAddresses.list`\n- `compute.globalForwardingRules.delete`\n- `compute.globalForwardingRules.list`\n- `compute.networks.delete`\n- `compute.networks.list`\n- `compute.networks.updatePolicy`\n- `compute.routers.delete`\n- `compute.routers.list`\n- `compute.routes.list`\n- `compute.subnetworks.delete`\n- `compute.subnetworks.list`\n\n</details>\n\n<details>\n<summary>Required permissions for deleting load balancer resources</summary>\n\n- `compute.backendServices.delete`\n- `compute.backendServices.list`\n- `compute.regionBackendServices.delete`\n- `compute.regionBackendServices.list`\n- `compute.targetPools.delete`\n- `compute.targetPools.list`\n- `compute.targetTcpProxies.delete`\n- `compute.targetTcpProxies.list`\n\n</details>\n\n<details>\n<summary>Required permissions for deleting DNS resources</summary>\n\n- `dns.changes.create`\n- `dns.managedZones.delete`\n- `dns.managedZones.get`\n- `dns.managedZones.list`\n- `dns.resourceRecordSets.delete`\n- `dns.resourceRecordSets.list`\n\n</details>\n\n<details>\n<summary>Required permissions for deleting Service Account resources</summary>\n\n- `iam.serviceAccounts.delete`\n- `iam.serviceAccounts.get`\n- `iam.serviceAccounts.list`\n- `resourcemanager.projects.getIamPolicy`\n\n</details>\n\n<details>\n<summary>Required permissions for deleting compute resources</summary>\n\n- `compute.disks.delete`\n- `compute.disks.list`\n- `compute.instanceGroups.delete`\n- `compute.instanceGroups.list`\n- `compute.instances.delete`\n- `compute.instances.list`\n- `compute.instances.stop`\n- `compute.machineTypes.list`\n\n</details>\n\n<details>\n<summary>Required for deleting storage resources</summary>\n\n- `storage.buckets.delete`\n- `storage.buckets.getIamPolicy`\n- `storage.buckets.list`\n- `storage.objects.delete`\n- `storage.objects.list`\n\n</details>\n\n<details>\n<summary>Required permissions for deleting health check resources</summary>\n\n- `compute.healthChecks.delete`\n- `compute.healthChecks.list`\n- `compute.httpHealthChecks.delete`\n- `compute.httpHealthChecks.list`\n- `compute.regionHealthChecks.delete`\n- `compute.regionHealthChecks.list`\n\n</details>\n\n<details>\n<summary>Required Images permissions for deletion</summary>\n\n- `compute.images.list`\n\n</details>\n\n### Required Google Cloud permissions for shared VPC installations {#minimum-required-permissions-ipi-gcp-xpn_installing-gcp-account}\n\nWhen you are installing a cluster to a [shared VPC](https://cloud.google.com/vpc/docs/shared-vpc), you must configure the service account for both the host project and the service project.\n\n> [!IMPORTANT]\n> You can use granular permissions for a Cloud Credential Operator (CCO) that operates in either Manual or Mint credentials mode. For more information about the minimum permissions required for a standard installation that is configured with either of these credentials modes, see \"Required Google Cloud permissions for installer-provisioned infrastructure\".\n>\n> You cannot use granular permissions in Passthrough credentials mode. For more information about the minimum roles required, see \"Required Google Cloud roles\".\n\nIf you are not installing to a shared Virtual Private Cloud (VPC), you can skip the procedure.\n\n> [!IMPORTANT]\n> When installing a cluster on a shared VPC by using short-lived credentials, you must grant the `compute.subnetworks.use` permission in the host project to Day 2 Operator service accounts.\n>\n> After using the `ccoctl` utility to generate the Google Cloud credentials, manually grant this permission to the Cluster CAPI Operator and Machine API Operator service accounts.\n\nEnsure that the host project applies one of the following configurations to the service account, noting that the permissions for creating and deleting firewalls are not required if you manage your own firewall rules:\n\n**Required permissions for creating firewalls in the host project**\n\n- `projects/<host-project>/roles/dns.networks.bindPrivateDNSZone`\n- `roles/compute.networkAdmin`\n- `roles/compute.securityAdmin`\n\n**Required permissions for deleting firewalls in the host project**\n\n- `compute.firewalls.delete`\n- `compute.networks.updatePolicy`\n\n**Required minimal permissions**\n\n- `projects/<host-project>/roles/dns.networks.bindPrivateDNSZone`\n- `roles/compute.networkUser`\n\nIf you do not supply a service account for control plane nodes in the `install-config.yaml` file, grant the following permissions to the service account in the host project. If you do not supply a service account for compute nodes in the `install-config.yaml` file, grant the following permissions to the service account in the host project for cluster destruction. If you do supply service accounts for control plane and compute nodes, you do not need to grant the following permissions.\n\n- `resourcemanager.projects.getIamPolicy`\n- `resourcemanager.projects.setIamPolicy`\n\nThe following permissions are required when you select a separate project for the location of the DNS zone or zones. These permissions are also required when the DNS zone or zones are located in a third project.\n\n**Required minimal permissions for provisioning DNS resources in a separate project**\n\n- `dns.changes.create`\n- `dns.changes.get`\n- `dns.managedZones.create`\n- `dns.managedZones.delete`\n- `dns.managedZones.get`\n- `dns.managedZones.list`\n- `dns.managedZones.update`\n- `dns.resourceRecordSets.create`\n- `dns.resourceRecordSets.delete`\n- `dns.resourceRecordSets.list`\n\n### Required Google Cloud permissions for user-provided service accounts {#minimum-required-permissions-ipi-gcp-provided-sas_installing-gcp-account}\n\nWhen you are installing a cluster, the compute and control plane nodes require their own service accounts. By default, the installation program creates a service account for the control plane and compute nodes. The service account that the installation program uses requires the roles and permissions that are listed in the *Creating a service account in Google Cloud* section, as well as the `resourcemanager.projects.getIamPolicy` and `resourcemanager.projects.setIamPolicy` permissions. These permissions should be applied to the service account in the host project. If this approach does not meet the security requirements of your organization, you can provide a service account email address for the control plane or compute nodes in the `install-config.yaml` file. For more information, see the *Installation configuration parameters for Google Cloud* page. If you provide a service account for control plane nodes during an installation into a shared VPC, you must grant that service account the `roles/compute.networkUser` role in the host project. If you want the installation program to automatically create firewall rules when you supply the control plane service account, you must grant that service account the `roles/compute.networkAdmin` and `roles/compute.securityAdmin` roles in the host project. If you only supply the `roles/compute.networkUser` role, you must create the firewall rules manually.\n\n> [!IMPORTANT]\n> The following roles are required for user-provided service accounts for control plane and compute nodes respectively.\n\n<details>\n<summary>Required roles\tfor control plane nodes</summary>\n\n- `roles/compute.instanceAdmin`\n- `roles/compute.networkAdmin`\n- `roles/compute.securityAdmin`\n- `roles/storage.admin`\n\n</details>\n\n<details>\n<summary>Required roles for compute nodes</summary>\n\n- `roles/compute.viewer`\n- `roles/storage.admin`\n- `roles/artifactregistry.reader`\n\n</details>\n\n## Managing your own firewall rules {#installation-gcp-user-managed-firewall-rules_installing-gcp-account}\n\nYou can manage your own firewall rules when installing a cluster on Google Cloud into an existing VPC by enabling the `firewallRulesManagement` parameter in the `install-config.yaml` file. You can limit the permissions that you grant to the installation program by managing your own firewall rules.\n\n> [!IMPORTANT]\n> If you manage your own firewall rules, you must continue to manage them through the lifetime of the cluster. If you create a new service, create a new firewall rule that permits traffic on the service port, from the desired source addresses to the compute nodes. An example rule is described in the table below.\n\nIf you want to manage your own firewall rules, you must create the following rules before installation:\n\n| Rule Name | Protocol:Port | Source | Destination |\n| --- | --- | --- | --- |\n| bootstrap-in-ssh | `tcp:22` | `<allowed_external_cidr>` | `<control_plane_node_tags>` |\n| api | `tcp:6443` | `<allowed_external_cidr>` | `<control_plane_node_tags>` |\n| health-checks | `tcp:6080,6443,22624` | `35.191.0.0/16`, `130.211.0.0/22`, `209.85.152.0/22`, `209.85.204.0/22` | `<control_plane_node_tags>` |\n| etcd | `tcp:2379,2380` | `<control_plane_node_tags>` | `<control_plane_node_tags>` |\n| control-plane | `tcp:10257,10259,22623` | `<control_plane_node_tags>`, `<compute_node_tags>` | `<control_plane_node_tags>` |\n| internal-network | icmp,`tcp:22` | `<internal_network_cidr>` | `<control_plane_node_tags>`, `<compute_node_tags>` |\n| internal-cluster | `udp:500,4500,4789,6081`, `udp:9000-9999,30000-32767`, `esp`, `tcp:9000-9999,10250`, `tcp:30000-32767` | `<control_plane_node_tags>`, `<compute_node_tags>` | `<control_plane_node_tags>`, `<compute_node_tags>` |\n| ingress-k8s-fw | `tcp:80,443` | `<allowed_external_cidr>` | `<control_plane_node_tags>`, `<compute_node_tags>` |\n| ingress-k8s-http-hc | `tcp:30000-32767` | `35.191.0.0/16`, `130.211.0.0/22`, `209.85.152.0/22`, `209.85.204.0/22` | `<control_plane_node_tags>`, `<compute_node_tags>` |\n| `<sample_rule_name>` | `<service_port>` | `<allowed_external_cidr>` | `<compute_node_tags>` |\n| where: |  |  |  |\n\n`<allowed_external_cidr>`\n:   Specifies a network CIDR of the machines that you want to grant access to your cluster. For a public cluster, this would typically be `0.0.0.0/0`. For a private cluster, access might be restricted to the cluster machine network.\n\n`<control_plane_node_tags>`\n:   Specifies the network tags that apply to the control plane machines in your cluster. These tags must be specified in the `install-config.yaml` file you use to deploy the cluster.\n\n`<compute_node_tags>`\n:   Specifies the network tags that apply to the compute machines in your cluster. These tags must be specified in the `install-config.yaml` file you use to deploy the cluster.\n\n`<internal_network_cidr>`\n:   Specifies the network CIDR of the machine network that contains all the machines in your cluster.\n\n`<sample_rule_name>`\n:   Specifies the name of a custom rule added after installation, for example if you create a new service in your cluster. You can add multiple custom rules as needed.\n\n`<service_port>`\n:   Specifies the port or port range of the service you created, and the network protocol, such as TCP or UDP. If you create a service using `oc expose`, you can find the service port and protocol by running the command `oc get service <service_name> -o jsonpath='{.spec.ports[0].port}'`, where `<service_name>` is the name of the service you created.\n\nAfter installation, you can reduce the port range of the `ingress-k8s-http-hc` and `internal-cluster` rules from `tcp:30000-32767` to the individual port that the ingress load balancer service uses, which is not known before installation. You can determine the service port by running the following command after installation:\n\n```terminal\n$ oc get svc router-default -n openshift-ingress -o jsonpath='{.spec.ports[*].nodePort}'\n```\n\n## Configuring Google Cloud organization policies and VPC service controls {#installation-gcp-organization-policies_installing-gcp-account}\n\nOpenShift Container Platform requires that you modify or remove some organization policies and VPC service controls when installing a cluster on Google Cloud.\n\nIf your organization uses the following policies, they must be modified or removed:\n\n- `compute.trustedImageProjects`\n- `iam.allowedPolicyMemberDomains`\n- `storage.publicAccessPrevention`\n- VPC Service Controls egress rules\n\n**Prerequisites**\n\n- You created a project to host your cluster.\n\n**Procedure**\n\n1. Modify the `constraints/compute.trustedImageProjects` constraint in your Google Cloud project and add `projects/rhcos-cloud` to the `allowedValues` list, as in the following example:\n\n   ```yaml\n   constraint: constraints/compute.trustedImageProjects\n   listPolicy:\n    allowedValues:\n       - projects/rhcos-cloud\n   ```\n\n   Alternatively, you can delete the `constraints/compute.trustedImageProjects` constraint.\n2. Modify the `iam.managed.allowedPolicyMembers` constraint to allow the service account that the installation program uses to authenticate with Google Cloud and create storage as in the following example:\n\n   ```yaml\n   name: organizations/<organization_id>/policies/iam.managed.allowedPolicyMembers\n   spec:\n   rules:\n    - enforce: true\n      parameters:\n        allowedMemberSubjects:\n          - <allowed_member>\n   ```\n\n   where:\n\n   `<organization_id>`\n   :   Specifies the numeric ID of your Google Cloud organization.\n\n   `<allowed_member>`\n   :   Specifies the IAM role that you created for the installation program. You can specify a service account in the format of \"serviceAccount:example-service-account@example.com\" or a user in the format of \"user:example-user@example.com\".\n3. Disable the `storage.publicAccessPrevention` constraint so that the installation program can access the cloud storage for your project.\n4. Create an egress rule that allows access to the RHCOS project, as in the following example:\n\n   ```yaml\n   - egressFrom:\n       identityType: ANY_IDENTITY\n       identities:\n         - \"serviceAccount:<installation_program_sa>@<project_id>.iam.gserviceaccount.com\"\n         - \"user:<admin_email>\"\n     egressTo:\n       resources:\n         - <project_id>\n       operations:\n         - serviceName: \"compute.googleapis.com\"\n           methodSelectors: [{method: \"*\"}]\n         - serviceName: \"storage.googleapis.com\"\n           methodSelectors: [{method: \"*\"}]\n         - serviceName: \"dns.googleapis.com\"\n           methodSelectors: [{method: \"*\"}]\n         - serviceName: \"iam.googleapis.com\"\n           methodSelectors: [{method: \"*\"}]\n         - serviceName: \"cloudresourcemanager.googleapis.com\"\n           methodSelectors: [{method: \"*\"}]\n         - serviceName: \"serviceusage.googleapis.com\"\n           methodSelectors: [{method: \"*\"}]\n         - serviceName: \"artifactregistry.googleapis.com\"\n           methodSelectors: [{method: \"*\"}]\n         - serviceName: \"deploymentmanager.googleapis.com\"\n           methodSelectors: [{method: \"*\"}]\n   ```\n\n   where:\n\n   `<installation_program_sa>`\n   :   Specifies the service account that you created for the installation program. This service account will be granted access to the specified resources.\n\n   `<project_id>`\n   :   Specifies the project ID of the Google Cloud project where you are installing the cluster.\n\n   `<admin_email>`\n   :   Specifies the email address of an administrator account. You do not need to specify both a service account and an administrator email address. This service account will be granted access to the specified resources.\n\n   `<project_id>`\n   :   Specifies one or more projects that the specified identities can access. You can specify a wildcard such as `projects/*` to grant access to all projects, or specific project IDs such as `projects/1234567890`.\n\n## Supported Google Cloud regions {#installation-gcp-regions_installing-gcp-account}\n\nYou can deploy an OpenShift Container Platform cluster to the following Google Cloud regions:\n\n- `africa-south1` (Johannesburg, South Africa)\n- `asia-east1` (Changhua County, Taiwan)\n- `asia-east2` (Hong Kong)\n- `asia-northeast1` (Tokyo, Japan)\n- `asia-northeast2` (Osaka, Japan)\n- `asia-northeast3` (Seoul, South Korea)\n- `asia-south1` (Mumbai, India)\n- `asia-south2` (Delhi, India)\n- `asia-southeast1` (Jurong West, Singapore)\n- `asia-southeast2` (Jakarta, Indonesia)\n- `australia-southeast1` (Sydney, Australia)\n- `australia-southeast2` (Melbourne, Australia)\n- `europe-central2` (Warsaw, Poland)\n- `europe-north1` (Hamina, Finland)\n- `europe-southwest1` (Madrid, Spain)\n- `europe-west1` (St. Ghislain, Belgium)\n- `europe-west2` (London, England, UK)\n- `europe-west3` (Frankfurt, Germany)\n- `europe-west4` (Eemshaven, Netherlands)\n- `europe-west6` (Zürich, Switzerland)\n- `europe-west8` (Milan, Italy)\n- `europe-west9` (Paris, France)\n- `europe-west12` (Turin, Italy)\n- `me-central1` (Doha, Qatar, Middle East)\n- `me-central2` (Dammam, Saudi Arabia, Middle East)\n- `me-west1` (Tel Aviv, Israel)\n- `northamerica-northeast1` (Montréal, Québec, Canada)\n- `northamerica-northeast2` (Toronto, Ontario, Canada)\n- `southamerica-east1` (São Paulo, Brazil)\n- `southamerica-west1` (Santiago, Chile)\n- `us-central1` (Council Bluffs, Iowa, USA)\n- `us-east1` (Moncks Corner, South Carolina, USA)\n- `us-east4` (Ashburn, Northern Virginia, USA)\n- `us-east5` (Columbus, Ohio)\n- `us-south1` (Dallas, Texas)\n- `us-west1` (The Dalles, Oregon, USA)\n- `us-west2` (Los Angeles, California, USA)\n- `us-west3` (Salt Lake City, Utah, USA)\n- `us-west4` (Las Vegas, Nevada, USA)\n\n> [!NOTE]\n> To determine which machine type instances are available by region and zone, see the Google [documentation](https://cloud.google.com/compute/docs/regions-zones#available).\n\n## Next steps {#_next_steps}\n\n- Install an OpenShift Container Platform cluster on Google Cloud. You can [install a customized cluster](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations) or [quickly install a cluster](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-default#installing-gcp-default) with default options.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_gcp/installing-gcp-account.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,24 +100,715 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="installing-gcp-account" class="group scroll-mt-20">Configuring a {"{"}{"{"} gcp_short {"}"}{"}"} project<a href="#installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Before you can install OpenShift Container Platform, you must configure a {"{"}{"{"} gcp_first {"}"}{"}"} project to host it. You can configure custom roles and permissions, DNS configuration, and manage your own {"{"}{"{"} gcp_short {"}"}{"}"} firewall rules.</p>
-      <p class="/modules/installation-gcp-project.md"></p>
-      <p class="/modules/installation-gcp-enabling-api-services.md"></p>
-      <p class="/modules/installation-gcp-dns.md"></p>
-      <p class="/modules/installation-gcp-limits.md"></p>
-      <p class="/modules/installation-gcp-service-account.md"></p>
+      <h1 id="installing-gcp-account" class="group scroll-mt-20">Configuring a Google Cloud project<a href="#installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Before you can install OpenShift Container Platform, you must configure a Google Cloud project to host it. You can configure custom roles and permissions, DNS configuration, and manage your own Google Cloud firewall rules.</p>
+      <h2 id="installation-gcp-project_installing-gcp-account" class="group scroll-mt-20">Creating a Google Cloud project<a href="#installation-gcp-project_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>To install OpenShift Container Platform, you must create a project in your Google Cloud account to host the cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create a project to host your OpenShift Container Platform cluster. See <a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects">Creating and Managing Projects</a> in the Google Cloud documentation.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Your Google Cloud project must use the Premium Network Service Tier if you are using installer-provisioned infrastructure. The Standard Network Service Tier is not supported for clusters installed using the installation program. The installation program configures internal load balancing for the <code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;</code> URL; the Premium Tier is required for internal load balancing.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h2 id="installation-gcp-enabling-api-services_installing-gcp-account" class="group scroll-mt-20">Enabling API services in Google Cloud<a href="#installation-gcp-enabling-api-services_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Your Google Cloud project requires access to several API services to complete OpenShift Container Platform installation.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You created a project to host your cluster.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Enable the following required API services in the project that hosts your cluster. You may also enable optional API services which are not required for installation. See <a href="https://cloud.google.com/service-usage/docs/enable-disable#enabling">Enabling services</a> in the Google Cloud documentation.
+      <p><em></em><em><strong>Required API services</strong></em><em></em></p>
+      </li>
+      </ul>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>API service</th>\n  <th>Console service name</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Compute Engine API</td>\n  <td><code>compute.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Cloud Resource Manager API</td>\n  <td><code>cloudresourcemanager.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Cloud DNS API</td>\n  <td><code>dns.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>IAM Service Account Credentials API</td>\n  <td><code>iamcredentials.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Identity and Access Management (IAM) API</td>\n  <td><code>iam.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Service Usage API</td>\n  <td><code>serviceusage.googleapis.com</code></td>\n</tr>\n</tbody>\n</table>\n"} />
+      <CodeBlock code={"***Optional API services***"} lang="plaintext" />
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>API service</th>\n  <th>Console service name</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n  <td>Google Cloud APIs</td>\n  <td><code>cloudapis.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Service Management API</td>\n  <td><code>servicemanagement.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Google Cloud Storage JSON API</td>\n  <td><code>storage-api.googleapis.com</code></td>\n</tr>\n<tr>\n  <td>Cloud Storage</td>\n  <td><code>storage-component.googleapis.com</code></td>\n</tr>\n</tbody>\n</table>\n"} />
+      <h2 id="installation-gcp-dns_installing-gcp-account" class="group scroll-mt-20">Configuring DNS for Google Cloud<a href="#installation-gcp-dns_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>To install OpenShift Container Platform, the Google Cloud account you use must have a dedicated public hosted zone in the same project that you host the OpenShift Container Platform cluster.</p>
+      <p>This zone must be authoritative for the domain. The DNS service provides cluster DNS resolution and name lookup for external connections to the cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Identify your domain, or subdomain, and registrar. You can transfer an existing domain and registrar or obtain a new one through Google Cloud or another source.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you purchase a new domain, it can take time for the relevant DNS changes to propagate. For more information about purchasing domains through Google, see <a href="https://domains.google/">Google Domains</a>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Create a public hosted zone for your domain or subdomain in your Google Cloud project. See <a href="https://cloud.google.com/dns/zones/#creating_public_zones">Creating public zones</a> in the Google Cloud documentation.
+      <p>Use an appropriate root domain, such as <code>openshiftcorp.com</code>, or subdomain, such as <code>clusters.openshiftcorp.com</code>.</p>
+      </li>
+      <li>
+      Extract the new authoritative name servers from the hosted zone records. See <a href="https://cloud.google.com/dns/docs/update-name-servers#look_up_your_name_servers">Look up your Cloud DNS name servers</a> in the Google Cloud documentation.
+      <p>You typically have four name servers.</p>
+      </li>
+      <li>Update the registrar records for the name servers that your domain uses. For example, if you registered your domain to Google Domains, see the following topic in the Google Domains Help: <a href="https://support.google.com/domains/answer/3290309?hl=en">How to switch to custom name servers</a>.</li>
+      <li>If you migrated your root domain to Google Cloud DNS, migrate your DNS records. See <a href="https://cloud.google.com/dns/docs/migrating">Migrating to Cloud DNS</a> in the Google Cloud documentation.</li>
+      <li>If you use a subdomain, follow your company’s procedures to add its delegation records to the parent domain. This process might include a request to your company’s IT department or the division that controls the root domain and DNS services for your company.</li>
+      </ol>
+      <h2 id="installation-gcp-limits_installing-gcp-account" class="group scroll-mt-20">Google Cloud account limits<a href="#installation-gcp-limits_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The OpenShift Container Platform cluster uses a number of Google Cloud components, but the default <a href="https://cloud.google.com/docs/quota">Quotas</a> do not affect your ability to install a default OpenShift Container Platform cluster.</p>
+      <p>A default cluster, which contains three compute and three control plane machines, uses the following resources. Note that some resources are required only during the bootstrap process and are removed after the cluster deploys.</p>
+      <p><strong>Google Cloud resources used in a default cluster</strong></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Service</th>\n  <th>Component</th>\n  <th>Location</th>\n  <th>Total resources required</th>\n  <th>Resources removed after bootstrap</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Service account</td>\n  <td>IAM</td>\n  <td>Global</td>\n  <td>6</td>\n  <td>1</td>\n</tr>\n<tr>\n  <td>Firewall rules</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>11</td>\n  <td>1</td>\n</tr>\n<tr>\n  <td>Forwarding rules</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>2</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>In-use global IP addresses</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>4</td>\n  <td>1</td>\n</tr>\n<tr>\n  <td>Health checks</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>3</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Images</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>1</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Networks</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>2</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Static IP addresses</td>\n  <td>Compute</td>\n  <td>Region</td>\n  <td>4</td>\n  <td>1</td>\n</tr>\n<tr>\n  <td>Routers</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>1</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Routes</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>2</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Subnetworks</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>2</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>Target pools</td>\n  <td>Compute</td>\n  <td>Global</td>\n  <td>3</td>\n  <td>0</td>\n</tr>\n<tr>\n  <td>CPUs</td>\n  <td>Compute</td>\n  <td>Region</td>\n  <td>28</td>\n  <td>4</td>\n</tr>\n<tr>\n  <td>Persistent disk SSD (GB)</td>\n  <td>Compute</td>\n  <td>Region</td>\n  <td>896</td>\n  <td>128</td>\n</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n</tbody>\n</table>\n"} />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If any of the quotas are insufficient during installation, the installation program displays an error that states both which quota was exceeded and the region.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Be sure to consider your actual cluster size, planned cluster growth, and any usage from other clusters that are associated with your account. The CPU, static IP addresses, and persistent disk SSD (storage) quotas are the ones that are most likely to be insufficient.</p>
+      <p>If you plan to deploy your cluster in one of the following regions, you will exceed the maximum storage quota and are likely to exceed the CPU quota limit:</p>
+      <ul>
+      <li><code>asia-east2</code></li>
+      <li><code>asia-northeast2</code></li>
+      <li><code>asia-south1</code></li>
+      <li><code>australia-southeast1</code></li>
+      <li><code>europe-north1</code></li>
+      <li><code>europe-west2</code></li>
+      <li><code>europe-west3</code></li>
+      <li><code>europe-west6</code></li>
+      <li><code>northamerica-northeast1</code></li>
+      <li><code>southamerica-east1</code></li>
+      <li><code>us-west2</code></li>
+      </ul>
+      <p>You can increase resource quotas from the <a href="https://console.cloud.google.com/iam-admin/quotas">Google Cloud console</a>, but you might need to file a support ticket. Be sure to plan your cluster size early so that you can allow time to resolve the support ticket before you install your OpenShift Container Platform cluster.</p>
+      <h2 id="installation-gcp-service-account_installing-gcp-account" class="group scroll-mt-20">Creating a service account in Google Cloud<a href="#installation-gcp-service-account_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>[role="_abstract"] OpenShift Container Platform requires a Google Cloud service account that provides authentication and authorization to access data in the Google APIs. If you do not have an existing IAM service account that contains the required roles in your project, you must create one.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To reduce the scope of permissions granted to the main service account in your Google Cloud project while still being able to use the Google Cloud Container Storage Interface (CSI) Driver Operator, you can transfer the control of permissions from the project-wide service account to the control plane and compute node service accounts instead, thus reducing the scope of the permission. For more information, see Section <em>Reducing permissions while using the Google Cloud CSI Driver Operator</em>.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You created a project to host your cluster.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create a service account in the project that you use to host your OpenShift Container Platform cluster. See <a href="https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating_a_service_account">Creating a service account</a> in the Google Cloud documentation.</li>
+      <li>
+      Grant the service account the appropriate permissions. You can either grant the individual permissions that follow or assign the <code>Owner</code> role to it. See <a href="https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource">Granting roles to a service account for specific resources</a>.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>While making the service account an owner of the project is the easiest way to gain the required permissions, it means that service account has complete control over the project. You must determine if the risk that comes from offering that power is acceptable.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      You can create the service account key in JSON format, or attach the service account to a Google Cloud virtual machine. See <a href="https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating_service_account_keys">Creating service account keys</a> and <a href="https://cloud.google.com/compute/docs/access/create-enable-service-accounts-for-instances">Creating and enabling service accounts for instances</a> in the Google Cloud documentation.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you use a virtual machine with an attached service account to create your cluster, you must set <code>credentialsMode: Manual</code> in the <code>install-config.yaml</code> file before installation.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-gcp-pd#persistent-storage-csi-gcp-pd-reduce-permissions_persistent-storage-csi-gcp-pd">Reducing permissions while using the {"{"}{"{"} gcp_short {"}"}{"}"} CSI Driver Operator</a></li></ul>
-      <p class="/modules/minimum-required-permissions-ipi-gcp.md"></p>
-      <p class="/modules/minimum-required-permissions-ipi-gcp-xpn.md"></p>
-      <p class="/modules/minimum-required-permissions-ipi-gcp-provided-sas.md"></p>
-      <p class="/modules/installation-gcp-user-managed-firewall-rules.md"></p>
-      <p class="/modules/installation-gcp-organization-policies.md"></p>
-      <p class="/modules/installation-gcp-regions.md"></p>
+      <ul><li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-gcp-pd#persistent-storage-csi-gcp-pd-reduce-permissions_persistent-storage-csi-gcp-pd">Reducing permissions while using the Google Cloud CSI Driver Operator</a></li></ul>
+      <h3 id="installation-gcp-permissions_installing-gcp-account" class="group scroll-mt-20">Required Google Cloud roles<a href="#installation-gcp-permissions_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>When you attach the <code>Owner</code> role to the service account that you create, you grant that service account all permissions, including those that are required to install OpenShift Container Platform. If your organization’s security policies require a more restrictive set of permissions, you can create a service account with the following permissions. If you deploy your cluster into an existing virtual private cloud (VPC), the service account does not require certain networking permissions, which are noted in the following lists:</p>
+      <p><strong>Required roles for the installation program</strong></p>
+      <ul>
+      <li>Compute Admin</li>
+      <li>Role Administrator</li>
+      <li>Security Admin</li>
+      <li>Service Account Admin</li>
+      <li>Service Account Key Admin</li>
+      <li>Service Account User</li>
+      <li>Storage Admin</li>
+      </ul>
+      <p><strong>Required roles for creating network resources during installation</strong></p>
+      <ul><li>DNS Administrator</li></ul>
+      <p><strong>Required roles for using the Cloud Credential Operator in passthrough mode</strong></p>
+      <ul>
+      <li>Compute Load Balancer Admin</li>
+      <li>Tag User</li>
+      </ul>
+      <p>The following roles are applied to the service accounts that the control plane and compute machines use:</p>
+      <p><em></em><em><strong>Google Cloud service account roles</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Account</th>\n  <th>Roles</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>.5+</td>\n  <td>Control Plane</td>\n</tr>\n<tr>\n  <td><code>roles/compute.instanceAdmin</code></td>\n  <td><code>roles/compute.networkAdmin</code></td>\n</tr>\n<tr>\n  <td><code>roles/compute.securityAdmin</code></td>\n  <td><code>roles/storage.admin</code></td>\n</tr>\n<tr>\n  <td><code>roles/iam.serviceAccountUser</code>.3+</td>\n  <td>Compute</td>\n</tr>\n<tr>\n  <td><code>roles/compute.viewer</code></td>\n  <td><code>roles/storage.admin</code></td>\n</tr>\n<tr>\n  <td><code>roles/artifactregistry.reader</code></td>\n</tr>\n</tbody>\n</table>\n"} />
+      <h3 id="minimum-required-permissions-ipi-gcp_installing-gcp-account" class="group scroll-mt-20">Required Google Cloud permissions for installer-provisioned infrastructure<a href="#minimum-required-permissions-ipi-gcp_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When you attach the <code>Owner</code> role to the service account that you create, you grant that service account all permissions, including those that are required to install OpenShift Container Platform. If your organization’s security policies require a more restrictive set of permissions, you can create <a href="https://cloud.google.com/iam/docs/creating-custom-roles">custom roles</a> with the necessary permissions.</p>
+      <p>The following permissions are required for the installer-provisioned infrastructure for creating and deleting the OpenShift Container Platform cluster.</p>
+      <Fragment set:html={"<details>\n<summary>Required permissions for creating network resources</summary>\n"} />
+      <ul>
+      <li><code>compute.addresses.create</code></li>
+      <li><code>compute.addresses.createInternal</code></li>
+      <li><code>compute.addresses.delete</code></li>
+      <li><code>compute.addresses.get</code></li>
+      <li><code>compute.addresses.list</code></li>
+      <li><code>compute.addresses.use</code></li>
+      <li><code>compute.addresses.useInternal</code></li>
+      <li>
+      <code>compute.firewalls.create</code>
+      <ul><li>This permission is not required if you install into an existing VPC and manage your own firewall rules. See the <em>Managing your own firewall rules</em> section.</li></ul>
+      </li>
+      <li>
+      <code>compute.firewalls.delete</code>
+      <ul><li>This permission is not required if you install into an existing VPC and manage your own firewall rules. See the <em>Managing your own firewall rules</em> section.</li></ul>
+      </li>
+      <li><code>compute.firewalls.get</code></li>
+      <li><code>compute.firewalls.list</code></li>
+      <li><code>compute.forwardingRules.create</code></li>
+      <li><code>compute.forwardingRules.get</code></li>
+      <li><code>compute.forwardingRules.list</code></li>
+      <li><code>compute.forwardingRules.setLabels</code></li>
+      <li><code>compute.globalAddresses.create</code></li>
+      <li><code>compute.globalAddresses.get</code></li>
+      <li><code>compute.globalAddresses.use</code></li>
+      <li><code>compute.globalForwardingRules.create</code></li>
+      <li><code>compute.globalForwardingRules.get</code></li>
+      <li><code>compute.globalForwardingRules.setLabels</code></li>
+      <li><code>compute.networks.create</code></li>
+      <li><code>compute.networks.get</code></li>
+      <li><code>compute.networks.list</code></li>
+      <li><code>compute.networks.updatePolicy</code></li>
+      <li><code>compute.networks.use</code></li>
+      <li><code>compute.routers.create</code></li>
+      <li><code>compute.routers.get</code></li>
+      <li><code>compute.routers.list</code></li>
+      <li><code>compute.routers.update</code></li>
+      <li><code>compute.routes.list</code></li>
+      <li><code>compute.subnetworks.create</code></li>
+      <li><code>compute.subnetworks.get</code></li>
+      <li><code>compute.subnetworks.list</code></li>
+      <li><code>compute.subnetworks.use</code></li>
+      <li><code>compute.subnetworks.useExternalIp</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for creating load balancer resources</summary>\n"} />
+      <ul>
+      <li><code>compute.backendServices.create</code></li>
+      <li><code>compute.backendServices.get</code></li>
+      <li><code>compute.backendServices.list</code></li>
+      <li><code>compute.backendServices.update</code></li>
+      <li><code>compute.backendServices.use</code></li>
+      <li><code>compute.regionBackendServices.create</code></li>
+      <li><code>compute.regionBackendServices.get</code></li>
+      <li><code>compute.regionBackendServices.list</code></li>
+      <li><code>compute.regionBackendServices.update</code></li>
+      <li><code>compute.regionBackendServices.use</code></li>
+      <li><code>compute.targetPools.addInstance</code></li>
+      <li><code>compute.targetPools.create</code></li>
+      <li><code>compute.targetPools.get</code></li>
+      <li><code>compute.targetPools.list</code></li>
+      <li><code>compute.targetPools.removeInstance</code></li>
+      <li><code>compute.targetPools.use</code></li>
+      <li><code>compute.targetTcpProxies.create</code></li>
+      <li><code>compute.targetTcpProxies.get</code></li>
+      <li><code>compute.targetTcpProxies.use</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for creating DNS resources</summary>\n"} />
+      <ul>
+      <li><code>dns.changes.create</code></li>
+      <li><code>dns.changes.get</code></li>
+      <li><code>dns.managedZones.create</code></li>
+      <li><code>dns.managedZones.get</code></li>
+      <li><code>dns.managedZones.list</code></li>
+      <li><code>dns.networks.bindPrivateDNSZone</code></li>
+      <li><code>dns.resourceRecordSets.create</code></li>
+      <li><code>dns.resourceRecordSets.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for creating Service Account resources</summary>\n"} />
+      <ul>
+      <li><code>iam.serviceAccountKeys.create</code></li>
+      <li><code>iam.serviceAccountKeys.delete</code></li>
+      <li><code>iam.serviceAccountKeys.get</code></li>
+      <li><code>iam.serviceAccountKeys.list</code></li>
+      <li>
+      <code>iam.serviceAccounts.actAs</code>
+      <ul><li>This permission can be limited to act as the control plane and compute service accounts. Alternatively, you may grant the service account that the installation program uses the <code>iam.serviceAccountUser</code> role on the control plane and compute service accounts.</li></ul>
+      </li>
+      <li><code>iam.serviceAccounts.create</code></li>
+      <li><code>iam.serviceAccounts.delete</code></li>
+      <li><code>iam.serviceAccounts.get</code></li>
+      <li><code>iam.serviceAccounts.list</code></li>
+      <li><code>resourcemanager.projects.get</code></li>
+      <li><code>resourcemanager.projects.getIamPolicy</code></li>
+      <li>
+      <code>resourcemanager.projects.setIamPolicy</code>
+      <ul><li>This permission is not required if you use <code>credentialsMode: Manual</code> and supply your own service accounts for compute and control plane nodes.</li></ul>
+      </li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for creating compute resources</summary>\n"} />
+      <ul>
+      <li><code>compute.disks.create</code></li>
+      <li><code>compute.disks.get</code></li>
+      <li><code>compute.disks.list</code></li>
+      <li><code>compute.disks.setLabels</code></li>
+      <li><code>compute.instanceGroups.create</code></li>
+      <li><code>compute.instanceGroups.delete</code></li>
+      <li><code>compute.instanceGroups.get</code></li>
+      <li><code>compute.instanceGroups.list</code></li>
+      <li><code>compute.instanceGroups.update</code></li>
+      <li><code>compute.instanceGroups.use</code></li>
+      <li><code>compute.instances.create</code></li>
+      <li><code>compute.instances.delete</code></li>
+      <li><code>compute.instances.get</code></li>
+      <li><code>compute.instances.list</code></li>
+      <li><code>compute.instances.setLabels</code></li>
+      <li><code>compute.instances.setMetadata</code></li>
+      <li><code>compute.instances.setServiceAccount</code></li>
+      <li><code>compute.instances.setTags</code></li>
+      <li><code>compute.instances.use</code></li>
+      <li><code>compute.machineTypes.get</code></li>
+      <li><code>compute.machineTypes.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required for creating storage resources</summary>\n"} />
+      <ul>
+      <li><code>storage.buckets.create</code></li>
+      <li><code>storage.buckets.delete</code></li>
+      <li><code>storage.buckets.get</code></li>
+      <li><code>storage.buckets.list</code></li>
+      <li><code>storage.objects.create</code></li>
+      <li><code>storage.objects.delete</code></li>
+      <li><code>storage.objects.get</code></li>
+      <li><code>storage.objects.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for creating health check resources</summary>\n"} />
+      <ul>
+      <li><code>compute.healthChecks.create</code></li>
+      <li><code>compute.healthChecks.get</code></li>
+      <li><code>compute.healthChecks.list</code></li>
+      <li><code>compute.healthChecks.useReadOnly</code></li>
+      <li><code>compute.httpHealthChecks.create</code></li>
+      <li><code>compute.httpHealthChecks.get</code></li>
+      <li><code>compute.httpHealthChecks.list</code></li>
+      <li><code>compute.httpHealthChecks.useReadOnly</code></li>
+      <li><code>compute.regionHealthChecks.create</code></li>
+      <li><code>compute.regionHealthChecks.get</code></li>
+      <li><code>compute.regionHealthChecks.useReadOnly</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions to get {gcp-short} zone and region related information</summary>\n"} />
+      <ul>
+      <li><code>compute.globalOperations.get</code></li>
+      <li><code>compute.regionOperations.get</code></li>
+      <li><code>compute.regions.get</code></li>
+      <li><code>compute.regions.list</code></li>
+      <li><code>compute.zoneOperations.get</code></li>
+      <li><code>compute.zones.get</code></li>
+      <li><code>compute.zones.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for checking services and quotas</summary>\n"} />
+      <ul>
+      <li><code>monitoring.timeSeries.list</code></li>
+      <li><code>serviceusage.quotas.get</code></li>
+      <li><code>serviceusage.services.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required IAM permissions for installation</summary>\n"} />
+      <ul>
+      <li><code>iam.roles.create</code></li>
+      <li><code>iam.roles.get</code></li>
+      <li><code>iam.roles.update</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions when authenticating without a service account key</summary>\n"} />
+      <ul><li><code>iam.serviceAccounts.signBlob</code></li></ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions when providing Key Management Service (KMS) key rings</summary>\n"} />
+      <ul><li><code>cloudkms.keyRings.list</code></li></ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Optional Images permissions for installation</summary>\n"} />
+      <ul><li><code>compute.images.list</code></li></ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Optional permission for running gather bootstrap</summary>\n"} />
+      <ul><li><code>compute.instances.getSerialPortOutput</code></li></ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for deleting network resources</summary>\n"} />
+      <ul>
+      <li><code>compute.addresses.delete</code></li>
+      <li><code>compute.addresses.deleteInternal</code></li>
+      <li><code>compute.addresses.list</code></li>
+      <li><code>compute.addresses.setLabels</code></li>
+      <li><code>compute.firewalls.delete</code></li>
+      <li><code>compute.firewalls.list</code></li>
+      <li><code>compute.forwardingRules.delete</code></li>
+      <li><code>compute.forwardingRules.list</code></li>
+      <li><code>compute.globalAddresses.delete</code></li>
+      <li><code>compute.globalAddresses.list</code></li>
+      <li><code>compute.globalForwardingRules.delete</code></li>
+      <li><code>compute.globalForwardingRules.list</code></li>
+      <li><code>compute.networks.delete</code></li>
+      <li><code>compute.networks.list</code></li>
+      <li><code>compute.networks.updatePolicy</code></li>
+      <li><code>compute.routers.delete</code></li>
+      <li><code>compute.routers.list</code></li>
+      <li><code>compute.routes.list</code></li>
+      <li><code>compute.subnetworks.delete</code></li>
+      <li><code>compute.subnetworks.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for deleting load balancer resources</summary>\n"} />
+      <ul>
+      <li><code>compute.backendServices.delete</code></li>
+      <li><code>compute.backendServices.list</code></li>
+      <li><code>compute.regionBackendServices.delete</code></li>
+      <li><code>compute.regionBackendServices.list</code></li>
+      <li><code>compute.targetPools.delete</code></li>
+      <li><code>compute.targetPools.list</code></li>
+      <li><code>compute.targetTcpProxies.delete</code></li>
+      <li><code>compute.targetTcpProxies.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for deleting DNS resources</summary>\n"} />
+      <ul>
+      <li><code>dns.changes.create</code></li>
+      <li><code>dns.managedZones.delete</code></li>
+      <li><code>dns.managedZones.get</code></li>
+      <li><code>dns.managedZones.list</code></li>
+      <li><code>dns.resourceRecordSets.delete</code></li>
+      <li><code>dns.resourceRecordSets.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for deleting Service Account resources</summary>\n"} />
+      <ul>
+      <li><code>iam.serviceAccounts.delete</code></li>
+      <li><code>iam.serviceAccounts.get</code></li>
+      <li><code>iam.serviceAccounts.list</code></li>
+      <li><code>resourcemanager.projects.getIamPolicy</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for deleting compute resources</summary>\n"} />
+      <ul>
+      <li><code>compute.disks.delete</code></li>
+      <li><code>compute.disks.list</code></li>
+      <li><code>compute.instanceGroups.delete</code></li>
+      <li><code>compute.instanceGroups.list</code></li>
+      <li><code>compute.instances.delete</code></li>
+      <li><code>compute.instances.list</code></li>
+      <li><code>compute.instances.stop</code></li>
+      <li><code>compute.machineTypes.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required for deleting storage resources</summary>\n"} />
+      <ul>
+      <li><code>storage.buckets.delete</code></li>
+      <li><code>storage.buckets.getIamPolicy</code></li>
+      <li><code>storage.buckets.list</code></li>
+      <li><code>storage.objects.delete</code></li>
+      <li><code>storage.objects.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required permissions for deleting health check resources</summary>\n"} />
+      <ul>
+      <li><code>compute.healthChecks.delete</code></li>
+      <li><code>compute.healthChecks.list</code></li>
+      <li><code>compute.httpHealthChecks.delete</code></li>
+      <li><code>compute.httpHealthChecks.list</code></li>
+      <li><code>compute.regionHealthChecks.delete</code></li>
+      <li><code>compute.regionHealthChecks.list</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required Images permissions for deletion</summary>\n"} />
+      <ul><li><code>compute.images.list</code></li></ul>
+      <Fragment set:html={"</details>\n"} />
+      <h3 id="minimum-required-permissions-ipi-gcp-xpn_installing-gcp-account" class="group scroll-mt-20">Required Google Cloud permissions for shared VPC installations<a href="#minimum-required-permissions-ipi-gcp-xpn_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When you are installing a cluster to a <a href="https://cloud.google.com/vpc/docs/shared-vpc">shared VPC</a>, you must configure the service account for both the host project and the service project.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You can use granular permissions for a Cloud Credential Operator (CCO) that operates in either Manual or Mint credentials mode. For more information about the minimum permissions required for a standard installation that is configured with either of these credentials modes, see "Required Google Cloud permissions for installer-provisioned infrastructure".</p>
+          <p>You cannot use granular permissions in Passthrough credentials mode. For more information about the minimum roles required, see "Required Google Cloud roles".</p>
+        </AlertDescription>
+      </Alert>
+      <p>If you are not installing to a shared Virtual Private Cloud (VPC), you can skip the procedure.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>When installing a cluster on a shared VPC by using short-lived credentials, you must grant the <code>compute.subnetworks.use</code> permission in the host project to Day 2 Operator service accounts.</p>
+          <p>After using the <code>ccoctl</code> utility to generate the Google Cloud credentials, manually grant this permission to the Cluster CAPI Operator and Machine API Operator service accounts.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Ensure that the host project applies one of the following configurations to the service account, noting that the permissions for creating and deleting firewalls are not required if you manage your own firewall rules:</p>
+      <p><strong>Required permissions for creating firewalls in the host project</strong></p>
+      <ul>
+      <li><code>projects/&lt;host-project&gt;/roles/dns.networks.bindPrivateDNSZone</code></li>
+      <li><code>roles/compute.networkAdmin</code></li>
+      <li><code>roles/compute.securityAdmin</code></li>
+      </ul>
+      <p><strong>Required permissions for deleting firewalls in the host project</strong></p>
+      <ul>
+      <li><code>compute.firewalls.delete</code></li>
+      <li><code>compute.networks.updatePolicy</code></li>
+      </ul>
+      <p><strong>Required minimal permissions</strong></p>
+      <ul>
+      <li><code>projects/&lt;host-project&gt;/roles/dns.networks.bindPrivateDNSZone</code></li>
+      <li><code>roles/compute.networkUser</code></li>
+      </ul>
+      <p>If you do not supply a service account for control plane nodes in the <code>install-config.yaml</code> file, grant the following permissions to the service account in the host project. If you do not supply a service account for compute nodes in the <code>install-config.yaml</code> file, grant the following permissions to the service account in the host project for cluster destruction. If you do supply service accounts for control plane and compute nodes, you do not need to grant the following permissions.</p>
+      <ul>
+      <li><code>resourcemanager.projects.getIamPolicy</code></li>
+      <li><code>resourcemanager.projects.setIamPolicy</code></li>
+      </ul>
+      <p>The following permissions are required when you select a separate project for the location of the DNS zone or zones. These permissions are also required when the DNS zone or zones are located in a third project.</p>
+      <p><strong>Required minimal permissions for provisioning DNS resources in a separate project</strong></p>
+      <ul>
+      <li><code>dns.changes.create</code></li>
+      <li><code>dns.changes.get</code></li>
+      <li><code>dns.managedZones.create</code></li>
+      <li><code>dns.managedZones.delete</code></li>
+      <li><code>dns.managedZones.get</code></li>
+      <li><code>dns.managedZones.list</code></li>
+      <li><code>dns.managedZones.update</code></li>
+      <li><code>dns.resourceRecordSets.create</code></li>
+      <li><code>dns.resourceRecordSets.delete</code></li>
+      <li><code>dns.resourceRecordSets.list</code></li>
+      </ul>
+      <h3 id="minimum-required-permissions-ipi-gcp-provided-sas_installing-gcp-account" class="group scroll-mt-20">Required Google Cloud permissions for user-provided service accounts<a href="#minimum-required-permissions-ipi-gcp-provided-sas_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>When you are installing a cluster, the compute and control plane nodes require their own service accounts. By default, the installation program creates a service account for the control plane and compute nodes. The service account that the installation program uses requires the roles and permissions that are listed in the <em>Creating a service account in Google Cloud</em> section, as well as the <code>resourcemanager.projects.getIamPolicy</code> and <code>resourcemanager.projects.setIamPolicy</code> permissions. These permissions should be applied to the service account in the host project. If this approach does not meet the security requirements of your organization, you can provide a service account email address for the control plane or compute nodes in the <code>install-config.yaml</code> file. For more information, see the <em>Installation configuration parameters for Google Cloud</em> page. If you provide a service account for control plane nodes during an installation into a shared VPC, you must grant that service account the <code>roles/compute.networkUser</code> role in the host project. If you want the installation program to automatically create firewall rules when you supply the control plane service account, you must grant that service account the <code>roles/compute.networkAdmin</code> and <code>roles/compute.securityAdmin</code> roles in the host project. If you only supply the <code>roles/compute.networkUser</code> role, you must create the firewall rules manually.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The following roles are required for user-provided service accounts for control plane and compute nodes respectively.</p>
+        </AlertDescription>
+      </Alert>
+      <Fragment set:html={"<details>\n<summary>Required roles\tfor control plane nodes</summary>\n"} />
+      <ul>
+      <li><code>roles/compute.instanceAdmin</code></li>
+      <li><code>roles/compute.networkAdmin</code></li>
+      <li><code>roles/compute.securityAdmin</code></li>
+      <li><code>roles/storage.admin</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <Fragment set:html={"<details>\n<summary>Required roles for compute nodes</summary>\n"} />
+      <ul>
+      <li><code>roles/compute.viewer</code></li>
+      <li><code>roles/storage.admin</code></li>
+      <li><code>roles/artifactregistry.reader</code></li>
+      </ul>
+      <Fragment set:html={"</details>\n"} />
+      <h2 id="installation-gcp-user-managed-firewall-rules_installing-gcp-account" class="group scroll-mt-20">Managing your own firewall rules<a href="#installation-gcp-user-managed-firewall-rules_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can manage your own firewall rules when installing a cluster on Google Cloud into an existing VPC by enabling the <code>firewallRulesManagement</code> parameter in the <code>install-config.yaml</code> file. You can limit the permissions that you grant to the installation program by managing your own firewall rules.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If you manage your own firewall rules, you must continue to manage them through the lifetime of the cluster. If you create a new service, create a new firewall rule that permits traffic on the service port, from the desired source addresses to the compute nodes. An example rule is described in the table below.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If you want to manage your own firewall rules, you must create the following rules before installation:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Rule Name</TableHead>
+      <TableHead>Protocol:Port</TableHead>
+      <TableHead>Source</TableHead>
+      <TableHead>Destination</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>bootstrap-in-ssh</TableCell>
+      <TableCell><code>tcp:22</code></TableCell>
+      <TableCell><code>&lt;allowed_external_cidr&gt;</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>api</TableCell>
+      <TableCell><code>tcp:6443</code></TableCell>
+      <TableCell><code>&lt;allowed_external_cidr&gt;</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>health-checks</TableCell>
+      <TableCell><code>tcp:6080,6443,22624</code></TableCell>
+      <TableCell><code>35.191.0.0/16</code>, <code>130.211.0.0/22</code>, <code>209.85.152.0/22</code>, <code>209.85.204.0/22</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>etcd</TableCell>
+      <TableCell><code>tcp:2379,2380</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>control-plane</TableCell>
+      <TableCell><code>tcp:10257,10259,22623</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code>, <code>&lt;compute_node_tags&gt;</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>internal-network</TableCell>
+      <TableCell>icmp,<code>tcp:22</code></TableCell>
+      <TableCell><code>&lt;internal_network_cidr&gt;</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code>, <code>&lt;compute_node_tags&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>internal-cluster</TableCell>
+      <TableCell><code>udp:500,4500,4789,6081</code>, <code>udp:9000-9999,30000-32767</code>, <code>esp</code>, <code>tcp:9000-9999,10250</code>, <code>tcp:30000-32767</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code>, <code>&lt;compute_node_tags&gt;</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code>, <code>&lt;compute_node_tags&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>ingress-k8s-fw</TableCell>
+      <TableCell><code>tcp:80,443</code></TableCell>
+      <TableCell><code>&lt;allowed_external_cidr&gt;</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code>, <code>&lt;compute_node_tags&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>ingress-k8s-http-hc</TableCell>
+      <TableCell><code>tcp:30000-32767</code></TableCell>
+      <TableCell><code>35.191.0.0/16</code>, <code>130.211.0.0/22</code>, <code>209.85.152.0/22</code>, <code>209.85.204.0/22</code></TableCell>
+      <TableCell><code>&lt;control_plane_node_tags&gt;</code>, <code>&lt;compute_node_tags&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>&lt;sample_rule_name&gt;</code></TableCell>
+      <TableCell><code>&lt;service_port&gt;</code></TableCell>
+      <TableCell><code>&lt;allowed_external_cidr&gt;</code></TableCell>
+      <TableCell><code>&lt;compute_node_tags&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>where:</TableCell>
+      <TableCell></TableCell>
+      <TableCell></TableCell>
+      <TableCell></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;allowed_external_cidr&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a network CIDR of the machines that you want to grant access to your cluster. For a public cluster, this would typically be <code>0.0.0.0/0</code>. For a private cluster, access might be restricted to the cluster machine network.</p></dd>
+      <dt class="font-semibold"><code>&lt;control_plane_node_tags&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the network tags that apply to the control plane machines in your cluster. These tags must be specified in the <code>install-config.yaml</code> file you use to deploy the cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;compute_node_tags&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the network tags that apply to the compute machines in your cluster. These tags must be specified in the <code>install-config.yaml</code> file you use to deploy the cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;internal_network_cidr&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the network CIDR of the machine network that contains all the machines in your cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;sample_rule_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of a custom rule added after installation, for example if you create a new service in your cluster. You can add multiple custom rules as needed.</p></dd>
+      <dt class="font-semibold"><code>&lt;service_port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the port or port range of the service you created, and the network protocol, such as TCP or UDP. If you create a service using <code>oc expose</code>, you can find the service port and protocol by running the command <code>oc get service &lt;service_name&gt; -o jsonpath='{"{"}.spec.ports[0].port{"}"}'</code>, where <code>&lt;service_name&gt;</code> is the name of the service you created.</p></dd>
+      </dl>
+      <p>After installation, you can reduce the port range of the <code>ingress-k8s-http-hc</code> and <code>internal-cluster</code> rules from <code>tcp:30000-32767</code> to the individual port that the ingress load balancer service uses, which is not known before installation. You can determine the service port by running the following command after installation:</p>
+      <CodeBlock code={"$ oc get svc router-default -n openshift-ingress -o jsonpath='{.spec.ports[*].nodePort}'"} lang="terminal" />
+      <h2 id="installation-gcp-organization-policies_installing-gcp-account" class="group scroll-mt-20">Configuring Google Cloud organization policies and VPC service controls<a href="#installation-gcp-organization-policies_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Container Platform requires that you modify or remove some organization policies and VPC service controls when installing a cluster on Google Cloud.</p>
+      <p>If your organization uses the following policies, they must be modified or removed:</p>
+      <ul>
+      <li><code>compute.trustedImageProjects</code></li>
+      <li><code>iam.allowedPolicyMemberDomains</code></li>
+      <li><code>storage.publicAccessPrevention</code></li>
+      <li>VPC Service Controls egress rules</li>
+      </ul>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You created a project to host your cluster.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Modify the <code>constraints/compute.trustedImageProjects</code> constraint in your Google Cloud project and add <code>projects/rhcos-cloud</code> to the <code>allowedValues</code> list, as in the following example:
+      <CodeBlock code={"constraint: constraints/compute.trustedImageProjects\nlistPolicy:\n allowedValues:\n    - projects/rhcos-cloud"} lang="yaml" />
+      <p>Alternatively, you can delete the <code>constraints/compute.trustedImageProjects</code> constraint.</p>
+      </li>
+      <li>
+      Modify the <code>iam.managed.allowedPolicyMembers</code> constraint to allow the service account that the installation program uses to authenticate with Google Cloud and create storage as in the following example:
+      <CodeBlock code={"name: organizations/<organization_id>/policies/iam.managed.allowedPolicyMembers\nspec:\nrules:\n - enforce: true\n   parameters:\n     allowedMemberSubjects:\n       - <allowed_member>"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;organization_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the numeric ID of your Google Cloud organization.</p></dd>
+      <dt class="font-semibold"><code>&lt;allowed_member&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the IAM role that you created for the installation program. You can specify a service account in the format of "serviceAccount:example-service-account@example.com" or a user in the format of "user:example-user@example.com".</p></dd>
+      </dl>
+      </li>
+      <li>Disable the <code>storage.publicAccessPrevention</code> constraint so that the installation program can access the cloud storage for your project.</li>
+      <li>
+      Create an egress rule that allows access to the RHCOS project, as in the following example:
+      <CodeBlock code={"- egressFrom:\n    identityType: ANY_IDENTITY\n    identities:\n      - \"serviceAccount:<installation_program_sa>@<project_id>.iam.gserviceaccount.com\"\n      - \"user:<admin_email>\"\n  egressTo:\n    resources:\n      - <project_id>\n    operations:\n      - serviceName: \"compute.googleapis.com\"\n        methodSelectors: [{method: \"*\"}]\n      - serviceName: \"storage.googleapis.com\"\n        methodSelectors: [{method: \"*\"}]\n      - serviceName: \"dns.googleapis.com\"\n        methodSelectors: [{method: \"*\"}]\n      - serviceName: \"iam.googleapis.com\"\n        methodSelectors: [{method: \"*\"}]\n      - serviceName: \"cloudresourcemanager.googleapis.com\"\n        methodSelectors: [{method: \"*\"}]\n      - serviceName: \"serviceusage.googleapis.com\"\n        methodSelectors: [{method: \"*\"}]\n      - serviceName: \"artifactregistry.googleapis.com\"\n        methodSelectors: [{method: \"*\"}]\n      - serviceName: \"deploymentmanager.googleapis.com\"\n        methodSelectors: [{method: \"*\"}]"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;installation_program_sa&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the service account that you created for the installation program. This service account will be granted access to the specified resources.</p></dd>
+      <dt class="font-semibold"><code>&lt;project_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the project ID of the Google Cloud project where you are installing the cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;admin_email&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the email address of an administrator account. You do not need to specify both a service account and an administrator email address. This service account will be granted access to the specified resources.</p></dd>
+      <dt class="font-semibold"><code>&lt;project_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies one or more projects that the specified identities can access. You can specify a wildcard such as <code>projects/*</code> to grant access to all projects, or specific project IDs such as <code>projects/1234567890</code>.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <h2 id="installation-gcp-regions_installing-gcp-account" class="group scroll-mt-20">Supported Google Cloud regions<a href="#installation-gcp-regions_installing-gcp-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can deploy an OpenShift Container Platform cluster to the following Google Cloud regions:</p>
+      <ul>
+      <li><code>africa-south1</code> (Johannesburg, South Africa)</li>
+      <li><code>asia-east1</code> (Changhua County, Taiwan)</li>
+      <li><code>asia-east2</code> (Hong Kong)</li>
+      <li><code>asia-northeast1</code> (Tokyo, Japan)</li>
+      <li><code>asia-northeast2</code> (Osaka, Japan)</li>
+      <li><code>asia-northeast3</code> (Seoul, South Korea)</li>
+      <li><code>asia-south1</code> (Mumbai, India)</li>
+      <li><code>asia-south2</code> (Delhi, India)</li>
+      <li><code>asia-southeast1</code> (Jurong West, Singapore)</li>
+      <li><code>asia-southeast2</code> (Jakarta, Indonesia)</li>
+      <li><code>australia-southeast1</code> (Sydney, Australia)</li>
+      <li><code>australia-southeast2</code> (Melbourne, Australia)</li>
+      <li><code>europe-central2</code> (Warsaw, Poland)</li>
+      <li><code>europe-north1</code> (Hamina, Finland)</li>
+      <li><code>europe-southwest1</code> (Madrid, Spain)</li>
+      <li><code>europe-west1</code> (St. Ghislain, Belgium)</li>
+      <li><code>europe-west2</code> (London, England, UK)</li>
+      <li><code>europe-west3</code> (Frankfurt, Germany)</li>
+      <li><code>europe-west4</code> (Eemshaven, Netherlands)</li>
+      <li><code>europe-west6</code> (Zürich, Switzerland)</li>
+      <li><code>europe-west8</code> (Milan, Italy)</li>
+      <li><code>europe-west9</code> (Paris, France)</li>
+      <li><code>europe-west12</code> (Turin, Italy)</li>
+      <li><code>me-central1</code> (Doha, Qatar, Middle East)</li>
+      <li><code>me-central2</code> (Dammam, Saudi Arabia, Middle East)</li>
+      <li><code>me-west1</code> (Tel Aviv, Israel)</li>
+      <li><code>northamerica-northeast1</code> (Montréal, Québec, Canada)</li>
+      <li><code>northamerica-northeast2</code> (Toronto, Ontario, Canada)</li>
+      <li><code>southamerica-east1</code> (São Paulo, Brazil)</li>
+      <li><code>southamerica-west1</code> (Santiago, Chile)</li>
+      <li><code>us-central1</code> (Council Bluffs, Iowa, USA)</li>
+      <li><code>us-east1</code> (Moncks Corner, South Carolina, USA)</li>
+      <li><code>us-east4</code> (Ashburn, Northern Virginia, USA)</li>
+      <li><code>us-east5</code> (Columbus, Ohio)</li>
+      <li><code>us-south1</code> (Dallas, Texas)</li>
+      <li><code>us-west1</code> (The Dalles, Oregon, USA)</li>
+      <li><code>us-west2</code> (Los Angeles, California, USA)</li>
+      <li><code>us-west3</code> (Salt Lake City, Utah, USA)</li>
+      <li><code>us-west4</code> (Las Vegas, Nevada, USA)</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To determine which machine type instances are available by region and zone, see the Google <a href="https://cloud.google.com/compute/docs/regions-zones#available">documentation</a>.</p>
+        </AlertDescription>
+      </Alert>
       <h2 id="_next_steps" class="group scroll-mt-20">Next steps<a href="#_next_steps" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li>Install an OpenShift Container Platform cluster on {"{"}{"{"} gcp_short {"}"}{"}"}. You can <a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations">install a customized cluster</a> or <a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-default#installing-gcp-default">quickly install a cluster</a> with default options.</li></ul>
+      <ul><li>Install an OpenShift Container Platform cluster on Google Cloud. You can <a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installing-gcp-customizations">install a customized cluster</a> or <a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-default#installing-gcp-default">quickly install a cluster</a> with default options.</li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

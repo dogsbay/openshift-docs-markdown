@@ -19,6 +19,118 @@ To configure an OVN-Kubernetes layer 2 secondary network and attach a VM to that
 > [!NOTE]
 > Configuring IP address management (IPAM) by specifying the `spec.config.ipam.subnet` attribute in a network attachment definition for virtual machines is not supported.
 
+## Creating a NAD for layer 2 topology by using the CLI {#virt-creating-layer2-nad-cli_virt-connecting-vm-to-ovn-secondary-network}
+
+You can create a network attachment definition (NAD) which describes how to attach a pod to the layer 2 overlay network.
+
+**Prerequisites**
+
+- You have access to the cluster as a user with `cluster-admin` privileges.
+- You have installed the OpenShift CLI (`oc`).
+
+**Procedure**
+
+1. Create a `NetworkAttachmentDefinition` object:
+
+   ```yaml
+   apiVersion: k8s.cni.cncf.io/v1
+   kind: NetworkAttachmentDefinition
+   metadata:
+     name: l2-network
+     namespace: my-namespace
+   spec:
+     config: |-
+       {
+               "cniVersion": "0.3.1",
+               "name": "my-namespace-l2-network",
+               "type": "ovn-k8s-cni-overlay",
+               "topology":"layer2",
+               "mtu": 1400,
+               "netAttachDefName": "my-namespace/l2-network"
+       }
+   ```
+
+   - `spec.config.cniVersion` defines the Container Network Interface (CNI) specification version. The required value is `0.3.1`.
+   - `spec.config.name` defines the name of the network. This attribute is not namespaced. For example, you can have a network named `l2-network` referenced from two different `NetworkAttachmentDefinition` objects that exist in two different namespaces. This feature is useful to connect VMs in different namespaces.
+   - `spec.config.type` defines the name of the CNI plugin. The required value is `ovn-k8s-cni-overlay`.
+   - `spec.config.topology` defines the topological configuration for the network. The required value is `layer2`.
+   - `spec.config.mtu` is optional and defines the maximum transmission unit (MTU) value. If you do not set a value, the Cluster Network Operator (CNO) sets a default MTU value by calculating the difference among the underlay MTU of the primary network interface, the overlay MTU of the pod network, such as the Geneve (Generic Network Virtualization Encapsulation), and byte capacity of any enabled features, such as IPsec.
+   - `spec.config.netAttachDefName` defines the value of the `namespace` and `name` fields in the `metadata` stanza of the `NetworkAttachmentDefinition` object.
+
+     > [!NOTE]
+     > The previous example configures a cluster-wide overlay without a subnet defined. This means that the logical switch implementing the network only provides layer 2 communication. You must configure an IP address when you create the virtual machine by either setting a static IP address or by deploying a DHCP server on the network for a dynamic IP address.
+2. Apply the manifest by running the following command:
+
+   ```terminal
+   $ oc apply -f <filename>.yaml
+   ```
+
+## Creating a NAD for layer 2 topology by using the web console {#virt-creating-nad-l2-overlay-console_virt-connecting-vm-to-ovn-secondary-network}
+
+You can create a network attachment definition (NAD) that describes how to attach a pod to the layer 2 overlay network.
+
+**Prerequisites**
+
+- You have access to the cluster as a user with `cluster-admin` privileges.
+
+**Procedure**
+
+1. Go to **Networking** -> **NetworkAttachmentDefinitions** in the web console.
+2. Click **Create Network Attachment Definition**. The network attachment definition must be in the same namespace as the pod or virtual machine using it.
+3. Enter a unique **Name** and optional **Description**.
+4. Select **OVN Kubernetes L2 overlay network** from the **Network Type** list.
+5. Click **Create**.
+
+## Attaching a virtual machine to an OVN-Kubernetes secondary network using the CLI {#virt-attaching-vm-to-ovn-secondary-nw-cli_virt-connecting-vm-to-ovn-secondary-network}
+
+You can connect a virtual machine (VM) to the OVN-Kubernetes secondary network by including the network details in the VM configuration.
+
+**Prerequisites**
+
+- You have access to the cluster as a user with `cluster-admin` privileges.
+- You have installed the OpenShift CLI (`oc`).
+
+**Procedure**
+
+1. Edit the `VirtualMachine` manifest to add the OVN-Kubernetes secondary network interface details, as in the following example:
+
+   ```yaml
+   apiVersion: kubevirt.io/v1
+   kind: VirtualMachine
+   metadata:
+     name: vm-server
+   spec:
+     runStrategy: Always
+     template:
+       spec:
+         domain:
+           devices:
+             interfaces:
+             - name: secondary
+               bridge: {}
+           resources:
+             requests:
+               memory: 1024Mi
+         networks:
+         - name: secondary
+           multus:
+             networkName: <nad_name>
+         nodeSelector:
+           node-role.kubernetes.io/worker: ''
+   # ...
+   ```
+
+   - `spec.template.spec.domain.devices.interfaces.name` specifies the name of the OVN-Kubernetes secondary interface.
+   - `spec.template.spec.networks.name` specifies the name of the network. This must match the value of the `spec.template.spec.domain.devices.interfaces.name` field.
+   - `spec.template.spec.networks.multus.networkName` specifies the name of the `NetworkAttachmentDefinition` object.
+   - `spec.template.spec.nodeSelector` specifies the nodes on which the VM can be scheduled. The recommended node selector value is `node-role.kubernetes.io/worker: ''`.
+2. Apply the `VirtualMachine` manifest:
+
+   ```terminal
+   $ oc apply -f <filename>.yaml
+   ```
+3. Optional: If you edited a running virtual machine, you must restart it for the changes to take effect.
+
 ## Additional resources {#additional-resources_virt-connecting-vm-to-ovn-secondary-network}
 
 - [Creating secondary networks on OVN-Kubernetes](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-ovnk#configuration-ovnk-additional-networks_configuring-additional-network-ovnk)

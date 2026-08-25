@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"idling-applications","text":"Reducing resource consumption with application idling"}];
+const headings = [{"depth":1,"slug":"idling-applications","text":"Reducing resource consumption with application idling"},{"depth":2,"slug":"idle-idling-applications_idling-applications","text":"Application idling"},{"depth":3,"slug":"idle-idling-applications-single_idling-applications","text":"Idling a single service"},{"depth":3,"slug":"idle-idling-applications-multiple_idling-applications","text":"Idling multiple services"},{"depth":2,"slug":"idle-unidling-applications_idling-applications","text":"Unidling applications"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/idling-applications";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["applications"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Reducing resource consumption with application idling {#idling-applications}\n\nAs an administrator, you can reduce cluster resource consumption and lower public cloud costs by temporarily scaling inactive application resources to zero replicas.\n\nIf any scalable resources are not in use, OpenShift Container Platform discovers and idles them by scaling their replicas to `0`. The next time network traffic is directed to the resources, the resources are unidled by scaling up the replicas, and normal operation continues.\n\nApplications are made of services, as well as other scalable resources, such as deployment configs. The action of idling an application involves idling all associated resources.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/idling-applications.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Reducing resource consumption with application idling {#idling-applications}\n\nAs an administrator, you can reduce cluster resource consumption and lower public cloud costs by temporarily scaling inactive application resources to zero replicas.\n\nIf any scalable resources are not in use, OpenShift Container Platform discovers and idles them by scaling their replicas to `0`. The next time network traffic is directed to the resources, the resources are unidled by scaling up the replicas, and normal operation continues.\n\nApplications are made of services, as well as other scalable resources, such as deployment configs. The action of idling an application involves idling all associated resources.\n\n## Application idling {#idle-idling-applications_idling-applications}\n\nIdentify the scalable resources for one or more services, such as deployment configurations and replication controllers, and scale them down to zero replicas to optimize cluster capacity.\n\nYou can use the `oc idle` command to idle a single service, or use the `--resource-names-file` option to idle multiple services.\n\n### Idling a single service {#idle-idling-applications-single_idling-applications}\n\nScale down the scalable resources of a specific service to zero replicas to reduce cluster consumption.\n\n**Procedure**\n\n1. To idle a single service, run:\n\n   ```terminal\n   $ oc idle <service>\n   ```\n\n### Idling multiple services {#idle-idling-applications-multiple_idling-applications}\n\nScale multiple inactive services down to zero replicas to optimize cluster capacity.\n\nIdling multiple services is helpful if an application spans across a set of services within a project, or when idling multiple services in conjunction with a script to idle multiple applications in bulk within the same project.\n\n**Procedure**\n\n1. Create a file containing a list of the services, each on their own line.\n2. Idle the services using the `--resource-names-file` option:\n\n   ```terminal\n   $ oc idle --resource-names-file <filename>\n   ```\n\n   > [!NOTE]\n   > The `idle` command is limited to a single project. For idling applications across a cluster, run the `idle` command for each project individually.\n\n## Unidling applications {#idle-unidling-applications_idling-applications}\n\nRestore normal application operations by scaling up the replicas when network traffic is directed back to the idled resources.\n\nApplication services become active again when they receive network traffic and are scaled back up to their previous state. This includes both traffic to the services and traffic passing through routes. Applications can also be manually unidled by scaling up the resources.\n\n**Procedure**\n\n- To scale up a DeploymentConfig, run:\n\n  ```terminal\n  $ oc scale --replicas=1 dc <dc_name>\n  ```\n\n  > [!NOTE]\n  > Automatic unidling by a router is currently only supported by the default HAProxy router.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/idling-applications.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,54 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="idling-applications" class="group scroll-mt-20">Reducing resource consumption with application idling<a href="#idling-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As an administrator, you can reduce cluster resource consumption and lower public cloud costs by temporarily scaling inactive application resources to zero replicas.</p>
       <p>If any scalable resources are not in use, OpenShift Container Platform discovers and idles them by scaling their replicas to <code>0</code>. The next time network traffic is directed to the resources, the resources are unidled by scaling up the replicas, and normal operation continues.</p>
       <p>Applications are made of services, as well as other scalable resources, such as deployment configs. The action of idling an application involves idling all associated resources.</p>
-      <p class="/modules/idle-idling-applications.md"></p>
-      <p class="/modules/idle-idling-applications-single.md"></p>
-      <p class="/modules/idle-idling-applications-multiple.md"></p>
-      <p class="/modules/idle-unidling-applications.md"></p>
+      <h2 id="idle-idling-applications_idling-applications" class="group scroll-mt-20">Application idling<a href="#idle-idling-applications_idling-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Identify the scalable resources for one or more services, such as deployment configurations and replication controllers, and scale them down to zero replicas to optimize cluster capacity.</p>
+      <p>You can use the <code>oc idle</code> command to idle a single service, or use the <code>--resource-names-file</code> option to idle multiple services.</p>
+      <h3 id="idle-idling-applications-single_idling-applications" class="group scroll-mt-20">Idling a single service<a href="#idle-idling-applications-single_idling-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Scale down the scalable resources of a specific service to zero replicas to reduce cluster consumption.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To idle a single service, run:
+      <CodeBlock code={"$ oc idle <service>"} lang="terminal" />
+      </li>
+      </ol>
+      <h3 id="idle-idling-applications-multiple_idling-applications" class="group scroll-mt-20">Idling multiple services<a href="#idle-idling-applications-multiple_idling-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Scale multiple inactive services down to zero replicas to optimize cluster capacity.</p>
+      <p>Idling multiple services is helpful if an application spans across a set of services within a project, or when idling multiple services in conjunction with a script to idle multiple applications in bulk within the same project.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create a file containing a list of the services, each on their own line.</li>
+      <li>
+      Idle the services using the <code>--resource-names-file</code> option:
+      <CodeBlock code={"$ oc idle --resource-names-file <filename>"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>idle</code> command is limited to a single project. For idling applications across a cluster, run the <code>idle</code> command for each project individually.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="idle-unidling-applications_idling-applications" class="group scroll-mt-20">Unidling applications<a href="#idle-unidling-applications_idling-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Restore normal application operations by scaling up the replicas when network traffic is directed back to the idled resources.</p>
+      <p>Application services become active again when they receive network traffic and are scaled back up to their previous state. This includes both traffic to the services and traffic passing through routes. Applications can also be manually unidled by scaling up the resources.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To scale up a DeploymentConfig, run:
+      <CodeBlock code={"$ oc scale --replicas=1 dc <dc_name>"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Automatic unidling by a router is currently only supported by the default HAProxy router.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

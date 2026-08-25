@@ -2,7 +2,7 @@
 // Source: hosted_control_planes/hcp-destroy/hcp-destroy-virt.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Destroying a hosted cluster on {{ VirtProductName }}\n---\n\n# Destroying a hosted cluster on {{ VirtProductName }} {#hcp-destroy-virt}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n";
+const body = "---\ntitle: Destroying a hosted cluster on {{ VirtProductName }}\n---\n\n# Destroying a hosted cluster on OpenShift Virtualization {#hcp-destroy-virt}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n\n## Destroying a hosted cluster on OpenShift Virtualization by using the CLI {#destroy-hc-virt-cli_hcp-destroy-virt}\n\nYou can use the command-line interface (CLI) to destroy a hosted cluster and its managed cluster resource on OpenShift Virtualization.\n\n**Procedure**\n\n1. Delete the managed cluster resource on multicluster engine Operator by running the following command:\n\n   ```terminal\n   $ oc delete managedcluster <hosted_cluster_name>\n   ```\n2. Delete the hosted cluster and its backend resources by running the following command:\n\n   ```terminal\n   $ hcp destroy cluster kubevirt --name <hosted_cluster_name>\n   ```\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

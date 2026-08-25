@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"windows-container-overview","text":"{{ productwinc }} overview"}];
+const headings = [{"depth":1,"slug":"windows-container-overview","text":"Red Hat OpenShift support for Windows Containers overview"},{"depth":2,"slug":"managing-windows-container-workloads_windows-container-overview","text":"Managing Windows container workloads"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/windows_containers";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ productwinc }} overview";
-const description = "You can use {{ productwinc }} to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat Windows Machine Config Operator…" || undefined;
+const description = "You can use Red Hat OpenShift support for Windows Containers to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +42,7 @@ const pageCategory = null;
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ productwinc }} overview {#windows-container-overview}\n\nYou can use {{ productwinc }} to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat Windows Machine Config Operator (WMCO) to install and manage Windows nodes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Red Hat OpenShift support for Windows Containers overview {#windows-container-overview}\n\nYou can use Red Hat OpenShift support for Windows Containers to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat Windows Machine Config Operator (WMCO) to install and manage Windows nodes.\n\n## Managing Windows container workloads {#managing-windows-container-workloads_windows-container-overview}\n\nWith a Red Hat subscription, you can get support for running Windows workloads in OpenShift Container Platform.\n\nWindows instances deployed by the WMCO are configured with the containerd container runtime. For more information, see the [release notes](/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes#windows-containers-release-notes).\n\nYou can add Windows nodes either by creating a [compute machine set](/openshift-docs-markdown/windows_containers/creating_windows_machinesets/creating-windows-machineset-aws#creating-windows-machineset-aws) or by specifying existing Bring-Your-Own-Host (BYOH) Windows instances through a [ConfigMap](/openshift-docs-markdown/windows_containers/byoh-windows-instance#byoh-windows-instance).\n\n> [!NOTE]\n> Compute machine sets are not supported for bare metal or provider agnostic clusters.\n\nFor workloads including both Linux and Windows, OpenShift Container Platform allows you to deploy Windows workloads running on Windows Server containers while also providing traditional Linux workloads hosted on Red Hat Enterprise Linux CoreOS (RHCOS) or Red Hat Enterprise Linux (RHEL). For more information, see [getting started with Windows container workloads](/openshift-docs-markdown/windows_containers/understanding-windows-container-workloads#understanding-windows-container-workloads).\n\nYou need the WMCO to run Windows workloads in your cluster. The WMCO orchestrates the process of deploying and managing Windows workloads on a cluster. For more information, see [how to enable Windows container workloads](/openshift-docs-markdown/windows_containers/enabling-windows-container-workloads#enabling-windows-container-workloads).\n\nYou can create a Windows `MachineSet` object to create infrastructure Windows machine sets and related machines so that you can move supported Windows workloads to the new Windows machines. You can create a Windows `MachineSet` object on multiple platforms.\n\nYou can [schedule Windows workloads](/openshift-docs-markdown/windows_containers/scheduling-windows-workloads#scheduling-windows-workloads) to Windows compute nodes.\n\nYou can [perform Windows Machine Config Operator upgrades](/openshift-docs-markdown/windows_containers/windows-node-upgrades#windows-node-upgrades) to ensure that your Windows nodes have the latest updates.\n\nYou can [remove a Windows node](/openshift-docs-markdown/windows_containers/removing-windows-nodes#removing-windows-nodes) by deleting a specific machine.\n\nYou can [use Bring-Your-Own-Host (BYOH) Windows instances](/openshift-docs-markdown/windows_containers/byoh-windows-instance#byoh-windows-instance) to repurpose Windows Server VMs and bring them to OpenShift Container Platform. BYOH Windows instances benefit users who are looking to mitigate major disruptions when a Windows server goes offline. You can use BYOH Windows instances as nodes on OpenShift Container Platform 4.8 and later versions.\n\nYou can [disable Windows container workloads](/openshift-docs-markdown/windows_containers/disabling-windows-container-workloads#disabling-windows-container-workloads) by performing the following:\n\n- Uninstalling the Windows Machine Config Operator\n- Deleting the Windows Machine Config Operator namespace\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +93,30 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="windows-container-overview" class="group scroll-mt-20">{"{"}{"{"} productwinc {"}"}{"}"} overview<a href="#windows-container-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use {"{"}{"{"} productwinc {"}"}{"}"} to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat Windows Machine Config Operator (WMCO) to install and manage Windows nodes.</p>
-      <p class="/modules/managing-windows-container-workloads.md"></p>
+      <h1 id="windows-container-overview" class="group scroll-mt-20">Red Hat OpenShift support for Windows Containers overview<a href="#windows-container-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can use Red Hat OpenShift support for Windows Containers to run Windows compute nodes in an OpenShift Container Platform cluster by using the Red Hat Windows Machine Config Operator (WMCO) to install and manage Windows nodes.</p>
+      <h2 id="managing-windows-container-workloads_windows-container-overview" class="group scroll-mt-20">Managing Windows container workloads<a href="#managing-windows-container-workloads_windows-container-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">With a Red Hat subscription, you can get support for running Windows workloads in OpenShift Container Platform.</p>
+      <p>Windows instances deployed by the WMCO are configured with the containerd container runtime. For more information, see the <a href="/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes#windows-containers-release-notes">release notes</a>.</p>
+      <p>You can add Windows nodes either by creating a <a href="/openshift-docs-markdown/windows_containers/creating_windows_machinesets/creating-windows-machineset-aws#creating-windows-machineset-aws">compute machine set</a> or by specifying existing Bring-Your-Own-Host (BYOH) Windows instances through a <a href="/openshift-docs-markdown/windows_containers/byoh-windows-instance#byoh-windows-instance">ConfigMap</a>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Compute machine sets are not supported for bare metal or provider agnostic clusters.</p>
+        </AlertDescription>
+      </Alert>
+      <p>For workloads including both Linux and Windows, OpenShift Container Platform allows you to deploy Windows workloads running on Windows Server containers while also providing traditional Linux workloads hosted on Red Hat Enterprise Linux CoreOS (RHCOS) or Red Hat Enterprise Linux (RHEL). For more information, see <a href="/openshift-docs-markdown/windows_containers/understanding-windows-container-workloads#understanding-windows-container-workloads">getting started with Windows container workloads</a>.</p>
+      <p>You need the WMCO to run Windows workloads in your cluster. The WMCO orchestrates the process of deploying and managing Windows workloads on a cluster. For more information, see <a href="/openshift-docs-markdown/windows_containers/enabling-windows-container-workloads#enabling-windows-container-workloads">how to enable Windows container workloads</a>.</p>
+      <p>You can create a Windows <code>MachineSet</code> object to create infrastructure Windows machine sets and related machines so that you can move supported Windows workloads to the new Windows machines. You can create a Windows <code>MachineSet</code> object on multiple platforms.</p>
+      <p>You can <a href="/openshift-docs-markdown/windows_containers/scheduling-windows-workloads#scheduling-windows-workloads">schedule Windows workloads</a> to Windows compute nodes.</p>
+      <p>You can <a href="/openshift-docs-markdown/windows_containers/windows-node-upgrades#windows-node-upgrades">perform Windows Machine Config Operator upgrades</a> to ensure that your Windows nodes have the latest updates.</p>
+      <p>You can <a href="/openshift-docs-markdown/windows_containers/removing-windows-nodes#removing-windows-nodes">remove a Windows node</a> by deleting a specific machine.</p>
+      <p>You can <a href="/openshift-docs-markdown/windows_containers/byoh-windows-instance#byoh-windows-instance">use Bring-Your-Own-Host (BYOH) Windows instances</a> to repurpose Windows Server VMs and bring them to OpenShift Container Platform. BYOH Windows instances benefit users who are looking to mitigate major disruptions when a Windows server goes offline. You can use BYOH Windows instances as nodes on OpenShift Container Platform 4.8 and later versions.</p>
+      <p>You can <a href="/openshift-docs-markdown/windows_containers/disabling-windows-container-workloads#disabling-windows-container-workloads">disable Windows container workloads</a> by performing the following:</p>
+      <ul>
+      <li>Uninstalling the Windows Machine Config Operator</li>
+      <li>Deleting the Windows Machine Config Operator namespace</li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

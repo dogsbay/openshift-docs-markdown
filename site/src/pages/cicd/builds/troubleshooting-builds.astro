@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"troubleshooting-builds_{{ context }}","text":"Troubleshooting builds"}];
+const headings = [{"depth":1,"slug":"troubleshooting-builds_{{ context }}","text":"Troubleshooting builds"},{"depth":2,"slug":"builds-troubleshooting-access-resources_troubleshooting-builds","text":"Resolving denial for access to resources"},{"depth":2,"slug":"builds-troubleshooting-service-certificate-generation_troubleshooting-builds","text":"Service certificate generation failure"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cicd/builds/troubleshooting-builds";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["cicd","cicd/builds"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting builds {#troubleshooting-builds_{{ context }}}\n\nUse the following to troubleshoot build issues.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/troubleshooting-builds.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting builds {#troubleshooting-builds_{{ context }}}\n\nUse the following to troubleshoot build issues.\n\n## Resolving denial for access to resources {#builds-troubleshooting-access-resources_troubleshooting-builds}\n\nIf your request for access to resources is denied:\n\nIssue\n:   A build fails with:\n\n```terminal\nrequested access to the resource is denied\n```\n\nResolution\n:   You have exceeded one of the image quotas set on your project. Check your current quota and verify the limits applied and storage in use:\n\n```terminal\n$ oc describe quota\n```\n\n## Service certificate generation failure {#builds-troubleshooting-service-certificate-generation_troubleshooting-builds}\n\nIf your request for access to resources is denied:\n\nIssue\n:   If a service certificate generation fails with (service’s `service.beta.openshift.io/serving-cert-generation-error` annotation contains):\n\n```terminal {title=\"Example output\"}\nsecret/ssl-key references serviceUID 62ad25ca-d703-11e6-9d6f-0e9c0057b608, which does not match 77b6dd80-d716-11e6-9d6f-0e9c0057b60\n```\n\nResolution\n:   The service that generated the certificate no longer exists, or has a different `serviceUID`. You must force certificates regeneration by removing the old secret, and clearing the following annotations on the service: `service.beta.openshift.io/serving-cert-generation-error` and `service.beta.openshift.io/serving-cert-generation-error-num`. To clear the annotations, enter the following commands:\n\n    ```terminal\n    $ oc delete secret <secret_name>\n    ```\n\n    ```terminal\n    $ oc annotate service <service_name> service.beta.openshift.io/serving-cert-generation-error-\n    ```\n\n    ```terminal\n    $ oc annotate service <service_name> service.beta.openshift.io/serving-cert-generation-error-num-\n    ```\n\n    > [!NOTE]\n    > The command removing an annotation has a `-` after the annotation name to be removed.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/troubleshooting-builds.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,41 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="troubleshooting-builds_{{ context }}" class="group scroll-mt-20">Troubleshooting builds<a href="#troubleshooting-builds_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Use the following to troubleshoot build issues.</p>
-      <p class="/modules/builds-troubleshooting-access-resources.md"></p>
-      <p class="/modules/builds-troubleshooting-service-certificate-generation.md"></p>
+      <h2 id="builds-troubleshooting-access-resources_troubleshooting-builds" class="group scroll-mt-20">Resolving denial for access to resources<a href="#builds-troubleshooting-access-resources_troubleshooting-builds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>If your request for access to resources is denied:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Issue</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A build fails with:</p></dd>
+      </dl>
+      <CodeBlock code={"requested access to the resource is denied"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Resolution</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You have exceeded one of the image quotas set on your project. Check your current quota and verify the limits applied and storage in use:</p></dd>
+      </dl>
+      <CodeBlock code={"$ oc describe quota"} lang="terminal" />
+      <h2 id="builds-troubleshooting-service-certificate-generation_troubleshooting-builds" class="group scroll-mt-20">Service certificate generation failure<a href="#builds-troubleshooting-service-certificate-generation_troubleshooting-builds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>If your request for access to resources is denied:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Issue</dt>
+      <dd class="ml-6 text-muted-foreground"><p>If a service certificate generation fails with (service’s <code>service.beta.openshift.io/serving-cert-generation-error</code> annotation contains):</p></dd>
+      </dl>
+      <CodeBlock code={"secret/ssl-key references serviceUID 62ad25ca-d703-11e6-9d6f-0e9c0057b608, which does not match 77b6dd80-d716-11e6-9d6f-0e9c0057b60"} lang="terminal" title="Example output" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Resolution</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>The service that generated the certificate no longer exists, or has a different <code>serviceUID</code>. You must force certificates regeneration by removing the old secret, and clearing the following annotations on the service: <code>service.beta.openshift.io/serving-cert-generation-error</code> and <code>service.beta.openshift.io/serving-cert-generation-error-num</code>. To clear the annotations, enter the following commands:</p>
+      <CodeBlock code={"$ oc delete secret <secret_name>"} lang="terminal" />
+      <CodeBlock code={"$ oc annotate service <service_name> service.beta.openshift.io/serving-cert-generation-error-"} lang="terminal" />
+      <CodeBlock code={"$ oc annotate service <service_name> service.beta.openshift.io/serving-cert-generation-error-num-"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The command removing an annotation has a <code>-</code> after the annotation name to be removed.</p>
+        </AlertDescription>
+      </Alert>
+      </dd>
+      </dl>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

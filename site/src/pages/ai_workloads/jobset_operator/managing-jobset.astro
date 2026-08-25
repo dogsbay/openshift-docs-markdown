@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"js-managing","text":"Managing workloads with the {{ js_operator }}"},{"depth":2,"slug":"js-managing_additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"js-managing","text":"Managing workloads with the JobSet Operator"},{"depth":2,"slug":"js-config_js-managing","text":"Deploying a JobSet"},{"depth":2,"slug":"js-coordinator_js-managing","text":"Specifying a JobSet coordinator"},{"depth":2,"slug":"js-failure-policy_js-managing","text":"Failure policy configuration for JobSet Operator"},{"depth":3,"slug":"jobset-failure-policy-actions_js-managing","text":"Failure policy actions"},{"depth":3,"slug":"jobset-rule-attributes_js-managing","text":"Rule-targeting attributes"},{"depth":3,"slug":"jobset-rule-config-example_js-managing","text":"Configuration example"},{"depth":2,"slug":"js-volume-claim-policies_js-managing","text":"Configuring volume claim policies for JobSet Operator"},{"depth":2,"slug":"js-managing_additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/jobset_operator/managing-jobset";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Managing workloads with the {{ js_operator }}";
-const description = "Use the {{ js_operator }} on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and…" || undefined;
+const description = "Use the JobSet Operator on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["ai_workloads","ai_workloads/jobset_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing workloads with the {{ js_operator }} {#js-managing}\n\nUse the {{ js_operator }} on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently.\n\n## Additional resources {#js-managing_additional-resources}\n\n- [JobSet documentation (Kubernetes)](https://jobset.sigs.k8s.io/docs/overview/)\n- [Failure Policy (Kubernetes)](https://jobset.sigs.k8s.io/docs/tasks/failure_policy/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/managing-jobset.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing workloads with the JobSet Operator {#js-managing}\n\nUse the JobSet Operator on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently.\n\n## Deploying a JobSet {#js-config_js-managing}\n\nYou can use the JobSet Operator to deploy a JobSet to manage and run large-scale, coordinated workloads.\n\n**Prerequisites**\n\n- You have installed the JobSet Operator.\n- You have a cluster with available NVIDIA GPUs.\n\n**Procedure**\n\n1. Create a new project by running the following command:\n\n   ```terminal\n   $ oc new-project <my_namespace>\n   ```\n2. Create a file named `jobset.yaml`:\n\n   ```yaml\n   apiVersion: jobset.x-k8s.io/v1alpha2\n   kind: JobSet\n   metadata:\n     name: pytorch\n   spec:\n     replicatedJobs:\n     - name: workers\n       template:\n         spec:\n           parallelism: 3\n           completions: 3\n           backoffLimit: 0\n           template:\n             spec:\n               imagePullSecrets:\n                 - name: my-registry-secret\n               initContainers:\n                 - name: prepare\n                   image: docker.io/alpine/git:v2.52.0\n                   args: ['clone', 'https://github.com/pytorch/examples']\n                   volumeMounts:\n                     - name: workdir\n                       mountPath: /git\n               containers:\n                 - name: pytorch\n                   image: docker.io/pytorch/pytorch:2.10.0-cuda13.0-cudnn9-runtime\n                   resources:\n                     limits:\n                       nvidia.com/gpu: \"1\"\n                     requests:\n                       nvidia.com/gpu: \"1\"\n                   ports:\n                   - containerPort: 4321\n                   env:\n                   - name: MASTER_ADDR\n                     value: \"pytorch-workers-0-0.pytorch\"\n                   - name: MASTER_PORT\n                     value: \"4321\"\n                   - name: RANK\n                     valueFrom:\n                       fieldRef:\n                         fieldPath: metadata.annotations['batch.kubernetes.io/job-completion-index']\n                   - name: PYTHONUNBUFFERED\n                     value: \"0\"\n                   command:\n                   - /bin/sh\n                   - -c\n                   - |\n                     cd examples/distributed/ddp-tutorial-series\n                     torchrun --nproc_per_node=1 --nnodes=3 --rdzv_id=100 --rdzv_backend=c10d --rdzv_endpoint=$MASTER_ADDR:$MASTER_PORT multinode.py 1000 100\n                   volumeMounts:\n                     - name: workdir\n                       mountPath: /workspace\n               volumes:\n                 - name: workdir\n                   emptyDir: {}\n   ```\n\n   where:\n\n   `spec.replicatedJobs.template.spec.parallelism`\n   :   Specifies the number of pods running at the same time.\n\n   `spec.replicatedJobs.template.spec.completions`\n   :   Specifies the total number of pods that must finish successfully for the job to be marked complete.\n3. Apply the JobSet configuration by running the following command:\n\n   ```terminal\n   $ oc apply -f jobset.yaml\n   ```\n\n**Verification**\n\n- Verify that pods were started by running the following command:\n\n  ```terminal\n  $ oc get pods -n <my_namespace>\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                        READY   STATUS    RESTARTS   AGE\n  pytorch-workers-0-0-2lzwt   1/1     Running   0          2m17s\n  pytorch-workers-0-1-g2lrv   1/1     Running   0          2m17s\n  pytorch-workers-0-2-dpljq   1/1     Running   0          2m17s\n  ```\n\n## Specifying a JobSet coordinator {#js-coordinator_js-managing}\n\nTo manage communication between JobSet pods, you can assign a specific JobSet coordinator pod. This ensures that your distributed workloads can reference a stable network endpoint as a central point of coordination for task synchronization and data exchange.\n\n**Prerequisites**\n\n- You have installed the JobSet Operator.\n\n**Procedure**\n\n1. Create a new namespace by running the following command.\n\n   ```terminal\n   $ oc new-project <new_namespace>\n   ```\n2. Create a YAML file called `jobset-coordinator.yaml`:\n\n   ```yaml {title=\"Example YAML file\"}\n   apiVersion: jobset.x-k8s.io/v1alpha2\n   kind: JobSet\n   metadata:\n     name: coordinator\n   spec:\n     coordinator:\n       replicatedJob: driver\n       jobIndex: 0\n       podIndex: 0\n     replicatedJobs:\n     - name: workers\n       template:\n         spec:\n           parallelism: <pods_running_number>\n           completions: <pods_finish_number>\n           backoffLimit: 0\n           template:\n             spec:\n               containers:\n               - name: worker\n                 env:\n                   - name: COORDINATOR_ENDPOINT\n                     valueFrom:\n                       fieldRef:\n                         fieldPath: metadata.labels['jobset.sigs.k8s.io/coordinator']\n                 image: quay.io/nginx/nginx-unprivileged:1.29-alpine\n                 command: [ \"/bin/sh\", \"-c\" ]\n                 args:\n                   - |\n                     while ! curl -s \"${COORDINATOR_ENDPOINT}:8080\" | grep Welcome; do\n                       sleep 3\n                     done\n                     sleep 100\n     - name: driver\n       template:\n         spec:\n           parallelism: <pods_running_number>\n           completions: <pods_finish_number>\n           backoffLimit: 0\n           template:\n             spec:\n               containers:\n               - name: driver\n                 image: quay.io/nginx/nginx-unprivileged:1.29-alpine\n               ports:\n                 - containerPort: 8080\n                   protocol: TCP\n   ```\n\n   where:\n\n   `<pods_running_number>`\n   :   Specifies the number of pods running at the same time.\n\n   `<pods_finish_number>`\n   :   Specifies the total number of pods that must finish successfully for the job to be marked complete.\n3. Apply the `jobset-coordinator.yaml` file by running the following command:\n\n   ```terminal\n   $ oc apply -f jobset-coordinator.yaml\n   ```\n\n**Verification**\n\n- Verify that pods were created by running the following command:\n\n  ```terminal\n  $ oc get pods -n <new_namespace>\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                            READY   STATUS              RESTARTS   AGE\n  coordinator-driver-0-0-svgk7    1/1     Running             0          67s\n  coordinator-workers-0-0-57jvg   1/1     Running             0          67s\n  coordinator-workers-0-1-mghvx   1/1     Running             0          67s\n  coordinator-workers-0-2-7cnvv   1/1     Running             0          67s\n  ```\n\n## Failure policy configuration for JobSet Operator {#js-failure-policy_js-managing}\n\nTo control workload behavior in response to child job failures, you can configure a JobSet failure policy. This enables you to define specific actions, such as restarting or failing the entire JobSet, based on the failure reason or the specific replicated job affected.\n\n### Failure policy actions {#jobset-failure-policy-actions_js-managing}\n\nThese actions are available when a job failure matches a defined rule.\n\n| Action | Description |\n| --- | --- |\n| `FailJobSet` | Marks the entire JobSet as failed immediately. |\n| `RestartJobSet` | Restarts the JobSet by recreating all child jobs. This action counts toward the `maxRestarts` limit. This is the default action if no rules match. |\n| `RestartJobSetAndIgnoreMaxRestarts` | Restarts the JobSet without counting toward the `maxRestarts` limit. |\n\n### Rule-targeting attributes {#jobset-rule-attributes_js-managing}\n\nUse the following attributes to define failure rules.\n\n| Attribute | Description |\n| --- | --- |\n| `targetReplicatedJobs` | Specifies which replicated jobs trigger the rule. |\n| `onJobFailureReasons` | Triggers the rule based on the specific job failure reason. Valid values include `BackoffLimitExceeded`, `DeadlineExceeded`, and `PodFailurePolicy`. |\n\n### Configuration example {#jobset-rule-config-example_js-managing}\n\nThis configuration marks the JobSet as failed if the `leader` job fails.\n\n```yaml {title=\"Example of a YAML file to mark the job set failed if the leader fails\"}\napiVersion: jobset.x-k8s.io/v1alpha2\nkind: JobSet\nmetadata:\n  name: failjobset-action-example\nspec:\n  failurePolicy:\n    maxRestarts: 3\n    rules:\n      - action: FailJobSet\n        targetReplicatedJobs:\n        - leader\n  replicatedJobs:\n  - name: leader\n    replicas: 1\n    template:\n      spec:\n        backoffLimit: 0\n        completions: 2\n        parallelism: 2\n        template:\n          spec:\n            containers:\n            - name: leader\n              image: docker.io/bash:latest\n              command:\n              - bash\n              - -xc\n              - |\n                echo \"JOB_COMPLETION_INDEX=$JOB_COMPLETION_INDEX\"\n                if [[ \"$JOB_COMPLETION_INDEX\" == \"0\" ]]; then\n                  for i in $(seq 10 -1 1)\n                  do\n                    echo \"Sleeping in $i\"\n                    sleep 1\n                  done\n                  exit 1\n                fi\n                for i in $(seq 1 1000)\n                do\n                  echo \"$i\"\n                  sleep 1\n                done\n  - name: workers\n    replicas: 1\n    template:\n      spec:\n        backoffLimit: 0\n        completions: 2\n        parallelism: 2\n        template:\n          spec:\n            containers:\n            - name: worker\n              image: docker.io/bash:latest\n              command:\n              - bash\n              - -xc\n              - |\n                sleep 1000\n```\n\n> [!NOTE]\n> The `InPlaceRestart` alpha feature is not currently supported on the JobSet Operator.\n\n## Configuring volume claim policies for JobSet Operator {#js-volume-claim-policies_js-managing}\n\nYou can configure a JobSet to automatically create and manage shared persistent volume claims (PVCs) across multiple replicated jobs. This is useful for workloads that require shared access to datasets, models, or checkpoints.\n\n**Prerequisites**\n\n- You have the JobSet Operator installed in your cluster.\n- You have set a default storage class or chosen a storage class for your workload.\n\n**Procedure**\n\n1. Define the volume templates in the `spec.volumeClaimPolicies` section of your JobSet YAML file.\n\n   ```yaml\n   apiVersion: jobset.x-k8s.io/v1alpha2\n   kind: JobSet\n   metadata:\n     name: <job_name>\n   spec:\n     volumeClaimPolicies:\n       - templates:\n           - metadata:\n               name: <persistent_volume_claim_name_prefix>\n             spec:\n               accessModes: [\"ReadWriteOnce\"]\n               storageClassName: mystorageclass\n               resources:\n                 requests:\n                   storage: 1Gi\n         retentionPolicy:\n           whenDeleted: Retain\n   ```\n\n   where:\n\n   `<job_name>`\n   :   Specifies your unique identifier for your jobs within your namespace.\n\n   `<persistent_volume_claim_name>`\n   :   Specifies the name for the PVC. The name used here will also be used as the `volumeMounts` name. A volume will be automatically added to the pod that will mount a PVC created with a name in the format of `<persistent_volume_claim_name>-<job_name>`.\n\n   `<deletion_retention_policy>`\n   :   Specifies the deletion retention policy. Optionally, you can keep data after the JobSet is deleted by setting this value to `Retain`.\n2. In your `replicatedJobs` configuration, add a `volumeMount` that matches the template name you defined.\n\n   ```yaml\n   apiVersion: jobset.x-k8s.io/v1alpha2\n   kind: JobSet\n   metadata:\n     name: <job_name>\n   spec:\n     replicatedJobs:\n     - name: workers\n       template:\n         spec:\n           parallelism: 2\n           completions: 2\n           backoffLimit: 0\n           template:\n             spec:\n               imagePullSecrets:\n                 - name: my-registry-secret\n               initContainers:\n                 - name: prepare\n                   image: docker.io/alpine/git:v2.52.0\n                   args: ['clone', 'https://github.com/pytorch/examples']\n                   volumeMounts:\n                     - name: <persistent_volume_claim_name>\n                       mountPath: /git/checkpoint\n   #...\n   ```\n3. Apply the JobSet configuration by running the following command:\n\n   ```terminal\n   $ oc apply -f <jobset_yaml>\n   ```\n\n**Verification**\n\n- Verify that the PVCs were created using the naming convention `<claim_name>-<jobset_name>`:\n\n  ```terminal\n  $ oc get pvc\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE\n  pvc-1       Bound    pvc-385996a0-70af-4791-aa8e-9e6459e6b123   3Gi        RWO            file-storage   3d\n  pvc-2       Bound    pvc-8aeddd4d-aad5-4039-8d04-640a71c9a72d   12Gi       RWO            file-storage   3d\n  pvc-3       Bound    pvc-0050144d-940c-4c4e-a23a-2a660a5490eb   12Gi       RWO            file-storage   3d\n  ```\n\n## Additional resources {#js-managing_additional-resources}\n\n- [JobSet documentation (Kubernetes)](https://jobset.sigs.k8s.io/docs/overview/)\n- [Failure Policy (Kubernetes)](https://jobset.sigs.k8s.io/docs/tasks/failure_policy/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/managing-jobset.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,13 +100,173 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="js-managing" class="group scroll-mt-20">Managing workloads with the {"{"}{"{"} js_operator {"}"}{"}"}<a href="#js-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Use the {"{"}{"{"} js_operator {"}"}{"}"} on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently.</p>
-      <p class="/modules/jobset-config.md"></p>
-      <p class="/modules/jobset-coordinator.md"></p>
-      <p class="/modules/jobset-failure-policy.md"></p>
-      <p class="/modules/jobset-volume-claim-policies.md"></p>
+      <h1 id="js-managing" class="group scroll-mt-20">Managing workloads with the JobSet Operator<a href="#js-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Use the JobSet Operator on OpenShift Container Platform to manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. Features like multi-template job support and stable networking can help you recover quickly and use resources efficiently.</p>
+      <h2 id="js-config_js-managing" class="group scroll-mt-20">Deploying a JobSet<a href="#js-config_js-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the JobSet Operator to deploy a JobSet to manage and run large-scale, coordinated workloads.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the JobSet Operator.</li>
+      <li>You have a cluster with available NVIDIA GPUs.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a new project by running the following command:
+      <CodeBlock code={"$ oc new-project <my_namespace>"} lang="terminal" />
+      </li>
+      <li>
+      Create a file named <code>jobset.yaml</code>:
+      <CodeBlock code={"apiVersion: jobset.x-k8s.io/v1alpha2\nkind: JobSet\nmetadata:\n  name: pytorch\nspec:\n  replicatedJobs:\n  - name: workers\n    template:\n      spec:\n        parallelism: 3\n        completions: 3\n        backoffLimit: 0\n        template:\n          spec:\n            imagePullSecrets:\n              - name: my-registry-secret\n            initContainers:\n              - name: prepare\n                image: docker.io/alpine/git:v2.52.0\n                args: ['clone', 'https://github.com/pytorch/examples']\n                volumeMounts:\n                  - name: workdir\n                    mountPath: /git\n            containers:\n              - name: pytorch\n                image: docker.io/pytorch/pytorch:2.10.0-cuda13.0-cudnn9-runtime\n                resources:\n                  limits:\n                    nvidia.com/gpu: \"1\"\n                  requests:\n                    nvidia.com/gpu: \"1\"\n                ports:\n                - containerPort: 4321\n                env:\n                - name: MASTER_ADDR\n                  value: \"pytorch-workers-0-0.pytorch\"\n                - name: MASTER_PORT\n                  value: \"4321\"\n                - name: RANK\n                  valueFrom:\n                    fieldRef:\n                      fieldPath: metadata.annotations['batch.kubernetes.io/job-completion-index']\n                - name: PYTHONUNBUFFERED\n                  value: \"0\"\n                command:\n                - /bin/sh\n                - -c\n                - |\n                  cd examples/distributed/ddp-tutorial-series\n                  torchrun --nproc_per_node=1 --nnodes=3 --rdzv_id=100 --rdzv_backend=c10d --rdzv_endpoint=$MASTER_ADDR:$MASTER_PORT multinode.py 1000 100\n                volumeMounts:\n                  - name: workdir\n                    mountPath: /workspace\n            volumes:\n              - name: workdir\n                emptyDir: {}"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.replicatedJobs.template.spec.parallelism</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the number of pods running at the same time.</p></dd>
+      <dt class="font-semibold"><code>spec.replicatedJobs.template.spec.completions</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the total number of pods that must finish successfully for the job to be marked complete.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the JobSet configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f jobset.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that pods were started by running the following command:
+      <CodeBlock code={"$ oc get pods -n <my_namespace>"} lang="terminal" />
+      <CodeBlock code={"NAME                        READY   STATUS    RESTARTS   AGE\npytorch-workers-0-0-2lzwt   1/1     Running   0          2m17s\npytorch-workers-0-1-g2lrv   1/1     Running   0          2m17s\npytorch-workers-0-2-dpljq   1/1     Running   0          2m17s"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="js-coordinator_js-managing" class="group scroll-mt-20">Specifying a JobSet coordinator<a href="#js-coordinator_js-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To manage communication between JobSet pods, you can assign a specific JobSet coordinator pod. This ensures that your distributed workloads can reference a stable network endpoint as a central point of coordination for task synchronization and data exchange.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the JobSet Operator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a new namespace by running the following command.
+      <CodeBlock code={"$ oc new-project <new_namespace>"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file called <code>jobset-coordinator.yaml</code>:
+      <CodeBlock code={"apiVersion: jobset.x-k8s.io/v1alpha2\nkind: JobSet\nmetadata:\n  name: coordinator\nspec:\n  coordinator:\n    replicatedJob: driver\n    jobIndex: 0\n    podIndex: 0\n  replicatedJobs:\n  - name: workers\n    template:\n      spec:\n        parallelism: <pods_running_number>\n        completions: <pods_finish_number>\n        backoffLimit: 0\n        template:\n          spec:\n            containers:\n            - name: worker\n              env:\n                - name: COORDINATOR_ENDPOINT\n                  valueFrom:\n                    fieldRef:\n                      fieldPath: metadata.labels['jobset.sigs.k8s.io/coordinator']\n              image: quay.io/nginx/nginx-unprivileged:1.29-alpine\n              command: [ \"/bin/sh\", \"-c\" ]\n              args:\n                - |\n                  while ! curl -s \"${COORDINATOR_ENDPOINT}:8080\" | grep Welcome; do\n                    sleep 3\n                  done\n                  sleep 100\n  - name: driver\n    template:\n      spec:\n        parallelism: <pods_running_number>\n        completions: <pods_finish_number>\n        backoffLimit: 0\n        template:\n          spec:\n            containers:\n            - name: driver\n              image: quay.io/nginx/nginx-unprivileged:1.29-alpine\n            ports:\n              - containerPort: 8080\n                protocol: TCP"} lang="yaml" title="Example YAML file" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;pods_running_number&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the number of pods running at the same time.</p></dd>
+      <dt class="font-semibold"><code>&lt;pods_finish_number&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the total number of pods that must finish successfully for the job to be marked complete.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the <code>jobset-coordinator.yaml</code> file by running the following command:
+      <CodeBlock code={"$ oc apply -f jobset-coordinator.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that pods were created by running the following command:
+      <CodeBlock code={"$ oc get pods -n <new_namespace>"} lang="terminal" />
+      <CodeBlock code={"NAME                            READY   STATUS              RESTARTS   AGE\ncoordinator-driver-0-0-svgk7    1/1     Running             0          67s\ncoordinator-workers-0-0-57jvg   1/1     Running             0          67s\ncoordinator-workers-0-1-mghvx   1/1     Running             0          67s\ncoordinator-workers-0-2-7cnvv   1/1     Running             0          67s"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="js-failure-policy_js-managing" class="group scroll-mt-20">Failure policy configuration for JobSet Operator<a href="#js-failure-policy_js-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To control workload behavior in response to child job failures, you can configure a JobSet failure policy. This enables you to define specific actions, such as restarting or failing the entire JobSet, based on the failure reason or the specific replicated job affected.</p>
+      <h3 id="jobset-failure-policy-actions_js-managing" class="group scroll-mt-20">Failure policy actions<a href="#jobset-failure-policy-actions_js-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>These actions are available when a job failure matches a defined rule.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Action</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>FailJobSet</code></TableCell>
+      <TableCell>Marks the entire JobSet as failed immediately.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>RestartJobSet</code></TableCell>
+      <TableCell>Restarts the JobSet by recreating all child jobs. This action counts toward the <code>maxRestarts</code> limit. This is the default action if no rules match.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>RestartJobSetAndIgnoreMaxRestarts</code></TableCell>
+      <TableCell>Restarts the JobSet without counting toward the <code>maxRestarts</code> limit.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="jobset-rule-attributes_js-managing" class="group scroll-mt-20">Rule-targeting attributes<a href="#jobset-rule-attributes_js-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Use the following attributes to define failure rules.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Attribute</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>targetReplicatedJobs</code></TableCell>
+      <TableCell>Specifies which replicated jobs trigger the rule.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>onJobFailureReasons</code></TableCell>
+      <TableCell>Triggers the rule based on the specific job failure reason. Valid values include <code>BackoffLimitExceeded</code>, <code>DeadlineExceeded</code>, and <code>PodFailurePolicy</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="jobset-rule-config-example_js-managing" class="group scroll-mt-20">Configuration example<a href="#jobset-rule-config-example_js-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>This configuration marks the JobSet as failed if the <code>leader</code> job fails.</p>
+      <CodeBlock code={"apiVersion: jobset.x-k8s.io/v1alpha2\nkind: JobSet\nmetadata:\n  name: failjobset-action-example\nspec:\n  failurePolicy:\n    maxRestarts: 3\n    rules:\n      - action: FailJobSet\n        targetReplicatedJobs:\n        - leader\n  replicatedJobs:\n  - name: leader\n    replicas: 1\n    template:\n      spec:\n        backoffLimit: 0\n        completions: 2\n        parallelism: 2\n        template:\n          spec:\n            containers:\n            - name: leader\n              image: docker.io/bash:latest\n              command:\n              - bash\n              - -xc\n              - |\n                echo \"JOB_COMPLETION_INDEX=$JOB_COMPLETION_INDEX\"\n                if [[ \"$JOB_COMPLETION_INDEX\" == \"0\" ]]; then\n                  for i in $(seq 10 -1 1)\n                  do\n                    echo \"Sleeping in $i\"\n                    sleep 1\n                  done\n                  exit 1\n                fi\n                for i in $(seq 1 1000)\n                do\n                  echo \"$i\"\n                  sleep 1\n                done\n  - name: workers\n    replicas: 1\n    template:\n      spec:\n        backoffLimit: 0\n        completions: 2\n        parallelism: 2\n        template:\n          spec:\n            containers:\n            - name: worker\n              image: docker.io/bash:latest\n              command:\n              - bash\n              - -xc\n              - |\n                sleep 1000\n"} lang="yaml" title="Example of a YAML file to mark the job set failed if the leader fails" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>InPlaceRestart</code> alpha feature is not currently supported on the JobSet Operator.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="js-volume-claim-policies_js-managing" class="group scroll-mt-20">Configuring volume claim policies for JobSet Operator<a href="#js-volume-claim-policies_js-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure a JobSet to automatically create and manage shared persistent volume claims (PVCs) across multiple replicated jobs. This is useful for workloads that require shared access to datasets, models, or checkpoints.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have the JobSet Operator installed in your cluster.</li>
+      <li>You have set a default storage class or chosen a storage class for your workload.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Define the volume templates in the <code>spec.volumeClaimPolicies</code> section of your JobSet YAML file.
+      <CodeBlock code={"apiVersion: jobset.x-k8s.io/v1alpha2\nkind: JobSet\nmetadata:\n  name: <job_name>\nspec:\n  volumeClaimPolicies:\n    - templates:\n        - metadata:\n            name: <persistent_volume_claim_name_prefix>\n          spec:\n            accessModes: [\"ReadWriteOnce\"]\n            storageClassName: mystorageclass\n            resources:\n              requests:\n                storage: 1Gi\n      retentionPolicy:\n        whenDeleted: Retain"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;job_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies your unique identifier for your jobs within your namespace.</p></dd>
+      <dt class="font-semibold"><code>&lt;persistent_volume_claim_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name for the PVC. The name used here will also be used as the <code>volumeMounts</code> name. A volume will be automatically added to the pod that will mount a PVC created with a name in the format of <code>&lt;persistent_volume_claim_name&gt;-&lt;job_name&gt;</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;deletion_retention_policy&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the deletion retention policy. Optionally, you can keep data after the JobSet is deleted by setting this value to <code>Retain</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      In your <code>replicatedJobs</code> configuration, add a <code>volumeMount</code> that matches the template name you defined.
+      <CodeBlock code={"apiVersion: jobset.x-k8s.io/v1alpha2\nkind: JobSet\nmetadata:\n  name: <job_name>\nspec:\n  replicatedJobs:\n  - name: workers\n    template:\n      spec:\n        parallelism: 2\n        completions: 2\n        backoffLimit: 0\n        template:\n          spec:\n            imagePullSecrets:\n              - name: my-registry-secret\n            initContainers:\n              - name: prepare\n                image: docker.io/alpine/git:v2.52.0\n                args: ['clone', 'https://github.com/pytorch/examples']\n                volumeMounts:\n                  - name: <persistent_volume_claim_name>\n                    mountPath: /git/checkpoint\n#..."} lang="yaml" />
+      </li>
+      <li>
+      Apply the JobSet configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f <jobset_yaml>"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the PVCs were created using the naming convention <code>&lt;claim_name&gt;-&lt;jobset_name&gt;</code>:
+      <CodeBlock code={"$ oc get pvc"} lang="terminal" />
+      <CodeBlock code={"NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE\npvc-1       Bound    pvc-385996a0-70af-4791-aa8e-9e6459e6b123   3Gi        RWO            file-storage   3d\npvc-2       Bound    pvc-8aeddd4d-aad5-4039-8d04-640a71c9a72d   12Gi       RWO            file-storage   3d\npvc-3       Bound    pvc-0050144d-940c-4c4e-a23a-2a660a5490eb   12Gi       RWO            file-storage   3d"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
       <h2 id="js-managing_additional-resources" class="group scroll-mt-20">Additional resources<a href="#js-managing_additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://jobset.sigs.k8s.io/docs/overview/">JobSet documentation (Kubernetes)</a></li>

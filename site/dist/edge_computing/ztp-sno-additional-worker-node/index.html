@@ -1,23 +1,1004 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Expanding single-node OpenShift clusters with GitOps ZTP | OpenShift Container Platform</title><meta name="description" content="You can expand {{ sno }} clusters with {{ ztp_first }}. When you add a worker node to {{ sno }} clusters, the original {{ sno }} cluster retains the…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Expanding single-node OpenShift clusters with GitOps ZTP"><meta property="og:description" content="You can expand {{ sno }} clusters with {{ ztp_first }}. When you add a worker node to {{ sno }} clusters, the original {{ sno }} cluster retains the…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Expanding single-node OpenShift clusters with GitOps ZTP"><meta name="twitter:description" content="You can expand {{ sno }} clusters with {{ ztp_first }}. When you add a worker node to {{ sno }} clusters, the original {{ sno }} cluster retains the…"><script>
+<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Expanding single-node OpenShift clusters with GitOps ZTP | OpenShift Container Platform</title><meta name="description" content="You can expand single-node OpenShift clusters with GitOps Zero Touch Provisioning (ZTP). When you add a worker node to single-node OpenShift clusters, the…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Expanding single-node OpenShift clusters with GitOps ZTP"><meta property="og:description" content="You can expand single-node OpenShift clusters with GitOps Zero Touch Provisioning (ZTP). When you add a worker node to single-node OpenShift clusters, the…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Expanding single-node OpenShift clusters with GitOps ZTP"><meta name="twitter:description" content="You can expand single-node OpenShift clusters with GitOps Zero Touch Provisioning (ZTP). When you add a worker node to single-node OpenShift clusters, the…"><script>
       if (localStorage.getItem("theme") === "dark") {
         document.documentElement.classList.add("dark");
       }
-    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BTNukzuO.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Expanding single-node OpenShift clusters with GitOps ZTP</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Expanding single-node OpenShift clusters with GitOps ZTP {#ztp-sno-additional-worker-node}
+    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BrFMoueR.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Expanding single-node OpenShift clusters with GitOps ZTP</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Expanding single-node OpenShift clusters with GitOps ZTP {#ztp-sno-additional-worker-node}
 
-You can expand {{ sno }} clusters with {{ ztp_first }}. When you add a worker node to {{ sno }} clusters, the original {{ sno }} cluster retains the control plane node role. Adding a worker node does not require any downtime for the existing {{ sno }} cluster.
+You can expand single-node OpenShift clusters with GitOps Zero Touch Provisioning (ZTP). When you add a worker node to single-node OpenShift clusters, the original single-node OpenShift cluster retains the control plane node role. Adding a worker node does not require any downtime for the existing single-node OpenShift cluster.
 
 > [!NOTE]
-> You can only expand a {{ sno }} cluster with one additional worker node. It is not recommended to expand a {{ sno }} cluster with more than one worker node.
+> You can only expand a single-node OpenShift cluster with one additional worker node. It is not recommended to expand a single-node OpenShift cluster with more than one worker node.
 
-If you require workload partitioning on the worker node, you must deploy and remediate the managed cluster policies on the hub cluster before installing the node. This way, the workload partitioning `MachineConfig` objects are rendered and associated with the `worker` machine config pool before the {{ ztp }} workflow applies the `MachineConfig` ignition file to the worker node.
+If you require workload partitioning on the worker node, you must deploy and remediate the managed cluster policies on the hub cluster before installing the node. This way, the workload partitioning `MachineConfig` objects are rendered and associated with the `worker` machine config pool before the GitOps ZTP workflow applies the `MachineConfig` ignition file to the worker node.
 
 It is recommended that you first remediate the policies, and then install the worker node. If you create the workload partitioning manifests after installing the worker node, you must drain the node manually and delete all the pods managed by daemon sets. When the managing daemon sets create the new pods, the new pods undergo the workload partitioning process.
 
+> [!IMPORTANT]
+> Adding a worker node to single-node OpenShift clusters with GitOps ZTP is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+>
+> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+
 **Additional resources**
 
-- [Reference configuration for deploying vDUs on {{ sno }}](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)
-- [Adding worker nodes to {{ sno }} clusters](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
+- [Reference configuration for deploying vDUs on single-node OpenShift](/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu)
+- [Adding worker nodes to single-node OpenShift clusters](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes)
 - [Removing managed cluster nodes by using the command line interface](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.10/html/clusters/cluster_mce_overview#auto-remove-host-steps-cli)
 
-{% include &quot;./modules/ztp-worker-node-node-selector-compatibility.md&quot; %}
-"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fztp-sno-additional-worker-node.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fztp-sno-additional-worker-node.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fztp-sno-additional-worker-node.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fztp-sno-additional-worker-node.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:edge_computing" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><article class="docs-prose"><h1 id="ztp-sno-additional-worker-node" class="group scroll-mt-20">Expanding single-node OpenShift clusters with GitOps ZTP<a href="#ztp-sno-additional-worker-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p class="/_attributes/common-attributes.md"></p><p>You can expand {{ sno }} clusters with {{ ztp_first }}. When you add a worker node to {{ sno }} clusters, the original {{ sno }} cluster retains the control plane node role. Adding a worker node does not require any downtime for the existing {{ sno }} cluster.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>You can only expand a {{ sno }} cluster with one additional worker node. It is not recommended to expand a {{ sno }} cluster with more than one worker node.</p></div></div><p>If you require workload partitioning on the worker node, you must deploy and remediate the managed cluster policies on the hub cluster before installing the node. This way, the workload partitioning <code>MachineConfig</code> objects are rendered and associated with the <code>worker</code> machine config pool before the {{ ztp }} workflow applies the <code>MachineConfig</code> ignition file to the worker node.</p><p class="/snippets/technology-preview.md">It is recommended that you first remediate the policies, and then install the worker node. If you create the workload partitioning manifests after installing the worker node, you must drain the node manually and delete all the pods managed by daemon sets. When the managing daemon sets create the new pods, the new pods undergo the workload partitioning process.</p><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu">Reference configuration for deploying vDUs on {{ sno }}</a></li><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes">Adding worker nodes to {{ sno }} clusters</a></li><li><a href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.10/html/clusters/cluster_mce_overview#auto-remove-host-steps-cli">Removing managed cluster nodes by using the command line interface</a></li></ul><p class="/modules/ztp-worker-node-daemon-selector-compatibility.md"></p><p class="/modules/ztp-worker-node-preparing-policies.md /modules/ztp-worker-node-preparing-policies.md">{% include "./modules/ztp-worker-node-node-selector-compatibility.md" %} </p><p class="/modules/ztp-adding-worker-nodes.md"></p></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Updating managed clusters with the Topology Aware Lifecycle Manager</div></div></a><a href="/openshift-docs-markdown/edge_computing/ztp-precaching-tool" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Pre-caching images for single-node OpenShift deployments</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>
+## Applying profiles to the worker node with PolicyGenerator or PolicyGenTemplate resources {#ztp-additional-worker-apply-du-profile_sno-additional-worker}
+
+You can configure the additional worker node with a DU profile.
+
+You can apply a RAN distributed unit (DU) profile to the worker node cluster using the GitOps Zero Touch Provisioning (ZTP) common, group, and site-specific `PolicyGenerator` or  `PolicyGenTemplate` resources. The GitOps ZTP pipeline that is linked to the ArgoCD `policies` application includes the following CRs that you can find in the relevant `out/argocd/example` folder when you extract the `ztp-site-generate` container:
+
+/acmpolicygenerator resources
+:   - `acm-common-ranGen.yaml`
+    - `acm-group-du-sno-ranGen.yaml`
+    - `acm-example-sno-site.yaml`
+    - `ns.yaml`
+    - `kustomization.yaml`
+
+/policygentemplates resources
+:   - `common-ranGen.yaml`
+    - `group-du-sno-ranGen.yaml`
+    - `example-sno-site.yaml`
+    - `ns.yaml`
+    - `kustomization.yaml`
+
+Configuring the DU profile on the worker node is considered an upgrade. To initiate the upgrade flow, you must update the existing policies or create additional ones. Then, you must create a `ClusterGroupUpgrade` CR to reconcile the policies in the group of clusters.
+
+## Ensuring PTP and SR-IOV daemon selector compatibility {#ztp-additional-worker-daemon-selector-comp_sno-additional-worker}
+
+If the DU profile was deployed using the GitOps Zero Touch Provisioning (ZTP) plugin version 4.11 or earlier, the PTP and SR-IOV Operators might be configured to place the daemons only on nodes labeled as `master`. This configuration prevents the PTP and SR-IOV daemons from operating on the worker node. If the PTP and SR-IOV daemon node selectors are incorrectly configured on your system, you must change the daemons before proceeding with the worker DU profile configuration.
+
+**Procedure**
+
+1. Check the daemon node selector settings of the PTP Operator on one of the spoke clusters:
+
+   ```terminal
+   $ oc get ptpoperatorconfig/default -n openshift-ptp -ojsonpath='{.spec}' | jq
+   ```
+
+   The following is example output for the PTP Operator:
+
+   ```json
+   {&quot;daemonNodeSelector&quot;:{&quot;node-role.kubernetes.io/master&quot;:&quot;&quot;}}
+   ```
+
+   - If the node selector is set to `master`, the spoke was deployed with the version of the GitOps ZTP plugin that requires changes.
+2. Check the daemon node selector settings of the SR-IOV Operator on one of the spoke clusters:
+
+   ```terminal
+   $  oc get sriovoperatorconfig/default -n \
+   openshift-sriov-network-operator -ojsonpath='{.spec}' | jq
+   ```
+
+   The following is example output for the SR-IOV Operator:
+
+   ```json
+   {&quot;configDaemonNodeSelector&quot;:{&quot;node-role.kubernetes.io/worker&quot;:&quot;&quot;},&quot;disableDrain&quot;:false,&quot;enableInjector&quot;:true,&quot;enableOperatorWebhook&quot;:true}
+   ```
+
+   - If the node selector is set to `master`, the spoke was deployed with the version of the GitOps ZTP plugin that requires changes.
+3. In the group policy, add the following `complianceType` and `spec` entries:
+
+   ```yaml
+   spec:
+       - fileName: PtpOperatorConfig.yaml
+         policyName: &quot;config-policy&quot;
+         complianceType: mustonlyhave
+         spec:
+           daemonNodeSelector:
+             node-role.kubernetes.io/worker: &quot;&quot;
+       - fileName: SriovOperatorConfig.yaml
+         policyName: &quot;config-policy&quot;
+         complianceType: mustonlyhave
+         spec:
+           configDaemonNodeSelector:
+             node-role.kubernetes.io/worker: &quot;&quot;
+   ```
+
+   > [!IMPORTANT]
+   > Changing the `daemonNodeSelector` field causes temporary PTP synchronization loss and SR-IOV connectivity loss.
+4. Commit the changes in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.
+
+## PTP and SR-IOV node selector compatibility {#ztp-additional-worker-node-selector-comp_sno-additional-worker}
+
+The PTP configuration resources and SR-IOV network node policies use `node-role.kubernetes.io/master: &quot;&quot;` as the node selector. If the additional worker node has the same NIC configuration as the control plane node, the policies used to configure the control plane node can be reused for the worker node. However, the node selector must be changed to select both node types, for example with the `&quot;node-role.kubernetes.io/worker&quot;` label.
+
+## Using PolicyGenerator CRs to apply worker node policies to the worker node {#ztp-additional-worker-policies-PolicyGenerator_sno-additional-worker}
+
+You can create policies for the additional worker node by using `{{ policy_gen_cr }}` CRs.
+
+**Procedure**
+
+1. Create the following `{{ policy_gen_cr }}` CR:
+
+```yaml
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+    name: example-sno-workers
+placementBindingDefaults:
+    name: example-sno-workers-placement-binding
+policyDefaults:
+    namespace: example-sno
+    placement:
+        labelSelector:
+            matchExpressions:
+                - key: sites
+                  operator: In
+                  values:
+                    - example-sno
+    remediationAction: inform
+    severity: low
+    namespaceSelector:
+        exclude:
+            - kube-*
+        include:
+            - '*'
+    evaluationInterval:
+        compliant: 10m
+        noncompliant: 10s
+policies:
+    - name: example-sno-workers-config-policy
+      policyAnnotations:
+        ran.openshift.io/ztp-deploy-wave: &quot;10&quot;
+      manifests:
+        - path: source-crs/PerformanceProfile-MCP-worker.yaml
+          patches:
+            - metadata:
+                name: openshift-worker-node-performance-profile
+              spec:
+                cpu:
+                    isolated: 4-47
+                    reserved: 0-3
+                hugepages:
+                    defaultHugepagesSize: 1G
+                    pages:
+                        - count: 32
+                          size: 1G
+                realTimeKernel:
+                    enabled: true
+        - path: source-crs/TunedPerformancePatch-MCP-worker.yaml
+          patches:
+            - metadata:
+                name: performance-patch-worker
+              spec:
+                profile:
+                    - data: |
+                      [main]
+                      summary=Configuration changes profile inherited from performance created tuned
+                      include=openshift-node-performance-openshift-worker-node-performance-profile
+                      [bootloader]
+                      cmdline_crash=nohz_full=4-47
+                      [sysctl]
+                      kernel.timer_migration=1
+                      [scheduler]
+                      group.ice-ptp=0:f:10:*:ice-ptp.*
+                      [service]
+                      service.stalld=start,enable
+                      service.chronyd=stop,disable
+                      name: performance-patch-worker
+                recommend:
+                    - profile: performance-patch-worker
+```
+
+- `policyDefaults.placement.labelSelector.matchExpressions` — The policies are applied to all clusters with this label.
+- `spec.cpu.isolated` and `spec.cpu.reserved` in the `PerformanceProfile-MCP-worker.yaml` manifest — These fields must be configured for each specific hardware platform.
+- `cmdline_crash` in the `TunedPerformancePatch-MCP-worker.yaml` manifest — The `nohz_full` CPU set must match the `cpu.isolated` set in the `PerformanceProfile` section.
+
+  You can generate the content of `crio` and `kubelet` configuration files.
+
+1. Add the created policy template to the Git repository monitored by the ArgoCD `policies` application.
+2. Add the policy in the `kustomization.yaml` file.
+3. Commit the changes in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.
+4. To remediate the new policies to your spoke cluster, create a TALM custom resource:
+
+   ```terminal
+   $ cat <<EOF | oc apply -f -
+   apiVersion: ran.openshift.io/v1alpha1
+   kind: ClusterGroupUpgrade
+   metadata:
+     name: example-sno-worker-policies
+     namespace: default
+   spec:
+     backup: false
+     clusters:
+     - example-sno
+     enable: true
+     managedPolicies:
+     - group-du-sno-config-policy
+     - example-sno-workers-config-policy
+     - example-sno-config-policy
+     preCaching: false
+     remediationStrategy:
+       maxConcurrency: 1
+   EOF
+   ```
+
+## Using PolicyGenTemplate CRs to apply worker node policies to the worker node {#ztp-additional-worker-policies-PolicyGenTemplate_sno-additional-worker}
+
+You can create policies for the additional worker node by using `{{ policy_gen_cr }}` CRs.
+
+**Procedure**
+
+1. Create the following `{{ policy_gen_cr }}` CR:
+
+```yaml
+apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: &quot;example-sno-workers&quot;
+  namespace: &quot;example-sno&quot;
+spec:
+  bindingRules:
+    sites: &quot;example-sno&quot;
+  mcp: &quot;worker&quot;
+  sourceFiles:
+    - fileName: MachineConfigGeneric.yaml
+      policyName: &quot;config-policy&quot;
+      metadata:
+        labels:
+          machineconfiguration.openshift.io/role: worker
+        name: enable-workload-partitioning
+      spec:
+        config:
+          storage:
+            files:
+            - contents:
+                source: data:text/plain;charset=utf-8;base64,W2NyaW8ucnVudGltZS53b3JrbG9hZHMubWFuYWdlbWVudF0KYWN0aXZhdGlvbl9hbm5vdGF0aW9uID0gInRhcmdldC53b3JrbG9hZC5vcGVuc2hpZnQuaW8vbWFuYWdlbWVudCIKYW5ub3RhdGlvbl9wcmVmaXggPSAicmVzb3VyY2VzLndvcmtsb2FkLm9wZW5zaGlmdC5pbyIKcmVzb3VyY2VzID0geyAiY3B1c2hhcmVzIiA9IDAsICJjcHVzZXQiID0gIjAtMyIgfQo=
+              mode: 420
+              overwrite: true
+              path: /etc/crio/crio.conf.d/01-workload-partitioning
+              user:
+                name: root
+            - contents:
+                source: data:text/plain;charset=utf-8;base64,ewogICJtYW5hZ2VtZW50IjogewogICAgImNwdXNldCI6ICIwLTMiCiAgfQp9Cg==
+              mode: 420
+              overwrite: true
+              path: /etc/kubernetes/openshift-workload-pinning
+              user:
+                name: root
+    - fileName: PerformanceProfile.yaml
+      policyName: &quot;config-policy&quot;
+      metadata:
+        name: openshift-worker-node-performance-profile
+      spec:
+        cpu:
+          isolated: &quot;4-47&quot;
+          reserved: &quot;0-3&quot;
+        hugepages:
+          defaultHugepagesSize: 1G
+          pages:
+            - size: 1G
+              count: 32
+        realTimeKernel:
+          enabled: true
+    - fileName: TunedPerformancePatch.yaml
+      policyName: &quot;config-policy&quot;
+      metadata:
+        name: performance-patch-worker
+      spec:
+        profile:
+          - name: performance-patch-worker
+            data: |
+              [main]
+              summary=Configuration changes profile inherited from performance created tuned
+              include=openshift-node-performance-openshift-worker-node-performance-profile
+              [bootloader]
+              cmdline_crash=nohz_full=4-47
+              [sysctl]
+              kernel.timer_migration=1
+              [scheduler]
+              group.ice-ptp=0:f:10:*:ice-ptp.*
+              [service]
+              service.stalld=start,enable
+              service.chronyd=stop,disable
+        recommend:
+        - profile: performance-patch-worker
+```
+
+- `spec.bindingRules.sites` — The policies are applied to all clusters with this label.
+- `spec.mcp` — The `MCP` field must be set to `worker`.
+- `MachineConfigGeneric.yaml` in `spec.sourceFiles` — This generic `MachineConfig` CR is used to configure workload partitioning on the worker node.
+- `spec.cpu.isolated` and `spec.cpu.reserved` in the `PerformanceProfile.yaml` manifest — These fields must be configured for each particular hardware platform.
+- `cmdline_crash` in the `TunedPerformancePatch.yaml` manifest — The `nohz_full` CPU set must match the `cpu.isolated` set in the `PerformanceProfile` section.
+
+  You can generate the content of `crio` and `kubelet` configuration files.
+
+1. Add the created policy template to the Git repository monitored by the ArgoCD `policies` application.
+2. Add the policy in the `kustomization.yaml` file.
+3. Commit the changes in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.
+4. To remediate the new policies to your spoke cluster, create a TALM custom resource:
+
+   ```terminal
+   $ cat <<EOF | oc apply -f -
+   apiVersion: ran.openshift.io/v1alpha1
+   kind: ClusterGroupUpgrade
+   metadata:
+     name: example-sno-worker-policies
+     namespace: default
+   spec:
+     backup: false
+     clusters:
+     - example-sno
+     enable: true
+     managedPolicies:
+     - group-du-sno-config-policy
+     - example-sno-workers-config-policy
+     - example-sno-config-policy
+     preCaching: false
+     remediationStrategy:
+       maxConcurrency: 1
+   EOF
+   ```
+
+## Adding an additional worker node single-node OpenShift clusters with GitOps ZTP {#ztp-additional-worker-sno-proc_sno-additional-worker}
+
+You can add an additional worker node to existing single-node OpenShift clusters to increase available CPU resources in the cluster.
+
+**Prerequisites**
+
+- Install and configure RHACM 2.12 or later in an OpenShift Container Platform 4.11 or later bare-metal hub cluster
+- Install Topology Aware Lifecycle Manager in the hub cluster
+- Install Red Hat OpenShift GitOps in the hub cluster
+- Use the GitOps ZTP `ztp-site-generate` container image version 4.12 or later
+- Deploy a managed single-node OpenShift cluster with GitOps ZTP
+- Configure the Central Infrastructure Management as described in the RHACM documentation
+- Configure the DNS serving the cluster to resolve the internal API endpoint `api-int.<cluster_name>.<base_domain>`
+
+**Procedure**
+
+1. If you deployed your cluster by using the `example-sno.yaml` `ClusterInstance` CR, add your new worker node to the `spec.nodes` list:
+
+   ```yaml
+   apiVersion: siteconfig.open-cluster-management.io/v1alpha1
+   kind: ClusterInstance
+   metadata:
+     name: &quot;example-sno&quot;
+     namespace: &quot;example-sno&quot;
+   spec:
+     # ... existing cluster configuration ...
+     nodes:
+         - hostName: &quot;example-sno.example.com&quot;
+           role: &quot;master&quot;
+           # ... existing master node configuration ...
+         - hostName: &quot;example-node2.example.com&quot;
+           role: &quot;worker&quot;
+           bmcAddress: &quot;idrac-virtualmedia+https://[1111:2222:3333:4444::bbbb:1]/redfish/v1/Systems/System.Embedded.1&quot;
+           bmcCredentialsName:
+             name: &quot;example-node2-bmh-secret&quot;
+           bootMACAddress: &quot;AA:BB:CC:DD:EE:11&quot;
+           bootMode: &quot;UEFI&quot;
+           nodeNetwork:
+             interfaces:
+               - name: eno1
+                 macAddress: &quot;AA:BB:CC:DD:EE:11&quot;
+             config:
+               interfaces:
+                 - name: eno1
+                   type: ethernet
+                   state: up
+                   macAddress: &quot;AA:BB:CC:DD:EE:11&quot;
+                   ipv4:
+                     enabled: false
+                   ipv6:
+                     enabled: true
+                     address:
+                     - ip: 1111:2222:3333:4444::1
+                       prefix-length: 64
+               dns-resolver:
+                 config:
+                   search:
+                   - example.com
+                   server:
+                   - 1111:2222:3333:4444::2
+               routes:
+                 config:
+                 - destination: ::/0
+                   next-hop-interface: eno1
+                   next-hop-address: 1111:2222:3333:4444::1
+                   table-id: 254
+   ```
+2. Create a BMC authentication secret for the new host, as referenced by the `bmcCredentialsName` field in the `spec.nodes` section of your `ClusterInstance` CR:
+
+   ```yaml
+   apiVersion: v1
+   data:
+     password: &quot;password&quot;
+     username: &quot;username&quot;
+   kind: Secret
+   metadata:
+     name: &quot;example-node2-bmh-secret&quot;
+     namespace: example-sno
+   type: Opaque
+   ```
+3. Commit the changes in Git, and then push to the Git repository that is being monitored by the GitOps ZTP ArgoCD application.
+
+   When the ArgoCD `cluster` application synchronizes, two new manifests appear on the hub cluster generated by the SiteConfig Operator:
+
+   - `BareMetalHost`
+   - `NMStateConfig`
+
+     > [!IMPORTANT]
+     > The `cpuset` field should not be configured for the worker node. Workload partitioning for the worker node is added through management policies after the node installation is complete.
+
+**Verification**
+
+You can monitor the installation process in several ways.
+
+- Check if the preprovisioning images are created by running the following command:
+
+  ```terminal
+  $ oc get ppimg -n example-sno
+  ```
+
+  The following is example output:
+
+  ```terminal
+  NAMESPACE       NAME            READY   REASON
+  example-sno     example-sno     True    ImageCreated
+  example-sno     example-node2   True    ImageCreated
+  ```
+- Check the state of the bare-metal hosts:
+
+  ```terminal
+  $ oc get bmh -n example-sno
+  ```
+
+  The following is example output:
+
+  ```terminal
+  NAME            STATE          CONSUMER   ONLINE   ERROR   AGE
+  example-sno     provisioned               true             69m
+  example-node2   provisioning              true             4m50s
+  ```
+
+  - The `provisioning` state indicates that node booting from the installation media is in progress.
+- Continuously monitor the installation process:
+
+  1. Watch the agent install process by running the following command:
+
+     ```terminal
+     $ oc get agent -n example-sno --watch
+     ```
+
+     The following is example output:
+
+     ```terminal
+     NAME                                   CLUSTER   APPROVED   ROLE     STAGE
+     671bc05d-5358-8940-ec12-d9ad22804faa   example-sno   true       master   Done
+     [...]
+     14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Starting installation
+     14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Installing
+     14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Writing image to disk
+     [...]
+     14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Waiting for control plane
+     [...]
+     14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Rebooting
+     14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Done
+     ```
+  2. When the worker node installation is finished, the worker node certificates are approved automatically. At this point, the worker appears in the `ManagedClusterInfo` status. Run the following command to see the status:
+
+     ```terminal
+     $ oc get managedclusterinfo/example-sno -n example-sno -o \
+     jsonpath='{range .status.nodeList[*]}{.name}{&quot;\t&quot;}{.conditions}{&quot;\t&quot;}{.labels}{&quot;\n&quot;}{end}'
+     ```
+
+     The following is example output:
+
+     ```terminal
+     example-sno	[{&quot;status&quot;:&quot;True&quot;,&quot;type&quot;:&quot;Ready&quot;}]	{&quot;node-role.kubernetes.io/master&quot;:&quot;&quot;,&quot;node-role.kubernetes.io/worker&quot;:&quot;&quot;}
+     example-node2	[{&quot;status&quot;:&quot;True&quot;,&quot;type&quot;:&quot;Ready&quot;}]	{&quot;node-role.kubernetes.io/worker&quot;:&quot;&quot;}
+     ```
+"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-sno-additional-worker-node.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fztp-sno-additional-worker-node.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fztp-sno-additional-worker-node.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fztp-sno-additional-worker-node.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fedge_computing%2Fztp-sno-additional-worker-node.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:edge_computing" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><details class="dba-toc-top not-prose mb-6 rounded-md border" data-toc-top data-astro-cid-vg5xjwtk><summary class="cursor-pointer list-none px-3 py-2 text-sm font-medium text-muted-foreground" data-astro-cid-vg5xjwtk>On this page</summary><div class="border-t px-3 py-2" data-astro-cid-vg5xjwtk><nav class="text-sm" aria-label="Table of contents"><ul class="mt-2 space-y-1"><li><a href="#ztp-additional-worker-apply-du-profile_sno-additional-worker" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ztp-additional-worker-apply-du-profile_sno-additional-worker">Applying profiles to the worker node with PolicyGenerator or PolicyGenTemplate resources</a></li><li><a href="#ztp-additional-worker-daemon-selector-comp_sno-additional-worker" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ztp-additional-worker-daemon-selector-comp_sno-additional-worker">Ensuring PTP and SR-IOV daemon selector compatibility</a></li><li><a href="#ztp-additional-worker-node-selector-comp_sno-additional-worker" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ztp-additional-worker-node-selector-comp_sno-additional-worker">PTP and SR-IOV node selector compatibility</a></li><li><a href="#ztp-additional-worker-policies-PolicyGenerator_sno-additional-worker" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ztp-additional-worker-policies-PolicyGenerator_sno-additional-worker">Using PolicyGenerator CRs to apply worker node policies to the worker node</a></li><li><a href="#ztp-additional-worker-policies-PolicyGenTemplate_sno-additional-worker" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ztp-additional-worker-policies-PolicyGenTemplate_sno-additional-worker">Using PolicyGenTemplate CRs to apply worker node policies to the worker node</a></li><li><a href="#ztp-additional-worker-sno-proc_sno-additional-worker" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="ztp-additional-worker-sno-proc_sno-additional-worker">Adding an additional worker node single-node OpenShift clusters with GitOps ZTP</a></li></ul></nav></div></details><article class="docs-prose"><h1 id="ztp-sno-additional-worker-node" class="group scroll-mt-20">Expanding single-node OpenShift clusters with GitOps ZTP<a href="#ztp-sno-additional-worker-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>You can expand single-node OpenShift clusters with GitOps Zero Touch Provisioning (ZTP). When you add a worker node to single-node OpenShift clusters, the original single-node OpenShift cluster retains the control plane node role. Adding a worker node does not require any downtime for the existing single-node OpenShift cluster.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>You can only expand a single-node OpenShift cluster with one additional worker node. It is not recommended to expand a single-node OpenShift cluster with more than one worker node.</p></div></div><p>If you require workload partitioning on the worker node, you must deploy and remediate the managed cluster policies on the hub cluster before installing the node. This way, the workload partitioning <code>MachineConfig</code> objects are rendered and associated with the <code>worker</code> machine config pool before the GitOps ZTP workflow applies the <code>MachineConfig</code> ignition file to the worker node.</p><p>It is recommended that you first remediate the policies, and then install the worker node. If you create the workload partitioning manifests after installing the worker node, you must drain the node manually and delete all the pods managed by daemon sets. When the managing daemon sets create the new pods, the new pods undergo the workload partitioning process.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>Adding a worker node to single-node OpenShift clusters with GitOps ZTP is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p><p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p></div></div><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu#sno-configure-for-vdu">Reference configuration for deploying vDUs on single-node OpenShift</a></li><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#nodes-sno-worker-nodes">Adding worker nodes to single-node OpenShift clusters</a></li><li><a href="https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.10/html/clusters/cluster_mce_overview#auto-remove-host-steps-cli">Removing managed cluster nodes by using the command line interface</a></li></ul><h2 id="ztp-additional-worker-apply-du-profile_sno-additional-worker" class="group scroll-mt-20">Applying profiles to the worker node with PolicyGenerator or PolicyGenTemplate resources<a href="#ztp-additional-worker-apply-du-profile_sno-additional-worker" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can configure the additional worker node with a DU profile.</p><p>You can apply a RAN distributed unit (DU) profile to the worker node cluster using the GitOps Zero Touch Provisioning (ZTP) common, group, and site-specific <code>PolicyGenerator</code> or  <code>PolicyGenTemplate</code> resources. The GitOps ZTP pipeline that is linked to the ArgoCD <code>policies</code> application includes the following CRs that you can find in the relevant <code>out/argocd/example</code> folder when you extract the <code>ztp-site-generate</code> container:</p><dl class="my-4 space-y-2"><dt class="font-semibold">/acmpolicygenerator resources</dt><dd class="ml-6 text-muted-foreground"><ul><li><code>acm-common-ranGen.yaml</code></li><li><code>acm-group-du-sno-ranGen.yaml</code></li><li><code>acm-example-sno-site.yaml</code></li><li><code>ns.yaml</code></li><li><code>kustomization.yaml</code></li></ul></dd><dt class="font-semibold">/policygentemplates resources</dt><dd class="ml-6 text-muted-foreground"><ul><li><code>common-ranGen.yaml</code></li><li><code>group-du-sno-ranGen.yaml</code></li><li><code>example-sno-site.yaml</code></li><li><code>ns.yaml</code></li><li><code>kustomization.yaml</code></li></ul></dd></dl><p>Configuring the DU profile on the worker node is considered an upgrade. To initiate the upgrade flow, you must update the existing policies or create additional ones. Then, you must create a <code>ClusterGroupUpgrade</code> CR to reconcile the policies in the group of clusters.</p><h2 id="ztp-additional-worker-daemon-selector-comp_sno-additional-worker" class="group scroll-mt-20">Ensuring PTP and SR-IOV daemon selector compatibility<a href="#ztp-additional-worker-daemon-selector-comp_sno-additional-worker" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">If the DU profile was deployed using the GitOps Zero Touch Provisioning (ZTP) plugin version 4.11 or earlier, the PTP and SR-IOV Operators might be configured to place the daemons only on nodes labeled as <code>master</code>. This configuration prevents the PTP and SR-IOV daemons from operating on the worker node. If the PTP and SR-IOV daemon node selectors are incorrectly configured on your system, you must change the daemons before proceeding with the worker DU profile configuration.</p><p><strong>Procedure</strong></p><ol><li>Check the daemon node selector settings of the PTP Operator on one of the spoke clusters:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc get ptpoperatorconfig/default -n openshift-ptp -ojsonpath='{.spec}' | jq" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> get</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> ptpoperatorconfig/default</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -n</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> openshift-ptp</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -ojsonpath=</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">'{.spec}'</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> |</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657"> jq</span></span></code></pre></div></div><script type="module">function e(){document.querySelectorAll(`[data-component='code-block'] [data-part='copy']`).forEach(e=>{e.__copyBound||(e.__copyBound=!0,e.addEventListener(`click`,async()=>{let t=e.getAttribute(`data-copy-text`)||``;try{await navigator.clipboard.writeText(t);let n=e.querySelector(`[data-copy-icon]`),r=e.querySelector(`[data-check-icon]`);n&&r&&(n.classList.add(`hidden`),r.classList.remove(`hidden`),setTimeout(()=>{n.classList.remove(`hidden`),r.classList.add(`hidden`)},2e3))}catch{}}))})}e(),document.addEventListener(`astro:after-swap`,e);</script><p>The following is example output for the PTP Operator:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">json</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="{&quot;daemonNodeSelector&quot;:{&quot;node-role.kubernetes.io/master&quot;:&quot;&quot;}}" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">{</span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">"daemonNodeSelector"</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:{</span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">"node-role.kubernetes.io/master"</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">""</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">}}</span></span></code></pre></div></div><ul><li>If the node selector is set to <code>master</code>, the spoke was deployed with the version of the GitOps ZTP plugin that requires changes.</li></ul></li><li>Check the daemon node selector settings of the SR-IOV Operator on one of the spoke clusters:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$  oc get sriovoperatorconfig/default -n \
+openshift-sriov-network-operator -ojsonpath='{.spec}' | jq" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> get</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> sriovoperatorconfig/default</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -n</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> \</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">openshift-sriov-network-operator </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">-ojsonpath=</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">'{.spec}'</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> |</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657"> jq</span></span></code></pre></div></div><p>The following is example output for the SR-IOV Operator:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">json</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="{&quot;configDaemonNodeSelector&quot;:{&quot;node-role.kubernetes.io/worker&quot;:&quot;&quot;},&quot;disableDrain&quot;:false,&quot;enableInjector&quot;:true,&quot;enableOperatorWebhook&quot;:true}" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="json"><code><span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">{</span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">"configDaemonNodeSelector"</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:{</span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">"node-role.kubernetes.io/worker"</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">""</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">},</span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">"disableDrain"</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">false</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">,</span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">"enableInjector"</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">true</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">,</span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">"enableOperatorWebhook"</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">true</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">}</span></span></code></pre></div></div><ul><li>If the node selector is set to <code>master</code>, the spoke was deployed with the version of the GitOps ZTP plugin that requires changes.</li></ul></li><li>In the group policy, add the following <code>complianceType</code> and <code>spec</code> entries:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="spec:
+    - fileName: PtpOperatorConfig.yaml
+      policyName: &quot;config-policy&quot;
+      complianceType: mustonlyhave
+      spec:
+        daemonNodeSelector:
+          node-role.kubernetes.io/worker: &quot;&quot;
+    - fileName: SriovOperatorConfig.yaml
+      policyName: &quot;config-policy&quot;
+      complianceType: mustonlyhave
+      spec:
+        configDaemonNodeSelector:
+          node-role.kubernetes.io/worker: &quot;&quot;" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">fileName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">PtpOperatorConfig.yaml</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      policyName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"config-policy"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      complianceType</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">mustonlyhave</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        daemonNodeSelector</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          node-role.kubernetes.io/worker</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">""</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">fileName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">SriovOperatorConfig.yaml</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      policyName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"config-policy"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      complianceType</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">mustonlyhave</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        configDaemonNodeSelector</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          node-role.kubernetes.io/worker</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">""</span></span></code></pre></div></div><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>Changing the <code>daemonNodeSelector</code> field causes temporary PTP synchronization loss and SR-IOV connectivity loss.</p></div></div></li><li>Commit the changes in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.</li></ol><h2 id="ztp-additional-worker-node-selector-comp_sno-additional-worker" class="group scroll-mt-20">PTP and SR-IOV node selector compatibility<a href="#ztp-additional-worker-node-selector-comp_sno-additional-worker" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p>The PTP configuration resources and SR-IOV network node policies use <code>node-role.kubernetes.io/master: ""</code> as the node selector. If the additional worker node has the same NIC configuration as the control plane node, the policies used to configure the control plane node can be reused for the worker node. However, the node selector must be changed to select both node types, for example with the <code>"node-role.kubernetes.io/worker"</code> label.</p><h2 id="ztp-additional-worker-policies-PolicyGenerator_sno-additional-worker" class="group scroll-mt-20">Using PolicyGenerator CRs to apply worker node policies to the worker node<a href="#ztp-additional-worker-policies-PolicyGenerator_sno-additional-worker" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can create policies for the additional worker node by using <code>{{ policy_gen_cr }}</code> CRs.</p><p><strong>Procedure</strong></p><ol><li>Create the following <code>{{ policy_gen_cr }}</code> CR:</li></ol><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+    name: example-sno-workers
+placementBindingDefaults:
+    name: example-sno-workers-placement-binding
+policyDefaults:
+    namespace: example-sno
+    placement:
+        labelSelector:
+            matchExpressions:
+                - key: sites
+                  operator: In
+                  values:
+                    - example-sno
+    remediationAction: inform
+    severity: low
+    namespaceSelector:
+        exclude:
+            - kube-*
+        include:
+            - '*'
+    evaluationInterval:
+        compliant: 10m
+        noncompliant: 10s
+policies:
+    - name: example-sno-workers-config-policy
+      policyAnnotations:
+        ran.openshift.io/ztp-deploy-wave: &quot;10&quot;
+      manifests:
+        - path: source-crs/PerformanceProfile-MCP-worker.yaml
+          patches:
+            - metadata:
+                name: openshift-worker-node-performance-profile
+              spec:
+                cpu:
+                    isolated: 4-47
+                    reserved: 0-3
+                hugepages:
+                    defaultHugepagesSize: 1G
+                    pages:
+                        - count: 32
+                          size: 1G
+                realTimeKernel:
+                    enabled: true
+        - path: source-crs/TunedPerformancePatch-MCP-worker.yaml
+          patches:
+            - metadata:
+                name: performance-patch-worker
+              spec:
+                profile:
+                    - data: |
+                      [main]
+                      summary=Configuration changes profile inherited from performance created tuned
+                      include=openshift-node-performance-openshift-worker-node-performance-profile
+                      [bootloader]
+                      cmdline_crash=nohz_full=4-47
+                      [sysctl]
+                      kernel.timer_migration=1
+                      [scheduler]
+                      group.ice-ptp=0:f:10:*:ice-ptp.*
+                      [service]
+                      service.stalld=start,enable
+                      service.chronyd=stop,disable
+                      name: performance-patch-worker
+                recommend:
+                    - profile: performance-patch-worker" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">policy.open-cluster-management.io/v1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">PolicyGenerator</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">example-sno-workers</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">placementBindingDefaults</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">example-sno-workers-placement-binding</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">policyDefaults</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">example-sno</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    placement</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        labelSelector</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">            matchExpressions</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">                - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">key</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">sites</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                  operator</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">In</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                  values</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">                    - </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">example-sno</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    remediationAction</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">inform</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    severity</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">low</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    namespaceSelector</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        exclude</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">            - </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">kube-*</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        include</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">            - </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">'*'</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    evaluationInterval</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        compliant</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">10m</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        noncompliant</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">10s</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">policies</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">example-sno-workers-config-policy</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      policyAnnotations</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        ran.openshift.io/ztp-deploy-wave</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"10"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      manifests</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">        - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">path</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">source-crs/PerformanceProfile-MCP-worker.yaml</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          patches</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">            - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">openshift-worker-node-performance-profile</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                cpu</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                    isolated</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">4-47</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                    reserved</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">0-3</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                hugepages</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                    defaultHugepagesSize</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">1G</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                    pages</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">                        - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">count</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">32</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                          size</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">1G</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                realTimeKernel</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                    enabled</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">true</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">        - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">path</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">source-crs/TunedPerformancePatch-MCP-worker.yaml</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          patches</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">            - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">performance-patch-worker</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                profile</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">                    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">data</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">|</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      [main]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      summary=Configuration changes profile inherited from performance created tuned</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      include=openshift-node-performance-openshift-worker-node-performance-profile</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      [bootloader]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      cmdline_crash=nohz_full=4-47</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      [sysctl]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      kernel.timer_migration=1</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      [scheduler]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      group.ice-ptp=0:f:10:*:ice-ptp.*</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      [service]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      service.stalld=start,enable</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      service.chronyd=stop,disable</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                      name: performance-patch-worker</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                recommend</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">                    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">profile</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">performance-patch-worker</span></span></code></pre></div></div><ul><li><code>policyDefaults.placement.labelSelector.matchExpressions</code> — The policies are applied to all clusters with this label.</li><li><code>spec.cpu.isolated</code> and <code>spec.cpu.reserved</code> in the <code>PerformanceProfile-MCP-worker.yaml</code> manifest — These fields must be configured for each specific hardware platform.</li><li><code>cmdline_crash</code> in the <code>TunedPerformancePatch-MCP-worker.yaml</code> manifest — The <code>nohz_full</code> CPU set must match the <code>cpu.isolated</code> set in the <code>PerformanceProfile</code> section.<p>You can generate the content of <code>crio</code> and <code>kubelet</code> configuration files.</p></li></ul><ol><li>Add the created policy template to the Git repository monitored by the ArgoCD <code>policies</code> application.</li><li>Add the policy in the <code>kustomization.yaml</code> file.</li><li>Commit the changes in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.</li><li>To remediate the new policies to your spoke cluster, create a TALM custom resource:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ cat <<EOF | oc apply -f -
+apiVersion: ran.openshift.io/v1alpha1
+kind: ClusterGroupUpgrade
+metadata:
+  name: example-sno-worker-policies
+  namespace: default
+spec:
+  backup: false
+  clusters:
+  - example-sno
+  enable: true
+  managedPolicies:
+  - group-du-sno-config-policy
+  - example-sno-workers-config-policy
+  - example-sno-config-policy
+  preCaching: false
+  remediationStrategy:
+    maxConcurrency: 1
+EOF" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> cat</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> &#x3C;&#x3C;</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">EOF</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> |</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> apply</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -f</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> -</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">apiVersion: ran.openshift.io/v1alpha1</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">kind: ClusterGroupUpgrade</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">metadata:</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  name: example-sno-worker-policies</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  namespace: default</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">spec:</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  backup: false</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  clusters:</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  - example-sno</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  enable: true</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  managedPolicies:</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  - group-du-sno-config-policy</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  - example-sno-workers-config-policy</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  - example-sno-config-policy</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  preCaching: false</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  remediationStrategy:</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    maxConcurrency: 1</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">EOF</span></span></code></pre></div></div></li></ol><h2 id="ztp-additional-worker-policies-PolicyGenTemplate_sno-additional-worker" class="group scroll-mt-20">Using PolicyGenTemplate CRs to apply worker node policies to the worker node<a href="#ztp-additional-worker-policies-PolicyGenTemplate_sno-additional-worker" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can create policies for the additional worker node by using <code>{{ policy_gen_cr }}</code> CRs.</p><p><strong>Procedure</strong></p><ol><li>Create the following <code>{{ policy_gen_cr }}</code> CR:</li></ol><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: ran.openshift.io/v1
+kind: PolicyGenTemplate
+metadata:
+  name: &quot;example-sno-workers&quot;
+  namespace: &quot;example-sno&quot;
+spec:
+  bindingRules:
+    sites: &quot;example-sno&quot;
+  mcp: &quot;worker&quot;
+  sourceFiles:
+    - fileName: MachineConfigGeneric.yaml
+      policyName: &quot;config-policy&quot;
+      metadata:
+        labels:
+          machineconfiguration.openshift.io/role: worker
+        name: enable-workload-partitioning
+      spec:
+        config:
+          storage:
+            files:
+            - contents:
+                source: data:text/plain;charset=utf-8;base64,W2NyaW8ucnVudGltZS53b3JrbG9hZHMubWFuYWdlbWVudF0KYWN0aXZhdGlvbl9hbm5vdGF0aW9uID0gInRhcmdldC53b3JrbG9hZC5vcGVuc2hpZnQuaW8vbWFuYWdlbWVudCIKYW5ub3RhdGlvbl9wcmVmaXggPSAicmVzb3VyY2VzLndvcmtsb2FkLm9wZW5zaGlmdC5pbyIKcmVzb3VyY2VzID0geyAiY3B1c2hhcmVzIiA9IDAsICJjcHVzZXQiID0gIjAtMyIgfQo=
+              mode: 420
+              overwrite: true
+              path: /etc/crio/crio.conf.d/01-workload-partitioning
+              user:
+                name: root
+            - contents:
+                source: data:text/plain;charset=utf-8;base64,ewogICJtYW5hZ2VtZW50IjogewogICAgImNwdXNldCI6ICIwLTMiCiAgfQp9Cg==
+              mode: 420
+              overwrite: true
+              path: /etc/kubernetes/openshift-workload-pinning
+              user:
+                name: root
+    - fileName: PerformanceProfile.yaml
+      policyName: &quot;config-policy&quot;
+      metadata:
+        name: openshift-worker-node-performance-profile
+      spec:
+        cpu:
+          isolated: &quot;4-47&quot;
+          reserved: &quot;0-3&quot;
+        hugepages:
+          defaultHugepagesSize: 1G
+          pages:
+            - size: 1G
+              count: 32
+        realTimeKernel:
+          enabled: true
+    - fileName: TunedPerformancePatch.yaml
+      policyName: &quot;config-policy&quot;
+      metadata:
+        name: performance-patch-worker
+      spec:
+        profile:
+          - name: performance-patch-worker
+            data: |
+              [main]
+              summary=Configuration changes profile inherited from performance created tuned
+              include=openshift-node-performance-openshift-worker-node-performance-profile
+              [bootloader]
+              cmdline_crash=nohz_full=4-47
+              [sysctl]
+              kernel.timer_migration=1
+              [scheduler]
+              group.ice-ptp=0:f:10:*:ice-ptp.*
+              [service]
+              service.stalld=start,enable
+              service.chronyd=stop,disable
+        recommend:
+        - profile: performance-patch-worker" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ran.openshift.io/v1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">PolicyGenTemplate</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"example-sno-workers"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"example-sno"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  bindingRules</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    sites</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"example-sno"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  mcp</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"worker"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  sourceFiles</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">fileName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">MachineConfigGeneric.yaml</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      policyName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"config-policy"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        labels</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          machineconfiguration.openshift.io/role</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">worker</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">enable-workload-partitioning</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        config</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          storage</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">            files</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">            - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">contents</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                source</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">data:text/plain;charset=utf-8;base64,W2NyaW8ucnVudGltZS53b3JrbG9hZHMubWFuYWdlbWVudF0KYWN0aXZhdGlvbl9hbm5vdGF0aW9uID0gInRhcmdldC53b3JrbG9hZC5vcGVuc2hpZnQuaW8vbWFuYWdlbWVudCIKYW5ub3RhdGlvbl9wcmVmaXggPSAicmVzb3VyY2VzLndvcmtsb2FkLm9wZW5zaGlmdC5pbyIKcmVzb3VyY2VzID0geyAiY3B1c2hhcmVzIiA9IDAsICJjcHVzZXQiID0gIjAtMyIgfQo=</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              mode</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">420</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              overwrite</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">true</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              path</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">/etc/crio/crio.conf.d/01-workload-partitioning</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              user</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">root</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">            - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">contents</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                source</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">data:text/plain;charset=utf-8;base64,ewogICJtYW5hZ2VtZW50IjogewogICAgImNwdXNldCI6ICIwLTMiCiAgfQp9Cg==</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              mode</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">420</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              overwrite</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">true</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              path</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">/etc/kubernetes/openshift-workload-pinning</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              user</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">root</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">fileName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">PerformanceProfile.yaml</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      policyName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"config-policy"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">openshift-worker-node-performance-profile</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        cpu</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          isolated</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"4-47"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          reserved</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"0-3"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        hugepages</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          defaultHugepagesSize</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">1G</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          pages</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">            - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">size</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">1G</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              count</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">32</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        realTimeKernel</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          enabled</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">true</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">fileName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">TunedPerformancePatch.yaml</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      policyName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"config-policy"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">performance-patch-worker</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        profile</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">          - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">performance-patch-worker</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">            data</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">|</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              [main]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              summary=Configuration changes profile inherited from performance created tuned</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              include=openshift-node-performance-openshift-worker-node-performance-profile</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              [bootloader]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              cmdline_crash=nohz_full=4-47</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              [sysctl]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              kernel.timer_migration=1</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              [scheduler]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              group.ice-ptp=0:f:10:*:ice-ptp.*</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              [service]</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              service.stalld=start,enable</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">              service.chronyd=stop,disable</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        recommend</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">        - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">profile</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">performance-patch-worker</span></span></code></pre></div></div><ul><li><code>spec.bindingRules.sites</code> — The policies are applied to all clusters with this label.</li><li><code>spec.mcp</code> — The <code>MCP</code> field must be set to <code>worker</code>.</li><li><code>MachineConfigGeneric.yaml</code> in <code>spec.sourceFiles</code> — This generic <code>MachineConfig</code> CR is used to configure workload partitioning on the worker node.</li><li><code>spec.cpu.isolated</code> and <code>spec.cpu.reserved</code> in the <code>PerformanceProfile.yaml</code> manifest — These fields must be configured for each particular hardware platform.</li><li><code>cmdline_crash</code> in the <code>TunedPerformancePatch.yaml</code> manifest — The <code>nohz_full</code> CPU set must match the <code>cpu.isolated</code> set in the <code>PerformanceProfile</code> section.<p>You can generate the content of <code>crio</code> and <code>kubelet</code> configuration files.</p></li></ul><ol><li>Add the created policy template to the Git repository monitored by the ArgoCD <code>policies</code> application.</li><li>Add the policy in the <code>kustomization.yaml</code> file.</li><li>Commit the changes in Git, and then push to the Git repository being monitored by the GitOps ZTP ArgoCD application.</li><li>To remediate the new policies to your spoke cluster, create a TALM custom resource:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ cat <<EOF | oc apply -f -
+apiVersion: ran.openshift.io/v1alpha1
+kind: ClusterGroupUpgrade
+metadata:
+  name: example-sno-worker-policies
+  namespace: default
+spec:
+  backup: false
+  clusters:
+  - example-sno
+  enable: true
+  managedPolicies:
+  - group-du-sno-config-policy
+  - example-sno-workers-config-policy
+  - example-sno-config-policy
+  preCaching: false
+  remediationStrategy:
+    maxConcurrency: 1
+EOF" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> cat</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> &#x3C;&#x3C;</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">EOF</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> |</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> apply</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -f</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> -</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">apiVersion: ran.openshift.io/v1alpha1</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">kind: ClusterGroupUpgrade</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">metadata:</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  name: example-sno-worker-policies</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  namespace: default</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">spec:</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  backup: false</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  clusters:</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  - example-sno</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  enable: true</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  managedPolicies:</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  - group-du-sno-config-policy</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  - example-sno-workers-config-policy</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  - example-sno-config-policy</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  preCaching: false</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">  remediationStrategy:</span></span>
+<span class="line"><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    maxConcurrency: 1</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">EOF</span></span></code></pre></div></div></li></ol><h2 id="ztp-additional-worker-sno-proc_sno-additional-worker" class="group scroll-mt-20">Adding an additional worker node single-node OpenShift clusters with GitOps ZTP<a href="#ztp-additional-worker-sno-proc_sno-additional-worker" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can add an additional worker node to existing single-node OpenShift clusters to increase available CPU resources in the cluster.</p><p><strong>Prerequisites</strong></p><ul><li>Install and configure RHACM 2.12 or later in an OpenShift Container Platform 4.11 or later bare-metal hub cluster</li><li>Install Topology Aware Lifecycle Manager in the hub cluster</li><li>Install Red Hat OpenShift GitOps in the hub cluster</li><li>Use the GitOps ZTP <code>ztp-site-generate</code> container image version 4.12 or later</li><li>Deploy a managed single-node OpenShift cluster with GitOps ZTP</li><li>Configure the Central Infrastructure Management as described in the RHACM documentation</li><li>Configure the DNS serving the cluster to resolve the internal API endpoint <code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></li></ul><p><strong>Procedure</strong></p><ol><li>If you deployed your cluster by using the <code>example-sno.yaml</code> <code>ClusterInstance</code> CR, add your new worker node to the <code>spec.nodes</code> list:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: siteconfig.open-cluster-management.io/v1alpha1
+kind: ClusterInstance
+metadata:
+  name: &quot;example-sno&quot;
+  namespace: &quot;example-sno&quot;
+spec:
+  # ... existing cluster configuration ...
+  nodes:
+      - hostName: &quot;example-sno.example.com&quot;
+        role: &quot;master&quot;
+        # ... existing master node configuration ...
+      - hostName: &quot;example-node2.example.com&quot;
+        role: &quot;worker&quot;
+        bmcAddress: &quot;idrac-virtualmedia+https://[1111:2222:3333:4444::bbbb:1]/redfish/v1/Systems/System.Embedded.1&quot;
+        bmcCredentialsName:
+          name: &quot;example-node2-bmh-secret&quot;
+        bootMACAddress: &quot;AA:BB:CC:DD:EE:11&quot;
+        bootMode: &quot;UEFI&quot;
+        nodeNetwork:
+          interfaces:
+            - name: eno1
+              macAddress: &quot;AA:BB:CC:DD:EE:11&quot;
+          config:
+            interfaces:
+              - name: eno1
+                type: ethernet
+                state: up
+                macAddress: &quot;AA:BB:CC:DD:EE:11&quot;
+                ipv4:
+                  enabled: false
+                ipv6:
+                  enabled: true
+                  address:
+                  - ip: 1111:2222:3333:4444::1
+                    prefix-length: 64
+            dns-resolver:
+              config:
+                search:
+                - example.com
+                server:
+                - 1111:2222:3333:4444::2
+            routes:
+              config:
+              - destination: ::/0
+                next-hop-interface: eno1
+                next-hop-address: 1111:2222:3333:4444::1
+                table-id: 254" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">siteconfig.open-cluster-management.io/v1alpha1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ClusterInstance</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"example-sno"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"example-sno"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">spec</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">  # ... existing cluster configuration ...</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  nodes</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">      - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">hostName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"example-sno.example.com"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        role</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"master"</span></span>
+<span class="line"><span style="--shiki-light:#6E7781;--shiki-dark:#8B949E">        # ... existing master node configuration ...</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">      - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">hostName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"example-node2.example.com"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        role</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"worker"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        bmcAddress</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"idrac-virtualmedia+https://[1111:2222:3333:4444::bbbb:1]/redfish/v1/Systems/System.Embedded.1"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        bmcCredentialsName</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"example-node2-bmh-secret"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        bootMACAddress</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"AA:BB:CC:DD:EE:11"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        bootMode</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"UEFI"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        nodeNetwork</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          interfaces</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">            - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">eno1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              macAddress</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"AA:BB:CC:DD:EE:11"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">          config</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">            interfaces</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">              - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">eno1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                type</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ethernet</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                state</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">up</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                macAddress</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"AA:BB:CC:DD:EE:11"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                ipv4</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                  enabled</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">false</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                ipv6</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                  enabled</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">true</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                  address</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">                  - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">ip</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">1111:2222:3333:4444::1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                    prefix-length</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">64</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">            dns-resolver</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              config</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                search</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">                - </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">example.com</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                server</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">                - </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">1111:2222:3333:4444::2</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">            routes</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">              config</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">              - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">destination</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">::/0</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                next-hop-interface</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">eno1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                next-hop-address</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">1111:2222:3333:4444::1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">                table-id</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">254</span></span></code></pre></div></div></li><li>Create a BMC authentication secret for the new host, as referenced by the <code>bmcCredentialsName</code> field in the <code>spec.nodes</code> section of your <code>ClusterInstance</code> CR:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">yaml</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="apiVersion: v1
+data:
+  password: &quot;password&quot;
+  username: &quot;username&quot;
+kind: Secret
+metadata:
+  name: &quot;example-node2-bmh-secret&quot;
+  namespace: example-sno
+type: Opaque" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">v1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">data</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  password</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"password"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  username</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"username"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">Secret</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"example-node2-bmh-secret"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">example-sno</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">type</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">Opaque</span></span></code></pre></div></div></li><li>Commit the changes in Git, and then push to the Git repository that is being monitored by the GitOps ZTP ArgoCD application.<p>When the ArgoCD <code>cluster</code> application synchronizes, two new manifests appear on the hub cluster generated by the SiteConfig Operator:</p><ul><li><code>BareMetalHost</code></li><li><code>NMStateConfig</code><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The <code>cpuset</code> field should not be configured for the worker node. Workload partitioning for the worker node is added through management policies after the node installation is complete.</p></div></div></li></ul></li></ol><p><strong>Verification</strong></p><p>You can monitor the installation process in several ways.</p><ul><li>Check if the preprovisioning images are created by running the following command:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc get ppimg -n example-sno" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> get</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> ppimg</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -n</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> example-sno</span></span></code></pre></div></div><p>The following is example output:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="NAMESPACE       NAME            READY   REASON
+example-sno     example-sno     True    ImageCreated
+example-sno     example-node2   True    ImageCreated" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">NAMESPACE</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">       NAME</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">            READY</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   REASON</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">example-sno</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">     example-sno</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">     True</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    ImageCreated</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">example-sno</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">     example-node2</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   True</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">    ImageCreated</span></span></code></pre></div></div></li><li>Check the state of the bare-metal hosts:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc get bmh -n example-sno" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> get</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> bmh</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -n</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> example-sno</span></span></code></pre></div></div><p>The following is example output:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="NAME            STATE          CONSUMER   ONLINE   ERROR   AGE
+example-sno     provisioned               true             69m
+example-node2   provisioning              true             4m50s" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">NAME</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">            STATE</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">          CONSUMER</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   ONLINE</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   ERROR</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   AGE</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">example-sno</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">     provisioned</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">               true</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">             69m</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">example-node2</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   provisioning</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">              true</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">             4m50s</span></span></code></pre></div></div><ul><li>The <code>provisioning</code> state indicates that node booting from the installation media is in progress.</li></ul></li><li>Continuously monitor the installation process:<ol><li>Watch the agent install process by running the following command:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc get agent -n example-sno --watch" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> get</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> agent</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -n</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> example-sno</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> --watch</span></span></code></pre></div></div><p>The following is example output:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="NAME                                   CLUSTER   APPROVED   ROLE     STAGE
+671bc05d-5358-8940-ec12-d9ad22804faa   example-sno   true       master   Done
+[...]
+14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Starting installation
+14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Installing
+14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Writing image to disk
+[...]
+14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Waiting for control plane
+[...]
+14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Rebooting
+14fd821b-a35d-9cba-7978-00ddf535ff37   example-sno   true       worker   Done" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">NAME</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">                                   CLUSTER</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   APPROVED</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   ROLE</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">     STAGE</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">671bc05d-5358-8940-ec12-d9ad22804faa</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   example-sno</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">   true</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">       master</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   Done</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">[...]</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">14fd821b-a35d-9cba-7978-00ddf535ff37</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   example-sno</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">   true</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">       worker</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   Starting</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> installation</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">14fd821b-a35d-9cba-7978-00ddf535ff37</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   example-sno</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">   true</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">       worker</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   Installing</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">14fd821b-a35d-9cba-7978-00ddf535ff37</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   example-sno</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">   true</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">       worker</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   Writing</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> image</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> to</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> disk</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">[...]</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">14fd821b-a35d-9cba-7978-00ddf535ff37</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   example-sno</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">   true</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">       worker</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   Waiting</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> for</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> control</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> plane</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">[...]</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">14fd821b-a35d-9cba-7978-00ddf535ff37</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   example-sno</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">   true</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">       worker</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   Rebooting</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">14fd821b-a35d-9cba-7978-00ddf535ff37</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   example-sno</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">   true</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">       worker</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">   Done</span></span></code></pre></div></div></li><li>When the worker node installation is finished, the worker node certificates are approved automatically. At this point, the worker appears in the <code>ManagedClusterInfo</code> status. Run the following command to see the status:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ oc get managedclusterinfo/example-sno -n example-sno -o \
+jsonpath='{range .status.nodeList[*]}{.name}{&quot;\t&quot;}{.conditions}{&quot;\t&quot;}{.labels}{&quot;\n&quot;}{end}'" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> oc</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> get</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> managedclusterinfo/example-sno</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -n</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> example-sno</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -o</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> \</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">jsonpath=</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">'{range .status.nodeList[*]}{.name}{"\t"}{.conditions}{"\t"}{.labels}{"\n"}{end}'</span></span></code></pre></div></div><p>The following is example output:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="example-sno	[{&quot;status&quot;:&quot;True&quot;,&quot;type&quot;:&quot;Ready&quot;}]	{&quot;node-role.kubernetes.io/master&quot;:&quot;&quot;,&quot;node-role.kubernetes.io/worker&quot;:&quot;&quot;}
+example-node2	[{&quot;status&quot;:&quot;True&quot;,&quot;type&quot;:&quot;Ready&quot;}]	{&quot;node-role.kubernetes.io/worker&quot;:&quot;&quot;}" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">example-sno</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">	[{</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">"status"</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">:</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">"True"</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">,</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">"type"</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">:</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">"Ready"</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">}]</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">	{"node-role.kubernetes.io/master":"","node-role.kubernetes.io/worker":""}</span></span>
+<span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">example-node2</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">	[{</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">"status"</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">:</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">"True"</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">,</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">"type"</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">:</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">"Ready"</span><span style="--shiki-light:#953800;--shiki-dark:#FFA657">}]</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">	{"node-role.kubernetes.io/worker":""}</span></span></code></pre></div></div></li></ol></li></ul></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Updating managed clusters with the Topology Aware Lifecycle Manager</div></div></a><a href="/openshift-docs-markdown/edge_computing/ztp-precaching-tool" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Pre-caching images for single-node OpenShift deployments</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>

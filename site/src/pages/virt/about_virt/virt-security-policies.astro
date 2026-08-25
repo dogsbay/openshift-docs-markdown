@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"virt-security-policies","text":"Security policies"},{"depth":2,"slug":"additional-resources_virt-security-policies","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-security-policies","text":"Security policies"},{"depth":2,"slug":"virt-about-workload-security_virt-security-policies","text":"About workload security"},{"depth":2,"slug":"virt-automatic-certificates-renewal_virt-security-policies","text":"TLS certificates"},{"depth":3,"slug":"_automatic_renewal_schedules","text":"Automatic renewal schedules"},{"depth":2,"slug":"virt-security-policies-auth_virt-security-policies","text":"Authorization"},{"depth":3,"slug":"default-cluster-roles-for-virt_virt-security-policies","text":"Default cluster roles for OpenShift Virtualization"},{"depth":3,"slug":"virt-storage-rbac-roles_virt-security-policies","text":"RBAC roles for storage features in OpenShift Virtualization"},{"depth":4,"slug":"cluster-wide-rbac-roles-cdi","text":"Cluster-wide RBAC roles"},{"depth":4,"slug":"namespaced-rbac-roles-cdi","text":"Namespaced RBAC roles"},{"depth":3,"slug":"virt-additional-scc-for-kubevirt-controller_virt-security-policies","text":"Additional SCCs and permissions for the kubevirt-controller service account"},{"depth":4,"slug":"_viewing_the_scc_and_rbac_definitions_for_the_kubevirt-controller","text":"Viewing the SCC and RBAC definitions for the kubevirt-controller"},{"depth":2,"slug":"additional-resources_virt-security-policies","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/about_virt/virt-security-policies";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Security policies";
-const description = "{{ VirtProductName }} provides built-in security features and authorization policies to protect virtual machine workloads and ensure secure cluster…" || undefined;
+const description = "OpenShift Virtualization provides built-in security features and authorization policies to protect virtual machine workloads and ensure secure cluster…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["virt","virt/about_virt"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Security policies {#virt-security-policies}\n\n{{ VirtProductName }} provides built-in security features and authorization policies to protect virtual machine workloads and ensure secure cluster operations across your environment.\n\n**Key points**\n\n- {{ VirtProductName }} adheres to the `restricted` Kubernetes pod security standards profile, which aims to enforce the current best practices for pod security.\n- Virtual machine (VM) workloads run as unprivileged pods.\n- Security context constraints (SCCs) are defined for the `kubevirt-controller` service account. For more information about SSCs, see \"Additional resources\".\n- TLS certificates for {{ VirtProductName }} components are renewed and rotated automatically.\n\n## Additional resources {#additional-resources_virt-security-policies}\n\n- [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)\n- [About Security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)\n- [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)\n- [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)\n- [Creating a cluster role](/openshift-docs-markdown/authentication/using-rbac#creating-cluster-role_using-rbac)\n- [Cluster role binding commands](/openshift-docs-markdown/authentication/using-rbac#cluster-role-binding-commands_using-rbac)\n- [Enabling user permissions to clone data volumes across namespaces](/openshift-docs-markdown/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes#virt-enabling-user-permissions-to-clone-datavolumes)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/about_virt/virt-security-policies.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Security policies {#virt-security-policies}\n\nOpenShift Virtualization provides built-in security features and authorization policies to protect virtual machine workloads and ensure secure cluster operations across your environment.\n\n**Key points**\n\n- OpenShift Virtualization adheres to the `restricted` Kubernetes pod security standards profile, which aims to enforce the current best practices for pod security.\n- Virtual machine (VM) workloads run as unprivileged pods.\n- Security context constraints (SCCs) are defined for the `kubevirt-controller` service account. For more information about SSCs, see \"Additional resources\".\n- TLS certificates for OpenShift Virtualization components are renewed and rotated automatically.\n\n## About workload security {#virt-about-workload-security_virt-security-policies}\n\nBy default, virtual machine (VM) workloads do not run with root privileges in OpenShift Virtualization, and there are no supported OpenShift Virtualization features that require root privileges.\n\nFor each VM, a `virt-launcher` pod runs an instance of `libvirt` in *session mode* to manage the VM process. In session mode, the `libvirt` daemon runs as a non-root user account and only permits connections from clients that are running under the same user identifier (UID). Therefore, VMs run as unprivileged pods, adhering to the security principle of least privilege.\n\n## TLS certificates {#virt-automatic-certificates-renewal_virt-security-policies}\n\nTLS certificates for OpenShift Virtualization components are renewed and rotated automatically. You are not required to refresh them manually.\n\n### Automatic renewal schedules {#_automatic_renewal_schedules}\n\nTLS certificates are automatically deleted and replaced according to the following schedule:\n\n- KubeVirt certificates are renewed daily.\n- Containerized Data Importer controller (CDI) certificates are renewed every 15 days.\n- MAC pool certificates are renewed every year.\n\nAutomatic TLS certificate rotation does not disrupt any operations. For example, the following operations continue to function without any disruption:\n\n- Migrations\n- Image uploads\n- VNC and console connections\n\n## Authorization {#virt-security-policies-auth_virt-security-policies}\n\nOpenShift Virtualization uses role-based access control (RBAC) to define permissions for human users and service accounts. The permissions defined for service accounts control the actions that OpenShift Virtualization components can perform.\n\nYou can also use RBAC roles to manage user access to virtualization features. For example, an administrator can create an RBAC role that provides the permissions required to launch a virtual machine. The administrator can then restrict access by binding the role to specific users.\n\n### Default cluster roles for OpenShift Virtualization {#default-cluster-roles-for-virt_virt-security-policies}\n\nBy using cluster role aggregation, OpenShift Virtualization extends the default OpenShift Container Platform cluster roles to include permissions for accessing virtualization objects. Roles unique to OpenShift Virtualization are not aggregated with OpenShift Container Platform roles.\n\n**OpenShift Virtualization cluster roles**\n\n| Default cluster role | OpenShift Virtualization cluster role | OpenShift Virtualization cluster role description |\n| --- | --- | --- |\n| `view` | `kubevirt.io:view` | A user that can view all OpenShift Virtualization resources in the cluster but cannot create, delete, modify, or access them. For example, the user can see that a virtual machine (VM) is running but cannot shut it down or gain access to its console. |\n| `edit` | `kubevirt.io:edit` | A user that can modify all OpenShift Virtualization resources in the cluster. For example, the user can create VMs, access VM consoles, and delete VMs. |\n| `admin` | `kubevirt.io:admin` | A user that has full permissions to all OpenShift Virtualization resources, including the ability to delete collections of resources. The user can also view and modify the OpenShift Virtualization runtime configuration, which is located in the `HyperConverged` custom resource in the `openshift-cnv` namespace. |\n| `N/A` | `kubevirt.io:migrate` | A user that can create, delete, and update VM live migration requests, which are represented by namespaced `VirtualMachineInstanceMigration` (VMIM) objects. This role is specific to OpenShift Virtualization. |\n\n### RBAC roles for storage features in OpenShift Virtualization {#virt-storage-rbac-roles_virt-security-policies}\n\nCluster-wide and namespaced RBAC roles enable the Containerized Data Importer (CDI) to manage storage resources, data volumes, and virtual machine disk operations.\n\n#### Cluster-wide RBAC roles {#cluster-wide-rbac-roles-cdi}\n\n**Aggregated cluster roles for the `cdi.kubevirt.io` API group**\n\n| CDI cluster role | Resources | Verbs .2+.^ |\n| --- | --- | --- |\n| `cdi.kubevirt.io:admin` | `datavolumes`, `uploadtokenrequests` | `*` (all) |\n| `datavolumes/source` | `create` .2+.^ | `cdi.kubevirt.io:edit` |\n| `datavolumes`, `uploadtokenrequests` | `*` | `datavolumes/source` |\n| `create` .2+.^ | `cdi.kubevirt.io:view` | `cdiconfigs`, `dataimportcrons`, `datasources`, `datavolumes`, `objecttransfers`, `storageprofiles`, `volumeimportsources`, `volumeuploadsources`, `volumeclonesources` |\n| `get`, `list`, `watch` | `datavolumes/source` | `create` |\n| `cdi.kubevirt.io:config-reader` | `cdiconfigs`, `storageprofiles` | `get`, `list`, `watch` |\n\n**Cluster-wide roles for the `cdi-operator` service account**\n\n| API group | Resources | Verbs |\n| --- | --- | --- |\n| `rbac.authorization.k8s.io` | `clusterrolebindings`, `clusterroles` | `get`, `list`, `watch`, `create`, `update`, `delete` |\n| `security.openshift.io` | `securitycontextconstraints` | `get`, `list`, `watch`, `update`, `create` |\n| `apiextensions.k8s.io` | `customresourcedefinitions`, `customresourcedefinitions/status` | `get`, `list`, `watch`, `create`, `update`, `delete` |\n| `cdi.kubevirt.io` | `**` | `**` |\n| `upload.cdi.kubevirt.io` | `**` | `**` |\n| `admissionregistration.k8s.io` | `validatingwebhookconfigurations`, `mutatingwebhookconfigurations` | `create`, `list`, `watch` |\n| `admissionregistration.k8s.io` | `validatingwebhookconfigurations` Allow list: `cdi-api-dataimportcron-validate, cdi-api-populator-validate, cdi-api-datavolume-validate, cdi-api-validate, objecttransfer-api-validate` | `get`, `update`, `delete` |\n| `admissionregistration.k8s.io` | `mutatingwebhookconfigurations` Allow list: `cdi-api-datavolume-mutate` | `get`, `update`, `delete` |\n| `apiregistration.k8s.io` | `apiservices` | `get`, `list`, `watch`, `create`, `update`, `delete` |\n\n**Cluster-wide roles for the `cdi-controller` service account**\n\n| API group | Resources | Verbs |\n| --- | --- | --- |\n| `\"\"` (core) | `events` | `create`, `patch` |\n| `\"\"` (core) | `persistentvolumeclaims` | `get`, `list`, `watch`, `create`, `update`, `delete`, `deletecollection`, `patch` |\n| `\"\"` (core) | `persistentvolumes` | `get`, `list`, `watch`, `update` |\n| `\"\"` (core) | `persistentvolumeclaims/finalizers`, `pods/finalizers` | `update` |\n| `\"\"` (core) | `pods`, `services` | `get`, `list`, `watch`, `create`, `delete` |\n| `\"\"` (core) | `configmaps` | `get`, `create` |\n| `storage.k8s.io` | `storageclasses`, `csidrivers` | `get`, `list`, `watch` |\n| `config.openshift.io` | `proxies` | `get`, `list`, `watch` |\n| `cdi.kubevirt.io` | `**` | `**` |\n| `snapshot.storage.k8s.io` | `volumesnapshots`, `volumesnapshotclasses`, `volumesnapshotcontents` | `get`, `list`, `watch`, `create`, `delete` |\n| `snapshot.storage.k8s.io` | `volumesnapshots` | `update`, `deletecollection` |\n| `apiextensions.k8s.io` | `customresourcedefinitions` | `get`, `list`, `watch` |\n| `scheduling.k8s.io` | `priorityclasses` | `get`, `list`, `watch` |\n| `image.openshift.io` | `imagestreams` | `get`, `list`, `watch` |\n| `\"\"` (core) | `secrets` | `create` |\n| `kubevirt.io` | `virtualmachines/finalizers` | `update` |\n\n#### Namespaced RBAC roles {#namespaced-rbac-roles-cdi}\n\n**Namespaced roles for the `cdi-operator` service account**\n\n| API group | Resources | Verbs |\n| --- | --- | --- |\n| `rbac.authorization.k8s.io` | `rolebindings`, `roles` | `get`, `list`, `watch`, `create`, `update`, `delete` |\n| `\"\"` (core) | `serviceaccounts`, `configmaps`, `events`, `secrets`, `services` | `get`, `list`, `watch`, `create`, `update`, `patch`, `delete` |\n| `apps` | `deployments`, `deployments/finalizers` | `get`, `list`, `watch`, `create`, `update`, `delete` |\n| `route.openshift.io` | `routes`, `routes/custom-host` | `get`, `list`, `watch`, `create`, `update` |\n| `config.openshift.io` | `proxies` | `get`, `list`, `watch` |\n| `monitoring.coreos.com` | `servicemonitors`, `prometheusrules` | `get`, `list`, `watch`, `create`, `delete`, `update`, `patch` |\n| `coordination.k8s.io` | `leases` | `get`, `create`, `update` |\n\n**Namespaced roles for the `cdi-controller` service account**\n\n| API group | Resources | Verbs |\n| --- | --- | --- |\n| `\"\"` (core) | `configmaps` | `get`, `list`, `watch`, `create`, `update`, `delete` |\n| `\"\"` (core) | `secrets` | `get`, `list`, `watch` |\n| `batch` | `cronjobs` | `get`, `list`, `watch`, `create`, `update`, `delete` |\n| `batch` | `jobs` | `create`, `delete`, `list`, `watch` |\n| `coordination.k8s.io` | `leases` | `get`, `create`, `update` |\n| `networking.k8s.io` | `ingresses` | `get`, `list`, `watch` |\n| `route.openshift.io` | `routes` | `get`, `list`, `watch` |\n\n### Additional SCCs and permissions for the kubevirt-controller service account {#virt-additional-scc-for-kubevirt-controller_virt-security-policies}\n\nSecurity context constraints (SCCs) control permissions for pods. These permissions include actions that a pod, a collection of containers, can perform and what resources it can access. You can use SCCs to define a set of conditions that a pod must run with to be accepted into the system.\n\nThe `virt-controller` is a cluster controller that creates the `virt-launcher` pods for virtual machines in the cluster.\n\n> [!NOTE]\n> By default, `virt-launcher` pods run with the `default` service account in the namespace. If your compliance controls require a unique service account, assign one to the VM. The setting applies to the `VirtualMachineInstance` object and the `virt-launcher` pod.\n\nThe `kubevirt-controller` service account is granted additional SCCs and Linux capabilities so that it can create `virt-launcher` pods with the appropriate permissions. These extended permissions allow virtual machines to use OpenShift Virtualization features that are beyond the scope of typical pods.\n\nThe `kubevirt-controller` service account is granted the following SCCs:\n\n`scc.AllowHostDirVolumePlugin = true`\n:   This allows virtual machines to use the hostpath volume plugin.\n\n`scc.AllowPrivilegedContainer = false`\n:   This ensures the `virt-launcher` pod is not run as a privileged container.\n\n`scc.AllowedCapabilities = []corev1.Capability{\"SYS_NICE\", \"NET_BIND_SERVICE\"}`\n:   - `SYS_NICE` allows setting the CPU affinity.\n    - `NET_BIND_SERVICE` allows DHCP and Slirp operations.\n\n#### Viewing the SCC and RBAC definitions for the kubevirt-controller {#_viewing_the_scc_and_rbac_definitions_for_the_kubevirt-controller}\n\nYou can view the `SecurityContextConstraints` definition for the `kubevirt-controller` by using the `oc` tool:\n\n```terminal\n$ oc get scc kubevirt-controller -o yaml\n```\n\nYou can view the RBAC definition for the `kubevirt-controller` clusterrole by using the `oc` tool:\n\n```terminal\n$ oc get clusterrole kubevirt-controller -o yaml\n```\n\n## Additional resources {#additional-resources_virt-security-policies}\n\n- [Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted)\n- [About Security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)\n- [Using RBAC to define and apply permissions](/openshift-docs-markdown/authentication/using-rbac#using-rbac)\n- [Managing security context constraints](/openshift-docs-markdown/authentication/managing-security-context-constraints#security-context-constraints-about_configuring-internal-oauth)\n- [Creating a cluster role](/openshift-docs-markdown/authentication/using-rbac#creating-cluster-role_using-rbac)\n- [Cluster role binding commands](/openshift-docs-markdown/authentication/using-rbac#cluster-role-binding-commands_using-rbac)\n- [Enabling user permissions to clone data volumes across namespaces](/openshift-docs-markdown/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes#virt-enabling-user-permissions-to-clone-datavolumes)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/about_virt/virt-security-policies.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,20 +101,387 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-security-policies" class="group scroll-mt-20">Security policies<a href="#virt-security-policies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>{"{"}{"{"} VirtProductName {"}"}{"}"} provides built-in security features and authorization policies to protect virtual machine workloads and ensure secure cluster operations across your environment.</p>
+      <p>OpenShift Virtualization provides built-in security features and authorization policies to protect virtual machine workloads and ensure secure cluster operations across your environment.</p>
       <p><strong>Key points</strong></p>
       <ul>
-      <li>{"{"}{"{"} VirtProductName {"}"}{"}"} adheres to the <code>restricted</code> Kubernetes pod security standards profile, which aims to enforce the current best practices for pod security.</li>
+      <li>OpenShift Virtualization adheres to the <code>restricted</code> Kubernetes pod security standards profile, which aims to enforce the current best practices for pod security.</li>
       <li>Virtual machine (VM) workloads run as unprivileged pods.</li>
       <li>Security context constraints (SCCs) are defined for the <code>kubevirt-controller</code> service account. For more information about SSCs, see "Additional resources".</li>
-      <li>TLS certificates for {"{"}{"{"} VirtProductName {"}"}{"}"} components are renewed and rotated automatically.</li>
+      <li>TLS certificates for OpenShift Virtualization components are renewed and rotated automatically.</li>
       </ul>
-      <p class="/modules/virt-automatic-certificates-renewal.md"></p>
-      <p class="/modules/virt-security-policies-auth.md"></p>
-      <p class="/modules/virt-default-cluster-roles.md"></p>
-      <p class="/modules/virt-storage-rbac-roles.md"></p>
-      <p class="/modules/virt-additional-scc-for-kubevirt-controller.md"></p>
+      <h2 id="virt-about-workload-security_virt-security-policies" class="group scroll-mt-20">About workload security<a href="#virt-about-workload-security_virt-security-policies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By default, virtual machine (VM) workloads do not run with root privileges in OpenShift Virtualization, and there are no supported OpenShift Virtualization features that require root privileges.</p>
+      <p>For each VM, a <code>virt-launcher</code> pod runs an instance of <code>libvirt</code> in <em>session mode</em> to manage the VM process. In session mode, the <code>libvirt</code> daemon runs as a non-root user account and only permits connections from clients that are running under the same user identifier (UID). Therefore, VMs run as unprivileged pods, adhering to the security principle of least privilege.</p>
+      <h2 id="virt-automatic-certificates-renewal_virt-security-policies" class="group scroll-mt-20">TLS certificates<a href="#virt-automatic-certificates-renewal_virt-security-policies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">TLS certificates for OpenShift Virtualization components are renewed and rotated automatically. You are not required to refresh them manually.</p>
+      <h3 id="_automatic_renewal_schedules" class="group scroll-mt-20">Automatic renewal schedules<a href="#_automatic_renewal_schedules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>TLS certificates are automatically deleted and replaced according to the following schedule:</p>
+      <ul>
+      <li>KubeVirt certificates are renewed daily.</li>
+      <li>Containerized Data Importer controller (CDI) certificates are renewed every 15 days.</li>
+      <li>MAC pool certificates are renewed every year.</li>
+      </ul>
+      <p>Automatic TLS certificate rotation does not disrupt any operations. For example, the following operations continue to function without any disruption:</p>
+      <ul>
+      <li>Migrations</li>
+      <li>Image uploads</li>
+      <li>VNC and console connections</li>
+      </ul>
+      <h2 id="virt-security-policies-auth_virt-security-policies" class="group scroll-mt-20">Authorization<a href="#virt-security-policies-auth_virt-security-policies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Virtualization uses role-based access control (RBAC) to define permissions for human users and service accounts. The permissions defined for service accounts control the actions that OpenShift Virtualization components can perform.</p>
+      <p>You can also use RBAC roles to manage user access to virtualization features. For example, an administrator can create an RBAC role that provides the permissions required to launch a virtual machine. The administrator can then restrict access by binding the role to specific users.</p>
+      <h3 id="default-cluster-roles-for-virt_virt-security-policies" class="group scroll-mt-20">Default cluster roles for OpenShift Virtualization<a href="#default-cluster-roles-for-virt_virt-security-policies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">By using cluster role aggregation, OpenShift Virtualization extends the default OpenShift Container Platform cluster roles to include permissions for accessing virtualization objects. Roles unique to OpenShift Virtualization are not aggregated with OpenShift Container Platform roles.</p>
+      <p><strong>OpenShift Virtualization cluster roles</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Default cluster role</TableHead>
+      <TableHead>OpenShift Virtualization cluster role</TableHead>
+      <TableHead>OpenShift Virtualization cluster role description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>view</code></TableCell>
+      <TableCell><code>kubevirt.io:view</code></TableCell>
+      <TableCell>A user that can view all OpenShift Virtualization resources in the cluster but cannot create, delete, modify, or access them. For example, the user can see that a virtual machine (VM) is running but cannot shut it down or gain access to its console.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>edit</code></TableCell>
+      <TableCell><code>kubevirt.io:edit</code></TableCell>
+      <TableCell>A user that can modify all OpenShift Virtualization resources in the cluster. For example, the user can create VMs, access VM consoles, and delete VMs.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>admin</code></TableCell>
+      <TableCell><code>kubevirt.io:admin</code></TableCell>
+      <TableCell>A user that has full permissions to all OpenShift Virtualization resources, including the ability to delete collections of resources. The user can also view and modify the OpenShift Virtualization runtime configuration, which is located in the <code>HyperConverged</code> custom resource in the <code>openshift-cnv</code> namespace.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>N/A</code></TableCell>
+      <TableCell><code>kubevirt.io:migrate</code></TableCell>
+      <TableCell>A user that can create, delete, and update VM live migration requests, which are represented by namespaced <code>VirtualMachineInstanceMigration</code> (VMIM) objects. This role is specific to OpenShift Virtualization.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="virt-storage-rbac-roles_virt-security-policies" class="group scroll-mt-20">RBAC roles for storage features in OpenShift Virtualization<a href="#virt-storage-rbac-roles_virt-security-policies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Cluster-wide and namespaced RBAC roles enable the Containerized Data Importer (CDI) to manage storage resources, data volumes, and virtual machine disk operations.</p>
+      <h4 id="cluster-wide-rbac-roles-cdi" class="group scroll-mt-20">Cluster-wide RBAC roles<a href="#cluster-wide-rbac-roles-cdi" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p><strong>Aggregated cluster roles for the </strong><code>cdi.kubevirt.io</code><strong> API group</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>CDI cluster role</TableHead>
+      <TableHead>Resources</TableHead>
+      <TableHead>Verbs .2+.^</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>cdi.kubevirt.io:admin</code></TableCell>
+      <TableCell><code>datavolumes</code>, <code>uploadtokenrequests</code></TableCell>
+      <TableCell><code>*</code> (all)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>datavolumes/source</code></TableCell>
+      <TableCell><code>create</code> .2+.^</TableCell>
+      <TableCell><code>cdi.kubevirt.io:edit</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>datavolumes</code>, <code>uploadtokenrequests</code></TableCell>
+      <TableCell><code>*</code></TableCell>
+      <TableCell><code>datavolumes/source</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>create</code> .2+.^</TableCell>
+      <TableCell><code>cdi.kubevirt.io:view</code></TableCell>
+      <TableCell><code>cdiconfigs</code>, <code>dataimportcrons</code>, <code>datasources</code>, <code>datavolumes</code>, <code>objecttransfers</code>, <code>storageprofiles</code>, <code>volumeimportsources</code>, <code>volumeuploadsources</code>, <code>volumeclonesources</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      <TableCell><code>datavolumes/source</code></TableCell>
+      <TableCell><code>create</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>cdi.kubevirt.io:config-reader</code></TableCell>
+      <TableCell><code>cdiconfigs</code>, <code>storageprofiles</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Cluster-wide roles for the </strong><code>cdi-operator</code><strong> service account</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>API group</TableHead>
+      <TableHead>Resources</TableHead>
+      <TableHead>Verbs</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>rbac.authorization.k8s.io</code></TableCell>
+      <TableCell><code>clusterrolebindings</code>, <code>clusterroles</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>security.openshift.io</code></TableCell>
+      <TableCell><code>securitycontextconstraints</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>update</code>, <code>create</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>apiextensions.k8s.io</code></TableCell>
+      <TableCell><code>customresourcedefinitions</code>, <code>customresourcedefinitions/status</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>cdi.kubevirt.io</code></TableCell>
+      <TableCell><code>**</code></TableCell>
+      <TableCell><code>**</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>upload.cdi.kubevirt.io</code></TableCell>
+      <TableCell><code>**</code></TableCell>
+      <TableCell><code>**</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>admissionregistration.k8s.io</code></TableCell>
+      <TableCell><code>validatingwebhookconfigurations</code>, <code>mutatingwebhookconfigurations</code></TableCell>
+      <TableCell><code>create</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>admissionregistration.k8s.io</code></TableCell>
+      <TableCell><code>validatingwebhookconfigurations</code> Allow list: <code>cdi-api-dataimportcron-validate, cdi-api-populator-validate, cdi-api-datavolume-validate, cdi-api-validate, objecttransfer-api-validate</code></TableCell>
+      <TableCell><code>get</code>, <code>update</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>admissionregistration.k8s.io</code></TableCell>
+      <TableCell><code>mutatingwebhookconfigurations</code> Allow list: <code>cdi-api-datavolume-mutate</code></TableCell>
+      <TableCell><code>get</code>, <code>update</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>apiregistration.k8s.io</code></TableCell>
+      <TableCell><code>apiservices</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Cluster-wide roles for the </strong><code>cdi-controller</code><strong> service account</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>API group</TableHead>
+      <TableHead>Resources</TableHead>
+      <TableHead>Verbs</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>""</code> (core)</TableCell>
+      <TableCell><code>events</code></TableCell>
+      <TableCell><code>create</code>, <code>patch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>""</code> (core)</TableCell>
+      <TableCell><code>persistentvolumeclaims</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code>, <code>deletecollection</code>, <code>patch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>""</code> (core)</TableCell>
+      <TableCell><code>persistentvolumes</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>update</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>""</code> (core)</TableCell>
+      <TableCell><code>persistentvolumeclaims/finalizers</code>, <code>pods/finalizers</code></TableCell>
+      <TableCell><code>update</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>""</code> (core)</TableCell>
+      <TableCell><code>pods</code>, <code>services</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>""</code> (core)</TableCell>
+      <TableCell><code>configmaps</code></TableCell>
+      <TableCell><code>get</code>, <code>create</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>storage.k8s.io</code></TableCell>
+      <TableCell><code>storageclasses</code>, <code>csidrivers</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>config.openshift.io</code></TableCell>
+      <TableCell><code>proxies</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>cdi.kubevirt.io</code></TableCell>
+      <TableCell><code>**</code></TableCell>
+      <TableCell><code>**</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>snapshot.storage.k8s.io</code></TableCell>
+      <TableCell><code>volumesnapshots</code>, <code>volumesnapshotclasses</code>, <code>volumesnapshotcontents</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>snapshot.storage.k8s.io</code></TableCell>
+      <TableCell><code>volumesnapshots</code></TableCell>
+      <TableCell><code>update</code>, <code>deletecollection</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>apiextensions.k8s.io</code></TableCell>
+      <TableCell><code>customresourcedefinitions</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>scheduling.k8s.io</code></TableCell>
+      <TableCell><code>priorityclasses</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>image.openshift.io</code></TableCell>
+      <TableCell><code>imagestreams</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>""</code> (core)</TableCell>
+      <TableCell><code>secrets</code></TableCell>
+      <TableCell><code>create</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>kubevirt.io</code></TableCell>
+      <TableCell><code>virtualmachines/finalizers</code></TableCell>
+      <TableCell><code>update</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h4 id="namespaced-rbac-roles-cdi" class="group scroll-mt-20">Namespaced RBAC roles<a href="#namespaced-rbac-roles-cdi" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p><strong>Namespaced roles for the </strong><code>cdi-operator</code><strong> service account</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>API group</TableHead>
+      <TableHead>Resources</TableHead>
+      <TableHead>Verbs</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>rbac.authorization.k8s.io</code></TableCell>
+      <TableCell><code>rolebindings</code>, <code>roles</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>""</code> (core)</TableCell>
+      <TableCell><code>serviceaccounts</code>, <code>configmaps</code>, <code>events</code>, <code>secrets</code>, <code>services</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>patch</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>apps</code></TableCell>
+      <TableCell><code>deployments</code>, <code>deployments/finalizers</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>route.openshift.io</code></TableCell>
+      <TableCell><code>routes</code>, <code>routes/custom-host</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>config.openshift.io</code></TableCell>
+      <TableCell><code>proxies</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>monitoring.coreos.com</code></TableCell>
+      <TableCell><code>servicemonitors</code>, <code>prometheusrules</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>delete</code>, <code>update</code>, <code>patch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>coordination.k8s.io</code></TableCell>
+      <TableCell><code>leases</code></TableCell>
+      <TableCell><code>get</code>, <code>create</code>, <code>update</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Namespaced roles for the </strong><code>cdi-controller</code><strong> service account</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>API group</TableHead>
+      <TableHead>Resources</TableHead>
+      <TableHead>Verbs</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>""</code> (core)</TableCell>
+      <TableCell><code>configmaps</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>""</code> (core)</TableCell>
+      <TableCell><code>secrets</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>batch</code></TableCell>
+      <TableCell><code>cronjobs</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code>, <code>create</code>, <code>update</code>, <code>delete</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>batch</code></TableCell>
+      <TableCell><code>jobs</code></TableCell>
+      <TableCell><code>create</code>, <code>delete</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>coordination.k8s.io</code></TableCell>
+      <TableCell><code>leases</code></TableCell>
+      <TableCell><code>get</code>, <code>create</code>, <code>update</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>networking.k8s.io</code></TableCell>
+      <TableCell><code>ingresses</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>route.openshift.io</code></TableCell>
+      <TableCell><code>routes</code></TableCell>
+      <TableCell><code>get</code>, <code>list</code>, <code>watch</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="virt-additional-scc-for-kubevirt-controller_virt-security-policies" class="group scroll-mt-20">Additional SCCs and permissions for the kubevirt-controller service account<a href="#virt-additional-scc-for-kubevirt-controller_virt-security-policies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Security context constraints (SCCs) control permissions for pods. These permissions include actions that a pod, a collection of containers, can perform and what resources it can access. You can use SCCs to define a set of conditions that a pod must run with to be accepted into the system.</p>
+      <p>The <code>virt-controller</code> is a cluster controller that creates the <code>virt-launcher</code> pods for virtual machines in the cluster.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>By default, <code>virt-launcher</code> pods run with the <code>default</code> service account in the namespace. If your compliance controls require a unique service account, assign one to the VM. The setting applies to the <code>VirtualMachineInstance</code> object and the <code>virt-launcher</code> pod.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The <code>kubevirt-controller</code> service account is granted additional SCCs and Linux capabilities so that it can create <code>virt-launcher</code> pods with the appropriate permissions. These extended permissions allow virtual machines to use OpenShift Virtualization features that are beyond the scope of typical pods.</p>
+      <p>The <code>kubevirt-controller</code> service account is granted the following SCCs:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>scc.AllowHostDirVolumePlugin = true</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>This allows virtual machines to use the hostpath volume plugin.</p></dd>
+      <dt class="font-semibold"><code>scc.AllowPrivilegedContainer = false</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>This ensures the <code>virt-launcher</code> pod is not run as a privileged container.</p></dd>
+      <dt class="font-semibold"><code>scc.AllowedCapabilities = []corev1.Capability{"{"}"SYS_NICE", "NET_BIND_SERVICE"{"}"}</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>SYS_NICE</code> allows setting the CPU affinity.</li>
+      <li><code>NET_BIND_SERVICE</code> allows DHCP and Slirp operations.</li>
+      </ul>
+      </dd>
+      </dl>
+      <h4 id="_viewing_the_scc_and_rbac_definitions_for_the_kubevirt-controller" class="group scroll-mt-20">Viewing the SCC and RBAC definitions for the kubevirt-controller<a href="#_viewing_the_scc_and_rbac_definitions_for_the_kubevirt-controller" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>You can view the <code>SecurityContextConstraints</code> definition for the <code>kubevirt-controller</code> by using the <code>oc</code> tool:</p>
+      <CodeBlock code={"$ oc get scc kubevirt-controller -o yaml"} lang="terminal" />
+      <p>You can view the RBAC definition for the <code>kubevirt-controller</code> clusterrole by using the <code>oc</code> tool:</p>
+      <CodeBlock code={"$ oc get clusterrole kubevirt-controller -o yaml"} lang="terminal" />
       <h2 id="additional-resources_virt-security-policies" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-security-policies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://kubernetes.io/docs/concepts/security/pod-security-standards/#restricted">Pod Security Standards</a></li>

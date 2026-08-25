@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"core-cluster-upgrades-z-stream","text":"Complete a z-stream cluster update with {{ cgu_operator }}"},{"depth":2,"slug":"additional-resources_core-cluster-upgrades-z-stream","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"core-cluster-upgrades-z-stream","text":"Complete a z-stream cluster update with {{ cgu_operator }}"},{"depth":2,"slug":"core-cluster-upgrade-z-stream_core-cluster-upgrades-z-stream","text":"Updating clusters with z-stream releases"},{"depth":2,"slug":"additional-resources_core-cluster-upgrades-z-stream","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-z-stream";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Complete a z-stream cluster update with {{ cgu_operator }}";
-const description = "You can update clusters to z-stream patch releases by using {{ rh_rhacm }} policies and {{ cgu_operator_full }} ({{ cgu_operator }})." || undefined;
+const description = "You can update clusters to z-stream patch releases by using RHACM policies and Topology Aware Lifecycle Manager (TALM)." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Complete a z-stream cluster update with {{ cgu_operator }} {#core-cluster-upgrades-z-stream}\n\nYou can update clusters to z-stream patch releases by using {{ rh_rhacm }} policies and {{ cgu_operator_full }} ({{ cgu_operator }}).\n\n## Additional resources {#additional-resources_core-cluster-upgrades-z-stream}\n\n- [Prepare {{ rh_rhacm }} policies and {{ cgu_operator }} for cluster updates](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-preparing-policies#core-cluster-upgrades-preparing-policies)\n- [Perform health checks before a cluster update with {{ cgu_operator }}](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks)\n- [Troubleshoot cluster updates with {{ cgu_operator }}](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-troubleshooting#core-cluster-upgrades-troubleshooting)\n- [OpenShift Container Platform update documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/)\n- [OpenShift Container Platform update lifecycle and support policy](https://access.redhat.com/support/policy/updates/openshift)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-z-stream.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Complete a z-stream cluster update with {{ cgu_operator }} {#core-cluster-upgrades-z-stream}\n\nYou can update clusters to z-stream patch releases by using RHACM policies and Topology Aware Lifecycle Manager (TALM).\n\n## Updating clusters with z-stream releases {#core-cluster-upgrade-z-stream_core-cluster-upgrades-z-stream}\n\nYou can update clusters to z-stream patch releases by using RHACM policies and Topology Aware Lifecycle Manager (TALM). Z-stream updates apply security fixes and bug fixes with minimal risk and should be performed regularly to maintain cluster security.\n\nApply z-stream updates as soon as they become available to address critical vulnerabilities and maintain security compliance.\n\n> [!NOTE]\n> The following procedure uses `spoke1` and `spoke2` as example cluster names. Replace these with your actual cluster names throughout.\n\n**Prerequisites**\n\n- You have completed the pre-update health check successfully.\n- TALM is installed and configured on the Red Hat Advanced Cluster Management (RHACM) hub cluster.\n- A z-stream patch release is available on the Red Hat Customer Portal.\n- A recent etcd backup exists that was created within the past 24 hours.\n\n**Procedure**\n\n1. Verify the current cluster version by running the following command:\n\n   ```terminal\n   $ oc get clusterversion\n   ```\n\n   The following example shows the output:\n\n   ```terminal\n   NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS\n   version   4.20.0    True        False         30d     Cluster version is 4.20.0\n   ```\n2. Check for available z-stream updates by running the following command:\n\n   ```terminal\n   $ oc adm upgrade\n   ```\n\n   The following example shows the output:\n\n   ```terminal\n   Cluster version is 4.20.0\n\n   Upstream is unset, so the cluster will use an appropriate default.\n   Channel: stable-4.20 (available channels: candidate-4.20, eus-4.20, fast-4.20, stable-4.20)\n\n   Recommended updates:\n\n     VERSION     IMAGE\n     4.20.1      quay.io/openshift-release-dev/ocp-release@sha256:abc123...\n     4.20.2      quay.io/openshift-release-dev/ocp-release@sha256:def456...\n   ```\n\n   Review the OpenShift Container Platform release notes for the target version to identify security fixes and bug fixes included in the z-stream release.\n3. Create a RHACM policy for the z-stream update:\n\n   ```yaml\n   apiVersion: policy.open-cluster-management.io/v1\n   kind: Policy\n   metadata:\n     name: core-upgrade-4.20.1-policy\n     namespace: openshift-upgrade-policies\n   spec:\n     remediationAction: inform\n     disabled: false\n     policy-templates:\n     - objectDefinition:\n         apiVersion: policy.open-cluster-management.io/v1\n         kind: ConfigurationPolicy\n         metadata:\n           name: upgrade-cluster-version\n         spec:\n           remediationAction: inform\n           severity: high\n           object-templates:\n           - complianceType: musthave\n             objectDefinition:\n               apiVersion: config.openshift.io/v1\n               kind: ClusterVersion\n               metadata:\n                 name: version\n               spec:\n                 channel: stable-4.20\n                 desiredUpdate:\n                   version: 4.20.1\n   ```\n\n   Replace `4.20.1` with your target z-stream version. The policy is set to `inform` so it does not immediately push the update. The `ClusterGroupUpgrade` custom resource (CR) enforces the policy at the scheduled update time.\n4. Apply the policy to the RHACM hub cluster by running the following command:\n\n   ```terminal\n   $ oc apply -f core-upgrade-4.20.1-policy.yaml\n   ```\n5. Verify the policy and placement resources were created by running the following commands:\n\n   ```terminal\n   $ oc get policy core-upgrade-4.20.1-policy -n openshift-upgrade-policies\n   $ oc get placementbinding -n openshift-upgrade-policies\n   $ oc get placement -n openshift-upgrade-policies\n   ```\n\n   The following example shows the output:\n\n   ```terminal\n   NAME                           REMEDIATION ACTION   COMPLIANCE STATE   AGE\n   core-upgrade-4.20.1-policy    inform               NonCompliant       30s\n   ```\n\n   If no `PlacementBinding` or `Placement` exists, the policy will not apply to any clusters. Create appropriate placement resources for your target clusters.\n6. Create a `ClusterGroupUpgrade` CR for the z-stream update:\n\n   ```yaml\n   apiVersion: ran.openshift.io/v1alpha1\n   kind: ClusterGroupUpgrade\n   metadata:\n     name: core-zstream-upgrade-4.20.1\n     namespace: openshift-upgrade-policies\n   spec:\n     clusters:\n     - spoke1\n     - spoke2\n     managedPolicies:\n     - core-upgrade-4.20.1-policy\n     enable: false\n     remediationStrategy:\n       maxConcurrency: 2\n       timeout: 60\n   ```\n\n   where:\n\n   - `clusters`: Specifies your target cluster names.\n   - `maxConcurrency`: Specifies the number of clusters to update simultaneously.\n   - `timeout`: Specifies the maximum time in minutes to wait for each cluster update. For example, 60 equals 1 hour per cluster.\n7. Apply and enable the `ClusterGroupUpgrade` CR to start the update by running the following commands:\n\n   ```terminal\n   $ oc apply -f core-zstream-cgu.yaml\n   $ oc patch cgu core-zstream-upgrade-4.20.1 \\\n     -n openshift-upgrade-policies \\\n     --type merge \\\n     -p '{\"spec\":{\"enable\":true}}'\n   ```\n8. Monitor the update progress by running the following commands:\n\n   ```terminal\n   $ oc get cgu core-zstream-upgrade-4.20.1 -n openshift-upgrade-policies -w\n   $ oc --context=spoke1 get clusterversion -w\n   $ oc --context=spoke1 get co\n   ```\n\n   The `ClusterGroupUpgrade` CR progresses through these states:\n\n   - `Preparing`: TALM validates cluster readiness\n   - `InProgress`: Clusters are updating\n   - `Complete`: All clusters successfully updated\n\n   Operators update sequentially during the z-stream update.\n\n**Verification**\n\n1. Verify the cluster version and Operator health by running the following commands:\n\n   ```terminal\n   $ oc --context=spoke1 get clusterversion -o jsonpath='{.items[0].status.desired.version}'\n   $ oc --context=spoke1 get co\n   ```\n\n   The cluster version must show the target z-stream version. All Operators must show `AVAILABLE=True`, `PROGRESSING=False`, `DEGRADED=False`.\n2. Check workload health by running the following command:\n\n   ```terminal\n   $ oc --context=spoke1 get pods -A | grep -v Running | grep -v Completed\n   ```\n\n   Pods must not show unexpected failures or crash loops.\n3. Verify CNF-specific resources by running the following commands:\n\n   ```terminal\n   $ oc --context=spoke1 get performanceprofile\n   $ oc --context=spoke1 get ptpconfig -n openshift-ptp\n   $ oc --context=spoke1 get sriovnetworknodepolicy -n openshift-sriov-network-operator\n   ```\n\n   All custom resources must show expected status.\n4. Run smoke tests for critical workloads to ensure functionality after the update.\n\n**Troubleshooting**\n\n- If the `ClusterGroupUpgrade` CR is stuck in `Preparing` state, check policy compliance in RHACM by running the following command:\n\n  ```terminal\n  $ oc get policy core-upgrade-4.20.1-policy -n openshift-upgrade-policies\n  ```\n- If a cluster Operator becomes degraded during the update, check Operator logs by running the following command:\n\n  ```terminal\n  $ oc --context=spoke1 logs -n openshift-<operator_namespace> deployment/<operator_deployment>\n  ```\n- If the update exceeds the timeout, investigate slow nodes or image pull issues by running the following command:\n\n  ```terminal\n  $ oc --context=spoke1 get events -A --sort-by='.lastTimestamp' | tail -20\n  ```\n\n## Additional resources {#additional-resources_core-cluster-upgrades-z-stream}\n\n- [Prepare RHACM policies and TALM for cluster updates](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-preparing-policies#core-cluster-upgrades-preparing-policies)\n- [Perform health checks before a cluster update with TALM](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks)\n- [Troubleshoot cluster updates with TALM](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-troubleshooting#core-cluster-upgrades-troubleshooting)\n- [OpenShift Container Platform update documentation](https://docs.redhat.com/en/documentation/openshift_container_platform/)\n- [OpenShift Container Platform update lifecycle and support policy](https://access.redhat.com/support/policy/updates/openshift)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-z-stream.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,119 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="core-cluster-upgrades-z-stream" class="group scroll-mt-20">Complete a z-stream cluster update with {"{"}{"{"} cgu_operator {"}"}{"}"}<a href="#core-cluster-upgrades-z-stream" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can update clusters to z-stream patch releases by using {"{"}{"{"} rh_rhacm {"}"}{"}"} policies and {"{"}{"{"} cgu_operator_full {"}"}{"}"} ({"{"}{"{"} cgu_operator {"}"}{"}"}).</p>
-      <p class="/modules/core-cluster-upgrade-z-stream.md"></p>
+      <p>You can update clusters to z-stream patch releases by using RHACM policies and Topology Aware Lifecycle Manager (TALM).</p>
+      <h2 id="core-cluster-upgrade-z-stream_core-cluster-upgrades-z-stream" class="group scroll-mt-20">Updating clusters with z-stream releases<a href="#core-cluster-upgrade-z-stream_core-cluster-upgrades-z-stream" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can update clusters to z-stream patch releases by using RHACM policies and Topology Aware Lifecycle Manager (TALM). Z-stream updates apply security fixes and bug fixes with minimal risk and should be performed regularly to maintain cluster security.</p>
+      <p>Apply z-stream updates as soon as they become available to address critical vulnerabilities and maintain security compliance.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The following procedure uses <code>spoke1</code> and <code>spoke2</code> as example cluster names. Replace these with your actual cluster names throughout.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have completed the pre-update health check successfully.</li>
+      <li>TALM is installed and configured on the Red Hat Advanced Cluster Management (RHACM) hub cluster.</li>
+      <li>A z-stream patch release is available on the Red Hat Customer Portal.</li>
+      <li>A recent etcd backup exists that was created within the past 24 hours.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Verify the current cluster version by running the following command:
+      <CodeBlock code={"$ oc get clusterversion"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"NAME      VERSION   AVAILABLE   PROGRESSING   SINCE   STATUS\nversion   4.20.0    True        False         30d     Cluster version is 4.20.0"} lang="terminal" />
+      </li>
+      <li>
+      Check for available z-stream updates by running the following command:
+      <CodeBlock code={"$ oc adm upgrade"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"Cluster version is 4.20.0\n\nUpstream is unset, so the cluster will use an appropriate default.\nChannel: stable-4.20 (available channels: candidate-4.20, eus-4.20, fast-4.20, stable-4.20)\n\nRecommended updates:\n\n  VERSION     IMAGE\n  4.20.1      quay.io/openshift-release-dev/ocp-release@sha256:abc123...\n  4.20.2      quay.io/openshift-release-dev/ocp-release@sha256:def456..."} lang="terminal" />
+      <p>Review the OpenShift Container Platform release notes for the target version to identify security fixes and bug fixes included in the z-stream release.</p>
+      </li>
+      <li>
+      Create a RHACM policy for the z-stream update:
+      <CodeBlock code={"apiVersion: policy.open-cluster-management.io/v1\nkind: Policy\nmetadata:\n  name: core-upgrade-4.20.1-policy\n  namespace: openshift-upgrade-policies\nspec:\n  remediationAction: inform\n  disabled: false\n  policy-templates:\n  - objectDefinition:\n      apiVersion: policy.open-cluster-management.io/v1\n      kind: ConfigurationPolicy\n      metadata:\n        name: upgrade-cluster-version\n      spec:\n        remediationAction: inform\n        severity: high\n        object-templates:\n        - complianceType: musthave\n          objectDefinition:\n            apiVersion: config.openshift.io/v1\n            kind: ClusterVersion\n            metadata:\n              name: version\n            spec:\n              channel: stable-4.20\n              desiredUpdate:\n                version: 4.20.1"} lang="yaml" />
+      <p>Replace <code>4.20.1</code> with your target z-stream version. The policy is set to <code>inform</code> so it does not immediately push the update. The <code>ClusterGroupUpgrade</code> custom resource (CR) enforces the policy at the scheduled update time.</p>
+      </li>
+      <li>
+      Apply the policy to the RHACM hub cluster by running the following command:
+      <CodeBlock code={"$ oc apply -f core-upgrade-4.20.1-policy.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Verify the policy and placement resources were created by running the following commands:
+      <CodeBlock code={"$ oc get policy core-upgrade-4.20.1-policy -n openshift-upgrade-policies\n$ oc get placementbinding -n openshift-upgrade-policies\n$ oc get placement -n openshift-upgrade-policies"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"NAME                           REMEDIATION ACTION   COMPLIANCE STATE   AGE\ncore-upgrade-4.20.1-policy    inform               NonCompliant       30s"} lang="terminal" />
+      <p>If no <code>PlacementBinding</code> or <code>Placement</code> exists, the policy will not apply to any clusters. Create appropriate placement resources for your target clusters.</p>
+      </li>
+      <li>
+      Create a <code>ClusterGroupUpgrade</code> CR for the z-stream update:
+      <CodeBlock code={"apiVersion: ran.openshift.io/v1alpha1\nkind: ClusterGroupUpgrade\nmetadata:\n  name: core-zstream-upgrade-4.20.1\n  namespace: openshift-upgrade-policies\nspec:\n  clusters:\n  - spoke1\n  - spoke2\n  managedPolicies:\n  - core-upgrade-4.20.1-policy\n  enable: false\n  remediationStrategy:\n    maxConcurrency: 2\n    timeout: 60"} lang="yaml" />
+      <p>where:</p>
+      <ul>
+      <li><code>clusters</code>: Specifies your target cluster names.</li>
+      <li><code>maxConcurrency</code>: Specifies the number of clusters to update simultaneously.</li>
+      <li><code>timeout</code>: Specifies the maximum time in minutes to wait for each cluster update. For example, 60 equals 1 hour per cluster.</li>
+      </ul>
+      </li>
+      <li>
+      Apply and enable the <code>ClusterGroupUpgrade</code> CR to start the update by running the following commands:
+      <CodeBlock code={"$ oc apply -f core-zstream-cgu.yaml\n$ oc patch cgu core-zstream-upgrade-4.20.1 \\\n  -n openshift-upgrade-policies \\\n  --type merge \\\n  -p '{\"spec\":{\"enable\":true}}'"} lang="terminal" />
+      </li>
+      <li>
+      Monitor the update progress by running the following commands:
+      <CodeBlock code={"$ oc get cgu core-zstream-upgrade-4.20.1 -n openshift-upgrade-policies -w\n$ oc --context=spoke1 get clusterversion -w\n$ oc --context=spoke1 get co"} lang="terminal" />
+      <p>The <code>ClusterGroupUpgrade</code> CR progresses through these states:</p>
+      <ul>
+      <li><code>Preparing</code>: TALM validates cluster readiness</li>
+      <li><code>InProgress</code>: Clusters are updating</li>
+      <li><code>Complete</code>: All clusters successfully updated</li>
+      </ul>
+      <p>Operators update sequentially during the z-stream update.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify the cluster version and Operator health by running the following commands:
+      <CodeBlock code={"$ oc --context=spoke1 get clusterversion -o jsonpath='{.items[0].status.desired.version}'\n$ oc --context=spoke1 get co"} lang="terminal" />
+      <p>The cluster version must show the target z-stream version. All Operators must show <code>AVAILABLE=True</code>, <code>PROGRESSING=False</code>, <code>DEGRADED=False</code>.</p>
+      </li>
+      <li>
+      Check workload health by running the following command:
+      <CodeBlock code={"$ oc --context=spoke1 get pods -A | grep -v Running | grep -v Completed"} lang="terminal" />
+      <p>Pods must not show unexpected failures or crash loops.</p>
+      </li>
+      <li>
+      Verify CNF-specific resources by running the following commands:
+      <CodeBlock code={"$ oc --context=spoke1 get performanceprofile\n$ oc --context=spoke1 get ptpconfig -n openshift-ptp\n$ oc --context=spoke1 get sriovnetworknodepolicy -n openshift-sriov-network-operator"} lang="terminal" />
+      <p>All custom resources must show expected status.</p>
+      </li>
+      <li>Run smoke tests for critical workloads to ensure functionality after the update.</li>
+      </ol>
+      <p><strong>Troubleshooting</strong></p>
+      <ul>
+      <li>
+      If the <code>ClusterGroupUpgrade</code> CR is stuck in <code>Preparing</code> state, check policy compliance in RHACM by running the following command:
+      <CodeBlock code={"$ oc get policy core-upgrade-4.20.1-policy -n openshift-upgrade-policies"} lang="terminal" />
+      </li>
+      <li>
+      If a cluster Operator becomes degraded during the update, check Operator logs by running the following command:
+      <CodeBlock code={"$ oc --context=spoke1 logs -n openshift-<operator_namespace> deployment/<operator_deployment>"} lang="terminal" />
+      </li>
+      <li>
+      If the update exceeds the timeout, investigate slow nodes or image pull issues by running the following command:
+      <CodeBlock code={"$ oc --context=spoke1 get events -A --sort-by='.lastTimestamp' | tail -20"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="additional-resources_core-cluster-upgrades-z-stream" class="group scroll-mt-20">Additional resources<a href="#additional-resources_core-cluster-upgrades-z-stream" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-preparing-policies#core-cluster-upgrades-preparing-policies">Prepare {"{"}{"{"} rh_rhacm {"}"}{"}"} policies and {"{"}{"{"} cgu_operator {"}"}{"}"} for cluster updates</a></li>
-      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks">Perform health checks before a cluster update with {"{"}{"{"} cgu_operator {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-troubleshooting#core-cluster-upgrades-troubleshooting">Troubleshoot cluster updates with {"{"}{"{"} cgu_operator {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-preparing-policies#core-cluster-upgrades-preparing-policies">Prepare RHACM policies and TALM for cluster updates</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks">Perform health checks before a cluster update with TALM</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-troubleshooting#core-cluster-upgrades-troubleshooting">Troubleshoot cluster updates with TALM</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/">OpenShift Container Platform update documentation</a></li>
       <li><a href="https://access.redhat.com/support/policy/updates/openshift">OpenShift Container Platform update lifecycle and support policy</a></li>
       </ul>

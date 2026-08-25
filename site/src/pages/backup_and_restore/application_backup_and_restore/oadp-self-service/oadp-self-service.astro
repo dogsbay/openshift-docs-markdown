@@ -15,8 +15,19 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"oadp-self-service","text":"{{ oadp_short }} Self-Service"}];
+const headings = [{"depth":1,"slug":"oadp-self-service","text":"{{ oadp_short }} Self-Service"},{"depth":2,"slug":"oadp-self-service-overview_oadp-self-service","text":"About OADP Self-Service"},{"depth":2,"slug":"oadp-self-service-overview-namespace-scope_oadp-self-service","text":"What namespace-scoped backup and restore means"},{"depth":2,"slug":"oadp-self-service-custom-resources_oadp-self-service","text":"OADP Self-Service custom resources"},{"depth":2,"slug":"oadp-self-service-how-it-works_oadp-self-service","text":"How OADP Self-Service works"},{"depth":2,"slug":"oadp-self-service-prerequisites_oadp-self-service","text":"OADP Self-Service prerequisites"},{"depth":2,"slug":"oadp-self-service-namespace-permissions_oadp-self-service","text":"OADP Self-Service namespace permissions"},{"depth":3,"slug":"oadp-self-service-yaml-backup-operation_oadp-self-service","text":"Example RBAC YAML for backup operation"},{"depth":2,"slug":"oadp-self-service-unsupported-features_oadp-self-service","text":"OADP Self-Service limitations"},{"depth":2,"slug":"oadp-self-service-phases_oadp-self-service","text":"OADP Self-Service backup and restore phases"},{"depth":2,"slug":"oadp-self-service-about-nabsl_oadp-self-service","text":"About NonAdminBackupStorageLocation CR"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-self-service/oadp-self-service";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +37,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ oadp_short }} Self-Service";
-const description = "Use {{ oadp_short }} Self-Service to enable namespace administrators to back up and restore their applications without cluster admin privileges. This…" || undefined;
+const description = "Use OADP Self-Service to enable namespace administrators to back up and restore their applications without cluster admin privileges. This helps you…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +50,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ oadp_short }} Self-Service {#oadp-self-service}\n\nUse {{ oadp_short }} Self-Service to enable namespace administrators to back up and restore their applications without cluster admin privileges. This helps you delegate backup operations while maintaining administrative control.\n\n**Additional resources**\n\n- [Configuring an htpasswd identity provider](/openshift-docs-markdown/authentication/identity_providers/configuring-htpasswd-identity-provider#configuring-htpasswd-identity-provider)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-self-service/oadp-self-service.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ oadp_short }} Self-Service {#oadp-self-service}\n\nUse OADP Self-Service to enable namespace administrators to back up and restore their applications without cluster admin privileges. This helps you delegate backup operations while maintaining administrative control.\n\n## About OADP Self-Service {#oadp-self-service-overview_oadp-self-service}\n\nFrom OADP 1.5.0 onward, you do not need the `cluster-admin` role to perform the backup and restore operations. You can use OADP with the namespace `admin` role. The namespace `admin` role has administrator access only to the namespace the user is assigned to.\n\nYou can use the Self-Service feature only after the cluster administrator installs the OADP Operator and provides the necessary permissions.\n\nThe OADP Self-Service feature provides secure self-service data protection capabilities for users without `cluster-admin` privileges while maintaining proper access controls.\n\nThe OADP cluster administrator creates a user with the namespace `admin` role and provides the necessary Role Based Access Controls (RBAC) to the user to perform OADP Self-Service actions. As this user has limited access compared to the `cluster-admin` role, this user is referred to as a namespace admin user.\n\nAs a namespace admin user, you can back up and restore applications deployed in your authorized namespace on the cluster.\n\nOADP Self-Service offers the following benefits:\n\n- As a cluster administrator:\n\n  - You allow namespace-scoped backup and restore operations to a namespace admin user. This means, a namespace admin user cannot access a namespace that they are not authorized to.\n  - You keep administrator control over non-administrator operations through `DataProtectionApplication` configuration and policies.\n- As a namespace admin user:\n\n  - You can create backup and restore custom resources for your authorized namespace.\n  - You can create dedicated backup storage locations in your authorized namespace.\n  - You have secure access to backup logs and status information.\n\n## What namespace-scoped backup and restore means {#oadp-self-service-overview-namespace-scope_oadp-self-service}\n\nOADP Self-Service ensures that namespace admin users can only operate within their authorized namespace. For example, if you do not have access to a namespace, as a namespace admin user, you cannot back up that namespace.\n\nA namespace admin user cannot access backup and restore data of other users.\n\nThe cluster administrator enforces the access control through custom resources (CRs) that securely manage the backup and restore operations.\n\nAdditionally, the cluster administrator can control the allowed options within the CRs, restricting certain operations for added security by using `spec` enforcements in the `DataProtectionApplication` (DPA) CR.\n\nNamespace `admin` users can perform the following Self-Service operations:\n\n- Create and manage backups of their authorized namespaces.\n- Restore data to their authorized namespaces.\n- Configure their own backup storage locations.\n- Check backup and restore status.\n- Request retrieval of relevant logs.\n\n**Additional resources**\n\n- [Configuring an htpasswd identity provider](/openshift-docs-markdown/authentication/identity_providers/configuring-htpasswd-identity-provider#configuring-htpasswd-identity-provider)\n\n## OADP Self-Service custom resources {#oadp-self-service-custom-resources_oadp-self-service}\n\nUse OADP Self-Service custom resources to control backup, restore, storage location, and download operations for namespace-scoped applications. This provides namespace administrators with self-service data protection tools.\n\nThe OADP Self-Service feature has the following new custom resources (CRs) to perform the backup and restore operations for a namespace admin user:\n\n**Custom resources**\n\n|  |  |\n| --- | --- |\n| **CR** | **Description** |\n| `NonAdminController` (NAC) | Controls and orchestrates the Self-Service operations. |\n| `NonAdminBackup` (NAB) | Manages namespace-scoped backup operations. |\n| `NonAdminRestore` (NAR) | Manages namespace-scoped restore operations. |\n| `NonAdminBackupStorageLocation` (NABSL) | Defines user-specific backup storage location. |\n| `NonAdminDownloadRequest` (NADR) | Manages namespace-scoped download request operations. |\n\n## How OADP Self-Service works {#oadp-self-service-how-it-works_oadp-self-service}\n\nReview how OADP Self-Service processes backup requests through the `NonAdminController` (NAC) custom resource, which validates namespace administrator requests and creates corresponding `Velero` backup objects.\n\nThe diagram describes the following workflow:\n\n1. A namespace admin user creates a `NonAdminBackup` (NAB) custom resource (CR) request.\n2. The `NonAdminController` (NAC) CR receives the NAB CR request.\n3. The NAC validates the request and updates the NAB CR about the request.\n4. The NAC creates the `Velero` backup object.\n5. The NAC monitors the `Velero` backup object and cascades the status back to the NAB CR.\n\n**Figure 1. How OADP Self-Service works**\n\n![OADP Self-Service](/openshift-docs-markdown/_assets/images/oadp-self-service.svg)\n\n## OADP Self-Service prerequisites {#oadp-self-service-prerequisites_oadp-self-service}\n\nConfigure your cluster environment to enable OADP Self-Service backup and restore operations by meeting the following prerequisites. This helps namespace administrators perform data protection tasks in their assigned namespaces.\n\n- The cluster administrator has configured the OADP `DataProtectionApplication` (DPA) CR to enable Self-Service.\n- The cluster administrator has completed the following tasks:\n\n  - Created a namespace `admin` user account.\n  - Created a namespace for the namespace `admin` user.\n  - Assigned appropriate privileges for the namespace admin user’s namespace. This ensures that the namespace admin user is authorized to access and perform backup and restore operations in their assigned namespace.\n- Optionally, the cluster administrator can create a `NonAdminBackupStorageLocation` (NABSL) CR for the namespace `admin` user.\n\n## OADP Self-Service namespace permissions {#oadp-self-service-namespace-permissions_oadp-self-service}\n\nAssign namespace permissions to namespace administrators to create and manage backup, restore, and storage location resources in their assigned namespaces. This grants namespace administrators the required access for Self-Service data protection operations.\n\nAs a cluster administrator, ensure that a namespace admin user has editor roles assigned for the following list of objects in their namespace.\n\n- `nonadminbackups.oadp.openshift.io`\n- `nonadminbackupstoragelocations.oadp.openshift.io`\n- `nonadminrestores.oadp.openshift.io`\n- `nonadmindownloadrequests.oadp.openshift.io`\n\nFor more details on the namespace `admin` role, see [Default cluster roles](https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/authentication_and_authorization/using-rbac#default-roles_using-rbac).\n\nA cluster administrator can also define their own specifications so that users can have rights similar to `project` or namespace `admin` roles.\n\n### Example RBAC YAML for backup operation {#oadp-self-service-yaml-backup-operation_oadp-self-service}\n\nSee the following role-based access control (RBAC) YAML file example with namespace permissions for a namespace `admin` user to perform a backup operation.\n\n```yaml {title=\"Example RBAC manifest\"}\n...\n- apiGroups:\n      - oadp.openshift.io\n    resources:\n      - nonadminbackups\n      - nonadminrestores\n      - nonadminbackupstoragelocations\n      - nonadmindownloadrequests\n    verbs:\n      - create\n      - delete\n      - get\n      - list\n      - patch\n      - update\n      - watch\n  - apiGroups:\n      - oadp.openshift.io\n    resources:\n      - nonadminbackups/status\n      - nonadminrestores/status\n    verbs:\n      - get\n```\n\n## OADP Self-Service limitations {#oadp-self-service-unsupported-features_oadp-self-service}\n\nReview the limitations and unsupported features of OADP Self-Service to understand which operations are restricted for namespace administrators. This helps you plan appropriate backup and restore strategies within the supported functionality.\n\nThe following features are not supported by OADP Self-Service:\n\n- Cross cluster backup and restore, or migrations are not supported. These OADP operations are supported for the cluster administrator.\n- A namespace `admin` user cannot create a `VolumeSnapshotLocation` (VSL) CR. The cluster administrator creates and configures the VSL in the `DataProtectionApplication` (DPA) CR for a namespace `admin` user.\n- The `ResourceModifiers` CR and volume policies are not supported for a namespace `admin` user.\n- A namespace `admin` user can request backup or restore logs by using the `NonAdminDownloadRequest` CR, only if the backup or restore is created by a user by using the `NonAdminBackupStorageLocation` CR.\n\n  If the backup or restore CRs are created by using the cluster-wide default backup storage location, a namespace `admin` user cannot request the backup or restore logs.\n- To ensure secure backup and restore, OADP Self-Service automatically excludes the following CRs from being backed up or restored:\n\n  - `NonAdminBackup`\n  - `NonAdminRestore`\n  - `NonAdminBackupStorageLocation`\n  - `SecurityContextConstraints`\n  - `ClusterRole`\n  - `ClusterRoleBinding`\n  - `CustomResourceDefinition`\n  - `PriorityClasses`\n  - `VirtualMachineClusterInstanceTypes`\n  - `VirtualMachineClusterPreferences`\n\n## OADP Self-Service backup and restore phases {#oadp-self-service-phases_oadp-self-service}\n\nReview the status phases of `NonAdminBackup` (NAB) and `NonAdminRestore` (NAR) custom resources to track the progress and state of backup and restore operations. This helps you monitor and troubleshoot Self-Service backup and restore requests.\n\nThe phase of the CRs only progress forward. Once a phase transitions to the next phase, it cannot revert to a previous phase.\n\n**Phases**\n\n|  |  |\n| --- | --- |\n| **Value** | **Description** |\n| `New` | A creation request of the NAB or NAR CR is accepted by the NAC, but it has not yet been validated by the NAC. |\n| `BackingOff` | NAB or NAR CR is invalidated by the NAC CR because of an invalid `spec` of the NAB or NAR  CR. The namespace admin user can update the NAB or NAR `spec` to comply with the policies set by the administrator. After the namespace admin user edits the CRs, the NAC reconciles the CR again. |\n| `Created` | NAB or NAR CR is validated by the NAC, and the `Velero` backup or restore object is created. |\n| `Deletion` | NAB or NAR CR is marked for deletion. The NAC deletes the corresponding `Velero` backup or restore object. When the `Velero` object is deleted, the NAB or NAR CR is also deleted. |\n\n## About NonAdminBackupStorageLocation CR {#oadp-self-service-about-nabsl_oadp-self-service}\n\nReview the `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) workflows to understand how namespace administrators define backup storage locations through administrator creation, approval, or automatic processes. This helps you choose the appropriate workflow based on security requirements.\n\nTo ensure that the NABSL CR is created and used securely, use cluster administrator controls. The cluster administrator manages the NABSL CR to comply with company policies, and compliance requirements.\n\nYou can create a NABSL CR by using one of the following workflows:\n\n- **Administrator creation workflow**: In this workflow, the cluster administrator creates the NABSL CR for the namespace admin user. The namespace admin user then references the NABSL in the `NonAdminBackup` CR.\n- **Administrator approval workflow**: The cluster administrator must explicitly enable this opt-in feature in the DPA by setting the `nonAdmin.requireApprovalForBSL` field to `true`. The cluster administrator approval process works as follows:\n\n  1. A namespace admin user creates a NABSL CR. Because the administrator has enforced an approval process in the DPA, it triggers the creation of a `NonAdminBackupStorageLocationRequest` CR in the `openshift-adp` namespace.\n  2. The cluster administrator reviews the request and either approves or rejects the request.\n\n     - If approved, a `Velero` `BackupStorageLocation` (BSL) is created in the `openshift-adp` namespace, and the NABSL CR status is updated to reflect the approval.\n     - If rejected, the status of the NABSL CR is updated to reflect the rejection.\n  3. The cluster administrator can also revoke a previously approved NABSL CR. The `approve` field is set back to `pending` or `reject`. This results in the deletion of the `Velero` BSL, and the namespace admin user is notified of the rejection.\n- **Automatic approval workflow**: In this workflow, the cluster administrator does not enforce an approval process for the NABSL CR by setting the `nonAdmin.requireApprovalForBSL` field in the DPA to `false`. The default value of this field is `false`. Not setting the field results in an automatic approval of the NABSL. Therefore, the namespace admin user can create the NABSL CR from their authorized namespace.\n\n> [!IMPORTANT]\n> For security purposes, use either the administrator creation or the administrator approval workflow. The automatic approval workflow is less secure as it does not require administrator review.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-self-service/oadp-self-service.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,18 +102,213 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-self-service" class="group scroll-mt-20">{"{"}{"{"} oadp_short {"}"}{"}"} Self-Service<a href="#oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Use {"{"}{"{"} oadp_short {"}"}{"}"} Self-Service to enable namespace administrators to back up and restore their applications without cluster admin privileges. This helps you delegate backup operations while maintaining administrative control.</p>
-      <p class="/modules/oadp-self-service-overview.md"></p>
-      <p class="/modules/oadp-self-service-namespace-scoped.md"></p>
+      <p>Use OADP Self-Service to enable namespace administrators to back up and restore their applications without cluster admin privileges. This helps you delegate backup operations while maintaining administrative control.</p>
+      <h2 id="oadp-self-service-overview_oadp-self-service" class="group scroll-mt-20">About OADP Self-Service<a href="#oadp-self-service-overview_oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">From OADP 1.5.0 onward, you do not need the <code>cluster-admin</code> role to perform the backup and restore operations. You can use OADP with the namespace <code>admin</code> role. The namespace <code>admin</code> role has administrator access only to the namespace the user is assigned to.</p>
+      <p>You can use the Self-Service feature only after the cluster administrator installs the OADP Operator and provides the necessary permissions.</p>
+      <p>The OADP Self-Service feature provides secure self-service data protection capabilities for users without <code>cluster-admin</code> privileges while maintaining proper access controls.</p>
+      <p>The OADP cluster administrator creates a user with the namespace <code>admin</code> role and provides the necessary Role Based Access Controls (RBAC) to the user to perform OADP Self-Service actions. As this user has limited access compared to the <code>cluster-admin</code> role, this user is referred to as a namespace admin user.</p>
+      <p>As a namespace admin user, you can back up and restore applications deployed in your authorized namespace on the cluster.</p>
+      <p>OADP Self-Service offers the following benefits:</p>
+      <ul>
+      <li>
+      As a cluster administrator:
+      <ul>
+      <li>You allow namespace-scoped backup and restore operations to a namespace admin user. This means, a namespace admin user cannot access a namespace that they are not authorized to.</li>
+      <li>You keep administrator control over non-administrator operations through <code>DataProtectionApplication</code> configuration and policies.</li>
+      </ul>
+      </li>
+      <li>
+      As a namespace admin user:
+      <ul>
+      <li>You can create backup and restore custom resources for your authorized namespace.</li>
+      <li>You can create dedicated backup storage locations in your authorized namespace.</li>
+      <li>You have secure access to backup logs and status information.</li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="oadp-self-service-overview-namespace-scope_oadp-self-service" class="group scroll-mt-20">What namespace-scoped backup and restore means<a href="#oadp-self-service-overview-namespace-scope_oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OADP Self-Service ensures that namespace admin users can only operate within their authorized namespace. For example, if you do not have access to a namespace, as a namespace admin user, you cannot back up that namespace.</p>
+      <p>A namespace admin user cannot access backup and restore data of other users.</p>
+      <p>The cluster administrator enforces the access control through custom resources (CRs) that securely manage the backup and restore operations.</p>
+      <p>Additionally, the cluster administrator can control the allowed options within the CRs, restricting certain operations for added security by using <code>spec</code> enforcements in the <code>DataProtectionApplication</code> (DPA) CR.</p>
+      <p>Namespace <code>admin</code> users can perform the following Self-Service operations:</p>
+      <ul>
+      <li>Create and manage backups of their authorized namespaces.</li>
+      <li>Restore data to their authorized namespaces.</li>
+      <li>Configure their own backup storage locations.</li>
+      <li>Check backup and restore status.</li>
+      <li>Request retrieval of relevant logs.</li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/authentication/identity_providers/configuring-htpasswd-identity-provider#configuring-htpasswd-identity-provider">Configuring an htpasswd identity provider</a></li></ul>
-      <p class="/modules/oadp-self-service-how-it-works.md"></p>
-      <p class="/modules/oadp-self-service-prerequisites.md"></p>
-      <p class="/modules/oadp-self-service-namespace-permissions.md"></p>
-      <p class="/modules/oadp-self-service-unsupported-features.md"></p>
-      <p class="/modules/oadp-self-service-phases.md"></p>
-      <p class="/modules/oadp-self-service-about-nabsl.md"></p>
+      <h2 id="oadp-self-service-custom-resources_oadp-self-service" class="group scroll-mt-20">OADP Self-Service custom resources<a href="#oadp-self-service-custom-resources_oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use OADP Self-Service custom resources to control backup, restore, storage location, and download operations for namespace-scoped applications. This provides namespace administrators with self-service data protection tools.</p>
+      <p>The OADP Self-Service feature has the following new custom resources (CRs) to perform the backup and restore operations for a namespace admin user:</p>
+      <p><strong>Custom resources</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead></TableHead>
+      <TableHead></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><strong>CR</strong></TableCell>
+      <TableCell><strong>Description</strong></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NonAdminController</code> (NAC)</TableCell>
+      <TableCell>Controls and orchestrates the Self-Service operations.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NonAdminBackup</code> (NAB)</TableCell>
+      <TableCell>Manages namespace-scoped backup operations.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NonAdminRestore</code> (NAR)</TableCell>
+      <TableCell>Manages namespace-scoped restore operations.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NonAdminBackupStorageLocation</code> (NABSL)</TableCell>
+      <TableCell>Defines user-specific backup storage location.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NonAdminDownloadRequest</code> (NADR)</TableCell>
+      <TableCell>Manages namespace-scoped download request operations.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="oadp-self-service-how-it-works_oadp-self-service" class="group scroll-mt-20">How OADP Self-Service works<a href="#oadp-self-service-how-it-works_oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review how OADP Self-Service processes backup requests through the <code>NonAdminController</code> (NAC) custom resource, which validates namespace administrator requests and creates corresponding <code>Velero</code> backup objects.</p>
+      <p>The diagram describes the following workflow:</p>
+      <ol>
+      <li>A namespace admin user creates a <code>NonAdminBackup</code> (NAB) custom resource (CR) request.</li>
+      <li>The <code>NonAdminController</code> (NAC) CR receives the NAB CR request.</li>
+      <li>The NAC validates the request and updates the NAB CR about the request.</li>
+      <li>The NAC creates the <code>Velero</code> backup object.</li>
+      <li>The NAC monitors the <code>Velero</code> backup object and cascades the status back to the NAB CR.</li>
+      </ol>
+      <p><strong>Figure 1. How OADP Self-Service works</strong></p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/oadp-self-service.svg" alt="OADP Self-Service" />
+      <h2 id="oadp-self-service-prerequisites_oadp-self-service" class="group scroll-mt-20">OADP Self-Service prerequisites<a href="#oadp-self-service-prerequisites_oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure your cluster environment to enable OADP Self-Service backup and restore operations by meeting the following prerequisites. This helps namespace administrators perform data protection tasks in their assigned namespaces.</p>
+      <ul>
+      <li>The cluster administrator has configured the OADP <code>DataProtectionApplication</code> (DPA) CR to enable Self-Service.</li>
+      <li>
+      The cluster administrator has completed the following tasks:
+      <ul>
+      <li>Created a namespace <code>admin</code> user account.</li>
+      <li>Created a namespace for the namespace <code>admin</code> user.</li>
+      <li>Assigned appropriate privileges for the namespace admin user’s namespace. This ensures that the namespace admin user is authorized to access and perform backup and restore operations in their assigned namespace.</li>
+      </ul>
+      </li>
+      <li>Optionally, the cluster administrator can create a <code>NonAdminBackupStorageLocation</code> (NABSL) CR for the namespace <code>admin</code> user.</li>
+      </ul>
+      <h2 id="oadp-self-service-namespace-permissions_oadp-self-service" class="group scroll-mt-20">OADP Self-Service namespace permissions<a href="#oadp-self-service-namespace-permissions_oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Assign namespace permissions to namespace administrators to create and manage backup, restore, and storage location resources in their assigned namespaces. This grants namespace administrators the required access for Self-Service data protection operations.</p>
+      <p>As a cluster administrator, ensure that a namespace admin user has editor roles assigned for the following list of objects in their namespace.</p>
+      <ul>
+      <li><code>nonadminbackups.oadp.openshift.io</code></li>
+      <li><code>nonadminbackupstoragelocations.oadp.openshift.io</code></li>
+      <li><code>nonadminrestores.oadp.openshift.io</code></li>
+      <li><code>nonadmindownloadrequests.oadp.openshift.io</code></li>
+      </ul>
+      <p>For more details on the namespace <code>admin</code> role, see <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.22/html/authentication_and_authorization/using-rbac#default-roles_using-rbac">Default cluster roles</a>.</p>
+      <p>A cluster administrator can also define their own specifications so that users can have rights similar to <code>project</code> or namespace <code>admin</code> roles.</p>
+      <h3 id="oadp-self-service-yaml-backup-operation_oadp-self-service" class="group scroll-mt-20">Example RBAC YAML for backup operation<a href="#oadp-self-service-yaml-backup-operation_oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>See the following role-based access control (RBAC) YAML file example with namespace permissions for a namespace <code>admin</code> user to perform a backup operation.</p>
+      <CodeBlock code={"...\n- apiGroups:\n      - oadp.openshift.io\n    resources:\n      - nonadminbackups\n      - nonadminrestores\n      - nonadminbackupstoragelocations\n      - nonadmindownloadrequests\n    verbs:\n      - create\n      - delete\n      - get\n      - list\n      - patch\n      - update\n      - watch\n  - apiGroups:\n      - oadp.openshift.io\n    resources:\n      - nonadminbackups/status\n      - nonadminrestores/status\n    verbs:\n      - get"} lang="yaml" title="Example RBAC manifest" />
+      <h2 id="oadp-self-service-unsupported-features_oadp-self-service" class="group scroll-mt-20">OADP Self-Service limitations<a href="#oadp-self-service-unsupported-features_oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the limitations and unsupported features of OADP Self-Service to understand which operations are restricted for namespace administrators. This helps you plan appropriate backup and restore strategies within the supported functionality.</p>
+      <p>The following features are not supported by OADP Self-Service:</p>
+      <ul>
+      <li>Cross cluster backup and restore, or migrations are not supported. These OADP operations are supported for the cluster administrator.</li>
+      <li>A namespace <code>admin</code> user cannot create a <code>VolumeSnapshotLocation</code> (VSL) CR. The cluster administrator creates and configures the VSL in the <code>DataProtectionApplication</code> (DPA) CR for a namespace <code>admin</code> user.</li>
+      <li>The <code>ResourceModifiers</code> CR and volume policies are not supported for a namespace <code>admin</code> user.</li>
+      <li>
+      A namespace <code>admin</code> user can request backup or restore logs by using the <code>NonAdminDownloadRequest</code> CR, only if the backup or restore is created by a user by using the <code>NonAdminBackupStorageLocation</code> CR.
+      <p>If the backup or restore CRs are created by using the cluster-wide default backup storage location, a namespace <code>admin</code> user cannot request the backup or restore logs.</p>
+      </li>
+      <li>
+      To ensure secure backup and restore, OADP Self-Service automatically excludes the following CRs from being backed up or restored:
+      <ul>
+      <li><code>NonAdminBackup</code></li>
+      <li><code>NonAdminRestore</code></li>
+      <li><code>NonAdminBackupStorageLocation</code></li>
+      <li><code>SecurityContextConstraints</code></li>
+      <li><code>ClusterRole</code></li>
+      <li><code>ClusterRoleBinding</code></li>
+      <li><code>CustomResourceDefinition</code></li>
+      <li><code>PriorityClasses</code></li>
+      <li><code>VirtualMachineClusterInstanceTypes</code></li>
+      <li><code>VirtualMachineClusterPreferences</code></li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="oadp-self-service-phases_oadp-self-service" class="group scroll-mt-20">OADP Self-Service backup and restore phases<a href="#oadp-self-service-phases_oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the status phases of <code>NonAdminBackup</code> (NAB) and <code>NonAdminRestore</code> (NAR) custom resources to track the progress and state of backup and restore operations. This helps you monitor and troubleshoot Self-Service backup and restore requests.</p>
+      <p>The phase of the CRs only progress forward. Once a phase transitions to the next phase, it cannot revert to a previous phase.</p>
+      <p><strong>Phases</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead></TableHead>
+      <TableHead></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><strong>Value</strong></TableCell>
+      <TableCell><strong>Description</strong></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>New</code></TableCell>
+      <TableCell>A creation request of the NAB or NAR CR is accepted by the NAC, but it has not yet been validated by the NAC.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>BackingOff</code></TableCell>
+      <TableCell>NAB or NAR CR is invalidated by the NAC CR because of an invalid <code>spec</code> of the NAB or NAR  CR. The namespace admin user can update the NAB or NAR <code>spec</code> to comply with the policies set by the administrator. After the namespace admin user edits the CRs, the NAC reconciles the CR again.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Created</code></TableCell>
+      <TableCell>NAB or NAR CR is validated by the NAC, and the <code>Velero</code> backup or restore object is created.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Deletion</code></TableCell>
+      <TableCell>NAB or NAR CR is marked for deletion. The NAC deletes the corresponding <code>Velero</code> backup or restore object. When the <code>Velero</code> object is deleted, the NAB or NAR CR is also deleted.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="oadp-self-service-about-nabsl_oadp-self-service" class="group scroll-mt-20">About NonAdminBackupStorageLocation CR<a href="#oadp-self-service-about-nabsl_oadp-self-service" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the <code>NonAdminBackupStorageLocation</code> (NABSL) custom resource (CR) workflows to understand how namespace administrators define backup storage locations through administrator creation, approval, or automatic processes. This helps you choose the appropriate workflow based on security requirements.</p>
+      <p>To ensure that the NABSL CR is created and used securely, use cluster administrator controls. The cluster administrator manages the NABSL CR to comply with company policies, and compliance requirements.</p>
+      <p>You can create a NABSL CR by using one of the following workflows:</p>
+      <ul>
+      <li><strong>Administrator creation workflow</strong>: In this workflow, the cluster administrator creates the NABSL CR for the namespace admin user. The namespace admin user then references the NABSL in the <code>NonAdminBackup</code> CR.</li>
+      <li>
+      <strong>Administrator approval workflow</strong>: The cluster administrator must explicitly enable this opt-in feature in the DPA by setting the <code>nonAdmin.requireApprovalForBSL</code> field to <code>true</code>. The cluster administrator approval process works as follows:
+      <ol>
+      <li>A namespace admin user creates a NABSL CR. Because the administrator has enforced an approval process in the DPA, it triggers the creation of a <code>NonAdminBackupStorageLocationRequest</code> CR in the <code>openshift-adp</code> namespace.</li>
+      <li>
+      The cluster administrator reviews the request and either approves or rejects the request.
+      <ul>
+      <li>If approved, a <code>Velero</code> <code>BackupStorageLocation</code> (BSL) is created in the <code>openshift-adp</code> namespace, and the NABSL CR status is updated to reflect the approval.</li>
+      <li>If rejected, the status of the NABSL CR is updated to reflect the rejection.</li>
+      </ul>
+      </li>
+      <li>The cluster administrator can also revoke a previously approved NABSL CR. The <code>approve</code> field is set back to <code>pending</code> or <code>reject</code>. This results in the deletion of the <code>Velero</code> BSL, and the namespace admin user is notified of the rejection.</li>
+      </ol>
+      </li>
+      <li><strong>Automatic approval workflow</strong>: In this workflow, the cluster administrator does not enforce an approval process for the NABSL CR by setting the <code>nonAdmin.requireApprovalForBSL</code> field in the DPA to <code>false</code>. The default value of this field is <code>false</code>. Not setting the field results in an automatic approval of the NABSL. Therefore, the namespace admin user can create the NABSL CR from their authorized namespace.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>For security purposes, use either the administrator creation or the administrator approval workflow. The automatic approval workflow is less secure as it does not require administrator review.</p>
+        </AlertDescription>
+      </Alert>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

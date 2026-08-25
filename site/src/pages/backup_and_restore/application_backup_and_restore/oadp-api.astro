@@ -15,8 +15,17 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"oadp-api","text":"APIs used with OADP"},{"depth":2,"slug":"additional-resources_oadp-api","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"oadp-api","text":"APIs used with OADP"},{"depth":2,"slug":"dataprotectionapplicationspec-type_oadp-api","text":"DataProtectionApplicationSpec type"},{"depth":2,"slug":"backuplocation-type_oadp-api","text":"BackupLocation type"},{"depth":2,"slug":"snapshotlocation-type_oadp-api","text":"SnapshotLocation type"},{"depth":2,"slug":"applicationconfig-type_oadp-api","text":"ApplicationConfig type"},{"depth":2,"slug":"veleroconfig-type_oadp-api","text":"VeleroConfig type"},{"depth":2,"slug":"customplugin-type_oadp-api","text":"CustomPlugin type"},{"depth":2,"slug":"resticconfig-type_oadp-api","text":"ResticConfig type"},{"depth":2,"slug":"podconfig-type_oadp-api","text":"PodConfig type"},{"depth":2,"slug":"features-type_oadp-api","text":"Features type"},{"depth":2,"slug":"datamover-type_oadp-api","text":"DataMover type"},{"depth":2,"slug":"additional-resources_oadp-api","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-api";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +35,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "APIs used with OADP";
-const description = "You can use the following APIs with {{ oadp_short }}:" || undefined;
+const description = "You can use the following APIs with OADP:" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +48,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# APIs used with OADP {#oadp-api}\n\nYou can use the following APIs with {{ oadp_short }}:\n\nVelero API\n:   Velero API documentation is maintained by Velero and is not maintained by Red Hat.\n\nOADP API\n:   The following are the {{ oadp_short }} APIs:\n\n    - `DataProtectionApplicationSpec`\n    - `BackupLocation`\n    - `SnapshotLocation`\n    - `ApplicationConfig`\n    - `VeleroConfig`\n    - `CustomPlugin`\n    - `ResticConfig`\n    - `PodConfig`\n    - `Features`\n    - `DataMover`\n\n## Additional resources {#additional-resources_oadp-api}\n\n- [Velero API types](https://velero.io/docs/main/api-types/)\n- [OADP Operator (Go documentation)](https://pkg.go.dev/github.com/openshift/oadp-operator)\n- [OADP plugins](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-features-plugins)\n- [Complete schema definitions for the type `PodConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#PodConfig)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-api.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# APIs used with OADP {#oadp-api}\n\nYou can use the following APIs with OADP:\n\nVelero API\n:   Velero API documentation is maintained by Velero and is not maintained by Red Hat.\n\nOADP API\n:   The following are the OADP APIs:\n\n    - `DataProtectionApplicationSpec`\n    - `BackupLocation`\n    - `SnapshotLocation`\n    - `ApplicationConfig`\n    - `VeleroConfig`\n    - `CustomPlugin`\n    - `ResticConfig`\n    - `PodConfig`\n    - `Features`\n    - `DataMover`\n\n## DataProtectionApplicationSpec type {#dataprotectionapplicationspec-type_oadp-api}\n\nThe following are `DataProtectionApplicationSpec` OADP APIs:\n\n**DataProtectionApplicationSpec**\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `backupLocations` | \\[\\] [`BackupLocation`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#BackupLocation) | Defines the list of configurations to use for `BackupStorageLocations`. |\n| `snapshotLocations` | \\[\\] [`SnapshotLocation`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#SnapshotLocation) | Defines the list of configurations to use for `VolumeSnapshotLocations`. |\n| `unsupportedOverrides` | map \\[ [UnsupportedImageKey](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#UnsupportedImageKey) \\]  [string](https://pkg.go.dev/builtin#string) | Can be used to override the deployed dependent images for development. Options are `veleroImageFqin`, `awsPluginImageFqin`, `hypershiftPluginImageFqin`, `openshiftPluginImageFqin`, `azurePluginImageFqin`, `gcpPluginImageFqin`, `csiPluginImageFqin`, `dataMoverImageFqin`, `resticRestoreImageFqin`, `kubevirtPluginImageFqin`, and `operator-type`. |\n| `podAnnotations` | map \\[ [string](https://pkg.go.dev/builtin#string) \\] [string](https://pkg.go.dev/builtin#string) | Used to add annotations to pods deployed by Operators. |\n| `podDnsPolicy` | [`DNSPolicy`](https://pkg.go.dev/k8s.io/api/core/v1#DNSPolicy) | Defines the configuration of the DNS of a pod. |\n| `podDnsConfig` | [`PodDNSConfig`](https://pkg.go.dev/k8s.io/api/core/v1#PodDNSConfig) | Defines the DNS parameters of a pod in addition to those generated from `DNSPolicy`. |\n| `backupImages` | \\*[bool](https://pkg.go.dev/builtin#bool) | Used to specify whether or not you want to deploy a registry for enabling backup and restore of images. |\n| `configuration` | \\*[`ApplicationConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ApplicationConfig) | Used to define the data protection application’s server configuration. |\n| `features` | \\*[`Features`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#Features) | Defines the configuration for the DPA to enable the Technology Preview features. |\n\n- [Complete schema definitions for the OADP API](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#DataProtectionApplicationSpec)\n\n## BackupLocation type {#backuplocation-type_oadp-api}\n\nThe following are `BackupLocation` OADP APIs:\n\n**BackupLocation**\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `velero` | \\*[velero.BackupStorageLocationSpec](https://pkg.go.dev/github.com/vmware-tanzu/velero/pkg/apis/velero/v1#BackupStorageLocationSpec) | Location to store volume snapshots, as described in [Backup Storage Location](https://pkg.go.dev/github.com/vmware-tanzu/velero/pkg/apis/velero/v1#BackupStorageLocation). |\n| `bucket` | \\*[CloudStorageLocation](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#CloudStorageLocation) | Automates creation of a bucket at some cloud storage providers for use as a backup storage location. |\n\n> [!IMPORTANT]\n> The `bucket` parameter is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n- [Complete schema definitions for the type `BackupLocation`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#BackupLocation)\n\n## SnapshotLocation type {#snapshotlocation-type_oadp-api}\n\nThe following are `SnapshotLocation` OADP APIs:\n\n**SnapshotLocation**\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `velero` | \\*[VolumeSnapshotLocationSpec](https://pkg.go.dev/github.com/vmware-tanzu/velero/pkg/apis/velero/v1#VolumeSnapshotLocationSpec) | Location to store volume snapshots, as described in [Volume Snapshot Location](https://pkg.go.dev/github.com/vmware-tanzu/velero/pkg/apis/velero/v1#VolumeSnapshotLocation). |\n\n- [Complete schema definitions for the type `SnapshotLocation`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#SnapshotLocation)\n\n## ApplicationConfig type {#applicationconfig-type_oadp-api}\n\nThe following are `ApplicationConfig` OADP APIs:\n\n**ApplicationConfig**\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `velero` | \\*[VeleroConfig](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#VeleroConfig) | Defines the configuration for the Velero server. |\n| `restic` | \\*[ResticConfig](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ResticConfig) | Defines the configuration for the Restic server. |\n\n- [Complete schema definitions for the type `ApplicationConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ApplicationConfig)\n\n## VeleroConfig type {#veleroconfig-type_oadp-api}\n\nThe following are `VeleroConfig` OADP APIs:\n\n**VeleroConfig**\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `featureFlags` | \\[\\] [string](https://pkg.go.dev/builtin#string) | Defines the list of features to enable for the Velero instance. |\n| `defaultPlugins` | \\[\\] [string](https://pkg.go.dev/builtin#string) | The following types of default Velero plugins can be installed: `aws`,`azure`, `csi`, `gcp`, `kubevirt`, and `openshift`. |\n| `customPlugins` | \\[\\][CustomPlugin](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#CustomPlugin) | Used for installation of custom Velero plugins. |\n| `restoreResourcesVersionPriority` | [string](https://pkg.go.dev/builtin#string) | Represents a config map that is created if defined for use in conjunction with the `EnableAPIGroupVersions` feature flag. Defining this field automatically adds `EnableAPIGroupVersions` to the Velero server feature flag. |\n| `noDefaultBackupLocation` | [bool](https://pkg.go.dev/builtin#bool) | To install Velero without a default backup storage location, you must set the `noDefaultBackupLocation` flag in order to confirm installation. |\n| `podConfig` | \\*[`PodConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#PodConfig) | Defines the configuration of the `Velero` pod. |\n| `logLevel` | [string](https://pkg.go.dev/builtin#string) | Velero server’s log level (use `debug` for the most granular logging, leave unset for Velero default). Valid options are `trace`, `debug`, `info`, `warning`, `error`, `fatal`, and `panic`. |\n\n- [Complete schema definitions for the type `VeleroConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#VeleroConfig)\n\n## CustomPlugin type {#customplugin-type_oadp-api}\n\nThe following are `CustomPlugin` OADP APIs:\n\n**CustomPlugin**\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `name` | [string](https://pkg.go.dev/builtin#string) | Name of custom plugin. |\n| `image` | [string](https://pkg.go.dev/builtin#string) | Image of custom plugin. |\n\n- [Complete schema definitions for the type `CustomPlugin`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#CustomPlugin)\n\n## ResticConfig type {#resticconfig-type_oadp-api}\n\nThe following are `ResticConfig` OADP APIs:\n\n**ResticConfig**\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `enable` | \\*[bool](https://pkg.go.dev/builtin#bool) | If set to `true`, enables backup and restore using Restic. If set to `false`, snapshots are needed. |\n| `supplementalGroups` | \\[\\][int64](https://pkg.go.dev/builtin#int64) | Defines the Linux groups to be applied to the `Restic` pod. |\n| `timeout` | [string](https://pkg.go.dev/builtin#string) | A user-supplied duration string that defines the Restic timeout. Default value is `1hr` (1 hour). A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as `300ms`, `-1.5h`, or `2h45m`. Valid time units are `ns`, `us` (or `µs`), `ms`, `s`, `m`, and `h`. |\n| `podConfig` | \\*[`PodConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#PodConfig) | Defines the configuration of the `Restic` pod. |\n\n- [Complete schema definitions for the type `ResticConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ResticConfig)\n\n## PodConfig type {#podconfig-type_oadp-api}\n\nThe following are `PodConfig` OADP APIs:\n\n**PodConfig**\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `nodeSelector` | map \\[ [string](https://pkg.go.dev/builtin#string) \\] [string](https://pkg.go.dev/builtin#string) | Defines the `nodeSelector` to be supplied to a `Velero` `podSpec` or a `Restic` `podSpec`. |\n| `tolerations` | \\[\\][Toleration](https://pkg.go.dev/k8s.io/api/core/v1#Toleration) | Defines the list of tolerations to be applied to a Velero deployment or a Restic `daemonset`. |\n| `resourceAllocations` | [ResourceRequirements](https://pkg.go.dev/k8s.io/api/core/v1#ResourceRequirements) | Set specific resource `limits` and `requests` for a `Velero` pod or a `Restic` pod as described in the Setting Velero CPU and memory resource allocations section. |\n| `labels` | map \\[ [string](https://pkg.go.dev/builtin#string) \\] [string](https://pkg.go.dev/builtin#string) | Labels to add to pods. |\n\n## Features type {#features-type_oadp-api}\n\nThe following are `Features` OADP APIs:\n\n**Features**\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `dataMover` | \\*[`DataMover`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#DataMover) | Defines the configuration of the Data Mover. |\n\n- [Complete schema definitions for the type `Features`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#Features)\n\n## DataMover type {#datamover-type_oadp-api}\n\nThe following are `DataMover` OADP APIs:\n\n**DataMover**\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `enable` | [bool](https://pkg.go.dev/builtin#bool) | If set to `true`, deploys the volume snapshot mover controller and a modified CSI Data Mover plugin. If set to `false`, these are not deployed. |\n| `credentialName` | [string](https://pkg.go.dev/builtin#string) | User-supplied Restic `Secret` name for Data Mover. |\n| `timeout` | [string](https://pkg.go.dev/builtin#string) | A user-supplied duration string for `VolumeSnapshotBackup` and `VolumeSnapshotRestore` to complete. Default is `10m` (10 minutes). A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as `300ms`, `-1.5h`, or `2h45m`. Valid time units are `ns`, `us` (or `µs`), `ms`, `s`, `m`, and `h`. |\n\n## Additional resources {#additional-resources_oadp-api}\n\n- [Velero API types](https://velero.io/docs/main/api-types/)\n- [OADP Operator (Go documentation)](https://pkg.go.dev/github.com/openshift/oadp-operator)\n- [OADP plugins](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-features-plugins#oadp-features-plugins)\n- [Complete schema definitions for the type `PodConfig`](https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#PodConfig)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-api.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +100,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-api" class="group scroll-mt-20">APIs used with OADP<a href="#oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can use the following APIs with {"{"}{"{"} oadp_short {"}"}{"}"}:</p>
+      <p>You can use the following APIs with OADP:</p>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold">Velero API</dt>
       <dd class="ml-6 text-muted-foreground"><p>Velero API documentation is maintained by Velero and is not maintained by Red Hat.</p></dd>
       <dt class="font-semibold">OADP API</dt>
       <dd class="ml-6 text-muted-foreground">
-      <p>The following are the {"{"}{"{"} oadp_short {"}"}{"}"} APIs:</p>
+      <p>The following are the OADP APIs:</p>
       <ul>
       <li><code>DataProtectionApplicationSpec</code></li>
       <li><code>BackupLocation</code></li>
@@ -113,16 +121,360 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       </dd>
       </dl>
-      <p class="/modules/dataprotectionapplicationspec-type.md"></p>
-      <p class="/modules/backuplocation-type.md"></p>
-      <p class="/modules/snapshotlocation-type.md"></p>
-      <p class="/modules/applicationconfig-type.md"></p>
-      <p class="/modules/veleroconfig-type.md"></p>
-      <p class="/modules/customplugin-type.md"></p>
-      <p class="/modules/resticconfig-type.md"></p>
-      <p class="/modules/podconfig-type.md"></p>
-      <p class="/modules/features-type.md"></p>
-      <p class="/modules/datamover-type.md"></p>
+      <h2 id="dataprotectionapplicationspec-type_oadp-api" class="group scroll-mt-20">DataProtectionApplicationSpec type<a href="#dataprotectionapplicationspec-type_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following are <code>DataProtectionApplicationSpec</code> OADP APIs:</p>
+      <p><strong>DataProtectionApplicationSpec</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>backupLocations</code></TableCell>
+      <TableCell>[] <a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#BackupLocation"><code>BackupLocation</code></a></TableCell>
+      <TableCell>Defines the list of configurations to use for <code>BackupStorageLocations</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>snapshotLocations</code></TableCell>
+      <TableCell>[] <a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#SnapshotLocation"><code>SnapshotLocation</code></a></TableCell>
+      <TableCell>Defines the list of configurations to use for <code>VolumeSnapshotLocations</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>unsupportedOverrides</code></TableCell>
+      <TableCell>map [ <a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#UnsupportedImageKey">UnsupportedImageKey</a> ]  <a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>Can be used to override the deployed dependent images for development. Options are <code>veleroImageFqin</code>, <code>awsPluginImageFqin</code>, <code>hypershiftPluginImageFqin</code>, <code>openshiftPluginImageFqin</code>, <code>azurePluginImageFqin</code>, <code>gcpPluginImageFqin</code>, <code>csiPluginImageFqin</code>, <code>dataMoverImageFqin</code>, <code>resticRestoreImageFqin</code>, <code>kubevirtPluginImageFqin</code>, and <code>operator-type</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>podAnnotations</code></TableCell>
+      <TableCell>map [ <a href="https://pkg.go.dev/builtin#string">string</a> ] <a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>Used to add annotations to pods deployed by Operators.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>podDnsPolicy</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/k8s.io/api/core/v1#DNSPolicy"><code>DNSPolicy</code></a></TableCell>
+      <TableCell>Defines the configuration of the DNS of a pod.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>podDnsConfig</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/k8s.io/api/core/v1#PodDNSConfig"><code>PodDNSConfig</code></a></TableCell>
+      <TableCell>Defines the DNS parameters of a pod in addition to those generated from <code>DNSPolicy</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>backupImages</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/builtin#bool">bool</a></TableCell>
+      <TableCell>Used to specify whether or not you want to deploy a registry for enabling backup and restore of images.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>configuration</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ApplicationConfig"><code>ApplicationConfig</code></a></TableCell>
+      <TableCell>Used to define the data protection application’s server configuration.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>features</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#Features"><code>Features</code></a></TableCell>
+      <TableCell>Defines the configuration for the DPA to enable the Technology Preview features.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#DataProtectionApplicationSpec">Complete schema definitions for the OADP API</a></li></ul>
+      </section>
+      <h2 id="backuplocation-type_oadp-api" class="group scroll-mt-20">BackupLocation type<a href="#backuplocation-type_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following are <code>BackupLocation</code> OADP APIs:</p>
+      <p><strong>BackupLocation</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>velero</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/github.com/vmware-tanzu/velero/pkg/apis/velero/v1#BackupStorageLocationSpec">velero.BackupStorageLocationSpec</a></TableCell>
+      <TableCell>Location to store volume snapshots, as described in <a href="https://pkg.go.dev/github.com/vmware-tanzu/velero/pkg/apis/velero/v1#BackupStorageLocation">Backup Storage Location</a>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>bucket</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#CloudStorageLocation">CloudStorageLocation</a></TableCell>
+      <TableCell>Automates creation of a bucket at some cloud storage providers for use as a backup storage location.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The <code>bucket</code> parameter is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#BackupLocation">Complete schema definitions for the type <code>BackupLocation</code></a></li></ul>
+      </section>
+      <h2 id="snapshotlocation-type_oadp-api" class="group scroll-mt-20">SnapshotLocation type<a href="#snapshotlocation-type_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following are <code>SnapshotLocation</code> OADP APIs:</p>
+      <p><strong>SnapshotLocation</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>velero</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/github.com/vmware-tanzu/velero/pkg/apis/velero/v1#VolumeSnapshotLocationSpec">VolumeSnapshotLocationSpec</a></TableCell>
+      <TableCell>Location to store volume snapshots, as described in <a href="https://pkg.go.dev/github.com/vmware-tanzu/velero/pkg/apis/velero/v1#VolumeSnapshotLocation">Volume Snapshot Location</a>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#SnapshotLocation">Complete schema definitions for the type <code>SnapshotLocation</code></a></li></ul>
+      </section>
+      <h2 id="applicationconfig-type_oadp-api" class="group scroll-mt-20">ApplicationConfig type<a href="#applicationconfig-type_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following are <code>ApplicationConfig</code> OADP APIs:</p>
+      <p><strong>ApplicationConfig</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>velero</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#VeleroConfig">VeleroConfig</a></TableCell>
+      <TableCell>Defines the configuration for the Velero server.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>restic</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ResticConfig">ResticConfig</a></TableCell>
+      <TableCell>Defines the configuration for the Restic server.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ApplicationConfig">Complete schema definitions for the type <code>ApplicationConfig</code></a></li></ul>
+      </section>
+      <h2 id="veleroconfig-type_oadp-api" class="group scroll-mt-20">VeleroConfig type<a href="#veleroconfig-type_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following are <code>VeleroConfig</code> OADP APIs:</p>
+      <p><strong>VeleroConfig</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>featureFlags</code></TableCell>
+      <TableCell>[] <a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>Defines the list of features to enable for the Velero instance.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>defaultPlugins</code></TableCell>
+      <TableCell>[] <a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>The following types of default Velero plugins can be installed: <code>aws</code>,<code>azure</code>, <code>csi</code>, <code>gcp</code>, <code>kubevirt</code>, and <code>openshift</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>customPlugins</code></TableCell>
+      <TableCell>[]<a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#CustomPlugin">CustomPlugin</a></TableCell>
+      <TableCell>Used for installation of custom Velero plugins.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>restoreResourcesVersionPriority</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>Represents a config map that is created if defined for use in conjunction with the <code>EnableAPIGroupVersions</code> feature flag. Defining this field automatically adds <code>EnableAPIGroupVersions</code> to the Velero server feature flag.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>noDefaultBackupLocation</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/builtin#bool">bool</a></TableCell>
+      <TableCell>To install Velero without a default backup storage location, you must set the <code>noDefaultBackupLocation</code> flag in order to confirm installation.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>podConfig</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#PodConfig"><code>PodConfig</code></a></TableCell>
+      <TableCell>Defines the configuration of the <code>Velero</code> pod.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>logLevel</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>Velero server’s log level (use <code>debug</code> for the most granular logging, leave unset for Velero default). Valid options are <code>trace</code>, <code>debug</code>, <code>info</code>, <code>warning</code>, <code>error</code>, <code>fatal</code>, and <code>panic</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#VeleroConfig">Complete schema definitions for the type <code>VeleroConfig</code></a></li></ul>
+      </section>
+      <h2 id="customplugin-type_oadp-api" class="group scroll-mt-20">CustomPlugin type<a href="#customplugin-type_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following are <code>CustomPlugin</code> OADP APIs:</p>
+      <p><strong>CustomPlugin</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>name</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>Name of custom plugin.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>image</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>Image of custom plugin.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#CustomPlugin">Complete schema definitions for the type <code>CustomPlugin</code></a></li></ul>
+      </section>
+      <h2 id="resticconfig-type_oadp-api" class="group scroll-mt-20">ResticConfig type<a href="#resticconfig-type_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following are <code>ResticConfig</code> OADP APIs:</p>
+      <p><strong>ResticConfig</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>enable</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/builtin#bool">bool</a></TableCell>
+      <TableCell>If set to <code>true</code>, enables backup and restore using Restic. If set to <code>false</code>, snapshots are needed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>supplementalGroups</code></TableCell>
+      <TableCell>[]<a href="https://pkg.go.dev/builtin#int64">int64</a></TableCell>
+      <TableCell>Defines the Linux groups to be applied to the <code>Restic</code> pod.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>timeout</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>A user-supplied duration string that defines the Restic timeout. Default value is <code>1hr</code> (1 hour). A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as <code>300ms</code>, <code>-1.5h</code>, or <code>2h45m</code>. Valid time units are <code>ns</code>, <code>us</code> (or <code>µs</code>), <code>ms</code>, <code>s</code>, <code>m</code>, and <code>h</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>podConfig</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#PodConfig"><code>PodConfig</code></a></TableCell>
+      <TableCell>Defines the configuration of the <code>Restic</code> pod.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#ResticConfig">Complete schema definitions for the type <code>ResticConfig</code></a></li></ul>
+      </section>
+      <h2 id="podconfig-type_oadp-api" class="group scroll-mt-20">PodConfig type<a href="#podconfig-type_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following are <code>PodConfig</code> OADP APIs:</p>
+      <p><strong>PodConfig</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>nodeSelector</code></TableCell>
+      <TableCell>map [ <a href="https://pkg.go.dev/builtin#string">string</a> ] <a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>Defines the <code>nodeSelector</code> to be supplied to a <code>Velero</code> <code>podSpec</code> or a <code>Restic</code> <code>podSpec</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>tolerations</code></TableCell>
+      <TableCell>[]<a href="https://pkg.go.dev/k8s.io/api/core/v1#Toleration">Toleration</a></TableCell>
+      <TableCell>Defines the list of tolerations to be applied to a Velero deployment or a Restic <code>daemonset</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>resourceAllocations</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/k8s.io/api/core/v1#ResourceRequirements">ResourceRequirements</a></TableCell>
+      <TableCell>Set specific resource <code>limits</code> and <code>requests</code> for a <code>Velero</code> pod or a <code>Restic</code> pod as described in the Setting Velero CPU and memory resource allocations section.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>labels</code></TableCell>
+      <TableCell>map [ <a href="https://pkg.go.dev/builtin#string">string</a> ] <a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>Labels to add to pods.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="features-type_oadp-api" class="group scroll-mt-20">Features type<a href="#features-type_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following are <code>Features</code> OADP APIs:</p>
+      <p><strong>Features</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>dataMover</code></TableCell>
+      <TableCell>*<a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#DataMover"><code>DataMover</code></a></TableCell>
+      <TableCell>Defines the configuration of the Data Mover.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://pkg.go.dev/github.com/openshift/oadp-operator/api/v1alpha1#Features">Complete schema definitions for the type <code>Features</code></a></li></ul>
+      </section>
+      <h2 id="datamover-type_oadp-api" class="group scroll-mt-20">DataMover type<a href="#datamover-type_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following are <code>DataMover</code> OADP APIs:</p>
+      <p><strong>DataMover</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>enable</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/builtin#bool">bool</a></TableCell>
+      <TableCell>If set to <code>true</code>, deploys the volume snapshot mover controller and a modified CSI Data Mover plugin. If set to <code>false</code>, these are not deployed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>credentialName</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>User-supplied Restic <code>Secret</code> name for Data Mover.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>timeout</code></TableCell>
+      <TableCell><a href="https://pkg.go.dev/builtin#string">string</a></TableCell>
+      <TableCell>A user-supplied duration string for <code>VolumeSnapshotBackup</code> and <code>VolumeSnapshotRestore</code> to complete. Default is <code>10m</code> (10 minutes). A duration string is a possibly signed sequence of decimal numbers, each with optional fraction and a unit suffix, such as <code>300ms</code>, <code>-1.5h</code>, or <code>2h45m</code>. Valid time units are <code>ns</code>, <code>us</code> (or <code>µs</code>), <code>ms</code>, <code>s</code>, <code>m</code>, and <code>h</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
       <h2 id="additional-resources_oadp-api" class="group scroll-mt-20">Additional resources<a href="#additional-resources_oadp-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://velero.io/docs/main/api-types/">Velero API types</a></li>

@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-oadp-multiple-vsl","text":"Configuring the {{ oadp_first }} with more than one Volume Snapshot Location"}];
+const headings = [{"depth":1,"slug":"configuring-oadp-multiple-vsl","text":"Configuring the {{ oadp_first }} with more than one Volume Snapshot Location"},{"depth":2,"slug":"oadp-configuring-dpa-multiple-vsl_configuring-oadp-multiple-vsl","text":"Configuring the DPA with more than one VSL"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/configuring-oadp-multiple-vsl";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the {{ oadp_first }} with more than one Volume Snapshot Location {#configuring-oadp-multiple-vsl}\n\nConfigure multiple Volume Snapshot Locations (VSLs) in the Data Protection Application (DPA) to store volume snapshots across different cloud provider regions. This provides geographic redundancy and regional disaster recovery capabilities.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/configuring-oadp-multiple-vsl.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the {{ oadp_first }} with more than one Volume Snapshot Location {#configuring-oadp-multiple-vsl}\n\nConfigure multiple Volume Snapshot Locations (VSLs) in the Data Protection Application (DPA) to store volume snapshots across different cloud provider regions. This provides geographic redundancy and regional disaster recovery capabilities.\n\n## Configuring the DPA with more than one VSL {#oadp-configuring-dpa-multiple-vsl_configuring-oadp-multiple-vsl}\n\nConfigure the `DataProtectionApplication` (DPA) custom resource (CR) with multiple Volume Snapshot Locations (VSLs) using provider-specific credentials in the same region as your persistent volumes. This provides volume snapshot distribution across different storage targets.\n\n**Procedure**\n\n- Configure the DPA CR with more than one VSL as shown in the following example:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  #...\n  snapshotLocations:\n    - velero:\n        config:\n          profile: default\n          region: <region>\n        credential:\n          key: cloud\n          name: cloud-credentials\n        provider: aws\n    - velero:\n        config:\n          profile: default\n          region: <region>\n        credential:\n          key: cloud\n          name: <custom_credential>\n        provider: aws\n  #...\n  ```\n\n  where:\n\n  `<region>`\n  :   Specifies the region. The snapshot location must be in the same region as the persistent volumes.\n\n  `<custom_credential>`\n  :   Specifies the custom credential name.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/configuring-oadp-multiple-vsl.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,23 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-oadp-multiple-vsl" class="group scroll-mt-20">Configuring the {"{"}{"{"} oadp_first {"}"}{"}"} with more than one Volume Snapshot Location<a href="#configuring-oadp-multiple-vsl" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Configure multiple Volume Snapshot Locations (VSLs) in the Data Protection Application (DPA) to store volume snapshots across different cloud provider regions. This provides geographic redundancy and regional disaster recovery capabilities.</p>
-      <p class="/modules/oadp-configuring-dpa-multiple-vsl.md"></p>
+      <h2 id="oadp-configuring-dpa-multiple-vsl_configuring-oadp-multiple-vsl" class="group scroll-mt-20">Configuring the DPA with more than one VSL<a href="#oadp-configuring-dpa-multiple-vsl_configuring-oadp-multiple-vsl" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>DataProtectionApplication</code> (DPA) custom resource (CR) with multiple Volume Snapshot Locations (VSLs) using provider-specific credentials in the same region as your persistent volumes. This provides volume snapshot distribution across different storage targets.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Configure the DPA CR with more than one VSL as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\n#...\nsnapshotLocations:\n  - velero:\n      config:\n        profile: default\n        region: <region>\n      credential:\n        key: cloud\n        name: cloud-credentials\n      provider: aws\n  - velero:\n      config:\n        profile: default\n        region: <region>\n      credential:\n        key: cloud\n        name: <custom_credential>\n      provider: aws\n#..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the region. The snapshot location must be in the same region as the persistent volumes.</p></dd>
+      <dt class="font-semibold"><code>&lt;custom_credential&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the custom credential name.</p></dd>
+      </dl>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

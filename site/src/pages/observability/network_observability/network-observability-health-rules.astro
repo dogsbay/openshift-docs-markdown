@@ -18,8 +18,15 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"network-observability-health-rules","text":"Network observability health rules"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"network-observability-health-rules","text":"Network observability health rules"},{"depth":2,"slug":"network-observability-health-rules-and-performance_network-observability-health-rules","text":"Identifying network issues with automated health rules"},{"depth":3,"slug":"importance-of-network-health-monitoring_network-observability-health-rules","text":"Importance of network health monitoring"},{"depth":3,"slug":"detection-of-network-issues_network-observability-health-rules","text":"Automated health monitoring"},{"depth":3,"slug":"network-health-monitoring-workflow_network-observability-health-rules","text":"Network health monitoring workflow"},{"depth":3,"slug":"network-observability-health-rules-monitoring-and-alerting_network-observability-health-rules","text":"Detecting network issues with automated health rules"},{"depth":4,"slug":"network-observability-health-outcomes_network-observability-health-rules","text":"Monitoring outcomes"},{"depth":4,"slug":"network-observability-default-rules_network-observability-health-rules","text":"Predefined health rules"},{"depth":4,"slug":"network-observability-enabling-features-for-health-monitoring_network-observability-health-rules","text":"Enabling features for health monitoring"},{"depth":2,"slug":"network-observability-health-rule-customization_network-observability-health-rules","text":"Health rule threshold and grouping customization"},{"depth":3,"slug":"network-observability-health-rules-promql-expressions-metadata_network-observability-health-rules","text":"Health rule query and metadata reference"},{"depth":4,"slug":"example-query-surge-incoming-traffic_network-observability-health-rules","text":"Customizing alert logic with PromQL: Incoming traffic surge"},{"depth":4,"slug":"alert-metadata-fields_network-observability-health-rules","text":"Alert metadata fields"},{"depth":4,"slug":"netobserv-io-network-health-annotation_network-observability-health-rules","text":"netobserv_io_network_health annotation fields"},{"depth":3,"slug":"network-observability-configuring-custom-health-rules_network-observability-health-rules","text":"Configuring custom health rules"},{"depth":2,"slug":"network-observability-recording-rules-performance-optimization_network-observability-health-rules","text":"Performance optimization with recording rules"},{"depth":3,"slug":"network-observability-recording-rules-benefits_network-observability-health-rules","text":"Optimization benefits"},{"depth":3,"slug":"network-observability-alert-vs-recording-comparison_network-observability-health-rules","text":"Comparison of rule modes"},{"depth":3,"slug":"network-observability-integrating-recording-rules-with-health-dashboard_network-observability-health-rules","text":"Integrating recording rules with the health dashboard"},{"depth":3,"slug":"network-observability-configuring-custom-recording-rules_network-observability-health-rules","text":"Optimizing dashboard metrics with recording rules"},{"depth":2,"slug":"network-observability-disable-predefined-rules_network-observability-health-rules","text":"Disabling default rules"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/network_observability/network-observability-health-rules";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +49,7 @@ const pageCategory = ["observability","observability/network_observability"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network observability health rules {#network-observability-health-rules}\n\nThe Network Observability Operator provides alerts by using built-in metrics and the OpenShift Container Platform monitoring stack to report cluster network health.\n\n> [!IMPORTANT]\n> Network observability health alerts require OpenShift Container Platform 4.16 or later.\n\n## Additional resources {#_additional_resources}\n\n- [List of default rules](/openshift-docs-markdown/observability/network_observability/network-observability-health-rules#network-observability-default-rules_network-observability-health-rules)\n- [Viewing network observability metrics dashboards](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-viewing-dashboards_metrics-dashboards-alerts)\n- [Creating alerts](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-netobserv-dashboard-high-traffic-alert_metrics-dashboards-alerts)\n- [Monitoring stack architecture](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/monitoring-stack-architecture)\n- [Network Observability Operator runbooks](https://github.com/openshift/runbooks/tree/master/alerts/network-observability-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-health-rules.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network observability health rules {#network-observability-health-rules}\n\nThe Network Observability Operator provides alerts by using built-in metrics and the OpenShift Container Platform monitoring stack to report cluster network health.\n\n> [!IMPORTANT]\n> Network observability health alerts require OpenShift Container Platform 4.16 or later.\n\n## Identifying network issues with automated health rules {#network-observability-health-rules-and-performance_network-observability-health-rules}\n\nNetwork observability identifies network issues by using automated health rules to monitor metrics. These rules trigger alerts when anomalies occur, which assists in maintaining connectivity and responding to network degradation.\n\nThe Network Observability Operator manages a system of Prometheus-based rules that detect network problems, and converts these rules into `PrometheusRule` resources. It supports the following rule types:\n\nAlerting rules\n:   Trigger notifications through the Prometheus `Alertmanager` when network anomalies or infrastructure failures are detected.\n\nRecording rules\n:   Pre-compute complex Prometheus Query Language (PromQL) expressions into new time series to improve dashboard performance.\n\n### Importance of network health monitoring {#importance-of-network-health-monitoring_network-observability-health-rules}\n\nMaintaining reliable and secure network connectivity is critical for cluster administrators and security teams. Unresolved network issues can result in the following consequences:\n\n- Application downtime caused by packet drops or DNS failures.\n- Security risks from undetected network policy violations.\n- Performance degradation caused by latency spikes or bandwidth saturation.\n- Compliance issues from unmonitored network traffic.\n\nEarly detection of these issues allows for resolution before service level objectives (SLOs) are affected.\n\n### Automated health monitoring {#detection-of-network-issues_network-observability-health-rules}\n\nThe Network Observability Operator provides automated health monitoring through the following features:\n\n- Pre-configured health rules: Detect common network problems by using default thresholds.\n- Automated alerting: Integrates with the OpenShift Container Platform monitoring stack.\n- Health dashboards: Displays health status for clusters, nodes, namespaces, and workloads.\n- Custom rules: Supports the creation of organization-specific monitoring rules.\n\nHealth rules monitor network flow metrics and trigger alerts when defined thresholds are exceeded. For example, the `PacketDropsByKernel` rule reports an alert when kernel packet drop rates exceed defined levels.\n\n### Network health monitoring workflow {#network-health-monitoring-workflow_network-observability-health-rules}\n\nMonitoring network health involves the following phases:\n\n- Configuring the Network Observability Operator to collect required network health data for monitoring, such as packet drops or DNS tracking.\n- Reviewing and customizing default health rules and thresholds in the `FlowCollector` custom resource.\n- Monitoring alerts in the OpenShift Container Platform web console in the **Observe** → **Alerting** and **Observe** → **Network Health** views.\n- Creating custom health rules for specific requirements.\n- Configuring recording rules to optimize performance for large-scale deployments.\n\nThe `PrometheusRule` resource in the `netobserv` namespace can be viewed by running the following command:\n\n```terminal\n$ oc get prometheusrules -n netobserv -o yaml\n```\n\n### Detecting network issues with automated health rules {#network-observability-health-rules-monitoring-and-alerting_network-observability-health-rules}\n\nThe Network Observability Operator includes a rule-based system to detect network anomalies and infrastructure failures. By converting configurations into alerting rules, the Operator provides automated monitoring and troubleshooting through the OpenShift Container Platform web console.\n\n#### Monitoring outcomes {#network-observability-health-outcomes_network-observability-health-rules}\n\nThe Network Observability Operator displays network status in the following views:\n\n**Alerting** UI\n:   Specific alerts appear in **Observe** → **Alerting**. Notifications are managed through the Prometheus `Alertmanager`.\n\n**Network Health** dashboard\n:   A specialized dashboard in **Observe** → **Network Health** provides a summary of cluster network status.\n\nThe **Network Health** dashboard categorizes violations into tabs to isolate the scope of an issue:\n\n- **Global**: Aggregate health of the cluster.\n- **Nodes**: Violations specific to infrastructure nodes.\n- **Namespaces**: Violations specific to individual namespaces.\n- **Workloads**: Violations specific to resources, such as `Deployments` or `DaemonSets`.\n\n#### Predefined health rules {#network-observability-default-rules_network-observability-health-rules}\n\nThe Network Observability Operator provides default rules for common networking scenarios. These rules are active only if the corresponding feature is enabled in the `FlowCollector` custom resource (CR).\n\nThe following list contains a subset of available default rules:\n\n`PacketDropsByDevice`\n:   Reports a high percentage of packet drops from network devices. This rule is based on node-exporter metrics and does not require the `PacketDrop` agent feature.\n\n`PacketDropsByKernel`\n:   Reports a high percentage of packet drops by the kernel. This rule requires the `PacketDrop` agent feature.\n\n`IPsecErrors`\n:   Reports IPsec encryption errors. This rule requires the `IPSec` agent feature.\n\n`NetpolDenied`\n:   Reports traffic denied by network policies. This rule requires the `NetworkEvents` agent feature.\n\n`LatencyHighTrend`\n:   Reports a significant increase in TCP latency. This rule requires the `FlowRTT` agent feature.\n\n`DNSErrors`\n:   Reports DNS errors. This rule requires the `DNSTracking` agent feature.\n\nThe following operational alerts apply to the Network Observability Operator:\n\n`NetObservNoFlows`\n:   Reports when the pipeline is active but no flows are observed.\n\n`NetObservLokiError`\n:   Reports when flows are dropped because of Loki errors.\n\nFor a complete list of rules and runbooks, see the [Network Observability Operator runbooks](https://github.com/openshift/runbooks/tree/master/alerts/network-observability-operator).\n\n#### Enabling features for health monitoring {#network-observability-enabling-features-for-health-monitoring_network-observability-health-rules}\n\nThe Network Observability Operator creates rules based on the features enabled in the `FlowCollector` CR.\n\nFor example, packet drop rules are created only if the `PacketDrop` agent feature is enabled. Rules depend on metrics; if the required metrics are unavailable, configuration warnings might appear. Configure metrics in the `spec.processor.metrics.includeList` field of the `FlowCollector` resource.\n\n## Health rule threshold and grouping customization {#network-observability-health-rule-customization_network-observability-health-rules}\n\nHealth rules in the Network Observability Operator are defined by using rule templates and variants in the `spec.processor.metrics.healthRules` field of the `FlowCollector` custom resource (CR). Customizing these templates allows for flexible, fine-grained alerting tailored to specific environment needs.\n\nFor each template, a list of variants can be defined, each with distinct thresholds and grouping configurations.\n\nThe following example shows a `FlowCollector` configuration with custom health rules:\n\n```yaml\napiVersion: flows.netobserv.io/v1beta1\nkind: FlowCollector\nmetadata:\n  name: flow-collector\nspec:\n  processor:\n    metrics:\n      healthRules:\n      - template: PacketDropsByKernel\n        mode: Alert # or Recording\n        variants:\n        # Triggered when aggregate cluster traffic reaches 10% drops\n        - thresholds:\n            critical: \"10\"\n        # Triggered per-node with increasing severity levels\n        - thresholds:\n            critical: \"15\"\n            warning: \"10\"\n            info: \"5\"\n          groupBy: Node\n```\n\n`spec.processor.metrics.healthRules.template`\n:   Specifies the name of the predefined rule template.\n\n`spec.processor.metrics.healthRules.mode`\n:   Specifies whether the rule functions as an `Alert` or a `Recording` rule.\n\n`spec.processor.metrics.healthRules.variants.thresholds`\n:   Specifies the numerical values that trigger the rule. Multiple severity levels, such as `critical`, `warning`, or `info`, can be defined within a single variant.\n\n`spec.processor.metrics.healthRules.variants.groupBy`\n:   Specifies the dimension used to aggregate the metric, such as `Node` or `Namespace`.\n\n> [!NOTE]\n> Customizing a rule replaces the default configuration for that template. To retain default configurations, the default settings must be manually included in the custom resource.\n\n### Health rule query and metadata reference {#network-observability-health-rules-promql-expressions-metadata_network-observability-health-rules}\n\nThe `FlowCollector` health rule API maps to the Prometheus Operator to generate `PrometheusRule` objects. Use these base Prometheus Query Language (PromQL) patterns and metadata configurations to create custom health rules for network observability.\n\nThe `PrometheusRule` resource in the `netobserv` namespace can be viewed by running the following command:\n\n```terminal\n$ oc get prometheusrules -n netobserv -o yaml\n```\n\n#### Customizing alert logic with PromQL: Incoming traffic surge {#example-query-surge-incoming-traffic_network-observability-health-rules}\n\nThe following PromQL query calculates the byte rate from the `openshift-ingress` namespace to any workload namespace over a 30-minute interval:\n\n```promql\nsum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace=\"openshift-ingress\"}[30m])) by (DstK8S_Namespace)\n```\n\nQueries can be customized to filter low-bandwidth data, compare time periods, and establish thresholds.\n\nData filtering\n:   Appending `> 1000` to the query removes rates lower than `1 KB/s` to filter low-bandwidth traffic.\n\n    `(sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace=\"openshift-ingress\"}[30m])) by (DstK8S_Namespace) > 1000)`\n\n    > [!NOTE]\n    > The byte rate is relative to the sampling interval in the `FlowCollector` CR. Normalizing byte rates with the `netobserv_agent_sampling_rate` metric decouples the PromQL expression from the sampling configuration.\n\nTime comparison\n:   The `offset` modifier compares data across different time periods. For example, `offset 1d` retrieves data from the previous day.\n\n    `sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace=\"openshift-ingress\"}[30m] offset 1d)) by (DstK8S_Namespace))`\n\nThreshold application\n:   A final threshold filters increases below a specific percentage. For example, `> 100` removes increases lower than 100%.\n\nThe following example shows a complete PromQL expression for a `PrometheusRule`:\n\n```promql\nexpr: |-\n  (100 *\n    (\n      (sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace=\"openshift-ingress\"}[30m])) by (DstK8S_Namespace) > 1000)\n      - sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace=\"openshift-ingress\"}[30m] offset 1d)) by (DstK8S_Namespace)\n    )\n    / sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace=\"openshift-ingress\"}[30m] offset 1d)) by (DstK8S_Namespace))\n  > 100\n```\n\n#### Alert metadata fields {#alert-metadata-fields_network-observability-health-rules}\n\nRule definitions require specific metadata for the Prometheus `Alertmanager` service and the **Network Health** dashboard. The following example shows an `AlertingRule` resource with configured metadata:\n\n```yaml\napiVersion: monitoring.openshift.io/v1\nkind: AlertingRule\nmetadata:\n  name: netobserv-alerts\n  namespace: openshift-monitoring\nspec:\n  groups:\n  - name: NetObservAlerts\n    rules:\n    - alert: NetObservIncomingBandwidth\n      annotations:\n        netobserv_io_network_health: '{\"namespaceLabels\":[\"DstK8S_Namespace\"],\"threshold\":\"100\",\"unit\":\"%\",\"upperBound\":\"500\"}'\n        message: |-\n          Surge of incoming traffic detected: current traffic to {{ $labels.DstK8S_Namespace }} increased by more than 100% since yesterday.\n        summary: \"Surge in incoming traffic\"\n      expr: |-\n        # ... (PromQL expression)\n      for: 1m\n      labels:\n        app: netobserv\n        netobserv: \"true\"\n        severity: warning\n```\n\n`spec.groups.rules.alert.labels.netobserv`\n:   Specifies that the **Network Health** dashboard must detect the alert when set to `true`.\n\n`spec.groups.rules.alert.labels.severity`\n:   Specifies the alert severity. Valid values are `critical`, `warning`, or `info`.\n\n#### netobserv_io_network_health annotation fields {#netobserv-io-network-health-annotation_network-observability-health-rules}\n\nThe optional `netobserv_io_network_health` annotation is a JSON string that controls how the alert renders on the **Network Health** page.\n\n**Fields for the `netobserv_io_network_health` annotation**\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `namespaceLabels` | List of strings | One or more labels containing namespaces. Alerts appear under the **Namespaces** tab. |\n| `nodeLabels` | List of strings | One or more labels containing node names. Alerts appear under the **Nodes** tab. |\n| `workloadLabels` | List of strings | One or more labels containing owner or workload names. Alerts appear under the **Owners** tab when `kindLabels` is also provided. |\n| `threshold` | String | The alert threshold. This value should match the threshold in the PromQL expression. |\n| `unit` | String | The data unit for display purposes. |\n| `upperBound` | String | An upper bound value used to calculate scores on a closed scale. Metric values exceeding this bound are clamped. |\n\n> [!NOTE]\n> The `namespaceLabels` and `nodeLabels` fields are mutually exclusive. If neither is provided, the alert appears under the **Global** tab.\n\n### Configuring custom health rules {#network-observability-configuring-custom-health-rules_network-observability-health-rules}\n\nCreate custom health rules by using Prometheus Query Language (PromQL) to define an `AlertingRule` resource. These rules trigger alerts based on specific network metrics, such as traffic surges.\n\n**Prerequisites**\n\n- Access to the cluster with `cluster-admin` privileges.\n- The Network Observability Operator is installed.\n- OpenShift Container Platform 4.16 or later is installed.\n- Familiarity with PromQL.\n\n> [!IMPORTANT]\n> Custom `PrometheusRule` resources are not owned by the `FlowCollector` resource. Custom rules created in the `netobserv` namespace might be deleted if the Network Observability Operator is uninstalled. To prevent data loss, create custom rules in a different namespace, such as `openshift-monitoring`, and maintain a backup in version control.\n\n**Procedure**\n\n1. Define an `AlertingRule` resource in a YAML file, for example, `custom-alert.yaml`.\n2. Apply the custom alert rule by running the following command:\n\n   ```terminal\n   $ oc apply -f custom-alert.yaml\n   ```\n\n**Verification**\n\n1. Confirm the `PrometheusRule` resource was created in the target namespace by running the following command:\n\n   ```terminal\n   $ oc get prometheusrules -n <namespace> -o yaml\n   ```\n2. Confirm the rule is active in the OpenShift Container Platform web console:\n\n   1. Navigate to **Observe** → **Alerting** to see the firing status.\n   2. Navigate to **Observe** → **Network Health** to view the dashboard integration.\n\n## Performance optimization with recording rules {#network-observability-recording-rules-performance-optimization_network-observability-health-rules}\n\nIn large-scale clusters, recording rules optimize how Prometheus handles network data. Recording rules improve dashboard responsiveness and reduce the computational overhead of complex queries.\n\n### Optimization benefits {#network-observability-recording-rules-benefits_network-observability-health-rules}\n\nRecording rules pre-compute complex Prometheus Query Language (PromQL) expressions and save the results as new time series. Unlike alerting rules, recording rules do not monitor thresholds.\n\nUsing recording rules provides the following advantages:\n\nImproved performance\n:   Pre-computing Prometheus queries allows dashboards to load faster by avoiding on-demand calculations for long-term trends.\n\nResource efficiency\n:   Calculating data at fixed intervals reduces CPU load on the Prometheus server compared to recalculating data on every dashboard refresh.\n\nSimplified queries\n:   Using short metric names, such as `cluster:network_traffic:rate_5m`, simplifies complex aggregate calculations in custom dashboards.\n\n### Comparison of rule modes {#network-observability-alert-vs-recording-comparison_network-observability-health-rules}\n\nThe following table compares rule modes based on the expected outcome:\n\n| Feature | Alerting rules | Recording rules |\n| --- | --- | --- |\n| Primary goal | Issue notification. | Persistent metric history. |\n| Data output | Alerting state. | New time series metric. |\n| UI visibility | **Alerting** and **Network Health** views. | **Metrics Explorer** and **Network Health** views. |\n| Notifications | Triggers `Alertmanager` notifications. | Does not trigger notifications. |\n\n### Integrating recording rules with the health dashboard {#network-observability-integrating-recording-rules-with-health-dashboard_network-observability-health-rules}\n\nCustom recording rules that contribute to the **Network Health** dashboard must meet specific metadata requirements.\n\nLabel requirements\n:   Include the `netobserv: \"true\"` label in the `labels` field of the rule and the `PrometheusRule` metadata. The Network Observability Operator identifies `PrometheusRule` resources cluster-wide by using this label.\n\nAnnotation requirements\n:   Include the `netobserv.io/network-health` annotation in the `PrometheusRule` metadata. This annotation is required for recording rules to appear in the **Network Health** dashboard. The value is a JSON object where keys are the metric names (the `record` field of each rule). Each value consists of the following fields:\n\n    - `summary`: An optional short title. This field supports Prometheus template syntax, such as `{{ $labels.namespace }}`.\n    - `description`: An optional description. This field supports Prometheus template syntax.\n    - `netobserv_io_network_health`: A required JSON string. For recording rules, use the `recordingThresholds` field instead of `threshold`. This field determines the health score and UI coloring, such as `{\"info\":\"10\",\"warning\":\"25\",\"critical\":\"50\"}`.\n\n### Optimizing dashboard metrics with recording rules {#network-observability-configuring-custom-recording-rules_network-observability-health-rules}\n\nCreate custom recording rules to pre-compute metrics for the **Network Health** dashboard. Recording rules require specific annotations and labels to integrate with the Network Observability Operator.\n\n**Prerequisites**\n\n- Access to the cluster with `cluster-admin` privileges.\n- The Network Observability Operator is installed.\n- OpenShift Container Platform 4.16 or later is installed.\n- Familiarity with PromQL.\n\n> [!IMPORTANT]\n> Custom `PrometheusRule` resources are not owned by the `FlowCollector` resource. Custom rules created in the `netobserv` namespace might be deleted if the Network Observability Operator is uninstalled. To prevent data loss, create custom rules in a different namespace, such as `openshift-monitoring`, and maintain a backup in version control.\n\n**Procedure**\n\n1. Define a `PrometheusRule` resource in a YAML file, such as `custom-recording-rule.yaml`, ensuring the `netobserv: \"true\"` label and `netobserv.io/network-health` annotation are included:\n\n   ```yaml\n   apiVersion: monitoring.coreos.com/v1\n   kind: PrometheusRule\n   metadata:\n     name: my-recording-rules\n     namespace: openshift-monitoring\n     labels:\n       netobserv: \"true\"\n     annotations:\n       netobserv.io/network-health: |\n         {\n           \"my_metric_per_namespace\": {\n             \"summary\": \"Custom metric is {{ $value }} in the namespace {{ $labels.namespace }}\",\n             \"description\": \"Custom metric is {{ $value }} in the namespace {{ $labels.namespace }}\",\n             \"netobserv_io_network_health\": \"{\\\"unit\\\":\\\"%\\\",\\\"upperBound\\\":\\\"100\\\",\\\"namespaceLabels\\\":[\\\"namespace\\\"],\\\"recordingThresholds\\\":{\\\"info\\\":\\\"10\\\",\\\"warning\\\":\\\"25\\\",\\\"critical\\\":\\\"50\\\"}}\"\n           }\n         }\n   spec:\n     groups:\n       - name: MyRecordingRules\n         interval: 30s\n         rules:\n           - record: my_metric_per_namespace\n             expr: (count by (namespace) (kube_pod_info) * 0 + 20)\n             labels:\n               netobserv: \"true\"\n   ```\n2. Apply the custom recording rule by running the following command:\n\n   ```terminal\n   $ oc apply -f custom-recording-rule.yaml\n   ```\n\n**Verification**\n\n1. Confirm the `PrometheusRule` resource exists by running the following command:\n\n   ```terminal\n   $ oc get prometheusrules my-recording-rules -n openshift-monitoring -o yaml\n   ```\n2. Confirm the recording rule appears in the OpenShift Container Platform web console by navigating to **Observe** → **Network Health**.\n\n## Disabling default rules {#network-observability-disable-predefined-rules_network-observability-health-rules}\n\nRule templates can be disabled in the `spec.processor.metrics.disableAlerts` field of the `FlowCollector` custom resource (CR). This setting accepts a list of rule template names. For a list of alert template names, see \"List of default rules\".\n\nIf a rule template is included in the `disableAlerts` list, it is not created, even if a custom override exists in the `spec.processor.metrics.healthRules` field. The `disableAlerts` configuration takes precedence over all other health rule settings.\n\nFor a list of alert template names, see \"List of default rules\".\n\n## Additional resources {#_additional_resources}\n\n- [List of default rules](/openshift-docs-markdown/observability/network_observability/network-observability-health-rules#network-observability-default-rules_network-observability-health-rules)\n- [Viewing network observability metrics dashboards](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-viewing-dashboards_metrics-dashboards-alerts)\n- [Creating alerts](/openshift-docs-markdown/observability/network_observability/metrics-alerts-dashboards#network-observability-netobserv-dashboard-high-traffic-alert_metrics-dashboards-alerts)\n- [Monitoring stack architecture](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/monitoring-stack-architecture)\n- [Network Observability Operator runbooks](https://github.com/openshift/runbooks/tree/master/alerts/network-observability-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-health-rules.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +101,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="network-observability-health-rules" class="group scroll-mt-20">Network observability health rules<a href="#network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The Network Observability Operator provides alerts by using built-in metrics and the OpenShift Container Platform monitoring stack to report cluster network health.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
@@ -102,14 +108,335 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Network observability health alerts require OpenShift Container Platform 4.16 or later.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/network-observability-health-rules-and-performance.md"></p>
-      <p class="/modules/network-observability-health-rules-monitoring-and-alerting.md"></p>
-      <p class="/modules/network-observability-health-rule-structure-customization.md"></p>
-      <p class="/modules/network-observability-health-rules-promql-expressions-metadata.md"></p>
-      <p class="/modules/network-observability-custom-health-rule-configuration.md"></p>
-      <p class="/modules/network-observability-health-rules-recording-rules-performance-optimization.md"></p>
-      <p class="/modules/network-observability-recording-rule-custom-configuration.md"></p>
-      <p class="/modules/network-observability-disable-predefined-rules.md"></p>
+      <h2 id="network-observability-health-rules-and-performance_network-observability-health-rules" class="group scroll-mt-20">Identifying network issues with automated health rules<a href="#network-observability-health-rules-and-performance_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Network observability identifies network issues by using automated health rules to monitor metrics. These rules trigger alerts when anomalies occur, which assists in maintaining connectivity and responding to network degradation.</p>
+      <p>The Network Observability Operator manages a system of Prometheus-based rules that detect network problems, and converts these rules into <code>PrometheusRule</code> resources. It supports the following rule types:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Alerting rules</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Trigger notifications through the Prometheus <code>Alertmanager</code> when network anomalies or infrastructure failures are detected.</p></dd>
+      <dt class="font-semibold">Recording rules</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Pre-compute complex Prometheus Query Language (PromQL) expressions into new time series to improve dashboard performance.</p></dd>
+      </dl>
+      <h3 id="importance-of-network-health-monitoring_network-observability-health-rules" class="group scroll-mt-20">Importance of network health monitoring<a href="#importance-of-network-health-monitoring_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Maintaining reliable and secure network connectivity is critical for cluster administrators and security teams. Unresolved network issues can result in the following consequences:</p>
+      <ul>
+      <li>Application downtime caused by packet drops or DNS failures.</li>
+      <li>Security risks from undetected network policy violations.</li>
+      <li>Performance degradation caused by latency spikes or bandwidth saturation.</li>
+      <li>Compliance issues from unmonitored network traffic.</li>
+      </ul>
+      <p>Early detection of these issues allows for resolution before service level objectives (SLOs) are affected.</p>
+      <h3 id="detection-of-network-issues_network-observability-health-rules" class="group scroll-mt-20">Automated health monitoring<a href="#detection-of-network-issues_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The Network Observability Operator provides automated health monitoring through the following features:</p>
+      <ul>
+      <li>Pre-configured health rules: Detect common network problems by using default thresholds.</li>
+      <li>Automated alerting: Integrates with the OpenShift Container Platform monitoring stack.</li>
+      <li>Health dashboards: Displays health status for clusters, nodes, namespaces, and workloads.</li>
+      <li>Custom rules: Supports the creation of organization-specific monitoring rules.</li>
+      </ul>
+      <p>Health rules monitor network flow metrics and trigger alerts when defined thresholds are exceeded. For example, the <code>PacketDropsByKernel</code> rule reports an alert when kernel packet drop rates exceed defined levels.</p>
+      <h3 id="network-health-monitoring-workflow_network-observability-health-rules" class="group scroll-mt-20">Network health monitoring workflow<a href="#network-health-monitoring-workflow_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Monitoring network health involves the following phases:</p>
+      <ul>
+      <li>Configuring the Network Observability Operator to collect required network health data for monitoring, such as packet drops or DNS tracking.</li>
+      <li>Reviewing and customizing default health rules and thresholds in the <code>FlowCollector</code> custom resource.</li>
+      <li>Monitoring alerts in the OpenShift Container Platform web console in the <strong>Observe</strong> → <strong>Alerting</strong> and <strong>Observe</strong> → <strong>Network Health</strong> views.</li>
+      <li>Creating custom health rules for specific requirements.</li>
+      <li>Configuring recording rules to optimize performance for large-scale deployments.</li>
+      </ul>
+      <p>The <code>PrometheusRule</code> resource in the <code>netobserv</code> namespace can be viewed by running the following command:</p>
+      <CodeBlock code={"$ oc get prometheusrules -n netobserv -o yaml"} lang="terminal" />
+      <h3 id="network-observability-health-rules-monitoring-and-alerting_network-observability-health-rules" class="group scroll-mt-20">Detecting network issues with automated health rules<a href="#network-observability-health-rules-monitoring-and-alerting_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The Network Observability Operator includes a rule-based system to detect network anomalies and infrastructure failures. By converting configurations into alerting rules, the Operator provides automated monitoring and troubleshooting through the OpenShift Container Platform web console.</p>
+      <h4 id="network-observability-health-outcomes_network-observability-health-rules" class="group scroll-mt-20">Monitoring outcomes<a href="#network-observability-health-outcomes_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>The Network Observability Operator displays network status in the following views:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><strong>Alerting</strong> UI</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specific alerts appear in <strong>Observe</strong> → <strong>Alerting</strong>. Notifications are managed through the Prometheus <code>Alertmanager</code>.</p></dd>
+      <dt class="font-semibold"><strong>Network Health</strong> dashboard</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A specialized dashboard in <strong>Observe</strong> → <strong>Network Health</strong> provides a summary of cluster network status.</p></dd>
+      </dl>
+      <p>The <strong>Network Health</strong> dashboard categorizes violations into tabs to isolate the scope of an issue:</p>
+      <ul>
+      <li><strong>Global</strong>: Aggregate health of the cluster.</li>
+      <li><strong>Nodes</strong>: Violations specific to infrastructure nodes.</li>
+      <li><strong>Namespaces</strong>: Violations specific to individual namespaces.</li>
+      <li><strong>Workloads</strong>: Violations specific to resources, such as <code>Deployments</code> or <code>DaemonSets</code>.</li>
+      </ul>
+      <h4 id="network-observability-default-rules_network-observability-health-rules" class="group scroll-mt-20">Predefined health rules<a href="#network-observability-default-rules_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>The Network Observability Operator provides default rules for common networking scenarios. These rules are active only if the corresponding feature is enabled in the <code>FlowCollector</code> custom resource (CR).</p>
+      <p>The following list contains a subset of available default rules:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>PacketDropsByDevice</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Reports a high percentage of packet drops from network devices. This rule is based on node-exporter metrics and does not require the <code>PacketDrop</code> agent feature.</p></dd>
+      <dt class="font-semibold"><code>PacketDropsByKernel</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Reports a high percentage of packet drops by the kernel. This rule requires the <code>PacketDrop</code> agent feature.</p></dd>
+      <dt class="font-semibold"><code>IPsecErrors</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Reports IPsec encryption errors. This rule requires the <code>IPSec</code> agent feature.</p></dd>
+      <dt class="font-semibold"><code>NetpolDenied</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Reports traffic denied by network policies. This rule requires the <code>NetworkEvents</code> agent feature.</p></dd>
+      <dt class="font-semibold"><code>LatencyHighTrend</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Reports a significant increase in TCP latency. This rule requires the <code>FlowRTT</code> agent feature.</p></dd>
+      <dt class="font-semibold"><code>DNSErrors</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Reports DNS errors. This rule requires the <code>DNSTracking</code> agent feature.</p></dd>
+      </dl>
+      <p>The following operational alerts apply to the Network Observability Operator:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>NetObservNoFlows</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Reports when the pipeline is active but no flows are observed.</p></dd>
+      <dt class="font-semibold"><code>NetObservLokiError</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Reports when flows are dropped because of Loki errors.</p></dd>
+      </dl>
+      <p>For a complete list of rules and runbooks, see the <a href="https://github.com/openshift/runbooks/tree/master/alerts/network-observability-operator">Network Observability Operator runbooks</a>.</p>
+      <h4 id="network-observability-enabling-features-for-health-monitoring_network-observability-health-rules" class="group scroll-mt-20">Enabling features for health monitoring<a href="#network-observability-enabling-features-for-health-monitoring_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>The Network Observability Operator creates rules based on the features enabled in the <code>FlowCollector</code> CR.</p>
+      <p>For example, packet drop rules are created only if the <code>PacketDrop</code> agent feature is enabled. Rules depend on metrics; if the required metrics are unavailable, configuration warnings might appear. Configure metrics in the <code>spec.processor.metrics.includeList</code> field of the <code>FlowCollector</code> resource.</p>
+      <h2 id="network-observability-health-rule-customization_network-observability-health-rules" class="group scroll-mt-20">Health rule threshold and grouping customization<a href="#network-observability-health-rule-customization_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Health rules in the Network Observability Operator are defined by using rule templates and variants in the <code>spec.processor.metrics.healthRules</code> field of the <code>FlowCollector</code> custom resource (CR). Customizing these templates allows for flexible, fine-grained alerting tailored to specific environment needs.</p>
+      <p>For each template, a list of variants can be defined, each with distinct thresholds and grouping configurations.</p>
+      <p>The following example shows a <code>FlowCollector</code> configuration with custom health rules:</p>
+      <CodeBlock code={"apiVersion: flows.netobserv.io/v1beta1\nkind: FlowCollector\nmetadata:\n  name: flow-collector\nspec:\n  processor:\n    metrics:\n      healthRules:\n      - template: PacketDropsByKernel\n        mode: Alert # or Recording\n        variants:\n        # Triggered when aggregate cluster traffic reaches 10% drops\n        - thresholds:\n            critical: \"10\"\n        # Triggered per-node with increasing severity levels\n        - thresholds:\n            critical: \"15\"\n            warning: \"10\"\n            info: \"5\"\n          groupBy: Node"} lang="yaml" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.processor.metrics.healthRules.template</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the predefined rule template.</p></dd>
+      <dt class="font-semibold"><code>spec.processor.metrics.healthRules.mode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether the rule functions as an <code>Alert</code> or a <code>Recording</code> rule.</p></dd>
+      <dt class="font-semibold"><code>spec.processor.metrics.healthRules.variants.thresholds</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the numerical values that trigger the rule. Multiple severity levels, such as <code>critical</code>, <code>warning</code>, or <code>info</code>, can be defined within a single variant.</p></dd>
+      <dt class="font-semibold"><code>spec.processor.metrics.healthRules.variants.groupBy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the dimension used to aggregate the metric, such as <code>Node</code> or <code>Namespace</code>.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Customizing a rule replaces the default configuration for that template. To retain default configurations, the default settings must be manually included in the custom resource.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="network-observability-health-rules-promql-expressions-metadata_network-observability-health-rules" class="group scroll-mt-20">Health rule query and metadata reference<a href="#network-observability-health-rules-promql-expressions-metadata_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The <code>FlowCollector</code> health rule API maps to the Prometheus Operator to generate <code>PrometheusRule</code> objects. Use these base Prometheus Query Language (PromQL) patterns and metadata configurations to create custom health rules for network observability.</p>
+      <p>The <code>PrometheusRule</code> resource in the <code>netobserv</code> namespace can be viewed by running the following command:</p>
+      <CodeBlock code={"$ oc get prometheusrules -n netobserv -o yaml"} lang="terminal" />
+      <h4 id="example-query-surge-incoming-traffic_network-observability-health-rules" class="group scroll-mt-20">Customizing alert logic with PromQL: Incoming traffic surge<a href="#example-query-surge-incoming-traffic_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>The following PromQL query calculates the byte rate from the <code>openshift-ingress</code> namespace to any workload namespace over a 30-minute interval:</p>
+      <CodeBlock code={"sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace=\"openshift-ingress\"}[30m])) by (DstK8S_Namespace)"} lang="promql" />
+      <p>Queries can be customized to filter low-bandwidth data, compare time periods, and establish thresholds.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Data filtering</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Appending <code>&gt; 1000</code> to the query removes rates lower than <code>1 KB/s</code> to filter low-bandwidth traffic.</p>
+      <p><code>(sum(rate(netobserv_workload_ingress_bytes_total{"{"}SrcK8S_Namespace="openshift-ingress"{"}"}[30m])) by (DstK8S_Namespace) &gt; 1000)</code></p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The byte rate is relative to the sampling interval in the <code>FlowCollector</code> CR. Normalizing byte rates with the <code>netobserv_agent_sampling_rate</code> metric decouples the PromQL expression from the sampling configuration.</p>
+        </AlertDescription>
+      </Alert>
+      </dd>
+      <dt class="font-semibold">Time comparison</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>The <code>offset</code> modifier compares data across different time periods. For example, <code>offset 1d</code> retrieves data from the previous day.</p>
+      <p><code>sum(rate(netobserv_workload_ingress_bytes_total{"{"}SrcK8S_Namespace="openshift-ingress"{"}"}[30m] offset 1d)) by (DstK8S_Namespace))</code></p>
+      </dd>
+      <dt class="font-semibold">Threshold application</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A final threshold filters increases below a specific percentage. For example, <code>&gt; 100</code> removes increases lower than 100%.</p></dd>
+      </dl>
+      <p>The following example shows a complete PromQL expression for a <code>PrometheusRule</code>:</p>
+      <CodeBlock code={"expr: |-\n  (100 *\n    (\n      (sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace=\"openshift-ingress\"}[30m])) by (DstK8S_Namespace) > 1000)\n      - sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace=\"openshift-ingress\"}[30m] offset 1d)) by (DstK8S_Namespace)\n    )\n    / sum(rate(netobserv_workload_ingress_bytes_total{SrcK8S_Namespace=\"openshift-ingress\"}[30m] offset 1d)) by (DstK8S_Namespace))\n  > 100"} lang="promql" />
+      <h4 id="alert-metadata-fields_network-observability-health-rules" class="group scroll-mt-20">Alert metadata fields<a href="#alert-metadata-fields_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Rule definitions require specific metadata for the Prometheus <code>Alertmanager</code> service and the <strong>Network Health</strong> dashboard. The following example shows an <code>AlertingRule</code> resource with configured metadata:</p>
+      <CodeBlock code={"apiVersion: monitoring.openshift.io/v1\nkind: AlertingRule\nmetadata:\n  name: netobserv-alerts\n  namespace: openshift-monitoring\nspec:\n  groups:\n  - name: NetObservAlerts\n    rules:\n    - alert: NetObservIncomingBandwidth\n      annotations:\n        netobserv_io_network_health: '{\"namespaceLabels\":[\"DstK8S_Namespace\"],\"threshold\":\"100\",\"unit\":\"%\",\"upperBound\":\"500\"}'\n        message: |-\n          Surge of incoming traffic detected: current traffic to {{ $labels.DstK8S_Namespace }} increased by more than 100% since yesterday.\n        summary: \"Surge in incoming traffic\"\n      expr: |-\n        # ... (PromQL expression)\n      for: 1m\n      labels:\n        app: netobserv\n        netobserv: \"true\"\n        severity: warning"} lang="yaml" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.groups.rules.alert.labels.netobserv</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the <strong>Network Health</strong> dashboard must detect the alert when set to <code>true</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.groups.rules.alert.labels.severity</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the alert severity. Valid values are <code>critical</code>, <code>warning</code>, or <code>info</code>.</p></dd>
+      </dl>
+      <h4 id="netobserv-io-network-health-annotation_network-observability-health-rules" class="group scroll-mt-20">netobserv_io_network_health annotation fields<a href="#netobserv-io-network-health-annotation_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>The optional <code>netobserv_io_network_health</code> annotation is a JSON string that controls how the alert renders on the <strong>Network Health</strong> page.</p>
+      <p><strong>Fields for the </strong><code>netobserv_io_network_health</code><strong> annotation</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>namespaceLabels</code></TableCell>
+      <TableCell>List of strings</TableCell>
+      <TableCell>One or more labels containing namespaces. Alerts appear under the <strong>Namespaces</strong> tab.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>nodeLabels</code></TableCell>
+      <TableCell>List of strings</TableCell>
+      <TableCell>One or more labels containing node names. Alerts appear under the <strong>Nodes</strong> tab.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>workloadLabels</code></TableCell>
+      <TableCell>List of strings</TableCell>
+      <TableCell>One or more labels containing owner or workload names. Alerts appear under the <strong>Owners</strong> tab when <code>kindLabels</code> is also provided.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>threshold</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>The alert threshold. This value should match the threshold in the PromQL expression.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>unit</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>The data unit for display purposes.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>upperBound</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>An upper bound value used to calculate scores on a closed scale. Metric values exceeding this bound are clamped.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>namespaceLabels</code> and <code>nodeLabels</code> fields are mutually exclusive. If neither is provided, the alert appears under the <strong>Global</strong> tab.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="network-observability-configuring-custom-health-rules_network-observability-health-rules" class="group scroll-mt-20">Configuring custom health rules<a href="#network-observability-configuring-custom-health-rules_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Create custom health rules by using Prometheus Query Language (PromQL) to define an <code>AlertingRule</code> resource. These rules trigger alerts based on specific network metrics, such as traffic surges.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>The Network Observability Operator is installed.</li>
+      <li>OpenShift Container Platform 4.16 or later is installed.</li>
+      <li>Familiarity with PromQL.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Custom <code>PrometheusRule</code> resources are not owned by the <code>FlowCollector</code> resource. Custom rules created in the <code>netobserv</code> namespace might be deleted if the Network Observability Operator is uninstalled. To prevent data loss, create custom rules in a different namespace, such as <code>openshift-monitoring</code>, and maintain a backup in version control.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Define an <code>AlertingRule</code> resource in a YAML file, for example, <code>custom-alert.yaml</code>.</li>
+      <li>
+      Apply the custom alert rule by running the following command:
+      <CodeBlock code={"$ oc apply -f custom-alert.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Confirm the <code>PrometheusRule</code> resource was created in the target namespace by running the following command:
+      <CodeBlock code={"$ oc get prometheusrules -n <namespace> -o yaml"} lang="terminal" />
+      </li>
+      <li>
+      Confirm the rule is active in the OpenShift Container Platform web console:
+      <ol>
+      <li>Navigate to <strong>Observe</strong> → <strong>Alerting</strong> to see the firing status.</li>
+      <li>Navigate to <strong>Observe</strong> → <strong>Network Health</strong> to view the dashboard integration.</li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="network-observability-recording-rules-performance-optimization_network-observability-health-rules" class="group scroll-mt-20">Performance optimization with recording rules<a href="#network-observability-recording-rules-performance-optimization_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In large-scale clusters, recording rules optimize how Prometheus handles network data. Recording rules improve dashboard responsiveness and reduce the computational overhead of complex queries.</p>
+      <h3 id="network-observability-recording-rules-benefits_network-observability-health-rules" class="group scroll-mt-20">Optimization benefits<a href="#network-observability-recording-rules-benefits_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Recording rules pre-compute complex Prometheus Query Language (PromQL) expressions and save the results as new time series. Unlike alerting rules, recording rules do not monitor thresholds.</p>
+      <p>Using recording rules provides the following advantages:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Improved performance</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Pre-computing Prometheus queries allows dashboards to load faster by avoiding on-demand calculations for long-term trends.</p></dd>
+      <dt class="font-semibold">Resource efficiency</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Calculating data at fixed intervals reduces CPU load on the Prometheus server compared to recalculating data on every dashboard refresh.</p></dd>
+      <dt class="font-semibold">Simplified queries</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Using short metric names, such as <code>cluster:network_traffic:rate_5m</code>, simplifies complex aggregate calculations in custom dashboards.</p></dd>
+      </dl>
+      <h3 id="network-observability-alert-vs-recording-comparison_network-observability-health-rules" class="group scroll-mt-20">Comparison of rule modes<a href="#network-observability-alert-vs-recording-comparison_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following table compares rule modes based on the expected outcome:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Feature</TableHead>
+      <TableHead>Alerting rules</TableHead>
+      <TableHead>Recording rules</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Primary goal</TableCell>
+      <TableCell>Issue notification.</TableCell>
+      <TableCell>Persistent metric history.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Data output</TableCell>
+      <TableCell>Alerting state.</TableCell>
+      <TableCell>New time series metric.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>UI visibility</TableCell>
+      <TableCell><strong>Alerting</strong> and <strong>Network Health</strong> views.</TableCell>
+      <TableCell><strong>Metrics Explorer</strong> and <strong>Network Health</strong> views.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Notifications</TableCell>
+      <TableCell>Triggers <code>Alertmanager</code> notifications.</TableCell>
+      <TableCell>Does not trigger notifications.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="network-observability-integrating-recording-rules-with-health-dashboard_network-observability-health-rules" class="group scroll-mt-20">Integrating recording rules with the health dashboard<a href="#network-observability-integrating-recording-rules-with-health-dashboard_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Custom recording rules that contribute to the <strong>Network Health</strong> dashboard must meet specific metadata requirements.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Label requirements</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Include the <code>netobserv: "true"</code> label in the <code>labels</code> field of the rule and the <code>PrometheusRule</code> metadata. The Network Observability Operator identifies <code>PrometheusRule</code> resources cluster-wide by using this label.</p></dd>
+      <dt class="font-semibold">Annotation requirements</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Include the <code>netobserv.io/network-health</code> annotation in the <code>PrometheusRule</code> metadata. This annotation is required for recording rules to appear in the <strong>Network Health</strong> dashboard. The value is a JSON object where keys are the metric names (the <code>record</code> field of each rule). Each value consists of the following fields:</p>
+      <ul>
+      <li><code>summary</code>: An optional short title. This field supports Prometheus template syntax, such as <code>{"{"}{"{"} $labels.namespace {"}"}{"}"}</code>.</li>
+      <li><code>description</code>: An optional description. This field supports Prometheus template syntax.</li>
+      <li><code>netobserv_io_network_health</code>: A required JSON string. For recording rules, use the <code>recordingThresholds</code> field instead of <code>threshold</code>. This field determines the health score and UI coloring, such as <code>{"{"}"info":"10","warning":"25","critical":"50"{"}"}</code>.</li>
+      </ul>
+      </dd>
+      </dl>
+      <h3 id="network-observability-configuring-custom-recording-rules_network-observability-health-rules" class="group scroll-mt-20">Optimizing dashboard metrics with recording rules<a href="#network-observability-configuring-custom-recording-rules_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Create custom recording rules to pre-compute metrics for the <strong>Network Health</strong> dashboard. Recording rules require specific annotations and labels to integrate with the Network Observability Operator.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>The Network Observability Operator is installed.</li>
+      <li>OpenShift Container Platform 4.16 or later is installed.</li>
+      <li>Familiarity with PromQL.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Custom <code>PrometheusRule</code> resources are not owned by the <code>FlowCollector</code> resource. Custom rules created in the <code>netobserv</code> namespace might be deleted if the Network Observability Operator is uninstalled. To prevent data loss, create custom rules in a different namespace, such as <code>openshift-monitoring</code>, and maintain a backup in version control.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Define a <code>PrometheusRule</code> resource in a YAML file, such as <code>custom-recording-rule.yaml</code>, ensuring the <code>netobserv: "true"</code> label and <code>netobserv.io/network-health</code> annotation are included:
+      <CodeBlock code={"apiVersion: monitoring.coreos.com/v1\nkind: PrometheusRule\nmetadata:\n  name: my-recording-rules\n  namespace: openshift-monitoring\n  labels:\n    netobserv: \"true\"\n  annotations:\n    netobserv.io/network-health: |\n      {\n        \"my_metric_per_namespace\": {\n          \"summary\": \"Custom metric is {{ $value }} in the namespace {{ $labels.namespace }}\",\n          \"description\": \"Custom metric is {{ $value }} in the namespace {{ $labels.namespace }}\",\n          \"netobserv_io_network_health\": \"{\\\"unit\\\":\\\"%\\\",\\\"upperBound\\\":\\\"100\\\",\\\"namespaceLabels\\\":[\\\"namespace\\\"],\\\"recordingThresholds\\\":{\\\"info\\\":\\\"10\\\",\\\"warning\\\":\\\"25\\\",\\\"critical\\\":\\\"50\\\"}}\"\n        }\n      }\nspec:\n  groups:\n    - name: MyRecordingRules\n      interval: 30s\n      rules:\n        - record: my_metric_per_namespace\n          expr: (count by (namespace) (kube_pod_info) * 0 + 20)\n          labels:\n            netobserv: \"true\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the custom recording rule by running the following command:
+      <CodeBlock code={"$ oc apply -f custom-recording-rule.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Confirm the <code>PrometheusRule</code> resource exists by running the following command:
+      <CodeBlock code={"$ oc get prometheusrules my-recording-rules -n openshift-monitoring -o yaml"} lang="terminal" />
+      </li>
+      <li>Confirm the recording rule appears in the OpenShift Container Platform web console by navigating to <strong>Observe</strong> → <strong>Network Health</strong>.</li>
+      </ol>
+      <h2 id="network-observability-disable-predefined-rules_network-observability-health-rules" class="group scroll-mt-20">Disabling default rules<a href="#network-observability-disable-predefined-rules_network-observability-health-rules" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Rule templates can be disabled in the <code>spec.processor.metrics.disableAlerts</code> field of the <code>FlowCollector</code> custom resource (CR). This setting accepts a list of rule template names. For a list of alert template names, see "List of default rules".</p>
+      <p>If a rule template is included in the <code>disableAlerts</code> list, it is not created, even if a custom override exists in the <code>spec.processor.metrics.healthRules</code> field. The <code>disableAlerts</code> configuration takes precedence over all other health rule settings.</p>
+      <p>For a list of alert template names, see "List of default rules".</p>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/observability/network_observability/network-observability-health-rules#network-observability-default-rules_network-observability-health-rules">List of default rules</a></li>

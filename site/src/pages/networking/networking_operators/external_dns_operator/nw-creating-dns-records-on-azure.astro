@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"creating-dns-records-on-azure","text":"Creating DNS records on Azure"}];
+const headings = [{"depth":1,"slug":"creating-dns-records-on-azure","text":"Creating DNS records on Azure"},{"depth":2,"slug":"nw-control-dns-records-public-hosted-zone-azure_creating-dns-records-on-azure","text":"Creating DNS records on an Azure DNS zone"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-azure";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Creating DNS records on Azure";
-const description = "To create DNS records on {{ azure_first }}, use the External DNS Operator. By using this Operator, you can manage external name resolution for your…" || undefined;
+const description = "To create DNS records on Microsoft Azure, use the External DNS Operator. By using this Operator, you can manage external name resolution for your cluster…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["networking","networking/networking_operators","networking
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating DNS records on Azure {#creating-dns-records-on-azure}\n\nTo create DNS records on {{ azure_first }}, use the External DNS Operator. By using this Operator, you can manage external name resolution for your cluster services.\n\n> [!IMPORTANT]\n> Using the External DNS Operator on a {{ entra_first }}-enabled cluster or a cluster that runs in {{ azure_full }} Government (MAG) regions is not supported.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-azure.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating DNS records on Azure {#creating-dns-records-on-azure}\n\nTo create DNS records on Microsoft Azure, use the External DNS Operator. By using this Operator, you can manage external name resolution for your cluster services.\n\n> [!IMPORTANT]\n> Using the External DNS Operator on a Microsoft Entra Workload ID-enabled cluster or a cluster that runs in Microsoft Azure Government (MAG) regions is not supported.\n\n## Creating DNS records on an Azure DNS zone {#nw-control-dns-records-public-hosted-zone-azure_creating-dns-records-on-azure}\n\nTo create DNS records on a public or private DNS zone for Azure, use the External DNS Operator. The Operator manages external name resolution for your cluster.\n\n**Prerequisites**\n\n- You must have administrator privileges.\n- The `admin` user must have access to the `kube-system` namespace.\n\n**Procedure**\n\n1. Fetch the credentials from the `kube-system` namespace to use the cloud provider client by running the following command:\n\n   ```terminal\n   $ CLIENT_ID=$(oc get secrets azure-credentials  -n kube-system  --template={{.data.azure_client_id}} | base64 -d)\n   ```\n\n   ```terminal\n   $ CLIENT_SECRET=$(oc get secrets azure-credentials  -n kube-system  --template={{.data.azure_client_secret}} | base64 -d)\n   ```\n\n   ```terminal\n   $ RESOURCE_GROUP=$(oc get secrets azure-credentials  -n kube-system  --template={{.data.azure_resourcegroup}} | base64 -d)\n   ```\n\n   ```terminal\n   $ SUBSCRIPTION_ID=$(oc get secrets azure-credentials  -n kube-system  --template={{.data.azure_subscription_id}} | base64 -d)\n   ```\n\n   ```terminal\n   $ TENANT_ID=$(oc get secrets azure-credentials  -n kube-system  --template={{.data.azure_tenant_id}} | base64 -d)\n   ```\n2. Log in to Azure by running the following command:\n\n   ```terminal\n   $ az login --service-principal -u \"${CLIENT_ID}\" -p \"${CLIENT_SECRET}\" --tenant \"${TENANT_ID}\"\n   ```\n3. Get a list of routes by running the following command:\n\n   ```terminal\n   $ oc get routes --all-namespaces | grep console\n   ```\n\n   ```terminal {title=\"Example output\"}\n   openshift-console          console             console-openshift-console.apps.test.azure.example.com                       console             https   reencrypt/Redirect     None\n   openshift-console          downloads           downloads-openshift-console.apps.test.azure.example.com                     downloads           http    edge/Redirect          None\n   ```\n4. Get a list of DNS zones.\n\n   1. For public DNS zones, enter the following command:\n\n      ```terminal\n      $ az network dns zone list --resource-group \"${RESOURCE_GROUP}\"\n      ```\n   2. For private DNS zones, enter the following command:\n\n      ```terminal\n      $ az network private-dns zone list -g \"${RESOURCE_GROUP}\"\n      ```\n5. Create a YAML file, for example, `external-dns-sample-azure.yaml`, that defines the `ExternalDNS` object:\n\n   ```yaml {title=\"Example external-dns-sample-azure.yaml file\"}\n   apiVersion: externaldns.olm.openshift.io/v1beta1\n   kind: ExternalDNS\n   metadata:\n     name: sample-azure\n   spec:\n     zones:\n     - \"/subscriptions/1234567890/resourceGroups/test-azure-xxxxx-rg/providers/Microsoft.Network/dnszones/test.azure.example.com\"\n     provider:\n       type: Azure\n     source:\n       openshiftRouteOptions:\n         routerName: default\n       type: OpenShiftRoute\n   # ...\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the External DNS name.\n\n   `spec.zones`\n   :   Specifies the zone ID. For a private DNS zone, change `dnszones` to `privateDnsZones`.\n\n   `provider.type`\n   :   Specifies the provider type.\n\n   `source.openshiftRouteOptions`\n   :   Specifies the options for the source of DNS records.\n\n   `routerName`\n   :   If the source type is `OpenShiftRoute`, you can pass the OpenShift Ingress Controller name. The External DNS Operator selects the canonical hostname of that router as the target while creating the CNAME record.\n\n   `source.type`\n   :   Specifies the `route` resource as the source for the Azure DNS records.\n\n**Troubleshooting**\n\n1. Check the records created for the routes.\n\n   1. For public DNS zones, enter the following command:\n\n      ```terminal\n      $ az network dns record-set list -g \"${RESOURCE_GROUP}\" -z \"${ZONE_NAME}\" | grep console\n      ```\n   2. For private DNS zones, enter the following command:\n\n      ```terminal\n      $ az network private-dns record-set list -g \"${RESOURCE_GROUP}\" -z \"${ZONE_NAME}\" | grep console\n      ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-azure.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,15 +95,88 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-dns-records-on-azure" class="group scroll-mt-20">Creating DNS records on Azure<a href="#creating-dns-records-on-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>To create DNS records on {"{"}{"{"} azure_first {"}"}{"}"}, use the External DNS Operator. By using this Operator, you can manage external name resolution for your cluster services.</p>
+      <p>To create DNS records on Microsoft Azure, use the External DNS Operator. By using this Operator, you can manage external name resolution for your cluster services.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
-          <p>Using the External DNS Operator on a {"{"}{"{"} entra_first {"}"}{"}"}-enabled cluster or a cluster that runs in {"{"}{"{"} azure_full {"}"}{"}"} Government (MAG) regions is not supported.</p>
+          <p>Using the External DNS Operator on a Microsoft Entra Workload ID-enabled cluster or a cluster that runs in Microsoft Azure Government (MAG) regions is not supported.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/nw-control-dns-records-public-hosted-zone-azure.md"></p>
+      <h2 id="nw-control-dns-records-public-hosted-zone-azure_creating-dns-records-on-azure" class="group scroll-mt-20">Creating DNS records on an Azure DNS zone<a href="#nw-control-dns-records-public-hosted-zone-azure_creating-dns-records-on-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To create DNS records on a public or private DNS zone for Azure, use the External DNS Operator. The Operator manages external name resolution for your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have administrator privileges.</li>
+      <li>The <code>admin</code> user must have access to the <code>kube-system</code> namespace.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Fetch the credentials from the <code>kube-system</code> namespace to use the cloud provider client by running the following command:
+      <CodeBlock code={"$ CLIENT_ID=$(oc get secrets azure-credentials  -n kube-system  --template={{.data.azure_client_id}} | base64 -d)"} lang="terminal" />
+      <CodeBlock code={"$ CLIENT_SECRET=$(oc get secrets azure-credentials  -n kube-system  --template={{.data.azure_client_secret}} | base64 -d)"} lang="terminal" />
+      <CodeBlock code={"$ RESOURCE_GROUP=$(oc get secrets azure-credentials  -n kube-system  --template={{.data.azure_resourcegroup}} | base64 -d)"} lang="terminal" />
+      <CodeBlock code={"$ SUBSCRIPTION_ID=$(oc get secrets azure-credentials  -n kube-system  --template={{.data.azure_subscription_id}} | base64 -d)"} lang="terminal" />
+      <CodeBlock code={"$ TENANT_ID=$(oc get secrets azure-credentials  -n kube-system  --template={{.data.azure_tenant_id}} | base64 -d)"} lang="terminal" />
+      </li>
+      <li>
+      Log in to Azure by running the following command:
+      <CodeBlock code={"$ az login --service-principal -u \"${CLIENT_ID}\" -p \"${CLIENT_SECRET}\" --tenant \"${TENANT_ID}\""} lang="terminal" />
+      </li>
+      <li>
+      Get a list of routes by running the following command:
+      <CodeBlock code={"$ oc get routes --all-namespaces | grep console"} lang="terminal" />
+      <CodeBlock code={"openshift-console          console             console-openshift-console.apps.test.azure.example.com                       console             https   reencrypt/Redirect     None\nopenshift-console          downloads           downloads-openshift-console.apps.test.azure.example.com                     downloads           http    edge/Redirect          None"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Get a list of DNS zones.
+      <ol>
+      <li>
+      For public DNS zones, enter the following command:
+      <CodeBlock code={"$ az network dns zone list --resource-group \"${RESOURCE_GROUP}\""} lang="terminal" />
+      </li>
+      <li>
+      For private DNS zones, enter the following command:
+      <CodeBlock code={"$ az network private-dns zone list -g \"${RESOURCE_GROUP}\""} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a YAML file, for example, <code>external-dns-sample-azure.yaml</code>, that defines the <code>ExternalDNS</code> object:
+      <CodeBlock code={"apiVersion: externaldns.olm.openshift.io/v1beta1\nkind: ExternalDNS\nmetadata:\n  name: sample-azure\nspec:\n  zones:\n  - \"/subscriptions/1234567890/resourceGroups/test-azure-xxxxx-rg/providers/Microsoft.Network/dnszones/test.azure.example.com\"\n  provider:\n    type: Azure\n  source:\n    openshiftRouteOptions:\n      routerName: default\n    type: OpenShiftRoute\n# ..."} lang="yaml" title="Example external-dns-sample-azure.yaml file" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the External DNS name.</p></dd>
+      <dt class="font-semibold"><code>spec.zones</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the zone ID. For a private DNS zone, change <code>dnszones</code> to <code>privateDnsZones</code>.</p></dd>
+      <dt class="font-semibold"><code>provider.type</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the provider type.</p></dd>
+      <dt class="font-semibold"><code>source.openshiftRouteOptions</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the options for the source of DNS records.</p></dd>
+      <dt class="font-semibold"><code>routerName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>If the source type is <code>OpenShiftRoute</code>, you can pass the OpenShift Ingress Controller name. The External DNS Operator selects the canonical hostname of that router as the target while creating the CNAME record.</p></dd>
+      <dt class="font-semibold"><code>source.type</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>route</code> resource as the source for the Azure DNS records.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <p><strong>Troubleshooting</strong></p>
+      <ol>
+      <li>
+      Check the records created for the routes.
+      <ol>
+      <li>
+      For public DNS zones, enter the following command:
+      <CodeBlock code={"$ az network dns record-set list -g \"${RESOURCE_GROUP}\" -z \"${ZONE_NAME}\" | grep console"} lang="terminal" />
+      </li>
+      <li>
+      For private DNS zones, enter the following command:
+      <CodeBlock code={"$ az network private-dns record-set list -g \"${RESOURCE_GROUP}\" -z \"${ZONE_NAME}\" | grep console"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-registry-storage-openstack","text":"Configuring the registry for {{ rh_openstack }}"}];
+const headings = [{"depth":1,"slug":"configuring-registry-storage-openstack","text":"Configuring the registry for RHOSP"},{"depth":2,"slug":"installation-registry-osp-creating-custom-pvc_configuring-registry-storage-openstack","text":"Configuring an image registry with custom storage on clusters that run on RHOSP"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-osp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring the registry for {{ rh_openstack }}";
-const description = "You configure the image registry to use custom storage on clusters that run on {{ rh_openstack }}. You must configure custom storage to use a Cinder…" || undefined;
+const description = "You configure the image registry to use custom storage on clusters that run on RHOSP. You must configure custom storage to use a Cinder volume in a…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["registry","registry/configuring_registry_storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the registry for {{ rh_openstack }} {#configuring-registry-storage-openstack}\n\nYou configure the image registry to use custom storage on clusters that run on {{ rh_openstack }}. You must configure custom storage to use a Cinder volume in a specific availability zone.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-osp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the registry for RHOSP {#configuring-registry-storage-openstack}\n\nYou configure the image registry to use custom storage on clusters that run on RHOSP. You must configure custom storage to use a Cinder volume in a specific availability zone.\n\n## Configuring an image registry with custom storage on clusters that run on RHOSP {#installation-registry-osp-creating-custom-pvc_configuring-registry-storage-openstack}\n\nAfter you install a cluster on Red Hat OpenStack Platform (RHOSP), you can use a Cinder volume that is in a specific availability zone for registry storage.\n\n**Procedure**\n\n1. Create a YAML file that specifies the storage class and availability zone to use. For example:\n\n   ```yaml\n   apiVersion: storage.k8s.io/v1\n   kind: StorageClass\n   metadata:\n     name: custom-csi-storageclass\n   provisioner: cinder.csi.openstack.org\n   volumeBindingMode: WaitForFirstConsumer\n   allowVolumeExpansion: true\n   parameters:\n     availability: <availability_zone_name>\n   ```\n\n   > [!NOTE]\n   > OpenShift Container Platform does not verify the existence of the availability zone you choose. Verify the name of the availability zone before you apply the configuration.\n2. From a command line, apply the configuration:\n\n   ```terminal\n   $ oc apply -f <storage_class_file_name>\n   ```\n\n   ```terminal {title=\"Example output\"}\n   storageclass.storage.k8s.io/custom-csi-storageclass created\n   ```\n3. Create a YAML file that specifies a persistent volume claim (PVC) that uses your storage class and the `openshift-image-registry` namespace. For example:\n\n   ```yaml\n   apiVersion: v1\n   kind: PersistentVolumeClaim\n   metadata:\n     name: csi-pvc-imageregistry\n     namespace: openshift-image-registry\n     annotations:\n       imageregistry.openshift.io: \"true\"\n   spec:\n     accessModes:\n     - ReadWriteOnce\n     volumeMode: Filesystem\n     resources:\n       requests:\n         storage: 100Gi\n     storageClassName: <your_custom_storage_class>\n   ```\n\n   where:\n\n   `metadata.namespace`\n   :   Specifying the `openshift-image-registry` namespace allows the Cluster Image Registry Operator to consume the PVC.\n\n   `spec.resources.requests.storage`\n   :   This optional field adjusts the volume size.\n\n   `spec.storageClassName`\n   :   Specifies the name of the storage class that you created.\n4. From a command line, apply the configuration:\n\n   ```terminal\n   $ oc apply -f <pvc_file_name>\n   ```\n\n   ```terminal {title=\"Example output\"}\n   persistentvolumeclaim/csi-pvc-imageregistry created\n   ```\n5. Replace the original persistent volume claim in the image registry configuration with the new claim:\n\n   ```terminal\n   $ oc patch configs.imageregistry.operator.openshift.io/cluster --type 'json' -p='[{\"op\": \"replace\", \"path\": \"/spec/storage/pvc/claim\", \"value\": \"csi-pvc-imageregistry\"}]'\n   ```\n\n   ```terminal {title=\"Example output\"}\n   config.imageregistry.operator.openshift.io/cluster patched\n   ```\n\n   Over the next several minutes, the configuration is updated.\n\n**Verification**\n\nTo confirm that the registry is using the resources that you defined:\n\n1. Verify that the PVC claim value is identical to the name that you provided in your PVC definition:\n\n   ```terminal\n   $ oc get configs.imageregistry.operator.openshift.io/cluster -o yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   ...\n   status:\n       ...\n       managementState: Managed\n       pvc:\n         claim: csi-pvc-imageregistry\n   ...\n   ```\n2. Verify that the status of the PVC is `Bound`:\n\n   ```terminal\n   $ oc get pvc -n openshift-image-registry csi-pvc-imageregistry\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                   STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS             AGE\n   csi-pvc-imageregistry  Bound    pvc-72a8f9c9-f462-11e8-b6b6-fa163e18b7b5   100Gi      RWO            custom-csi-storageclass  11m\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-osp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +94,66 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="configuring-registry-storage-openstack" class="group scroll-mt-20">Configuring the registry for {"{"}{"{"} rh_openstack {"}"}{"}"}<a href="#configuring-registry-storage-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You configure the image registry to use custom storage on clusters that run on {"{"}{"{"} rh_openstack {"}"}{"}"}. You must configure custom storage to use a Cinder volume in a specific availability zone.</p>
-      <p class="/modules/installation-registry-osp-creating-custom-pvc.md"></p>
+      <h1 id="configuring-registry-storage-openstack" class="group scroll-mt-20">Configuring the registry for RHOSP<a href="#configuring-registry-storage-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You configure the image registry to use custom storage on clusters that run on RHOSP. You must configure custom storage to use a Cinder volume in a specific availability zone.</p>
+      <h2 id="installation-registry-osp-creating-custom-pvc_configuring-registry-storage-openstack" class="group scroll-mt-20">Configuring an image registry with custom storage on clusters that run on RHOSP<a href="#installation-registry-osp-creating-custom-pvc_configuring-registry-storage-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you install a cluster on Red Hat OpenStack Platform (RHOSP), you can use a Cinder volume that is in a specific availability zone for registry storage.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file that specifies the storage class and availability zone to use. For example:
+      <CodeBlock code={"apiVersion: storage.k8s.io/v1\nkind: StorageClass\nmetadata:\n  name: custom-csi-storageclass\nprovisioner: cinder.csi.openstack.org\nvolumeBindingMode: WaitForFirstConsumer\nallowVolumeExpansion: true\nparameters:\n  availability: <availability_zone_name>"} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>OpenShift Container Platform does not verify the existence of the availability zone you choose. Verify the name of the availability zone before you apply the configuration.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      From a command line, apply the configuration:
+      <CodeBlock code={"$ oc apply -f <storage_class_file_name>"} lang="terminal" />
+      <CodeBlock code={"storageclass.storage.k8s.io/custom-csi-storageclass created"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Create a YAML file that specifies a persistent volume claim (PVC) that uses your storage class and the <code>openshift-image-registry</code> namespace. For example:
+      <CodeBlock code={"apiVersion: v1\nkind: PersistentVolumeClaim\nmetadata:\n  name: csi-pvc-imageregistry\n  namespace: openshift-image-registry\n  annotations:\n    imageregistry.openshift.io: \"true\"\nspec:\n  accessModes:\n  - ReadWriteOnce\n  volumeMode: Filesystem\n  resources:\n    requests:\n      storage: 100Gi\n  storageClassName: <your_custom_storage_class>"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.namespace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifying the <code>openshift-image-registry</code> namespace allows the Cluster Image Registry Operator to consume the PVC.</p></dd>
+      <dt class="font-semibold"><code>spec.resources.requests.storage</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>This optional field adjusts the volume size.</p></dd>
+      <dt class="font-semibold"><code>spec.storageClassName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the storage class that you created.</p></dd>
+      </dl>
+      </li>
+      <li>
+      From a command line, apply the configuration:
+      <CodeBlock code={"$ oc apply -f <pvc_file_name>"} lang="terminal" />
+      <CodeBlock code={"persistentvolumeclaim/csi-pvc-imageregistry created"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Replace the original persistent volume claim in the image registry configuration with the new claim:
+      <CodeBlock code={"$ oc patch configs.imageregistry.operator.openshift.io/cluster --type 'json' -p='[{\"op\": \"replace\", \"path\": \"/spec/storage/pvc/claim\", \"value\": \"csi-pvc-imageregistry\"}]'"} lang="terminal" />
+      <CodeBlock code={"config.imageregistry.operator.openshift.io/cluster patched"} lang="terminal" title="Example output" />
+      <p>Over the next several minutes, the configuration is updated.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <p>To confirm that the registry is using the resources that you defined:</p>
+      <ol>
+      <li>
+      Verify that the PVC claim value is identical to the name that you provided in your PVC definition:
+      <CodeBlock code={"$ oc get configs.imageregistry.operator.openshift.io/cluster -o yaml"} lang="terminal" />
+      <CodeBlock code={"...\nstatus:\n    ...\n    managementState: Managed\n    pvc:\n      claim: csi-pvc-imageregistry\n..."} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Verify that the status of the PVC is <code>Bound</code>:
+      <CodeBlock code={"$ oc get pvc -n openshift-image-registry csi-pvc-imageregistry"} lang="terminal" />
+      <CodeBlock code={"NAME                   STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS             AGE\ncsi-pvc-imageregistry  Bound    pvc-72a8f9c9-f462-11e8-b6b6-fa163e18b7b5   100Gi      RWO            custom-csi-storageclass  11m"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,13 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-qinq-support","text":"Configuring QinQ support for SR-IOV enabled workloads"}];
+const headings = [{"depth":1,"slug":"configuring-qinq-support","text":"Configuring QinQ support for SR-IOV enabled workloads"},{"depth":2,"slug":"nw-about-qinq-support_configuring-qinq-support","text":"About 802.1Q-in-802.1Q support"},{"depth":2,"slug":"nw-configuring-qinq-sriov-proc_configuring-qinq-support","text":"Configuring QinQ support for SR-IOV enabled workloads"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-qinq-support";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +44,7 @@ const pageCategory = ["networking","networking/hardware_networks"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring QinQ support for SR-IOV enabled workloads {#configuring-qinq-support}\n\nQinQ, formally known as 802.1Q-in-802.1Q, is a networking technique defined by IEEE 802.1ad. IEEE 802.1ad extends the IEEE 802.1Q-1998 standard and enriches VLAN capabilities by introducing an additional 802.1Q tag to packets already tagged with 802.1Q. This method is also referred to as VLAN stacking or double VLAN.\n\nBefore you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).\n\n**Additional resources**\n\n- [Configuration for an VLAN additional network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-vlan-object_configuring-additional-network-cni)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-qinq-support.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring QinQ support for SR-IOV enabled workloads {#configuring-qinq-support}\n\nQinQ, formally known as 802.1Q-in-802.1Q, is a networking technique defined by IEEE 802.1ad. IEEE 802.1ad extends the IEEE 802.1Q-1998 standard and enriches VLAN capabilities by introducing an additional 802.1Q tag to packets already tagged with 802.1Q. This method is also referred to as VLAN stacking or double VLAN.\n\nBefore you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).\n\n## About 802.1Q-in-802.1Q support {#nw-about-qinq-support_configuring-qinq-support}\n\nIn traditional VLAN setups, frames typically contain a single VLAN tag, such as VLAN-100, as well as other metadata such as Quality of Service (QoS) bits and protocol information. QinQ introduces a second VLAN tag, where the service provider designates the outer tag for their use, offering them flexibility, while the inner tag remains dedicated to the customer’s VLAN.\n\nQinQ facilitates the creation of nested VLANs by using double VLAN tagging, enabling finer segmentation and isolation of traffic within a network environment. This approach is particularly valuable in service provider networks where you need to deliver VLAN-based services to multiple customers over a common infrastructure, while ensuring separation and isolation of traffic.\n\nThe following diagram illustrates how OpenShift Container Platform can use SR-IOV and QinQ to achieve advanced network segmentation and isolation for containerized workloads.\n\nThe diagram shows how double VLAN tagging (QinQ) works in a worker node with SR-IOV support. The SR-IOV virtual function (VF) located in the pod namespace, `ext0` is configured by the SR-IOV Container Network Interface (CNI) with a VLAN ID and VLAN protocol. This corresponds to the S-tag. Inside the pod, the VLAN CNI creates a subinterface using the primary interface `ext0`. This subinterface adds an internal VLAN ID using the 802.1Q protocol, which corresponds to the C-tag.\n\nThis demonstrates how QinQ enables finer traffic segmentation and isolation within the network. The Ethernet frame structure is detailed on the right, highlighting the inclusion of both VLAN tags, EtherType, IP, TCP, and Payload sections. QinQ facilitates the delivery of VLAN-based services to multiple customers over a shared infrastructure while ensuring traffic separation and isolation.\n\n![alt=\"Diagram showing QinQ (double VLAN tagging)\"](/openshift-docs-markdown/_assets/images/693_OpenShift_QinQ_SR-IOV_CNI_0624.png)\n\nThe OpenShift Container Platform SR-IOV solution already supports setting the VLAN protocol on the `SriovNetwork` custom resource (CR). The virtual function (VF) can use this protocol to set the VLAN tag, also known as the outer tag. Pods can then use the VLAN CNI plugin to configure the inner tag.\n\n**Additional resources**\n\n- [Configuration for an VLAN additional network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-vlan-object_configuring-additional-network-cni)\n\n## Configuring QinQ support for SR-IOV enabled workloads {#nw-configuring-qinq-sriov-proc_configuring-qinq-support}\n\nConfigure QinQ support for SR-IOV enabled workloads to enable double VLAN tagging on your cluster.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed the SR-IOV Network Operator.\n\n**Procedure**\n\n1. Create a file named `sriovnetpolicy-810-sriov-node-network.yaml` by using the following content:\n\n   ```yaml\n   apiVersion: sriovnetwork.openshift.io/v1\n   kind: SriovNetworkNodePolicy\n   metadata:\n     name: sriovnetpolicy-810\n     namespace: openshift-sriov-network-operator\n   spec:\n     deviceType: netdevice\n     nicSelector:\n       pfNames:\n         - ens5f0#0-9\n     nodeSelector:\n       node-role.kubernetes.io/worker-cnf: \"\"\n     numVfs: 10\n     priority: 99\n     resourceName: resource810\n   ```\n2. Create the `SriovNetworkNodePolicy` object by running the following command:\n\n   ```terminal\n   $ oc create -f sriovnetpolicy-810-sriov-node-network.yaml\n   ```\n3. Open a separate terminal window and monitor the synchronization status of the SR-IOV network node state for the node specified in the `openshift-sriov-network-operator` namespace by running the following command:\n\n   ```terminal\n   $ watch -n 1 'oc get sriovnetworknodestates -n openshift-sriov-network-operator <node_name> -o jsonpath=\"{.status.syncStatus}\"'\n   ```\n\n   The synchronization status indicates a change from `InProgress` to `Succeeded`.\n4. Create a `SriovNetwork` object, and set the outer VLAN called the S-tag, or `Service Tag`, as it belongs to the infrastructure.\n\n   > [!IMPORTANT]\n   > You must configure the VLAN on the trunk interface of the switch. In addition, you might need to further configure some switches to support QinQ tagging.\n\n   1. Create a file named `nad-sriovnetwork-1ad-810.yaml` by using the following content:\n\n      ```yaml\n      apiVersion: sriovnetwork.openshift.io/v1\n      kind: SriovNetwork\n      metadata:\n        name: sriovnetwork-1ad-810\n        namespace: openshift-sriov-network-operator\n      spec:\n        ipam: '{}'\n        vlan: <vlan_id>\n        vlanProto: <vlan_protocol>\n        networkNamespace: default\n        resourceName: resource810\n      ```\n\n      - `<vlan_id>` specifies the S-tag VLAN tag, for example `171`.\n      - `<vlan_protocol>` specifies the VLAN protocol to assign to the virtual function (VF). Supported values are `802.1ad` and `802.1q`. The default value is `802.1q`.\n   2. Create the object by running the following command:\n\n      ```terminal\n      $ oc create -f nad-sriovnetwork-1ad-810.yaml\n      ```\n5. Create a `NetworkAttachmentDefinition` object with an inner VLAN. The inner VLAN is often referred to as the C-tag, or `Customer Tag`, as it belongs to the Network Function:\n\n   1. Create a file named `nad-cvlan100.yaml` by using the following content:\n\n      ```yaml\n      apiVersion: k8s.cni.cncf.io/v1\n      kind: NetworkAttachmentDefinition\n      metadata:\n        name: nad-cvlan100\n        namespace: default\n      spec:\n        config: '{\n          \"name\": \"vlan-100\",\n          \"cniVersion\": \"0.3.1\",\n          \"type\": \"vlan\",\n          \"linkInContainer\": true,\n          \"master\": \"<vf_interface>\",\n          \"vlanId\": 100,\n          \"ipam\": {\"type\": \"static\"}\n        }'\n      ```\n\n      - `<vf_interface>` specifies the VF interface inside the pod. The default name is `net1` because the name is not set in the pod annotation.\n   2. Apply the YAML file by running the following command:\n\n      ```terminal\n      $ oc apply -f nad-cvlan100.yaml\n      ```\n\n**Verification**\n\n- Verify QinQ is active on the node by following this procedure:\n\n  1. Create a file named `test-qinq-pod.yaml` by using the following content:\n\n     ```yaml\n     apiVersion: v1\n     kind: Pod\n     metadata:\n       name: test-pod\n       annotations:\n         k8s.v1.cni.cncf.io/networks: sriovnetwork-1ad-810, nad-cvlan100\n     spec:\n       containers:\n         - name: test-container\n           image: quay.io/ocp-edge-qe/cnf-gotests-client:v4.10\n           imagePullPolicy: Always\n           securityContext:\n             privileged: true\n     ```\n  2. Create the test pod by running the following command:\n\n     ```terminal\n     $ oc create -f test-qinq-pod.yaml\n     ```\n  3. Enter into a debug session on the target node where the pod is present and display information about the network interface `ens5f0` by running the following command:\n\n     ```terminal\n     $ oc debug node/my-cluster-node -- bash -c \"ip link show ens5f0\"\n     ```\n\n```terminal {title=\"Example output\"}\n6: ens5f0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000\nlink/ether b4:96:91:a5:22:10 brd ff:ff:ff:ff:ff:ff\nvf 0 link/ether a2:81:ba:d0:6f:f3 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 1 link/ether 8a:bb:0a:36:f2:ed brd ff:ff:ff:ff:ff:ff, vlan 171, vlan protocol 802.1ad, spoof checking on, link-state auto, trust off\nvf 2 link/ether ca:0e:e1:5b:0c:d2 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 3 link/ether ee:6c:e2:f5:2c:70 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 4 link/ether 0a:d6:b7:66:5e:e8 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 5 link/ether da:d5:e7:14:4f:aa brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 6 link/ether d6:8e:85:75:12:5c brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 7 link/ether d6:eb:ce:9c:ea:78 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 8 link/ether 5e:c5:cc:05:93:3c brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust on\nvf 9 link/ether a6:5a:7c:1c:2a:16 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\n```\n\nThe `vlan protocol 802.1ad` ID in the output indicates that the interface supports VLAN tagging with protocol 802.1ad (QinQ). The VLAN ID is 171.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-qinq-support.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +96,101 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-qinq-support" class="group scroll-mt-20">Configuring QinQ support for SR-IOV enabled workloads<a href="#configuring-qinq-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>QinQ, formally known as 802.1Q-in-802.1Q, is a networking technique defined by IEEE 802.1ad. IEEE 802.1ad extends the IEEE 802.1Q-1998 standard and enriches VLAN capabilities by introducing an additional 802.1Q tag to packets already tagged with 802.1Q. This method is also referred to as VLAN stacking or double VLAN.</p>
       <p>Before you perform any tasks in the following documentation, ensure that you <a href="/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator">installed the SR-IOV Network Operator</a>.</p>
-      <p class="/modules/nw-sriov-about-qinq.md"></p>
+      <h2 id="nw-about-qinq-support_configuring-qinq-support" class="group scroll-mt-20">About 802.1Q-in-802.1Q support<a href="#nw-about-qinq-support_configuring-qinq-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In traditional VLAN setups, frames typically contain a single VLAN tag, such as VLAN-100, as well as other metadata such as Quality of Service (QoS) bits and protocol information. QinQ introduces a second VLAN tag, where the service provider designates the outer tag for their use, offering them flexibility, while the inner tag remains dedicated to the customer’s VLAN.</p>
+      <p>QinQ facilitates the creation of nested VLANs by using double VLAN tagging, enabling finer segmentation and isolation of traffic within a network environment. This approach is particularly valuable in service provider networks where you need to deliver VLAN-based services to multiple customers over a common infrastructure, while ensuring separation and isolation of traffic.</p>
+      <p>The following diagram illustrates how OpenShift Container Platform can use SR-IOV and QinQ to achieve advanced network segmentation and isolation for containerized workloads.</p>
+      <p>The diagram shows how double VLAN tagging (QinQ) works in a worker node with SR-IOV support. The SR-IOV virtual function (VF) located in the pod namespace, <code>ext0</code> is configured by the SR-IOV Container Network Interface (CNI) with a VLAN ID and VLAN protocol. This corresponds to the S-tag. Inside the pod, the VLAN CNI creates a subinterface using the primary interface <code>ext0</code>. This subinterface adds an internal VLAN ID using the 802.1Q protocol, which corresponds to the C-tag.</p>
+      <p>This demonstrates how QinQ enables finer traffic segmentation and isolation within the network. The Ethernet frame structure is detailed on the right, highlighting the inclusion of both VLAN tags, EtherType, IP, TCP, and Payload sections. QinQ facilitates the delivery of VLAN-based services to multiple customers over a shared infrastructure while ensuring traffic separation and isolation.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/693_OpenShift_QinQ_SR-IOV_CNI_0624.png" alt="alt=&quot;Diagram showing QinQ (double VLAN tagging)&quot;" />
+      <p>The OpenShift Container Platform SR-IOV solution already supports setting the VLAN protocol on the <code>SriovNetwork</code> custom resource (CR). The virtual function (VF) can use this protocol to set the VLAN tag, also known as the outer tag. Pods can then use the VLAN CNI plugin to configure the inner tag.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-multus-vlan-object_configuring-additional-network-cni">Configuration for an VLAN additional network</a></li></ul>
+      <h2 id="nw-configuring-qinq-sriov-proc_configuring-qinq-support" class="group scroll-mt-20">Configuring QinQ support for SR-IOV enabled workloads<a href="#nw-configuring-qinq-sriov-proc_configuring-qinq-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure QinQ support for SR-IOV enabled workloads to enable double VLAN tagging on your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the SR-IOV Network Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a file named <code>sriovnetpolicy-810-sriov-node-network.yaml</code> by using the following content:
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetworkNodePolicy\nmetadata:\n  name: sriovnetpolicy-810\n  namespace: openshift-sriov-network-operator\nspec:\n  deviceType: netdevice\n  nicSelector:\n    pfNames:\n      - ens5f0#0-9\n  nodeSelector:\n    node-role.kubernetes.io/worker-cnf: \"\"\n  numVfs: 10\n  priority: 99\n  resourceName: resource810"} lang="yaml" />
+      </li>
+      <li>
+      Create the <code>SriovNetworkNodePolicy</code> object by running the following command:
+      <CodeBlock code={"$ oc create -f sriovnetpolicy-810-sriov-node-network.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Open a separate terminal window and monitor the synchronization status of the SR-IOV network node state for the node specified in the <code>openshift-sriov-network-operator</code> namespace by running the following command:
+      <CodeBlock code={"$ watch -n 1 'oc get sriovnetworknodestates -n openshift-sriov-network-operator <node_name> -o jsonpath=\"{.status.syncStatus}\"'"} lang="terminal" />
+      <p>The synchronization status indicates a change from <code>InProgress</code> to <code>Succeeded</code>.</p>
+      </li>
+      <li>
+      Create a <code>SriovNetwork</code> object, and set the outer VLAN called the S-tag, or <code>Service Tag</code>, as it belongs to the infrastructure.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You must configure the VLAN on the trunk interface of the switch. In addition, you might need to further configure some switches to support QinQ tagging.</p>
+        </AlertDescription>
+      </Alert>
+      <ol>
+      <li>
+      Create a file named <code>nad-sriovnetwork-1ad-810.yaml</code> by using the following content:
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetwork\nmetadata:\n  name: sriovnetwork-1ad-810\n  namespace: openshift-sriov-network-operator\nspec:\n  ipam: '{}'\n  vlan: <vlan_id>\n  vlanProto: <vlan_protocol>\n  networkNamespace: default\n  resourceName: resource810"} lang="yaml" />
+      <ul>
+      <li><code>&lt;vlan_id&gt;</code> specifies the S-tag VLAN tag, for example <code>171</code>.</li>
+      <li><code>&lt;vlan_protocol&gt;</code> specifies the VLAN protocol to assign to the virtual function (VF). Supported values are <code>802.1ad</code> and <code>802.1q</code>. The default value is <code>802.1q</code>.</li>
+      </ul>
+      </li>
+      <li>
+      Create the object by running the following command:
+      <CodeBlock code={"$ oc create -f nad-sriovnetwork-1ad-810.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a <code>NetworkAttachmentDefinition</code> object with an inner VLAN. The inner VLAN is often referred to as the C-tag, or <code>Customer Tag</code>, as it belongs to the Network Function:
+      <ol>
+      <li>
+      Create a file named <code>nad-cvlan100.yaml</code> by using the following content:
+      <CodeBlock code={"apiVersion: k8s.cni.cncf.io/v1\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: nad-cvlan100\n  namespace: default\nspec:\n  config: '{\n    \"name\": \"vlan-100\",\n    \"cniVersion\": \"0.3.1\",\n    \"type\": \"vlan\",\n    \"linkInContainer\": true,\n    \"master\": \"<vf_interface>\",\n    \"vlanId\": 100,\n    \"ipam\": {\"type\": \"static\"}\n  }'"} lang="yaml" />
+      <ul><li><code>&lt;vf_interface&gt;</code> specifies the VF interface inside the pod. The default name is <code>net1</code> because the name is not set in the pod annotation.</li></ul>
+      </li>
+      <li>
+      Apply the YAML file by running the following command:
+      <CodeBlock code={"$ oc apply -f nad-cvlan100.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify QinQ is active on the node by following this procedure:
+      <ol>
+      <li>
+      Create a file named <code>test-qinq-pod.yaml</code> by using the following content:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: test-pod\n  annotations:\n    k8s.v1.cni.cncf.io/networks: sriovnetwork-1ad-810, nad-cvlan100\nspec:\n  containers:\n    - name: test-container\n      image: quay.io/ocp-edge-qe/cnf-gotests-client:v4.10\n      imagePullPolicy: Always\n      securityContext:\n        privileged: true"} lang="yaml" />
+      </li>
+      <li>
+      Create the test pod by running the following command:
+      <CodeBlock code={"$ oc create -f test-qinq-pod.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Enter into a debug session on the target node where the pod is present and display information about the network interface <code>ens5f0</code> by running the following command:
+      <CodeBlock code={"$ oc debug node/my-cluster-node -- bash -c \"ip link show ens5f0\""} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ul>
+      <CodeBlock code={"6: ens5f0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mode DEFAULT group default qlen 1000\nlink/ether b4:96:91:a5:22:10 brd ff:ff:ff:ff:ff:ff\nvf 0 link/ether a2:81:ba:d0:6f:f3 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 1 link/ether 8a:bb:0a:36:f2:ed brd ff:ff:ff:ff:ff:ff, vlan 171, vlan protocol 802.1ad, spoof checking on, link-state auto, trust off\nvf 2 link/ether ca:0e:e1:5b:0c:d2 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 3 link/ether ee:6c:e2:f5:2c:70 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 4 link/ether 0a:d6:b7:66:5e:e8 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 5 link/ether da:d5:e7:14:4f:aa brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 6 link/ether d6:8e:85:75:12:5c brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 7 link/ether d6:eb:ce:9c:ea:78 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off\nvf 8 link/ether 5e:c5:cc:05:93:3c brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust on\nvf 9 link/ether a6:5a:7c:1c:2a:16 brd ff:ff:ff:ff:ff:ff, spoof checking on, link-state auto, trust off   "} lang="terminal" title="Example output" />
+      <p>The <code>vlan protocol 802.1ad</code> ID in the output indicates that the interface supports VLAN tagging with protocol 802.1ad (QinQ). The VLAN ID is 171.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-containers-port-forwarding","text":"Using port forwarding to access applications in a container"}];
+const headings = [{"depth":1,"slug":"nodes-containers-port-forwarding","text":"Using port forwarding to access applications in a container"},{"depth":2,"slug":"nodes-containers-port-forwarding-about_nodes-containers-port-forwarding","text":"Understanding port forwarding"},{"depth":2,"slug":"nodes-containers-port-forwarding-using_nodes-containers-port-forwarding","text":"Using port forwarding"},{"depth":2,"slug":"nodes-containers-port-forwarding-protocol_nodes-containers-port-forwarding","text":"Protocol for initiating port forwarding from a client"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/containers/nodes-containers-port-forwarding";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["nodes","nodes/containers"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using port forwarding to access applications in a container {#nodes-containers-port-forwarding}\n\nYou can configure port forwarding to pods, which expose services in your cluster to clients outside of the cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/containers/nodes-containers-port-forwarding.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using port forwarding to access applications in a container {#nodes-containers-port-forwarding}\n\nYou can configure port forwarding to pods, which expose services in your cluster to clients outside of the cluster.\n\n## Understanding port forwarding {#nodes-containers-port-forwarding-about_nodes-containers-port-forwarding}\n\nYou can use the OpenShift CLI (`oc`) to forward one or more local ports to a pod. This allows you to listen on a given or random port locally, and have data forwarded to and from given ports in the pod.\n\nYou can use a command similar to the following to forward one or more local ports to a pod.\n\n```terminal\n$ oc port-forward <pod> [<local_port>:]<remote_port> [...[<local_port_n>:]<remote_port_n>]\n```\n\nThe OpenShift CLI (`oc`) listens on each local port specified by the user, forwarding using the protocol described below.\n\nYou can specify ports by using the following formats:\n\n`5000`\n:   The client listens on port 5000 locally and forwards to 5000 in the pod.\n\n`6000:5000`\n:   The client listens on port 6000 locally and forwards to 5000 in the pod.\n\n`:5000` or `0:5000`\n:   The client selects a free local port and forwards to 5000 in the pod.\n\nOpenShift Container Platform handles port-forward requests from clients. Upon receiving a request, OpenShift Container Platform upgrades the response and waits for the client to create port-forwarding streams. When OpenShift Container Platform receives a new stream, it copies data between the stream and the pod’s port.\n\nArchitecturally, there are options for forwarding to a pod’s port. The supported OpenShift Container Platform implementation invokes `nsenter` directly on the node host to enter the pod’s network namespace, then invokes `socat` to copy data between the stream and the pod’s port. However, a custom implementation could include running a *helper* pod that then runs `nsenter` and `socat`, so that those binaries are not required to be installed on the host.\n\n## Using port forwarding {#nodes-containers-port-forwarding-using_nodes-containers-port-forwarding}\n\nYou can use the OpenShift CLI (`oc`) to port-forward one or more local ports to a pod.\n\n**Procedure**\n\n- Use a command similar to the following to listen on the specified port in a pod:\n\n  ```terminal\n  $ oc port-forward <pod> [<local_port>:]<remote_port> [...[<local_port_n>:]<remote_port_n>]\n  ```\n\n  For example, use the following command to listen on ports `5000` and `6000` locally and forward data to and from ports `5000` and `6000` in the pod:\n\n  ```terminal\n  $ oc port-forward <pod> 5000 6000\n  ```\n\n  ```terminal {title=\"Example output\"}\n  Forwarding from 127.0.0.1:5000 -> 5000\n  Forwarding from [::1]:5000 -> 5000\n  Forwarding from 127.0.0.1:6000 -> 6000\n  Forwarding from [::1]:6000 -> 6000\n  ```\n\n  For example, use the following command to listen on port `8888` locally and forward to `5000` in the pod:\n\n  ```terminal\n  $ oc port-forward <pod> 8888:5000\n  ```\n\n  ```terminal {title=\"Example output\"}\n  Forwarding from 127.0.0.1:8888 -> 5000\n  Forwarding from [::1]:8888 -> 5000\n  ```\n\n  For example, use the following command to listen on a free port locally and forward to `5000` in the pod:\n\n  ```terminal\n  $ oc port-forward <pod> :5000\n  ```\n\n  ```terminal {title=\"Example output\"}\n  Forwarding from 127.0.0.1:42390 -> 5000\n  Forwarding from [::1]:42390 -> 5000\n  ```\n\n  Alternatively, use the following command to listen on a free port locally and forward to `5000` in the pod:\n\n  ```terminal\n  $ oc port-forward <pod> 0:5000\n  ```\n\n## Protocol for initiating port forwarding from a client {#nodes-containers-port-forwarding-protocol_nodes-containers-port-forwarding}\n\nA client resource in your cluster can initiate port forwarding to a pod by issuing a request to the Kubernetes API server.\n\nUse a request in the following format:\n\n```terminal\n/proxy/nodes/<node_name>/portForward/<namespace>/<pod>\n```\n\nwhere:\n\n`<node_name>`\n:   Specifies the FQDN of the node.\n\n`<namespace>`\n:   Specifies the namespace of the target pod.\n\n`<pod>`\n:   Specifies the name of the target pod.\n\n```terminal {title=\"Example request\"}\n/proxy/nodes/node123.openshift.com/portForward/myns/mypod\n```\n\nAfter sending a port forward request to the API server, the client upgrades the connection to one that supports multiplexed streams; the current implementation uses [**Hyptertext Transfer Protocol Version 2 (HTTP/2)**](https://httpwg.org/specs/rfc7540.html).\n\nThe client creates a stream with the `port` header containing the target port in the pod. All data written to the stream is delivered via the kubelet to the target pod and port. Similarly, all data sent from the pod for that forwarded connection is delivered back to the same stream in the client.\n\nThe client closes all streams, the upgraded connection, and the underlying connection when it is finished with the port forwarding request.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/containers/nodes-containers-port-forwarding.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +92,60 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-containers-port-forwarding" class="group scroll-mt-20">Using port forwarding to access applications in a container<a href="#nodes-containers-port-forwarding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure port forwarding to pods, which expose services in your cluster to clients outside of the cluster.</p>
-      <p class="/modules/nodes-containers-port-forwarding-about.md"></p>
-      <p class="/modules/nodes-containers-port-forwarding-using.md"></p>
-      <p class="/modules/nodes-containers-port-forwarding-protocol.md"></p>
+      <h2 id="nodes-containers-port-forwarding-about_nodes-containers-port-forwarding" class="group scroll-mt-20">Understanding port forwarding<a href="#nodes-containers-port-forwarding-about_nodes-containers-port-forwarding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the OpenShift CLI (<code>oc</code>) to forward one or more local ports to a pod. This allows you to listen on a given or random port locally, and have data forwarded to and from given ports in the pod.</p>
+      <p>You can use a command similar to the following to forward one or more local ports to a pod.</p>
+      <CodeBlock code={"$ oc port-forward <pod> [<local_port>:]<remote_port> [...[<local_port_n>:]<remote_port_n>]"} lang="terminal" />
+      <p>The OpenShift CLI (<code>oc</code>) listens on each local port specified by the user, forwarding using the protocol described below.</p>
+      <p>You can specify ports by using the following formats:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>5000</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The client listens on port 5000 locally and forwards to 5000 in the pod.</p></dd>
+      <dt class="font-semibold"><code>6000:5000</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The client listens on port 6000 locally and forwards to 5000 in the pod.</p></dd>
+      <dt class="font-semibold"><code>:5000</code> or <code>0:5000</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The client selects a free local port and forwards to 5000 in the pod.</p></dd>
+      </dl>
+      <p>OpenShift Container Platform handles port-forward requests from clients. Upon receiving a request, OpenShift Container Platform upgrades the response and waits for the client to create port-forwarding streams. When OpenShift Container Platform receives a new stream, it copies data between the stream and the pod’s port.</p>
+      <p>Architecturally, there are options for forwarding to a pod’s port. The supported OpenShift Container Platform implementation invokes <code>nsenter</code> directly on the node host to enter the pod’s network namespace, then invokes <code>socat</code> to copy data between the stream and the pod’s port. However, a custom implementation could include running a <em>helper</em> pod that then runs <code>nsenter</code> and <code>socat</code>, so that those binaries are not required to be installed on the host.</p>
+      <h2 id="nodes-containers-port-forwarding-using_nodes-containers-port-forwarding" class="group scroll-mt-20">Using port forwarding<a href="#nodes-containers-port-forwarding-using_nodes-containers-port-forwarding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the OpenShift CLI (<code>oc</code>) to port-forward one or more local ports to a pod.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Use a command similar to the following to listen on the specified port in a pod:
+      <CodeBlock code={"$ oc port-forward <pod> [<local_port>:]<remote_port> [...[<local_port_n>:]<remote_port_n>]"} lang="terminal" />
+      <p>For example, use the following command to listen on ports <code>5000</code> and <code>6000</code> locally and forward data to and from ports <code>5000</code> and <code>6000</code> in the pod:</p>
+      <CodeBlock code={"$ oc port-forward <pod> 5000 6000"} lang="terminal" />
+      <CodeBlock code={"Forwarding from 127.0.0.1:5000 -> 5000\nForwarding from [::1]:5000 -> 5000\nForwarding from 127.0.0.1:6000 -> 6000\nForwarding from [::1]:6000 -> 6000"} lang="terminal" title="Example output" />
+      <p>For example, use the following command to listen on port <code>8888</code> locally and forward to <code>5000</code> in the pod:</p>
+      <CodeBlock code={"$ oc port-forward <pod> 8888:5000"} lang="terminal" />
+      <CodeBlock code={"Forwarding from 127.0.0.1:8888 -> 5000\nForwarding from [::1]:8888 -> 5000"} lang="terminal" title="Example output" />
+      <p>For example, use the following command to listen on a free port locally and forward to <code>5000</code> in the pod:</p>
+      <CodeBlock code={"$ oc port-forward <pod> :5000"} lang="terminal" />
+      <CodeBlock code={"Forwarding from 127.0.0.1:42390 -> 5000\nForwarding from [::1]:42390 -> 5000"} lang="terminal" title="Example output" />
+      <p>Alternatively, use the following command to listen on a free port locally and forward to <code>5000</code> in the pod:</p>
+      <CodeBlock code={"$ oc port-forward <pod> 0:5000"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="nodes-containers-port-forwarding-protocol_nodes-containers-port-forwarding" class="group scroll-mt-20">Protocol for initiating port forwarding from a client<a href="#nodes-containers-port-forwarding-protocol_nodes-containers-port-forwarding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A client resource in your cluster can initiate port forwarding to a pod by issuing a request to the Kubernetes API server.</p>
+      <p>Use a request in the following format:</p>
+      <CodeBlock code={"/proxy/nodes/<node_name>/portForward/<namespace>/<pod>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;node_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the FQDN of the node.</p></dd>
+      <dt class="font-semibold"><code>&lt;namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace of the target pod.</p></dd>
+      <dt class="font-semibold"><code>&lt;pod&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the target pod.</p></dd>
+      </dl>
+      <CodeBlock code={"/proxy/nodes/node123.openshift.com/portForward/myns/mypod"} lang="terminal" title="Example request" />
+      <p>After sending a port forward request to the API server, the client upgrades the connection to one that supports multiplexed streams; the current implementation uses <a href="https://httpwg.org/specs/rfc7540.html"><strong>Hyptertext Transfer Protocol Version 2 (HTTP/2)</strong></a>.</p>
+      <p>The client creates a stream with the <code>port</code> header containing the target port in the pod. All data written to the stream is delivered via the kubelet to the target pod and port. Similarly, all data sent from the pod for that forwarded connection is delivered back to the same stream in the client.</p>
+      <p>The client closes all streams, the upgraded connection, and the underlying connection when it is finished with the port forwarding request.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

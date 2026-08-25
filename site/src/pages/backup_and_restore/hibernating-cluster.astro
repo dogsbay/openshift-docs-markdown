@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hibernating-cluster","text":"Hibernating an OpenShift Container Platform cluster"}];
+const headings = [{"depth":1,"slug":"hibernating-cluster","text":"Hibernating an OpenShift Container Platform cluster"},{"depth":2,"slug":"hibernating-cluster-about_hibernating-cluster","text":"About cluster hibernation"},{"depth":2,"slug":"hibernating-cluster-hibernate_hibernating-cluster","text":"Hibernating a cluster"},{"depth":2,"slug":"hibernating-cluster-resume_hibernating-cluster","text":"Resuming a hibernated cluster"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/hibernating-cluster";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["backup_and_restore"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Hibernating an OpenShift Container Platform cluster {#hibernating-cluster}\n\nHibernate your OpenShift Container Platform cluster for up to 90 days to pause cluster operation without deprovisioning it. You can resume the cluster within that window to restore normal operation.\n\n**Additional resources**\n\n- [Enabling OpenShift 4 Clusters to Stop and Resume Cluster VMs (Red Hat Blog)](https://www.redhat.com/en/blog/enabling-openshift-4-clusters-to-stop-and-resume-cluster-vms)\n\n**Additional resources**\n\n- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)\n- [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/hibernating-cluster.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Hibernating an OpenShift Container Platform cluster {#hibernating-cluster}\n\nHibernate your OpenShift Container Platform cluster for up to 90 days to pause cluster operation without deprovisioning it. You can resume the cluster within that window to restore normal operation.\n\n## About cluster hibernation {#hibernating-cluster-about_hibernating-cluster}\n\nReview cluster hibernation limits and supported behavior before you pause a cluster. Understanding timing, node, and resume requirements helps you hibernate and resume successfully within 90 days.\n\nYou must wait at least 24 hours after cluster installation before hibernating your cluster to allow for the first certificate rotation.\n\nTake an etcd backup before hibernating so that your cluster can be restored if you encounter issues when resuming the cluster.\n\nYou might need to restore from the backup if any of the following conditions occur:\n\n- etcd data is corrupted during hibernation\n- A node fails because of hardware\n- Network connectivity is interrupted\n\nIf the cluster does not recover after restart, follow the steps to restore to a previous cluster state.\n\n> [!IMPORTANT]\n> If you must hibernate your cluster before the 24 hour certificate rotation, use the workaround in \"Enabling OpenShift 4 Clusters to Stop and Resume Cluster VMs\" instead.\n\nWhen hibernating a cluster, you must hibernate all cluster nodes. Suspending only selected nodes is not supported.\n\nAfter resuming, it can take up to 45 minutes for the cluster to become ready.\n\n**Additional resources**\n\n- [Enabling OpenShift 4 Clusters to Stop and Resume Cluster VMs (Red Hat Blog)](https://www.redhat.com/en/blog/enabling-openshift-4-clusters-to-stop-and-resume-cluster-vms)\n\n## Hibernating a cluster {#hibernating-cluster-hibernate_hibernating-cluster}\n\nHibernate your cluster by verifying node and Operator health, then stopping the cluster virtual machines. This process pauses the cluster in a supported state so you can resume it later.\n\n**Prerequisites**\n\n- The cluster has been running for at least 24 hours to allow the first certificate rotation to complete.\n- You created an etcd backup before hibernating the cluster.\n\n  > [!IMPORTANT]\n  > Without a recent etcd backup, you might not be able to restore the cluster if hibernation or resume fails.\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Confirm that your cluster has been installed for at least 24 hours.\n2. Ensure that all nodes are in a good state by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                      STATUS  ROLES                 AGE   VERSION\n   ci-ln-812tb4k-72292-8bcj7-master-0        Ready\t  control-plane,master  32m   v1.35.4\n   ci-ln-812tb4k-72292-8bcj7-master-1        Ready\t  control-plane,master  32m   v1.35.4\n   ci-ln-812tb4k-72292-8bcj7-master-2        Ready\t  control-plane,master  32m   v1.35.4\n   Ci-ln-812tb4k-72292-8bcj7-worker-a-zhdvk  Ready\t  worker                19m   v1.35.4\n   ci-ln-812tb4k-72292-8bcj7-worker-b-9hrmv  Ready\t  worker                19m   v1.35.4\n   ci-ln-812tb4k-72292-8bcj7-worker-c-q8mw2  Ready\t  worker                19m   v1.35.4\n   ```\n\n   All nodes should show `Ready` in the `STATUS` column.\n3. Ensure that all cluster Operators are in a good state by running the following command:\n\n   ```terminal\n   $ oc get clusteroperators\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                      VERSION   AVAILABLE  PROGRESSING  DEGRADED  SINCE   MESSAGE\n   authentication            4.22.0-0  True       False        False     51m\n   baremetal                 4.22.0-0  True       False        False     72m\n   cloud-controller-manager  4.22.0-0  True       False        False     75m\n   cloud-credential          4.22.0-0  True       False        False     77m\n   cluster-api               4.22.0-0  True       False        False     42m\n   cluster-autoscaler        4.22.0-0  True       False        False     72m\n   config-operator           4.22.0-0  True       False        False     72m\n   console                   4.22.0-0  True       False        False     55m\n   ...\n   ```\n\n   All cluster Operators should show `AVAILABLE`=`True`, `PROGRESSING`=`False`, and `DEGRADED`=`False`.\n4. Ensure that all machine config pools are in a good state by running the following command:\n\n   ```terminal\n   $ oc get mcp\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME    CONFIG                                            UPDATED  UPDATING  DEGRADED  MACHINECOUNT  READYMACHINECOUNT  UPDATEDMACHINECOUNT  DEGRADEDMACHINECOUNT  AGE\n   master  rendered-master-87871f187930e67233c837e1d07f49c7  True     False     False     3             3                  3                    0                     96m\n   worker  rendered-worker-3c4c459dc5d90017983d7e72928b8aed  True     False     False     3             3                  3                    0                     96m\n   ```\n\n   All machine config pools should show `UPDATING`=`False` and `DEGRADED`=`False`.\n5. Stop the cluster virtual machines:\n\n   Use the tools native to the cloud environment of your cluster to shut down the cluster virtual machines.\n\n   > [!IMPORTANT]\n   > If you use a bastion virtual machine, do not shut down this virtual machine.\n\n**Additional resources**\n\n- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)\n- [Restoring to an earlier cluster state](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state)\n\n## Resuming a hibernated cluster {#hibernating-cluster-resume_hibernating-cluster}\n\nResume a hibernated cluster by starting the cluster virtual machines and approving certificate signing requests (CSRs) as needed. This process restores the cluster to a ready state within the supported 90-day window.\n\nIt can take around 45 minutes for the cluster to resume, depending on the size of your cluster.\n\n**Prerequisites**\n\n- You hibernated your cluster less than 90 days ago.\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Within 90 days of cluster hibernation, resume the cluster virtual machines:\n\n   Use the tools native to the cloud environment of your cluster to resume the cluster virtual machines.\n2. Wait about 5 minutes, depending on the number of nodes in your cluster.\n3. Approve CSRs for the nodes:\n\n   1. Check that there is a CSR for each node in the `NotReady` state by running the following command:\n\n      ```terminal\n      $ oc get csr\n      ```\n\n      ```terminal {title=\"Example output\"}\n      NAME       AGE  SIGNERNAME                                   REQUESTOR                                                                  REQUESTEDDURATION  CONDITION\n      csr-4dwsd  37m  kubernetes.io/kube-apiserver-client          system:node:ci-ln-812tb4k-72292-8bcj7-worker-c-q8mw2                       24h                Pending\n      csr-4vrbr  49m  kubernetes.io/kube-apiserver-client          system:node:ci-ln-812tb4k-72292-8bcj7-master-1                             24h                Pending\n      csr-4wk5x  51m  kubernetes.io/kubelet-serving                system:node:ci-ln-812tb4k-72292-8bcj7-master-1                             <none>             Pending\n      csr-84vb6  51m  kubernetes.io/kube-apiserver-client-kubelet  system:serviceaccount:openshift-machine-config-operator:node-bootstrapper  <none>             Pending\n      ```\n   2. Approve each valid CSR by running the following command:\n\n      ```terminal\n      $ oc adm certificate approve <csr_name>\n      ```\n   3. Verify that all necessary CSRs were approved by running the following command:\n\n      ```terminal\n      $ oc get csr\n      ```\n\n      ```terminal {title=\"Example output\"}\n      NAME       AGE  SIGNERNAME                                   REQUESTOR                                                                  REQUESTEDDURATION  CONDITION\n      csr-4dwsd  37m  kubernetes.io/kube-apiserver-client          system:node:ci-ln-812tb4k-72292-8bcj7-worker-c-q8mw2                       24h                Approved,Issued\n      csr-4vrbr  49m  kubernetes.io/kube-apiserver-client          system:node:ci-ln-812tb4k-72292-8bcj7-master-1                             24h                Approved,Issued\n      csr-4wk5x  51m  kubernetes.io/kubelet-serving                system:node:ci-ln-812tb4k-72292-8bcj7-master-1                             <none>             Approved,Issued\n      csr-84vb6  51m  kubernetes.io/kube-apiserver-client-kubelet  system:serviceaccount:openshift-machine-config-operator:node-bootstrapper  <none>             Approved,Issued\n      ```\n\n      CSRs should show `Approved,Issued` in the `CONDITION` column.\n4. Verify that all nodes now show as ready by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                      STATUS  ROLES                 AGE   VERSION\n   ci-ln-812tb4k-72292-8bcj7-master-0        Ready\t  control-plane,master  32m   v1.35.4\n   ci-ln-812tb4k-72292-8bcj7-master-1        Ready\t  control-plane,master  32m   v1.35.4\n   ci-ln-812tb4k-72292-8bcj7-master-2        Ready\t  control-plane,master  32m   v1.35.4\n   Ci-ln-812tb4k-72292-8bcj7-worker-a-zhdvk  Ready\t  worker                19m   v1.35.4\n   ci-ln-812tb4k-72292-8bcj7-worker-b-9hrmv  Ready\t  worker                19m   v1.35.4\n   ci-ln-812tb4k-72292-8bcj7-worker-c-q8mw2  Ready\t  worker                19m   v1.35.4\n   ```\n\n   All nodes should show `Ready` in the `STATUS` column. It might take a few minutes for all nodes to become ready after approving the CSRs.\n5. Wait for cluster Operators to restart to load the new certificates.\n\n   This might take 5 or 10 minutes.\n6. Verify that all cluster Operators are in a good state by running the following command:\n\n   ```terminal\n   $ oc get clusteroperators\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                      VERSION   AVAILABLE  PROGRESSING  DEGRADED  SINCE   MESSAGE\n   authentication            4.22.0-0  True       False        False     51m\n   baremetal                 4.22.0-0  True       False        False     72m\n   cloud-controller-manager  4.22.0-0  True       False        False     75m\n   cloud-credential          4.22.0-0  True       False        False     77m\n   cluster-api               4.22.0-0  True       False        False     42m\n   cluster-autoscaler        4.22.0-0  True       False        False     72m\n   config-operator           4.22.0-0  True       False        False     72m\n   console                   4.22.0-0  True       False        False     55m\n   ...\n   ```\n\n   All cluster Operators should show `AVAILABLE`=`True`, `PROGRESSING`=`False`, and `DEGRADED`=`False`.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/hibernating-cluster.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,16 +95,133 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hibernating-cluster" class="group scroll-mt-20">Hibernating an OpenShift Container Platform cluster<a href="#hibernating-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Hibernate your OpenShift Container Platform cluster for up to 90 days to pause cluster operation without deprovisioning it. You can resume the cluster within that window to restore normal operation.</p>
-      <p class="/modules/hibernating-cluster-about.md"></p>
+      <h2 id="hibernating-cluster-about_hibernating-cluster" class="group scroll-mt-20">About cluster hibernation<a href="#hibernating-cluster-about_hibernating-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review cluster hibernation limits and supported behavior before you pause a cluster. Understanding timing, node, and resume requirements helps you hibernate and resume successfully within 90 days.</p>
+      <p>You must wait at least 24 hours after cluster installation before hibernating your cluster to allow for the first certificate rotation.</p>
+      <p>Take an etcd backup before hibernating so that your cluster can be restored if you encounter issues when resuming the cluster.</p>
+      <p>You might need to restore from the backup if any of the following conditions occur:</p>
+      <ul>
+      <li>etcd data is corrupted during hibernation</li>
+      <li>A node fails because of hardware</li>
+      <li>Network connectivity is interrupted</li>
+      </ul>
+      <p>If the cluster does not recover after restart, follow the steps to restore to a previous cluster state.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If you must hibernate your cluster before the 24 hour certificate rotation, use the workaround in "Enabling OpenShift 4 Clusters to Stop and Resume Cluster VMs" instead.</p>
+        </AlertDescription>
+      </Alert>
+      <p>When hibernating a cluster, you must hibernate all cluster nodes. Suspending only selected nodes is not supported.</p>
+      <p>After resuming, it can take up to 45 minutes for the cluster to become ready.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://www.redhat.com/en/blog/enabling-openshift-4-clusters-to-stop-and-resume-cluster-vms">Enabling OpenShift 4 Clusters to Stop and Resume Cluster VMs (Red Hat Blog)</a></li></ul>
+      <h2 id="hibernating-cluster-hibernate_hibernating-cluster" class="group scroll-mt-20">Hibernating a cluster<a href="#hibernating-cluster-hibernate_hibernating-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Hibernate your cluster by verifying node and Operator health, then stopping the cluster virtual machines. This process pauses the cluster in a supported state so you can resume it later.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The cluster has been running for at least 24 hours to allow the first certificate rotation to complete.</li>
+      <li>
+      You created an etcd backup before hibernating the cluster.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Without a recent etcd backup, you might not be able to restore the cluster if hibernation or resume fails.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Confirm that your cluster has been installed for at least 24 hours.</li>
+      <li>
+      Ensure that all nodes are in a good state by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME                                      STATUS  ROLES                 AGE   VERSION\nci-ln-812tb4k-72292-8bcj7-master-0        Ready\t  control-plane,master  32m   v1.35.4\nci-ln-812tb4k-72292-8bcj7-master-1        Ready\t  control-plane,master  32m   v1.35.4\nci-ln-812tb4k-72292-8bcj7-master-2        Ready\t  control-plane,master  32m   v1.35.4\nCi-ln-812tb4k-72292-8bcj7-worker-a-zhdvk  Ready\t  worker                19m   v1.35.4\nci-ln-812tb4k-72292-8bcj7-worker-b-9hrmv  Ready\t  worker                19m   v1.35.4\nci-ln-812tb4k-72292-8bcj7-worker-c-q8mw2  Ready\t  worker                19m   v1.35.4"} lang="terminal" title="Example output" />
+      <p>All nodes should show <code>Ready</code> in the <code>STATUS</code> column.</p>
+      </li>
+      <li>
+      Ensure that all cluster Operators are in a good state by running the following command:
+      <CodeBlock code={"$ oc get clusteroperators"} lang="terminal" />
+      <CodeBlock code={"NAME                      VERSION   AVAILABLE  PROGRESSING  DEGRADED  SINCE   MESSAGE\nauthentication            4.22.0-0  True       False        False     51m\nbaremetal                 4.22.0-0  True       False        False     72m\ncloud-controller-manager  4.22.0-0  True       False        False     75m\ncloud-credential          4.22.0-0  True       False        False     77m\ncluster-api               4.22.0-0  True       False        False     42m\ncluster-autoscaler        4.22.0-0  True       False        False     72m\nconfig-operator           4.22.0-0  True       False        False     72m\nconsole                   4.22.0-0  True       False        False     55m\n..."} lang="terminal" title="Example output" />
+      <p>All cluster Operators should show <code>AVAILABLE</code>=<code>True</code>, <code>PROGRESSING</code>=<code>False</code>, and <code>DEGRADED</code>=<code>False</code>.</p>
+      </li>
+      <li>
+      Ensure that all machine config pools are in a good state by running the following command:
+      <CodeBlock code={"$ oc get mcp"} lang="terminal" />
+      <CodeBlock code={"NAME    CONFIG                                            UPDATED  UPDATING  DEGRADED  MACHINECOUNT  READYMACHINECOUNT  UPDATEDMACHINECOUNT  DEGRADEDMACHINECOUNT  AGE\nmaster  rendered-master-87871f187930e67233c837e1d07f49c7  True     False     False     3             3                  3                    0                     96m\nworker  rendered-worker-3c4c459dc5d90017983d7e72928b8aed  True     False     False     3             3                  3                    0                     96m"} lang="terminal" title="Example output" />
+      <p>All machine config pools should show <code>UPDATING</code>=<code>False</code> and <code>DEGRADED</code>=<code>False</code>.</p>
+      </li>
+      <li>
+      Stop the cluster virtual machines:
+      <p>Use the tools native to the cloud environment of your cluster to shut down the cluster virtual machines.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If you use a bastion virtual machine, do not shut down this virtual machine.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd">Backing up etcd</a></li>
       <li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/disaster_recovery/scenario-2-restoring-cluster-state#dr-restoring-cluster-state">Restoring to an earlier cluster state</a></li>
       </ul>
+      <h2 id="hibernating-cluster-resume_hibernating-cluster" class="group scroll-mt-20">Resuming a hibernated cluster<a href="#hibernating-cluster-resume_hibernating-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Resume a hibernated cluster by starting the cluster virtual machines and approving certificate signing requests (CSRs) as needed. This process restores the cluster to a ready state within the supported 90-day window.</p>
+      <p>It can take around 45 minutes for the cluster to resume, depending on the size of your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You hibernated your cluster less than 90 days ago.</li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Within 90 days of cluster hibernation, resume the cluster virtual machines:
+      <p>Use the tools native to the cloud environment of your cluster to resume the cluster virtual machines.</p>
+      </li>
+      <li>Wait about 5 minutes, depending on the number of nodes in your cluster.</li>
+      <li>
+      Approve CSRs for the nodes:
+      <ol>
+      <li>
+      Check that there is a CSR for each node in the <code>NotReady</code> state by running the following command:
+      <CodeBlock code={"$ oc get csr"} lang="terminal" />
+      <CodeBlock code={"NAME       AGE  SIGNERNAME                                   REQUESTOR                                                                  REQUESTEDDURATION  CONDITION\ncsr-4dwsd  37m  kubernetes.io/kube-apiserver-client          system:node:ci-ln-812tb4k-72292-8bcj7-worker-c-q8mw2                       24h                Pending\ncsr-4vrbr  49m  kubernetes.io/kube-apiserver-client          system:node:ci-ln-812tb4k-72292-8bcj7-master-1                             24h                Pending\ncsr-4wk5x  51m  kubernetes.io/kubelet-serving                system:node:ci-ln-812tb4k-72292-8bcj7-master-1                             <none>             Pending\ncsr-84vb6  51m  kubernetes.io/kube-apiserver-client-kubelet  system:serviceaccount:openshift-machine-config-operator:node-bootstrapper  <none>             Pending"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Approve each valid CSR by running the following command:
+      <CodeBlock code={"$ oc adm certificate approve <csr_name>"} lang="terminal" />
+      </li>
+      <li>
+      Verify that all necessary CSRs were approved by running the following command:
+      <CodeBlock code={"$ oc get csr"} lang="terminal" />
+      <CodeBlock code={"NAME       AGE  SIGNERNAME                                   REQUESTOR                                                                  REQUESTEDDURATION  CONDITION\ncsr-4dwsd  37m  kubernetes.io/kube-apiserver-client          system:node:ci-ln-812tb4k-72292-8bcj7-worker-c-q8mw2                       24h                Approved,Issued\ncsr-4vrbr  49m  kubernetes.io/kube-apiserver-client          system:node:ci-ln-812tb4k-72292-8bcj7-master-1                             24h                Approved,Issued\ncsr-4wk5x  51m  kubernetes.io/kubelet-serving                system:node:ci-ln-812tb4k-72292-8bcj7-master-1                             <none>             Approved,Issued\ncsr-84vb6  51m  kubernetes.io/kube-apiserver-client-kubelet  system:serviceaccount:openshift-machine-config-operator:node-bootstrapper  <none>             Approved,Issued"} lang="terminal" title="Example output" />
+      <p>CSRs should show <code>Approved,Issued</code> in the <code>CONDITION</code> column.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Verify that all nodes now show as ready by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME                                      STATUS  ROLES                 AGE   VERSION\nci-ln-812tb4k-72292-8bcj7-master-0        Ready\t  control-plane,master  32m   v1.35.4\nci-ln-812tb4k-72292-8bcj7-master-1        Ready\t  control-plane,master  32m   v1.35.4\nci-ln-812tb4k-72292-8bcj7-master-2        Ready\t  control-plane,master  32m   v1.35.4\nCi-ln-812tb4k-72292-8bcj7-worker-a-zhdvk  Ready\t  worker                19m   v1.35.4\nci-ln-812tb4k-72292-8bcj7-worker-b-9hrmv  Ready\t  worker                19m   v1.35.4\nci-ln-812tb4k-72292-8bcj7-worker-c-q8mw2  Ready\t  worker                19m   v1.35.4"} lang="terminal" title="Example output" />
+      <p>All nodes should show <code>Ready</code> in the <code>STATUS</code> column. It might take a few minutes for all nodes to become ready after approving the CSRs.</p>
+      </li>
+      <li>
+      Wait for cluster Operators to restart to load the new certificates.
+      <p>This might take 5 or 10 minutes.</p>
+      </li>
+      <li>
+      Verify that all cluster Operators are in a good state by running the following command:
+      <CodeBlock code={"$ oc get clusteroperators"} lang="terminal" />
+      <CodeBlock code={"NAME                      VERSION   AVAILABLE  PROGRESSING  DEGRADED  SINCE   MESSAGE\nauthentication            4.22.0-0  True       False        False     51m\nbaremetal                 4.22.0-0  True       False        False     72m\ncloud-controller-manager  4.22.0-0  True       False        False     75m\ncloud-credential          4.22.0-0  True       False        False     77m\ncluster-api               4.22.0-0  True       False        False     42m\ncluster-autoscaler        4.22.0-0  True       False        False     72m\nconfig-operator           4.22.0-0  True       False        False     72m\nconsole                   4.22.0-0  True       False        False     55m\n..."} lang="terminal" title="Example output" />
+      <p>All cluster Operators should show <code>AVAILABLE</code>=<code>True</code>, <code>PROGRESSING</code>=<code>False</code>, and <code>DEGRADED</code>=<code>False</code>.</p>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

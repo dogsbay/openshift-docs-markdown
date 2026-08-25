@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"gathering-data-cluster-update","text":"Gathering data about your cluster update"}];
+const headings = [{"depth":1,"slug":"gathering-data-cluster-update","text":"Gathering data about your cluster update"},{"depth":2,"slug":"gathering-log-data_troubleshooting_updates","text":"Gathering log data for a support case"},{"depth":2,"slug":"changing-log-data_troubleshooting_updates","text":"Changing CVO log level (Technology Preview)"},{"depth":2,"slug":"gathering-clusterversion-history_troubleshooting_updates","text":"Gathering ClusterVersion history"},{"depth":3,"slug":"gathering-clusterversion-history-console_troubleshooting_updates","text":"Gathering ClusterVersion history in the OpenShift Container Platform web console"},{"depth":3,"slug":"gathering-clusterversion-history-cli_troubleshooting_updates","text":"Gathering ClusterVersion history using the OpenShift CLI ()"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/updating/troubleshooting_updates/gathering-data-cluster-update";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Gathering data about your cluster update";
-const description = "{% include \"./_attributes/common-attributes.md\" %} Collect cluster data, logs, and update history to help Red Hat Support diagnose and troubleshoot failed…" || undefined;
+const description = "Collect cluster data, logs, and update history to help Red Hat Support diagnose and troubleshoot failed cluster updates." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["updating","updating/troubleshooting_updates"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Gathering data about your cluster update {#gathering-data-cluster-update}\n\n{% include \"./_attributes/common-attributes.md\" %} Collect cluster data, logs, and update history to help Red Hat Support diagnose and troubleshoot failed cluster updates.\n\n<a name=\"additional-resources_gathering-cluster-data\"></a>**Additional resources**\n\n- [Gathering data about your cluster for Red Hat Support](/openshift-docs-markdown/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/troubleshooting_updates/gathering-data-cluster-update.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Gathering data about your cluster update {#gathering-data-cluster-update}\n\nCollect cluster data, logs, and update history to help Red Hat Support diagnose and troubleshoot failed cluster updates.\n\n## Gathering log data for a support case {#gathering-log-data_troubleshooting_updates}\n\nUse the `oc adm must-gather` command to collect cluster data and logs. Red Hat Support can then use the data and logs to diagnose and resolve support cases.\n\n## Changing CVO log level (Technology Preview) {#changing-log-data_troubleshooting_updates}\n\n> [!IMPORTANT]\n> Changing the CVO log level is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\nAdjust the verbosity of the Cluster Version Operator (CVO) log to troubleshoot update issues or diagnose errors by using four available log levels.\n\nThe following list outlines the four log levels:\n\n- `Normal` - The default log level. Contains working log information. Used when everything is fine. Provides helpful notices for auditing or common operations.\n- `Debug` - Used when something goes wrong. Expect a higher quantity of notices.\n- `Trace` - Used to diagnose errors.\n- `TraceAll` - Used to get the complete body content of the logs.\n\n> [!NOTE]\n> If `TraceAll` is turned on in a production cluster it may cause widespread performance issues and large log files.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed the OpenShift CLI (`oc`).\n- You have the `TechPreviewNoUpgrade` feature set enabled.\n\n**Procedure**\n\n1. Enter the following command into the CLI to change the log level:\n\n   ```terminal\n   $ oc patch clusterversionoperator/cluster --type=merge --patch '{\"spec\":{\"operatorLogLevel\":\"<log_level>\"}}'\n   ```\n\n   ```terminal {title=\"Example output\"}\n   clusterversionoperator.operator.openshift.io/cluster patched\n   ```\n\n## Gathering ClusterVersion history {#gathering-clusterversion-history_troubleshooting_updates}\n\nThe Cluster Version Operator (CVO) records updates made to a cluster, known as the ClusterVersion history. The entries can reveal correlation between changes in cluster behavior with potential triggers, although correlation does not imply causation.\n\n> [!NOTE]\n> The initial, minor, and z-stream version updates are stored by the ClusterVersion history. However, the ClusterVersion history has a size limit. If the limit is reached, the oldest z-stream updates in previous minor versions are pruned to accommodate the limit.\n\nYou can view the ClusterVersion history by using the OpenShift Container Platform web console or by using the OpenShift CLI (`oc`).\n\n### Gathering ClusterVersion history in the OpenShift Container Platform web console {#gathering-clusterversion-history-console_troubleshooting_updates}\n\nYou can view the ClusterVersion history and status information in the OpenShift Container Platform web console. Use the history to verify successful updates and to troubleshoot failures.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have access to the OpenShift Container Platform web console.\n\n**Procedure**\n\n- From the web console, click **Administration** -> **Cluster Settings** and review the contents of the **Details** tab.\n\n### Gathering ClusterVersion history using the OpenShift CLI (`oc`) {#gathering-clusterversion-history-cli_troubleshooting_updates}\n\nUse the OpenShift CLI (`oc`) to view ClusterVersion history. You can use the history to troubleshoot update issues or to verify completed updates.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. View the cluster update history by entering the following command:\n\n   ```terminal\n   $ oc describe clusterversions/version\n   ```\n\n   ```terminal {title=\"Example output\"}\n     Desired:\n       Channels:\n         candidate-4.13\n         candidate-4.14\n         fast-4.13\n         fast-4.14\n         stable-4.13\n       Image:    quay.io/openshift-release-dev/ocp-release@sha256:a148b19231e4634196717c3597001b7d0af91bf3a887c03c444f59d9582864f4\n       URL:      https://access.redhat.com/errata/RHSA-2023:6130\n       Version:  4.13.19\n     History:\n       Completion Time:    2023-11-07T20:26:04Z\n       Image:              quay.io/openshift-release-dev/ocp-release@sha256:a148b19231e4634196717c3597001b7d0af91bf3a887c03c444f59d9582864f4\n       Started Time:       2023-11-07T19:11:36Z\n       State:              Completed\n       Verified:           true\n       Version:            4.13.19\n       Completion Time:    2023-10-04T18:53:29Z\n       Image:              quay.io/openshift-release-dev/ocp-release@sha256:eac141144d2ecd6cf27d24efe9209358ba516da22becc5f0abc199d25a9cfcec\n       Started Time:       2023-10-04T17:26:31Z\n       State:              Completed\n       Verified:           true\n       Version:            4.13.13\n       Completion Time:    2023-09-26T14:21:43Z\n       Image:              quay.io/openshift-release-dev/ocp-release@sha256:371328736411972e9640a9b24a07be0af16880863e1c1ab8b013f9984b4ef727\n       Started Time:       2023-09-26T14:02:33Z\n       State:              Completed\n       Verified:           false\n       Version:            4.13.12\n     Observed Generation:  4\n     Version Hash:         CMLl3sLq-EA=\n   Events:                 <none>\n   ```\n\n<a name=\"additional-resources_gathering-cluster-data\"></a>**Additional resources**\n\n- [Gathering data about your cluster for Red Hat Support](/openshift-docs-markdown/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/troubleshooting_updates/gathering-data-cluster-update.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,78 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="gathering-data-cluster-update" class="group scroll-mt-20">Gathering data about your cluster update<a href="#gathering-data-cluster-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>{"{"}% include "./_attributes/common-attributes.md" %{"}"} Collect cluster data, logs, and update history to help Red Hat Support diagnose and troubleshoot failed cluster updates.</p>
-      <p class="/modules/gathering-log-data.md"></p>
-      <p class="/modules/changing-cvo-log-level.md"></p>
-      <p class="/modules/gathering-clusterversion-history.md"></p>
-      <p class="/modules/gathering-clusterversion-history-console.md"></p>
-      <p class="/modules/gathering-clusterversion-history-cli.md"></p>
+      <p>Collect cluster data, logs, and update history to help Red Hat Support diagnose and troubleshoot failed cluster updates.</p>
+      <h2 id="gathering-log-data_troubleshooting_updates" class="group scroll-mt-20">Gathering log data for a support case<a href="#gathering-log-data_troubleshooting_updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Use the <code>oc adm must-gather</code> command to collect cluster data and logs. Red Hat Support can then use the data and logs to diagnose and resolve support cases.</p>
+      <h2 id="changing-log-data_troubleshooting_updates" class="group scroll-mt-20">Changing CVO log level (Technology Preview)<a href="#changing-log-data_troubleshooting_updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Changing the CVO log level is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <p class="_abstract">Adjust the verbosity of the Cluster Version Operator (CVO) log to troubleshoot update issues or diagnose errors by using four available log levels.</p>
+      <p>The following list outlines the four log levels:</p>
+      <ul>
+      <li><code>Normal</code> - The default log level. Contains working log information. Used when everything is fine. Provides helpful notices for auditing or common operations.</li>
+      <li><code>Debug</code> - Used when something goes wrong. Expect a higher quantity of notices.</li>
+      <li><code>Trace</code> - Used to diagnose errors.</li>
+      <li><code>TraceAll</code> - Used to get the complete body content of the logs.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If <code>TraceAll</code> is turned on in a production cluster it may cause widespread performance issues and large log files.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have the <code>TechPreviewNoUpgrade</code> feature set enabled.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Enter the following command into the CLI to change the log level:
+      <CodeBlock code={"$ oc patch clusterversionoperator/cluster --type=merge --patch '{\"spec\":{\"operatorLogLevel\":\"<log_level>\"}}'"} lang="terminal" />
+      <CodeBlock code={"clusterversionoperator.operator.openshift.io/cluster patched"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="gathering-clusterversion-history_troubleshooting_updates" class="group scroll-mt-20">Gathering ClusterVersion history<a href="#gathering-clusterversion-history_troubleshooting_updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Cluster Version Operator (CVO) records updates made to a cluster, known as the ClusterVersion history. The entries can reveal correlation between changes in cluster behavior with potential triggers, although correlation does not imply causation.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The initial, minor, and z-stream version updates are stored by the ClusterVersion history. However, the ClusterVersion history has a size limit. If the limit is reached, the oldest z-stream updates in previous minor versions are pruned to accommodate the limit.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can view the ClusterVersion history by using the OpenShift Container Platform web console or by using the OpenShift CLI (<code>oc</code>).</p>
+      <h3 id="gathering-clusterversion-history-console_troubleshooting_updates" class="group scroll-mt-20">Gathering ClusterVersion history in the OpenShift Container Platform web console<a href="#gathering-clusterversion-history-console_troubleshooting_updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can view the ClusterVersion history and status information in the OpenShift Container Platform web console. Use the history to verify successful updates and to troubleshoot failures.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul><li>From the web console, click <strong>Administration</strong> -&gt; <strong>Cluster Settings</strong> and review the contents of the <strong>Details</strong> tab.</li></ul>
+      <h3 id="gathering-clusterversion-history-cli_troubleshooting_updates" class="group scroll-mt-20">Gathering ClusterVersion history using the OpenShift CLI (<code>oc</code>)<a href="#gathering-clusterversion-history-cli_troubleshooting_updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Use the OpenShift CLI (<code>oc</code>) to view ClusterVersion history. You can use the history to troubleshoot update issues or to verify completed updates.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      View the cluster update history by entering the following command:
+      <CodeBlock code={"$ oc describe clusterversions/version"} lang="terminal" />
+      <CodeBlock code={"  Desired:\n    Channels:\n      candidate-4.13\n      candidate-4.14\n      fast-4.13\n      fast-4.14\n      stable-4.13\n    Image:    quay.io/openshift-release-dev/ocp-release@sha256:a148b19231e4634196717c3597001b7d0af91bf3a887c03c444f59d9582864f4\n    URL:      https://access.redhat.com/errata/RHSA-2023:6130\n    Version:  4.13.19\n  History:\n    Completion Time:    2023-11-07T20:26:04Z\n    Image:              quay.io/openshift-release-dev/ocp-release@sha256:a148b19231e4634196717c3597001b7d0af91bf3a887c03c444f59d9582864f4\n    Started Time:       2023-11-07T19:11:36Z\n    State:              Completed\n    Verified:           true\n    Version:            4.13.19\n    Completion Time:    2023-10-04T18:53:29Z\n    Image:              quay.io/openshift-release-dev/ocp-release@sha256:eac141144d2ecd6cf27d24efe9209358ba516da22becc5f0abc199d25a9cfcec\n    Started Time:       2023-10-04T17:26:31Z\n    State:              Completed\n    Verified:           true\n    Version:            4.13.13\n    Completion Time:    2023-09-26T14:21:43Z\n    Image:              quay.io/openshift-release-dev/ocp-release@sha256:371328736411972e9640a9b24a07be0af16880863e1c1ab8b013f9984b4ef727\n    Started Time:       2023-09-26T14:02:33Z\n    State:              Completed\n    Verified:           false\n    Version:            4.13.12\n  Observed Generation:  4\n  Version Hash:         CMLl3sLq-EA=\nEvents:                 <none>"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
       <p><Fragment set:html={"<a name=\"additional-resources_gathering-cluster-data\">"} /><Fragment set:html={"</a>"} /><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/support/gathering-cluster-data#support_gathering_data_gathering-cluster-data">Gathering data about your cluster for Red Hat Support</a></li></ul>
     </article>

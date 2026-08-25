@@ -19,7 +19,7 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"ossm-openshift-service-mesh-3-0-overview","text":"{{ SMProductShortName }} overview"}];
+const headings = [{"depth":1,"slug":"ossm-openshift-service-mesh-3-0-overview","text":"Service Mesh overview"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/service_mesh/v3x/ossm-service-mesh-3-0-overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ SMProductShortName }} overview";
-const description = "{{ SMProductName }} manages and secures communication between microservices by providing traffic management, advanced routing, and load balancing. {{…" || undefined;
+const description = "Red Hat OpenShift Service Mesh manages and secures communication between microservices by providing traffic management, advanced routing, and load…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +42,7 @@ const pageCategory = ["service_mesh","service_mesh/v3x"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ SMProductShortName }} overview {#ossm-openshift-service-mesh-3-0-overview}\n\n{{ SMProductName }} manages and secures communication between microservices by providing traffic management, advanced routing, and load balancing. {{ SMProductName }} also enhances security through features like mutual TLS, and offers observability with metrics, logging, and tracing to monitor and troubleshoot applications.\n\n> [!NOTE]\n> Because {{ SMProductName }} 3.0 releases on a different cadence from OpenShift Container Platform, the {{ SMProductShortName }} documentation is available as a separate documentation set at [{{ SMProductName }}](https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v3x/ossm-service-mesh-3-0-overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Service Mesh overview {#ossm-openshift-service-mesh-3-0-overview}\n\nRed Hat OpenShift Service Mesh manages and secures communication between microservices by providing traffic management, advanced routing, and load balancing. Red Hat OpenShift Service Mesh also enhances security through features like mutual TLS, and offers observability with metrics, logging, and tracing to monitor and troubleshoot applications.\n\n> [!NOTE]\n> Because Red Hat OpenShift Service Mesh 3.0 releases on a different cadence from OpenShift Container Platform, the Service Mesh documentation is available as a separate documentation set at [Red Hat OpenShift Service Mesh](https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v3x/ossm-service-mesh-3-0-overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,13 +93,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="ossm-openshift-service-mesh-3-0-overview" class="group scroll-mt-20">{"{"}{"{"} SMProductShortName {"}"}{"}"} overview<a href="#ossm-openshift-service-mesh-3-0-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>{"{"}{"{"} SMProductName {"}"}{"}"} manages and secures communication between microservices by providing traffic management, advanced routing, and load balancing. {"{"}{"{"} SMProductName {"}"}{"}"} also enhances security through features like mutual TLS, and offers observability with metrics, logging, and tracing to monitor and troubleshoot applications.</p>
+      <h1 id="ossm-openshift-service-mesh-3-0-overview" class="group scroll-mt-20">Service Mesh overview<a href="#ossm-openshift-service-mesh-3-0-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Red Hat OpenShift Service Mesh manages and secures communication between microservices by providing traffic management, advanced routing, and load balancing. Red Hat OpenShift Service Mesh also enhances security through features like mutual TLS, and offers observability with metrics, logging, and tracing to monitor and troubleshoot applications.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Because {"{"}{"{"} SMProductName {"}"}{"}"} 3.0 releases on a different cadence from OpenShift Container Platform, the {"{"}{"{"} SMProductShortName {"}"}{"}"} documentation is available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh">{"{"}{"{"} SMProductName {"}"}{"}"}</a>.</p>
+          <p>Because Red Hat OpenShift Service Mesh 3.0 releases on a different cadence from OpenShift Container Platform, the Service Mesh documentation is available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh">Red Hat OpenShift Service Mesh</a>.</p>
         </AlertDescription>
       </Alert>
     </article>

@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"modifying-machineset","text":"Modifying a compute machine set"}];
+const headings = [{"depth":1,"slug":"modifying-machineset","text":"Modifying a compute machine set"},{"depth":2,"slug":"machineset-modifying_modifying-machineset","text":"Modifying a compute machine set by using the CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_management/modifying-machineset";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["machine_management"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Modifying a compute machine set {#modifying-machineset}\n\nTo add labels, change the instance type, change block storage, or make other changes, you can modify a compute machine set.\n\n> [!NOTE]\n> If you need to scale a compute machine set without making other changes, see \"Manually scaling a compute machine set\".\n\n**Additional resources**\n\n- [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)\n- [Manually scaling a compute machine set](/openshift-docs-markdown/machine_management/manually-scaling-machineset#machineset-manually-scaling_manually-scaling-machineset)\n- [Controlling pod placement using the scheduler](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/modifying-machineset.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Modifying a compute machine set {#modifying-machineset}\n\nTo add labels, change the instance type, change block storage, or make other changes, you can modify a compute machine set.\n\n> [!NOTE]\n> If you need to scale a compute machine set without making other changes, see \"Manually scaling a compute machine set\".\n\n## Modifying a compute machine set by using the CLI {#machineset-modifying_modifying-machineset}\n\nTo enable features or change the properties of machines, you can modify the configuration of a compute machine set using the CLI. You can then propagate the changes to the machines in your cluster.\n\nWhen you modify a compute machine set, your changes only apply to compute machines that are created after you save the updated `MachineSet` custom resource (CR). The changes do not affect existing machines.\n\n> [!NOTE]\n> Changes made in the underlying cloud provider are not reflected in the `Machine` or `MachineSet` CRs. To adjust instance configuration in cluster-managed infrastructure, use the cluster-side resources.\n\nYou can replace the existing machines with new ones that reflect the updated configuration by scaling the compute machine set to create twice the number of replicas and then scaling it down to the original number of replicas.\n\nIf you need to scale a compute machine set without making other changes, you do not need to delete the machines.\n\n> [!NOTE]\n> By default, the OpenShift Container Platform router pods are deployed on compute machines. Because the router is required to access some cluster resources, including the web console, do not scale the compute machine set to `0` unless you first relocate the router pods.\n\nThe output examples in this procedure use the values for an AWS cluster.\n\n**Prerequisites**\n\ntag:CAPI[]\\[\\]\n\n- Your OpenShift Container Platform cluster uses the Cluster API. end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n- Your OpenShift Container Platform cluster uses the Machine API. end:MAPI[]\\[\\]\n- You are logged in to the cluster as an administrator by using the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. List the compute machine sets in your cluster by running the following command:\n\n   tag:CAPI[]\\[\\]\n\n   ```terminal\n   $ oc get machinesets.cluster.x-k8s.io -n openshift-cluster-api\n   ```\n\n   end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n   ```terminal\n   $ oc get machinesets.machine.openshift.io -n openshift-machine-api\n   ```\n\n   end:MAPI[]\\[\\]\n\n   **Example output**\n\n   tag:CAPI[]\\[\\]\n\n   ```text\n   NAME                          CLUSTER             REPLICAS   READY   AVAILABLE   AGE   VERSION\n   <compute_machine_set_name_1>  <cluster_name>      1          1       1           26m\n   <compute_machine_set_name_2>  <cluster_name>      1          1       1           26m\n   ```\n\n   end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n   ```text\n   NAME                           DESIRED   CURRENT   READY   AVAILABLE   AGE\n   <compute_machine_set_name_1>   1         1         1       1           55m\n   <compute_machine_set_name_2>   1         1         1       1           55m\n   ```\n\n   end:MAPI[]\\[\\]\n2. Edit a compute machine set by running the following command:\n\n   tag:CAPI[]\\[\\]\n\n   ```terminal\n   $ oc edit machinesets.cluster.x-k8s.io <machine_set_name> \\\n     -n openshift-cluster-api\n   ```\n\n   end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n   ```terminal\n   $ oc edit machinesets.machine.openshift.io <machine_set_name> \\\n     -n openshift-machine-api\n   ```\n\n   end:MAPI[]\\[\\]\n3. Note the value of the `spec.replicas` field, because you need it when scaling the machine set to apply the changes.\n\n   ```yaml\n   #tag::CAPI[]\n   apiVersion: cluster.x-k8s.io/v1beta1\n   #end::CAPI[]\n   #tag::MAPI[]\n   apiVersion: machine.openshift.io/v1beta1\n   #end::MAPI[]\n   kind: MachineSet\n   metadata:\n     name: <machine_set_name>\n   #tag::CAPI[]\n     namespace: openshift-cluster-api\n   #end::CAPI[]\n   #tag::MAPI[]\n     namespace: openshift-machine-api\n   #end::MAPI[]\n   spec:\n     replicas: 2\n   # ...\n   ```\n\n   The examples in this procedure show a compute machine set that has a `replicas` value of `2`.\n4. Update the compute machine set CR with the configuration options that you want and save your changes.\n5. List the machines that are managed by the updated compute machine set by running the following command:\n\n   tag:CAPI[]\\[\\]\n\n   ```terminal\n   $ oc get machines.cluster.x-k8s.io \\\n     -n openshift-cluster-api \\\n     -l cluster.x-k8s.io/set-name=<machine_set_name>\n   ```\n\n   end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n   ```terminal\n   $ oc get machines.machine.openshift.io \\\n     -n openshift-machine-api \\\n     -l machine.openshift.io/cluster-api-machineset=<machine_set_name>\n   ```\n\n   end:MAPI[]\\[\\]\n\n   **Example output for an AWS cluster**\n\n   tag:CAPI[]\\[\\]\n\n   ```text\n   NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE           AGE     VERSION\n   <machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h\n   <machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h\n   ```\n\n   end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n   ```text\n   NAME                        PHASE     TYPE         REGION      ZONE         AGE\n   <machine_name_original_1>   Running   m6i.xlarge   us-west-1   us-west-1a   4h\n   <machine_name_original_2>   Running   m6i.xlarge   us-west-1   us-west-1a   4h\n   ```\n\n   end:MAPI[]\\[\\]\n6. For each machine that is managed by the updated compute machine set, set the `delete` annotation by running the following command:\n\n   tag:CAPI[]\\[\\]\n\n   ```terminal\n   $ oc annotate machines.cluster.x-k8s.io/<machine_name_original_1> \\\n     -n openshift-cluster-api \\\n     cluster.x-k8s.io/delete-machine=\"true\"\n   ```\n\n   end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n   ```terminal\n   $ oc annotate machine.machine.openshift.io/<machine_name_original_1> \\\n     -n openshift-machine-api \\\n     machine.openshift.io/delete-machine=\"true\"\n   ```\n\n   end:MAPI[]\\[\\]\n7. To create replacement machines with the new configuration, scale the compute machine set to twice the number of replicas by running the following command:\n\n   tag:CAPI[]\\[\\]\n\n   ```terminal\n   $ oc scale --replicas=4 \\\n     machinesets.cluster.x-k8s.io <machine_set_name> \\\n     -n openshift-cluster-api\n   ```\n\n   end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n   ```terminal\n   $ oc scale --replicas=4 \\\n     machineset.machine.openshift.io <machine_set_name> \\\n     -n openshift-machine-api\n   ```\n\n   end:MAPI[]\\[\\]\n\n   The original example value of `2` is doubled to `4`.\n8. List the machines that are managed by the updated compute machine set by running the following command:\n\n   tag:CAPI[]\\[\\]\n\n   ```terminal\n   $ oc get machines.cluster.x-k8s.io \\\n     -n openshift-cluster-api \\\n     -l cluster.x-k8s.io/set-name=<machine_set_name>\n   ```\n\n   end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n   ```terminal\n   $ oc get machines.machine.openshift.io \\\n     -n openshift-machine-api \\\n     -l machine.openshift.io/cluster-api-machineset=<machine_set_name>\n   ```\n\n   end:MAPI[]\\[\\]\n\n   **Example output for an AWS cluster**\n\n   tag:CAPI[]\\[\\]\n\n   ```text\n   NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE           AGE     VERSION\n   <machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h\n   <machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h\n   <machine_name_updated_1>    <cluster_name>   <updated_1_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Provisioned     55s\n   <machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Provisioning    55s\n   ```\n\n   end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n   ```text\n   NAME                        PHASE          TYPE         REGION      ZONE         AGE\n   <machine_name_original_1>   Running        m6i.xlarge   us-west-1   us-west-1a   4h\n   <machine_name_original_2>   Running        m6i.xlarge   us-west-1   us-west-1a   4h\n   <machine_name_updated_1>    Provisioned    m6i.xlarge   us-west-1   us-west-1a   55s\n   <machine_name_updated_2>    Provisioning   m6i.xlarge   us-west-1   us-west-1a   55s\n   ```\n\n   end:MAPI[]\\[\\]\n\n   When the new machines are in the `Running` phase, you can scale the compute machine set to the original number of replicas.\n9. To remove the machines that were created with the old configuration, scale the compute machine set to the original number of replicas by running the following command:\n\n   tag:CAPI[]\\[\\]\n\n   ```terminal\n   $ oc scale --replicas=2 \\\n     machinesets.cluster.x-k8s.io <machine_set_name> \\\n     -n openshift-cluster-api\n   ```\n\n   end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n   ```terminal\n   $ oc scale --replicas=2 \\\n     machineset.machine.openshift.io <machine_set_name> \\\n     -n openshift-machine-api\n   ```\n\n   end:MAPI[]\\[\\]\n\n   The `replicas` parameter is set to the original example value of `2`.\n\n**Verification**\n\n- To verify that a machine created by the updated machine set has the correct configuration, examine the relevant fields in the CR for one of the new machines by running the following command:\n\n  tag:CAPI[]\\[\\]\n\n  ```terminal\n  $ oc describe machines.cluster.x-k8s.io <machine_name_updated_1> \\\n    -n openshift-cluster-api\n  ```\n\n  end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n  ```terminal\n  $ oc describe machine.machine.openshift.io <machine_name_updated_1> \\\n    -n openshift-machine-api\n  ```\n\n  end:MAPI[]\\[\\]\n- To verify that the compute machines without the updated configuration are deleted, list the machines that are managed by the updated compute machine set by running the following command:\n\n  tag:CAPI[]\\[\\]\n\n  ```terminal\n  $ oc get machines.cluster.x-k8s.io \\\n    -n openshift-cluster-api \\\n    cluster.x-k8s.io/set-name=<machine_set_name>\n  ```\n\n  end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n  ```terminal\n  $ oc get machines.machine.openshift.io \\\n    -n openshift-machine-api \\\n    -l machine.openshift.io/cluster-api-machineset=<machine_set_name>\n  ```\n\n  end:MAPI[]\\[\\]\n\n  **Example output while deletion is in progress for an AWS cluster**\n\n  tag:CAPI[]\\[\\]\n\n  ```text\n  NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE      AGE     VERSION\n  <machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m\n  <machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m\n  <machine_name_updated_1>    <cluster_name>   <updated_1_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m\n  <machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m\n  ```\n\n  end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n  ```text\n  NAME                        PHASE           TYPE         REGION      ZONE         AGE\n  <machine_name_original_1>   Deleting        m6i.xlarge   us-west-1   us-west-1a   4h\n  <machine_name_original_2>   Deleting        m6i.xlarge   us-west-1   us-west-1a   4h\n  <machine_name_updated_1>    Running         m6i.xlarge   us-west-1   us-west-1a   5m41s\n  <machine_name_updated_2>    Running         m6i.xlarge   us-west-1   us-west-1a   5m41s\n  ```\n\n  end:MAPI[]\\[\\]\n\n  **Example output when deletion is complete for an AWS cluster**\n\n  tag:CAPI[]\\[\\]\n\n  ```text\n  NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE      AGE     VERSION\n  <machine_name_updated_1>    <cluster_name>   <updated_1_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m\n  <machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m\n  ```\n\n  end:CAPI[]\\[\\] tag:MAPI[]\\[\\]\n\n  ```text\n  NAME                        PHASE           TYPE         REGION      ZONE         AGE\n  <machine_name_updated_1>    Running         m6i.xlarge   us-west-1   us-west-1a   6m30s\n  <machine_name_updated_2>    Running         m6i.xlarge   us-west-1   us-west-1a   6m30s\n  ```\n\n  end:MAPI[]\\[\\]\n\n**Additional resources**\n\n- [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)\n- [Manually scaling a compute machine set](/openshift-docs-markdown/machine_management/manually-scaling-machineset#machineset-manually-scaling_manually-scaling-machineset)\n- [Controlling pod placement using the scheduler](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-about#nodes-scheduler-about)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/modifying-machineset.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="modifying-machineset" class="group scroll-mt-20">Modifying a compute machine set<a href="#modifying-machineset" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To add labels, change the instance type, change block storage, or make other changes, you can modify a compute machine set.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
@@ -102,7 +102,148 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>If you need to scale a compute machine set without making other changes, see "Manually scaling a compute machine set".</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/machineset-modifying.md"></p>
+      <h2 id="machineset-modifying_modifying-machineset" class="group scroll-mt-20">Modifying a compute machine set by using the CLI<a href="#machineset-modifying_modifying-machineset" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To enable features or change the properties of machines, you can modify the configuration of a compute machine set using the CLI. You can then propagate the changes to the machines in your cluster.</p>
+      <p>When you modify a compute machine set, your changes only apply to compute machines that are created after you save the updated <code>MachineSet</code> custom resource (CR). The changes do not affect existing machines.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Changes made in the underlying cloud provider are not reflected in the <code>Machine</code> or <code>MachineSet</code> CRs. To adjust instance configuration in cluster-managed infrastructure, use the cluster-side resources.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can replace the existing machines with new ones that reflect the updated configuration by scaling the compute machine set to create twice the number of replicas and then scaling it down to the original number of replicas.</p>
+      <p>If you need to scale a compute machine set without making other changes, you do not need to delete the machines.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>By default, the OpenShift Container Platform router pods are deployed on compute machines. Because the router is required to access some cluster resources, including the web console, do not scale the compute machine set to <code>0</code> unless you first relocate the router pods.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The output examples in this procedure use the values for an AWS cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <ul>
+      <li>Your OpenShift Container Platform cluster uses the Cluster API. end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</li>
+      <li>Your OpenShift Container Platform cluster uses the Machine API. end<Fragment set:html={":MAPI[]"} />[]</li>
+      <li>You are logged in to the cluster as an administrator by using the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      List the compute machine sets in your cluster by running the following command:
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc get machinesets.cluster.x-k8s.io -n openshift-cluster-api"} lang="terminal" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc get machinesets.machine.openshift.io -n openshift-machine-api"} lang="terminal" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      <p><strong>Example output</strong></p>
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"NAME                          CLUSTER             REPLICAS   READY   AVAILABLE   AGE   VERSION\n<compute_machine_set_name_1>  <cluster_name>      1          1       1           26m\n<compute_machine_set_name_2>  <cluster_name>      1          1       1           26m"} lang="text" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"NAME                           DESIRED   CURRENT   READY   AVAILABLE   AGE\n<compute_machine_set_name_1>   1         1         1       1           55m\n<compute_machine_set_name_2>   1         1         1       1           55m"} lang="text" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      </li>
+      <li>
+      Edit a compute machine set by running the following command:
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc edit machinesets.cluster.x-k8s.io <machine_set_name> \\\n  -n openshift-cluster-api"} lang="terminal" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc edit machinesets.machine.openshift.io <machine_set_name> \\\n  -n openshift-machine-api"} lang="terminal" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      </li>
+      <li>
+      Note the value of the <code>spec.replicas</code> field, because you need it when scaling the machine set to apply the changes.
+      <CodeBlock code={"#tag::CAPI[]\napiVersion: cluster.x-k8s.io/v1beta1\n#end::CAPI[]\n#tag::MAPI[]\napiVersion: machine.openshift.io/v1beta1\n#end::MAPI[]\nkind: MachineSet\nmetadata:\n  name: <machine_set_name>\n#tag::CAPI[]\n  namespace: openshift-cluster-api\n#end::CAPI[]\n#tag::MAPI[]\n  namespace: openshift-machine-api\n#end::MAPI[]\nspec:\n  replicas: 2\n# ..."} lang="yaml" />
+      <p>The examples in this procedure show a compute machine set that has a <code>replicas</code> value of <code>2</code>.</p>
+      </li>
+      <li>Update the compute machine set CR with the configuration options that you want and save your changes.</li>
+      <li>
+      List the machines that are managed by the updated compute machine set by running the following command:
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc get machines.cluster.x-k8s.io \\\n  -n openshift-cluster-api \\\n  -l cluster.x-k8s.io/set-name=<machine_set_name>"} lang="terminal" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc get machines.machine.openshift.io \\\n  -n openshift-machine-api \\\n  -l machine.openshift.io/cluster-api-machineset=<machine_set_name>"} lang="terminal" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      <p><strong>Example output for an AWS cluster</strong></p>
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE           AGE     VERSION\n<machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h\n<machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h"} lang="text" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"NAME                        PHASE     TYPE         REGION      ZONE         AGE\n<machine_name_original_1>   Running   m6i.xlarge   us-west-1   us-west-1a   4h\n<machine_name_original_2>   Running   m6i.xlarge   us-west-1   us-west-1a   4h"} lang="text" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      </li>
+      <li>
+      For each machine that is managed by the updated compute machine set, set the <code>delete</code> annotation by running the following command:
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc annotate machines.cluster.x-k8s.io/<machine_name_original_1> \\\n  -n openshift-cluster-api \\\n  cluster.x-k8s.io/delete-machine=\"true\""} lang="terminal" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc annotate machine.machine.openshift.io/<machine_name_original_1> \\\n  -n openshift-machine-api \\\n  machine.openshift.io/delete-machine=\"true\""} lang="terminal" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      </li>
+      <li>
+      To create replacement machines with the new configuration, scale the compute machine set to twice the number of replicas by running the following command:
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc scale --replicas=4 \\\n  machinesets.cluster.x-k8s.io <machine_set_name> \\\n  -n openshift-cluster-api"} lang="terminal" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc scale --replicas=4 \\\n  machineset.machine.openshift.io <machine_set_name> \\\n  -n openshift-machine-api"} lang="terminal" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      <p>The original example value of <code>2</code> is doubled to <code>4</code>.</p>
+      </li>
+      <li>
+      List the machines that are managed by the updated compute machine set by running the following command:
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc get machines.cluster.x-k8s.io \\\n  -n openshift-cluster-api \\\n  -l cluster.x-k8s.io/set-name=<machine_set_name>"} lang="terminal" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc get machines.machine.openshift.io \\\n  -n openshift-machine-api \\\n  -l machine.openshift.io/cluster-api-machineset=<machine_set_name>"} lang="terminal" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      <p><strong>Example output for an AWS cluster</strong></p>
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE           AGE     VERSION\n<machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h\n<machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running         4h\n<machine_name_updated_1>    <cluster_name>   <updated_1_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Provisioned     55s\n<machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Provisioning    55s"} lang="text" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"NAME                        PHASE          TYPE         REGION      ZONE         AGE\n<machine_name_original_1>   Running        m6i.xlarge   us-west-1   us-west-1a   4h\n<machine_name_original_2>   Running        m6i.xlarge   us-west-1   us-west-1a   4h\n<machine_name_updated_1>    Provisioned    m6i.xlarge   us-west-1   us-west-1a   55s\n<machine_name_updated_2>    Provisioning   m6i.xlarge   us-west-1   us-west-1a   55s"} lang="text" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      <p>When the new machines are in the <code>Running</code> phase, you can scale the compute machine set to the original number of replicas.</p>
+      </li>
+      <li>
+      To remove the machines that were created with the old configuration, scale the compute machine set to the original number of replicas by running the following command:
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc scale --replicas=2 \\\n  machinesets.cluster.x-k8s.io <machine_set_name> \\\n  -n openshift-cluster-api"} lang="terminal" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc scale --replicas=2 \\\n  machineset.machine.openshift.io <machine_set_name> \\\n  -n openshift-machine-api"} lang="terminal" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      <p>The <code>replicas</code> parameter is set to the original example value of <code>2</code>.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that a machine created by the updated machine set has the correct configuration, examine the relevant fields in the CR for one of the new machines by running the following command:
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc describe machines.cluster.x-k8s.io <machine_name_updated_1> \\\n  -n openshift-cluster-api"} lang="terminal" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc describe machine.machine.openshift.io <machine_name_updated_1> \\\n  -n openshift-machine-api"} lang="terminal" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      </li>
+      <li>
+      To verify that the compute machines without the updated configuration are deleted, list the machines that are managed by the updated compute machine set by running the following command:
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc get machines.cluster.x-k8s.io \\\n  -n openshift-cluster-api \\\n  cluster.x-k8s.io/set-name=<machine_set_name>"} lang="terminal" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"$ oc get machines.machine.openshift.io \\\n  -n openshift-machine-api \\\n  -l machine.openshift.io/cluster-api-machineset=<machine_set_name>"} lang="terminal" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      <p><strong>Example output while deletion is in progress for an AWS cluster</strong></p>
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE      AGE     VERSION\n<machine_name_original_1>   <cluster_name>   <original_1_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m\n<machine_name_original_2>   <cluster_name>   <original_2_ip>.<region>.compute.internal   aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m\n<machine_name_updated_1>    <cluster_name>   <updated_1_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m\n<machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m"} lang="text" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"NAME                        PHASE           TYPE         REGION      ZONE         AGE\n<machine_name_original_1>   Deleting        m6i.xlarge   us-west-1   us-west-1a   4h\n<machine_name_original_2>   Deleting        m6i.xlarge   us-west-1   us-west-1a   4h\n<machine_name_updated_1>    Running         m6i.xlarge   us-west-1   us-west-1a   5m41s\n<machine_name_updated_2>    Running         m6i.xlarge   us-west-1   us-west-1a   5m41s"} lang="text" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      <p><strong>Example output when deletion is complete for an AWS cluster</strong></p>
+      <p>tag<Fragment set:html={":CAPI[]"} />[]</p>
+      <CodeBlock code={"NAME                        CLUSTER          NODENAME                                    PROVIDERID                              PHASE      AGE     VERSION\n<machine_name_updated_1>    <cluster_name>   <updated_1_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m\n<machine_name_updated_2>    <cluster_name>   <updated_2_ip>.<region>.compute.internal    aws:///us-east-2a/i-04e7b2cbd61fd2075   Running    18m"} lang="text" />
+      <p>end<Fragment set:html={":CAPI[]"} />[] tag<Fragment set:html={":MAPI[]"} />[]</p>
+      <CodeBlock code={"NAME                        PHASE           TYPE         REGION      ZONE         AGE\n<machine_name_updated_1>    Running         m6i.xlarge   us-west-1   us-west-1a   6m30s\n<machine_name_updated_2>    Running         m6i.xlarge   us-west-1   us-west-1a   6m30s"} lang="text" />
+      <p>end<Fragment set:html={":MAPI[]"} />[]</p>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine">Lifecycle hooks for the machine deletion phase</a></li>

@@ -19,7 +19,7 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"about-openshift-sandboxed-containers","text":"About {{ osc }}"}];
+const headings = [{"depth":1,"slug":"about-openshift-sandboxed-containers","text":"About OpenShift sandboxed containers"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/sandboxed_containers/about-openshift-sandboxed-containers";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "About {{ osc }}";
-const description = "{{ osc }} provide security by running containerized applications in lightweight virtual machines. This architecture isolates your workloads from other…" || undefined;
+const description = "OpenShift sandboxed containers provide security by running containerized applications in lightweight virtual machines. This architecture isolates your…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +42,7 @@ const pageCategory = ["sandboxed_containers"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About {{ osc }} {#about-openshift-sandboxed-containers}\n\n{{ osc }} provide security by running containerized applications in lightweight virtual machines. This architecture isolates your workloads from other workloads on the cluster and does not require significant changes to your existing workflows.\n\nConfidential Containers extend {{ osc }} and provide an additional layer of security. They ensure that your workloads are isolated from hypervisors and cloud providers. Confidential Containers protect data in use by leveraging hardware-based Trusted Execution Environments, which are verified by the Trustee attestation service.\n\n> [!NOTE]\n> Because {{ osc }} releases on a different cadence from OpenShift Container Platform, its documentation is now available as a separate documentation set at [Red Hat {{ osc }}](https://docs.redhat.com/en/documentation/openshift_sandboxed_containers).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/sandboxed_containers/about-openshift-sandboxed-containers.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About OpenShift sandboxed containers {#about-openshift-sandboxed-containers}\n\nOpenShift sandboxed containers provide security by running containerized applications in lightweight virtual machines. This architecture isolates your workloads from other workloads on the cluster and does not require significant changes to your existing workflows.\n\nConfidential Containers extend OpenShift sandboxed containers and provide an additional layer of security. They ensure that your workloads are isolated from hypervisors and cloud providers. Confidential Containers protect data in use by leveraging hardware-based Trusted Execution Environments, which are verified by the Trustee attestation service.\n\n> [!NOTE]\n> Because OpenShift sandboxed containers releases on a different cadence from OpenShift Container Platform, its documentation is now available as a separate documentation set at [Red Hat OpenShift sandboxed containers](https://docs.redhat.com/en/documentation/openshift_sandboxed_containers).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/sandboxed_containers/about-openshift-sandboxed-containers.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,14 +93,13 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="about-openshift-sandboxed-containers" class="group scroll-mt-20">About {"{"}{"{"} osc {"}"}{"}"}<a href="#about-openshift-sandboxed-containers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>{"{"}{"{"} osc {"}"}{"}"} provide security by running containerized applications in lightweight virtual machines. This architecture isolates your workloads from other workloads on the cluster and does not require significant changes to your existing workflows.</p>
-      <p>Confidential Containers extend {"{"}{"{"} osc {"}"}{"}"} and provide an additional layer of security. They ensure that your workloads are isolated from hypervisors and cloud providers. Confidential Containers protect data in use by leveraging hardware-based Trusted Execution Environments, which are verified by the Trustee attestation service.</p>
+      <h1 id="about-openshift-sandboxed-containers" class="group scroll-mt-20">About OpenShift sandboxed containers<a href="#about-openshift-sandboxed-containers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>OpenShift sandboxed containers provide security by running containerized applications in lightweight virtual machines. This architecture isolates your workloads from other workloads on the cluster and does not require significant changes to your existing workflows.</p>
+      <p>Confidential Containers extend OpenShift sandboxed containers and provide an additional layer of security. They ensure that your workloads are isolated from hypervisors and cloud providers. Confidential Containers protect data in use by leveraging hardware-based Trusted Execution Environments, which are verified by the Trustee attestation service.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Because {"{"}{"{"} osc {"}"}{"}"} releases on a different cadence from OpenShift Container Platform, its documentation is now available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/openshift_sandboxed_containers">Red Hat {"{"}{"{"} osc {"}"}{"}"}</a>.</p>
+          <p>Because OpenShift sandboxed containers releases on a different cadence from OpenShift Container Platform, its documentation is now available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/openshift_sandboxed_containers">Red Hat OpenShift sandboxed containers</a>.</p>
         </AlertDescription>
       </Alert>
     </article>

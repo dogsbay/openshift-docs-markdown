@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"cli-configuring-cli","text":"Configuring the OpenShift CLI"},{"depth":2,"slug":"cli-enabling-tab-completion","text":"Enabling tab completion"}];
+const headings = [{"depth":1,"slug":"cli-configuring-cli","text":"Configuring the OpenShift CLI"},{"depth":2,"slug":"cli-enabling-tab-completion","text":"Enabling tab completion"},{"depth":3,"slug":"cli-enabling-tab-completion_cli-configuring-cli","text":"Enabling tab completion for Bash"},{"depth":3,"slug":"cli-enabling-tab-completion-zsh_cli-configuring-cli","text":"Enabling tab completion for Zsh"},{"depth":2,"slug":"cli-accessing-kubeconfig-using-cli_cli-configuring-cli","text":"Accessing kubeconfig by using the oc CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/openshift_cli/configuring-cli";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring the OpenShift CLI";
-const description = "You can customize your command-line environment after installing the {{ oc_first }}." || undefined;
+const description = "You can customize your command-line environment after installing the OpenShift CLI (oc)." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["cli_reference","cli_reference/openshift_cli"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the OpenShift CLI {#cli-configuring-cli}\n\nYou can customize your command-line environment after installing the {{ oc_first }}.\n\n## Enabling tab completion {#cli-enabling-tab-completion}\n\nYou can enable tab completion for the Bash or Zsh shells.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/configuring-cli.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the OpenShift CLI {#cli-configuring-cli}\n\nYou can customize your command-line environment after installing the OpenShift CLI (`oc`).\n\n## Enabling tab completion {#cli-enabling-tab-completion}\n\nYou can enable tab completion for the Bash or Zsh shells.\n\n### Enabling tab completion for Bash {#cli-enabling-tab-completion_cli-configuring-cli}\n\nAfter you install the OpenShift CLI (`oc`), you can enable tab completion to automatically complete `oc` commands or suggest options when you press Tab. The following procedure enables tab completion for the Bash shell.\n\n**Prerequisites**\n\n- You must have the OpenShift CLI (`oc`) installed.\n- You must have the package `bash-completion` installed.\n\n**Procedure**\n\n1. Save the Bash completion code to a file:\n\n   ```terminal\n   $ oc completion bash > oc_bash_completion\n   ```\n2. Copy the file to `/etc/bash_completion.d/`:\n\n   ```terminal\n   $ sudo cp oc_bash_completion /etc/bash_completion.d/\n   ```\n\n   You can also save the file to a local directory and source it from your `.bashrc` file instead. Tab completion is enabled when you open a new terminal.\n\n### Enabling tab completion for Zsh {#cli-enabling-tab-completion-zsh_cli-configuring-cli}\n\nAfter you install the OpenShift CLI (`oc`), you can enable tab completion to automatically complete `oc` commands or suggest options when you press Tab. The following procedure enables tab completion for the Zsh shell.\n\n**Prerequisites**\n\n- You must have the OpenShift CLI (`oc`) installed.\n\n**Procedure**\n\n- To add tab completion for `oc` to your `.zshrc` file, run the following command:\n\n  ```terminal\n  $ cat >>~/.zshrc<<EOF\n  autoload -Uz compinit\n  compinit\n  if [ $commands[oc] ]; then\n    source <(oc completion zsh)\n    compdef _oc oc\n  fi\n  EOF\n  ```\n\n  Tab completion is enabled when you open a new terminal.\n\n## Accessing kubeconfig by using the oc CLI {#cli-accessing-kubeconfig-using-cli_cli-configuring-cli}\n\nYou can use the `oc` CLI to log in to your OpenShift cluster and retrieve a kubeconfig file for accessing the cluster from the command line.\n\n> [!IMPORTANT]\n> If you plan to reuse the exported `kubeconfig` file across sessions or machines, store it securely and avoid committing it to source control.\n\n**Prerequisites**\n\n- You have access to the OpenShift Container Platform web console or API server endpoint.\n\n**Procedure**\n\n1. Log in to your OpenShift cluster by running the following command:\n\n   ```terminal\n   $ oc login <api_server_url> -u <username> -p <password>\n   ```\n\n   where:\n\n   `<api_server_url>`\n   :   Specifies the full API server URL; for example, `https://api.my-cluster.example.com:6443`.\n\n   `<username>`\n   :   Specifies a valid username; for example, `kubeadmin`.\n\n   `<password>`\n   :   Specifies the password for the specified user; for example, the `kubeadmin` password generated during cluster installation.\n2. Save the cluster configuration to a local file by running the following command:\n\n   ```terminal\n   $ oc config view --raw > kubeconfig\n   ```\n3. Set the `KUBECONFIG` environment variable to point to the exported file by running the following command:\n\n   ```terminal\n   $ export KUBECONFIG=./kubeconfig\n   ```\n4. Use `oc` to interact with your OpenShift cluster by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/openshift_cli/configuring-cli.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +95,78 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cli-configuring-cli" class="group scroll-mt-20">Configuring the OpenShift CLI<a href="#cli-configuring-cli" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can customize your command-line environment after installing the {"{"}{"{"} oc_first {"}"}{"}"}.</p>
+      <p>You can customize your command-line environment after installing the OpenShift CLI (<code>oc</code>).</p>
       <h2 id="cli-enabling-tab-completion" class="group scroll-mt-20">Enabling tab completion<a href="#cli-enabling-tab-completion" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>You can enable tab completion for the Bash or Zsh shells.</p>
-      <p class="/modules/cli-configuring-completion.md"></p>
-      <p class="/modules/cli-configuring-completion-zsh.md"></p>
-      <p class="/modules/cli-configuring-kubeconfig-using-cli.md"></p>
+      <h3 id="cli-enabling-tab-completion_cli-configuring-cli" class="group scroll-mt-20">Enabling tab completion for Bash<a href="#cli-enabling-tab-completion_cli-configuring-cli" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">After you install the OpenShift CLI (<code>oc</code>), you can enable tab completion to automatically complete <code>oc</code> commands or suggest options when you press Tab. The following procedure enables tab completion for the Bash shell.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have the OpenShift CLI (<code>oc</code>) installed.</li>
+      <li>You must have the package <code>bash-completion</code> installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Save the Bash completion code to a file:
+      <CodeBlock code={"$ oc completion bash > oc_bash_completion"} lang="terminal" />
+      </li>
+      <li>
+      Copy the file to <code>/etc/bash_completion.d/</code>:
+      <CodeBlock code={"$ sudo cp oc_bash_completion /etc/bash_completion.d/"} lang="terminal" />
+      <p>You can also save the file to a local directory and source it from your <code>.bashrc</code> file instead. Tab completion is enabled when you open a new terminal.</p>
+      </li>
+      </ol>
+      <h3 id="cli-enabling-tab-completion-zsh_cli-configuring-cli" class="group scroll-mt-20">Enabling tab completion for Zsh<a href="#cli-enabling-tab-completion-zsh_cli-configuring-cli" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">After you install the OpenShift CLI (<code>oc</code>), you can enable tab completion to automatically complete <code>oc</code> commands or suggest options when you press Tab. The following procedure enables tab completion for the Zsh shell.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have the OpenShift CLI (<code>oc</code>) installed.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To add tab completion for <code>oc</code> to your <code>.zshrc</code> file, run the following command:
+      <CodeBlock code={"$ cat >>~/.zshrc<<EOF\nautoload -Uz compinit\ncompinit\nif [ $commands[oc] ]; then\n  source <(oc completion zsh)\n  compdef _oc oc\nfi\nEOF"} lang="terminal" />
+      <p>Tab completion is enabled when you open a new terminal.</p>
+      </li>
+      </ul>
+      <h2 id="cli-accessing-kubeconfig-using-cli_cli-configuring-cli" class="group scroll-mt-20">Accessing kubeconfig by using the oc CLI<a href="#cli-accessing-kubeconfig-using-cli_cli-configuring-cli" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the <code>oc</code> CLI to log in to your OpenShift cluster and retrieve a kubeconfig file for accessing the cluster from the command line.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If you plan to reuse the exported <code>kubeconfig</code> file across sessions or machines, store it securely and avoid committing it to source control.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to the OpenShift Container Platform web console or API server endpoint.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Log in to your OpenShift cluster by running the following command:
+      <CodeBlock code={"$ oc login <api_server_url> -u <username> -p <password>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;api_server_url&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the full API server URL; for example, <code>https://api.my-cluster.example.com:6443</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;username&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a valid username; for example, <code>kubeadmin</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;password&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the password for the specified user; for example, the <code>kubeadmin</code> password generated during cluster installation.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Save the cluster configuration to a local file by running the following command:
+      <CodeBlock code={"$ oc config view --raw > kubeconfig"} lang="terminal" />
+      </li>
+      <li>
+      Set the <code>KUBECONFIG</code> environment variable to point to the exported file by running the following command:
+      <CodeBlock code={"$ export KUBECONFIG=./kubeconfig"} lang="terminal" />
+      </li>
+      <li>
+      Use <code>oc</code> to interact with your OpenShift cluster by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

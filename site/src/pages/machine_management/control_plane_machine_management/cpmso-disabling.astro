@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"cpmso-disabling","text":"Disabling the control plane machine set"}];
+const headings = [{"depth":1,"slug":"cpmso-disabling","text":"Disabling the control plane machine set"},{"depth":2,"slug":"cpmso-deleting_cpmso-disabling","text":"Deleting the control plane machine set"},{"depth":2,"slug":"cpmso-checking-status_cpmso-disabling","text":"Checking the control plane machine set custom resource state"},{"depth":2,"slug":"cpmso-reenabling_cpmso-disabling","text":"Re-enabling the control plane machine set"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-disabling";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["machine_management","machine_management/control_plane_mac
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling the control plane machine set {#cpmso-disabling}\n\nDisable the control plane machine set if you need to manually manage control plane machines or troubleshoot Operator behavior.\n\nThe `.spec.state` field in an activated `ControlPlaneMachineSet` custom resource (CR) cannot be changed from `Active` to `Inactive`. To disable the control plane machine set, you must delete the CR so that it is removed from the cluster.\n\nWhen you delete the CR, the Control Plane Machine Set Operator performs cleanup operations and disables the control plane machine set. The Operator then removes the CR from the cluster and creates an inactive control plane machine set with default settings.\n\n**Additional resources**\n\n- [Activating the control plane machine set custom resource](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-disabling.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling the control plane machine set {#cpmso-disabling}\n\nDisable the control plane machine set if you need to manually manage control plane machines or troubleshoot Operator behavior.\n\nThe `.spec.state` field in an activated `ControlPlaneMachineSet` custom resource (CR) cannot be changed from `Active` to `Inactive`. To disable the control plane machine set, you must delete the CR so that it is removed from the cluster.\n\nWhen you delete the CR, the Control Plane Machine Set Operator performs cleanup operations and disables the control plane machine set. The Operator then removes the CR from the cluster and creates an inactive control plane machine set with default settings.\n\n## Deleting the control plane machine set {#cpmso-deleting_cpmso-disabling}\n\nTo stop managing control plane machines with the control plane machine set on your cluster, you must delete the `ControlPlaneMachineSet` custom resource (CR).\n\n**Procedure**\n\n- Delete the control plane machine set CR by running the following command:\n\n  ```terminal\n  $ oc delete controlplanemachineset.machine.openshift.io cluster \\\n    -n openshift-machine-api\n  ```\n\n**Verification**\n\n- Check the control plane machine set custom resource state. A result of `Inactive` indicates that the removal and replacement process is successful. A `ControlPlaneMachineSet` CR exists but is not activated.\n\n## Checking the control plane machine set custom resource state {#cpmso-checking-status_cpmso-disabling}\n\nCheck the state of the control plane machine set custom resource to determine if it is active, inactive, or missing before making configuration changes.\n\n**Procedure**\n\n- Determine the state of the CR by running the following command:\n\n  ```terminal\n  $ oc get controlplanemachineset.machine.openshift.io cluster \\\n    --namespace openshift-machine-api\n  ```\n\n  - A result of `Active` indicates that the `ControlPlaneMachineSet` CR exists and is activated. No administrator action is required.\n  - A result of `Inactive` indicates that a `ControlPlaneMachineSet` CR exists but is not activated.\n  - A result of `NotFound` indicates that there is no existing `ControlPlaneMachineSet` CR.\n\n## Re-enabling the control plane machine set {#cpmso-reenabling_cpmso-disabling}\n\nRestore automated control plane management after previously disabling the control plane machine set.\n\nTo re-enable the control plane machine set, you must ensure that the configuration in the CR is correct for your cluster and activate it.\n\nFor more information, see \"Activating the control plane machine set custom resource\".\n\n**Additional resources**\n\n- [Activating the control plane machine set custom resource](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-disabling.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +92,38 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cpmso-disabling" class="group scroll-mt-20">Disabling the control plane machine set<a href="#cpmso-disabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Disable the control plane machine set if you need to manually manage control plane machines or troubleshoot Operator behavior.</p>
       <p>The <code>.spec.state</code> field in an activated <code>ControlPlaneMachineSet</code> custom resource (CR) cannot be changed from <code>Active</code> to <code>Inactive</code>. To disable the control plane machine set, you must delete the CR so that it is removed from the cluster.</p>
       <p>When you delete the CR, the Control Plane Machine Set Operator performs cleanup operations and disables the control plane machine set. The Operator then removes the CR from the cluster and creates an inactive control plane machine set with default settings.</p>
-      <p class="/modules/cpmso-deleting.md"></p>
-      <p class="/modules/cpmso-checking-status.md"></p>
-      <p class="/modules/cpmso-reenabling.md"></p>
+      <h2 id="cpmso-deleting_cpmso-disabling" class="group scroll-mt-20">Deleting the control plane machine set<a href="#cpmso-deleting_cpmso-disabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To stop managing control plane machines with the control plane machine set on your cluster, you must delete the <code>ControlPlaneMachineSet</code> custom resource (CR).</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Delete the control plane machine set CR by running the following command:
+      <CodeBlock code={"$ oc delete controlplanemachineset.machine.openshift.io cluster \\\n  -n openshift-machine-api"} lang="terminal" />
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ul><li>Check the control plane machine set custom resource state. A result of <code>Inactive</code> indicates that the removal and replacement process is successful. A <code>ControlPlaneMachineSet</code> CR exists but is not activated.</li></ul>
+      <h2 id="cpmso-checking-status_cpmso-disabling" class="group scroll-mt-20">Checking the control plane machine set custom resource state<a href="#cpmso-checking-status_cpmso-disabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Check the state of the control plane machine set custom resource to determine if it is active, inactive, or missing before making configuration changes.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Determine the state of the CR by running the following command:
+      <CodeBlock code={"$ oc get controlplanemachineset.machine.openshift.io cluster \\\n  --namespace openshift-machine-api"} lang="terminal" />
+      <ul>
+      <li>A result of <code>Active</code> indicates that the <code>ControlPlaneMachineSet</code> CR exists and is activated. No administrator action is required.</li>
+      <li>A result of <code>Inactive</code> indicates that a <code>ControlPlaneMachineSet</code> CR exists but is not activated.</li>
+      <li>A result of <code>NotFound</code> indicates that there is no existing <code>ControlPlaneMachineSet</code> CR.</li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="cpmso-reenabling_cpmso-disabling" class="group scroll-mt-20">Re-enabling the control plane machine set<a href="#cpmso-reenabling_cpmso-disabling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Restore automated control plane management after previously disabling the control plane machine set.</p>
+      <p>To re-enable the control plane machine set, you must ensure that the configuration in the CR is correct for your cluster and activate it.</p>
+      <p>For more information, see "Activating the control plane machine set custom resource".</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-activating_cpmso-getting-started">Activating the control plane machine set custom resource</a></li></ul>
     </article>

@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"multitenant-network-policy","text":"Configuring multitenant isolation with network policy"},{"depth":2,"slug":"multitenant-network-policy-additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"multitenant-network-policy","text":"Configuring multitenant isolation with network policy"},{"depth":2,"slug":"nw-networkpolicy-multitenant-isolation_multitenant-network-policy","text":"Configuring multitenant isolation by using network policy"},{"depth":2,"slug":"multitenant-network-policy-additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_security/network_policy/multitenant-network-policy";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["networking","networking/network_security","networking/net
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring multitenant isolation with network policy {#multitenant-network-policy}\n\nYou can configure network policies to isolate network traffic between projects in a multitenant cluster. This isolation helps prevent unauthorized communication between workloads in different namespaces.\n\nAs a cluster administrator, you can configure your network policies to provide multitenant network isolation.\n\n> [!NOTE]\n> Configuring network policies as described in this section provides network isolation similar to the multitenant mode of OpenShift SDN in previous versions of OpenShift Container Platform.\n\n## Additional resources {#multitenant-network-policy-additional-resources}\n\n- [Defining a default network policy for a project](/openshift-docs-markdown/networking/network_security/network_policy/default-network-policy#default-network-policy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/network_policy/multitenant-network-policy.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring multitenant isolation with network policy {#multitenant-network-policy}\n\nYou can configure network policies to isolate network traffic between projects in a multitenant cluster. This isolation helps prevent unauthorized communication between workloads in different namespaces.\n\nAs a cluster administrator, you can configure your network policies to provide multitenant network isolation.\n\n> [!NOTE]\n> Configuring network policies as described in this section provides network isolation similar to the multitenant mode of OpenShift SDN in previous versions of OpenShift Container Platform.\n\n## Configuring multitenant isolation by using network policy {#nw-networkpolicy-multitenant-isolation_multitenant-network-policy}\n\nYou can configure network policies to isolate workloads in a project from pods and services in other namespaces. This isolation helps control network traffic between projects and improves multitenant security in your cluster.\n\n**Prerequisites**\n\n- Your cluster uses a network plugin that supports `NetworkPolicy` objects, such as the OVN-Kubernetes network plugin, with `mode: NetworkPolicy` set.\n- You installed the OpenShift CLI (`oc`).\n- You are logged in to the cluster with a user with `admin` privileges.\n\n**Procedure**\n\n1. Create the following `NetworkPolicy` objects:\n\n   1. A policy named `allow-from-openshift-ingress`.\n\n      ```terminal\n      $ cat << EOF| oc create -f -\n      apiVersion: networking.k8s.io/v1\n      kind: NetworkPolicy\n      metadata:\n        name: allow-from-openshift-ingress\n      spec:\n        ingress:\n        - from:\n          - namespaceSelector:\n              matchLabels:\n                policy-group.network.openshift.io/ingress: \"\"\n        podSelector: {}\n        policyTypes:\n        - Ingress\n      EOF\n      ```\n\n      > [!NOTE]\n      > `policy-group.network.openshift.io/ingress: \"\"` is the preferred namespace selector label for OVN-Kubernetes.\n   2. A policy named `allow-from-openshift-monitoring`:\n\n      ```terminal\n      $ cat << EOF| oc create -f -\n      apiVersion: networking.k8s.io/v1\n      kind: NetworkPolicy\n      metadata:\n        name: allow-from-openshift-monitoring\n      spec:\n        ingress:\n        - from:\n          - namespaceSelector:\n              matchLabels:\n                network.openshift.io/policy-group: monitoring\n        podSelector: {}\n        policyTypes:\n        - Ingress\n      EOF\n      ```\n   3. A policy named `allow-same-namespace`:\n\n      ```terminal\n      $ cat << EOF| oc create -f -\n      kind: NetworkPolicy\n      apiVersion: networking.k8s.io/v1\n      metadata:\n        name: allow-same-namespace\n      spec:\n        podSelector:\n        ingress:\n        - from:\n          - podSelector: {}\n      EOF\n      ```\n   4. A policy named `allow-from-kube-apiserver-operator`:\n\n      ```terminal\n      $ cat << EOF| oc create -f -\n      apiVersion: networking.k8s.io/v1\n      kind: NetworkPolicy\n      metadata:\n        name: allow-from-kube-apiserver-operator\n      spec:\n        ingress:\n        - from:\n          - namespaceSelector:\n              matchLabels:\n                kubernetes.io/metadata.name: openshift-kube-apiserver-operator\n            podSelector:\n              matchLabels:\n                app: kube-apiserver-operator\n        policyTypes:\n        - Ingress\n      EOF\n      ```\n\n      For more details, see [New `kube-apiserver-operator` webhook controller validating health of webhook](https://access.redhat.com/solutions/6964520).\n2. Optional: To confirm that the network policies exist in your current project, enter the following command:\n\n   ```terminal\n   $ oc describe networkpolicy\n   ```\n\n   ```text {title=\"Example output\"}\n   Name:         allow-from-openshift-ingress\n   Namespace:    example1\n   Created on:   2020-06-09 00:28:17 -0400 EDT\n   Labels:       <none>\n   Annotations:  <none>\n   Spec:\n     PodSelector:     <none> (Allowing the specific traffic to all pods in this namespace)\n     Allowing ingress traffic:\n       To Port: <any> (traffic allowed to all ports)\n       From:\n         NamespaceSelector: policy-group.network.openshift.io/ingress:\n     Not affecting egress traffic\n     Policy Types: Ingress\n\n   Name:         allow-from-openshift-monitoring\n   Namespace:    example1\n   Created on:   2020-06-09 00:29:57 -0400 EDT\n   Labels:       <none>\n   Annotations:  <none>\n   Spec:\n     PodSelector:     <none> (Allowing the specific traffic to all pods in this namespace)\n     Allowing ingress traffic:\n       To Port: <any> (traffic allowed to all ports)\n       From:\n         NamespaceSelector: network.openshift.io/policy-group: monitoring\n     Not affecting egress traffic\n     Policy Types: Ingress\n   ```\n\n## Additional resources {#multitenant-network-policy-additional-resources}\n\n- [Defining a default network policy for a project](/openshift-docs-markdown/networking/network_security/network_policy/default-network-policy#default-network-policy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/network_policy/multitenant-network-policy.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="multitenant-network-policy" class="group scroll-mt-20">Configuring multitenant isolation with network policy<a href="#multitenant-network-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure network policies to isolate network traffic between projects in a multitenant cluster. This isolation helps prevent unauthorized communication between workloads in different namespaces.</p>
       <p>As a cluster administrator, you can configure your network policies to provide multitenant network isolation.</p>
       <Alert variant="note" class="my-4">
@@ -103,7 +103,50 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Configuring network policies as described in this section provides network isolation similar to the multitenant mode of OpenShift SDN in previous versions of OpenShift Container Platform.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/nw-networkpolicy-multitenant-isolation.md"></p>
+      <h2 id="nw-networkpolicy-multitenant-isolation_multitenant-network-policy" class="group scroll-mt-20">Configuring multitenant isolation by using network policy<a href="#nw-networkpolicy-multitenant-isolation_multitenant-network-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure network policies to isolate workloads in a project from pods and services in other namespaces. This isolation helps control network traffic between projects and improves multitenant security in your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Your cluster uses a network plugin that supports <code>NetworkPolicy</code> objects, such as the OVN-Kubernetes network plugin, with <code>mode: NetworkPolicy</code> set.</li>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You are logged in to the cluster with a user with <code>admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the following <code>NetworkPolicy</code> objects:
+      <ol>
+      <li>
+      A policy named <code>allow-from-openshift-ingress</code>.
+      <CodeBlock code={"$ cat << EOF| oc create -f -\napiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata:\n  name: allow-from-openshift-ingress\nspec:\n  ingress:\n  - from:\n    - namespaceSelector:\n        matchLabels:\n          policy-group.network.openshift.io/ingress: \"\"\n  podSelector: {}\n  policyTypes:\n  - Ingress\nEOF"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p><code>policy-group.network.openshift.io/ingress: ""</code> is the preferred namespace selector label for OVN-Kubernetes.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      A policy named <code>allow-from-openshift-monitoring</code>:
+      <CodeBlock code={"$ cat << EOF| oc create -f -\napiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata:\n  name: allow-from-openshift-monitoring\nspec:\n  ingress:\n  - from:\n    - namespaceSelector:\n        matchLabels:\n          network.openshift.io/policy-group: monitoring\n  podSelector: {}\n  policyTypes:\n  - Ingress\nEOF"} lang="terminal" />
+      </li>
+      <li>
+      A policy named <code>allow-same-namespace</code>:
+      <CodeBlock code={"$ cat << EOF| oc create -f -\nkind: NetworkPolicy\napiVersion: networking.k8s.io/v1\nmetadata:\n  name: allow-same-namespace\nspec:\n  podSelector:\n  ingress:\n  - from:\n    - podSelector: {}\nEOF"} lang="terminal" />
+      </li>
+      <li>
+      A policy named <code>allow-from-kube-apiserver-operator</code>:
+      <CodeBlock code={"$ cat << EOF| oc create -f -\napiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata:\n  name: allow-from-kube-apiserver-operator\nspec:\n  ingress:\n  - from:\n    - namespaceSelector:\n        matchLabels:\n          kubernetes.io/metadata.name: openshift-kube-apiserver-operator\n      podSelector:\n        matchLabels:\n          app: kube-apiserver-operator\n  policyTypes:\n  - Ingress\nEOF"} lang="terminal" />
+      <p>For more details, see <a href="https://access.redhat.com/solutions/6964520">New <code>kube-apiserver-operator</code> webhook controller validating health of webhook</a>.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Optional: To confirm that the network policies exist in your current project, enter the following command:
+      <CodeBlock code={"$ oc describe networkpolicy"} lang="terminal" />
+      <CodeBlock code={"Name:         allow-from-openshift-ingress\nNamespace:    example1\nCreated on:   2020-06-09 00:28:17 -0400 EDT\nLabels:       <none>\nAnnotations:  <none>\nSpec:\n  PodSelector:     <none> (Allowing the specific traffic to all pods in this namespace)\n  Allowing ingress traffic:\n    To Port: <any> (traffic allowed to all ports)\n    From:\n      NamespaceSelector: policy-group.network.openshift.io/ingress:\n  Not affecting egress traffic\n  Policy Types: Ingress\n\n\nName:         allow-from-openshift-monitoring\nNamespace:    example1\nCreated on:   2020-06-09 00:29:57 -0400 EDT\nLabels:       <none>\nAnnotations:  <none>\nSpec:\n  PodSelector:     <none> (Allowing the specific traffic to all pods in this namespace)\n  Allowing ingress traffic:\n    To Port: <any> (traffic allowed to all ports)\n    From:\n      NamespaceSelector: network.openshift.io/policy-group: monitoring\n  Not affecting egress traffic\n  Policy Types: Ingress"} lang="text" title="Example output" />
+      </li>
+      </ol>
       <h2 id="multitenant-network-policy-additional-resources" class="group scroll-mt-20">Additional resources<a href="#multitenant-network-policy-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/networking/network_security/network_policy/default-network-policy#default-network-policy">Defining a default network policy for a project</a></li></ul>
     </article>

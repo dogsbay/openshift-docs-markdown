@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-destroy-aws","text":"Destroying a hosted cluster on {{ aws_short }}"}];
+const headings = [{"depth":1,"slug":"hcp-destroy-aws","text":"Destroying a hosted cluster on AWS"},{"depth":2,"slug":"hcp-destroy-aws-cli_hcp-destroy-aws","text":"Destroying a hosted cluster on AWS by using the CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-destroy
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Destroying a hosted cluster on {{ aws_short }} {#hcp-destroy-aws}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-aws.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Destroying a hosted cluster on AWS {#hcp-destroy-aws}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n\n## Destroying a hosted cluster on AWS by using the CLI {#hcp-destroy-aws-cli_hcp-destroy-aws}\n\nTo delete a hosted cluster and its managed cluster resource from hosted control planes on Amazon Web Services (AWS), use the command-line interface (CLI).\n\n**Procedure**\n\n1. Delete the managed cluster resource on multicluster engine Operator by running the following command:\n\n   ```terminal\n   $ oc delete managedcluster <hosted_cluster_name>\n   ```\n\n   Replace `<hosted_cluster_name>` with the name of your cluster.\n2. Delete the hosted cluster and its backend resources by running the following command:\n\n   ```terminal\n   $ hcp destroy cluster aws  \\\n     --name <hosted_cluster_name> \\\n     --infra-id <infra_id> \\\n     --role-arn <arn_role> \\\n     --sts-creds <path_to_sts_credential_file> \\\n     --base-domain <base_domain>\n   ```\n\n   where:\n\n   - `<hosted_cluster_name>` specifies the name of your hosted cluster, for example, `my-hosted-cluster`.\n   - `<infra_id>` specifies the infrastructure name for your hosted cluster.\n   - `<arn_role>` specifies the Amazon Resource Name (ARN), for example, `arn:aws:iam::820196288204:role/myrole`.\n   - `<path_to_sts_credential_file>` specifies the path to your AWS Security Token Service (STS) credentials file, for example, `/home/user/sts-creds/sts-creds.json`.\n   - `<base_domain>` specifies your base domain, for example, `example.com`.\n\n     > [!IMPORTANT]\n     > If your session token for AWS Security Token Service (STS) is expired, retrieve the STS credentials in a JSON file named `sts-creds.json` by running the following command:\n     >\n     > ```terminal\n     > $ aws sts get-session-token --output json > sts-creds.json\n     > ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-aws.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +94,39 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-destroy-aws" class="group scroll-mt-20">Destroying a hosted cluster on {"{"}{"{"} aws_short {"}"}{"}"}<a href="#hcp-destroy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <h1 id="hcp-destroy-aws" class="group scroll-mt-20">Destroying a hosted cluster on AWS<a href="#hcp-destroy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.</p>
-      <p class="/modules/hcp-destroy-aws-cli.md"></p>
+      <h2 id="hcp-destroy-aws-cli_hcp-destroy-aws" class="group scroll-mt-20">Destroying a hosted cluster on AWS by using the CLI<a href="#hcp-destroy-aws-cli_hcp-destroy-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To delete a hosted cluster and its managed cluster resource from hosted control planes on Amazon Web Services (AWS), use the command-line interface (CLI).</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Delete the managed cluster resource on multicluster engine Operator by running the following command:
+      <CodeBlock code={"$ oc delete managedcluster <hosted_cluster_name>"} lang="terminal" />
+      <p>Replace <code>&lt;hosted_cluster_name&gt;</code> with the name of your cluster.</p>
+      </li>
+      <li>
+      Delete the hosted cluster and its backend resources by running the following command:
+      <CodeBlock code={"$ hcp destroy cluster aws  \\\n  --name <hosted_cluster_name> \\\n  --infra-id <infra_id> \\\n  --role-arn <arn_role> \\\n  --sts-creds <path_to_sts_credential_file> \\\n  --base-domain <base_domain>"} lang="terminal" />
+      <p>where:</p>
+      <ul>
+      <li><code>&lt;hosted_cluster_name&gt;</code> specifies the name of your hosted cluster, for example, <code>my-hosted-cluster</code>.</li>
+      <li><code>&lt;infra_id&gt;</code> specifies the infrastructure name for your hosted cluster.</li>
+      <li><code>&lt;arn_role&gt;</code> specifies the Amazon Resource Name (ARN), for example, <code>arn:aws:iam::820196288204:role/myrole</code>.</li>
+      <li><code>&lt;path_to_sts_credential_file&gt;</code> specifies the path to your AWS Security Token Service (STS) credentials file, for example, <code>/home/user/sts-creds/sts-creds.json</code>.</li>
+      <li>
+      <code>&lt;base_domain&gt;</code> specifies your base domain, for example, <code>example.com</code>.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If your session token for AWS Security Token Service (STS) is expired, retrieve the STS credentials in a JSON file named <code>sts-creds.json</code> by running the following command:</p>
+          <CodeBlock code={"$ aws sts get-session-token --output json > sts-creds.json"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

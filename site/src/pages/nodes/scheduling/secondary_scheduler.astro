@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"nodes-secondary-scheduler-about","text":"Secondary scheduler overview"}];
+const headings = [{"depth":1,"slug":"nodes-secondary-scheduler-about","text":"Secondary scheduler overview"},{"depth":2,"slug":"nodes-secondary-scheduler-about_nodes-secondary-scheduler-about","text":"About the Secondary Scheduler Operator"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/scheduling/secondary_scheduler";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Secondary scheduler overview";
-const description = "You can install the {{ secondary_scheduler_operator }} to run a custom secondary scheduler alongside the default scheduler to schedule pods." || undefined;
+const description = "You can install the Secondary Scheduler Operator to run a custom secondary scheduler alongside the default scheduler to schedule pods." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +42,7 @@ const pageCategory = ["nodes","nodes/scheduling"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Secondary scheduler overview {#nodes-secondary-scheduler-about}\n\nYou can install the {{ secondary_scheduler_operator }} to run a custom secondary scheduler alongside the default scheduler to schedule pods.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/secondary_scheduler.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Secondary scheduler overview {#nodes-secondary-scheduler-about}\n\nYou can install the Secondary Scheduler Operator to run a custom secondary scheduler alongside the default scheduler to schedule pods.\n\n## About the Secondary Scheduler Operator {#nodes-secondary-scheduler-about_nodes-secondary-scheduler-about}\n\nThe Secondary Scheduler Operator for Red Hat OpenShift provides a way to deploy a custom secondary scheduler in OpenShift Container Platform. The secondary scheduler runs alongside the default scheduler to schedule pods. Pod configurations can specify which scheduler to use.\n\nThe custom scheduler must have the `/bin/kube-scheduler` binary and be based on the upstream Kubernetes scheduling framework.\n\n> [!IMPORTANT]\n> You can use the Secondary Scheduler Operator to deploy a custom secondary scheduler in OpenShift Container Platform, but Red Hat does not directly support the functionality of the custom secondary scheduler.\n\nThe Secondary Scheduler Operator creates the default roles and role bindings required by the secondary scheduler. You can specify which scheduling plugins to enable or disable by configuring the `KubeSchedulerConfiguration` resource for the secondary scheduler.\n\nYou can optionally configure high availability for the secondary scheduler to ensure continuous pod scheduling during scheduler pod failures or maintenance. When high availability is enabled, the Operator deploys multiple secondary scheduler replicas distributed across nodes, eliminating the scheduler as a single point of failure in production environments.\n\nThe Secondary Scheduler Operator publishes secondary scheduler metrics to Prometheus by default, enabling monitoring and observability of scheduler performance.\n\n- [Kubernetes scheduling framework](https://kubernetes.io/docs/concepts/scheduling-eviction/scheduling-framework/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/secondary_scheduler.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +94,23 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-secondary-scheduler-about" class="group scroll-mt-20">Secondary scheduler overview<a href="#nodes-secondary-scheduler-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can install the {"{"}{"{"} secondary_scheduler_operator {"}"}{"}"} to run a custom secondary scheduler alongside the default scheduler to schedule pods.</p>
-      <p class="/modules/nodes-secondary-scheduler-about.md"></p>
+      <p>You can install the Secondary Scheduler Operator to run a custom secondary scheduler alongside the default scheduler to schedule pods.</p>
+      <h2 id="nodes-secondary-scheduler-about_nodes-secondary-scheduler-about" class="group scroll-mt-20">About the Secondary Scheduler Operator<a href="#nodes-secondary-scheduler-about_nodes-secondary-scheduler-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Secondary Scheduler Operator for Red Hat OpenShift provides a way to deploy a custom secondary scheduler in OpenShift Container Platform. The secondary scheduler runs alongside the default scheduler to schedule pods. Pod configurations can specify which scheduler to use.</p>
+      <p>The custom scheduler must have the <code>/bin/kube-scheduler</code> binary and be based on the upstream Kubernetes scheduling framework.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You can use the Secondary Scheduler Operator to deploy a custom secondary scheduler in OpenShift Container Platform, but Red Hat does not directly support the functionality of the custom secondary scheduler.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The Secondary Scheduler Operator creates the default roles and role bindings required by the secondary scheduler. You can specify which scheduling plugins to enable or disable by configuring the <code>KubeSchedulerConfiguration</code> resource for the secondary scheduler.</p>
+      <p>You can optionally configure high availability for the secondary scheduler to ensure continuous pod scheduling during scheduler pod failures or maintenance. When high availability is enabled, the Operator deploys multiple secondary scheduler replicas distributed across nodes, eliminating the scheduler as a single point of failure in production environments.</p>
+      <p>The Secondary Scheduler Operator publishes secondary scheduler metrics to Prometheus by default, enabling monitoring and observability of scheduler performance.</p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://kubernetes.io/docs/concepts/scheduling-eviction/scheduling-framework/">Kubernetes scheduling framework</a></li></ul>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

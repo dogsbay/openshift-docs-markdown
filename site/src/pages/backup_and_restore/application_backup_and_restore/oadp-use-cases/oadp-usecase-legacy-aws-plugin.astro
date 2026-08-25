@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"oadp-using-legacy-aws-plugin","text":"Using the legacy-aws Velero plugin"}];
+const headings = [{"depth":1,"slug":"oadp-using-legacy-aws-plugin","text":"Using the legacy-aws Velero plugin"},{"depth":2,"slug":"oadp-using-legacy-aws-plugin_oadp-using-legacy-aws-plugin","text":"Using the legacy-aws Velero plugin in the DataProtectionApplication CR"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-use-cases/oadp-usecase-legacy-aws-plugin";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Using the legacy-aws Velero plugin";
-const description = "If you are using an {{ aws_short }} S3-compatible backup storage location, you might get a SignatureDoesNotMatch error while backing up your application…" || undefined;
+const description = "If you are using an AWS S3-compatible backup storage location, you might get a SignatureDoesNotMatch error while backing up your application. This error…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the legacy-aws Velero plugin {#oadp-using-legacy-aws-plugin}\n\nIf you are using an {{ aws_short }} S3-compatible backup storage location, you might get a `SignatureDoesNotMatch` error while backing up your application. This error occurs because some backup storage locations still use the older versions of the S3 APIs, which are incompatible with the newer AWS SDK for Go V2. To resolve this issue, you can use the `legacy-aws` Velero plugin in the `DataProtectionApplication` custom resource (CR). The `legacy-aws` Velero plugin uses the older AWS SDK for Go V1, which is compatible with the legacy S3 APIs, ensuring successful backups.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-use-cases/oadp-usecase-legacy-aws-plugin.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the legacy-aws Velero plugin {#oadp-using-legacy-aws-plugin}\n\nIf you are using an AWS S3-compatible backup storage location, you might get a `SignatureDoesNotMatch` error while backing up your application. This error occurs because some backup storage locations still use the older versions of the S3 APIs, which are incompatible with the newer AWS SDK for Go V2. To resolve this issue, you can use the `legacy-aws` Velero plugin in the `DataProtectionApplication` custom resource (CR). The `legacy-aws` Velero plugin uses the older AWS SDK for Go V1, which is compatible with the legacy S3 APIs, ensuring successful backups.\n\n## Using the legacy-aws Velero plugin in the DataProtectionApplication CR {#oadp-using-legacy-aws-plugin_oadp-using-legacy-aws-plugin}\n\nIn the following use case, you configure the `DataProtectionApplication` CR with the `legacy-aws` Velero plugin and then back up an application.\n\n> [!NOTE]\n> Depending on the backup storage location you choose, you can use either the `legacy-aws` or the `aws` plugin in your `DataProtectionApplication` CR. If you use both of the plugins in the `DataProtectionApplication` CR, the following error occurs: `aws and legacy-aws can not be both specified in DPA spec.configuration.velero.defaultPlugins`.\n\n**Prerequisites**\n\n- You have installed the OADP Operator.\n- You have configured an AWS S3-compatible object storage as a backup location.\n- You have an application with a database running in a separate namespace.\n\n**Procedure**\n\n1. Configure the `DataProtectionApplication` CR to use the `legacy-aws` Velero plugin as shown in the following example:\n\n   ```yaml\n   apiVersion: oadp.openshift.io/v1alpha1\n   kind: DataProtectionApplication\n   metadata:\n     name: oadp-backup\n     namespace: openshift-adp\n   spec:\n     configuration:\n       nodeAgent:\n         enable: true\n         uploaderType: kopia\n       velero:\n         defaultPlugins:\n           - legacy-aws\n           - openshift\n           - csi\n         defaultSnapshotMoveData: true\n     backupLocations:\n       - velero:\n           config:\n             profile: \"default\"\n             region: noobaa\n             s3Url: https://s3.openshift-storage.svc\n             s3ForcePathStyle: \"true\"\n             insecureSkipTLSVerify: \"true\"\n           provider: aws\n           default: true\n           credential:\n             key: cloud\n             name:  cloud-credentials\n           objectStorage:\n             bucket: <bucket_name>\n             prefix: oadp\n   ```\n\n   where:\n\n   `legacy-aws`\n   :   Specifies to use the `legacy-aws` plugin.\n\n   `<bucket_name>`\n   :   Specifies the bucket name.\n2. Create the `DataProtectionApplication` CR by running the following command:\n\n   ```terminal\n   $ oc apply -f <dpa_filename>\n   ```\n3. Verify that the `DataProtectionApplication` CR is created successfully by running the following command. In the example output, you can see the `status` object has the `type` field set to `Reconciled` and the `status` field set to `\"True\"`. That status indicates that the `DataProtectionApplication` CR is successfully created.\n\n   ```terminal\n   $ oc get dpa -o yaml\n   ```\n\n   ```yaml {title=\"Example output\"}\n   apiVersion: v1\n   items:\n   - apiVersion: oadp.openshift.io/v1alpha1\n     kind: DataProtectionApplication\n     metadata:\n       namespace: openshift-adp\n       #...#\n     spec:\n       backupLocations:\n       - velero:\n           config:\n             #...#\n     status:\n       conditions:\n       - lastTransitionTime: \"20....9:54:02Z\"\n         message: Reconcile complete\n         reason: Complete\n         status: \"True\"\n         type: Reconciled\n   kind: List\n   metadata:\n     resourceVersion: \"\"\n   ```\n4. Verify that the backup storage location (BSL) is available by running the following command:\n\n   ```terminal\n   $ oc get backupstoragelocations.velero.io -n openshift-adp\n   ```\n\n   You should see an output similar to the following example:\n\n   ```terminal\n   NAME           PHASE       LAST VALIDATED   AGE   DEFAULT\n   dpa-sample-1   Available   3s               15s   true\n   ```\n5. Configure a `Backup` CR as shown in the following example:\n\n   ```yaml\n   apiVersion: velero.io/v1\n   kind: Backup\n   metadata:\n     name: test-backup\n     namespace: openshift-adp\n   spec:\n     includedNamespaces:\n     - <application_namespace>\n   ```\n\n   where:\n\n   `<application_namespace>`\n   :   Specifies the namespace for the application to back up.\n6. Create the `Backup` CR by running the following command:\n\n   ```terminal\n   $ oc apply -f <backup_cr_filename>\n   ```\n\n**Verification**\n\n- Verify that the backup object is in the `Completed` phase by running the following command. For more details, see the example output.\n\n  ```terminal\n  $ oc describe backups.velero.io test-backup -n openshift-adp\n  ```\n\n  ```terminal {title=\"Example output\"}\n  Name:         test-backup\n  Namespace:    openshift-adp\n  # ....#\n  Status:\n    Backup Item Operations Attempted:  1\n    Backup Item Operations Completed:  1\n    Completion Timestamp:              2024-09-25T10:17:01Z\n    Expiration:                        2024-10-25T10:16:31Z\n    Format Version:                    1.1.0\n    Hook Status:\n    Phase:  Completed\n    Progress:\n      Items Backed Up:  34\n      Total Items:      34\n    Start Timestamp:    2024-09-25T10:16:31Z\n    Version:            1\n  Events:               <none>\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-use-cases/oadp-usecase-legacy-aws-plugin.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,71 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-using-legacy-aws-plugin" class="group scroll-mt-20">Using the legacy-aws Velero plugin<a href="#oadp-using-legacy-aws-plugin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>If you are using an {"{"}{"{"} aws_short {"}"}{"}"} S3-compatible backup storage location, you might get a <code>SignatureDoesNotMatch</code> error while backing up your application. This error occurs because some backup storage locations still use the older versions of the S3 APIs, which are incompatible with the newer AWS SDK for Go V2. To resolve this issue, you can use the <code>legacy-aws</code> Velero plugin in the <code>DataProtectionApplication</code> custom resource (CR). The <code>legacy-aws</code> Velero plugin uses the older AWS SDK for Go V1, which is compatible with the legacy S3 APIs, ensuring successful backups.</p>
-      <p class="/modules/oadp-using-legacy-aws-plugin.md"></p>
+      <p>If you are using an AWS S3-compatible backup storage location, you might get a <code>SignatureDoesNotMatch</code> error while backing up your application. This error occurs because some backup storage locations still use the older versions of the S3 APIs, which are incompatible with the newer AWS SDK for Go V2. To resolve this issue, you can use the <code>legacy-aws</code> Velero plugin in the <code>DataProtectionApplication</code> custom resource (CR). The <code>legacy-aws</code> Velero plugin uses the older AWS SDK for Go V1, which is compatible with the legacy S3 APIs, ensuring successful backups.</p>
+      <h2 id="oadp-using-legacy-aws-plugin_oadp-using-legacy-aws-plugin" class="group scroll-mt-20">Using the legacy-aws Velero plugin in the DataProtectionApplication CR<a href="#oadp-using-legacy-aws-plugin_oadp-using-legacy-aws-plugin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In the following use case, you configure the <code>DataProtectionApplication</code> CR with the <code>legacy-aws</code> Velero plugin and then back up an application.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Depending on the backup storage location you choose, you can use either the <code>legacy-aws</code> or the <code>aws</code> plugin in your <code>DataProtectionApplication</code> CR. If you use both of the plugins in the <code>DataProtectionApplication</code> CR, the following error occurs: <code>aws and legacy-aws can not be both specified in DPA spec.configuration.velero.defaultPlugins</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have configured an AWS S3-compatible object storage as a backup location.</li>
+      <li>You have an application with a database running in a separate namespace.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Configure the <code>DataProtectionApplication</code> CR to use the <code>legacy-aws</code> Velero plugin as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: oadp-backup\n  namespace: openshift-adp\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n    velero:\n      defaultPlugins:\n        - legacy-aws\n        - openshift\n        - csi\n      defaultSnapshotMoveData: true\n  backupLocations:\n    - velero:\n        config:\n          profile: \"default\"\n          region: noobaa\n          s3Url: https://s3.openshift-storage.svc\n          s3ForcePathStyle: \"true\"\n          insecureSkipTLSVerify: \"true\"\n        provider: aws\n        default: true\n        credential:\n          key: cloud\n          name:  cloud-credentials\n        objectStorage:\n          bucket: <bucket_name>\n          prefix: oadp"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>legacy-aws</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies to use the <code>legacy-aws</code> plugin.</p></dd>
+      <dt class="font-semibold"><code>&lt;bucket_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the bucket name.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the <code>DataProtectionApplication</code> CR by running the following command:
+      <CodeBlock code={"$ oc apply -f <dpa_filename> "} lang="terminal" />
+      </li>
+      <li>
+      Verify that the <code>DataProtectionApplication</code> CR is created successfully by running the following command. In the example output, you can see the <code>status</code> object has the <code>type</code> field set to <code>Reconciled</code> and the <code>status</code> field set to <code>"True"</code>. That status indicates that the <code>DataProtectionApplication</code> CR is successfully created.
+      <CodeBlock code={"$ oc get dpa -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: v1\nitems:\n- apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n    namespace: openshift-adp\n    #...#\n  spec:\n    backupLocations:\n    - velero:\n        config:\n          #...#\n  status:\n    conditions:\n    - lastTransitionTime: \"20....9:54:02Z\"\n      message: Reconcile complete\n      reason: Complete\n      status: \"True\"\n      type: Reconciled\nkind: List\nmetadata:\n  resourceVersion: \"\""} lang="yaml" title="Example output" />
+      </li>
+      <li>
+      Verify that the backup storage location (BSL) is available by running the following command:
+      <CodeBlock code={"$ oc get backupstoragelocations.velero.io -n openshift-adp"} lang="terminal" />
+      <p>You should see an output similar to the following example:</p>
+      <CodeBlock code={"NAME           PHASE       LAST VALIDATED   AGE   DEFAULT\ndpa-sample-1   Available   3s               15s   true"} lang="terminal" />
+      </li>
+      <li>
+      Configure a <code>Backup</code> CR as shown in the following example:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Backup\nmetadata:\n  name: test-backup\n  namespace: openshift-adp\nspec:\n  includedNamespaces:\n  - <application_namespace>"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;application_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace for the application to back up.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the <code>Backup</code> CR by running the following command:
+      <CodeBlock code={"$ oc apply -f <backup_cr_filename> "} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the backup object is in the <code>Completed</code> phase by running the following command. For more details, see the example output.
+      <CodeBlock code={"$ oc describe backups.velero.io test-backup -n openshift-adp"} lang="terminal" />
+      <CodeBlock code={"Name:         test-backup\nNamespace:    openshift-adp\n# ....#\nStatus:\n  Backup Item Operations Attempted:  1\n  Backup Item Operations Completed:  1\n  Completion Timestamp:              2024-09-25T10:17:01Z\n  Expiration:                        2024-10-25T10:16:31Z\n  Format Version:                    1.1.0\n  Hook Status:\n  Phase:  Completed\n  Progress:\n    Items Backed Up:  34\n    Total Items:      34\n  Start Timestamp:    2024-09-25T10:16:31Z\n  Version:            1\nEvents:               <none>"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

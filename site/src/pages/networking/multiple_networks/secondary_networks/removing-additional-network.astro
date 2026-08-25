@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"remove-additional-network","text":"Removing an additional network"}];
+const headings = [{"depth":1,"slug":"remove-additional-network","text":"Removing an additional network"},{"depth":2,"slug":"nw-multus-delete-network_remove-additional-network","text":"Removing a secondary NetworkAttachmentDefinition custom resource"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/multiple_networks/secondary_networks/removing-additional-network";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/multiple_networks","networking/mu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Removing an additional network {#remove-additional-network}\n\nTo clean up unused network configurations or free up network resources in OpenShift Container Platform, you can remove an additional network attachment. Delete the `NetworkAttachmentDefinition` custom resource to remove the secondary network from your cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/multiple_networks/secondary_networks/removing-additional-network.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Removing an additional network {#remove-additional-network}\n\nTo clean up unused network configurations or free up network resources in OpenShift Container Platform, you can remove an additional network attachment. Delete the `NetworkAttachmentDefinition` custom resource to remove the secondary network from your cluster.\n\n## Removing a secondary NetworkAttachmentDefinition custom resource {#nw-multus-delete-network_remove-additional-network}\n\nTo clean up unused network configurations or free up network resources in OpenShift Container Platform, you can remove a secondary `NetworkAttachmentDefinition` CR. Edit the Cluster Network Operator CR and delete the `NetworkAttachmentDefinition` CR to remove the secondary network from your cluster.\n\nWhen a secondary network is removed from the cluster, it is not removed from any pods that it is attached to.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n- Log in as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Edit the Cluster Network Operator (CNO) in your default text editor by running the following command:\n\n   ```terminal\n   $ oc edit networks.operator.openshift.io cluster\n   ```\n2. Modify the custom resource (CR) by removing the configuration that the CNO created from the `additionalNetworks` collection for the secondary network that you want to remove.\n\n   ```yaml\n   apiVersion: operator.openshift.io/v1\n   kind: Network\n   metadata:\n     name: cluster\n   spec:\n     additionalNetworks: []\n   ```\n\n   where:\n\n   `spec.additionalNetworks`\n   :   Specifies the secondary network attachment definition that you want to remove from the `additionalNetworks` collection. If you are removing the configuration mapping for the only secondary network attachment definition in the `additionalNetworks` collection, you must specify an empty collection.\n3. Remove the `NetworkAttachmentDefinition` CR from the network of your cluster by entering the following command:\n\n   ```terminal\n   $ oc delete net-attach-def <name_of_network_attachment_definition>\n   ```\n\n   Replace `<name_of_network_attachment_definition>` with the name of the `NetworkAttachmentDefinition` CR that you want to remove.\n4. Save your changes and quit the text editor to commit your changes.\n5. Optional: Confirm that the secondary network CR was deleted by running the following command:\n\n   ```terminal\n   $ oc get network-attachment-definition --all-namespaces\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/multiple_networks/secondary_networks/removing-additional-network.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,41 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="remove-additional-network" class="group scroll-mt-20">Removing an additional network<a href="#remove-additional-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To clean up unused network configurations or free up network resources in OpenShift Container Platform, you can remove an additional network attachment. Delete the <code>NetworkAttachmentDefinition</code> custom resource to remove the secondary network from your cluster.</p>
-      <p class="/modules/nw-multus-delete-network.md"></p>
+      <h2 id="nw-multus-delete-network_remove-additional-network" class="group scroll-mt-20">Removing a secondary NetworkAttachmentDefinition custom resource<a href="#nw-multus-delete-network_remove-additional-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To clean up unused network configurations or free up network resources in OpenShift Container Platform, you can remove a secondary <code>NetworkAttachmentDefinition</code> CR. Edit the Cluster Network Operator CR and delete the <code>NetworkAttachmentDefinition</code> CR to remove the secondary network from your cluster.</p>
+      <p>When a secondary network is removed from the cluster, it is not removed from any pods that it is attached to.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Log in as a user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the Cluster Network Operator (CNO) in your default text editor by running the following command:
+      <CodeBlock code={"$ oc edit networks.operator.openshift.io cluster"} lang="terminal" />
+      </li>
+      <li>
+      Modify the custom resource (CR) by removing the configuration that the CNO created from the <code>additionalNetworks</code> collection for the secondary network that you want to remove.
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: Network\nmetadata:\n  name: cluster\nspec:\n  additionalNetworks: []"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.additionalNetworks</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the secondary network attachment definition that you want to remove from the <code>additionalNetworks</code> collection. If you are removing the configuration mapping for the only secondary network attachment definition in the <code>additionalNetworks</code> collection, you must specify an empty collection.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Remove the <code>NetworkAttachmentDefinition</code> CR from the network of your cluster by entering the following command:
+      <CodeBlock code={"$ oc delete net-attach-def <name_of_network_attachment_definition>"} lang="terminal" />
+      <p>Replace <code>&lt;name_of_network_attachment_definition&gt;</code> with the name of the <code>NetworkAttachmentDefinition</code> CR that you want to remove.</p>
+      </li>
+      <li>Save your changes and quit the text editor to commit your changes.</li>
+      <li>
+      Optional: Confirm that the secondary network CR was deleted by running the following command:
+      <CodeBlock code={"$ oc get network-attachment-definition --all-namespaces"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

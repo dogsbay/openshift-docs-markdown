@@ -2,7 +2,7 @@
 // Source: hosted_control_planes/hcp-destroy/hcp-destroy-openstack.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Destroying a hosted control plane on OpenStack\n---\n\n# Destroying a hosted control plane on OpenStack {#hcp-destroy-openstack}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n";
+const body = "---\ntitle: Destroying a hosted control plane on OpenStack\n---\n\n# Destroying a hosted control plane on OpenStack {#hcp-destroy-openstack}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n\n## Destroying a hosted cluster by using the CLI {#hosted-clusters-openstack-destroy_hcp-destroy-openstack}\n\nYou can destroy a hosted cluster and its associated resources on Red Hat OpenStack Platform (RHOSP) by using the `hcp` CLI tool.\n\n**Prerequisites**\n\n- You installed the hosted control planes CLI, `hcp`.\n\n**Procedure**\n\n- To destroy the cluster and its associated resources, run the following command:\n\n  ```terminal\n  $ hcp destroy cluster openstack --name=<cluster_name>\n  ```\n\n  Replace `<cluster_name>` with the name of the hosted cluster.\n\n  After the process completes, your cluster and all resources that are associated with it are destroyed.\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

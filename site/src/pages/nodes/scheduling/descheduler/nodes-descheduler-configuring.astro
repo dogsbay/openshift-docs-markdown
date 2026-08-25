@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-descheduler-configuring","text":"Evicting pods using the descheduler"}];
+const headings = [{"depth":1,"slug":"nodes-descheduler-configuring","text":"Evicting pods using the descheduler"},{"depth":2,"slug":"nodes-descheduler-installing_nodes-descheduler-configuring","text":"Installing the descheduler"},{"depth":2,"slug":"nodes-descheduler-configuring-profiles_nodes-descheduler-configuring","text":"Configuring descheduler profiles"},{"depth":2,"slug":"nodes-descheduler-configuring-interval_nodes-descheduler-configuring","text":"Configuring the descheduler interval"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/scheduling/descheduler/nodes-descheduler-configuring";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Evicting pods using the descheduler";
-const description = "You can run the descheduler in OpenShift Container Platform by installing the {{ descheduler_operator }} and setting the required profiles and other…" || undefined;
+const description = "You can run the descheduler in OpenShift Container Platform by installing the Kube Descheduler Operator and setting the required profiles and other…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/scheduling","nodes/scheduling/descheduler"]
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Evicting pods using the descheduler {#nodes-descheduler-configuring}\n\nYou can run the descheduler in OpenShift Container Platform by installing the {{ descheduler_operator }} and setting the required profiles and other customizations.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/descheduler/nodes-descheduler-configuring.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Evicting pods using the descheduler {#nodes-descheduler-configuring}\n\nYou can run the descheduler in OpenShift Container Platform by installing the Kube Descheduler Operator and setting the required profiles and other customizations.\n\n## Installing the descheduler {#nodes-descheduler-installing_nodes-descheduler-configuring}\n\nThe descheduler is not available by default. To enable the descheduler, you must install the Kube Descheduler Operator from the software catalog and enable one or more descheduler profiles.\n\nBy default, the descheduler runs in predictive mode, which means that it only simulates pod evictions. You must change the mode to automatic for the descheduler to perform the pod evictions.\n\n> [!IMPORTANT]\n> If you have enabled hosted control planes in your cluster, set a custom priority threshold to lower the chance that pods in the hosted control plane namespaces are evicted. Set the priority threshold class name to `hypershift-control-plane`, because it has the lowest priority value (`100000000`) of the hosted control plane priority classes.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- Access to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Create the required namespace for the Kube Descheduler Operator.\n\n   1. Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.\n   2. Enter `openshift-kube-descheduler-operator` in the **Name** field, enter `openshift.io/cluster-monitoring=true` in the **Labels** field to enable descheduler metrics, and click **Create**.\n3. Install the Kube Descheduler Operator.\n\n   1. Navigate to **Ecosystem** -> **Software Catalog**.\n   2. Type **Kube Descheduler Operator** into the filter box.\n   3. Select the **Kube Descheduler Operator** and click **Install**.\n   4. On the **Install Operator** page, select **A specific namespace on the cluster**. Select **openshift-kube-descheduler-operator** from the drop-down menu.\n   5. Adjust the values for the **Update Channel** and **Approval Strategy** to the desired values.\n   6. Click **Install**.\n4. Create a descheduler instance.\n\n   1. From the **Ecosystem** -> **Installed Operators** page, click the **Kube Descheduler Operator**.\n   2. Select the **Kube Descheduler** tab and click **Create KubeDescheduler**.\n   3. Edit the settings as necessary.\n\n      1. To evict pods instead of simulating the evictions, change the **Mode** field to **Automatic**.\n      2. Expand the **Profiles** section to select one or more profiles to enable. The `AffinityAndTaints` profile is enabled by default. Click **Add Profile** to select additional profiles.\n\n         > [!NOTE]\n         > Do not enable both `TopologyAndDuplicates` and `SoftTopologyAndDuplicates`. Enabling both results in a conflict.\n      3. Optional: Expand the **Profile Customizations** section to set optional configurations for the descheduler.\n\n         - Set a custom pod lifetime value for the `LifecycleAndUtilization` profile. Use the **podLifetime** field to set a numerical value and a valid unit (`s`, `m`, or `h`). The default pod lifetime is 24 hours (`24h`).\n         - Set a custom priority threshold to consider pods for eviction only if their priority is lower than a specified priority level. Use the **thresholdPriority** field to set a numerical priority threshold or use the **thresholdPriorityClassName** field to specify a certain priority class name.\n\n           > [!NOTE]\n           > Do not specify both **thresholdPriority** and **thresholdPriorityClassName** for the descheduler.\n         - Set specific namespaces to exclude or include from descheduler operations. Expand the **namespaces** field and add namespaces to the **excluded** or **included** list. You can only either set a list of namespaces to exclude or a list of namespaces to include. Note that protected namespaces (`openshift-*`, `kube-system`, `hypershift`) are excluded by default.\n         - Experimental: Set thresholds for underutilization and overutilization for the `LowNodeUtilization` strategy. Use the **devLowNodeUtilizationThresholds** field to set one of the following values:\n\n           - `Low`: 10% underutilized and 30% overutilized\n           - `Medium`: 20% underutilized and 50% overutilized (Default)\n           - `High`: 40% underutilized and 70% overutilized\n\n           > [!NOTE]\n           > This setting is experimental and should not be used in a production environment.\n      4. Optional: Use the **Descheduling Interval Seconds** field to change the number of seconds between descheduler runs. The default is `3600` seconds.\n   4. Click **Create**.\n\n      You can also configure the profiles and settings for the descheduler later using the OpenShift CLI (`oc`). If you did not adjust the profiles when creating the descheduler instance from the web console, the `AffinityAndTaints` profile is enabled by default.\n\n## Configuring descheduler profiles {#nodes-descheduler-configuring-profiles_nodes-descheduler-configuring}\n\nTo manage cluster pod eviction behavior, select which descheduler profiles to enable.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Edit the `KubeDescheduler` object:\n\n   ```terminal\n   $ oc edit kubedeschedulers.operator.openshift.io cluster -n openshift-kube-descheduler-operator\n   ```\n2. Specify one or more profiles in the `spec.profiles` section.\n\n   ```yaml\n   apiVersion: operator.openshift.io/v1\n   kind: KubeDescheduler\n   metadata:\n     name: cluster\n     namespace: openshift-kube-descheduler-operator\n   spec:\n     deschedulingIntervalSeconds: 3600\n     logLevel: Normal\n     managementState: Managed\n     operatorLogLevel: Normal\n     mode: Predictive\n     profileCustomizations:\n       namespaces:\n         excluded:\n         - my-namespace\n       podLifetime: 48h\n       thresholdPriorityClassName: my-priority-class-name\n     evictionLimits:\n       total: 20\n     profiles:\n     - AffinityAndTaints\n     - TopologyAndDuplicates\n     - LifecycleAndUtilization\n     - EvictPodsWithLocalStorage\n     - EvictPodsWithPVC\n   ```\n\n   where:\n\n   `spec.mode`\n   :   Specifies the eviction mode. By default, the descheduler does not evict pods. To evict pods, set `mode` to `Automatic`.\n\n   `spec.profileCustomizations.namespaces`\n   :   Specifies a list of user-created namespaces to include or exclude from descheduler operations. Use `excluded` to set a list of namespaces to exclude or use `included` to set a list of namespaces to include. Note that protected namespaces (`openshift-*`, `kube-system`, `hypershift`) are excluded by default. This value is optional.\n\n   `spec.profileCustomizations.podLifetime`\n   :   Specifies a custom pod lifetime value for the `LifecycleAndUtilization` profile. Valid units are `s`, `m`, or `h`. The default pod lifetime is 24 hours. This value is optional.\n\n   `spec.profileCustomizations.thresholdPriorityClassName`\n   :   Specifies a priority threshold to consider pods for eviction only if their priority is lower than the specified level. Use the `thresholdPriority` field to set a numerical priority threshold (for example, `10000`) or use the `thresholdPriorityClassName` field to specify a certain priority class name (for example, `my-priority-class-name`). If you specify a priority class name, it must already exist or the descheduler will throw an error. Do not set both `thresholdPriority` and `thresholdPriorityClassName`. This value is optional.\n\n   `spec.evictionLimits.total`\n   :   Specifies the maximum number of pods to evict during each descheduler run. This value is optional.\n\n   `spec.profiles`\n   :   Specifies one or more profiles to enable. Available profiles: `AffinityAndTaints`, `TopologyAndDuplicates`, `LifecycleAndUtilization`, `SoftTopologyAndDuplicates`, `EvictPodsWithLocalStorage`, `EvictPodsWithPVC`, `CompactAndScale`, and `LongLifecycle`. You can enable multiple profiles, but ensure that you do not enable profiles that conflict with each other. The order of the list of profiles is not important.\n3. Save the file to apply the changes.\n\n## Configuring the descheduler interval {#nodes-descheduler-configuring-interval_nodes-descheduler-configuring}\n\nYou can configure the amount of time between descheduler runs. The default is 3600 seconds (one hour).\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Edit the `KubeDescheduler` object:\n\n   ```terminal\n   $ oc edit kubedeschedulers.operator.openshift.io cluster -n openshift-kube-descheduler-operator\n   ```\n2. Update the `deschedulingIntervalSeconds` field to the required value:\n\n   ```yaml\n   apiVersion: operator.openshift.io/v1\n   kind: KubeDescheduler\n   metadata:\n     name: cluster\n     namespace: openshift-kube-descheduler-operator\n   spec:\n     deschedulingIntervalSeconds: 3600\n   ...\n   ```\n\n   Set the `spec.deschedulingIntervalSeconds` field to the number of seconds you want between descheduler runs. A value of `0` in this field runs the descheduler once and exits.\n3. Save the file to apply the changes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/descheduler/nodes-descheduler-configuring.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,148 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-descheduler-configuring" class="group scroll-mt-20">Evicting pods using the descheduler<a href="#nodes-descheduler-configuring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can run the descheduler in OpenShift Container Platform by installing the {"{"}{"{"} descheduler_operator {"}"}{"}"} and setting the required profiles and other customizations.</p>
-      <p class="/modules/nodes-descheduler-installing.md"></p>
-      <p class="/modules/nodes-descheduler-configuring-profiles.md"></p>
-      <p class="/modules/nodes-descheduler-configuring-interval.md"></p>
+      <p>You can run the descheduler in OpenShift Container Platform by installing the Kube Descheduler Operator and setting the required profiles and other customizations.</p>
+      <h2 id="nodes-descheduler-installing_nodes-descheduler-configuring" class="group scroll-mt-20">Installing the descheduler<a href="#nodes-descheduler-installing_nodes-descheduler-configuring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The descheduler is not available by default. To enable the descheduler, you must install the Kube Descheduler Operator from the software catalog and enable one or more descheduler profiles.</p>
+      <p>By default, the descheduler runs in predictive mode, which means that it only simulates pod evictions. You must change the mode to automatic for the descheduler to perform the pod evictions.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If you have enabled hosted control planes in your cluster, set a custom priority threshold to lower the chance that pods in the hosted control plane namespaces are evicted. Set the priority threshold class name to <code>hypershift-control-plane</code>, because it has the lowest priority value (<code>100000000</code>) of the hosted control plane priority classes.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to OpenShift Container Platform as a user with the <code>cluster-admin</code> role.</li>
+      <li>Access to the OpenShift Container Platform web console.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>
+      Create the required namespace for the Kube Descheduler Operator.
+      <ol>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>Namespaces</strong> and click <strong>Create Namespace</strong>.</li>
+      <li>Enter <code>openshift-kube-descheduler-operator</code> in the <strong>Name</strong> field, enter <code>openshift.io/cluster-monitoring=true</code> in the <strong>Labels</strong> field to enable descheduler metrics, and click <strong>Create</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Install the Kube Descheduler Operator.
+      <ol>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong>.</li>
+      <li>Type <strong>Kube Descheduler Operator</strong> into the filter box.</li>
+      <li>Select the <strong>Kube Descheduler Operator</strong> and click <strong>Install</strong>.</li>
+      <li>On the <strong>Install Operator</strong> page, select <strong>A specific namespace on the cluster</strong>. Select <strong>openshift-kube-descheduler-operator</strong> from the drop-down menu.</li>
+      <li>Adjust the values for the <strong>Update Channel</strong> and <strong>Approval Strategy</strong> to the desired values.</li>
+      <li>Click <strong>Install</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Create a descheduler instance.
+      <ol>
+      <li>From the <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> page, click the <strong>Kube Descheduler Operator</strong>.</li>
+      <li>Select the <strong>Kube Descheduler</strong> tab and click <strong>Create KubeDescheduler</strong>.</li>
+      <li>
+      Edit the settings as necessary.
+      <ol>
+      <li>To evict pods instead of simulating the evictions, change the <strong>Mode</strong> field to <strong>Automatic</strong>.</li>
+      <li>
+      Expand the <strong>Profiles</strong> section to select one or more profiles to enable. The <code>AffinityAndTaints</code> profile is enabled by default. Click <strong>Add Profile</strong> to select additional profiles.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Do not enable both <code>TopologyAndDuplicates</code> and <code>SoftTopologyAndDuplicates</code>. Enabling both results in a conflict.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Optional: Expand the <strong>Profile Customizations</strong> section to set optional configurations for the descheduler.
+      <ul>
+      <li>Set a custom pod lifetime value for the <code>LifecycleAndUtilization</code> profile. Use the <strong>podLifetime</strong> field to set a numerical value and a valid unit (<code>s</code>, <code>m</code>, or <code>h</code>). The default pod lifetime is 24 hours (<code>24h</code>).</li>
+      <li>
+      Set a custom priority threshold to consider pods for eviction only if their priority is lower than a specified priority level. Use the <strong>thresholdPriority</strong> field to set a numerical priority threshold or use the <strong>thresholdPriorityClassName</strong> field to specify a certain priority class name.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Do not specify both <strong>thresholdPriority</strong> and <strong>thresholdPriorityClassName</strong> for the descheduler.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Set specific namespaces to exclude or include from descheduler operations. Expand the <strong>namespaces</strong> field and add namespaces to the <strong>excluded</strong> or <strong>included</strong> list. You can only either set a list of namespaces to exclude or a list of namespaces to include. Note that protected namespaces (<code>openshift-*</code>, <code>kube-system</code>, <code>hypershift</code>) are excluded by default.</li>
+      <li>
+      Experimental: Set thresholds for underutilization and overutilization for the <code>LowNodeUtilization</code> strategy. Use the <strong>devLowNodeUtilizationThresholds</strong> field to set one of the following values:
+      <ul>
+      <li><code>Low</code>: 10% underutilized and 30% overutilized</li>
+      <li><code>Medium</code>: 20% underutilized and 50% overutilized (Default)</li>
+      <li><code>High</code>: 40% underutilized and 70% overutilized</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This setting is experimental and should not be used in a production environment.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      <li>Optional: Use the <strong>Descheduling Interval Seconds</strong> field to change the number of seconds between descheduler runs. The default is <code>3600</code> seconds.</li>
+      </ol>
+      </li>
+      <li>
+      Click <strong>Create</strong>.
+      <p>You can also configure the profiles and settings for the descheduler later using the OpenShift CLI (<code>oc</code>). If you did not adjust the profiles when creating the descheduler instance from the web console, the <code>AffinityAndTaints</code> profile is enabled by default.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="nodes-descheduler-configuring-profiles_nodes-descheduler-configuring" class="group scroll-mt-20">Configuring descheduler profiles<a href="#nodes-descheduler-configuring-profiles_nodes-descheduler-configuring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To manage cluster pod eviction behavior, select which descheduler profiles to enable.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You are logged in to OpenShift Container Platform as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>KubeDescheduler</code> object:
+      <CodeBlock code={"$ oc edit kubedeschedulers.operator.openshift.io cluster -n openshift-kube-descheduler-operator"} lang="terminal" />
+      </li>
+      <li>
+      Specify one or more profiles in the <code>spec.profiles</code> section.
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: KubeDescheduler\nmetadata:\n  name: cluster\n  namespace: openshift-kube-descheduler-operator\nspec:\n  deschedulingIntervalSeconds: 3600\n  logLevel: Normal\n  managementState: Managed\n  operatorLogLevel: Normal\n  mode: Predictive\n  profileCustomizations:\n    namespaces:\n      excluded:\n      - my-namespace\n    podLifetime: 48h\n    thresholdPriorityClassName: my-priority-class-name\n  evictionLimits:\n    total: 20\n  profiles:\n  - AffinityAndTaints\n  - TopologyAndDuplicates\n  - LifecycleAndUtilization\n  - EvictPodsWithLocalStorage\n  - EvictPodsWithPVC"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.mode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the eviction mode. By default, the descheduler does not evict pods. To evict pods, set <code>mode</code> to <code>Automatic</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.profileCustomizations.namespaces</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a list of user-created namespaces to include or exclude from descheduler operations. Use <code>excluded</code> to set a list of namespaces to exclude or use <code>included</code> to set a list of namespaces to include. Note that protected namespaces (<code>openshift-*</code>, <code>kube-system</code>, <code>hypershift</code>) are excluded by default. This value is optional.</p></dd>
+      <dt class="font-semibold"><code>spec.profileCustomizations.podLifetime</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a custom pod lifetime value for the <code>LifecycleAndUtilization</code> profile. Valid units are <code>s</code>, <code>m</code>, or <code>h</code>. The default pod lifetime is 24 hours. This value is optional.</p></dd>
+      <dt class="font-semibold"><code>spec.profileCustomizations.thresholdPriorityClassName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a priority threshold to consider pods for eviction only if their priority is lower than the specified level. Use the <code>thresholdPriority</code> field to set a numerical priority threshold (for example, <code>10000</code>) or use the <code>thresholdPriorityClassName</code> field to specify a certain priority class name (for example, <code>my-priority-class-name</code>). If you specify a priority class name, it must already exist or the descheduler will throw an error. Do not set both <code>thresholdPriority</code> and <code>thresholdPriorityClassName</code>. This value is optional.</p></dd>
+      <dt class="font-semibold"><code>spec.evictionLimits.total</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum number of pods to evict during each descheduler run. This value is optional.</p></dd>
+      <dt class="font-semibold"><code>spec.profiles</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies one or more profiles to enable. Available profiles: <code>AffinityAndTaints</code>, <code>TopologyAndDuplicates</code>, <code>LifecycleAndUtilization</code>, <code>SoftTopologyAndDuplicates</code>, <code>EvictPodsWithLocalStorage</code>, <code>EvictPodsWithPVC</code>, <code>CompactAndScale</code>, and <code>LongLifecycle</code>. You can enable multiple profiles, but ensure that you do not enable profiles that conflict with each other. The order of the list of profiles is not important.</p></dd>
+      </dl>
+      </li>
+      <li>Save the file to apply the changes.</li>
+      </ol>
+      <h2 id="nodes-descheduler-configuring-interval_nodes-descheduler-configuring" class="group scroll-mt-20">Configuring the descheduler interval<a href="#nodes-descheduler-configuring-interval_nodes-descheduler-configuring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure the amount of time between descheduler runs. The default is 3600 seconds (one hour).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You are logged in to OpenShift Container Platform as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>KubeDescheduler</code> object:
+      <CodeBlock code={"$ oc edit kubedeschedulers.operator.openshift.io cluster -n openshift-kube-descheduler-operator"} lang="terminal" />
+      </li>
+      <li>
+      Update the <code>deschedulingIntervalSeconds</code> field to the required value:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: KubeDescheduler\nmetadata:\n  name: cluster\n  namespace: openshift-kube-descheduler-operator\nspec:\n  deschedulingIntervalSeconds: 3600\n..."} lang="yaml" />
+      <p>Set the <code>spec.deschedulingIntervalSeconds</code> field to the number of seconds you want between descheduler runs. A value of <code>0</code> in this field runs the descheduler once and exits.</p>
+      </li>
+      <li>Save the file to apply the changes.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

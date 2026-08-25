@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"setting-quotas-across-multiple-projects","text":"Resource quotas across multiple projects"}];
+const headings = [{"depth":1,"slug":"setting-quotas-across-multiple-projects","text":"Resource quotas across multiple projects"},{"depth":2,"slug":"quotas-setting-projects_setting-quotas-across-multiple-projects","text":"Selecting multiple projects during quota creation"},{"depth":2,"slug":"quotas-viewing-clusterresourcequotas_setting-quotas-across-multiple-projects","text":"Viewing applicable cluster resource quotas"},{"depth":2,"slug":"quotas-selection-granularity_setting-quotas-across-multiple-projects","text":"Selection granularity"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/quotas/quotas-setting-across-multiple-projects";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["applications","applications/quotas"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Resource quotas across multiple projects {#setting-quotas-across-multiple-projects}\n\nA multi-project quota, defined by a `ClusterResourceQuota` object, shares quotas across multiple projects. The system aggregates the resources used in each selected project and applies the aggregate limit across all selected projects.\n\nThis guide describes how cluster administrators can set and manage resource quotas across multiple projects.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/quotas/quotas-setting-across-multiple-projects.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Resource quotas across multiple projects {#setting-quotas-across-multiple-projects}\n\nA multi-project quota, defined by a `ClusterResourceQuota` object, shares quotas across multiple projects. The system aggregates the resources used in each selected project and applies the aggregate limit across all selected projects.\n\nThis guide describes how cluster administrators can set and manage resource quotas across multiple projects.\n\n> [!IMPORTANT]\n> Do not run workloads in or share access to default projects. Default projects are reserved for running core cluster components.\n>\n> The following default projects are considered highly privileged: `default`, `kube-public`, `kube-system`, `openshift`, `openshift-infra`, `openshift-node`, and other system-created projects that have the `openshift.io/run-level` label set to `0` or `1`. Functionality that relies on admission plugins, such as pod security admission, security context constraints, cluster resource quotas, and image reference resolution, does not work in highly privileged projects.\n\n## Selecting multiple projects during quota creation {#quotas-setting-projects_setting-quotas-across-multiple-projects}\n\nTo aggregate resource usage and enforce consistent limits across multiple namespaces, you can select target projects by using annotation or label selectors when creating a `ClusterResourceQuota` object.\n\n**Procedure**\n\n1. To select projects based on annotations, run the following command:\n\n   ```terminal\n   $ oc create clusterquota for-user \\\n        --project-annotation-selector openshift.io/requester=<user_name> \\\n        --hard pods=10 \\\n        --hard secrets=20\n   ```\n\n   This creates the following `ClusterResourceQuota` object:\n\n   ```yaml\n   apiVersion: quota.openshift.io/v1\n   kind: ClusterResourceQuota\n   metadata:\n     name: for-user\n   spec:\n     quota:\n       hard:\n         pods: \"10\"\n         secrets: \"20\"\n     selector:\n       annotations:\n         openshift.io/requester: <user_name>\n       labels: null\n   status:\n     namespaces:\n     - namespace: ns-one\n       status:\n         hard:\n           pods: \"10\"\n           secrets: \"20\"\n         used:\n           pods: \"1\"\n           secrets: \"9\"\n     total:\n       hard:\n         pods: \"10\"\n         secrets: \"20\"\n       used:\n         pods: \"1\"\n         secrets: \"9\"\n   ```\n\n   where:\n\n   `spec.quota`\n   :   The `ResourceQuotaSpec` object that will be enforced over the selected projects.\n\n   `spec.selector.annotations`\n   :   A simple key-value selector for annotations.\n\n   `spec.selector.labels`\n   :   A label selector that can be used to select projects.\n\n   `status.namespaces`\n   :   A per-namespace map that describes current quota usage in each selected project.\n\n   `status.total`\n   :   The aggregate usage across all selected projects. This multi-project quota document controls all projects requested by `<user_name>` using the default project request endpoint. You are limited to 10 pods and 20 secrets.\n2. Similarly, to select projects based on labels, run this command:\n\n   ```terminal\n   $  oc create clusterresourcequota for-name \\\n       --project-label-selector=name=frontend \\\n       --hard=pods=10 --hard=secrets=20\n   ```\n\n   where:\n\n   `clusterresourcequota`\n   :   Both `clusterresourcequota` and `clusterquota` are aliases of the same command. `for-name` is the name of the `ClusterResourceQuota` object.\n\n   `--project-label-selector`\n   :   To select projects by label, provide a key-value pair by using the format `--project-label-selector=key=value`.\n\n   This creates the following `ClusterResourceQuota` object definition:\n\n   ```yaml\n   apiVersion: quota.openshift.io/v1\n   kind: ClusterResourceQuota\n   metadata:\n     creationTimestamp: null\n     name: for-name\n   spec:\n     quota:\n       hard:\n         pods: \"10\"\n         secrets: \"20\"\n     selector:\n       annotations: null\n       labels:\n         matchLabels:\n           name: frontend\n   ```\n\n## Viewing applicable cluster resource quotas {#quotas-viewing-clusterresourcequotas_setting-quotas-across-multiple-projects}\n\nView the multi-project quota documents applied to your project by using the `AppliedClusterResourceQuota` resource. Although, as an administrator, you cannot create or modify multi-project quotas, you can monitor your project’s resource limits.\n\n**Procedure**\n\n- To view quotas applied to a project, run:\n\n  ```terminal\n  $ oc describe AppliedClusterResourceQuota\n  ```\n\n  ```terminal {title=\"Example output\"}\n  Name:   for-user\n  Namespace:  <none>\n  Created:  19 hours ago\n  Labels:   <none>\n  Annotations:  <none>\n  Label Selector: <null>\n  AnnotationSelector: map[openshift.io/requester:<user-name>]\n  Resource  Used  Hard\n  --------  ----  ----\n  pods        1     10\n  secrets     9     20\n  ```\n\n## Selection granularity {#quotas-selection-granularity_setting-quotas-across-multiple-projects}\n\nWhen you create a multi-project quota, restrict the number of active projects to avoid degrading API server responsiveness.\n\nWhen you configure a multi-project quota using a `ClusterResourceQuota` object, restrict the number of selected active projects to 100 or fewer. Because quota allocation claims require system locking, selecting more than 100 projects under a single multi-project quota can severely degrade API server responsiveness across those projects.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/quotas/quotas-setting-across-multiple-projects.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +95,65 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="setting-quotas-across-multiple-projects" class="group scroll-mt-20">Resource quotas across multiple projects<a href="#setting-quotas-across-multiple-projects" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>A multi-project quota, defined by a <code>ClusterResourceQuota</code> object, shares quotas across multiple projects. The system aggregates the resources used in each selected project and applies the aggregate limit across all selected projects.</p>
       <p>This guide describes how cluster administrators can set and manage resource quotas across multiple projects.</p>
-      <p class="/snippets/default-projects.md"></p>
-      <p class="/modules/quotas-selecting-projects.md"></p>
-      <p class="/modules/quotas-viewing-clusterresourcequotas.md"></p>
-      <p class="/modules/quotas-selection-granularity.md"></p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not run workloads in or share access to default projects. Default projects are reserved for running core cluster components.</p>
+          <p>The following default projects are considered highly privileged: <code>default</code>, <code>kube-public</code>, <code>kube-system</code>, <code>openshift</code>, <code>openshift-infra</code>, <code>openshift-node</code>, and other system-created projects that have the <code>openshift.io/run-level</code> label set to <code>0</code> or <code>1</code>. Functionality that relies on admission plugins, such as pod security admission, security context constraints, cluster resource quotas, and image reference resolution, does not work in highly privileged projects.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="quotas-setting-projects_setting-quotas-across-multiple-projects" class="group scroll-mt-20">Selecting multiple projects during quota creation<a href="#quotas-setting-projects_setting-quotas-across-multiple-projects" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To aggregate resource usage and enforce consistent limits across multiple namespaces, you can select target projects by using annotation or label selectors when creating a <code>ClusterResourceQuota</code> object.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To select projects based on annotations, run the following command:
+      <CodeBlock code={"$ oc create clusterquota for-user \\\n     --project-annotation-selector openshift.io/requester=<user_name> \\\n     --hard pods=10 \\\n     --hard secrets=20"} lang="terminal" />
+      <p>This creates the following <code>ClusterResourceQuota</code> object:</p>
+      <CodeBlock code={"apiVersion: quota.openshift.io/v1\nkind: ClusterResourceQuota\nmetadata:\n  name: for-user\nspec:\n  quota:\n    hard:\n      pods: \"10\"\n      secrets: \"20\"\n  selector:\n    annotations:\n      openshift.io/requester: <user_name>\n    labels: null\nstatus:\n  namespaces:\n  - namespace: ns-one\n    status:\n      hard:\n        pods: \"10\"\n        secrets: \"20\"\n      used:\n        pods: \"1\"\n        secrets: \"9\"\n  total:\n    hard:\n      pods: \"10\"\n      secrets: \"20\"\n    used:\n      pods: \"1\"\n      secrets: \"9\""} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.quota</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The <code>ResourceQuotaSpec</code> object that will be enforced over the selected projects.</p></dd>
+      <dt class="font-semibold"><code>spec.selector.annotations</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>A simple key-value selector for annotations.</p></dd>
+      <dt class="font-semibold"><code>spec.selector.labels</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>A label selector that can be used to select projects.</p></dd>
+      <dt class="font-semibold"><code>status.namespaces</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>A per-namespace map that describes current quota usage in each selected project.</p></dd>
+      <dt class="font-semibold"><code>status.total</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The aggregate usage across all selected projects. This multi-project quota document controls all projects requested by <code>&lt;user_name&gt;</code> using the default project request endpoint. You are limited to 10 pods and 20 secrets.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Similarly, to select projects based on labels, run this command:
+      <CodeBlock code={"$  oc create clusterresourcequota for-name \\\n    --project-label-selector=name=frontend \\\n    --hard=pods=10 --hard=secrets=20"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>clusterresourcequota</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Both <code>clusterresourcequota</code> and <code>clusterquota</code> are aliases of the same command. <code>for-name</code> is the name of the <code>ClusterResourceQuota</code> object.</p></dd>
+      <dt class="font-semibold"><code>--project-label-selector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>To select projects by label, provide a key-value pair by using the format <code>--project-label-selector=key=value</code>.</p></dd>
+      </dl>
+      <p>This creates the following <code>ClusterResourceQuota</code> object definition:</p>
+      <CodeBlock code={"apiVersion: quota.openshift.io/v1\nkind: ClusterResourceQuota\nmetadata:\n  creationTimestamp: null\n  name: for-name\nspec:\n  quota:\n    hard:\n      pods: \"10\"\n      secrets: \"20\"\n  selector:\n    annotations: null\n    labels:\n      matchLabels:\n        name: frontend"} lang="yaml" />
+      </li>
+      </ol>
+      <h2 id="quotas-viewing-clusterresourcequotas_setting-quotas-across-multiple-projects" class="group scroll-mt-20">Viewing applicable cluster resource quotas<a href="#quotas-viewing-clusterresourcequotas_setting-quotas-across-multiple-projects" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">View the multi-project quota documents applied to your project by using the <code>AppliedClusterResourceQuota</code> resource. Although, as an administrator, you cannot create or modify multi-project quotas, you can monitor your project’s resource limits.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To view quotas applied to a project, run:
+      <CodeBlock code={"$ oc describe AppliedClusterResourceQuota"} lang="terminal" />
+      <CodeBlock code={"Name:   for-user\nNamespace:  <none>\nCreated:  19 hours ago\nLabels:   <none>\nAnnotations:  <none>\nLabel Selector: <null>\nAnnotationSelector: map[openshift.io/requester:<user-name>]\nResource  Used  Hard\n--------  ----  ----\npods        1     10\nsecrets     9     20"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="quotas-selection-granularity_setting-quotas-across-multiple-projects" class="group scroll-mt-20">Selection granularity<a href="#quotas-selection-granularity_setting-quotas-across-multiple-projects" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When you create a multi-project quota, restrict the number of active projects to avoid degrading API server responsiveness.</p>
+      <p>When you configure a multi-project quota using a <code>ClusterResourceQuota</code> object, restrict the number of selected active projects to 100 or fewer. Because quota allocation claims require system locking, selecting more than 100 projects under a single multi-project quota can severely degrade API server responsiveness across those projects.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

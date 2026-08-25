@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"creating-multi-arch-compute-nodes-ibm-z","text":"Creating a cluster with multi-architecture compute machines on {{ ibm_z_title }} and {{ ibm_linuxone_title }} with z/VM"},{"depth":2,"slug":"additional-resources_creating-multi-arch-compute-nodes-ibm-z","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"creating-multi-arch-compute-nodes-ibm-z","text":"Creating a cluster with multi-architecture compute machines on IBM Z and IBM LinuxONE with z/VM"},{"depth":2,"slug":"additional-resources_creating-multi-arch-compute-nodes-ibm-z","text":"Additional resources"},{"depth":2,"slug":"machine-user-infra-machines-ibm-z_creating-multi-arch-compute-nodes-ibm-z","text":"Creating RHCOS machines on IBM Z with z/VM"},{"depth":2,"slug":"installation-approve-csrs_creating-multi-arch-compute-nodes-ibm-z","text":"Approving the certificate signing requests for your machines"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Creating a cluster with multi-architecture compute machines on {{ ibm_z_title }} and {{ ibm_linuxone_title }} with z/VM";
-const description = "To create a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} (s390x) with z/VM, you must have an existing…" || undefined;
+const description = "To create a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE (s390x) with z/VM, you must have an existing…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a cluster with multi-architecture compute machines on {{ ibm_z_title }} and {{ ibm_linuxone_title }} with z/VM {#creating-multi-arch-compute-nodes-ibm-z}\n\nTo create a cluster with multi-architecture compute machines on {{ ibm_z_name }} and {{ ibm_linuxone_name }} (`s390x`) with z/VM, you must have an existing single-architecture `x86_64` cluster. You can then add `s390x` compute machines to your OpenShift Container Platform cluster.\n\nBefore you can add `s390x` nodes to your cluster, you must upgrade your cluster to one that uses the multi-architecture payload. For more information on migrating to the multi-architecture payload, see \"Migrating to a cluster with multi-architecture compute machines\".\n\nThe following procedures explain how to create a {{ op_system }} compute machine using a z/VM instance. You can add `s390x` nodes to your cluster and deploy a cluster with multi-architecture compute machines.\n\nTo create an {{ ibm_z_name }} or {{ ibm_linuxone_name }} (`s390x`) cluster with multi-architecture compute machines on `x86_64`, follow the instructions for \"Installing a cluster on {{ ibm_z_name }} and {{ ibm_linuxone_name }}\". You can then add `x86_64` compute machines as described in \"Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}\".\n\n> [!NOTE]\n> Before adding a secondary architecture node to your cluster, installing the Multiarch Tuning Operator and deploying a `ClusterPodPlacementConfig` object are best practices. For more information, see \"Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator\".\n\n## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-ibm-z}\n\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n- [Installing a cluster on {{ ibm_z_name }} and {{ ibm_linuxone_name }}](/openshift-docs-markdown/installing/installing_ibm_z/preparing-to-install-on-ibm-z#preparing-to-install-on-ibm-z)\n- [Creating a cluster with multi-architecture compute machines on bare metal, {{ ibm_power_title }}, or {{ ibm_z_title }}](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal)\n- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a cluster with multi-architecture compute machines on IBM Z and IBM LinuxONE with z/VM {#creating-multi-arch-compute-nodes-ibm-z}\n\nTo create a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE (`s390x`) with z/VM, you must have an existing single-architecture `x86_64` cluster. You can then add `s390x` compute machines to your OpenShift Container Platform cluster.\n\nBefore you can add `s390x` nodes to your cluster, you must upgrade your cluster to one that uses the multi-architecture payload. For more information on migrating to the multi-architecture payload, see \"Migrating to a cluster with multi-architecture compute machines\".\n\nThe following procedures explain how to create a RHCOS compute machine using a z/VM instance. You can add `s390x` nodes to your cluster and deploy a cluster with multi-architecture compute machines.\n\nTo create an IBM Z(R) or IBM(R) LinuxONE (`s390x`) cluster with multi-architecture compute machines on `x86_64`, follow the instructions for \"Installing a cluster on IBM Z(R) and IBM(R) LinuxONE\". You can then add `x86_64` compute machines as described in \"Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z\".\n\n> [!NOTE]\n> Before adding a secondary architecture node to your cluster, installing the Multiarch Tuning Operator and deploying a `ClusterPodPlacementConfig` object are best practices. For more information, see \"Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator\".\n\n## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-ibm-z}\n\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n- [Installing a cluster on IBM Z(R) and IBM(R) LinuxONE](/openshift-docs-markdown/installing/installing_ibm_z/preparing-to-install-on-ibm-z#preparing-to-install-on-ibm-z)\n- [Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal)\n- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)\n\n## Creating RHCOS machines on IBM Z with z/VM {#machine-user-infra-machines-ibm-z_creating-multi-arch-compute-nodes-ibm-z}\n\nYou can create more Red Hat Enterprise Linux CoreOS (RHCOS) compute machines running on IBM Z(R) with z/VM and attach them to your existing cluster.\n\n**Prerequisites**\n\n- You have a domain name server (DNS) that can perform hostname and reverse lookup for the nodes.\n- You have an HTTP or HTTPS server running on your provisioning machine that is accessible to the machines you create.\n\n**Procedure**\n\n1. Extract the Ignition config file from the cluster by running the following command:\n\n   ```terminal\n   $ oc extract -n openshift-machine-api secret/worker-user-data-managed --keys=userData --to=- > worker.ign\n   ```\n2. Upload the `worker.ign` Ignition config file you exported from your cluster to your HTTP server. Note the URL of this file.\n3. Validate that the Ignition file is available on the URL. The following example gets the Ignition config file for the compute node:\n\n   ```terminal\n   $ curl -k http://<http_server>/worker.ign\n   ```\n4. Download the RHEL live `kernel`, `initramfs`, and `rootfs` files by running the following commands:\n\n   ```terminal\n   $ curl -LO $(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' \\\n   | jq -r '.architectures.s390x.artifacts.metal.formats.pxe.kernel.location')\n   ```\n\n   ```terminal\n   $ curl -LO $(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' \\\n   | jq -r '.architectures.s390x.artifacts.metal.formats.pxe.initramfs.location')\n   ```\n\n   ```terminal\n   $ curl -LO $(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' \\\n   | jq -r '.architectures.s390x.artifacts.metal.formats.pxe.rootfs.location')\n   ```\n5. Move the downloaded RHEL live `kernel`, `initramfs`, and `rootfs` files to an HTTP or HTTPS server that is accessible from the RHCOS guest you want to add.\n6. Create a parameter file for the guest. The following parameters are specific to the virtual machine:\n\n   - Optional: To specify a static IP address, add an `ip=` parameter with the following entries, with each separated by a colon:\n\n     1. The IP address for the machine.\n     2. An empty string.\n     3. The gateway.\n     4. The netmask.\n     5. The machine host and domain name in the form `hostname.domainname`. If you omit this value, RHCOS obtains the hostname through a reverse DNS lookup.\n     6. The network interface name. If you omit this value, RHCOS applies the IP configuration to all available interfaces.\n     7. The value `none`.\n   - For `coreos.inst.ignition_url=`, specify the URL to the `worker.ign` file. Only HTTP and HTTPS protocols are supported.\n   - For `coreos.live.rootfs_url=`, specify the matching rootfs artifact for the `kernel` and `initramfs` you are booting. Only HTTP and HTTPS protocols are supported.\n   - For installations on DASD-type disks, complete the following tasks:\n\n     1. For `coreos.inst.install_dev=`, specify `/dev/dasda`.\n     2. Use `rd.dasd=` to specify the DASD where RHCOS is to be installed.\n     3. You can adjust further parameters if required.\n\n        The following is an example parameter file, `additional-worker-dasd.parm`:\n\n        ```terminal\n        cio_ignore=all,!condev rd.neednet=1 \\\n        console=ttysclp0 \\\n        coreos.inst.install_dev=/dev/dasda \\\n        coreos.inst.ignition_url=http://<http_server>/worker.ign \\\n        coreos.live.rootfs_url=http://<http_server>/rhcos-<version>-live-rootfs.<architecture>.img \\\n        ip=<ip>::<gateway>:<netmask>:<hostname>::none nameserver=<dns> \\\n        rd.znet=qeth,0.0.bdf0,0.0.bdf1,0.0.bdf2,layer2=1,portno=0 \\\n        rd.dasd=0.0.3490 \\\n        zfcp.allow_lun_scan=0\n        ```\n\n        Write all options in the parameter file as a single line and make sure that you have no newline characters.\n   - For installations on FCP-type disks, complete the following tasks:\n\n     1. Use `rd.zfcp=<adapter>,<wwpn>,<lun>` to specify the FCP disk where RHCOS is to be installed. For multipathing, repeat this step for each additional path.\n\n        > [!NOTE]\n        > When you install with multiple paths, you must enable multipathing directly after the installation. Enabling multipathing much later can cause problems for your cluster.\n     2. Set the install device as: `coreos.inst.install_dev=/dev/sda`.\n\n        > [!NOTE]\n        > If additional LUNs are configured with NPIV, FCP requires `zfcp.allow_lun_scan=0`. If you must enable `zfcp.allow_lun_scan=1` because you use a CSI driver, for example, you must configure your NPIV so that each node cannot access the boot partition of another node.\n     3. You can adjust further parameters if required.\n\n        > [!IMPORTANT]\n        > Additional postinstallation steps are required to fully enable multipathing. For more information, see “Enabling multipathing with kernel arguments on RHCOS\" in *Machine configuration*.\n\n        The following is an example parameter file, `additional-worker-fcp.parm` for a worker node with multipathing:\n\n        ```terminal\n        cio_ignore=all,!condev rd.neednet=1 \\\n        console=ttysclp0 \\\n        coreos.inst.install_dev=/dev/sda \\\n        coreos.live.rootfs_url=http://<http_server>/rhcos-<version>-live-rootfs.<architecture>.img \\\n        coreos.inst.ignition_url=http://<http_server>/worker.ign \\\n        ip=<ip>::<gateway>:<netmask>:<hostname>::none nameserver=<dns> \\\n        rd.znet=qeth,0.0.bdf0,0.0.bdf1,0.0.bdf2,layer2=1,portno=0 \\\n        zfcp.allow_lun_scan=0 \\\n        rd.zfcp=0.0.1987,0x50050763070bc5e3,0x4008400B00000000 \\\n        rd.zfcp=0.0.19C7,0x50050763070bc5e3,0x4008400B00000000 \\\n        rd.zfcp=0.0.1987,0x50050763071bc5e3,0x4008400B00000000 \\\n        rd.zfcp=0.0.19C7,0x50050763071bc5e3,0x4008400B00000000\n        ```\n\n        Write all options in the parameter file as a single line and make sure that you have no newline characters.\n7. Transfer the `initramfs`, `kernel`, parameter files, and RHCOS images to z/VM, for example, by using FTP. For details about how to transfer the files with FTP and boot from the virtual reader, see [Booting the installation on IBM Z(R) to install RHEL in z/VM](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/interactively_installing_rhel_over_the_network/index#installing-under-z-vm_booting-the-installation-media).\n8. Punch the files to the virtual reader of the z/VM guest virtual machine.\n\n   See [PUNCH](https://www.ibm.com/docs/en/zvm/latest?topic=commands-punch) in IBM(R) Documentation.\n\n   > [!TIP]\n   > You can use the CP PUNCH command or, if you use Linux, the `vmur` command to transfer files between two z/VM guest virtual machines.\n9. Log in to CMS on the bootstrap machine.\n10. IPL the bootstrap machine from the reader by running the following command:\n\n    ```terminal\n    $ ipl c\n    ```\n\n    See [IPL](https://www.ibm.com/docs/en/zvm/latest?topic=commands-ipl) in IBM(R) Documentation.\n\n## Approving the certificate signing requests for your machines {#installation-approve-csrs_creating-multi-arch-compute-nodes-ibm-z}\n\nTo allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.\n\n**Prerequisites**\n\n- You added machines to your cluster.\n\n**Procedure**\n\n1. Confirm that the cluster recognizes the machines:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME      STATUS    ROLES   AGE  VERSION\n   master-0  Ready     master  63m  v1.35.4\n   master-1  Ready     master  63m  v1.35.4\n   master-2  Ready     master  64m  v1.35.4\n   ```\n\n   The output lists all of the machines that you created.\n\n   > [!NOTE]\n   > The preceding output might not include the compute nodes until you approve some CSRs.\n2. Review the pending CSRs and ensure that you see the client requests with the `Pending` or `Approved` status for each machine that you added to the cluster:\n\n   ```terminal\n   $ oc get csr\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME        AGE     REQUESTOR                                                                   CONDITION\n   csr-8b2br   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending\n   csr-8vnps   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending\n   ...\n   ```\n\n   In this example, two machines are joining the cluster. You might see more approved CSRs in the list.\n3. If the CSRs were not approved, after all of the pending CSRs for the machines you added are in `Pending` status, approve the CSRs for your cluster machines:\n\n   > [!NOTE]\n   > You must approve your CSRs within an hour of adding the machines to the cluster. If you do not approve them within an hour, the certificates rotate, and more than two certificates are present for each node. You must approve all of these certificates. After you approve the client CSR, the kubelet creates a secondary CSR for the serving certificate, which requires manual approval. The `machine-approver` then automatically approves later serving certificate renewal requests if the kubelet requests a new certificate with the same parameters.\n\n   > [!NOTE]\n   > For clusters running on platforms that are not machine API enabled, such as bare metal and other user-provisioned infrastructure, you must implement a method of automatically approving the kubelet serving certificate requests (CSRs). If you do not approve a request, the `oc exec`, `oc rsh`, and `oc logs` commands cannot succeed, because the API server requires a serving certificate when it connects to the kubelet. Any operation that contacts the kubelet endpoint requires this certificate approval to be in place. The method must watch for new CSRs, confirm that the `node-bootstrapper` service account in the `system:node` or `system:admin` groups submitted the CSR, and confirm the identity of the node.\n\n   - To approve them individually, run the following command for each valid CSR:\n\n     ```terminal\n     $ oc adm certificate approve <csr_name>\n     ```\n\n     where:\n\n     `<csr_name>`\n     :   Specifies the name of a CSR from the list of current CSRs. \\*   To approve all pending CSRs, run the following command:\n\n     ```terminal\n     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{\"\\n\"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve\n     ```\n\n     > [!NOTE]\n     > Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.\n4. After you approve your client requests, review the server requests for each machine that you added to the cluster:\n\n   ```terminal\n   $ oc get csr\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME        AGE     REQUESTOR                                                                   CONDITION\n   csr-bfd72   5m26s   system:node:ip-10-0-50-126.us-east-2.compute.internal                       Pending\n   csr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal                       Pending\n   ...\n   ```\n5. If the remaining CSRs are not approved, and are in the `Pending` status, approve the CSRs for your cluster machines:\n\n   - To approve them individually, run the following command for each valid CSR:\n\n     ```terminal\n     $ oc adm certificate approve <csr_name>\n     ```\n\n     where:\n\n     `<csr_name>`\n     :   Specifies the name of a CSR from the list of current CSRs. \\*   To approve all pending CSRs, run the following command:\n\n     ```terminal\n     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{\"\\n\"}}{{end}}{{end}}' | xargs oc adm certificate approve\n     ```\n6. After you approve all client and server CSRs, the machines have the `Ready` status. Verify this by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME      STATUS    ROLES   AGE  VERSION\n   master-0  Ready     master  73m  v1.35.4\n   master-1  Ready     master  73m  v1.35.4\n   master-2  Ready     master  74m  v1.35.4\n   worker-0  Ready     worker  11m  v1.35.4\n   worker-1  Ready     worker  11m  v1.35.4\n   ```\n\n   > [!NOTE]\n   > You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-ibm-z.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,12 +94,11 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="creating-multi-arch-compute-nodes-ibm-z" class="group scroll-mt-20">Creating a cluster with multi-architecture compute machines on {"{"}{"{"} ibm_z_title {"}"}{"}"} and {"{"}{"{"} ibm_linuxone_title {"}"}{"}"} with z/VM<a href="#creating-multi-arch-compute-nodes-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>To create a cluster with multi-architecture compute machines on {"{"}{"{"} ibm_z_name {"}"}{"}"} and {"{"}{"{"} ibm_linuxone_name {"}"}{"}"} (<code>s390x</code>) with z/VM, you must have an existing single-architecture <code>x86_64</code> cluster. You can then add <code>s390x</code> compute machines to your OpenShift Container Platform cluster.</p>
+      <h1 id="creating-multi-arch-compute-nodes-ibm-z" class="group scroll-mt-20">Creating a cluster with multi-architecture compute machines on IBM Z and IBM LinuxONE with z/VM<a href="#creating-multi-arch-compute-nodes-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>To create a cluster with multi-architecture compute machines on IBM Z(R) and IBM(R) LinuxONE (<code>s390x</code>) with z/VM, you must have an existing single-architecture <code>x86_64</code> cluster. You can then add <code>s390x</code> compute machines to your OpenShift Container Platform cluster.</p>
       <p>Before you can add <code>s390x</code> nodes to your cluster, you must upgrade your cluster to one that uses the multi-architecture payload. For more information on migrating to the multi-architecture payload, see "Migrating to a cluster with multi-architecture compute machines".</p>
-      <p>The following procedures explain how to create a {"{"}{"{"} op_system {"}"}{"}"} compute machine using a z/VM instance. You can add <code>s390x</code> nodes to your cluster and deploy a cluster with multi-architecture compute machines.</p>
-      <p>To create an {"{"}{"{"} ibm_z_name {"}"}{"}"} or {"{"}{"{"} ibm_linuxone_name {"}"}{"}"} (<code>s390x</code>) cluster with multi-architecture compute machines on <code>x86_64</code>, follow the instructions for "Installing a cluster on {"{"}{"{"} ibm_z_name {"}"}{"}"} and {"{"}{"{"} ibm_linuxone_name {"}"}{"}"}". You can then add <code>x86_64</code> compute machines as described in "Creating a cluster with multi-architecture compute machines on bare metal, {"{"}{"{"} ibm_power_title {"}"}{"}"}, or {"{"}{"{"} ibm_z_title {"}"}{"}"}".</p>
+      <p>The following procedures explain how to create a RHCOS compute machine using a z/VM instance. You can add <code>s390x</code> nodes to your cluster and deploy a cluster with multi-architecture compute machines.</p>
+      <p>To create an IBM Z(R) or IBM(R) LinuxONE (<code>s390x</code>) cluster with multi-architecture compute machines on <code>x86_64</code>, follow the instructions for "Installing a cluster on IBM Z(R) and IBM(R) LinuxONE". You can then add <code>x86_64</code> compute machines as described in "Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z".</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
@@ -108,11 +108,210 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <h2 id="additional-resources_creating-multi-arch-compute-nodes-ibm-z" class="group scroll-mt-20">Additional resources<a href="#additional-resources_creating-multi-arch-compute-nodes-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload">Migrating to a cluster with multi-architecture compute machines</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_z/preparing-to-install-on-ibm-z#preparing-to-install-on-ibm-z">Installing a cluster on {"{"}{"{"} ibm_z_name {"}"}{"}"} and {"{"}{"{"} ibm_linuxone_name {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal">Creating a cluster with multi-architecture compute machines on bare metal, {"{"}{"{"} ibm_power_title {"}"}{"}"}, or {"{"}{"{"} ibm_z_title {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_z/preparing-to-install-on-ibm-z#preparing-to-install-on-ibm-z">Installing a cluster on IBM Z(R) and IBM(R) LinuxONE</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-bare-metal#creating-multi-arch-compute-nodes-bare-metal">Creating a cluster with multi-architecture compute machines on bare metal, IBM Power, or IBM Z</a></li>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator">Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator</a></li>
       </ul>
-      <p class="/modules/installation-approve-csrs.md"></p>
+      <h2 id="machine-user-infra-machines-ibm-z_creating-multi-arch-compute-nodes-ibm-z" class="group scroll-mt-20">Creating RHCOS machines on IBM Z with z/VM<a href="#machine-user-infra-machines-ibm-z_creating-multi-arch-compute-nodes-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can create more Red Hat Enterprise Linux CoreOS (RHCOS) compute machines running on IBM Z(R) with z/VM and attach them to your existing cluster.</p>
+      <p class="_abstract"></p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a domain name server (DNS) that can perform hostname and reverse lookup for the nodes.</li>
+      <li>You have an HTTP or HTTPS server running on your provisioning machine that is accessible to the machines you create.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Extract the Ignition config file from the cluster by running the following command:
+      <CodeBlock code={"$ oc extract -n openshift-machine-api secret/worker-user-data-managed --keys=userData --to=- > worker.ign"} lang="terminal" />
+      </li>
+      <li>Upload the <code>worker.ign</code> Ignition config file you exported from your cluster to your HTTP server. Note the URL of this file.</li>
+      <li>
+      Validate that the Ignition file is available on the URL. The following example gets the Ignition config file for the compute node:
+      <CodeBlock code={"$ curl -k http://<http_server>/worker.ign"} lang="terminal" />
+      </li>
+      <li>
+      Download the RHEL live <code>kernel</code>, <code>initramfs</code>, and <code>rootfs</code> files by running the following commands:
+      <CodeBlock code={"$ curl -LO $(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' \\\n| jq -r '.architectures.s390x.artifacts.metal.formats.pxe.kernel.location')"} lang="terminal" />
+      <CodeBlock code={"$ curl -LO $(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' \\\n| jq -r '.architectures.s390x.artifacts.metal.formats.pxe.initramfs.location')"} lang="terminal" />
+      <CodeBlock code={"$ curl -LO $(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' \\\n| jq -r '.architectures.s390x.artifacts.metal.formats.pxe.rootfs.location')"} lang="terminal" />
+      </li>
+      <li>Move the downloaded RHEL live <code>kernel</code>, <code>initramfs</code>, and <code>rootfs</code> files to an HTTP or HTTPS server that is accessible from the RHCOS guest you want to add.</li>
+      <li>
+      Create a parameter file for the guest. The following parameters are specific to the virtual machine:
+      <ul>
+      <li>
+      Optional: To specify a static IP address, add an <code>ip=</code> parameter with the following entries, with each separated by a colon:
+      <ol>
+      <li>The IP address for the machine.</li>
+      <li>An empty string.</li>
+      <li>The gateway.</li>
+      <li>The netmask.</li>
+      <li>The machine host and domain name in the form <code>hostname.domainname</code>. If you omit this value, RHCOS obtains the hostname through a reverse DNS lookup.</li>
+      <li>The network interface name. If you omit this value, RHCOS applies the IP configuration to all available interfaces.</li>
+      <li>The value <code>none</code>.</li>
+      </ol>
+      </li>
+      <li>For <code>coreos.inst.ignition_url=</code>, specify the URL to the <code>worker.ign</code> file. Only HTTP and HTTPS protocols are supported.</li>
+      <li>For <code>coreos.live.rootfs_url=</code>, specify the matching rootfs artifact for the <code>kernel</code> and <code>initramfs</code> you are booting. Only HTTP and HTTPS protocols are supported.</li>
+      <li>
+      For installations on DASD-type disks, complete the following tasks:
+      <ol>
+      <li>For <code>coreos.inst.install_dev=</code>, specify <code>/dev/dasda</code>.</li>
+      <li>Use <code>rd.dasd=</code> to specify the DASD where RHCOS is to be installed.</li>
+      <li>
+      You can adjust further parameters if required.
+      <p>The following is an example parameter file, <code>additional-worker-dasd.parm</code>:</p>
+      <CodeBlock code={"cio_ignore=all,!condev rd.neednet=1 \\\nconsole=ttysclp0 \\\ncoreos.inst.install_dev=/dev/dasda \\\ncoreos.inst.ignition_url=http://<http_server>/worker.ign \\\ncoreos.live.rootfs_url=http://<http_server>/rhcos-<version>-live-rootfs.<architecture>.img \\\nip=<ip>::<gateway>:<netmask>:<hostname>::none nameserver=<dns> \\\nrd.znet=qeth,0.0.bdf0,0.0.bdf1,0.0.bdf2,layer2=1,portno=0 \\\nrd.dasd=0.0.3490 \\\nzfcp.allow_lun_scan=0"} lang="terminal" />
+      <p>Write all options in the parameter file as a single line and make sure that you have no newline characters.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      For installations on FCP-type disks, complete the following tasks:
+      <ol>
+      <li>
+      Use <code>rd.zfcp=&lt;adapter&gt;,&lt;wwpn&gt;,&lt;lun&gt;</code> to specify the FCP disk where RHCOS is to be installed. For multipathing, repeat this step for each additional path.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When you install with multiple paths, you must enable multipathing directly after the installation. Enabling multipathing much later can cause problems for your cluster.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Set the install device as: <code>coreos.inst.install_dev=/dev/sda</code>.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If additional LUNs are configured with NPIV, FCP requires <code>zfcp.allow_lun_scan=0</code>. If you must enable <code>zfcp.allow_lun_scan=1</code> because you use a CSI driver, for example, you must configure your NPIV so that each node cannot access the boot partition of another node.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      You can adjust further parameters if required.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Additional postinstallation steps are required to fully enable multipathing. For more information, see “Enabling multipathing with kernel arguments on RHCOS" in <em>Machine configuration</em>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following is an example parameter file, <code>additional-worker-fcp.parm</code> for a worker node with multipathing:</p>
+      <CodeBlock code={"cio_ignore=all,!condev rd.neednet=1 \\\nconsole=ttysclp0 \\\ncoreos.inst.install_dev=/dev/sda \\\ncoreos.live.rootfs_url=http://<http_server>/rhcos-<version>-live-rootfs.<architecture>.img \\\ncoreos.inst.ignition_url=http://<http_server>/worker.ign \\\nip=<ip>::<gateway>:<netmask>:<hostname>::none nameserver=<dns> \\\nrd.znet=qeth,0.0.bdf0,0.0.bdf1,0.0.bdf2,layer2=1,portno=0 \\\nzfcp.allow_lun_scan=0 \\\nrd.zfcp=0.0.1987,0x50050763070bc5e3,0x4008400B00000000 \\\nrd.zfcp=0.0.19C7,0x50050763070bc5e3,0x4008400B00000000 \\\nrd.zfcp=0.0.1987,0x50050763071bc5e3,0x4008400B00000000 \\\nrd.zfcp=0.0.19C7,0x50050763071bc5e3,0x4008400B00000000"} lang="terminal" />
+      <p>Write all options in the parameter file as a single line and make sure that you have no newline characters.</p>
+      </li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      <li>Transfer the <code>initramfs</code>, <code>kernel</code>, parameter files, and RHCOS images to z/VM, for example, by using FTP. For details about how to transfer the files with FTP and boot from the virtual reader, see <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/interactively_installing_rhel_over_the_network/index#installing-under-z-vm_booting-the-installation-media">Booting the installation on IBM Z(R) to install RHEL in z/VM</a>.</li>
+      <li>
+      Punch the files to the virtual reader of the z/VM guest virtual machine.
+      <p>See <a href="https://www.ibm.com/docs/en/zvm/latest?topic=commands-punch">PUNCH</a> in IBM(R) Documentation.</p>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can use the CP PUNCH command or, if you use Linux, the <code>vmur</code> command to transfer files between two z/VM guest virtual machines.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Log in to CMS on the bootstrap machine.</li>
+      <li>
+      IPL the bootstrap machine from the reader by running the following command:
+      <CodeBlock code={"$ ipl c"} lang="terminal" />
+      <p>See <a href="https://www.ibm.com/docs/en/zvm/latest?topic=commands-ipl">IPL</a> in IBM(R) Documentation.</p>
+      </li>
+      </ol>
+      <h2 id="installation-approve-csrs_creating-multi-arch-compute-nodes-ibm-z" class="group scroll-mt-20">Approving the certificate signing requests for your machines<a href="#installation-approve-csrs_creating-multi-arch-compute-nodes-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You added machines to your cluster.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Confirm that the cluster recognizes the machines:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME      STATUS    ROLES   AGE  VERSION\nmaster-0  Ready     master  63m  v1.35.4\nmaster-1  Ready     master  63m  v1.35.4\nmaster-2  Ready     master  64m  v1.35.4"} lang="terminal" title="Example output" />
+      <p>The output lists all of the machines that you created.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The preceding output might not include the compute nodes until you approve some CSRs.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Review the pending CSRs and ensure that you see the client requests with the <code>Pending</code> or <code>Approved</code> status for each machine that you added to the cluster:
+      <CodeBlock code={"$ oc get csr"} lang="terminal" />
+      <CodeBlock code={"NAME        AGE     REQUESTOR                                                                   CONDITION\ncsr-8b2br   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending\ncsr-8vnps   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending\n..."} lang="terminal" title="Example output" />
+      <p>In this example, two machines are joining the cluster. You might see more approved CSRs in the list.</p>
+      </li>
+      <li>
+      If the CSRs were not approved, after all of the pending CSRs for the machines you added are in <code>Pending</code> status, approve the CSRs for your cluster machines:
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You must approve your CSRs within an hour of adding the machines to the cluster. If you do not approve them within an hour, the certificates rotate, and more than two certificates are present for each node. You must approve all of these certificates. After you approve the client CSR, the kubelet creates a secondary CSR for the serving certificate, which requires manual approval. The <code>machine-approver</code> then automatically approves later serving certificate renewal requests if the kubelet requests a new certificate with the same parameters.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For clusters running on platforms that are not machine API enabled, such as bare metal and other user-provisioned infrastructure, you must implement a method of automatically approving the kubelet serving certificate requests (CSRs). If you do not approve a request, the <code>oc exec</code>, <code>oc rsh</code>, and <code>oc logs</code> commands cannot succeed, because the API server requires a serving certificate when it connects to the kubelet. Any operation that contacts the kubelet endpoint requires this certificate approval to be in place. The method must watch for new CSRs, confirm that the <code>node-bootstrapper</code> service account in the <code>system:node</code> or <code>system:admin</code> groups submitted the CSR, and confirm the identity of the node.</p>
+        </AlertDescription>
+      </Alert>
+      <ul>
+      <li>
+      To approve them individually, run the following command for each valid CSR:
+      <CodeBlock code={"$ oc adm certificate approve <csr_name>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;csr_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of a CSR from the list of current CSRs. *   To approve all pending CSRs, run the following command:</p></dd>
+      </dl>
+      <CodeBlock code={"$ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{\"\\n\"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      <li>
+      After you approve your client requests, review the server requests for each machine that you added to the cluster:
+      <CodeBlock code={"$ oc get csr"} lang="terminal" />
+      <CodeBlock code={"NAME        AGE     REQUESTOR                                                                   CONDITION\ncsr-bfd72   5m26s   system:node:ip-10-0-50-126.us-east-2.compute.internal                       Pending\ncsr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal                       Pending\n..."} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      If the remaining CSRs are not approved, and are in the <code>Pending</code> status, approve the CSRs for your cluster machines:
+      <ul>
+      <li>
+      To approve them individually, run the following command for each valid CSR:
+      <CodeBlock code={"$ oc adm certificate approve <csr_name>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;csr_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of a CSR from the list of current CSRs. *   To approve all pending CSRs, run the following command:</p></dd>
+      </dl>
+      <CodeBlock code={"$ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{\"\\n\"}}{{end}}{{end}}' | xargs oc adm certificate approve"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      After you approve all client and server CSRs, the machines have the <code>Ready</code> status. Verify this by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME      STATUS    ROLES   AGE  VERSION\nmaster-0  Ready     master  73m  v1.35.4\nmaster-1  Ready     master  73m  v1.35.4\nmaster-2  Ready     master  74m  v1.35.4\nworker-0  Ready     worker  11m  v1.35.4\nworker-1  Ready     worker  11m  v1.35.4"} lang="terminal" title="Example output" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You might need to wait a few minutes after approval of the server CSRs for the machines to change to the <code>Ready</code> status.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"about-primary-nwt-nad","text":"Creating primary networks using a NetworkAttachmentDefinition"}];
+const headings = [{"depth":1,"slug":"about-primary-nwt-nad","text":"Creating primary networks using a NetworkAttachmentDefinition"},{"depth":2,"slug":"approaches-managing-additional-network_understanding-multiple-networks","text":"Approaches to managing a primary network"},{"depth":2,"slug":"nw-multus-create-network_understanding-multiple-networks","text":"Creating a primary network attachment with the Cluster Network Operator"},{"depth":2,"slug":"nw-nad-cr_understanding-multiple-networks","text":"Configuration for a primary network attachment"},{"depth":2,"slug":"nw-multus-create-network-apply_understanding-multiple-networks","text":"Creating a primary network attachment by applying a YAML manifest"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-primary-nwt-nad";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["networking","networking/multiple_networks","networking/mu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating primary networks using a NetworkAttachmentDefinition {#about-primary-nwt-nad}\n\nUse the `NetworkAttachmentDefinition` (NAD) resource to create primary networks when you need to use CNI plugins other than OVN-Kubernetes, such as IPVLAN or MACVLAN, or when you require direct control over the Container Network Interface (CNI) configuration for advanced networking scenarios.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-primary-nwt-nad.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating primary networks using a NetworkAttachmentDefinition {#about-primary-nwt-nad}\n\nUse the `NetworkAttachmentDefinition` (NAD) resource to create primary networks when you need to use CNI plugins other than OVN-Kubernetes, such as IPVLAN or MACVLAN, or when you require direct control over the Container Network Interface (CNI) configuration for advanced networking scenarios.\n\n## Approaches to managing a primary network {#approaches-managing-additional-network_understanding-multiple-networks}\n\nYou can manage the life cycle of a primary network created by a NAD CR through the Cluster Network Operator (CNO) or a YAML manifest. Using the CNO provides automated management of the network resource, while applying a YAML manifest allows for direct control over the network configuration.\n\nModifying the Cluster Network Operator (CNO) configuration\n:   With this method, the CNO automatically creates and manages the `NetworkAttachmentDefinition` object. In addition to managing the object lifecycle, the CNO ensures that a DHCP is available for a primary network that uses a DHCP assigned IP address.\n\nApplying a YAML manifest\n:   With this method, you can manage the primary network directly by creating an `NetworkAttachmentDefinition` object. This approach allows for the invocation of multiple CNI plugins in order to attach primary network interfaces in a pod.\n\nEach approach is mutually exclusive and you can only use one approach for managing a primary network at a time. For either approach, the primary network is managed by a Container Network Interface (CNI) plugin that you configure.\n\n> [!NOTE]\n> When deploying OpenShift Container Platform nodes with multiple network interfaces on Red Hat OpenStack Platform (RHOSP) with OVN SDN, DNS configuration of the secondary interface might take precedence over the DNS configuration of the primary interface. In this case, remove the DNS nameservers for the subnet ID that is attached to the secondary interface by running the following command:\n>\n> ```terminal\n> $ openstack subnet set --dns-nameserver 0.0.0.0 <subnet_id>\n> ```\n\n## Creating a primary network attachment with the Cluster Network Operator {#nw-multus-create-network_understanding-multiple-networks}\n\nWhen you specify a primary network to create by using the Cluster Network Operator (CNO), the (CNO) creates the `NetworkAttachmentDefinition` custom resource definition (CRD) automatically and manages it.\n\n> [!IMPORTANT]\n> Do not edit the `NetworkAttachmentDefinition` CRDs that the Cluster Network Operator manages. Doing so might disrupt network traffic on your primary network.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n- Log in as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Optional: Create the namespace for the primary networks:\n\n   ```terminal\n   $ oc create namespace <namespace_name>\n   ```\n2. To edit the CNO configuration, enter the following command:\n\n   ```terminal\n   $ oc edit networks.operator.openshift.io cluster\n   ```\n3. Modify the CR that you are creating by adding the configuration for the primary network that you are creating, as in the following example CR.\n\n   ```yaml\n   apiVersion: operator.openshift.io/v1\n   kind: Network\n   metadata:\n     name: cluster\n   spec:\n     # ...\n     additionalNetworks:\n     - name: tertiary-net\n       namespace: namespace2\n       type: Raw\n       rawCNIConfig: |-\n         {\n           \"cniVersion\": \"0.3.1\",\n           \"name\": \"tertiary-net\",\n           \"type\": \"ipvlan\",\n           \"master\": \"eth1\",\n           \"mode\": \"l2\",\n           \"ipam\": {\n             \"type\": \"static\",\n             \"addresses\": [\n               {\n                 \"address\": \"192.168.1.23/24\"\n               }\n             ]\n           }\n         }\n   ```\n4. Save your changes and quit the text editor to commit your changes.\n\n**Verification**\n\n- Confirm that the CNO created the `NetworkAttachmentDefinition` CRD by running the following command. A delay might exist before the CNO creates the CRD. The expected output shows the name of the NAD CRD and the creation age in minutes.\n\n  ```terminal\n  $ oc get network-attachment-definitions -n <namespace>\n  ```\n\n  where:\n\n  `<namespace>`\n  :   Specifies the namespace for the network attachment that you added to the CNO configuration.\n\n## Configuration for a primary network attachment {#nw-nad-cr_understanding-multiple-networks}\n\nYou configure a primary network by using the `NetworkAttachmentDefinition` API in the `k8s.cni.cncf.io` API group.\n\nThe configuration for the API is described in the following table:\n\n`NetworkAttachmentDefinition`** API fields**\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `metadata.name` | `string` | The name for the primary network. |\n| `metadata.namespace` | `string` | The namespace that the object is associated with. |\n| `spec.config` | `string` | The CNI plugin configuration in JSON format. |\n\n## Creating a primary network attachment by applying a YAML manifest {#nw-multus-create-network-apply_understanding-multiple-networks}\n\nCreate a primary network attachment by directly applying a `NetworkAttachmentDefinition` YAML manifest. This gives you full control over the network configuration without relying on the Cluster Network Operator to manage the resource automatically.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have logged in as a user with `cluster-admin` privileges.\n- You are working in the namespace where the NAD is to be deployed.\n\n**Procedure**\n\n1. Create a YAML file with your primary network configuration, such as in the following example:\n\n   ```yaml\n   apiVersion: k8s.cni.cncf.io/v1\n   kind: NetworkAttachmentDefinition\n   metadata:\n     name: next-net\n   spec:\n     config: |-\n       {\n         \"cniVersion\": \"0.3.1\",\n         \"name\": \"work-network\",\n         \"namespace\": \"namespace2\",\n         \"type\": \"host-device\",\n         \"device\": \"eth1\",\n         \"ipam\": {\n           \"type\": \"dhcp\"\n         }\n       }\n   ```\n\n   1. Optional: You can specify a namespace to which the NAD is applied. If you are working in the namespace where the NAD is to be deployed, the `namespace` specification is not necessary.\n2. To create the primary network, enter the following command:\n\n   ```terminal\n   $ oc apply -f <file>.yaml\n   ```\n\n   where:\n\n   `<file>`\n   :   Specifies the name of the file contained the YAML manifest.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/multiple_networks/primary_networks/about-primary-nwt-nad.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +101,119 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="about-primary-nwt-nad" class="group scroll-mt-20">Creating primary networks using a NetworkAttachmentDefinition<a href="#about-primary-nwt-nad" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Use the <code>NetworkAttachmentDefinition</code> (NAD) resource to create primary networks when you need to use CNI plugins other than OVN-Kubernetes, such as IPVLAN or MACVLAN, or when you require direct control over the Container Network Interface (CNI) configuration for advanced networking scenarios.</p>
-      <p class="/modules/nw-nad-management.md"></p>
-      <p class="/modules/nw-multus-create-network.md"></p>
-      <p class="/modules/nw-nad-cr.md"></p>
-      <p class="/modules/nw-multus-create-network-apply.md"></p>
+      <h2 id="approaches-managing-additional-network_understanding-multiple-networks" class="group scroll-mt-20">Approaches to managing a primary network<a href="#approaches-managing-additional-network_understanding-multiple-networks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can manage the life cycle of a primary network created by a NAD CR through the Cluster Network Operator (CNO) or a YAML manifest. Using the CNO provides automated management of the network resource, while applying a YAML manifest allows for direct control over the network configuration.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Modifying the Cluster Network Operator (CNO) configuration</dt>
+      <dd class="ml-6 text-muted-foreground"><p>With this method, the CNO automatically creates and manages the <code>NetworkAttachmentDefinition</code> object. In addition to managing the object lifecycle, the CNO ensures that a DHCP is available for a primary network that uses a DHCP assigned IP address.</p></dd>
+      <dt class="font-semibold">Applying a YAML manifest</dt>
+      <dd class="ml-6 text-muted-foreground"><p>With this method, you can manage the primary network directly by creating an <code>NetworkAttachmentDefinition</code> object. This approach allows for the invocation of multiple CNI plugins in order to attach primary network interfaces in a pod.</p></dd>
+      </dl>
+      <p>Each approach is mutually exclusive and you can only use one approach for managing a primary network at a time. For either approach, the primary network is managed by a Container Network Interface (CNI) plugin that you configure.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When deploying OpenShift Container Platform nodes with multiple network interfaces on Red Hat OpenStack Platform (RHOSP) with OVN SDN, DNS configuration of the secondary interface might take precedence over the DNS configuration of the primary interface. In this case, remove the DNS nameservers for the subnet ID that is attached to the secondary interface by running the following command:</p>
+          <CodeBlock code={"$ openstack subnet set --dns-nameserver 0.0.0.0 <subnet_id>"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      <h2 id="nw-multus-create-network_understanding-multiple-networks" class="group scroll-mt-20">Creating a primary network attachment with the Cluster Network Operator<a href="#nw-multus-create-network_understanding-multiple-networks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When you specify a primary network to create by using the Cluster Network Operator (CNO), the (CNO) creates the <code>NetworkAttachmentDefinition</code> custom resource definition (CRD) automatically and manages it.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not edit the <code>NetworkAttachmentDefinition</code> CRDs that the Cluster Network Operator manages. Doing so might disrupt network traffic on your primary network.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Log in as a user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Optional: Create the namespace for the primary networks:
+      <CodeBlock code={"$ oc create namespace <namespace_name>"} lang="terminal" />
+      </li>
+      <li>
+      To edit the CNO configuration, enter the following command:
+      <CodeBlock code={"$ oc edit networks.operator.openshift.io cluster"} lang="terminal" />
+      </li>
+      <li>
+      Modify the CR that you are creating by adding the configuration for the primary network that you are creating, as in the following example CR.
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: Network\nmetadata:\n  name: cluster\nspec:\n  # ...\n  additionalNetworks:\n  - name: tertiary-net\n    namespace: namespace2\n    type: Raw\n    rawCNIConfig: |-\n      {\n        \"cniVersion\": \"0.3.1\",\n        \"name\": \"tertiary-net\",\n        \"type\": \"ipvlan\",\n        \"master\": \"eth1\",\n        \"mode\": \"l2\",\n        \"ipam\": {\n          \"type\": \"static\",\n          \"addresses\": [\n            {\n              \"address\": \"192.168.1.23/24\"\n            }\n          ]\n        }\n      }"} lang="yaml" />
+      </li>
+      <li>Save your changes and quit the text editor to commit your changes.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Confirm that the CNO created the <code>NetworkAttachmentDefinition</code> CRD by running the following command. A delay might exist before the CNO creates the CRD. The expected output shows the name of the NAD CRD and the creation age in minutes.
+      <CodeBlock code={"$ oc get network-attachment-definitions -n <namespace>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace for the network attachment that you added to the CNO configuration.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h2 id="nw-nad-cr_understanding-multiple-networks" class="group scroll-mt-20">Configuration for a primary network attachment<a href="#nw-nad-cr_understanding-multiple-networks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You configure a primary network by using the <code>NetworkAttachmentDefinition</code> API in the <code>k8s.cni.cncf.io</code> API group.</p>
+      <p>The configuration for the API is described in the following table:</p>
+      <p><code>NetworkAttachmentDefinition</code><strong> API fields</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>metadata.name</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The name for the primary network.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>metadata.namespace</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The namespace that the object is associated with.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.config</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The CNI plugin configuration in JSON format.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="nw-multus-create-network-apply_understanding-multiple-networks" class="group scroll-mt-20">Creating a primary network attachment by applying a YAML manifest<a href="#nw-multus-create-network-apply_understanding-multiple-networks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Create a primary network attachment by directly applying a <code>NetworkAttachmentDefinition</code> YAML manifest. This gives you full control over the network configuration without relying on the Cluster Network Operator to manage the resource automatically.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have logged in as a user with <code>cluster-admin</code> privileges.</li>
+      <li>You are working in the namespace where the NAD is to be deployed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file with your primary network configuration, such as in the following example:
+      <CodeBlock code={"apiVersion: k8s.cni.cncf.io/v1\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: next-net\nspec:\n  config: |-\n    {\n      \"cniVersion\": \"0.3.1\",\n      \"name\": \"work-network\",\n      \"namespace\": \"namespace2\",\n      \"type\": \"host-device\",\n      \"device\": \"eth1\",\n      \"ipam\": {\n        \"type\": \"dhcp\"\n      }\n    }"} lang="yaml" />
+      <ol><li>Optional: You can specify a namespace to which the NAD is applied. If you are working in the namespace where the NAD is to be deployed, the <code>namespace</code> specification is not necessary.</li></ol>
+      </li>
+      <li>
+      To create the primary network, enter the following command:
+      <CodeBlock code={"$ oc apply -f <file>.yaml"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the file contained the YAML manifest.</p></dd>
+      </dl>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

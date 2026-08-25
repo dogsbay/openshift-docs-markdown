@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-creating-vms-by-cloning-pvcs","text":"Creating VMs by cloning PVCs"},{"depth":2,"slug":"additional-resources_virt-creating-vms-by-cloning-pvcs","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-creating-vms-by-cloning-pvcs","text":"Creating VMs by cloning PVCs"},{"depth":2,"slug":"virt-about-cloning_virt-creating-vms-by-cloning-pvcs","text":"About cloning"},{"depth":3,"slug":"csi-volume-cloning_virt-creating-vms-by-cloning-pvcs","text":"CSI volume cloning"},{"depth":3,"slug":"smart-cloning_virt-creating-vms-by-cloning-pvcs","text":"Smart cloning"},{"depth":3,"slug":"host-assisted-cloning_virt-creating-vms-by-cloning-pvcs","text":"Host-assisted cloning"},{"depth":2,"slug":"virt-creating-vm-custom-image-web_virt-creating-vms-by-cloning-pvcs","text":"Creating a VM from a PVC by using the web console"},{"depth":2,"slug":"virt-creating-vm-by-cloning-pvcs-cli_virt-creating-vms-by-cloning-pvcs","text":"Creating a VM from a PVC by using the CLI"},{"depth":3,"slug":"virt-optimizing-clone-performance-at-scale-in-openshift-data-foundation_virt-creating-vms-by-cloning-pvcs","text":"Optimizing clone Performance at scale in OpenShift Data Foundation"},{"depth":3,"slug":"virt-cloning-pvc-to-dv-cli_virt-creating-vms-by-cloning-pvcs","text":"Cloning a PVC to a data volume"},{"depth":3,"slug":"virt-creating-vm-cloning-pvc-data-volume-template_virt-creating-vms-by-cloning-pvcs","text":"Creating a VM from a cloned PVC by using a data volume template"},{"depth":2,"slug":"additional-resources_virt-creating-vms-by-cloning-pvcs","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-by-cloning-pvcs";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/creating_vm"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating VMs by cloning PVCs {#virt-creating-vms-by-cloning-pvcs}\n\nYou can create virtual machines (VMs) by cloning existing persistent volume claims (PVCs) with custom images.\n\nYou must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\nYou clone a PVC by creating a data volume that references a source PVC.\n\n## Additional resources {#additional-resources_virt-creating-vms-by-cloning-pvcs}\n\n- [Setting a default cloning strategy using a storage profile](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-customizing-storage-profile-default-cloning-strategy_virt-configuring-storage-profile)\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n- [Volume cloning](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/latest/html/managing_and_allocating_storage_resources/volume-cloning_rhodf#volume-cloning_rhodf)\n- [CSI volume snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-by-cloning-pvcs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating VMs by cloning PVCs {#virt-creating-vms-by-cloning-pvcs}\n\nYou can create virtual machines (VMs) by cloning existing persistent volume claims (PVCs) with custom images.\n\nYou must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\nYou clone a PVC by creating a data volume that references a source PVC.\n\n## About cloning {#virt-about-cloning_virt-creating-vms-by-cloning-pvcs}\n\nWhen cloning a data volume, the Containerized Data Importer (CDI) chooses one of the Container Storage Interface (CSI) clone methods: CSI volume cloning or smart cloning. Both methods are efficient but have certain requirements. If the requirements are not met, the CDI uses host-assisted cloning.\n\nHost-assisted cloning is the slowest and least efficient method of cloning, but it has fewer requirements than either of the other two cloning methods.\n\n### CSI volume cloning {#csi-volume-cloning_virt-creating-vms-by-cloning-pvcs}\n\nContainer Storage Interface (CSI) cloning uses CSI driver features to more efficiently clone a source data volume.\n\nCSI volume cloning has the following requirements:\n\n- The CSI driver that backs the storage class of the persistent volume claim (PVC) must support volume cloning.\n- For provisioners not recognized by the CDI, the corresponding storage profile must have the `cloneStrategy` set to CSI Volume Cloning.\n- The source and target PVCs must have the same storage class and volume mode.\n- If you create the data volume, you must have permission to create the `datavolumes/source` resource in the source namespace.\n- The source volume must not be in use.\n\n### Smart cloning {#smart-cloning_virt-creating-vms-by-cloning-pvcs}\n\nWhen a Container Storage Interface (CSI) plugin with snapshot capabilities is available, the Containerized Data Importer (CDI) creates a persistent volume claim (PVC) from a snapshot, which then allows efficient cloning of additional PVCs.\n\nSmart cloning has the following requirements:\n\n- A snapshot class associated with the storage class must exist.\n- The source and target PVCs must have the same storage class and volume mode.\n- If you create the data volume, you must have permission to create the `datavolumes/source` resource in the source namespace.\n- The source volume must not be in use.\n\n### Host-assisted cloning {#host-assisted-cloning_virt-creating-vms-by-cloning-pvcs}\n\nWhen the requirements for neither Container Storage Interface (CSI) volume cloning nor smart cloning have been met, host-assisted cloning is used as a fallback method. Host-assisted cloning is less efficient than either of the two other cloning methods.\n\nHost-assisted cloning uses a source pod and a target pod to copy data from the source volume to the target volume. The target persistent volume claim (PVC) is annotated with the fallback reason that explains why host-assisted cloning has been used, and an event is created.\n\nExample PVC target annotation:\n\n```yaml\napiVersion: v1\nkind: PersistentVolumeClaim\nmetadata:\n  annotations:\n    cdi.kubevirt.io/cloneFallbackReason: The volume modes of source and target are incompatible\n    cdi.kubevirt.io/clonePhase: Succeeded\n    cdi.kubevirt.io/cloneType: copy\n```\n\nExample event:\n\n```terminal\nNAMESPACE   LAST SEEN   TYPE      REASON                    OBJECT                              MESSAGE\ntest-ns     0s          Warning   IncompatibleVolumeModes   persistentvolumeclaim/test-target   The volume modes of source and target are incompatible\n```\n\n## Creating a VM from a PVC by using the web console {#virt-creating-vm-custom-image-web_virt-creating-vms-by-cloning-pvcs}\n\nYou can create a virtual machine (VM) by cloning a persistent volume claim (PVC) by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You must have access to the namespace that contains the source PVC.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **Catalog** in the web console.\n2. Click a template tile without an available boot source.\n3. Click **Customize VirtualMachine**.\n4. On the **Customize template parameters** page, expand **Storage** and select **PVC (clone PVC)** from the **Disk source** list.\n5. Select the PVC project and the PVC name.\n6. Set the disk size.\n7. Click **Next**.\n8. Click **Create VirtualMachine**.\n\n## Creating a VM from a PVC by using the CLI {#virt-creating-vm-by-cloning-pvcs-cli_virt-creating-vms-by-cloning-pvcs}\n\nYou can create a virtual machine (VM) by cloning the persistent volume claim (PVC) of an existing VM by using the command line.\n\nYou can clone a PVC by using one of the following options:\n\n- Cloning a PVC to a new data volume.\n\n  This method creates a data volume whose lifecycle is independent of the original VM. Deleting the original VM does not affect the new data volume or its associated PVC.\n- Cloning a PVC by creating a `VirtualMachine` manifest with a `dataVolumeTemplates` stanza.\n\n  This method creates a data volume whose lifecycle is dependent on the original VM. Deleting the original VM deletes the cloned data volume and its associated PVC.\n\n### Optimizing clone Performance at scale in OpenShift Data Foundation {#virt-optimizing-clone-performance-at-scale-in-openshift-data-foundation_virt-creating-vms-by-cloning-pvcs}\n\nWhen you use OpenShift Data Foundation, the storage profile configures the default cloning strategy as `csi-clone`. However, this method has limitations, as shown in the following link.\n\nAfter a certain number of clones are created from a persistent volume claim (PVC), a background flattening process begins, which can significantly reduce clone creation performance at scale.\n\nTo improve performance when creating hundreds of clones from a single source PVC, use the `VolumeSnapshot` cloning method instead of the default `csi-clone` strategy.\n\n**Procedure**\n\n1. Create a `VolumeSnapshot` custom resource (CR) of the source image by using the following content:\n\n   ```yaml\n   apiVersion: snapshot.storage.k8s.io/v1\n   kind: VolumeSnapshot\n   metadata:\n     name: golden-volumesnapshot\n     namespace: golden-ns\n   spec:\n     volumeSnapshotClassName: ocs-storagecluster-rbdplugin-snapclass\n     source:\n       persistentVolumeClaimName: golden-snap-source\n   ```\n2. Add the  `spec.source.snapshot` stanza to reference the `VolumeSnapshot` as the source for the `DataVolume clone`:\n\n   ```yaml\n   spec:\n     source:\n       snapshot:\n         namespace: golden-ns\n         name: golden-volumesnapshot\n   ```\n\n### Cloning a PVC to a data volume {#virt-cloning-pvc-to-dv-cli_virt-creating-vms-by-cloning-pvcs}\n\nYou can clone the persistent volume claim (PVC) of an existing virtual machine (VM) disk to a data volume by using the command line.\n\nYou create a data volume that references the original source PVC. The lifecycle of the new data volume is independent of the original VM. Deleting the original VM does not affect the new data volume or its associated PVC.\n\nCloning between different volume modes is supported for host-assisted cloning, such as cloning from a block persistent volume (PV) to a file system PV, as long as the source and target PVs belong to the `kubevirt` content type.\n\n> [!NOTE]\n> Smart-cloning is faster and more efficient than host-assisted cloning because it uses snapshots to clone PVCs. Smart-cloning is supported by storage providers that support snapshots, such as Red Hat OpenShift Data Foundation.\n>\n> Cloning between different volume modes is not supported for smart-cloning.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- The VM with the source PVC must be powered down.\n- If you clone a PVC to a different namespace, you must have permissions to create resources in the target namespace.\n- Additional prerequisites for smart-cloning:\n\n  - Your storage provider must support snapshots.\n  - The source and target PVCs must have the same storage provider and volume mode.\n  - The value of the `driver` key of the `VolumeSnapshotClass` object must match the value of the `provisioner` key of the `StorageClass` object as shown in the following example:\n\n    Example `VolumeSnapshotClass` object:\n\n    ```yaml\n    kind: VolumeSnapshotClass\n    apiVersion: snapshot.storage.k8s.io/v1\n    driver: openshift-storage.rbd.csi.ceph.com\n    # ...\n    ```\n\n    Example `StorageClass` object:\n\n    ```yaml\n    kind: StorageClass\n    apiVersion: storage.k8s.io/v1\n    # ...\n    provisioner: openshift-storage.rbd.csi.ceph.com\n    ```\n\n**Procedure**\n\n1. Create a `DataVolume` manifest as shown in the following example:\n\n   ```yaml\n   apiVersion: cdi.kubevirt.io/v1beta1\n   kind: DataVolume\n   metadata:\n     name: <datavolume>\n   spec:\n     source:\n       pvc:\n         namespace: \"<source_namespace>\"\n         name: \"<my_vm_disk>\"\n     storage: {}\n   ```\n\n   where:\n\n   `<datavolume>`\n   :   Specifies the name of the new data volume.\n\n   `<source_namespace>`\n   :   Specifies the namespace of the source PVC.\n\n   `<my_vm_disk>`\n   :   Specifies the name of the source PVC.\n2. Create the data volume by running the following command:\n\n   ```terminal\n   $ oc create -f <datavolume>.yaml\n   ```\n\n   > [!NOTE]\n   > Data volumes prevent a VM from starting before the PVC is prepared. You can create a VM that references the new data volume while the PVC is being cloned.\n\n### Creating a VM from a cloned PVC by using a data volume template {#virt-creating-vm-cloning-pvc-data-volume-template_virt-creating-vms-by-cloning-pvcs}\n\nYou can create a virtual machine (VM) that clones the persistent volume claim (PVC) of an existing VM by using a data volume template. This method creates a data volume whose lifecycle is independent on the original VM.\n\n**Prerequisites**\n\n- The VM with the source PVC must be powered down.\n- You have installed the `virtctl` CLI.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a `VirtualMachine` manifest for your VM and save it as a YAML file, for example:\n\n   ```terminal\n   $ virtctl create vm --name rhel-9-clone --volume-import type:pvc,src:my-project/imported-volume-q5pr9\n   ```\n2. Review the `VirtualMachine` manifest for your VM:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: rhel-9-clone\n   spec:\n     dataVolumeTemplates:\n     - metadata:\n         name: imported-volume-h4qn8\n       spec:\n         source:\n           pvc:\n             name: imported-volume-q5pr9\n             namespace: my-project\n         storage:\n           resources: {}\n     instancetype:\n       inferFromVolume: imported-volume-h4qn8\n       inferFromVolumeFailurePolicy: Ignore\n     preference:\n       inferFromVolume: imported-volume-h4qn8\n       inferFromVolumeFailurePolicy: Ignore\n     runStrategy: Always\n     template:\n       spec:\n         domain:\n           devices: {}\n           memory:\n             guest: 512Mi\n           resources: {}\n         terminationGracePeriodSeconds: 180\n         volumes:\n         - dataVolume:\n             name: imported-volume-h4qn8\n           name: imported-volume-h4qn8\n   ```\n\n   - `metadata.name` defines the VM name.\n   - `spec.dataVolumeTemplates.spec.source.pvc.name` defines the name of the source PVC.\n   - `spec.dataVolumeTemplates.spec.source.pvc.namespace` defines the namespace of the source PVC.\n   - `spec.instancetype.inferFromVolume` defines that if the PVC source has appropriate labels, the instance type is inferred from the selected `DataSource` object.\n   - `spec.preference.inferFromVolume` defines that if the PVC source has appropriate labels, the preference is inferred from the selected `DataSource` object.\n3. Create the virtual machine with the PVC-cloned data volume:\n\n   ```terminal\n   $ oc create -f <vm_manifest_file>.yaml\n   ```\n\n## Additional resources {#additional-resources_virt-creating-vms-by-cloning-pvcs}\n\n- [Setting a default cloning strategy using a storage profile](/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-customizing-storage-profile-default-cloning-strategy_virt-configuring-storage-profile)\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n- [Volume cloning](https://docs.redhat.com/en/documentation/red_hat_openshift_data_foundation/latest/html/managing_and_allocating_storage_resources/volume-cloning_rhodf#volume-cloning_rhodf)\n- [CSI volume snapshots](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-snapshots#persistent-storage-csi-snapshots)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-by-cloning-pvcs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,16 +95,168 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">Creating VMs by cloning PVCs<a href="#virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can create virtual machines (VMs) by cloning existing persistent volume claims (PVCs) with custom images.</p>
       <p>You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.</p>
       <p>You clone a PVC by creating a data volume that references a source PVC.</p>
-      <p class="/modules/virt-about-cloning.md"></p>
-      <p class="/modules/virt-creating-vm-custom-image-web.md"></p>
-      <p class="/modules/virt-creating-vm-by-cloning-pvcs-cli.md"></p>
-      <p class="/modules/virt-optimizing-clone-performance-at-scale-in-openshift-data-foundation.md"></p>
-      <p class="/modules/virt-cloning-pvc-to-dv-cli.md"></p>
-      <p class="/modules/virt-creating-vm-cloned-pvc-data-volume-template.md"></p>
+      <h2 id="virt-about-cloning_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">About cloning<a href="#virt-about-cloning_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When cloning a data volume, the Containerized Data Importer (CDI) chooses one of the Container Storage Interface (CSI) clone methods: CSI volume cloning or smart cloning. Both methods are efficient but have certain requirements. If the requirements are not met, the CDI uses host-assisted cloning.</p>
+      <p>Host-assisted cloning is the slowest and least efficient method of cloning, but it has fewer requirements than either of the other two cloning methods.</p>
+      <h3 id="csi-volume-cloning_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">CSI volume cloning<a href="#csi-volume-cloning_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Container Storage Interface (CSI) cloning uses CSI driver features to more efficiently clone a source data volume.</p>
+      <p>CSI volume cloning has the following requirements:</p>
+      <ul>
+      <li>The CSI driver that backs the storage class of the persistent volume claim (PVC) must support volume cloning.</li>
+      <li>For provisioners not recognized by the CDI, the corresponding storage profile must have the <code>cloneStrategy</code> set to CSI Volume Cloning.</li>
+      <li>The source and target PVCs must have the same storage class and volume mode.</li>
+      <li>If you create the data volume, you must have permission to create the <code>datavolumes/source</code> resource in the source namespace.</li>
+      <li>The source volume must not be in use.</li>
+      </ul>
+      <h3 id="smart-cloning_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">Smart cloning<a href="#smart-cloning_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>When a Container Storage Interface (CSI) plugin with snapshot capabilities is available, the Containerized Data Importer (CDI) creates a persistent volume claim (PVC) from a snapshot, which then allows efficient cloning of additional PVCs.</p>
+      <p>Smart cloning has the following requirements:</p>
+      <ul>
+      <li>A snapshot class associated with the storage class must exist.</li>
+      <li>The source and target PVCs must have the same storage class and volume mode.</li>
+      <li>If you create the data volume, you must have permission to create the <code>datavolumes/source</code> resource in the source namespace.</li>
+      <li>The source volume must not be in use.</li>
+      </ul>
+      <h3 id="host-assisted-cloning_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">Host-assisted cloning<a href="#host-assisted-cloning_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>When the requirements for neither Container Storage Interface (CSI) volume cloning nor smart cloning have been met, host-assisted cloning is used as a fallback method. Host-assisted cloning is less efficient than either of the two other cloning methods.</p>
+      <p>Host-assisted cloning uses a source pod and a target pod to copy data from the source volume to the target volume. The target persistent volume claim (PVC) is annotated with the fallback reason that explains why host-assisted cloning has been used, and an event is created.</p>
+      <p>Example PVC target annotation:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: PersistentVolumeClaim\nmetadata:\n  annotations:\n    cdi.kubevirt.io/cloneFallbackReason: The volume modes of source and target are incompatible\n    cdi.kubevirt.io/clonePhase: Succeeded\n    cdi.kubevirt.io/cloneType: copy"} lang="yaml" />
+      <p>Example event:</p>
+      <CodeBlock code={"NAMESPACE   LAST SEEN   TYPE      REASON                    OBJECT                              MESSAGE\ntest-ns     0s          Warning   IncompatibleVolumeModes   persistentvolumeclaim/test-target   The volume modes of source and target are incompatible"} lang="terminal" />
+      <h2 id="virt-creating-vm-custom-image-web_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">Creating a VM from a PVC by using the web console<a href="#virt-creating-vm-custom-image-web_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a virtual machine (VM) by cloning a persistent volume claim (PVC) by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have access to the namespace that contains the source PVC.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>Catalog</strong> in the web console.</li>
+      <li>Click a template tile without an available boot source.</li>
+      <li>Click <strong>Customize VirtualMachine</strong>.</li>
+      <li>On the <strong>Customize template parameters</strong> page, expand <strong>Storage</strong> and select <strong>PVC (clone PVC)</strong> from the <strong>Disk source</strong> list.</li>
+      <li>Select the PVC project and the PVC name.</li>
+      <li>Set the disk size.</li>
+      <li>Click <strong>Next</strong>.</li>
+      <li>Click <strong>Create VirtualMachine</strong>.</li>
+      </ol>
+      <h2 id="virt-creating-vm-by-cloning-pvcs-cli_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">Creating a VM from a PVC by using the CLI<a href="#virt-creating-vm-by-cloning-pvcs-cli_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a virtual machine (VM) by cloning the persistent volume claim (PVC) of an existing VM by using the command line.</p>
+      <p>You can clone a PVC by using one of the following options:</p>
+      <ul>
+      <li>
+      Cloning a PVC to a new data volume.
+      <p>This method creates a data volume whose lifecycle is independent of the original VM. Deleting the original VM does not affect the new data volume or its associated PVC.</p>
+      </li>
+      <li>
+      Cloning a PVC by creating a <code>VirtualMachine</code> manifest with a <code>dataVolumeTemplates</code> stanza.
+      <p>This method creates a data volume whose lifecycle is dependent on the original VM. Deleting the original VM deletes the cloned data volume and its associated PVC.</p>
+      </li>
+      </ul>
+      <h3 id="virt-optimizing-clone-performance-at-scale-in-openshift-data-foundation_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">Optimizing clone Performance at scale in OpenShift Data Foundation<a href="#virt-optimizing-clone-performance-at-scale-in-openshift-data-foundation_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When you use OpenShift Data Foundation, the storage profile configures the default cloning strategy as <code>csi-clone</code>. However, this method has limitations, as shown in the following link.</p>
+      <p>After a certain number of clones are created from a persistent volume claim (PVC), a background flattening process begins, which can significantly reduce clone creation performance at scale.</p>
+      <p>To improve performance when creating hundreds of clones from a single source PVC, use the <code>VolumeSnapshot</code> cloning method instead of the default <code>csi-clone</code> strategy.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>VolumeSnapshot</code> custom resource (CR) of the source image by using the following content:
+      <CodeBlock code={"apiVersion: snapshot.storage.k8s.io/v1\nkind: VolumeSnapshot\nmetadata: \n  name: golden-volumesnapshot\n  namespace: golden-ns\nspec:\n  volumeSnapshotClassName: ocs-storagecluster-rbdplugin-snapclass\n  source:\n    persistentVolumeClaimName: golden-snap-source"} lang="yaml" />
+      </li>
+      <li>
+      Add the  <code>spec.source.snapshot</code> stanza to reference the <code>VolumeSnapshot</code> as the source for the <code>DataVolume clone</code>:
+      <CodeBlock code={"spec:\n  source:\n    snapshot:\n      namespace: golden-ns\n      name: golden-volumesnapshot"} lang="yaml" />
+      </li>
+      </ol>
+      <h3 id="virt-cloning-pvc-to-dv-cli_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">Cloning a PVC to a data volume<a href="#virt-cloning-pvc-to-dv-cli_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can clone the persistent volume claim (PVC) of an existing virtual machine (VM) disk to a data volume by using the command line.</p>
+      <p>You create a data volume that references the original source PVC. The lifecycle of the new data volume is independent of the original VM. Deleting the original VM does not affect the new data volume or its associated PVC.</p>
+      <p>Cloning between different volume modes is supported for host-assisted cloning, such as cloning from a block persistent volume (PV) to a file system PV, as long as the source and target PVs belong to the <code>kubevirt</code> content type.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Smart-cloning is faster and more efficient than host-assisted cloning because it uses snapshots to clone PVCs. Smart-cloning is supported by storage providers that support snapshots, such as Red Hat OpenShift Data Foundation.</p>
+          <p>Cloning between different volume modes is not supported for smart-cloning.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>The VM with the source PVC must be powered down.</li>
+      <li>If you clone a PVC to a different namespace, you must have permissions to create resources in the target namespace.</li>
+      <li>
+      Additional prerequisites for smart-cloning:
+      <ul>
+      <li>Your storage provider must support snapshots.</li>
+      <li>The source and target PVCs must have the same storage provider and volume mode.</li>
+      <li>
+      The value of the <code>driver</code> key of the <code>VolumeSnapshotClass</code> object must match the value of the <code>provisioner</code> key of the <code>StorageClass</code> object as shown in the following example:
+      <p>Example <code>VolumeSnapshotClass</code> object:</p>
+      <CodeBlock code={"kind: VolumeSnapshotClass\napiVersion: snapshot.storage.k8s.io/v1\ndriver: openshift-storage.rbd.csi.ceph.com\n# ..."} lang="yaml" />
+      <p>Example <code>StorageClass</code> object:</p>
+      <CodeBlock code={"kind: StorageClass\napiVersion: storage.k8s.io/v1\n# ...\nprovisioner: openshift-storage.rbd.csi.ceph.com"} lang="yaml" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>DataVolume</code> manifest as shown in the following example:
+      <CodeBlock code={"apiVersion: cdi.kubevirt.io/v1beta1\nkind: DataVolume\nmetadata:\n  name: <datavolume>\nspec:\n  source:\n    pvc:\n      namespace: \"<source_namespace>\"\n      name: \"<my_vm_disk>\"\n  storage: {}"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;datavolume&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the new data volume.</p></dd>
+      <dt class="font-semibold"><code>&lt;source_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace of the source PVC.</p></dd>
+      <dt class="font-semibold"><code>&lt;my_vm_disk&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the source PVC.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the data volume by running the following command:
+      <CodeBlock code={"$ oc create -f <datavolume>.yaml"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Data volumes prevent a VM from starting before the PVC is prepared. You can create a VM that references the new data volume while the PVC is being cloned.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h3 id="virt-creating-vm-cloning-pvc-data-volume-template_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">Creating a VM from a cloned PVC by using a data volume template<a href="#virt-creating-vm-cloning-pvc-data-volume-template_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can create a virtual machine (VM) that clones the persistent volume claim (PVC) of an existing VM by using a data volume template. This method creates a data volume whose lifecycle is independent on the original VM.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The VM with the source PVC must be powered down.</li>
+      <li>You have installed the <code>virtctl</code> CLI.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>VirtualMachine</code> manifest for your VM and save it as a YAML file, for example:
+      <CodeBlock code={"$ virtctl create vm --name rhel-9-clone --volume-import type:pvc,src:my-project/imported-volume-q5pr9"} lang="terminal" />
+      </li>
+      <li>
+      Review the <code>VirtualMachine</code> manifest for your VM:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: rhel-9-clone\nspec:\n  dataVolumeTemplates:\n  - metadata:\n      name: imported-volume-h4qn8\n    spec:\n      source:\n        pvc:\n          name: imported-volume-q5pr9\n          namespace: my-project\n      storage:\n        resources: {}\n  instancetype:\n    inferFromVolume: imported-volume-h4qn8\n    inferFromVolumeFailurePolicy: Ignore\n  preference:\n    inferFromVolume: imported-volume-h4qn8\n    inferFromVolumeFailurePolicy: Ignore\n  runStrategy: Always\n  template:\n    spec:\n      domain:\n        devices: {}\n        memory:\n          guest: 512Mi\n        resources: {}\n      terminationGracePeriodSeconds: 180\n      volumes:\n      - dataVolume:\n          name: imported-volume-h4qn8\n        name: imported-volume-h4qn8"} lang="yaml" />
+      <ul>
+      <li><code>metadata.name</code> defines the VM name.</li>
+      <li><code>spec.dataVolumeTemplates.spec.source.pvc.name</code> defines the name of the source PVC.</li>
+      <li><code>spec.dataVolumeTemplates.spec.source.pvc.namespace</code> defines the namespace of the source PVC.</li>
+      <li><code>spec.instancetype.inferFromVolume</code> defines that if the PVC source has appropriate labels, the instance type is inferred from the selected <code>DataSource</code> object.</li>
+      <li><code>spec.preference.inferFromVolume</code> defines that if the PVC source has appropriate labels, the preference is inferred from the selected <code>DataSource</code> object.</li>
+      </ul>
+      </li>
+      <li>
+      Create the virtual machine with the PVC-cloned data volume:
+      <CodeBlock code={"$ oc create -f <vm_manifest_file>.yaml"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="additional-resources_virt-creating-vms-by-cloning-pvcs" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-creating-vms-by-cloning-pvcs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/virt/storage/virt-configuring-storage-profile#virt-customizing-storage-profile-default-cloning-strategy_virt-configuring-storage-profile">Setting a default cloning strategy using a storage profile</a></li>

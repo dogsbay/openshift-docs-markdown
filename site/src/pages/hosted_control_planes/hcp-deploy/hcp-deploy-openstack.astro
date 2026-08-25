@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-deploy-openstack","text":"Deploying {{ hcp }} on OpenStack"}];
+const headings = [{"depth":1,"slug":"hcp-deploy-openstack","text":"Deploying hosted control planes on OpenStack"},{"depth":2,"slug":"hosted-clusters-openstack-prerequisites_hcp-deploy-openstack","text":"Prerequisites for OpenStack"},{"depth":2,"slug":"hosted-clusters-openstack-prepare-etcd_hcp-deploy-openstack","text":"Preparing the management cluster for etcd local storage"},{"depth":2,"slug":"hosted-clusters-openstack-create-floating-ip_hcp-deploy-openstack","text":"Creating a floating IP for ingress"},{"depth":2,"slug":"hosted-clusters-openstack-upload-rhcos_hcp-deploy-openstack","text":"Uploading the RHCOS image to OpenStack"},{"depth":2,"slug":"hcp-deploy-openstack-create_hcp-deploy-openstack","text":"Creating a hosted cluster on OpenStack"},{"depth":3,"slug":"hcp-deploy-openstack-parameters_hcp-deploy-openstack","text":"Options for creating a Hosted Control Planes cluster on OpenStack"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-openstack";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Deploying {{ hcp }} on OpenStack";
-const description = "You can deploy {{ hcp }} with hosted clusters that run on {{ rh_openstack_first }} 17.1." || undefined;
+const description = "You can deploy hosted control planes with hosted clusters that run on Red Hat OpenStack Platform (RHOSP) 17.1." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-deploy"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on OpenStack {#hcp-deploy-openstack}\n\nYou can deploy {{ hcp }} with hosted clusters that run on {{ rh_openstack_first }} 17.1.\n\nA *hosted cluster* is an OpenShift Container Platform cluster with its API endpoint and control plane that are hosted on a management cluster. With {{ hcp }}, control planes exist as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.\n\n**Additional resources**\n\n- [Pull secret](https://console.redhat.com/openshift/install/platform-agnostic/user-provisioned)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-openstack.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying hosted control planes on OpenStack {#hcp-deploy-openstack}\n\n> [!IMPORTANT]\n> Deploying hosted control planes clusters on Red Hat OpenStack Platform (RHOSP) is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\nYou can deploy hosted control planes with hosted clusters that run on Red Hat OpenStack Platform (RHOSP) 17.1.\n\nA *hosted cluster* is an OpenShift Container Platform cluster with its API endpoint and control plane that are hosted on a management cluster. With hosted control planes, control planes exist as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.\n\n## Prerequisites for OpenStack {#hosted-clusters-openstack-prerequisites_hcp-deploy-openstack}\n\nBefore you create a hosted cluster on Red Hat OpenStack Platform (RHOSP), ensure that you meet the prerequisites.\n\n- You have administrative access to a management OpenShift Container Platform cluster version 4.17 or greater. This cluster can run on bare metal, RHOSP, or a supported public cloud.\n- The HyperShift Operator is installed on the management cluster as specified in \"Preparing to deploy hosted control planes\".\n- The management cluster is configured with OVN-Kubernetes as the default pod network CNI.\n- The OpenShift CLI (`oc`) and hosted control planes CLI, `hcp` are installed.\n- A load-balancer backend, for example, Octavia, is installed on the management OCP cluster. The load balancer is required for the `kube-api` service to be created for each hosted cluster.\n\n  - When ingress is configured with an Octavia load balance, the RHOSP Octavia service is running in the cloud that hosts the guest cluster.\n- A valid pull secret file is present for the `quay.io/openshift-release-dev` repository.\n- The default external network for the management cluster is reachable from the guest cluster. The `kube-apiserver` load-balancer type service is created on this network.\n- If you use a pre-defined floating IP address for ingress, you created a DNS record that points to it for the following wildcard domain: `*.apps.<cluster_name>.<base_domain>`, where:\n\n  - `<cluster_name>` is the name of the management cluster.\n  - `<base_domain>` is the parent DNS domain under which your cluster’s applications live.\n\n**Additional resources**\n\n- [Pull secret](https://console.redhat.com/openshift/install/platform-agnostic/user-provisioned)\n\n## Preparing the management cluster for etcd local storage {#hosted-clusters-openstack-prepare-etcd_hcp-deploy-openstack}\n\nIn a hosted control planes deployment on Red Hat OpenStack Platform (RHOSP), you can improve etcd performance by using local ephemeral storage that is provisioned with the TopoLVM CSI driver instead of relying on the default Cinder-based Persistent Volume Claims (PVCs).\n\n**Prerequisites**\n\n- You have access to a management cluster with HyperShift installed.\n- You can create and manage RHOSP flavors and machine sets.\n- You have the `oc` and `openstack` CLI tools installed and configured.\n- You are familiar with TopoLVM and Logical Volume Manager (LVM) storage concepts.\n- You installed the LVM Storage Operator on the management cluster. For more information, see \"Installing LVM Storage by using the CLI\" in the Storage section of the OpenShift Container Platform documentation.\n\n**Procedure**\n\n1. Create a Nova flavor with an additional ephemeral disk by using the `openstack` CLI. For example:\n\n   ```terminal\n   $ openstack flavor create \\\n     --id auto \\\n     --ram 8192 \\\n     --disk 0 \\\n     --ephemeral 100 \\\n     --vcpus 4 \\\n     --public \\\n     hcp-etcd-ephemeral\n   ```\n\n   > [!NOTE]\n   > Nova automatically attaches the ephemeral disk to the instance and formats it as `vfat` when a server is created with that flavor.\n2. Create a compute machine set that uses the new flavor. For more information, see \"Creating a compute machine set on OpenStack\" in the OpenShift Container Platform documentation.\n3. Scale the machine set to meet your requirements. If clusters are deployed for high availability, a minimum of 3 workers must be deployed so the pods can be distributed accordingly.\n4. Label the new worker nodes to identify them for etcd use. For example:\n\n   ```terminal\n   $ oc label node <node_name> hypershift-capable=true\n   ```\n\n   This label is arbitrary; you can update it later.\n5. In a file called `lvmcluster.yaml`, create the following `LVMCluster` custom resource to the local storage configuration for etcd:\n\n   ```yaml\n   apiVersion: lvm.topolvm.io/v1alpha1\n   kind: LVMCluster\n   metadata:\n     name: etcd-hcp\n     namespace: openshift-storage\n   spec:\n     storage:\n       deviceClasses:\n       - name: etcd-class\n         default: true\n         nodeSelector:\n            nodeSelectorTerms:\n            - matchExpressions:\n              - key: hypershift-capable\n               operator: In\n               values:\n               - \"true\"\n         deviceSelector:\n           forceWipeDevicesAndDestroyAllData: true\n           paths:\n           - /dev/vdb\n   ```\n\n   In this example resource:\n\n   - The ephemeral disk location is `/dev/vdb`, which is the case in most situations. Verify that this location is true in your case, and note that symlinks are not supported.\n   - The parameter `forceWipeDevicesAndDestroyAllData` is set to a `True` value because the default Nova ephemeral disk comes formatted in VFAT.\n6. Apply the `LVMCluster` resource by running the following command:\n\n   ```terminal\n   oc apply -f lvmcluster.yaml\n   ```\n7. Verify the `LVMCluster` resource by running the following command:\n\n   ```terminal\n   $ oc get lvmcluster -A\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAMESPACE           NAME    STATUS\n   openshift-storage   etcd-hcp   Ready\n   ```\n8. Verify the `StorageClass` resource by running the following command:\n\n   ```terminal\n   $ oc get storageclass\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                    PROVISIONER               RECLAIMPOLICY   VOLUMEBINDINGMODE     ALLOWVOLUMEEXPANSION   AGE\n   lvms-etcd-class         topolvm.io                Delete          WaitForFirstConsumer  true                   23m\n   standard-csi (default)  cinder.csi.openstack.org  Delete          WaitForFirstConsumer  true                   56m\n   ```\n\n   You can now deploy a hosted cluster with a performant etcd configuration. The deployment process is described in \"Creating a hosted cluster on OpenStack\".\n\n## Creating a floating IP for ingress {#hosted-clusters-openstack-create-floating-ip_hcp-deploy-openstack}\n\nIf you want to make ingress available in a hosted cluster without manual intervention, you can create a floating IP address for it in advance.\n\n**Prerequisites**\n\n- You have access to the Red Hat OpenStack Platform (RHOSP) cloud.\n- If you use a pre-defined floating IP address for ingress, you created a DNS record that points to it for the following wildcard domain: `*.apps.<cluster_name>.<base_domain>`, where:\n\n  - `<cluster_name>` is the name of the management cluster.\n  - `<base_domain>` is the parent DNS domain under which your cluster’s applications live.\n\n**Procedure**\n\n- Create a floating IP address by running the following command:\n\n  ```terminal\n  $ openstack floating ip create <external_network_id>\n  ```\n\n  where:\n\n  `<external_network_id>`\n  :   Specifies the ID of the external network.\n\n  > [!NOTE]\n  > If you specify a floating IP address by using the `--openstack-ingress-floating-ip` flag without creating it in advance, the `cloud-provider-openstack` component attempts to create it automatically. This process only succeeds if the Neutron API policy permits creating a floating IP address with a specific IP address.\n\n## Uploading the RHCOS image to OpenStack {#hosted-clusters-openstack-upload-rhcos_hcp-deploy-openstack}\n\nIf you want to specify the RHCOS image to use when deploying node pools on hosted control planes and Red Hat OpenStack Platform (RHOSP) deployment, upload the image to the RHOSP cloud.\n\nIf you do not upload the image, the OpenStack Resource Controller (ORC) downloads an image from the OpenShift Container Platform mirror and deletes the image after deletion of the hosted cluster.\n\n**Prerequisites**\n\n- You downloaded the RHCOS image from the OpenShift Container Platform mirror.\n- You have access to your RHOSP cloud.\n\n**Procedure**\n\n- Upload an RHCOS image to RHOSP by running the following command:\n\n  ```terminal\n  $ openstack image create --disk-format qcow2 --file <image_file_name> rhcos\n  ```\n\n  where:\n\n  `<image_file_name>`\n  :   Specifies the file name of the RHCOS image.\n\n## Creating a hosted cluster on OpenStack {#hcp-deploy-openstack-create_hcp-deploy-openstack}\n\nYou can create a hosted cluster on Red Hat OpenStack Platform (RHOSP) by using the `hcp` CLI.\n\n**Prerequisites**\n\n- You completed all prerequisite steps in \"Preparing to deploy hosted control planes\".\n- You reviewed \"Prerequisites for OpenStack\".\n- You completed all steps in \"Preparing the management cluster for etcd local storage\".\n- You have access to the management cluster.\n- You have access to the RHOSP cloud.\n\n**Procedure**\n\n- Create a hosted cluster by running the `hcp create` command. For example, for a cluster that takes advantage of the performant etcd configuration detailed in \"Preparing the management cluster for etcd local storage\", enter:\n\n  ```terminal\n  $ hcp create cluster openstack \\\n    --name my-hcp-cluster \\\n    --openstack-node-flavor m1.xlarge \\\n    --base-domain example.com \\\n    --pull-secret /path/to/pull-secret.json \\\n    --release-image quay.io/openshift-release-dev/ocp-release:4.22.0-x86_64 \\\n    --node-pool-replicas 3 \\\n    --etcd-storage-class lvms-etcd-class\n  ```\n\n  > [!NOTE]\n  > Many options are available at cluster creation. For RHOSP-specific options, see \"Options for creating a Hosted Control Planes cluster on OpenStack\". For general options, see the `hcp` documentation.\n\n**Verification**\n\n1. Verify that the hosted cluster is ready by running the following command on it:\n\n   ```terminal\n   $ oc -n clusters-<cluster_name> get pods\n   ```\n\n   where:\n\n   `<cluster_name>`\n   :   Specifies the name of the cluster.\n\n   After several minutes, the output should show that the hosted control plane pods are running.\n\n   ```terminal {title=\"Example output\"}\n   NAME                                                  READY   STATUS    RESTARTS   AGE\n   capi-provider-5cc7b74f47-n5gkr                        1/1     Running   0          3m\n   catalog-operator-5f799567b7-fd6jw                     2/2     Running   0          69s\n   certified-operators-catalog-784b9899f9-mrp6p          1/1     Running   0          66s\n   cluster-api-6bbc867966-l4dwl                          1/1     Running   0          66s\n   ...\n   ...\n   ...\n   redhat-operators-catalog-9d5fd4d44-z8qqk              1/1     Running   0\n   ```\n2. To validate the etcd configuration of the cluster:\n\n   1. Validate the etcd persistent volume claim (PVC) by running the following command:\n\n      ```terminal\n      $ oc get pvc -A\n      ```\n   2. Inside the hosted control planes etcd pod, confirm the mount path and device by running the following command:\n\n      ```terminal\n      $ df -h /var/lib\n      ```\n\n      > [!NOTE]\n      > The RHOSP resources that the cluster API provider creates are tagged with the label `openshiftClusterID=<infraID>`.\n      >\n      > You can define additional tags for the resources as values in the `HostedCluster.Spec.Platform.OpenStack.Tags` field of a YAML manifest that you use to create the hosted cluster. After you scale up the node pool, the tags apply to resources.\n\n### Options for creating a Hosted Control Planes cluster on OpenStack {#hcp-deploy-openstack-parameters_hcp-deploy-openstack}\n\nYou can supply several options to the `hcp` CLI while deploying a Hosted Control Planes Cluster on Red Hat OpenStack Platform (RHOSP).\n\n<table>\n<thead>\n<tr>\n  <th>Option</th>\n  <th>Description</th>\n  <th>Required</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>--openstack-ca-cert-file</code></td>\n  <td>Path to the OpenStack CA certificate file. If not provided, this will be automatically extracted from the cloud entry in <code>clouds.yaml</code>.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-cloud</code></td>\n  <td>Name of the cloud entry in <code>clouds.yaml</code>. The default value is <code>openstack</code>.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-credentials-file</code></td>\n  <td>Path to the OpenStack credentials file. If not provided, <code>hcp</code> will search the following directories:<br><br><ul><li>The current working directory</li><li><code>$HOME/.config/openstack</code></li><li><code>/etc/openstack</code></li></ul></td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-dns-nameservers</code></td>\n  <td>List of DNS server addresses that are provided when creating the subnet.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-external-network-id</code></td>\n  <td>ID of the OpenStack external network.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-ingress-floating-ip</code></td>\n  <td>A floating IP for OpenShift ingress.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-node-additional-port</code></td>\n  <td>Additional ports to attach to nodes. Valid values are: <code>network-id</code>, <code>vnic-type</code>, <code>disable-port-security</code>, and <code>address-pairs</code>.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-node-availability-zone</code></td>\n  <td>Availability zone for the node pool.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-node-flavor</code></td>\n  <td>Flavor for the node pool.</td>\n  <td>Yes</td>\n</tr>\n<tr>\n  <td><code>--openstack-node-image-name</code></td>\n  <td>Image name for the node pool.</td>\n  <td>No</td>\n</tr>\n</tbody>\n</table>\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-openstack.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,18 +94,204 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-deploy-openstack" class="group scroll-mt-20">Deploying {"{"}{"{"} hcp {"}"}{"}"} on OpenStack<a href="#hcp-deploy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/snippets/technology-preview.md"></p>
-      <p>You can deploy {"{"}{"{"} hcp {"}"}{"}"} with hosted clusters that run on {"{"}{"{"} rh_openstack_first {"}"}{"}"} 17.1.</p>
-      <p>A <em>hosted cluster</em> is an OpenShift Container Platform cluster with its API endpoint and control plane that are hosted on a management cluster. With {"{"}{"{"} hcp {"}"}{"}"}, control planes exist as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.</p>
-      <p class="/modules/hosted-clusters-openstack-prerequisites.md"></p>
+      <h1 id="hcp-deploy-openstack" class="group scroll-mt-20">Deploying hosted control planes on OpenStack<a href="#hcp-deploy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Deploying hosted control planes clusters on Red Hat OpenStack Platform (RHOSP) is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can deploy hosted control planes with hosted clusters that run on Red Hat OpenStack Platform (RHOSP) 17.1.</p>
+      <p>A <em>hosted cluster</em> is an OpenShift Container Platform cluster with its API endpoint and control plane that are hosted on a management cluster. With hosted control planes, control planes exist as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.</p>
+      <h2 id="hosted-clusters-openstack-prerequisites_hcp-deploy-openstack" class="group scroll-mt-20">Prerequisites for OpenStack<a href="#hosted-clusters-openstack-prerequisites_hcp-deploy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you create a hosted cluster on Red Hat OpenStack Platform (RHOSP), ensure that you meet the prerequisites.</p>
+      <ul>
+      <li>You have administrative access to a management OpenShift Container Platform cluster version 4.17 or greater. This cluster can run on bare metal, RHOSP, or a supported public cloud.</li>
+      <li>The HyperShift Operator is installed on the management cluster as specified in "Preparing to deploy hosted control planes".</li>
+      <li>The management cluster is configured with OVN-Kubernetes as the default pod network CNI.</li>
+      <li>The OpenShift CLI (<code>oc</code>) and hosted control planes CLI, <code>hcp</code> are installed.</li>
+      <li>
+      A load-balancer backend, for example, Octavia, is installed on the management OCP cluster. The load balancer is required for the <code>kube-api</code> service to be created for each hosted cluster.
+      <ul><li>When ingress is configured with an Octavia load balance, the RHOSP Octavia service is running in the cloud that hosts the guest cluster.</li></ul>
+      </li>
+      <li>A valid pull secret file is present for the <code>quay.io/openshift-release-dev</code> repository.</li>
+      <li>The default external network for the management cluster is reachable from the guest cluster. The <code>kube-apiserver</code> load-balancer type service is created on this network.</li>
+      <li>
+      If you use a pre-defined floating IP address for ingress, you created a DNS record that points to it for the following wildcard domain: <code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code>, where:
+      <ul>
+      <li><code>&lt;cluster_name&gt;</code> is the name of the management cluster.</li>
+      <li><code>&lt;base_domain&gt;</code> is the parent DNS domain under which your cluster’s applications live.</li>
+      </ul>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://console.redhat.com/openshift/install/platform-agnostic/user-provisioned">Pull secret</a></li></ul>
-      <p class="/modules/hosted-clusters-openstack-create-floating-ip.md"></p>
-      <p class="/modules/hosted-clusters-openstack-upload-rhcos.md"></p>
-      <p class="/modules/hcp-deploy-openstack-create.md"></p>
-      <p class="/modules/hcp-deploy-openstack-parameters.md"></p>
+      <h2 id="hosted-clusters-openstack-prepare-etcd_hcp-deploy-openstack" class="group scroll-mt-20">Preparing the management cluster for etcd local storage<a href="#hosted-clusters-openstack-prepare-etcd_hcp-deploy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In a hosted control planes deployment on Red Hat OpenStack Platform (RHOSP), you can improve etcd performance by using local ephemeral storage that is provisioned with the TopoLVM CSI driver instead of relying on the default Cinder-based Persistent Volume Claims (PVCs).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to a management cluster with HyperShift installed.</li>
+      <li>You can create and manage RHOSP flavors and machine sets.</li>
+      <li>You have the <code>oc</code> and <code>openstack</code> CLI tools installed and configured.</li>
+      <li>You are familiar with TopoLVM and Logical Volume Manager (LVM) storage concepts.</li>
+      <li>You installed the LVM Storage Operator on the management cluster. For more information, see "Installing LVM Storage by using the CLI" in the Storage section of the OpenShift Container Platform documentation.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a Nova flavor with an additional ephemeral disk by using the <code>openstack</code> CLI. For example:
+      <CodeBlock code={"$ openstack flavor create \\\n  --id auto \\\n  --ram 8192 \\\n  --disk 0 \\\n  --ephemeral 100 \\\n  --vcpus 4 \\\n  --public \\\n  hcp-etcd-ephemeral"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Nova automatically attaches the ephemeral disk to the instance and formats it as <code>vfat</code> when a server is created with that flavor.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Create a compute machine set that uses the new flavor. For more information, see "Creating a compute machine set on OpenStack" in the OpenShift Container Platform documentation.</li>
+      <li>Scale the machine set to meet your requirements. If clusters are deployed for high availability, a minimum of 3 workers must be deployed so the pods can be distributed accordingly.</li>
+      <li>
+      Label the new worker nodes to identify them for etcd use. For example:
+      <CodeBlock code={"$ oc label node <node_name> hypershift-capable=true"} lang="terminal" />
+      <p>This label is arbitrary; you can update it later.</p>
+      </li>
+      <li>
+      In a file called <code>lvmcluster.yaml</code>, create the following <code>LVMCluster</code> custom resource to the local storage configuration for etcd:
+      <CodeBlock code={"apiVersion: lvm.topolvm.io/v1alpha1\nkind: LVMCluster\nmetadata:\n  name: etcd-hcp\n  namespace: openshift-storage\nspec:\n  storage:\n    deviceClasses:\n    - name: etcd-class\n      default: true\n      nodeSelector:\n         nodeSelectorTerms:\n         - matchExpressions:\n           - key: hypershift-capable\n            operator: In\n            values:\n            - \"true\"\n      deviceSelector:\n        forceWipeDevicesAndDestroyAllData: true\n        paths:\n        - /dev/vdb"} lang="yaml" />
+      <p>In this example resource:</p>
+      <ul>
+      <li>The ephemeral disk location is <code>/dev/vdb</code>, which is the case in most situations. Verify that this location is true in your case, and note that symlinks are not supported.</li>
+      <li>The parameter <code>forceWipeDevicesAndDestroyAllData</code> is set to a <code>True</code> value because the default Nova ephemeral disk comes formatted in VFAT.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the <code>LVMCluster</code> resource by running the following command:
+      <CodeBlock code={"oc apply -f lvmcluster.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Verify the <code>LVMCluster</code> resource by running the following command:
+      <CodeBlock code={"$ oc get lvmcluster -A"} lang="terminal" />
+      <CodeBlock code={"NAMESPACE           NAME    STATUS\nopenshift-storage   etcd-hcp   Ready"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Verify the <code>StorageClass</code> resource by running the following command:
+      <CodeBlock code={"$ oc get storageclass"} lang="terminal" />
+      <CodeBlock code={"NAME                    PROVISIONER               RECLAIMPOLICY   VOLUMEBINDINGMODE     ALLOWVOLUMEEXPANSION   AGE\nlvms-etcd-class         topolvm.io                Delete          WaitForFirstConsumer  true                   23m\nstandard-csi (default)  cinder.csi.openstack.org  Delete          WaitForFirstConsumer  true                   56m"} lang="terminal" title="Example output" />
+      <p>You can now deploy a hosted cluster with a performant etcd configuration. The deployment process is described in "Creating a hosted cluster on OpenStack".</p>
+      </li>
+      </ol>
+      <h2 id="hosted-clusters-openstack-create-floating-ip_hcp-deploy-openstack" class="group scroll-mt-20">Creating a floating IP for ingress<a href="#hosted-clusters-openstack-create-floating-ip_hcp-deploy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you want to make ingress available in a hosted cluster without manual intervention, you can create a floating IP address for it in advance.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the Red Hat OpenStack Platform (RHOSP) cloud.</li>
+      <li>
+      If you use a pre-defined floating IP address for ingress, you created a DNS record that points to it for the following wildcard domain: <code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code>, where:
+      <ul>
+      <li><code>&lt;cluster_name&gt;</code> is the name of the management cluster.</li>
+      <li><code>&lt;base_domain&gt;</code> is the parent DNS domain under which your cluster’s applications live.</li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create a floating IP address by running the following command:
+      <CodeBlock code={"$ openstack floating ip create <external_network_id>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;external_network_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the ID of the external network.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you specify a floating IP address by using the <code>--openstack-ingress-floating-ip</code> flag without creating it in advance, the <code>cloud-provider-openstack</code> component attempts to create it automatically. This process only succeeds if the Neutron API policy permits creating a floating IP address with a specific IP address.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h2 id="hosted-clusters-openstack-upload-rhcos_hcp-deploy-openstack" class="group scroll-mt-20">Uploading the RHCOS image to OpenStack<a href="#hosted-clusters-openstack-upload-rhcos_hcp-deploy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you want to specify the RHCOS image to use when deploying node pools on hosted control planes and Red Hat OpenStack Platform (RHOSP) deployment, upload the image to the RHOSP cloud. </p>
+      <p>If you do not upload the image, the OpenStack Resource Controller (ORC) downloads an image from the OpenShift Container Platform mirror and deletes the image after deletion of the hosted cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You downloaded the RHCOS image from the OpenShift Container Platform mirror.</li>
+      <li>You have access to your RHOSP cloud.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Upload an RHCOS image to RHOSP by running the following command:
+      <CodeBlock code={"$ openstack image create --disk-format qcow2 --file <image_file_name> rhcos"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;image_file_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the file name of the RHCOS image.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h2 id="hcp-deploy-openstack-create_hcp-deploy-openstack" class="group scroll-mt-20">Creating a hosted cluster on OpenStack<a href="#hcp-deploy-openstack-create_hcp-deploy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a hosted cluster on Red Hat OpenStack Platform (RHOSP) by using the <code>hcp</code> CLI.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You completed all prerequisite steps in "Preparing to deploy hosted control planes".</li>
+      <li>You reviewed "Prerequisites for OpenStack".</li>
+      <li>You completed all steps in "Preparing the management cluster for etcd local storage".</li>
+      <li>You have access to the management cluster.</li>
+      <li>You have access to the RHOSP cloud.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create a hosted cluster by running the <code>hcp create</code> command. For example, for a cluster that takes advantage of the performant etcd configuration detailed in "Preparing the management cluster for etcd local storage", enter:
+      <CodeBlock code={"$ hcp create cluster openstack \\\n  --name my-hcp-cluster \\\n  --openstack-node-flavor m1.xlarge \\\n  --base-domain example.com \\\n  --pull-secret /path/to/pull-secret.json \\\n  --release-image quay.io/openshift-release-dev/ocp-release:4.22.0-x86_64 \\\n  --node-pool-replicas 3 \\\n  --etcd-storage-class lvms-etcd-class"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Many options are available at cluster creation. For RHOSP-specific options, see "Options for creating a Hosted Control Planes cluster on OpenStack". For general options, see the <code>hcp</code> documentation.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the hosted cluster is ready by running the following command on it:
+      <CodeBlock code={"$ oc -n clusters-<cluster_name> get pods"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the cluster.</p></dd>
+      </dl>
+      <p>After several minutes, the output should show that the hosted control plane pods are running.</p>
+      <CodeBlock code={"NAME                                                  READY   STATUS    RESTARTS   AGE\ncapi-provider-5cc7b74f47-n5gkr                        1/1     Running   0          3m\ncatalog-operator-5f799567b7-fd6jw                     2/2     Running   0          69s\ncertified-operators-catalog-784b9899f9-mrp6p          1/1     Running   0          66s\ncluster-api-6bbc867966-l4dwl                          1/1     Running   0          66s\n...\n...\n...\nredhat-operators-catalog-9d5fd4d44-z8qqk              1/1     Running   0"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To validate the etcd configuration of the cluster:
+      <ol>
+      <li>
+      Validate the etcd persistent volume claim (PVC) by running the following command:
+      <CodeBlock code={"$ oc get pvc -A"} lang="terminal" />
+      </li>
+      <li>
+      Inside the hosted control planes etcd pod, confirm the mount path and device by running the following command:
+      <CodeBlock code={"$ df -h /var/lib"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The RHOSP resources that the cluster API provider creates are tagged with the label <code>openshiftClusterID=&lt;infraID&gt;</code>.</p>
+          <p>You can define additional tags for the resources as values in the <code>HostedCluster.Spec.Platform.OpenStack.Tags</code> field of a YAML manifest that you use to create the hosted cluster. After you scale up the node pool, the tags apply to resources.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h3 id="hcp-deploy-openstack-parameters_hcp-deploy-openstack" class="group scroll-mt-20">Options for creating a Hosted Control Planes cluster on OpenStack<a href="#hcp-deploy-openstack-parameters_hcp-deploy-openstack" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can supply several options to the <code>hcp</code> CLI while deploying a Hosted Control Planes Cluster on Red Hat OpenStack Platform (RHOSP).</p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Option</th>\n  <th>Description</th>\n  <th>Required</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>--openstack-ca-cert-file</code></td>\n  <td>Path to the OpenStack CA certificate file. If not provided, this will be automatically extracted from the cloud entry in <code>clouds.yaml</code>.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-cloud</code></td>\n  <td>Name of the cloud entry in <code>clouds.yaml</code>. The default value is <code>openstack</code>.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-credentials-file</code></td>\n  <td>Path to the OpenStack credentials file. If not provided, <code>hcp</code> will search the following directories:<br><br><ul><li>The current working directory</li><li><code>$HOME/.config/openstack</code></li><li><code>/etc/openstack</code></li></ul></td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-dns-nameservers</code></td>\n  <td>List of DNS server addresses that are provided when creating the subnet.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-external-network-id</code></td>\n  <td>ID of the OpenStack external network.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-ingress-floating-ip</code></td>\n  <td>A floating IP for OpenShift ingress.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-node-additional-port</code></td>\n  <td>Additional ports to attach to nodes. Valid values are: <code>network-id</code>, <code>vnic-type</code>, <code>disable-port-security</code>, and <code>address-pairs</code>.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-node-availability-zone</code></td>\n  <td>Availability zone for the node pool.</td>\n  <td>No</td>\n</tr>\n<tr>\n  <td><code>--openstack-node-flavor</code></td>\n  <td>Flavor for the node pool.</td>\n  <td>Yes</td>\n</tr>\n<tr>\n  <td><code>--openstack-node-image-name</code></td>\n  <td>Image name for the node pool.</td>\n  <td>No</td>\n</tr>\n</tbody>\n</table>"} />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

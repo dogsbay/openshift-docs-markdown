@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"deploying-egress-router-ovn-redirection","text":"Deploying an egress router pod in redirect mode"}];
+const headings = [{"depth":1,"slug":"deploying-egress-router-ovn-redirection","text":"Deploying an egress router pod in redirect mode"},{"depth":2,"slug":"nw-egress-router-ovn-cr_deploying-egress-router-ovn-redirection","text":"Egress router custom resource"},{"depth":2,"slug":"nw-egress-router-redirect-mode-ovn_deploying-egress-router-ovn-redirection","text":"Deploying an egress router in redirect mode"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/deploying-egress-router-ovn-redirection";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/ovn_kubernetes_network_provider"]
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying an egress router pod in redirect mode {#deploying-egress-router-ovn-redirection}\n\nAs a cluster administrator, you can deploy an egress router pod to redirect traffic to specified destination IP addresses from a reserved source IP address.\n\nThe egress router implementation uses the egress router Container Network Interface (CNI) plugin.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/deploying-egress-router-ovn-redirection.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying an egress router pod in redirect mode {#deploying-egress-router-ovn-redirection}\n\nAs a cluster administrator, you can deploy an egress router pod to redirect traffic to specified destination IP addresses from a reserved source IP address.\n\nThe egress router implementation uses the egress router Container Network Interface (CNI) plugin.\n\n## Egress router custom resource {#nw-egress-router-ovn-cr_deploying-egress-router-ovn-redirection}\n\nYou can define the configuration for an egress router pod in an egress router custom resource.\n\nThe following YAML describes the fields for the configuration of an egress router in redirect mode:\n\n```yaml\napiVersion: network.operator.openshift.io/v1\nkind: EgressRouter\nmetadata:\n  name: <egress_router_name>\n  namespace: <namespace>\nspec:\n  addresses: [\n    {\n      ip: \"<egress_router>\",\n      gateway: \"<egress_gateway>\"\n    }\n  ]\n  mode: Redirect\n  redirect: {\n    redirectRules: [\n      {\n        destinationIP: \"<egress_destination>\",\n        port: <egress_router_port>,\n        targetPort: <target_port>,\n        protocol: <network_protocol>\n      },\n      ...\n    ],\n    fallbackIP: \"<egress_destination>\"\n  }\n```\n\nwhere:\n\n`metadata.namespace`\n:   Optional parameter. Specifies the `namespace` for creating the egress router. If you do not specify a value in the file or on the command line, the `default` namespace is used.\n\n`spec.addresses`\n:   Specifies the IP addresses to configure on the secondary network interface.\n\n`spec.addresses.ip`\n:   Specifies the reserve source IP address and netmask from the physical network that the node is on to use with egress router pod. Use CIDR notation to specify the IP address and netmask.\n\n`spec.addresses.gateway`\n:   Specifies the IP address of the network gateway.\n\n`spec.redirect.redirectRules`\n:   Optional parameter. Specifies the combinination of egress destination IP address, egress router port, and protocol. Incoming connections to the egress router on the specified port and protocol are routed to the destination IP address.\n\n`spec.redirect.redirectRules.targetPort`\n:   Optional parameter. Specifies the network port on the destination IP address. If this field is not specified, traffic is routed to the same network port that it arrived on.\n\n`spec.redirect.redirectRules.protocol`\n:   Specifies the protocols to support, such as TCP, UDP, or SCTP.\n\n`spec.redirect.fallbackIP`\n:   Optional parameter. Specifies a destination IP address. If you do not specify any redirect rules, the egress router sends all traffic to this fallback IP address. If you specify redirect rules, any connections to network ports that are not defined in the rules are sent by the egress router to this fallback IP address. If you do not specify this field, the egress router rejects connections to network ports that are not defined in the rules.\n\n```yaml {title=\"Example egress router specification\"}\napiVersion: network.operator.openshift.io/v1\nkind: EgressRouter\nmetadata:\n  name: {{ router_name }}\nspec:\n  networkInterface: {\n    macvlan: {\n      mode: \"Bridge\"\n    }\n  }\n  addresses: [\n    {\n      ip: \"192.168.12.99/24\",\n      gateway: \"192.168.12.1\"\n    }\n  ]\n  mode: Redirect\n  redirect: {\n    redirectRules: [\n      {\n        destinationIP: \"10.0.0.99\",\n        port: 80,\n        protocol: UDP\n      },\n      {\n        destinationIP: \"203.0.113.26\",\n        port: 8080,\n        targetPort: 80,\n        protocol: TCP\n      },\n      {\n        destinationIP: \"203.0.113.27\",\n        port: 8443,\n        targetPort: 443,\n        protocol: TCP\n      }\n    ]\n  }\n```\n\n## Deploying an egress router in redirect mode {#nw-egress-router-redirect-mode-ovn_deploying-egress-router-ovn-redirection}\n\nYou can deploy an egress router to redirect traffic from its own reserved source IP address to one or more destination IP addresses.\n\nAfter you add an egress router, the client pods that need to use the reserved source IP address must be modified to connect to the egress router rather than connecting directly to the destination IP.\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n- You logged in as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Create an egress router definition.\n2. To ensure that other pods can find the IP address of the egress router pod, create a service that uses the egress router, as in the following example:\n\n   ```yaml\n   apiVersion: v1\n   kind: Service\n   metadata:\n     name: egress-1\n   spec:\n     ports:\n     - name: web-app\n       protocol: TCP\n       port: 8080\n     type: ClusterIP\n     selector:\n       app: egress-router-cni\n   ```\n\n   `spec.selector`: Specifies the label for the egress router. The value shown is added by the Cluster Network Operator and is not configurable.\n\n   After you create the service, your pods can connect to the service. The egress router pod redirects traffic to the corresponding port on the destination IP address. The connections originate from the reserved source IP address.\n\n**Verification**\n\n1. View the network attachment definition that the Operator created for the egress router:\n\n   ```terminal\n   $ oc get network-attachment-definition egress-router-cni-nad\n   ```\n\n   The name of the network attachment definition is not configurable.\n\n   ```terminal {title=\"Example output\"}\n   NAME                    AGE\n   egress-router-cni-nad   18m\n   ```\n2. View the deployment for the egress router pod:\n\n   ```terminal\n   $ oc get deployment egress-router-cni-deployment\n   ```\n\n   The name of the deployment is not configurable.\n\n   ```terminal {title=\"Example output\"}\n   NAME                           READY   UP-TO-DATE   AVAILABLE   AGE\n   egress-router-cni-deployment   1/1     1            1           18m\n   ```\n3. View the status of the egress router pod:\n\n   ```terminal\n   $ oc get pods -l app=egress-router-cni\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                            READY   STATUS    RESTARTS   AGE\n   egress-router-cni-deployment-575465c75c-qkq6m   1/1     Running   0          18m\n   ```\n4. View the logs and the routing table for the egress router pod.\n\n   1. Get the node name for the egress router pod:\n\n      ```terminal\n      $ POD_NODENAME=$(oc get pod -l app=egress-router-cni -o jsonpath=\"{.items[0].spec.nodeName}\")\n      ```\n   2. Enter into a debug session on the target node. This step instantiates a debug pod called `<node_name>-debug`:\n\n      ```terminal\n      $ oc debug node/$POD_NODENAME\n      ```\n   3. Set `/host` as the root directory within the debug shell. The debug pod mounts the root file system of the host in `/host` within the pod. By changing the root directory to `/host`, you can run binaries from the executable paths of the host:\n\n      ```terminal\n      # chroot /host\n      ```\n   4. From within the `chroot` environment console, display the egress router logs:\n\n      ```terminal\n      # cat /tmp/egress-router-log\n      ```\n\n      ```terminal {title=\"Example output\"}\n      2021-04-26T12:27:20Z [debug] Called CNI ADD\n      2021-04-26T12:27:20Z [debug] Gateway: 192.168.12.1\n      2021-04-26T12:27:20Z [debug] IP Source Addresses: [192.168.12.99/24]\n      2021-04-26T12:27:20Z [debug] IP Destinations: [80 UDP 10.0.0.99/30 8080 TCP 203.0.113.26/30 80 8443 TCP 203.0.113.27/30 443]\n      2021-04-26T12:27:20Z [debug] Created macvlan interface\n      2021-04-26T12:27:20Z [debug] Renamed macvlan to \"net1\"\n      2021-04-26T12:27:20Z [debug] Adding route to gateway 192.168.12.1 on macvlan interface\n      2021-04-26T12:27:20Z [debug] deleted default route {Ifindex: 3 Dst: <nil> Src: <nil> Gw: 10.128.10.1 Flags: [] Table: 254}\n      2021-04-26T12:27:20Z [debug] Added new default route with gateway 192.168.12.1\n      2021-04-26T12:27:20Z [debug] Added iptables rule: iptables -t nat PREROUTING -i eth0 -p UDP --dport 80 -j DNAT --to-destination 10.0.0.99\n      2021-04-26T12:27:20Z [debug] Added iptables rule: iptables -t nat PREROUTING -i eth0 -p TCP --dport 8080 -j DNAT --to-destination 203.0.113.26:80\n      2021-04-26T12:27:20Z [debug] Added iptables rule: iptables -t nat PREROUTING -i eth0 -p TCP --dport 8443 -j DNAT --to-destination 203.0.113.27:443\n      2021-04-26T12:27:20Z [debug] Added iptables rule: iptables -t nat -o net1 -j SNAT --to-source 192.168.12.99\n      ```\n\n      The logging file location and logging level are not configurable when you start the egress router by creating an `EgressRouter` object as described in this procedure.\n   5. From within the `chroot` environment console, get the container ID:\n\n      ```terminal\n      # crictl ps --name egress-router-cni-pod | awk '{print $1}'\n      ```\n\n      ```terminal {title=\"Example output\"}\n      CONTAINER\n      bac9fae69ddb6\n      ```\n   6. Determine the process ID of the container. In this example, the container ID is `bac9fae69ddb6`:\n\n      ```terminal\n      # crictl inspect -o yaml bac9fae69ddb6 | grep 'pid:' | awk '{print $2}'\n      ```\n\n      ```terminal {title=\"Example output\"}\n      68857\n      ```\n   7. Enter the network namespace of the container:\n\n      ```terminal\n      # nsenter -n -t 68857\n      ```\n   8. Display the routing table:\n\n      ```terminal\n      # ip route\n      ```\n\n      In the following example output, the `net1` network interface is the default route. Traffic for the cluster network uses the `eth0` network interface. Traffic for the `192.168.12.0/24` network uses the `net1` network interface and originates from the reserved source IP address `192.168.12.99`. The pod routes all other traffic to the gateway at IP address `192.168.12.1`. Routing for the service network is not shown.\n\n      ```terminal {title=\"Example output\"}\n      default via 192.168.12.1 dev net1\n      10.128.10.0/23 dev eth0 proto kernel scope link src 10.128.10.18\n      192.168.12.0/24 dev net1 proto kernel scope link src 192.168.12.99\n      192.168.12.1 dev net1\n      ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/deploying-egress-router-ovn-redirection.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +92,113 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="deploying-egress-router-ovn-redirection" class="group scroll-mt-20">Deploying an egress router pod in redirect mode<a href="#deploying-egress-router-ovn-redirection" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As a cluster administrator, you can deploy an egress router pod to redirect traffic to specified destination IP addresses from a reserved source IP address.</p>
       <p>The egress router implementation uses the egress router Container Network Interface (CNI) plugin.</p>
-      <p class="/modules/nw-egress-router-cr.md"></p>
-      <p class="/modules/nw-egress-router-redirect-mode-ovn.md"></p>
+      <h2 id="nw-egress-router-ovn-cr_deploying-egress-router-ovn-redirection" class="group scroll-mt-20">Egress router custom resource<a href="#nw-egress-router-ovn-cr_deploying-egress-router-ovn-redirection" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can define the configuration for an egress router pod in an egress router custom resource. </p>
+      <p>The following YAML describes the fields for the configuration of an egress router in redirect mode:</p>
+      <CodeBlock code={"apiVersion: network.operator.openshift.io/v1\nkind: EgressRouter\nmetadata:\n  name: <egress_router_name>\n  namespace: <namespace>\nspec:\n  addresses: [\n    {\n      ip: \"<egress_router>\",\n      gateway: \"<egress_gateway>\"\n    }\n  ]\n  mode: Redirect\n  redirect: {\n    redirectRules: [\n      {\n        destinationIP: \"<egress_destination>\",\n        port: <egress_router_port>,\n        targetPort: <target_port>,\n        protocol: <network_protocol>\n      },\n      ...\n    ],\n    fallbackIP: \"<egress_destination>\"\n  }"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.namespace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. Specifies the <code>namespace</code> for creating the egress router. If you do not specify a value in the file or on the command line, the <code>default</code> namespace is used.</p></dd>
+      <dt class="font-semibold"><code>spec.addresses</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the IP addresses to configure on the secondary network interface.</p></dd>
+      <dt class="font-semibold"><code>spec.addresses.ip</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the reserve source IP address and netmask from the physical network that the node is on to use with egress router pod. Use CIDR notation to specify the IP address and netmask.</p></dd>
+      <dt class="font-semibold"><code>spec.addresses.gateway</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the IP address of the network gateway.</p></dd>
+      <dt class="font-semibold"><code>spec.redirect.redirectRules</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. Specifies the combinination of egress destination IP address, egress router port, and protocol. Incoming connections to the egress router on the specified port and protocol are routed to the destination IP address.</p></dd>
+      <dt class="font-semibold"><code>spec.redirect.redirectRules.targetPort</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. Specifies the network port on the destination IP address. If this field is not specified, traffic is routed to the same network port that it arrived on.</p></dd>
+      <dt class="font-semibold"><code>spec.redirect.redirectRules.protocol</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the protocols to support, such as TCP, UDP, or SCTP.</p></dd>
+      <dt class="font-semibold"><code>spec.redirect.fallbackIP</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. Specifies a destination IP address. If you do not specify any redirect rules, the egress router sends all traffic to this fallback IP address. If you specify redirect rules, any connections to network ports that are not defined in the rules are sent by the egress router to this fallback IP address. If you do not specify this field, the egress router rejects connections to network ports that are not defined in the rules.</p></dd>
+      </dl>
+      <CodeBlock code={"apiVersion: network.operator.openshift.io/v1\nkind: EgressRouter\nmetadata:\n  name: {{ router_name }}\nspec:\n  networkInterface: {\n    macvlan: {\n      mode: \"Bridge\"\n    }\n  }\n  addresses: [\n    {\n      ip: \"192.168.12.99/24\",\n      gateway: \"192.168.12.1\"\n    }\n  ]\n  mode: Redirect\n  redirect: {\n    redirectRules: [\n      {\n        destinationIP: \"10.0.0.99\",\n        port: 80,\n        protocol: UDP\n      },\n      {\n        destinationIP: \"203.0.113.26\",\n        port: 8080,\n        targetPort: 80,\n        protocol: TCP\n      },\n      {\n        destinationIP: \"203.0.113.27\",\n        port: 8443,\n        targetPort: 443,\n        protocol: TCP\n      }\n    ]\n  }"} lang="yaml" title="Example egress router specification" />
+      <h2 id="nw-egress-router-redirect-mode-ovn_deploying-egress-router-ovn-redirection" class="group scroll-mt-20">Deploying an egress router in redirect mode<a href="#nw-egress-router-redirect-mode-ovn_deploying-egress-router-ovn-redirection" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can deploy an egress router to redirect traffic from its own reserved source IP address to one or more destination IP addresses.</p>
+      <p>After you add an egress router, the client pods that need to use the reserved source IP address must be modified to connect to the egress router rather than connecting directly to the destination IP.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You logged in as a user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create an egress router definition.</li>
+      <li>
+      To ensure that other pods can find the IP address of the egress router pod, create a service that uses the egress router, as in the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  name: egress-1\nspec:\n  ports:\n  - name: web-app\n    protocol: TCP\n    port: 8080\n  type: ClusterIP\n  selector:\n    app: egress-router-cni"} lang="yaml" />
+      <p><code>spec.selector</code>: Specifies the label for the egress router. The value shown is added by the Cluster Network Operator and is not configurable.</p>
+      <p>After you create the service, your pods can connect to the service. The egress router pod redirects traffic to the corresponding port on the destination IP address. The connections originate from the reserved source IP address.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      View the network attachment definition that the Operator created for the egress router:
+      <CodeBlock code={"$ oc get network-attachment-definition egress-router-cni-nad"} lang="terminal" />
+      <p>The name of the network attachment definition is not configurable.</p>
+      <CodeBlock code={"NAME                    AGE\negress-router-cni-nad   18m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View the deployment for the egress router pod:
+      <CodeBlock code={"$ oc get deployment egress-router-cni-deployment"} lang="terminal" />
+      <p>The name of the deployment is not configurable.</p>
+      <CodeBlock code={"NAME                           READY   UP-TO-DATE   AVAILABLE   AGE\negress-router-cni-deployment   1/1     1            1           18m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View the status of the egress router pod:
+      <CodeBlock code={"$ oc get pods -l app=egress-router-cni"} lang="terminal" />
+      <CodeBlock code={"NAME                                            READY   STATUS    RESTARTS   AGE\negress-router-cni-deployment-575465c75c-qkq6m   1/1     Running   0          18m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View the logs and the routing table for the egress router pod.
+      <ol>
+      <li>
+      Get the node name for the egress router pod:
+      <CodeBlock code={"$ POD_NODENAME=$(oc get pod -l app=egress-router-cni -o jsonpath=\"{.items[0].spec.nodeName}\")"} lang="terminal" />
+      </li>
+      <li>
+      Enter into a debug session on the target node. This step instantiates a debug pod called <code>&lt;node_name&gt;-debug</code>:
+      <CodeBlock code={"$ oc debug node/$POD_NODENAME"} lang="terminal" />
+      </li>
+      <li>
+      Set <code>/host</code> as the root directory within the debug shell. The debug pod mounts the root file system of the host in <code>/host</code> within the pod. By changing the root directory to <code>/host</code>, you can run binaries from the executable paths of the host:
+      <CodeBlock code={"# chroot /host"} lang="terminal" />
+      </li>
+      <li>
+      From within the <code>chroot</code> environment console, display the egress router logs:
+      <CodeBlock code={"# cat /tmp/egress-router-log"} lang="terminal" />
+      <CodeBlock code={"2021-04-26T12:27:20Z [debug] Called CNI ADD\n2021-04-26T12:27:20Z [debug] Gateway: 192.168.12.1\n2021-04-26T12:27:20Z [debug] IP Source Addresses: [192.168.12.99/24]\n2021-04-26T12:27:20Z [debug] IP Destinations: [80 UDP 10.0.0.99/30 8080 TCP 203.0.113.26/30 80 8443 TCP 203.0.113.27/30 443]\n2021-04-26T12:27:20Z [debug] Created macvlan interface\n2021-04-26T12:27:20Z [debug] Renamed macvlan to \"net1\"\n2021-04-26T12:27:20Z [debug] Adding route to gateway 192.168.12.1 on macvlan interface\n2021-04-26T12:27:20Z [debug] deleted default route {Ifindex: 3 Dst: <nil> Src: <nil> Gw: 10.128.10.1 Flags: [] Table: 254}\n2021-04-26T12:27:20Z [debug] Added new default route with gateway 192.168.12.1\n2021-04-26T12:27:20Z [debug] Added iptables rule: iptables -t nat PREROUTING -i eth0 -p UDP --dport 80 -j DNAT --to-destination 10.0.0.99\n2021-04-26T12:27:20Z [debug] Added iptables rule: iptables -t nat PREROUTING -i eth0 -p TCP --dport 8080 -j DNAT --to-destination 203.0.113.26:80\n2021-04-26T12:27:20Z [debug] Added iptables rule: iptables -t nat PREROUTING -i eth0 -p TCP --dport 8443 -j DNAT --to-destination 203.0.113.27:443\n2021-04-26T12:27:20Z [debug] Added iptables rule: iptables -t nat -o net1 -j SNAT --to-source 192.168.12.99"} lang="terminal" title="Example output" />
+      <p>The logging file location and logging level are not configurable when you start the egress router by creating an <code>EgressRouter</code> object as described in this procedure.</p>
+      </li>
+      <li>
+      From within the <code>chroot</code> environment console, get the container ID:
+      <CodeBlock code={"# crictl ps --name egress-router-cni-pod | awk '{print $1}'"} lang="terminal" />
+      <CodeBlock code={"CONTAINER\nbac9fae69ddb6"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Determine the process ID of the container. In this example, the container ID is <code>bac9fae69ddb6</code>:
+      <CodeBlock code={"# crictl inspect -o yaml bac9fae69ddb6 | grep 'pid:' | awk '{print $2}'"} lang="terminal" />
+      <CodeBlock code={"68857"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Enter the network namespace of the container:
+      <CodeBlock code={"# nsenter -n -t 68857"} lang="terminal" />
+      </li>
+      <li>
+      Display the routing table:
+      <CodeBlock code={"# ip route"} lang="terminal" />
+      <p>In the following example output, the <code>net1</code> network interface is the default route. Traffic for the cluster network uses the <code>eth0</code> network interface. Traffic for the <code>192.168.12.0/24</code> network uses the <code>net1</code> network interface and originates from the reserved source IP address <code>192.168.12.99</code>. The pod routes all other traffic to the gateway at IP address <code>192.168.12.1</code>. Routing for the service network is not shown.</p>
+      <CodeBlock code={"default via 192.168.12.1 dev net1\n10.128.10.0/23 dev eth0 proto kernel scope link src 10.128.10.18\n192.168.12.0/24 dev net1 proto kernel scope link src 192.168.12.99\n192.168.12.1 dev net1"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

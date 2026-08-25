@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"cnf-image-based-upgrade-configure-auto-image-cleanup","text":"Configuring the automatic image cleanup of the container storage disk"}];
+const headings = [{"depth":1,"slug":"cnf-image-based-upgrade-configure-auto-image-cleanup","text":"Configuring the automatic image cleanup of the container storage disk"},{"depth":2,"slug":"ztp-image-based-upgrade-configure-threshold_auto-cleanup","text":"Configuring the automatic image cleanup of the container storage disk"},{"depth":2,"slug":"ztp-image-based-upgrade-disable-container-storage-image-cleanup_auto-cleanup","text":"Disable the automatic image cleanup of the container storage disk"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring the automatic image cleanup of the container storage disk";
-const description = "Configure when the {{ lcao }} cleans up unpinned images in the Prep stage by setting a minimum threshold for available storage space through annotations…" || undefined;
+const description = "Configure when the Lifecycle Agent cleans up unpinned images in the Prep stage by setting a minimum threshold for available storage space through…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["edge_computing","edge_computing/image_based_upgrade","edg
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the automatic image cleanup of the container storage disk {#cnf-image-based-upgrade-configure-auto-image-cleanup}\n\nConfigure when the {{ lcao }} cleans up unpinned images in the `Prep` stage by setting a minimum threshold for available storage space through annotations. The default container storage disk usage threshold is 50%.\n\nThe {{ lcao }} does not delete images that are pinned in CRI-O or are currently used. The Operator selects the images for deletion by starting with dangling images and then sorting the images from oldest to newest that is determined by the image `Created` timestamp.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the automatic image cleanup of the container storage disk {#cnf-image-based-upgrade-configure-auto-image-cleanup}\n\nConfigure when the Lifecycle Agent cleans up unpinned images in the `Prep` stage by setting a minimum threshold for available storage space through annotations. The default container storage disk usage threshold is 50%.\n\nThe Lifecycle Agent does not delete images that are pinned in CRI-O or are currently used. The Operator selects the images for deletion by starting with dangling images and then sorting the images from oldest to newest that is determined by the image `Created` timestamp.\n\n## Configuring the automatic image cleanup of the container storage disk {#ztp-image-based-upgrade-configure-threshold_auto-cleanup}\n\nConfigure the minimum threshold for available storage space through annotations.\n\n**Prerequisites**\n\n- You have created an `ImageBasedUpgrade` CR.\n\n**Procedure**\n\n1. Increase the threshold to 65% by running the following command:\n\n   ```terminal\n   $ oc -n openshift-lifecycle-agent annotate ibu upgrade image-cleanup.lca.openshift.io/disk-usage-threshold-percent='65'\n   ```\n2. (Optional) Remove the threshold override by running the following command:\n\n   ```terminal\n   $ oc -n  openshift-lifecycle-agent annotate ibu upgrade image-cleanup.lca.openshift.io/disk-usage-threshold-percent-\n   ```\n\n## Disable the automatic image cleanup of the container storage disk {#ztp-image-based-upgrade-disable-container-storage-image-cleanup_auto-cleanup}\n\nDisable the automatic image cleanup threshold.\n\n**Procedure**\n\n1. Disable the automatic image cleanup by running the following command:\n\n   ```terminal\n   $ oc -n openshift-lifecycle-agent annotate ibu upgrade image-cleanup.lca.openshift.io/on-prep='Disabled'\n   ```\n2. (Optional) Enable automatic image cleanup again by running the following command:\n\n   ```terminal\n   $ oc -n  openshift-lifecycle-agent annotate ibu upgrade image-cleanup.lca.openshift.io/on-prep-\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-auto-image-cleanup.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +92,36 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cnf-image-based-upgrade-configure-auto-image-cleanup" class="group scroll-mt-20">Configuring the automatic image cleanup of the container storage disk<a href="#cnf-image-based-upgrade-configure-auto-image-cleanup" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Configure when the {"{"}{"{"} lcao {"}"}{"}"} cleans up unpinned images in the <code>Prep</code> stage by setting a minimum threshold for available storage space through annotations. The default container storage disk usage threshold is 50%.</p>
-      <p>The {"{"}{"{"} lcao {"}"}{"}"} does not delete images that are pinned in CRI-O or are currently used. The Operator selects the images for deletion by starting with dangling images and then sorting the images from oldest to newest that is determined by the image <code>Created</code> timestamp.</p>
-      <p class="/modules/cnf-image-based-upgrade-configure-container-storage-image-cleanup.md"></p>
-      <p class="/modules/cnf-image-based-upgrade-disable-container-storage-image-cleanup.md"></p>
+      <p>Configure when the Lifecycle Agent cleans up unpinned images in the <code>Prep</code> stage by setting a minimum threshold for available storage space through annotations. The default container storage disk usage threshold is 50%.</p>
+      <p>The Lifecycle Agent does not delete images that are pinned in CRI-O or are currently used. The Operator selects the images for deletion by starting with dangling images and then sorting the images from oldest to newest that is determined by the image <code>Created</code> timestamp.</p>
+      <h2 id="ztp-image-based-upgrade-configure-threshold_auto-cleanup" class="group scroll-mt-20">Configuring the automatic image cleanup of the container storage disk<a href="#ztp-image-based-upgrade-configure-threshold_auto-cleanup" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the minimum threshold for available storage space through annotations.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have created an <code>ImageBasedUpgrade</code> CR.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Increase the threshold to 65% by running the following command:
+      <CodeBlock code={"$ oc -n openshift-lifecycle-agent annotate ibu upgrade image-cleanup.lca.openshift.io/disk-usage-threshold-percent='65'"} lang="terminal" />
+      </li>
+      <li>
+      (Optional) Remove the threshold override by running the following command:
+      <CodeBlock code={"$ oc -n  openshift-lifecycle-agent annotate ibu upgrade image-cleanup.lca.openshift.io/disk-usage-threshold-percent-"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="ztp-image-based-upgrade-disable-container-storage-image-cleanup_auto-cleanup" class="group scroll-mt-20">Disable the automatic image cleanup of the container storage disk<a href="#ztp-image-based-upgrade-disable-container-storage-image-cleanup_auto-cleanup" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Disable the automatic image cleanup threshold.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Disable the automatic image cleanup by running the following command:
+      <CodeBlock code={"$ oc -n openshift-lifecycle-agent annotate ibu upgrade image-cleanup.lca.openshift.io/on-prep='Disabled'"} lang="terminal" />
+      </li>
+      <li>
+      (Optional) Enable automatic image cleanup again by running the following command:
+      <CodeBlock code={"$ oc -n  openshift-lifecycle-agent annotate ibu upgrade image-cleanup.lca.openshift.io/on-prep-"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

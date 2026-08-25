@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-install-ibm-cloud-bm-nodes","text":"Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes"},{"depth":2,"slug":"_prerequisites","text":"Prerequisites"}];
+const headings = [{"depth":1,"slug":"virt-install-ibm-cloud-bm-nodes","text":"Installing OpenShift Virtualization on IBM Cloud bare-metal nodes"},{"depth":2,"slug":"_prerequisites","text":"Prerequisites"},{"depth":2,"slug":"virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes","text":"Configuring IBM Cloud for the new cluster"},{"depth":2,"slug":"virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes","text":"Initializing the new cluster configuration"},{"depth":2,"slug":"virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes","text":"Configuring cluster networking and access"},{"depth":2,"slug":"virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes","text":"Completing the cluster configuration"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes";
-const description = "Install {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3…" || undefined;
+const description = "Install OpenShift Virtualization on IBM Cloud bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/install"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes {#virt-install-ibm-cloud-bm-nodes}\n\nInstall {{ VirtProductName }} on {{ ibm_cloud_title }} bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer.\n\n## Prerequisites {#_prerequisites}\n\n- An account in {{ ibm_cloud_title }} with permissions to order and operate bare-metal nodes.\n- An {{ ibm_cloud_title }} SSL VPN user, to access the SuperMicro IPMI interface of a node.\n- Install the OpenShift CLI (`oc`).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing OpenShift Virtualization on IBM Cloud bare-metal nodes {#virt-install-ibm-cloud-bm-nodes}\n\nInstall OpenShift Virtualization on IBM Cloud bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer.\n\n## Prerequisites {#_prerequisites}\n\n- An account in IBM Cloud with permissions to order and operate bare-metal nodes.\n- An IBM Cloud SSL VPN user, to access the SuperMicro IPMI interface of a node.\n- Install the OpenShift CLI (`oc`).\n\n## Configuring IBM Cloud for the new cluster {#virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes}\n\nConfigure and provision the IBM Cloud environment to establish the operational framework and nodes for your OpenShift Virtualization cluster.\n\n**Procedure**\n\n1. Create a new virtual server instance in IBM Cloud at [Virtual Server for Classic](https://cloud.ibm.com/gen1/infrastructure/provision/vs) to be the Bastion server. This instance is used to run the installation and provide environment services.\n2. Change the default properties of the new virtual server instance to the following values. Use the provided defaults for all other values.\n\n   - **Type of virtual server:** Public\n   - **Operating system:** CentOS\n   - Your public SSH RSA key\n3. Note the private VLAN and subnet the virtual server instance is assigned to at [VLANs](https://cloud.ibm.com/classic/network/vlans).\n4. Provision 6 bare-metal nodes in IBM Cloud at [Bare metal server provision](https://cloud.ibm.com/gen1/infrastructure/provision/bm). Use the following values when provisioning the nodes:\n\n   - **Domain**: A subdomain you can add records to.\n   - **Quantity**: 6\n   - **Location**: The same location as the virtual server instance.\n   - **Storage disks**: RAID 1\n   - **Network Interface**: Private\n   - **Private VLAN**: The same as noted for the virtual server instance.\n5. Confirm all nodes are provisioned and ready at [Device list](https://cloud.ibm.com/gen1/infrastructure/devices).\n6. Rename the control plane nodes to `control0-<domain-name>`, `control1-<domain-name>`, and `control2-<domain-name>`. Replace `<domain-name>` with the domain used when provisioning the nodes.\n7. Rename the compute nodes to `compute0-<domain-name>`, `compute1-<domain-name>`, and `compute2-<domain-name>`. Replace `<domain-name>` with the domain used when provisioning the nodes.\n8. Configure the Bastion virtual server instance as a default network gateway.\n9. Configure DHCP by editing `/etc/dhcp/dhcpd.conf` on the Bastion virtual server instance. For example:\n\n   ```text\n   # Set DNS name and DNS server's IP address or hostname\n   option domain-name  <dns_domain_name>;\n   option domain-name-servers  <dns_ip_addresses>;\n\n   # Declare DHCP Server\n   authoritative;\n\n   # The default DHCP lease time\n   default-lease-time <default_lease_value>;\n\n   # Set the maximum lease time\n   max-lease-time <max_lease_value>;\n\n   # Set Network address, subnet mask and gateway\n\n   subnet <subnet_ip_address> netmask <subnet_mask> {\n     # Range of IP addresses to allocate\n     range dynamic-bootp <dynamic_boot_lower_address> <dynamic_boot_upper_address>;\n     # Provide broadcast address\n     option broadcast-address <broadcast_ip_address>;\n     # Set default gateway\n     option routers <default_gateway_ip_address>;\n   ```\n\n   where:\n\n   `<dns_domain_name>`\n   :   Specifies the default domain name for DNS clients.\n\n   `<dns_ip_addresses>`\n   :   Specifies a comma-separated list of DNS server IP addresses.\n\n   `<default_lease_value>`\n   :   Specifies the default number of seconds a client keeps an assigned address.\n\n   `<max_lease_value>`\n   :   Specifies the maximum number of seconds a client keeps an assigned address.\n\n   `<subnet_ip_address>`\n   :   Specifies the start of the subnet IP address range.\n\n   `<subnet_mask>`\n   :   Specifies the subnet mask of the subnet IP address range.\n\n   `<broad_ip_address>`\n   :   Specifies the broadcast IP address to use when to use sending a message to every device on the subnet.\n\n   `<default_gateway_ip_address>`\n   :   Specifies the default gateway of the subnet.\n10. Restart DHCP on the Bastion virtual server instance:\n\n    ```terminal\n    $ systemctl restart dhcpd\n    ```\n11. Enable IP forwarding on the Bastion virtual server instance:\n\n    ```terminal\n    $ sysctl -w net.ipv4.ip_forward=1\n    ```\n12. Verify IP forwarding is enabled on the Bastion virtual server instance:\n\n    ```terminal\n    $ sysctl -p /etc/sysctl.conf\n    ```\n13. Restart the network service on the Bastion virtual server instance:\n\n    ```terminal\n    $ service network restart\n    ```\n14. Verify if `firewalld` is enabled on the Bastion virtual server instance:\n\n    ```terminal\n    $ firewall-cmd --state\n    ```\n15. If the `firewalld` service is not enabled on the Bastion virtual server instance, enable the service:\n\n    ```terminal\n    $ systemctl enable firewalld\n    ```\n16. Start the `firewalld` service:\n\n    ```terminal\n    $ systemctl start firewalld\n    ```\n17. Add network address translation (NAT) rules to the `firewalld` service:\n\n    ```terminal\n    $ firewall-cmd --add-masquerade --permanent\n    ```\n18. Restart the `firewalld` service:\n\n    ```terminal\n    $ firewall-cmd --reload\n    ```\n\n## Initializing the new cluster configuration {#virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes}\n\nInitialize the new cluster configuration using the OpenShift Virtualization Assisted Installer service and Samba on the Bastion virtual server instance.\n\n**Procedure**\n\n1. Log in to the **Assisted Installer** service.\n2. Create a new cluster. The new cluster has the following properties:\n\n   - **Cluster name**: The name used to identify the cluster under the base domain.\n   - **Base domain**: The domain used to provision the bare-metal nodes.\n3. Click **Next**.\n4. Click **Generate Discovery ISO**.\n5. Provide your public SSH RSA key when prompted.\n6. Copy and save the generated `wget` command for the ISO file. This will be used later to connect to the cluster nodes.\n7. Install Samba server on the Bastion virtual server instance:\n\n   ```terminal\n   $ dnf install samba\n   ```\n8. Enable Samba server on the Bastion virtual server instance:\n\n   ```terminal\n   $ systemctl enable smb --now\n   ```\n9. Configure NAT rules for the Samba server:\n\n   ```terminal\n   $ firewall-cmd --permanent --zone=FedoraWorkstation --add-service=samba\n   $ firewall-cmd --reload\n   ```\n10. Configure a root user password:\n\n    ```terminal\n    $ sudo smbpasswd -a root\n    ```\n11. Create a share directory:\n\n    ```terminal\n    $ mkdir <share_directory>\n    ```\n\n    Replace `<share_directory>` with the share directory name.\n12. Navigate to the share directory and download the Assisted Installer ISO file using the generated `wget` command.\n\n## Configuring cluster networking and access {#virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes}\n\nConfigure networking and access to allow for remote management of the cluster.\n\n**Procedure**\n\n1. Edit `/etc/samba/smb.conf` to use the following configuration:\n\n   ```text\n   [global]\n         log level = 3\n             workgroup = SAMBA\n             security = user\n\n             passdb backend = tdbsam\n\n             printing = cups\n             printcap name = cups\n             load printers = yes\n             cups options = raw\n\n         server min protocol = NT1\n         ntlm auth = yes\n\n   [share]\n         comment = ISO Files\n         path = /root/share\n         browseable = yes\n         public = no\n         read only = no\n         directory mode = 0555\n         valid users = root\n   ```\n\n   > [!NOTE]\n   > For a more detailed example of the `smb.conf` file, see the `smb.conf.example` file in the same directory.\n2. Save the file.\n3. Verify the new Samba configuration:\n\n   ```terminal\n   $ testparm\n   ```\n4. Restart the Samba service:\n\n   ```terminal\n   $ systemctl restart smb\n   ```\n5. Verify that the Samba service is running and active:\n\n   ```terminal\n   $ systemctl status smb\n   ```\n6. Configure SSL VPN access to IBM Cloud:\n\n   1. Perform the procedure at [Getting started with IBM Cloud Virtual Private Networking](https://cloud.ibm.com/docs/iaas-vpn?topic=iaas-vpn-getting-started) in the IBM Cloud documentation.\n   2. Download and install the MotionPro SSL VPN client.\n   3. Connect to the appropriate IBM Cloud endpoint:\n\n      ```terminal\n      $ sudo MotionPro --host $<vpn_endpoint> --user $<vpn_username> --passwd $<vpn_password>\n      ```\n\n      where:\n\n      `<vpn_endpoint>`\n      :   Specifies the appropriate SSL VPN endpoint.\n\n      `<vpn_username>`\n      :   Specifies the SSL VPN user name you configured.\n\n      `<vpn_password>`\n      :   Specifies the SSL VPN password you configured.\n\n      > [!NOTE]\n      > Connecting to the IBM Cloud SSL VPN disconnects you from any open VPN connections.\n\n## Completing the cluster configuration {#virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes}\n\nComplete the cluster configuration by installing software on the control plane and compute nodes and configuring DNS for external access.\n\n**Procedure**\n\n1. For each bare-metal server, perform the following tasks:\n\n   1. Access the server using the IPMI console.\n\n      > [!NOTE]\n      > The IP address and credentials for IPMI console access is available in the **Remote management** section for each server.\n   2. Mount the Assisted Installer ISO file with the following attributes:\n\n      - **Virtual Media**: CD-ROM Image\n      - **Share host**: The private IP address of the Bastion server.\n      - **Path to image**: The location of the Assisted Installer ISO file.\n      - **User**: root\n      - **Password**: The root user password you configured.\n   3. Click **Save and Mount**.\n   4. Verify the ISO mounted successfully.\n   5. Restart the server by selecting **Remote Control** -> **Power Control** -> **Reset Server** -> **Perform Action**.\n2. Return to the **Assisted Installer** service.\n3. Select the **Install OpenShift Virtualization** and **Install OpenShift Data Foundation** checkboxes in the **Assisted Installer** options.\n4. Select a role for each host.\n\n   > [!NOTE]\n   > The cluster consists of 3 control plane and 3 compute nodes.\n5. Wait for the **Assisted Installer** interface to indicate each node is ready.\n6. Click **Next**.\n7. Select **Cluster Managed Network**.\n8. Select the **API VIP** and **Ingress VIP** checkboxes to obtain them from DHCP or leave them unchecked to enter static values.\n9. Click **Install**.\n10. For each bare-metal server, perform the following tasks:\n\n    1. Access the server using the IPMI console.\n\n       > [!NOTE]\n       > The IP address and credentials for IPMI console access is available in the **Remote management** section for each server.\n    2. Select **Virtual Media** -> **CD-Rom Image**.\n    3. Click **Unmount**.\n    4. Select **Remote Control** -> **Power Control** -> **Reset Server** -> **Perform Action** to restart the server.\n11. Locate the **Cluster Credentials** section of the installation summary.\n12. Perform the following tasks in the **Cluster Credentials** section:\n\n    1. Download the `kubeconfig` file.\n    2. Save the `kubeadmin` password.\n13. Install `haproxy` on the Bastion virtual server instance.\n14. Configure `haproxy` for your environment. The following is an example configuration:\n\n    ```text\n    #---------------------------------------------------------------------\n    # Example configuration for a possible web application.  See the\n    # full configuration options online.\n    #\n    #   https://www.haproxy.org/download/1.8/doc/configuration.txt\n    #\n    #---------------------------------------------------------------------\n\n    #---------------------------------------------------------------------\n    # Global settings\n    #---------------------------------------------------------------------\n    global\n      # to have these messages end up in /var/log/haproxy.log you will\n      # need to:\n      #\n      # 1) configure syslog to accept network log events.  This is done\n      # by adding the '-r' option to the SYSLOGD_OPTIONS in\n      # /etc/sysconfig/syslog\n      #\n      # 2) configure local2 events to go to the /var/log/haproxy.log\n      #   file. A line like the following can be added to\n      #   /etc/sysconfig/syslog\n      #\n      # local2.*                    /var/log/haproxy.log\n      #\n      log       127.0.0.1 local2\n\n      chroot    /var/lib/haproxy\n      pidfile   /var/run/haproxy.pid\n      maxconn   4000\n      user      haproxy\n      group     haproxy\n      daemon\n\n      # turn on stats unix socket\n      stats socket /var/lib/haproxy/stats\n\n      # utilize system-wide crypto-policies\n      #ssl-default-bind-ciphers PROFILE=SYSTEM\n      #ssl-default-server-ciphers PROFILE=SYSTEM\n\n    #---------------------------------------------------------------------\n    # common defaults that all the 'listen' and 'backend' sections will\n    # use if not designated in their block\n    #---------------------------------------------------------------------\n    defaults\n      mode                  tcp\n      log                   global\n      option                httplog\n      option                dontlognull\n      option http-server-close\n      option forwardfor     except 127.0.0.0/8\n      option                redispatch\n      retries               3\n      timeout http-request  10s\n      timeout queue         1m\n      timeout connect       10s\n      timeout client        1m\n      timeout server        1m\n      timeout http-keep-alive 10s\n      timeout check         10s\n      maxconn               3000\n    #---------------------------------------------------------------------\n    # main frontend which proxys to the backends\n    #---------------------------------------------------------------------\n\n    frontend api\n      bind <api_ip_address>:<api_port>\n      default_backend controlplaneapi\n\n    frontend apiinternal\n      bind <apiinternal_ip_address>:<apiinternal_port>\n      default_backend controlplaneapiinternal\n\n    frontend secure\n      bind <frontend_secure_ip_address>:<frontend_secure_port>\n      default_backend secure\n\n    frontend insecure\n      bind <frontend_insecure_ip_address>:<frontend_insecure_port>\n      default_backend insecure\n\n    #---------------------------------------------------------------------\n    # static backend\n    #---------------------------------------------------------------------\n\n    backend controlplaneapi\n      balance source\n      server api <controlplaneapi_ip_address>:<controlplaneapi_port> check\n\n    backend controlplaneapiinternal\n      balance source\n      server api <controlplaneapiinternal_ip_address>:<controlplaneapiinternal_port> check\n\n    backend secure\n      balance source\n      server ingress <backend_secure_ip_address>:<backend_secure_port> check\n\n    backend insecure\n      balance source\n      server ingress <backend_insecure_ip_address>:<backend_insecure_port> check\n    ```\n\n    where:\n\n    `<api_ip_address>:<api_port>`\n    :   Specifies the front end IP address and port used by the Kubernetes API server.\n\n    `<apiinternal_ip_address>:<apiinternal_port>`\n    :   Specifies the front end IP address and port used for internal cluster management.\n\n    `<frontend_secure_ip_address>:<frontend_secure_port>`\n    :   Specifies the front end IP address and port used for HTTPS traffic for hosted applications.\n\n    `<frontend_insecure_ip_address>:<frontend_insecure_port>`\n    :   Specifies the front end IP address and port used for HTTP traffic for hosted applications.\n\n    `<controlplaneapi_ip_address>:<controlplaneapi_port>`\n    :   Specifies the back end IP address and port used by the Kubernetes API server.\n\n    `<controlplaneapiinternal_ip_address>:<controlplaneapiinternal_port>`\n    :   Specifies the back end IP address and port used for internal cluster management.\n\n    `<backend_secure_ip_address>:<backend_secure_port>`\n    :   Specifies the back end IP address and port used for HTTPS traffic for hosted applications.\n\n    `<backend_insecure_ip_address>:<backend_insecure_port>`\n    :   Specifies the back end IP address and port used for HTTP traffic for hosted applications.\n\n    > [!NOTE]\n    > Replace the example values with values applicable to your network configuration.\n15. Save the `haproxy` configuration.\n16. Configure two DNS Address records (A records) for the subdomain that are externally available over the Internet:\n\n    ```text\n    <bastion_public_ip_address> api.<cluster_name>.<cluster_domain>\n    <bastion_public_ip_address> *.apps..<cluster_name>.<cluster_domain>\n    ```\n\n    where:\n\n    `<bastion_public_ip_address>`\n    :   Specifies the externally available IP address of the Bastion virtual server instance.\n\n    `<cluster_name>`\n    :   Specifies the name assigned to the cluster.\n\n    `<cluster_domain>`\n    :   Specifies the domain assigned to the cluster.\n\n**Verification**\n\n1. Perform the following tasks to verify cluster access using command line access:\n\n   1. Set your environment with the `kubeconfig` file:\n\n      ```terminal\n      $ export KUBECONFIG=<kubeconfig_file_path>\n      ```\n\n      where:\n\n      `<kubeconfig_file_path>`\n      :   Specifies the path to the downloaded `kubeconfig` file.\n   2. Check cluster node status:\n\n      ```terminal\n      $ oc get nodes\n      ```\n\n      > [!NOTE]\n      > The command output should show all nodes as `Ready` in the `STATUS` column and the `ROLES` column should show that control plane and compute nodes are present.\n   3. Check the cluster version:\n\n      ```terminal\n      $ oc get clusterversion\n      ```\n\n      > [!NOTE]\n      > The command output should say `Condition: Available`.\n2. Perform the following tasks to verify cluster access using the web console:\n\n   1. Paste the access URL provided by Assisted Installer into your web browser.\n\n      > [!NOTE]\n      > By default, clusters use self-signed certificates. This may cause your browser to display a message that says **Connection not private** or a similar warning. You can close this warning and continue.\n   2. Navigate to the URL.\n   3. Log in to the cluster with the username `kubeadmin` and the `kubeadmin` password provided in the **Cluster Credentials** section.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/install/virt-install-ibm-cloud-bm-nodes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,18 +94,366 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
-      <h1 id="virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Installing {"{"}{"{"} VirtProductName {"}"}{"}"} on {"{"}{"{"} ibm_cloud_title {"}"}{"}"} bare-metal nodes<a href="#virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Install {"{"}{"{"} VirtProductName {"}"}{"}"} on {"{"}{"{"} ibm_cloud_title {"}"}{"}"} bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer.</p>
+      <h1 id="virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Installing OpenShift Virtualization on IBM Cloud bare-metal nodes<a href="#virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Install OpenShift Virtualization on IBM Cloud bare-metal nodes using Assisted Installer. The cluster has 6 bare-metal nodes (3 control and 3 compute). An additional virtual machine is required for bootstrapping and to act as a Samba server, DHCP server, network gateway, and load balancer.</p>
       <h2 id="_prerequisites" class="group scroll-mt-20">Prerequisites<a href="#_prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li>An account in {"{"}{"{"} ibm_cloud_title {"}"}{"}"} with permissions to order and operate bare-metal nodes.</li>
-      <li>An {"{"}{"{"} ibm_cloud_title {"}"}{"}"} SSL VPN user, to access the SuperMicro IPMI interface of a node.</li>
+      <li>An account in IBM Cloud with permissions to order and operate bare-metal nodes.</li>
+      <li>An IBM Cloud SSL VPN user, to access the SuperMicro IPMI interface of a node.</li>
       <li>Install the OpenShift CLI (<code>oc</code>).</li>
       </ul>
-      <p class="/modules/virt-install-ibm-cloud-initialize-new-cluster.md"></p>
-      <p class="/modules/virt-install-ibm-cloud-cluster-network-access.md"></p>
-      <p class="/modules/virt-install-ibm-cloud-complete-cluster-config.md"></p>
+      <h2 id="virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Configuring IBM Cloud for the new cluster<a href="#virt-install-ibm-cloud-config-new-cluster_virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure and provision the IBM Cloud environment to establish the operational framework and nodes for your OpenShift Virtualization cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create a new virtual server instance in IBM Cloud at <a href="https://cloud.ibm.com/gen1/infrastructure/provision/vs">Virtual Server for Classic</a> to be the Bastion server. This instance is used to run the installation and provide environment services.</li>
+      <li>
+      Change the default properties of the new virtual server instance to the following values. Use the provided defaults for all other values.
+      <ul>
+      <li><strong>Type of virtual server:</strong> Public</li>
+      <li><strong>Operating system:</strong> CentOS</li>
+      <li>Your public SSH RSA key</li>
+      </ul>
+      </li>
+      <li>Note the private VLAN and subnet the virtual server instance is assigned to at <a href="https://cloud.ibm.com/classic/network/vlans">VLANs</a>.</li>
+      <li>
+      Provision 6 bare-metal nodes in IBM Cloud at <a href="https://cloud.ibm.com/gen1/infrastructure/provision/bm">Bare metal server provision</a>. Use the following values when provisioning the nodes:
+      <ul>
+      <li><strong>Domain</strong>: A subdomain you can add records to.</li>
+      <li><strong>Quantity</strong>: 6</li>
+      <li><strong>Location</strong>: The same location as the virtual server instance.</li>
+      <li><strong>Storage disks</strong>: RAID 1</li>
+      <li><strong>Network Interface</strong>: Private</li>
+      <li><strong>Private VLAN</strong>: The same as noted for the virtual server instance.</li>
+      </ul>
+      </li>
+      <li>Confirm all nodes are provisioned and ready at <a href="https://cloud.ibm.com/gen1/infrastructure/devices">Device list</a>.</li>
+      <li>Rename the control plane nodes to <code>control0-&lt;domain-name&gt;</code>, <code>control1-&lt;domain-name&gt;</code>, and <code>control2-&lt;domain-name&gt;</code>. Replace <code>&lt;domain-name&gt;</code> with the domain used when provisioning the nodes.</li>
+      <li>Rename the compute nodes to <code>compute0-&lt;domain-name&gt;</code>, <code>compute1-&lt;domain-name&gt;</code>, and <code>compute2-&lt;domain-name&gt;</code>. Replace <code>&lt;domain-name&gt;</code> with the domain used when provisioning the nodes.</li>
+      <li>Configure the Bastion virtual server instance as a default network gateway.</li>
+      <li>
+      Configure DHCP by editing <code>/etc/dhcp/dhcpd.conf</code> on the Bastion virtual server instance. For example:
+      <CodeBlock code={"# Set DNS name and DNS server's IP address or hostname\noption domain-name  <dns_domain_name>;\noption domain-name-servers  <dns_ip_addresses>;\n\n# Declare DHCP Server\nauthoritative;\n\n# The default DHCP lease time\ndefault-lease-time <default_lease_value>;\n\n# Set the maximum lease time\nmax-lease-time <max_lease_value>;\n\n# Set Network address, subnet mask and gateway\n\nsubnet <subnet_ip_address> netmask <subnet_mask> {\n  # Range of IP addresses to allocate\n  range dynamic-bootp <dynamic_boot_lower_address> <dynamic_boot_upper_address>;\n  # Provide broadcast address\n  option broadcast-address <broadcast_ip_address>;\n  # Set default gateway\n  option routers <default_gateway_ip_address>;"} lang="text" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;dns_domain_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the default domain name for DNS clients.</p></dd>
+      <dt class="font-semibold"><code>&lt;dns_ip_addresses&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a comma-separated list of DNS server IP addresses.</p></dd>
+      <dt class="font-semibold"><code>&lt;default_lease_value&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the default number of seconds a client keeps an assigned address.</p></dd>
+      <dt class="font-semibold"><code>&lt;max_lease_value&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum number of seconds a client keeps an assigned address.</p></dd>
+      <dt class="font-semibold"><code>&lt;subnet_ip_address&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the start of the subnet IP address range.</p></dd>
+      <dt class="font-semibold"><code>&lt;subnet_mask&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the subnet mask of the subnet IP address range.</p></dd>
+      <dt class="font-semibold"><code>&lt;broad_ip_address&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the broadcast IP address to use when to use sending a message to every device on the subnet.</p></dd>
+      <dt class="font-semibold"><code>&lt;default_gateway_ip_address&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the default gateway of the subnet.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Restart DHCP on the Bastion virtual server instance:
+      <CodeBlock code={"$ systemctl restart dhcpd"} lang="terminal" />
+      </li>
+      <li>
+      Enable IP forwarding on the Bastion virtual server instance:
+      <CodeBlock code={"$ sysctl -w net.ipv4.ip_forward=1"} lang="terminal" />
+      </li>
+      <li>
+      Verify IP forwarding is enabled on the Bastion virtual server instance:
+      <CodeBlock code={"$ sysctl -p /etc/sysctl.conf"} lang="terminal" />
+      </li>
+      <li>
+      Restart the network service on the Bastion virtual server instance:
+      <CodeBlock code={"$ service network restart"} lang="terminal" />
+      </li>
+      <li>
+      Verify if <code>firewalld</code> is enabled on the Bastion virtual server instance:
+      <CodeBlock code={"$ firewall-cmd --state"} lang="terminal" />
+      </li>
+      <li>
+      If the <code>firewalld</code> service is not enabled on the Bastion virtual server instance, enable the service:
+      <CodeBlock code={"$ systemctl enable firewalld"} lang="terminal" />
+      </li>
+      <li>
+      Start the <code>firewalld</code> service:
+      <CodeBlock code={"$ systemctl start firewalld"} lang="terminal" />
+      </li>
+      <li>
+      Add network address translation (NAT) rules to the <code>firewalld</code> service:
+      <CodeBlock code={"$ firewall-cmd --add-masquerade --permanent"} lang="terminal" />
+      </li>
+      <li>
+      Restart the <code>firewalld</code> service:
+      <CodeBlock code={"$ firewall-cmd --reload"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Initializing the new cluster configuration<a href="#virt-install-ibm-cloud-initialize-new-cluster_virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Initialize the new cluster configuration using the OpenShift Virtualization Assisted Installer service and Samba on the Bastion virtual server instance.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the <strong>Assisted Installer</strong> service.</li>
+      <li>
+      Create a new cluster. The new cluster has the following properties:
+      <ul>
+      <li><strong>Cluster name</strong>: The name used to identify the cluster under the base domain.</li>
+      <li><strong>Base domain</strong>: The domain used to provision the bare-metal nodes.</li>
+      </ul>
+      </li>
+      <li>Click <strong>Next</strong>.</li>
+      <li>Click <strong>Generate Discovery ISO</strong>.</li>
+      <li>Provide your public SSH RSA key when prompted.</li>
+      <li>Copy and save the generated <code>wget</code> command for the ISO file. This will be used later to connect to the cluster nodes.</li>
+      <li>
+      Install Samba server on the Bastion virtual server instance:
+      <CodeBlock code={"$ dnf install samba"} lang="terminal" />
+      </li>
+      <li>
+      Enable Samba server on the Bastion virtual server instance:
+      <CodeBlock code={"$ systemctl enable smb --now"} lang="terminal" />
+      </li>
+      <li>
+      Configure NAT rules for the Samba server:
+      <CodeBlock code={"$ firewall-cmd --permanent --zone=FedoraWorkstation --add-service=samba\n$ firewall-cmd --reload"} lang="terminal" />
+      </li>
+      <li>
+      Configure a root user password:
+      <CodeBlock code={"$ sudo smbpasswd -a root"} lang="terminal" />
+      </li>
+      <li>
+      Create a share directory:
+      <CodeBlock code={"$ mkdir <share_directory>"} lang="terminal" />
+      <p>Replace <code>&lt;share_directory&gt;</code> with the share directory name.</p>
+      </li>
+      <li>Navigate to the share directory and download the Assisted Installer ISO file using the generated <code>wget</code> command.</li>
+      </ol>
+      <h2 id="virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Configuring cluster networking and access<a href="#virt-install-ibm-cloud-cluster-network-access_virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure networking and access to allow for remote management of the cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit <code>/etc/samba/smb.conf</code> to use the following configuration:
+      <CodeBlock code={"[global]\n      log level = 3\n          workgroup = SAMBA\n          security = user\n\n          passdb backend = tdbsam\n\n          printing = cups\n          printcap name = cups\n          load printers = yes\n          cups options = raw\n\n      server min protocol = NT1\n      ntlm auth = yes\n\n[share]\n      comment = ISO Files\n      path = /root/share\n      browseable = yes\n      public = no\n      read only = no\n      directory mode = 0555\n      valid users = root"} lang="text" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For a more detailed example of the <code>smb.conf</code> file, see the <code>smb.conf.example</code> file in the same directory.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Save the file.</li>
+      <li>
+      Verify the new Samba configuration:
+      <CodeBlock code={"$ testparm"} lang="terminal" />
+      </li>
+      <li>
+      Restart the Samba service:
+      <CodeBlock code={"$ systemctl restart smb"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the Samba service is running and active:
+      <CodeBlock code={"$ systemctl status smb"} lang="terminal" />
+      </li>
+      <li>
+      Configure SSL VPN access to IBM Cloud:
+      <ol>
+      <li>Perform the procedure at <a href="https://cloud.ibm.com/docs/iaas-vpn?topic=iaas-vpn-getting-started">Getting started with IBM Cloud Virtual Private Networking</a> in the IBM Cloud documentation.</li>
+      <li>Download and install the MotionPro SSL VPN client.</li>
+      <li>
+      Connect to the appropriate IBM Cloud endpoint:
+      <CodeBlock code={"$ sudo MotionPro --host $<vpn_endpoint> --user $<vpn_username> --passwd $<vpn_password>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;vpn_endpoint&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the appropriate SSL VPN endpoint.</p></dd>
+      <dt class="font-semibold"><code>&lt;vpn_username&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the SSL VPN user name you configured.</p></dd>
+      <dt class="font-semibold"><code>&lt;vpn_password&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the SSL VPN password you configured.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Connecting to the IBM Cloud SSL VPN disconnects you from any open VPN connections.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes" class="group scroll-mt-20">Completing the cluster configuration<a href="#virt-install-ibm-cloud-complete-cluster-config_virt-install-ibm-cloud-bm-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Complete the cluster configuration by installing software on the control plane and compute nodes and configuring DNS for external access.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      For each bare-metal server, perform the following tasks:
+      <ol>
+      <li>
+      Access the server using the IPMI console.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The IP address and credentials for IPMI console access is available in the <strong>Remote management</strong> section for each server.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Mount the Assisted Installer ISO file with the following attributes:
+      <ul>
+      <li><strong>Virtual Media</strong>: CD-ROM Image</li>
+      <li><strong>Share host</strong>: The private IP address of the Bastion server.</li>
+      <li><strong>Path to image</strong>: The location of the Assisted Installer ISO file.</li>
+      <li><strong>User</strong>: root</li>
+      <li><strong>Password</strong>: The root user password you configured.</li>
+      </ul>
+      </li>
+      <li>Click <strong>Save and Mount</strong>.</li>
+      <li>Verify the ISO mounted successfully.</li>
+      <li>Restart the server by selecting <strong>Remote Control</strong> -&gt; <strong>Power Control</strong> -&gt; <strong>Reset Server</strong> -&gt; <strong>Perform Action</strong>.</li>
+      </ol>
+      </li>
+      <li>Return to the <strong>Assisted Installer</strong> service.</li>
+      <li>Select the <strong>Install OpenShift Virtualization</strong> and <strong>Install OpenShift Data Foundation</strong> checkboxes in the <strong>Assisted Installer</strong> options.</li>
+      <li>
+      Select a role for each host.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The cluster consists of 3 control plane and 3 compute nodes.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Wait for the <strong>Assisted Installer</strong> interface to indicate each node is ready.</li>
+      <li>Click <strong>Next</strong>.</li>
+      <li>Select <strong>Cluster Managed Network</strong>.</li>
+      <li>Select the <strong>API VIP</strong> and <strong>Ingress VIP</strong> checkboxes to obtain them from DHCP or leave them unchecked to enter static values.</li>
+      <li>Click <strong>Install</strong>.</li>
+      <li>
+      For each bare-metal server, perform the following tasks:
+      <ol>
+      <li>
+      Access the server using the IPMI console.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The IP address and credentials for IPMI console access is available in the <strong>Remote management</strong> section for each server.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Select <strong>Virtual Media</strong> -&gt; <strong>CD-Rom Image</strong>.</li>
+      <li>Click <strong>Unmount</strong>.</li>
+      <li>Select <strong>Remote Control</strong> -&gt; <strong>Power Control</strong> -&gt; <strong>Reset Server</strong> -&gt; <strong>Perform Action</strong> to restart the server.</li>
+      </ol>
+      </li>
+      <li>Locate the <strong>Cluster Credentials</strong> section of the installation summary.</li>
+      <li>
+      Perform the following tasks in the <strong>Cluster Credentials</strong> section:
+      <ol>
+      <li>Download the <code>kubeconfig</code> file.</li>
+      <li>Save the <code>kubeadmin</code> password.</li>
+      </ol>
+      </li>
+      <li>Install <code>haproxy</code> on the Bastion virtual server instance.</li>
+      <li>
+      Configure <code>haproxy</code> for your environment. The following is an example configuration:
+      <CodeBlock code={"#---------------------------------------------------------------------\n# Example configuration for a possible web application.  See the\n# full configuration options online.\n#\n#   https://www.haproxy.org/download/1.8/doc/configuration.txt\n#\n#---------------------------------------------------------------------\n\n#---------------------------------------------------------------------\n# Global settings\n#---------------------------------------------------------------------\nglobal\n  # to have these messages end up in /var/log/haproxy.log you will\n  # need to:\n  #\n  # 1) configure syslog to accept network log events.  This is done\n  # by adding the '-r' option to the SYSLOGD_OPTIONS in\n  # /etc/sysconfig/syslog\n  #\n  # 2) configure local2 events to go to the /var/log/haproxy.log\n  #   file. A line like the following can be added to\n  #   /etc/sysconfig/syslog\n  #\n  # local2.*                    /var/log/haproxy.log\n  #\n  log       127.0.0.1 local2\n\n  chroot    /var/lib/haproxy\n  pidfile   /var/run/haproxy.pid\n  maxconn   4000\n  user      haproxy\n  group     haproxy\n  daemon\n\n  # turn on stats unix socket\n  stats socket /var/lib/haproxy/stats\n\n  # utilize system-wide crypto-policies\n  #ssl-default-bind-ciphers PROFILE=SYSTEM\n  #ssl-default-server-ciphers PROFILE=SYSTEM\n\n#---------------------------------------------------------------------\n# common defaults that all the 'listen' and 'backend' sections will\n# use if not designated in their block\n#---------------------------------------------------------------------\ndefaults\n  mode                  tcp\n  log                   global\n  option                httplog\n  option                dontlognull\n  option http-server-close\n  option forwardfor     except 127.0.0.0/8\n  option                redispatch\n  retries               3\n  timeout http-request  10s\n  timeout queue         1m\n  timeout connect       10s\n  timeout client        1m\n  timeout server        1m\n  timeout http-keep-alive 10s\n  timeout check         10s\n  maxconn               3000\n#---------------------------------------------------------------------\n# main frontend which proxys to the backends\n#---------------------------------------------------------------------\n\nfrontend api\n  bind <api_ip_address>:<api_port>\n  default_backend controlplaneapi\n\nfrontend apiinternal\n  bind <apiinternal_ip_address>:<apiinternal_port>\n  default_backend controlplaneapiinternal\n\nfrontend secure\n  bind <frontend_secure_ip_address>:<frontend_secure_port>\n  default_backend secure\n\nfrontend insecure\n  bind <frontend_insecure_ip_address>:<frontend_insecure_port>\n  default_backend insecure\n\n#---------------------------------------------------------------------\n# static backend\n#---------------------------------------------------------------------\n\nbackend controlplaneapi\n  balance source\n  server api <controlplaneapi_ip_address>:<controlplaneapi_port> check\n\nbackend controlplaneapiinternal\n  balance source\n  server api <controlplaneapiinternal_ip_address>:<controlplaneapiinternal_port> check\n\nbackend secure\n  balance source\n  server ingress <backend_secure_ip_address>:<backend_secure_port> check\n\nbackend insecure\n  balance source\n  server ingress <backend_insecure_ip_address>:<backend_insecure_port> check"} lang="text" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;api_ip_address&gt;:&lt;api_port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the front end IP address and port used by the Kubernetes API server.</p></dd>
+      <dt class="font-semibold"><code>&lt;apiinternal_ip_address&gt;:&lt;apiinternal_port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the front end IP address and port used for internal cluster management.</p></dd>
+      <dt class="font-semibold"><code>&lt;frontend_secure_ip_address&gt;:&lt;frontend_secure_port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the front end IP address and port used for HTTPS traffic for hosted applications.</p></dd>
+      <dt class="font-semibold"><code>&lt;frontend_insecure_ip_address&gt;:&lt;frontend_insecure_port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the front end IP address and port used for HTTP traffic for hosted applications.</p></dd>
+      <dt class="font-semibold"><code>&lt;controlplaneapi_ip_address&gt;:&lt;controlplaneapi_port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the back end IP address and port used by the Kubernetes API server.</p></dd>
+      <dt class="font-semibold"><code>&lt;controlplaneapiinternal_ip_address&gt;:&lt;controlplaneapiinternal_port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the back end IP address and port used for internal cluster management.</p></dd>
+      <dt class="font-semibold"><code>&lt;backend_secure_ip_address&gt;:&lt;backend_secure_port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the back end IP address and port used for HTTPS traffic for hosted applications.</p></dd>
+      <dt class="font-semibold"><code>&lt;backend_insecure_ip_address&gt;:&lt;backend_insecure_port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the back end IP address and port used for HTTP traffic for hosted applications.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Replace the example values with values applicable to your network configuration.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Save the <code>haproxy</code> configuration.</li>
+      <li>
+      Configure two DNS Address records (A records) for the subdomain that are externally available over the Internet:
+      <CodeBlock code={"<bastion_public_ip_address> api.<cluster_name>.<cluster_domain>\n<bastion_public_ip_address> *.apps..<cluster_name>.<cluster_domain>"} lang="text" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;bastion_public_ip_address&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the externally available IP address of the Bastion virtual server instance.</p></dd>
+      <dt class="font-semibold"><code>&lt;cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name assigned to the cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;cluster_domain&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the domain assigned to the cluster.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Perform the following tasks to verify cluster access using command line access:
+      <ol>
+      <li>
+      Set your environment with the <code>kubeconfig</code> file:
+      <CodeBlock code={"$ export KUBECONFIG=<kubeconfig_file_path>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;kubeconfig_file_path&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the downloaded <code>kubeconfig</code> file.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Check cluster node status:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The command output should show all nodes as <code>Ready</code> in the <code>STATUS</code> column and the <code>ROLES</code> column should show that control plane and compute nodes are present.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Check the cluster version:
+      <CodeBlock code={"$ oc get clusterversion"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The command output should say <code>Condition: Available</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Perform the following tasks to verify cluster access using the web console:
+      <ol>
+      <li>
+      Paste the access URL provided by Assisted Installer into your web browser.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>By default, clusters use self-signed certificates. This may cause your browser to display a message that says <strong>Connection not private</strong> or a similar warning. You can close this warning and continue.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Navigate to the URL.</li>
+      <li>Log in to the cluster with the username <code>kubeadmin</code> and the <code>kubeadmin</code> password provided in the <strong>Cluster Credentials</strong> section.</li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

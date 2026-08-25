@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-creating-vms-from-container-disks","text":"Creating VMs by using container disks"},{"depth":2,"slug":"additional-resources_virt-creating-vms-from-container-disks","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-creating-vms-from-container-disks","text":"Creating VMs by using container disks"},{"depth":2,"slug":"virt-preparing-container-disk-for-vms_virt-creating-vms-from-container-disks","text":"Building and uploading a container disk"},{"depth":2,"slug":"virt-disabling-tls-for-registry_virt-creating-vms-from-container-disks","text":"Disabling TLS for a container registry"},{"depth":2,"slug":"virt-creating-vm-custom-image-web_virt-creating-vms-from-container-disks","text":"Creating a VM from a container disk by using the web console"},{"depth":2,"slug":"virt-creating-vm-import-cli_virt-creating-vms-from-container-disks","text":"Creating a VM from a container disk by using the CLI"},{"depth":2,"slug":"additional-resources_virt-creating-vms-from-container-disks","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-container-disks";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/creating_vm"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating VMs by using container disks {#virt-creating-vms-from-container-disks}\n\nYou can create virtual machines (VMs) by using container disks built from operating system images.\n\nYou can enable auto updates for your container disks. For more information, see \"Additional resources\".\n\n> [!IMPORTANT]\n> If the container disks are large, the I/O traffic might increase and cause worker nodes to be unavailable. You can perform the following tasks to reclaim resources:\n>\n> - Prune `DeploymentConfig` objects.\n> - Configure garbage collection.\n\nYou create a VM from a container disk by performing the following steps:\n\n1. Build an operating system image into a container disk and upload it to your container registry.\n2. If your container registry does not have TLS, configure your environment to disable TLS for your registry.\n3. Create a VM with the container disk as the disk source by using the OpenShift Container Platform web console or the command line.\n\n> [!IMPORTANT]\n> You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-container-disks}\n\n- [Managing automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n- [Pruning objects to reclaim resources](/openshift-docs-markdown/applications/pruning-objects#pruning-deployments_pruning-objects)\n- [Configuring garbage collection for containers and images](/openshift-docs-markdown/nodes/nodes/nodes-nodes-garbage-collection#nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-container-disks.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating VMs by using container disks {#virt-creating-vms-from-container-disks}\n\nYou can create virtual machines (VMs) by using container disks built from operating system images.\n\nYou can enable auto updates for your container disks. For more information, see \"Additional resources\".\n\n> [!IMPORTANT]\n> If the container disks are large, the I/O traffic might increase and cause worker nodes to be unavailable. You can perform the following tasks to reclaim resources:\n>\n> - Prune `DeploymentConfig` objects.\n> - Configure garbage collection.\n\nYou create a VM from a container disk by performing the following steps:\n\n1. Build an operating system image into a container disk and upload it to your container registry.\n2. If your container registry does not have TLS, configure your environment to disable TLS for your registry.\n3. Create a VM with the container disk as the disk source by using the OpenShift Container Platform web console or the command line.\n\n> [!IMPORTANT]\n> You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\n## Building and uploading a container disk {#virt-preparing-container-disk-for-vms_virt-creating-vms-from-container-disks}\n\nYou can build a virtual machine (VM) image into a container disk and upload it to a registry.\n\nThe size of a container disk is limited by the maximum layer size of the registry where the container disk is hosted.\n\n> [!NOTE]\n> For [Red Hat Quay](https://access.redhat.com/documentation/en-us/red_hat_quay/), you can change the maximum layer size by editing the YAML configuration file that is created when Red Hat Quay is first deployed.\n\n**Prerequisites**\n\n- You must have `podman` installed.\n- You must have a QCOW2 or RAW image file.\n\n**Procedure**\n\n1. Create a Dockerfile to build the VM image into a container image. The VM image must be owned by QEMU, which has a UID of `107`, and placed in the `/disk/` directory inside the container. Permissions for the `/disk/` directory must then be set to `0440`.\n\n   The following example uses the Red Hat Universal Base Image (UBI) to handle these configuration changes in the first stage, and uses the minimal `scratch` image in the second stage to store the result:\n\n   ```terminal\n   $ cat > Dockerfile << EOF\n   FROM registry.access.redhat.com/ubi8/ubi:latest AS builder\n   ADD --chown=107:107 <vm_image>.qcow2 /disk/ //\n   RUN chmod 0440 /disk/*\n\n   FROM scratch\n   COPY --from=builder /disk/* /disk/\n   EOF\n   ```\n\n   where:\n\n   `<vm_image>`\n   :   Specifies the image in either QCOW2 or RAW format. If you use a remote image, replace `<vm_image>.qcow2` with the complete URL.\n2. Build and tag the container:\n\n   ```terminal\n   $ podman build -t <registry>/<container_disk_name>:latest .\n   ```\n3. Push the container image to the registry:\n\n   ```terminal\n   $ podman push <registry>/<container_disk_name>:latest\n   ```\n\n## Disabling TLS for a container registry {#virt-disabling-tls-for-registry_virt-creating-vms-from-container-disks}\n\nYou can disable TLS (transport layer security) for one or more container registries by editing the `insecureRegistries` field of the `HyperConverged` custom resource.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HyperConverged` CR in your default editor by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Add a list of insecure registries to the `spec.storageImport.insecureRegistries` field.\n\n   Example `HyperConverged` custom resource:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n     namespace: {{ CNVNamespace }}\n   spec:\n     storageImport:\n       insecureRegistries:\n         - \"private-registry-example-1:5000\"\n         - \"private-registry-example-2:5000\"\n   ```\n\n   Replace the examples in the `insecureRegistries` list with valid registry hostnames.\n\n## Creating a VM from a container disk by using the web console {#virt-creating-vm-custom-image-web_virt-creating-vms-from-container-disks}\n\nYou can create a virtual machine (VM) by importing a container disk from a container registry by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **Catalog** in the web console.\n2. Click a template tile without an available boot source.\n3. Click **Customize VirtualMachine**.\n4. On the **Customize template parameters** page, expand **Storage** and select **Registry (creates PVC)** from the **Disk source** list.\n5. Enter the container image URL. Example: `https://mirror.arizona.edu/fedora/linux/releases/38/Cloud/x86_64/images/Fedora-Cloud-Base-38-1.6.x86_64.qcow2`\n6. Set the disk size.\n7. Click **Next**.\n8. Click **Create VirtualMachine**.\n\n## Creating a VM from a container disk by using the CLI {#virt-creating-vm-import-cli_virt-creating-vms-from-container-disks}\n\nYou can create a virtual machine (VM) from a container disk by using the command line.\n\n**Prerequisites**\n\n- You must have access credentials for the container registry that contains the container disk.\n- You have installed the `virtctl` CLI.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a `VirtualMachine` manifest for your VM and save it as a YAML file. For example, to create a minimal Red Hat Enterprise Linux (RHEL) VM from a container disk, run the following command:\n\n   ```terminal\n   $ virtctl create vm --name vm-rhel-9 --instancetype u1.small --preference rhel.9 --volume-containerdisk src:registry.redhat.io/rhel9/rhel-guest-image:9.5\n   ```\n2. Review the `VirtualMachine` manifest for your VM:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: vm-rhel-9\n   spec:\n     instancetype:\n       name: u1.small\n     preference:\n       name: rhel.9\n     runStrategy: Always\n     template:\n       metadata:\n         creationTimestamp: null\n       spec:\n         domain:\n           devices: {}\n           resources: {}\n         terminationGracePeriodSeconds: 180\n         volumes:\n         - containerDisk:\n             image: registry.redhat.io/rhel9/rhel-guest-image:9.5\n           name: vm-rhel-9-containerdisk-0\n   ```\n\n   - `metadata.name` defines the VM name.\n   - `spec.instancetype.name` defines the instance type to use to control resource sizing of the VM.\n   - `spec.preference.name` defines the preference to use.\n   - `spec.template.spec.volumes.containerDisk.image` defines the URL of the container disk.\n3. Create the VM by running the following command:\n\n   ```terminal\n   $ oc create -f <vm_manifest_file>.yaml\n   ```\n\n**Verification**\n\n1. Monitor the status of the VM:\n\n   ```terminal\n   $ oc get vm <vm_name>\n   ```\n\n   If the provisioning is successful, the VM status is `Running`. Example output:\n\n   ```terminal\n   NAME        AGE   STATUS    READY\n   vm-rhel-9   18s   Running   True\n   ```\n2. Verify that provisioning is complete and that the VM has started by accessing its serial console:\n\n   ```terminal\n   $ virtctl console <vm_name>\n   ```\n\n   If the VM is running and the serial console is accessible, the output looks as follows:\n\n   ```terminal\n   Successfully connected to vm-rhel-9 console. The escape sequence is ^]\n   ```\n\n## Additional resources {#additional-resources_virt-creating-vms-from-container-disks}\n\n- [Managing automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n- [Pruning objects to reclaim resources](/openshift-docs-markdown/applications/pruning-objects#pruning-deployments_pruning-objects)\n- [Configuring garbage collection for containers and images](/openshift-docs-markdown/nodes/nodes/nodes-nodes-garbage-collection#nodes-nodes-garbage-collection-configuring_nodes-nodes-configuring)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-container-disks.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-creating-vms-from-container-disks" class="group scroll-mt-20">Creating VMs by using container disks<a href="#virt-creating-vms-from-container-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can create virtual machines (VMs) by using container disks built from operating system images.</p>
       <p>You can enable auto updates for your container disks. For more information, see "Additional resources".</p>
       <Alert variant="info" class="my-4">
@@ -119,10 +119,117 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/virt-preparing-container-disk-for-vms.md"></p>
-      <p class="/modules/virt-disabling-tls-for-registry.md"></p>
-      <p class="/modules/virt-creating-vm-custom-image-web.md"></p>
-      <p class="/modules/virt-creating-vm-container-disk-cli.md"></p>
+      <h2 id="virt-preparing-container-disk-for-vms_virt-creating-vms-from-container-disks" class="group scroll-mt-20">Building and uploading a container disk<a href="#virt-preparing-container-disk-for-vms_virt-creating-vms-from-container-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can build a virtual machine (VM) image into a container disk and upload it to a registry.</p>
+      <p>The size of a container disk is limited by the maximum layer size of the registry where the container disk is hosted.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For <a href="https://access.redhat.com/documentation/en-us/red_hat_quay/">Red Hat Quay</a>, you can change the maximum layer size by editing the YAML configuration file that is created when Red Hat Quay is first deployed.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have <code>podman</code> installed.</li>
+      <li>You must have a QCOW2 or RAW image file.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a Dockerfile to build the VM image into a container image. The VM image must be owned by QEMU, which has a UID of <code>107</code>, and placed in the <code>/disk/</code> directory inside the container. Permissions for the <code>/disk/</code> directory must then be set to <code>0440</code>.
+      <p>The following example uses the Red Hat Universal Base Image (UBI) to handle these configuration changes in the first stage, and uses the minimal <code>scratch</code> image in the second stage to store the result:</p>
+      <CodeBlock code={"$ cat > Dockerfile << EOF\nFROM registry.access.redhat.com/ubi8/ubi:latest AS builder\nADD --chown=107:107 <vm_image>.qcow2 /disk/ //\nRUN chmod 0440 /disk/*\n\nFROM scratch\nCOPY --from=builder /disk/* /disk/\nEOF"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;vm_image&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the image in either QCOW2 or RAW format. If you use a remote image, replace <code>&lt;vm_image&gt;.qcow2</code> with the complete URL.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Build and tag the container:
+      <CodeBlock code={"$ podman build -t <registry>/<container_disk_name>:latest ."} lang="terminal" />
+      </li>
+      <li>
+      Push the container image to the registry:
+      <CodeBlock code={"$ podman push <registry>/<container_disk_name>:latest"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-disabling-tls-for-registry_virt-creating-vms-from-container-disks" class="group scroll-mt-20">Disabling TLS for a container registry<a href="#virt-disabling-tls-for-registry_virt-creating-vms-from-container-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can disable TLS (transport layer security) for one or more container registries by editing the <code>insecureRegistries</code> field of the <code>HyperConverged</code> custom resource.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Open the <code>HyperConverged</code> CR in your default editor by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Add a list of insecure registries to the <code>spec.storageImport.insecureRegistries</code> field.
+      <p>Example <code>HyperConverged</code> custom resource:</p>
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  storageImport:\n    insecureRegistries:\n      - \"private-registry-example-1:5000\"\n      - \"private-registry-example-2:5000\""} lang="yaml" />
+      <p>Replace the examples in the <code>insecureRegistries</code> list with valid registry hostnames.</p>
+      </li>
+      </ol>
+      <h2 id="virt-creating-vm-custom-image-web_virt-creating-vms-from-container-disks" class="group scroll-mt-20">Creating a VM from a container disk by using the web console<a href="#virt-creating-vm-custom-image-web_virt-creating-vms-from-container-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can create a virtual machine (VM) by importing a container disk from a container registry by using the OpenShift Container Platform web console.</p>
+      <p class="_abstract"></p>
+      <p><strong>Prerequisites</strong></p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>Catalog</strong> in the web console.</li>
+      <li>Click a template tile without an available boot source.</li>
+      <li>Click <strong>Customize VirtualMachine</strong>.</li>
+      <li>On the <strong>Customize template parameters</strong> page, expand <strong>Storage</strong> and select <strong>Registry (creates PVC)</strong> from the <strong>Disk source</strong> list.</li>
+      <li>Enter the container image URL. Example: <code>https://mirror.arizona.edu/fedora/linux/releases/38/Cloud/x86_64/images/Fedora-Cloud-Base-38-1.6.x86_64.qcow2</code></li>
+      <li>Set the disk size.</li>
+      <li>Click <strong>Next</strong>.</li>
+      <li>Click <strong>Create VirtualMachine</strong>.</li>
+      </ol>
+      <h2 id="virt-creating-vm-import-cli_virt-creating-vms-from-container-disks" class="group scroll-mt-20">Creating a VM from a container disk by using the CLI<a href="#virt-creating-vm-import-cli_virt-creating-vms-from-container-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a virtual machine (VM) from a container disk by using the command line.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have access credentials for the container registry that contains the container disk.</li>
+      <li>You have installed the <code>virtctl</code> CLI.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>VirtualMachine</code> manifest for your VM and save it as a YAML file. For example, to create a minimal Red Hat Enterprise Linux (RHEL) VM from a container disk, run the following command:
+      <CodeBlock code={"$ virtctl create vm --name vm-rhel-9 --instancetype u1.small --preference rhel.9 --volume-containerdisk src:registry.redhat.io/rhel9/rhel-guest-image:9.5"} lang="terminal" />
+      </li>
+      <li>
+      Review the <code>VirtualMachine</code> manifest for your VM:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: vm-rhel-9\nspec:\n  instancetype:\n    name: u1.small\n  preference:\n    name: rhel.9\n  runStrategy: Always\n  template:\n    metadata:\n      creationTimestamp: null\n    spec:\n      domain:\n        devices: {}\n        resources: {}\n      terminationGracePeriodSeconds: 180\n      volumes:\n      - containerDisk:\n          image: registry.redhat.io/rhel9/rhel-guest-image:9.5\n        name: vm-rhel-9-containerdisk-0"} lang="yaml" />
+      <ul>
+      <li><code>metadata.name</code> defines the VM name.</li>
+      <li><code>spec.instancetype.name</code> defines the instance type to use to control resource sizing of the VM.</li>
+      <li><code>spec.preference.name</code> defines the preference to use.</li>
+      <li><code>spec.template.spec.volumes.containerDisk.image</code> defines the URL of the container disk.</li>
+      </ul>
+      </li>
+      <li>
+      Create the VM by running the following command:
+      <CodeBlock code={"$ oc create -f <vm_manifest_file>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Monitor the status of the VM:
+      <CodeBlock code={"$ oc get vm <vm_name>"} lang="terminal" />
+      <p>If the provisioning is successful, the VM status is <code>Running</code>. Example output:</p>
+      <CodeBlock code={"NAME        AGE   STATUS    READY\nvm-rhel-9   18s   Running   True"} lang="terminal" />
+      </li>
+      <li>
+      Verify that provisioning is complete and that the VM has started by accessing its serial console:
+      <CodeBlock code={"$ virtctl console <vm_name>"} lang="terminal" />
+      <p>If the VM is running and the serial console is accessible, the output looks as follows:</p>
+      <CodeBlock code={"Successfully connected to vm-rhel-9 console. The escape sequence is ^]"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="additional-resources_virt-creating-vms-from-container-disks" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-creating-vms-from-container-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates">Managing automatic boot source updates</a></li>

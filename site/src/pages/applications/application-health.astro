@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"application-health","text":"Monitoring application health by using health checks"}];
+const headings = [{"depth":1,"slug":"application-health","text":"Monitoring application health by using health checks"},{"depth":2,"slug":"application-health-about_application-health","text":"Understanding health checks"},{"depth":3,"slug":"application-health-examples","text":"Example probes"},{"depth":2,"slug":"application-health-configuring_application-health","text":"Configuring health checks using the CLI"},{"depth":2,"slug":"odc-monitoring-application-health-using-developer-perspective_application-health","text":"Monitoring application health using the Developer perspective"},{"depth":2,"slug":"odc-editing-health-checks","text":"Editing health checks using the Developer perspective"},{"depth":2,"slug":"odc-monitoring-health-checks","text":"Monitoring health check failures using the Developer perspective"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/application-health";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["applications"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring application health by using health checks {#application-health}\n\nIn software systems, components can become unhealthy due to transient issues such as temporary connectivity loss, configuration errors, or problems with external dependencies. OpenShift Container Platform applications have a number of options to detect and handle unhealthy containers.\n\n**Additional resources**\n\n- For details on switching to the **Developer** perspective in the web console, see [About the **Developer** perspective](/openshift-docs-markdown/web_console/web-console-overview#about-developer-perspective_web-console-overview).\n- For details on adding health checks while creating and deploying an application, see **Advanced Options** in the [Creating applications using the Developer perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective) section.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/application-health.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring application health by using health checks {#application-health}\n\nIn software systems, components can become unhealthy due to transient issues such as temporary connectivity loss, configuration errors, or problems with external dependencies. OpenShift Container Platform applications have a number of options to detect and handle unhealthy containers.\n\n## Understanding health checks {#application-health-about_application-health}\n\nA health check periodically performs diagnostics on a running container using any combination of the readiness, liveness, and startup health checks.\n\nYou can include one or more probes in the specification for the pod that contains the container which you want to perform the health checks.\n\n> [!NOTE]\n> If you want to add or edit health checks in an existing pod, you must edit the pod `DeploymentConfig` object or use the web console. You cannot use the CLI to add or edit health checks for an existing pod.\n\nReadiness probe\n:   A *readiness probe* determines if a container is ready to accept service requests. If the readiness probe fails for a container, the kubelet removes the pod from the list of available service endpoints.\n\n    After a failure, the probe continues to examine the pod. If the pod becomes available, the kubelet adds the pod to the list of available service endpoints.\n\nLiveness health check\n:   A *liveness probe* determines if a container is still running. If the liveness probe fails due to a condition such as a deadlock, the kubelet kills the container. The pod then responds based on its restart policy.\n\n    For example, a liveness probe on a pod with a `restartPolicy` of `Always` or `OnFailure` kills and restarts the container.\n\nStartup probe\n:   A *startup probe* indicates whether the application within a container is started. All other probes are disabled until the startup succeeds. If the startup probe does not succeed within a specified time period, the kubelet kills the container, and the container is subject to the pod `restartPolicy`.\n\n    Some applications can require additional startup time on their first initialization. You can use a startup probe with a liveness or readiness probe to delay that probe long enough to handle lengthy start-up time using the `failureThreshold` and `periodSeconds` parameters.\n\n    For example, you can add a startup probe, with a `failureThreshold` of 30 failures and a `periodSeconds` of 10 seconds (30 \\* 10s = 300s) for a maximum of 5 minutes, to a liveness probe. After the startup probe succeeds the first time, the liveness probe takes over.\n\nYou can configure liveness, readiness, and startup probes with any of the following types of tests:\n\n- HTTP `GET`: When using an HTTP `GET` test, the test determines the healthiness of the container by using a web hook. The test is successful if the HTTP response code is between `200` and `399`.\n\n  You can use an HTTP `GET` test with applications that return HTTP status codes when completely initialized.\n- Container Command: When using a container command test, the probe executes a command inside the container. The probe is successful if the test exits with a `0` status.\n- TCP socket: When using a TCP socket test, the probe attempts to open a socket to the container. The container is only considered healthy if the probe can establish a connection. You can use a TCP socket test with applications that do not start listening until initialization is complete.\n\nYou can configure several fields to control the behavior of a probe:\n\n- `initialDelaySeconds`: The time, in seconds, after the container starts before the probe can be scheduled. The default is 0.\n- `periodSeconds`: The delay, in seconds, between performing probes. The default is `10`. This value must be greater than `timeoutSeconds`.\n- `timeoutSeconds`: The number of seconds of inactivity after which the probe times out and the container is assumed to have failed. The default is `1`. This value must be lower than `periodSeconds`.\n- `successThreshold`: The number of times that the probe must report success after a failure to reset the container status to successful. The value must be `1` for a liveness probe. The default is `1`.\n- `failureThreshold`: The number of times that the probe is allowed to fail. The default is 3. After the specified attempts:\n\n  - for a liveness probe, the container is restarted\n  - for a readiness probe, the pod is marked `Unready`\n  - for a startup probe, the container is killed and is subject to the pod’s `restartPolicy`\n\n### Example probes {#application-health-examples}\n\nThe following are samples of different probes as they would appear in an object specification.\n\n```yaml {title=\"Sample readiness probe with a container command readiness probe in a pod spec\"}\napiVersion: v1\nkind: Pod\nmetadata:\n  labels:\n    test: health-check\n  name: my-application\n# ...\nspec:\n  containers:\n  - name: goproxy-app (1)\n    args:\n    image: registry.k8s.io/goproxy:0.1 (2)\n    readinessProbe: (3)\n      exec: (4)\n        command: (5)\n        - cat\n        - /tmp/healthy\n# ...\n```\n\n1. The container name.\n2. The container image to deploy.\n3. A readiness probe.\n4. A container command test.\n5. The commands to execute on the container.\n\n```yaml {title=\"Sample container command startup probe and liveness probe with container command tests in a pod spec\"}\napiVersion: v1\nkind: Pod\nmetadata:\n  labels:\n    test: health-check\n  name: my-application\n# ...\nspec:\n  containers:\n  - name: goproxy-app (1)\n    args:\n    image: registry.k8s.io/goproxy:0.1 (2)\n    livenessProbe: (3)\n      httpGet: (4)\n        scheme: HTTPS (5)\n        path: /healthz\n        port: 8080 (6)\n        httpHeaders:\n        - name: X-Custom-Header\n          value: Awesome\n    startupProbe: (7)\n      httpGet: (8)\n        path: /healthz\n        port: 8080 (9)\n      failureThreshold: 30 (10)\n      periodSeconds: 10 (11)\n# ...\n```\n\n1. The container name.\n2. Specify the container image to deploy.\n3. A liveness probe.\n4. An HTTP `GET` test.\n5. The internet scheme: `HTTP` or `HTTPS`. The default value is `HTTP`.\n6. The port on which the container is listening.\n7. A startup probe.\n8. An HTTP `GET` test.\n9. The port on which the container is listening.\n10. The number of times to try the probe after a failure.\n11. The number of seconds to perform the probe.\n\n```yaml {title=\"Sample liveness probe with a container command test that uses a timeout in a pod spec\"}\napiVersion: v1\nkind: Pod\nmetadata:\n  labels:\n    test: health-check\n  name: my-application\n# ...\nspec:\n  containers:\n  - name: goproxy-app (1)\n    args:\n    image: registry.k8s.io/goproxy:0.1 (2)\n    livenessProbe: (3)\n      exec: (4)\n        command: (5)\n        - /bin/bash\n        - '-c'\n        - timeout 60 /opt/eap/bin/livenessProbe.sh\n      periodSeconds: 10 (6)\n      successThreshold: 1 (7)\n      failureThreshold: 3 (8)\n# ...\n```\n\n1. The container name.\n2. Specify the container image to deploy.\n3. The liveness probe.\n4. The type of probe, here a container command probe.\n5. The command line to execute inside the container.\n6. How often in seconds to perform the probe.\n7. The number of consecutive successes needed to show success after a failure.\n8. The number of times to try the probe after a failure.\n\n```yaml {title=\"Sample readiness probe and liveness probe with a TCP socket test in a deployment\"}\nkind: Deployment\napiVersion: apps/v1\nmetadata:\n  labels:\n    test: health-check\n  name: my-application\nspec:\n# ...\n  template:\n    spec:\n      containers:\n        - resources: {}\n          readinessProbe: (1)\n            tcpSocket:\n              port: 8080\n            timeoutSeconds: 1\n            periodSeconds: 10\n            successThreshold: 1\n            failureThreshold: 3\n          terminationMessagePath: /dev/termination-log\n          name: ruby-ex\n          livenessProbe: (2)\n            tcpSocket:\n              port: 8080\n            initialDelaySeconds: 15\n            timeoutSeconds: 1\n            periodSeconds: 10\n            successThreshold: 1\n            failureThreshold: 3\n# ...\n```\n\n1. The readiness probe.\n2. The liveness probe.\n\n## Configuring health checks using the CLI {#application-health-configuring_application-health}\n\nTo configure readiness, liveness, and startup probes, add one or more probes to the specification for the pod that contains the container which you want to perform the health checks\n\n> [!NOTE]\n> If you want to add or edit health checks in an existing pod, you must edit the pod `DeploymentConfig` object or use the web console. You cannot use the CLI to add or edit health checks for an existing pod.\n\n**Procedure**\n\nTo add probes for a container:\n\n1. Create a `Pod` object to add one or more probes:\n\n   ```yaml\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     labels:\n       test: health-check\n     name: my-application\n   spec:\n     containers:\n     - name: my-container (1)\n       args:\n       image: registry.k8s.io/goproxy:0.1 (2)\n       livenessProbe: (3)\n         tcpSocket:  (4)\n           port: 8080 (5)\n         initialDelaySeconds: 15 (6)\n         periodSeconds: 20 (7)\n         timeoutSeconds: 10 (8)\n       readinessProbe: (9)\n         httpGet: (10)\n           host: my-host (11)\n           scheme: HTTPS (12)\n           path: /healthz\n           port: 8080 (13)\n       startupProbe: (14)\n         exec: (15)\n           command: (16)\n           - cat\n           - /tmp/healthy\n         failureThreshold: 30 (17)\n         periodSeconds: 20 (18)\n         timeoutSeconds: 10 (19)\n   ```\n\n   1. Specify the container name.\n   2. Specify the container image to deploy.\n   3. Optional: Create a Liveness probe.\n   4. Specify a test to perform, here a TCP Socket test.\n   5. Specify the port on which the container is listening.\n   6. Specify the time, in seconds, after the container starts before the probe can be scheduled.\n   7. Specify the number of seconds to perform the probe. The default is `10`. This value must be greater than `timeoutSeconds`.\n   8. Specify the number of seconds of inactivity after which the probe is assumed to have failed. The default is `1`. This value must be lower than `periodSeconds`.\n   9. Optional: Create a Readiness probe.\n   10. Specify the type of test to perform, here an HTTP test.\n   11. Specify a host IP address. When `host` is not defined, the `PodIP` is used.\n   12. Specify `HTTP` or `HTTPS`. When `scheme` is not defined, the `HTTP` scheme is used.\n   13. Specify the port on which the container is listening.\n   14. Optional: Create a Startup probe.\n   15. Specify the type of test to perform, here an Container Execution probe.\n   16. Specify the commands to execute on the container.\n   17. Specify the number of times to try the probe after a failure.\n   18. Specify the number of seconds to perform the probe. The default is `10`. This value must be greater than `timeoutSeconds`.\n   19. Specify the number of seconds of inactivity after which the probe is assumed to have failed. The default is `1`. This value must be lower than `periodSeconds`.\n\n       > [!NOTE]\n       > If the `initialDelaySeconds` value is lower than the `periodSeconds` value, the first Readiness probe occurs at some point between the two periods due to an issue with timers.\n       >\n       > The `timeoutSeconds` value must be lower than the `periodSeconds` value.\n2. Create the `Pod` object:\n\n   ```terminal\n   $ oc create -f <file-name>.yaml\n   ```\n3. Verify the state of the health check pod:\n\n   ```terminal\n   $ oc describe pod my-application\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Events:\n     Type    Reason     Age   From                                  Message\n     ----    ------     ----  ----                                  -------\n     Normal  Scheduled  9s    default-scheduler                     Successfully assigned openshift-logging/liveness-exec to ip-10-0-143-40.ec2.internal\n     Normal  Pulling    2s    kubelet, ip-10-0-143-40.ec2.internal  pulling image \"registry.k8s.io/liveness\"\n     Normal  Pulled     1s    kubelet, ip-10-0-143-40.ec2.internal  Successfully pulled image \"registry.k8s.io/liveness\"\n     Normal  Created    1s    kubelet, ip-10-0-143-40.ec2.internal  Created container\n     Normal  Started    1s    kubelet, ip-10-0-143-40.ec2.internal  Started container\n   ```\n\n   The following is the output of a failed probe that restarted a container:\n\n   ```terminal {title=\"Sample Liveness check output with unhealthy container\"}\n   $ oc describe pod pod1\n   ```\n\n   ```terminal {title=\"Example output\"}\n   ....\n\n   Events:\n     Type     Reason          Age                From                                               Message\n     ----     ------          ----               ----                                               -------\n     Normal   Scheduled       <unknown>                                                             Successfully assigned aaa/liveness-http to ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj\n     Normal   AddedInterface  47s                multus                                             Add eth0 [10.129.2.11/23]\n     Normal   Pulled          46s                kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Successfully pulled image \"registry.k8s.io/liveness\" in 773.406244ms\n     Normal   Pulled          28s                kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Successfully pulled image \"registry.k8s.io/liveness\" in 233.328564ms\n     Normal   Created         10s (x3 over 46s)  kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Created container liveness\n     Normal   Started         10s (x3 over 46s)  kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Started container liveness\n     Warning  Unhealthy       10s (x6 over 34s)  kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Liveness probe failed: HTTP probe failed with statuscode: 500\n     Normal   Killing         10s (x2 over 28s)  kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Container liveness failed liveness probe, will be restarted\n     Normal   Pulling         10s (x3 over 47s)  kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Pulling image \"registry.k8s.io/liveness\"\n     Normal   Pulled          10s                kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Successfully pulled image \"registry.k8s.io/liveness\" in 244.116568ms\n   ```\n\n## Monitoring application health using the Developer perspective {#odc-monitoring-application-health-using-developer-perspective_application-health}\n\nYou can use the **Developer** perspective to add three types of health probes to your container to ensure that your application is healthy:\n\n- Use the Readiness probe to check if the container is ready to handle requests.\n- Use the Liveness probe to check if the container is running.\n- Use the Startup probe to check if the application within the container has started.\n\nYou can add health checks either while creating and deploying an application, or after you have deployed an application.\n\n## Editing health checks using the Developer perspective {#odc-editing-health-checks}\n\nYou can use the **Topology** view to edit health checks added to your application, modify them, or add more health checks.\n\n**Prerequisites**\n\n- You have switched to the **Developer** perspective in the web console.\n- You have created and deployed an application on OpenShift Container Platform using the **Developer** perspective.\n- You have added health checks to your application.\n\n**Procedure**\n\n1. In the **Topology** view, right-click your application and select **Edit Health Checks**. Alternatively, in the side panel, click the **Actions** drop-down list and select **Edit Health Checks**.\n2. In the **Edit Health Checks** page:\n\n   - To remove a previously added health probe, click the **Remove** icon adjoining it.\n   - To edit the parameters of an existing probe:\n\n     1. Click the **Edit Probe** link next to a previously added probe to see the parameters for the probe.\n     2. Modify the parameters as required, and click the check mark to save your changes.\n   - To add a new health probe, in addition to existing health checks, click the add probe links. For example, to add a Liveness probe that checks if your container is running:\n\n     1. Click **Add Liveness Probe**, to see a form containing the parameters for the probe.\n     2. Edit the probe parameters as required.\n\n        > [!NOTE]\n        > The `Timeout` value must be lower than the `Period` value. The `Timeout` default value is `1`. The `Period` default value is `10`.\n     3. Click the check mark at the bottom of the form. The **Liveness Probe Added** message is displayed.\n3. Click **Save** to save your modifications and add the additional probes to your container. You are redirected to the **Topology** view.\n4. In the side panel, verify that the probes have been added by clicking on the deployed pod under the **Pods** section.\n5. In the **Pod Details** page, click the listed container in the **Containers** section.\n6. In the **Container Details** page, verify that the Liveness probe - `HTTP Get 10.129.4.65:8080/` has been added to the container, in addition to the earlier existing probes.\n\n## Monitoring health check failures using the Developer perspective {#odc-monitoring-health-checks}\n\nIn case an application health check fails, you can use the **Topology** view to monitor these health check violations.\n\n**Prerequisites**\n\n- You have switched to the **Developer** perspective in the web console.\n- You have created and deployed an application on OpenShift Container Platform using the **Developer** perspective.\n- You have added health checks to your application.\n\n**Procedure**\n\n1. In the **Topology** view, click on the application node to see the side panel.\n2. Click the **Observe** tab to see the health check failures in the **Events (Warning)** section.\n3. Click the down arrow adjoining **Events (Warning)** to see the details of the health check failure.\n\n**Additional resources**\n\n- For details on switching to the **Developer** perspective in the web console, see [About the **Developer** perspective](/openshift-docs-markdown/web_console/web-console-overview#about-developer-perspective_web-console-overview).\n- For details on adding health checks while creating and deploying an application, see **Advanced Options** in the [Creating applications using the Developer perspective](/openshift-docs-markdown/applications/creating_applications/odc-creating-applications-using-developer-perspective#odc-creating-applications-using-developer-perspective) section.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/application-health.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +95,223 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="application-health" class="group scroll-mt-20">Monitoring application health by using health checks<a href="#application-health" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>In software systems, components can become unhealthy due to transient issues such as temporary connectivity loss, configuration errors, or problems with external dependencies. OpenShift Container Platform applications have a number of options to detect and handle unhealthy containers.</p>
-      <p class="/modules/application-health-about.md"></p>
-      <p class="/modules/application-health-configuring.md"></p>
-      <p class="/modules/odc-monitoring-application-health-using-developer-perspective.md"></p>
-      <p class="/modules/odc-editing-health-checks.md"></p>
-      <p class="/modules/odc-monitoring-health-checks.md"></p>
+      <h2 id="application-health-about_application-health" class="group scroll-mt-20">Understanding health checks<a href="#application-health-about_application-health" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>A health check periodically performs diagnostics on a running container using any combination of the readiness, liveness, and startup health checks.</p>
+      <p>You can include one or more probes in the specification for the pod that contains the container which you want to perform the health checks.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you want to add or edit health checks in an existing pod, you must edit the pod <code>DeploymentConfig</code> object or use the web console. You cannot use the CLI to add or edit health checks for an existing pod.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Readiness probe</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A <em>readiness probe</em> determines if a container is ready to accept service requests. If the readiness probe fails for a container, the kubelet removes the pod from the list of available service endpoints.</p>
+      <p>After a failure, the probe continues to examine the pod. If the pod becomes available, the kubelet adds the pod to the list of available service endpoints.</p>
+      </dd>
+      <dt class="font-semibold">Liveness health check</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A <em>liveness probe</em> determines if a container is still running. If the liveness probe fails due to a condition such as a deadlock, the kubelet kills the container. The pod then responds based on its restart policy.</p>
+      <p>For example, a liveness probe on a pod with a <code>restartPolicy</code> of <code>Always</code> or <code>OnFailure</code> kills and restarts the container.</p>
+      </dd>
+      <dt class="font-semibold">Startup probe</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A <em>startup probe</em> indicates whether the application within a container is started. All other probes are disabled until the startup succeeds. If the startup probe does not succeed within a specified time period, the kubelet kills the container, and the container is subject to the pod <code>restartPolicy</code>.</p>
+      <p>Some applications can require additional startup time on their first initialization. You can use a startup probe with a liveness or readiness probe to delay that probe long enough to handle lengthy start-up time using the <code>failureThreshold</code> and <code>periodSeconds</code> parameters.</p>
+      <p>For example, you can add a startup probe, with a <code>failureThreshold</code> of 30 failures and a <code>periodSeconds</code> of 10 seconds (30 * 10s = 300s) for a maximum of 5 minutes, to a liveness probe. After the startup probe succeeds the first time, the liveness probe takes over.</p>
+      </dd>
+      </dl>
+      <p>You can configure liveness, readiness, and startup probes with any of the following types of tests:</p>
+      <ul>
+      <li>
+      HTTP <code>GET</code>: When using an HTTP <code>GET</code> test, the test determines the healthiness of the container by using a web hook. The test is successful if the HTTP response code is between <code>200</code> and <code>399</code>.
+      <p>You can use an HTTP <code>GET</code> test with applications that return HTTP status codes when completely initialized.</p>
+      </li>
+      <li>Container Command: When using a container command test, the probe executes a command inside the container. The probe is successful if the test exits with a <code>0</code> status.</li>
+      <li>TCP socket: When using a TCP socket test, the probe attempts to open a socket to the container. The container is only considered healthy if the probe can establish a connection. You can use a TCP socket test with applications that do not start listening until initialization is complete.</li>
+      </ul>
+      <p>You can configure several fields to control the behavior of a probe:</p>
+      <ul>
+      <li><code>initialDelaySeconds</code>: The time, in seconds, after the container starts before the probe can be scheduled. The default is 0.</li>
+      <li><code>periodSeconds</code>: The delay, in seconds, between performing probes. The default is <code>10</code>. This value must be greater than <code>timeoutSeconds</code>.</li>
+      <li><code>timeoutSeconds</code>: The number of seconds of inactivity after which the probe times out and the container is assumed to have failed. The default is <code>1</code>. This value must be lower than <code>periodSeconds</code>.</li>
+      <li><code>successThreshold</code>: The number of times that the probe must report success after a failure to reset the container status to successful. The value must be <code>1</code> for a liveness probe. The default is <code>1</code>.</li>
+      <li>
+      <code>failureThreshold</code>: The number of times that the probe is allowed to fail. The default is 3. After the specified attempts:
+      <ul>
+      <li>for a liveness probe, the container is restarted</li>
+      <li>for a readiness probe, the pod is marked <code>Unready</code></li>
+      <li>for a startup probe, the container is killed and is subject to the pod’s <code>restartPolicy</code></li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="application-health-examples" class="group scroll-mt-20">Example probes<a href="#application-health-examples" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following are samples of different probes as they would appear in an object specification.</p>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  labels:\n    test: health-check\n  name: my-application\n# ...\nspec:\n  containers:\n  - name: goproxy-app (1)\n    args:\n    image: registry.k8s.io/goproxy:0.1 (2)\n    readinessProbe: (3)\n      exec: (4)\n        command: (5)\n        - cat\n        - /tmp/healthy\n# ..."} lang="yaml" title="Sample readiness probe with a container command readiness probe in a pod spec" />
+      <ol>
+      <li>The container name.</li>
+      <li>The container image to deploy.</li>
+      <li>A readiness probe.</li>
+      <li>A container command test.</li>
+      <li>The commands to execute on the container.</li>
+      </ol>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  labels:\n    test: health-check\n  name: my-application\n# ...\nspec:\n  containers:\n  - name: goproxy-app (1)\n    args:\n    image: registry.k8s.io/goproxy:0.1 (2)\n    livenessProbe: (3)\n      httpGet: (4)\n        scheme: HTTPS (5)\n        path: /healthz\n        port: 8080 (6)\n        httpHeaders:\n        - name: X-Custom-Header\n          value: Awesome\n    startupProbe: (7)\n      httpGet: (8)\n        path: /healthz\n        port: 8080 (9)\n      failureThreshold: 30 (10)\n      periodSeconds: 10 (11)\n# ..."} lang="yaml" title="Sample container command startup probe and liveness probe with container command tests in a pod spec" />
+      <ol>
+      <li>The container name.</li>
+      <li>Specify the container image to deploy.</li>
+      <li>A liveness probe.</li>
+      <li>An HTTP <code>GET</code> test.</li>
+      <li>The internet scheme: <code>HTTP</code> or <code>HTTPS</code>. The default value is <code>HTTP</code>.</li>
+      <li>The port on which the container is listening.</li>
+      <li>A startup probe.</li>
+      <li>An HTTP <code>GET</code> test.</li>
+      <li>The port on which the container is listening.</li>
+      <li>The number of times to try the probe after a failure.</li>
+      <li>The number of seconds to perform the probe.</li>
+      </ol>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  labels:\n    test: health-check\n  name: my-application\n# ...\nspec:\n  containers:\n  - name: goproxy-app (1)\n    args:\n    image: registry.k8s.io/goproxy:0.1 (2)\n    livenessProbe: (3)\n      exec: (4)\n        command: (5)\n        - /bin/bash\n        - '-c'\n        - timeout 60 /opt/eap/bin/livenessProbe.sh\n      periodSeconds: 10 (6)\n      successThreshold: 1 (7)\n      failureThreshold: 3 (8)\n# ..."} lang="yaml" title="Sample liveness probe with a container command test that uses a timeout in a pod spec" />
+      <ol>
+      <li>The container name.</li>
+      <li>Specify the container image to deploy.</li>
+      <li>The liveness probe.</li>
+      <li>The type of probe, here a container command probe.</li>
+      <li>The command line to execute inside the container.</li>
+      <li>How often in seconds to perform the probe.</li>
+      <li>The number of consecutive successes needed to show success after a failure.</li>
+      <li>The number of times to try the probe after a failure.</li>
+      </ol>
+      <CodeBlock code={"kind: Deployment\napiVersion: apps/v1\nmetadata:\n  labels:\n    test: health-check\n  name: my-application\nspec:\n# ...\n  template:\n    spec:\n      containers:\n        - resources: {}\n          readinessProbe: (1)\n            tcpSocket:\n              port: 8080\n            timeoutSeconds: 1\n            periodSeconds: 10\n            successThreshold: 1\n            failureThreshold: 3\n          terminationMessagePath: /dev/termination-log\n          name: ruby-ex\n          livenessProbe: (2)\n            tcpSocket:\n              port: 8080\n            initialDelaySeconds: 15\n            timeoutSeconds: 1\n            periodSeconds: 10\n            successThreshold: 1\n            failureThreshold: 3\n# ..."} lang="yaml" title="Sample readiness probe and liveness probe with a TCP socket test in a deployment" />
+      <ol>
+      <li>The readiness probe.</li>
+      <li>The liveness probe.</li>
+      </ol>
+      <h2 id="application-health-configuring_application-health" class="group scroll-mt-20">Configuring health checks using the CLI<a href="#application-health-configuring_application-health" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>To configure readiness, liveness, and startup probes, add one or more probes to the specification for the pod that contains the container which you want to perform the health checks</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you want to add or edit health checks in an existing pod, you must edit the pod <code>DeploymentConfig</code> object or use the web console. You cannot use the CLI to add or edit health checks for an existing pod.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <p>To add probes for a container:</p>
+      <ol>
+      <li>
+      Create a <code>Pod</code> object to add one or more probes:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  labels:\n    test: health-check\n  name: my-application\nspec:\n  containers:\n  - name: my-container (1)\n    args:\n    image: registry.k8s.io/goproxy:0.1 (2)\n    livenessProbe: (3)\n      tcpSocket:  (4)\n        port: 8080 (5)\n      initialDelaySeconds: 15 (6)\n      periodSeconds: 20 (7)\n      timeoutSeconds: 10 (8)\n    readinessProbe: (9)\n      httpGet: (10)\n        host: my-host (11)\n        scheme: HTTPS (12)\n        path: /healthz\n        port: 8080 (13)\n    startupProbe: (14)\n      exec: (15)\n        command: (16)\n        - cat\n        - /tmp/healthy\n      failureThreshold: 30 (17)\n      periodSeconds: 20 (18)\n      timeoutSeconds: 10 (19)"} lang="yaml" />
+      <ol>
+      <li>Specify the container name.</li>
+      <li>Specify the container image to deploy.</li>
+      <li>Optional: Create a Liveness probe.</li>
+      <li>Specify a test to perform, here a TCP Socket test.</li>
+      <li>Specify the port on which the container is listening.</li>
+      <li>Specify the time, in seconds, after the container starts before the probe can be scheduled.</li>
+      <li>Specify the number of seconds to perform the probe. The default is <code>10</code>. This value must be greater than <code>timeoutSeconds</code>.</li>
+      <li>Specify the number of seconds of inactivity after which the probe is assumed to have failed. The default is <code>1</code>. This value must be lower than <code>periodSeconds</code>.</li>
+      <li>Optional: Create a Readiness probe.</li>
+      <li>Specify the type of test to perform, here an HTTP test.</li>
+      <li>Specify a host IP address. When <code>host</code> is not defined, the <code>PodIP</code> is used.</li>
+      <li>Specify <code>HTTP</code> or <code>HTTPS</code>. When <code>scheme</code> is not defined, the <code>HTTP</code> scheme is used.</li>
+      <li>Specify the port on which the container is listening.</li>
+      <li>Optional: Create a Startup probe.</li>
+      <li>Specify the type of test to perform, here an Container Execution probe.</li>
+      <li>Specify the commands to execute on the container.</li>
+      <li>Specify the number of times to try the probe after a failure.</li>
+      <li>Specify the number of seconds to perform the probe. The default is <code>10</code>. This value must be greater than <code>timeoutSeconds</code>.</li>
+      <li>
+      Specify the number of seconds of inactivity after which the probe is assumed to have failed. The default is <code>1</code>. This value must be lower than <code>periodSeconds</code>.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If the <code>initialDelaySeconds</code> value is lower than the <code>periodSeconds</code> value, the first Readiness probe occurs at some point between the two periods due to an issue with timers.</p>
+          <p>The <code>timeoutSeconds</code> value must be lower than the <code>periodSeconds</code> value.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the <code>Pod</code> object:
+      <CodeBlock code={"$ oc create -f <file-name>.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Verify the state of the health check pod:
+      <CodeBlock code={"$ oc describe pod my-application"} lang="terminal" />
+      <CodeBlock code={"Events:\n  Type    Reason     Age   From                                  Message\n  ----    ------     ----  ----                                  -------\n  Normal  Scheduled  9s    default-scheduler                     Successfully assigned openshift-logging/liveness-exec to ip-10-0-143-40.ec2.internal\n  Normal  Pulling    2s    kubelet, ip-10-0-143-40.ec2.internal  pulling image \"registry.k8s.io/liveness\"\n  Normal  Pulled     1s    kubelet, ip-10-0-143-40.ec2.internal  Successfully pulled image \"registry.k8s.io/liveness\"\n  Normal  Created    1s    kubelet, ip-10-0-143-40.ec2.internal  Created container\n  Normal  Started    1s    kubelet, ip-10-0-143-40.ec2.internal  Started container"} lang="terminal" title="Example output" />
+      <p>The following is the output of a failed probe that restarted a container:</p>
+      <CodeBlock code={"$ oc describe pod pod1"} lang="terminal" title="Sample Liveness check output with unhealthy container" />
+      <CodeBlock code={"....\n\nEvents:\n  Type     Reason          Age                From                                               Message\n  ----     ------          ----               ----                                               -------\n  Normal   Scheduled       <unknown>                                                             Successfully assigned aaa/liveness-http to ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj\n  Normal   AddedInterface  47s                multus                                             Add eth0 [10.129.2.11/23]\n  Normal   Pulled          46s                kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Successfully pulled image \"registry.k8s.io/liveness\" in 773.406244ms\n  Normal   Pulled          28s                kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Successfully pulled image \"registry.k8s.io/liveness\" in 233.328564ms\n  Normal   Created         10s (x3 over 46s)  kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Created container liveness\n  Normal   Started         10s (x3 over 46s)  kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Started container liveness\n  Warning  Unhealthy       10s (x6 over 34s)  kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Liveness probe failed: HTTP probe failed with statuscode: 500\n  Normal   Killing         10s (x2 over 28s)  kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Container liveness failed liveness probe, will be restarted\n  Normal   Pulling         10s (x3 over 47s)  kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Pulling image \"registry.k8s.io/liveness\"\n  Normal   Pulled          10s                kubelet, ci-ln-37hz77b-f76d1-wdpjv-worker-b-snzrj  Successfully pulled image \"registry.k8s.io/liveness\" in 244.116568ms"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="odc-monitoring-application-health-using-developer-perspective_application-health" class="group scroll-mt-20">Monitoring application health using the Developer perspective<a href="#odc-monitoring-application-health-using-developer-perspective_application-health" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can use the <strong>Developer</strong> perspective to add three types of health probes to your container to ensure that your application is healthy:</p>
+      <ul>
+      <li>Use the Readiness probe to check if the container is ready to handle requests.</li>
+      <li>Use the Liveness probe to check if the container is running.</li>
+      <li>Use the Startup probe to check if the application within the container has started.</li>
+      </ul>
+      <p>You can add health checks either while creating and deploying an application, or after you have deployed an application.</p>
+      <h2 id="odc-editing-health-checks" class="group scroll-mt-20">Editing health checks using the Developer perspective<a href="#odc-editing-health-checks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can use the <strong>Topology</strong> view to edit health checks added to your application, modify them, or add more health checks.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have switched to the <strong>Developer</strong> perspective in the web console.</li>
+      <li>You have created and deployed an application on OpenShift Container Platform using the <strong>Developer</strong> perspective.</li>
+      <li>You have added health checks to your application.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the <strong>Topology</strong> view, right-click your application and select <strong>Edit Health Checks</strong>. Alternatively, in the side panel, click the <strong>Actions</strong> drop-down list and select <strong>Edit Health Checks</strong>.</li>
+      <li>
+      In the <strong>Edit Health Checks</strong> page:
+      <ul>
+      <li>To remove a previously added health probe, click the <strong>Remove</strong> icon adjoining it.</li>
+      <li>
+      To edit the parameters of an existing probe:
+      <ol>
+      <li>Click the <strong>Edit Probe</strong> link next to a previously added probe to see the parameters for the probe.</li>
+      <li>Modify the parameters as required, and click the check mark to save your changes.</li>
+      </ol>
+      </li>
+      <li>
+      To add a new health probe, in addition to existing health checks, click the add probe links. For example, to add a Liveness probe that checks if your container is running:
+      <ol>
+      <li>Click <strong>Add Liveness Probe</strong>, to see a form containing the parameters for the probe.</li>
+      <li>
+      Edit the probe parameters as required.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>Timeout</code> value must be lower than the <code>Period</code> value. The <code>Timeout</code> default value is <code>1</code>. The <code>Period</code> default value is <code>10</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Click the check mark at the bottom of the form. The <strong>Liveness Probe Added</strong> message is displayed.</li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      <li>Click <strong>Save</strong> to save your modifications and add the additional probes to your container. You are redirected to the <strong>Topology</strong> view.</li>
+      <li>In the side panel, verify that the probes have been added by clicking on the deployed pod under the <strong>Pods</strong> section.</li>
+      <li>In the <strong>Pod Details</strong> page, click the listed container in the <strong>Containers</strong> section.</li>
+      <li>In the <strong>Container Details</strong> page, verify that the Liveness probe - <code>HTTP Get 10.129.4.65:8080/</code> has been added to the container, in addition to the earlier existing probes.</li>
+      </ol>
+      <h2 id="odc-monitoring-health-checks" class="group scroll-mt-20">Monitoring health check failures using the Developer perspective<a href="#odc-monitoring-health-checks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>In case an application health check fails, you can use the <strong>Topology</strong> view to monitor these health check violations.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have switched to the <strong>Developer</strong> perspective in the web console.</li>
+      <li>You have created and deployed an application on OpenShift Container Platform using the <strong>Developer</strong> perspective.</li>
+      <li>You have added health checks to your application.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the <strong>Topology</strong> view, click on the application node to see the side panel.</li>
+      <li>Click the <strong>Observe</strong> tab to see the health check failures in the <strong>Events (Warning)</strong> section.</li>
+      <li>Click the down arrow adjoining <strong>Events (Warning)</strong> to see the details of the health check failure.</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li>For details on switching to the <strong>Developer</strong> perspective in the web console, see <a href="/openshift-docs-markdown/web_console/web-console-overview#about-developer-perspective_web-console-overview">About the <strong>Developer</strong> perspective</a>.</li>

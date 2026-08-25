@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-sriov-rdma-cni","text":"Configuring an RDMA subsystem for SR-IOV"}];
+const headings = [{"depth":1,"slug":"configuring-sriov-rdma-cni","text":"Configuring an RDMA subsystem for SR-IOV"},{"depth":2,"slug":"nw-sriov-configuring-sriov-rdma-cni_configuring-sriov-rdma-cni","text":"Configuring SR-IOV RDMA CNI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-rdma-cni";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["networking","networking/hardware_networks"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring an RDMA subsystem for SR-IOV {#configuring-sriov-rdma-cni}\n\nRemote Direct Memory Access (RDMA) allows direct memory access between two systems without involving the operating system of either system. You can configure an RDMA Container Network Interface (CNI) on Single Root I/O Virtualization (SR-IOV) to enable high-performance, low-latency communication between containers. When you combine RDMA with SR-IOV, you provide a mechanism to expose hardware counters of Mellanox Ethernet devices for use inside  Data Plane Development Kit (DPDK)    applications.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-rdma-cni.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring an RDMA subsystem for SR-IOV {#configuring-sriov-rdma-cni}\n\nRemote Direct Memory Access (RDMA) allows direct memory access between two systems without involving the operating system of either system. You can configure an RDMA Container Network Interface (CNI) on Single Root I/O Virtualization (SR-IOV) to enable high-performance, low-latency communication between containers. When you combine RDMA with SR-IOV, you provide a mechanism to expose hardware counters of Mellanox Ethernet devices for use inside  Data Plane Development Kit (DPDK)    applications.\n\n## Configuring SR-IOV RDMA CNI {#nw-sriov-configuring-sriov-rdma-cni_configuring-sriov-rdma-cni}\n\nConfigure an RDMA CNI on SR-IOV.\n\n> [!NOTE]\n> This procedure applies only to Mellanox devices.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed the SR-IOV Network Operator.\n\n**Procedure**\n\n1. Create an `SriovNetworkPoolConfig` CR and save it as `sriov-nw-pool.yaml`, as shown in the following example:\n\n   ```yaml {title=\"Example SriovNetworkPoolConfig CR\"}\n   apiVersion: sriovnetwork.openshift.io/v1\n   kind: SriovNetworkPoolConfig\n   metadata:\n     name: worker\n     namespace: openshift-sriov-network-operator\n   spec:\n     maxUnavailable: 1\n     nodeSelector:\n       matchLabels:\n         node-role.kubernetes.io/worker: \"\"\n     rdmaMode: <rdma_mode>\n   ```\n\n   `spec.rdmaMode`\n   :   Specifies the RDMA network namespace mode. Set to `exclusive`.\n2. Create the `SriovNetworkPoolConfig` resource by running the following command:\n\n   ```terminal\n   $ oc create -f sriov-nw-pool.yaml\n   ```\n3. Create an `SriovNetworkNodePolicy` CR and save it as `sriov-node-policy.yaml`, as shown in the following example:\n\n   ```yaml {title=\"Example SriovNetworkNodePolicy CR\"}\n   apiVersion: sriovnetwork.openshift.io/v1\n   kind: SriovNetworkNodePolicy\n   metadata:\n     name: sriov-nic-pf1\n     namespace: openshift-sriov-network-operator\n   spec:\n     deviceType: netdevice\n     isRdma: <is_rdma>\n     nicSelector:\n       pfNames: [\"ens3f0np0\"]\n     nodeSelector:\n       node-role.kubernetes.io/worker: \"\"\n     numVfs: 4\n     priority: 99\n     resourceName: sriov_nic_pf1\n   ```\n\n   `spec.isRdma`\n   :   Specifies whether to activate RDMA mode. Set to `true`.\n4. Create the `SriovNetworkNodePolicy` resource by running the following command:\n\n   ```terminal\n   $ oc create -f sriov-node-policy.yaml\n   ```\n5. Create an `SriovNetwork` CR and save it as `sriov-network.yaml`, as shown in the following example:\n\n   ```yaml {title=\"Example SriovNetwork CR\"}\n   apiVersion: sriovnetwork.openshift.io/v1\n   kind: SriovNetwork\n   metadata:\n     name: sriov-nic-pf1\n     namespace: openshift-sriov-network-operator\n   spec:\n     networkNamespace: sriov-tests\n     resourceName: sriov_nic_pf1\n       ipam: |-\n     metaPlugins: |\n       {\n         \"type\": \"<plugin_type>\"\n       }\n   ```\n\n   `spec.metaPlugins.type`\n   :   Specifies the type of meta plugin. Set to `rdma` to create the RDMA plugin.\n6. Create the `SriovNetwork` resource by running the following command:\n\n   ```terminal\n   $ oc create -f sriov-network.yaml\n   ```\n\n**Verification**\n\n1. Create a  `Pod` CR and save it as `sriov-test-pod.yaml`, as shown in the following example:\n\n   ```yaml {title=\"Example runtime configuration\"}\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     name: sample-pod\n     annotations:\n       k8s.v1.cni.cncf.io/networks: |-\n         [\n           {\n             \"name\": \"net1\",\n             \"mac\": \"20:04:0f:f1:88:01\",\n             \"ips\": [\"192.168.10.1/24\", \"2001::1/64\"]\n           }\n         ]\n   spec:\n     containers:\n     - name: sample-container\n       image: <image>\n       imagePullPolicy: IfNotPresent\n       command: [\"sleep\", \"infinity\"]\n   ```\n2. Create the test pod by running the following command:\n\n   ```terminal\n   $ oc create -f sriov-test-pod.yaml\n   ```\n3. Log in to the test pod by running the following command:\n\n   ```terminal\n   $ oc rsh testpod1 -n sriov-tests\n   ```\n4. Verify that the path to the `hw-counters` directory exists by running the following command:\n\n   ```terminal\n   $ ls /sys/bus/pci/devices/${PCIDEVICE_OPENSHIFT_IO_SRIOV_NIC_PF1}/infiniband/*/ports/1/hw_counters/\n   ```\n\n   ```terminal {title=\"Example output\"}\n   duplicate_request       out_of_buffer req_cqe_flush_error           resp_cqe_flush_error        roce_adp_retrans        roce_slow_restart_trans\n   implied_nak_seq_err     out_of_sequence req_remote_access_errors    resp_local_length_error     roce_adp_retrans_to     rx_atomic_requests\n   lifespan                packet_seq_err req_remote_invalid_request   resp_remote_access_errors   roce_slow_restart       rx_read_requests\n   local_ack_timeout_err  req_cqe_error resp_cqe_error                 rnr_nak_retry_err           roce_slow_restart_cnps  rx_write_requests\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-rdma-cni.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,80 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-sriov-rdma-cni" class="group scroll-mt-20">Configuring an RDMA subsystem for SR-IOV<a href="#configuring-sriov-rdma-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Remote Direct Memory Access (RDMA) allows direct memory access between two systems without involving the operating system of either system. You can configure an RDMA Container Network Interface (CNI) on Single Root I/O Virtualization (SR-IOV) to enable high-performance, low-latency communication between containers. When you combine RDMA with SR-IOV, you provide a mechanism to expose hardware counters of Mellanox Ethernet devices for use inside  Data Plane Development Kit (DPDK)    applications.</p>
-      <p class="/modules/nw-configuring-sriov-rdma-cni.md"></p>
+      <h2 id="nw-sriov-configuring-sriov-rdma-cni_configuring-sriov-rdma-cni" class="group scroll-mt-20">Configuring SR-IOV RDMA CNI<a href="#nw-sriov-configuring-sriov-rdma-cni_configuring-sriov-rdma-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure an RDMA CNI on SR-IOV.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This procedure applies only to Mellanox devices.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the SR-IOV Network Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an <code>SriovNetworkPoolConfig</code> CR and save it as <code>sriov-nw-pool.yaml</code>, as shown in the following example:
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetworkPoolConfig\nmetadata:\n  name: worker\n  namespace: openshift-sriov-network-operator\nspec:\n  maxUnavailable: 1 \n  nodeSelector:\n    matchLabels:\n      node-role.kubernetes.io/worker: \"\"\n  rdmaMode: <rdma_mode>"} lang="yaml" title="Example SriovNetworkPoolConfig CR" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.rdmaMode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the RDMA network namespace mode. Set to <code>exclusive</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the <code>SriovNetworkPoolConfig</code> resource by running the following command:
+      <CodeBlock code={"$ oc create -f sriov-nw-pool.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create an <code>SriovNetworkNodePolicy</code> CR and save it as <code>sriov-node-policy.yaml</code>, as shown in the following example:
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetworkNodePolicy\nmetadata:\n  name: sriov-nic-pf1\n  namespace: openshift-sriov-network-operator\nspec:\n  deviceType: netdevice\n  isRdma: <is_rdma>\n  nicSelector:\n    pfNames: [\"ens3f0np0\"]\n  nodeSelector:\n    node-role.kubernetes.io/worker: \"\"\n  numVfs: 4\n  priority: 99\n  resourceName: sriov_nic_pf1"} lang="yaml" title="Example SriovNetworkNodePolicy CR" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.isRdma</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether to activate RDMA mode. Set to <code>true</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the <code>SriovNetworkNodePolicy</code> resource by running the following command:
+      <CodeBlock code={"$ oc create -f sriov-node-policy.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create an <code>SriovNetwork</code> CR and save it as <code>sriov-network.yaml</code>, as shown in the following example:
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetwork\nmetadata:\n  name: sriov-nic-pf1\n  namespace: openshift-sriov-network-operator\nspec:\n  networkNamespace: sriov-tests\n  resourceName: sriov_nic_pf1\n    ipam: |- \n  metaPlugins: |\n    {\n      \"type\": \"<plugin_type>\"\n    }"} lang="yaml" title="Example SriovNetwork CR" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.metaPlugins.type</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the type of meta plugin. Set to <code>rdma</code> to create the RDMA plugin.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the <code>SriovNetwork</code> resource by running the following command:
+      <CodeBlock code={"$ oc create -f sriov-network.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Create a  <code>Pod</code> CR and save it as <code>sriov-test-pod.yaml</code>, as shown in the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: sample-pod\n  annotations:\n    k8s.v1.cni.cncf.io/networks: |-\n      [\n        {\n          \"name\": \"net1\",\n          \"mac\": \"20:04:0f:f1:88:01\",\n          \"ips\": [\"192.168.10.1/24\", \"2001::1/64\"]\n        }\n      ]\nspec:\n  containers:\n  - name: sample-container\n    image: <image>\n    imagePullPolicy: IfNotPresent\n    command: [\"sleep\", \"infinity\"]"} lang="yaml" title="Example runtime configuration" />
+      </li>
+      <li>
+      Create the test pod by running the following command:
+      <CodeBlock code={"$ oc create -f sriov-test-pod.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Log in to the test pod by running the following command:
+      <CodeBlock code={"$ oc rsh testpod1 -n sriov-tests"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the path to the <code>hw-counters</code> directory exists by running the following command:
+      <CodeBlock code={"$ ls /sys/bus/pci/devices/${PCIDEVICE_OPENSHIFT_IO_SRIOV_NIC_PF1}/infiniband/*/ports/1/hw_counters/"} lang="terminal" />
+      <CodeBlock code={"duplicate_request       out_of_buffer req_cqe_flush_error           resp_cqe_flush_error        roce_adp_retrans        roce_slow_restart_trans\nimplied_nak_seq_err     out_of_sequence req_remote_access_errors    resp_local_length_error     roce_adp_retrans_to     rx_atomic_requests\nlifespan                packet_seq_err req_remote_invalid_request   resp_remote_access_errors   roce_slow_restart       rx_read_requests\nlocal_ack_timeout_err  req_cqe_error resp_cqe_error                 rnr_nak_retry_err           roce_slow_restart_cnps  rx_write_requests"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

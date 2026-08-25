@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"distr-tracing-tempo-architecture","text":"About the {{ DTShortName }}"}];
+const headings = [{"depth":1,"slug":"distr-tracing-tempo-architecture","text":"About the Distributed Tracing Platform"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/distr_tracing/distr-tracing-tempo-architecture";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "About the {{ DTShortName }}";
-const description = "The standalone {{ DTProductName }} documentation is available at https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/la…" || undefined;
+const description = "The standalone Red Hat OpenShift Distributed Tracing Platform documentation is available at https://docs.redhat.com/en/documentation/red_hat_openshift_dist…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["observability","observability/distr_tracing"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the {{ DTShortName }} {#distr-tracing-tempo-architecture}\n\nThe standalone {{ DTProductName }} documentation is available at [https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest](https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/distr_tracing/distr-tracing-tempo-architecture.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the Distributed Tracing Platform {#distr-tracing-tempo-architecture}\n\nThe standalone Red Hat OpenShift Distributed Tracing Platform documentation is available at [https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest](https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/distr_tracing/distr-tracing-tempo-architecture.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,9 +90,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="distr-tracing-tempo-architecture" class="group scroll-mt-20">About the {"{"}{"{"} DTShortName {"}"}{"}"}<a href="#distr-tracing-tempo-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>The standalone {"{"}{"{"} DTProductName {"}"}{"}"} documentation is available at <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest">https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest</a>.</p>
+      <h1 id="distr-tracing-tempo-architecture" class="group scroll-mt-20">About the Distributed Tracing Platform<a href="#distr-tracing-tempo-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>The standalone Red Hat OpenShift Distributed Tracing Platform documentation is available at <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest">https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest</a>.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

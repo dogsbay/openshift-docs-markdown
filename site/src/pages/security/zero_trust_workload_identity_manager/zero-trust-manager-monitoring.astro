@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"zero-trust-manager-monitoring_{{ context }}","text":"Monitoring {{ zero_trust_full }}git"}];
+const headings = [{"depth":1,"slug":"zero-trust-manager-monitoring_{{ context }}","text":"Monitoring {{ zero_trust_full }}git"},{"depth":2,"slug":"zero-trust-manager-enable-monitoring_zero-trust-manager-monitoring","text":"Enabling user workload monitoring"},{"depth":2,"slug":"zero-trust-manager-enable-metrics-server_zero-trust-manager-monitoring","text":"Configuring metrics collection for SPIRE Server by using a ServiceMonitor"},{"depth":2,"slug":"zero-trust-manager-enable-metrics-agent_zero-trust-manager-monitoring","text":"Configuring metrics collection for SPIRE Agent by using a Service Monitor"},{"depth":2,"slug":"zero-trust-manager-enable-metrics-operator_zero-trust-manager-monitoring","text":"Configuring metrics collection for the Operator by using a ServiceMonitor"},{"depth":2,"slug":"zero-trust-manager-query-metrics_zero-trust-manager-monitoring","text":"Querying metrics for the Zero Trust Workload Identity Manager"},{"depth":2,"slug":"zero-trust-manager-available-metrics_zero-trust-manager-monitoring","text":"Zero Trust Workload Identity Manager monitoring available metrics"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-monitoring";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Monitoring {{ zero_trust_full }}git";
-const description = "Track the performance of the {{ zero_trust_full }} by collecting metrics. Configure monitoring to collect metrics from the Security Production Identity…" || undefined;
+const description = "Track the performance of the Zero Trust Workload Identity Manager by collecting metrics. Configure monitoring to collect metrics from the Security…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["security","security/zero_trust_workload_identity_manager"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring {{ zero_trust_full }}git {#zero-trust-manager-monitoring_{{ context }}}\n\nTrack the performance of the {{ zero_trust_full }} by collecting metrics. Configure monitoring to collect metrics from the Security Production Identity Framework for Everyone (SPIRE) Server and SPIRE Agent components.\n\n**Additional resources**\n\n- [Setting up metrics collection for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-metrics-uwm#setting-up-metrics-collection-for-user-defined-projects_configuring-metrics-uwm)\n\n**Additional resources**\n\n- [Configuring user workload monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm)\n\n**Additional resources**\n\n- [Configuring user workload monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm)\n\n**Additional resources**\n\n- [Accessing metrics](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/index)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-monitoring.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring {{ zero_trust_full }}git {#zero-trust-manager-monitoring_{{ context }}}\n\nTrack the performance of the Zero Trust Workload Identity Manager by collecting metrics. Configure monitoring to collect metrics from the Security Production Identity Framework for Everyone (SPIRE) Server and SPIRE Agent components.\n\n## Enabling user workload monitoring {#zero-trust-manager-enable-monitoring_zero-trust-manager-monitoring}\n\nEnable user workload monitoring to track metrics for your user-defined projects. Configuring this feature allows you to observe application performance and helps you maintain the health of your services.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` cluster role.\n\n**Procedure**\n\n1. Create the `cluster-monitoring-config.yaml` file to define and configure the `ConfigMap`:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: cluster-monitoring-config\n     namespace: openshift-monitoring\n   data:\n     config.yaml: |\n       enableUserWorkload: true\n   ```\n2. Apply the `ConfigMap` by running the following command:\n\n   ```terminal\n   $ oc apply -f cluster-monitoring-config.yaml\n   ```\n\n**Verification**\n\n- Verify that the monitoring components for user workloads are running in the `openshift-user-workload-monitoring` namespace:\n\n  ```terminal\n  $ oc -n openshift-user-workload-monitoring get pod\n  ```\n\n  ```text {title=\"Example output\"}\n  NAME                                   READY   STATUS    RESTARTS   AGE\n  prometheus-operator-6cb6bd9588-dtzxq   2/2     Running   0          50s\n  prometheus-user-workload-0             6/6     Running   0          48s\n  prometheus-user-workload-1             6/6     Running   0          48s\n  thanos-ruler-user-workload-0           4/4     Running   0          42s\n  thanos-ruler-user-workload-1           4/4     Running   0          42s\n  ```\n\nThe status of the pods such as `prometheus-operator`, `prometheus-user-workload`, and `thanos-ruler-user-workload` must be `Running`.\n\n**Additional resources**\n\n- [Setting up metrics collection for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-metrics-uwm#setting-up-metrics-collection-for-user-defined-projects_configuring-metrics-uwm)\n\n## Configuring metrics collection for SPIRE Server by using a ServiceMonitor {#zero-trust-manager-enable-metrics-server_zero-trust-manager-monitoring}\n\nTo collect custom metrics from the SPIRE Server, create a ServiceMonitor custom resource (CR). This configuration enables the Prometheus Operator to scrape metrics from the default endpoint, which helps you monitor your SPIRE deployment.\n\nThe SPIRE Server operand exposes metrics by default on port `9402` at the `/metrics` endpoint. You can configure metrics collection for the SPIRE Server by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` cluster role.\n- You have installed the Zero Trust Workload Identity Manager.\n- You have deployed the SPIRE Server operand in the cluster.\n- You have enabled the user workload monitoring.\n\n**Procedure**\n\n1. Create the `ServiceMonitor` CR:\n\n   1. Create the YAML file that defines the `ServiceMonitor` CR:\n\n      ```yaml {title=\"Example servicemonitor-spire-server file\"}\n      apiVersion: monitoring.coreos.com/v1\n      kind: ServiceMonitor\n      metadata:\n      labels:\n        app.kubernetes.io/name: server\n        app.kubernetes.io/instance: spire\n      name: spire-server-metrics\n      namespace: zero-trust-workload-identity-manager\n      spec:\n      endpoints:\n      - port: metrics\n        interval: 30s\n        path: /metrics\n      selector:\n        matchLabels:\n          app.kubernetes.io/name: server\n          app.kubernetes.io/instance: spire\n      namespaceSelector:\n        matchNames:\n        - zero-trust-workload-identity-manager\n      ```\n   2. Create the `ServiceMonitor` CR by running the following command:\n\n      ```terminal\n      $ oc create -f servicemonitor-spire-server.yaml\n      ```\n\n      After the `ServiceMonitor` CR is created, the user workload Prometheus instance begins metrics collection from the SPIRE Server. The collected metrics are labeled with `job=\"spire-server\"`.\n\n**Verification**\n\n1. In the OpenShift Container Platform web console, navigate to **Observe** -> **Targets**.\n2. In the **Label** filter field, enter the following label to filter the metrics targets:\n\n   ```terminal\n   $ service=zero-trust-workload-identity-manager-metrics-service\n   ```\n3. Confirm that the **Status** column shows `Up` for the `spire-server-metrics` entry.\n\n**Additional resources**\n\n- [Configuring user workload monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm)\n\n## Configuring metrics collection for SPIRE Agent by using a Service Monitor {#zero-trust-manager-enable-metrics-agent_zero-trust-manager-monitoring}\n\nConfigure metrics collection for the SPIRE Agent by creating a `ServiceMonitor` custom resource (CR). This enables the Prometheus Operator to collect custom metrics that the SPIRE Agent exposes on the default port.\n\nThe SPIRE Agent operand exposes metrics by default on port `9402` at the `/metrics` endpoint. You can configure metrics collection for the SPIRE Agent by creating a `ServiceMonitor` custom resource (CR), which enables the Prometheus Operator to collect custom metrics.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` cluster role.\n- You have installed the Zero Trust Workload Identity Manager.\n- You have deployed the SPIRE Agent operand in the cluster.\n- You have enabled the user workload monitoring.\n\n**Procedure**\n\n1. Create the `ServiceMonitor` CR:\n\n   1. Create the YAML file that defines the `ServiceMonitor` CR:\n\n      ```yaml {title=\"Example servicemonitor-spire-agent.yaml file\"}\n      apiVersion: monitoring.coreos.com/v1\n      kind: ServiceMonitor\n      metadata:\n        labels:\n          app.kubernetes.io/name: agent\n          app.kubernetes.io/instance: spire\n        name: spire-agent-metrics\n        namespace: zero-trust-workload-identity-manager\n      spec:\n        endpoints:\n        - port: metrics\n          interval: 30s\n          path: /metrics\n        selector:\n          matchLabels:\n            app.kubernetes.io/name: agent\n            app.kubernetes.io/instance: spire\n        namespaceSelector:\n          matchNames:\n          - zero-trust-workload-identity-manager\n      ```\n   2. Create the `ServiceMonitor` CR by running the following command:\n\n      ```terminal\n      $ oc create -f servicemonitor-spire-agent.yaml\n      ```\n\n      After the `ServiceMonitor` CR is created, the user workload Prometheus instance begins metrics collection from the SPIRE Agent. The collected metrics are labeled with `job=\"spire-agent\"`.\n\n**Verification**\n\n1. In the OpenShift Container Platform web console, navigate to **Observe** → **Targets**.\n2. In the **Label** filter field, enter the following label to filter the metrics targets:\n\n   ```terminal\n   $ service=spire-agent\n   ```\n3. Confirm that the **Status** column shows `Up` for the `spire-agent-metrics` entry.\n\n## Configuring metrics collection for the Operator by using a ServiceMonitor {#zero-trust-manager-enable-metrics-operator_zero-trust-manager-monitoring}\n\nThe Zero Trust Workload Identity Manager exposes metrics by default on port 8443 at the `/metrics` service endpoint. You can configure metrics collection for the Operator by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics. For more information, see \"Configuring user workload monitoring\".\n\nThe SPIRE Server operand exposes metrics by default on port `9402` at the `/metrics` endpoint. You can configure metrics collection for the SPIRE Server by creating a `ServiceMonitor` custom resource (CR) that enables the Prometheus Operator to collect custom metrics.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` cluster role.\n- You have installed the Zero Trust Workload Identity Manager.\n- You have enabled the user workload monitoring.\n\n**Procedure**\n\n1. Configure the Operator to use HTTP or HTTPS protocols for the metrics server.\n\n   1. Update the subscription object for Zero Trust Workload Identity Manager to configure the HTTP protocol by running the following command:\n\n      ```terminal\n      $ oc -n zero-trust-workload-identity-manager patch subscription zero-trust-workload-identity-manager-subscription --type='merge' -p '{\"spec\":{\"config\":{\"env\":[{\"name\":\"METRICS_BIND_ADDRESS\",\"value\":\":8080\"}, {\"name\": \"METRICS_SECURE\", \"value\": \"false\"}]}}}'\n      ```\n   2. Verify the Zero Trust Workload Identity Manager pod is redeployed and that the configured values for `METRICS_BIND_ADDRESS` and `METRICS_SECURE` is updated by running the following command:\n\n      ```terminal\n      $ oc set env --list deployment/zero-trust-workload-identity-manager-controller-manager -n zero-trust-workload-identity-manager | grep -e METRICS_BIND_ADDRESS -e METRICS_SECURE -e container\n      ```\n\n      ```text {title=\"Example output\"}\n      deployments/zero-trust-workload-identity-manager-controller-manager, container manager\n      METRICS_BIND_ADDRESS=:8080\n      METRICS_SECURE=false\n      ```\n2. Create the `Secret` resource with `kubernetes.io/service-account.name` annotation to inject the token required for authenticating with the metrics server.\n\n   1. Create the `secret-zero-trust-workload-identity-manager.yaml` YAML file:\n\n      ```yaml\n      apiVersion: v1\n      kind: Secret\n      metadata:\n       labels:\n         name: zero-trust-workload-identity-manager\n       name: zero-trust-workload-identity-manager-metrics-auth\n       namespace: zero-trust-workload-identity-manager\n       annotations:\n         kubernetes.io/service-account.name: zero-trust-workload-identity-manager-controller-manager\n      type: kubernetes.io/service-account-token\n      ```\n   2. Create the `Secret` resource by running the following command:\n\n      ```terminal\n      $ oc apply -f secret-zero-trust-workload-identity-manager.yaml\n      ```\n3. Create the `ClusterRoleBinding` resource required for granting permissions to access the metrics.\n\n   1. Create the `clusterrolebinding-zero-trust-workload-identity-manager.yaml` YAML file:\n\n      ```yaml\n      apiVersion: rbac.authorization.k8s.io/v1\n      kind: ClusterRoleBinding\n      metadata:\n       labels:\n         name: zero-trust-workload-identity-manager\n       name: zero-trust-workload-identity-manager-allow-metrics-access\n      roleRef:\n       apiGroup: rbac.authorization.k8s.io\n       kind: ClusterRole\n       name: zero-trust-workload-identity-manager-metrics-reader\n      subjects:\n      - kind: ServiceAccount\n        name: zero-trust-workload-identity-manager-controller-manager\n        namespace: zero-trust-workload-identity-manager\n      ```\n   2. Create the `ClusterRoleBinding` resource by running the following command:\n\n      ```terminal\n      $ oc apply -f clusterrolebinding-zero-trust-workload-identity-manager.yaml\n      ```\n4. Create the following `ServiceMonitor` CR if the metrics server is configured to use `http`.\n\n   1. Create the `servicemonitor-zero-trust-workload-identity-manager-http.yaml` YAML file:\n\n      ```yaml\n      apiVersion: monitoring.coreos.com/v1\n      kind: ServiceMonitor\n      metadata:\n        labels:\n          name: zero-trust-workload-identity-manager\n        name: zero-trust-workload-identity-manager-metrics-monitor\n        namespace: zero-trust-workload-identity-manager\n      spec:\n        endpoints:\n          - authorization:\n              credentials:\n                name: zero-trust-workload-identity-manager-metrics-auth\n                key: token\n              type: Bearer\n            interval: 60s\n            path: /metrics\n            port: metrics-http\n            scheme: http\n            scrapeTimeout: 30s\n        namespaceSelector:\n          matchNames:\n            - zero-trust-workload-identity-manager\n        selector:\n          matchLabels:\n            name: zero-trust-workload-identity-manager\n      ```\n   2. Create the `ServiceMonitor` CR by running the following command:\n\n      ```terminal\n      $ oc apply -f servicemonitor-zero-trust-workload-identity-manager-http.yaml\n      ```\n5. Create the following `ServiceMonitor` CR if the metrics server is configured to use `https`.\n\n   1. Create the `servicemonitor-zero-trust-workload-identity-manager-https.yaml` YAML file:\n\n      ```yaml\n      apiVersion: monitoring.coreos.com/v1\n      kind: ServiceMonitor\n      metadata:\n        labels:\n          name: zero-trust-workload-identity-manager\n        name: zero-trust-workload-identity-manager-metrics-monitor\n        namespace: zero-trust-workload-identity-manager\n      spec:\n        endpoints:\n          - authorization:\n              credentials:\n                name: zero-trust-workload-identity-manager-metrics-auth\n                key: token\n              type: Bearer\n            interval: 60s\n            path: /metrics\n            port: metrics-https\n            scheme: https\n            scrapeTimeout: 30s\n            tlsConfig:\n              ca:\n                configMap:\n                  name: openshift-service-ca.crt\n                  key: service-ca.crt\n              serverName: zero-trust-workload-identity-manager-metrics-service.zero-trust-workload-identity-manager.svc.cluster.local\n        namespaceSelector:\n          matchNames:\n            - zero-trust-workload-identity-manager\n        selector:\n          matchLabels:\n            name: zero-trust-workload-identity-manager\n      ```\n   2. Create the `ServiceMonitor` CR by running the following command:\n\n      ```terminal\n      $ oc apply -f servicemonitor-zero-trust-workload-identity-manager-https.yaml\n      ```\n\n      After the `ServiceMonitor` CR is created, the user workload Prometheus instance begins metrics collection from the SPIRE Server. The collected metrics are labeled with `job=\"zero-trust-workload-identity-manager-metrics-service\"`.\n\n**Verification**\n\n1. In the OpenShift Container Platform web console, navigate to **Observe** → **Targets**.\n2. In the **Label** filter field, enter the following label to filter the metrics targets:\n\n   ```terminal\n   $ service=zero-trust-workload-identity-manager-metrics-service\n   ```\n3. Confirm that the **Status** column shows `Up` for the `zero-trust-workload-identity-manager` entry.\n\n**Additional resources**\n\n- [Configuring user workload monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm)\n\n## Querying metrics for the Zero Trust Workload Identity Manager {#zero-trust-manager-query-metrics_zero-trust-manager-monitoring}\n\nQuery SPIRE Agent and SPIRE Server metrics using the OpenShift Container Platform web console or the command line. This helps you monitor the performance of SPIRE components that match specific job labels.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed the Zero Trust Workload Identity Manager.\n- You have deployed the SPIRE Server and SPIRE Agent operands in the cluster.\n- You have enabled monitoring and metrics collection by creating `ServiceMonitor` objects.\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, navigate to **Observe** -> **Metrics**.\n2. In the query field, enter the following PromQL expression to query SPIRE Server metrics:\n\n   ```promql\n   {job=\"spire-server\"}\n   ```\n3. In the query field, enter the following PromQL expression to query SPIRE Agent metrics.\n\n   ```promql\n   {job=\"spire-agent\"}\n   ```\n\n**Additional resources**\n\n- [Accessing metrics](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/index)\n\n## Zero Trust Workload Identity Manager monitoring available metrics {#zero-trust-manager-available-metrics_zero-trust-manager-monitoring}\n\nMonitor the health and performance of Zero Trust Workload Identity Manager components by reviewing exposed metrics. This reference describes controller, certificate, and runtime metrics that help you maintain system health and troubleshoot errors.\n\nThe Zero Trust Workload Identity Manager exposes the following metrics:\n\nController runtime metrics\n:   - `controller_runtime_active_workers`: Number of currently used workers per controller\n\n- `controller_runtime_max_concurrent_reconciles`: Maximum number of concurrent reconciles per controller\n- `controller_runtime_reconcile_errors_total`: Total number of reconciliation errors per controller\n- `controller_runtime_reconcile_time_seconds`: Length of time per reconciliation per controller\n- `controller_runtime_reconcile_total`: Total number of reconciliations per controller\n\nCertificate watcher metrics\n:   - `certwatcher_read_certificate_errors_total`: Total number of certificate read errors\n\n- `certwatcher_read_certificate_total`: Total number of certificates read\n\nGo runtime metrics\n:   Standard Go runtime metrics including:\n\n- `go_gc_duration_seconds`: Garbage collection duration\n- `go_goroutines`: Number of goroutines\n- `go_memstats_*`: Memory statistics\n- `process_*`: Process statistics\n\nCustom Operator metrics\n:   The operator also exposes custom metrics related to:\n\n- SPIRE Server status and health\n- SPIRE Agent deployment status\n- SPIFFE CSI Driver status\n- OIDC Discovery Provider status\n- Workload identity management operations\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-monitoring.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,18 +92,259 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="zero-trust-manager-monitoring_{{ context }}" class="group scroll-mt-20">Monitoring {"{"}{"{"} zero_trust_full {"}"}{"}"}git<a href="#zero-trust-manager-monitoring_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Track the performance of the {"{"}{"{"} zero_trust_full {"}"}{"}"} by collecting metrics. Configure monitoring to collect metrics from the Security Production Identity Framework for Everyone (SPIRE) Server and SPIRE Agent components.</p>
-      <p class="/modules/zero-trust-manager-enable-monitoring.md"></p>
+      <p>Track the performance of the Zero Trust Workload Identity Manager by collecting metrics. Configure monitoring to collect metrics from the Security Production Identity Framework for Everyone (SPIRE) Server and SPIRE Agent components.</p>
+      <h2 id="zero-trust-manager-enable-monitoring_zero-trust-manager-monitoring" class="group scroll-mt-20">Enabling user workload monitoring<a href="#zero-trust-manager-enable-monitoring_zero-trust-manager-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enable user workload monitoring to track metrics for your user-defined projects. Configuring this feature allows you to observe application performance and helps you maintain the health of your services.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to the cluster as a user with the <code>cluster-admin</code> cluster role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the <code>cluster-monitoring-config.yaml</code> file to define and configure the <code>ConfigMap</code>:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: cluster-monitoring-config\n  namespace: openshift-monitoring\ndata:\n  config.yaml: |\n    enableUserWorkload: true"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>ConfigMap</code> by running the following command:
+      <CodeBlock code={"$ oc apply -f cluster-monitoring-config.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the monitoring components for user workloads are running in the <code>openshift-user-workload-monitoring</code> namespace:
+      <CodeBlock code={"$ oc -n openshift-user-workload-monitoring get pod"} lang="terminal" />
+      <CodeBlock code={"NAME                                   READY   STATUS    RESTARTS   AGE\nprometheus-operator-6cb6bd9588-dtzxq   2/2     Running   0          50s\nprometheus-user-workload-0             6/6     Running   0          48s\nprometheus-user-workload-1             6/6     Running   0          48s\nthanos-ruler-user-workload-0           4/4     Running   0          42s\nthanos-ruler-user-workload-1           4/4     Running   0          42s"} lang="text" title="Example output" />
+      </li>
+      </ul>
+      <p>The status of the pods such as <code>prometheus-operator</code>, <code>prometheus-user-workload</code>, and <code>thanos-ruler-user-workload</code> must be <code>Running</code>.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/configuring-metrics-uwm#setting-up-metrics-collection-for-user-defined-projects_configuring-metrics-uwm">Setting up metrics collection for user-defined projects</a></li></ul>
+      <h2 id="zero-trust-manager-enable-metrics-server_zero-trust-manager-monitoring" class="group scroll-mt-20">Configuring metrics collection for SPIRE Server by using a ServiceMonitor<a href="#zero-trust-manager-enable-metrics-server_zero-trust-manager-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To collect custom metrics from the SPIRE Server, create a ServiceMonitor custom resource (CR). This configuration enables the Prometheus Operator to scrape metrics from the default endpoint, which helps you monitor your SPIRE deployment.</p>
+      <p>The SPIRE Server operand exposes metrics by default on port <code>9402</code> at the <code>/metrics</code> endpoint. You can configure metrics collection for the SPIRE Server by creating a <code>ServiceMonitor</code> custom resource (CR) that enables the Prometheus Operator to collect custom metrics.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> cluster role.</li>
+      <li>You have installed the Zero Trust Workload Identity Manager.</li>
+      <li>You have deployed the SPIRE Server operand in the cluster.</li>
+      <li>You have enabled the user workload monitoring.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the <code>ServiceMonitor</code> CR:
+      <ol>
+      <li>
+      Create the YAML file that defines the <code>ServiceMonitor</code> CR:
+      <CodeBlock code={"apiVersion: monitoring.coreos.com/v1\nkind: ServiceMonitor\nmetadata:\nlabels:\n  app.kubernetes.io/name: server\n  app.kubernetes.io/instance: spire\nname: spire-server-metrics\nnamespace: zero-trust-workload-identity-manager\nspec:\nendpoints:\n- port: metrics\n  interval: 30s\n  path: /metrics\nselector:\n  matchLabels:\n    app.kubernetes.io/name: server\n    app.kubernetes.io/instance: spire\nnamespaceSelector:\n  matchNames:\n  - zero-trust-workload-identity-manager"} lang="yaml" title="Example servicemonitor-spire-server file" />
+      </li>
+      <li>
+      Create the <code>ServiceMonitor</code> CR by running the following command:
+      <CodeBlock code={"$ oc create -f servicemonitor-spire-server.yaml"} lang="terminal" />
+      <p>After the <code>ServiceMonitor</code> CR is created, the user workload Prometheus instance begins metrics collection from the SPIRE Server. The collected metrics are labeled with <code>job="spire-server"</code>.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform web console, navigate to <strong>Observe</strong> -&gt; <strong>Targets</strong>.</li>
+      <li>
+      In the <strong>Label</strong> filter field, enter the following label to filter the metrics targets:
+      <CodeBlock code={"$ service=zero-trust-workload-identity-manager-metrics-service"} lang="terminal" />
+      </li>
+      <li>Confirm that the <strong>Status</strong> column shows <code>Up</code> for the <code>spire-server-metrics</code> entry.</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm">Configuring user workload monitoring</a></li></ul>
-      <p class="/modules/zero-trust-manager-enable-metrics-operator.md"></p>
+      <h2 id="zero-trust-manager-enable-metrics-agent_zero-trust-manager-monitoring" class="group scroll-mt-20">Configuring metrics collection for SPIRE Agent by using a Service Monitor<a href="#zero-trust-manager-enable-metrics-agent_zero-trust-manager-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure metrics collection for the SPIRE Agent by creating a <code>ServiceMonitor</code> custom resource (CR). This enables the Prometheus Operator to collect custom metrics that the SPIRE Agent exposes on the default port.</p>
+      <p>The SPIRE Agent operand exposes metrics by default on port <code>9402</code> at the <code>/metrics</code> endpoint. You can configure metrics collection for the SPIRE Agent by creating a <code>ServiceMonitor</code> custom resource (CR), which enables the Prometheus Operator to collect custom metrics.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> cluster role.</li>
+      <li>You have installed the Zero Trust Workload Identity Manager.</li>
+      <li>You have deployed the SPIRE Agent operand in the cluster.</li>
+      <li>You have enabled the user workload monitoring.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the <code>ServiceMonitor</code> CR:
+      <ol>
+      <li>
+      Create the YAML file that defines the <code>ServiceMonitor</code> CR:
+      <CodeBlock code={"apiVersion: monitoring.coreos.com/v1\nkind: ServiceMonitor\nmetadata:\n  labels:\n    app.kubernetes.io/name: agent\n    app.kubernetes.io/instance: spire\n  name: spire-agent-metrics\n  namespace: zero-trust-workload-identity-manager\nspec:\n  endpoints:\n  - port: metrics\n    interval: 30s\n    path: /metrics\n  selector:\n    matchLabels:\n      app.kubernetes.io/name: agent\n      app.kubernetes.io/instance: spire\n  namespaceSelector:\n    matchNames:\n    - zero-trust-workload-identity-manager"} lang="yaml" title="Example servicemonitor-spire-agent.yaml file" />
+      </li>
+      <li>
+      Create the <code>ServiceMonitor</code> CR by running the following command:
+      <CodeBlock code={"$ oc create -f servicemonitor-spire-agent.yaml"} lang="terminal" />
+      <p>After the <code>ServiceMonitor</code> CR is created, the user workload Prometheus instance begins metrics collection from the SPIRE Agent. The collected metrics are labeled with <code>job="spire-agent"</code>.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform web console, navigate to <strong>Observe</strong> → <strong>Targets</strong>.</li>
+      <li>
+      In the <strong>Label</strong> filter field, enter the following label to filter the metrics targets:
+      <CodeBlock code={"$ service=spire-agent"} lang="terminal" />
+      </li>
+      <li>Confirm that the <strong>Status</strong> column shows <code>Up</code> for the <code>spire-agent-metrics</code> entry.</li>
+      </ol>
+      <h2 id="zero-trust-manager-enable-metrics-operator_zero-trust-manager-monitoring" class="group scroll-mt-20">Configuring metrics collection for the Operator by using a ServiceMonitor<a href="#zero-trust-manager-enable-metrics-operator_zero-trust-manager-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Zero Trust Workload Identity Manager exposes metrics by default on port 8443 at the <code>/metrics</code> service endpoint. You can configure metrics collection for the Operator by creating a <code>ServiceMonitor</code> custom resource (CR) that enables the Prometheus Operator to collect custom metrics. For more information, see "Configuring user workload monitoring".</p>
+      <p>The SPIRE Server operand exposes metrics by default on port <code>9402</code> at the <code>/metrics</code> endpoint. You can configure metrics collection for the SPIRE Server by creating a <code>ServiceMonitor</code> custom resource (CR) that enables the Prometheus Operator to collect custom metrics.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> cluster role.</li>
+      <li>You have installed the Zero Trust Workload Identity Manager.</li>
+      <li>You have enabled the user workload monitoring.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Configure the Operator to use HTTP or HTTPS protocols for the metrics server.
+      <ol>
+      <li>
+      Update the subscription object for Zero Trust Workload Identity Manager to configure the HTTP protocol by running the following command:
+      <CodeBlock code={"$ oc -n zero-trust-workload-identity-manager patch subscription zero-trust-workload-identity-manager-subscription --type='merge' -p '{\"spec\":{\"config\":{\"env\":[{\"name\":\"METRICS_BIND_ADDRESS\",\"value\":\":8080\"}, {\"name\": \"METRICS_SECURE\", \"value\": \"false\"}]}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Verify the Zero Trust Workload Identity Manager pod is redeployed and that the configured values for <code>METRICS_BIND_ADDRESS</code> and <code>METRICS_SECURE</code> is updated by running the following command:
+      <CodeBlock code={"$ oc set env --list deployment/zero-trust-workload-identity-manager-controller-manager -n zero-trust-workload-identity-manager | grep -e METRICS_BIND_ADDRESS -e METRICS_SECURE -e container"} lang="terminal" />
+      <CodeBlock code={"deployments/zero-trust-workload-identity-manager-controller-manager, container manager\nMETRICS_BIND_ADDRESS=:8080\nMETRICS_SECURE=false"} lang="text" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the <code>Secret</code> resource with <code>kubernetes.io/service-account.name</code> annotation to inject the token required for authenticating with the metrics server.
+      <ol>
+      <li>
+      Create the <code>secret-zero-trust-workload-identity-manager.yaml</code> YAML file:
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n labels:\n   name: zero-trust-workload-identity-manager\n name: zero-trust-workload-identity-manager-metrics-auth\n namespace: zero-trust-workload-identity-manager\n annotations:\n   kubernetes.io/service-account.name: zero-trust-workload-identity-manager-controller-manager\ntype: kubernetes.io/service-account-token"} lang="yaml" />
+      </li>
+      <li>
+      Create the <code>Secret</code> resource by running the following command:
+      <CodeBlock code={"$ oc apply -f secret-zero-trust-workload-identity-manager.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the <code>ClusterRoleBinding</code> resource required for granting permissions to access the metrics.
+      <ol>
+      <li>
+      Create the <code>clusterrolebinding-zero-trust-workload-identity-manager.yaml</code> YAML file:
+      <CodeBlock code={"apiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRoleBinding\nmetadata:\n labels:\n   name: zero-trust-workload-identity-manager\n name: zero-trust-workload-identity-manager-allow-metrics-access\nroleRef:\n apiGroup: rbac.authorization.k8s.io\n kind: ClusterRole\n name: zero-trust-workload-identity-manager-metrics-reader\nsubjects:\n- kind: ServiceAccount\n  name: zero-trust-workload-identity-manager-controller-manager\n  namespace: zero-trust-workload-identity-manager"} lang="yaml" />
+      </li>
+      <li>
+      Create the <code>ClusterRoleBinding</code> resource by running the following command:
+      <CodeBlock code={"$ oc apply -f clusterrolebinding-zero-trust-workload-identity-manager.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the following <code>ServiceMonitor</code> CR if the metrics server is configured to use <code>http</code>.
+      <ol>
+      <li>
+      Create the <code>servicemonitor-zero-trust-workload-identity-manager-http.yaml</code> YAML file:
+      <CodeBlock code={"apiVersion: monitoring.coreos.com/v1\nkind: ServiceMonitor\nmetadata:\n  labels:\n    name: zero-trust-workload-identity-manager\n  name: zero-trust-workload-identity-manager-metrics-monitor\n  namespace: zero-trust-workload-identity-manager\nspec:\n  endpoints:\n    - authorization:\n        credentials:\n          name: zero-trust-workload-identity-manager-metrics-auth\n          key: token\n        type: Bearer\n      interval: 60s\n      path: /metrics\n      port: metrics-http\n      scheme: http\n      scrapeTimeout: 30s\n  namespaceSelector:\n    matchNames:\n      - zero-trust-workload-identity-manager\n  selector:\n    matchLabels:\n      name: zero-trust-workload-identity-manager"} lang="yaml" />
+      </li>
+      <li>
+      Create the <code>ServiceMonitor</code> CR by running the following command:
+      <CodeBlock code={"$ oc apply -f servicemonitor-zero-trust-workload-identity-manager-http.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the following <code>ServiceMonitor</code> CR if the metrics server is configured to use <code>https</code>.
+      <ol>
+      <li>
+      Create the <code>servicemonitor-zero-trust-workload-identity-manager-https.yaml</code> YAML file:
+      <CodeBlock code={"apiVersion: monitoring.coreos.com/v1\nkind: ServiceMonitor\nmetadata:\n  labels:\n    name: zero-trust-workload-identity-manager\n  name: zero-trust-workload-identity-manager-metrics-monitor\n  namespace: zero-trust-workload-identity-manager\nspec:\n  endpoints:\n    - authorization:\n        credentials:\n          name: zero-trust-workload-identity-manager-metrics-auth\n          key: token\n        type: Bearer\n      interval: 60s\n      path: /metrics\n      port: metrics-https\n      scheme: https\n      scrapeTimeout: 30s\n      tlsConfig:\n        ca:\n          configMap:\n            name: openshift-service-ca.crt\n            key: service-ca.crt\n        serverName: zero-trust-workload-identity-manager-metrics-service.zero-trust-workload-identity-manager.svc.cluster.local\n  namespaceSelector:\n    matchNames:\n      - zero-trust-workload-identity-manager\n  selector:\n    matchLabels:\n      name: zero-trust-workload-identity-manager"} lang="yaml" />
+      </li>
+      <li>
+      Create the <code>ServiceMonitor</code> CR by running the following command:
+      <CodeBlock code={"$ oc apply -f servicemonitor-zero-trust-workload-identity-manager-https.yaml"} lang="terminal" />
+      <p>After the <code>ServiceMonitor</code> CR is created, the user workload Prometheus instance begins metrics collection from the SPIRE Server. The collected metrics are labeled with <code>job="zero-trust-workload-identity-manager-metrics-service"</code>.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform web console, navigate to <strong>Observe</strong> → <strong>Targets</strong>.</li>
+      <li>
+      In the <strong>Label</strong> filter field, enter the following label to filter the metrics targets:
+      <CodeBlock code={"$ service=zero-trust-workload-identity-manager-metrics-service"} lang="terminal" />
+      </li>
+      <li>Confirm that the <strong>Status</strong> column shows <code>Up</code> for the <code>zero-trust-workload-identity-manager</code> entry.</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm">Configuring user workload monitoring</a></li></ul>
+      <h2 id="zero-trust-manager-query-metrics_zero-trust-manager-monitoring" class="group scroll-mt-20">Querying metrics for the Zero Trust Workload Identity Manager<a href="#zero-trust-manager-query-metrics_zero-trust-manager-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Query SPIRE Agent and SPIRE Server metrics using the OpenShift Container Platform web console or the command line. This helps you monitor the performance of SPIRE components that match specific job labels.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the Zero Trust Workload Identity Manager.</li>
+      <li>You have deployed the SPIRE Server and SPIRE Agent operands in the cluster.</li>
+      <li>You have enabled monitoring and metrics collection by creating <code>ServiceMonitor</code> objects.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform web console, navigate to <strong>Observe</strong> -&gt; <strong>Metrics</strong>.</li>
+      <li>
+      In the query field, enter the following PromQL expression to query SPIRE Server metrics:
+      <CodeBlock code={"{job=\"spire-server\"}"} lang="promql" />
+      </li>
+      <li>
+      In the query field, enter the following PromQL expression to query SPIRE Agent metrics.
+      <CodeBlock code={"{job=\"spire-agent\"}"} lang="promql" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/index">Accessing metrics</a></li></ul>
+      <h2 id="zero-trust-manager-available-metrics_zero-trust-manager-monitoring" class="group scroll-mt-20">Zero Trust Workload Identity Manager monitoring available metrics<a href="#zero-trust-manager-available-metrics_zero-trust-manager-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Monitor the health and performance of Zero Trust Workload Identity Manager components by reviewing exposed metrics. This reference describes controller, certificate, and runtime metrics that help you maintain system health and troubleshoot errors.</p>
+      <p>The Zero Trust Workload Identity Manager exposes the following metrics:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Controller runtime metrics</dt>
+      <dd class="ml-6 text-muted-foreground"><ul><li><code>controller_runtime_active_workers</code>: Number of currently used workers per controller</li></ul></dd>
+      </dl>
+      <ul>
+      <li><code>controller_runtime_max_concurrent_reconciles</code>: Maximum number of concurrent reconciles per controller</li>
+      <li><code>controller_runtime_reconcile_errors_total</code>: Total number of reconciliation errors per controller</li>
+      <li><code>controller_runtime_reconcile_time_seconds</code>: Length of time per reconciliation per controller</li>
+      <li><code>controller_runtime_reconcile_total</code>: Total number of reconciliations per controller</li>
+      </ul>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Certificate watcher metrics</dt>
+      <dd class="ml-6 text-muted-foreground"><ul><li><code>certwatcher_read_certificate_errors_total</code>: Total number of certificate read errors</li></ul></dd>
+      </dl>
+      <ul><li><code>certwatcher_read_certificate_total</code>: Total number of certificates read</li></ul>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Go runtime metrics</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Standard Go runtime metrics including:</p></dd>
+      </dl>
+      <ul>
+      <li><code>go_gc_duration_seconds</code>: Garbage collection duration</li>
+      <li><code>go_goroutines</code>: Number of goroutines</li>
+      <li><code>go_memstats_*</code>: Memory statistics</li>
+      <li><code>process_*</code>: Process statistics</li>
+      </ul>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Custom Operator metrics</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The operator also exposes custom metrics related to:</p></dd>
+      </dl>
+      <ul>
+      <li>SPIRE Server status and health</li>
+      <li>SPIRE Agent deployment status</li>
+      <li>SPIFFE CSI Driver status</li>
+      <li>OIDC Discovery Provider status</li>
+      <li>Workload identity management operations</li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

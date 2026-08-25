@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"zero-trust-manager-reconciliation_{{ context }}","text":"Enabling create-only mode for the Zero Trust Workload Identity Manager"}];
+const headings = [{"depth":1,"slug":"zero-trust-manager-reconciliation_{{ context }}","text":"Enabling create-only mode for the Zero Trust Workload Identity Manager"},{"depth":2,"slug":"zero-trust-manager-pause-reconciliation_zero-trust-manager-reconciliation","text":"Pausing Operator reconciliation"},{"depth":2,"slug":"zero-trust-manager-restart-reconciliation_zero-trust-manager-reconciliation","text":"Resuming Operator reconciliation"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-reconciliation";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["security","security/zero_trust_workload_identity_manager"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling create-only mode for the Zero Trust Workload Identity Manager {#zero-trust-manager-reconciliation_{{ context }}}\n\nTo pause Operator reconciliation, enable `create-only` mode by setting an environment variable in the subscription object. By setting this value, you can perform manual configurations or debug the operator without the controller overwriting your changes.\n\nThe following scenarios are examples of when the `create-only` mode might be of use:\n\n***Manual Customization Required***: You need to customize operator-managed resources (ConfigMaps, Deployments, DaemonSets, etc.) with specific configurations that differ from the operator’s defaults\n\n***Day 2 Operations***: After initial deployment, you want to prevent the operator from overwriting their manual changes during subsequent reconciliation cycles\n\n***Configuration Drift Prevention***: You want to maintain control over certain resource configurations while still benefiting from the operator’s lifecycle management\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-reconciliation.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling create-only mode for the Zero Trust Workload Identity Manager {#zero-trust-manager-reconciliation_{{ context }}}\n\nTo pause Operator reconciliation, enable `create-only` mode by setting an environment variable in the subscription object. By setting this value, you can perform manual configurations or debug the operator without the controller overwriting your changes.\n\nThe following scenarios are examples of when the `create-only` mode might be of use:\n\n***Manual Customization Required***: You need to customize operator-managed resources (ConfigMaps, Deployments, DaemonSets, etc.) with specific configurations that differ from the operator’s defaults\n\n***Day 2 Operations***: After initial deployment, you want to prevent the operator from overwriting their manual changes during subsequent reconciliation cycles\n\n***Configuration Drift Prevention***: You want to maintain control over certain resource configurations while still benefiting from the operator’s lifecycle management\n\n## Pausing Operator reconciliation {#zero-trust-manager-pause-reconciliation_zero-trust-manager-reconciliation}\n\nPause reconciliation of the operands by enabling `create-only` mode. This setting prevents the Operator from automatically reverting your manual changes to the desired state. You can enable this mode by updating the Operator’s subscription object.\n\n> [!IMPORTANT]\n> When `create-only` mode is disabled, the Operator overwrites the resources if any conflicts exist.\n\n**Prerequisites**\n\n- You have installed Zero Trust Workload Identity Manager on your machine.\n- You have installed the SPIRE Servers, Agents, SPIFFE Container Storage Interface (CSI), and an OpenID Connect (OIDC) Discovery Provider and are in running status.\n\n**Procedure**\n\n- To pause reconciling the operands resources managed by the Operator, add the environment variable `CREATE_ONLY_MODE`: `true` in the subscription object by running the following command:\n\n  ```terminal\n  $ oc -n $OPERATOR_NAMESPACE patch subscription openshift-zero-trust-workload-identity-manager --type='merge' -p '{\"spec\":{\"config\":{\"env\":[{\"name\":\"CREATE_ONLY_MODE\",\"value\":\"true\"}]}}}'\n  ```\n\n**Verification**\n\n- Check the status of the `SpireServer` resource to confirm that the `create-only` mode is active. The `status` must be `true` and the `reason` must be `CreateOnlyModeEnabled`.\n\n  ```terminal\n  $ oc get SpireServer cluster -o yaml\n  ```\n\n  The following is an example that confirms that the 'create-only' mode is active.\n\n  ```yaml\n  status:\n    conditions:\n    - lastTransitionTime: \"2025-12-23T11:36:58Z\"\n      message: All components are ready\n      reason: Ready\n      status: \"True\"\n      type: Ready\n    - lastTransitionTime: \"2025-12-23T11:36:58Z\"\n      message: All operand CRs are ready\n      reason: Ready\n      status: \"True\"\n      type: OperandsAvailable\n    - lastTransitionTime: \"2025-12-23T11:36:58Z\"\n      message: create-only mode enabled\n      reason: CreateOnlyModeEnabled\n      status: \"True\"\n      type: CreateOnlyMode\n  ```\n\n> [!IMPORTANT]\n> The Operator updates the upgradeable condition to `false` in the `operatorCondition` resource. You might not be able to upgrade the Operator when in `create-only` mode.\n\n## Resuming Operator reconciliation {#zero-trust-manager-restart-reconciliation_zero-trust-manager-reconciliation}\n\nTo resume Operator reconciliation after manual configuration or debugging, disable the `create-only` mode. This allows the controller to resume managing resources and applying the desired state. You can disable this mode by setting the environment variable in the subscription object.\n\n**Prerequisites**\n\n- You have enabled `create-only` mode on the Zero Trust Workload Identity Manager.\n- You have completed your manual configuration or debugging tasks.\n\n**Procedure**\n\n- To restart reconciling the Operator-managed resources, add the environment variable `CREATE_ONLY_MODE`: `false` in the subscription object by running the following command:\n\n  ```terminal\n  $ oc -n $OPERATOR_NAMESPACE patch subscription openshift-zero-trust-workload-identity-manager --type='merge' -p '{\"spec\":{\"config\":{\"env\":[{\"name\":\"CREATE_ONLY_MODE\",\"value\":\"false\"}]}}}'\n  ```\n\n**Verification**\n\n- Check the status of the `SpireServer` resource to confirm that `create-only` mode is disabled by running the following command:\n\n  ```terminal\n  $ oc get SpireServer cluster -o yaml\n  ```\n\n  ```yaml {title=\"Example output\"}\n  status:\n   conditions:\n   - lastTransitionTime: \"2025-12-23T11:40:00Z\"\n     message: create-only mode disabled\n     reason: CreateOnlyModeDisabled\n     status: \"False\"\n     type: CreateOnlyMode\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-reconciliation.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,68 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="zero-trust-manager-reconciliation_{{ context }}" class="group scroll-mt-20">Enabling create-only mode for the Zero Trust Workload Identity Manager<a href="#zero-trust-manager-reconciliation_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To pause Operator reconciliation, enable <code>create-only</code> mode by setting an environment variable in the subscription object. By setting this value, you can perform manual configurations or debug the operator without the controller overwriting your changes.</p>
       <p>The following scenarios are examples of when the <code>create-only</code> mode might be of use:</p>
       <p><em></em><em><strong>Manual Customization Required</strong></em><em></em>: You need to customize operator-managed resources (ConfigMaps, Deployments, DaemonSets, etc.) with specific configurations that differ from the operator’s defaults</p>
       <p><em></em><em><strong>Day 2 Operations</strong></em><em></em>: After initial deployment, you want to prevent the operator from overwriting their manual changes during subsequent reconciliation cycles</p>
       <p><em></em><em><strong>Configuration Drift Prevention</strong></em><em></em>: You want to maintain control over certain resource configurations while still benefiting from the operator’s lifecycle management</p>
-      <p class="/modules/zero-trust-manager-pause-reconciliation.md"></p>
-      <p class="/modules/zero-trust-manager-restart-reconciliation.md"></p>
+      <h2 id="zero-trust-manager-pause-reconciliation_zero-trust-manager-reconciliation" class="group scroll-mt-20">Pausing Operator reconciliation<a href="#zero-trust-manager-pause-reconciliation_zero-trust-manager-reconciliation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Pause reconciliation of the operands by enabling <code>create-only</code> mode. This setting prevents the Operator from automatically reverting your manual changes to the desired state. You can enable this mode by updating the Operator’s subscription object.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>When <code>create-only</code> mode is disabled, the Operator overwrites the resources if any conflicts exist.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed Zero Trust Workload Identity Manager on your machine.</li>
+      <li>You have installed the SPIRE Servers, Agents, SPIFFE Container Storage Interface (CSI), and an OpenID Connect (OIDC) Discovery Provider and are in running status.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To pause reconciling the operands resources managed by the Operator, add the environment variable <code>CREATE_ONLY_MODE</code>: <code>true</code> in the subscription object by running the following command:
+      <CodeBlock code={"$ oc -n $OPERATOR_NAMESPACE patch subscription openshift-zero-trust-workload-identity-manager --type='merge' -p '{\"spec\":{\"config\":{\"env\":[{\"name\":\"CREATE_ONLY_MODE\",\"value\":\"true\"}]}}}'"} lang="terminal" />
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Check the status of the <code>SpireServer</code> resource to confirm that the <code>create-only</code> mode is active. The <code>status</code> must be <code>true</code> and the <code>reason</code> must be <code>CreateOnlyModeEnabled</code>.
+      <CodeBlock code={"$ oc get SpireServer cluster -o yaml"} lang="terminal" />
+      <p>The following is an example that confirms that the 'create-only' mode is active.</p>
+      <CodeBlock code={"status:\n  conditions:\n  - lastTransitionTime: \"2025-12-23T11:36:58Z\"\n    message: All components are ready\n    reason: Ready\n    status: \"True\"\n    type: Ready\n  - lastTransitionTime: \"2025-12-23T11:36:58Z\"\n    message: All operand CRs are ready\n    reason: Ready\n    status: \"True\"\n    type: OperandsAvailable\n  - lastTransitionTime: \"2025-12-23T11:36:58Z\"\n    message: create-only mode enabled\n    reason: CreateOnlyModeEnabled\n    status: \"True\"\n    type: CreateOnlyMode"} lang="yaml" />
+      </li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The Operator updates the upgradeable condition to <code>false</code> in the <code>operatorCondition</code> resource. You might not be able to upgrade the Operator when in <code>create-only</code> mode.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="zero-trust-manager-restart-reconciliation_zero-trust-manager-reconciliation" class="group scroll-mt-20">Resuming Operator reconciliation<a href="#zero-trust-manager-restart-reconciliation_zero-trust-manager-reconciliation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To resume Operator reconciliation after manual configuration or debugging, disable the <code>create-only</code> mode. This allows the controller to resume managing resources and applying the desired state. You can disable this mode by setting the environment variable in the subscription object.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have enabled <code>create-only</code> mode on the Zero Trust Workload Identity Manager.</li>
+      <li>You have completed your manual configuration or debugging tasks.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To restart reconciling the Operator-managed resources, add the environment variable <code>CREATE_ONLY_MODE</code>: <code>false</code> in the subscription object by running the following command:
+      <CodeBlock code={"$ oc -n $OPERATOR_NAMESPACE patch subscription openshift-zero-trust-workload-identity-manager --type='merge' -p '{\"spec\":{\"config\":{\"env\":[{\"name\":\"CREATE_ONLY_MODE\",\"value\":\"false\"}]}}}'"} lang="terminal" />
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Check the status of the <code>SpireServer</code> resource to confirm that <code>create-only</code> mode is disabled by running the following command:
+      <CodeBlock code={"$ oc get SpireServer cluster -o yaml"} lang="terminal" />
+      <CodeBlock code={"status:\n conditions:\n - lastTransitionTime: \"2025-12-23T11:40:00Z\"\n   message: create-only mode disabled\n   reason: CreateOnlyModeDisabled\n   status: \"False\"\n   type: CreateOnlyMode"} lang="yaml" title="Example output" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

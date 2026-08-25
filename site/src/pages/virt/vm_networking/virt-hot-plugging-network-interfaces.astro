@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-hot-plugging-network-interfaces","text":"Hot plugging secondary network interfaces"},{"depth":2,"slug":"additional-resources_virt-hot-plugging-network-interfaces","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-hot-plugging-network-interfaces","text":"Hot plugging secondary network interfaces"},{"depth":2,"slug":"virt-virtio-limitations_virt-hot-plugging-network-interfaces","text":"VirtIO limitations"},{"depth":2,"slug":"virt-hot-plugging-bridge-network-interface_virt-hot-plugging-network-interfaces","text":"Hot plugging a secondary network interface by using the CLI"},{"depth":2,"slug":"virt-hot-unplugging-bridge-network-interface_virt-hot-plugging-network-interfaces","text":"Hot unplugging a secondary network interface by using the CLI"},{"depth":2,"slug":"additional-resources_virt-hot-plugging-network-interfaces","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/vm_networking/virt-hot-plugging-network-interfaces";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Hot plugging secondary network interfaces";
-const description = "You can add or remove secondary network interfaces without stopping your virtual machine (VM). {{ VirtProductName }} supports hot plugging and hot…" || undefined;
+const description = "You can add or remove secondary network interfaces without stopping your virtual machine (VM). OpenShift Virtualization supports hot plugging and hot…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/vm_networking"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Hot plugging secondary network interfaces {#virt-hot-plugging-network-interfaces}\n\nYou can add or remove secondary network interfaces without stopping your virtual machine (VM). {{ VirtProductName }} supports hot plugging and hot unplugging for secondary interfaces that use bridge binding and the VirtIO device driver.\n\n{{ VirtProductName }} also supports hot plugging secondary interfaces that use SR-IOV binding. To hot plug or hot unplug a secondary interface, you must have permission to create and list `VirtualMachineInstanceMigration` objects.\n\n> [!NOTE]\n> Hot unplugging is not supported for Single Root I/O Virtualization (SR-IOV) interfaces.\n\n## Additional resources {#additional-resources_virt-hot-plugging-network-interfaces}\n\n- [Installing virtctl](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-installing-virtctl-binary_virt-using-the-cli-tools)\n- [About live migration permissions](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)\n- [Creating a Linux bridge network attachment definition](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)\n- [Creating an SR-IOV network attachment definition](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#nw-sriov-additional-network_virt-connecting-vm-to-sriov)\n- [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-hot-plugging-network-interfaces.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Hot plugging secondary network interfaces {#virt-hot-plugging-network-interfaces}\n\nYou can add or remove secondary network interfaces without stopping your virtual machine (VM). OpenShift Virtualization supports hot plugging and hot unplugging for secondary interfaces that use bridge binding and the VirtIO device driver.\n\nOpenShift Virtualization also supports hot plugging secondary interfaces that use SR-IOV binding. To hot plug or hot unplug a secondary interface, you must have permission to create and list `VirtualMachineInstanceMigration` objects.\n\n> [!NOTE]\n> Hot unplugging is not supported for Single Root I/O Virtualization (SR-IOV) interfaces.\n\n## VirtIO limitations {#virt-virtio-limitations_virt-hot-plugging-network-interfaces}\n\nEach VirtIO interface uses one of the limited Peripheral Connect Interface (PCI) slots in the VM. There are a total of 32 slots available. The PCI slots are also used by other devices and must be reserved in advance, therefore slots might not be available on-demand.\n\nOpenShift Virtualization reserves up to six slots for hot plugging interfaces.\n\n> [!NOTE]\n> The actual number of slots available for hot plugging also depends on the machine type. For example, the default PCI topology for the q35 machine type supports hot plugging one additional PCIe device. For more information on PCI topology and hot plug support, see the [libvirt documentation](https://libvirt.org/pci-hotplug.html).\n\nIf you restart the VM after hot plugging an interface, that interface becomes part of the standard network interfaces.\n\n## Hot plugging a secondary network interface by using the CLI {#virt-hot-plugging-bridge-network-interface_virt-hot-plugging-network-interfaces}\n\nYou can hot plug a secondary network interface to a virtual machine (VM) while the VM is running.\n\n**Prerequisites**\n\n- A network attachment definition is configured in the same namespace as your VM.\n- The VM to which you want to hot plug the network interface is running.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Use your preferred text editor to edit the `VirtualMachine` manifest, as shown in the following example:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: vm-fedora\n   template:\n     spec:\n       domain:\n         devices:\n           interfaces:\n           - name: defaultnetwork\n             masquerade: {}\n           # new interface\n           - name: <secondary_nic>\n             bridge: {}\n       networks:\n       - name: defaultnetwork\n         pod: {}\n       # new network\n       - name: <secondary_nic>\n         multus:\n           networkName: <nad_name>\n   # ...\n   ```\n\n   - `spec.template.spec.domain.devices.interfaces.name` specifies the name of the new network interface.\n   - `spec.template.spec.networks.name` specifies the name of the network. This must be the same as the `name` of the new network interface that you defined in the `template.spec.domain.devices.interfaces` list.\n   - `spec.template.spec.networks.multus.networkName` specifies the name of the `NetworkAttachmentDefinition` object.\n2. Save your changes and exit the editor.\n3. For the new configuration to take effect, apply the changes by running the following command. Applying the changes triggers automatic VM live migration and attaches the network interface to the running VM.\n\n   ```terminal\n   $ oc apply -f <filename>.yaml\n   ```\n\n   where:\n\n   <filename>\n   :   Specifies the name of your `VirtualMachine` manifest YAML file.\n\n**Verification**\n\n1. Verify that the VM live migration is successful by using the following command:\n\n   ```terminal\n   $ oc get VirtualMachineInstanceMigration -w\n   ```\n\n   Example output:\n\n   ```terminal\n   NAME                        PHASE             VMI\n   kubevirt-migrate-vm-lj62q   Scheduling        vm-fedora\n   kubevirt-migrate-vm-lj62q   Scheduled         vm-fedora\n   kubevirt-migrate-vm-lj62q   PreparingTarget   vm-fedora\n   kubevirt-migrate-vm-lj62q   TargetReady       vm-fedora\n   kubevirt-migrate-vm-lj62q   Running           vm-fedora\n   kubevirt-migrate-vm-lj62q   Succeeded         vm-fedora\n   ```\n2. Verify that the new interface is added to the VM by checking the status of the virtual machine instance (VMI):\n\n   ```terminal\n   $ oc get vmi vm-fedora -ojsonpath=\"{ @.status.interfaces }\"\n   ```\n\n   Example output:\n\n   ```json\n   [\n     {\n       \"infoSource\": \"domain, guest-agent\",\n       \"interfaceName\": \"eth0\",\n       \"ipAddress\": \"10.130.0.195\",\n       \"ipAddresses\": [\n         \"10.130.0.195\",\n         \"fd02:0:0:3::43c\"\n       ],\n       \"mac\": \"52:54:00:0e:ab:25\",\n       \"name\": \"default\",\n       \"queueCount\": 1\n     },\n     {\n       \"infoSource\": \"domain, guest-agent, multus-status\",\n       \"interfaceName\": \"eth1\",\n       \"mac\": \"02:d8:b8:00:00:2a\",\n       \"name\": \"bridge-interface\",\n       \"queueCount\": 1\n     }\n   ]\n   ```\n\n   The hot plugged interface appears in the VMI status.\n\n## Hot unplugging a secondary network interface by using the CLI {#virt-hot-unplugging-bridge-network-interface_virt-hot-plugging-network-interfaces}\n\nYou can remove a secondary network interface from a running virtual machine (VM).\n\n> [!NOTE]\n> Hot unplugging is not supported for Single Root I/O Virtualization (SR-IOV) interfaces.\n\n**Prerequisites**\n\n- Your VM must be running.\n- The VM must be created on a cluster running OpenShift Virtualization 4.14 or later.\n- The VM must have a bridge network interface attached.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Using your preferred text editor, edit the `VirtualMachine` manifest file and set the interface state to `absent`. Setting the interface state to `absent` detaches the network interface from the guest, but the interface still exists in the pod.\n\n   Example VM configuration:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: vm-fedora\n   template:\n     spec:\n       domain:\n         devices:\n           interfaces:\n             - name: defaultnetwork\n               masquerade: {}\n             # set the interface state to absent\n             - name: <secondary_nic>\n               state: absent\n               bridge: {}\n       networks:\n         - name: defaultnetwork\n           pod: {}\n         - name: <secondary_nic>\n           multus:\n             networkName: <nad_name>\n   # ...\n   ```\n\n   Set the interface state to `absent` to detach it from the running VM. Removing the interface details from the VM specification does not hot unplug the secondary network interface.\n2. Save your changes and exit the editor.\n3. For the new configuration to take effect, apply the changes by running the following command. Applying the changes triggers automatic VM live migration and removes the interface from the pod.\n\n   ```terminal\n   $ oc apply -f <filename>.yaml\n   ```\n\n   where:\n\n   <filename>\n   :   Specifies the name of your `VirtualMachine` manifest YAML file.\n\n## Additional resources {#additional-resources_virt-hot-plugging-network-interfaces}\n\n- [Installing virtctl](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-installing-virtctl-binary_virt-using-the-cli-tools)\n- [About live migration permissions](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)\n- [Creating a Linux bridge network attachment definition](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)\n- [Creating an SR-IOV network attachment definition](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#nw-sriov-additional-network_virt-connecting-vm-to-sriov)\n- [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-attaching-vm-to-sriov-network_virt-connecting-vm-to-sriov)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-hot-plugging-network-interfaces.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,18 +95,104 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-hot-plugging-network-interfaces" class="group scroll-mt-20">Hot plugging secondary network interfaces<a href="#virt-hot-plugging-network-interfaces" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can add or remove secondary network interfaces without stopping your virtual machine (VM). {"{"}{"{"} VirtProductName {"}"}{"}"} supports hot plugging and hot unplugging for secondary interfaces that use bridge binding and the VirtIO device driver.</p>
-      <p>{"{"}{"{"} VirtProductName {"}"}{"}"} also supports hot plugging secondary interfaces that use SR-IOV binding. To hot plug or hot unplug a secondary interface, you must have permission to create and list <code>VirtualMachineInstanceMigration</code> objects.</p>
+      <p>You can add or remove secondary network interfaces without stopping your virtual machine (VM). OpenShift Virtualization supports hot plugging and hot unplugging for secondary interfaces that use bridge binding and the VirtIO device driver.</p>
+      <p>OpenShift Virtualization also supports hot plugging secondary interfaces that use SR-IOV binding. To hot plug or hot unplug a secondary interface, you must have permission to create and list <code>VirtualMachineInstanceMigration</code> objects.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
           <p>Hot unplugging is not supported for Single Root I/O Virtualization (SR-IOV) interfaces.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/virt-virtio-limitations.md"></p>
-      <p class="/modules/virt-hot-plugging-bridge-network-interface-cli.md"></p>
-      <p class="/modules/virt-hot-unplugging-bridge-network-interface-cli.md"></p>
+      <h2 id="virt-virtio-limitations_virt-hot-plugging-network-interfaces" class="group scroll-mt-20">VirtIO limitations<a href="#virt-virtio-limitations_virt-hot-plugging-network-interfaces" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Each VirtIO interface uses one of the limited Peripheral Connect Interface (PCI) slots in the VM. There are a total of 32 slots available. The PCI slots are also used by other devices and must be reserved in advance, therefore slots might not be available on-demand.</p>
+      <p>OpenShift Virtualization reserves up to six slots for hot plugging interfaces.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The actual number of slots available for hot plugging also depends on the machine type. For example, the default PCI topology for the q35 machine type supports hot plugging one additional PCIe device. For more information on PCI topology and hot plug support, see the <a href="https://libvirt.org/pci-hotplug.html">libvirt documentation</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If you restart the VM after hot plugging an interface, that interface becomes part of the standard network interfaces.</p>
+      <h2 id="virt-hot-plugging-bridge-network-interface_virt-hot-plugging-network-interfaces" class="group scroll-mt-20">Hot plugging a secondary network interface by using the CLI<a href="#virt-hot-plugging-bridge-network-interface_virt-hot-plugging-network-interfaces" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can hot plug a secondary network interface to a virtual machine (VM) while the VM is running.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>A network attachment definition is configured in the same namespace as your VM.</li>
+      <li>The VM to which you want to hot plug the network interface is running.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Use your preferred text editor to edit the <code>VirtualMachine</code> manifest, as shown in the following example:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: vm-fedora\ntemplate:\n  spec:\n    domain:\n      devices:\n        interfaces:\n        - name: defaultnetwork\n          masquerade: {}\n        # new interface\n        - name: <secondary_nic>\n          bridge: {}\n    networks:\n    - name: defaultnetwork\n      pod: {}\n    # new network\n    - name: <secondary_nic>\n      multus:\n        networkName: <nad_name>\n# ..."} lang="yaml" />
+      <ul>
+      <li><code>spec.template.spec.domain.devices.interfaces.name</code> specifies the name of the new network interface.</li>
+      <li><code>spec.template.spec.networks.name</code> specifies the name of the network. This must be the same as the <code>name</code> of the new network interface that you defined in the <code>template.spec.domain.devices.interfaces</code> list.</li>
+      <li><code>spec.template.spec.networks.multus.networkName</code> specifies the name of the <code>NetworkAttachmentDefinition</code> object.</li>
+      </ul>
+      </li>
+      <li>Save your changes and exit the editor.</li>
+      <li>
+      For the new configuration to take effect, apply the changes by running the following command. Applying the changes triggers automatic VM live migration and attaches the network interface to the running VM.
+      <CodeBlock code={"$ oc apply -f <filename>.yaml"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">&lt;filename&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of your <code>VirtualMachine</code> manifest YAML file.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the VM live migration is successful by using the following command:
+      <CodeBlock code={"$ oc get VirtualMachineInstanceMigration -w"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"NAME                        PHASE             VMI\nkubevirt-migrate-vm-lj62q   Scheduling        vm-fedora\nkubevirt-migrate-vm-lj62q   Scheduled         vm-fedora\nkubevirt-migrate-vm-lj62q   PreparingTarget   vm-fedora\nkubevirt-migrate-vm-lj62q   TargetReady       vm-fedora\nkubevirt-migrate-vm-lj62q   Running           vm-fedora\nkubevirt-migrate-vm-lj62q   Succeeded         vm-fedora"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the new interface is added to the VM by checking the status of the virtual machine instance (VMI):
+      <CodeBlock code={"$ oc get vmi vm-fedora -ojsonpath=\"{ @.status.interfaces }\""} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"[\n  {\n    \"infoSource\": \"domain, guest-agent\",\n    \"interfaceName\": \"eth0\",\n    \"ipAddress\": \"10.130.0.195\",\n    \"ipAddresses\": [\n      \"10.130.0.195\",\n      \"fd02:0:0:3::43c\"\n    ],\n    \"mac\": \"52:54:00:0e:ab:25\",\n    \"name\": \"default\",\n    \"queueCount\": 1\n  },\n  {\n    \"infoSource\": \"domain, guest-agent, multus-status\",\n    \"interfaceName\": \"eth1\",\n    \"mac\": \"02:d8:b8:00:00:2a\",\n    \"name\": \"bridge-interface\",\n    \"queueCount\": 1\n  }\n]"} lang="json" />
+      <p>The hot plugged interface appears in the VMI status.</p>
+      </li>
+      </ol>
+      <h2 id="virt-hot-unplugging-bridge-network-interface_virt-hot-plugging-network-interfaces" class="group scroll-mt-20">Hot unplugging a secondary network interface by using the CLI<a href="#virt-hot-unplugging-bridge-network-interface_virt-hot-plugging-network-interfaces" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can remove a secondary network interface from a running virtual machine (VM).</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Hot unplugging is not supported for Single Root I/O Virtualization (SR-IOV) interfaces.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Your VM must be running.</li>
+      <li>The VM must be created on a cluster running OpenShift Virtualization 4.14 or later.</li>
+      <li>The VM must have a bridge network interface attached.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Using your preferred text editor, edit the <code>VirtualMachine</code> manifest file and set the interface state to <code>absent</code>. Setting the interface state to <code>absent</code> detaches the network interface from the guest, but the interface still exists in the pod.
+      <p>Example VM configuration:</p>
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: vm-fedora\ntemplate:\n  spec:\n    domain:\n      devices:\n        interfaces:\n          - name: defaultnetwork\n            masquerade: {}\n          # set the interface state to absent\n          - name: <secondary_nic>\n            state: absent\n            bridge: {}\n    networks:\n      - name: defaultnetwork\n        pod: {}\n      - name: <secondary_nic>\n        multus:\n          networkName: <nad_name>\n# ..."} lang="yaml" />
+      <p>Set the interface state to <code>absent</code> to detach it from the running VM. Removing the interface details from the VM specification does not hot unplug the secondary network interface.</p>
+      </li>
+      <li>Save your changes and exit the editor.</li>
+      <li>
+      For the new configuration to take effect, apply the changes by running the following command. Applying the changes triggers automatic VM live migration and removes the interface from the pod.
+      <CodeBlock code={"$ oc apply -f <filename>.yaml"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">&lt;filename&gt;</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of your <code>VirtualMachine</code> manifest YAML file.</p></dd>
+      </dl>
+      </li>
+      </ol>
       <h2 id="additional-resources_virt-hot-plugging-network-interfaces" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-hot-plugging-network-interfaces" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-installing-virtctl-binary_virt-using-the-cli-tools">Installing virtctl</a></li>

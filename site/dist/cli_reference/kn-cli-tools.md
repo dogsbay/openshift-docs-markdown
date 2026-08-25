@@ -2,7 +2,7 @@
 title: Knative CLI for use with {{ ServerlessProductName }}
 ---
 
-# Knative CLI for use with {{ ServerlessProductName }} {#kn-cli-tools}
+# Knative CLI for use with OpenShift Serverless {#kn-cli-tools}
 
 The Knative (`kn`) CLI enables simple interaction with Knative components on OpenShift Container Platform.
 

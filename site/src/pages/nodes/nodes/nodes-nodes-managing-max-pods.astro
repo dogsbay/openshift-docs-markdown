@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-nodes-managing-max-pods","text":"Managing the maximum number of pods per node"}];
+const headings = [{"depth":1,"slug":"nodes-nodes-managing-max-pods","text":"Managing the maximum number of pods per node"},{"depth":2,"slug":"nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods","text":"Configuring the maximum number of pods per node"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/nodes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing the maximum number of pods per node {#nodes-nodes-managing-max-pods}\n\nIn OpenShift Container Platform, you can configure the number of pods that can run on a node based on the number of processor cores on the node, a hard limit, or both. If you use both options, the lower of the two limits the number of pods on a node. Setting a maximum number of pods can prevent a node from running more pods than its underlying hardware can handle.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing the maximum number of pods per node {#nodes-nodes-managing-max-pods}\n\nIn OpenShift Container Platform, you can configure the number of pods that can run on a node based on the number of processor cores on the node, a hard limit, or both. If you use both options, the lower of the two limits the number of pods on a node. Setting a maximum number of pods can prevent a node from running more pods than its underlying hardware can handle.\n\nWhen both options are in use, the lower of the two values limits the number of pods on a node. Exceeding these values can result in the following conditions:\n\n- Increased CPU utilization.\n- Slow pod scheduling.\n- Potential out-of-memory scenarios, depending on the amount of memory in the node.\n- Exhausting the pool of IP addresses.\n- Resource overcommitting, leading to poor user application performance.\n\n> [!IMPORTANT]\n> In Kubernetes, a pod that is holding a single container actually uses two containers. The second container is used to set up networking prior to the actual container starting. Therefore, a system running 10 pods will actually have 20 containers running.\n\n> [!NOTE]\n> Disk IOPS throttling from the cloud provider might have an impact on CRI-O and kubelet. They might get overloaded when there are large number of I/O intensive pods running on the nodes. It is recommended that you monitor the disk I/O on the nodes and use volumes with sufficient throughput for the workload.\n\nThe `podsPerCore` parameter sets the number of pods that the node can run based on the number of processor cores on the node. For example, if `podsPerCore` is set to `10` on a node with 4 processor cores, the maximum number of pods allowed on the node is `40`.\n\n```yaml\nkubeletConfig:\n  podsPerCore: 10\n```\n\nSetting `podsPerCore` to `0` disables this limit. The default is `0`. The value of the `podsPerCore` parameter cannot exceed the value of the `maxPods` parameter.\n\nThe `maxPods` parameter sets the number of pods that the node can run to a fixed value, regardless of the properties of the node.\n\n```yaml\n kubeletConfig:\n    maxPods: 250\n```\n\n## Configuring the maximum number of pods per node {#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods}\n\nYou can use the `podsPerCore` and `maxPods` parameters in a kubelet configuration to control the maximum number of pods that can be scheduled to a node. If you use both options, the lower of the two limits the number of pods on a node. Setting an appropriate maximum can help ensure your nodes run efficiently.\n\nFor example, if `podsPerCore` is set to `10` on a node with 4 processor cores, the maximum number of pods allowed on the node will be 40.\n\n**Prerequisites**\n\n- You have the label associated with the static `MachineConfigPool` CRD for the type of node you want to configure.\n\n**Procedure**\n\n1. Create a custom resource (CR) for your configuration change.\n\n   ```yaml {title=\"Sample configuration for a max-pods CR\"}\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: KubeletConfig\n   metadata:\n     name: set-max-pods\n   spec:\n     machineConfigPoolSelector:\n       matchLabels:\n         pools.operator.machineconfiguration.openshift.io/worker: \"\"\n     kubeletConfig:\n       podsPerCore: 10\n       maxPods: 250\n   #...\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies a name for the CR.\n\n   `spec.machineConfigPoolSelector.matchLabels`\n   :   Specifies the label from the machine config pool.\n\n   `spec.kubeletConfig.podsPerCore`\n   :   Specifies the number of pods the node can run based on the number of processor cores on the node.\n\n   `spec.kubeletConfig.maxPods`\n   :   Specifies the number of pods the node can run to a fixed value, regardless of the properties of the node.\n\n       > [!NOTE]\n       > Setting `podsPerCore` to `0` disables this limit.\n\n       In the above example, the default value for `podsPerCore` is `10` and the default value for `maxPods` is `250`. This means that unless the node has 25 cores or more, by default, `podsPerCore` will be the limiting factor.\n2. Run the following command to create the CR:\n\n   ```terminal\n   $ oc create -f <file_name>.yaml\n   ```\n\n**Verification**\n\n- List the `MachineConfigPool` CRDs to check if the change is applied. The `UPDATING` column reports `True` if the change is picked up by the Machine Config Controller:\n\n  ```terminal\n  $ oc get machineconfigpools\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME     CONFIG                        UPDATED   UPDATING   DEGRADED\n  master   master-9cc2c72f205e103bb534   False     False      False\n  worker   worker-8cecd1236b33ee3f8a5e   False     True       False\n  ```\n\n  After the change is complete, the `UPDATED` column reports `True`.\n\n  ```terminal\n  $ oc get machineconfigpools\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME     CONFIG                        UPDATED   UPDATING   DEGRADED\n  master   master-9cc2c72f205e103bb534   False     True       False\n  worker   worker-8cecd1236b33ee3f8a5e   True      False      False\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing-max-pods.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,79 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-nodes-managing-max-pods" class="group scroll-mt-20">Managing the maximum number of pods per node<a href="#nodes-nodes-managing-max-pods" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>In OpenShift Container Platform, you can configure the number of pods that can run on a node based on the number of processor cores on the node, a hard limit, or both. If you use both options, the lower of the two limits the number of pods on a node. Setting a maximum number of pods can prevent a node from running more pods than its underlying hardware can handle.</p>
-      <p class="/snippets/nodes-pods-core-max-pods.md"></p>
-      <p class="/modules/nodes-nodes-managing-max-pods-proc.md"></p>
+      <p>When both options are in use, the lower of the two values limits the number of pods on a node. Exceeding these values can result in the following conditions:</p>
+      <ul>
+      <li>Increased CPU utilization.</li>
+      <li>Slow pod scheduling.</li>
+      <li>Potential out-of-memory scenarios, depending on the amount of memory in the node.</li>
+      <li>Exhausting the pool of IP addresses.</li>
+      <li>Resource overcommitting, leading to poor user application performance.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>In Kubernetes, a pod that is holding a single container actually uses two containers. The second container is used to set up networking prior to the actual container starting. Therefore, a system running 10 pods will actually have 20 containers running.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Disk IOPS throttling from the cloud provider might have an impact on CRI-O and kubelet. They might get overloaded when there are large number of I/O intensive pods running on the nodes. It is recommended that you monitor the disk I/O on the nodes and use volumes with sufficient throughput for the workload.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The <code>podsPerCore</code> parameter sets the number of pods that the node can run based on the number of processor cores on the node. For example, if <code>podsPerCore</code> is set to <code>10</code> on a node with 4 processor cores, the maximum number of pods allowed on the node is <code>40</code>.</p>
+      <CodeBlock code={"kubeletConfig:\n  podsPerCore: 10"} lang="yaml" />
+      <p>Setting <code>podsPerCore</code> to <code>0</code> disables this limit. The default is <code>0</code>. The value of the <code>podsPerCore</code> parameter cannot exceed the value of the <code>maxPods</code> parameter.</p>
+      <p>The <code>maxPods</code> parameter sets the number of pods that the node can run to a fixed value, regardless of the properties of the node.</p>
+      <CodeBlock code={" kubeletConfig:\n    maxPods: 250"} lang="yaml" />
+      <h2 id="nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods" class="group scroll-mt-20">Configuring the maximum number of pods per node<a href="#nodes-nodes-managing-max-pods-proc_nodes-nodes-managing-max-pods" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the <code>podsPerCore</code> and <code>maxPods</code> parameters in a kubelet configuration to control the maximum number of pods that can be scheduled to a node. If you use both options, the lower of the two limits the number of pods on a node. Setting an appropriate maximum can help ensure your nodes run efficiently.</p>
+      <p>For example, if <code>podsPerCore</code> is set to <code>10</code> on a node with 4 processor cores, the maximum number of pods allowed on the node will be 40.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have the label associated with the static <code>MachineConfigPool</code> CRD for the type of node you want to configure.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a custom resource (CR) for your configuration change.
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: KubeletConfig\nmetadata:\n  name: set-max-pods\nspec:\n  machineConfigPoolSelector:\n    matchLabels:\n      pools.operator.machineconfiguration.openshift.io/worker: \"\"\n  kubeletConfig:\n    podsPerCore: 10\n    maxPods: 250\n#..."} lang="yaml" title="Sample configuration for a max-pods CR" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the CR.</p></dd>
+      <dt class="font-semibold"><code>spec.machineConfigPoolSelector.matchLabels</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the label from the machine config pool.</p></dd>
+      <dt class="font-semibold"><code>spec.kubeletConfig.podsPerCore</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the number of pods the node can run based on the number of processor cores on the node.</p></dd>
+      <dt class="font-semibold"><code>spec.kubeletConfig.maxPods</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the number of pods the node can run to a fixed value, regardless of the properties of the node.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Setting <code>podsPerCore</code> to <code>0</code> disables this limit.</p>
+        </AlertDescription>
+      </Alert>
+      <p>In the above example, the default value for <code>podsPerCore</code> is <code>10</code> and the default value for <code>maxPods</code> is <code>250</code>. This means that unless the node has 25 cores or more, by default, <code>podsPerCore</code> will be the limiting factor.</p>
+      </dd>
+      </dl>
+      </li>
+      <li>
+      Run the following command to create the CR:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      List the <code>MachineConfigPool</code> CRDs to check if the change is applied. The <code>UPDATING</code> column reports <code>True</code> if the change is picked up by the Machine Config Controller:
+      <CodeBlock code={"$ oc get machineconfigpools"} lang="terminal" />
+      <CodeBlock code={"NAME     CONFIG                        UPDATED   UPDATING   DEGRADED\nmaster   master-9cc2c72f205e103bb534   False     False      False\nworker   worker-8cecd1236b33ee3f8a5e   False     True       False"} lang="terminal" title="Example output" />
+      <p>After the change is complete, the <code>UPDATED</code> column reports <code>True</code>.</p>
+      <CodeBlock code={"$ oc get machineconfigpools"} lang="terminal" />
+      <CodeBlock code={"NAME     CONFIG                        UPDATED   UPDATING   DEGRADED\nmaster   master-9cc2c72f205e103bb534   False     True       False\nworker   worker-8cecd1236b33ee3f8a5e   True      False      False"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

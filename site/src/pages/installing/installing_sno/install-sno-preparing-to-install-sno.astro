@@ -15,8 +15,17 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"preparing-to-install-sno","text":"Preparing to install on a single node"},{"depth":2,"slug":"additional-resources_install-sno-preparing","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"preparing-to-install-sno","text":"Preparing to install on a single node"},{"depth":2,"slug":"install-sno-about-installing-on-a-single-node_install-sno-preparing","text":"About OpenShift on a single node"},{"depth":2,"slug":"install-sno-requirements-for-installing-on-a-single-node_install-sno-preparing","text":"Requirements for installing OpenShift on a single node"},{"depth":2,"slug":"additional-resources_install-sno-preparing","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_sno/install-sno-preparing-to-install-sno";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +48,7 @@ const pageCategory = ["installing","installing/installing_sno"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing to install on a single node {#preparing-to-install-sno}\n\nReview the different requirements for installing OpenShift Container Platform on a single node and prepare your environment for installation.\n\nEnsure you have reviewed the following documentation before preparing for a single node installation:\n\n- \"OpenShift Container Platform installation and update\"\n- \"Selecting a cluster installation method and preparing it for users\"\n\n**Additional resources**\n\n- [Certified Hypervisors and Guest Operating Systems (Red Hat Knowledgebase article)](https://access.redhat.com/articles/973163)\n- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)\n\n## Additional resources {#additional-resources_install-sno-preparing}\n\n- [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)\n- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_sno/install-sno-preparing-to-install-sno.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing to install on a single node {#preparing-to-install-sno}\n\nReview the different requirements for installing OpenShift Container Platform on a single node and prepare your environment for installation.\n\nEnsure you have reviewed the following documentation before preparing for a single node installation:\n\n- \"OpenShift Container Platform installation and update\"\n- \"Selecting a cluster installation method and preparing it for users\"\n\n## About OpenShift on a single node {#install-sno-about-installing-on-a-single-node_install-sno-preparing}\n\nYou can create a single-node cluster with standard installation methods. OpenShift Container Platform on a single node is a specialized installation that requires the creation of a special Ignition configuration file.\n\n> [!IMPORTANT]\n> After cluster installation, no configuration option exists to change a single-node cluster to a high availability (HA) cluster or a two-node cluster. The architecture topology you choose at installation time sets the architecture topology for the lifecycle of the cluster.\n\nThe primary use case is for edge computing workloads, including intermittent connectivity, portable clouds, and 5G radio access networks (RAN) close to a base station. The major tradeoff with an installation on a single node is the lack of high availability.\n\n> [!IMPORTANT]\n> The use of OpenShiftSDN with single-node OpenShift is not supported. OVN-Kubernetes is the default network plugin for single-node OpenShift deployments.\n\n## Requirements for installing OpenShift on a single node {#install-sno-requirements-for-installing-on-a-single-node_install-sno-preparing}\n\nInstalling OpenShift Container Platform on a single node alleviates some of the requirements for high availability and large scale clusters. However, you must still address several requirements.\n\nThe following requirements must be met:\n\n- **Administration host:** You must have a computer to prepare the ISO, to create the USB boot drive, and to monitor the installation.\n\n  > [!NOTE]\n  > For the `ppc64le` platform, the host should prepare the ISO, but does not need to create the USB boot drive. The ISO can be mounted to PowerVM directly.\n\n  > [!NOTE]\n  > ISO is not required for IBM Z(R) installations.\n- **CPU Architecture:** Installing OpenShift Container Platform on a single node supports `x86_64`, `arm64`,`ppc64le`, and `s390x` CPU architectures.\n- **Supported platforms:** Installing OpenShift Container Platform on a single node is supported on bare metal and Certified third-party hypervisors. See \"Certified Hypervisors and Guest Operating Systems\" for more information. In most cases, you must specify the `platform.none: {}` parameter in the `install-config.yaml` configuration file. The following list shows the only exceptions and the corresponding parameter to specify in the `install-config.yaml` configuration file:\n\n  - Amazon Web Services (AWS), where you use `platform=aws`\n  - Google Cloud, where you use `platform=gcp`\n  - Microsoft Azure, where you use `platform=azure`\n- **Production-grade server:** Installing OpenShift Container Platform on a single node requires a server with sufficient resources to run OpenShift Container Platform services and a production workload. **Minimum resource requirements**\n\n  | Profile | Compute | Memory | Storage |\n  | --- | --- | --- | --- |\n  | Minimum | 4 vCPUs | 16 GB of RAM | 120 GB |\n\n  > [!IMPORTANT]\n  > Running single-node OpenShift on 4 vCPUs leaves very little \"headroom\" for user applications, and creates a high risk of resource contention and performance degradation.\n  >\n  > To ensure cluster stability at this threshold, you must take steps to minimize the total resource footprint of the cluster, such as limiting the amount of workloads running on the cluster or limiting cluster capabilities. For more information, see \"Cluster capabilities\".\n  >\n  > Otherwise, it is recommended to provide more compute resources to the cluster.\n\n  > [!NOTE]\n  > One vCPU generally equals one physical core. However, if you enable simultaneous multithreading (SMT), or Hyper-Threading, each CPU thread counts as a vCPU.\n  >\n  > Adding Operators during the installation process might increase the minimum resource requirements.\n\n  The server must have a Baseboard Management Controller (BMC) when booting with virtual media.\n\n  > [!NOTE]\n  > BMC is not supported on IBM Z(R) and IBM Power(R).\n- **Networking:** The server must have access to the internet or access to a local registry if it is not connected to a routable network. The server must have a DHCP reservation or a static IP address for the Kubernetes API, ingress route, and cluster node domain names. You must configure the DNS to resolve the IP address to each of the following fully qualified domain names (FQDN): **Required DNS records**\n\n  | Usage | FQDN | Description |\n  | --- | --- | --- |\n  | Kubernetes API | `api.<cluster_name>.<base_domain>` | Add a DNS A/AAAA or CNAME record. This record must be resolvable by both clients external to the cluster and within the cluster. |\n  | Internal API | `api-int.<cluster_name>.<base_domain>` | Add a DNS A/AAAA or CNAME record when creating the ISO manually. This record must be resolvable by nodes within the cluster. |\n  | Ingress route | `*.apps.<cluster_name>.<base_domain>` | Add a wildcard DNS A/AAAA or CNAME record that targets the node. This record must be resolvable by both clients external to the cluster and within the cluster. |\n\n  > [!IMPORTANT]\n  > Without persistent IP addresses, communications between the `apiserver` and `etcd` might fail.\n\n**Additional resources**\n\n- [Certified Hypervisors and Guest Operating Systems (Red Hat Knowledgebase article)](https://access.redhat.com/articles/973163)\n- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)\n\n## Additional resources {#additional-resources_install-sno-preparing}\n\n- [OpenShift Container Platform installation and update](/openshift-docs-markdown/architecture/architecture-installation#architecture-installation)\n- [Selecting a cluster installation method and preparing it for users](/openshift-docs-markdown/installing/overview/installing-preparing#installing-preparing)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_sno/install-sno-preparing-to-install-sno.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +100,134 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="preparing-to-install-sno" class="group scroll-mt-20">Preparing to install on a single node<a href="#preparing-to-install-sno" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Review the different requirements for installing OpenShift Container Platform on a single node and prepare your environment for installation.</p>
       <p>Ensure you have reviewed the following documentation before preparing for a single node installation:</p>
       <ul>
       <li>"OpenShift Container Platform installation and update"</li>
       <li>"Selecting a cluster installation method and preparing it for users"</li>
       </ul>
-      <p class="/modules/install-sno-requirements-for-installing-on-a-single-node.md"></p>
+      <h2 id="install-sno-about-installing-on-a-single-node_install-sno-preparing" class="group scroll-mt-20">About OpenShift on a single node<a href="#install-sno-about-installing-on-a-single-node_install-sno-preparing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can create a single-node cluster with standard installation methods. OpenShift Container Platform on a single node is a specialized installation that requires the creation of a special Ignition configuration file.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>After cluster installation, no configuration option exists to change a single-node cluster to a high availability (HA) cluster or a two-node cluster. The architecture topology you choose at installation time sets the architecture topology for the lifecycle of the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The primary use case is for edge computing workloads, including intermittent connectivity, portable clouds, and 5G radio access networks (RAN) close to a base station. The major tradeoff with an installation on a single node is the lack of high availability.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The use of OpenShiftSDN with single-node OpenShift is not supported. OVN-Kubernetes is the default network plugin for single-node OpenShift deployments.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="install-sno-requirements-for-installing-on-a-single-node_install-sno-preparing" class="group scroll-mt-20">Requirements for installing OpenShift on a single node<a href="#install-sno-requirements-for-installing-on-a-single-node_install-sno-preparing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Installing OpenShift Container Platform on a single node alleviates some of the requirements for high availability and large scale clusters. However, you must still address several requirements.</p>
+      <p>The following requirements must be met:</p>
+      <ul>
+      <li>
+      <strong>Administration host:</strong> You must have a computer to prepare the ISO, to create the USB boot drive, and to monitor the installation.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For the <code>ppc64le</code> platform, the host should prepare the ISO, but does not need to create the USB boot drive. The ISO can be mounted to PowerVM directly.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>ISO is not required for IBM Z(R) installations.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li><strong>CPU Architecture:</strong> Installing OpenShift Container Platform on a single node supports <code>x86_64</code>, <code>arm64</code>,<code>ppc64le</code>, and <code>s390x</code> CPU architectures.</li>
+      <li>
+      <strong>Supported platforms:</strong> Installing OpenShift Container Platform on a single node is supported on bare metal and Certified third-party hypervisors. See "Certified Hypervisors and Guest Operating Systems" for more information. In most cases, you must specify the <code>platform.none: {"{"}{"}"}</code> parameter in the <code>install-config.yaml</code> configuration file. The following list shows the only exceptions and the corresponding parameter to specify in the <code>install-config.yaml</code> configuration file:
+      <ul>
+      <li>Amazon Web Services (AWS), where you use <code>platform=aws</code></li>
+      <li>Google Cloud, where you use <code>platform=gcp</code></li>
+      <li>Microsoft Azure, where you use <code>platform=azure</code></li>
+      </ul>
+      </li>
+      <li>
+      <strong>Production-grade server:</strong> Installing OpenShift Container Platform on a single node requires a server with sufficient resources to run OpenShift Container Platform services and a production workload. <strong>Minimum resource requirements</strong>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Profile</TableHead>
+      <TableHead>Compute</TableHead>
+      <TableHead>Memory</TableHead>
+      <TableHead>Storage</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Minimum</TableCell>
+      <TableCell>4 vCPUs</TableCell>
+      <TableCell>16 GB of RAM</TableCell>
+      <TableCell>120 GB</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Running single-node OpenShift on 4 vCPUs leaves very little "headroom" for user applications, and creates a high risk of resource contention and performance degradation.</p>
+          <p>To ensure cluster stability at this threshold, you must take steps to minimize the total resource footprint of the cluster, such as limiting the amount of workloads running on the cluster or limiting cluster capabilities. For more information, see "Cluster capabilities".</p>
+          <p>Otherwise, it is recommended to provide more compute resources to the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>One vCPU generally equals one physical core. However, if you enable simultaneous multithreading (SMT), or Hyper-Threading, each CPU thread counts as a vCPU.</p>
+          <p>Adding Operators during the installation process might increase the minimum resource requirements.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The server must have a Baseboard Management Controller (BMC) when booting with virtual media.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>BMC is not supported on IBM Z(R) and IBM Power(R).</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      <strong>Networking:</strong> The server must have access to the internet or access to a local registry if it is not connected to a routable network. The server must have a DHCP reservation or a static IP address for the Kubernetes API, ingress route, and cluster node domain names. You must configure the DNS to resolve the IP address to each of the following fully qualified domain names (FQDN): <strong>Required DNS records</strong>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Usage</TableHead>
+      <TableHead>FQDN</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Kubernetes API</TableCell>
+      <TableCell><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell>Add a DNS A/AAAA or CNAME record. This record must be resolvable by both clients external to the cluster and within the cluster.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Internal API</TableCell>
+      <TableCell><code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell>Add a DNS A/AAAA or CNAME record when creating the ISO manually. This record must be resolvable by nodes within the cluster.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Ingress route</TableCell>
+      <TableCell><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell>Add a wildcard DNS A/AAAA or CNAME record that targets the node. This record must be resolvable by both clients external to the cluster and within the cluster.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Without persistent IP addresses, communications between the <code>apiserver</code> and <code>etcd</code> might fail.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://access.redhat.com/articles/973163">Certified Hypervisors and Guest Operating Systems (Red Hat Knowledgebase article)</a></li>

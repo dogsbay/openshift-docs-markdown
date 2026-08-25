@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"core-cluster-upgrades-troubleshooting","text":"Troubleshoot cluster updates with {{ cgu_operator }}"},{"depth":2,"slug":"additional-resources_core-cluster-upgrades-troubleshooting","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"core-cluster-upgrades-troubleshooting","text":"Troubleshoot cluster updates with {{ cgu_operator }}"},{"depth":2,"slug":"core-cluster-upgrade-ts-cgu-preparing_core-cluster-upgrades-troubleshooting","text":"Diagnosing a ClusterGroupUpgrade CR stuck in Preparing state"},{"depth":2,"slug":"core-cluster-upgrade-ts-cgu-failed_core-cluster-upgrades-troubleshooting","text":"Diagnosing a ClusterGroupUpgrade CR that failed on some clusters"},{"depth":2,"slug":"core-cluster-upgrade-ts-operator-degraded_core-cluster-upgrades-troubleshooting","text":"Diagnosing degraded cluster Operators during an update"},{"depth":2,"slug":"core-cluster-upgrade-ts-update-stuck_core-cluster-upgrades-troubleshooting","text":"Diagnosing an update stuck in Working towards state"},{"depth":2,"slug":"core-cluster-upgrade-ts-nodes-notready_core-cluster-upgrades-troubleshooting","text":"Diagnosing worker nodes stuck in NotReady state"},{"depth":2,"slug":"core-cluster-upgrade-ts-worker-update-stuck_core-cluster-upgrades-troubleshooting","text":"Diagnosing a stuck worker node update"},{"depth":2,"slug":"core-cluster-upgrade-ts-etcd_core-cluster-upgrades-troubleshooting","text":"Diagnosing etcd issues during control plane updates"},{"depth":2,"slug":"core-cluster-upgrade-ts-image-pull_core-cluster-upgrades-troubleshooting","text":"Diagnosing image pull failures during updates"},{"depth":2,"slug":"core-cluster-upgrade-ts-timeout_core-cluster-upgrades-troubleshooting","text":"Diagnosing update timeout exceeded"},{"depth":2,"slug":"core-cluster-upgrade-ts-noncompliant-policy_core-cluster-upgrades-troubleshooting","text":"Resolving a noncompliant policy hold during an update"},{"depth":2,"slug":"core-cluster-upgrade-ts-collect-diagnostics_core-cluster-upgrades-troubleshooting","text":"Collecting diagnostic information for Red Hat support"},{"depth":2,"slug":"additional-resources_core-cluster-upgrades-troubleshooting","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-troubleshooting";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshoot cluster updates with {{ cgu_operator }} {#core-cluster-upgrades-troubleshooting}\n\nIf a cluster update gets stuck, fails, or results in degraded cluster Operators, use the following diagnostic procedures to identify the root cause and take corrective action.\n\n## Additional resources {#additional-resources_core-cluster-upgrades-troubleshooting}\n\n- [Perform health checks before a cluster update with {{ cgu_operator }}](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks)\n- [Using the {{ cgu_operator_full }} for cluster updates](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates)\n- [Contact Red Hat support](https://access.redhat.com/support)\n- [Red Hat Knowledgebase](https://access.redhat.com/solutions)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-troubleshooting.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshoot cluster updates with {{ cgu_operator }} {#core-cluster-upgrades-troubleshooting}\n\nIf a cluster update gets stuck, fails, or results in degraded cluster Operators, use the following diagnostic procedures to identify the root cause and take corrective action.\n\n## Diagnosing a ClusterGroupUpgrade CR stuck in Preparing state {#core-cluster-upgrade-ts-cgu-preparing_core-cluster-upgrades-troubleshooting}\n\nIf a `ClusterGroupUpgrade` custom resource (CR) is stuck in the `Preparing` state, the issue is typically related to policy compliance, cluster readiness, or blocking custom resources.\n\n**Prerequisites**\n\n- You have a `ClusterGroupUpgrade` CR that is stuck in `Preparing` state.\n- You have access to the Red Hat Advanced Cluster Management (RHACM) hub cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Check the `ClusterGroupUpgrade` status by running the following command:\n\n   ```terminal\n   $ oc get cgu <cgu_name> -n <namespace> -o yaml\n   ```\n\n   Look for error messages in the `status.conditions` section. Common causes include managed policies that do not exist or are not bound to target clusters, target clusters that are not in a ready state, and blocking custom resources that are not ready.\n2. Check policy compliance in RHACM by running the following command:\n\n   ```terminal\n   $ oc get policy <policy_name> -n <namespace>\n   ```\n3. Check policy details for noncompliant policies by running the following command:\n\n   ```terminal\n   $ oc describe policy <policy_name> -n <namespace>\n   ```\n\n   Resolve policy compliance issues before the `ClusterGroupUpgrade` CR can proceed.\n\n## Diagnosing a ClusterGroupUpgrade CR that failed on some clusters {#core-cluster-upgrade-ts-cgu-failed_core-cluster-upgrades-troubleshooting}\n\nIf a `ClusterGroupUpgrade` custom resource (CR) completes but some clusters show a `failed` status, investigate the failed clusters individually to identify the root cause.\n\n**Prerequisites**\n\n- You have a `ClusterGroupUpgrade` CR that shows failed clusters.\n- You have access to the Red Hat Advanced Cluster Management (RHACM) hub cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Check detailed cluster status in the `ClusterGroupUpgrade` CR by running the following command:\n\n   ```terminal\n   $ oc get cgu <cgu_name> -n <namespace> -o jsonpath='{.status.clusters}'\n   ```\n\n   The following example shows the output:\n\n   ```json\n   {\n     \"spoke1\": \"complete\",\n     \"spoke2\": \"failed\",\n     \"spoke3\": \"inprogress\"\n   }\n   ```\n2. Check TALM logs for errors related to the failed clusters by running the following command:\n\n   ```terminal\n   $ oc logs -n openshift-operators deployment/cluster-group-upgrades-controller-manager\n   ```\n3. Check policy violation events on the failed cluster by running the following command:\n\n   ```terminal\n   $ oc --context=<failed_cluster> get events -A --sort-by='.lastTimestamp' | tail -20\n   ```\n\n## Diagnosing degraded cluster Operators during an update {#core-cluster-upgrade-ts-operator-degraded_core-cluster-upgrades-troubleshooting}\n\nIf a cluster Operator becomes degraded during an update, identify the affected Operator and investigate the root cause.\n\nCommon Operators that degrade during updates include `authentication`, `console`, `monitoring`, and `network`.\n\n**Prerequisites**\n\n- You have a cluster update in progress with one or more degraded Operators.\n- You have access to the target cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Identify degraded Operators by running the following command:\n\n   ```terminal\n   $ oc get co | grep -v \"True.*False.*False\"\n   ```\n\n   The following example shows the output:\n\n   ```terminal\n   NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE\n   authentication                             4.20.0    True        False         True       5m      APIServerDeploymentDegraded: ...\n   ```\n2. Check Operator details by running the following command:\n\n   ```terminal\n   $ oc describe co authentication\n   ```\n\n   Look for error messages in the `status.conditions` section of the output.\n3. Check Operator pod logs by running the following command:\n\n   ```terminal\n   $ oc logs -n openshift-authentication deployment/oauth-openshift\n   ```\n\n## Diagnosing an update stuck in Working towards state {#core-cluster-upgrade-ts-update-stuck_core-cluster-upgrades-troubleshooting}\n\nIf the cluster version shows a \"Working towards\" message for an extended period, identify which Operators are blocking the update from completing. Updates typically complete within 90 to 180 minutes.\n\n**Prerequisites**\n\n- You have a cluster update that appears stuck in the \"Working towards\" state.\n- You have access to the target cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Check `ClusterVersion` status by running the following command:\n\n   ```terminal\n   $ oc get clusterversion -o yaml\n   ```\n\n   Look for the `status.conditions` section to identify blocking resources.\n2. Check which Operators are still progressing by running the following command:\n\n   ```terminal\n   $ oc get co | grep \"True\"\n   ```\n\n   Any Operator showing `PROGRESSING=True` is still updating.\n3. Check `ClusterVersion` history by running the following command:\n\n   ```terminal\n   $ oc get clusterversion -o jsonpath='{.status.history}'\n   ```\n\n   A missing or stalled history entry indicates the update has timed out.\n\n## Diagnosing worker nodes stuck in NotReady state {#core-cluster-upgrade-ts-nodes-notready_core-cluster-upgrades-troubleshooting}\n\nIf worker nodes show `NotReady` status during an update, common causes include disk pressure, memory pressure, network connectivity issues, and PID pressure.\n\n**Prerequisites**\n\n- You have worker nodes showing `NotReady` status during a cluster update.\n- You have access to the target cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Identify `NotReady` nodes by running the following command:\n\n   ```terminal\n   $ oc get nodes | grep NotReady\n   ```\n2. Check node conditions by running the following command:\n\n   ```terminal\n   $ oc describe node <node_name> | grep -A 10 Conditions\n   ```\n3. Check kubelet logs by running the following command:\n\n   ```terminal\n   $ oc debug node/<node_name> -- chroot /host journalctl -u kubelet -n 100\n   ```\n\n## Diagnosing a stuck worker node update {#core-cluster-upgrade-ts-worker-update-stuck_core-cluster-upgrades-troubleshooting}\n\nIf worker node updates are stuck, the issue is typically related to pod disruption budgets, machine config daemon failures, or node reboot failures.\n\n**Prerequisites**\n\n- You have a worker node update that is not progressing.\n- You have access to the target cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Check the `MachineConfigPool` resource status by running the following command:\n\n   ```terminal\n   $ oc get mcp worker -o yaml\n   ```\n\n   Look for degraded machine configs in the status.\n2. Check pod disruption budgets by running the following command:\n\n   ```terminal\n   $ oc get pdb -A\n   ```\n\n   If a pod disruption budget (PDB) shows `ALLOWED DISRUPTIONS` of 0, adjust the PDB configuration.\n3. Check machine-config-daemon logs on the stuck node by running the following command:\n\n   ```terminal\n   $ oc logs -n openshift-machine-config-operator <machine_config_daemon_pod>\n   ```\n\n## Diagnosing etcd issues during control plane updates {#core-cluster-upgrade-ts-etcd_core-cluster-upgrades-troubleshooting}\n\nIf etcd members become unhealthy during a control plane update, identify the affected members and investigate the root cause before proceeding.\n\n**Prerequisites**\n\n- You have a control plane update with suspected etcd issues.\n- You have access to the target cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Check etcd cluster health by running the following command:\n\n   ```terminal\n   $ oc get etcd -o yaml\n   ```\n\n   Look for the `EtcdMembersAvailable` condition in the output.\n2. Check etcd pod status by running the following command:\n\n   ```terminal\n   $ oc get pods -n openshift-etcd -l app=etcd\n   ```\n\n   All etcd pods must be running.\n3. View etcd member status by running the following command:\n\n   ```terminal\n   $ oc rsh -n openshift-etcd <etcd_pod> etcdctl member list -w table\n   ```\n4. Monitor etcd logs for errors by running the following command:\n\n   ```terminal\n   $ oc logs -n openshift-etcd <etcd_pod> etcd\n   ```\n\n## Diagnosing image pull failures during updates {#core-cluster-upgrade-ts-image-pull_core-cluster-upgrades-troubleshooting}\n\nIf image pull failures occur during an update, common causes include registry connectivity issues, images not mirrored to a disconnected registry, and image pull authentication failures.\n\n**Prerequisites**\n\n- You have image pull failures during a cluster update.\n- You have access to the target cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Check image pull status on nodes by running the following command:\n\n   ```terminal\n   $ oc get events -A --field-selector reason=Failed --sort-by='.lastTimestamp' | grep -i image\n   ```\n2. For disconnected environments, verify image mirroring by running the following command:\n\n   ```terminal\n   $ oc get imagedigestmirrorset\n   ```\n\n   > [!NOTE]\n   > In OpenShift Container Platform 4.13 and earlier, image mirroring was configured with `ImageContentSourcePolicy` resources. In OpenShift Container Platform 4.14 and later, `ImageDigestMirrorSet` resources replace `ImageContentSourcePolicy`. If your cluster was originally installed on a version earlier than 4.14, check both resource types.\n3. Test image pull from a node by running the following command:\n\n   ```terminal\n   $ oc debug node/<node_name> -- chroot /host podman pull <image_url>\n   ```\n\n## Diagnosing update timeout exceeded {#core-cluster-upgrade-ts-timeout_core-cluster-upgrades-troubleshooting}\n\nIf TALM reports that the update timeout was exceeded, investigate cluster resource utilization, image pull speed, and network latency.\n\n**Prerequisites**\n\n- You have a `ClusterGroupUpgrade` custom resource (CR) that has timed out.\n- You have access to the target cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Check cluster resource utilization by running the following command:\n\n   ```terminal\n   $ oc adm top nodes\n   ```\n\n   High CPU or memory usage can slow updates.\n2. Check for slow image pulls by running the following command:\n\n   ```terminal\n   $ oc get events -A --sort-by='.lastTimestamp' | grep -i \"pull\"\n   ```\n\n   Slow image pulls can indicate network latency between nodes and registries.\n3. Increase the `ClusterGroupUpgrade` CR timeout by running the following command if the cluster is healthy but updating slowly:\n\n   ```terminal\n   $ oc patch cgu <cgu_name> -n <namespace> --type merge -p '{\"spec\":{\"remediationStrategy\":{\"timeout\":240}}}'\n   ```\n\n## Resolving a noncompliant policy hold during an update {#core-cluster-upgrade-ts-noncompliant-policy_core-cluster-upgrades-troubleshooting}\n\nDuring the update, TALM verifies the status of `ClusterVersion` for the OpenShift Container Platform update and `Subscription` for OLM Operators. If errors occur during those updates, the status does not change to the expected value and the policies do not become compliant. TALM holds at that point waiting for compliance.\n\nIf you are monitoring the update, you can fix the issue on the target cluster and the update continues automatically when the policy becomes compliant.\n\n`ClusterGroupUpgrade` custom resource (CR) has timed out\n:   Delete the timed-out CR by running the following command:\n\n    ```terminal\n    $ oc delete cgu <timed_out_cgu_name> -n <namespace>\n    ```\n\n    All policies revert to `inform` mode, leaving the cluster at the point where the issue occurred.\n\n    Fix the issue that caused the timeout, then re-create the `ClusterGroupUpgrade` CR to resume the update by running the following command:\n\n    ```terminal\n    $ oc apply -f <cgu_cr_filename>.yaml\n    ```\n\nPolicies or TALM are conflicting with changes you need to make\n:   Delete the `ClusterGroupUpgrade` CR to revert all policies to `inform` mode by running the following command:\n\n    ```terminal\n    $ oc delete cgu <cgu_name> -n <namespace>\n    ```\n\n    After the policies revert to `inform` mode, they do not enforce changes on the cluster.\n\n    Fix the issue, then re-create the `ClusterGroupUpgrade` CR to resume the update.\n\n## Collecting diagnostic information for Red Hat support {#core-cluster-upgrade-ts-collect-diagnostics_core-cluster-upgrades-troubleshooting}\n\nIf you cannot resolve the update issue, collect diagnostic information and contact Red Hat support for assistance.\n\n**Prerequisites**\n\n- You have a cluster update issue that you cannot resolve.\n- You have access to the target cluster and the Red Hat Advanced Cluster Management (RHACM) hub cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Collect must-gather data by running the following command:\n\n   ```terminal\n   $ oc adm must-gather\n   ```\n2. Collect RHACM must-gather data for TALM-specific issues by running the following command:\n\n   ```terminal\n   $ oc adm must-gather --image=registry.redhat.io/rhacm2/must-gather-rhel8\n   ```\n3. Collect `ClusterVersion` history by running the following command:\n\n   ```terminal\n   $ oc get clusterversion -o jsonpath='{.status.history}' > clusterversion-history.json\n   ```\n4. Collect `ClusterGroupUpgrade` status by running the following command:\n\n   ```terminal\n   $ oc get cgu <cgu_name> -n <namespace> -o yaml > cgu-status.yaml\n   ```\n\n## Additional resources {#additional-resources_core-cluster-upgrades-troubleshooting}\n\n- [Perform health checks before a cluster update with TALM](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks)\n- [Using the Topology Aware Lifecycle Manager for cluster updates](/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates)\n- [Contact Red Hat support](https://access.redhat.com/support)\n- [Red Hat Knowledgebase](https://access.redhat.com/solutions)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-troubleshooting.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,23 +95,282 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Troubleshoot cluster updates with {"{"}{"{"} cgu_operator {"}"}{"}"}<a href="#core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>If a cluster update gets stuck, fails, or results in degraded cluster Operators, use the following diagnostic procedures to identify the root cause and take corrective action.</p>
-      <p class="/modules/core-cluster-upgrade-ts-cgu-preparing.md"></p>
-      <p class="/modules/core-cluster-upgrade-ts-cgu-failed.md"></p>
-      <p class="/modules/core-cluster-upgrade-ts-operator-degraded.md"></p>
-      <p class="/modules/core-cluster-upgrade-ts-update-stuck.md"></p>
-      <p class="/modules/core-cluster-upgrade-ts-nodes-notready.md"></p>
-      <p class="/modules/core-cluster-upgrade-ts-worker-update-stuck.md"></p>
-      <p class="/modules/core-cluster-upgrade-ts-etcd.md"></p>
-      <p class="/modules/core-cluster-upgrade-ts-image-pull.md"></p>
-      <p class="/modules/core-cluster-upgrade-ts-timeout.md"></p>
-      <p class="/modules/core-cluster-upgrade-ts-noncompliant-policy.md"></p>
-      <p class="/modules/core-cluster-upgrade-ts-collect-diagnostics.md"></p>
+      <h2 id="core-cluster-upgrade-ts-cgu-preparing_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Diagnosing a ClusterGroupUpgrade CR stuck in Preparing state<a href="#core-cluster-upgrade-ts-cgu-preparing_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If a <code>ClusterGroupUpgrade</code> custom resource (CR) is stuck in the <code>Preparing</code> state, the issue is typically related to policy compliance, cluster readiness, or blocking custom resources.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a <code>ClusterGroupUpgrade</code> CR that is stuck in <code>Preparing</code> state.</li>
+      <li>You have access to the Red Hat Advanced Cluster Management (RHACM) hub cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check the <code>ClusterGroupUpgrade</code> status by running the following command:
+      <CodeBlock code={"$ oc get cgu <cgu_name> -n <namespace> -o yaml"} lang="terminal" />
+      <p>Look for error messages in the <code>status.conditions</code> section. Common causes include managed policies that do not exist or are not bound to target clusters, target clusters that are not in a ready state, and blocking custom resources that are not ready.</p>
+      </li>
+      <li>
+      Check policy compliance in RHACM by running the following command:
+      <CodeBlock code={"$ oc get policy <policy_name> -n <namespace>"} lang="terminal" />
+      </li>
+      <li>
+      Check policy details for noncompliant policies by running the following command:
+      <CodeBlock code={"$ oc describe policy <policy_name> -n <namespace>"} lang="terminal" />
+      <p>Resolve policy compliance issues before the <code>ClusterGroupUpgrade</code> CR can proceed.</p>
+      </li>
+      </ol>
+      <h2 id="core-cluster-upgrade-ts-cgu-failed_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Diagnosing a ClusterGroupUpgrade CR that failed on some clusters<a href="#core-cluster-upgrade-ts-cgu-failed_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If a <code>ClusterGroupUpgrade</code> custom resource (CR) completes but some clusters show a <code>failed</code> status, investigate the failed clusters individually to identify the root cause.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a <code>ClusterGroupUpgrade</code> CR that shows failed clusters.</li>
+      <li>You have access to the Red Hat Advanced Cluster Management (RHACM) hub cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check detailed cluster status in the <code>ClusterGroupUpgrade</code> CR by running the following command:
+      <CodeBlock code={"$ oc get cgu <cgu_name> -n <namespace> -o jsonpath='{.status.clusters}'"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"{\n  \"spoke1\": \"complete\",\n  \"spoke2\": \"failed\",\n  \"spoke3\": \"inprogress\"\n}"} lang="json" />
+      </li>
+      <li>
+      Check TALM logs for errors related to the failed clusters by running the following command:
+      <CodeBlock code={"$ oc logs -n openshift-operators deployment/cluster-group-upgrades-controller-manager"} lang="terminal" />
+      </li>
+      <li>
+      Check policy violation events on the failed cluster by running the following command:
+      <CodeBlock code={"$ oc --context=<failed_cluster> get events -A --sort-by='.lastTimestamp' | tail -20"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="core-cluster-upgrade-ts-operator-degraded_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Diagnosing degraded cluster Operators during an update<a href="#core-cluster-upgrade-ts-operator-degraded_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If a cluster Operator becomes degraded during an update, identify the affected Operator and investigate the root cause.</p>
+      <p>Common Operators that degrade during updates include <code>authentication</code>, <code>console</code>, <code>monitoring</code>, and <code>network</code>.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a cluster update in progress with one or more degraded Operators.</li>
+      <li>You have access to the target cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Identify degraded Operators by running the following command:
+      <CodeBlock code={"$ oc get co | grep -v \"True.*False.*False\""} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE\nauthentication                             4.20.0    True        False         True       5m      APIServerDeploymentDegraded: ..."} lang="terminal" />
+      </li>
+      <li>
+      Check Operator details by running the following command:
+      <CodeBlock code={"$ oc describe co authentication"} lang="terminal" />
+      <p>Look for error messages in the <code>status.conditions</code> section of the output.</p>
+      </li>
+      <li>
+      Check Operator pod logs by running the following command:
+      <CodeBlock code={"$ oc logs -n openshift-authentication deployment/oauth-openshift"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="core-cluster-upgrade-ts-update-stuck_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Diagnosing an update stuck in Working towards state<a href="#core-cluster-upgrade-ts-update-stuck_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If the cluster version shows a "Working towards" message for an extended period, identify which Operators are blocking the update from completing. Updates typically complete within 90 to 180 minutes.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a cluster update that appears stuck in the "Working towards" state.</li>
+      <li>You have access to the target cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check <code>ClusterVersion</code> status by running the following command:
+      <CodeBlock code={"$ oc get clusterversion -o yaml"} lang="terminal" />
+      <p>Look for the <code>status.conditions</code> section to identify blocking resources.</p>
+      </li>
+      <li>
+      Check which Operators are still progressing by running the following command:
+      <CodeBlock code={"$ oc get co | grep \"True\""} lang="terminal" />
+      <p>Any Operator showing <code>PROGRESSING=True</code> is still updating.</p>
+      </li>
+      <li>
+      Check <code>ClusterVersion</code> history by running the following command:
+      <CodeBlock code={"$ oc get clusterversion -o jsonpath='{.status.history}'"} lang="terminal" />
+      <p>A missing or stalled history entry indicates the update has timed out.</p>
+      </li>
+      </ol>
+      <h2 id="core-cluster-upgrade-ts-nodes-notready_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Diagnosing worker nodes stuck in NotReady state<a href="#core-cluster-upgrade-ts-nodes-notready_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If worker nodes show <code>NotReady</code> status during an update, common causes include disk pressure, memory pressure, network connectivity issues, and PID pressure.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have worker nodes showing <code>NotReady</code> status during a cluster update.</li>
+      <li>You have access to the target cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Identify <code>NotReady</code> nodes by running the following command:
+      <CodeBlock code={"$ oc get nodes | grep NotReady"} lang="terminal" />
+      </li>
+      <li>
+      Check node conditions by running the following command:
+      <CodeBlock code={"$ oc describe node <node_name> | grep -A 10 Conditions"} lang="terminal" />
+      </li>
+      <li>
+      Check kubelet logs by running the following command:
+      <CodeBlock code={"$ oc debug node/<node_name> -- chroot /host journalctl -u kubelet -n 100"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="core-cluster-upgrade-ts-worker-update-stuck_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Diagnosing a stuck worker node update<a href="#core-cluster-upgrade-ts-worker-update-stuck_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If worker node updates are stuck, the issue is typically related to pod disruption budgets, machine config daemon failures, or node reboot failures.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a worker node update that is not progressing.</li>
+      <li>You have access to the target cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check the <code>MachineConfigPool</code> resource status by running the following command:
+      <CodeBlock code={"$ oc get mcp worker -o yaml"} lang="terminal" />
+      <p>Look for degraded machine configs in the status.</p>
+      </li>
+      <li>
+      Check pod disruption budgets by running the following command:
+      <CodeBlock code={"$ oc get pdb -A"} lang="terminal" />
+      <p>If a pod disruption budget (PDB) shows <code>ALLOWED DISRUPTIONS</code> of 0, adjust the PDB configuration.</p>
+      </li>
+      <li>
+      Check machine-config-daemon logs on the stuck node by running the following command:
+      <CodeBlock code={"$ oc logs -n openshift-machine-config-operator <machine_config_daemon_pod>"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="core-cluster-upgrade-ts-etcd_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Diagnosing etcd issues during control plane updates<a href="#core-cluster-upgrade-ts-etcd_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If etcd members become unhealthy during a control plane update, identify the affected members and investigate the root cause before proceeding.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a control plane update with suspected etcd issues.</li>
+      <li>You have access to the target cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check etcd cluster health by running the following command:
+      <CodeBlock code={"$ oc get etcd -o yaml"} lang="terminal" />
+      <p>Look for the <code>EtcdMembersAvailable</code> condition in the output.</p>
+      </li>
+      <li>
+      Check etcd pod status by running the following command:
+      <CodeBlock code={"$ oc get pods -n openshift-etcd -l app=etcd"} lang="terminal" />
+      <p>All etcd pods must be running.</p>
+      </li>
+      <li>
+      View etcd member status by running the following command:
+      <CodeBlock code={"$ oc rsh -n openshift-etcd <etcd_pod> etcdctl member list -w table"} lang="terminal" />
+      </li>
+      <li>
+      Monitor etcd logs for errors by running the following command:
+      <CodeBlock code={"$ oc logs -n openshift-etcd <etcd_pod> etcd"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="core-cluster-upgrade-ts-image-pull_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Diagnosing image pull failures during updates<a href="#core-cluster-upgrade-ts-image-pull_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If image pull failures occur during an update, common causes include registry connectivity issues, images not mirrored to a disconnected registry, and image pull authentication failures.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have image pull failures during a cluster update.</li>
+      <li>You have access to the target cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check image pull status on nodes by running the following command:
+      <CodeBlock code={"$ oc get events -A --field-selector reason=Failed --sort-by='.lastTimestamp' | grep -i image"} lang="terminal" />
+      </li>
+      <li>
+      For disconnected environments, verify image mirroring by running the following command:
+      <CodeBlock code={"$ oc get imagedigestmirrorset"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>In OpenShift Container Platform 4.13 and earlier, image mirroring was configured with <code>ImageContentSourcePolicy</code> resources. In OpenShift Container Platform 4.14 and later, <code>ImageDigestMirrorSet</code> resources replace <code>ImageContentSourcePolicy</code>. If your cluster was originally installed on a version earlier than 4.14, check both resource types.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Test image pull from a node by running the following command:
+      <CodeBlock code={"$ oc debug node/<node_name> -- chroot /host podman pull <image_url>"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="core-cluster-upgrade-ts-timeout_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Diagnosing update timeout exceeded<a href="#core-cluster-upgrade-ts-timeout_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If TALM reports that the update timeout was exceeded, investigate cluster resource utilization, image pull speed, and network latency.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a <code>ClusterGroupUpgrade</code> custom resource (CR) that has timed out.</li>
+      <li>You have access to the target cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check cluster resource utilization by running the following command:
+      <CodeBlock code={"$ oc adm top nodes"} lang="terminal" />
+      <p>High CPU or memory usage can slow updates.</p>
+      </li>
+      <li>
+      Check for slow image pulls by running the following command:
+      <CodeBlock code={"$ oc get events -A --sort-by='.lastTimestamp' | grep -i \"pull\""} lang="terminal" />
+      <p>Slow image pulls can indicate network latency between nodes and registries.</p>
+      </li>
+      <li>
+      Increase the <code>ClusterGroupUpgrade</code> CR timeout by running the following command if the cluster is healthy but updating slowly:
+      <CodeBlock code={"$ oc patch cgu <cgu_name> -n <namespace> --type merge -p '{\"spec\":{\"remediationStrategy\":{\"timeout\":240}}}'"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="core-cluster-upgrade-ts-noncompliant-policy_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Resolving a noncompliant policy hold during an update<a href="#core-cluster-upgrade-ts-noncompliant-policy_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">During the update, TALM verifies the status of <code>ClusterVersion</code> for the OpenShift Container Platform update and <code>Subscription</code> for OLM Operators. If errors occur during those updates, the status does not change to the expected value and the policies do not become compliant. TALM holds at that point waiting for compliance.</p>
+      <p>If you are monitoring the update, you can fix the issue on the target cluster and the update continues automatically when the policy becomes compliant.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>ClusterGroupUpgrade</code> custom resource (CR) has timed out</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Delete the timed-out CR by running the following command:</p>
+      <CodeBlock code={"$ oc delete cgu <timed_out_cgu_name> -n <namespace>"} lang="terminal" />
+      <p>All policies revert to <code>inform</code> mode, leaving the cluster at the point where the issue occurred.</p>
+      <p>Fix the issue that caused the timeout, then re-create the <code>ClusterGroupUpgrade</code> CR to resume the update by running the following command:</p>
+      <CodeBlock code={"$ oc apply -f <cgu_cr_filename>.yaml"} lang="terminal" />
+      </dd>
+      <dt class="font-semibold">Policies or TALM are conflicting with changes you need to make</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Delete the <code>ClusterGroupUpgrade</code> CR to revert all policies to <code>inform</code> mode by running the following command:</p>
+      <CodeBlock code={"$ oc delete cgu <cgu_name> -n <namespace>"} lang="terminal" />
+      <p>After the policies revert to <code>inform</code> mode, they do not enforce changes on the cluster.</p>
+      <p>Fix the issue, then re-create the <code>ClusterGroupUpgrade</code> CR to resume the update.</p>
+      </dd>
+      </dl>
+      <h2 id="core-cluster-upgrade-ts-collect-diagnostics_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Collecting diagnostic information for Red Hat support<a href="#core-cluster-upgrade-ts-collect-diagnostics_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you cannot resolve the update issue, collect diagnostic information and contact Red Hat support for assistance.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a cluster update issue that you cannot resolve.</li>
+      <li>You have access to the target cluster and the Red Hat Advanced Cluster Management (RHACM) hub cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Collect must-gather data by running the following command:
+      <CodeBlock code={"$ oc adm must-gather"} lang="terminal" />
+      </li>
+      <li>
+      Collect RHACM must-gather data for TALM-specific issues by running the following command:
+      <CodeBlock code={"$ oc adm must-gather --image=registry.redhat.io/rhacm2/must-gather-rhel8"} lang="terminal" />
+      </li>
+      <li>
+      Collect <code>ClusterVersion</code> history by running the following command:
+      <CodeBlock code={"$ oc get clusterversion -o jsonpath='{.status.history}' > clusterversion-history.json"} lang="terminal" />
+      </li>
+      <li>
+      Collect <code>ClusterGroupUpgrade</code> status by running the following command:
+      <CodeBlock code={"$ oc get cgu <cgu_name> -n <namespace> -o yaml > cgu-status.yaml"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="additional-resources_core-cluster-upgrades-troubleshooting" class="group scroll-mt-20">Additional resources<a href="#additional-resources_core-cluster-upgrades-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks">Perform health checks before a cluster update with {"{"}{"{"} cgu_operator {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates">Using the {"{"}{"{"} cgu_operator_full {"}"}{"}"} for cluster updates</a></li>
+      <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks#core-cluster-upgrades-health-checks">Perform health checks before a cluster update with TALM</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/cnf-talm-for-cluster-upgrades#cnf-talm-for-cluster-updates">Using the Topology Aware Lifecycle Manager for cluster updates</a></li>
       <li><a href="https://access.redhat.com/support">Contact Red Hat support</a></li>
       <li><a href="https://access.redhat.com/solutions">Red Hat Knowledgebase</a></li>
       </ul>

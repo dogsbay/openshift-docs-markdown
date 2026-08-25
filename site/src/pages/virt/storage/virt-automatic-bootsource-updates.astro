@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-automatic-bootsource-updates","text":"Managing automatic boot source updates"},{"depth":2,"slug":"additional-resources_virt-automatic-bootsource-updates","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-automatic-bootsource-updates","text":"Managing automatic boot source updates"},{"depth":2,"slug":"virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates","text":"Managing automatic updates for all system-defined boot sources"},{"depth":2,"slug":"virt-configuring-default-and-virt-default-storage-class_virt-automatic-bootsource-updates","text":"Configuring the default and virt-default storage classes"},{"depth":2,"slug":"virt-configuring-storage-class-bootsource-update_virt-automatic-bootsource-updates","text":"Configuring a storage class for boot source images"},{"depth":2,"slug":"virt-autoupdate-custom-bootsource_virt-automatic-bootsource-updates","text":"Enabling automatic updates for custom boot sources"},{"depth":2,"slug":"virt-enabling-volume-snapshot-boot-source_virt-automatic-bootsource-updates","text":"Enabling volume snapshot boot sources"},{"depth":2,"slug":"virt-disable-auto-updates-single-boot-source_virt-automatic-bootsource-updates","text":"Disabling automatic updates for a single boot source"},{"depth":2,"slug":"virt-increasing-bootsource-disk-image-retention_virt-automatic-bootsource-updates","text":"Increasing boot source disk image retention"},{"depth":2,"slug":"virt-verify-status-bootsource-update_virt-automatic-bootsource-updates","text":"Verifying the status of a boot source"},{"depth":2,"slug":"additional-resources_virt-automatic-bootsource-updates","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing automatic boot source updates {#virt-automatic-bootsource-updates}\n\nYou can manage automatic updates for boot sources used to create virtual machines. This includes configuring update behavior for Red Hat and custom boot sources.\n\n## Additional resources {#additional-resources_virt-automatic-bootsource-updates}\n\n- [All Red Hat boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates)\n- [All custom boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-autoupdate-custom-bootsource_virt-automatic-bootsource-updates)\n- [Individual Red Hat or custom boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-disable-auto-updates-single-boot-source_virt-automatic-bootsource-updates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing automatic boot source updates {#virt-automatic-bootsource-updates}\n\nYou can manage automatic updates for boot sources used to create virtual machines. This includes configuring update behavior for Red Hat and custom boot sources.\n\n## Managing automatic updates for all system-defined boot sources {#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates}\n\nDisabling automatic boot source imports and updates can lower resource usage. In disconnected environments, disabling automatic boot source updates prevents `CDIDataImportCronOutdated` alerts from filling up logs.\n\nTo disable automatic updates for all system-defined boot sources, set the `enableCommonBootImageImport` field value to `false`. Disabling automatic updates deletes the associated `DataImportCron` objects. Setting this value to `true` turns automatic updates back on.\n\n> [!NOTE]\n> Custom boot sources are not affected by this setting.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Enable or disable automatic boot source updates by editing the `HyperConverged` custom resource (CR).\n\n  - To disable automatic boot source updates, set the `spec.enableCommonBootImageImport` field value in the `HyperConverged` CR to `false`. For example:\n\n    ```terminal\n    $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \\\n      --type json -p '[{\"op\": \"replace\", \"path\": \\\n      \"/spec/enableCommonBootImageImport\", \\\n      \"value\": false}]'\n    ```\n  - To re-enable automatic boot source updates, set the `spec.enableCommonBootImageImport` field value in the `HyperConverged` CR to `true`. For example:\n\n    ```terminal\n    $ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \\\n      --type json -p '[{\"op\": \"replace\", \"path\": \\\n      \"/spec/enableCommonBootImageImport\", \\\n      \"value\": true}]'\n    ```\n\n## Configuring the default and virt-default storage classes {#virt-configuring-default-and-virt-default-storage-class_virt-automatic-bootsource-updates}\n\nA storage class determines how persistent storage is provisioned for workloads. In OpenShift Virtualization, the virt-default storage class takes precedence over the cluster default storage class and is used specifically for virtualization workloads.\n\nOnly one storage class should be set as virt-default or cluster default at a time. If multiple storage classes are marked as default, the virt-default storage class overrides the cluster default. To ensure consistent behavior, configure only one storage class as the default for virtualization workloads.\n\n> [!IMPORTANT]\n> Boot sources are created using the default storage class. When the default storage class changes, old boot sources are automatically updated using the new default storage class. If your cluster does not have a default storage class, you must define one.\n>\n> If boot source images were stored as volume snapshots and both the cluster default and virt-default storage class have been unset, the volume snapshots are cleaned up and new data volumes will be created. However the newly created data volumes will not start importing until a default storage class is set.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Patch the current virt-default or a cluster default storage class to false:\n\n   1. Identify all storage classes currently marked as virt-default by running the following command:\n\n      ```terminal\n      $ oc get sc -o json| jq '.items[].metadata|select(.annotations.\"storageclass.kubevirt.io/is-default-virt-class\"==\"true\")|.name'\n      ```\n   2. For each storage class returned, remove the virt-default annotation by running the following command:\n\n      ```terminal\n      $ oc patch storageclass <storage_class_name> -p '{\"metadata\": {\"annotations\": {\"storageclass.kubevirt.io/is-default-virt-class\": \"false\"}}}'\n      ```\n   3. Identify all storage classes currently marked as cluster default by running the following command:\n\n      ```terminal\n      $ oc get sc -o json| jq '.items[].metadata|select(.annotations.\"storageclass.kubernetes.io/is-default-class\"==\"true\")|.name'\n      ```\n   4. For each storage class returned, remove the cluster default annotation by running the following command:\n\n      ```terminal\n      $ oc patch storageclass <storage_class_name> -p '{\"metadata\": {\"annotations\": {\"storageclass.kubernetes.io/is-default-class\": \"false\"}}}'\n      ```\n2. Set a new default storage class:\n\n   1. Assign the virt-default role to a storage class by running the following command:\n\n      ```terminal\n      $ oc patch storageclass <storage_class_name> -p '{\"metadata\": {\"annotations\": {\"storageclass.kubevirt.io/is-default-virt-class\": \"true\"}}}'\n      ```\n   2. Alternatively, assign the cluster default role to a storage class by running the following command:\n\n      ```terminal\n      $ oc patch storageclass <storage_class_name> -p '{\"metadata\": {\"annotations\": {\"storageclass.kubernetes.io/is-default-class\": \"true\"}}}'\n      ```\n\n## Configuring a storage class for boot source images {#virt-configuring-storage-class-bootsource-update_virt-automatic-bootsource-updates}\n\nYou can configure a specific storage class in the `HyperConverged` resource.\n\n> [!IMPORTANT]\n> To ensure stable behavior and avoid unnecessary re-importing, you can specify the `storageClassName` in the `dataImportCronTemplates` section of the `HyperConverged` resource.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HyperConverged` CR in your default editor by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Add the `dataImportCronTemplate` to the spec section of the `HyperConverged` resource and set the `storageClassName`:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n   spec:\n     dataImportCronTemplates:\n     - metadata:\n         name: rhel9-image-cron\n       spec:\n         template:\n           spec:\n             storage:\n               storageClassName: <storage_class>\n         schedule: \"0 */12 * * *\"\n         managedDataSource: <data_source>\n   # ...\n   ```\n\n   - `spec.dataImportCronTemplates.spec.template.spec.storage.storageClassName` specifies the storage class.\n   - `spec.dataImportCronTemplates.spec.schedule` is a required field that specifies the schedule for the job in cron format.\n   - `spec.dataImportCronTemplates.spec.managedDataSource` is a required field that specifies the data source to use.\n\n     > [!NOTE]\n     > For the custom image to be detected as an available boot source, the value of the `spec.dataVolumeTemplates.spec.sourceRef.name` parameter in the VM template must match this value.\n3. Wait for the HyperConverged Operator (HCO) and Scheduling, Scale, and Performance (SSP) resources to complete reconciliation.\n4. Delete any outdated `DataVolume` and `VolumeSnapshot` objects from the `openshift-virtualization-os-images` namespace by running the following command.\n\n   ```terminal\n   $ oc delete DataVolume,VolumeSnapshot -n openshift-virtualization-os-images --selector=cdi.kubevirt.io/dataImportCron\n   ```\n5. Wait for all `DataSource` objects to reach a \"Ready - True\" status. Data sources can reference either a PersistentVolumeClaim (PVC) or a VolumeSnapshot. To check the expected source format, run the following command:\n\n   ```terminal\n   $ oc get storageprofile <storage_class_name> -o json | jq .status.dataImportCronSourceFormat\n   ```\n\n## Enabling automatic updates for custom boot sources {#virt-autoupdate-custom-bootsource_virt-automatic-bootsource-updates}\n\nOpenShift Virtualization automatically updates system-defined boot sources by default, but does not automatically update custom boot sources. You must manually enable automatic updates by editing the `HyperConverged` custom resource (CR).\n\n**Prerequisites**\n\n- The cluster has a default storage class.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HyperConverged` CR in your default editor by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Edit the `HyperConverged` CR, adding the appropriate template and boot source in the `dataImportCronTemplates` section. For example:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n   spec:\n     dataImportCronTemplates:\n     - metadata:\n         name: centos-stream9-image-cron\n         annotations:\n           cdi.kubevirt.io/storage.bind.immediate.requested: \"true\"\n       spec:\n         schedule: \"0 */12 * * *\"\n         template:\n           spec:\n             source:\n               registry:\n                 url: docker://quay.io/containerdisks/centos-stream:9\n             storage:\n               resources:\n                 requests:\n                   storage: 30Gi\n         garbageCollect: Outdated\n         managedDataSource: centos-stream9\n   ```\n\n   - `spec.dataImportCronTemplates.metadata.annotations` specifies a required annotation for storage classes with `volumeBindingMode` set to `WaitForFirstConsumer`.\n   - `spec.dataImportCronTemplates.spec.schedule` specifies the schedule for the job, specified in cron format.\n   - `spec.dataImportCronTemplates.spec.template.spec.source.registry` specifies the registry source to use to create a data volume. Use the default `pod` `pullMethod` and not `node` `pullMethod`, which is based on the `node` docker cache. The `node` docker cache is useful when a registry image is available via `Container.Image`, but the CDI importer is not authorized to access it.\n   - `spec.dataImportCronTemplates.spec.managedDataSource` specifies the name of the managed data source. For the custom image to be detected as an available boot source, the name of the image’s `managedDataSource` must match the name of the template’s `DataSource`, which is found under `spec.dataVolumeTemplates.spec.sourceRef.name` in the VM template YAML file.\n3. Save the file.\n\n## Enabling volume snapshot boot sources {#virt-enabling-volume-snapshot-boot-source_virt-automatic-bootsource-updates}\n\nYou can enable volume snapshot boot sources by setting the parameter in the `StorageProfile` associated with the storage class that stores operating system base images.\n\nAlthough `DataImportCron` was originally designed to maintain only PVC sources, `VolumeSnapshot` sources scale better than PVC sources for certain storage types.\n\n> [!NOTE]\n> Use volume snapshots on a storage profile that is proven to scale better when cloning from a single snapshot.\n\n**Prerequisites**\n\n- You must have access to a volume snapshot with the operating system image.\n- The storage must support snapshotting.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the storage profile object that corresponds to the storage class used to provision boot sources by running the following command:\n\n   ```terminal\n   $ oc edit storageprofile <storage_class>\n   ```\n2. Review the `dataImportCronSourceFormat` specification of the `StorageProfile` to confirm whether or not the VM is using PVC or volume snapshot by default.\n3. Edit the storage profile, if needed, by updating the `dataImportCronSourceFormat` specification to `snapshot`.\n\n   Example storage profile:\n\n   ```yaml\n   apiVersion: cdi.kubevirt.io/v1beta1\n   kind: StorageProfile\n   metadata:\n   # ...\n   spec:\n     dataImportCronSourceFormat: snapshot\n   ```\n\n**Verification**\n\n1. Open the storage profile object that corresponds to the storage class used to provision boot sources.\n\n   ```terminal\n   $ oc get storageprofile <storage_class>  -oyaml\n   ```\n2. Confirm that the `dataImportCronSourceFormat` specification of the `StorageProfile` is set to 'snapshot', and that any `DataSource` objects that the `DataImportCron` points to now reference volume snapshots.\n\nYou can now use these boot sources to create virtual machines.\n\n## Disabling automatic updates for a single boot source {#virt-disable-auto-updates-single-boot-source_virt-automatic-bootsource-updates}\n\nYou can disable automatic updates for an individual boot source, whether it is custom or system-defined, by editing the `HyperConverged` custom resource (CR).\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HyperConverged` CR in your default editor by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Disable automatic updates for an individual boot source by editing the `spec.dataImportCronTemplates` field.\n\n   Custom boot source :   \\*   Remove the boot source from the `spec.dataImportCronTemplates` field. Automatic updates are disabled for custom boot sources by default.\n\n   System-defined boot source :   1.  Add the boot source to `spec.dataImportCronTemplates`.\n\n   > [!NOTE]\n   > Automatic updates are enabled by default for system-defined boot sources, but these boot sources are not listed in the CR unless you add them.\n\n   1. Set the value of the `dataimportcrontemplate.kubevirt.io/enable` annotation to ’false'\\`.\n\n   For example:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n   spec:\n     dataImportCronTemplates:\n     - metadata:\n         annotations:\n           dataimportcrontemplate.kubevirt.io/enable: 'false'\n         name: rhel8-image-cron\n   # ...\n   ```\n3. Save the file.\n\n## Increasing boot source disk image retention {#virt-increasing-bootsource-disk-image-retention_virt-automatic-bootsource-updates}\n\nYou can configure image retention settings to increase the number of older operating system image versions preserved on the cluster.\n\nWhen automatic boot source updates are enabled, the Containerized Data Importer (CDI) tracks and downloads the latest versions of operating system images. By default, the system aggressively minimizes the retention of older versions to conserve disk space. However, if you require a safety mechanism that allows you to roll back if a newly imported version introduces issues, you can increase the retention count.\n\n> [!NOTE]\n> Manually deleting older `PersistentVolumeClaim` or `DataVolume` objects associated with historic boot source imports does not impact cluster stability or future updates.\n\n**Procedure**\n\n1. Open the `HyperConverged` custom resource (CR) in your default editor:\n\n   ```terminal\n   $ oc edit hyperconverged kubevirt-hyperconverged -n openshift-cnv\n   ```\n2. Edit the `spec.dataImportCronTemplates` field to adjust the `importsToKeep` parameter to your preferred retention threshold:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n   spec:\n     dataImportCronTemplates:\n       - metadata:\n           name: rhel9-image-cron\n         spec:\n           garbageCollect: Outdated (1)\n           importsToKeep: 3\n           schedule: \"0 */12 * * *\"\n           managedDataSource: rhel9\n   ```\n\n## Verifying the status of a boot source {#virt-verify-status-bootsource-update_virt-automatic-bootsource-updates}\n\nYou can determine if a boot source is system-defined or custom by viewing the `HyperConverged` custom resource (CR).\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. View the contents of the `HyperConverged` CR by running the following command:\n\n   ```terminal\n   $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o yaml\n   ```\n\n   Example output:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n   spec:\n   # ...\n   status:\n   # ...\n     dataImportCronTemplates:\n     - metadata:\n         annotations:\n           cdi.kubevirt.io/storage.bind.immediate.requested: \"true\"\n         name: centos-9-image-cron\n       spec:\n         garbageCollect: Outdated\n         managedDataSource: centos-stream9\n         schedule: 55 8/12 * * *\n         template:\n           metadata: {}\n           spec:\n             source:\n               registry:\n                 url: docker://quay.io/containerdisks/centos-stream:9\n             storage:\n               resources:\n                 requests:\n                   storage: 30Gi\n           status: {}\n       status:\n         commonTemplate: true\n   # ...\n     - metadata:\n         annotations:\n           cdi.kubevirt.io/storage.bind.immediate.requested: \"true\"\n         name: user-defined-dic\n       spec:\n         garbageCollect: Outdated\n         managedDataSource: user-defined-centos-stream9\n         schedule: 55 8/12 * * *\n         template:\n           metadata: {}\n           spec:\n             source:\n               registry:\n                 pullMethod: node\n                 url: docker://quay.io/containerdisks/centos-stream:9\n             storage:\n               resources:\n                 requests:\n                   storage: 30Gi\n           status: {}\n       status: {}\n   # ...\n   ```\n\n   - `status.dataImportCronTemplates.status.commonTemplate` specifies a system-defined boot source.\n   - `status.dataImportCronTemplates.status` specifies a custom boot source.\n2. Verify the status of the boot source by reviewing the `status.dataImportCronTemplates.status` field.\n\n   - If the field contains `commonTemplate: true`, it is a system-defined boot source.\n   - If the `status.dataImportCronTemplates.status` field has the value `{}`, it is a custom boot source.\n\n## Additional resources {#additional-resources_virt-automatic-bootsource-updates}\n\n- [All Red Hat boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates)\n- [All custom boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-autoupdate-custom-bootsource_virt-automatic-bootsource-updates)\n- [Individual Red Hat or custom boot sources](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-disable-auto-updates-single-boot-source_virt-automatic-bootsource-updates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,16 +95,258 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-automatic-bootsource-updates" class="group scroll-mt-20">Managing automatic boot source updates<a href="#virt-automatic-bootsource-updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can manage automatic updates for boot sources used to create virtual machines. This includes configuring update behavior for Red Hat and custom boot sources.</p>
-      <p class="/modules/virt-managing-auto-update-all-system-boot-sources.md"></p>
-      <p class="/modules/virt-configuring-default-and-virt-default-storage-class.md"></p>
-      <p class="/modules/virt-configuring-storage-class-bootsource-update.md"></p>
-      <p class="/modules/virt-autoupdate-custom-bootsource.md"></p>
-      <p class="/modules/virt-enabling-volume-snapshot-boot-source.md"></p>
-      <p class="/modules/virt-disable-auto-updates-single-boot-source.md"></p>
-      <p class="/modules/virt-increasing-bootsource-disk-image-retention.md"></p>
-      <p class="/modules/virt-verify-status-bootsource-update.md"></p>
+      <h2 id="virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates" class="group scroll-mt-20">Managing automatic updates for all system-defined boot sources<a href="#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Disabling automatic boot source imports and updates can lower resource usage. In disconnected environments, disabling automatic boot source updates prevents <code>CDIDataImportCronOutdated</code> alerts from filling up logs.</p>
+      <p>To disable automatic updates for all system-defined boot sources, set the <code>enableCommonBootImageImport</code> field value to <code>false</code>. Disabling automatic updates deletes the associated <code>DataImportCron</code> objects. Setting this value to <code>true</code> turns automatic updates back on.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Custom boot sources are not affected by this setting.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Enable or disable automatic boot source updates by editing the <code>HyperConverged</code> custom resource (CR).
+      <ul>
+      <li>
+      To disable automatic boot source updates, set the <code>spec.enableCommonBootImageImport</code> field value in the <code>HyperConverged</code> CR to <code>false</code>. For example:
+      <CodeBlock code={"$ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \\\n  --type json -p '[{\"op\": \"replace\", \"path\": \\\n  \"/spec/enableCommonBootImageImport\", \\\n  \"value\": false}]'"} lang="terminal" />
+      </li>
+      <li>
+      To re-enable automatic boot source updates, set the <code>spec.enableCommonBootImageImport</code> field value in the <code>HyperConverged</code> CR to <code>true</code>. For example:
+      <CodeBlock code={"$ oc patch {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} \\\n  --type json -p '[{\"op\": \"replace\", \"path\": \\\n  \"/spec/enableCommonBootImageImport\", \\\n  \"value\": true}]'"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="virt-configuring-default-and-virt-default-storage-class_virt-automatic-bootsource-updates" class="group scroll-mt-20">Configuring the default and virt-default storage classes<a href="#virt-configuring-default-and-virt-default-storage-class_virt-automatic-bootsource-updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A storage class determines how persistent storage is provisioned for workloads. In OpenShift Virtualization, the virt-default storage class takes precedence over the cluster default storage class and is used specifically for virtualization workloads.</p>
+      <p>Only one storage class should be set as virt-default or cluster default at a time. If multiple storage classes are marked as default, the virt-default storage class overrides the cluster default. To ensure consistent behavior, configure only one storage class as the default for virtualization workloads.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Boot sources are created using the default storage class. When the default storage class changes, old boot sources are automatically updated using the new default storage class. If your cluster does not have a default storage class, you must define one.</p>
+          <p>If boot source images were stored as volume snapshots and both the cluster default and virt-default storage class have been unset, the volume snapshots are cleaned up and new data volumes will be created. However the newly created data volumes will not start importing until a default storage class is set.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Patch the current virt-default or a cluster default storage class to false:
+      <ol>
+      <li>
+      Identify all storage classes currently marked as virt-default by running the following command:
+      <CodeBlock code={"$ oc get sc -o json| jq '.items[].metadata|select(.annotations.\"storageclass.kubevirt.io/is-default-virt-class\"==\"true\")|.name'"} lang="terminal" />
+      </li>
+      <li>
+      For each storage class returned, remove the virt-default annotation by running the following command:
+      <CodeBlock code={"$ oc patch storageclass <storage_class_name> -p '{\"metadata\": {\"annotations\": {\"storageclass.kubevirt.io/is-default-virt-class\": \"false\"}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Identify all storage classes currently marked as cluster default by running the following command:
+      <CodeBlock code={"$ oc get sc -o json| jq '.items[].metadata|select(.annotations.\"storageclass.kubernetes.io/is-default-class\"==\"true\")|.name'"} lang="terminal" />
+      </li>
+      <li>
+      For each storage class returned, remove the cluster default annotation by running the following command:
+      <CodeBlock code={"$ oc patch storageclass <storage_class_name> -p '{\"metadata\": {\"annotations\": {\"storageclass.kubernetes.io/is-default-class\": \"false\"}}}'"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Set a new default storage class:
+      <ol>
+      <li>
+      Assign the virt-default role to a storage class by running the following command:
+      <CodeBlock code={"$ oc patch storageclass <storage_class_name> -p '{\"metadata\": {\"annotations\": {\"storageclass.kubevirt.io/is-default-virt-class\": \"true\"}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Alternatively, assign the cluster default role to a storage class by running the following command:
+      <CodeBlock code={"$ oc patch storageclass <storage_class_name> -p '{\"metadata\": {\"annotations\": {\"storageclass.kubernetes.io/is-default-class\": \"true\"}}}'"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="virt-configuring-storage-class-bootsource-update_virt-automatic-bootsource-updates" class="group scroll-mt-20">Configuring a storage class for boot source images<a href="#virt-configuring-storage-class-bootsource-update_virt-automatic-bootsource-updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure a specific storage class in the <code>HyperConverged</code> resource.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>To ensure stable behavior and avoid unnecessary re-importing, you can specify the <code>storageClassName</code> in the <code>dataImportCronTemplates</code> section of the <code>HyperConverged</code> resource.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Open the <code>HyperConverged</code> CR in your default editor by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Add the <code>dataImportCronTemplate</code> to the spec section of the <code>HyperConverged</code> resource and set the <code>storageClassName</code>:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\nspec:\n  dataImportCronTemplates:\n  - metadata:\n      name: rhel9-image-cron\n    spec:\n      template:\n        spec:\n          storage:\n            storageClassName: <storage_class>\n      schedule: \"0 */12 * * *\"\n      managedDataSource: <data_source>\n# ..."} lang="yaml" />
+      <ul>
+      <li><code>spec.dataImportCronTemplates.spec.template.spec.storage.storageClassName</code> specifies the storage class.</li>
+      <li><code>spec.dataImportCronTemplates.spec.schedule</code> is a required field that specifies the schedule for the job in cron format.</li>
+      <li>
+      <code>spec.dataImportCronTemplates.spec.managedDataSource</code> is a required field that specifies the data source to use.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For the custom image to be detected as an available boot source, the value of the <code>spec.dataVolumeTemplates.spec.sourceRef.name</code> parameter in the VM template must match this value.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      <li>Wait for the HyperConverged Operator (HCO) and Scheduling, Scale, and Performance (SSP) resources to complete reconciliation.</li>
+      <li>
+      Delete any outdated <code>DataVolume</code> and <code>VolumeSnapshot</code> objects from the <code>openshift-virtualization-os-images</code> namespace by running the following command.
+      <CodeBlock code={"$ oc delete DataVolume,VolumeSnapshot -n openshift-virtualization-os-images --selector=cdi.kubevirt.io/dataImportCron"} lang="terminal" />
+      </li>
+      <li>
+      Wait for all <code>DataSource</code> objects to reach a "Ready - True" status. Data sources can reference either a PersistentVolumeClaim (PVC) or a VolumeSnapshot. To check the expected source format, run the following command:
+      <CodeBlock code={"$ oc get storageprofile <storage_class_name> -o json | jq .status.dataImportCronSourceFormat"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-autoupdate-custom-bootsource_virt-automatic-bootsource-updates" class="group scroll-mt-20">Enabling automatic updates for custom boot sources<a href="#virt-autoupdate-custom-bootsource_virt-automatic-bootsource-updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Virtualization automatically updates system-defined boot sources by default, but does not automatically update custom boot sources. You must manually enable automatic updates by editing the <code>HyperConverged</code> custom resource (CR).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The cluster has a default storage class.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Open the <code>HyperConverged</code> CR in your default editor by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Edit the <code>HyperConverged</code> CR, adding the appropriate template and boot source in the <code>dataImportCronTemplates</code> section. For example:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\nspec:\n  dataImportCronTemplates:\n  - metadata:\n      name: centos-stream9-image-cron\n      annotations:\n        cdi.kubevirt.io/storage.bind.immediate.requested: \"true\"\n    spec:\n      schedule: \"0 */12 * * *\"\n      template:\n        spec:\n          source:\n            registry:\n              url: docker://quay.io/containerdisks/centos-stream:9\n          storage:\n            resources:\n              requests:\n                storage: 30Gi\n      garbageCollect: Outdated\n      managedDataSource: centos-stream9"} lang="yaml" />
+      <ul>
+      <li><code>spec.dataImportCronTemplates.metadata.annotations</code> specifies a required annotation for storage classes with <code>volumeBindingMode</code> set to <code>WaitForFirstConsumer</code>.</li>
+      <li><code>spec.dataImportCronTemplates.spec.schedule</code> specifies the schedule for the job, specified in cron format.</li>
+      <li><code>spec.dataImportCronTemplates.spec.template.spec.source.registry</code> specifies the registry source to use to create a data volume. Use the default <code>pod</code> <code>pullMethod</code> and not <code>node</code> <code>pullMethod</code>, which is based on the <code>node</code> docker cache. The <code>node</code> docker cache is useful when a registry image is available via <code>Container.Image</code>, but the CDI importer is not authorized to access it.</li>
+      <li><code>spec.dataImportCronTemplates.spec.managedDataSource</code> specifies the name of the managed data source. For the custom image to be detected as an available boot source, the name of the image’s <code>managedDataSource</code> must match the name of the template’s <code>DataSource</code>, which is found under <code>spec.dataVolumeTemplates.spec.sourceRef.name</code> in the VM template YAML file.</li>
+      </ul>
+      </li>
+      <li>Save the file.</li>
+      </ol>
+      <h2 id="virt-enabling-volume-snapshot-boot-source_virt-automatic-bootsource-updates" class="group scroll-mt-20">Enabling volume snapshot boot sources<a href="#virt-enabling-volume-snapshot-boot-source_virt-automatic-bootsource-updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can enable volume snapshot boot sources by setting the parameter in the <code>StorageProfile</code> associated with the storage class that stores operating system base images.</p>
+      <p>Although <code>DataImportCron</code> was originally designed to maintain only PVC sources, <code>VolumeSnapshot</code> sources scale better than PVC sources for certain storage types.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Use volume snapshots on a storage profile that is proven to scale better when cloning from a single snapshot.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have access to a volume snapshot with the operating system image.</li>
+      <li>The storage must support snapshotting.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Open the storage profile object that corresponds to the storage class used to provision boot sources by running the following command:
+      <CodeBlock code={"$ oc edit storageprofile <storage_class>"} lang="terminal" />
+      </li>
+      <li>Review the <code>dataImportCronSourceFormat</code> specification of the <code>StorageProfile</code> to confirm whether or not the VM is using PVC or volume snapshot by default.</li>
+      <li>
+      Edit the storage profile, if needed, by updating the <code>dataImportCronSourceFormat</code> specification to <code>snapshot</code>.
+      <p>Example storage profile:</p>
+      <CodeBlock code={"apiVersion: cdi.kubevirt.io/v1beta1\nkind: StorageProfile\nmetadata:\n# ...\nspec:\n  dataImportCronSourceFormat: snapshot"} lang="yaml" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Open the storage profile object that corresponds to the storage class used to provision boot sources.
+      <CodeBlock code={"$ oc get storageprofile <storage_class>  -oyaml"} lang="terminal" />
+      </li>
+      <li>Confirm that the <code>dataImportCronSourceFormat</code> specification of the <code>StorageProfile</code> is set to 'snapshot', and that any <code>DataSource</code> objects that the <code>DataImportCron</code> points to now reference volume snapshots.</li>
+      </ol>
+      <p>You can now use these boot sources to create virtual machines.</p>
+      <h2 id="virt-disable-auto-updates-single-boot-source_virt-automatic-bootsource-updates" class="group scroll-mt-20">Disabling automatic updates for a single boot source<a href="#virt-disable-auto-updates-single-boot-source_virt-automatic-bootsource-updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can disable automatic updates for an individual boot source, whether it is custom or system-defined, by editing the <code>HyperConverged</code> custom resource (CR).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Open the <code>HyperConverged</code> CR in your default editor by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Disable automatic updates for an individual boot source by editing the <code>spec.dataImportCronTemplates</code> field.
+      <p>Custom boot source :   *   Remove the boot source from the <code>spec.dataImportCronTemplates</code> field. Automatic updates are disabled for custom boot sources by default.</p>
+      <p>System-defined boot source :   1.  Add the boot source to <code>spec.dataImportCronTemplates</code>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Automatic updates are enabled by default for system-defined boot sources, but these boot sources are not listed in the CR unless you add them.</p>
+        </AlertDescription>
+      </Alert>
+      <ol><li>Set the value of the <code>dataimportcrontemplate.kubevirt.io/enable</code> annotation to ’false'`.</li></ol>
+      <p>For example:</p>
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\nspec:\n  dataImportCronTemplates:\n  - metadata:\n      annotations:\n        dataimportcrontemplate.kubevirt.io/enable: 'false'\n      name: rhel8-image-cron\n# ..."} lang="yaml" />
+      </li>
+      <li>Save the file.</li>
+      </ol>
+      <h2 id="virt-increasing-bootsource-disk-image-retention_virt-automatic-bootsource-updates" class="group scroll-mt-20">Increasing boot source disk image retention<a href="#virt-increasing-bootsource-disk-image-retention_virt-automatic-bootsource-updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure image retention settings to increase the number of older operating system image versions preserved on the cluster.</p>
+      <p>When automatic boot source updates are enabled, the Containerized Data Importer (CDI) tracks and downloads the latest versions of operating system images. By default, the system aggressively minimizes the retention of older versions to conserve disk space. However, if you require a safety mechanism that allows you to roll back if a newly imported version introduces issues, you can increase the retention count.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Manually deleting older <code>PersistentVolumeClaim</code> or <code>DataVolume</code> objects associated with historic boot source imports does not impact cluster stability or future updates.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Open the <code>HyperConverged</code> custom resource (CR) in your default editor:
+      <CodeBlock code={"$ oc edit hyperconverged kubevirt-hyperconverged -n openshift-cnv"} lang="terminal" />
+      </li>
+      <li>
+      Edit the <code>spec.dataImportCronTemplates</code> field to adjust the <code>importsToKeep</code> parameter to your preferred retention threshold:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\nspec:\n  dataImportCronTemplates:\n    - metadata:\n        name: rhel9-image-cron\n      spec:\n        garbageCollect: Outdated (1)\n        importsToKeep: 3\n        schedule: \"0 */12 * * *\"\n        managedDataSource: rhel9"} lang="yaml" />
+      </li>
+      </ol>
+      <h2 id="virt-verify-status-bootsource-update_virt-automatic-bootsource-updates" class="group scroll-mt-20">Verifying the status of a boot source<a href="#virt-verify-status-bootsource-update_virt-automatic-bootsource-updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can determine if a boot source is system-defined or custom by viewing the <code>HyperConverged</code> custom resource (CR).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      View the contents of the <code>HyperConverged</code> CR by running the following command:
+      <CodeBlock code={"$ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o yaml"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\nspec:\n# ...\nstatus:\n# ...\n  dataImportCronTemplates:\n  - metadata:\n      annotations:\n        cdi.kubevirt.io/storage.bind.immediate.requested: \"true\"\n      name: centos-9-image-cron\n    spec:\n      garbageCollect: Outdated\n      managedDataSource: centos-stream9\n      schedule: 55 8/12 * * *\n      template:\n        metadata: {}\n        spec:\n          source:\n            registry:\n              url: docker://quay.io/containerdisks/centos-stream:9\n          storage:\n            resources:\n              requests:\n                storage: 30Gi\n        status: {}\n    status:\n      commonTemplate: true\n# ...\n  - metadata:\n      annotations:\n        cdi.kubevirt.io/storage.bind.immediate.requested: \"true\"\n      name: user-defined-dic\n    spec:\n      garbageCollect: Outdated\n      managedDataSource: user-defined-centos-stream9\n      schedule: 55 8/12 * * *\n      template:\n        metadata: {}\n        spec:\n          source:\n            registry:\n              pullMethod: node\n              url: docker://quay.io/containerdisks/centos-stream:9\n          storage:\n            resources:\n              requests:\n                storage: 30Gi\n        status: {}\n    status: {}\n# ..."} lang="yaml" />
+      <ul>
+      <li><code>status.dataImportCronTemplates.status.commonTemplate</code> specifies a system-defined boot source.</li>
+      <li><code>status.dataImportCronTemplates.status</code> specifies a custom boot source.</li>
+      </ul>
+      </li>
+      <li>
+      Verify the status of the boot source by reviewing the <code>status.dataImportCronTemplates.status</code> field.
+      <ul>
+      <li>If the field contains <code>commonTemplate: true</code>, it is a system-defined boot source.</li>
+      <li>If the <code>status.dataImportCronTemplates.status</code> field has the value <code>{"{"}{"}"}</code>, it is a custom boot source.</li>
+      </ul>
+      </li>
+      </ol>
       <h2 id="additional-resources_virt-automatic-bootsource-updates" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-automatic-bootsource-updates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-managing-auto-update-all-system-boot-sources_virt-automatic-bootsource-updates">All Red Hat boot sources</a></li>

@@ -15,8 +15,15 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"nodes-containers-events","text":"Viewing system event information in OpenShift Container Platform clusters"}];
+const headings = [{"depth":1,"slug":"nodes-containers-events","text":"Viewing system event information in OpenShift Container Platform clusters"},{"depth":2,"slug":"nodes-containers-events-about_nodes-containers-events","text":"Understanding events"},{"depth":2,"slug":"nodes-containers-events-viewing-cli_nodes-containers-events","text":"Viewing events using the CLI"},{"depth":2,"slug":"nodes-containers-events-list_nodes-containers-events","text":"List of events"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/clusters/nodes-containers-events";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +46,7 @@ const pageCategory = ["nodes","nodes/clusters"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing system event information in OpenShift Container Platform clusters {#nodes-containers-events}\n\nYou can view events in OpenShift Container Platform, which are based on events that happen to API objects in an OpenShift Container Platform cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/clusters/nodes-containers-events.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing system event information in OpenShift Container Platform clusters {#nodes-containers-events}\n\nYou can view events in OpenShift Container Platform, which are based on events that happen to API objects in an OpenShift Container Platform cluster.\n\n## Understanding events {#nodes-containers-events-about_nodes-containers-events}\n\nReview the following information to learn how OpenShift Container Platform uses *events* to record information about real-world events in a resource-agnostic manner. Events also allow developers and administrators to consume information about system components in a unified way.\n\n## Viewing events using the CLI {#nodes-containers-events-viewing-cli_nodes-containers-events}\n\nYou can get a list of events in a given project by using the CLI.\n\n**Procedure**\n\n- View events in a project by using a command similar to the following:\n\n  ```terminal\n  $ oc get events [-n <project>]\n  ```\n\n  where:\n\n  `project`\n  :   Specifies the name of the project.\n\n  For example:\n\n  ```terminal\n  $ oc get events -n openshift-config\n  ```\n\n  ```terminal {title=\"Example output\"}\n  LAST SEEN   TYPE      REASON                   OBJECT                      MESSAGE\n  97m         Normal    Scheduled                pod/dapi-env-test-pod       Successfully assigned openshift-config/dapi-env-test-pod to ip-10-0-171-202.ec2.internal\n  97m         Normal    Pulling                  pod/dapi-env-test-pod       pulling image \"gcr.io/google_containers/busybox\"\n  97m         Normal    Pulled                   pod/dapi-env-test-pod       Successfully pulled image \"gcr.io/google_containers/busybox\"\n  97m         Normal    Created                  pod/dapi-env-test-pod       Created container\n  9m5s        Warning   FailedCreatePodSandBox   pod/dapi-volume-test-pod    Failed create pod sandbox: rpc error: code = Unknown desc = failed to create pod network sandbox k8s_dapi-volume-test-pod_openshift-config_6bc60c1f-452e-11e9-9140-0eec59c23068_0(748c7a40db3d08c07fb4f9eba774bd5effe5f0d5090a242432a73eee66ba9e22): Multus: Err adding pod to network \"ovn-kubernetes\": cannot set \"ovn-kubernetes\" ifname to \"eth0\": no netns: failed to Statfs \"/proc/33366/ns/net\": no such file or directory\n  8m31s       Normal    Scheduled                pod/dapi-volume-test-pod    Successfully assigned openshift-config/dapi-volume-test-pod to ip-10-0-171-202.ec2.internal\n  #...\n  ```\n- View events in your project from the OpenShift Container Platform console:\n\n  1. Launch the OpenShift Container Platform console.\n  2. Click **Home** -> **Events** and select your project.\n  3. Move to resource that you want to see events. For example: **Home** -> **Projects** -> <project-name> -> <resource-name>.\n\n     Many objects, such as pods and deployments, also have an **Events** tab, which shows events related to that object.\n\n## List of events {#nodes-containers-events-list_nodes-containers-events}\n\nReview the information in this section to learn about OpenShift Container Platform events.\n\n**Configuration events**\n\n| Name | Description |\n| --- | --- |\n| `FailedValidation` | Failed pod configuration validation. |\n\n**Container events**\n\n| Name | Description |\n| --- | --- |\n| `BackOff` | Back-off restarting failed the container. |\n| `Created` | Container created. |\n| `Failed` | Pull/Create/Start failed. |\n| `Killing` | Killing the container. |\n| `Started` | Container started. |\n| `Preempting` | Preempting other pods. |\n| `ExceededGracePeriod` | Container runtime did not stop the pod within specified grace period. |\n\n**Health events**\n\n| Name | Description |\n| --- | --- |\n| `Unhealthy` | Container is unhealthy. |\n\n**Image events**\n\n| Name | Description |\n| --- | --- |\n| `BackOff` | Back off Ctr Start, image pull. |\n| `ErrImageNeverPull` | The image’s **NeverPull Policy** is violated. |\n| `Failed` | Failed to pull the image. |\n| `InspectFailed` | Failed to inspect the image. |\n| `Pulled` | Successfully pulled the image or the container image is already present on the machine. |\n| `Pulling` | Pulling the image. |\n\n**Image Manager events**\n\n| Name | Description |\n| --- | --- |\n| `FreeDiskSpaceFailed` | Free disk space failed. |\n| `InvalidDiskCapacity` | Invalid disk capacity. |\n\n**Node events**\n\n| Name | Description |\n| --- | --- |\n| `FailedMount` | Volume mount failed. |\n| `HostNetworkNotSupported` | Host network not supported. |\n| `HostPortConflict` | Host/port conflict. |\n| `KubeletSetupFailed` | Kubelet setup failed. |\n| `NilShaper` | Undefined shaper. |\n| `NodeNotReady` | Node is not ready. |\n| `NodeNotSchedulable` | Node is not schedulable. |\n| `NodeReady` | Node is ready. |\n| `NodeSchedulable` | Node is schedulable. |\n| `NodeSelectorMismatching` | Node selector mismatch. |\n| `OutOfDisk` | Out of disk. |\n| `Rebooted` | Node rebooted. |\n| `Starting` | Starting kubelet. |\n| `FailedAttachVolume` | Failed to attach volume. |\n| `FailedDetachVolume` | Failed to detach volume. |\n| `VolumeResizeFailed` | Failed to expand/reduce volume. |\n| `VolumeResizeSuccessful` | Successfully expanded/reduced volume. |\n| `FileSystemResizeFailed` | Failed to expand/reduce file system. |\n| `FileSystemResizeSuccessful` | Successfully expanded/reduced file system. |\n| `FailedUnMount` | Failed to unmount volume. |\n| `FailedMapVolume` | Failed to map a volume. |\n| `FailedUnmapDevice` | Failed unmaped device. |\n| `AlreadyMountedVolume` | Volume is already mounted. |\n| `SuccessfulDetachVolume` | Volume is successfully detached. |\n| `SuccessfulMountVolume` | Volume is successfully mounted. |\n| `SuccessfulUnMountVolume` | Volume is successfully unmounted. |\n| `ContainerGCFailed` | Container garbage collection failed. |\n| `ImageGCFailed` | Image garbage collection failed. |\n| `FailedNodeAllocatableEnforcement` | Failed to enforce System Reserved Cgroup limit. |\n| `NodeAllocatableEnforced` | Enforced System Reserved Cgroup limit. |\n| `UnsupportedMountOption` | Unsupported mount option. |\n| `SandboxChanged` | Pod sandbox changed. |\n| `FailedCreatePodSandBox` | Failed to create pod sandbox. |\n| `FailedPodSandBoxStatus` | Failed pod sandbox status. |\n\n**Pod worker events**\n\n| Name | Description |\n| --- | --- |\n| `FailedSync` | Pod sync failed. |\n\n**System Events**\n\n| Name | Description |\n| --- | --- |\n| `SystemOOM` | There is an OOM (out of memory) situation on the cluster. |\n\n**Pod events**\n\n| Name | Description |\n| --- | --- |\n| `FailedKillPod` | Failed to stop a pod. |\n| `FailedCreatePodContainer` | Failed to create a pod container. |\n| `Failed` | Failed to make pod data directories. |\n| `NetworkNotReady` | Network is not ready. |\n| `FailedCreate` | Error creating: `<error-msg>`. |\n| `SuccessfulCreate` | Created pod: `<pod-name>`. |\n| `FailedDelete` | Error deleting: `<error-msg>`. |\n| `SuccessfulDelete` | Deleted pod: `<pod-id>`. |\n\n**Horizontal Pod AutoScaler events**\n\n| Name | Description |\n| --- | --- |\n| SelectorRequired | Selector is required. |\n| `InvalidSelector` | Could not convert selector into a corresponding internal selector object. |\n| `FailedGetObjectMetric` | HPA was unable to compute the replica count. |\n| `InvalidMetricSourceType` | Unknown metric source type. |\n| `ValidMetricFound` | HPA was able to successfully calculate a replica count. |\n| `FailedConvertHPA` | Failed to convert the given HPA. |\n| `FailedGetScale` | HPA controller was unable to get the target’s current scale. |\n| `SucceededGetScale` | HPA controller was able to get the target’s current scale. |\n| `FailedComputeMetricsReplicas` | Failed to compute desired number of replicas based on listed metrics. |\n| `FailedRescale` | New size: `<size>`; reason: `<msg>`; error: `<error-msg>`. |\n| `SuccessfulRescale` | New size: `<size>`; reason: `<msg>`. |\n| `FailedUpdateStatus` | Failed to update status. |\n\n**Volume events**\n\n| Name | Description |\n| --- | --- |\n| `FailedBinding` | There are no persistent volumes available and no storage class is set. |\n| `VolumeMismatch` | Volume size or class is different from what is requested in claim. |\n| `VolumeFailedRecycle` | Error creating recycler pod. |\n| `VolumeRecycled` | Occurs when volume is recycled. |\n| `RecyclerPod` | Occurs when pod is recycled. |\n| `VolumeDelete` | Occurs when volume is deleted. |\n| `VolumeFailedDelete` | Error when deleting the volume. |\n| `ExternalProvisioning` | Occurs when volume for the claim is provisioned either manually or via external software. |\n| `ProvisioningFailed` | Failed to provision volume. |\n| `ProvisioningCleanupFailed` | Error cleaning provisioned volume. |\n| `ProvisioningSucceeded` | Occurs when the volume is provisioned successfully. |\n| `WaitForFirstConsumer` | Delay binding until pod scheduling. |\n\n**Lifecycle hooks**\n\n| Name | Description |\n| --- | --- |\n| `FailedPostStartHook` | Handler failed for pod start. |\n| `FailedPreStopHook` | Handler failed for pre-stop. |\n| `UnfinishedPreStopHook` | Pre-stop hook unfinished. |\n\n**Deployments**\n\n| Name | Description |\n| --- | --- |\n| `DeploymentCancellationFailed` | Failed to cancel deployment. |\n| `DeploymentCancelled` | Canceled deployment. |\n| `DeploymentCreated` | Created new replication controller. |\n| `IngressIPRangeFull` | No available Ingress IP to allocate to service. |\n\n**Scheduler events**\n\n| Name | Description |\n| --- | --- |\n| `FailedScheduling` | Failed to schedule pod: `<pod-namespace>/<pod-name>`. This event is raised for multiple reasons, for example: `AssumePodVolumes` failed, Binding rejected etc. |\n| `Preempted` | By `<preemptor-namespace>/<preemptor-name>` on node `<node-name>`. |\n| `Scheduled` | Successfully assigned `<pod-name>` to `<node-name>`. |\n\n**Daemon set events**\n\n| Name | Description |\n| --- | --- |\n| `SelectingAll` | This daemon set is selecting all pods. A non-empty selector is required. |\n| `FailedPlacement` | Failed to place pod on `<node-name>`. |\n| `FailedDaemonPod` | Found failed daemon pod `<pod-name>` on node `<node-name>`, will try to kill it. |\n\n**LoadBalancer service events**\n\n| Name | Description |\n| --- | --- |\n| `CreatingLoadBalancerFailed` | Error creating load balancer. |\n| `DeletingLoadBalancer` | Deleting load balancer. |\n| `EnsuringLoadBalancer` | Ensuring load balancer. |\n| `EnsuredLoadBalancer` | Ensured load balancer. |\n| `UnAvailableLoadBalancer` | There are no available nodes for `LoadBalancer` service. |\n| `LoadBalancerSourceRanges` | Lists the new `LoadBalancerSourceRanges`. For example, `<old-source-range> -> <new-source-range>`. |\n| `LoadbalancerIP` | Lists the new IP address. For example, `<old-ip> -> <new-ip>`. |\n| `ExternalIP` | Lists external IP address. For example, `Added: <external-ip>`. |\n| `UID` | Lists the new UID. For example, `<old-service-uid> -> <new-service-uid>`. |\n| `ExternalTrafficPolicy` | Lists the new `ExternalTrafficPolicy`. For example, `<old-policy> -> <new-policy>`. |\n| `HealthCheckNodePort` | Lists the new `HealthCheckNodePort`. For example, `<old-node-port> -> new-node-port>`. |\n| `UpdatedLoadBalancer` | Updated load balancer with new hosts. |\n| `LoadBalancerUpdateFailed` | Error updating load balancer with new hosts. |\n| `DeletingLoadBalancer` | Deleting load balancer. |\n| `DeletingLoadBalancerFailed` | Error deleting load balancer. |\n| `DeletedLoadBalancer` | Deleted load balancer. |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/clusters/nodes-containers-events.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +98,671 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-containers-events" class="group scroll-mt-20">Viewing system event information in OpenShift Container Platform clusters<a href="#nodes-containers-events" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can view events in OpenShift Container Platform, which are based on events that happen to API objects in an OpenShift Container Platform cluster.</p>
-      <p class="/modules/nodes-containers-events-about.md"></p>
-      <p class="/modules/nodes-containers-events-viewing.md"></p>
-      <p class="/modules/nodes-containers-events-list.md"></p>
+      <h2 id="nodes-containers-events-about_nodes-containers-events" class="group scroll-mt-20">Understanding events<a href="#nodes-containers-events-about_nodes-containers-events" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the following information to learn how OpenShift Container Platform uses <em>events</em> to record information about real-world events in a resource-agnostic manner. Events also allow developers and administrators to consume information about system components in a unified way.</p>
+      <h2 id="nodes-containers-events-viewing-cli_nodes-containers-events" class="group scroll-mt-20">Viewing events using the CLI<a href="#nodes-containers-events-viewing-cli_nodes-containers-events" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can get a list of events in a given project by using the CLI.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      View events in a project by using a command similar to the following:
+      <CodeBlock code={"$ oc get events [-n <project>]"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>project</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the project.</p></dd>
+      </dl>
+      <p>For example:</p>
+      <CodeBlock code={"$ oc get events -n openshift-config"} lang="terminal" />
+      <CodeBlock code={"LAST SEEN   TYPE      REASON                   OBJECT                      MESSAGE\n97m         Normal    Scheduled                pod/dapi-env-test-pod       Successfully assigned openshift-config/dapi-env-test-pod to ip-10-0-171-202.ec2.internal\n97m         Normal    Pulling                  pod/dapi-env-test-pod       pulling image \"gcr.io/google_containers/busybox\"\n97m         Normal    Pulled                   pod/dapi-env-test-pod       Successfully pulled image \"gcr.io/google_containers/busybox\"\n97m         Normal    Created                  pod/dapi-env-test-pod       Created container\n9m5s        Warning   FailedCreatePodSandBox   pod/dapi-volume-test-pod    Failed create pod sandbox: rpc error: code = Unknown desc = failed to create pod network sandbox k8s_dapi-volume-test-pod_openshift-config_6bc60c1f-452e-11e9-9140-0eec59c23068_0(748c7a40db3d08c07fb4f9eba774bd5effe5f0d5090a242432a73eee66ba9e22): Multus: Err adding pod to network \"ovn-kubernetes\": cannot set \"ovn-kubernetes\" ifname to \"eth0\": no netns: failed to Statfs \"/proc/33366/ns/net\": no such file or directory\n8m31s       Normal    Scheduled                pod/dapi-volume-test-pod    Successfully assigned openshift-config/dapi-volume-test-pod to ip-10-0-171-202.ec2.internal\n#..."} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View events in your project from the OpenShift Container Platform console:
+      <ol>
+      <li>Launch the OpenShift Container Platform console.</li>
+      <li>Click <strong>Home</strong> -&gt; <strong>Events</strong> and select your project.</li>
+      <li>
+      Move to resource that you want to see events. For example: <strong>Home</strong> -&gt; <strong>Projects</strong> -&gt; &lt;project-name&gt; -&gt; &lt;resource-name&gt;.
+      <p>Many objects, such as pods and deployments, also have an <strong>Events</strong> tab, which shows events related to that object.</p>
+      </li>
+      </ol>
+      </li>
+      </ul>
+      <h2 id="nodes-containers-events-list_nodes-containers-events" class="group scroll-mt-20">List of events<a href="#nodes-containers-events-list_nodes-containers-events" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the information in this section to learn about OpenShift Container Platform events.</p>
+      <p><strong>Configuration events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>FailedValidation</code></TableCell>
+      <TableCell>Failed pod configuration validation.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Container events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>BackOff</code></TableCell>
+      <TableCell>Back-off restarting failed the container.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Created</code></TableCell>
+      <TableCell>Container created.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Failed</code></TableCell>
+      <TableCell>Pull/Create/Start failed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Killing</code></TableCell>
+      <TableCell>Killing the container.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Started</code></TableCell>
+      <TableCell>Container started.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Preempting</code></TableCell>
+      <TableCell>Preempting other pods.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ExceededGracePeriod</code></TableCell>
+      <TableCell>Container runtime did not stop the pod within specified grace period.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Health events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>Unhealthy</code></TableCell>
+      <TableCell>Container is unhealthy.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Image events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>BackOff</code></TableCell>
+      <TableCell>Back off Ctr Start, image pull.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ErrImageNeverPull</code></TableCell>
+      <TableCell>The image’s <strong>NeverPull Policy</strong> is violated.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Failed</code></TableCell>
+      <TableCell>Failed to pull the image.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>InspectFailed</code></TableCell>
+      <TableCell>Failed to inspect the image.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Pulled</code></TableCell>
+      <TableCell>Successfully pulled the image or the container image is already present on the machine.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Pulling</code></TableCell>
+      <TableCell>Pulling the image.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Image Manager events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>FreeDiskSpaceFailed</code></TableCell>
+      <TableCell>Free disk space failed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>InvalidDiskCapacity</code></TableCell>
+      <TableCell>Invalid disk capacity.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Node events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>FailedMount</code></TableCell>
+      <TableCell>Volume mount failed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>HostNetworkNotSupported</code></TableCell>
+      <TableCell>Host network not supported.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>HostPortConflict</code></TableCell>
+      <TableCell>Host/port conflict.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>KubeletSetupFailed</code></TableCell>
+      <TableCell>Kubelet setup failed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NilShaper</code></TableCell>
+      <TableCell>Undefined shaper.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NodeNotReady</code></TableCell>
+      <TableCell>Node is not ready.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NodeNotSchedulable</code></TableCell>
+      <TableCell>Node is not schedulable.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NodeReady</code></TableCell>
+      <TableCell>Node is ready.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NodeSchedulable</code></TableCell>
+      <TableCell>Node is schedulable.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NodeSelectorMismatching</code></TableCell>
+      <TableCell>Node selector mismatch.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OutOfDisk</code></TableCell>
+      <TableCell>Out of disk.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Rebooted</code></TableCell>
+      <TableCell>Node rebooted.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Starting</code></TableCell>
+      <TableCell>Starting kubelet.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedAttachVolume</code></TableCell>
+      <TableCell>Failed to attach volume.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedDetachVolume</code></TableCell>
+      <TableCell>Failed to detach volume.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>VolumeResizeFailed</code></TableCell>
+      <TableCell>Failed to expand/reduce volume.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>VolumeResizeSuccessful</code></TableCell>
+      <TableCell>Successfully expanded/reduced volume.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FileSystemResizeFailed</code></TableCell>
+      <TableCell>Failed to expand/reduce file system.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FileSystemResizeSuccessful</code></TableCell>
+      <TableCell>Successfully expanded/reduced file system.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedUnMount</code></TableCell>
+      <TableCell>Failed to unmount volume.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedMapVolume</code></TableCell>
+      <TableCell>Failed to map a volume.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedUnmapDevice</code></TableCell>
+      <TableCell>Failed unmaped device.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AlreadyMountedVolume</code></TableCell>
+      <TableCell>Volume is already mounted.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SuccessfulDetachVolume</code></TableCell>
+      <TableCell>Volume is successfully detached.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SuccessfulMountVolume</code></TableCell>
+      <TableCell>Volume is successfully mounted.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SuccessfulUnMountVolume</code></TableCell>
+      <TableCell>Volume is successfully unmounted.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ContainerGCFailed</code></TableCell>
+      <TableCell>Container garbage collection failed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ImageGCFailed</code></TableCell>
+      <TableCell>Image garbage collection failed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedNodeAllocatableEnforcement</code></TableCell>
+      <TableCell>Failed to enforce System Reserved Cgroup limit.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NodeAllocatableEnforced</code></TableCell>
+      <TableCell>Enforced System Reserved Cgroup limit.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>UnsupportedMountOption</code></TableCell>
+      <TableCell>Unsupported mount option.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SandboxChanged</code></TableCell>
+      <TableCell>Pod sandbox changed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedCreatePodSandBox</code></TableCell>
+      <TableCell>Failed to create pod sandbox.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedPodSandBoxStatus</code></TableCell>
+      <TableCell>Failed pod sandbox status.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Pod worker events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>FailedSync</code></TableCell>
+      <TableCell>Pod sync failed.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>System Events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>SystemOOM</code></TableCell>
+      <TableCell>There is an OOM (out of memory) situation on the cluster.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Pod events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>FailedKillPod</code></TableCell>
+      <TableCell>Failed to stop a pod.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedCreatePodContainer</code></TableCell>
+      <TableCell>Failed to create a pod container.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Failed</code></TableCell>
+      <TableCell>Failed to make pod data directories.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NetworkNotReady</code></TableCell>
+      <TableCell>Network is not ready.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedCreate</code></TableCell>
+      <TableCell>Error creating: <code>&lt;error-msg&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SuccessfulCreate</code></TableCell>
+      <TableCell>Created pod: <code>&lt;pod-name&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedDelete</code></TableCell>
+      <TableCell>Error deleting: <code>&lt;error-msg&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SuccessfulDelete</code></TableCell>
+      <TableCell>Deleted pod: <code>&lt;pod-id&gt;</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Horizontal Pod AutoScaler events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>SelectorRequired</TableCell>
+      <TableCell>Selector is required.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>InvalidSelector</code></TableCell>
+      <TableCell>Could not convert selector into a corresponding internal selector object.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedGetObjectMetric</code></TableCell>
+      <TableCell>HPA was unable to compute the replica count.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>InvalidMetricSourceType</code></TableCell>
+      <TableCell>Unknown metric source type.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ValidMetricFound</code></TableCell>
+      <TableCell>HPA was able to successfully calculate a replica count.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedConvertHPA</code></TableCell>
+      <TableCell>Failed to convert the given HPA.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedGetScale</code></TableCell>
+      <TableCell>HPA controller was unable to get the target’s current scale.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SucceededGetScale</code></TableCell>
+      <TableCell>HPA controller was able to get the target’s current scale.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedComputeMetricsReplicas</code></TableCell>
+      <TableCell>Failed to compute desired number of replicas based on listed metrics.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedRescale</code></TableCell>
+      <TableCell>New size: <code>&lt;size&gt;</code>; reason: <code>&lt;msg&gt;</code>; error: <code>&lt;error-msg&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SuccessfulRescale</code></TableCell>
+      <TableCell>New size: <code>&lt;size&gt;</code>; reason: <code>&lt;msg&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedUpdateStatus</code></TableCell>
+      <TableCell>Failed to update status.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Volume events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>FailedBinding</code></TableCell>
+      <TableCell>There are no persistent volumes available and no storage class is set.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>VolumeMismatch</code></TableCell>
+      <TableCell>Volume size or class is different from what is requested in claim.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>VolumeFailedRecycle</code></TableCell>
+      <TableCell>Error creating recycler pod.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>VolumeRecycled</code></TableCell>
+      <TableCell>Occurs when volume is recycled.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>RecyclerPod</code></TableCell>
+      <TableCell>Occurs when pod is recycled.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>VolumeDelete</code></TableCell>
+      <TableCell>Occurs when volume is deleted.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>VolumeFailedDelete</code></TableCell>
+      <TableCell>Error when deleting the volume.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ExternalProvisioning</code></TableCell>
+      <TableCell>Occurs when volume for the claim is provisioned either manually or via external software.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ProvisioningFailed</code></TableCell>
+      <TableCell>Failed to provision volume.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ProvisioningCleanupFailed</code></TableCell>
+      <TableCell>Error cleaning provisioned volume.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ProvisioningSucceeded</code></TableCell>
+      <TableCell>Occurs when the volume is provisioned successfully.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>WaitForFirstConsumer</code></TableCell>
+      <TableCell>Delay binding until pod scheduling.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Lifecycle hooks</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>FailedPostStartHook</code></TableCell>
+      <TableCell>Handler failed for pod start.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedPreStopHook</code></TableCell>
+      <TableCell>Handler failed for pre-stop.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>UnfinishedPreStopHook</code></TableCell>
+      <TableCell>Pre-stop hook unfinished.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Deployments</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>DeploymentCancellationFailed</code></TableCell>
+      <TableCell>Failed to cancel deployment.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DeploymentCancelled</code></TableCell>
+      <TableCell>Canceled deployment.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DeploymentCreated</code></TableCell>
+      <TableCell>Created new replication controller.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>IngressIPRangeFull</code></TableCell>
+      <TableCell>No available Ingress IP to allocate to service.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Scheduler events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>FailedScheduling</code></TableCell>
+      <TableCell>Failed to schedule pod: <code>&lt;pod-namespace&gt;/&lt;pod-name&gt;</code>. This event is raised for multiple reasons, for example: <code>AssumePodVolumes</code> failed, Binding rejected etc.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Preempted</code></TableCell>
+      <TableCell>By <code>&lt;preemptor-namespace&gt;/&lt;preemptor-name&gt;</code> on node <code>&lt;node-name&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Scheduled</code></TableCell>
+      <TableCell>Successfully assigned <code>&lt;pod-name&gt;</code> to <code>&lt;node-name&gt;</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Daemon set events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>SelectingAll</code></TableCell>
+      <TableCell>This daemon set is selecting all pods. A non-empty selector is required.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedPlacement</code></TableCell>
+      <TableCell>Failed to place pod on <code>&lt;node-name&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>FailedDaemonPod</code></TableCell>
+      <TableCell>Found failed daemon pod <code>&lt;pod-name&gt;</code> on node <code>&lt;node-name&gt;</code>, will try to kill it.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>LoadBalancer service events</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>CreatingLoadBalancerFailed</code></TableCell>
+      <TableCell>Error creating load balancer.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DeletingLoadBalancer</code></TableCell>
+      <TableCell>Deleting load balancer.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>EnsuringLoadBalancer</code></TableCell>
+      <TableCell>Ensuring load balancer.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>EnsuredLoadBalancer</code></TableCell>
+      <TableCell>Ensured load balancer.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>UnAvailableLoadBalancer</code></TableCell>
+      <TableCell>There are no available nodes for <code>LoadBalancer</code> service.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>LoadBalancerSourceRanges</code></TableCell>
+      <TableCell>Lists the new <code>LoadBalancerSourceRanges</code>. For example, <code>&lt;old-source-range&gt; -&gt; &lt;new-source-range&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>LoadbalancerIP</code></TableCell>
+      <TableCell>Lists the new IP address. For example, <code>&lt;old-ip&gt; -&gt; &lt;new-ip&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ExternalIP</code></TableCell>
+      <TableCell>Lists external IP address. For example, <code>Added: &lt;external-ip&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>UID</code></TableCell>
+      <TableCell>Lists the new UID. For example, <code>&lt;old-service-uid&gt; -&gt; &lt;new-service-uid&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ExternalTrafficPolicy</code></TableCell>
+      <TableCell>Lists the new <code>ExternalTrafficPolicy</code>. For example, <code>&lt;old-policy&gt; -&gt; &lt;new-policy&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>HealthCheckNodePort</code></TableCell>
+      <TableCell>Lists the new <code>HealthCheckNodePort</code>. For example, <code>&lt;old-node-port&gt; -&gt; new-node-port&gt;</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>UpdatedLoadBalancer</code></TableCell>
+      <TableCell>Updated load balancer with new hosts.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>LoadBalancerUpdateFailed</code></TableCell>
+      <TableCell>Error updating load balancer with new hosts.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DeletingLoadBalancer</code></TableCell>
+      <TableCell>Deleting load balancer.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DeletingLoadBalancerFailed</code></TableCell>
+      <TableCell>Error deleting load balancer.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DeletedLoadBalancer</code></TableCell>
+      <TableCell>Deleted load balancer.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

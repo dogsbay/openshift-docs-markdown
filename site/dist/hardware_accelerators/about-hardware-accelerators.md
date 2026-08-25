@@ -29,11 +29,19 @@ Hybrid-cloud support
 Support for AI/ML workloads
 :   Model testing, iteration, integration, promotion, and serving into production as services
 
-Red Hat provides an optimized platform to enable these specialized hardware accelerators in {{ op_system_base_full }} and OpenShift Container Platform platforms at the Linux (kernel and userspace) and Kubernetes layers. To do this, Red Hat combines the proven capabilities of Red Hat OpenShift AI and Red Hat OpenShift Container Platform in a single enterprise-ready AI application platform.
+Red Hat provides an optimized platform to enable these specialized hardware accelerators in Red Hat Enterprise Linux (RHEL) and OpenShift Container Platform platforms at the Linux (kernel and userspace) and Kubernetes layers. To do this, Red Hat combines the proven capabilities of Red Hat OpenShift AI and Red Hat OpenShift Container Platform in a single enterprise-ready AI application platform.
 
 Hardware Operators use the operating framework of a Kubernetes cluster to enable the required accelerator resources. You can also deploy the provided device plugin manually or as a daemon set. This plugin registers the GPU in the cluster.
 
 Certain specialized hardware accelerators are designed to work within disconnected environments where a secure environment must be maintained for development and testing.
+
+## Hardware accelerators {#hardware-accelerators_about-hardware-accelerators}
+
+Red Hat OpenShift Container Platform enables the following hardware accelerators:
+
+- NVIDIA GPU
+- AMD Instinct(R) GPU
+- Intel(R) Gaudi(R)
 
 **Additional resources**
 

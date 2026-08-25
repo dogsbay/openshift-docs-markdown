@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"persistent-storage-cinder","text":"Persistent storage using Cinder"}];
+const headings = [{"depth":1,"slug":"persistent-storage-cinder","text":"Persistent storage using Cinder"},{"depth":2,"slug":"persistent-storage-cinder-provisioning_persistent-storage-cinder","text":"Manual provisioning with Cinder"},{"depth":3,"slug":"persistent-storage-cinder-creating-pv_persistent-storage-cinder","text":"Creating the persistent volume"},{"depth":3,"slug":"persistent-storage-cinder-pv-format_persistent-storage-cinder","text":"Persistent volume formatting"},{"depth":3,"slug":"persistent-storage-cinder-volume-security_persistent-storage-cinder","text":"Configuring Cinder volume security"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/storage/persistent_storage/persistent-storage-cinder";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["storage","storage/persistent_storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using Cinder {#persistent-storage-cinder}\n\nOpenShift Container Platform supports OpenStack Cinder volumes. You can provision your OpenShift Container Platform cluster with persistent storage using OpenStack Cinder. Some familiarity with Kubernetes and OpenStack is assumed.\n\nPersistent volumes are not bound to a single project or namespace; they can be shared across the OpenShift Container Platform cluster. Persistent volume claims are specific to a project or namespace and can be requested by users.\n\n> [!IMPORTANT]\n> OpenShift Container Platform 4.11 and later provides automatic migration for the Cinder in-tree volume plugin to its equivalent CSI driver.\n>\n> CSI automatic migration should be seamless. Migration does not change how you use all existing API objects, such as persistent volumes, persistent volume claims, and storage classes. For more information about migration, see \"CSI automatic migration\".\n\n**Additional resources**\n\n- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)\n- [OpenStack Cinder](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/8/html-single/architecture_guide/index#comp-cinder)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/persistent_storage/persistent-storage-cinder.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using Cinder {#persistent-storage-cinder}\n\nOpenShift Container Platform supports OpenStack Cinder volumes. You can provision your OpenShift Container Platform cluster with persistent storage using OpenStack Cinder. Some familiarity with Kubernetes and OpenStack is assumed.\n\nPersistent volumes are not bound to a single project or namespace; they can be shared across the OpenShift Container Platform cluster. Persistent volume claims are specific to a project or namespace and can be requested by users.\n\n> [!IMPORTANT]\n> OpenShift Container Platform 4.11 and later provides automatic migration for the Cinder in-tree volume plugin to its equivalent CSI driver.\n>\n> CSI automatic migration should be seamless. Migration does not change how you use all existing API objects, such as persistent volumes, persistent volume claims, and storage classes. For more information about migration, see \"CSI automatic migration\".\n\n**Additional resources**\n\n- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)\n- [OpenStack Cinder](https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/8/html-single/architecture_guide/index#comp-cinder)\n\n## Manual provisioning with Cinder {#persistent-storage-cinder-provisioning_persistent-storage-cinder}\n\nStorage must exist in the underlying infrastructure before it can be mounted as a volume in OpenShift Container Platform.\n\nManual provisioning requires that OpenShift Container Platform is configured for Red Hat OpenStack Platform (RHOSP) and that you have the Cinder volume ID.\n\n### Creating the persistent volume {#persistent-storage-cinder-creating-pv_persistent-storage-cinder}\n\nYou can create a persistent volume (PV) that provisions storage from an Red Hat OpenStack Platform (RHOSP) Cinder volume for use with OpenShift Container Platform.\n\n**Prerequisites**\n\n- You have defined your PV in an object definition before creating it in OpenShift Container Platform.\n\n**Procedure**\n\n1. Save your object definition to a file.\n\n   ```yaml {title=\"cinder-persistentvolume.yaml\"}\n   apiVersion: \"v1\"\n   kind: \"PersistentVolume\"\n   metadata:\n     name: \"pv0001\"\n   spec:\n     capacity:\n       storage: \"5Gi\"\n     accessModes:\n       - \"ReadWriteOnce\"\n     cinder:\n       fsType: \"ext3\"\n       volumeID: \"f37a03aa-6212-4c62-a805-9ce139fab180\"\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the name of the volume that is used by persistent volume claims or pods.\n\n   `spec.capacity.storage`\n   :   Specifies the amount of storage allocated to this volume.\n\n   `spec.cinder`\n   :   Indicates `cinder` for Red Hat OpenStack Platform (RHOSP) Cinder volumes.\n\n   `spec.cinder.fsType`\n   :   Specifies the file system that is created when the volume is mounted for the first time.\n\n   `spec.cinder.volumeID`\n   :   Specifies the Cinder volume to use.\n\n> [!IMPORTANT]\n> Do not change the `fstype` parameter value after the volume is formatted and provisioned. Changing this value can result in data loss and pod failure.\n\n1. Create the object definition file you saved in the previous step.\n\n   ```terminal\n   $ oc create -f cinder-persistentvolume.yaml\n   ```\n\n### Persistent volume formatting {#persistent-storage-cinder-pv-format_persistent-storage-cinder}\n\nYou can use unformatted Cinder volumes as PVs because OpenShift Container Platform formats them before the first use.\n\nBefore OpenShift Container Platform mounts the volume and passes it to a container, the system checks that it contains a file system as specified by the `fsType` parameter in the PV definition. If the device is not formatted with the file system, all data from the device is erased and the device is automatically formatted with the given file system.\n\n### Configuring Cinder volume security {#persistent-storage-cinder-volume-security_persistent-storage-cinder}\n\nIf you use Cinder PVs in your application, configure security for their deployment resources.\n\n**Prerequisites**\n\n- An SCC must be created that uses the appropriate `fsGroup` strategy.\n\n**Procedure**\n\n1. Create a service account and add it to the SCC:\n\n   ```terminal\n   $ oc create serviceaccount <service_account>\n   ```\n\n   ```terminal\n   $ oc adm policy add-scc-to-user <new_scc> -z <service_account> -n <project>\n   ```\n2. In your application’s deployment resource, provide the service account name and `securityContext`:\n\n   ```yaml\n   apiVersion: v1\n   kind: ReplicationController\n   metadata:\n     name: frontend-1\n   spec:\n     replicas: 1\n     selector:\n       name: frontend\n     template:\n       metadata:\n         labels:\n           name: frontend\n       spec:\n         containers:\n         - image: openshift/hello-openshift\n           name: helloworld\n           ports:\n           - containerPort: 8080\n             protocol: TCP\n         restartPolicy: Always\n         serviceAccountName: <service_account>\n         securityContext:\n           fsGroup: 7777\n   ```\n\n   where:\n\n   `spec.replicas`\n   :   Specifies the number of copies of the pod to run.\n\n   `spec.selector`\n   :   Specifies the label selector of the pod to run.\n\n   `spec.template`\n   :   Specifies a template for the pod that the controller creates.\n\n   `spec.template.metadata.labels`\n   :   Specifies the labels on the pod. They must include labels from the label selector.\n\n   `spec.template.metadata.labels.name`\n   :   Specifies the maximum name length after expanding any parameters is 63 characters.\n\n   `spec.template.spec.serviceAccountName`\n   :   Specifies the service account you created.\n\n   `spec.template.spec.securityContext.fsGroup`\n   :   Specifies an `fsGroup` for the pods.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/persistent_storage/persistent-storage-cinder.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="persistent-storage-cinder" class="group scroll-mt-20">Persistent storage using Cinder<a href="#persistent-storage-cinder" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>OpenShift Container Platform supports OpenStack Cinder volumes. You can provision your OpenShift Container Platform cluster with persistent storage using OpenStack Cinder. Some familiarity with Kubernetes and OpenStack is assumed.</p>
       <p>Persistent volumes are not bound to a single project or namespace; they can be shared across the OpenShift Container Platform cluster. Persistent volume claims are specific to a project or namespace and can be requested by users.</p>
       <Alert variant="info" class="my-4">
@@ -109,9 +109,81 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration">CSI automatic migration</a></li>
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_openstack_platform/8/html-single/architecture_guide/index#comp-cinder">OpenStack Cinder</a></li>
       </ul>
-      <p class="/modules/persistent-storage-cinder-creating-pv.md"></p>
-      <p class="/modules/persistent-storage-cinder-pv-format.md"></p>
-      <p class="/modules/persistent-storage-cinder-volume-security.md"></p>
+      <h2 id="persistent-storage-cinder-provisioning_persistent-storage-cinder" class="group scroll-mt-20">Manual provisioning with Cinder<a href="#persistent-storage-cinder-provisioning_persistent-storage-cinder" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Storage must exist in the underlying infrastructure before it can be mounted as a volume in OpenShift Container Platform.</p>
+      <p>Manual provisioning requires that OpenShift Container Platform is configured for Red Hat OpenStack Platform (RHOSP) and that you have the Cinder volume ID.</p>
+      <h3 id="persistent-storage-cinder-creating-pv_persistent-storage-cinder" class="group scroll-mt-20">Creating the persistent volume<a href="#persistent-storage-cinder-creating-pv_persistent-storage-cinder" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can create a persistent volume (PV) that provisions storage from an Red Hat OpenStack Platform (RHOSP) Cinder volume for use with OpenShift Container Platform.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have defined your PV in an object definition before creating it in OpenShift Container Platform.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Save your object definition to a file.
+      <CodeBlock code={"apiVersion: \"v1\"\nkind: \"PersistentVolume\"\nmetadata:\n  name: \"pv0001\"\nspec:\n  capacity:\n    storage: \"5Gi\"\n  accessModes:\n    - \"ReadWriteOnce\"\n  cinder:\n    fsType: \"ext3\"\n    volumeID: \"f37a03aa-6212-4c62-a805-9ce139fab180\""} lang="yaml" title="cinder-persistentvolume.yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the volume that is used by persistent volume claims or pods.</p></dd>
+      <dt class="font-semibold"><code>spec.capacity.storage</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the amount of storage allocated to this volume.</p></dd>
+      <dt class="font-semibold"><code>spec.cinder</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Indicates <code>cinder</code> for Red Hat OpenStack Platform (RHOSP) Cinder volumes.</p></dd>
+      <dt class="font-semibold"><code>spec.cinder.fsType</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the file system that is created when the volume is mounted for the first time.</p></dd>
+      <dt class="font-semibold"><code>spec.cinder.volumeID</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Cinder volume to use.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not change the <code>fstype</code> parameter value after the volume is formatted and provisioned. Changing this value can result in data loss and pod failure.</p>
+        </AlertDescription>
+      </Alert>
+      <ol>
+      <li>
+      Create the object definition file you saved in the previous step.
+      <CodeBlock code={"$ oc create -f cinder-persistentvolume.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <h3 id="persistent-storage-cinder-pv-format_persistent-storage-cinder" class="group scroll-mt-20">Persistent volume formatting<a href="#persistent-storage-cinder-pv-format_persistent-storage-cinder" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can use unformatted Cinder volumes as PVs because OpenShift Container Platform formats them before the first use.</p>
+      <p>Before OpenShift Container Platform mounts the volume and passes it to a container, the system checks that it contains a file system as specified by the <code>fsType</code> parameter in the PV definition. If the device is not formatted with the file system, all data from the device is erased and the device is automatically formatted with the given file system.</p>
+      <h3 id="persistent-storage-cinder-volume-security_persistent-storage-cinder" class="group scroll-mt-20">Configuring Cinder volume security<a href="#persistent-storage-cinder-volume-security_persistent-storage-cinder" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">If you use Cinder PVs in your application, configure security for their deployment resources.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>An SCC must be created that uses the appropriate <code>fsGroup</code> strategy.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a service account and add it to the SCC:
+      <CodeBlock code={"$ oc create serviceaccount <service_account>"} lang="terminal" />
+      <CodeBlock code={"$ oc adm policy add-scc-to-user <new_scc> -z <service_account> -n <project>"} lang="terminal" />
+      </li>
+      <li>
+      In your application’s deployment resource, provide the service account name and <code>securityContext</code>:
+      <CodeBlock code={"apiVersion: v1\nkind: ReplicationController\nmetadata:\n  name: frontend-1\nspec:\n  replicas: 1\n  selector:\n    name: frontend\n  template:\n    metadata:\n      labels:\n        name: frontend\n    spec:\n      containers:\n      - image: openshift/hello-openshift\n        name: helloworld\n        ports:\n        - containerPort: 8080\n          protocol: TCP\n      restartPolicy: Always\n      serviceAccountName: <service_account>\n      securityContext:\n        fsGroup: 7777"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.replicas</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the number of copies of the pod to run.</p></dd>
+      <dt class="font-semibold"><code>spec.selector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the label selector of the pod to run.</p></dd>
+      <dt class="font-semibold"><code>spec.template</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a template for the pod that the controller creates.</p></dd>
+      <dt class="font-semibold"><code>spec.template.metadata.labels</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the labels on the pod. They must include labels from the label selector.</p></dd>
+      <dt class="font-semibold"><code>spec.template.metadata.labels.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum name length after expanding any parameters is 63 characters.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.serviceAccountName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the service account you created.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.securityContext.fsGroup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies an <code>fsGroup</code> for the pods.</p></dd>
+      </dl>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

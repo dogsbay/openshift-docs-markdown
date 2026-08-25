@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-using-preallocation-for-datavolumes","text":"Using preallocation for data volumes"}];
+const headings = [{"depth":1,"slug":"virt-using-preallocation-for-datavolumes","text":"Using preallocation for data volumes"},{"depth":2,"slug":"virt-about-preallocation_virt-using-preallocation-for-datavolumes","text":"About preallocation"},{"depth":2,"slug":"virt-enabling-preallocation-for-dv_virt-using-preallocation-for-datavolumes","text":"Enabling preallocation for a data volume"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/storage/virt-using-preallocation-for-datavolumes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using preallocation for data volumes {#virt-using-preallocation-for-datavolumes}\n\nThe Containerized Data Importer (CDI) can preallocate disk space to improve write performance when creating data volumes. You can enable preallocation for specific data volumes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-using-preallocation-for-datavolumes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using preallocation for data volumes {#virt-using-preallocation-for-datavolumes}\n\nThe Containerized Data Importer (CDI) can preallocate disk space to improve write performance when creating data volumes. You can enable preallocation for specific data volumes.\n\n## About preallocation {#virt-about-preallocation_virt-using-preallocation-for-datavolumes}\n\nThe Containerized Data Importer (CDI) can use the QEMU preallocate mode for data volumes to improve write performance. You can use preallocation mode for importing and uploading operations and when creating blank data volumes.\n\nIf preallocation is enabled, CDI uses the better preallocation method depending on the underlying file system and device type:\n\n`fallocate`\n:   If the file system supports it, CDI uses the operating system’s `fallocate` call to preallocate space by using the `posix_fallocate` function, which allocates blocks and marks them as uninitialized.\n\n`full`\n:   If `fallocate` mode cannot be used, `full` mode allocates space for the image by writing data to the underlying storage. Depending on the storage location, all the empty allocated space might be zeroed.\n\n## Enabling preallocation for a data volume {#virt-enabling-preallocation-for-dv_virt-using-preallocation-for-datavolumes}\n\nYou can enable preallocation for specific data volumes by including the `spec.preallocation` field in the data volume manifest. You can enable preallocation mode in either the web console or by using the OpenShift CLI (`oc`).\n\nPreallocation mode is supported for all CDI source types. However, preallocation is ignored for cloning operations.\n\n**Procedure**\n\n- Specify the `spec.preallocation` field in the data volume manifest:\n\n  ```yaml\n  apiVersion: cdi.kubevirt.io/v1beta1\n  kind: DataVolume\n  metadata:\n    name: preallocated-datavolume\n  spec:\n    source:\n      registry:\n        url: <image_url>\n    storage:\n      resources:\n        requests:\n          storage: 1Gi\n    preallocation: true\n  # ...\n  ```\n\n  where:\n\n  `<image_url>`\n  :   Specifies the URL of the data source in your registry.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-using-preallocation-for-datavolumes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,31 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-using-preallocation-for-datavolumes" class="group scroll-mt-20">Using preallocation for data volumes<a href="#virt-using-preallocation-for-datavolumes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The Containerized Data Importer (CDI) can preallocate disk space to improve write performance when creating data volumes. You can enable preallocation for specific data volumes.</p>
-      <p class="/modules/virt-about-preallocation.md"></p>
-      <p class="/modules/virt-enabling-preallocation-for-dv.md"></p>
+      <h2 id="virt-about-preallocation_virt-using-preallocation-for-datavolumes" class="group scroll-mt-20">About preallocation<a href="#virt-about-preallocation_virt-using-preallocation-for-datavolumes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Containerized Data Importer (CDI) can use the QEMU preallocate mode for data volumes to improve write performance. You can use preallocation mode for importing and uploading operations and when creating blank data volumes.</p>
+      <p>If preallocation is enabled, CDI uses the better preallocation method depending on the underlying file system and device type:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>fallocate</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>If the file system supports it, CDI uses the operating system’s <code>fallocate</code> call to preallocate space by using the <code>posix_fallocate</code> function, which allocates blocks and marks them as uninitialized.</p></dd>
+      <dt class="font-semibold"><code>full</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>If <code>fallocate</code> mode cannot be used, <code>full</code> mode allocates space for the image by writing data to the underlying storage. Depending on the storage location, all the empty allocated space might be zeroed.</p></dd>
+      </dl>
+      <h2 id="virt-enabling-preallocation-for-dv_virt-using-preallocation-for-datavolumes" class="group scroll-mt-20">Enabling preallocation for a data volume<a href="#virt-enabling-preallocation-for-dv_virt-using-preallocation-for-datavolumes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can enable preallocation for specific data volumes by including the <code>spec.preallocation</code> field in the data volume manifest. You can enable preallocation mode in either the web console or by using the OpenShift CLI (<code>oc</code>).</p>
+      <p>Preallocation mode is supported for all CDI source types. However, preallocation is ignored for cloning operations.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Specify the <code>spec.preallocation</code> field in the data volume manifest:
+      <CodeBlock code={"apiVersion: cdi.kubevirt.io/v1beta1\nkind: DataVolume\nmetadata:\n  name: preallocated-datavolume\nspec:\n  source:\n    registry:\n      url: <image_url>\n  storage:\n    resources:\n      requests:\n        storage: 1Gi\n  preallocation: true\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;image_url&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the URL of the data source in your registry.</p></dd>
+      </dl>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

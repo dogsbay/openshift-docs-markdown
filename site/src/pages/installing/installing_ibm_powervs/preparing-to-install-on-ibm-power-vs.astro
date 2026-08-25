@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"preparing-to-install-on-ibm-power-vs","text":"Installation methods"},{"depth":2,"slug":"additional-resources_preparing-to-install-on-ibm-power-vs","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"preparing-to-install-on-ibm-power-vs","text":"Installation methods"},{"depth":2,"slug":"installation-methods-ibm-power-vs_preparing-to-install-on-ibm-power-vs","text":"Installing a cluster on installer-provisioned infrastructure"},{"depth":2,"slug":"cco-ccoctl-configuring_preparing-to-install-on-ibm-power-vs","text":"Configuring the Cloud Credential Operator utility"},{"depth":2,"slug":"additional-resources_preparing-to-install-on-ibm-power-vs","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_ibm_powervs/preparing-to-install-on-ibm-power-vs";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Installation methods";
-const description = "Before you install OpenShift Container Platform on {{ ibm_power_server_name }}, review the available installer-provisioned infrastructure methods and…" || undefined;
+const description = "Before you install OpenShift Container Platform on IBM Power(R) Virtual Server, review the available installer-provisioned infrastructure methods and…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_ibm_powervs"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installation methods {#preparing-to-install-on-ibm-power-vs}\n\nBefore you install OpenShift Container Platform on {{ ibm_power_server_name }}, review the available installer-provisioned infrastructure methods and configure the Cloud Credential Operator utility.\n\n## Additional resources {#additional-resources_preparing-to-install-on-ibm-power-vs}\n\n- [Installing a cluster on {{ ibm_power_name }}](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power)\n- [Rotating API keys](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#refreshing-service-ids-ibm-cloud_changing-cloud-credentials-configuration)\n- [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)\n- [Installing a customized cluster on {{ ibm_power_server_name }}](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-customizations#installing-ibm-power-vs-customizations)\n- [Installing a cluster on {{ ibm_power_server_name }} into an existing VPC](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-powervs-vpc#installing-ibm-powervs-vpc)\n- [Installing a private cluster on {{ ibm_power_server_name }}](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-private-cluster#installing-ibm-power-vs-private-cluster)\n- [Installing a cluster on {{ ibm_power_server_name }} in a restricted network](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-restricted-networks-ibm-power-vs#installing-restricted-networks-ibm-power-vs)\n- [Configuring an {{ ibm_cloud_name }} account](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-cloud-account-power-vs#installing-ibm-cloud-account-power-vs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_powervs/preparing-to-install-on-ibm-power-vs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installation methods {#preparing-to-install-on-ibm-power-vs}\n\nBefore you install OpenShift Container Platform on IBM Power(R) Virtual Server, review the available installer-provisioned infrastructure methods and configure the Cloud Credential Operator utility.\n\n## Installing a cluster on installer-provisioned infrastructure {#installation-methods-ibm-power-vs_preparing-to-install-on-ibm-power-vs}\n\nReview the available installer-provisioned methods for installing a OpenShift Container Platform cluster on IBM Power(R) Virtual Server, including customized, VPC-based, private, and disconnected network options.\n\n- ***Installing a customized cluster on IBM Power(R) Virtual Server***: You can install a customized cluster on IBM Power(R) Virtual Server infrastructure that the installation program provisions. The installation program supports some customization at the installation stage. Many other customization options are available postinstallation.\n- ***Installing a cluster on IBM Power(R) Virtual Server into an existing VPC***: You can install OpenShift Container Platform on IBM Power(R) Virtual Server into an existing Virtual Private Cloud (VPC). You can use this installation method if you have constraints set by the guidelines of your company, such as limits when creating new accounts or infrastructure.\n- ***Installing a private cluster on IBM Power(R) Virtual Server***: You can install a private cluster on IBM Power(R) Virtual Server. You can use this method to deploy OpenShift Container Platform on an internal network that is not visible to the internet.\n- ***Installing a cluster on IBM Power(R) Virtual Server in a restricted network***: You can install OpenShift Container Platform on installer-provisioned IBM Power(R) Virtual Server infrastructure by using an internal mirror of the installation release content. You can use this method to install a cluster that does not require an active internet connection to obtain the software components.\n\n> [!NOTE]\n> Installing OpenShift Container Platform on IBM Power(R) Virtual Server using user-provisioned infrastructure is the same as for IBM Power(R).\n\n## Configuring the Cloud Credential Operator utility {#cco-ccoctl-configuring_preparing-to-install-on-ibm-power-vs}\n\nThe Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). To install a cluster on IBM Power(R) Virtual Server, you must set the CCO to `manual` mode as part of the installation process. {.\\_abstract} To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (`ccoctl`) binary.\n\n> [!NOTE]\n> The `ccoctl` utility is a Linux binary that must run in a Linux environment.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform account with cluster administrator access.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Set a variable for the OpenShift Container Platform release image by running the following command:\n\n   ```terminal\n   $ RELEASE_IMAGE=$(./openshift-install version | awk '/release image/ {print $3}')\n   ```\n2. Obtain the CCO container image from the OpenShift Container Platform release image by running the following command:\n\n   ```terminal\n   $ CCO_IMAGE=$(oc adm release info --image-for='cloud-credential-operator' $RELEASE_IMAGE -a ~/.pull-secret)\n   ```\n\n   > [!NOTE]\n   > Ensure that the architecture of the `$RELEASE_IMAGE` matches the architecture of the environment in which you will use the `ccoctl` tool.\n3. Extract the `ccoctl` binary from the CCO container image within the OpenShift Container Platform release image by running the following command:\n\n   ```terminal\n   $ oc image extract $CCO_IMAGE \\\n     --file=\"/usr/bin/ccoctl.<rhel_version>\" \\\n     -a ~/.pull-secret\n   ```\n\n   For `<rhel_version>`, specify the value that corresponds to the version of Red Hat Enterprise Linux (RHEL) that the host uses. If no value is specified, `ccoctl.rhel8` is used by default. The following values are valid:\n\n   - `rhel8`: Specify this value for hosts that use RHEL 8.\n   - `rhel9`: Specify this value for hosts that use RHEL 9.\n\n     > [!NOTE]\n     > The `ccoctl` binary is created in the directory from where you executed the command and not in `/usr/bin/`. You must rename the directory or move the `ccoctl.<rhel_version>` binary to `ccoctl`.\n4. Change the permissions to make `ccoctl` executable by running the following command:\n\n   ```terminal\n   $ chmod 775 ccoctl\n   ```\n\n**Verification**\n\n- To verify that `ccoctl` is ready to use, display the help file. Use a relative file name when you run the command, for example:\n\n  ```terminal\n  $ ./ccoctl\n  ```\n\n  ```terminal {title=\"Example output\"}\n  OpenShift credentials provisioning tool\n\n  Usage:\n    ccoctl [command]\n\n  Available Commands:\n    aws          Manage credentials objects for AWS cloud\n    azure        Manage credentials objects for Azure\n    gcp          Manage credentials objects for Google cloud\n    help         Help about any command\n    ibmcloud     Manage credentials objects for IBM Cloud\n    nutanix      Manage credentials objects for Nutanix\n\n  Flags:\n    -h, --help   help for ccoctl\n\n  Use \"ccoctl [command] --help\" for more information about a command.\n  ```\n\n## Additional resources {#additional-resources_preparing-to-install-on-ibm-power-vs}\n\n- [Installing a cluster on IBM Power(R)](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power)\n- [Rotating API keys](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#refreshing-service-ids-ibm-cloud_changing-cloud-credentials-configuration)\n- [Installation process](/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation)\n- [Installing a customized cluster on IBM Power(R) Virtual Server](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-customizations#installing-ibm-power-vs-customizations)\n- [Installing a cluster on IBM Power(R) Virtual Server into an existing VPC](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-powervs-vpc#installing-ibm-powervs-vpc)\n- [Installing a private cluster on IBM Power(R) Virtual Server](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-private-cluster#installing-ibm-power-vs-private-cluster)\n- [Installing a cluster on IBM Power(R) Virtual Server in a restricted network](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-restricted-networks-ibm-power-vs#installing-restricted-networks-ibm-power-vs)\n- [Configuring an IBM Cloud(R) account](/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-cloud-account-power-vs#installing-ibm-cloud-account-power-vs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_powervs/preparing-to-install-on-ibm-power-vs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,20 +95,90 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="preparing-to-install-on-ibm-power-vs" class="group scroll-mt-20">Installation methods<a href="#preparing-to-install-on-ibm-power-vs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Before you install OpenShift Container Platform on {"{"}{"{"} ibm_power_server_name {"}"}{"}"}, review the available installer-provisioned infrastructure methods and configure the Cloud Credential Operator utility.</p>
-      <p class="/modules/installation-methods-ibm-power-vs.md"></p>
-      <p class="/modules/cco-ccoctl-configuring.md"></p>
+      <p>Before you install OpenShift Container Platform on IBM Power(R) Virtual Server, review the available installer-provisioned infrastructure methods and configure the Cloud Credential Operator utility.</p>
+      <h2 id="installation-methods-ibm-power-vs_preparing-to-install-on-ibm-power-vs" class="group scroll-mt-20">Installing a cluster on installer-provisioned infrastructure<a href="#installation-methods-ibm-power-vs_preparing-to-install-on-ibm-power-vs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the available installer-provisioned methods for installing a OpenShift Container Platform cluster on IBM Power(R) Virtual Server, including customized, VPC-based, private, and disconnected network options.</p>
+      <ul>
+      <li><em></em><em><strong>Installing a customized cluster on IBM Power(R) Virtual Server</strong></em><em></em>: You can install a customized cluster on IBM Power(R) Virtual Server infrastructure that the installation program provisions. The installation program supports some customization at the installation stage. Many other customization options are available postinstallation.</li>
+      <li><em></em><em><strong>Installing a cluster on IBM Power(R) Virtual Server into an existing VPC</strong></em><em></em>: You can install OpenShift Container Platform on IBM Power(R) Virtual Server into an existing Virtual Private Cloud (VPC). You can use this installation method if you have constraints set by the guidelines of your company, such as limits when creating new accounts or infrastructure.</li>
+      <li><em></em><em><strong>Installing a private cluster on IBM Power(R) Virtual Server</strong></em><em></em>: You can install a private cluster on IBM Power(R) Virtual Server. You can use this method to deploy OpenShift Container Platform on an internal network that is not visible to the internet.</li>
+      <li><em></em><em><strong>Installing a cluster on IBM Power(R) Virtual Server in a restricted network</strong></em><em></em>: You can install OpenShift Container Platform on installer-provisioned IBM Power(R) Virtual Server infrastructure by using an internal mirror of the installation release content. You can use this method to install a cluster that does not require an active internet connection to obtain the software components.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Installing OpenShift Container Platform on IBM Power(R) Virtual Server using user-provisioned infrastructure is the same as for IBM Power(R).</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="cco-ccoctl-configuring_preparing-to-install-on-ibm-power-vs" class="group scroll-mt-20">Configuring the Cloud Credential Operator utility<a href="#cco-ccoctl-configuring_preparing-to-install-on-ibm-power-vs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The Cloud Credential Operator (CCO) manages cloud provider credentials as Kubernetes custom resource definitions (CRDs). To install a cluster on IBM Power(R) Virtual Server, you must set the CCO to <code>manual</code> mode as part of the installation process. {"{"}._abstract{"}"} To create and manage cloud credentials from outside of the cluster when the Cloud Credential Operator (CCO) is operating in manual mode, extract and prepare the CCO utility (<code>ccoctl</code>) binary.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>ccoctl</code> utility is a Linux binary that must run in a Linux environment.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to an OpenShift Container Platform account with cluster administrator access.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set a variable for the OpenShift Container Platform release image by running the following command:
+      <CodeBlock code={"$ RELEASE_IMAGE=$(./openshift-install version | awk '/release image/ {print $3}')"} lang="terminal" />
+      </li>
+      <li>
+      Obtain the CCO container image from the OpenShift Container Platform release image by running the following command:
+      <CodeBlock code={"$ CCO_IMAGE=$(oc adm release info --image-for='cloud-credential-operator' $RELEASE_IMAGE -a ~/.pull-secret)"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Ensure that the architecture of the <code>$RELEASE_IMAGE</code> matches the architecture of the environment in which you will use the <code>ccoctl</code> tool.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Extract the <code>ccoctl</code> binary from the CCO container image within the OpenShift Container Platform release image by running the following command:
+      <CodeBlock code={"$ oc image extract $CCO_IMAGE \\\n  --file=\"/usr/bin/ccoctl.<rhel_version>\" \\\n  -a ~/.pull-secret"} lang="terminal" />
+      <p>For <code>&lt;rhel_version&gt;</code>, specify the value that corresponds to the version of Red Hat Enterprise Linux (RHEL) that the host uses. If no value is specified, <code>ccoctl.rhel8</code> is used by default. The following values are valid:</p>
+      <ul>
+      <li><code>rhel8</code>: Specify this value for hosts that use RHEL 8.</li>
+      <li>
+      <code>rhel9</code>: Specify this value for hosts that use RHEL 9.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>ccoctl</code> binary is created in the directory from where you executed the command and not in <code>/usr/bin/</code>. You must rename the directory or move the <code>ccoctl.&lt;rhel_version&gt;</code> binary to <code>ccoctl</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      <li>
+      Change the permissions to make <code>ccoctl</code> executable by running the following command:
+      <CodeBlock code={"$ chmod 775 ccoctl"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that <code>ccoctl</code> is ready to use, display the help file. Use a relative file name when you run the command, for example:
+      <CodeBlock code={"$ ./ccoctl"} lang="terminal" />
+      <CodeBlock code={"OpenShift credentials provisioning tool\n\nUsage:\n  ccoctl [command]\n\nAvailable Commands:\n  aws          Manage credentials objects for AWS cloud\n  azure        Manage credentials objects for Azure\n  gcp          Manage credentials objects for Google cloud\n  help         Help about any command\n  ibmcloud     Manage credentials objects for IBM Cloud\n  nutanix      Manage credentials objects for Nutanix\n\nFlags:\n  -h, --help   help for ccoctl\n\nUse \"ccoctl [command] --help\" for more information about a command."} lang="terminal" title="Example output" />
+      </li>
+      </ul>
       <h2 id="additional-resources_preparing-to-install-on-ibm-power-vs" class="group scroll-mt-20">Additional resources<a href="#additional-resources_preparing-to-install-on-ibm-power-vs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power">Installing a cluster on {"{"}{"{"} ibm_power_name {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power">Installing a cluster on IBM Power(R)</a></li>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#refreshing-service-ids-ibm-cloud_changing-cloud-credentials-configuration">Rotating API keys</a></li>
       <li><a href="/openshift-docs-markdown/architecture/architecture-installation#installation-process_architecture-installation">Installation process</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-customizations#installing-ibm-power-vs-customizations">Installing a customized cluster on {"{"}{"{"} ibm_power_server_name {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-powervs-vpc#installing-ibm-powervs-vpc">Installing a cluster on {"{"}{"{"} ibm_power_server_name {"}"}{"}"} into an existing VPC</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-private-cluster#installing-ibm-power-vs-private-cluster">Installing a private cluster on {"{"}{"{"} ibm_power_server_name {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-restricted-networks-ibm-power-vs#installing-restricted-networks-ibm-power-vs">Installing a cluster on {"{"}{"{"} ibm_power_server_name {"}"}{"}"} in a restricted network</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-cloud-account-power-vs#installing-ibm-cloud-account-power-vs">Configuring an {"{"}{"{"} ibm_cloud_name {"}"}{"}"} account</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-customizations#installing-ibm-power-vs-customizations">Installing a customized cluster on IBM Power(R) Virtual Server</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-powervs-vpc#installing-ibm-powervs-vpc">Installing a cluster on IBM Power(R) Virtual Server into an existing VPC</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-power-vs-private-cluster#installing-ibm-power-vs-private-cluster">Installing a private cluster on IBM Power(R) Virtual Server</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-restricted-networks-ibm-power-vs#installing-restricted-networks-ibm-power-vs">Installing a cluster on IBM Power(R) Virtual Server in a restricted network</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_powervs/installing-ibm-cloud-account-power-vs#installing-ibm-cloud-account-power-vs">Configuring an IBM Cloud(R) account</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

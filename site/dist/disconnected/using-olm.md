@@ -41,12 +41,159 @@ After enabling OLM in a disconnected environment, you can continue to use your u
 
 - [Red Hat Ecosystem Catalog](https://catalog.redhat.com/software/search?p=1&deployed_as=Operator&type=Containerized%20application&badges_and_features=Disconnected)
 
+## Prerequisites {#olm-restricted-network-prereqs_olm-restricted-networks}
+
+You must meet several prerequisites before using OLM in a disconnected environment.
+
+The following prerequisites must be met:
+
+- You are logged in to your OpenShift Container Platform cluster as a user with `cluster-admin` privileges.
+- If you are using OLM in a disconnected environment on IBM Z(R), you must have at least 12 GB allocated to the directory where you place your registry.
+
+## Disabling the default software catalog sources {#olm-restricted-networks-operatorhub_olm-restricted-networks}
+
+To use only trusted or locally available Operator catalogs, disable the default software catalog sources that OpenShift Container Platform configures during installation. In a restricted network environment, you must disable the default catalogs as a cluster administrator.
+
+You can then configure the OperatorHub custom resource definition (CRD) to use local catalog sources for the software catalog.
+
+**Procedure**
+
+- Disable the sources for the default catalogs by adding `disableAllDefaultSources: true` to the `OperatorHub` object:
+
+  ```terminal
+  $ oc patch OperatorHub cluster --type json \
+      -p '[{"op": "add", "path": "/spec/disableAllDefaultSources", "value": true}]'
+  ```
+
+  > [!TIP]
+  > Or, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+
+## Mirroring an Operator catalog {#olm-mirror-catalog_olm-restricted-networks}
+
+For instructions about mirroring Operator catalogs for use with disconnected clusters, see "Mirroring Operator catalogs for use with disconnected clusters".
+
+> [!IMPORTANT]
+> As of OpenShift Container Platform 4.11, the default Red Hat-provided Operator catalog releases in the file-based catalog format. The default Red Hat-provided Operator catalogs for OpenShift Container Platform 4.6 through 4.10 released in the deprecated SQLite database format.
+>
+> The `opm` subcommands, flags, and functionality related to the SQLite database format are also deprecated and will be removed in a future release. The features are still supported and must be used for catalogs that use the deprecated SQLite database format.
+>
+> Many of the `opm` subcommands and flags for working with the SQLite database format, such as `opm index prune`, do not work with the file-based catalog format. For more information about working with file-based catalogs, see "Operator Framework packaging format", "Managing custom catalogs", and "Mirroring images for a disconnected installation by using the oc-mirror plugin v2".
+
 **Additional resources**
 
 - [Mirroring Operator catalogs for use with disconnected clusters](/openshift-docs-markdown/disconnected/installing-mirroring-installation-images#olm-mirror-catalog_installing-mirroring-installation-images)
 - [Operator Framework packaging format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)
 - [Managing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb)
 - [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)
+
+## Adding a catalog source to a cluster {#olm-creating-catalog-from-index_olm-restricted-networks}
+
+To make Operators from a custom index image available for installation, create a catalog source that adds the catalog content to your cluster.
+
+Cluster administrators
+
+can create a `CatalogSource` object that references an index image. The software catalog uses catalog sources to populate the user interface.
+
+> [!TIP]
+> Alternatively, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.
+
+**Prerequisites**
+
+- You built and pushed an index image to a registry.
+- You have access to the cluster as a user with the `cluster-admin` role.
+
+**Procedure**
+
+1. Create a `CatalogSource` object that references your index image. If you used the `oc adm catalog mirror` command to mirror your catalog to a target registry, you can use the generated `catalogSource.yaml` file in your manifests directory as a starting point.
+
+   1. Modify the following to your specifications and save it as a `catalogSource.yaml` file:
+
+      ```yaml
+      apiVersion: operators.coreos.com/v1alpha1
+      kind: CatalogSource
+      metadata:
+        name: my-operator-catalog
+        namespace: {{ namespace }}
+      spec:
+        sourceType: grpc
+        grpcPodConfig:
+          securityContextConfig: <security_mode>
+        image: <registry>/<namespace>/{{ index_image }}:{{ tag }}
+        displayName: My Operator Catalog
+        publisher: <publisher_name>
+        updateStrategy:
+          registryPoll:
+            interval: 30m
+      ```
+
+      where:
+
+      `metadata.name`
+      :   Specifies the value for the `metadata.name` parameter. If you mirrored content to local files before uploading to a registry, remove any backslash (`/`) characters from the `metadata.name` field to avoid an "invalid resource name" error when you create the object.
+
+      `metadata.namespace`
+      :   Specifies the value for the `metadata.namespace` parameter. If you want the catalog source to be available globally to users in all namespaces, specify the `{{ namespace }}` namespace. Otherwise, you can specify a different namespace for the catalog to be scoped and available only for that namespace.
+
+      `spec.grpcPodConfig.securityContextConfig`
+      :   Specifies the value of `legacy` or `restricted`. If the field is not set, the default value is `legacy`. In a future OpenShift Container Platform release, it is planned that the default value will be `restricted`.
+
+          > [!NOTE]
+          > If your catalog cannot run with `restricted` permissions, it is recommended that you manually set this field to `legacy`.
+
+      `spec.image`
+      :   Specifies your index image. If you specify a tag after the image name, for example `:{{ tag }}`, the catalog source pod uses an image pull policy of `Always`, meaning the pod always pulls the image before starting the container. If you specify a digest, for example `@sha256:<id>`, the image pull policy is `IfNotPresent`, meaning the pod pulls the image only if it does not already exist on the node.
+
+      `spec.publisher`
+      :   Specifies your name or an organization name publishing the catalog.
+
+      `spec.updateStrategy.registryPoll`
+      :   Specifies the value for the `spec.updateStrategy.registryPoll` parameter. The catalog sources can automatically check for new versions to keep up to date.
+   2. Use the file to create the `CatalogSource` object:
+
+      ```terminal
+      $ oc apply -f catalogSource.yaml
+      ```
+2. Verify the following resources are created successfully.
+
+   1. Check the pods:
+
+      ```terminal
+      $ oc get pods -n {{ namespace }}
+      ```
+
+      The following is example output:
+
+      ```terminal
+      NAME                                    READY   STATUS    RESTARTS  AGE
+      my-operator-catalog-6njx6               1/1     Running   0         28s
+      marketplace-operator-d9f549946-96sgr    1/1     Running   0         26h
+      ```
+   2. Check the catalog source:
+
+      ```terminal
+      $ oc get catalogsource -n {{ namespace }}
+      ```
+
+      The following is example output:
+
+      ```terminal
+      NAME                  DISPLAY               TYPE PUBLISHER  AGE
+      my-operator-catalog   My Operator Catalog   grpc            5s
+      ```
+   3. Check the package manifest:
+
+      ```terminal
+      $ oc get packagemanifest -n {{ namespace }}
+      ```
+
+      The following is example output:
+
+      ```terminal
+      NAME                          CATALOG               AGE
+      jaeger-product                My Operator Catalog   93s
+      ```
+
+      You can now install the Operators from the **Software Catalog** page on your OpenShift Container Platform web console.
 
 ## Additional resources {#using-olm-additional-resources_olm-restricted-networks}
 

@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-installing-qemu-guest-agent","text":"Install the QEMU guest agent"}];
+const headings = [{"depth":1,"slug":"virt-installing-qemu-guest-agent","text":"Install the QEMU guest agent"},{"depth":2,"slug":"virt-installing-qemu-guest-agent-on-linux-vm_virt-installing-qemu-guest-agent","text":"Installing the QEMU guest agent on a Linux VM"},{"depth":2,"slug":"installing-qemu-guest-agent-on-windows-vm_virt-installing-qemu-guest-agent","text":"Installing the QEMU guest agent on a Windows VM"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/managing_vms"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Install the QEMU guest agent {#virt-installing-qemu-guest-agent}\n\nThe QEMU guest agent is a daemon that runs on the VM and passes information to the host about the VM, users, file systems, and secondary networks. You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Install the QEMU guest agent {#virt-installing-qemu-guest-agent}\n\nThe QEMU guest agent is a daemon that runs on the VM and passes information to the host about the VM, users, file systems, and secondary networks. You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\n## Installing the QEMU guest agent on a Linux VM {#virt-installing-qemu-guest-agent-on-linux-vm_virt-installing-qemu-guest-agent}\n\nThe `qemu-guest-agent` is available by default in Red Hat Enterprise Linux (RHEL) virtual machines (VMs). To create snapshots of a VM in the `Running` state with the highest integrity, install the QEMU guest agent.\n\nThe QEMU guest agent takes a consistent snapshot by attempting to quiesce the VM file system. This ensures that in-flight I/O is written to the disk before the snapshot is taken. If the guest agent is not present, quiescing is not possible and a best-effort snapshot is taken.\n\nThe conditions under which a snapshot is taken are reflected in the snapshot indications that are displayed in the web console or CLI. If these conditions do not meet your requirements, try creating the snapshot again, or use an offline snapshot\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Log in to the VM by using a console or SSH.\n2. Install the QEMU guest agent by running the following command:\n\n   ```terminal\n   $ yum install -y qemu-guest-agent\n   ```\n3. Ensure the service is persistent and start it:\n\n   ```terminal\n   $ systemctl enable --now qemu-guest-agent\n   ```\n\n**Verification**\n\n- Run the following command to verify that `AgentConnected` is listed in the VM spec:\n\n  ```terminal\n  $ oc get vm <vm_name>\n  ```\n\n## Installing the QEMU guest agent on a Windows VM {#installing-qemu-guest-agent-on-windows-vm_virt-installing-qemu-guest-agent}\n\nFor Windows virtual machines (VMs), the QEMU guest agent is included in the VirtIO drivers. You can install the drivers during a Windows installation or on an existing Windows VM.\n\nTo create snapshots of a VM in the `Running` state with the highest integrity, install the QEMU guest agent.\n\nThe QEMU guest agent takes a consistent snapshot by attempting to quiesce the VM file system. This ensures that in-flight I/O is written to the disk before the snapshot is taken. If the guest agent is not present, quiescing is not possible and a best-effort snapshot is taken.\n\nNote that in a Windows guest operating system, quiescing also requires the Volume Shadow Copy Service (VSS). Therefore, before you create a snapshot, ensure that VSS is enabled on the VM as well.\n\nThe conditions under which a snapshot is taken are reflected in the snapshot indications that are displayed in the web console or CLI. If these conditions do not meet your requirements, try creating the snapshot again or use an offline snapshot.\n\n**Procedure**\n\n1. In the Windows guest operating system, use the **File Explorer** to navigate to the `guest-agent` directory in the `virtio-win` CD drive.\n2. Run the `qemu-ga-x86_64.msi` installer.\n\n**Verification**\n\n1. Obtain a list of network services by running the following command:\n\n   ```terminal\n   $ net start\n   ```\n2. Verify that the output contains the `QEMU Guest Agent`.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,51 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-installing-qemu-guest-agent" class="group scroll-mt-20">Install the QEMU guest agent<a href="#virt-installing-qemu-guest-agent" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The QEMU guest agent is a daemon that runs on the VM and passes information to the host about the VM, users, file systems, and secondary networks. You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.</p>
-      <p class="/modules/virt-installing-qemu-guest-agent-on-linux-vm.md"></p>
-      <p class="/modules/virt-installing-qemu-guest-agent-on-windows-vm.md"></p>
+      <h2 id="virt-installing-qemu-guest-agent-on-linux-vm_virt-installing-qemu-guest-agent" class="group scroll-mt-20">Installing the QEMU guest agent on a Linux VM<a href="#virt-installing-qemu-guest-agent-on-linux-vm_virt-installing-qemu-guest-agent" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The <code>qemu-guest-agent</code> is available by default in Red Hat Enterprise Linux (RHEL) virtual machines (VMs). To create snapshots of a VM in the <code>Running</code> state with the highest integrity, install the QEMU guest agent.</p>
+      <p>The QEMU guest agent takes a consistent snapshot by attempting to quiesce the VM file system. This ensures that in-flight I/O is written to the disk before the snapshot is taken. If the guest agent is not present, quiescing is not possible and a best-effort snapshot is taken.</p>
+      <p>The conditions under which a snapshot is taken are reflected in the snapshot indications that are displayed in the web console or CLI. If these conditions do not meet your requirements, try creating the snapshot again, or use an offline snapshot</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the VM by using a console or SSH.</li>
+      <li>
+      Install the QEMU guest agent by running the following command:
+      <CodeBlock code={"$ yum install -y qemu-guest-agent"} lang="terminal" />
+      </li>
+      <li>
+      Ensure the service is persistent and start it:
+      <CodeBlock code={"$ systemctl enable --now qemu-guest-agent"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Run the following command to verify that <code>AgentConnected</code> is listed in the VM spec:
+      <CodeBlock code={"$ oc get vm <vm_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="installing-qemu-guest-agent-on-windows-vm_virt-installing-qemu-guest-agent" class="group scroll-mt-20">Installing the QEMU guest agent on a Windows VM<a href="#installing-qemu-guest-agent-on-windows-vm_virt-installing-qemu-guest-agent" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">For Windows virtual machines (VMs), the QEMU guest agent is included in the VirtIO drivers. You can install the drivers during a Windows installation or on an existing Windows VM.</p>
+      <p>To create snapshots of a VM in the <code>Running</code> state with the highest integrity, install the QEMU guest agent.</p>
+      <p>The QEMU guest agent takes a consistent snapshot by attempting to quiesce the VM file system. This ensures that in-flight I/O is written to the disk before the snapshot is taken. If the guest agent is not present, quiescing is not possible and a best-effort snapshot is taken.</p>
+      <p>Note that in a Windows guest operating system, quiescing also requires the Volume Shadow Copy Service (VSS). Therefore, before you create a snapshot, ensure that VSS is enabled on the VM as well.</p>
+      <p>The conditions under which a snapshot is taken are reflected in the snapshot indications that are displayed in the web console or CLI. If these conditions do not meet your requirements, try creating the snapshot again or use an offline snapshot.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the Windows guest operating system, use the <strong>File Explorer</strong> to navigate to the <code>guest-agent</code> directory in the <code>virtio-win</code> CD drive.</li>
+      <li>Run the <code>qemu-ga-x86_64.msi</code> installer.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Obtain a list of network services by running the following command:
+      <CodeBlock code={"$ net start"} lang="terminal" />
+      </li>
+      <li>Verify that the output contains the <code>QEMU Guest Agent</code>.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

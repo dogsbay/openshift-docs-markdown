@@ -4,7 +4,7 @@ title: About high availability for virtual machines
 
 # About high availability for virtual machines {#virt-high-availability-for-vms}
 
-{% include "./_attributes/common-attributes.md" %} You can enable high availability for virtual machines (VMs) by manually deleting a failed node to trigger VM failover or by configuring remediating nodes.
+You can enable high availability for virtual machines (VMs) by manually deleting a failed node to trigger VM failover or by configuring remediating nodes.
 
 Manually deleting a failed node
 :   If a node fails and machine health checks are not deployed on your cluster, virtual machines with `runStrategy: Always` configured are not automatically relocated to healthy nodes. To trigger VM failover, you must manually delete the `Node` object.

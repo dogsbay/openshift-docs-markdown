@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"hcp-deploy-azure","text":"Deploying {{ hcp }} on {{ azure_short }}"}];
+const headings = [{"depth":1,"slug":"hcp-deploy-azure","text":"Deploying hosted control planes on Azure"},{"depth":2,"slug":"hcp-azure-overview_hcp-deploy-azure","text":"Overview of hosted control planes on Azure"},{"depth":3,"slug":"hcp-azure-arch_hcp-deploy-azure","text":"Architecture of hosted control planes on Azure"},{"depth":3,"slug":"hcp-azure-deployment-workflow_hcp-deploy-azure","text":"Deployment workflow for hosted control planes on Azure"},{"depth":3,"slug":"hcp-azure-infra-creds_hcp-deploy-azure","text":"Azure infrastructure and credentials"},{"depth":4,"slug":"hcp-azure-prereq-summary_hcp-deploy-azure","text":"Summary of requirements"},{"depth":4,"slug":"hcp-azure-dns-options_hcp-deploy-azure","text":"DNS management options"},{"depth":4,"slug":"hcp-azure-resource-group_hcp-deploy-azure","text":"Resource group strategy"},{"depth":4,"slug":"hcp-azure-security_hcp-deploy-azure","text":"Security considerations for hosted control planes on Azure"},{"depth":2,"slug":"hcp-azure-setup-resources_hcp-deploy-azure","text":"Setting up Azure resources"},{"depth":3,"slug":"hcp-azure-oidc_hcp-deploy-azure","text":"Setting up an OIDC issuer"},{"depth":3,"slug":"hcp-azure-workload-id_hcp-deploy-azure","text":"Creating Azure Workload Identities"},{"depth":3,"slug":"hcp-azure-infra_hcp-deploy-azure","text":"Creating Azure infrastructure"},{"depth":2,"slug":"hcp-azure-mgmt-cluster_hcp-deploy-azure","text":"Configuring an Azure management cluster for hosted control planes"},{"depth":2,"slug":"hcp-azure-hosted_hcp-deploy-azure","text":"Creating a hosted cluster on Azure"},{"depth":2,"slug":"hcp-cluster-capabilities_hcp-deploy-azure","text":"Capabilities for hosted clusters"},{"depth":3,"slug":"hcp-cluster-capabilities-ref_hcp-deploy-azure","text":"Capabilities that you can enable or disable for a hosted cluster"},{"depth":3,"slug":"hcp-cluster-capabilities-proc_hcp-deploy-azure","text":"Setting capabilities for a hosted cluster"},{"depth":2,"slug":"hcp-azure-private_hcp-deploy-azure","text":"Private hosted clusters on Azure"},{"depth":3,"slug":"hcp-azure-private-subnet_hcp-deploy-azure","text":"Preparing a subnet for a private hosted cluster on Azure"},{"depth":3,"slug":"hcp-azure-private-operator_hcp-deploy-azure","text":"Installing the HyperShift Operator with private platform support"},{"depth":3,"slug":"hcp-azure-private-iam_hcp-deploy-azure","text":"Configuring IAM resources for a private hosted cluster"},{"depth":3,"slug":"hcp-azure-private-infra_hcp-deploy-azure","text":"Creating infrastructure for a private hosted cluster"},{"depth":3,"slug":"hcp-azure-private-hosted_hcp-deploy-azure","text":"Creating a private Azure hosted cluster"},{"depth":3,"slug":"hcp-azure-private-access_hcp-deploy-azure","text":"Accessing a private Azure hosted cluster"},{"depth":3,"slug":"hcp-azure-private-ts_hcp-deploy-azure","text":"Troubleshooting private hosted clusters on Azure"},{"depth":2,"slug":"hcp-azure-autoscaling_hcp-deploy-azure","text":"Example: Autoscaling a hosted cluster on Azure"},{"depth":2,"slug":"hcp-azure-delete_hcp-deploy-azure","text":"Deleting an Azure hosted cluster and its resources"},{"depth":3,"slug":"hcp-azure-cluster-delete_hcp-deploy-azure","text":"Deleting a hosted cluster on Azure"},{"depth":3,"slug":"hcp-azure-infra-delete_hcp-deploy-azure","text":"Deleting Azure infrastructure"},{"depth":3,"slug":"hcp-azure-workload-id-delete_hcp-deploy-azure","text":"Deleting Azure Workload Identities"},{"depth":3,"slug":"hcp-azure-delete-private_hcp-deploy-azure","text":"Deleting a private hosted cluster on Azure"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Deploying {{ hcp }} on {{ azure_short }}";
-const description = "With {{ hcp }} on {{ azure_first }}, you can reduce the cost associated with dedicated control-plane node VMs for each cluster. You can provision compute…" || undefined;
+const description = "With hosted control planes on Microsoft Azure, you can reduce the cost associated with dedicated control-plane node VMs for each cluster. You can…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-deploy"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on {{ azure_short }} {#hcp-deploy-azure}\n\nWith {{ hcp }} on {{ azure_first }}, you can reduce the cost associated with dedicated control-plane node VMs for each cluster. You can provision compute nodes as {{ azure_short }} Virtual Machine Scale sets for dynamic scaling, and ensure credential isolation with per-cluster {{ azure_short }} service principals.\n\n**Additional resources**\n\n- [{{ azure_short }} Workload Identity documentation](https://azure.github.io/azure-workload-identity/docs/)\n\n**Additional resources**\n\n- [How to obtain the ccoctl tool for OpenShift 4 (Red Hat Knowledgebase article)](https://access.redhat.com/solutions/7001811)\n\n**Additional resources**\n\n- [Creating {{ azure_short }} Workload Identities](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure)\n\n**Additional resources**\n\n- [Configuring an {{ azure_short }} management cluster for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-mgmt-cluster_hcp-deploy-azure)\n- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)\n\n**Additional resources**\n\n- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)\n\n**Additional resources**\n\n- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)\n- [Creating {{ azure_short }} Workload Identities](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure)\n\n**Additional resources**\n\n- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)\n\n**Additional resources**\n\n- [Preparing a subnet for a private hosted cluster on {{ azure_short }}](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-subnet_hcp-deploy-azure)\n- [Installing the HyperShift Operator with private platform support](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-operator_hcp-deploy-azure)\n- [Configuring IAM resources for a private hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-iam_hcp-deploy-azure)\n- [Creating infrastructure for a private hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-infra_hcp-deploy-azure)\n\n**Additional resources**\n\n- [Creating a private {{ azure_short }} hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-hosted_hcp-deploy-azure)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying hosted control planes on Azure {#hcp-deploy-azure}\n\nWith hosted control planes on Microsoft Azure, you can reduce the cost associated with dedicated control-plane node VMs for each cluster. You can provision compute nodes as Azure Virtual Machine Scale sets for dynamic scaling, and ensure credential isolation with per-cluster Azure service principals.\n\n> [!IMPORTANT]\n> Hosted control planes on Azure is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Overview of hosted control planes on Azure {#hcp-azure-overview_hcp-deploy-azure}\n\nYou can deploy and manage hosted clusters on an OpenShift management cluster that runs in Microsoft Azure. With a self-managed deployment model, you manage your own OpenShift cluster.\n\n### Architecture of hosted control planes on Azure {#hcp-azure-arch_hcp-deploy-azure}\n\nAt a high level, the architecture of hosted control planes on Azure consists of three layers:\n\nManagement cluster\n:   An Azure OpenShift cluster that hosts the HyperShift Operator and the control planes for your hosted clusters.\n\nControl plane\n:   Kubernetes control-plane components that run as pods on the management cluster.\n\nData plane\n:   Compute nodes that run as Azure virtual machines (VMs) in your Azure subscription.\n\nThe architecture uses Azure Workload Identity for secure, credential-free authentication between OpenShift Container Platform components and Azure services. As a result, you do not need to manage long-lived service principal credentials, and you get better security through federated identity credentials.\n\n### Deployment workflow for hosted control planes on Azure {#hcp-azure-deployment-workflow_hcp-deploy-azure}\n\nDeploying self-managed hosted control planes on Azure involves a three-phase process in the following order:\n\nPhase 1: Set up Azure Workload Identity\n:   This phase establishes secure authentication infrastructure so that OpenShift Container Platform components can access Azure services. During this phase, the security infrastructure that your hosted clusters require is created:\n\n    - Managed identities for each OpenShift Container Platform component, including the image registry, ingress, CSI drivers, cloud provider, network operator, and so on\n    - OIDC issuer in Azure Blob Storage for service account token validation\n    - Federated credentials that establish trust relationships between Azure Entra ID and OpenShift Container Platform service accounts\n\nPhase 2: Set up the management cluster\n:   In this phase, you prepare your OpenShift Container Platform management cluster on Azure to host and manage hosted clusters. During this phase, you install the following components:\n\n    - Azure DNS zones, for private and public-private topologies\n    - External DNS, for private and public-private topologies\n    - HyperShift Operator\n\nPhase 3: Create hosted clusters\n:   In this phase, you create and configure hosted clusters. This phase involves the following steps:\n\n1. Setting up infrastructure\n2. Creating a hosted cluster\n3. Integrating workload identity\n4. Configuring private endpoint access (optional)\n\n**Additional resources**\n\n- [Azure Workload Identity documentation](https://azure.github.io/azure-workload-identity/docs/)\n\n### Azure infrastructure and credentials {#hcp-azure-infra-creds_hcp-deploy-azure}\n\nBefore you get started with hosted control planes on Microsoft Azure, get familiar with the required Azure resources and the necessary permissions.\n\n#### Summary of requirements {#hcp-azure-prereq-summary_hcp-deploy-azure}\n\nYou need the following resources, tools, access, and permissions to set up hosted control planes on Azure:\n\nAzure resources\n:   - An OpenShift Container Platform management cluster on Azure.\n    - An Azure subscription with contributor and user-access administrator permissions.\n    - (Optional) A parent DNS zone in Azure for delegating cluster DNS records. This DNS zone is required only if you plan to use external DNS.\n\nTools and access\n:   - Azure command-line interface (CLI), `az`, configured with your subscription\n    - OpenShift CLI (`oc`)\n    - hosted control planes CLI, `hcp`\n    - `jq` command-line JSON processor\n    - Cloud Credential Operator utility (`ccoctl`)\n    - A valid OpenShift Container Platform pull secret\n\nPermissions\n:   - Subscription-level contributor and user access administrator roles\n    - Microsoft Graph API permissions for creating service principals\n\n#### DNS management options {#hcp-azure-dns-options_hcp-deploy-azure}\n\nYou can set up hosted control planes on Azure with or without external DNS. If you plan to use a private or a public-private topology, external DNS is required. See the following table for more information:\n\n**DNS approaches for hosted control planes on Azure**\n\n|  | With external DNS | Without external DNS |\n| --- | --- | --- |\n| **Best for** | Production, multi-cluster | Development, testing |\n| **API server DNS** | Custom (`api-cluster.example.com`) | Azure Load Balancer (`abc123.region.cloudapp.azure.com`) |\n| **Setup complexity** | Low, requires DNS zones and service principals | None |\n| **Management** | Fully automatic | Manual or Azure-provided |\n\n#### Resource group strategy {#hcp-azure-resource-group_hcp-deploy-azure}\n\nCluster-specific resource groups are created and deleted with each hosted cluster. These resources include managed resource groups for cluster infrastructure. If you use custom networking, these resources also include Virtual Network (VNet) resource groups and Network Security Group (NSG) resource groups.\n\n#### Security considerations for hosted control planes on Azure {#hcp-azure-security_hcp-deploy-azure}\n\nHosted control planes on Azure employs the following security best practices:\n\n- Workload identity federation, which eliminates long-lived credentials by using OIDC-based authentication.\n- Least-privilege access, where each component has its own managed identity with minimal required permissions.\n- Network isolation, where you can use custom VNets and NSGs to implement network segmentation and security policies.\n- Federated credentials, where trust relationships are scoped to specific service accounts, preventing unauthorized access.\n- Private connectivity, available as an option through Azure Private Link, which provides private API server access to ensure that control-plane traffic never traverses the public internet. Private connectivity is available for private and public-private topologies only.\n\n## Setting up Azure resources {#hcp-azure-setup-resources_hcp-deploy-azure}\n\nBefore you can create management and hosted clusters for your deployment of hosted control planes on Azure, you need to set up an OIDC issuer, Workload Identities, and your Azure infrastructure.\n\n### Setting up an OIDC issuer {#hcp-azure-oidc_hcp-deploy-azure}\n\nTo prepare to deploy hosted control planes on Azure, you need to set up an OIDC issuer for hosted clusters.\n\n**Prerequisites**\n\n- The Azure command-line interface (CLI) is installed and configured.\n- The `jq` command-line JSON processor is installed.\n- The Cloud Credential Operator utility (`ccoctl`) is installed. For more information, see \"How to obtain the ccoctl tool for OpenShift 4\".\n- The appropriate Azure permissions are set.\n\n**Procedure**\n\n1. Set your environment variables as shown in the following example:\n\n   ```terminal\n   PERSISTENT_RG_NAME=\"os4-common\"\n   LOCATION=\"eastus\"\n   AZURE_CREDS=\"/path/to/azure-creds.json\"\n   SUBSCRIPTION_ID=\"my-subscription-id\"\n   ```\n2. Create a persistent resource group by entering the following command:\n\n   ```terminal\n   $ az group create --name $PERSISTENT_RG_NAME --location $LOCATION\n   ```\n3. Configure an OIDC issuer URL by using the Cloud Credential Operator tool to complete the following steps:\n\n   1. Set the OIDC issuer variables as shown in the following example:\n\n      ```terminal\n      OIDC_STORAGE_ACCOUNT_NAME=\"yourstorageaccount\"\n      TENANT_ID=\"your-tenant-id\"\n      ```\n   2. Create an RSA key pair and save the private and public key by entering the following command:\n\n      ```terminal\n      $ ccoctl azure create-key-pair\n      ```\n   3. Set variables for the token issuer key paths as shown in the following example:\n\n      ```terminal\n      SA_TOKEN_ISSUER_PRIVATE_KEY_PATH=\"/path/to/serviceaccount-signer.private\"\n      SA_TOKEN_ISSUER_PUBLIC_KEY_PATH=\"/path/to/serviceaccount-signer.public\"\n      ```\n   4. Create an OIDC issuer by entering the following command:\n\n      ```terminal\n      $ ccoctl azure create-oidc-issuer \\\n          --oidc-resource-group-name ${PERSISTENT_RG_NAME} \\\n          --tenant-id ${TENANT_ID} \\\n          --region ${LOCATION} \\\n          --name ${OIDC_STORAGE_ACCOUNT_NAME} \\\n          --subscription-id ${SUBSCRIPTION_ID} \\\n          --public-key-file ${SA_TOKEN_ISSUER_PUBLIC_KEY_PATH}\n      ```\n   5. Set the OIDC issuer URL as shown in the following example:\n\n      ```terminal\n      OIDC_ISSUER_URL=\"https://${OIDC_STORAGE_ACCOUNT_NAME}.blob.core.windows.net/${OIDC_STORAGE_ACCOUNT_NAME}\"\n      ```\n\n**Verification**\n\n- Try to access the OIDC issuer by entering the following command:\n\n  ```terminal\n  $ curl -s \"${OIDC_ISSUER_URL}/.well-known/openid-configuration\" | jq .\n  ```\n\n**Additional resources**\n\n- [How to obtain the ccoctl tool for OpenShift 4 (Red Hat Knowledgebase article)](https://access.redhat.com/solutions/7001811)\n\n### Creating Azure Workload Identities {#hcp-azure-workload-id_hcp-deploy-azure}\n\nTo ensure control over Identity and Access Management (IAM) resources in your Azure deployment, create Workload Identities separately from your infrastructure.\n\nWorkload Identities authenticate hosted cluster components to Azure services by using OIDC federation. You must create identities separately and then consume them during infrastructure or cluster creation.\n\n**Prerequisites**\n\n- You have an Azure credentials file in the following format:\n\n  ```terminal {title=\"Example file\"}\n  {\n    \"subscriptionId\": \"your-subscription-id\",\n    \"tenantId\": \"your-tenant-id\",\n    \"clientId\": \"your-client-id\",\n    \"clientSecret\": \"your-client-secret\"\n  }\n  ```\n- You have a resource group to create the managed identities in.\n- You have an OIDC issuer URL for Workload Identity federation. For more information, see \"Setting up an OIDC issuer\".\n\n**Procedure**\n\n1. Set environment variables as shown in the following example:\n\n   ```terminal\n   CLUSTER_NAME=\"my-self-managed-cluster\"\n   INFRA_ID=\"${CLUSTER_NAME}-$(openssl rand -hex 4)\"\n   ```\n2. On the hosted control planes command-line interface, `hcp`, enter the following command:\n\n   ```terminal\n   $ hcp create iam azure \\\n       --name <my_cluster_name> \\\n       --infra-id <infra_id> \\\n       --azure-creds <azure_credentials_file> \\\n       --resource-group-name <resource_group> \\\n       --oidc-issuer-url <oidc_issuer_url> \\\n       --output-file <workload_identities_file> \\\n       --location <my_region> \\\n       --cloud <my_cloud_environment>\n   ```\n\n   where:\n\n   `<my_cluster_name>`\n   :   Specifies the name of the cluster you intend to create.\n\n   `<infra_id>`\n   :   Specifies the unique identifier for naming Azure resources. Typically, this identifier is the cluster name with a suffix.\n\n   `<azure_credentials_file>`\n   :   Specifies the Azure credentials file with permission to create managed identities and federated credentials.\n\n   `<resource_group>`\n   :   Specifies the name of the resource group where you intend to create identities.\n\n   `<oidc_issuer_url>`\n   :   Specifies the URL of the OIDC identity provider for Workload Identity federation.\n\n   `<workload_identities_file>`\n   :   Specifies the output file path, such as `my-cluster-name-iam-output.json`. You can also add these optional flags to the `hcp create iam azure` command: `<my_region>`:: Specifies the Azure region for the managed identities. The default value is `eastus`. `<my_cloud_environment>`:: Specifies the Azure cloud environment. The default value is `AzurePublicCloud`.\n\n**Verification**\n\n- Review the output file, which looks like the following example:\n\n  ```terminal {title=\"Example output\"}\n  {\n    \"disk\": {\n      \"tenantID\": \"...\",\n      \"clientID\": \"...\",\n      \"resourceID\": \"/subscriptions/.../providers/Microsoft.ManagedIdentity/userAssignedIdentities/my-cluster-abc123-disk\"\n    },\n    \"file\": {\n      \"tenantID\": \"...\",\n      \"clientID\": \"...\",\n      \"resourceID\": \"...\"\n    },\n    \"imageRegistry\": { ... },\n    \"ingress\": { ... },\n    \"cloudProvider\": { ... },\n    \"nodePoolManagement\": { ... },\n    \"network\": { ... },\n    \"controlPlaneOperator\": { ... }\n  }\n  ```\n\n  The output includes 8 user-assigned identities, one per cluster component, along with federated credentials for each identity:\n\n  - Disk CSI driver\n  - File CSI driver\n  - Image registry\n  - Ingress Operator\n  - Cloud provider\n  - Node pool management\n  - Network Operator\n  - Control Plane Operator\n\n### Creating Azure infrastructure {#hcp-azure-infra_hcp-deploy-azure}\n\nCreate an Azure infrastructure separately so that when you create a hosted cluster on Azure, you can use pre-existing infrastructure.\n\n**Prerequisites**\n\n- You have an Azure credentials file with the following format:\n\n  ```json\n  {\n    \"subscriptionId\": \"<my_subscription_id>\",\n    \"tenantId\": \"<my_tenant_id>\",\n    \"clientId\": \"<my_client_id>\",\n    \"clientSecret\": \"<my_client_secret>\"\n  }\n  ```\n- You have an existing public DNS zone in your Azure subscription for your base domain.\n- You created Workload Identities. For more information, see \"Creating Azure Workload Identities\".\n\n**Procedure**\n\n- To create the infrastructure with a new virtual network, subnet, and network security group, enter the following command:\n\n  ```terminal\n  $ hcp create infra azure \\\n    --name <my_cluster_name> \\\n    --infra-id <infra_id> \\\n    --azure-creds <azure_credentials_file> \\\n    --base-domain <base_domain> \\\n    --location <location> \\\n    --workload-identities-file <workload_identities_file> \\\n    --assign-identity-roles \\\n    --dns-zone-rg-name <dns_zone_rg> \\\n    --output-file <output_infra_file>\n  ```\n\n  where:\n\n  - `--name` specifies the name of the hosted cluster you intend to create.\n  - `--infra-id` specifies a unique name that identifies your infrastructure. This value is used to name and tag Azure resources. Typically, it is the name of your cluster with a suffix appended to it.\n  - `--azure-creds` specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers.\n  - `--base-domain` specifies the base domain for the ingress of your hosted cluster. The base domain must correspond to an existing public DNS zone in your Azure subscription.\n  - `--location` specifies the Azure region where you want to create the infrastructure, such as `eastus` or `westus2`.\n  - `--workload-identities-file` specifies the path to the JSON file that contains the Workload Identity configuration.\n  - `--assign-identity-roles` specifies that automatic RBAC role assignment is enabled for Workload Identities.\n  - `--dns-zone-rg-name` specifies the name of the resource group that contains your public DNS zone.\n  - `--output-file` specifies the file where the details of the infrastructure are stored in YAML format.\n- To create the infrastructure with an existing virtual network, subnet, and network security group, enter the following command:\n\n  ```terminal\n  $ hcp create infra azure \\\n    --name <my_cluster_name> \\\n    --infra-id <infra_id> \\\n    --azure-creds <azure_credentials_file> \\\n    --base-domain <base_domain> \\\n    --location <location> \\\n    --workload-identities-file <workload_identities_file> \\\n    --vnet-id /subscriptions/<subscription_id>/resourceGroups/<resource_group>/providers/Microsoft.Network/virtualNetworks/<vnet_name> \\\n    --subnet-id /subscriptions/<subscription_id>/resourceGroups/<resource_group>/providers/Microsoft.Network/virtualNetworks/<vnet_name>/subnets/<subnet_name> \\\n    --network-security-group-id /subscriptions/<subscription_id>/resourceGroups/<resource_group>/providers/Microsoft.Network/networkSecurityGroups/<network_security_group_name> \\\n    --assign-identity-roles \\\n    --dns-zone-rg-name <dns_zone_rg> \\\n    --output-file <output_infra_file>\n  ```\n\n  where:\n\n  - `--name` specifies the name of the hosted cluster you intend to create.\n  - `--infra-id` specifies a unique name that identifies your infrastructure. This value is used to name and tag Azure resources. Typically, it is the name of your cluster with a suffix appended to it.\n  - `--azure-creds` specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers.\n  - `--base-domain` specifies the base domain for the ingress of your hosted cluster. The base domain must correspond to an existing public DNS zone in your Azure subscription.\n  - `--location` specifies the Azure region where you want to create the infrastructure, such as `eastus` or `westus2`.\n  - `--workload-identities-file` specifies the path to the JSON file that contains the Workload Identity configuration.\n  - `--vnet-id` specifies your existing virtual network ID, which includes your subscription ID and your virtual network name.\n  - `--subnet-id` specifies the ARM resource ID of your subnet, which includes your subscription ID, virtual network name, and subnet name.\n  - `--network-security-group-id` specifies your existing network security group ID, which includes your subscription ID and your network security group name.\n  - `--assign-identity-roles` specifies that automatic RBAC role assignment is enabled for Workload Identities.\n  - `--dns-zone-rg-name` specifies the name of the resource group that contains your public DNS zone.\n  - `--output-file` specifies the file where the details of the infrastructure are stored in YAML format.\n\n**Additional resources**\n\n- [Creating Azure Workload Identities](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure)\n\n## Configuring an Azure management cluster for hosted control planes {#hcp-azure-mgmt-cluster_hcp-deploy-azure}\n\nTo configure the management cluster for hosted control planes on Azure, you need to ensure that external DNS and the HyperShift Operator are set up on the cluster.\n\nThe configuration steps include configuring the DNS zone, delegating the DNS records for your cluster, and creating a dedicated service principal for external DNS.\n\n**Prerequisites**\n\n- You installed the multicluster engine Operator 2.5 or later on an OpenShift Container Platform cluster. You can install multicluster engine Operator as an Operator from the OpenShift Container Platform software catalog. Or, if you already use Red Hat Advanced Cluster Management, the Operator is automatically installed. The HyperShift Operator is enabled by default in the operator package for multicluster engine Operator.\n- The Azure command-line interface (CLI) is installed and configured.\n- The OpenShift CLI (`oc`) is installed.\n- You have an OpenShift Container Platform management cluster on Azure.\n- If you are using external DNS, the `jq` command-line JSON processor is installed.\n\n**Procedure**\n\n1. Set the DNS configuration variables as shown in the following example:\n\n   ```bash\n   PARENT_DNS_RG=\"<my_parent_dns_resource_group>\"\n   PARENT_DNS_ZONE=\"<my_parent.dns.zone.com>\"\n   DNS_RECORD_NAME=\"<my_subdomain>\"\n   RESOURCE_GROUP_NAME=\"<my_resource_group>\"\n   DNS_ZONE_NAME=\"<my_subdomain.my_parent.dns.zone.com>\"\n   LOCATION=\"<my_region>\"\n   ```\n2. Create the Azure group by entering the following command:\n\n   ```terminal\n   $ az group create \\\n     --name $RESOURCE_GROUP_NAME \\\n     --location $LOCATION\n   ```\n3. Create the Azure DNS zone by entering the following command:\n\n   ```terminal\n   $ az network dns zone create \\\n     --resource-group $RESOURCE_GROUP_NAME \\\n     --name $DNS_ZONE_NAME\n   ```\n4. If an existing name server record exists, delete it by entering the following command:\n\n   ```terminal\n   $ az network dns record-set ns delete \\\n     --resource-group $PARENT_DNS_RG \\\n     --zone-name $PARENT_DNS_ZONE \\\n     --name $DNS_RECORD_NAME -y\n   ```\n5. Get the name servers from your DNS zone by entering the following command:\n\n   ```bash\n   name_servers=$(az network dns zone show \\\n     --resource-group $RESOURCE_GROUP_NAME \\\n     --name $DNS_ZONE_NAME \\\n     --query nameServers \\\n     --output tsv)\n   ```\n6. Create an array of name servers as shown in the following example:\n\n   ```bash\n   ns_array=()\n   while IFS= read -r ns; do\n       ns_array+=(\"$ns\")\n   done <<< \"$name_servers\"\n   ```\n7. Add name server records to the parent zone as shown in the following example:\n\n   ```bash\n   for ns in \"${ns_array[@]}\"; do\n       az network dns record-set ns add-record \\\n           --resource-group $PARENT_DNS_RG \\\n           --zone-name $PARENT_DNS_ZONE \\\n           --record-set-name $DNS_RECORD_NAME \\\n           --nsdname \"$ns\"\n   done\n   ```\n8. Set the external DNS configuration variables as shown in the following example:\n\n   ```bash\n   EXTERNAL_DNS_NEW_SP_NAME=\"<external_dns_service_principal>\"\n   SERVICE_PRINCIPAL_FILEPATH=\"<path_to_azure_mgmt_json_file>\"\n   RESOURCE_GROUP_NAME=\"<my_resource_group>\"\n   ```\n9. Create the service principal for external DNS by entering the following command:\n\n   ```bash\n   DNS_SP=$(az ad sp create-for-rbac --name ${EXTERNAL_DNS_NEW_SP_NAME})\n   EXTERNAL_DNS_SP_APP_ID=$(echo \"$DNS_SP\" | jq -r '.appId')\n   EXTERNAL_DNS_SP_PASSWORD=$(echo \"$DNS_SP\" | jq -r '.password')\n   ```\n10. Get the DNS zone ID by entering the following command:\n\n    ```bash\n    DNS_ID=$(az network dns zone show \\\n      --name ${DNS_ZONE_NAME} \\\n      --resource-group ${RESOURCE_GROUP_NAME} \\\n      --query \"id\" \\\n      --output tsv)\n    ```\n11. Assign the `Reader` role to the service principal by entering the following command:\n\n    ```terminal\n    $ az role assignment create \\\n      --role \"Reader\" \\\n      --assignee \"${EXTERNAL_DNS_SP_APP_ID}\" \\\n      --scope \"${DNS_ID}\"\n    ```\n12. Assign the `Contributor` role to the service principal by entering the following command:\n\n    ```terminal\n    $ az role assignment create \\\n      --role \"Contributor\" \\\n      --assignee \"${EXTERNAL_DNS_SP_APP_ID}\" \\\n      --scope \"${DNS_ID}\"\n    ```\n13. Save the Azure credentials to a local file by entering the following command:\n\n    ```terminal\n    $ cat > ${SERVICE_PRINCIPAL_FILEPATH} <<EOF\n    {\n      \"tenantId\": \"$(az account show --query tenantId -o tsv)\",\n      \"subscriptionId\": \"$(az account show --query id -o tsv)\",\n      \"resourceGroup\": \"$RESOURCE_GROUP_NAME\",\n      \"aadClientId\": \"$EXTERNAL_DNS_SP_APP_ID\",\n      \"aadClientSecret\": \"$EXTERNAL_DNS_SP_PASSWORD\"\n    }\n    EOF\n    ```\n14. If an existing Kubernetes secret for the Azure credentials exists, delete it by entering the following command:\n\n    ```terminal\n    $ oc delete secret/azure-config-file --namespace \"hypershift\" || true\n    ```\n15. Create the Kubernetes secret for the Azure credentials by entering the following command:\n\n    ```terminal\n    $ oc create secret generic azure-config-file \\\n      --namespace \"hypershift\" \\\n      --from-file=credentials=${SERVICE_PRINCIPAL_FILEPATH}\n    ```\n\n    The secret must be created in the `hypershift` namespace where the external DNS deployment runs. The `credentials` key name is required because the external DNS pod mounts the secret at `/etc/provider/credentials`.\n16. Configure the HyperShift Operator to use external DNS by creating the following `ConfigMap` object:\n\n    ```yaml\n    apiVersion: v1\n    kind: ConfigMap\n    metadata:\n      name: hypershift-operator-install-flags\n      namespace: local-cluster\n    data:\n      installFlagsToAdd: \"--external-dns-provider=azure --external-dns-secret=azure-config-file --external-dns-domain-filter=<dns_zone>\"\n      installFlagsToRemove: \"\"\n    ```\n\n    The `--external-dns-secret` flag specifies the name of the Kubernetes secret that contains the Azure credentials. The `data.installFlagsToAdd` parameter specifies the flags to pass to the Operator so it detects the DNS.\n17. Apply the config map by entering the following command:\n\n    ```terminal\n    $ oc apply -f hypershift-operator-install-flags.yaml\n    ```\n\n**Verification**\n\n- Verify that both the HyperShift Operator and the external DNS are running by entering the following command:\n\n  ```terminal\n  $ oc get pods -n hypershift\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                           READY   STATUS    RESTARTS   AGE\n  external-dns-xxxxx-xxxxx       1/1     Running   0          1m\n  operator-xxxxx-xxxxx           1/1     Running   0          1m\n  ```\n\n## Creating a hosted cluster on Azure {#hcp-azure-hosted_hcp-deploy-azure}\n\nHosted clusters are where your applications run. Each hosted cluster has its own control plane that runs on the management cluster and a set of compute node virtual machines (VMs) in Azure.\n\nThe hosted cluster uses Workload Identities to securely access Azure services without storing credentials.\n\n**Prerequisites**\n\n- You installed the Azure command-line interface (CLI).\n- You installed the hosted control planes CLI, `hcp`.\n- You installed the OpenShift CLI (`oc`).\n- You installed the `jq` command-line JSON processor.\n- You have a management cluster where the HyperShift Operator is installed and external DNS is configured.\n- You set up Azure resources, including Workload Identities, an OIDC issuer, and infrastructure.\n- You have the appropriate Azure permissions.\n\n  - At the subscription level, you must have the `Contributor` role and the `User Access Administrator` role.\n  - For Microsoft Graph API, you must have the `Application.ReadWrite.OwnedBy` permission.\n\n**Procedure**\n\n- Create the `HostedCluster` custom resource by entering the following command:\n\n  ```terminal\n  $ hcp create cluster azure \\\n    --name \"$CLUSTER_NAME\" \\\n    --infra-id \"$INFRA_ID\" \\\n    --azure-creds $AZURE_CREDS \\\n    --location ${LOCATION} \\\n    --node-pool-replicas 2 \\\n    --base-domain $BASE_DOMAIN \\\n    --pull-secret $PULL_SECRET \\\n    --generate-ssh \\\n    --release-image ${RELEASE_IMAGE} \\\n    --sa-token-issuer-private-key-path \"${SA_TOKEN_ISSUER_PRIVATE_KEY_PATH}\" \\\n    --oidc-issuer-url \"${OIDC_ISSUER_URL}\" \\\n    --dns-zone-rg-name ${PERSISTENT_RG_NAME} \\\n    --assign-service-principal-roles \\\n    --infra-json <output_infra_file> \\\n    --diagnostics-storage-account-type Managed \\\n    --disable-cluster-capabilities=<capability> \\\n    --enable-cluster-capabilities=<capability> \\\n    --external-dns-domain \"${DNS_ZONE_NAME}\"\n  ```\n\n  - For non-production environments, you can create a hosted cluster without external DNS by omitting the `--external-dns-domain` and `--assign-service-principal-roles` flags. In that case, the API server is accessible through an Azure load balancer hostname instead of a custom DNS name.\n  - The `--disable-cluster-capabilities` flag is optional. Include it when you want to disable optional capabilities in your hosted cluster. For more information, see \"Capabilities for hosted clusters\".\n  - The `--enable-cluster-capabilities` flag is optional. Include it when you want to enable optional capabilities in your hosted cluster. For more information, see \"Capabilities for hosted clusters\".\n\n**Verification**\n\n1. Check the cluster status by entering the following command:\n\n   ```terminal\n   $ oc get hostedcluster $CLUSTER_NAME -n clusters\n   ```\n2. Wait for the cluster to be complete by entering the following command:\n\n   ```terminal\n   $ oc wait \\\n     --for=jsonpath='{.status.version.history[0].state}'=Completed \\\n     hostedcluster/$CLUSTER_NAME \\\n     -n clusters --timeout=20m\n   ```\n3. Create the `kubeconfig` file for the cluster by entering the following command:\n\n   ```terminal\n   $ hcp create kubeconfig \\\n     --name $CLUSTER_NAME > $CLUSTER_NAME-kubeconfig\n   ```\n4. Get the `kubeconfig` file by entering the following command:\n\n   ```terminal\n   $ export KUBECONFIG=$CLUSTER_NAME-kubeconfig\n   ```\n5. Access the cluster nodes by entering the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n6. Access the cluster by entering the following command:\n\n   ```terminal\n   $ oc get clusterversion\n   ```\n\n## Capabilities for hosted clusters {#hcp-cluster-capabilities_hcp-deploy-azure}\n\nTo reduce resource consumption and prevent unnecessary Operators and operands from being deployed, administrators can enable or disable optional OpenShift Container Platform components when they create a hosted cluster.\n\nWhen capabilities are not specified on a `HostedCluster` resource, the cluster uses the OpenShift Container Platform version’s `DefaultCapabilitySet` settings, excluding the `baremetal` capability. As a result, most optional components are enabled by default.\n\n> [!IMPORTANT]\n> Capabilities are immutable after cluster creation. You cannot change them after you create the `HostedCluster` resource.\n\n### Capabilities that you can enable or disable for a hosted cluster {#hcp-cluster-capabilities-ref_hcp-deploy-azure}\n\nFamiliarize yourself with the supported capabilities that you can enable or disable for a `HostedCluster` resource.\n\nThe capabilities are described in the following table:\n\n| Capability | Description |\n| --- | --- |\n| `ImageRegistry` | The OpenShift Image Registry Operator and its operands, including cloud storage infrastructure, such as S3 buckets and Identity and Access Management (IAM) users. |\n| `openshift-samples` | The OpenShift Samples Operator, which manages example `ImageStreams` and templates. |\n| `Insights` | The Insights Operator, which collects and uploads cluster telemetry data. |\n| `baremetal` | The Bare Metal Infrastructure Operator. This capability is excluded from the default set. If needed, you must explicitly enable it. |\n| `Console` | The OpenShift Web Console Operator and its operands. |\n| `NodeTuning` | The Node Tuning Operator, which manages node-level performance tuning by using TuneD and performance profiles. |\n| `Ingress` | The OpenShift Ingress Operator, which manages the default router of the cluster. |\n\nThe following rules apply when you combine capability settings:\n\nNo overlap\n:   A capability cannot be in both the `enabled` and `disabled` lists simultaneously.\n\nConsole requires Ingress\n:   You can disable the `Ingress` capability only if the `Console` capability is also disabled because the console depends on Ingress.\n\nVersion requirement\n:   You must use OpenShift Container Platform 4.20 or later to disable any of the following capabilities: `openshift-samples`, `Insights`, `Console`, `NodeTuning`, and `Ingress`. You can disable `ImageRegistry` and `baremetal` on versions earlier than 4.20.\n\nBare metal default exclusion\n:   The `baremetal` capability is excluded from the default set. You can add it to the cluster by explicitly enabling it.\n\n### Setting capabilities for a hosted cluster {#hcp-cluster-capabilities-proc_hcp-deploy-azure}\n\nTo reduce unnecessary resource consumption, you can control which optional capabilities are enabled for a hosted cluster when you create the cluster.\n\n> [!IMPORTANT]\n> Capabilities are immutable after cluster creation. You cannot change them after you create the `HostedCluster` resource.\n\nYou can specify which capabilities are enabled by either using the `hcp` command-line interface (CLI) or by setting the `HostedCluster` manifest.\n\n**Procedure**\n\n- To specify which capabilities are enabled in a hosted cluster by using the CLI, you can add the `--disable-cluster-capabilities` flag, the `--enable-cluster-capabilities` flag, or both. The following example shows how to disable the `ImageRegistry`, `Console`, and `Ingress` capabilities and enable the `baremetal` capability while you create a hosted cluster on AWS by using the `hcp` command-line interface:\n\n  ```terminal\n  $ hcp create cluster aws \\\n      --name my-hosted-cluster \\\n      --disable-cluster-capabilities=ImageRegistry,Console,Ingress \\\n      --enable-cluster-capabilities=baremetal\n  ```\n\n  You can specify multiple capabilities as a comma-separated list. The supported values are as follows:\n\n  - `ImageRegistry`\n  - `openshift-samples`\n  - `Insights`\n  - `baremetal`\n  - `Console`\n  - `NodeTuning`\n  - `Ingress`\n- To specify which capabilities are enabled in a hosted cluster by using the `HostedCluster` manifest at cluster creation time, see the following examples:\n\n  - To directly disable capabilities in a hosted cluster, add the `spec.capabilities.disabled` section in the `HostedCluster` resource:\n\n    ```yaml\n    apiVersion: hypershift.openshift.io/v1beta1\n    kind: HostedCluster\n    metadata:\n      name: my-hosted-cluster\n      namespace: my-cluster-namespace\n    spec:\n      capabilities:\n        disabled:\n          - ImageRegistry\n          - Console\n          - Ingress\n      # ...\n    ```\n  - To explicitly enable a capability that is not part of the default set of capabilities, such as the `baremetal` capability, see the following example:\n\n    ```yaml\n    apiVersion: hypershift.openshift.io/v1beta1\n    kind: HostedCluster\n    metadata:\n      name: my-hosted-cluster\n      namespace: my-cluster-namespace\n    spec:\n      capabilities:\n        enabled:\n          - baremetal\n      # ...\n    ```\n  - You can use both `enabled` and `disabled` if no capabilities are in both lists. See the following example:\n\n    ```yaml\n    apiVersion: hypershift.openshift.io/v1beta1\n    kind: HostedCluster\n    metadata:\n      name: my-hosted-cluster\n      namespace: my-cluster-namespace\n    spec:\n      capabilities:\n        enabled:\n          - baremetal\n        disabled:\n          - ImageRegistry\n          - openshift-samples\n      # ...\n    ```\n\n## Private hosted clusters on Azure {#hcp-azure-private_hcp-deploy-azure}\n\nBy default, hosted clusters are accessible through public DNS and the default router of the management cluster. If you want communication between your compute nodes and the hosted control plane to be private, you can create hosted clusters that use Azure Private Link for communication.\n\nPrivate endpoint access uses Azure Private Link to expose the internal load balancer of the hosted control plane to the Azure Virtual Network (VNet) of the hosted cluster. Compute nodes resolve the API server hostname by using private DNS zones that point to the private endpoint IP address.\n\n### Preparing a subnet for a private hosted cluster on Azure {#hcp-azure-private-subnet_hcp-deploy-azure}\n\nAzure Private Link requires a dedicated subnet for network address translator (NAT) IP address allocation. You can manually create the subnet, or it can be automatically created during cluster creation.\n\nBy manually creating the subnet, you have control over classless inter-domain routing (CIDR) allocation and naming. The following steps apply to manually creating the subnet. If you want the subnet to be automatically created, skip this procedure.\n\n> [!NOTE]\n> Azure Private Link, the NAT subnet, and the internal load balancer of the management cluster must all be in the same Azure region. Private Link is automatically created in the location where the hosted cluster is created. Azure rejects the creation of Private Link if the NAT subnet is in a different region.\n\n**Prerequisites**\n\n- You have an OpenShift Container Platform management cluster on Azure. For more information, see \"Configuring an Azure management cluster for hosted control planes\".\n- The Azure command-line interface (CLI) is installed and configured.\n- The OpenShift CLI (`oc`) is installed.\n- If you are using external DNS, the `jq` command-line JSON processor is installed.\n- You configured an OIDC issuer. For more information, see \"Setting up an OIDC issuer\".\n\n**Procedure**\n\n1. Identify the Azure Virtual Network (VNet) of the management cluster.\n\n   1. Obtain the infrastructure resource group of the management cluster as shown in the following example:\n\n      ```bash\n      $ MGMT_INFRA_RG=$(oc get infrastructure cluster -o jsonpath='{.status.platformStatus.azure.resourceGroupName}')\n      ```\n   2. Find the VNet in the infrastructure resource group as shown in the following example:\n\n      ```bash\n      $ MGMT_VNET_NAME=$(az network vnet list --resource-group \"${MGMT_INFRA_RG}\" --query \"[0].name\" -o tsv)\n      ```\n   3. Set the environment variable for the VNet by entering the following command:\n\n      ```bash\n      $ MGMT_VNET_RG=\"${MGMT_INFRA_RG}\"\n      ```\n2. Create the NAT subnet.\n\n   1. Check the existing address space and subnets to ensure that you do not choose an overlapping classless inter-domain routing (CIDR) range. Enter the following command:\n\n      ```terminal\n      $ az network vnet show \\\n        --resource-group \"${MGMT_VNET_RG}\" \\\n        --name \"${MGMT_VNET_NAME}\" \\\n        --query '{addressSpace: addressSpace.addressPrefixes, subnets: subnets[].{name: name, prefix: addressPrefix}}' \\\n        -o json\n      ```\n   2. Create the subnet as shown in the following example:\n\n      ```terminal\n      $ az network vnet subnet create \\\n        --resource-group \"${MGMT_VNET_RG}\" \\\n        --vnet-name \"${MGMT_VNET_NAME}\" \\\n        --name \"${NAT_SUBNET_NAME}\" \\\n        --address-prefixes 10.1.64.0/24 \\\n        --disable-private-link-service-network-policies true\n      ```\n\n      - The NAT subnet must be in the VNet of the management cluster because Private Link is created alongside the internal load balancer of the management cluster.\n      - The `10.1.64.0/24` address prefix is an example only. Replace it with a CIDR range that does not overlap with any other subnet in the VNet of the management cluster. If the VNet uses `10.0.0.0/16`, the NAT subnet must fall within that range, or you must expand the address space of the VNet.\n      - The `--disable-private-link-service-network-policies` flag is required and must be set to `true`. Otherwise, Azure rejects the creation of Private Link on the subnet.\n3. Obtain the NAT subnet resource ID for later use as shown in the following example:\n\n   ```bash\n   $ NAT_SUBNET_ID=$(az network vnet subnet show \\\n     --resource-group \"${MGMT_VNET_RG}\" \\\n     --vnet-name \"${MGMT_VNET_NAME}\" \\\n     --name \"${NAT_SUBNET_NAME}\" \\\n     --query id -o tsv)\n   ```\n\n**Additional resources**\n\n- [Configuring an Azure management cluster for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-mgmt-cluster_hcp-deploy-azure)\n- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)\n\n### Installing the HyperShift Operator with private platform support {#hcp-azure-private-operator_hcp-deploy-azure}\n\nTo set up an environment that supports private clusters, you must install the HyperShift Operator with flags that configure Azure Private Link management.\n\n> [!NOTE]\n> If you already installed the HyperShift Operator but you did not include the `--private-platform Azure` setting, you must run the `hcp install` command again with the private platform flags before you can create private clusters.\n\n**Prerequisites**\n\n- You have an OpenShift Container Platform management cluster on Azure.\n- The Azure command-line interface (CLI) is installed and configured.\n- The OpenShift CLI (`oc`) is installed.\n- If you are using external DNS, the `jq` command-line JSON processor is installed.\n- You configured an OIDC issuer. For more information, see \"Setting up an OIDC issuer\".\n\n**Procedure**\n\n1. Obtain credentials so that the Operator can manage Private Link resources.\n\n   1. Obtain the credentials file for Private Link management as shown in the following example:\n\n      ```bash\n      $ AZURE_PRIVATE_CREDS=\"<path_to_azure_private_credentials_json>\"\n      ```\n   2. Obtain the infrastructure resource group of the management cluster as shown in the following example:\n\n      ```bash\n      $ MGMT_INFRA_RG=$(oc get infrastructure cluster -o jsonpath='{.status.platformStatus.azure.resourceGroupName}')\n      ```\n2. Set the external DNS configuration variables as shown in the following examples:\n\n   ```bash\n   $ SERVICE_PRINCIPAL_FILEPATH=\"<path_to_azure_mgmt_json_file>\"\n   ```\n\n   ```bash\n   $ DNS_ZONE_NAME=\"<my_subdomain_my_parent_dns_zone_com>\"\n   ```\n3. Install the HyperShift Operator with private platform support as shown in the following example:\n\n   ```terminal\n   $ hcp install \\\n     --pull-secret ${PULL_SECRET} \\\n     --private-platform Azure \\\n     --azure-private-creds ${AZURE_PRIVATE_CREDS} \\\n     --azure-pls-resource-group ${MGMT_INFRA_RG} \\\n     --external-dns-provider=azure \\\n     --external-dns-credentials ${SERVICE_PRINCIPAL_FILEPATH} \\\n     --external-dns-domain-filter ${DNS_ZONE_NAME}\n   ```\n\n   - `--private-platform Azure` specifies that Azure Private Link management is to be enabled in the Operator.\n   - `--azure-private-creds` specifies the path to the Azure credentials file that is used for Private Link operations.\n\n     > [!NOTE]\n     > Besides using the `--azure-private-creds` flag, you can use one of the following authentication methods. Be sure to use only one authentication method.\n     >\n     > - `--azure-private-secret` specifies an existing Kubernetes secret that has Azure credentials. This flag has a companion flag, `--azure-private-secret-key`. Its default value is `credentials`, but you can customize it for secrets that have non-standard key names.\n     > - `--azure-pls-managed-identity-client-id` specifies the client ID of a managed identity for Private Link operations through Workload Identity federation. If you specify this flag, you must also include the `--azure-pls-subscription-id` flag, which specifies the Azure subscription ID for Private Link operations.\n   - `--azure-pls-resource-group` specifies the resource group where the Private Link resources are to be created. This resource group is the same as the resource group of the infrastructure for the management cluster.\n   - `--external-dns-credentials` specifies the path to a file that contains DNS credentials. If preferred, you can use the `--external-dns-secret` flag instead to specify a Kubernetes secret that has DNS credentials.\n\n**Additional resources**\n\n- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)\n\n### Configuring IAM resources for a private hosted cluster {#hcp-azure-private-iam_hcp-deploy-azure}\n\nCreate Workload Identities so that your private clusters can manage private endpoints and private DNS zones.\n\n**Prerequisites**\n\n- You have an OpenShift Container Platform management cluster on Azure that has the HyperShift Operator installed.\n- The Azure command-line interface (CLI) is installed and configured.\n- The OpenShift CLI (`oc`) is installed.\n- If you are using external DNS, the `jq` command-line JSON processor is installed.\n- You configured an OIDC issuer. For more information, see \"Setting up an OIDC issuer\".\n\n**Procedure**\n\n1. Set your environment variables:\n\n   1. Set your prefix by entering the following command:\n\n      ```bash\n      $ PREFIX=\"<my_prefix>\"\n      ```\n   2. Set the cluster name by entering the following command:\n\n      ```bash\n      $ CLUSTER_NAME=\"${PREFIX}-hc\"\n      ```\n   3. Set the resource group name by entering the following command:\n\n      ```bash\n      $ RESOURCE_GROUP_NAME=\"${CLUSTER_NAME}-${PREFIX}\"\n      ```\n   4. Set the location by entering the following command:\n\n      ```bash\n      $ LOCATION=\"<my_region>\"\n      ```\n   5. Set the variable for the path to the Azure credentials file by entering the following command:\n\n      ```bash\n      $ AZURE_CREDS=\"<path_to_azure_credentials_json>\"\n      ```\n   6. Set the variable for the OIDC issuer URL by entering the following command:\n\n      ```bash\n      $ OIDC_ISSUER_URL=\"<my_oidc_url_com>\"\n      ```\n   7. Set the path to the Workload Identities file by entering the following command:\n\n      ```bash\n      $ WORKLOAD_IDENTITIES_FILE=\"<path_to_workload_identities_file_json>\"\n      ```\n2. Create Workload Identities by entering the following command:\n\n   ```terminal\n   $ hcp create iam azure \\\n     --name \"${CLUSTER_NAME}\" \\\n     --infra-id \"${PREFIX}\" \\\n     --azure-creds \"${AZURE_CREDS}\" \\\n     --location \"${LOCATION}\" \\\n     --resource-group-name \"${RESOURCE_GROUP_NAME}\" \\\n     --oidc-issuer-url \"${OIDC_ISSUER_URL}\" \\\n     --output-file \"${WORKLOAD_IDENTITIES_FILE}\"\n   ```\n\n   The command creates 8 Workload Identities. For `Private` and `PublicAndPrivate` clusters, the Control Plane Operator identity is used to create and manage private endpoints, private DNS zones, Azure Virtual Network (VNet) links, and DNS A records. The Control Plane Identity is assigned the `Contributor` role by default. To use a more restrictive role, use the `--assign-custom-hcp-roles` flag.\n\n**Additional resources**\n\n- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)\n- [Creating Azure Workload Identities](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure)\n\n### Creating infrastructure for a private hosted cluster {#hcp-azure-private-infra_hcp-deploy-azure}\n\nSet up infrastructure so that you can create private hosted clusters.\n\n**Prerequisites**\n\n- You have an OpenShift Container Platform management cluster on Azure that has the HyperShift Operator installed.\n- The Azure command-line interface (CLI) is installed and configured.\n- The OpenShift CLI (`oc`) is installed.\n- If you are using external DNS, the `yq` command-line YAML processor is installed.\n- You configured an OIDC issuer. For more information, see \"Setting up an OIDC issuer\".\n\n**Procedure**\n\n1. Set your environment variables:\n\n   1. Set the variable for the DNS zone resource group by entering the following command:\n\n      ```bash\n      $ DNS_ZONE_RG_NAME=\"os4-common\"\n      ```\n   2. Set the variable for the base domain of your DNS zone by entering the following command:\n\n      ```bash\n      $ PARENT_DNS_ZONE=\"<your_base_domain_com>\"\n      ```\n   3. Set the variable that points to the infrastructure output file by entering the following command:\n\n      ```bash\n      $ INFRA_OUTPUT_FILE=\"${PREFIX}-infra-output.json\"\n      ```\n2. Create infrastructure by entering the following command:\n\n   ```terminal\n   $ hcp create infra azure \\\n     --azure-creds \"${AZURE_CREDS}\" \\\n     --infra-id \"${PREFIX}\" \\\n     --name \"${CLUSTER_NAME}\" \\\n     --location \"${LOCATION}\" \\\n     --base-domain \"${PARENT_DNS_ZONE}\" \\\n     --dns-zone-rg-name \"${DNS_ZONE_RG_NAME}\" \\\n     --workload-identities-file \"${WORKLOAD_IDENTITIES_FILE}\" \\\n     --assign-identity-roles \\\n     --output-file \"${INFRA_OUTPUT_FILE}\"\n   ```\n3. Read the infrastructure output to get the resource IDs that you created, as shown in the following example:\n\n   1. Read the resource group name by entering the following command:\n\n      ```bash\n      $ MANAGED_RG_NAME=$(yq -r -p yaml '.resourceGroupName' \"${INFRA_OUTPUT_FILE}\")\n      ```\n   2. Read the VNet ID by entering the following command:\n\n      ```bash\n      $ VNET_ID=$(yq -r -p yaml '.vnetID' \"${INFRA_OUTPUT_FILE}\")\n      ```\n   3. Read the subnet ID by entering the following command:\n\n      ```bash\n      $ SUBNET_ID=$(yq -r -p yaml '.subnetID' \"${INFRA_OUTPUT_FILE}\")\n      ```\n   4. Read the network security group ID by entering the following command:\n\n      ```bash\n      $ NSG_ID=$(yq -r -p yaml '.securityGroupID' \"${INFRA_OUTPUT_FILE}\")\n      ```\n\n      Note the resource IDs because you need them to create the private hosted cluster.\n\n**Additional resources**\n\n- [Setting up an OIDC issuer](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure)\n\n### Creating a private Azure hosted cluster {#hcp-azure-private-hosted_hcp-deploy-azure}\n\nCreate a private hosted cluster to ensure that the communication between compute nodes and the hosted control plane occurs over Azure Private Link.\n\n**Prerequisites**\n\n- You configured a subnet, as described in \"Preparing a subnet for a private hosted cluster on Azure\".\n- You installed the HyperShift Operator on an OpenShift Container Platform management cluster on Azure, as described in \"Installing the HyperShift Operator with private platform support\".\n- You created Identity and Access Management (IAM) resources, as described in \"Configuring IAM resources for a private hosted cluster\".\n- You created infrastructure, as described in \"Creating infrastructure for a private hosted cluster\".\n- This procedure relies on environment variables that you created in the prerequisite procedures. Be sure to complete this procedure in the same terminal where you already defined the environment variables.\n\n**Procedure**\n\n1. Create the private hosted cluster by entering the following command:\n\n   ```terminal\n   $ hcp create cluster azure \\\n     --name \"$CLUSTER_NAME\" \\\n     --namespace \"clusters\" \\\n     --azure-creds ${AZURE_CREDS} \\\n     --location ${LOCATION} \\\n     --node-pool-replicas 2 \\\n     --base-domain ${PARENT_DNS_ZONE} \\\n     --pull-secret ${PULL_SECRET} \\\n     --generate-ssh \\\n     --release-image ${RELEASE_IMAGE} \\\n     --resource-group-name \"${MANAGED_RG_NAME}\" \\\n     --vnet-id \"${VNET_ID}\" \\\n     --subnet-id \"${SUBNET_ID}\" \\\n     --network-security-group-id \"${NSG_ID}\" \\\n     --sa-token-issuer-private-key-path \"${SA_TOKEN_ISSUER_PRIVATE_KEY_PATH}\" \\\n     --oidc-issuer-url \"${OIDC_ISSUER_URL}\" \\\n     --dns-zone-rg-name ${DNS_ZONE_RG_NAME} \\\n     --assign-service-principal-roles \\\n     --workload-identities-file ${WORKLOAD_IDENTITIES_FILE} \\\n     --external-dns-domain ${DNS_ZONE_NAME} \\\n     --endpoint-access Private \\\n     --endpoint-access-private-nat-subnet-id \"${NAT_SUBNET_ID}\"\n   ```\n\n   - When you choose a value for the `--external-dns-domain` flag, ensure that the value does not match `{{ cluster_name }}.{{ base_domain }}`. If you use `{{ cluster_name }}.{{ base_domain }}` for the value, the Control Plane Operator creates a private DNS zone that can shadow the `*.apps` domain, which causes the console and ingress to become unreachable.\n   - `--endpoint-access` accepts 3 values:\n\n     - `Public`, which is the default value. When you specify `Public`, the API server is accessible through public endpoint only.\n     - `PublicAndPrivate`, where the API server is accessible through both public and private endpoints.\n     - `Private`, where the API server is accessible only through Private Link.\n\n       After you create a cluster, you cannot change it between `Public` endpoint and non-public (`PublicAndPrivate` or `Private`) endpoint access.\n\n       If you need to allow `Private` endpoint connections from Azure subscriptions other than the hosted cluster’s subscription, use the following flag: `--endpoint-access-private-additional-allowed-subscriptions \"sub-id-1, sub-id-2\"`.\n\n**Verification**\n\n1. Check the Private Link resources by entering the following command:\n\n   ```terminal\n   $ oc get azureprivatelinkservices -n clusters-${CLUSTER_NAME}\n   ```\n2. Check the status and connections by entering the following command:\n\n   ```terminal\n   $ oc get azureprivatelinkservices -n clusters-${CLUSTER_NAME} -o yaml\n   ```\n\n   **Setup progress conditions**\n\n   | Condition | Description |\n   | --- | --- |\n   | `AzureInternalLoadBalancerAvailable` | The internal load balancer has a front-end IP address. |\n   | `AzurePLSCreated` | Private Link is created in the management cluster. |\n   | `AzurePrivateEndpointAvailable` | Private endpoint is created in the hosted cluster VNet. |\n   | `AzurePrivateDNSAvailable` | Private DNS zones and A records are created. |\n   | `AzurePrivateLinkServiceAvailable` | All components are ready and private connectivity is available. |\n3. Check the overall cluster status by entering the following command:\n\n   ```terminal\n   $ oc get hostedcluster ${CLUSTER_NAME} -n clusters\n   ```\n4. Wait for the status by entering the following command:\n\n   ```terminal\n   $ oc wait --for=condition=Available hostedcluster/${CLUSTER_NAME} -n clusters --timeout=30m\n   ```\n\n**Additional resources**\n\n- [Preparing a subnet for a private hosted cluster on Azure](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-subnet_hcp-deploy-azure)\n- [Installing the HyperShift Operator with private platform support](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-operator_hcp-deploy-azure)\n- [Configuring IAM resources for a private hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-iam_hcp-deploy-azure)\n- [Creating infrastructure for a private hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-infra_hcp-deploy-azure)\n\n### Accessing a private Azure hosted cluster {#hcp-azure-private-access_hcp-deploy-azure}\n\nAfter you create a private hosted cluster, you need to take additional steps to access it.\n\n**Prerequisites**\n\n- You completed the steps in \"Creating a private Azure hosted cluster\".\n\n**Procedure**\n\n- To access a private hosted cluster by generating a `kubeconfig` file, enter the following command:\n\n  ```terminal\n  $ hcp create kubeconfig \\\n    --name ${CLUSTER_NAME} \\\n    --port-forward > ${CLUSTER_NAME}-kubeconfig\n  ```\n- If you have access to the management cluster, you can port forward to the API server to access the private hosted cluster.\n\n  1. Port forward to the `kube-apiserver` service by entering the following command:\n\n     ```terminal\n     $ kubectl port-forward svc/kube-apiserver \\\n       -n clusters-${CLUSTER_NAME} 6443:6443 &\n     ```\n  2. Access the hosted cluster by using the `kubeconfig` file:\n\n     ```bash\n     $ KUBECONFIG=${CLUSTER_NAME}-kubeconfig oc get nodes\n     ```\n- If you have a virtual machine (VM) in an Azure Virtual Network (VNet) that is peered with the hosted cluster’s VNet, you can access the API server, but you must first link the private DNS zones to the peered VNet.\n\n  > [!NOTE]\n  > The Control Plane Operator links private DNS zones only to the hosted cluster’s VNet. If you want to resolve the API server hostname from a peered VNet, you must manually link the private DNS zones to that VNet as shown in the following steps. Otherwise, DNS resolution fails from the peered VNet.\n\n  1. Link the private DNS zone to your peered VNet as shown in the following example:\n\n     ```bash\n     $ PEERED_VNET_ID=\"/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.Network/virtualNetworks/<vnet>\"\n     ```\n  2. Enter the following command:\n\n     ```terminal\n     $ az network private-dns link vnet create \\\n       --resource-group \"${MANAGED_RG_NAME}\" \\\n       --zone-name \"${CLUSTER_NAME}.hypershift.local\" \\\n       --name \"peered-vnet-link\" \\\n       --virtual-network \"${PEERED_VNET_ID}\" \\\n       --registration-enabled false\n     ```\n  3. If you also need base-domain resolution, enter the following command:\n\n     ```terminal\n     $ az network private-dns link vnet create \\\n       --resource-group \"${MANAGED_RG_NAME}\" \\\n       --zone-name \"${PARENT_DNS_ZONE}\" \\\n       --name \"peered-vnet-basedomain-link\" \\\n       --virtual-network \"${PEERED_VNET_ID}\" \\\n       --registration-enabled false\n     ```\n  4. Access the cluster as shown in the following example:\n\n     ```bash\n     $ KUBECONFIG=${CLUSTER_NAME}-kubeconfig oc get nodes\n     ```\n\n**Additional resources**\n\n- [Creating a private Azure hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-hosted_hcp-deploy-azure)\n\n### Troubleshooting private hosted clusters on Azure {#hcp-azure-private-ts_hcp-deploy-azure}\n\nIf your private hosted cluster gets stuck, check the `AzurePrivateLinkService` custom resource conditions.\n\n**Procedure**\n\n1. Enter the following command to check the Private Link conditions:\n\n   ```terminal\n   $ oc get azureprivatelinkservices \\\n     -n clusters-${CLUSTER_NAME} \\\n     -o jsonpath='{.items[0].status.conditions}' | jq .\n   ```\n2. Review the output and compare it to the following condition table: **Private cluster stuck conditions**\n\n   | Condition | Possible cause |\n   | --- | --- |\n   | `AzureInternalLoadBalancerAvailable` = `False` | The `private-router` service has not received an internal load balancer IP address yet. Check the service status and Azure networking. |\n   | `AzurePLSCreated` = `False` | Private Link creation failed. Check the NAT subnet policies, credentials, and the HyperShift Operator logs. |\n   | `AzurePrivateEndpointAvailable` = `False` | Private endpoint creation failed or the connection was not approved. Check the Private Link auto-approval list and the Control Plane Operator logs. |\n   | `AzurePrivateDNSAvailable` = `False` | The DNS zone or record creation failed. In the Azure subscription that stores the infrastructure resources for the hosted cluster, check the Control Plane Operator identity permissions. |\n\n## Example: Autoscaling a hosted cluster on Azure {#hcp-azure-autoscaling_hcp-deploy-azure}\n\nTo balance node pools on your Azure hosted cluster, you can configure autoscaling for the cluster.\n\nWhen you scale up `NodePool` objects, the Cluster API Provider for Azure provisions individual Azure virtual machines.\n\nTo configure autoscaling for a hosted cluster on Azure, you edit the `spec.autoscaling` parameters in the `HostedCluster` resource. The following example shows a `HostedCluster` resource with 2 Azure node pools.\n\n> [!NOTE]\n> This example shows only the autoscaling-related fields.\n\n```yaml\napiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-cluster\n  namespace: my-cluster-namespace\nspec:\n  autoscaling:\n    scaling: ScaleUpAndScaleDown\n    maxNodesTotal: 12\n    expanders:\n      - Random\n    scaleDown:\n      delayAfterAddSeconds: 300\n      unneededDurationSeconds: 600\n      utilizationThresholdPercent: 40\n    balancingIgnoredLabels:\n      - \"custom.label/environment\"\n    maxFreeDifferenceRatioPercent: 70\n---\napiVersion: hypershift.openshift.io/v1beta1\nkind: NodePool\nmetadata:\n  name: my-cluster-nodepool-1\n  namespace: my-cluster-namespace\nspec:\n  clusterName: my-cluster\n  autoScaling:\n    min: 1\n    max: 6\n  platform:\n    azure:\n      vmSize: Standard_D4s_v3\n      # ...\n---\napiVersion: hypershift.openshift.io/v1beta1\nkind: NodePool\nmetadata:\n  name: my-cluster-nodepool-2\n  namespace: my-cluster-namespace\nspec:\n  clusterName: my-cluster\n  autoScaling:\n    min: 1\n    max: 6\n  platform:\n    azure:\n      vmSize: Standard_D4s_v3\n      # ...\n```\n\n- `spec.autoScaling.min` must be greater than or equal to `1`. Scaling from zero (`autoScaling.min: 0`) is not supported on Azure.\n\n## Deleting an Azure hosted cluster and its resources {#hcp-azure-delete_hcp-deploy-azure}\n\nIf you no longer need a hosted cluster, you can remove it and its infrastructure. Any related Workload Identities and OIDC issuers that were created during setup can be reused for other clusters or deleted separately if you no longer need them.\n\n### Deleting a hosted cluster on Azure {#hcp-azure-cluster-delete_hcp-deploy-azure}\n\nIf you are no longer using a hosted cluster on Azure, you can delete it.\n\n**Procedure**\n\n- To delete a hosted cluster, enter the following command:\n\n  ```terminal\n  $ hcp destroy cluster azure \\\n    --name $CLUSTER_NAME \\\n    --azure-creds $AZURE_CREDS \\\n    --dns-zone-rg-name $PERSISTENT_RG_NAME \\\n    --preserve-resource-group\n  ```\n\n  - `--name` specifies your hosted cluster name.\n  - `--azure-creds` specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers.\n  - `--dns-zone-rg-name` specifies the name of the resource group that contains your DNS zone.\n  - `--preserve-resource-group` specifies that the infrastructure will be preserved. If you do not want to preserve the infrastructure, do not include this flag.\n\n### Deleting Azure infrastructure {#hcp-azure-infra-delete_hcp-deploy-azure}\n\nIf you have Azure infrastructure without a hosted cluster, you can remove the infrastructure if you are not using it.\n\nFor example, this scenario can happen if you created the infrastructure standalone but never created a hosted cluster. Or, you might have manually deleted the hosted cluster or management cluster, but the infrastructure resources still exist.\n\nYou can delete the entire infrastructure, or delete cluster-specific resources but preserve the main resource group. Preserving the main resource group is helpful when you have other resources in the same resource group that you want to keep.\n\nIf you have a hosted cluster and want to delete infrastructure while you delete the hosted cluster, follow the steps in \"Deleting a hosted cluster on Azure\", but omit the `--preserve-resource-group` flag.\n\n**Procedure**\n\n- To delete the infrastructure, enter one of the following commands:\n\n  - To delete the infrastructure, including the resource group, enter the following command:\n\n    ```terminal\n    $ hcp destroy infra azure \\\n      --name <my_cluster_name> \\\n      --infra-id <infra_id> \\\n      --azure-creds <azure_credentials_file>\n    ```\n\n    - `--name` specifies your hosted cluster name.\n    - `--infra-id` specifies a unique name that identifies your infrastructure. This value is used to name and tag Azure resources. Typically, it is the name of your cluster with a suffix appended to it.\n    - `--azure-creds` specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers.\n  - To preserve the resource group but delete only cluster-specific resources, enter the following command:\n\n    ```terminal\n    $ hcp destroy infra azure \\\n      --name <my_cluster_name> \\\n      --infra-id <infra_id> \\\n      --azure-creds <azure_credentials_file> \\\n      --preserve-resource-group\n    ```\n\n    - `--name` specifies your hosted cluster name.\n    - `--infra-id` specifies a unique name that identifies your infrastructure. This value is used to name and tag Azure resources. Typically, it is the name of your cluster with a suffix appended to it.\n    - `--azure-creds` specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers.\n    - `--preserve-resource-group` specifies that you want to preserve the resource group.\n\n### Deleting Azure Workload Identities {#hcp-azure-workload-id-delete_hcp-deploy-azure}\n\nAs part of the process to delete a hosted cluster on Azure, you need to delete the Workload Identities.\n\nTo delete the Workload Identities, you enter a command on the hosted control planes command-line interface, `hcp`. The command uses the file that was generated when you created the Workload Identities to identify the identities to delete. Both the managed identities and their federated credentials are removed.\n\n**Prerequisites**\n\n- If you created infrastructure by using the Workload Identities, delete the infrastructure before you delete the identities.\n\n**Procedure**\n\n- Enter the following command:\n\n  ```terminal\n  $ hcp destroy iam azure \\\n      --azure-creds <azure_credentials_file> \\\n      --workload-identities-file <workload_identities_file> \\\n      --resource-group-name <resource_group> \\\n      --name <my_cluster_name> \\\n      --infra-id <infra_id> \\\n      --dns-zone-rg-name <dns_zone_rg> \\\n      --cloud <my_cloud_environment>\n  ```\n\n  - `<azure_credentials_file>` specifies the Azure credentials file with permission to create managed identities and federated credentials.\n  - `<workload_identities_file>` specifies the path to the Workload Identities JSON file, such as `my-cluster-name-iam-output.json`.\n  - `<resource_group>` specifies the name of the resource group where you created identities.\n  - `<my_cluster_name>` specifies the name of your hosted cluster.\n  - `<infra_id>` specifies the unique identifier for naming Azure resources. Typically, this identifier is the cluster name with a suffix.\n  - `<dns_zone_rg>` specifies the DNS zone resource group.\n  - `<my_cloud_environment>` specifies the Azure cloud environment. Setting the `--cloud` flag is optional. The default value is `AzurePublicCloud`.\n\n### Deleting a private hosted cluster on Azure {#hcp-azure-delete-private_hcp-deploy-azure}\n\nIf you are no longer using a private hosted cluster on Azure, you can delete it.\n\nThe deletion process automatically cleans up Private Link resources in the following order:\n\n1. The Control Plane Operator removes the private endpoint, private DNS zones, VNet links, and A records.\n2. The `hcp destroy` command removes role-based access control (RBAC) role assignments.\n3. The HyperShift Operator removes Private Link.\n\n**Procedure**\n\n- To delete a private hosted cluster, enter the following command:\n\n  ```terminal\n  $ hcp destroy cluster azure \\\n    --name ${CLUSTER_NAME} \\\n    --azure-creds ${AZURE_CREDS} \\\n    --resource-group-name ${MANAGED_RG_NAME} \\\n    --dns-zone-rg-name ${DNS_ZONE_RG_NAME}\n  ```\n\n  - `--name` specifies your hosted cluster name.\n  - `--azure-creds` specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers. This flag is required because the `hcp destroy cluster azure` command cleans up RBAC role assignments before it deletes infrastructure.\n  - `--resource-group-name` specifies the name of the resource group where you created identities.\n  - `--dns-zone-rg-name` specifies the name of the resource group that contains your DNS zone.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,54 +100,1079 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-deploy-azure" class="group scroll-mt-20">Deploying {"{"}{"{"} hcp {"}"}{"}"} on {"{"}{"{"} azure_short {"}"}{"}"}<a href="#hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/snippets/technology-preview.md">With {"{"}{"{"} hcp {"}"}{"}"} on {"{"}{"{"} azure_first {"}"}{"}"}, you can reduce the cost associated with dedicated control-plane node VMs for each cluster. You can provision compute nodes as {"{"}{"{"} azure_short {"}"}{"}"} Virtual Machine Scale sets for dynamic scaling, and ensure credential isolation with per-cluster {"{"}{"{"} azure_short {"}"}{"}"} service principals.</p>
-      <p class="/modules/hcp-azure-overview.md"></p>
+      <h1 id="hcp-deploy-azure" class="group scroll-mt-20">Deploying hosted control planes on Azure<a href="#hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>With hosted control planes on Microsoft Azure, you can reduce the cost associated with dedicated control-plane node VMs for each cluster. You can provision compute nodes as Azure Virtual Machine Scale sets for dynamic scaling, and ensure credential isolation with per-cluster Azure service principals.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Hosted control planes on Azure is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="hcp-azure-overview_hcp-deploy-azure" class="group scroll-mt-20">Overview of hosted control planes on Azure<a href="#hcp-azure-overview_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can deploy and manage hosted clusters on an OpenShift management cluster that runs in Microsoft Azure. With a self-managed deployment model, you manage your own OpenShift cluster.</p>
+      <h3 id="hcp-azure-arch_hcp-deploy-azure" class="group scroll-mt-20">Architecture of hosted control planes on Azure<a href="#hcp-azure-arch_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>At a high level, the architecture of hosted control planes on Azure consists of three layers:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Management cluster</dt>
+      <dd class="ml-6 text-muted-foreground"><p>An Azure OpenShift cluster that hosts the HyperShift Operator and the control planes for your hosted clusters.</p></dd>
+      <dt class="font-semibold">Control plane</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Kubernetes control-plane components that run as pods on the management cluster.</p></dd>
+      <dt class="font-semibold">Data plane</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Compute nodes that run as Azure virtual machines (VMs) in your Azure subscription.</p></dd>
+      </dl>
+      <p>The architecture uses Azure Workload Identity for secure, credential-free authentication between OpenShift Container Platform components and Azure services. As a result, you do not need to manage long-lived service principal credentials, and you get better security through federated identity credentials.</p>
+      <h3 id="hcp-azure-deployment-workflow_hcp-deploy-azure" class="group scroll-mt-20">Deployment workflow for hosted control planes on Azure<a href="#hcp-azure-deployment-workflow_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Deploying self-managed hosted control planes on Azure involves a three-phase process in the following order:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Phase 1: Set up Azure Workload Identity</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>This phase establishes secure authentication infrastructure so that OpenShift Container Platform components can access Azure services. During this phase, the security infrastructure that your hosted clusters require is created:</p>
+      <ul>
+      <li>Managed identities for each OpenShift Container Platform component, including the image registry, ingress, CSI drivers, cloud provider, network operator, and so on</li>
+      <li>OIDC issuer in Azure Blob Storage for service account token validation</li>
+      <li>Federated credentials that establish trust relationships between Azure Entra ID and OpenShift Container Platform service accounts</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Phase 2: Set up the management cluster</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>In this phase, you prepare your OpenShift Container Platform management cluster on Azure to host and manage hosted clusters. During this phase, you install the following components:</p>
+      <ul>
+      <li>Azure DNS zones, for private and public-private topologies</li>
+      <li>External DNS, for private and public-private topologies</li>
+      <li>HyperShift Operator</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Phase 3: Create hosted clusters</dt>
+      <dd class="ml-6 text-muted-foreground"><p>In this phase, you create and configure hosted clusters. This phase involves the following steps:</p></dd>
+      </dl>
+      <ol>
+      <li>Setting up infrastructure</li>
+      <li>Creating a hosted cluster</li>
+      <li>Integrating workload identity</li>
+      <li>Configuring private endpoint access (optional)</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="https://azure.github.io/azure-workload-identity/docs/">{"{"}{"{"} azure_short {"}"}{"}"} Workload Identity documentation</a></li></ul>
-      <p class="/modules/hcp-azure-setup-resources.md"></p>
-      <p class="/modules/hcp-azure-oidc.md"></p>
+      <ul><li><a href="https://azure.github.io/azure-workload-identity/docs/">Azure Workload Identity documentation</a></li></ul>
+      <h3 id="hcp-azure-infra-creds_hcp-deploy-azure" class="group scroll-mt-20">Azure infrastructure and credentials<a href="#hcp-azure-infra-creds_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Before you get started with hosted control planes on Microsoft Azure, get familiar with the required Azure resources and the necessary permissions.</p>
+      <h4 id="hcp-azure-prereq-summary_hcp-deploy-azure" class="group scroll-mt-20">Summary of requirements<a href="#hcp-azure-prereq-summary_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>You need the following resources, tools, access, and permissions to set up hosted control planes on Azure:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Azure resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>An OpenShift Container Platform management cluster on Azure.</li>
+      <li>An Azure subscription with contributor and user-access administrator permissions.</li>
+      <li>(Optional) A parent DNS zone in Azure for delegating cluster DNS records. This DNS zone is required only if you plan to use external DNS.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Tools and access</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>Azure command-line interface (CLI), <code>az</code>, configured with your subscription</li>
+      <li>OpenShift CLI (<code>oc</code>)</li>
+      <li>hosted control planes CLI, <code>hcp</code></li>
+      <li><code>jq</code> command-line JSON processor</li>
+      <li>Cloud Credential Operator utility (<code>ccoctl</code>)</li>
+      <li>A valid OpenShift Container Platform pull secret</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Permissions</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>Subscription-level contributor and user access administrator roles</li>
+      <li>Microsoft Graph API permissions for creating service principals</li>
+      </ul>
+      </dd>
+      </dl>
+      <h4 id="hcp-azure-dns-options_hcp-deploy-azure" class="group scroll-mt-20">DNS management options<a href="#hcp-azure-dns-options_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>You can set up hosted control planes on Azure with or without external DNS. If you plan to use a private or a public-private topology, external DNS is required. See the following table for more information:</p>
+      <p><strong>DNS approaches for hosted control planes on Azure</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead></TableHead>
+      <TableHead>With external DNS</TableHead>
+      <TableHead>Without external DNS</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><strong>Best for</strong></TableCell>
+      <TableCell>Production, multi-cluster</TableCell>
+      <TableCell>Development, testing</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><strong>API server DNS</strong></TableCell>
+      <TableCell>Custom (<code>api-cluster.example.com</code>)</TableCell>
+      <TableCell>Azure Load Balancer (<code>abc123.region.cloudapp.azure.com</code>)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><strong>Setup complexity</strong></TableCell>
+      <TableCell>Low, requires DNS zones and service principals</TableCell>
+      <TableCell>None</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><strong>Management</strong></TableCell>
+      <TableCell>Fully automatic</TableCell>
+      <TableCell>Manual or Azure-provided</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h4 id="hcp-azure-resource-group_hcp-deploy-azure" class="group scroll-mt-20">Resource group strategy<a href="#hcp-azure-resource-group_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Cluster-specific resource groups are created and deleted with each hosted cluster. These resources include managed resource groups for cluster infrastructure. If you use custom networking, these resources also include Virtual Network (VNet) resource groups and Network Security Group (NSG) resource groups.</p>
+      <h4 id="hcp-azure-security_hcp-deploy-azure" class="group scroll-mt-20">Security considerations for hosted control planes on Azure<a href="#hcp-azure-security_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Hosted control planes on Azure employs the following security best practices:</p>
+      <ul>
+      <li>Workload identity federation, which eliminates long-lived credentials by using OIDC-based authentication.</li>
+      <li>Least-privilege access, where each component has its own managed identity with minimal required permissions.</li>
+      <li>Network isolation, where you can use custom VNets and NSGs to implement network segmentation and security policies.</li>
+      <li>Federated credentials, where trust relationships are scoped to specific service accounts, preventing unauthorized access.</li>
+      <li>Private connectivity, available as an option through Azure Private Link, which provides private API server access to ensure that control-plane traffic never traverses the public internet. Private connectivity is available for private and public-private topologies only.</li>
+      </ul>
+      <h2 id="hcp-azure-setup-resources_hcp-deploy-azure" class="group scroll-mt-20">Setting up Azure resources<a href="#hcp-azure-setup-resources_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Before you can create management and hosted clusters for your deployment of hosted control planes on Azure, you need to set up an OIDC issuer, Workload Identities, and your Azure infrastructure.</p>
+      <h3 id="hcp-azure-oidc_hcp-deploy-azure" class="group scroll-mt-20">Setting up an OIDC issuer<a href="#hcp-azure-oidc_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To prepare to deploy hosted control planes on Azure, you need to set up an OIDC issuer for hosted clusters.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The Azure command-line interface (CLI) is installed and configured.</li>
+      <li>The <code>jq</code> command-line JSON processor is installed.</li>
+      <li>The Cloud Credential Operator utility (<code>ccoctl</code>) is installed. For more information, see "How to obtain the ccoctl tool for OpenShift 4".</li>
+      <li>The appropriate Azure permissions are set.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set your environment variables as shown in the following example:
+      <CodeBlock code={"PERSISTENT_RG_NAME=\"os4-common\"\nLOCATION=\"eastus\"\nAZURE_CREDS=\"/path/to/azure-creds.json\"\nSUBSCRIPTION_ID=\"my-subscription-id\""} lang="terminal" />
+      </li>
+      <li>
+      Create a persistent resource group by entering the following command:
+      <CodeBlock code={"$ az group create --name $PERSISTENT_RG_NAME --location $LOCATION"} lang="terminal" />
+      </li>
+      <li>
+      Configure an OIDC issuer URL by using the Cloud Credential Operator tool to complete the following steps:
+      <ol>
+      <li>
+      Set the OIDC issuer variables as shown in the following example:
+      <CodeBlock code={"OIDC_STORAGE_ACCOUNT_NAME=\"yourstorageaccount\"\nTENANT_ID=\"your-tenant-id\""} lang="terminal" />
+      </li>
+      <li>
+      Create an RSA key pair and save the private and public key by entering the following command:
+      <CodeBlock code={"$ ccoctl azure create-key-pair"} lang="terminal" />
+      </li>
+      <li>
+      Set variables for the token issuer key paths as shown in the following example:
+      <CodeBlock code={"SA_TOKEN_ISSUER_PRIVATE_KEY_PATH=\"/path/to/serviceaccount-signer.private\"\nSA_TOKEN_ISSUER_PUBLIC_KEY_PATH=\"/path/to/serviceaccount-signer.public\""} lang="terminal" />
+      </li>
+      <li>
+      Create an OIDC issuer by entering the following command:
+      <CodeBlock code={"$ ccoctl azure create-oidc-issuer \\\n    --oidc-resource-group-name ${PERSISTENT_RG_NAME} \\\n    --tenant-id ${TENANT_ID} \\\n    --region ${LOCATION} \\\n    --name ${OIDC_STORAGE_ACCOUNT_NAME} \\\n    --subscription-id ${SUBSCRIPTION_ID} \\\n    --public-key-file ${SA_TOKEN_ISSUER_PUBLIC_KEY_PATH}"} lang="terminal" />
+      </li>
+      <li>
+      Set the OIDC issuer URL as shown in the following example:
+      <CodeBlock code={"OIDC_ISSUER_URL=\"https://${OIDC_STORAGE_ACCOUNT_NAME}.blob.core.windows.net/${OIDC_STORAGE_ACCOUNT_NAME}\""} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Try to access the OIDC issuer by entering the following command:
+      <CodeBlock code={"$ curl -s \"${OIDC_ISSUER_URL}/.well-known/openid-configuration\" | jq ."} lang="terminal" />
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://access.redhat.com/solutions/7001811">How to obtain the ccoctl tool for OpenShift 4 (Red Hat Knowledgebase article)</a></li></ul>
-      <p class="/modules/hcp-azure-infra.md"></p>
-      <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure">Creating {"{"}{"{"} azure_short {"}"}{"}"} Workload Identities</a></li></ul>
-      <p class="/modules/hcp-azure-hosted.md"></p>
-      <p class="/modules/hcp-cluster-capabilities.md"></p>
-      <p class="/modules/hcp-cluster-capabilities-ref.md"></p>
-      <p class="/modules/hcp-cluster-capabilities-proc.md"></p>
-      <p class="/modules/hcp-azure-private.md"></p>
-      <p class="/modules/hcp-azure-private-subnet.md"></p>
-      <p><strong>Additional resources</strong></p>
+      <h3 id="hcp-azure-workload-id_hcp-deploy-azure" class="group scroll-mt-20">Creating Azure Workload Identities<a href="#hcp-azure-workload-id_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To ensure control over Identity and Access Management (IAM) resources in your Azure deployment, create Workload Identities separately from your infrastructure.</p>
+      <p>Workload Identities authenticate hosted cluster components to Azure services by using OIDC federation. You must create identities separately and then consume them during infrastructure or cluster creation.</p>
+      <p><strong>Prerequisites</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-mgmt-cluster_hcp-deploy-azure">Configuring an {"{"}{"{"} azure_short {"}"}{"}"} management cluster for {"{"}{"{"} hcp {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure">Setting up an OIDC issuer</a></li>
+      <li>
+      You have an Azure credentials file in the following format:
+      <CodeBlock code={"{\n  \"subscriptionId\": \"your-subscription-id\",\n  \"tenantId\": \"your-tenant-id\",\n  \"clientId\": \"your-client-id\",\n  \"clientSecret\": \"your-client-secret\"\n}"} lang="terminal" title="Example file" />
+      </li>
+      <li>You have a resource group to create the managed identities in.</li>
+      <li>You have an OIDC issuer URL for Workload Identity federation. For more information, see "Setting up an OIDC issuer".</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set environment variables as shown in the following example:
+      <CodeBlock code={"CLUSTER_NAME=\"my-self-managed-cluster\"\nINFRA_ID=\"${CLUSTER_NAME}-$(openssl rand -hex 4)\""} lang="terminal" />
+      </li>
+      <li>
+      On the hosted control planes command-line interface, <code>hcp</code>, enter the following command:
+      <CodeBlock code={"$ hcp create iam azure \\\n    --name <my_cluster_name> \\\n    --infra-id <infra_id> \\\n    --azure-creds <azure_credentials_file> \\\n    --resource-group-name <resource_group> \\\n    --oidc-issuer-url <oidc_issuer_url> \\\n    --output-file <workload_identities_file> \\\n    --location <my_region> \\\n    --cloud <my_cloud_environment>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;my_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the cluster you intend to create.</p></dd>
+      <dt class="font-semibold"><code>&lt;infra_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the unique identifier for naming Azure resources. Typically, this identifier is the cluster name with a suffix.</p></dd>
+      <dt class="font-semibold"><code>&lt;azure_credentials_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Azure credentials file with permission to create managed identities and federated credentials.</p></dd>
+      <dt class="font-semibold"><code>&lt;resource_group&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the resource group where you intend to create identities.</p></dd>
+      <dt class="font-semibold"><code>&lt;oidc_issuer_url&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the URL of the OIDC identity provider for Workload Identity federation.</p></dd>
+      <dt class="font-semibold"><code>&lt;workload_identities_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the output file path, such as <code>my-cluster-name-iam-output.json</code>. You can also add these optional flags to the <code>hcp create iam azure</code> command: <code>&lt;my_region&gt;</code>:: Specifies the Azure region for the managed identities. The default value is <code>eastus</code>. <code>&lt;my_cloud_environment&gt;</code>:: Specifies the Azure cloud environment. The default value is <code>AzurePublicCloud</code>.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Review the output file, which looks like the following example:
+      <CodeBlock code={"{\n  \"disk\": {\n    \"tenantID\": \"...\",\n    \"clientID\": \"...\",\n    \"resourceID\": \"/subscriptions/.../providers/Microsoft.ManagedIdentity/userAssignedIdentities/my-cluster-abc123-disk\"\n  },\n  \"file\": {\n    \"tenantID\": \"...\",\n    \"clientID\": \"...\",\n    \"resourceID\": \"...\"\n  },\n  \"imageRegistry\": { ... },\n  \"ingress\": { ... },\n  \"cloudProvider\": { ... },\n  \"nodePoolManagement\": { ... },\n  \"network\": { ... },\n  \"controlPlaneOperator\": { ... }\n}"} lang="terminal" title="Example output" />
+      <p>The output includes 8 user-assigned identities, one per cluster component, along with federated credentials for each identity:</p>
+      <ul>
+      <li>Disk CSI driver</li>
+      <li>File CSI driver</li>
+      <li>Image registry</li>
+      <li>Ingress Operator</li>
+      <li>Cloud provider</li>
+      <li>Node pool management</li>
+      <li>Network Operator</li>
+      <li>Control Plane Operator</li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="hcp-azure-infra_hcp-deploy-azure" class="group scroll-mt-20">Creating Azure infrastructure<a href="#hcp-azure-infra_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Create an Azure infrastructure separately so that when you create a hosted cluster on Azure, you can use pre-existing infrastructure.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>
+      You have an Azure credentials file with the following format:
+      <CodeBlock code={"{\n  \"subscriptionId\": \"<my_subscription_id>\",\n  \"tenantId\": \"<my_tenant_id>\",\n  \"clientId\": \"<my_client_id>\",\n  \"clientSecret\": \"<my_client_secret>\"\n}"} lang="json" />
+      </li>
+      <li>You have an existing public DNS zone in your Azure subscription for your base domain.</li>
+      <li>You created Workload Identities. For more information, see "Creating Azure Workload Identities".</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To create the infrastructure with a new virtual network, subnet, and network security group, enter the following command:
+      <CodeBlock code={"$ hcp create infra azure \\\n  --name <my_cluster_name> \\\n  --infra-id <infra_id> \\\n  --azure-creds <azure_credentials_file> \\\n  --base-domain <base_domain> \\\n  --location <location> \\\n  --workload-identities-file <workload_identities_file> \\\n  --assign-identity-roles \\\n  --dns-zone-rg-name <dns_zone_rg> \\\n  --output-file <output_infra_file>"} lang="terminal" />
+      <p>where:</p>
+      <ul>
+      <li><code>--name</code> specifies the name of the hosted cluster you intend to create.</li>
+      <li><code>--infra-id</code> specifies a unique name that identifies your infrastructure. This value is used to name and tag Azure resources. Typically, it is the name of your cluster with a suffix appended to it.</li>
+      <li><code>--azure-creds</code> specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers.</li>
+      <li><code>--base-domain</code> specifies the base domain for the ingress of your hosted cluster. The base domain must correspond to an existing public DNS zone in your Azure subscription.</li>
+      <li><code>--location</code> specifies the Azure region where you want to create the infrastructure, such as <code>eastus</code> or <code>westus2</code>.</li>
+      <li><code>--workload-identities-file</code> specifies the path to the JSON file that contains the Workload Identity configuration.</li>
+      <li><code>--assign-identity-roles</code> specifies that automatic RBAC role assignment is enabled for Workload Identities.</li>
+      <li><code>--dns-zone-rg-name</code> specifies the name of the resource group that contains your public DNS zone.</li>
+      <li><code>--output-file</code> specifies the file where the details of the infrastructure are stored in YAML format.</li>
+      </ul>
+      </li>
+      <li>
+      To create the infrastructure with an existing virtual network, subnet, and network security group, enter the following command:
+      <CodeBlock code={"$ hcp create infra azure \\\n  --name <my_cluster_name> \\\n  --infra-id <infra_id> \\\n  --azure-creds <azure_credentials_file> \\\n  --base-domain <base_domain> \\\n  --location <location> \\\n  --workload-identities-file <workload_identities_file> \\\n  --vnet-id /subscriptions/<subscription_id>/resourceGroups/<resource_group>/providers/Microsoft.Network/virtualNetworks/<vnet_name> \\\n  --subnet-id /subscriptions/<subscription_id>/resourceGroups/<resource_group>/providers/Microsoft.Network/virtualNetworks/<vnet_name>/subnets/<subnet_name> \\\n  --network-security-group-id /subscriptions/<subscription_id>/resourceGroups/<resource_group>/providers/Microsoft.Network/networkSecurityGroups/<network_security_group_name> \\\n  --assign-identity-roles \\\n  --dns-zone-rg-name <dns_zone_rg> \\\n  --output-file <output_infra_file>"} lang="terminal" />
+      <p>where:</p>
+      <ul>
+      <li><code>--name</code> specifies the name of the hosted cluster you intend to create.</li>
+      <li><code>--infra-id</code> specifies a unique name that identifies your infrastructure. This value is used to name and tag Azure resources. Typically, it is the name of your cluster with a suffix appended to it.</li>
+      <li><code>--azure-creds</code> specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers.</li>
+      <li><code>--base-domain</code> specifies the base domain for the ingress of your hosted cluster. The base domain must correspond to an existing public DNS zone in your Azure subscription.</li>
+      <li><code>--location</code> specifies the Azure region where you want to create the infrastructure, such as <code>eastus</code> or <code>westus2</code>.</li>
+      <li><code>--workload-identities-file</code> specifies the path to the JSON file that contains the Workload Identity configuration.</li>
+      <li><code>--vnet-id</code> specifies your existing virtual network ID, which includes your subscription ID and your virtual network name.</li>
+      <li><code>--subnet-id</code> specifies the ARM resource ID of your subnet, which includes your subscription ID, virtual network name, and subnet name.</li>
+      <li><code>--network-security-group-id</code> specifies your existing network security group ID, which includes your subscription ID and your network security group name.</li>
+      <li><code>--assign-identity-roles</code> specifies that automatic RBAC role assignment is enabled for Workload Identities.</li>
+      <li><code>--dns-zone-rg-name</code> specifies the name of the resource group that contains your public DNS zone.</li>
+      <li><code>--output-file</code> specifies the file where the details of the infrastructure are stored in YAML format.</li>
+      </ul>
+      </li>
       </ul>
       <p><strong>Additional resources</strong></p>
+      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure">Creating Azure Workload Identities</a></li></ul>
+      <h2 id="hcp-azure-mgmt-cluster_hcp-deploy-azure" class="group scroll-mt-20">Configuring an Azure management cluster for hosted control planes<a href="#hcp-azure-mgmt-cluster_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To configure the management cluster for hosted control planes on Azure, you need to ensure that external DNS and the HyperShift Operator are set up on the cluster.</p>
+      <p>The configuration steps include configuring the DNS zone, delegating the DNS records for your cluster, and creating a dedicated service principal for external DNS.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the multicluster engine Operator 2.5 or later on an OpenShift Container Platform cluster. You can install multicluster engine Operator as an Operator from the OpenShift Container Platform software catalog. Or, if you already use Red Hat Advanced Cluster Management, the Operator is automatically installed. The HyperShift Operator is enabled by default in the operator package for multicluster engine Operator.</li>
+      <li>The Azure command-line interface (CLI) is installed and configured.</li>
+      <li>The OpenShift CLI (<code>oc</code>) is installed.</li>
+      <li>You have an OpenShift Container Platform management cluster on Azure.</li>
+      <li>If you are using external DNS, the <code>jq</code> command-line JSON processor is installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set the DNS configuration variables as shown in the following example:
+      <CodeBlock code={"PARENT_DNS_RG=\"<my_parent_dns_resource_group>\"\nPARENT_DNS_ZONE=\"<my_parent.dns.zone.com>\"\nDNS_RECORD_NAME=\"<my_subdomain>\"\nRESOURCE_GROUP_NAME=\"<my_resource_group>\"\nDNS_ZONE_NAME=\"<my_subdomain.my_parent.dns.zone.com>\"\nLOCATION=\"<my_region>\""} lang="bash" />
+      </li>
+      <li>
+      Create the Azure group by entering the following command:
+      <CodeBlock code={"$ az group create \\\n  --name $RESOURCE_GROUP_NAME \\\n  --location $LOCATION "} lang="terminal" />
+      </li>
+      <li>
+      Create the Azure DNS zone by entering the following command:
+      <CodeBlock code={"$ az network dns zone create \\\n  --resource-group $RESOURCE_GROUP_NAME \\\n  --name $DNS_ZONE_NAME  "} lang="terminal" />
+      </li>
+      <li>
+      If an existing name server record exists, delete it by entering the following command:
+      <CodeBlock code={"$ az network dns record-set ns delete \\\n  --resource-group $PARENT_DNS_RG \\\n  --zone-name $PARENT_DNS_ZONE \\\n  --name $DNS_RECORD_NAME -y"} lang="terminal" />
+      </li>
+      <li>
+      Get the name servers from your DNS zone by entering the following command:
+      <CodeBlock code={"name_servers=$(az network dns zone show \\\n  --resource-group $RESOURCE_GROUP_NAME \\\n  --name $DNS_ZONE_NAME \\\n  --query nameServers \\\n  --output tsv)"} lang="bash" />
+      </li>
+      <li>
+      Create an array of name servers as shown in the following example:
+      <CodeBlock code={"ns_array=()\nwhile IFS= read -r ns; do\n    ns_array+=(\"$ns\")\ndone <<< \"$name_servers\""} lang="bash" />
+      </li>
+      <li>
+      Add name server records to the parent zone as shown in the following example:
+      <CodeBlock code={"for ns in \"${ns_array[@]}\"; do\n    az network dns record-set ns add-record \\\n        --resource-group $PARENT_DNS_RG \\\n        --zone-name $PARENT_DNS_ZONE \\\n        --record-set-name $DNS_RECORD_NAME \\\n        --nsdname \"$ns\"\ndone"} lang="bash" />
+      </li>
+      <li>
+      Set the external DNS configuration variables as shown in the following example:
+      <CodeBlock code={"EXTERNAL_DNS_NEW_SP_NAME=\"<external_dns_service_principal>\"\nSERVICE_PRINCIPAL_FILEPATH=\"<path_to_azure_mgmt_json_file>\"\nRESOURCE_GROUP_NAME=\"<my_resource_group>\""} lang="bash" />
+      </li>
+      <li>
+      Create the service principal for external DNS by entering the following command:
+      <CodeBlock code={"DNS_SP=$(az ad sp create-for-rbac --name ${EXTERNAL_DNS_NEW_SP_NAME})\nEXTERNAL_DNS_SP_APP_ID=$(echo \"$DNS_SP\" | jq -r '.appId')\nEXTERNAL_DNS_SP_PASSWORD=$(echo \"$DNS_SP\" | jq -r '.password')"} lang="bash" />
+      </li>
+      <li>
+      Get the DNS zone ID by entering the following command:
+      <CodeBlock code={"DNS_ID=$(az network dns zone show \\\n  --name ${DNS_ZONE_NAME} \\\n  --resource-group ${RESOURCE_GROUP_NAME} \\\n  --query \"id\" \\\n  --output tsv)"} lang="bash" />
+      </li>
+      <li>
+      Assign the <code>Reader</code> role to the service principal by entering the following command:
+      <CodeBlock code={"$ az role assignment create \\\n  --role \"Reader\" \\\n  --assignee \"${EXTERNAL_DNS_SP_APP_ID}\" \\\n  --scope \"${DNS_ID}\""} lang="terminal" />
+      </li>
+      <li>
+      Assign the <code>Contributor</code> role to the service principal by entering the following command:
+      <CodeBlock code={"$ az role assignment create \\\n  --role \"Contributor\" \\\n  --assignee \"${EXTERNAL_DNS_SP_APP_ID}\" \\\n  --scope \"${DNS_ID}\""} lang="terminal" />
+      </li>
+      <li>
+      Save the Azure credentials to a local file by entering the following command:
+      <CodeBlock code={"$ cat > ${SERVICE_PRINCIPAL_FILEPATH} <<EOF\n{\n  \"tenantId\": \"$(az account show --query tenantId -o tsv)\",\n  \"subscriptionId\": \"$(az account show --query id -o tsv)\",\n  \"resourceGroup\": \"$RESOURCE_GROUP_NAME\",\n  \"aadClientId\": \"$EXTERNAL_DNS_SP_APP_ID\",\n  \"aadClientSecret\": \"$EXTERNAL_DNS_SP_PASSWORD\"\n}\nEOF"} lang="terminal" />
+      </li>
+      <li>
+      If an existing Kubernetes secret for the Azure credentials exists, delete it by entering the following command:
+      <CodeBlock code={"$ oc delete secret/azure-config-file --namespace \"hypershift\" || true"} lang="terminal" />
+      </li>
+      <li>
+      Create the Kubernetes secret for the Azure credentials by entering the following command:
+      <CodeBlock code={"$ oc create secret generic azure-config-file \\\n  --namespace \"hypershift\" \\\n  --from-file=credentials=${SERVICE_PRINCIPAL_FILEPATH}"} lang="terminal" />
+      <p>The secret must be created in the <code>hypershift</code> namespace where the external DNS deployment runs. The <code>credentials</code> key name is required because the external DNS pod mounts the secret at <code>/etc/provider/credentials</code>.</p>
+      </li>
+      <li>
+      Configure the HyperShift Operator to use external DNS by creating the following <code>ConfigMap</code> object:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: hypershift-operator-install-flags\n  namespace: local-cluster\ndata:\n  installFlagsToAdd: \"--external-dns-provider=azure --external-dns-secret=azure-config-file --external-dns-domain-filter=<dns_zone>\"\n  installFlagsToRemove: \"\""} lang="yaml" />
+      <p>The <code>--external-dns-secret</code> flag specifies the name of the Kubernetes secret that contains the Azure credentials. The <code>data.installFlagsToAdd</code> parameter specifies the flags to pass to the Operator so it detects the DNS.</p>
+      </li>
+      <li>
+      Apply the config map by entering the following command:
+      <CodeBlock code={"$ oc apply -f hypershift-operator-install-flags.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that both the HyperShift Operator and the external DNS are running by entering the following command:
+      <CodeBlock code={"$ oc get pods -n hypershift"} lang="terminal" />
+      <CodeBlock code={"NAME                           READY   STATUS    RESTARTS   AGE\nexternal-dns-xxxxx-xxxxx       1/1     Running   0          1m\noperator-xxxxx-xxxxx           1/1     Running   0          1m"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="hcp-azure-hosted_hcp-deploy-azure" class="group scroll-mt-20">Creating a hosted cluster on Azure<a href="#hcp-azure-hosted_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Hosted clusters are where your applications run. Each hosted cluster has its own control plane that runs on the management cluster and a set of compute node virtual machines (VMs) in Azure. </p>
+      <p>The hosted cluster uses Workload Identities to securely access Azure services without storing credentials.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the Azure command-line interface (CLI).</li>
+      <li>You installed the hosted control planes CLI, <code>hcp</code>.</li>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You installed the <code>jq</code> command-line JSON processor.</li>
+      <li>You have a management cluster where the HyperShift Operator is installed and external DNS is configured.</li>
+      <li>You set up Azure resources, including Workload Identities, an OIDC issuer, and infrastructure.</li>
+      <li>
+      You have the appropriate Azure permissions.
+      <ul>
+      <li>At the subscription level, you must have the <code>Contributor</code> role and the <code>User Access Administrator</code> role.</li>
+      <li>For Microsoft Graph API, you must have the <code>Application.ReadWrite.OwnedBy</code> permission.</li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create the <code>HostedCluster</code> custom resource by entering the following command:
+      <CodeBlock code={"$ hcp create cluster azure \\\n  --name \"$CLUSTER_NAME\" \\\n  --infra-id \"$INFRA_ID\" \\\n  --azure-creds $AZURE_CREDS \\\n  --location ${LOCATION} \\\n  --node-pool-replicas 2 \\\n  --base-domain $BASE_DOMAIN \\\n  --pull-secret $PULL_SECRET \\\n  --generate-ssh \\\n  --release-image ${RELEASE_IMAGE} \\\n  --sa-token-issuer-private-key-path \"${SA_TOKEN_ISSUER_PRIVATE_KEY_PATH}\" \\\n  --oidc-issuer-url \"${OIDC_ISSUER_URL}\" \\\n  --dns-zone-rg-name ${PERSISTENT_RG_NAME} \\\n  --assign-service-principal-roles \\\n  --infra-json <output_infra_file> \\\n  --diagnostics-storage-account-type Managed \\\n  --disable-cluster-capabilities=<capability> \\\n  --enable-cluster-capabilities=<capability> \\\n  --external-dns-domain \"${DNS_ZONE_NAME}\""} lang="terminal" />
+      <ul>
+      <li>For non-production environments, you can create a hosted cluster without external DNS by omitting the <code>--external-dns-domain</code> and <code>--assign-service-principal-roles</code> flags. In that case, the API server is accessible through an Azure load balancer hostname instead of a custom DNS name.</li>
+      <li>The <code>--disable-cluster-capabilities</code> flag is optional. Include it when you want to disable optional capabilities in your hosted cluster. For more information, see "Capabilities for hosted clusters".</li>
+      <li>The <code>--enable-cluster-capabilities</code> flag is optional. Include it when you want to enable optional capabilities in your hosted cluster. For more information, see "Capabilities for hosted clusters".</li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Check the cluster status by entering the following command:
+      <CodeBlock code={"$ oc get hostedcluster $CLUSTER_NAME -n clusters"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the cluster to be complete by entering the following command:
+      <CodeBlock code={"$ oc wait \\\n  --for=jsonpath='{.status.version.history[0].state}'=Completed \\\n  hostedcluster/$CLUSTER_NAME \\\n  -n clusters --timeout=20m"} lang="terminal" />
+      </li>
+      <li>
+      Create the <code>kubeconfig</code> file for the cluster by entering the following command:
+      <CodeBlock code={"$ hcp create kubeconfig \\\n  --name $CLUSTER_NAME > $CLUSTER_NAME-kubeconfig"} lang="terminal" />
+      </li>
+      <li>
+      Get the <code>kubeconfig</code> file by entering the following command:
+      <CodeBlock code={"$ export KUBECONFIG=$CLUSTER_NAME-kubeconfig"} lang="terminal" />
+      </li>
+      <li>
+      Access the cluster nodes by entering the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      </li>
+      <li>
+      Access the cluster by entering the following command:
+      <CodeBlock code={"$ oc get clusterversion"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="hcp-cluster-capabilities_hcp-deploy-azure" class="group scroll-mt-20">Capabilities for hosted clusters<a href="#hcp-cluster-capabilities_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To reduce resource consumption and prevent unnecessary Operators and operands from being deployed, administrators can enable or disable optional OpenShift Container Platform components when they create a hosted cluster.</p>
+      <p>When capabilities are not specified on a <code>HostedCluster</code> resource, the cluster uses the OpenShift Container Platform version’s <code>DefaultCapabilitySet</code> settings, excluding the <code>baremetal</code> capability. As a result, most optional components are enabled by default.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Capabilities are immutable after cluster creation. You cannot change them after you create the <code>HostedCluster</code> resource.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="hcp-cluster-capabilities-ref_hcp-deploy-azure" class="group scroll-mt-20">Capabilities that you can enable or disable for a hosted cluster<a href="#hcp-cluster-capabilities-ref_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Familiarize yourself with the supported capabilities that you can enable or disable for a <code>HostedCluster</code> resource.</p>
+      <p>The capabilities are described in the following table:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Capability</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>ImageRegistry</code></TableCell>
+      <TableCell>The OpenShift Image Registry Operator and its operands, including cloud storage infrastructure, such as S3 buckets and Identity and Access Management (IAM) users.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>openshift-samples</code></TableCell>
+      <TableCell>The OpenShift Samples Operator, which manages example <code>ImageStreams</code> and templates.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Insights</code></TableCell>
+      <TableCell>The Insights Operator, which collects and uploads cluster telemetry data.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>baremetal</code></TableCell>
+      <TableCell>The Bare Metal Infrastructure Operator. This capability is excluded from the default set. If needed, you must explicitly enable it.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Console</code></TableCell>
+      <TableCell>The OpenShift Web Console Operator and its operands.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NodeTuning</code></TableCell>
+      <TableCell>The Node Tuning Operator, which manages node-level performance tuning by using TuneD and performance profiles.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Ingress</code></TableCell>
+      <TableCell>The OpenShift Ingress Operator, which manages the default router of the cluster.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>The following rules apply when you combine capability settings:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">No overlap</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A capability cannot be in both the <code>enabled</code> and <code>disabled</code> lists simultaneously.</p></dd>
+      <dt class="font-semibold">Console requires Ingress</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You can disable the <code>Ingress</code> capability only if the <code>Console</code> capability is also disabled because the console depends on Ingress.</p></dd>
+      <dt class="font-semibold">Version requirement</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You must use OpenShift Container Platform 4.20 or later to disable any of the following capabilities: <code>openshift-samples</code>, <code>Insights</code>, <code>Console</code>, <code>NodeTuning</code>, and <code>Ingress</code>. You can disable <code>ImageRegistry</code> and <code>baremetal</code> on versions earlier than 4.20.</p></dd>
+      <dt class="font-semibold">Bare metal default exclusion</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The <code>baremetal</code> capability is excluded from the default set. You can add it to the cluster by explicitly enabling it.</p></dd>
+      </dl>
+      <h3 id="hcp-cluster-capabilities-proc_hcp-deploy-azure" class="group scroll-mt-20">Setting capabilities for a hosted cluster<a href="#hcp-cluster-capabilities-proc_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To reduce unnecessary resource consumption, you can control which optional capabilities are enabled for a hosted cluster when you create the cluster.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Capabilities are immutable after cluster creation. You cannot change them after you create the <code>HostedCluster</code> resource.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can specify which capabilities are enabled by either using the <code>hcp</code> command-line interface (CLI) or by setting the <code>HostedCluster</code> manifest.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To specify which capabilities are enabled in a hosted cluster by using the CLI, you can add the <code>--disable-cluster-capabilities</code> flag, the <code>--enable-cluster-capabilities</code> flag, or both. The following example shows how to disable the <code>ImageRegistry</code>, <code>Console</code>, and <code>Ingress</code> capabilities and enable the <code>baremetal</code> capability while you create a hosted cluster on AWS by using the <code>hcp</code> command-line interface:
+      <CodeBlock code={"$ hcp create cluster aws \\\n    --name my-hosted-cluster \\\n    --disable-cluster-capabilities=ImageRegistry,Console,Ingress \\\n    --enable-cluster-capabilities=baremetal"} lang="terminal" />
+      <p>You can specify multiple capabilities as a comma-separated list. The supported values are as follows:</p>
+      <ul>
+      <li><code>ImageRegistry</code></li>
+      <li><code>openshift-samples</code></li>
+      <li><code>Insights</code></li>
+      <li><code>baremetal</code></li>
+      <li><code>Console</code></li>
+      <li><code>NodeTuning</code></li>
+      <li><code>Ingress</code></li>
+      </ul>
+      </li>
+      <li>
+      To specify which capabilities are enabled in a hosted cluster by using the <code>HostedCluster</code> manifest at cluster creation time, see the following examples:
+      <ul>
+      <li>
+      To directly disable capabilities in a hosted cluster, add the <code>spec.capabilities.disabled</code> section in the <code>HostedCluster</code> resource:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-hosted-cluster\n  namespace: my-cluster-namespace\nspec:\n  capabilities:\n    disabled:\n      - ImageRegistry\n      - Console\n      - Ingress\n  # ..."} lang="yaml" />
+      </li>
+      <li>
+      To explicitly enable a capability that is not part of the default set of capabilities, such as the <code>baremetal</code> capability, see the following example:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-hosted-cluster\n  namespace: my-cluster-namespace\nspec:\n  capabilities:\n    enabled:\n      - baremetal\n  # ..."} lang="yaml" />
+      </li>
+      <li>
+      You can use both <code>enabled</code> and <code>disabled</code> if no capabilities are in both lists. See the following example:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-hosted-cluster\n  namespace: my-cluster-namespace\nspec:\n  capabilities:\n    enabled:\n      - baremetal\n    disabled:\n      - ImageRegistry\n      - openshift-samples\n  # ..."} lang="yaml" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="hcp-azure-private_hcp-deploy-azure" class="group scroll-mt-20">Private hosted clusters on Azure<a href="#hcp-azure-private_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By default, hosted clusters are accessible through public DNS and the default router of the management cluster. If you want communication between your compute nodes and the hosted control plane to be private, you can create hosted clusters that use Azure Private Link for communication.</p>
+      <p>Private endpoint access uses Azure Private Link to expose the internal load balancer of the hosted control plane to the Azure Virtual Network (VNet) of the hosted cluster. Compute nodes resolve the API server hostname by using private DNS zones that point to the private endpoint IP address.</p>
+      <h3 id="hcp-azure-private-subnet_hcp-deploy-azure" class="group scroll-mt-20">Preparing a subnet for a private hosted cluster on Azure<a href="#hcp-azure-private-subnet_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Azure Private Link requires a dedicated subnet for network address translator (NAT) IP address allocation. You can manually create the subnet, or it can be automatically created during cluster creation. </p>
+      <p>By manually creating the subnet, you have control over classless inter-domain routing (CIDR) allocation and naming. The following steps apply to manually creating the subnet. If you want the subnet to be automatically created, skip this procedure.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Azure Private Link, the NAT subnet, and the internal load balancer of the management cluster must all be in the same Azure region. Private Link is automatically created in the location where the hosted cluster is created. Azure rejects the creation of Private Link if the NAT subnet is in a different region.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have an OpenShift Container Platform management cluster on Azure. For more information, see "Configuring an Azure management cluster for hosted control planes".</li>
+      <li>The Azure command-line interface (CLI) is installed and configured.</li>
+      <li>The OpenShift CLI (<code>oc</code>) is installed.</li>
+      <li>If you are using external DNS, the <code>jq</code> command-line JSON processor is installed.</li>
+      <li>You configured an OIDC issuer. For more information, see "Setting up an OIDC issuer".</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Identify the Azure Virtual Network (VNet) of the management cluster.
+      <ol>
+      <li>
+      Obtain the infrastructure resource group of the management cluster as shown in the following example:
+      <CodeBlock code={"$ MGMT_INFRA_RG=$(oc get infrastructure cluster -o jsonpath='{.status.platformStatus.azure.resourceGroupName}')"} lang="bash" />
+      </li>
+      <li>
+      Find the VNet in the infrastructure resource group as shown in the following example:
+      <CodeBlock code={"$ MGMT_VNET_NAME=$(az network vnet list --resource-group \"${MGMT_INFRA_RG}\" --query \"[0].name\" -o tsv)"} lang="bash" />
+      </li>
+      <li>
+      Set the environment variable for the VNet by entering the following command:
+      <CodeBlock code={"$ MGMT_VNET_RG=\"${MGMT_INFRA_RG}\""} lang="bash" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the NAT subnet.
+      <ol>
+      <li>
+      Check the existing address space and subnets to ensure that you do not choose an overlapping classless inter-domain routing (CIDR) range. Enter the following command:
+      <CodeBlock code={"$ az network vnet show \\\n  --resource-group \"${MGMT_VNET_RG}\" \\\n  --name \"${MGMT_VNET_NAME}\" \\\n  --query '{addressSpace: addressSpace.addressPrefixes, subnets: subnets[].{name: name, prefix: addressPrefix}}' \\\n  -o json"} lang="terminal" />
+      </li>
+      <li>
+      Create the subnet as shown in the following example:
+      <CodeBlock code={"$ az network vnet subnet create \\\n  --resource-group \"${MGMT_VNET_RG}\" \\\n  --vnet-name \"${MGMT_VNET_NAME}\" \\\n  --name \"${NAT_SUBNET_NAME}\" \\\n  --address-prefixes 10.1.64.0/24 \\\n  --disable-private-link-service-network-policies true"} lang="terminal" />
+      <ul>
+      <li>The NAT subnet must be in the VNet of the management cluster because Private Link is created alongside the internal load balancer of the management cluster.</li>
+      <li>The <code>10.1.64.0/24</code> address prefix is an example only. Replace it with a CIDR range that does not overlap with any other subnet in the VNet of the management cluster. If the VNet uses <code>10.0.0.0/16</code>, the NAT subnet must fall within that range, or you must expand the address space of the VNet.</li>
+      <li>The <code>--disable-private-link-service-network-policies</code> flag is required and must be set to <code>true</code>. Otherwise, Azure rejects the creation of Private Link on the subnet.</li>
+      </ul>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Obtain the NAT subnet resource ID for later use as shown in the following example:
+      <CodeBlock code={"$ NAT_SUBNET_ID=$(az network vnet subnet show \\\n  --resource-group \"${MGMT_VNET_RG}\" \\\n  --vnet-name \"${MGMT_VNET_NAME}\" \\\n  --name \"${NAT_SUBNET_NAME}\" \\\n  --query id -o tsv)"} lang="bash" />
+      </li>
+      </ol>
+      <p><strong>Additional resources</strong></p>
+      <ul>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-mgmt-cluster_hcp-deploy-azure">Configuring an Azure management cluster for hosted control planes</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure">Setting up an OIDC issuer</a></li>
+      </ul>
+      <h3 id="hcp-azure-private-operator_hcp-deploy-azure" class="group scroll-mt-20">Installing the HyperShift Operator with private platform support<a href="#hcp-azure-private-operator_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To set up an environment that supports private clusters, you must install the HyperShift Operator with flags that configure Azure Private Link management.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you already installed the HyperShift Operator but you did not include the <code>--private-platform Azure</code> setting, you must run the <code>hcp install</code> command again with the private platform flags before you can create private clusters.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have an OpenShift Container Platform management cluster on Azure.</li>
+      <li>The Azure command-line interface (CLI) is installed and configured.</li>
+      <li>The OpenShift CLI (<code>oc</code>) is installed.</li>
+      <li>If you are using external DNS, the <code>jq</code> command-line JSON processor is installed.</li>
+      <li>You configured an OIDC issuer. For more information, see "Setting up an OIDC issuer".</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Obtain credentials so that the Operator can manage Private Link resources.
+      <ol>
+      <li>
+      Obtain the credentials file for Private Link management as shown in the following example:
+      <CodeBlock code={"$ AZURE_PRIVATE_CREDS=\"<path_to_azure_private_credentials_json>\""} lang="bash" />
+      </li>
+      <li>
+      Obtain the infrastructure resource group of the management cluster as shown in the following example:
+      <CodeBlock code={"$ MGMT_INFRA_RG=$(oc get infrastructure cluster -o jsonpath='{.status.platformStatus.azure.resourceGroupName}')"} lang="bash" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Set the external DNS configuration variables as shown in the following examples:
+      <CodeBlock code={"$ SERVICE_PRINCIPAL_FILEPATH=\"<path_to_azure_mgmt_json_file>\""} lang="bash" />
+      <CodeBlock code={"$ DNS_ZONE_NAME=\"<my_subdomain_my_parent_dns_zone_com>\""} lang="bash" />
+      </li>
+      <li>
+      Install the HyperShift Operator with private platform support as shown in the following example:
+      <CodeBlock code={"$ hcp install \\\n  --pull-secret ${PULL_SECRET} \\\n  --private-platform Azure \\\n  --azure-private-creds ${AZURE_PRIVATE_CREDS} \\\n  --azure-pls-resource-group ${MGMT_INFRA_RG} \\\n  --external-dns-provider=azure \\\n  --external-dns-credentials ${SERVICE_PRINCIPAL_FILEPATH} \\\n  --external-dns-domain-filter ${DNS_ZONE_NAME}"} lang="terminal" />
+      <ul>
+      <li><code>--private-platform Azure</code> specifies that Azure Private Link management is to be enabled in the Operator.</li>
+      <li>
+      <code>--azure-private-creds</code> specifies the path to the Azure credentials file that is used for Private Link operations.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Besides using the <code>--azure-private-creds</code> flag, you can use one of the following authentication methods. Be sure to use only one authentication method.</p>
+          <ul>
+          <li><code>--azure-private-secret</code> specifies an existing Kubernetes secret that has Azure credentials. This flag has a companion flag, <code>--azure-private-secret-key</code>. Its default value is <code>credentials</code>, but you can customize it for secrets that have non-standard key names.</li>
+          <li><code>--azure-pls-managed-identity-client-id</code> specifies the client ID of a managed identity for Private Link operations through Workload Identity federation. If you specify this flag, you must also include the <code>--azure-pls-subscription-id</code> flag, which specifies the Azure subscription ID for Private Link operations.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li><code>--azure-pls-resource-group</code> specifies the resource group where the Private Link resources are to be created. This resource group is the same as the resource group of the infrastructure for the management cluster.</li>
+      <li><code>--external-dns-credentials</code> specifies the path to a file that contains DNS credentials. If preferred, you can use the <code>--external-dns-secret</code> flag instead to specify a Kubernetes secret that has DNS credentials.</li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure">Setting up an OIDC issuer</a></li></ul>
+      <h3 id="hcp-azure-private-iam_hcp-deploy-azure" class="group scroll-mt-20">Configuring IAM resources for a private hosted cluster<a href="#hcp-azure-private-iam_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Create Workload Identities so that your private clusters can manage private endpoints and private DNS zones.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have an OpenShift Container Platform management cluster on Azure that has the HyperShift Operator installed.</li>
+      <li>The Azure command-line interface (CLI) is installed and configured.</li>
+      <li>The OpenShift CLI (<code>oc</code>) is installed.</li>
+      <li>If you are using external DNS, the <code>jq</code> command-line JSON processor is installed.</li>
+      <li>You configured an OIDC issuer. For more information, see "Setting up an OIDC issuer".</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set your environment variables:
+      <ol>
+      <li>
+      Set your prefix by entering the following command:
+      <CodeBlock code={"$ PREFIX=\"<my_prefix>\""} lang="bash" />
+      </li>
+      <li>
+      Set the cluster name by entering the following command:
+      <CodeBlock code={"$ CLUSTER_NAME=\"${PREFIX}-hc\""} lang="bash" />
+      </li>
+      <li>
+      Set the resource group name by entering the following command:
+      <CodeBlock code={"$ RESOURCE_GROUP_NAME=\"${CLUSTER_NAME}-${PREFIX}\""} lang="bash" />
+      </li>
+      <li>
+      Set the location by entering the following command:
+      <CodeBlock code={"$ LOCATION=\"<my_region>\""} lang="bash" />
+      </li>
+      <li>
+      Set the variable for the path to the Azure credentials file by entering the following command:
+      <CodeBlock code={"$ AZURE_CREDS=\"<path_to_azure_credentials_json>\""} lang="bash" />
+      </li>
+      <li>
+      Set the variable for the OIDC issuer URL by entering the following command:
+      <CodeBlock code={"$ OIDC_ISSUER_URL=\"<my_oidc_url_com>\""} lang="bash" />
+      </li>
+      <li>
+      Set the path to the Workload Identities file by entering the following command:
+      <CodeBlock code={"$ WORKLOAD_IDENTITIES_FILE=\"<path_to_workload_identities_file_json>\""} lang="bash" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create Workload Identities by entering the following command:
+      <CodeBlock code={"$ hcp create iam azure \\\n  --name \"${CLUSTER_NAME}\" \\\n  --infra-id \"${PREFIX}\" \\\n  --azure-creds \"${AZURE_CREDS}\" \\\n  --location \"${LOCATION}\" \\\n  --resource-group-name \"${RESOURCE_GROUP_NAME}\" \\\n  --oidc-issuer-url \"${OIDC_ISSUER_URL}\" \\\n  --output-file \"${WORKLOAD_IDENTITIES_FILE}\""} lang="terminal" />
+      <p>The command creates 8 Workload Identities. For <code>Private</code> and <code>PublicAndPrivate</code> clusters, the Control Plane Operator identity is used to create and manage private endpoints, private DNS zones, Azure Virtual Network (VNet) links, and DNS A records. The Control Plane Identity is assigned the <code>Contributor</code> role by default. To use a more restrictive role, use the <code>--assign-custom-hcp-roles</code> flag.</p>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure">Setting up an OIDC issuer</a></li>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure">Creating {"{"}{"{"} azure_short {"}"}{"}"} Workload Identities</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-workload-id_hcp-deploy-azure">Creating Azure Workload Identities</a></li>
       </ul>
+      <h3 id="hcp-azure-private-infra_hcp-deploy-azure" class="group scroll-mt-20">Creating infrastructure for a private hosted cluster<a href="#hcp-azure-private-infra_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Set up infrastructure so that you can create private hosted clusters.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have an OpenShift Container Platform management cluster on Azure that has the HyperShift Operator installed.</li>
+      <li>The Azure command-line interface (CLI) is installed and configured.</li>
+      <li>The OpenShift CLI (<code>oc</code>) is installed.</li>
+      <li>If you are using external DNS, the <code>yq</code> command-line YAML processor is installed.</li>
+      <li>You configured an OIDC issuer. For more information, see "Setting up an OIDC issuer".</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set your environment variables:
+      <ol>
+      <li>
+      Set the variable for the DNS zone resource group by entering the following command:
+      <CodeBlock code={"$ DNS_ZONE_RG_NAME=\"os4-common\""} lang="bash" />
+      </li>
+      <li>
+      Set the variable for the base domain of your DNS zone by entering the following command:
+      <CodeBlock code={"$ PARENT_DNS_ZONE=\"<your_base_domain_com>\""} lang="bash" />
+      </li>
+      <li>
+      Set the variable that points to the infrastructure output file by entering the following command:
+      <CodeBlock code={"$ INFRA_OUTPUT_FILE=\"${PREFIX}-infra-output.json\""} lang="bash" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create infrastructure by entering the following command:
+      <CodeBlock code={"$ hcp create infra azure \\\n  --azure-creds \"${AZURE_CREDS}\" \\\n  --infra-id \"${PREFIX}\" \\\n  --name \"${CLUSTER_NAME}\" \\\n  --location \"${LOCATION}\" \\\n  --base-domain \"${PARENT_DNS_ZONE}\" \\\n  --dns-zone-rg-name \"${DNS_ZONE_RG_NAME}\" \\\n  --workload-identities-file \"${WORKLOAD_IDENTITIES_FILE}\" \\\n  --assign-identity-roles \\\n  --output-file \"${INFRA_OUTPUT_FILE}\""} lang="terminal" />
+      </li>
+      <li>
+      Read the infrastructure output to get the resource IDs that you created, as shown in the following example:
+      <ol>
+      <li>
+      Read the resource group name by entering the following command:
+      <CodeBlock code={"$ MANAGED_RG_NAME=$(yq -r -p yaml '.resourceGroupName' \"${INFRA_OUTPUT_FILE}\")"} lang="bash" />
+      </li>
+      <li>
+      Read the VNet ID by entering the following command:
+      <CodeBlock code={"$ VNET_ID=$(yq -r -p yaml '.vnetID' \"${INFRA_OUTPUT_FILE}\")"} lang="bash" />
+      </li>
+      <li>
+      Read the subnet ID by entering the following command:
+      <CodeBlock code={"$ SUBNET_ID=$(yq -r -p yaml '.subnetID' \"${INFRA_OUTPUT_FILE}\")"} lang="bash" />
+      </li>
+      <li>
+      Read the network security group ID by entering the following command:
+      <CodeBlock code={"$ NSG_ID=$(yq -r -p yaml '.securityGroupID' \"${INFRA_OUTPUT_FILE}\")"} lang="bash" />
+      <p>Note the resource IDs because you need them to create the private hosted cluster.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-oidc_hcp-deploy-azure">Setting up an OIDC issuer</a></li></ul>
+      <h3 id="hcp-azure-private-hosted_hcp-deploy-azure" class="group scroll-mt-20">Creating a private Azure hosted cluster<a href="#hcp-azure-private-hosted_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Create a private hosted cluster to ensure that the communication between compute nodes and the hosted control plane occurs over Azure Private Link.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You configured a subnet, as described in "Preparing a subnet for a private hosted cluster on Azure".</li>
+      <li>You installed the HyperShift Operator on an OpenShift Container Platform management cluster on Azure, as described in "Installing the HyperShift Operator with private platform support".</li>
+      <li>You created Identity and Access Management (IAM) resources, as described in "Configuring IAM resources for a private hosted cluster".</li>
+      <li>You created infrastructure, as described in "Creating infrastructure for a private hosted cluster".</li>
+      <li>This procedure relies on environment variables that you created in the prerequisite procedures. Be sure to complete this procedure in the same terminal where you already defined the environment variables.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the private hosted cluster by entering the following command:
+      <CodeBlock code={"$ hcp create cluster azure \\\n  --name \"$CLUSTER_NAME\" \\\n  --namespace \"clusters\" \\\n  --azure-creds ${AZURE_CREDS} \\\n  --location ${LOCATION} \\\n  --node-pool-replicas 2 \\\n  --base-domain ${PARENT_DNS_ZONE} \\\n  --pull-secret ${PULL_SECRET} \\\n  --generate-ssh \\\n  --release-image ${RELEASE_IMAGE} \\\n  --resource-group-name \"${MANAGED_RG_NAME}\" \\\n  --vnet-id \"${VNET_ID}\" \\\n  --subnet-id \"${SUBNET_ID}\" \\\n  --network-security-group-id \"${NSG_ID}\" \\\n  --sa-token-issuer-private-key-path \"${SA_TOKEN_ISSUER_PRIVATE_KEY_PATH}\" \\\n  --oidc-issuer-url \"${OIDC_ISSUER_URL}\" \\\n  --dns-zone-rg-name ${DNS_ZONE_RG_NAME} \\\n  --assign-service-principal-roles \\\n  --workload-identities-file ${WORKLOAD_IDENTITIES_FILE} \\\n  --external-dns-domain ${DNS_ZONE_NAME} \\\n  --endpoint-access Private \\\n  --endpoint-access-private-nat-subnet-id \"${NAT_SUBNET_ID}\""} lang="terminal" />
+      <ul>
+      <li>When you choose a value for the <code>--external-dns-domain</code> flag, ensure that the value does not match <code>{"{"}{"{"} cluster_name {"}"}{"}"}.{"{"}{"{"} base_domain {"}"}{"}"}</code>. If you use <code>{"{"}{"{"} cluster_name {"}"}{"}"}.{"{"}{"{"} base_domain {"}"}{"}"}</code> for the value, the Control Plane Operator creates a private DNS zone that can shadow the <code>*.apps</code> domain, which causes the console and ingress to become unreachable.</li>
+      <li>
+      <code>--endpoint-access</code> accepts 3 values:
+      <ul>
+      <li><code>Public</code>, which is the default value. When you specify <code>Public</code>, the API server is accessible through public endpoint only.</li>
+      <li><code>PublicAndPrivate</code>, where the API server is accessible through both public and private endpoints.</li>
+      <li>
+      <code>Private</code>, where the API server is accessible only through Private Link.
+      <p>After you create a cluster, you cannot change it between <code>Public</code> endpoint and non-public (<code>PublicAndPrivate</code> or <code>Private</code>) endpoint access.</p>
+      <p>If you need to allow <code>Private</code> endpoint connections from Azure subscriptions other than the hosted cluster’s subscription, use the following flag: <code>--endpoint-access-private-additional-allowed-subscriptions "sub-id-1, sub-id-2"</code>.</p>
+      </li>
+      </ul>
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Check the Private Link resources by entering the following command:
+      <CodeBlock code={"$ oc get azureprivatelinkservices -n clusters-${CLUSTER_NAME}"} lang="terminal" />
+      </li>
+      <li>
+      Check the status and connections by entering the following command:
+      <CodeBlock code={"$ oc get azureprivatelinkservices -n clusters-${CLUSTER_NAME} -o yaml"} lang="terminal" />
+      <p><strong>Setup progress conditions</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Condition</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>AzureInternalLoadBalancerAvailable</code></TableCell>
+      <TableCell>The internal load balancer has a front-end IP address.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AzurePLSCreated</code></TableCell>
+      <TableCell>Private Link is created in the management cluster.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AzurePrivateEndpointAvailable</code></TableCell>
+      <TableCell>Private endpoint is created in the hosted cluster VNet.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AzurePrivateDNSAvailable</code></TableCell>
+      <TableCell>Private DNS zones and A records are created.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AzurePrivateLinkServiceAvailable</code></TableCell>
+      <TableCell>All components are ready and private connectivity is available.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      </li>
+      <li>
+      Check the overall cluster status by entering the following command:
+      <CodeBlock code={"$ oc get hostedcluster ${CLUSTER_NAME} -n clusters"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the status by entering the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Available hostedcluster/${CLUSTER_NAME} -n clusters --timeout=30m"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-subnet_hcp-deploy-azure">Preparing a subnet for a private hosted cluster on {"{"}{"{"} azure_short {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-subnet_hcp-deploy-azure">Preparing a subnet for a private hosted cluster on Azure</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-operator_hcp-deploy-azure">Installing the HyperShift Operator with private platform support</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-iam_hcp-deploy-azure">Configuring IAM resources for a private hosted cluster</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-infra_hcp-deploy-azure">Creating infrastructure for a private hosted cluster</a></li>
       </ul>
+      <h3 id="hcp-azure-private-access_hcp-deploy-azure" class="group scroll-mt-20">Accessing a private Azure hosted cluster<a href="#hcp-azure-private-access_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">After you create a private hosted cluster, you need to take additional steps to access it.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You completed the steps in "Creating a private Azure hosted cluster".</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To access a private hosted cluster by generating a <code>kubeconfig</code> file, enter the following command:
+      <CodeBlock code={"$ hcp create kubeconfig \\\n  --name ${CLUSTER_NAME} \\\n  --port-forward > ${CLUSTER_NAME}-kubeconfig"} lang="terminal" />
+      </li>
+      <li>
+      If you have access to the management cluster, you can port forward to the API server to access the private hosted cluster.
+      <ol>
+      <li>
+      Port forward to the <code>kube-apiserver</code> service by entering the following command:
+      <CodeBlock code={"$ kubectl port-forward svc/kube-apiserver \\\n  -n clusters-${CLUSTER_NAME} 6443:6443 &"} lang="terminal" />
+      </li>
+      <li>
+      Access the hosted cluster by using the <code>kubeconfig</code> file:
+      <CodeBlock code={"$ KUBECONFIG=${CLUSTER_NAME}-kubeconfig oc get nodes"} lang="bash" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      If you have a virtual machine (VM) in an Azure Virtual Network (VNet) that is peered with the hosted cluster’s VNet, you can access the API server, but you must first link the private DNS zones to the peered VNet.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The Control Plane Operator links private DNS zones only to the hosted cluster’s VNet. If you want to resolve the API server hostname from a peered VNet, you must manually link the private DNS zones to that VNet as shown in the following steps. Otherwise, DNS resolution fails from the peered VNet.</p>
+        </AlertDescription>
+      </Alert>
+      <ol>
+      <li>
+      Link the private DNS zone to your peered VNet as shown in the following example:
+      <CodeBlock code={"$ PEERED_VNET_ID=\"/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.Network/virtualNetworks/<vnet>\""} lang="bash" />
+      </li>
+      <li>
+      Enter the following command:
+      <CodeBlock code={"$ az network private-dns link vnet create \\\n  --resource-group \"${MANAGED_RG_NAME}\" \\\n  --zone-name \"${CLUSTER_NAME}.hypershift.local\" \\\n  --name \"peered-vnet-link\" \\\n  --virtual-network \"${PEERED_VNET_ID}\" \\\n  --registration-enabled false"} lang="terminal" />
+      </li>
+      <li>
+      If you also need base-domain resolution, enter the following command:
+      <CodeBlock code={"$ az network private-dns link vnet create \\\n  --resource-group \"${MANAGED_RG_NAME}\" \\\n  --zone-name \"${PARENT_DNS_ZONE}\" \\\n  --name \"peered-vnet-basedomain-link\" \\\n  --virtual-network \"${PEERED_VNET_ID}\" \\\n  --registration-enabled false"} lang="terminal" />
+      </li>
+      <li>
+      Access the cluster as shown in the following example:
+      <CodeBlock code={"$ KUBECONFIG=${CLUSTER_NAME}-kubeconfig oc get nodes"} lang="bash" />
+      </li>
+      </ol>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-hosted_hcp-deploy-azure">Creating a private {"{"}{"{"} azure_short {"}"}{"}"} hosted cluster</a></li></ul>
-      <p class="/modules/hcp-azure-autoscaling.md"></p>
-      <p class="/modules/hcp-azure-delete.md"></p>
-      <p class="/modules/hcp-azure-cluster-delete.md"></p>
-      <p class="/modules/hcp-azure-infra-delete.md"></p>
-      <p class="/modules/hcp-azure-workload-id-delete.md"></p>
-      <p class="/modules/hcp-azure-delete-private.md"></p>
+      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-azure#hcp-azure-private-hosted_hcp-deploy-azure">Creating a private Azure hosted cluster</a></li></ul>
+      <h3 id="hcp-azure-private-ts_hcp-deploy-azure" class="group scroll-mt-20">Troubleshooting private hosted clusters on Azure<a href="#hcp-azure-private-ts_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">If your private hosted cluster gets stuck, check the <code>AzurePrivateLinkService</code> custom resource conditions.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Enter the following command to check the Private Link conditions:
+      <CodeBlock code={"$ oc get azureprivatelinkservices \\\n  -n clusters-${CLUSTER_NAME} \\\n  -o jsonpath='{.items[0].status.conditions}' | jq ."} lang="terminal" />
+      </li>
+      <li>
+      Review the output and compare it to the following condition table: <strong>Private cluster stuck conditions</strong>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Condition</TableHead>
+      <TableHead>Possible cause</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>AzureInternalLoadBalancerAvailable</code> = <code>False</code></TableCell>
+      <TableCell>The <code>private-router</code> service has not received an internal load balancer IP address yet. Check the service status and Azure networking.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AzurePLSCreated</code> = <code>False</code></TableCell>
+      <TableCell>Private Link creation failed. Check the NAT subnet policies, credentials, and the HyperShift Operator logs.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AzurePrivateEndpointAvailable</code> = <code>False</code></TableCell>
+      <TableCell>Private endpoint creation failed or the connection was not approved. Check the Private Link auto-approval list and the Control Plane Operator logs.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>AzurePrivateDNSAvailable</code> = <code>False</code></TableCell>
+      <TableCell>The DNS zone or record creation failed. In the Azure subscription that stores the infrastructure resources for the hosted cluster, check the Control Plane Operator identity permissions.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      </li>
+      </ol>
+      <h2 id="hcp-azure-autoscaling_hcp-deploy-azure" class="group scroll-mt-20">Example: Autoscaling a hosted cluster on Azure<a href="#hcp-azure-autoscaling_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To balance node pools on your Azure hosted cluster, you can configure autoscaling for the cluster.</p>
+      <p>When you scale up <code>NodePool</code> objects, the Cluster API Provider for Azure provisions individual Azure virtual machines.</p>
+      <p>To configure autoscaling for a hosted cluster on Azure, you edit the <code>spec.autoscaling</code> parameters in the <code>HostedCluster</code> resource. The following example shows a <code>HostedCluster</code> resource with 2 Azure node pools.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This example shows only the autoscaling-related fields.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: my-cluster\n  namespace: my-cluster-namespace\nspec:\n  autoscaling:\n    scaling: ScaleUpAndScaleDown\n    maxNodesTotal: 12\n    expanders:\n      - Random\n    scaleDown:\n      delayAfterAddSeconds: 300\n      unneededDurationSeconds: 600\n      utilizationThresholdPercent: 40\n    balancingIgnoredLabels:\n      - \"custom.label/environment\"\n    maxFreeDifferenceRatioPercent: 70\n---\napiVersion: hypershift.openshift.io/v1beta1\nkind: NodePool\nmetadata:\n  name: my-cluster-nodepool-1\n  namespace: my-cluster-namespace\nspec:\n  clusterName: my-cluster\n  autoScaling:\n    min: 1\n    max: 6\n  platform:\n    azure:\n      vmSize: Standard_D4s_v3\n      # ... \n---\napiVersion: hypershift.openshift.io/v1beta1\nkind: NodePool\nmetadata:\n  name: my-cluster-nodepool-2\n  namespace: my-cluster-namespace\nspec:\n  clusterName: my-cluster\n  autoScaling:\n    min: 1\n    max: 6\n  platform:\n    azure:\n      vmSize: Standard_D4s_v3\n      # ... "} lang="yaml" />
+      <ul><li><code>spec.autoScaling.min</code> must be greater than or equal to <code>1</code>. Scaling from zero (<code>autoScaling.min: 0</code>) is not supported on Azure.</li></ul>
+      <h2 id="hcp-azure-delete_hcp-deploy-azure" class="group scroll-mt-20">Deleting an Azure hosted cluster and its resources<a href="#hcp-azure-delete_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>If you no longer need a hosted cluster, you can remove it and its infrastructure. Any related Workload Identities and OIDC issuers that were created during setup can be reused for other clusters or deleted separately if you no longer need them.</p>
+      <h3 id="hcp-azure-cluster-delete_hcp-deploy-azure" class="group scroll-mt-20">Deleting a hosted cluster on Azure<a href="#hcp-azure-cluster-delete_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">If you are no longer using a hosted cluster on Azure, you can delete it.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To delete a hosted cluster, enter the following command:
+      <CodeBlock code={"$ hcp destroy cluster azure \\\n  --name $CLUSTER_NAME \\\n  --azure-creds $AZURE_CREDS \\\n  --dns-zone-rg-name $PERSISTENT_RG_NAME \\\n  --preserve-resource-group"} lang="terminal" />
+      <ul>
+      <li><code>--name</code> specifies your hosted cluster name.</li>
+      <li><code>--azure-creds</code> specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers.</li>
+      <li><code>--dns-zone-rg-name</code> specifies the name of the resource group that contains your DNS zone.</li>
+      <li><code>--preserve-resource-group</code> specifies that the infrastructure will be preserved. If you do not want to preserve the infrastructure, do not include this flag.</li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="hcp-azure-infra-delete_hcp-deploy-azure" class="group scroll-mt-20">Deleting Azure infrastructure<a href="#hcp-azure-infra-delete_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">If you have Azure infrastructure without a hosted cluster, you can remove the infrastructure if you are not using it.</p>
+      <p>For example, this scenario can happen if you created the infrastructure standalone but never created a hosted cluster. Or, you might have manually deleted the hosted cluster or management cluster, but the infrastructure resources still exist.</p>
+      <p>You can delete the entire infrastructure, or delete cluster-specific resources but preserve the main resource group. Preserving the main resource group is helpful when you have other resources in the same resource group that you want to keep.</p>
+      <p>If you have a hosted cluster and want to delete infrastructure while you delete the hosted cluster, follow the steps in "Deleting a hosted cluster on Azure", but omit the <code>--preserve-resource-group</code> flag.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To delete the infrastructure, enter one of the following commands:
+      <ul>
+      <li>
+      To delete the infrastructure, including the resource group, enter the following command:
+      <CodeBlock code={"$ hcp destroy infra azure \\\n  --name <my_cluster_name> \\\n  --infra-id <infra_id> \\\n  --azure-creds <azure_credentials_file>"} lang="terminal" />
+      <ul>
+      <li><code>--name</code> specifies your hosted cluster name.</li>
+      <li><code>--infra-id</code> specifies a unique name that identifies your infrastructure. This value is used to name and tag Azure resources. Typically, it is the name of your cluster with a suffix appended to it.</li>
+      <li><code>--azure-creds</code> specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers.</li>
+      </ul>
+      </li>
+      <li>
+      To preserve the resource group but delete only cluster-specific resources, enter the following command:
+      <CodeBlock code={"$ hcp destroy infra azure \\\n  --name <my_cluster_name> \\\n  --infra-id <infra_id> \\\n  --azure-creds <azure_credentials_file> \\\n  --preserve-resource-group"} lang="terminal" />
+      <ul>
+      <li><code>--name</code> specifies your hosted cluster name.</li>
+      <li><code>--infra-id</code> specifies a unique name that identifies your infrastructure. This value is used to name and tag Azure resources. Typically, it is the name of your cluster with a suffix appended to it.</li>
+      <li><code>--azure-creds</code> specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers.</li>
+      <li><code>--preserve-resource-group</code> specifies that you want to preserve the resource group.</li>
+      </ul>
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="hcp-azure-workload-id-delete_hcp-deploy-azure" class="group scroll-mt-20">Deleting Azure Workload Identities<a href="#hcp-azure-workload-id-delete_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">As part of the process to delete a hosted cluster on Azure, you need to delete the Workload Identities.</p>
+      <p>To delete the Workload Identities, you enter a command on the hosted control planes command-line interface, <code>hcp</code>. The command uses the file that was generated when you created the Workload Identities to identify the identities to delete. Both the managed identities and their federated credentials are removed.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>If you created infrastructure by using the Workload Identities, delete the infrastructure before you delete the identities.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Enter the following command:
+      <CodeBlock code={"$ hcp destroy iam azure \\\n    --azure-creds <azure_credentials_file> \\\n    --workload-identities-file <workload_identities_file> \\\n    --resource-group-name <resource_group> \\\n    --name <my_cluster_name> \\\n    --infra-id <infra_id> \\\n    --dns-zone-rg-name <dns_zone_rg> \\\n    --cloud <my_cloud_environment>"} lang="terminal" />
+      <ul>
+      <li><code>&lt;azure_credentials_file&gt;</code> specifies the Azure credentials file with permission to create managed identities and federated credentials.</li>
+      <li><code>&lt;workload_identities_file&gt;</code> specifies the path to the Workload Identities JSON file, such as <code>my-cluster-name-iam-output.json</code>.</li>
+      <li><code>&lt;resource_group&gt;</code> specifies the name of the resource group where you created identities.</li>
+      <li><code>&lt;my_cluster_name&gt;</code> specifies the name of your hosted cluster.</li>
+      <li><code>&lt;infra_id&gt;</code> specifies the unique identifier for naming Azure resources. Typically, this identifier is the cluster name with a suffix.</li>
+      <li><code>&lt;dns_zone_rg&gt;</code> specifies the DNS zone resource group.</li>
+      <li><code>&lt;my_cloud_environment&gt;</code> specifies the Azure cloud environment. Setting the <code>--cloud</code> flag is optional. The default value is <code>AzurePublicCloud</code>.</li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="hcp-azure-delete-private_hcp-deploy-azure" class="group scroll-mt-20">Deleting a private hosted cluster on Azure<a href="#hcp-azure-delete-private_hcp-deploy-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">If you are no longer using a private hosted cluster on Azure, you can delete it.</p>
+      <p>The deletion process automatically cleans up Private Link resources in the following order:</p>
+      <ol>
+      <li>The Control Plane Operator removes the private endpoint, private DNS zones, VNet links, and A records.</li>
+      <li>The <code>hcp destroy</code> command removes role-based access control (RBAC) role assignments.</li>
+      <li>The HyperShift Operator removes Private Link.</li>
+      </ol>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To delete a private hosted cluster, enter the following command:
+      <CodeBlock code={"$ hcp destroy cluster azure \\\n  --name ${CLUSTER_NAME} \\\n  --azure-creds ${AZURE_CREDS} \\\n  --resource-group-name ${MANAGED_RG_NAME} \\\n  --dns-zone-rg-name ${DNS_ZONE_RG_NAME}"} lang="terminal" />
+      <ul>
+      <li><code>--name</code> specifies your hosted cluster name.</li>
+      <li><code>--azure-creds</code> specifies an Azure credentials file that has permission to create infrastructure resources, such as virtual networks, subnets, and load balancers. This flag is required because the <code>hcp destroy cluster azure</code> command cleans up RBAC role assignments before it deletes infrastructure.</li>
+      <li><code>--resource-group-name</code> specifies the name of the resource group where you created identities.</li>
+      <li><code>--dns-zone-rg-name</code> specifies the name of the resource group that contains your DNS zone.</li>
+      </ul>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-oda-assisted-installer","text":"Installing a cluster on {{ oda }} by using the Assisted Installer"}];
+const headings = [{"depth":1,"slug":"installing-oda-assisted-installer","text":"Installing a cluster on Oracle Database Appliance by using the Assisted Installer"},{"depth":2,"slug":"ai-oda-env_installing-oda-assisted-installer","text":"Preparing the Oracle Database Appliance environment"},{"depth":2,"slug":"abi-oda-discovery-iso_installing-oda-assisted-installer","text":"Beginning the cluster installation and generating the Discovery ISO"},{"depth":2,"slug":"abi-oda-create-nodes_installing-oda-assisted-installer","text":"Creating nodes in the Oracle Database Appliance environment"},{"depth":2,"slug":"abi-oda-start-install_installing-oda-assisted-installer","text":"Completing host discovery and starting cluster installation"},{"depth":2,"slug":"abi-oda-complete-install_installing-oda-assisted-installer","text":"Completing the installation"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_oda/installing-oda-assisted";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Installing a cluster on {{ oda }} by using the Assisted Installer";
-const description = "You can use the {{ ai_full }} to install a cluster on {{ oda_first }}." || undefined;
+const description = "You can use the Assisted Installer to install a cluster on Oracle Database Appliance (ODA)." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_oda"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on {{ oda }} by using the Assisted Installer {#installing-oda-assisted-installer}\n\nYou can use the {{ ai_full }} to install a cluster on {{ oda_first }}.\n\n**Additional resources**\n\n- [Generating a key pair for cluster node SSH access](/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#ssh-agent-using_installing-platform-agnostic)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_oda/installing-oda-assisted.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on Oracle Database Appliance by using the Assisted Installer {#installing-oda-assisted-installer}\n\nYou can use the Assisted Installer to install a cluster on Oracle Database Appliance (ODA).\n\n## Preparing the Oracle Database Appliance environment {#ai-oda-env_installing-oda-assisted-installer}\n\nBefore you can deploy an OpenShift Container Platform cluster on Oracle Database Appliance (ODA), you must prepare the ODA environment.\n\n**Prerequisites**\n\n- You have reviewed the requirements and additional prerequisites described in section 1 of the [Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide](https://www.oracle.com/a/otn/docs/red-hat-openshift-container-platform-4-19.pdf) (Oracle documentation).\n\n**Procedure**\n\n1. Complete the pre-deployment tasks as described in section 2 of the \"Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide\".\n2. Complete the final environment preparations as described in sections 3.1 and 3.2 of the \"Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide\".\n\n## Beginning the cluster installation and generating the Discovery ISO {#abi-oda-discovery-iso_installing-oda-assisted-installer}\n\nBegin installing the OpenShift Container Platform cluster in the Oracle Database Appliance (ODA) environment by using the Red Hat Hybrid Cloud Console.\n\n**Procedure**\n\n1. Log in to the [Red Hat Hybrid Cloud Console](https://console.redhat.com/openshift/cluster-list).\n2. On the **Cluster List** page, click **Create cluster**.\n3. Click the **Datacenter** tab.\n4. Under **Assisted Installer**, click **Create cluster**.\n5. Configure your cluster on the **Cluster details** page:\n\n   1. Enter a name for the cluster in the **Cluster name** field.\n   2. Enter a base domain for the cluster in the **Base domain** field. All subdomains for the cluster will use this base domain.\n\n      > [!NOTE]\n      > The base domain must be a valid DNS name. You must not have a wildcard domain set up for the base domain.\n   3. Select a version from the **OpenShift version** dropdown list. By default, the dropdown list displays the latest version.\n   4. Optional: In the **Number of control plane nodes** field, select the number of control plane nodes for your installation from the dropdown menu. The default value is `3`.\n   5. Optional: Select the **Include custom manifests** checkbox if you want to upload custom manifests to further configure your cluster. This option adds an additional page for custom manifests that you use later in the configuration process.\n\n      > [!IMPORTANT]\n      > If you have already added custom manifests, clearing the **Include custom manifests** checkbox automatically deletes them all. You must confirm the deletion.\n   6. Click **Next** to continue. Once you proceed to the next page, you cannot go back to change any of these cluster details.\n6. Choose additional Operators to install on the **Operators** page:\n\n   1. If you want to install an Operator bundle, select an option in the **Bundles** section.\n   2. If you want to install only some Operators, select the individual Operators from the **Single Operators** section.\n   3. Click **Next** to continue.\n7. Upload an SSH public key and generate the Discovery ISO:\n\n   1. Click the **Add Hosts** button in the **Host Discovery** page.\n   2. Upload an SSH public key in the **SSH public key** section so that you can connect to the cluster nodes as the `core` user. If you do not already have an SSH public key, see \"Generating a key pair for cluster node SSH access\" for more information.\n   3. Select **Show proxy settings**.\n   4. Enter values for the **HTTP proxy URL**, **HTTPS URL proxy**, and **No proxy domains** fields.\n   5. Click **Generate Discovery ISO**.\n8. Copy the command from the **Command to download the ISO** field and run the command as a root user in the ODA environment.\n\n   ```terminal {title=\"Example command\"}\n   # wget -O discovery_image_example.iso 'https://api.openshift.com/api/assisted-images/bytoken/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Njg0Mjc3MDIsInN1YiI6ImNhMzZjZWU1LTQ3ZWEtNDc0Ny05OTg5LTVhZTYyMmMzMjZlNSJ9.jl-HvaxBR-WX73vpxO-Fy65bmY-RE5iL6AqL0wbWCmE/4.20/x86_64/minimal.iso'\n   ```\n\n**Additional resources**\n\n- [Generating a key pair for cluster node SSH access](/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#ssh-agent-using_installing-platform-agnostic)\n\n## Creating nodes in the Oracle Database Appliance environment {#abi-oda-create-nodes_installing-oda-assisted-installer}\n\nAfter generating and downloading the Discovery ISO to your Oracle Database Appliance (ODA) environment, create control plane nodes and worker nodes in the environment.\n\n**Procedure**\n\n1. Run the script to create control plane nodes as described in section 3.4 of the [Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide](https://www.oracle.com/a/otn/docs/red-hat-openshift-container-platform-4-19.pdf) (Oracle documentation).\n2. Run the script to create worker nodes as described in section 3.5 of the \"Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide\".\n3. Update the MAC address for each node as described in section 3.6 of the \"Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide\".\n\n## Completing host discovery and starting cluster installation {#abi-oda-start-install_installing-oda-assisted-installer}\n\nAfter preparing control plane and worker nodes in the Oracle Database Appliance (ODA) environment, complete host discovery and initiate the cluster installation.\n\nAs you create hosts using the provided scripts, the hosts begin to appear in the table of the ***Host Discovery*** page, where you can configure the hosts as needed.\n\n**Procedure**\n\n1. Go to the ***Host Discovery*** page.\n2. Assign host roles in the ***Host Inventory*** table:\n\n   1. In the ***Role*** column of the table, expand the ***Auto-Assign*** arrow for the host.\n   2. Assign the host with either a ***Control Plane node*** or a ***Worker*** role.\n   3. Repeat this process for each host in the table.\n3. Click ***Next***.\n4. On the **Storage** page, verify storage details and configure host storage as needed.\n5. Click ***Next***.\n6. Configure networking details on the ***Networking*** page:\n\n   1. Select ***User-Managed Networking*** as the ***Network Management*** type.\n   2. Select ***Host SSH Public Key for troubleshooting after installation*** to connect to hosts using a public SSH key for troubleshooting after installation.\n7. Click ***Next***.\n8. Validate cluster details on the ***Review and create*** page.\n9. Click ***Install cluster*** to begin the installation.\n10. Monitor installation progress and wait for all nodes to reach a `Ready` state.\n\n## Completing the installation {#abi-oda-complete-install_installing-oda-assisted-installer}\n\nAfter the cluster is installed and initialized, the Assisted Installer indicates that the installation is finished. The Assisted Installer provides the console URL, the `kubeadmin` username and password, and the `kubeconfig` file.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Make a copy of the `kubeadmin` username and password.\n2. Download the `kubeconfig` file and copy it to the auth directory under your working directory by running the following commands:\n\n   ```terminal\n   $ mkdir -p <working_directory>/auth\n   ```\n\n   ```terminal\n   $ cp kubeconfig <working_directory>/auth\n   ```\n\n   > [!NOTE]\n   > The `kubeconfig` file is available for download for 20 days after completing the installation.\n3. Add the `kubeconfig` file to your environment by running the following command:\n\n   ```terminal\n   $ export KUBECONFIG=<working_directory>/auth/kubeconfig\n   ```\n4. Log in with the OpenShift CLI (`oc`) by running the following command:\n\n   ```terminal\n   $ oc login -u kubeadmin -p <password>\n   ```\n\n   Replace `<password>` with the password of the `kubeadmin` user.\n5. Click the web console URL or click ***Launch OpenShift Console*** to open the console.\n6. Enter the `kubeadmin` username and password. Follow the instructions in the OpenShift Container Platform console to configure an identity provider and configure alert receivers.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_oda/installing-oda-assisted.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,15 +94,144 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="installing-oda-assisted-installer" class="group scroll-mt-20">Installing a cluster on {"{"}{"{"} oda {"}"}{"}"} by using the Assisted Installer<a href="#installing-oda-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use the {"{"}{"{"} ai_full {"}"}{"}"} to install a cluster on {"{"}{"{"} oda_first {"}"}{"}"}.</p>
-      <p class="/modules/ai-oda-environment.md"></p>
-      <p class="/modules/ai-oda-discovery.md"></p>
+      <h1 id="installing-oda-assisted-installer" class="group scroll-mt-20">Installing a cluster on Oracle Database Appliance by using the Assisted Installer<a href="#installing-oda-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can use the Assisted Installer to install a cluster on Oracle Database Appliance (ODA).</p>
+      <h2 id="ai-oda-env_installing-oda-assisted-installer" class="group scroll-mt-20">Preparing the Oracle Database Appliance environment<a href="#ai-oda-env_installing-oda-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you can deploy an OpenShift Container Platform cluster on Oracle Database Appliance (ODA), you must prepare the ODA environment.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have reviewed the requirements and additional prerequisites described in section 1 of the <a href="https://www.oracle.com/a/otn/docs/red-hat-openshift-container-platform-4-19.pdf">Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide</a> (Oracle documentation).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Complete the pre-deployment tasks as described in section 2 of the "Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide".</li>
+      <li>Complete the final environment preparations as described in sections 3.1 and 3.2 of the "Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide".</li>
+      </ol>
+      <h2 id="abi-oda-discovery-iso_installing-oda-assisted-installer" class="group scroll-mt-20">Beginning the cluster installation and generating the Discovery ISO<a href="#abi-oda-discovery-iso_installing-oda-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Begin installing the OpenShift Container Platform cluster in the Oracle Database Appliance (ODA) environment by using the Red Hat Hybrid Cloud Console.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the <a href="https://console.redhat.com/openshift/cluster-list">Red Hat Hybrid Cloud Console</a>.</li>
+      <li>On the <strong>Cluster List</strong> page, click <strong>Create cluster</strong>.</li>
+      <li>Click the <strong>Datacenter</strong> tab.</li>
+      <li>Under <strong>Assisted Installer</strong>, click <strong>Create cluster</strong>.</li>
+      <li>
+      Configure your cluster on the <strong>Cluster details</strong> page:
+      <ol>
+      <li>Enter a name for the cluster in the <strong>Cluster name</strong> field.</li>
+      <li>
+      Enter a base domain for the cluster in the <strong>Base domain</strong> field. All subdomains for the cluster will use this base domain.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The base domain must be a valid DNS name. You must not have a wildcard domain set up for the base domain.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Select a version from the <strong>OpenShift version</strong> dropdown list. By default, the dropdown list displays the latest version.</li>
+      <li>Optional: In the <strong>Number of control plane nodes</strong> field, select the number of control plane nodes for your installation from the dropdown menu. The default value is <code>3</code>.</li>
+      <li>
+      Optional: Select the <strong>Include custom manifests</strong> checkbox if you want to upload custom manifests to further configure your cluster. This option adds an additional page for custom manifests that you use later in the configuration process.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If you have already added custom manifests, clearing the <strong>Include custom manifests</strong> checkbox automatically deletes them all. You must confirm the deletion.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Click <strong>Next</strong> to continue. Once you proceed to the next page, you cannot go back to change any of these cluster details.</li>
+      </ol>
+      </li>
+      <li>
+      Choose additional Operators to install on the <strong>Operators</strong> page:
+      <ol>
+      <li>If you want to install an Operator bundle, select an option in the <strong>Bundles</strong> section.</li>
+      <li>If you want to install only some Operators, select the individual Operators from the <strong>Single Operators</strong> section.</li>
+      <li>Click <strong>Next</strong> to continue.</li>
+      </ol>
+      </li>
+      <li>
+      Upload an SSH public key and generate the Discovery ISO:
+      <ol>
+      <li>Click the <strong>Add Hosts</strong> button in the <strong>Host Discovery</strong> page.</li>
+      <li>Upload an SSH public key in the <strong>SSH public key</strong> section so that you can connect to the cluster nodes as the <code>core</code> user. If you do not already have an SSH public key, see "Generating a key pair for cluster node SSH access" for more information.</li>
+      <li>Select <strong>Show proxy settings</strong>.</li>
+      <li>Enter values for the <strong>HTTP proxy URL</strong>, <strong>HTTPS URL proxy</strong>, and <strong>No proxy domains</strong> fields.</li>
+      <li>Click <strong>Generate Discovery ISO</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Copy the command from the <strong>Command to download the ISO</strong> field and run the command as a root user in the ODA environment.
+      <CodeBlock code={"# wget -O discovery_image_example.iso 'https://api.openshift.com/api/assisted-images/bytoken/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3Njg0Mjc3MDIsInN1YiI6ImNhMzZjZWU1LTQ3ZWEtNDc0Ny05OTg5LTVhZTYyMmMzMjZlNSJ9.jl-HvaxBR-WX73vpxO-Fy65bmY-RE5iL6AqL0wbWCmE/4.20/x86_64/minimal.iso'"} lang="terminal" title="Example command" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_platform_agnostic/installing-platform-agnostic#ssh-agent-using_installing-platform-agnostic">Generating a key pair for cluster node SSH access</a></li></ul>
-      <p class="/modules/ai-oda-start-install.md"></p>
-      <p class="/modules/ai-oda-complete-install.md"></p>
+      <h2 id="abi-oda-create-nodes_installing-oda-assisted-installer" class="group scroll-mt-20">Creating nodes in the Oracle Database Appliance environment<a href="#abi-oda-create-nodes_installing-oda-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After generating and downloading the Discovery ISO to your Oracle Database Appliance (ODA) environment, create control plane nodes and worker nodes in the environment.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Run the script to create control plane nodes as described in section 3.4 of the <a href="https://www.oracle.com/a/otn/docs/red-hat-openshift-container-platform-4-19.pdf">Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide</a> (Oracle documentation).</li>
+      <li>Run the script to create worker nodes as described in section 3.5 of the "Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide".</li>
+      <li>Update the MAC address for each node as described in section 3.6 of the "Red Hat OpenShift Container Platform on Oracle Database Appliance Deployment Guide".</li>
+      </ol>
+      <h2 id="abi-oda-start-install_installing-oda-assisted-installer" class="group scroll-mt-20">Completing host discovery and starting cluster installation<a href="#abi-oda-start-install_installing-oda-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After preparing control plane and worker nodes in the Oracle Database Appliance (ODA) environment, complete host discovery and initiate the cluster installation.</p>
+      <p>As you create hosts using the provided scripts, the hosts begin to appear in the table of the <em></em><em><strong>Host Discovery</strong></em><em></em> page, where you can configure the hosts as needed.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to the <em></em><em><strong>Host Discovery</strong></em><em></em> page.</li>
+      <li>
+      Assign host roles in the <em></em><em><strong>Host Inventory</strong></em><em></em> table:
+      <ol>
+      <li>In the <em></em><em><strong>Role</strong></em><em></em> column of the table, expand the <em></em><em><strong>Auto-Assign</strong></em><em></em> arrow for the host.</li>
+      <li>Assign the host with either a <em></em><em><strong>Control Plane node</strong></em><em></em> or a <em></em><em><strong>Worker</strong></em><em></em> role.</li>
+      <li>Repeat this process for each host in the table.</li>
+      </ol>
+      </li>
+      <li>Click <em></em><em><strong>Next</strong></em><em></em>.</li>
+      <li>On the <strong>Storage</strong> page, verify storage details and configure host storage as needed.</li>
+      <li>Click <em></em><em><strong>Next</strong></em><em></em>.</li>
+      <li>
+      Configure networking details on the <em></em><em><strong>Networking</strong></em><em></em> page:
+      <ol>
+      <li>Select <em></em><em><strong>User-Managed Networking</strong></em><em></em> as the <em></em><em><strong>Network Management</strong></em><em></em> type.</li>
+      <li>Select <em></em><em><strong>Host SSH Public Key for troubleshooting after installation</strong></em><em></em> to connect to hosts using a public SSH key for troubleshooting after installation.</li>
+      </ol>
+      </li>
+      <li>Click <em></em><em><strong>Next</strong></em><em></em>.</li>
+      <li>Validate cluster details on the <em></em><em><strong>Review and create</strong></em><em></em> page.</li>
+      <li>Click <em></em><em><strong>Install cluster</strong></em><em></em> to begin the installation.</li>
+      <li>Monitor installation progress and wait for all nodes to reach a <code>Ready</code> state.</li>
+      </ol>
+      <h2 id="abi-oda-complete-install_installing-oda-assisted-installer" class="group scroll-mt-20">Completing the installation<a href="#abi-oda-complete-install_installing-oda-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After the cluster is installed and initialized, the Assisted Installer indicates that the installation is finished. The Assisted Installer provides the console URL, the <code>kubeadmin</code> username and password, and the <code>kubeconfig</code> file.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Make a copy of the <code>kubeadmin</code> username and password.</li>
+      <li>
+      Download the <code>kubeconfig</code> file and copy it to the auth directory under your working directory by running the following commands:
+      <CodeBlock code={"$ mkdir -p <working_directory>/auth"} lang="terminal" />
+      <CodeBlock code={"$ cp kubeconfig <working_directory>/auth"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>kubeconfig</code> file is available for download for 20 days after completing the installation.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Add the <code>kubeconfig</code> file to your environment by running the following command:
+      <CodeBlock code={"$ export KUBECONFIG=<working_directory>/auth/kubeconfig"} lang="terminal" />
+      </li>
+      <li>
+      Log in with the OpenShift CLI (<code>oc</code>) by running the following command:
+      <CodeBlock code={"$ oc login -u kubeadmin -p <password>"} lang="terminal" />
+      <p>Replace <code>&lt;password&gt;</code> with the password of the <code>kubeadmin</code> user.</p>
+      </li>
+      <li>Click the web console URL or click <em></em><em><strong>Launch OpenShift Console</strong></em><em></em> to open the console.</li>
+      <li>Enter the <code>kubeadmin</code> username and password. Follow the instructions in the OpenShift Container Platform console to configure an identity provider and configure alert receivers.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

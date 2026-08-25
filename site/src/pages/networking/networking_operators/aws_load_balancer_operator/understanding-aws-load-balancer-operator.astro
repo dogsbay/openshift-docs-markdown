@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"aws-load-balancer-operator","text":"AWS Load Balancer Operator in OpenShift Container Platform"}];
+const headings = [{"depth":1,"slug":"aws-load-balancer-operator","text":"AWS Load Balancer Operator in OpenShift Container Platform"},{"depth":2,"slug":"nw-aws-load-balancer-operator-considerations_aws-load-balancer-operator","text":"AWS Load Balancer Operator considerations"},{"depth":2,"slug":"nw-aws-load-balancer-operator_aws-load-balancer-operator","text":"Deploying the AWS Load Balancer Operator"},{"depth":2,"slug":"nw-aws-load-balancer-with-outposts_aws-load-balancer-operator","text":"Using the AWS Load Balancer Operator in an AWS VPC cluster extended into an Outpost"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/understanding-aws-load-balancer-operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/networking_operators","networking
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# AWS Load Balancer Operator in OpenShift Container Platform {#aws-load-balancer-operator}\n\nTo deploy and manage the AWS Load Balancer Controller, install the AWS Load Balancer Operator from the software catalog by using the OpenShift Container Platform web console or CLI. You can use the Operator to integrate AWS load balancers directly into your cluster infrastructure.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/understanding-aws-load-balancer-operator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# AWS Load Balancer Operator in OpenShift Container Platform {#aws-load-balancer-operator}\n\nTo deploy and manage the AWS Load Balancer Controller, install the AWS Load Balancer Operator from the software catalog by using the OpenShift Container Platform web console or CLI. You can use the Operator to integrate AWS load balancers directly into your cluster infrastructure.\n\n## AWS Load Balancer Operator considerations {#nw-aws-load-balancer-operator-considerations_aws-load-balancer-operator}\n\nTo ensure a successful deployment, review the limitations of the AWS Load Balancer Operator. Understanding these constraints helps avoid compatibility issues and ensures the Operator meets your architectural requirements before installation.\n\nReview the following limitations before installing and using the AWS Load Balancer Operator:\n\n- The IP traffic mode only works on AWS Elastic Kubernetes Service (EKS). The AWS Load Balancer Operator disables the IP traffic mode for the AWS Load Balancer Controller. As a result of disabling the IP traffic mode, the AWS Load Balancer Controller cannot use the pod readiness gate.\n- The AWS Load Balancer Operator adds command-line flags such as `--disable-ingress-class-annotation` and `--disable-ingress-group-name-annotation` to the AWS Load Balancer Controller. Therefore, the AWS Load Balancer Operator does not allow using the `kubernetes.io/ingress.class` and `alb.ingress.kubernetes.io/group.name` annotations in the `Ingress` resource.\n- The AWS Load Balancer Operator requires that the service type is `NodePort` and not `LoadBalancer` or `ClusterIP`.\n\n## Deploying the AWS Load Balancer Operator {#nw-aws-load-balancer-operator_aws-load-balancer-operator}\n\nThe AWS Load Balancer Operator can tag the public subnets if the `kubernetes.io/role/elb` tag is missing. Also, the AWS Load Balancer Operator detects information from the underlying AWS cloud.\n\nThe AWS Load Balancer Operator detects the following information from the underlying AWS cloud:\n\n- The ID of the virtual private cloud (VPC) on which the cluster hosting the Operator is deployed.\n- Public and private subnets of the discovered VPC.\n\nThe AWS Load Balancer Operator supports the Kubernetes service resource of type `LoadBalancer` by using Network Load Balancer (NLB) with the `instance` target type only.\n\n**Procedure**\n\n1. To deploy the AWS Load Balancer Operator on-demand from the software catalog, create a `Subscription` object by running the following command:\n\n   ```terminal\n   $ oc -n aws-load-balancer-operator get sub aws-load-balancer-operator --template='{{.status.installplan.name}}{{\"\\n\"}}'\n   ```\n2. Check if the status of an install plan is `Complete` by running the following command:\n\n   ```terminal\n   $ oc -n aws-load-balancer-operator get ip <install_plan_name> --template='{{.status.phase}}{{\"\\n\"}}'\n   ```\n3. View the status of the `aws-load-balancer-operator-controller-manager` deployment by running the following command:\n\n   ```terminal\n   $ oc get -n aws-load-balancer-operator deployment/aws-load-balancer-operator-controller-manager\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                           READY     UP-TO-DATE   AVAILABLE   AGE\n   aws-load-balancer-operator-controller-manager  1/1       1            1           23h\n   ```\n\n## Using the AWS Load Balancer Operator in an AWS VPC cluster extended into an Outpost {#nw-aws-load-balancer-with-outposts_aws-load-balancer-operator}\n\nYou can configure the AWS Load Balancer Operator to provision an AWS Application Load Balancer in an AWS VPC cluster extended into an Outpost. AWS Outposts does not support AWS Network Load Balancers. As a result, the AWS Load Balancer Operator cannot provision Network Load Balancers in an Outpost.\n\nYou can create an AWS Application Load Balancer either in the cloud subnet or in the Outpost subnet.\n\nAn Application Load Balancer in the cloud can attach to cloud-based compute nodes. An Application Load Balancer in the Outpost can attach to edge compute nodes.\n\nYou must annotate Ingress resources with the Outpost subnet or the VPC subnet, but not both.\n\n**Prerequisites**\n\n- You have extended an AWS VPC cluster into an Outpost.\n- You have installed the OpenShift CLI (`oc`).\n- You have installed the AWS Load Balancer Operator and created the AWS Load Balancer Controller.\n\n**Procedure**\n\n- Configure the `Ingress` resource to use a specified subnet:\n\n  ```yaml {title=\"Example Ingress resource configuration\"}\n  apiVersion: networking.k8s.io/v1\n  kind: Ingress\n  metadata:\n    name: <application_name>\n    annotations:\n      alb.ingress.kubernetes.io/subnets: <subnet_id>\n  spec:\n    ingressClassName: alb\n    rules:\n      - http:\n          paths:\n            - path: /\n              pathType: Exact\n              backend:\n                service:\n                  name: <application_name>\n                  port:\n                    number: 80\n  ```\n\n  where:\n\n  `<subnet_id>`\n  :   Specifies the subnet to use. To use the Application Load Balancer in an Outpost, specify the Outpost subnet ID. To use the Application Load Balancer in the cloud, you must specify at least two subnets in different availability zones.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/aws_load_balancer_operator/understanding-aws-load-balancer-operator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +92,62 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="aws-load-balancer-operator" class="group scroll-mt-20">AWS Load Balancer Operator in OpenShift Container Platform<a href="#aws-load-balancer-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To deploy and manage the AWS Load Balancer Controller, install the AWS Load Balancer Operator from the software catalog by using the OpenShift Container Platform web console or CLI. You can use the Operator to integrate AWS load balancers directly into your cluster infrastructure.</p>
-      <p class="/modules/nw-aws-load-balancer-operator-considerations.md"></p>
-      <p class="/modules/nw-aws-load-balancer-operator.md"></p>
-      <p class="/modules/nw-aws-load-balancer-with-outposts.md"></p>
+      <h2 id="nw-aws-load-balancer-operator-considerations_aws-load-balancer-operator" class="group scroll-mt-20">AWS Load Balancer Operator considerations<a href="#nw-aws-load-balancer-operator-considerations_aws-load-balancer-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To ensure a successful deployment, review the limitations of the AWS Load Balancer Operator. Understanding these constraints helps avoid compatibility issues and ensures the Operator meets your architectural requirements before installation.</p>
+      <p>Review the following limitations before installing and using the AWS Load Balancer Operator:</p>
+      <ul>
+      <li>The IP traffic mode only works on AWS Elastic Kubernetes Service (EKS). The AWS Load Balancer Operator disables the IP traffic mode for the AWS Load Balancer Controller. As a result of disabling the IP traffic mode, the AWS Load Balancer Controller cannot use the pod readiness gate.</li>
+      <li>The AWS Load Balancer Operator adds command-line flags such as <code>--disable-ingress-class-annotation</code> and <code>--disable-ingress-group-name-annotation</code> to the AWS Load Balancer Controller. Therefore, the AWS Load Balancer Operator does not allow using the <code>kubernetes.io/ingress.class</code> and <code>alb.ingress.kubernetes.io/group.name</code> annotations in the <code>Ingress</code> resource.</li>
+      <li>The AWS Load Balancer Operator requires that the service type is <code>NodePort</code> and not <code>LoadBalancer</code> or <code>ClusterIP</code>.</li>
+      </ul>
+      <h2 id="nw-aws-load-balancer-operator_aws-load-balancer-operator" class="group scroll-mt-20">Deploying the AWS Load Balancer Operator<a href="#nw-aws-load-balancer-operator_aws-load-balancer-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The AWS Load Balancer Operator can tag the public subnets if the <code>kubernetes.io/role/elb</code> tag is missing. Also, the AWS Load Balancer Operator detects information from the underlying AWS cloud.</p>
+      <p>The AWS Load Balancer Operator detects the following information from the underlying AWS cloud:</p>
+      <ul>
+      <li>The ID of the virtual private cloud (VPC) on which the cluster hosting the Operator is deployed.</li>
+      <li>Public and private subnets of the discovered VPC.</li>
+      </ul>
+      <p>The AWS Load Balancer Operator supports the Kubernetes service resource of type <code>LoadBalancer</code> by using Network Load Balancer (NLB) with the <code>instance</code> target type only.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To deploy the AWS Load Balancer Operator on-demand from the software catalog, create a <code>Subscription</code> object by running the following command:
+      <CodeBlock code={"$ oc -n aws-load-balancer-operator get sub aws-load-balancer-operator --template='{{.status.installplan.name}}{{\"\\n\"}}'"} lang="terminal" />
+      </li>
+      <li>
+      Check if the status of an install plan is <code>Complete</code> by running the following command:
+      <CodeBlock code={"$ oc -n aws-load-balancer-operator get ip <install_plan_name> --template='{{.status.phase}}{{\"\\n\"}}'"} lang="terminal" />
+      </li>
+      <li>
+      View the status of the <code>aws-load-balancer-operator-controller-manager</code> deployment by running the following command:
+      <CodeBlock code={"$ oc get -n aws-load-balancer-operator deployment/aws-load-balancer-operator-controller-manager"} lang="terminal" />
+      <CodeBlock code={"NAME                                           READY     UP-TO-DATE   AVAILABLE   AGE\naws-load-balancer-operator-controller-manager  1/1       1            1           23h"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="nw-aws-load-balancer-with-outposts_aws-load-balancer-operator" class="group scroll-mt-20">Using the AWS Load Balancer Operator in an AWS VPC cluster extended into an Outpost<a href="#nw-aws-load-balancer-with-outposts_aws-load-balancer-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure the AWS Load Balancer Operator to provision an AWS Application Load Balancer in an AWS VPC cluster extended into an Outpost. AWS Outposts does not support AWS Network Load Balancers. As a result, the AWS Load Balancer Operator cannot provision Network Load Balancers in an Outpost.</p>
+      <p>You can create an AWS Application Load Balancer either in the cloud subnet or in the Outpost subnet.</p>
+      <p>An Application Load Balancer in the cloud can attach to cloud-based compute nodes. An Application Load Balancer in the Outpost can attach to edge compute nodes.</p>
+      <p>You must annotate Ingress resources with the Outpost subnet or the VPC subnet, but not both.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have extended an AWS VPC cluster into an Outpost.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have installed the AWS Load Balancer Operator and created the AWS Load Balancer Controller.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Configure the <code>Ingress</code> resource to use a specified subnet:
+      <CodeBlock code={"apiVersion: networking.k8s.io/v1\nkind: Ingress\nmetadata:\n  name: <application_name>\n  annotations:\n    alb.ingress.kubernetes.io/subnets: <subnet_id>\nspec:\n  ingressClassName: alb\n  rules:\n    - http:\n        paths:\n          - path: /\n            pathType: Exact\n            backend:\n              service:\n                name: <application_name>\n                port:\n                  number: 80"} lang="yaml" title="Example Ingress resource configuration" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;subnet_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the subnet to use. To use the Application Load Balancer in an Outpost, specify the Outpost subnet ID. To use the Application Load Balancer in the cloud, you must specify at least two subnets in different availability zones.</p></dd>
+      </dl>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

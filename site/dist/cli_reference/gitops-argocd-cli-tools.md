@@ -2,15 +2,15 @@
 title: "{{ gitops_shortname }} CLI for use with {{ gitops_title }}"
 ---
 
-# {{ gitops_shortname }} CLI for use with {{ gitops_title }} {#gitops-argocd-cli-tools}
+# GitOps CLI for use with Red Hat OpenShift GitOps {#gitops-argocd-cli-tools}
 
-The {{ gitops_shortname }} `argocd` CLI is a tool for configuring and managing {{ gitops_title }} and Argo CD resources from a terminal.
+The GitOps `argocd` CLI is a tool for configuring and managing Red Hat OpenShift GitOps and Argo CD resources from a terminal.
 
-With the {{ gitops_shortname }} CLI, you can make {{ gitops_shortname }} computing tasks simple and concise. You can install this CLI tool on different platforms.
+With the GitOps CLI, you can make GitOps computing tasks simple and concise. You can install this CLI tool on different platforms.
 
-## Installing the {{ gitops_shortname }} CLI {#installing-argocd-gitops-cli}
+## Installing the GitOps CLI {#installing-argocd-gitops-cli}
 
-See [Installing the {{ gitops_shortname }} CLI](https://docs.openshift.com/gitops/latest/installing_gitops/installing-argocd-gitops-cli.html).
+See [Installing the GitOps CLI](https://docs.openshift.com/gitops/latest/installing_gitops/installing-argocd-gitops-cli.html).
 
 ## Additional resources {#additional-resources_gitops-argocd-cli-tools}
 

@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"lws-uninstalling","text":"Uninstalling the {{ lws_operator }}"}];
+const headings = [{"depth":1,"slug":"lws-uninstalling","text":"Uninstalling the Leader Worker Set Operator"},{"depth":2,"slug":"lws-uninstall_lws-uninstalling","text":"Uninstalling the Leader Worker Set Operator"},{"depth":2,"slug":"lws-remove-resources_lws-uninstalling","text":"Uninstalling Leader Worker Set Operator resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-uninstalling";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Uninstalling the {{ lws_operator }}";
-const description = "If you no longer need the {{ lws_operator }} in your cluster, you can uninstall the Operator and remove its related resources." || undefined;
+const description = "If you no longer need the Leader Worker Set Operator in your cluster, you can uninstall the Operator and remove its related resources." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["ai_workloads","ai_workloads/leader_worker_set"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the {{ lws_operator }} {#lws-uninstalling}\n\nIf you no longer need the {{ lws_operator }} in your cluster, you can uninstall the Operator and remove its related resources.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-uninstalling.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the Leader Worker Set Operator {#lws-uninstalling}\n\nIf you no longer need the Leader Worker Set Operator in your cluster, you can uninstall the Operator and remove its related resources.\n\n## Uninstalling the Leader Worker Set Operator {#lws-uninstall_lws-uninstalling}\n\nYou can use the web console to uninstall the Leader Worker Set Operator if you no longer need the Operator in your cluster.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- You have installed the Leader Worker Set Operator.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Navigate to **Operators** -> **Installed Operators**.\n3. Select `openshift-lws-operator` from the **Project** dropdown list.\n4. Delete the `LeaderWorkerSetOperator` instance.\n\n   1. Click **Leader Worker Set Operator** and select the **LeaderWorkerSetOperator** tab.\n   2. Click the Options menu ![](kebab.png \"Options menu\") next to the **cluster** entry and select **Delete LeaderWorkerSetOperator**.\n   3. In the confirmation dialog, click **Delete**.\n5. Uninstall the Leader Worker Set Operator.\n\n   1. Navigate to **Operators** -> **Installed Operators**.\n   2. Click the Options menu ![](kebab.png \"Options menu\") next to the **Leader Worker Set Operator** entry and click **Uninstall Operator**.\n   3. In the confirmation dialog, click **Uninstall**.\n\n## Uninstalling Leader Worker Set Operator resources {#lws-remove-resources_lws-uninstalling}\n\nOptionally, remove custom resources (CRs) and the associated namespace after the Leader Worker Set Operator is uninstalled. This cleans up all remaining Leader Worker Set artifacts.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- You have uninstalled the Leader Worker Set Operator.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Remove CRDs that were created when the Leader Worker Set Operator was installed:\n\n   1. Navigate to **Administration** -> **CustomResourceDefinitions**.\n   2. Enter `LeaderWorkerSetOperator` in the **Name** field to filter the CRDs.\n   3. Click the Options menu ![](kebab.png \"Options menu\") next to the **LeaderWorkerSetOperator** CRD and select **Delete CustomResourceDefinition**.\n   4. In the confirmation dialog, click **Delete**.\n3. Delete the `openshift-lws-operator` namespace.\n\n   1. Navigate to **Administration** -> **Namespaces**.\n   2. Enter `openshift-lws-operator` into the filter box.\n   3. Click the Options menu ![](kebab.png \"Options menu\") next to the **openshift-lws-operator** entry and select **Delete Namespace**.\n   4. In the confirmation dialog, enter `openshift-lws-operator` and click **Delete**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-uninstalling.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +90,68 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="lws-uninstalling" class="group scroll-mt-20">Uninstalling the {"{"}{"{"} lws_operator {"}"}{"}"}<a href="#lws-uninstalling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>If you no longer need the {"{"}{"{"} lws_operator {"}"}{"}"} in your cluster, you can uninstall the Operator and remove its related resources.</p>
-      <p class="/modules/lws-uninstall.md"></p>
-      <p class="/modules/lws-remove-resources.md"></p>
+      <h1 id="lws-uninstalling" class="group scroll-mt-20">Uninstalling the Leader Worker Set Operator<a href="#lws-uninstalling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>If you no longer need the Leader Worker Set Operator in your cluster, you can uninstall the Operator and remove its related resources.</p>
+      <h2 id="lws-uninstall_lws-uninstalling" class="group scroll-mt-20">Uninstalling the Leader Worker Set Operator<a href="#lws-uninstall_lws-uninstalling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the web console to uninstall the Leader Worker Set Operator if you no longer need the Operator in your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      <li>You have installed the Leader Worker Set Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Navigate to <strong>Operators</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Select <code>openshift-lws-operator</code> from the <strong>Project</strong> dropdown list.</li>
+      <li>
+      Delete the <code>LeaderWorkerSetOperator</code> instance.
+      <ol>
+      <li>Click <strong>Leader Worker Set Operator</strong> and select the <strong>LeaderWorkerSetOperator</strong> tab.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>cluster</strong> entry and select <strong>Delete LeaderWorkerSetOperator</strong>.</li>
+      <li>In the confirmation dialog, click <strong>Delete</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Uninstall the Leader Worker Set Operator.
+      <ol>
+      <li>Navigate to <strong>Operators</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>Leader Worker Set Operator</strong> entry and click <strong>Uninstall Operator</strong>.</li>
+      <li>In the confirmation dialog, click <strong>Uninstall</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="lws-remove-resources_lws-uninstalling" class="group scroll-mt-20">Uninstalling Leader Worker Set Operator resources<a href="#lws-remove-resources_lws-uninstalling" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Optionally, remove custom resources (CRs) and the associated namespace after the Leader Worker Set Operator is uninstalled. This cleans up all remaining Leader Worker Set artifacts.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      <li>You have uninstalled the Leader Worker Set Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>
+      Remove CRDs that were created when the Leader Worker Set Operator was installed:
+      <ol>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>CustomResourceDefinitions</strong>.</li>
+      <li>Enter <code>LeaderWorkerSetOperator</code> in the <strong>Name</strong> field to filter the CRDs.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>LeaderWorkerSetOperator</strong> CRD and select <strong>Delete CustomResourceDefinition</strong>.</li>
+      <li>In the confirmation dialog, click <strong>Delete</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Delete the <code>openshift-lws-operator</code> namespace.
+      <ol>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>Namespaces</strong>.</li>
+      <li>Enter <code>openshift-lws-operator</code> into the filter box.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>openshift-lws-operator</strong> entry and select <strong>Delete Namespace</strong>.</li>
+      <li>In the confirmation dialog, enter <code>openshift-lws-operator</code> and click <strong>Delete</strong>.</li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

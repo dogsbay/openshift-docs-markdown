@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"overriding-kopia-algorithms","text":"Overriding Kopia hashing, encryption, and splitter algorithms"}];
+const headings = [{"depth":1,"slug":"overriding-kopia-algorithms","text":"Overriding Kopia hashing, encryption, and splitter algorithms"},{"depth":2,"slug":"oadp-kopia-configuring-algorithms_overriding-kopia-algorithms","text":"Configuring the DPA to override Kopia hashing, encryption, and splitter algorithms"},{"depth":2,"slug":"oadp-usecase-kopia-override-algorithms_overriding-kopia-algorithms","text":"Use case for overriding Kopia hashing, encryption, and splitter algorithms"},{"depth":2,"slug":"oadp-kopia-algorithms-benchmarking_overriding-kopia-algorithms","text":"Benchmarking Kopia hashing, encryption, and splitter algorithms"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/overriding-kopia-algorithms";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overriding Kopia hashing, encryption, and splitter algorithms {#overriding-kopia-algorithms}\n\nOverride the default values of Kopia hashing, encryption, and splitter algorithms by using specific environment variables in the Data Protection Application (DPA).\n\n{% include \"./modules/oadp-kopia-configuring-algorithms.md\" %}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/overriding-kopia-algorithms.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overriding Kopia hashing, encryption, and splitter algorithms {#overriding-kopia-algorithms}\n\nOverride the default values of Kopia hashing, encryption, and splitter algorithms by using specific environment variables in the Data Protection Application (DPA).\n\n## Configuring the DPA to override Kopia hashing, encryption, and splitter algorithms {#oadp-kopia-configuring-algorithms_overriding-kopia-algorithms}\n\nConfigure the Data Protection Application (DPA) to override the default Kopia hashing, encryption, and splitter algorithms by setting environment variables in the Velero pod configuration. This helps you improve Kopia performance and compare performance metrics for your backup operations.\n\n> [!NOTE]\n> The configuration of the Kopia algorithms for splitting, hashing, and encryption in the Data Protection Application (DPA) apply only during the initial Kopia repository creation, and cannot be changed later.\n>\n> To use different Kopia algorithms, ensure that the object storage does not contain any previous Kopia repositories of backups. Configure a new object storage in the Backup Storage Location (BSL) or specify a unique prefix for the object storage in the BSL configuration.\n\n**Prerequisites**\n\n- You have installed the OADP Operator.\n- You have created the secret by using the credentials provided by the cloud provider.\n\n**Procedure**\n\n- Configure the DPA with the environment variables for hashing, encryption, and splitter as shown in the following example.\n\n```yaml\napiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\n#...\nconfiguration:\n  nodeAgent:\n    enable: true\n    uploaderType: kopia\n  velero:\n    defaultPlugins:\n    - openshift\n    - aws\n    - csi\n    defaultSnapshotMoveData: true\n    podConfig:\n      env:\n        - name: KOPIA_HASHING_ALGORITHM\n          value: <hashing_algorithm_name>\n        - name: KOPIA_ENCRYPTION_ALGORITHM\n          value: <encryption_algorithm_name>\n        - name: KOPIA_SPLITTER_ALGORITHM\n          value: <splitter_algorithm_name>\n```\n\nwhere:\n\n`enable`\n:   Set to `true` to enable the `nodeAgent`.\n\n`uploaderType`\n:   Specifies the uploader type as `kopia`.\n\n`csi`\n:   Include the `csi` plugin.\n\n`<hashing_algorithm_name>`\n:   Specifies a hashing algorithm. For example, `BLAKE3-256`.\n\n`<encryption_algorithm_name>`\n:   Specifies an encryption algorithm. For example, `CHACHA20-POLY1305-HMAC-SHA256`.\n\n`<splitter_algorithm_name>`\n:   Specifies a splitter algorithm. For example, `DYNAMIC-8M-RABINKARP`.\n\n## Use case for overriding Kopia hashing, encryption, and splitter algorithms {#oadp-usecase-kopia-override-algorithms_overriding-kopia-algorithms}\n\nBack up an application by using Kopia environment variables for hashing, encryption, and splitter. Store the backup in an AWS S3 bucket and verify the environment variables by connecting to the Kopia repository.\n\n**Prerequisites**\n\n- You have installed the OADP Operator.\n- You have an AWS S3 bucket configured as the backup storage location.\n- You have created the secret by using the credentials provided by the cloud provider.\n- You have installed the Kopia client.\n- You have an application with persistent volumes running in a separate namespace.\n\n**Procedure**\n\n1. Configure the Data Protection Application (DPA) as shown in the following example:\n\n   ```yaml\n   apiVersion: oadp.openshift.io/v1alpha1\n   kind: DataProtectionApplication\n   metadata:\n   name: <dpa_name>\n   namespace: openshift-adp\n   spec:\n   backupLocations:\n   - name: aws\n     velero:\n       config:\n         profile: default\n         region: <region_name>\n       credential:\n         key: cloud\n         name: cloud-credentials\n       default: true\n       objectStorage:\n         bucket: <bucket_name>\n         prefix: velero\n       provider: aws\n   configuration:\n     nodeAgent:\n       enable: true\n       uploaderType: kopia\n     velero:\n       defaultPlugins:\n       - openshift\n       - aws\n       - csi\n       defaultSnapshotMoveData: true\n       podConfig:\n         env:\n           - name: KOPIA_HASHING_ALGORITHM\n             value: BLAKE3-256\n           - name: KOPIA_ENCRYPTION_ALGORITHM\n             value: CHACHA20-POLY1305-HMAC-SHA256\n           - name: KOPIA_SPLITTER_ALGORITHM\n             value: DYNAMIC-8M-RABINKARP\n   ```\n\n   where:\n\n   `<dpa_name>`\n   :   Specifies a name for the DPA.\n\n   `<region_name>`\n   :   Specifies the region for the backup storage location.\n\n   `cloud-credentials`\n   :   Specifies the name of the default `Secret` object.\n\n   `<bucket_name>`\n   :   Specifies the AWS S3 bucket name.\n\n   `csi`\n   :   Include the `csi` plugin.\n\n   `BLAKE3-256`\n   :   Specifies the hashing algorithm as `BLAKE3-256`.\n\n   `CHACHA20-POLY1305-HMAC-SHA256`\n   :   Specifies the encryption algorithm as `CHACHA20-POLY1305-HMAC-SHA256`.\n\n   `DYNAMIC-8M-RABINKARP`\n   :   Specifies the splitter algorithm as `DYNAMIC-8M-RABINKARP`.\n2. Create the DPA by running the following command:\n\n   ```terminal\n   $ oc create -f <dpa_file_name>\n   ```\n\n   Replace `<dpa_file_name>` with the file name of the DPA you configured.\n3. Verify that the DPA has reconciled by running the following command:\n\n   ```terminal\n   $ oc get dpa -o yaml\n   ```\n4. Create a backup CR as shown in the following example:\n\n```yaml\napiVersion: velero.io/v1\nkind: Backup\nmetadata:\n  name: test-backup\n  namespace: openshift-adp\nspec:\n  includedNamespaces:\n  - <application_namespace>\n  defaultVolumesToFsBackup: true\n```\n\nReplace `<application_namespace>` with the namespace for the application installed in the cluster.\n\n1. Create a backup by running the following command:\n\n   ```terminal\n   $ oc apply -f <backup_file_name>\n   ```\n\n   Replace `<backup_file_name>` with the name of the backup CR file.\n2. Verify that the backup completed by running the following command:\n\n   ```terminal\n   $ oc get backups.velero.io <backup_name> -o yaml\n   ```\n\n   Replace `<backup_name>` with the name of the backup.\n\n**Verification**\n\n1. Connect to the Kopia repository by running the following command:\n\n   ```terminal\n   $ kopia repository connect s3 \\\n     --bucket=<bucket_name> \\\n     --prefix=velero/kopia/<application_namespace> \\\n     --password=static-passw0rd \\\n     --access-key=\"<aws_s3_access_key>\" \\\n     --secret-access-key=\"<aws_s3_secret_access_key>\"\n   ```\n\n   where:\n\n   `<bucket_name>`\n   :   Specifies the AWS S3 bucket name.\n\n   `<application_namespace>`\n   :   Specifies the namespace for the application.\n\n   `static-passw0rd`\n   :   This is the Kopia password to connect to the repository.\n\n   `<aws_s3_access_key>`\n   :   Specifies the AWS S3 access key.\n\n   `<aws_s3_secret_access_key>`\n   :   Specifies the AWS S3 storage provider secret access key.\n\nIf you are using a storage provider other than AWS S3, you will need to add `--endpoint`, the bucket endpoint URL parameter, to the command.\n\n1. Verify that Kopia uses the environment variables that are configured in the DPA for the backup by running the following command:\n\n   ```terminal\n   $ kopia repository status\n   ```\n\n**Example output**\n\n```terminal\n\nHash:                BLAKE3-256\nEncryption:          CHACHA20-POLY1305-HMAC-SHA256\nSplitter:            DYNAMIC-8M-RABINKARP\nFormat version:      3\n```\n\n## Benchmarking Kopia hashing, encryption, and splitter algorithms {#oadp-kopia-algorithms-benchmarking_overriding-kopia-algorithms}\n\nRun Kopia commands to benchmark the hashing, encryption, and splitter algorithms. Based on the benchmarking results, you can select the most suitable algorithm for your workload. You run the Kopia benchmarking commands from a pod on the cluster. The benchmarking results can vary depending on CPU speed, available RAM, disk speed, current I/O load, and so on.\n\n> [!NOTE]\n> The configuration of the Kopia algorithms for splitting, hashing, and encryption in the Data Protection Application (DPA) apply only during the initial Kopia repository creation, and cannot be changed later.\n>\n> To use different Kopia algorithms, ensure that the object storage does not contain any previous Kopia repositories of backups. Configure a new object storage in the Backup Storage Location (BSL) or specify a unique prefix for the object storage in the BSL configuration.\n\n**Prerequisites**\n\n- You have installed the OADP Operator.\n- You have an application with persistent volumes running in a separate namespace.\n- You have run a backup of the application with Container Storage Interface (CSI) snapshots.\n\n**Procedure**\n\n1. Configure the `must-gather` pod as shown in the following example. Make sure you are using the `oadp-mustgather` image for OADP version 1.3 and later.\n\n```yaml {title=\"Example pod configuration\"}\napiVersion: v1\nkind: Pod\nmetadata:\n  name: oadp-mustgather-pod\n  labels:\n    purpose: user-interaction\nspec:\n  containers:\n  - name: oadp-mustgather-container\n    image: registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.3\n    command: [\"sleep\"]\n    args: [\"infinity\"]\n```\n\nThe Kopia client is available in the `oadp-mustgather` image.\n\n1. Create the pod by running the following command:\n\n   ```terminal\n   $ oc apply -f <pod_config_file_name>\n   ```\n\n   Replace `<pod_config_file_name>` with the name of the YAML file for the pod configuration.\n2. Verify that the Security Context Constraints (SCC) on the pod is `anyuid`, so that Kopia can connect to the repository.\n\n   ```terminal\n   $ oc describe pod/oadp-mustgather-pod | grep scc\n   ```\n\n```terminal {title=\"Example output\"}\nopenshift.io/scc: anyuid\n```\n\n1. Connect to the pod via SSH by running the following command:\n\n   ```terminal\n   $ oc -n openshift-adp rsh pod/oadp-mustgather-pod\n   ```\n2. Connect to the Kopia repository by running the following command:\n\n   ```terminal\n   sh-5.1# kopia repository connect s3 \\\n     --bucket=<bucket_name> \\\n     --prefix=velero/kopia/<application_namespace> \\\n     --password=static-passw0rd \\\n     --access-key=\"<access_key>\" \\\n     --secret-access-key=\"<secret_access_key>\" \\\n     --endpoint=<bucket_endpoint>\n   ```\n\n   where:\n\n   `<bucket_name>`\n   :   Specifies the object storage provider bucket name.\n\n   `<application_namespace>`\n   :   Specifies the namespace for the application.\n\n   `static-passw0rd`\n   :   This is the Kopia password to connect to the repository.\n\n   `<access_key>`\n   :   Specifies the object storage provider access key.\n\n   `<secret_access_key>`\n   :   Specifies the object storage provider secret access key.\n\n   `<bucket_endpoint>`\n   :   Specifies the bucket endpoint. You do not need to specify the bucket endpoint, if you are using AWS S3 as the storage provider.\n\nThis is an example command. The command can vary based on the object storage provider.\n\n1. To benchmark the hashing algorithm, run the following command:\n\n   ```terminal\n   sh-5.1# kopia benchmark hashing\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Benchmarking hash 'BLAKE2B-256' (100 x 1048576 bytes, parallelism 1)\n   Benchmarking hash 'BLAKE2B-256-128' (100 x 1048576 bytes, parallelism 1)\n\n   Fastest option for this machine is: --block-hash=BLAKE3-256\n   ```\n2. To benchmark the encryption algorithm, run the following command:\n\n   ```terminal\n   sh-5.1# kopia benchmark encryption\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Benchmarking encryption 'AES256-GCM-HMAC-SHA256'\n   Benchmarking encryption 'CHACHA20-POLY1305-HMAC-SHA256'\n\n   Fastest option for this machine is: --encryption=AES256-GCM-HMAC-SHA256\n   ```\n3. To benchmark the splitter algorithm, run the following command:\n\n   ```terminal\n   sh-5.1# kopia benchmark splitter\n   ```\n\n   ```terminal {title=\"Example output\"}\n   splitting 16 blocks of 32MiB each, parallelism 1\n   DYNAMIC                     747.6 MB/s count:107 min:9467 10th:2277562 25th:2971794 50th:4747177 75th:7603998 90th:8388608 max:8388608\n   DYNAMIC-128K-BUZHASH        718.5 MB/s count:3183 min:3076 10th:80896 25th:104312 50th:157621 75th:249115 90th:262144 max:262144\n   DYNAMIC-128K-RABINKARP      164.4 MB/s count:3160 min:9667 10th:80098 25th:106626 50th:162269 75th:250655 90th:262144 max:262144\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/overriding-kopia-algorithms.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,202 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="overriding-kopia-algorithms" class="group scroll-mt-20">Overriding Kopia hashing, encryption, and splitter algorithms<a href="#overriding-kopia-algorithms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Override the default values of Kopia hashing, encryption, and splitter algorithms by using specific environment variables in the Data Protection Application (DPA).</p>
-      <p class="/modules/oadp-kopia-algorithms-benchmarking.md /modules/oadp-usecase-kopia-override-algorithms.md">{"{"}% include "./modules/oadp-kopia-configuring-algorithms.md" %{"}"} </p>
+      <h2 id="oadp-kopia-configuring-algorithms_overriding-kopia-algorithms" class="group scroll-mt-20">Configuring the DPA to override Kopia hashing, encryption, and splitter algorithms<a href="#oadp-kopia-configuring-algorithms_overriding-kopia-algorithms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the Data Protection Application (DPA) to override the default Kopia hashing, encryption, and splitter algorithms by setting environment variables in the Velero pod configuration. This helps you improve Kopia performance and compare performance metrics for your backup operations.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The configuration of the Kopia algorithms for splitting, hashing, and encryption in the Data Protection Application (DPA) apply only during the initial Kopia repository creation, and cannot be changed later.</p>
+          <p>To use different Kopia algorithms, ensure that the object storage does not contain any previous Kopia repositories of backups. Configure a new object storage in the Backup Storage Location (BSL) or specify a unique prefix for the object storage in the BSL configuration.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have created the secret by using the credentials provided by the cloud provider.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul><li>Configure the DPA with the environment variables for hashing, encryption, and splitter as shown in the following example.</li></ul>
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\n#...\nconfiguration:\n  nodeAgent:\n    enable: true\n    uploaderType: kopia\n  velero:\n    defaultPlugins:\n    - openshift\n    - aws\n    - csi\n    defaultSnapshotMoveData: true\n    podConfig:\n      env:\n        - name: KOPIA_HASHING_ALGORITHM\n          value: <hashing_algorithm_name>\n        - name: KOPIA_ENCRYPTION_ALGORITHM\n          value: <encryption_algorithm_name>\n        - name: KOPIA_SPLITTER_ALGORITHM\n          value: <splitter_algorithm_name>"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>enable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Set to <code>true</code> to enable the <code>nodeAgent</code>.</p></dd>
+      <dt class="font-semibold"><code>uploaderType</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the uploader type as <code>kopia</code>.</p></dd>
+      <dt class="font-semibold"><code>csi</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Include the <code>csi</code> plugin.</p></dd>
+      <dt class="font-semibold"><code>&lt;hashing_algorithm_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a hashing algorithm. For example, <code>BLAKE3-256</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;encryption_algorithm_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies an encryption algorithm. For example, <code>CHACHA20-POLY1305-HMAC-SHA256</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;splitter_algorithm_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a splitter algorithm. For example, <code>DYNAMIC-8M-RABINKARP</code>.</p></dd>
+      </dl>
+      <h2 id="oadp-usecase-kopia-override-algorithms_overriding-kopia-algorithms" class="group scroll-mt-20">Use case for overriding Kopia hashing, encryption, and splitter algorithms<a href="#oadp-usecase-kopia-override-algorithms_overriding-kopia-algorithms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Back up an application by using Kopia environment variables for hashing, encryption, and splitter. Store the backup in an AWS S3 bucket and verify the environment variables by connecting to the Kopia repository.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have an AWS S3 bucket configured as the backup storage location.</li>
+      <li>You have created the secret by using the credentials provided by the cloud provider.</li>
+      <li>You have installed the Kopia client.</li>
+      <li>You have an application with persistent volumes running in a separate namespace.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Configure the Data Protection Application (DPA) as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\nname: <dpa_name>\nnamespace: openshift-adp\nspec:\nbackupLocations:\n- name: aws\n  velero:\n    config:\n      profile: default\n      region: <region_name>\n    credential:\n      key: cloud\n      name: cloud-credentials\n    default: true\n    objectStorage:\n      bucket: <bucket_name>\n      prefix: velero\n    provider: aws\nconfiguration:\n  nodeAgent:\n    enable: true\n    uploaderType: kopia\n  velero:\n    defaultPlugins:\n    - openshift\n    - aws\n    - csi\n    defaultSnapshotMoveData: true\n    podConfig:\n      env:\n        - name: KOPIA_HASHING_ALGORITHM\n          value: BLAKE3-256\n        - name: KOPIA_ENCRYPTION_ALGORITHM\n          value: CHACHA20-POLY1305-HMAC-SHA256\n        - name: KOPIA_SPLITTER_ALGORITHM\n          value: DYNAMIC-8M-RABINKARP"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;dpa_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the DPA.</p></dd>
+      <dt class="font-semibold"><code>&lt;region_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the region for the backup storage location.</p></dd>
+      <dt class="font-semibold"><code>cloud-credentials</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the default <code>Secret</code> object.</p></dd>
+      <dt class="font-semibold"><code>&lt;bucket_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS S3 bucket name.</p></dd>
+      <dt class="font-semibold"><code>csi</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Include the <code>csi</code> plugin.</p></dd>
+      <dt class="font-semibold"><code>BLAKE3-256</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hashing algorithm as <code>BLAKE3-256</code>.</p></dd>
+      <dt class="font-semibold"><code>CHACHA20-POLY1305-HMAC-SHA256</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the encryption algorithm as <code>CHACHA20-POLY1305-HMAC-SHA256</code>.</p></dd>
+      <dt class="font-semibold"><code>DYNAMIC-8M-RABINKARP</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the splitter algorithm as <code>DYNAMIC-8M-RABINKARP</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the DPA by running the following command:
+      <CodeBlock code={"$ oc create -f <dpa_file_name>"} lang="terminal" />
+      <p>Replace <code>&lt;dpa_file_name&gt;</code> with the file name of the DPA you configured.</p>
+      </li>
+      <li>
+      Verify that the DPA has reconciled by running the following command:
+      <CodeBlock code={"$ oc get dpa -o yaml"} lang="terminal" />
+      </li>
+      <li>Create a backup CR as shown in the following example:</li>
+      </ol>
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Backup\nmetadata:\n  name: test-backup\n  namespace: openshift-adp\nspec:\n  includedNamespaces:\n  - <application_namespace>\n  defaultVolumesToFsBackup: true"} lang="yaml" />
+      <p>Replace <code>&lt;application_namespace&gt;</code> with the namespace for the application installed in the cluster.</p>
+      <ol>
+      <li>
+      Create a backup by running the following command:
+      <CodeBlock code={"$ oc apply -f <backup_file_name>"} lang="terminal" />
+      <p>Replace <code>&lt;backup_file_name&gt;</code> with the name of the backup CR file.</p>
+      </li>
+      <li>
+      Verify that the backup completed by running the following command:
+      <CodeBlock code={"$ oc get backups.velero.io <backup_name> -o yaml"} lang="terminal" />
+      <p>Replace <code>&lt;backup_name&gt;</code> with the name of the backup.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Connect to the Kopia repository by running the following command:
+      <CodeBlock code={"$ kopia repository connect s3 \\\n  --bucket=<bucket_name> \\\n  --prefix=velero/kopia/<application_namespace> \\\n  --password=static-passw0rd \\\n  --access-key=\"<aws_s3_access_key>\" \\\n  --secret-access-key=\"<aws_s3_secret_access_key>\""} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;bucket_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS S3 bucket name.</p></dd>
+      <dt class="font-semibold"><code>&lt;application_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace for the application.</p></dd>
+      <dt class="font-semibold"><code>static-passw0rd</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>This is the Kopia password to connect to the repository.</p></dd>
+      <dt class="font-semibold"><code>&lt;aws_s3_access_key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS S3 access key.</p></dd>
+      <dt class="font-semibold"><code>&lt;aws_s3_secret_access_key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS S3 storage provider secret access key.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <p>If you are using a storage provider other than AWS S3, you will need to add <code>--endpoint</code>, the bucket endpoint URL parameter, to the command.</p>
+      <ol>
+      <li>
+      Verify that Kopia uses the environment variables that are configured in the DPA for the backup by running the following command:
+      <CodeBlock code={"$ kopia repository status"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Example output</strong></p>
+      <CodeBlock code={"\nHash:                BLAKE3-256\nEncryption:          CHACHA20-POLY1305-HMAC-SHA256\nSplitter:            DYNAMIC-8M-RABINKARP\nFormat version:      3\n"} lang="terminal" />
+      <h2 id="oadp-kopia-algorithms-benchmarking_overriding-kopia-algorithms" class="group scroll-mt-20">Benchmarking Kopia hashing, encryption, and splitter algorithms<a href="#oadp-kopia-algorithms-benchmarking_overriding-kopia-algorithms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Run Kopia commands to benchmark the hashing, encryption, and splitter algorithms. Based on the benchmarking results, you can select the most suitable algorithm for your workload. You run the Kopia benchmarking commands from a pod on the cluster. The benchmarking results can vary depending on CPU speed, available RAM, disk speed, current I/O load, and so on.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The configuration of the Kopia algorithms for splitting, hashing, and encryption in the Data Protection Application (DPA) apply only during the initial Kopia repository creation, and cannot be changed later.</p>
+          <p>To use different Kopia algorithms, ensure that the object storage does not contain any previous Kopia repositories of backups. Configure a new object storage in the Backup Storage Location (BSL) or specify a unique prefix for the object storage in the BSL configuration.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have an application with persistent volumes running in a separate namespace.</li>
+      <li>You have run a backup of the application with Container Storage Interface (CSI) snapshots.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol><li>Configure the <code>must-gather</code> pod as shown in the following example. Make sure you are using the <code>oadp-mustgather</code> image for OADP version 1.3 and later.</li></ol>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: oadp-mustgather-pod\n  labels:\n    purpose: user-interaction\nspec:\n  containers:\n  - name: oadp-mustgather-container\n    image: registry.redhat.io/oadp/oadp-mustgather-rhel9:v1.3\n    command: [\"sleep\"]\n    args: [\"infinity\"]"} lang="yaml" title="Example pod configuration" />
+      <p>The Kopia client is available in the <code>oadp-mustgather</code> image.</p>
+      <ol>
+      <li>
+      Create the pod by running the following command:
+      <CodeBlock code={"$ oc apply -f <pod_config_file_name>"} lang="terminal" />
+      <p>Replace <code>&lt;pod_config_file_name&gt;</code> with the name of the YAML file for the pod configuration.</p>
+      </li>
+      <li>
+      Verify that the Security Context Constraints (SCC) on the pod is <code>anyuid</code>, so that Kopia can connect to the repository.
+      <CodeBlock code={"$ oc describe pod/oadp-mustgather-pod | grep scc"} lang="terminal" />
+      </li>
+      </ol>
+      <CodeBlock code={"openshift.io/scc: anyuid"} lang="terminal" title="Example output" />
+      <ol>
+      <li>
+      Connect to the pod via SSH by running the following command:
+      <CodeBlock code={"$ oc -n openshift-adp rsh pod/oadp-mustgather-pod"} lang="terminal" />
+      </li>
+      <li>
+      Connect to the Kopia repository by running the following command:
+      <CodeBlock code={"sh-5.1# kopia repository connect s3 \\\n  --bucket=<bucket_name> \\\n  --prefix=velero/kopia/<application_namespace> \\\n  --password=static-passw0rd \\\n  --access-key=\"<access_key>\" \\\n  --secret-access-key=\"<secret_access_key>\" \\\n  --endpoint=<bucket_endpoint>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;bucket_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the object storage provider bucket name.</p></dd>
+      <dt class="font-semibold"><code>&lt;application_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace for the application.</p></dd>
+      <dt class="font-semibold"><code>static-passw0rd</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>This is the Kopia password to connect to the repository.</p></dd>
+      <dt class="font-semibold"><code>&lt;access_key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the object storage provider access key.</p></dd>
+      <dt class="font-semibold"><code>&lt;secret_access_key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the object storage provider secret access key.</p></dd>
+      <dt class="font-semibold"><code>&lt;bucket_endpoint&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the bucket endpoint. You do not need to specify the bucket endpoint, if you are using AWS S3 as the storage provider.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <p>This is an example command. The command can vary based on the object storage provider.</p>
+      <ol>
+      <li>
+      To benchmark the hashing algorithm, run the following command:
+      <CodeBlock code={"sh-5.1# kopia benchmark hashing"} lang="terminal" />
+      <CodeBlock code={"Benchmarking hash 'BLAKE2B-256' (100 x 1048576 bytes, parallelism 1)\nBenchmarking hash 'BLAKE2B-256-128' (100 x 1048576 bytes, parallelism 1)\n\n\nFastest option for this machine is: --block-hash=BLAKE3-256"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To benchmark the encryption algorithm, run the following command:
+      <CodeBlock code={"sh-5.1# kopia benchmark encryption"} lang="terminal" />
+      <CodeBlock code={"Benchmarking encryption 'AES256-GCM-HMAC-SHA256'\nBenchmarking encryption 'CHACHA20-POLY1305-HMAC-SHA256'\n\nFastest option for this machine is: --encryption=AES256-GCM-HMAC-SHA256"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To benchmark the splitter algorithm, run the following command:
+      <CodeBlock code={"sh-5.1# kopia benchmark splitter"} lang="terminal" />
+      <CodeBlock code={"splitting 16 blocks of 32MiB each, parallelism 1\nDYNAMIC                     747.6 MB/s count:107 min:9467 10th:2277562 25th:2971794 50th:4747177 75th:7603998 90th:8388608 max:8388608\nDYNAMIC-128K-BUZHASH        718.5 MB/s count:3183 min:3076 10th:80896 25th:104312 50th:157621 75th:249115 90th:262144 max:262144\nDYNAMIC-128K-RABINKARP      164.4 MB/s count:3160 min:9667 10th:80098 25th:106626 50th:162269 75th:250655 90th:262144 max:262144\n"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"audit-log-view","text":"Viewing audit logs"},{"depth":2,"slug":"viewing-audit-logs-additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"audit-log-view","text":"Viewing audit logs"},{"depth":2,"slug":"nodes-pods-audit-log-basic_audit-log-view","text":"About the API audit log"},{"depth":2,"slug":"nodes-nodes-audit-log-basic-viewing_audit-log-view","text":"Viewing the audit logs"},{"depth":2,"slug":"security-audit-log-basic-filtering_audit-log-view","text":"Filtering audit logs"},{"depth":2,"slug":"gathering-data-audit-logs_audit-log-view","text":"Gathering audit logs"},{"depth":2,"slug":"viewing-audit-logs-additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/audit-log-view";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["security"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing audit logs {#audit-log-view}\n\nOpenShift Container Platform auditing provides a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system.\n\n## Additional resources {#viewing-audit-logs-additional-resources}\n\n- [Must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)\n- [API audit log event structure](https://github.com/kubernetes/apiserver/blob/master/pkg/apis/audit/v1/types.go#L72)\n- [Configuring the audit log policy](/openshift-docs-markdown/security/audit-log-policy-config#audit-log-policy-config)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/audit-log-view.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing audit logs {#audit-log-view}\n\nOpenShift Container Platform auditing provides a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system.\n\n## About the API audit log {#nodes-pods-audit-log-basic_audit-log-view}\n\nAudit works at the API server level, logging all requests coming to the server. Each audit log contains the following information:\n\n**Audit log fields**\n\n| Field | Description |\n| --- | --- |\n| `level` | The audit level at which the event was generated. |\n| `auditID` | A unique audit ID, generated for each request. |\n| `stage` | The stage of the request handling when this event instance was generated. |\n| `requestURI` | The request URI as sent by the client to a server. |\n| `verb` | The Kubernetes verb associated with the request. For non-resource requests, this is the lowercase HTTP method. |\n| `user` | The authenticated user information. |\n| `impersonatedUser` | Optional. The impersonated user information, if the request is impersonating another user. |\n| `sourceIPs` | Optional. The source IPs, from where the request originated and any intermediate proxies. |\n| `userAgent` | Optional. The user agent string reported by the client. Note that the user agent is provided by the client, and must not be trusted. |\n| `objectRef` | Optional. The object reference this request is targeted at. This does not apply for `List`-type requests, or non-resource requests. |\n| `responseStatus` | Optional. The response status, populated even when the `ResponseObject` is not a `Status` type. For successful responses, this will only include the code. For non-status type error responses, this will be auto-populated with the error message. |\n| `requestObject` | Optional. The API object from the request, in JSON format. The `RequestObject` is recorded as is in the request (possibly re-encoded as JSON), prior to version conversion, defaulting, admission or merging. It is an external versioned object type, and might not be a valid object on its own. This is omitted for non-resource requests and is only logged at request level and higher. |\n| `responseObject` | Optional. The API object returned in the response, in JSON format. The `ResponseObject` is recorded after conversion to the external type, and serialized as JSON. This is omitted for non-resource requests and is only logged at response level. |\n| `requestReceivedTimestamp` | The time that the request reached the API server. |\n| `stageTimestamp` | The time that the request reached the current audit stage. |\n| `annotations` | Optional. An unstructured key value map stored with an audit event that may be set by plugins invoked in the request serving chain, including authentication, authorization and admission plugins. Note that these annotations are for the audit event, and do not correspond to the `metadata.annotations` of the submitted object. Keys should uniquely identify the informing component to avoid name collisions, for example `podsecuritypolicy.admission.k8s.io/policy`. Values should be short. Annotations are included in the metadata level. |\n\nExample output for the Kubernetes API server:\n\n```json\n{\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"ad209ce1-fec7-4130-8192-c4cc63f1d8cd\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/api/v1/namespaces/openshift-kube-controller-manager/configmaps/cert-recovery-controller-lock?timeout=35s\",\"verb\":\"update\",\"user\":{\"username\":\"system:serviceaccount:openshift-kube-controller-manager:localhost-recovery-client\",\"uid\":\"dd4997e3-d565-4e37-80f8-7fc122ccd785\",\"groups\":[\"system:serviceaccounts\",\"system:serviceaccounts:openshift-kube-controller-manager\",\"system:authenticated\"]},\"sourceIPs\":[\"::1\"],\"userAgent\":\"cluster-kube-controller-manager-operator/v0.0.0 (linux/amd64) kubernetes/$Format\",\"objectRef\":{\"resource\":\"configmaps\",\"namespace\":\"openshift-kube-controller-manager\",\"name\":\"cert-recovery-controller-lock\",\"uid\":\"5c57190b-6993-425d-8101-8337e48c7548\",\"apiVersion\":\"v1\",\"resourceVersion\":\"574307\"},\"responseStatus\":{\"metadata\":{},\"code\":200},\"requestReceivedTimestamp\":\"2020-04-02T08:27:20.200962Z\",\"stageTimestamp\":\"2020-04-02T08:27:20.206710Z\",\"annotations\":{\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"RBAC: allowed by ClusterRoleBinding \\\"system:openshift:operator:kube-controller-manager-recovery\\\" of ClusterRole \\\"cluster-admin\\\" to ServiceAccount \\\"localhost-recovery-client/openshift-kube-controller-manager\\\"\"}}\n```\n\n## Viewing the audit logs {#nodes-nodes-audit-log-basic-viewing_audit-log-view}\n\nYou can view the logs for the OpenShift API server, Kubernetes API server, OpenShift OAuth API server, and OpenShift OAuth server for each control plane node.\n\n**Procedure**\n\n- View the OpenShift API server audit logs:\n\n  1. List the OpenShift API server audit logs that are available for each control plane node:\n\n     ```terminal\n     $ oc adm node-logs --role=master --path=openshift-apiserver/\n     ```\n\n     ```terminal {title=\"Example output\"}\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit-2021-03-09T00-12-19.834.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit-2021-03-09T00-11-49.835.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit-2021-03-09T00-13-00.128.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit.log\n     ```\n  2. View a specific OpenShift API server audit log by providing the node name and the log name:\n\n     ```terminal\n     $ oc adm node-logs <node_name> --path=openshift-apiserver/<log_name>\n     ```\n\n     For example:\n\n     ```terminal\n     $ oc adm node-logs ci-ln-m0wpfjb-f76d1-vnb5x-master-0 --path=openshift-apiserver/audit-2021-03-09T00-12-19.834.log\n     ```\n\n     ```terminal {title=\"Example output\"}\n     {\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"381acf6d-5f30-4c7d-8175-c9c317ae5893\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/metrics\",\"verb\":\"get\",\"user\":{\"username\":\"system:serviceaccount:openshift-monitoring:prometheus-k8s\",\"uid\":\"825b60a0-3976-4861-a342-3b2b561e8f82\",\"groups\":[\"system:serviceaccounts\",\"system:serviceaccounts:openshift-monitoring\",\"system:authenticated\"]},\"sourceIPs\":[\"10.129.2.6\"],\"userAgent\":\"Prometheus/2.23.0\",\"responseStatus\":{\"metadata\":{},\"code\":200},\"requestReceivedTimestamp\":\"2021-03-08T18:02:04.086545Z\",\"stageTimestamp\":\"2021-03-08T18:02:04.107102Z\",\"annotations\":{\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"RBAC: allowed by ClusterRoleBinding \\\"prometheus-k8s\\\" of ClusterRole \\\"prometheus-k8s\\\" to ServiceAccount \\\"prometheus-k8s/openshift-monitoring\\\"\"}}\n     ```\n- View the Kubernetes API server audit logs:\n\n  1. List the Kubernetes API server audit logs that are available for each control plane node:\n\n     ```terminal\n     $ oc adm node-logs --role=master --path=kube-apiserver/\n     ```\n\n     ```terminal {title=\"Example output\"}\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit-2021-03-09T14-07-27.129.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit-2021-03-09T19-24-22.620.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit-2021-03-09T18-37-07.511.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit.log\n     ```\n  2. View a specific Kubernetes API server audit log by providing the node name and the log name:\n\n     ```terminal\n     $ oc adm node-logs <node_name> --path=kube-apiserver/<log_name>\n     ```\n\n     For example:\n\n     ```terminal\n     $ oc adm node-logs ci-ln-m0wpfjb-f76d1-vnb5x-master-0 --path=kube-apiserver/audit-2021-03-09T14-07-27.129.log\n     ```\n\n     ```terminal {title=\"Example output\"}\n     {\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"cfce8a0b-b5f5-4365-8c9f-79c1227d10f9\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/api/v1/namespaces/openshift-kube-scheduler/serviceaccounts/openshift-kube-scheduler-sa\",\"verb\":\"get\",\"user\":{\"username\":\"system:serviceaccount:openshift-kube-scheduler-operator:openshift-kube-scheduler-operator\",\"uid\":\"2574b041-f3c8-44e6-a057-baef7aa81516\",\"groups\":[\"system:serviceaccounts\",\"system:serviceaccounts:openshift-kube-scheduler-operator\",\"system:authenticated\"]},\"sourceIPs\":[\"10.128.0.8\"],\"userAgent\":\"cluster-kube-scheduler-operator/v0.0.0 (linux/amd64) kubernetes/$Format\",\"objectRef\":{\"resource\":\"serviceaccounts\",\"namespace\":\"openshift-kube-scheduler\",\"name\":\"openshift-kube-scheduler-sa\",\"apiVersion\":\"v1\"},\"responseStatus\":{\"metadata\":{},\"code\":200},\"requestReceivedTimestamp\":\"2021-03-08T18:06:42.512619Z\",\"stageTimestamp\":\"2021-03-08T18:06:42.516145Z\",\"annotations\":{\"authentication.k8s.io/legacy-token\":\"system:serviceaccount:openshift-kube-scheduler-operator:openshift-kube-scheduler-operator\",\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"RBAC: allowed by ClusterRoleBinding \\\"system:openshift:operator:cluster-kube-scheduler-operator\\\" of ClusterRole \\\"cluster-admin\\\" to ServiceAccount \\\"openshift-kube-scheduler-operator/openshift-kube-scheduler-operator\\\"\"}}\n     ```\n- View the OpenShift OAuth API server audit logs:\n\n  1. List the OpenShift OAuth API server audit logs that are available for each control plane node:\n\n     ```terminal\n     $ oc adm node-logs --role=master --path=oauth-apiserver/\n     ```\n\n     ```terminal {title=\"Example output\"}\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit-2021-03-09T13-06-26.128.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit-2021-03-09T18-23-21.619.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit-2021-03-09T17-36-06.510.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit.log\n     ```\n  2. View a specific OpenShift OAuth API server audit log by providing the node name and the log name:\n\n     ```terminal\n     $ oc adm node-logs <node_name> --path=oauth-apiserver/<log_name>\n     ```\n\n     For example:\n\n     ```terminal\n     $ oc adm node-logs ci-ln-m0wpfjb-f76d1-vnb5x-master-0 --path=oauth-apiserver/audit-2021-03-09T13-06-26.128.log\n     ```\n\n     ```terminal {title=\"Example output\"}\n     {\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"dd4c44e2-3ea1-4830-9ab7-c91a5f1388d6\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/apis/user.openshift.io/v1/users/~\",\"verb\":\"get\",\"user\":{\"username\":\"system:serviceaccount:openshift-monitoring:prometheus-k8s\",\"groups\":[\"system:serviceaccounts\",\"system:serviceaccounts:openshift-monitoring\",\"system:authenticated\"]},\"sourceIPs\":[\"10.0.32.4\",\"10.128.0.1\"],\"userAgent\":\"dockerregistry/v0.0.0 (linux/amd64) kubernetes/$Format\",\"objectRef\":{\"resource\":\"users\",\"name\":\"~\",\"apiGroup\":\"user.openshift.io\",\"apiVersion\":\"v1\"},\"responseStatus\":{\"metadata\":{},\"code\":200},\"requestReceivedTimestamp\":\"2021-03-08T17:47:43.653187Z\",\"stageTimestamp\":\"2021-03-08T17:47:43.660187Z\",\"annotations\":{\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"RBAC: allowed by ClusterRoleBinding \\\"basic-users\\\" of ClusterRole \\\"basic-user\\\" to Group \\\"system:authenticated\\\"\"}}\n     ```\n- View the OpenShift OAuth server audit logs:\n\n  1. List the OpenShift OAuth server audit logs that are available for each control plane node:\n\n     ```terminal\n     $ oc adm node-logs --role=master --path=oauth-server/\n     ```\n\n     ```terminal {title=\"Example output\"}\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit-2022-05-11T18-57-32.395.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit-2022-05-11T19-07-07.021.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit-2022-05-11T19-06-51.844.log\n     ci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit.log\n     ```\n  2. View a specific OpenShift OAuth server audit log by providing the node name and the log name:\n\n     ```terminal\n     $ oc adm node-logs <node_name> --path=oauth-server/<log_name>\n     ```\n\n     For example:\n\n     ```terminal\n     $ oc adm node-logs ci-ln-m0wpfjb-f76d1-vnb5x-master-0 --path=oauth-server/audit-2022-05-11T18-57-32.395.log\n     ```\n\n     ```terminal {title=\"Example output\"}\n     {\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"13c20345-f33b-4b7d-b3b6-e7793f805621\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/login\",\"verb\":\"post\",\"user\":{\"username\":\"system:anonymous\",\"groups\":[\"system:unauthenticated\"]},\"sourceIPs\":[\"10.128.2.6\"],\"userAgent\":\"Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0\",\"responseStatus\":{\"metadata\":{},\"code\":302},\"requestReceivedTimestamp\":\"2022-05-11T17:31:16.280155Z\",\"stageTimestamp\":\"2022-05-11T17:31:16.297083Z\",\"annotations\":{\"authentication.openshift.io/decision\":\"error\",\"authentication.openshift.io/username\":\"kubeadmin\",\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"\"}}\n     ```\n\n     The possible values for the `authentication.openshift.io/decision` annotation are `allow`, `deny`, or `error`.\n\n## Filtering audit logs {#security-audit-log-basic-filtering_audit-log-view}\n\nYou can use `jq` or another JSON parsing tool to filter the API server audit logs.\n\n> [!NOTE]\n> The amount of information logged to the API server audit logs is controlled by the audit log policy that is set.\n\nThe following procedure provides examples of using `jq` to filter audit logs on control plane node `node-1.example.com`. See the [jq Manual](https://stedolan.github.io/jq/manual/) for detailed information on using `jq`.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed `jq`.\n\n**Procedure**\n\n- Filter OpenShift API server audit logs by user:\n\n  ```terminal\n  $ oc adm node-logs node-1.example.com  \\\n    --path=openshift-apiserver/audit.log \\\n    | jq 'select(.user.username == \"myusername\")'\n  ```\n- Filter OpenShift API server audit logs by user agent:\n\n  ```terminal\n  $ oc adm node-logs node-1.example.com  \\\n    --path=openshift-apiserver/audit.log \\\n    | jq 'select(.userAgent == \"cluster-version-operator/v0.0.0 (linux/amd64) kubernetes/$Format\")'\n  ```\n- Filter Kubernetes API server audit logs by a certain API version and only output the user agent:\n\n  ```terminal\n  $ oc adm node-logs node-1.example.com  \\\n    --path=kube-apiserver/audit.log \\\n    | jq 'select(.requestURI | startswith(\"/apis/apiextensions.k8s.io/v1beta1\")) | .userAgent'\n  ```\n- Filter OpenShift OAuth API server audit logs by excluding a verb:\n\n  ```terminal\n  $ oc adm node-logs node-1.example.com  \\\n    --path=oauth-apiserver/audit.log \\\n    | jq 'select(.verb != \"get\")'\n  ```\n- Filter OpenShift OAuth server audit logs by events that identified a username and failed with an error:\n\n  ```terminal\n  $ oc adm node-logs node-1.example.com  \\\n    --path=oauth-server/audit.log \\\n    | jq 'select(.annotations[\"authentication.openshift.io/username\"] != null and .annotations[\"authentication.openshift.io/decision\"] == \"error\")'\n  ```\n\n## Gathering audit logs {#gathering-data-audit-logs_audit-log-view}\n\nYou can use the must-gather tool to collect the audit logs for debugging your cluster, which you can review or send to Red Hat Support.\n\n**Procedure**\n\n1. Run the `oc adm must-gather` command with `-- /usr/bin/gather_audit_logs`:\n\n   ```terminal\n   $ oc adm must-gather -- /usr/bin/gather_audit_logs\n   ```\n2. Create a compressed file from the `must-gather` directory that was just created in your working directory. For example, on a computer that uses a Linux operating system, run the following command:\n\n   ```terminal\n   $ tar cvaf must-gather.tar.gz must-gather.local.472290403699006248\n   ```\n\n   Replace `must-gather.local.472290403699006248` with the actual directory name.\n3. Attach the compressed file to your support case on the [the **Customer Support** page](https://access.redhat.com/support/cases/#/case/list) of the Red Hat Customer Portal.\n\n## Additional resources {#viewing-audit-logs-additional-resources}\n\n- [Must-gather tool](/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data)\n- [API audit log event structure](https://github.com/kubernetes/apiserver/blob/master/pkg/apis/audit/v1/types.go#L72)\n- [Configuring the audit log policy](/openshift-docs-markdown/security/audit-log-policy-config#audit-log-policy-config)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/audit-log-view.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +101,212 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="audit-log-view" class="group scroll-mt-20">Viewing audit logs<a href="#audit-log-view" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>OpenShift Container Platform auditing provides a security-relevant chronological set of records documenting the sequence of activities that have affected the system by individual users, administrators, or other components of the system.</p>
-      <p class="/modules/nodes-nodes-audit-log-basic.md"></p>
-      <p class="/modules/nodes-nodes-audit-log-basic-viewing.md"></p>
-      <p class="/modules/security-audit-log-filtering.md"></p>
-      <p class="/modules/gathering-data-audit-logs.md"></p>
+      <h2 id="nodes-pods-audit-log-basic_audit-log-view" class="group scroll-mt-20">About the API audit log<a href="#nodes-pods-audit-log-basic_audit-log-view" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Audit works at the API server level, logging all requests coming to the server. Each audit log contains the following information:</p>
+      <p><strong>Audit log fields</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>level</code></TableCell>
+      <TableCell>The audit level at which the event was generated.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>auditID</code></TableCell>
+      <TableCell>A unique audit ID, generated for each request.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>stage</code></TableCell>
+      <TableCell>The stage of the request handling when this event instance was generated.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>requestURI</code></TableCell>
+      <TableCell>The request URI as sent by the client to a server.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>verb</code></TableCell>
+      <TableCell>The Kubernetes verb associated with the request. For non-resource requests, this is the lowercase HTTP method.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>user</code></TableCell>
+      <TableCell>The authenticated user information.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>impersonatedUser</code></TableCell>
+      <TableCell>Optional. The impersonated user information, if the request is impersonating another user.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>sourceIPs</code></TableCell>
+      <TableCell>Optional. The source IPs, from where the request originated and any intermediate proxies.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>userAgent</code></TableCell>
+      <TableCell>Optional. The user agent string reported by the client. Note that the user agent is provided by the client, and must not be trusted.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>objectRef</code></TableCell>
+      <TableCell>Optional. The object reference this request is targeted at. This does not apply for <code>List</code>-type requests, or non-resource requests.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>responseStatus</code></TableCell>
+      <TableCell>Optional. The response status, populated even when the <code>ResponseObject</code> is not a <code>Status</code> type. For successful responses, this will only include the code. For non-status type error responses, this will be auto-populated with the error message.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>requestObject</code></TableCell>
+      <TableCell>Optional. The API object from the request, in JSON format. The <code>RequestObject</code> is recorded as is in the request (possibly re-encoded as JSON), prior to version conversion, defaulting, admission or merging. It is an external versioned object type, and might not be a valid object on its own. This is omitted for non-resource requests and is only logged at request level and higher.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>responseObject</code></TableCell>
+      <TableCell>Optional. The API object returned in the response, in JSON format. The <code>ResponseObject</code> is recorded after conversion to the external type, and serialized as JSON. This is omitted for non-resource requests and is only logged at response level.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>requestReceivedTimestamp</code></TableCell>
+      <TableCell>The time that the request reached the API server.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>stageTimestamp</code></TableCell>
+      <TableCell>The time that the request reached the current audit stage.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>annotations</code></TableCell>
+      <TableCell>Optional. An unstructured key value map stored with an audit event that may be set by plugins invoked in the request serving chain, including authentication, authorization and admission plugins. Note that these annotations are for the audit event, and do not correspond to the <code>metadata.annotations</code> of the submitted object. Keys should uniquely identify the informing component to avoid name collisions, for example <code>podsecuritypolicy.admission.k8s.io/policy</code>. Values should be short. Annotations are included in the metadata level.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>Example output for the Kubernetes API server:</p>
+      <CodeBlock code={"{\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"ad209ce1-fec7-4130-8192-c4cc63f1d8cd\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/api/v1/namespaces/openshift-kube-controller-manager/configmaps/cert-recovery-controller-lock?timeout=35s\",\"verb\":\"update\",\"user\":{\"username\":\"system:serviceaccount:openshift-kube-controller-manager:localhost-recovery-client\",\"uid\":\"dd4997e3-d565-4e37-80f8-7fc122ccd785\",\"groups\":[\"system:serviceaccounts\",\"system:serviceaccounts:openshift-kube-controller-manager\",\"system:authenticated\"]},\"sourceIPs\":[\"::1\"],\"userAgent\":\"cluster-kube-controller-manager-operator/v0.0.0 (linux/amd64) kubernetes/$Format\",\"objectRef\":{\"resource\":\"configmaps\",\"namespace\":\"openshift-kube-controller-manager\",\"name\":\"cert-recovery-controller-lock\",\"uid\":\"5c57190b-6993-425d-8101-8337e48c7548\",\"apiVersion\":\"v1\",\"resourceVersion\":\"574307\"},\"responseStatus\":{\"metadata\":{},\"code\":200},\"requestReceivedTimestamp\":\"2020-04-02T08:27:20.200962Z\",\"stageTimestamp\":\"2020-04-02T08:27:20.206710Z\",\"annotations\":{\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"RBAC: allowed by ClusterRoleBinding \\\"system:openshift:operator:kube-controller-manager-recovery\\\" of ClusterRole \\\"cluster-admin\\\" to ServiceAccount \\\"localhost-recovery-client/openshift-kube-controller-manager\\\"\"}}"} lang="json" />
+      <h2 id="nodes-nodes-audit-log-basic-viewing_audit-log-view" class="group scroll-mt-20">Viewing the audit logs<a href="#nodes-nodes-audit-log-basic-viewing_audit-log-view" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can view the logs for the OpenShift API server, Kubernetes API server, OpenShift OAuth API server, and OpenShift OAuth server for each control plane node.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      View the OpenShift API server audit logs:
+      <ol>
+      <li>
+      List the OpenShift API server audit logs that are available for each control plane node:
+      <CodeBlock code={"$ oc adm node-logs --role=master --path=openshift-apiserver/"} lang="terminal" />
+      <CodeBlock code={"ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit-2021-03-09T00-12-19.834.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit-2021-03-09T00-11-49.835.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit-2021-03-09T00-13-00.128.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit.log"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View a specific OpenShift API server audit log by providing the node name and the log name:
+      <CodeBlock code={"$ oc adm node-logs <node_name> --path=openshift-apiserver/<log_name>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc adm node-logs ci-ln-m0wpfjb-f76d1-vnb5x-master-0 --path=openshift-apiserver/audit-2021-03-09T00-12-19.834.log"} lang="terminal" />
+      <CodeBlock code={"{\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"381acf6d-5f30-4c7d-8175-c9c317ae5893\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/metrics\",\"verb\":\"get\",\"user\":{\"username\":\"system:serviceaccount:openshift-monitoring:prometheus-k8s\",\"uid\":\"825b60a0-3976-4861-a342-3b2b561e8f82\",\"groups\":[\"system:serviceaccounts\",\"system:serviceaccounts:openshift-monitoring\",\"system:authenticated\"]},\"sourceIPs\":[\"10.129.2.6\"],\"userAgent\":\"Prometheus/2.23.0\",\"responseStatus\":{\"metadata\":{},\"code\":200},\"requestReceivedTimestamp\":\"2021-03-08T18:02:04.086545Z\",\"stageTimestamp\":\"2021-03-08T18:02:04.107102Z\",\"annotations\":{\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"RBAC: allowed by ClusterRoleBinding \\\"prometheus-k8s\\\" of ClusterRole \\\"prometheus-k8s\\\" to ServiceAccount \\\"prometheus-k8s/openshift-monitoring\\\"\"}}"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      View the Kubernetes API server audit logs:
+      <ol>
+      <li>
+      List the Kubernetes API server audit logs that are available for each control plane node:
+      <CodeBlock code={"$ oc adm node-logs --role=master --path=kube-apiserver/"} lang="terminal" />
+      <CodeBlock code={"ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit-2021-03-09T14-07-27.129.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit-2021-03-09T19-24-22.620.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit-2021-03-09T18-37-07.511.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit.log"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View a specific Kubernetes API server audit log by providing the node name and the log name:
+      <CodeBlock code={"$ oc adm node-logs <node_name> --path=kube-apiserver/<log_name>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc adm node-logs ci-ln-m0wpfjb-f76d1-vnb5x-master-0 --path=kube-apiserver/audit-2021-03-09T14-07-27.129.log"} lang="terminal" />
+      <CodeBlock code={"{\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"cfce8a0b-b5f5-4365-8c9f-79c1227d10f9\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/api/v1/namespaces/openshift-kube-scheduler/serviceaccounts/openshift-kube-scheduler-sa\",\"verb\":\"get\",\"user\":{\"username\":\"system:serviceaccount:openshift-kube-scheduler-operator:openshift-kube-scheduler-operator\",\"uid\":\"2574b041-f3c8-44e6-a057-baef7aa81516\",\"groups\":[\"system:serviceaccounts\",\"system:serviceaccounts:openshift-kube-scheduler-operator\",\"system:authenticated\"]},\"sourceIPs\":[\"10.128.0.8\"],\"userAgent\":\"cluster-kube-scheduler-operator/v0.0.0 (linux/amd64) kubernetes/$Format\",\"objectRef\":{\"resource\":\"serviceaccounts\",\"namespace\":\"openshift-kube-scheduler\",\"name\":\"openshift-kube-scheduler-sa\",\"apiVersion\":\"v1\"},\"responseStatus\":{\"metadata\":{},\"code\":200},\"requestReceivedTimestamp\":\"2021-03-08T18:06:42.512619Z\",\"stageTimestamp\":\"2021-03-08T18:06:42.516145Z\",\"annotations\":{\"authentication.k8s.io/legacy-token\":\"system:serviceaccount:openshift-kube-scheduler-operator:openshift-kube-scheduler-operator\",\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"RBAC: allowed by ClusterRoleBinding \\\"system:openshift:operator:cluster-kube-scheduler-operator\\\" of ClusterRole \\\"cluster-admin\\\" to ServiceAccount \\\"openshift-kube-scheduler-operator/openshift-kube-scheduler-operator\\\"\"}}"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      View the OpenShift OAuth API server audit logs:
+      <ol>
+      <li>
+      List the OpenShift OAuth API server audit logs that are available for each control plane node:
+      <CodeBlock code={"$ oc adm node-logs --role=master --path=oauth-apiserver/"} lang="terminal" />
+      <CodeBlock code={"ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit-2021-03-09T13-06-26.128.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit-2021-03-09T18-23-21.619.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit-2021-03-09T17-36-06.510.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit.log"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View a specific OpenShift OAuth API server audit log by providing the node name and the log name:
+      <CodeBlock code={"$ oc adm node-logs <node_name> --path=oauth-apiserver/<log_name>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc adm node-logs ci-ln-m0wpfjb-f76d1-vnb5x-master-0 --path=oauth-apiserver/audit-2021-03-09T13-06-26.128.log"} lang="terminal" />
+      <CodeBlock code={"{\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"dd4c44e2-3ea1-4830-9ab7-c91a5f1388d6\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/apis/user.openshift.io/v1/users/~\",\"verb\":\"get\",\"user\":{\"username\":\"system:serviceaccount:openshift-monitoring:prometheus-k8s\",\"groups\":[\"system:serviceaccounts\",\"system:serviceaccounts:openshift-monitoring\",\"system:authenticated\"]},\"sourceIPs\":[\"10.0.32.4\",\"10.128.0.1\"],\"userAgent\":\"dockerregistry/v0.0.0 (linux/amd64) kubernetes/$Format\",\"objectRef\":{\"resource\":\"users\",\"name\":\"~\",\"apiGroup\":\"user.openshift.io\",\"apiVersion\":\"v1\"},\"responseStatus\":{\"metadata\":{},\"code\":200},\"requestReceivedTimestamp\":\"2021-03-08T17:47:43.653187Z\",\"stageTimestamp\":\"2021-03-08T17:47:43.660187Z\",\"annotations\":{\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"RBAC: allowed by ClusterRoleBinding \\\"basic-users\\\" of ClusterRole \\\"basic-user\\\" to Group \\\"system:authenticated\\\"\"}}"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      View the OpenShift OAuth server audit logs:
+      <ol>
+      <li>
+      List the OpenShift OAuth server audit logs that are available for each control plane node:
+      <CodeBlock code={"$ oc adm node-logs --role=master --path=oauth-server/"} lang="terminal" />
+      <CodeBlock code={"ci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit-2022-05-11T18-57-32.395.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-0 audit.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit-2022-05-11T19-07-07.021.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-1 audit.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit-2022-05-11T19-06-51.844.log\nci-ln-m0wpfjb-f76d1-vnb5x-master-2 audit.log"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View a specific OpenShift OAuth server audit log by providing the node name and the log name:
+      <CodeBlock code={"$ oc adm node-logs <node_name> --path=oauth-server/<log_name>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc adm node-logs ci-ln-m0wpfjb-f76d1-vnb5x-master-0 --path=oauth-server/audit-2022-05-11T18-57-32.395.log"} lang="terminal" />
+      <CodeBlock code={"{\"kind\":\"Event\",\"apiVersion\":\"audit.k8s.io/v1\",\"level\":\"Metadata\",\"auditID\":\"13c20345-f33b-4b7d-b3b6-e7793f805621\",\"stage\":\"ResponseComplete\",\"requestURI\":\"/login\",\"verb\":\"post\",\"user\":{\"username\":\"system:anonymous\",\"groups\":[\"system:unauthenticated\"]},\"sourceIPs\":[\"10.128.2.6\"],\"userAgent\":\"Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101 Firefox/91.0\",\"responseStatus\":{\"metadata\":{},\"code\":302},\"requestReceivedTimestamp\":\"2022-05-11T17:31:16.280155Z\",\"stageTimestamp\":\"2022-05-11T17:31:16.297083Z\",\"annotations\":{\"authentication.openshift.io/decision\":\"error\",\"authentication.openshift.io/username\":\"kubeadmin\",\"authorization.k8s.io/decision\":\"allow\",\"authorization.k8s.io/reason\":\"\"}}"} lang="terminal" title="Example output" />
+      <p>The possible values for the <code>authentication.openshift.io/decision</code> annotation are <code>allow</code>, <code>deny</code>, or <code>error</code>.</p>
+      </li>
+      </ol>
+      </li>
+      </ul>
+      <h2 id="security-audit-log-basic-filtering_audit-log-view" class="group scroll-mt-20">Filtering audit logs<a href="#security-audit-log-basic-filtering_audit-log-view" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use <code>jq</code> or another JSON parsing tool to filter the API server audit logs.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The amount of information logged to the API server audit logs is controlled by the audit log policy that is set.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following procedure provides examples of using <code>jq</code> to filter audit logs on control plane node <code>node-1.example.com</code>. See the <a href="https://stedolan.github.io/jq/manual/">jq Manual</a> for detailed information on using <code>jq</code>.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed <code>jq</code>.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Filter OpenShift API server audit logs by user:
+      <CodeBlock code={"$ oc adm node-logs node-1.example.com  \\\n  --path=openshift-apiserver/audit.log \\\n  | jq 'select(.user.username == \"myusername\")'"} lang="terminal" />
+      </li>
+      <li>
+      Filter OpenShift API server audit logs by user agent:
+      <CodeBlock code={"$ oc adm node-logs node-1.example.com  \\\n  --path=openshift-apiserver/audit.log \\\n  | jq 'select(.userAgent == \"cluster-version-operator/v0.0.0 (linux/amd64) kubernetes/$Format\")'"} lang="terminal" />
+      </li>
+      <li>
+      Filter Kubernetes API server audit logs by a certain API version and only output the user agent:
+      <CodeBlock code={"$ oc adm node-logs node-1.example.com  \\\n  --path=kube-apiserver/audit.log \\\n  | jq 'select(.requestURI | startswith(\"/apis/apiextensions.k8s.io/v1beta1\")) | .userAgent'"} lang="terminal" />
+      </li>
+      <li>
+      Filter OpenShift OAuth API server audit logs by excluding a verb:
+      <CodeBlock code={"$ oc adm node-logs node-1.example.com  \\\n  --path=oauth-apiserver/audit.log \\\n  | jq 'select(.verb != \"get\")'"} lang="terminal" />
+      </li>
+      <li>
+      Filter OpenShift OAuth server audit logs by events that identified a username and failed with an error:
+      <CodeBlock code={"$ oc adm node-logs node-1.example.com  \\\n  --path=oauth-server/audit.log \\\n  | jq 'select(.annotations[\"authentication.openshift.io/username\"] != null and .annotations[\"authentication.openshift.io/decision\"] == \"error\")'"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="gathering-data-audit-logs_audit-log-view" class="group scroll-mt-20">Gathering audit logs<a href="#gathering-data-audit-logs_audit-log-view" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can use the must-gather tool to collect the audit logs for debugging your cluster, which you can review or send to Red Hat Support.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run the <code>oc adm must-gather</code> command with <code>-- /usr/bin/gather_audit_logs</code>:
+      <CodeBlock code={"$ oc adm must-gather -- /usr/bin/gather_audit_logs"} lang="terminal" />
+      </li>
+      <li>
+      Create a compressed file from the <code>must-gather</code> directory that was just created in your working directory. For example, on a computer that uses a Linux operating system, run the following command:
+      <CodeBlock code={"$ tar cvaf must-gather.tar.gz must-gather.local.472290403699006248"} lang="terminal" />
+      <p>Replace <code>must-gather.local.472290403699006248</code> with the actual directory name.</p>
+      </li>
+      <li>Attach the compressed file to your support case on the <a href="https://access.redhat.com/support/cases/#/case/list">the <strong>Customer Support</strong> page</a> of the Red Hat Customer Portal.</li>
+      </ol>
       <h2 id="viewing-audit-logs-additional-resources" class="group scroll-mt-20">Additional resources<a href="#viewing-audit-logs-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/support/gathering-cluster-data#about-must-gather_gathering-cluster-data">Must-gather tool</a></li>

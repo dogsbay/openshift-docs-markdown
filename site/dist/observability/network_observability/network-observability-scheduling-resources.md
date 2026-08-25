@@ -10,6 +10,46 @@ A node selector specifies a map of key/value pairs that are defined using custom
 
 For the pod to be eligible to run on a node, the pod must have the same key/value node selector as the label on the node.
 
+## Network observability deployment in specific nodes {#network-observability-multi-tenancy_network_observability_scheduling}
+
+Configure the `FlowCollector` resource using scheduling specifications, including `NodeSelector`, `Tolerations`, and `Affinity`, to control the deployment of network observability components on specific nodes.
+
+The `spec.agent.ebpf.advanced.scheduling`, `spec.processor.advanced.scheduling`, and `spec.consolePlugin.advanced.scheduling` specifications have the following configurable settings:
+
+- `NodeSelector`
+- `Tolerations`
+- `Affinity`
+- `PriorityClassName`
+
+```yaml {title="Sample FlowCollector resource for spec.<component>.advanced.scheduling"}
+apiVersion: flows.netobserv.io/v1beta2
+kind: FlowCollector
+metadata:
+  name: cluster
+spec:
+# ...
+advanced:
+  scheduling:
+    tolerations:
+    - key: "<taint key>"
+      operator: "Equal"
+      value: "<taint value>"
+      effect: "<taint effect>"
+      nodeSelector:
+        <key>: <value>
+      affinity:
+        nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: name
+              operator: In
+              values:
+              - app-worker-node
+      priorityClassName: """
+# ...
+```
+
 **Additional resources**
 
 - [Understanding taints and tolerations](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-taints-tolerations#nodes-scheduler-taints-tolerations-about_nodes-scheduler-taints-tolerations)

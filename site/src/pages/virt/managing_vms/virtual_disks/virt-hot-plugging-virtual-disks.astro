@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-hot-plugging-virtual-disks","text":"Hot-plug virtual disks to running VMs"},{"depth":2,"slug":"additional-resources_virt-hot-plugging-virtual-disks","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-hot-plugging-virtual-disks","text":"Hot-plug virtual disks to running VMs"},{"depth":2,"slug":"virt-hot-plugging-disks-ui_virt-hot-plugging-virtual-disks","text":"Hot plugging and hot unplugging a disk by using the web console"},{"depth":2,"slug":"virt-hot-plugging-disk-cli_virt-hot-plugging-virtual-disks","text":"Hot plugging and hot unplugging a disk by using the CLI"},{"depth":2,"slug":"additional-resources_virt-hot-plugging-virtual-disks","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-hot-plugging-virtual-disks";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/virtual_disk
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Hot-plug virtual disks to running VMs {#virt-hot-plugging-virtual-disks}\n\nYou can hot-plug or hot-unplug virtual disks from running VMs to dynamically adjust storage without downtime.\n\nOnly data volumes and persistent volume claims (PVCs) can be hot plugged and hot-unplugged. You cannot hot plug or hot-unplug container disks.\n\nA hot plugged disk remains attached to the VM even after reboot. You must unplug the disk to remove it from the VM.\n\n> [!NOTE]\n> Each VM has a `virtio-scsi` controller so that hot plugged disks can use the SCSI bus. The `virtio-scsi` controller overcomes the limitations of VirtIO while retaining its performance advantages. It is highly scalable and supports hot plugging over 4 million disks.\n>\n> When you hot plug disks to the VirtIO (`virtio-blk`) bus, each disk uses a PCI Express (PCIe) slot in the VM. The number of PCIe slots is limited and pre-set automatically at the VM creation as specified in the \"Available VirtIO Ports\" table. Therefore, you can use `virtio-blk` for a small number of disks that does not exceed the number of available slots.\n\n## Additional resources {#additional-resources_virt-hot-plugging-virtual-disks}\n\n- [Available VirtIO Ports](https://kubevirt.io/user-guide/storage/hotplug_volumes/#available-virtio-ports)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-hot-plugging-virtual-disks.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Hot-plug virtual disks to running VMs {#virt-hot-plugging-virtual-disks}\n\nYou can hot-plug or hot-unplug virtual disks from running VMs to dynamically adjust storage without downtime.\n\nOnly data volumes and persistent volume claims (PVCs) can be hot plugged and hot-unplugged. You cannot hot plug or hot-unplug container disks.\n\nA hot plugged disk remains attached to the VM even after reboot. You must unplug the disk to remove it from the VM.\n\n> [!NOTE]\n> Each VM has a `virtio-scsi` controller so that hot plugged disks can use the SCSI bus. The `virtio-scsi` controller overcomes the limitations of VirtIO while retaining its performance advantages. It is highly scalable and supports hot plugging over 4 million disks.\n>\n> When you hot plug disks to the VirtIO (`virtio-blk`) bus, each disk uses a PCI Express (PCIe) slot in the VM. The number of PCIe slots is limited and pre-set automatically at the VM creation as specified in the \"Available VirtIO Ports\" table. Therefore, you can use `virtio-blk` for a small number of disks that does not exceed the number of available slots.\n\n## Hot plugging and hot unplugging a disk by using the web console {#virt-hot-plugging-disks-ui_virt-hot-plugging-virtual-disks}\n\nYou can hot plug a disk by attaching it to a virtual machine (VM) while the VM is running by using the OpenShift Container Platform web console.\n\nThe hot plugged disk remains attached to the VM until you unplug it.\n\n**Prerequisites**\n\n- You must have a data volume or persistent volume claim (PVC) available for hot plugging.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.\n2. Select a running VM to view its details.\n3. On the **VirtualMachine details** page, click **Configuration** -> **Storage**.\n4. Add a hot plugged disk:\n\n   1. Click **Add**.\n   2. In the **Add disk (hot plugged)** window, select the disk from the **Source** list and click **Save**.\n5. Optional: Select the type of the interface bus. The options are **VirtIO** and **SCSI**. The default bus type is **VirtIO**.\n6. Optional: Change the type of the interface bus of an existing hot plugged disk:\n\n   1. Click the Options menu ![](kebab.png \"Options menu\") beside the disk and select the **Edit** option.\n   2. In the **Interface** field, select the desired option.\n7. Optional: Unplug a hot plugged disk:\n\n   1. Click the Options menu ![](kebab.png \"Options menu\") beside the disk and select **Detach**.\n   2. Click **Detach**.\n\n## Hot plugging and hot unplugging a disk by using the CLI {#virt-hot-plugging-disk-cli_virt-hot-plugging-virtual-disks}\n\nYou can hot plug and hot unplug a disk while a virtual machine (VM) is running by using the command line.\n\nThe hot plugged disk remains attached to the VM until you unplug it.\n\n**Prerequisites**\n\n- You must have at least one data volume or persistent volume claim (PVC) available for hot plugging.\n\n**Procedure**\n\n- Hot plug a disk by running the following command:\n\n  ```terminal\n  $ virtctl addvolume <virtual-machine|virtual-machine-instance> \\\n    --volume-name=<datavolume|PVC> \\\n    [--bus <bus_type>] [--serial=<label_name>]\n  ```\n\n  - The optional `--bus` flag allows you to specify the bus type of the added disk. The options are `virtio` and `scsi`. The default bus type is `virtio`.\n  - The optional `--serial` flag allows you to add an alphanumeric string label of your choice. This helps you to identify the hot plugged disk in a guest virtual machine. If you do not specify this option, the label defaults to the name of the hot plugged data volume or PVC.\n- Hot unplug a disk by running the following command:\n\n  ```terminal\n  $ virtctl removevolume <virtual-machine|virtual-machine-instance> \\\n    --volume-name=<datavolume|PVC>\n  ```\n\n## Additional resources {#additional-resources_virt-hot-plugging-virtual-disks}\n\n- [Available VirtIO Ports](https://kubevirt.io/user-guide/storage/hotplug_volumes/#available-virtio-ports)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-hot-plugging-virtual-disks.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-hot-plugging-virtual-disks" class="group scroll-mt-20">Hot-plug virtual disks to running VMs<a href="#virt-hot-plugging-virtual-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can hot-plug or hot-unplug virtual disks from running VMs to dynamically adjust storage without downtime.</p>
       <p>Only data volumes and persistent volume claims (PVCs) can be hot plugged and hot-unplugged. You cannot hot plug or hot-unplug container disks.</p>
       <p>A hot plugged disk remains attached to the VM even after reboot. You must unplug the disk to remove it from the VM.</p>
@@ -105,8 +105,59 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>When you hot plug disks to the VirtIO (<code>virtio-blk</code>) bus, each disk uses a PCI Express (PCIe) slot in the VM. The number of PCIe slots is limited and pre-set automatically at the VM creation as specified in the "Available VirtIO Ports" table. Therefore, you can use <code>virtio-blk</code> for a small number of disks that does not exceed the number of available slots.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/virt-hot-plugging-disks-ui.md"></p>
-      <p class="/modules/virt-hot-plugging-disk-cli.md"></p>
+      <h2 id="virt-hot-plugging-disks-ui_virt-hot-plugging-virtual-disks" class="group scroll-mt-20">Hot plugging and hot unplugging a disk by using the web console<a href="#virt-hot-plugging-disks-ui_virt-hot-plugging-virtual-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can hot plug a disk by attaching it to a virtual machine (VM) while the VM is running by using the OpenShift Container Platform web console.</p>
+      <p>The hot plugged disk remains attached to the VM until you unplug it.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have a data volume or persistent volume claim (PVC) available for hot plugging.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> in the web console.</li>
+      <li>Select a running VM to view its details.</li>
+      <li>On the <strong>VirtualMachine details</strong> page, click <strong>Configuration</strong> -&gt; <strong>Storage</strong>.</li>
+      <li>
+      Add a hot plugged disk:
+      <ol>
+      <li>Click <strong>Add</strong>.</li>
+      <li>In the <strong>Add disk (hot plugged)</strong> window, select the disk from the <strong>Source</strong> list and click <strong>Save</strong>.</li>
+      </ol>
+      </li>
+      <li>Optional: Select the type of the interface bus. The options are <strong>VirtIO</strong> and <strong>SCSI</strong>. The default bus type is <strong>VirtIO</strong>.</li>
+      <li>
+      Optional: Change the type of the interface bus of an existing hot plugged disk:
+      <ol>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> beside the disk and select the <strong>Edit</strong> option.</li>
+      <li>In the <strong>Interface</strong> field, select the desired option.</li>
+      </ol>
+      </li>
+      <li>
+      Optional: Unplug a hot plugged disk:
+      <ol>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> beside the disk and select <strong>Detach</strong>.</li>
+      <li>Click <strong>Detach</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="virt-hot-plugging-disk-cli_virt-hot-plugging-virtual-disks" class="group scroll-mt-20">Hot plugging and hot unplugging a disk by using the CLI<a href="#virt-hot-plugging-disk-cli_virt-hot-plugging-virtual-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can hot plug and hot unplug a disk while a virtual machine (VM) is running by using the command line.</p>
+      <p>The hot plugged disk remains attached to the VM until you unplug it.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have at least one data volume or persistent volume claim (PVC) available for hot plugging.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Hot plug a disk by running the following command:
+      <CodeBlock code={"$ virtctl addvolume <virtual-machine|virtual-machine-instance> \\\n  --volume-name=<datavolume|PVC> \\\n  [--bus <bus_type>] [--serial=<label_name>]"} lang="terminal" />
+      <ul>
+      <li>The optional <code>--bus</code> flag allows you to specify the bus type of the added disk. The options are <code>virtio</code> and <code>scsi</code>. The default bus type is <code>virtio</code>.</li>
+      <li>The optional <code>--serial</code> flag allows you to add an alphanumeric string label of your choice. This helps you to identify the hot plugged disk in a guest virtual machine. If you do not specify this option, the label defaults to the name of the hot plugged data volume or PVC.</li>
+      </ul>
+      </li>
+      <li>
+      Hot unplug a disk by running the following command:
+      <CodeBlock code={"$ virtctl removevolume <virtual-machine|virtual-machine-instance> \\\n  --volume-name=<datavolume|PVC>"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="additional-resources_virt-hot-plugging-virtual-disks" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-hot-plugging-virtual-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="https://kubevirt.io/user-guide/storage/hotplug_volumes/#available-virtio-ports">Available VirtIO Ports</a></li></ul>
     </article>

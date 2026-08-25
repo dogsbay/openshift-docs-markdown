@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-ingress-cluster-patch-fields","text":"Patching existing ingress objects"}];
+const headings = [{"depth":1,"slug":"configuring-ingress-cluster-patch-fields","text":"Patching existing ingress objects"},{"depth":2,"slug":"nw-patch-fields-example_configuring-ingress-cluster-patch-fields","text":"Patching Ingress objects to resolve an ingressWithoutClassName alert"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-patch-fields";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["networking","networking/ingress_load_balancing","networki
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Patching existing ingress objects {#configuring-ingress-cluster-patch-fields}\n\nYou can update or modify the following fields of existing `Ingress` objects without recreating the objects or disrupting services to these objects:\n\n- Specifications\n- Host\n- Path\n- Backend services\n- SSL/TLS settings\n- Annotations\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-patch-fields.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Patching existing ingress objects {#configuring-ingress-cluster-patch-fields}\n\nYou can update or modify the following fields of existing `Ingress` objects without recreating the objects or disrupting services to these objects:\n\n- Specifications\n- Host\n- Path\n- Backend services\n- SSL/TLS settings\n- Annotations\n\n## Patching Ingress objects to resolve an ingressWithoutClassName alert {#nw-patch-fields-example_configuring-ingress-cluster-patch-fields}\n\nTo prevent certain routing issues, you must define define the `ingressClassName` field for each `Ingress` object.\n\n> [!NOTE]\n> Approximately 24 hours after you create an `Ingress` object, the Ingress Controller sends you an `ingressWithoutClassName` alert to remind you to set the `ingressClassName` field.\n\nThe procedure demonstrates patching the `Ingress` objects with a completed `ingressClassName` field to ensure proper routing and functionality.\n\n**Procedure**\n\n1. List all `IngressClass` objects:\n\n   ```terminal\n   $ oc get ingressclass\n   ```\n2. List all `Ingress` objects in all namespaces:\n\n   ```terminal\n   $ oc get ingress -A\n   ```\n3. Patch the `Ingress` object by running the following command. This command patches the `Ingress` object to include the desired ingress class name.\n\n   ```terminal\n   $ oc patch ingress/<ingress_name> --type=merge --patch '{\"spec\":{\"ingressClassName\":\"openshift-default\"}}'\n   ```\n\n   - `<ingress_name>`: Replace `<ingress_name>` with the name of the `Ingress` object.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-patch-fields.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-ingress-cluster-patch-fields" class="group scroll-mt-20">Patching existing ingress objects<a href="#configuring-ingress-cluster-patch-fields" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can update or modify the following fields of existing <code>Ingress</code> objects without recreating the objects or disrupting services to these objects:</p>
       <ul>
       <li>Specifications</li>
@@ -101,6 +104,31 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>SSL/TLS settings</li>
       <li>Annotations</li>
       </ul>
+      <h2 id="nw-patch-fields-example_configuring-ingress-cluster-patch-fields" class="group scroll-mt-20">Patching Ingress objects to resolve an ingressWithoutClassName alert<a href="#nw-patch-fields-example_configuring-ingress-cluster-patch-fields" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To prevent certain routing issues, you must define define the <code>ingressClassName</code> field for each <code>Ingress</code> object.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Approximately 24 hours after you create an <code>Ingress</code> object, the Ingress Controller sends you an <code>ingressWithoutClassName</code> alert to remind you to set the <code>ingressClassName</code> field.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The procedure demonstrates patching the <code>Ingress</code> objects with a completed <code>ingressClassName</code> field to ensure proper routing and functionality.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      List all <code>IngressClass</code> objects:
+      <CodeBlock code={"$ oc get ingressclass"} lang="terminal" />
+      </li>
+      <li>
+      List all <code>Ingress</code> objects in all namespaces:
+      <CodeBlock code={"$ oc get ingress -A"} lang="terminal" />
+      </li>
+      <li>
+      Patch the <code>Ingress</code> object by running the following command. This command patches the <code>Ingress</code> object to include the desired ingress class name.
+      <CodeBlock code={"$ oc patch ingress/<ingress_name> --type=merge --patch '{\"spec\":{\"ingressClassName\":\"openshift-default\"}}'"} lang="terminal" />
+      <ul><li><code>&lt;ingress_name&gt;</code>: Replace <code>&lt;ingress_name&gt;</code> with the name of the <code>Ingress</code> object.</li></ul>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

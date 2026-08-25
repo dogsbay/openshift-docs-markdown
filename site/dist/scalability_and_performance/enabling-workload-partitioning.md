@@ -19,9 +19,93 @@ Workload partitioning ensures that CPU requests and limits specified in the podâ
 > [!NOTE]
 > Extended resources cannot be overcommitted, so request and limit must be equal if both are present in a container spec.
 
+## Enabling workload partitioning  {#enabling-workload-partitioning_enabling-workload-partitioning}
+
+To partition cluster management pods into a specified CPU affinity, enable workload partitioning. This configuration ensures that management pods operate within the reserved CPU limits defined in your Performance Profile.
+
+Consider additional post-installation Operators that use workload partitioning when calculating how many reserved CPU cores to set aside for the platform.
+
+Workload partitioning isolates user workloads from platform workloads using standard Kubernetes scheduling capabilities.
+
+> [!NOTE]
+> You can enable workload partitioning only during cluster installation. You cannot disable workload partitioning post-installation. However, you can change the CPU configuration for `reserved` and `isolated` CPUs post-installation.
+
+The procedure demonstrates enabling workload partitioning cluster-wide.
+
+**Procedure**
+
+- In the `install-config.yaml` file, add the additional field `cpuPartitioningMode` and set it to `AllNodes`.
+
+  ```yaml
+  apiVersion: v1
+  baseDomain: devcluster.openshift.com
+  cpuPartitioningMode: AllNodes
+  compute:
+    - architecture: amd64
+      hyperthreading: Enabled
+      name: worker
+      platform: {}
+      replicas: 3
+  controlPlane:
+    architecture: amd64
+    hyperthreading: Enabled
+    name: master
+    platform: {}
+    replicas: 3
+  ```
+
+  - `cpuPartitioningMode`: Specifies the cluster to set up for CPU partitioning at install time. The default value is `None`, which ensures that no CPU partitioning is enabled at install time.
+
+## Performance profiles and workload partitioning {#performance-profile-workload-partitioning_enabling-workload-partitioning}
+
+To enable workload partitioning, apply a performance profile.
+
+An appropriately configured performance profile specifies the `isolated` and `reserved` CPUs. Create a performance profile by using the Performance Profile Creator (PPC) tool.
+
 ```yaml {title="Sample performance profile configuration"}
 {% include "./snippets/ztp_PerformanceProfile.yaml" %}
 ```
+
+***PerformanceProfile CR options for single-node OpenShift clusters***
+
+<table>
+<thead>
+<tr>
+  <th>PerformanceProfile CR field</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>metadata.name</code></td>
+  <td>Ensure that <code>name</code> matches the following fields set in related GitOps ZTP custom resources (CRs):<br><br><ul><li><code>include=openshift-node-performance-${PerformanceProfile.metadata.name}</code> in <code>TunedPerformancePatch.yaml</code></li><li><code>name: 50-performance-${PerformanceProfile.metadata.name}</code> in <code>validatorCRs/informDuValidator.yaml</code></li></ul></td>
+</tr>
+<tr>
+  <td><code>spec.additionalKernelArgs</code></td>
+  <td><code>"efi=runtime"</code> Configures UEFI secure boot for the cluster host.</td>
+</tr>
+<tr>
+  <td><code>spec.cpu.isolated</code></td>
+  <td>Set the isolated CPUs. Ensure all of the Hyper-Threading pairs match.<br><br><dl><dt>Important</dt><dd>The reserved and isolated CPU pools must not overlap and together must span all available cores. CPU cores that are not accounted for cause an undefined behaviour in the system.</dd></dl></td>
+</tr>
+<tr>
+  <td><code>spec.cpu.reserved</code></td>
+  <td>Set the reserved CPUs. When workload partitioning is enabled, system processes, kernel threads, and system container threads are restricted to these CPUs. All CPUs that are not isolated should be reserved.</td>
+</tr>
+<tr>
+  <td><code>spec.hugepages.pages</code></td>
+  <td><ul><li>Set the number of huge pages (<code>count</code>)</li><li>Set the huge pages size (<code>size</code>).</li><li>Set <code>node</code> to the NUMA node where the <code>hugepages</code> are allocated (<code>node</code>)</li></ul></td>
+</tr>
+<tr>
+  <td><code>spec.realTimeKernel</code></td>
+  <td>Set <code>enabled</code> to <code>true</code> to use the realtime kernel.</td>
+</tr>
+<tr>
+  <td><code>spec.workloadHints</code></td>
+  <td>Use <code>workloadHints</code> to define the set of top level flags for different type of workloads.</td>
+</tr>
+</tbody>
+</table>
 
 **Additional resources**
 

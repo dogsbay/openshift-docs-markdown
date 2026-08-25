@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"olm-installing-operators-in-namespace","text":"Installing Operators in your namespace"},{"depth":2,"slug":"olm-installing-operators-in-namespace-prereqs","text":"Prerequisites"}];
+const headings = [{"depth":1,"slug":"olm-installing-operators-in-namespace","text":"Installing Operators in your namespace"},{"depth":2,"slug":"olm-installing-operators-in-namespace-prereqs","text":"Prerequisites"},{"depth":2,"slug":"olm-installing-operators-from-software-catalog_olm-installing-operators-in-namespace","text":"About Operator installation from the software catalog"},{"depth":2,"slug":"olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace","text":"Installing from the software catalog by using the web console"},{"depth":2,"slug":"olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace","text":"Installing from the software catalog by using the CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["operators","operators/user"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing Operators in your namespace {#olm-installing-operators-in-namespace}\n\nIf a cluster administrator has delegated Operator installation permissions to your account, you can install and subscribe an Operator to your namespace in a self-service manner.\n\n## Prerequisites {#olm-installing-operators-in-namespace-prereqs}\n\n- A cluster administrator must add certain permissions to your OpenShift Container Platform user account to allow self-service Operator installation to a namespace.\n\n**Additional resources**\n\n- [Allowing non-cluster administrators to install Operators](/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy)\n- [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)\n\n**Additional resources**\n\n- [Operator groups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-operatorgroups-about_olm-understanding-olm)\n- [Channel names](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-subscription_olm-understanding-olm)\n\n**Additional resources**\n\n- [Manually approving a pending Operator update](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-approving-pending-upgrade_olm-upgrading-operators)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing Operators in your namespace {#olm-installing-operators-in-namespace}\n\nIf a cluster administrator has delegated Operator installation permissions to your account, you can install and subscribe an Operator to your namespace in a self-service manner.\n\n## Prerequisites {#olm-installing-operators-in-namespace-prereqs}\n\n- A cluster administrator must add certain permissions to your OpenShift Container Platform user account to allow self-service Operator installation to a namespace.\n\n## About Operator installation from the software catalog {#olm-installing-operators-from-software-catalog_olm-installing-operators-in-namespace}\n\nThe software catalog in OpenShift Container Platform is the interface for discovering Operators that Operator Lifecycle Manager (OLM) installs and manages on your cluster. You can choose installation settings such as install mode, namespace, and approval strategy during subscription.\n\nAs a user with the proper permissions, you can install an Operator from the software catalog by using the OpenShift Container Platform web console or CLI.\n\nDuring installation, you must determine the following initial settings for the Operator:\n\nInstallation Mode\n:   Choose a specific namespace in which to install the Operator.\n\nUpdate Channel\n:   If an Operator is available through multiple channels, you can choose which channel you want to subscribe to. For example, to deploy from the **stable** channel, if available, select it from the list.\n\nApproval Strategy\n:   You can choose automatic or manual updates.\n\n    If you choose automatic updates for an installed Operator, when a new version of that Operator is available in the selected channel, Operator Lifecycle Manager (OLM) automatically upgrades the running instance of your Operator without human intervention.\n\n    If you select manual updates, when a newer version of an Operator is available, OLM creates an update request. As a cluster administrator,\n\n    you must then manually approve that update request to have the Operator updated to the new version.\n\n**Additional resources**\n\n- [Allowing non-cluster administrators to install Operators](/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy)\n- [Understanding the software catalog](/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog)\n\n## Installing from the software catalog by using the web console {#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace}\n\nTo install and subscribe to an Operator from the software catalog, you can use the OpenShift Container Platform web console. The console guides you through selecting an install mode, namespace, and approval strategy.\n\n**Prerequisites**\n\n- Access to an OpenShift Container Platform cluster using an account with `cluster-admin` permissions.\n- Access to an OpenShift Container Platform cluster using an account with Operator installation permissions.\n\n**Procedure**\n\n1. Navigate in the web console to the **Ecosystem** -> **Software Catalog** page.\n2. Scroll or type a keyword into the **Filter by keyword** box to find the Operator you want. For example, type `{{ filter_type }}` to find the Advanced Cluster Management for Kubernetes Operator.\n\n   You can also filter options by **Infrastructure Features**. For example, select **Disconnected** if you want to see Operators that work in disconnected environments, also known as restricted network environments.\n3. Select the Operator to display additional information.\n\n   > [!NOTE]\n   > Choosing a Community Operator warns that Red Hat does not certify Community Operators; you must acknowledge the warning before continuing.\n4. Read the information about the Operator and click **Install**.\n5. On the **Install Operator** page, configure your Operator installation:\n\n   1. If you want to install a specific version of an Operator, select an **Update channel** and **Version** from the lists. You can browse the various versions of an Operator across any channels it might have, view the metadata for that channel and version, and select the exact version you want to install.\n\n      > [!NOTE]\n      > The version selection defaults to the latest version for the channel selected. If the latest version for the channel is selected, the **Automatic** approval strategy is enabled by default. Otherwise, **Manual** approval is required when not installing the latest version for the selected channel.\n      >\n      > Installing an Operator with **Manual** approval causes all Operators installed within the namespace to function with the **Manual** approval strategy and all Operators are updated together. If you want to update Operators independently, install Operators into separate namespaces.\n   2. Confirm the installation mode for the Operator:\n\n      - **All namespaces on the cluster (default)** installs the Operator in the default `openshift-operators` namespace to watch and be made available to all namespaces in the cluster. This option is not always available.\n      - **A specific namespace on the cluster** allows you to choose a specific, single namespace in which to install the Operator. The Operator will only watch and be made available for use in this single namespace.\n   3. Choose a specific, single namespace in which to install the Operator. The Operator will only watch and be made available for use in this single namespace.\n   4. For clusters on cloud providers with token authentication enabled:\n\n      - If the cluster uses AWS Security Token Service (**STS Mode** in the web console), enter the Amazon Resource Name (ARN) of the AWS IAM role of your service account in the **role ARN** field. To create the role’s ARN, follow the procedure described in [Preparing AWS account](https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/tutorials/cloud-experts-deploy-api-data-protection#prepare-aws-account_cloud-experts-deploy-api-data-protection).\n      - If the cluster uses Microsoft Entra Workload ID (**Workload Identity / Federated Identity Mode** in the web console), add the client ID, tenant ID, and subscription ID in the appropriate fields.\n      - If the cluster uses Google Cloud Platform Workload Identity (**GCP Workload Identity / Federated Identity Mode** in the web console), add the project number, pool ID, provider ID, and service account email in the appropriate fields.\n6. For **Update approval**, select either the **Automatic** or **Manual** approval strategy.\n\n   > [!IMPORTANT]\n   > If the web console shows that the cluster uses AWS STS, Microsoft Entra Workload ID, or GCP Workload Identity, you must set **Update approval** to **Manual**.\n   >\n   > Subscriptions with automatic approvals for updates are not recommended because there might be permission changes to make before updating. Subscriptions with manual approvals for updates ensure that administrators have the opportunity to verify the permissions of the later version, take any necessary steps, and then update.\n\n   1. Click **Install** to make the Operator available to the selected namespaces on this OpenShift Container Platform cluster:\n7. If you selected a **Manual** approval strategy, the upgrade status of the subscription remains **Upgrading** until you review and approve the install plan.\n\n   After approving on the **Install Plan** page, the subscription upgrade status moves to **Up to date**.\n8. If you selected an **Automatic** approval strategy, the upgrade status should resolve to **Up to date** without intervention.\n\n**Verification**\n\n- After the upgrade status of the subscription is **Up to date**, select **Ecosystem** -> **Installed Operators** to verify that the cluster service version (CSV) of the installed Operator eventually shows up. The **Status** should eventually resolve to **Succeeded** in the relevant namespace.\n\n  > [!NOTE]\n  > For the **All namespaces...** installation mode, the status resolves to **Succeeded** in the `openshift-operators` namespace, but the status is **Copied** if you check in other namespaces.\n\n  If it does not:\n\n  - Check the logs in any pods in the `openshift-operators` project (or other relevant namespace if **A specific namespace...** installation mode was selected) on the **Workloads** -> **Pods** page that are reporting issues to troubleshoot further.\n- When the Operator is installed, the metadata indicates which channel and version are installed.\n\n  > [!NOTE]\n  > The **Channel** and **Version** dropdown menus are still available for viewing other version metadata in this catalog context.\n\n## Installing from the software catalog by using the CLI {#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace}\n\nTo install an Operator from the software catalog without using the web console, you can create or update a `Subscription` object by using the `oc` command in OpenShift Container Platform.\n\nFor `SingleNamespace` install mode, you must also ensure an appropriate Operator group exists in the related namespace. An Operator group, defined by an `OperatorGroup` object, selects target namespaces in which to generate required RBAC access for all Operators in the same namespace as the Operator group.\n\n> [!TIP]\n> In most cases, the web console method of this procedure is preferred because it automates tasks in the background, such as handling the creation of `OperatorGroup` and `Subscription` objects automatically when choosing `SingleNamespace` mode.\n\n**Prerequisites**\n\n- Access to your OpenShift Container Platform cluster using an account with Operator installation permissions.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. View the list of Operators available to the cluster from the software catalog:\n\n   ```terminal\n   $ oc get packagemanifests -n openshift-marketplace\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                               CATALOG               AGE\n   3scale-operator                    Red Hat Operators     91m\n   advanced-cluster-management        Red Hat Operators     91m\n   amq7-cert-manager                  Red Hat Operators     91m\n   # ...\n   couchbase-enterprise-certified     Certified Operators   91m\n   crunchy-postgres-operator          Certified Operators   91m\n   mongodb-enterprise                 Certified Operators   91m\n   # ...\n   etcd                               Community Operators   91m\n   jaeger                             Community Operators   91m\n   kubefed                            Community Operators   91m\n   # ...\n   ```\n\n   Note the catalog for your desired Operator.\n2. Inspect your desired Operator to verify its supported install modes and available channels:\n\n   ```terminal\n   $ oc describe packagemanifests <operator_name> -n openshift-marketplace\n   ```\n\n   ```terminal {title=\"Example output\"}\n   # ...\n   Kind:         PackageManifest\n   # ...\n         Install Modes:\n           Supported:  true\n           Type:       OwnNamespace\n           Supported:  true\n           Type:       SingleNamespace\n           Supported:  false\n           Type:       MultiNamespace\n           Supported:  true\n           Type:       AllNamespaces\n   # ...\n       Entries:\n         Name:       example-operator.v3.7.11\n         Version:    3.7.11\n         Name:       example-operator.v3.7.10\n         Version:    3.7.10\n       Name:         stable-3.7\n   # ...\n      Entries:\n         Name:         example-operator.v3.8.5\n         Version:      3.8.5\n         Name:         example-operator.v3.8.4\n         Version:      3.8.4\n       Name:           stable-3.8\n     Default Channel:  stable-3.8\n   ```\n\n   In the example output, `Install Modes` indicates which install modes are supported; `Name` shows example channel names; and `Default Channel` is the channel selected by default if one is not specified.\n\n   > [!TIP]\n   > You can print an Operator’s version and channel information in YAML format by running the following command:\n   >\n   > ```terminal\n   > $ oc get packagemanifests <operator_name> -n <catalog_namespace> -o yaml\n   > ```\n3. If more than one catalog is installed in a namespace, run the following command to look up the available versions and channels of an Operator from a specific catalog:\n\n   ```terminal\n   $ oc get packagemanifest \\\n      --selector=catalog=<catalogsource_name> \\\n      --field-selector metadata.name=<operator_name> \\\n      -n <catalog_namespace> -o yaml\n   ```\n\n   > [!IMPORTANT]\n   > If you do not specify the Operator’s catalog, running the `oc get packagemanifest` and `oc describe packagemanifest` commands might return a package from an unexpected catalog if the following conditions are met:\n   >\n   > - Multiple catalogs are installed in the same namespace.\n   > - The catalogs contain the same Operators or Operators with the same name.\n4. If the Operator you intend to install supports the `AllNamespaces` install mode, and you choose to use this mode, skip this step, because the `openshift-operators` namespace already has an appropriate Operator group in place by default, called `global-operators`.\n\n   If the Operator you intend to install supports the `SingleNamespace` install mode, and you choose to use this mode, you must ensure an appropriate Operator group exists in the related namespace. If one does not exist, you can create create one by following these steps:\n\n   > [!IMPORTANT]\n   > You can only have one Operator group per namespace. For more information, see \"Operator groups\".\n\n   1. Create an `OperatorGroup` object YAML file, for example `operatorgroup.yaml`, for `SingleNamespace` install mode:\n\n      ```yaml {title=\"Example OperatorGroup object for SingleNamespace install mode\"}\n      apiVersion: operators.coreos.com/v1\n      kind: OperatorGroup\n      metadata:\n        name: <operatorgroup_name>\n        namespace: <namespace>\n      spec:\n        targetNamespaces:\n        - <namespace>\n      ```\n\n      For `SingleNamespace` install mode, use the same `<namespace>` value for both the `metadata.namespace` and `spec.targetNamespaces` fields.\n   2. Create the `OperatorGroup` object:\n\n      ```terminal\n      $ oc apply -f operatorgroup.yaml\n      ```\n5. Create a `Subscription` object to subscribe a namespace to an Operator:\n\n   1. Create a YAML file for the `Subscription` object, for example `subscription.yaml`:\n\n      > [!NOTE]\n      > If you want to subscribe to a specific version of an Operator, set the `startingCSV` field to the desired version and set the `installPlanApproval` field to `Manual` to prevent the Operator from automatically upgrading if a later version exists in the catalog. For details, see the following \"Example `Subscription` object with a specific starting Operator version\".\n\n      ```yaml {title=\"Example Subscription object\"}\n      apiVersion: operators.coreos.com/v1alpha1\n      kind: Subscription\n      metadata:\n        name: <subscription_name>\n        namespace: <namespace_per_install_mode>\n      spec:\n        channel: <channel_name>\n        name: <operator_name>\n        source: <catalog_name>\n        sourceNamespace: <catalog_source_namespace>\n        config:\n          env:\n          - name: ARGS\n            value: \"-v=10\"\n          envFrom:\n          - secretRef:\n              name: license-secret\n          volumes:\n          - name: <volume_name>\n            configMap:\n              name: <configmap_name>\n          volumeMounts:\n          - mountPath: <directory_name>\n            name: <volume_name>\n          tolerations:\n          - operator: \"Exists\"\n          resources:\n            requests:\n              memory: \"64Mi\"\n              cpu: \"250m\"\n            limits:\n              memory: \"128Mi\"\n              cpu: \"500m\"\n          nodeSelector:\n            foo: bar\n      ```\n\n      where:\n\n      `<namespace_per_install_mode>`\n      :   Specifies the namespace for your chosen install mode. For default `AllNamespaces` install mode usage, specify the `openshift-operators` namespace. Alternatively, you can specify a custom global namespace, if you have created one. For `SingleNamespace` install mode usage, specify the relevant single namespace.\n\n      `<channel_name>`\n      :   Specifies the name of the channel to subscribe to.\n\n      `<operator_name>`\n      :   Specifies the name of the Operator to subscribe to.\n\n      `<catalog_name>`\n      :   Specifies the name of the catalog source that provides the Operator.\n\n      `<catalog_source_namespace>`\n      :   Specifies the namespace of the catalog source. Use `openshift-marketplace` for the default software catalog sources.\n\n      `config.env`\n      :   Specifies a list of environment variables that must exist in all containers in the pod created by OLM.\n\n      `config.envFrom`\n      :   Specifies a list of sources to populate environment variables in the container.\n\n      `config.volumes`\n      :   Specifies a list of volumes that must exist on the pod created by OLM.\n\n      `config.volumeMounts`\n      :   Specifies a list of volume mounts that must exist in all containers in the pod created by OLM. If a `volumeMount` references a `volume` that does not exist, OLM fails to deploy the Operator.\n\n      `config.tolerations`\n      :   Specifies a list of tolerations for the pod created by OLM.\n\n      `config.resources`\n      :   Specifies resource constraints for all the containers in the pod created by OLM.\n\n      `config.nodeSelector`\n      :   Specifies a `NodeSelector` for the pod created by OLM.\n\n      ```yaml {title=\"Example Subscription object with a specific starting Operator version\"}\n      apiVersion: operators.coreos.com/v1alpha1\n      kind: Subscription\n      metadata:\n        name: example-operator\n        namespace: example-operator\n      spec:\n        channel: stable-3.7\n        installPlanApproval: Manual\n        name: example-operator\n        source: custom-operators\n        sourceNamespace: openshift-marketplace\n        startingCSV: example-operator.v3.7.10\n      ```\n\n      where: `installPlanApproval`:: Specifies the approval strategy. Set to `Manual` in case your specified version is superseded by a later version in the catalog. This plan prevents an automatic upgrade to a later version and requires manual approval before the starting CSV can complete the installation. `startingCSV`:: Specifies a specific version of an Operator CSV.\n   2. For clusters on cloud providers with token authentication enabled, such as Amazon Web Services (AWS) Security Token Service (STS), Microsoft Entra Workload ID, or Google Cloud Platform Workload Identity, configure your `Subscription` object by following these steps:\n\n      1. Ensure the `Subscription` object is set to manual update approvals:\n\n         ```yaml {title=\"Example Subscription object with manual update approvals\"}\n         kind: Subscription\n         # ...\n         spec:\n           installPlanApproval: Manual\n         ```\n\n         Set the `spec.installPlanApproval` parameter to `Manual`. Subscriptions with manual approvals for updates ensure that administrators have the opportunity to verify the permissions of the later version, take any necessary steps, and then update. Subscriptions with automatic approvals for updates are not recommended because there might be permission changes to make before updating.\n      2. Include the relevant cloud provider-specific fields in the `Subscription` object’s `config` section:\n\n         If the cluster is in AWS STS mode, include the following fields:\n\n         ```yaml {title=\"Example Subscription object with AWS STS variables\"}\n         kind: Subscription\n         # ...\n         spec:\n           config:\n             env:\n             - name: ROLEARN\n               value: \"<role_arn>\"\n         ```\n\n         - `ROLEARN` is the Amazon Resource Name (ARN) of the role that the Operator assumes.\n\n           If the cluster is in Workload ID mode, include the following fields:\n\n           ```yaml {title=\"Example Subscription object with Workload ID variables\"}\n           kind: Subscription\n           # ...\n           spec:\n            config:\n              env:\n              - name: CLIENTID\n                value: \"<client_id>\"\n              - name: TENANTID\n                value: \"<tenant_id>\"\n              - name: SUBSCRIPTIONID\n                value: \"<subscription_id>\"\n           ```\n\n           where:\n\n           `<client_id>`\n           :   Specifies the client ID.\n\n           `<tenant_id>`\n           :   Specifies the tenant ID.\n\n           `<subscription_id>`\n           :   Specifies the subscription ID. If the cluster is in GCP Workload Identity mode, include the following fields:\n\n           ```yaml {title=\"Example Subscription object with GCP Workload Identity variables\"}\n           kind: Subscription\n           # ...\n           spec:\n            config:\n              env:\n              - name: AUDIENCE\n                value: \"<audience_url>\"\n              - name: SERVICE_ACCOUNT_EMAIL\n                value: \"<service_account_email>\"\n           ```\n\n           where: `<audience_url>`:: Created in Google Cloud by the administrator when they set up GCP Workload Identity, the `AUDIENCE` value must be a preformatted URL in the following format:\n\n           ```text\n           //iam.googleapis.com/projects/<project_number>/locations/global/workloadIdentityPools/<pool_id>/providers/<provider_id>\n           ```\n\n           `<service_account_email>`\n           :   Specifies a Google Cloud service account email that is impersonated during Operator operation, for example:\n\n           ```text\n           <service_account_name>@<project_id>.iam.gserviceaccount.com\n           ```\n   3. Create the `Subscription` object by running the following command:\n\n      ```terminal\n      $ oc apply -f subscription.yaml\n      ```\n6. If you set the `installPlanApproval` field to `Manual`, manually approve the pending install plan to complete the Operator installation. For more information, see \"Manually approving a pending Operator update\".\n\n**Verification**\n\nAt this point, OLM is now aware of the selected Operator. A cluster service version (CSV) for the Operator should appear in the target namespace, and APIs provided by the Operator should be available for creation.\n\n1. Check the status of the `Subscription` object for your installed Operator by running the following command:\n\n   ```terminal\n   $ oc describe subscription <subscription_name> -n <namespace>\n   ```\n2. If you created an Operator group for `SingleNamespace` install mode, check the status of the `OperatorGroup` object by running the following command:\n\n   ```terminal\n   $ oc describe operatorgroup <operatorgroup_name> -n <namespace>\n   ```\n\n**Additional resources**\n\n- [Operator groups](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-operatorgroups-about_olm-understanding-olm)\n- [Channel names](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-subscription_olm-understanding-olm)\n\n**Additional resources**\n\n- [Manually approving a pending Operator update](/openshift-docs-markdown/operators/admin/olm-upgrading-operators#olm-approving-pending-upgrade_olm-upgrading-operators)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/user/olm-installing-operators-in-namespace.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,16 +95,297 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="olm-installing-operators-in-namespace" class="group scroll-mt-20">Installing Operators in your namespace<a href="#olm-installing-operators-in-namespace" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>If a cluster administrator has delegated Operator installation permissions to your account, you can install and subscribe an Operator to your namespace in a self-service manner.</p>
       <h2 id="olm-installing-operators-in-namespace-prereqs" class="group scroll-mt-20">Prerequisites<a href="#olm-installing-operators-in-namespace-prereqs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li>A cluster administrator must add certain permissions to your OpenShift Container Platform user account to allow self-service Operator installation to a namespace.</li></ul>
+      <h2 id="olm-installing-operators-from-software-catalog_olm-installing-operators-in-namespace" class="group scroll-mt-20">About Operator installation from the software catalog<a href="#olm-installing-operators-from-software-catalog_olm-installing-operators-in-namespace" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The software catalog in OpenShift Container Platform is the interface for discovering Operators that Operator Lifecycle Manager (OLM) installs and manages on your cluster. You can choose installation settings such as install mode, namespace, and approval strategy during subscription.</p>
+      <p>As a user with the proper permissions, you can install an Operator from the software catalog by using the OpenShift Container Platform web console or CLI.</p>
+      <p>During installation, you must determine the following initial settings for the Operator:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Installation Mode</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Choose a specific namespace in which to install the Operator.</p></dd>
+      <dt class="font-semibold">Update Channel</dt>
+      <dd class="ml-6 text-muted-foreground"><p>If an Operator is available through multiple channels, you can choose which channel you want to subscribe to. For example, to deploy from the <strong>stable</strong> channel, if available, select it from the list.</p></dd>
+      <dt class="font-semibold">Approval Strategy</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>You can choose automatic or manual updates.</p>
+      <p>If you choose automatic updates for an installed Operator, when a new version of that Operator is available in the selected channel, Operator Lifecycle Manager (OLM) automatically upgrades the running instance of your Operator without human intervention.</p>
+      <p>If you select manual updates, when a newer version of an Operator is available, OLM creates an update request. As a cluster administrator,</p>
+      <p>you must then manually approve that update request to have the Operator updated to the new version.</p>
+      </dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/operators/admin/olm-creating-policy#olm-creating-policy">Allowing non-cluster administrators to install Operators</a></li>
       <li><a href="/openshift-docs-markdown/operators/understanding/olm-understanding-software-catalog#olm-understanding-software-catalog">Understanding the software catalog</a></li>
       </ul>
-      <p class="/modules/olm-installing-from-software-catalog-using-cli.md"></p>
+      <h2 id="olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace" class="group scroll-mt-20">Installing from the software catalog by using the web console<a href="#olm-installing-from-software-catalog-using-web-console_olm-installing-operators-in-namespace" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To install and subscribe to an Operator from the software catalog, you can use the OpenShift Container Platform web console. The console guides you through selecting an install mode, namespace, and approval strategy.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to an OpenShift Container Platform cluster using an account with <code>cluster-admin</code> permissions.</li>
+      <li>Access to an OpenShift Container Platform cluster using an account with Operator installation permissions.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate in the web console to the <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong> page.</li>
+      <li>
+      Scroll or type a keyword into the <strong>Filter by keyword</strong> box to find the Operator you want. For example, type <code>{"{"}{"{"} filter_type {"}"}{"}"}</code> to find the Advanced Cluster Management for Kubernetes Operator.
+      <p>You can also filter options by <strong>Infrastructure Features</strong>. For example, select <strong>Disconnected</strong> if you want to see Operators that work in disconnected environments, also known as restricted network environments.</p>
+      </li>
+      <li>
+      Select the Operator to display additional information.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Choosing a Community Operator warns that Red Hat does not certify Community Operators; you must acknowledge the warning before continuing.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Read the information about the Operator and click <strong>Install</strong>.</li>
+      <li>
+      On the <strong>Install Operator</strong> page, configure your Operator installation:
+      <ol>
+      <li>
+      If you want to install a specific version of an Operator, select an <strong>Update channel</strong> and <strong>Version</strong> from the lists. You can browse the various versions of an Operator across any channels it might have, view the metadata for that channel and version, and select the exact version you want to install.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The version selection defaults to the latest version for the channel selected. If the latest version for the channel is selected, the <strong>Automatic</strong> approval strategy is enabled by default. Otherwise, <strong>Manual</strong> approval is required when not installing the latest version for the selected channel.</p>
+          <p>Installing an Operator with <strong>Manual</strong> approval causes all Operators installed within the namespace to function with the <strong>Manual</strong> approval strategy and all Operators are updated together. If you want to update Operators independently, install Operators into separate namespaces.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Confirm the installation mode for the Operator:
+      <ul>
+      <li><strong>All namespaces on the cluster (default)</strong> installs the Operator in the default <code>openshift-operators</code> namespace to watch and be made available to all namespaces in the cluster. This option is not always available.</li>
+      <li><strong>A specific namespace on the cluster</strong> allows you to choose a specific, single namespace in which to install the Operator. The Operator will only watch and be made available for use in this single namespace.</li>
+      </ul>
+      </li>
+      <li>Choose a specific, single namespace in which to install the Operator. The Operator will only watch and be made available for use in this single namespace.</li>
+      <li>
+      For clusters on cloud providers with token authentication enabled:
+      <ul>
+      <li>If the cluster uses AWS Security Token Service (<strong>STS Mode</strong> in the web console), enter the Amazon Resource Name (ARN) of the AWS IAM role of your service account in the <strong>role ARN</strong> field. To create the role’s ARN, follow the procedure described in <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_on_aws/4/html/tutorials/cloud-experts-deploy-api-data-protection#prepare-aws-account_cloud-experts-deploy-api-data-protection">Preparing AWS account</a>.</li>
+      <li>If the cluster uses Microsoft Entra Workload ID (<strong>Workload Identity / Federated Identity Mode</strong> in the web console), add the client ID, tenant ID, and subscription ID in the appropriate fields.</li>
+      <li>If the cluster uses Google Cloud Platform Workload Identity (<strong>GCP Workload Identity / Federated Identity Mode</strong> in the web console), add the project number, pool ID, provider ID, and service account email in the appropriate fields.</li>
+      </ul>
+      </li>
+      </ol>
+      </li>
+      <li>
+      For <strong>Update approval</strong>, select either the <strong>Automatic</strong> or <strong>Manual</strong> approval strategy.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If the web console shows that the cluster uses AWS STS, Microsoft Entra Workload ID, or GCP Workload Identity, you must set <strong>Update approval</strong> to <strong>Manual</strong>.</p>
+          <p>Subscriptions with automatic approvals for updates are not recommended because there might be permission changes to make before updating. Subscriptions with manual approvals for updates ensure that administrators have the opportunity to verify the permissions of the later version, take any necessary steps, and then update.</p>
+        </AlertDescription>
+      </Alert>
+      <ol><li>Click <strong>Install</strong> to make the Operator available to the selected namespaces on this OpenShift Container Platform cluster:</li></ol>
+      </li>
+      <li>
+      If you selected a <strong>Manual</strong> approval strategy, the upgrade status of the subscription remains <strong>Upgrading</strong> until you review and approve the install plan.
+      <p>After approving on the <strong>Install Plan</strong> page, the subscription upgrade status moves to <strong>Up to date</strong>.</p>
+      </li>
+      <li>If you selected an <strong>Automatic</strong> approval strategy, the upgrade status should resolve to <strong>Up to date</strong> without intervention.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      After the upgrade status of the subscription is <strong>Up to date</strong>, select <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> to verify that the cluster service version (CSV) of the installed Operator eventually shows up. The <strong>Status</strong> should eventually resolve to <strong>Succeeded</strong> in the relevant namespace.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For the <strong>All namespaces...</strong> installation mode, the status resolves to <strong>Succeeded</strong> in the <code>openshift-operators</code> namespace, but the status is <strong>Copied</strong> if you check in other namespaces.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If it does not:</p>
+      <ul><li>Check the logs in any pods in the <code>openshift-operators</code> project (or other relevant namespace if <strong>A specific namespace...</strong> installation mode was selected) on the <strong>Workloads</strong> -&gt; <strong>Pods</strong> page that are reporting issues to troubleshoot further.</li></ul>
+      </li>
+      <li>
+      When the Operator is installed, the metadata indicates which channel and version are installed.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <strong>Channel</strong> and <strong>Version</strong> dropdown menus are still available for viewing other version metadata in this catalog context.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h2 id="olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace" class="group scroll-mt-20">Installing from the software catalog by using the CLI<a href="#olm-installing-operator-from-software-catalog-using-cli_olm-installing-operators-in-namespace" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To install an Operator from the software catalog without using the web console, you can create or update a <code>Subscription</code> object by using the <code>oc</code> command in OpenShift Container Platform.</p>
+      <p>For <code>SingleNamespace</code> install mode, you must also ensure an appropriate Operator group exists in the related namespace. An Operator group, defined by an <code>OperatorGroup</code> object, selects target namespaces in which to generate required RBAC access for all Operators in the same namespace as the Operator group.</p>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>In most cases, the web console method of this procedure is preferred because it automates tasks in the background, such as handling the creation of <code>OperatorGroup</code> and <code>Subscription</code> objects automatically when choosing <code>SingleNamespace</code> mode.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to your OpenShift Container Platform cluster using an account with Operator installation permissions.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      View the list of Operators available to the cluster from the software catalog:
+      <CodeBlock code={"$ oc get packagemanifests -n openshift-marketplace"} lang="terminal" />
+      <CodeBlock code={"NAME                               CATALOG               AGE\n3scale-operator                    Red Hat Operators     91m\nadvanced-cluster-management        Red Hat Operators     91m\namq7-cert-manager                  Red Hat Operators     91m\n# ...\ncouchbase-enterprise-certified     Certified Operators   91m\ncrunchy-postgres-operator          Certified Operators   91m\nmongodb-enterprise                 Certified Operators   91m\n# ...\netcd                               Community Operators   91m\njaeger                             Community Operators   91m\nkubefed                            Community Operators   91m\n# ..."} lang="terminal" title="Example output" />
+      <p>Note the catalog for your desired Operator.</p>
+      </li>
+      <li>
+      Inspect your desired Operator to verify its supported install modes and available channels:
+      <CodeBlock code={"$ oc describe packagemanifests <operator_name> -n openshift-marketplace"} lang="terminal" />
+      <CodeBlock code={"# ...\nKind:         PackageManifest\n# ...\n      Install Modes:\n        Supported:  true\n        Type:       OwnNamespace\n        Supported:  true \n        Type:       SingleNamespace\n        Supported:  false\n        Type:       MultiNamespace\n        Supported:  true\n        Type:       AllNamespaces\n# ...\n    Entries:\n      Name:       example-operator.v3.7.11\n      Version:    3.7.11\n      Name:       example-operator.v3.7.10\n      Version:    3.7.10\n    Name:         stable-3.7\n# ...\n   Entries:\n      Name:         example-operator.v3.8.5\n      Version:      3.8.5\n      Name:         example-operator.v3.8.4\n      Version:      3.8.4\n    Name:           stable-3.8\n  Default Channel:  stable-3.8"} lang="terminal" title="Example output" />
+      <p>In the example output, <code>Install Modes</code> indicates which install modes are supported; <code>Name</code> shows example channel names; and <code>Default Channel</code> is the channel selected by default if one is not specified.</p>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can print an Operator’s version and channel information in YAML format by running the following command:</p>
+          <CodeBlock code={"$ oc get packagemanifests <operator_name> -n <catalog_namespace> -o yaml"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      If more than one catalog is installed in a namespace, run the following command to look up the available versions and channels of an Operator from a specific catalog:
+      <CodeBlock code={"$ oc get packagemanifest \\\n   --selector=catalog=<catalogsource_name> \\\n   --field-selector metadata.name=<operator_name> \\\n   -n <catalog_namespace> -o yaml"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If you do not specify the Operator’s catalog, running the <code>oc get packagemanifest</code> and <code>oc describe packagemanifest</code> commands might return a package from an unexpected catalog if the following conditions are met:</p>
+          <ul>
+          <li>Multiple catalogs are installed in the same namespace.</li>
+          <li>The catalogs contain the same Operators or Operators with the same name.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      If the Operator you intend to install supports the <code>AllNamespaces</code> install mode, and you choose to use this mode, skip this step, because the <code>openshift-operators</code> namespace already has an appropriate Operator group in place by default, called <code>global-operators</code>.
+      <p>If the Operator you intend to install supports the <code>SingleNamespace</code> install mode, and you choose to use this mode, you must ensure an appropriate Operator group exists in the related namespace. If one does not exist, you can create create one by following these steps:</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You can only have one Operator group per namespace. For more information, see "Operator groups".</p>
+        </AlertDescription>
+      </Alert>
+      <ol>
+      <li>
+      Create an <code>OperatorGroup</code> object YAML file, for example <code>operatorgroup.yaml</code>, for <code>SingleNamespace</code> install mode:
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1\nkind: OperatorGroup\nmetadata:\n  name: <operatorgroup_name>\n  namespace: <namespace>\nspec:\n  targetNamespaces:\n  - <namespace>"} lang="yaml" title="Example OperatorGroup object for SingleNamespace install mode" />
+      <p>For <code>SingleNamespace</code> install mode, use the same <code>&lt;namespace&gt;</code> value for both the <code>metadata.namespace</code> and <code>spec.targetNamespaces</code> fields.</p>
+      </li>
+      <li>
+      Create the <code>OperatorGroup</code> object:
+      <CodeBlock code={"$ oc apply -f operatorgroup.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a <code>Subscription</code> object to subscribe a namespace to an Operator:
+      <ol>
+      <li>
+      Create a YAML file for the <code>Subscription</code> object, for example <code>subscription.yaml</code>:
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you want to subscribe to a specific version of an Operator, set the <code>startingCSV</code> field to the desired version and set the <code>installPlanApproval</code> field to <code>Manual</code> to prevent the Operator from automatically upgrading if a later version exists in the catalog. For details, see the following "Example <code>Subscription</code> object with a specific starting Operator version".</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: <subscription_name>\n  namespace: <namespace_per_install_mode>\nspec:\n  channel: <channel_name>\n  name: <operator_name>\n  source: <catalog_name>\n  sourceNamespace: <catalog_source_namespace>\n  config:\n    env:\n    - name: ARGS\n      value: \"-v=10\"\n    envFrom:\n    - secretRef:\n        name: license-secret\n    volumes:\n    - name: <volume_name>\n      configMap:\n        name: <configmap_name>\n    volumeMounts:\n    - mountPath: <directory_name>\n      name: <volume_name>\n    tolerations:\n    - operator: \"Exists\"\n    resources:\n      requests:\n        memory: \"64Mi\"\n        cpu: \"250m\"\n      limits:\n        memory: \"128Mi\"\n        cpu: \"500m\"\n    nodeSelector:\n      foo: bar"} lang="yaml" title="Example Subscription object" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;namespace_per_install_mode&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace for your chosen install mode. For default <code>AllNamespaces</code> install mode usage, specify the <code>openshift-operators</code> namespace. Alternatively, you can specify a custom global namespace, if you have created one. For <code>SingleNamespace</code> install mode usage, specify the relevant single namespace.</p></dd>
+      <dt class="font-semibold"><code>&lt;channel_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the channel to subscribe to.</p></dd>
+      <dt class="font-semibold"><code>&lt;operator_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the Operator to subscribe to.</p></dd>
+      <dt class="font-semibold"><code>&lt;catalog_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the catalog source that provides the Operator.</p></dd>
+      <dt class="font-semibold"><code>&lt;catalog_source_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace of the catalog source. Use <code>openshift-marketplace</code> for the default software catalog sources.</p></dd>
+      <dt class="font-semibold"><code>config.env</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a list of environment variables that must exist in all containers in the pod created by OLM.</p></dd>
+      <dt class="font-semibold"><code>config.envFrom</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a list of sources to populate environment variables in the container.</p></dd>
+      <dt class="font-semibold"><code>config.volumes</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a list of volumes that must exist on the pod created by OLM.</p></dd>
+      <dt class="font-semibold"><code>config.volumeMounts</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a list of volume mounts that must exist in all containers in the pod created by OLM. If a <code>volumeMount</code> references a <code>volume</code> that does not exist, OLM fails to deploy the Operator.</p></dd>
+      <dt class="font-semibold"><code>config.tolerations</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a list of tolerations for the pod created by OLM.</p></dd>
+      <dt class="font-semibold"><code>config.resources</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies resource constraints for all the containers in the pod created by OLM.</p></dd>
+      <dt class="font-semibold"><code>config.nodeSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a <code>NodeSelector</code> for the pod created by OLM.</p></dd>
+      </dl>
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: example-operator\n  namespace: example-operator\nspec:\n  channel: stable-3.7\n  installPlanApproval: Manual\n  name: example-operator\n  source: custom-operators\n  sourceNamespace: openshift-marketplace\n  startingCSV: example-operator.v3.7.10"} lang="yaml" title="Example Subscription object with a specific starting Operator version" />
+      <p>where: <code>installPlanApproval</code>:: Specifies the approval strategy. Set to <code>Manual</code> in case your specified version is superseded by a later version in the catalog. This plan prevents an automatic upgrade to a later version and requires manual approval before the starting CSV can complete the installation. <code>startingCSV</code>:: Specifies a specific version of an Operator CSV.</p>
+      </li>
+      <li>
+      For clusters on cloud providers with token authentication enabled, such as Amazon Web Services (AWS) Security Token Service (STS), Microsoft Entra Workload ID, or Google Cloud Platform Workload Identity, configure your <code>Subscription</code> object by following these steps:
+      <ol>
+      <li>
+      Ensure the <code>Subscription</code> object is set to manual update approvals:
+      <CodeBlock code={"kind: Subscription\n# ...\nspec:\n  installPlanApproval: Manual"} lang="yaml" title="Example Subscription object with manual update approvals" />
+      <p>Set the <code>spec.installPlanApproval</code> parameter to <code>Manual</code>. Subscriptions with manual approvals for updates ensure that administrators have the opportunity to verify the permissions of the later version, take any necessary steps, and then update. Subscriptions with automatic approvals for updates are not recommended because there might be permission changes to make before updating.</p>
+      </li>
+      <li>
+      Include the relevant cloud provider-specific fields in the <code>Subscription</code> object’s <code>config</code> section:
+      <p>If the cluster is in AWS STS mode, include the following fields:</p>
+      <CodeBlock code={"kind: Subscription\n# ...\nspec:\n  config:\n    env:\n    - name: ROLEARN\n      value: \"<role_arn>\""} lang="yaml" title="Example Subscription object with AWS STS variables" />
+      <ul>
+      <li>
+      <code>ROLEARN</code> is the Amazon Resource Name (ARN) of the role that the Operator assumes.
+      <p>If the cluster is in Workload ID mode, include the following fields:</p>
+      <CodeBlock code={"kind: Subscription\n# ...\nspec:\n config:\n   env:\n   - name: CLIENTID\n     value: \"<client_id>\"\n   - name: TENANTID\n     value: \"<tenant_id>\"\n   - name: SUBSCRIPTIONID\n     value: \"<subscription_id>\""} lang="yaml" title="Example Subscription object with Workload ID variables" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;client_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the client ID.</p></dd>
+      <dt class="font-semibold"><code>&lt;tenant_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the tenant ID.</p></dd>
+      <dt class="font-semibold"><code>&lt;subscription_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the subscription ID. If the cluster is in GCP Workload Identity mode, include the following fields:</p></dd>
+      </dl>
+      <CodeBlock code={"kind: Subscription\n# ...\nspec:\n config:\n   env:\n   - name: AUDIENCE\n     value: \"<audience_url>\"\n   - name: SERVICE_ACCOUNT_EMAIL\n     value: \"<service_account_email>\""} lang="yaml" title="Example Subscription object with GCP Workload Identity variables" />
+      <p>where: <code>&lt;audience_url&gt;</code>:: Created in Google Cloud by the administrator when they set up GCP Workload Identity, the <code>AUDIENCE</code> value must be a preformatted URL in the following format:</p>
+      <CodeBlock code={"//iam.googleapis.com/projects/<project_number>/locations/global/workloadIdentityPools/<pool_id>/providers/<provider_id>"} lang="text" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;service_account_email&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a Google Cloud service account email that is impersonated during Operator operation, for example:</p></dd>
+      </dl>
+      <CodeBlock code={"<service_account_name>@<project_id>.iam.gserviceaccount.com"} lang="text" />
+      </li>
+      </ul>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the <code>Subscription</code> object by running the following command:
+      <CodeBlock code={"$ oc apply -f subscription.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>If you set the <code>installPlanApproval</code> field to <code>Manual</code>, manually approve the pending install plan to complete the Operator installation. For more information, see "Manually approving a pending Operator update".</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <p>At this point, OLM is now aware of the selected Operator. A cluster service version (CSV) for the Operator should appear in the target namespace, and APIs provided by the Operator should be available for creation.</p>
+      <ol>
+      <li>
+      Check the status of the <code>Subscription</code> object for your installed Operator by running the following command:
+      <CodeBlock code={"$ oc describe subscription <subscription_name> -n <namespace>"} lang="terminal" />
+      </li>
+      <li>
+      If you created an Operator group for <code>SingleNamespace</code> install mode, check the status of the <code>OperatorGroup</code> object by running the following command:
+      <CodeBlock code={"$ oc describe operatorgroup <operatorgroup_name> -n <namespace>"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-operatorgroups-about_olm-understanding-olm">Operator groups</a></li>

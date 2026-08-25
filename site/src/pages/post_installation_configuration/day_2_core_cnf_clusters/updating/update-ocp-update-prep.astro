@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"update-ocp-update-prep","text":"Preparing a bare-metal cluster for platform update"},{"depth":2,"slug":"update-environment-considerations_ocp-update-prep","text":"Disconnected environment considerations"}];
+const headings = [{"depth":1,"slug":"update-ocp-update-prep","text":"Preparing a bare-metal cluster for platform update"},{"depth":2,"slug":"update-environment-considerations_ocp-update-prep","text":"Disconnected environment considerations"},{"depth":2,"slug":"update-ensuring-host-firmware-compatible_ocp-update-prep","text":"Ensuring the host firmware is compatible with the update"},{"depth":2,"slug":"update-ensuring-layered-products-are-compatible_ocp-update-prep","text":"Ensuring that layered products are compatible with the update"},{"depth":2,"slug":"update-applying-mcp-labels-to-nodes-before-the-update_ocp-update-prep","text":"Applying MachineConfigPool labels to nodes before the update"},{"depth":3,"slug":"update-reviewing-configured-cluster-mcp-roles_ocp-update-prep","text":"Reviewing configured cluster MachineConfigPool roles"},{"depth":3,"slug":"update-creating-mcp-groups-for-the-cluster_ocp-update-prep","text":"Creating MachineConfigPool groups for the cluster"},{"depth":2,"slug":"update-preparing-the-cluster-platform_ocp-update-prep","text":"Preparing the cluster platform for update"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-ocp-update-prep";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing a bare-metal cluster for platform update {#update-ocp-update-prep}\n\nOn bare-metal hardware, you often must update the firmware to take on important security fixes, take on new functionality, or maintain compatibility with the new release of OpenShift Container Platform.\n\n## Disconnected environment considerations {#update-environment-considerations_ocp-update-prep}\n\nTo update clusters in disconnected environments, you must update your offline image repository.\n\n**Additional resources**\n\n- [API compatibility guidelines](/openshift-docs-markdown/rest_api/overview/understanding-compatibility-guidelines#api-compatibility-guidelines_compatibility-guidelines)\n- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n\n**Additional resources**\n\n- [Updating the worker nodes](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-worker-nodes_completing-the-update)\n- [Updating all the OLM Operators](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-all-the-olm-operators_completing-the-update)\n\n**Additional resources**\n\n- [Node configuration management with machine config pools](/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)\n\n**Additional resources**\n\n- [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)\n- [Factors affecting update duration](/openshift-docs-markdown/updating/understanding_updates/understanding-openshift-update-duration#factors-affecting-update-duration_openshift-update-duration)\n- [Ensuring that CNF workloads run uninterrupted with pod disruption budgets](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pdb_update-cnf-update-prep)\n- [Ensuring that pods do not run on the same cluster node](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pod-anti-affinity_update-cnf-update-prep)\n\n**Additional resources**\n\n- [Investigating pod issues](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#investigating-pod-issues)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-ocp-update-prep.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing a bare-metal cluster for platform update {#update-ocp-update-prep}\n\nOn bare-metal hardware, you often must update the firmware to take on important security fixes, take on new functionality, or maintain compatibility with the new release of OpenShift Container Platform.\n\n## Disconnected environment considerations {#update-environment-considerations_ocp-update-prep}\n\nTo update clusters in disconnected environments, you must update your offline image repository.\n\n**Additional resources**\n\n- [API compatibility guidelines](/openshift-docs-markdown/rest_api/overview/understanding-compatibility-guidelines#api-compatibility-guidelines_compatibility-guidelines)\n- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n\n## Ensuring the host firmware is compatible with the update {#update-ensuring-host-firmware-compatible_ocp-update-prep}\n\nYou are responsible for the firmware versions that you run in your clusters. Updating host firmware is not a part of the OpenShift Container Platform update process. It is not recommended to update firmware in conjunction with the OpenShift Container Platform version.\n\n> [!IMPORTANT]\n> Hardware vendors advise that it is best to apply the latest certified firmware version for the specific hardware that you are running. For each different use case, always verify firmware updates in test environments before applying them in production. For example, workloads with high throughput requirements can be negatively affected outdated host firmware.\n>\n> You should thoroughly test new firmware updates to ensure that they work as expected with the current version of OpenShift Container Platform. For best results, test the latest firmware version with the target OpenShift Container Platform update version.\n\n## Ensuring that layered products are compatible with the update {#update-ensuring-layered-products-are-compatible_ocp-update-prep}\n\nVerify that all layered products run on the version of OpenShift Container Platform that you are updating to before you begin the update. This generally includes all Operators.\n\n**Procedure**\n\n1. Verify the currently installed Operators in the cluster. For example, run the following command:\n\n   ```terminal\n   $ oc get csv -A\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAMESPACE                              NAME            DISPLAY          VERSION   REPLACES                             PHASE\n   gitlab-operator-kubernetes.v0.17.2     GitLab                           0.17.2    gitlab-operator-kubernetes.v0.17.1   Succeeded\n   openshift-operator-lifecycle-manager   packageserver   Package Server   0.19.0                                         Succeeded\n   ```\n2. Check that Operators that you install with OLM are compatible with the update version. Operators that are installed with the Operator Lifecycle Manager (OLM) are not part of the standard cluster Operators set.\n\n   Use the [Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/?upgrade_path=4.14%20to%204.16) to understand if you must update an Operator after each y-stream update or if you can wait until you have fully updated to the next EUS release.\n\n   > [!TIP]\n   > You can also use the [Operator Update Information Checker](https://access.redhat.com/labs/ocpouic/?upgrade_path=4.14%20to%204.16) to see what versions of OpenShift Container Platform are compatible with specific releases of an Operator.\n3. Check that Operators that you install outside of OLM are compatible with the update version. For all OLM-installed Operators that are not directly supported by Red Hat, contact the Operator vendor to ensure release compatibility.\n\n   - Some Operators are compatible with several releases of OpenShift Container Platform.\n\n     See \"Updating the worker nodes\" for more information.\n   - See \"Updating all the OLM Operators\" for information about updating an Operator after performing the first y-stream control plane update.\n\n**Additional resources**\n\n- [Updating the worker nodes](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-worker-nodes_completing-the-update)\n- [Updating all the OLM Operators](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-all-the-olm-operators_completing-the-update)\n\n## Applying MachineConfigPool labels to nodes before the update {#update-applying-mcp-labels-to-nodes-before-the-update_ocp-update-prep}\n\nPrepare `MachineConfigPool` (MCP) node labels to group nodes together in groups of roughly 8 to 10 nodes. With MCP groups, you can reboot groups of nodes independently from the rest of the cluster.\n\nYou use the MCP node labels to pause and unpause the set of nodes during the update process so that you can do the update and reboot at a time of your choosing.\n\n**Staggering the cluster update**\n\nSometimes there are problems during the update. Often the problem is related to hardware failure or nodes needing to be reset. Using MCP node labels, you can update nodes in stages by pausing the update at critical moments, tracking paused and unpaused nodes as you proceed. When a problem occurs, you use the nodes that are in an unpaused state to ensure that there are enough nodes running to keep all applications pods running.\n\n**Dividing worker nodes into MachineConfigPool groups**\n\nHow you divide worker nodes into MCPs can vary depending on how many nodes are in the cluster or how many nodes you assign to a node role. By default, the two roles in a cluster are control plane and worker roles.\n\nYou can also move nodes between MCP groups if both groups have the same machine config, which is important if you have too many nodes in one large machine config pool. For more information about MCP groups, see *Additional resources*.\n\n> [!NOTE]\n> Larger clusters can have as many as 100 worker nodes. No matter how many nodes there are in the cluster, keep each `MachineConfigPool` group to around 10 nodes. This allows you to control how many nodes are taken down at a time. With multiple `MachineConfigPool` groups, you can unpause several groups at a time to accelerate the update, or separate the update over two or more maintenance windows.\n\nExample cluster with 15 worker nodes\n:   Consider a cluster with 15 worker nodes:\n\n    - 10 worker nodes are control plane nodes.\n    - 5 worker nodes are data plane nodes.\n\n    Split the control plane and data plane worker node roles into at least 2 MCP groups each. Having 2 MCP groups per role means that you can have one set of nodes that are not affected by the update.\n\n    Example cluster with 6 worker nodes\n    :   Consider a cluster with 6 worker nodes:\n\n- Split the worker nodes into 3 MCP groups of 2 nodes each.\n\n  Upgrade one of the MCP groups. Allow the updated nodes to sit through a day to allow for verification of application compatibility before completing the update on the other 4 nodes.\n\n> [!IMPORTANT]\n> The process and pace at which you unpause the MCP groups is determined by your applications and configuration.\n>\n> If your pod can handle being scheduled across nodes in a cluster, you can unpause several MCP groups at a time and set the `MaxUnavailable` field in the MCP custom resource (CR) to as high as 50%. This allows up to half of the nodes in an MCP group to restart and get updated.\n\n**Additional resources**\n\n- [Node configuration management with machine config pools](/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview)\n\n### Reviewing configured cluster MachineConfigPool roles {#update-reviewing-configured-cluster-mcp-roles_ocp-update-prep}\n\nReview the currently configured `MachineConfigPool` roles in the cluster.\n\n**Procedure**\n\n1. Get the currently configured `mcp` groups in the cluster:\n\n   ```terminal\n   $ oc get mcp\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME     CONFIG                   UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\n   master   rendered-master-bere83   True      False      False      3              3                   3                     0                      25d\n   worker   rendered-worker-245c4f   True      False      False      2              2                   2                     0                      25d\n   ```\n2. Compare the list of `mcp` roles to list of nodes in the cluster:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME           STATUS   ROLES                  AGE   VERSION\n   ctrl-plane-0   Ready    control-plane,master   39d   v1.27.15+6147456\n   ctrl-plane-1   Ready    control-plane,master   39d   v1.27.15+6147456\n   ctrl-plane-2   Ready    control-plane,master   39d   v1.27.15+6147456\n   worker-0       Ready    worker                 39d   v1.27.15+6147456\n   worker-1       Ready    worker                 39d   v1.27.15+6147456\n   ```\n\n   > [!NOTE]\n   > When you apply an `mcp` group change, the node roles are updated.\n\n   Determine how you want to separate the worker nodes into `mcp` groups.\n\n### Creating MachineConfigPool groups for the cluster {#update-creating-mcp-groups-for-the-cluster_ocp-update-prep}\n\nCreating `mcp` groups is a 2-step process:\n\n1. Add an `mcp` label to the nodes in the cluster\n2. Apply an `mcp` CR to the cluster that organizes the nodes based on their labels\n\n**Procedure**\n\n1. Label the nodes so that they can be put into `mcp` groups. Run the following commands:\n\n   ```terminal\n   $ oc label node worker-0 node-role.kubernetes.io/mcp-1=\n   ```\n\n   ```terminal\n   $ oc label node worker-1 node-role.kubernetes.io/mcp-2=\n   ```\n\n   The `mcp-1` and `mcp-2` labels are applied to the nodes. For example:\n\n   ```terminal {title=\"Example output\"}\n   NAME           STATUS   ROLES                  AGE   VERSION\n   ctrl-plane-0   Ready    control-plane,master   39d   v1.27.15+6147456\n   ctrl-plane-1   Ready    control-plane,master   39d   v1.27.15+6147456\n   ctrl-plane-2   Ready    control-plane,master   39d   v1.27.15+6147456\n   worker-0       Ready    mcp-1,worker           39d   v1.27.15+6147456\n   worker-1       Ready    mcp-2,worker           39d   v1.27.15+6147456\n   ```\n2. Create YAML custom resources (CRs) that apply the labels as `mcp` CRs in the cluster. Save the following YAML in the `mcps.yaml` file:\n\n   ```yaml\n   ---\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfigPool\n   metadata:\n     name: mcp-2\n   spec:\n     machineConfigSelector:\n       matchExpressions:\n         - {\n            key: machineconfiguration.openshift.io/role,\n            operator: In,\n            values: [worker,mcp-2]\n           }\n     nodeSelector:\n       matchLabels:\n         node-role.kubernetes.io/mcp-2: \"\"\n   ---\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfigPool\n   metadata:\n     name: mcp-1\n   spec:\n     machineConfigSelector:\n       matchExpressions:\n         - {\n            key: machineconfiguration.openshift.io/role,\n            operator: In,\n            values: [worker,mcp-1]\n           }\n     nodeSelector:\n       matchLabels:\n         node-role.kubernetes.io/mcp-1: \"\"\n   ```\n3. Create the `MachineConfigPool` resources:\n\n   ```terminal\n   $ oc apply -f mcps.yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   machineconfigpool.machineconfiguration.openshift.io/mcp-2 created\n   ```\n\n**Verification**\n\nMonitor the `MachineConfigPool` resources as they are applied in the cluster. After you apply the `mcp` resources, the nodes are added into the new machine config pools. This takes a few minutes.\n\n> [!NOTE]\n> The nodes do not reboot while being added into the `mcp` groups. The original worker and master `mcp` groups remain unchanged.\n\n- Check the status of the new `mcp` resources:\n\n  ```terminal\n  $ oc get mcp\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME     CONFIG                   UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\n  master   rendered-master-be3e83   True      False      False      3              3                 3                     0                      25d\n  mcp-1    rendered-mcp-1-2f4c4f    False     True       True       1              0                 0                     0                      10s\n  mcp-2    rendered-mcp-2-2r4s1f    False     True       True       1              0                 0                     0                      10s\n  worker   rendered-worker-23fc4f   False     True       True       0              0                 0                     2                      25d\n  ```\n\n  Eventually, the resources are fully applied:\n\n  ```terminal\n  NAME     CONFIG                   UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\n  master   rendered-master-be3e83   True      False      False      3              3                 3                     0                      25d\n  mcp-1    rendered-mcp-1-2f4c4f    True      False      False      1              1                 1                     0                      7m33s\n  mcp-2    rendered-mcp-2-2r4s1f    True      False      False      1              1                 1                     0                      51s\n  worker   rendered-worker-23fc4f   True      False      False      0              0                 0                     0                      25d\n  ```\n\n**Additional resources**\n\n- [Performing a Control Plane Only update](/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update)\n- [Factors affecting update duration](/openshift-docs-markdown/updating/understanding_updates/understanding-openshift-update-duration#factors-affecting-update-duration_openshift-update-duration)\n- [Ensuring that CNF workloads run uninterrupted with pod disruption budgets](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pdb_update-cnf-update-prep)\n- [Ensuring that pods do not run on the same cluster node](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pod-anti-affinity_update-cnf-update-prep)\n\n## Preparing the cluster platform for update {#update-preparing-the-cluster-platform_ocp-update-prep}\n\nBefore you update the cluster, perform basic checks and verifications to ensure that the cluster is ready for the update.\n\n**Procedure**\n\n1. Verify that there are no failed or in progress pods in the cluster by running the following command:\n\n   ```terminal\n   $ oc get pods -A | grep -E -vi 'complete|running'\n   ```\n\n   > [!NOTE]\n   > You might have to run this command more than once if there are pods that are in a pending state.\n2. Verify that all nodes in the cluster are available:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME           STATUS   ROLES                  AGE   VERSION\n   ctrl-plane-0   Ready    control-plane,master   32d   v1.27.15+6147456\n   ctrl-plane-1   Ready    control-plane,master   32d   v1.27.15+6147456\n   ctrl-plane-2   Ready    control-plane,master   32d   v1.27.15+6147456\n   worker-0       Ready    mcp-1,worker           32d   v1.27.15+6147456\n   worker-1       Ready    mcp-2,worker           32d   v1.27.15+6147456\n   ```\n3. Verify that all bare-metal nodes are provisioned and ready.\n\n   ```terminal\n   $ oc get bmh -n openshift-machine-api\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME           STATE         CONSUMER                   ONLINE   ERROR   AGE\n   ctrl-plane-0   unmanaged     cnf-58879-master-0         true             33d\n   ctrl-plane-1   unmanaged     cnf-58879-master-1         true             33d\n   ctrl-plane-2   unmanaged     cnf-58879-master-2         true             33d\n   worker-0       unmanaged     cnf-58879-worker-0-45879   true             33d\n   worker-1       progressing   cnf-58879-worker-0-dszsh   false            1d\n   ```\n\n   An error occurred while provisioning the `worker-1` node.\n\n**Verification**\n\n- Verify that all cluster Operators are ready:\n\n  ```terminal\n  $ oc get co\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE\n  authentication                             4.14.34   True        False         False      17h\n  baremetal                                  4.14.34   True        False         False      32d\n\n  ...\n\n  service-ca                                 4.14.34   True        False         False      32d\n  storage                                    4.14.34   True        False         False      32d\n  ```\n\n**Additional resources**\n\n- [Investigating pod issues](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#investigating-pod-issues)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-ocp-update-prep.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="update-ocp-update-prep" class="group scroll-mt-20">Preparing a bare-metal cluster for platform update<a href="#update-ocp-update-prep" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>On bare-metal hardware, you often must update the firmware to take on important security fixes, take on new functionality, or maintain compatibility with the new release of OpenShift Container Platform.</p>
       <h2 id="update-environment-considerations_ocp-update-prep" class="group scroll-mt-20">Disconnected environment considerations<a href="#update-environment-considerations_ocp-update-prep" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>To update clusters in disconnected environments, you must update your offline image repository.</p>
@@ -100,21 +103,198 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/rest_api/overview/understanding-compatibility-guidelines#api-compatibility-guidelines_compatibility-guidelines">API compatibility guidelines</a></li>
       <li><a href="/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2">Mirroring images for a disconnected installation by using the oc-mirror plugin v2</a></li>
       </ul>
-      <p class="/modules/update-ensuring-that-layered-products-are-compatible.md"></p>
+      <h2 id="update-ensuring-host-firmware-compatible_ocp-update-prep" class="group scroll-mt-20">Ensuring the host firmware is compatible with the update<a href="#update-ensuring-host-firmware-compatible_ocp-update-prep" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You are responsible for the firmware versions that you run in your clusters. Updating host firmware is not a part of the OpenShift Container Platform update process. It is not recommended to update firmware in conjunction with the OpenShift Container Platform version.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Hardware vendors advise that it is best to apply the latest certified firmware version for the specific hardware that you are running. For each different use case, always verify firmware updates in test environments before applying them in production. For example, workloads with high throughput requirements can be negatively affected outdated host firmware.</p>
+          <p>You should thoroughly test new firmware updates to ensure that they work as expected with the current version of OpenShift Container Platform. For best results, test the latest firmware version with the target OpenShift Container Platform update version.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="update-ensuring-layered-products-are-compatible_ocp-update-prep" class="group scroll-mt-20">Ensuring that layered products are compatible with the update<a href="#update-ensuring-layered-products-are-compatible_ocp-update-prep" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Verify that all layered products run on the version of OpenShift Container Platform that you are updating to before you begin the update. This generally includes all Operators.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Verify the currently installed Operators in the cluster. For example, run the following command:
+      <CodeBlock code={"$ oc get csv -A"} lang="terminal" />
+      <CodeBlock code={"NAMESPACE                              NAME            DISPLAY          VERSION   REPLACES                             PHASE\ngitlab-operator-kubernetes.v0.17.2     GitLab                           0.17.2    gitlab-operator-kubernetes.v0.17.1   Succeeded\nopenshift-operator-lifecycle-manager   packageserver   Package Server   0.19.0                                         Succeeded"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check that Operators that you install with OLM are compatible with the update version. Operators that are installed with the Operator Lifecycle Manager (OLM) are not part of the standard cluster Operators set.
+      <p>Use the <a href="https://access.redhat.com/labs/ocpouic/?upgrade_path=4.14%20to%204.16">Operator Update Information Checker</a> to understand if you must update an Operator after each y-stream update or if you can wait until you have fully updated to the next EUS release.</p>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can also use the <a href="https://access.redhat.com/labs/ocpouic/?upgrade_path=4.14%20to%204.16">Operator Update Information Checker</a> to see what versions of OpenShift Container Platform are compatible with specific releases of an Operator.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Check that Operators that you install outside of OLM are compatible with the update version. For all OLM-installed Operators that are not directly supported by Red Hat, contact the Operator vendor to ensure release compatibility.
+      <ul>
+      <li>
+      Some Operators are compatible with several releases of OpenShift Container Platform.
+      <p>See "Updating the worker nodes" for more information.</p>
+      </li>
+      <li>See "Updating all the OLM Operators" for information about updating an Operator after performing the first y-stream control plane update.</li>
+      </ul>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-the-worker-nodes_completing-the-update">Updating the worker nodes</a></li>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-completing-the-control-plane-only-update#update-updating-all-the-olm-operators_completing-the-update">Updating all the OLM Operators</a></li>
       </ul>
+      <h2 id="update-applying-mcp-labels-to-nodes-before-the-update_ocp-update-prep" class="group scroll-mt-20">Applying MachineConfigPool labels to nodes before the update<a href="#update-applying-mcp-labels-to-nodes-before-the-update_ocp-update-prep" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Prepare <code>MachineConfigPool</code> (MCP) node labels to group nodes together in groups of roughly 8 to 10 nodes. With MCP groups, you can reboot groups of nodes independently from the rest of the cluster.</p>
+      <p>You use the MCP node labels to pause and unpause the set of nodes during the update process so that you can do the update and reboot at a time of your choosing.</p>
+      <p><strong>Staggering the cluster update</strong></p>
+      <p>Sometimes there are problems during the update. Often the problem is related to hardware failure or nodes needing to be reset. Using MCP node labels, you can update nodes in stages by pausing the update at critical moments, tracking paused and unpaused nodes as you proceed. When a problem occurs, you use the nodes that are in an unpaused state to ensure that there are enough nodes running to keep all applications pods running.</p>
+      <p><strong>Dividing worker nodes into MachineConfigPool groups</strong></p>
+      <p>How you divide worker nodes into MCPs can vary depending on how many nodes are in the cluster or how many nodes you assign to a node role. By default, the two roles in a cluster are control plane and worker roles.</p>
+      <p>You can also move nodes between MCP groups if both groups have the same machine config, which is important if you have too many nodes in one large machine config pool. For more information about MCP groups, see <em>Additional resources</em>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Larger clusters can have as many as 100 worker nodes. No matter how many nodes there are in the cluster, keep each <code>MachineConfigPool</code> group to around 10 nodes. This allows you to control how many nodes are taken down at a time. With multiple <code>MachineConfigPool</code> groups, you can unpause several groups at a time to accelerate the update, or separate the update over two or more maintenance windows.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Example cluster with 15 worker nodes</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Consider a cluster with 15 worker nodes:</p>
+      <ul>
+      <li>10 worker nodes are control plane nodes.</li>
+      <li>5 worker nodes are data plane nodes.</li>
+      </ul>
+      <p>Split the control plane and data plane worker node roles into at least 2 MCP groups each. Having 2 MCP groups per role means that you can have one set of nodes that are not affected by the update.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Example cluster with 6 worker nodes</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Consider a cluster with 6 worker nodes:</p></dd>
+      </dl>
+      </dd>
+      </dl>
+      <ul>
+      <li>
+      Split the worker nodes into 3 MCP groups of 2 nodes each.
+      <p>Upgrade one of the MCP groups. Allow the updated nodes to sit through a day to allow for verification of application compatibility before completing the update on the other 4 nodes.</p>
+      </li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The process and pace at which you unpause the MCP groups is determined by your applications and configuration.</p>
+          <p>If your pod can handle being scheduled across nodes in a cluster, you can unpause several MCP groups at a time and set the <code>MaxUnavailable</code> field in the MCP custom resource (CR) to as high as 50%. This allows up to half of the nodes in an MCP group to restart and get updated.</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/machine_configuration/index#architecture-machine-config-pools_machine-config-overview">Node configuration management with machine config pools</a></li></ul>
-      <p class="/modules/update-creating-mcp-groups-for-the-cluster.md"></p>
+      <h3 id="update-reviewing-configured-cluster-mcp-roles_ocp-update-prep" class="group scroll-mt-20">Reviewing configured cluster MachineConfigPool roles<a href="#update-reviewing-configured-cluster-mcp-roles_ocp-update-prep" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Review the currently configured <code>MachineConfigPool</code> roles in the cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Get the currently configured <code>mcp</code> groups in the cluster:
+      <CodeBlock code={"$ oc get mcp"} lang="terminal" />
+      <CodeBlock code={"NAME     CONFIG                   UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\nmaster   rendered-master-bere83   True      False      False      3              3                   3                     0                      25d\nworker   rendered-worker-245c4f   True      False      False      2              2                   2                     0                      25d"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Compare the list of <code>mcp</code> roles to list of nodes in the cluster:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME           STATUS   ROLES                  AGE   VERSION\nctrl-plane-0   Ready    control-plane,master   39d   v1.27.15+6147456\nctrl-plane-1   Ready    control-plane,master   39d   v1.27.15+6147456\nctrl-plane-2   Ready    control-plane,master   39d   v1.27.15+6147456\nworker-0       Ready    worker                 39d   v1.27.15+6147456\nworker-1       Ready    worker                 39d   v1.27.15+6147456"} lang="terminal" title="Example output" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When you apply an <code>mcp</code> group change, the node roles are updated.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Determine how you want to separate the worker nodes into <code>mcp</code> groups.</p>
+      </li>
+      </ol>
+      <h3 id="update-creating-mcp-groups-for-the-cluster_ocp-update-prep" class="group scroll-mt-20">Creating MachineConfigPool groups for the cluster<a href="#update-creating-mcp-groups-for-the-cluster_ocp-update-prep" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Creating <code>mcp</code> groups is a 2-step process:</p>
+      <ol>
+      <li>Add an <code>mcp</code> label to the nodes in the cluster</li>
+      <li>Apply an <code>mcp</code> CR to the cluster that organizes the nodes based on their labels</li>
+      </ol>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Label the nodes so that they can be put into <code>mcp</code> groups. Run the following commands:
+      <CodeBlock code={"$ oc label node worker-0 node-role.kubernetes.io/mcp-1="} lang="terminal" />
+      <CodeBlock code={"$ oc label node worker-1 node-role.kubernetes.io/mcp-2="} lang="terminal" />
+      <p>The <code>mcp-1</code> and <code>mcp-2</code> labels are applied to the nodes. For example:</p>
+      <CodeBlock code={"NAME           STATUS   ROLES                  AGE   VERSION\nctrl-plane-0   Ready    control-plane,master   39d   v1.27.15+6147456\nctrl-plane-1   Ready    control-plane,master   39d   v1.27.15+6147456\nctrl-plane-2   Ready    control-plane,master   39d   v1.27.15+6147456\nworker-0       Ready    mcp-1,worker           39d   v1.27.15+6147456\nworker-1       Ready    mcp-2,worker           39d   v1.27.15+6147456"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Create YAML custom resources (CRs) that apply the labels as <code>mcp</code> CRs in the cluster. Save the following YAML in the <code>mcps.yaml</code> file:
+      <CodeBlock code={"---\napiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfigPool\nmetadata:\n  name: mcp-2\nspec:\n  machineConfigSelector:\n    matchExpressions:\n      - {\n         key: machineconfiguration.openshift.io/role,\n         operator: In,\n         values: [worker,mcp-2]\n        }\n  nodeSelector:\n    matchLabels:\n      node-role.kubernetes.io/mcp-2: \"\"\n---\napiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfigPool\nmetadata:\n  name: mcp-1\nspec:\n  machineConfigSelector:\n    matchExpressions:\n      - {\n         key: machineconfiguration.openshift.io/role,\n         operator: In,\n         values: [worker,mcp-1]\n        }\n  nodeSelector:\n    matchLabels:\n      node-role.kubernetes.io/mcp-1: \"\""} lang="yaml" />
+      </li>
+      <li>
+      Create the <code>MachineConfigPool</code> resources:
+      <CodeBlock code={"$ oc apply -f mcps.yaml"} lang="terminal" />
+      <CodeBlock code={"machineconfigpool.machineconfiguration.openshift.io/mcp-2 created"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <p>Monitor the <code>MachineConfigPool</code> resources as they are applied in the cluster. After you apply the <code>mcp</code> resources, the nodes are added into the new machine config pools. This takes a few minutes.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The nodes do not reboot while being added into the <code>mcp</code> groups. The original worker and master <code>mcp</code> groups remain unchanged.</p>
+        </AlertDescription>
+      </Alert>
+      <ul>
+      <li>
+      Check the status of the new <code>mcp</code> resources:
+      <CodeBlock code={"$ oc get mcp"} lang="terminal" />
+      <CodeBlock code={"NAME     CONFIG                   UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\nmaster   rendered-master-be3e83   True      False      False      3              3                 3                     0                      25d\nmcp-1    rendered-mcp-1-2f4c4f    False     True       True       1              0                 0                     0                      10s\nmcp-2    rendered-mcp-2-2r4s1f    False     True       True       1              0                 0                     0                      10s\nworker   rendered-worker-23fc4f   False     True       True       0              0                 0                     2                      25d"} lang="terminal" title="Example output" />
+      <p>Eventually, the resources are fully applied:</p>
+      <CodeBlock code={"NAME     CONFIG                   UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\nmaster   rendered-master-be3e83   True      False      False      3              3                 3                     0                      25d\nmcp-1    rendered-mcp-1-2f4c4f    True      False      False      1              1                 1                     0                      7m33s\nmcp-2    rendered-mcp-2-2r4s1f    True      False      False      1              1                 1                     0                      51s\nworker   rendered-worker-23fc4f   True      False      False      0              0                 0                     0                      25d"} lang="terminal" />
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/updating/updating_a_cluster/control-plane-only-update#control-plane-only-update">Performing a Control Plane Only update</a></li>
       <li><a href="/openshift-docs-markdown/updating/understanding_updates/understanding-openshift-update-duration#factors-affecting-update-duration_openshift-update-duration">Factors affecting update duration</a></li>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pdb_update-cnf-update-prep">Ensuring that CNF workloads run uninterrupted with pod disruption budgets</a></li>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-pod-anti-affinity_update-cnf-update-prep">Ensuring that pods do not run on the same cluster node</a></li>
+      </ul>
+      <h2 id="update-preparing-the-cluster-platform_ocp-update-prep" class="group scroll-mt-20">Preparing the cluster platform for update<a href="#update-preparing-the-cluster-platform_ocp-update-prep" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you update the cluster, perform basic checks and verifications to ensure that the cluster is ready for the update.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Verify that there are no failed or in progress pods in the cluster by running the following command:
+      <CodeBlock code={"$ oc get pods -A | grep -E -vi 'complete|running'"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You might have to run this command more than once if there are pods that are in a pending state.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Verify that all nodes in the cluster are available:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME           STATUS   ROLES                  AGE   VERSION\nctrl-plane-0   Ready    control-plane,master   32d   v1.27.15+6147456\nctrl-plane-1   Ready    control-plane,master   32d   v1.27.15+6147456\nctrl-plane-2   Ready    control-plane,master   32d   v1.27.15+6147456\nworker-0       Ready    mcp-1,worker           32d   v1.27.15+6147456\nworker-1       Ready    mcp-2,worker           32d   v1.27.15+6147456"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Verify that all bare-metal nodes are provisioned and ready.
+      <CodeBlock code={"$ oc get bmh -n openshift-machine-api"} lang="terminal" />
+      <CodeBlock code={"NAME           STATE         CONSUMER                   ONLINE   ERROR   AGE\nctrl-plane-0   unmanaged     cnf-58879-master-0         true             33d\nctrl-plane-1   unmanaged     cnf-58879-master-1         true             33d\nctrl-plane-2   unmanaged     cnf-58879-master-2         true             33d\nworker-0       unmanaged     cnf-58879-worker-0-45879   true             33d\nworker-1       progressing   cnf-58879-worker-0-dszsh   false            1d"} lang="terminal" title="Example output" />
+      <p>An error occurred while provisioning the <code>worker-1</code> node.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that all cluster Operators are ready:
+      <CodeBlock code={"$ oc get co"} lang="terminal" />
+      <CodeBlock code={"NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE\nauthentication                             4.14.34   True        False         False      17h\nbaremetal                                  4.14.34   True        False         False      32d\n\n...\n\nservice-ca                                 4.14.34   True        False         False      32d\nstorage                                    4.14.34   True        False         False      32d"} lang="terminal" title="Example output" />
+      </li>
       </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#investigating-pod-issues">Investigating pod issues</a></li></ul>

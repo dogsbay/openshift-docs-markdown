@@ -39,11 +39,60 @@ OVN-Kubernetes, the default network provider in OpenShift Container Platform 4.1
 
 - [Configuring OVN-Kubernetes internal IP address subnets](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/configure-ovn-kubernetes-subnets#configure-ovn-kubernetes-subnets)
 
+## Machine CIDR {#machine-cidr-description_cidr-range-definitions}
+
+In the Machine classless inter-domain routing (CIDR) field, you must specify the IP address range for machines or cluster nodes.
+
+> [!NOTE]
+> You cannot change Machine CIDR ranges after you create your cluster.
+
+The default is `10.0.0.0/16`. This range must not conflict with any connected networks.
+
 **Additional resources**
 
 - [Cluster Network Operator configuration](/openshift-docs-markdown/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
+
+## Service classless inter-domain routing (CIDR) {#service-cidr-description_cidr-range-definitions}
+
+In the Service CIDR field, you must specify the IP address range for services.
+
+The range must be large enough to accommodate your workload. The address block must not overlap with any external service accessed from within the cluster. The default is `172.30.0.0/16`.
+
+## Pod classless inter-domain routing (CIDR) {#pod-cidr-description_cidr-range-definitions}
+
+In the pod CIDR field, you must specify the IP address range for pods.
+
+The pod CIDR is the same as the `clusterNetwork` CIDR and the cluster CIDR.
+
+The range must be large enough to accommodate your workload. The address block must not overlap with any external service accessed from within the cluster. The default is `10.128.0.0/14`. You can expand the range after cluster installation.
 
 **Additional resources**
 
 - [Cluster Network Operator configuration](/openshift-docs-markdown/networking/networking_operators/cluster-network-operator#nw-operator-cr_cluster-network-operator)
 - [Configuring the cluster network range](/openshift-docs-markdown/networking/configuring_network_settings/configuring-cluster-network-range#configuring-cluster-network-range)
+
+## Host prefix {#host-prefix-description_cidr-range-definitions}
+
+In the `hostPrefix` parameter, you must specify the subnet prefix length assigned to pods scheduled to individual machines. The host prefix determines the pod IP address pool for each machine.
+
+For example, if the host prefix is set to `/23`, each machine is assigned a `/23` subnet from the pod CIDR address range. The default is `/23`, allowing 510 cluster nodes and 510 pod IP addresses per node.
+
+Consider another example where you set the `clusterNetwork.cidr` parameter to `10.128.0.0/16`, you define the complete address space for the cluster. This assigns a pool of 65,536 IP addresses to your cluster. If you then set the `hostPrefix` parameter to `/23`, you define a subnet slice to each node in the cluster, where the `/23` slice becomes a subnet of the `/16` subnet network. This assigns 512 IP addresses to each node, where 2 IP addresses get reserved for networking and broadcasting purposes. The following example calculation uses these IP address figures to determine the maximum number of nodes that you can create for your cluster:
+
+```text
+65536 / 512 = 128
+```
+
+You can use the [Red Hat OpenShift Network Calculator](https://access.redhat.com/labs/ocpnc/) to calculate the maximum number of nodes for your cluster.
+
+## CIDR ranges for hosted control planes {#hcp-cidr-ranges_cidr-range-definitions}
+
+To successfully deploy hosted control planes on OpenShift Container Platform, define the network environment by using specific Classless Inter-Domain Routing (CIDR) subnet ranges.
+
+The following Classless Inter-Domain Routing (CIDR) subnet ranges are the default settings for hosted control planes:
+
+- `v4InternalSubnet`: 100.65.0.0/16 (OVN-Kubernetes)
+- `clusterNetwork`: 10.132.0.0/14 (pod network)
+- `serviceNetwork`: 172.31.0.0/16
+
+By using one of the default subnet ranges, you can avoid CIDR overlap with the management cluster and avoid connectivity issues. However, you can use other CIDR subnet ranges if they do not overlap with the management cluster.

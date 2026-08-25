@@ -4,7 +4,7 @@ title: Assigning compute resources
 
 # Assigning compute resources {#virt-assigning-compute-resources}
 
-In {{ VirtProductName }}, compute resources assigned to virtual machines (VMs) are backed by either guaranteed CPUs or time-sliced CPU shares.
+In OpenShift Virtualization, compute resources assigned to virtual machines (VMs) are backed by either guaranteed CPUs or time-sliced CPU shares.
 
 Guaranteed CPUs, also known as CPU reservation, dedicate CPU cores or threads to a specific workload, which makes them unavailable to any other workload. Assigning guaranteed CPUs to a VM ensures that the VM will have sole access to a reserved physical CPU. Enable dedicated resources for VMs to use a guaranteed CPU.
 
@@ -17,6 +17,37 @@ The type of CPU reservation depends on the instance type or VM configuration.
 Time-slicing allows multiple virtual CPUs (vCPUs) to share a single physical CPU. This is known as *CPU overcommitment*. Guaranteed VMs can not be overcommitted.
 
 Configure CPU overcommitment to prioritize VM density over performance when assigning CPUs to VMs. With a higher CPU over-commitment of vCPUs, more VMs fit onto a given node.
+
+## Setting the CPU allocation ratio {#virt-setting-cpu-allocation-ratio_virt-assigning-compute-resources}
+
+The CPU Allocation Ratio specifies the degree of overcommitment by mapping vCPUs to time slices of physical CPUs.
+
+For example, a mapping or ratio of 10:1 maps 10 virtual CPUs to 1 physical CPU by using time slices.
+
+To change the default number of vCPUs mapped to each physical CPU, set the `vmiCPUAllocationRatio` value in the `HyperConverged` CR. The pod CPU request is calculated by multiplying the number of vCPUs by the reciprocal of the CPU allocation ratio. For example, if `vmiCPUAllocationRatio` is set to 10, OpenShift Virtualization will request 10 times fewer CPUs on the pod for that VM.
+
+**Prerequisites**
+
+- You have installed the OpenShift CLI (`oc`).
+
+**Procedure**
+
+1. Open the `HyperConverged` CR in your default editor by running the following command:
+
+   ```terminal
+   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}
+   ```
+2. Set the `vmiCPUAllocationRatio`:
+
+   ```yaml
+   ...
+   spec:
+     resourceRequirements:
+       vmiCPUAllocationRatio: 1
+   # ...
+   ```
+
+   When `vmiCPUAllocationRatio` is set to `1`, the maximum amount of vCPUs are requested for the pod.
 
 ## Additional resources {#additional-resources_virt-assigning-compute-resources}
 

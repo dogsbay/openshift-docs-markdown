@@ -2,9 +2,9 @@
 title: User-managed encryption for {{ ibm_cloud_title }}
 ---
 
-# User-managed encryption for {{ ibm_cloud_title }} {#user-managed-encryption-ibm-cloud}
+# User-managed encryption for IBM Cloud {#user-managed-encryption-ibm-cloud}
 
-By default, OpenShift Container Platform uses provider-managed encryption to secure the root volumes and persistent data volumes of a cluster. You can override this by specifying an {{ ibm_name }} Key Protect root key by using the `encryptionKey` parameter in the `install-config.yaml` file.
+By default, OpenShift Container Platform uses provider-managed encryption to secure the root volumes and persistent data volumes of a cluster. You can override this by specifying an IBM(R) Key Protect root key by using the `encryptionKey` parameter in the `install-config.yaml` file.
 
 You can specify that:
 
@@ -14,13 +14,13 @@ You can specify that:
 When you bring your own root key, you change the `install-config.yaml` file to specify the Cloud Resource Name (CRN) of the root key by using the `encryptionKey` parameter.
 
 > [!NOTE]
-> Make sure you have integrated Key Protect with your {{ ibm_cloud_title }} Block Storage service. For more information, see "Key Protect documentation".
+> Make sure you have integrated Key Protect with your IBM Cloud Block Storage service. For more information, see "Key Protect documentation".
 
 ## Additional resources {#additional-resources_user-managed-encryption-ibm-cloud}
 
 - [Key Protect documentation](https://cloud.ibm.com/docs/key-protect?topic=key-protect-integrate-services#grant-access)
-- [Additional {{ ibm_cloud_title }} configuration parameters](/openshift-docs-markdown/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc)
-- [Installing a cluster on {{ ibm_cloud_title }} with customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
-- [Installing a cluster on {{ ibm_cloud_title }} with network customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
-- [Installing a cluster on {{ ibm_cloud_title }} into an existing VPC](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-vpc#installing-ibm-cloud-vpc)
-- [Installing a private cluster on {{ ibm_cloud_title }}](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-private#installing-ibm-cloud-private)
+- [Additional IBM Cloud configuration parameters](/openshift-docs-markdown/installing/installing_ibm_cloud/installation-config-parameters-ibm-cloud-vpc#installation-configuration-parameters-additional-ibm-cloud_installation-config-parameters-ibm-cloud-vpc)
+- [Installing a cluster on IBM Cloud with customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
+- [Installing a cluster on IBM Cloud with network customizations](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-customizations#installing-ibm-cloud-customizations)
+- [Installing a cluster on IBM Cloud into an existing VPC](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-vpc#installing-ibm-cloud-vpc)
+- [Installing a private cluster on IBM Cloud](/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-private#installing-ibm-cloud-private)

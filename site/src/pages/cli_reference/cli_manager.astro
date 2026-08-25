@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"cli-manager-overview","text":"{{ cli_manager }} overview"}];
+const headings = [{"depth":1,"slug":"cli-manager-overview","text":"{{ cli_manager }} overview"},{"depth":2,"slug":"cli-manager-about_cli-manager-overview","text":"About the CLI Manager Operator"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/cli_manager";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ cli_manager }} overview";
-const description = "To install and update CLI plugins in both connected and disconnected environments, you can use the {{ cli_manager }}." || undefined;
+const description = "To install and update CLI plugins in both connected and disconnected environments, you can use the CLI Manager Operator." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +42,7 @@ const pageCategory = ["cli_reference"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ cli_manager }} overview {#cli-manager-overview}\n\nTo install and update CLI plugins in both connected and disconnected environments, you can use the {{ cli_manager }}.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ cli_manager }} overview {#cli-manager-overview}\n\nTo install and update CLI plugins in both connected and disconnected environments, you can use the CLI Manager Operator.\n\n> [!IMPORTANT]\n> Using the CLI Manager Operator to install and manage plugins for the OpenShift CLI is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## About the CLI Manager Operator {#cli-manager-about_cli-manager-overview}\n\nYou can use the CLI Manager Operator to streamline the installation and management of CLI plugins, especially in disconnected environments.\n\nThe CLI Manager Operator makes it easier to install and update CLI plugins. It runs in both connected and disconnected environments, and it is particularly useful in disconnected environments. Cluster administrators can add CLI plugins and plugin updates to the CLI Manager Operator, and users can then install and update CLI plugins when needed regardless of whether or not the environment is disconnected.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +94,17 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cli-manager-overview" class="group scroll-mt-20">{"{"}{"{"} cli_manager {"}"}{"}"} overview<a href="#cli-manager-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/snippets/technology-preview.md">To install and update CLI plugins in both connected and disconnected environments, you can use the {"{"}{"{"} cli_manager {"}"}{"}"}.</p>
-      <p class="/modules/cli-manager-about.md"></p>
+      <p>To install and update CLI plugins in both connected and disconnected environments, you can use the CLI Manager Operator.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Using the CLI Manager Operator to install and manage plugins for the OpenShift CLI is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="cli-manager-about_cli-manager-overview" class="group scroll-mt-20">About the CLI Manager Operator<a href="#cli-manager-about_cli-manager-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the CLI Manager Operator to streamline the installation and management of CLI plugins, especially in disconnected environments.</p>
+      <p>The CLI Manager Operator makes it easier to install and update CLI plugins. It runs in both connected and disconnected environments, and it is particularly useful in disconnected environments. Cluster administrators can add CLI plugins and plugin updates to the CLI Manager Operator, and users can then install and update CLI plugins when needed regardless of whether or not the environment is disconnected.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

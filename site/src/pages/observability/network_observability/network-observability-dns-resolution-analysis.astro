@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"network-observability-dns-resolution-analysis_{{ context }}","text":"Network observability DNS resolution analysis"}];
+const headings = [{"depth":1,"slug":"network-observability-dns-resolution-analysis_{{ context }}","text":"Network observability DNS resolution analysis"},{"depth":2,"slug":"network-observability-dns-resolution-analysis-strategic-benefits_network-observability-dns-decoding","text":"Strategic benefits of DNS resolution analysis"},{"depth":3,"slug":"dns-flow-enrichment_network-observability-dns-decoding","text":"DNS flow enrichment"},{"depth":2,"slug":"network-observability-dns-resolution-analysis-configure_network-observability-dns-decoding","text":"Configure DNS domain tracking for network observability"},{"depth":2,"slug":"network-observability-dns-resolution-analysis-reference_network-observability-dns-decoding","text":"DNS flow enrichment and analysis reference"},{"depth":3,"slug":"leverage-dns-data-optimization_network-observability-dns-decoding","text":"Leverage DNS data for network optimization"},{"depth":3,"slug":"identify-misconfiguration-errors_network-observability-dns-decoding","text":"Identify misconfiguration errors"},{"depth":3,"slug":"loki-storage-considerations_network-observability-dns-decoding","text":"Loki storage considerations"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/network_observability/network-observability-dns-resolution-analysis";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["observability","observability/network_observability"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network observability DNS resolution analysis {#network-observability-dns-resolution-analysis_{{ context }}}\n\nLearn how DNS resolution analysis uses eBPF-based decoding to identify service discovery issues and follow the steps to enable DNS tracking in the FlowCollector resource to enrich network flow records with domain names.\n\n**Additional resources**\n\n- [Network flows format reference](/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)\n- [Network Observability Operator runbooks](https://github.com/openshift/runbooks/tree/master/alerts/network-observability-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-dns-resolution-analysis.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network observability DNS resolution analysis {#network-observability-dns-resolution-analysis_{{ context }}}\n\nLearn how DNS resolution analysis uses eBPF-based decoding to identify service discovery issues and follow the steps to enable DNS tracking in the FlowCollector resource to enrich network flow records with domain names.\n\n## Strategic benefits of DNS resolution analysis {#network-observability-dns-resolution-analysis-strategic-benefits_network-observability-dns-decoding}\n\nUse DNS resolution analysis to differentiate between network transport failures and service discovery issues by enriching eBPF flow records with domain names and status codes.\n\nStandard flow logs only show that traffic occurred on port 53. DNS resolution analysis allows you to complete the following tasks:\n\n- Reduced Mean time to identify (Mtti): Distinguish immediately between a network routing failure and a DNS resolution failure, such as an `NXDOMAIN` error.\n- Measure internal service latency: Track the time it takes for CoreDNS to respond to specific internal lookups (e.g., `my-service.namespace.svc.cluster.local`).\n- Audit external dependencies: Audit which external APIs or third-party domains your workloads are communicating with without requiring sidecars or manual packet captures.\n- Improved security posture: Detect potential data exfiltration or Command and Control (C2) activity by auditing the Fully Qualified Domain Names (FQDNs) queried by internal workloads.\n\n### DNS flow enrichment {#dns-flow-enrichment_network-observability-dns-decoding}\n\nWhen this feature is active, the eBPF agent enriches the flow records. This metadata allows you to group and filter traffic by the intent of the connection (the domain) rather than just the source IP.\n\nEnhanced DNS decoding allows the eBPF agent to inspect UDP and TCP DNS traffic on port 53 along with the query names for the DNS request.\n\n## Configure DNS domain tracking for network observability {#network-observability-dns-resolution-analysis-configure_network-observability-dns-decoding}\n\nEnable DNS tracking in the Network Observability Operator to monitor DNS query names, response codes, and latency for network flows within the cluster.\n\n**Prerequisites**\n\n- The Network Observability Operator is installed.\n- You have `cluster-admin` privileges.\n- You are familiar with the `FlowCollector` custom resource.\n\n**Procedure**\n\n1. Edit the `FlowCollector` resource by running the following command:\n\n   ```terminal\n   $ oc edit flowcollector cluster\n   ```\n2. Configure the eBPF agent to enable the DNS tracking feature:\n\n   ```yaml\n   apiVersion: flows.netobserv.io/v1alpha1\n   kind: FlowCollector\n   metadata:\n     name: cluster\n   spec:\n     agent:\n       type: eBPF\n       ebpf:\n         features:\n           - DNSTracking\n   ```\n\n   where:\n\n   `spec.agent.type.ebpf.features`\n   :   Specifies the list of features to enable for the eBPF agent. To enable DNS tracking, add `DNSTracking` to this list.\n3. Save and exit the editor.\n\n**Verification**\n\n1. In the OpenShift Container Platform web console, navigate to **Observe** -> **Network Traffic**.\n2. In the **Traffic Flows** view, click the **Manage columns** icon.\n3. Ensure that the **DNS Query Name**, **DNS Response Code**, and **DNS Latency** columns are selected.\n4. Filter the results by setting **Port** to `53`.\n5. Confirm that the flow table columns are populated with domain names and DNS metadata.\n\n## DNS flow enrichment and analysis reference {#network-observability-dns-resolution-analysis-reference_network-observability-dns-decoding}\n\nIdentify metadata added to network flows, leverage DNS data for network optimization, and understand the performance and storage impacts on the cluster.\n\nThe following table describes the metadata fields added to network flows when DNS tracking is enabled.\n\n> [!NOTE]\n> Query names might be missing or truncated because of compression pointers or cache limitations.\n\n**DNS flow metadata**\n\n| Field | Description | Example |\n| --- | --- | --- |\n| `dns_query_name` | The Fully Qualified Domain Name (FQDN) being queried. | `example.com` |\n| `dns_response_code` | The status code returned by the DNS server. | `NoError`, `NXDomain` |\n| `dns_id` | The transaction ID used to match queries with responses. | `45213` |\n\n### Leverage DNS data for network optimization {#leverage-dns-data-optimization_network-observability-dns-decoding}\n\nUse the captured DNS metadata for the following operational outcomes:\n\n- Audit external dependencies: Ensure workloads are not reaching out to unauthorized external APIs or high-risk domains.\n- Performance tuning: Monitor `DNS Latency` to identify if `CoreDNS` pods require additional scaling or if upstream DNS providers are lagging.\n\n### Identify misconfiguration errors {#identify-misconfiguration-errors_network-observability-dns-decoding}\n\nA high frequency of `NXDOMAIN` responses typically indicates service discovery errors in application code or stale environment variables.\n\n`NXDOMAIN` errors can be frequent in Kubernetes because of DNS searches on services and pods. While these results do not necessarily indicate a misconfiguration or broken URL, they can negatively impact performance.\n\nWhen `NXDOMAIN` errors are returned despite an apparently valid Service or Pod host name, such as `my-svc.my-namespace.svc`, the resolver is likely configured to query DNS for different suffixes. You can optimize this by adding a trailing dot to fully qualified domain names to tell the resolver that the name is unambiguous.\n\nFor example, instead of `https://my-svc.my-namespace.svc`, use `https://my-svc.my-namespace.svc.cluster.local.` with a trailing dot.\n\n### Loki storage considerations {#loki-storage-considerations_network-observability-dns-decoding}\n\nDNS tracking increases the number of labels and the amount of metadata per flow. Ensure that the Loki storage is sized to accommodate the increased log volume.\n\n**Additional resources**\n\n- [Network flows format reference](/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference)\n- [Network Observability Operator runbooks](https://github.com/openshift/runbooks/tree/master/alerts/network-observability-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-dns-resolution-analysis.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +101,101 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="network-observability-dns-resolution-analysis_{{ context }}" class="group scroll-mt-20">Network observability DNS resolution analysis<a href="#network-observability-dns-resolution-analysis_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Learn how DNS resolution analysis uses eBPF-based decoding to identify service discovery issues and follow the steps to enable DNS tracking in the FlowCollector resource to enrich network flow records with domain names.</p>
-      <p class="/modules/network-observability-dns-resolution-analysis-strategic-benefits.md"></p>
-      <p class="/modules/network-observability-dns-resolution-analysis-configure.md"></p>
-      <p class="/modules/network-observability-dns-resolution-analysis-reference.md"></p>
+      <h2 id="network-observability-dns-resolution-analysis-strategic-benefits_network-observability-dns-decoding" class="group scroll-mt-20">Strategic benefits of DNS resolution analysis<a href="#network-observability-dns-resolution-analysis-strategic-benefits_network-observability-dns-decoding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use DNS resolution analysis to differentiate between network transport failures and service discovery issues by enriching eBPF flow records with domain names and status codes.</p>
+      <p>Standard flow logs only show that traffic occurred on port 53. DNS resolution analysis allows you to complete the following tasks:</p>
+      <ul>
+      <li>Reduced Mean time to identify (Mtti): Distinguish immediately between a network routing failure and a DNS resolution failure, such as an <code>NXDOMAIN</code> error.</li>
+      <li>Measure internal service latency: Track the time it takes for CoreDNS to respond to specific internal lookups (e.g., <code>my-service.namespace.svc.cluster.local</code>).</li>
+      <li>Audit external dependencies: Audit which external APIs or third-party domains your workloads are communicating with without requiring sidecars or manual packet captures.</li>
+      <li>Improved security posture: Detect potential data exfiltration or Command and Control (C2) activity by auditing the Fully Qualified Domain Names (FQDNs) queried by internal workloads.</li>
+      </ul>
+      <h3 id="dns-flow-enrichment_network-observability-dns-decoding" class="group scroll-mt-20">DNS flow enrichment<a href="#dns-flow-enrichment_network-observability-dns-decoding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>When this feature is active, the eBPF agent enriches the flow records. This metadata allows you to group and filter traffic by the intent of the connection (the domain) rather than just the source IP.</p>
+      <p>Enhanced DNS decoding allows the eBPF agent to inspect UDP and TCP DNS traffic on port 53 along with the query names for the DNS request.</p>
+      <h2 id="network-observability-dns-resolution-analysis-configure_network-observability-dns-decoding" class="group scroll-mt-20">Configure DNS domain tracking for network observability<a href="#network-observability-dns-resolution-analysis-configure_network-observability-dns-decoding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enable DNS tracking in the Network Observability Operator to monitor DNS query names, response codes, and latency for network flows within the cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The Network Observability Operator is installed.</li>
+      <li>You have <code>cluster-admin</code> privileges.</li>
+      <li>You are familiar with the <code>FlowCollector</code> custom resource.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>FlowCollector</code> resource by running the following command:
+      <CodeBlock code={"$ oc edit flowcollector cluster"} lang="terminal" />
+      </li>
+      <li>
+      Configure the eBPF agent to enable the DNS tracking feature:
+      <CodeBlock code={"apiVersion: flows.netobserv.io/v1alpha1\nkind: FlowCollector\nmetadata:\n  name: cluster\nspec:\n  agent:\n    type: eBPF\n    ebpf:\n      features:\n        - DNSTracking"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.agent.type.ebpf.features</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the list of features to enable for the eBPF agent. To enable DNS tracking, add <code>DNSTracking</code> to this list.</p></dd>
+      </dl>
+      </li>
+      <li>Save and exit the editor.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform web console, navigate to <strong>Observe</strong> -&gt; <strong>Network Traffic</strong>.</li>
+      <li>In the <strong>Traffic Flows</strong> view, click the <strong>Manage columns</strong> icon.</li>
+      <li>Ensure that the <strong>DNS Query Name</strong>, <strong>DNS Response Code</strong>, and <strong>DNS Latency</strong> columns are selected.</li>
+      <li>Filter the results by setting <strong>Port</strong> to <code>53</code>.</li>
+      <li>Confirm that the flow table columns are populated with domain names and DNS metadata.</li>
+      </ol>
+      <h2 id="network-observability-dns-resolution-analysis-reference_network-observability-dns-decoding" class="group scroll-mt-20">DNS flow enrichment and analysis reference<a href="#network-observability-dns-resolution-analysis-reference_network-observability-dns-decoding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Identify metadata added to network flows, leverage DNS data for network optimization, and understand the performance and storage impacts on the cluster.</p>
+      <p>The following table describes the metadata fields added to network flows when DNS tracking is enabled.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Query names might be missing or truncated because of compression pointers or cache limitations.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>DNS flow metadata</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Example</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>dns_query_name</code></TableCell>
+      <TableCell>The Fully Qualified Domain Name (FQDN) being queried.</TableCell>
+      <TableCell><code>example.com</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>dns_response_code</code></TableCell>
+      <TableCell>The status code returned by the DNS server.</TableCell>
+      <TableCell><code>NoError</code>, <code>NXDomain</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>dns_id</code></TableCell>
+      <TableCell>The transaction ID used to match queries with responses.</TableCell>
+      <TableCell><code>45213</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="leverage-dns-data-optimization_network-observability-dns-decoding" class="group scroll-mt-20">Leverage DNS data for network optimization<a href="#leverage-dns-data-optimization_network-observability-dns-decoding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Use the captured DNS metadata for the following operational outcomes:</p>
+      <ul>
+      <li>Audit external dependencies: Ensure workloads are not reaching out to unauthorized external APIs or high-risk domains.</li>
+      <li>Performance tuning: Monitor <code>DNS Latency</code> to identify if <code>CoreDNS</code> pods require additional scaling or if upstream DNS providers are lagging.</li>
+      </ul>
+      <h3 id="identify-misconfiguration-errors_network-observability-dns-decoding" class="group scroll-mt-20">Identify misconfiguration errors<a href="#identify-misconfiguration-errors_network-observability-dns-decoding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>A high frequency of <code>NXDOMAIN</code> responses typically indicates service discovery errors in application code or stale environment variables.</p>
+      <p><code>NXDOMAIN</code> errors can be frequent in Kubernetes because of DNS searches on services and pods. While these results do not necessarily indicate a misconfiguration or broken URL, they can negatively impact performance.</p>
+      <p>When <code>NXDOMAIN</code> errors are returned despite an apparently valid Service or Pod host name, such as <code>my-svc.my-namespace.svc</code>, the resolver is likely configured to query DNS for different suffixes. You can optimize this by adding a trailing dot to fully qualified domain names to tell the resolver that the name is unambiguous.</p>
+      <p>For example, instead of <code>https://my-svc.my-namespace.svc</code>, use <code>https://my-svc.my-namespace.svc.cluster.local.</code> with a trailing dot.</p>
+      <h3 id="loki-storage-considerations_network-observability-dns-decoding" class="group scroll-mt-20">Loki storage considerations<a href="#loki-storage-considerations_network-observability-dns-decoding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>DNS tracking increases the number of labels and the amount of metadata per flow. Ensure that the Loki storage is sized to accommodate the increased log volume.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/observability/network_observability/json-flows-format-reference#network-observability-flows-format_json_reference">Network flows format reference</a></li>

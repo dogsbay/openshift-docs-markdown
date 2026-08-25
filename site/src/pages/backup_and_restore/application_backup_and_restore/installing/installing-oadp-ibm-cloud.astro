@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-oadp-ibm-cloud","text":"Configuring the {{ oadp_full }} with {{ ibm_cloud_title }}"}];
+const headings = [{"depth":1,"slug":"installing-oadp-ibm-cloud","text":"Configuring the {{ oadp_full }} with {{ ibm_cloud_title }}"},{"depth":2,"slug":"configuring-ibm-cos_installing-oadp-ibm-cloud","text":"Configuring the COS instance"},{"depth":2,"slug":"oadp-creating-default-secret_installing-oadp-ibm-cloud","text":"Creating a default Secret"},{"depth":2,"slug":"oadp-secrets-for-different-credentials_installing-oadp-ibm-cloud","text":"Creating secrets for different credentials"},{"depth":2,"slug":"oadp-installing-dpa_installing-oadp-ibm-cloud","text":"Installing the Data Protection Application"},{"depth":2,"slug":"oadp-setting-resource-limits-and-requests_installing-oadp-ibm-cloud","text":"Setting Velero CPU and memory resource allocations"},{"depth":2,"slug":"oadp-configuring-node-agents_installing-oadp-ibm-cloud","text":"Configuring node agents and node labels"},{"depth":2,"slug":"oadp-configuring-client-burst-qps_installing-oadp-ibm-cloud","text":"Configuring the DPA with client burst and QPS settings"},{"depth":2,"slug":"oadp-configuring-node-agent-load-affinity_installing-oadp-ibm-cloud","text":"Configuring node agent load affinity"},{"depth":2,"slug":"oadp-node-agent-load-affinity-guidelines_installing-oadp-ibm-cloud","text":"Node agent load affinity guidelines"},{"depth":2,"slug":"oadp-configuring-node-agent-load-concurrency_installing-oadp-ibm-cloud","text":"Configuring node agent load concurrency"},{"depth":2,"slug":"oadp-configuring-repository-maintenance_installing-oadp-ibm-cloud","text":"Configuring repository maintenance"},{"depth":2,"slug":"oadp-configuring-velero-load-affinity_installing-oadp-ibm-cloud","text":"Configuring Velero load affinity"},{"depth":2,"slug":"oadp-configuring-imagepullpolicy_installing-oadp-ibm-cloud","text":"Overriding the imagePullPolicy setting in the DPA"},{"depth":2,"slug":"oadp-configuring-dpa-multiple-bsl_installing-oadp-ibm-cloud","text":"Configuring the DPA with more than one BSL"},{"depth":2,"slug":"oadp-about-disable-node-agent-dpa_installing-oadp-ibm-cloud","text":"Disabling the node agent in DataProtectionApplication"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ibm-cloud";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring the {{ oadp_full }} with {{ ibm_cloud_title }}";
-const description = "You install the {{ oadp_first }} Operator on an {{ ibm_cloud_title }} cluster to back up and restore applications on the cluster. You configure {{…" || undefined;
+const description = "You install the OpenShift API for Data Protection (OADP) Operator on an IBM Cloud cluster to back up and restore applications on the cluster. You…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the {{ oadp_full }} with {{ ibm_cloud_title }} {#installing-oadp-ibm-cloud}\n\nYou install the {{ oadp_first }} Operator on an {{ ibm_cloud_title }} cluster to back up and restore applications on the cluster. You configure {{ ibm_cloud_object_storage }} to store the backups.\n\n{% include \"./modules/configuring-ibm-cos.md\" %} {% include \"./modules/oadp-creating-default-secret.md\" %} {% include \"./modules/oadp-secrets-for-different-credentials.md\" %} {% include \"./modules/oadp-installing-dpa-1-3.md\" %} {% include \"./modules/oadp-setting-resource-limits-and-requests.md\" %} {% include \"./modules/oadp-configuring-node-agents.md\" %} {% include \"./modules/oadp-configuring-client-burst-qps.md\" %} {% include \"./modules/oadp-configuring-node-agent-load-affinity.md\" %} {% include \"./modules/oadp-node-agent-load-affinity-guidelines.md\" %} {% include \"./modules/oadp-configuring-node-agent-load-concurrency.md\" %} {% include \"./modules/oadp-configuring-repository-maintenance.md\" %} {% include \"./modules/oadp-configuring-velero-load-affinity.md\" %} {% include \"./modules/oadp-configuring-imagepullpolicy.md\" %}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ibm-cloud.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the {{ oadp_full }} with {{ ibm_cloud_title }} {#installing-oadp-ibm-cloud}\n\nYou install the OpenShift API for Data Protection (OADP) Operator on an IBM Cloud cluster to back up and restore applications on the cluster. You configure IBM Cloud Object Storage (COS) to store the backups.\n\n## Configuring the COS instance {#configuring-ibm-cos_installing-oadp-ibm-cloud}\n\nYou create an IBM Cloud Object Storage (COS) instance to store the OADP backup data. After you create the COS instance, configure the `HMAC` service credentials.\n\n**Prerequisites**\n\n- You have an IBM Cloud Platform account.\n- You installed the [IBM Cloud CLI](https://cloud.ibm.com/docs/cli?topic=cli-getting-started).\n- You are logged in to IBM Cloud.\n\n**Procedure**\n\n1. Install the IBM Cloud Object Storage (COS) plugin by running the following command:\n\n   ```terminal\n   $ ibmcloud plugin install cos -f\n   ```\n2. Set a bucket name by running the following command:\n\n   ```terminal\n   $ BUCKET=<bucket_name>\n   ```\n3. Set a bucket region by running the following command:\n\n   ```terminal\n   $ REGION=<bucket_region>\n   ```\n\n   where:\n\n   `<bucket_region>`\n   :   Specifies the bucket region. For example, `eu-gb`.\n4. Create a resource group by running the following command:\n\n   ```terminal\n   $ ibmcloud resource group-create <resource_group_name>\n   ```\n5. Set the target resource group by running the following command:\n\n   ```terminal\n   $ ibmcloud target -g <resource_group_name>\n   ```\n6. Verify that the target resource group is correctly set by running the following command:\n\n   ```terminal\n   $ ibmcloud target\n   ```\n\n```yaml {title=\"Example output\"}\nAPI endpoint:     https://cloud.ibm.com\nRegion:\nUser:             test-user\nAccount:          Test Account (fb6......e95) <-> 2...122\nResource group:   Default\n```\n\nIn the example output, the resource group is set to `Default`.\n\n1. Set a resource group name by running the following command:\n\n   ```terminal\n   $ RESOURCE_GROUP=<resource_group>\n   ```\n\n   where:\n\n   `<resource_group>`\n   :   Specifies the resource group name. For example, `\"default\"`.\n2. Create an IBM Cloud `service-instance` resource  by running the following command:\n\n   ```terminal\n   $ ibmcloud resource service-instance-create \\\n   <service_instance_name> \\\n   <service_name> \\\n   <service_plan> \\\n   <region_name>\n   ```\n\n   where:\n\n   `<service_instance_name>`\n   :   Specifies a name for the `service-instance` resource.\n\n   `<service_name>`\n   :   Specifies the service name. Alternatively, you can specify a service ID.\n\n   `<service_plan>`\n   :   Specifies the service plan for your IBM Cloud account.\n\n   `<region_name>`\n   :   Specifies the region name.\n\n   Refer to the following example command:\n\n   ```terminal\n   $ ibmcloud resource service-instance-create test-service-instance cloud-object-storage \\\n   standard \\\n   global \\\n   -d premium-global-deployment\n   ```\n\n   where:\n\n   `cloud-object-storage`\n   :   Specifies the service name.\n\n   `-d premium-global-deployment`\n   :   Specifies the deployment name.\n3. Extract the service instance ID by running the following command:\n\n   ```terminal\n   $ SERVICE_INSTANCE_ID=$(ibmcloud resource service-instance test-service-instance --output json | jq -r '.[0].id')\n   ```\n4. Create a COS bucket by running the following command:\n\n   ```terminal\n   $ ibmcloud cos bucket-create \\\n   --bucket $BUCKET \\\n   --ibm-service-instance-id $SERVICE_INSTANCE_ID \\\n   --region $REGION\n   ```\n\n   Variables such as `$BUCKET`, `$SERVICE_INSTANCE_ID`, and `$REGION` are replaced by the values you set previously.\n5. Create `HMAC` credentials by running the following command.\n\n   ```terminal\n   $ ibmcloud resource service-key-create test-key Writer --instance-name test-service-instance --parameters {\\\"HMAC\\\":true}\n   ```\n6. Extract the access key ID and the secret access key from the `HMAC` credentials and save them in the `credentials-velero` file. You can use the `credentials-velero` file to create a `secret` for the backup storage location. Run the following command:\n\n   ```terminal\n   $ cat > credentials-velero << __EOF__\n   [default]\n   aws_access_key_id=$(ibmcloud resource service-key test-key -o json  | jq -r '.[0].credentials.cos_hmac_keys.access_key_id')\n   aws_secret_access_key=$(ibmcloud resource service-key test-key -o json  | jq -r '.[0].credentials.cos_hmac_keys.secret_access_key')\n   __EOF__\n   ```\n\n## Creating a default Secret {#oadp-creating-default-secret_installing-oadp-ibm-cloud}\n\nYou create a default `Secret` if your backup and snapshot locations use the same credentials or if you do not require a snapshot location.\n\n> [!NOTE]\n> The `DataProtectionApplication` custom resource (CR) requires a default `Secret`.  Otherwise, the installation will fail. If the name of the backup location `Secret` is not specified, the default name is used.\n>\n> If you do not want to use the backup location credentials during the installation, you can create a `Secret` with the default name by using an empty `credentials-velero` file.\n\n**Prerequisites**\n\n- Your object storage and cloud storage, if any, must use the same credentials.\n- You must configure object storage for Velero.\n\n**Procedure**\n\n1. Create a `credentials-velero` file for the backup storage location in the appropriate format for your cloud provider.\n2. Create a `Secret` custom resource (CR) with the default name:\n\n   ```terminal\n   $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero\n   ```\n\n   The `Secret` is referenced in the `spec.backupLocations.credential` block of the `DataProtectionApplication` CR when you install the Data Protection Application.\n\n## Creating secrets for different credentials {#oadp-secrets-for-different-credentials_installing-oadp-ibm-cloud}\n\nCreate separate `Secret` objects when your backup and snapshot locations require different credentials. This allows you to configure distinct authentication for each storage location while maintaining secure credential management.\n\n**Procedure**\n\n1. Create a `credentials-velero` file for the snapshot location in the appropriate format for your cloud provider.\n2. Create a `Secret` for the snapshot location with the default name:\n\n   ```terminal\n   $ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero\n   ```\n3. Create a `credentials-velero` file for the backup location in the appropriate format for your object storage.\n4. Create a `Secret` for the backup location with a custom name:\n\n   ```terminal\n   $ oc create secret generic <custom_secret> -n openshift-adp --from-file cloud=credentials-velero\n   ```\n5. Add the `Secret` with the custom name to the `DataProtectionApplication` CR, as in the following example:\n\n   ```yaml\n   apiVersion: oadp.openshift.io/v1alpha1\n   kind: DataProtectionApplication\n   metadata:\n     name: <dpa_sample>\n     namespace: openshift-adp\n   spec:\n   ...\n     backupLocations:\n       - velero:\n           provider: <provider>\n           default: true\n           credential:\n             key: cloud\n             name: <custom_secret>\n           objectStorage:\n             bucket: <bucket_name>\n             prefix: <prefix>\n   ```\n\n   where: `custom_secret`:: Specifies the backup location `Secret` with custom name.\n\n## Installing the Data Protection Application {#oadp-installing-dpa_installing-oadp-ibm-cloud}\n\nYou install the Data Protection Application (DPA) by creating an instance of the `DataProtectionApplication` API.\n\n**Prerequisites**\n\n- You must install the OADP Operator.\n- You must configure object storage as a backup location.\n- If you use snapshots to back up PVs, your cloud provider must support either a native snapshot API or Container Storage Interface (CSI) snapshots.\n- If the backup and snapshot locations use the same credentials, you must create a `Secret` with the default name, `{{ credentials }}`.\n\n  > [!NOTE]\n  > If you do not want to specify backup or snapshot locations during the installation, you can create a default `Secret` with an empty `credentials-velero` file. If there is no default `Secret`, the installation will fail.\n\n**Procedure**\n\n1. Click **Ecosystem** -> **Installed Operators** and select the OADP Operator.\n2. Under **Provided APIs**, click **Create instance** in the **DataProtectionApplication** box.\n3. Click **YAML View** and update the parameters of the `DataProtectionApplication` manifest:\n\n   ```yaml\n   apiVersion: oadp.openshift.io/v1alpha1\n   kind: DataProtectionApplication\n   metadata:\n     namespace: openshift-adp\n     name: <dpa_name>\n   spec:\n     configuration:\n       velero:\n         defaultPlugins:\n         - openshift\n         - aws\n         - csi\n     backupLocations:\n       - velero:\n           provider: aws\n           default: true\n           objectStorage:\n             bucket: <bucket_name>\n             prefix: velero\n           config:\n             insecureSkipTLSVerify: 'true'\n             profile: default\n             region: <region_name>\n             s3ForcePathStyle: 'true'\n             s3Url: <s3_url>\n           credential:\n             key: cloud\n             name: cloud-credentials\n   ```\n\n   where: `provider`:: Specifies that the provider is `aws` when you use IBM Cloud as a backup storage location. `bucket`:: Specifies the IBM Cloud Object Storage (COS) bucket name. `region`:: Specifies the COS region name, for example, `eu-gb`. `s3Url`:: Specifies the S3 URL of the COS bucket. For example, `http://s3.eu-gb.cloud-object-storage.appdomain.cloud`. Here, `eu-gb` is the region name. Replace the region name according to your bucket region. `name`:: Specifies the name of the secret you created by using the access key and the secret access key from the `HMAC` credentials.\n4. Click **Create**.\n\n**Verification**\n\n1. Verify the installation by viewing the OpenShift API for Data Protection (OADP) resources by running the following command:\n\n   ```terminal\n   $ oc get all -n openshift-adp\n   ```\n\n   ```\n   NAME                                                     READY   STATUS    RESTARTS   AGE\n   pod/oadp-operator-controller-manager-67d9494d47-6l8z8    2/2     Running   0          2m8s\n   pod/node-agent-9cq4q                                     1/1     Running   0          94s\n   pod/node-agent-m4lts                                     1/1     Running   0          94s\n   pod/node-agent-pv4kr                                     1/1     Running   0          95s\n   pod/velero-588db7f655-n842v                              1/1     Running   0          95s\n\n   NAME                                                       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE\n   service/oadp-operator-controller-manager-metrics-service   ClusterIP   172.30.70.140    <none>        8443/TCP   2m8s\n   service/openshift-adp-velero-metrics-svc                   ClusterIP   172.30.10.0      <none>        8085/TCP   8h\n\n   NAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE\n   daemonset.apps/node-agent    3         3         3       3            3           <none>          96s\n\n   NAME                                                READY   UP-TO-DATE   AVAILABLE   AGE\n   deployment.apps/oadp-operator-controller-manager    1/1     1            1           2m9s\n   deployment.apps/velero                              1/1     1            1           96s\n\n   NAME                                                           DESIRED   CURRENT   READY   AGE\n   replicaset.apps/oadp-operator-controller-manager-67d9494d47    1         1         1       2m9s\n   replicaset.apps/velero-588db7f655                              1         1         1       96s\n   ```\n2. Verify that the `DataProtectionApplication` (DPA) is reconciled by running the following command:\n\n   ```terminal\n   $ oc get dpa dpa-sample -n openshift-adp -o jsonpath='{.status}'\n   ```\n\n   ```yaml\n   {\"conditions\":[{\"lastTransitionTime\":\"2023-10-27T01:23:57Z\",\"message\":\"Reconcile complete\",\"reason\":\"Complete\",\"status\":\"True\",\"type\":\"Reconciled\"}]}\n   ```\n3. Verify the `type` is set to `Reconciled`.\n4. Verify the backup storage location and confirm that the `PHASE` is `Available` by running the following command:\n\n   ```terminal\n   $ oc get backupstoragelocations.velero.io -n openshift-adp\n   ```\n\n   ```yaml\n   NAME           PHASE       LAST VALIDATED   AGE     DEFAULT\n   dpa-sample-1   Available   1s               3d16h   true\n   ```\n\n## Setting Velero CPU and memory resource allocations {#oadp-setting-resource-limits-and-requests_installing-oadp-ibm-cloud}\n\nYou set the CPU and memory resource allocations for the `Velero` pod by editing the  `DataProtectionApplication` custom resource (CR) manifest.\n\n**Prerequisites**\n\n- You must have the OpenShift API for Data Protection (OADP) Operator installed.\n\n**Procedure**\n\n- Edit the values in the `spec.configuration.velero.podConfig.ResourceAllocations` block of the `DataProtectionApplication` CR manifest, as in the following example:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n    name: <dpa_sample>\n  spec:\n  # ...\n    configuration:\n      velero:\n        podConfig:\n          nodeSelector: <node_selector>\n          resourceAllocations:\n            limits:\n              cpu: \"1\"\n              memory: 1024Mi\n            requests:\n              cpu: 200m\n              memory: 256Mi\n  ```\n\n  where:\n\n  `nodeSelector`\n  :   Specifies the node selector to be supplied to Velero podSpec.\n\n  `resourceAllocations`\n  :   Specifies the resource allocations listed for average usage.\n\n  > [!NOTE]\n  > Kopia is an option in OADP 1.3 and later releases. You can use Kopia for file system backups, and Kopia is your only option for Data Mover cases with the built-in Data Mover.\n  >\n  > Kopia is more resource intensive than Restic, and you might need to adjust the CPU and memory requirements accordingly.\n\n## Configuring node agents and node labels {#oadp-configuring-node-agents_installing-oadp-ibm-cloud}\n\nThe Data Protection Application (DPA) uses the `nodeSelector` field to select which nodes can run the node agent. The `nodeSelector` field is the recommended form of node selection constraint.\n\n**Procedure**\n\n1. Run the node agent on any node that you choose by adding a custom label:\n\n   ```terminal\n   $ oc label node/<node_name> node-role.kubernetes.io/nodeAgent=\"\"\n   ```\n\n   > [!NOTE]\n   > Any label specified must match the labels on each node.\n2. Use the same custom label in the `DPA.spec.configuration.nodeAgent.podConfig.nodeSelector` field, which you used for labeling nodes:\n\n   ```terminal\n   configuration:\n     nodeAgent:\n       enable: true\n       podConfig:\n         nodeSelector:\n           node-role.kubernetes.io/nodeAgent: \"\"\n   ```\n\n   The following example is an anti-pattern of `nodeSelector` and does not work unless both labels, `node-role.kubernetes.io/infra: \"\"` and `node-role.kubernetes.io/worker: \"\"`, are on the node:\n\n   ```terminal\n       configuration:\n         nodeAgent:\n           enable: true\n           podConfig:\n             nodeSelector:\n               node-role.kubernetes.io/infra: \"\"\n               node-role.kubernetes.io/worker: \"\"\n   ```\n\n## Configuring the DPA with client burst and QPS settings {#oadp-configuring-client-burst-qps_installing-oadp-ibm-cloud}\n\nThe burst setting determines how many requests can be sent to the `velero` server before the limit is applied. After the burst limit is reached, the queries per second (QPS) setting determines how many additional requests can be sent per second.\n\nYou can set the burst and QPS values of the `velero` server by configuring the Data Protection Application (DPA) with the burst and QPS values. You can use the `dpa.configuration.velero.client-burst` and `dpa.configuration.velero.client-qps` fields of the DPA to set the burst and QPS values.\n\n**Prerequisites**\n\n- You have installed the OADP Operator.\n\n**Procedure**\n\n- Configure the `client-burst` and the `client-qps` fields in the DPA as shown in the following example:\n\n  ```yaml {title=\"Example Data Protection Application\"}\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n    name: test-dpa\n    namespace: openshift-adp\n  spec:\n    backupLocations:\n      - name: default\n        velero:\n          config:\n            insecureSkipTLSVerify: \"true\"\n            profile: \"default\"\n            region: <bucket_region>\n            s3ForcePathStyle: \"true\"\n            s3Url: <bucket_url>\n          credential:\n            key: cloud\n            name: cloud-credentials\n          default: true\n          objectStorage:\n            bucket: <bucket_name>\n            prefix: velero\n          provider: aws\n    configuration:\n      nodeAgent:\n        enable: true\n        uploaderType: restic\n      velero:\n        client-burst: 500\n        client-qps: 300\n        defaultPlugins:\n          - openshift\n          - aws\n          - kubevirt\n  ```\n\n  where:\n\n  `client-burst`\n  :   Specifies the `client-burst` value. In this example, the `client-burst` field is set to 500.\n\n  `client-qps`\n  :   Specifies the `client-qps` value. In this example, the `client-qps` field is set to 300.\n\n## Configuring node agent load affinity {#oadp-configuring-node-agent-load-affinity_installing-oadp-ibm-cloud}\n\nYou can schedule the node agent pods on specific nodes by using the `spec.podConfig.nodeSelector` object of the `DataProtectionApplication` (DPA) custom resource (CR).\n\nSee the following example in which you can schedule the node agent pods on nodes with the label `label.io/role: cpu-1` and `other-label.io/other-role: cpu-2`.\n\n```yaml\n...\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n      podConfig:\n        nodeSelector:\n          label.io/role: cpu-1\n          other-label.io/other-role: cpu-2\n        ...\n```\n\nYou can add more restrictions on the node agent pods scheduling by using the `nodeagent.loadAffinity` object in the DPA spec.\n\n**Prerequisites**\n\n- You must be logged in as a user with `cluster-admin` privileges.\n- You have installed the OADP Operator.\n- You have configured the DPA CR.\n\n**Procedure**\n\n- Configure the DPA spec `nodegent.loadAffinity` object as shown in the following example.\n\n  In the example, you ensure that the node agent pods are scheduled only on nodes with the label `label.io/role: cpu-1` and the label `label.io/hostname` matching with either `node1` or `node2`.\n\n  ```yaml\n  ...\n  spec:\n    configuration:\n      nodeAgent:\n        enable: true\n        loadAffinity:\n          - nodeSelector:\n              matchLabels:\n                label.io/role: cpu-1\n              matchExpressions:\n                - key: label.io/hostname\n                  operator: In\n                  values:\n                    - node1\n                    - node2\n                    ...\n  ```\n\n  where:\n\n  `loadAffinity`\n  :   Specifies the `loadAffinity` object by adding the `matchLabels` and `matchExpressions` objects.\n\n  `matchExpressions`\n  :   Specifies the `matchExpressions` object to add restrictions on the node agent pods scheduling.\n\n## Node agent load affinity guidelines {#oadp-node-agent-load-affinity-guidelines_installing-oadp-ibm-cloud}\n\nUse the following guidelines to configure the node agent `loadAffinity` object in the `DataProtectionApplication` (DPA) custom resource (CR).\n\n- Use the `spec.nodeagent.podConfig.nodeSelector` object for simple node matching.\n- Use the `loadAffinity.nodeSelector` object without the `podConfig.nodeSelector` object for more complex scenarios.\n- You can use both `podConfig.nodeSelector` and `loadAffinity.nodeSelector` objects, but the `loadAffinity` object must be equal or more restrictive as compared to the `podConfig` object. In this scenario, the `podConfig.nodeSelector` labels must be a subset of the labels used in the `loadAffinity.nodeSelector` object.\n- You cannot use the `matchExpressions` and `matchLabels` fields if you have configured both `podConfig.nodeSelector` and `loadAffinity.nodeSelector` objects in the DPA.\n- See the following example to configure both `podConfig.nodeSelector` and `loadAffinity.nodeSelector` objects in the DPA.\n\n  ```yaml\n  ...\n  spec:\n    configuration:\n      nodeAgent:\n        enable: true\n        uploaderType: kopia\n        loadAffinity:\n          - nodeSelector:\n              matchLabels:\n                label.io/location: 'US'\n                label.io/gpu: 'no'\n        podConfig:\n          nodeSelector:\n            label.io/gpu: 'no'\n  ```\n\n## Configuring node agent load concurrency {#oadp-configuring-node-agent-load-concurrency_installing-oadp-ibm-cloud}\n\nYou can control the maximum number of node agent operations that can run simultaneously on each node within your cluster.\n\nYou can configure it using one of the following fields of the Data Protection Application (DPA):\n\n- `globalConfig`: Defines a default concurrency limit for the node agent across all nodes.\n- `perNodeConfig`: Specifies different concurrency limits for specific nodes based on `nodeSelector` labels. This provides flexibility for environments where certain nodes might have different resource capacities or roles.\n\n**Prerequisites**\n\n- You must be logged in as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. If you want to use load concurrency for specific nodes, add labels to those nodes:\n\n   ```terminal\n   $ oc label node/<node_name> label.io/instance-type='large'\n   ```\n2. Configure the load concurrency fields for your DPA instance:\n\n   ```yaml\n     configuration:\n       nodeAgent:\n         enable: true\n         uploaderType: kopia\n         loadConcurrency:\n           globalConfig: 1\n           perNodeConfig:\n           - nodeSelector:\n                 matchLabels:\n                    label.io/instance-type: large\n             number: 3\n   ```\n\n   where:\n\n   `globalConfig`\n   :   Specifies the global concurrent number. The default value is 1, which means there is no concurrency and only one load is allowed. The `globalConfig` value does not have a limit.\n\n   `label.io/instance-type`\n   :   Specifies the label for per-node concurrency.\n\n   `number`\n   :   Specifies the per-node concurrent number. You can specify many per-node concurrent numbers, for example, based on the instance type and size. The range of per-node concurrent number is the same as the global concurrent number. If the configuration file contains a per-node concurrent number and a global concurrent number, the per-node concurrent number takes precedence.\n\n## Configuring repository maintenance {#oadp-configuring-repository-maintenance_installing-oadp-ibm-cloud}\n\nOADP repository maintenance is a background job, you can configure it independently of the node agent pods. This means that you can schedule the repository maintenance pod on a node where the node agent is or is not running.\n\nYou can use the repository maintenance job affinity configurations in the `DataProtectionApplication` (DPA) custom resource (CR) only if you use Kopia as the backup repository.\n\nYou have the option to configure the load affinity at the global level affecting all repositories. Or you can configure the load affinity for each repository. You can also use a combination of global and per-repository configuration.\n\n**Prerequisites**\n\n- You must be logged in as a user with `cluster-admin` privileges.\n- You have installed the OADP Operator.\n- You have configured the DPA CR.\n\n**Procedure**\n\n- Configure the `loadAffinity` object in the DPA spec by using either one or both of the following methods:\n\n  - Global configuration: Configure load affinity for all repositories as shown in the following example:\n\n    ```yaml\n    ...\n    spec:\n      configuration:\n        repositoryMaintenance:\n          global:\n            podResources:\n              cpuRequest: \"100m\"\n              cpuLimit: \"200m\"\n              memoryRequest: \"100Mi\"\n              memoryLimit: \"200Mi\"\n            loadAffinity:\n              - nodeSelector:\n                  matchLabels:\n                    label.io/gpu: 'no'\n                  matchExpressions:\n                    - key: label.io/location\n                      operator: In\n                      values:\n                        - US\n                        - EU\n    ```\n\n    where:\n\n    `repositoryMaintenance`\n    :   Specifies the `repositoryMaintenance` object as shown in the example.\n\n    `global`\n    :   Specifies the `global` object to configure load affinity for all repositories.\n  - Per-repository configuration: Configure load affinity per repository as shown in the following example:\n\n    ```yaml\n    ...\n    spec:\n      configuration:\n        repositoryMaintenance:\n          myrepositoryname:\n            loadAffinity:\n              - nodeSelector:\n                  matchLabels:\n                    label.io/cpu: 'yes'\n    ```\n\n    where:\n\n    `myrepositoryname`\n    :   Specifies the `repositoryMaintenance` object for each repository.\n\n## Configuring Velero load affinity {#oadp-configuring-velero-load-affinity_installing-oadp-ibm-cloud}\n\nWith each OADP deployment, there is one Velero pod and its main purpose is to schedule Velero workloads. To schedule the Velero pod, you can use the `velero.podConfig.nodeSelector` and the `velero.loadAffinity` objects in the `DataProtectionApplication` (DPA) custom resource (CR) spec.\n\nUse the `podConfig.nodeSelector` object to assign the Velero pod to specific nodes. You can also configure the `velero.loadAffinity` object for pod-level affinity and anti-affinity.\n\nThe OpenShift scheduler applies the rules and performs the scheduling of the Velero pod deployment.\n\n**Prerequisites**\n\n- You must be logged in as a user with `cluster-admin` privileges.\n- You have installed the OADP Operator.\n- You have configured the DPA CR.\n\n**Procedure**\n\n- Configure the `velero.podConfig.nodeSelector` and the `velero.loadAffinity` objects in the DPA spec as shown in the following examples:\n\n  - `velero.podConfig.nodeSelector` object configuration:\n\n    ```yaml\n    ...\n    spec:\n      configuration:\n        velero:\n          podConfig:\n            nodeSelector:\n              some-label.io/custom-node-role: backup-core\n    ```\n  - `velero.loadAffinity` object configuration:\n\n    ```yaml\n    ...\n    spec:\n      configuration:\n        velero:\n          loadAffinity:\n            - nodeSelector:\n                matchLabels:\n                  label.io/gpu: 'no'\n                matchExpressions:\n                  - key: label.io/location\n                    operator: In\n                    values:\n                      - US\n                      - EU\n    ```\n\n## Overriding the imagePullPolicy setting in the DPA  {#oadp-configuring-imagepullpolicy_installing-oadp-ibm-cloud}\n\nIn OADP 1.4.0 or earlier, the Operator sets the `imagePullPolicy` field of the Velero and node agent pods to `Always` for all images.\n\nIn OADP 1.4.1 or later, the Operator first checks if each image has the `sha256` or `sha512` digest and sets the `imagePullPolicy` field accordingly:\n\n- If the image has the digest, the Operator sets `imagePullPolicy` to `IfNotPresent`.\n- If the image does not have the digest, the Operator sets `imagePullPolicy` to `Always`.\n\nYou can also override the `imagePullPolicy` field by using the `spec.imagePullPolicy` field in the Data Protection Application (DPA).\n\n**Prerequisites**\n\n- You have installed the OADP Operator.\n\n**Procedure**\n\n- Configure the `spec.imagePullPolicy` field in the DPA as shown in the following example:\n\n  ```yaml {title=\"Example Data Protection Application\"}\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n    name: test-dpa\n    namespace: openshift-adp\n  spec:\n    backupLocations:\n      - name: default\n        velero:\n          config:\n            insecureSkipTLSVerify: \"true\"\n            profile: \"default\"\n            region: <bucket_region>\n            s3ForcePathStyle: \"true\"\n            s3Url: <bucket_url>\n          credential:\n            key: cloud\n            name: cloud-credentials\n          default: true\n          objectStorage:\n            bucket: <bucket_name>\n            prefix: velero\n          provider: aws\n    configuration:\n      nodeAgent:\n        enable: true\n        uploaderType: kopia\n      velero:\n        defaultPlugins:\n          - openshift\n          - aws\n          - kubevirt\n          - csi\n    imagePullPolicy: Never\n  ```\n\n  where:\n\n  `imagePullPolicy`\n  :   Specifies the value for `imagePullPolicy`. In this example, the `imagePullPolicy` field is set to `Never`.\n\n## Configuring the DPA with more than one BSL {#oadp-configuring-dpa-multiple-bsl_installing-oadp-ibm-cloud}\n\nConfigure the `DataProtectionApplication` (DPA) custom resource (CR) with multiple `BackupStorageLocation` (BSL) resources to store backups across different locations using provider-specific credentials. This provides backup distribution and location-specific restore capabilities.\n\nFor example, you have configured the following two BSLs:\n\n- Configured one BSL in the DPA and set it as the default BSL.\n- Created another BSL independently by using the `BackupStorageLocation` CR.\n\nAs you have already set the BSL created through the DPA as the default, you cannot set the independently created BSL again as the default. This means, at any given time, you can set only one BSL as the default BSL.\n\n**Prerequisites**\n\n- You must install the OADP Operator.\n- You must create the secrets by using the credentials provided by the cloud provider.\n\n**Procedure**\n\n1. Configure the `DataProtectionApplication` CR with more than one `BackupStorageLocation` CR. See the following example:\n\n   ```yaml {title=\"Example DPA\"}\n   apiVersion: oadp.openshift.io/v1alpha1\n   kind: DataProtectionApplication\n   #...\n   backupLocations:\n     - name: aws\n       velero:\n         provider: aws\n         default: true\n         objectStorage:\n           bucket: <bucket_name>\n           prefix: <prefix>\n         config:\n           region: <region_name>\n           profile: \"default\"\n         credential:\n           key: cloud\n           name: cloud-credentials\n     - name: odf\n       velero:\n         provider: aws\n         default: false\n         objectStorage:\n           bucket: <bucket_name>\n           prefix: <prefix>\n         config:\n           profile: \"default\"\n           region: <region_name>\n           s3Url: <url>\n           insecureSkipTLSVerify: \"true\"\n           s3ForcePathStyle: \"true\"\n         credential:\n           key: cloud\n           name: <custom_secret_name_odf>\n   #...\n   ```\n\n   where:\n\n   `name: aws`\n   :   Specifies a name for the first BSL.\n\n   `default: true`\n   :   Indicates that this BSL is the default BSL. If a BSL is not set in the `Backup CR`, the default BSL is used. You can set only one BSL as the default.\n\n   `<bucket_name>`\n   :   Specifies the bucket name.\n\n   `<prefix>`\n   :   Specifies a prefix for Velero backups. For example, `velero`.\n\n   `<region_name>`\n   :   Specifies the AWS region for the bucket.\n\n   `cloud-credentials`\n   :   Specifies the name of the default `Secret` object that you created.\n\n   `name: odf`\n   :   Specifies a name for the second BSL.\n\n   `<url>`\n   :   Specifies the URL of the S3 endpoint.\n\n   `<custom_secret_name_odf>`\n   :   Specifies the correct name for the `Secret`. For example, `custom_secret_name_odf`. If you do not specify a `Secret` name, the default name is used.\n2. Specify the BSL to be used in the backup CR. See the following example.\n\n   ```yaml {title=\"Example backup CR\"}\n   apiVersion: velero.io/v1\n   kind: Backup\n   # ...\n   spec:\n     includedNamespaces:\n     - <namespace>\n     storageLocation: <backup_storage_location>\n     defaultVolumesToFsBackup: true\n   ```\n\n   where:\n\n   `<namespace>`\n   :   Specifies the namespace to back up.\n\n   `<backup_storage_location>`\n   :   Specifies the storage location.\n\n## Disabling the node agent in DataProtectionApplication {#oadp-about-disable-node-agent-dpa_installing-oadp-ibm-cloud}\n\nIf you are not using `Restic`, `Kopia`, or `DataMover` for your backups, you can disable the `nodeAgent` field in the `DataProtectionApplication` custom resource (CR). Before you disable `nodeAgent`, ensure the OADP Operator is idle and not running any backups.\n\n**Procedure**\n\n1. To disable the `nodeAgent`, set the `enable` flag to `false`. See the following example:\n\n   ```yaml {title=\"Example DataProtectionApplication CR\"}\n   # ...\n   configuration:\n     nodeAgent:\n       enable: false\n       uploaderType: kopia\n   # ...\n   ```\n\n   where:\n\n   `enable`\n   :   Enables the node agent.\n2. To enable the `nodeAgent`, set the `enable` flag to `true`. See the following example:\n\n   ```yaml {title=\"Example DataProtectionApplication CR\"}\n   # ...\n   configuration:\n     nodeAgent:\n       enable: true\n       uploaderType: kopia\n   # ...\n   ```\n\n   where:\n\n   `enable`\n   :   Enables the node agent. You can set up a job to enable and disable the `nodeAgent` field in the `DataProtectionApplication` CR. For more information, see \"Running tasks in pods using jobs\".\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ibm-cloud.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,484 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-oadp-ibm-cloud" class="group scroll-mt-20">Configuring the {"{"}{"{"} oadp_full {"}"}{"}"} with {"{"}{"{"} ibm_cloud_title {"}"}{"}"}<a href="#installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You install the {"{"}{"{"} oadp_first {"}"}{"}"} Operator on an {"{"}{"{"} ibm_cloud_title {"}"}{"}"} cluster to back up and restore applications on the cluster. You configure {"{"}{"{"} ibm_cloud_object_storage {"}"}{"}"} to store the backups.</p>
-      <p class="/modules/oadp-about-disable-node-agent-dpa.md /modules/oadp-configuring-dpa-multiple-bsl.md">{"{"}% include "./modules/configuring-ibm-cos.md" %{"}"} {"{"}% include "./modules/oadp-creating-default-secret.md" %{"}"} {"{"}% include "./modules/oadp-secrets-for-different-credentials.md" %{"}"} {"{"}% include "./modules/oadp-installing-dpa-1-3.md" %{"}"} {"{"}% include "./modules/oadp-setting-resource-limits-and-requests.md" %{"}"} {"{"}% include "./modules/oadp-configuring-node-agents.md" %{"}"} {"{"}% include "./modules/oadp-configuring-client-burst-qps.md" %{"}"} {"{"}% include "./modules/oadp-configuring-node-agent-load-affinity.md" %{"}"} {"{"}% include "./modules/oadp-node-agent-load-affinity-guidelines.md" %{"}"} {"{"}% include "./modules/oadp-configuring-node-agent-load-concurrency.md" %{"}"} {"{"}% include "./modules/oadp-configuring-repository-maintenance.md" %{"}"} {"{"}% include "./modules/oadp-configuring-velero-load-affinity.md" %{"}"} {"{"}% include "./modules/oadp-configuring-imagepullpolicy.md" %{"}"} </p>
+      <p>You install the OpenShift API for Data Protection (OADP) Operator on an IBM Cloud cluster to back up and restore applications on the cluster. You configure IBM Cloud Object Storage (COS) to store the backups.</p>
+      <h2 id="configuring-ibm-cos_installing-oadp-ibm-cloud" class="group scroll-mt-20">Configuring the COS instance<a href="#configuring-ibm-cos_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You create an IBM Cloud Object Storage (COS) instance to store the OADP backup data. After you create the COS instance, configure the <code>HMAC</code> service credentials.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have an IBM Cloud Platform account.</li>
+      <li>You installed the <a href="https://cloud.ibm.com/docs/cli?topic=cli-getting-started">IBM Cloud CLI</a>.</li>
+      <li>You are logged in to IBM Cloud.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Install the IBM Cloud Object Storage (COS) plugin by running the following command:
+      <CodeBlock code={"$ ibmcloud plugin install cos -f"} lang="terminal" />
+      </li>
+      <li>
+      Set a bucket name by running the following command:
+      <CodeBlock code={"$ BUCKET=<bucket_name>"} lang="terminal" />
+      </li>
+      <li>
+      Set a bucket region by running the following command:
+      <CodeBlock code={"$ REGION=<bucket_region>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;bucket_region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the bucket region. For example, <code>eu-gb</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create a resource group by running the following command:
+      <CodeBlock code={"$ ibmcloud resource group-create <resource_group_name>"} lang="terminal" />
+      </li>
+      <li>
+      Set the target resource group by running the following command:
+      <CodeBlock code={"$ ibmcloud target -g <resource_group_name>"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the target resource group is correctly set by running the following command:
+      <CodeBlock code={"$ ibmcloud target"} lang="terminal" />
+      </li>
+      </ol>
+      <CodeBlock code={"API endpoint:     https://cloud.ibm.com\nRegion:           \nUser:             test-user\nAccount:          Test Account (fb6......e95) <-> 2...122\nResource group:   Default"} lang="yaml" title="Example output" />
+      <p>In the example output, the resource group is set to <code>Default</code>.</p>
+      <ol>
+      <li>
+      Set a resource group name by running the following command:
+      <CodeBlock code={"$ RESOURCE_GROUP=<resource_group>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;resource_group&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the resource group name. For example, <code>"default"</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create an IBM Cloud <code>service-instance</code> resource  by running the following command:
+      <CodeBlock code={"$ ibmcloud resource service-instance-create \\\n<service_instance_name> \\\n<service_name> \\\n<service_plan> \\\n<region_name>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;service_instance_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the <code>service-instance</code> resource.</p></dd>
+      <dt class="font-semibold"><code>&lt;service_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the service name. Alternatively, you can specify a service ID.</p></dd>
+      <dt class="font-semibold"><code>&lt;service_plan&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the service plan for your IBM Cloud account.</p></dd>
+      <dt class="font-semibold"><code>&lt;region_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the region name.</p></dd>
+      </dl>
+      <p>Refer to the following example command:</p>
+      <CodeBlock code={"$ ibmcloud resource service-instance-create test-service-instance cloud-object-storage \\\nstandard \\\nglobal \\\n-d premium-global-deployment"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>cloud-object-storage</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the service name.</p></dd>
+      <dt class="font-semibold"><code>-d premium-global-deployment</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the deployment name.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Extract the service instance ID by running the following command:
+      <CodeBlock code={"$ SERVICE_INSTANCE_ID=$(ibmcloud resource service-instance test-service-instance --output json | jq -r '.[0].id')"} lang="terminal" />
+      </li>
+      <li>
+      Create a COS bucket by running the following command:
+      <CodeBlock code={"$ ibmcloud cos bucket-create \\\n--bucket $BUCKET \\\n--ibm-service-instance-id $SERVICE_INSTANCE_ID \\\n--region $REGION "} lang="terminal" />
+      <p>Variables such as <code>$BUCKET</code>, <code>$SERVICE_INSTANCE_ID</code>, and <code>$REGION</code> are replaced by the values you set previously.</p>
+      </li>
+      <li>
+      Create <code>HMAC</code> credentials by running the following command.
+      <CodeBlock code={"$ ibmcloud resource service-key-create test-key Writer --instance-name test-service-instance --parameters {\\\"HMAC\\\":true}"} lang="terminal" />
+      </li>
+      <li>
+      Extract the access key ID and the secret access key from the <code>HMAC</code> credentials and save them in the <code>credentials-velero</code> file. You can use the <code>credentials-velero</code> file to create a <code>secret</code> for the backup storage location. Run the following command:
+      <CodeBlock code={"$ cat > credentials-velero << __EOF__\n[default]\naws_access_key_id=$(ibmcloud resource service-key test-key -o json  | jq -r '.[0].credentials.cos_hmac_keys.access_key_id')\naws_secret_access_key=$(ibmcloud resource service-key test-key -o json  | jq -r '.[0].credentials.cos_hmac_keys.secret_access_key')\n__EOF__"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="oadp-creating-default-secret_installing-oadp-ibm-cloud" class="group scroll-mt-20">Creating a default Secret<a href="#oadp-creating-default-secret_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You create a default <code>Secret</code> if your backup and snapshot locations use the same credentials or if you do not require a snapshot location.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>DataProtectionApplication</code> custom resource (CR) requires a default <code>Secret</code>.  Otherwise, the installation will fail. If the name of the backup location <code>Secret</code> is not specified, the default name is used.</p>
+          <p>If you do not want to use the backup location credentials during the installation, you can create a <code>Secret</code> with the default name by using an empty <code>credentials-velero</code> file.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Your object storage and cloud storage, if any, must use the same credentials.</li>
+      <li>You must configure object storage for Velero.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create a <code>credentials-velero</code> file for the backup storage location in the appropriate format for your cloud provider.</li>
+      <li>
+      Create a <code>Secret</code> custom resource (CR) with the default name:
+      <CodeBlock code={"$ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero"} lang="terminal" />
+      <p>The <code>Secret</code> is referenced in the <code>spec.backupLocations.credential</code> block of the <code>DataProtectionApplication</code> CR when you install the Data Protection Application.</p>
+      </li>
+      </ol>
+      <h2 id="oadp-secrets-for-different-credentials_installing-oadp-ibm-cloud" class="group scroll-mt-20">Creating secrets for different credentials<a href="#oadp-secrets-for-different-credentials_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Create separate <code>Secret</code> objects when your backup and snapshot locations require different credentials. This allows you to configure distinct authentication for each storage location while maintaining secure credential management.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create a <code>credentials-velero</code> file for the snapshot location in the appropriate format for your cloud provider.</li>
+      <li>
+      Create a <code>Secret</code> for the snapshot location with the default name:
+      <CodeBlock code={"$ oc create secret generic {{ credentials }} -n openshift-adp --from-file cloud=credentials-velero"} lang="terminal" />
+      </li>
+      <li>Create a <code>credentials-velero</code> file for the backup location in the appropriate format for your object storage.</li>
+      <li>
+      Create a <code>Secret</code> for the backup location with a custom name:
+      <CodeBlock code={"$ oc create secret generic <custom_secret> -n openshift-adp --from-file cloud=credentials-velero"} lang="terminal" />
+      </li>
+      <li>
+      Add the <code>Secret</code> with the custom name to the <code>DataProtectionApplication</code> CR, as in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: <dpa_sample>\n  namespace: openshift-adp\nspec:\n...\n  backupLocations:\n    - velero:\n        provider: <provider>\n        default: true\n        credential:\n          key: cloud\n          name: <custom_secret>\n        objectStorage:\n          bucket: <bucket_name>\n          prefix: <prefix>"} lang="yaml" />
+      <p>where: <code>custom_secret</code>:: Specifies the backup location <code>Secret</code> with custom name.</p>
+      </li>
+      </ol>
+      <h2 id="oadp-installing-dpa_installing-oadp-ibm-cloud" class="group scroll-mt-20">Installing the Data Protection Application<a href="#oadp-installing-dpa_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You install the Data Protection Application (DPA) by creating an instance of the <code>DataProtectionApplication</code> API.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must install the OADP Operator.</li>
+      <li>You must configure object storage as a backup location.</li>
+      <li>If you use snapshots to back up PVs, your cloud provider must support either a native snapshot API or Container Storage Interface (CSI) snapshots.</li>
+      <li>
+      If the backup and snapshot locations use the same credentials, you must create a <code>Secret</code> with the default name, <code>{"{"}{"{"} credentials {"}"}{"}"}</code>.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you do not want to specify backup or snapshot locations during the installation, you can create a default <code>Secret</code> with an empty <code>credentials-velero</code> file. If there is no default <code>Secret</code>, the installation will fail.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Click <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> and select the OADP Operator.</li>
+      <li>Under <strong>Provided APIs</strong>, click <strong>Create instance</strong> in the <strong>DataProtectionApplication</strong> box.</li>
+      <li>
+      Click <strong>YAML View</strong> and update the parameters of the <code>DataProtectionApplication</code> manifest:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  namespace: openshift-adp\n  name: <dpa_name>\nspec:\n  configuration:\n    velero:\n      defaultPlugins:\n      - openshift\n      - aws\n      - csi\n  backupLocations:\n    - velero:\n        provider: aws\n        default: true\n        objectStorage:\n          bucket: <bucket_name>\n          prefix: velero\n        config:\n          insecureSkipTLSVerify: 'true'\n          profile: default\n          region: <region_name>\n          s3ForcePathStyle: 'true'\n          s3Url: <s3_url>\n        credential:\n          key: cloud\n          name: cloud-credentials"} lang="yaml" />
+      <p>where: <code>provider</code>:: Specifies that the provider is <code>aws</code> when you use IBM Cloud as a backup storage location. <code>bucket</code>:: Specifies the IBM Cloud Object Storage (COS) bucket name. <code>region</code>:: Specifies the COS region name, for example, <code>eu-gb</code>. <code>s3Url</code>:: Specifies the S3 URL of the COS bucket. For example, <code>http://s3.eu-gb.cloud-object-storage.appdomain.cloud</code>. Here, <code>eu-gb</code> is the region name. Replace the region name according to your bucket region. <code>name</code>:: Specifies the name of the secret you created by using the access key and the secret access key from the <code>HMAC</code> credentials.</p>
+      </li>
+      <li>Click <strong>Create</strong>.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify the installation by viewing the OpenShift API for Data Protection (OADP) resources by running the following command:
+      <CodeBlock code={"$ oc get all -n openshift-adp"} lang="terminal" />
+      <CodeBlock code={"NAME                                                     READY   STATUS    RESTARTS   AGE\npod/oadp-operator-controller-manager-67d9494d47-6l8z8    2/2     Running   0          2m8s\npod/node-agent-9cq4q                                     1/1     Running   0          94s\npod/node-agent-m4lts                                     1/1     Running   0          94s\npod/node-agent-pv4kr                                     1/1     Running   0          95s\npod/velero-588db7f655-n842v                              1/1     Running   0          95s\n\nNAME                                                       TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE\nservice/oadp-operator-controller-manager-metrics-service   ClusterIP   172.30.70.140    <none>        8443/TCP   2m8s\nservice/openshift-adp-velero-metrics-svc                   ClusterIP   172.30.10.0      <none>        8085/TCP   8h\n\nNAME                        DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE\ndaemonset.apps/node-agent    3         3         3       3            3           <none>          96s\n\nNAME                                                READY   UP-TO-DATE   AVAILABLE   AGE\ndeployment.apps/oadp-operator-controller-manager    1/1     1            1           2m9s\ndeployment.apps/velero                              1/1     1            1           96s\n\nNAME                                                           DESIRED   CURRENT   READY   AGE\nreplicaset.apps/oadp-operator-controller-manager-67d9494d47    1         1         1       2m9s\nreplicaset.apps/velero-588db7f655                              1         1         1       96s"} lang="plaintext" />
+      </li>
+      <li>
+      Verify that the <code>DataProtectionApplication</code> (DPA) is reconciled by running the following command:
+      <CodeBlock code={"$ oc get dpa dpa-sample -n openshift-adp -o jsonpath='{.status}'"} lang="terminal" />
+      <CodeBlock code={"{\"conditions\":[{\"lastTransitionTime\":\"2023-10-27T01:23:57Z\",\"message\":\"Reconcile complete\",\"reason\":\"Complete\",\"status\":\"True\",\"type\":\"Reconciled\"}]}"} lang="yaml" />
+      </li>
+      <li>Verify the <code>type</code> is set to <code>Reconciled</code>.</li>
+      <li>
+      Verify the backup storage location and confirm that the <code>PHASE</code> is <code>Available</code> by running the following command:
+      <CodeBlock code={"$ oc get backupstoragelocations.velero.io -n openshift-adp"} lang="terminal" />
+      <CodeBlock code={"NAME           PHASE       LAST VALIDATED   AGE     DEFAULT\ndpa-sample-1   Available   1s               3d16h   true"} lang="yaml" />
+      </li>
+      </ol>
+      <h2 id="oadp-setting-resource-limits-and-requests_installing-oadp-ibm-cloud" class="group scroll-mt-20">Setting Velero CPU and memory resource allocations<a href="#oadp-setting-resource-limits-and-requests_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You set the CPU and memory resource allocations for the <code>Velero</code> pod by editing the  <code>DataProtectionApplication</code> custom resource (CR) manifest.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have the OpenShift API for Data Protection (OADP) Operator installed.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the values in the <code>spec.configuration.velero.podConfig.ResourceAllocations</code> block of the <code>DataProtectionApplication</code> CR manifest, as in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: <dpa_sample>\nspec:\n# ...\n  configuration:\n    velero:\n      podConfig:\n        nodeSelector: <node_selector>\n        resourceAllocations:\n          limits:\n            cpu: \"1\"\n            memory: 1024Mi\n          requests:\n            cpu: 200m\n            memory: 256Mi"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>nodeSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node selector to be supplied to Velero podSpec.</p></dd>
+      <dt class="font-semibold"><code>resourceAllocations</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the resource allocations listed for average usage.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Kopia is an option in OADP 1.3 and later releases. You can use Kopia for file system backups, and Kopia is your only option for Data Mover cases with the built-in Data Mover.</p>
+          <p>Kopia is more resource intensive than Restic, and you might need to adjust the CPU and memory requirements accordingly.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h2 id="oadp-configuring-node-agents_installing-oadp-ibm-cloud" class="group scroll-mt-20">Configuring node agents and node labels<a href="#oadp-configuring-node-agents_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Data Protection Application (DPA) uses the <code>nodeSelector</code> field to select which nodes can run the node agent. The <code>nodeSelector</code> field is the recommended form of node selection constraint.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run the node agent on any node that you choose by adding a custom label:
+      <CodeBlock code={"$ oc label node/<node_name> node-role.kubernetes.io/nodeAgent=\"\""} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Any label specified must match the labels on each node.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Use the same custom label in the <code>DPA.spec.configuration.nodeAgent.podConfig.nodeSelector</code> field, which you used for labeling nodes:
+      <CodeBlock code={"configuration:\n  nodeAgent:\n    enable: true\n    podConfig:\n      nodeSelector:\n        node-role.kubernetes.io/nodeAgent: \"\""} lang="terminal" />
+      <p>The following example is an anti-pattern of <code>nodeSelector</code> and does not work unless both labels, <code>node-role.kubernetes.io/infra: ""</code> and <code>node-role.kubernetes.io/worker: ""</code>, are on the node:</p>
+      <CodeBlock code={"    configuration:\n      nodeAgent:\n        enable: true\n        podConfig:\n          nodeSelector:\n            node-role.kubernetes.io/infra: \"\"\n            node-role.kubernetes.io/worker: \"\""} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="oadp-configuring-client-burst-qps_installing-oadp-ibm-cloud" class="group scroll-mt-20">Configuring the DPA with client burst and QPS settings<a href="#oadp-configuring-client-burst-qps_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The burst setting determines how many requests can be sent to the <code>velero</code> server before the limit is applied. After the burst limit is reached, the queries per second (QPS) setting determines how many additional requests can be sent per second.</p>
+      <p>You can set the burst and QPS values of the <code>velero</code> server by configuring the Data Protection Application (DPA) with the burst and QPS values. You can use the <code>dpa.configuration.velero.client-burst</code> and <code>dpa.configuration.velero.client-qps</code> fields of the DPA to set the burst and QPS values.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OADP Operator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Configure the <code>client-burst</code> and the <code>client-qps</code> fields in the DPA as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: test-dpa\n  namespace: openshift-adp\nspec:\n  backupLocations:\n    - name: default\n      velero:\n        config:\n          insecureSkipTLSVerify: \"true\"\n          profile: \"default\"\n          region: <bucket_region>\n          s3ForcePathStyle: \"true\"\n          s3Url: <bucket_url>\n        credential:\n          key: cloud\n          name: cloud-credentials\n        default: true\n        objectStorage:\n          bucket: <bucket_name>\n          prefix: velero\n        provider: aws\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: restic\n    velero:\n      client-burst: 500\n      client-qps: 300\n      defaultPlugins:\n        - openshift\n        - aws\n        - kubevirt"} lang="yaml" title="Example Data Protection Application" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>client-burst</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>client-burst</code> value. In this example, the <code>client-burst</code> field is set to 500.</p></dd>
+      <dt class="font-semibold"><code>client-qps</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>client-qps</code> value. In this example, the <code>client-qps</code> field is set to 300.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h2 id="oadp-configuring-node-agent-load-affinity_installing-oadp-ibm-cloud" class="group scroll-mt-20">Configuring node agent load affinity<a href="#oadp-configuring-node-agent-load-affinity_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can schedule the node agent pods on specific nodes by using the <code>spec.podConfig.nodeSelector</code> object of the <code>DataProtectionApplication</code> (DPA) custom resource (CR). </p>
+      <p>See the following example in which you can schedule the node agent pods on nodes with the label <code>label.io/role: cpu-1</code> and <code>other-label.io/other-role: cpu-2</code>.</p>
+      <CodeBlock code={"...\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n      podConfig:\n        nodeSelector:\n          label.io/role: cpu-1\n          other-label.io/other-role: cpu-2\n        ..."} lang="yaml" />
+      <p>You can add more restrictions on the node agent pods scheduling by using the <code>nodeagent.loadAffinity</code> object in the DPA spec.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must be logged in as a user with <code>cluster-admin</code> privileges.</li>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have configured the DPA CR.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Configure the DPA spec <code>nodegent.loadAffinity</code> object as shown in the following example.
+      <p>In the example, you ensure that the node agent pods are scheduled only on nodes with the label <code>label.io/role: cpu-1</code> and the label <code>label.io/hostname</code> matching with either <code>node1</code> or <code>node2</code>.</p>
+      <CodeBlock code={"...\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      loadAffinity:\n        - nodeSelector:\n            matchLabels:\n              label.io/role: cpu-1\n            matchExpressions:\n              - key: label.io/hostname\n                operator: In\n                values:\n                  - node1\n                  - node2\n                  ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>loadAffinity</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>loadAffinity</code> object by adding the <code>matchLabels</code> and <code>matchExpressions</code> objects.</p></dd>
+      <dt class="font-semibold"><code>matchExpressions</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>matchExpressions</code> object to add restrictions on the node agent pods scheduling.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h2 id="oadp-node-agent-load-affinity-guidelines_installing-oadp-ibm-cloud" class="group scroll-mt-20">Node agent load affinity guidelines<a href="#oadp-node-agent-load-affinity-guidelines_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the following guidelines to configure the node agent <code>loadAffinity</code> object in the <code>DataProtectionApplication</code> (DPA) custom resource (CR).</p>
+      <ul>
+      <li>Use the <code>spec.nodeagent.podConfig.nodeSelector</code> object for simple node matching.</li>
+      <li>Use the <code>loadAffinity.nodeSelector</code> object without the <code>podConfig.nodeSelector</code> object for more complex scenarios.</li>
+      <li>You can use both <code>podConfig.nodeSelector</code> and <code>loadAffinity.nodeSelector</code> objects, but the <code>loadAffinity</code> object must be equal or more restrictive as compared to the <code>podConfig</code> object. In this scenario, the <code>podConfig.nodeSelector</code> labels must be a subset of the labels used in the <code>loadAffinity.nodeSelector</code> object.</li>
+      <li>You cannot use the <code>matchExpressions</code> and <code>matchLabels</code> fields if you have configured both <code>podConfig.nodeSelector</code> and <code>loadAffinity.nodeSelector</code> objects in the DPA.</li>
+      <li>
+      See the following example to configure both <code>podConfig.nodeSelector</code> and <code>loadAffinity.nodeSelector</code> objects in the DPA.
+      <CodeBlock code={"...\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n      loadAffinity:\n        - nodeSelector:\n            matchLabels:\n              label.io/location: 'US'\n              label.io/gpu: 'no'\n      podConfig:\n        nodeSelector:\n          label.io/gpu: 'no'"} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="oadp-configuring-node-agent-load-concurrency_installing-oadp-ibm-cloud" class="group scroll-mt-20">Configuring node agent load concurrency<a href="#oadp-configuring-node-agent-load-concurrency_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can control the maximum number of node agent operations that can run simultaneously on each node within your cluster.</p>
+      <p>You can configure it using one of the following fields of the Data Protection Application (DPA):</p>
+      <ul>
+      <li><code>globalConfig</code>: Defines a default concurrency limit for the node agent across all nodes.</li>
+      <li><code>perNodeConfig</code>: Specifies different concurrency limits for specific nodes based on <code>nodeSelector</code> labels. This provides flexibility for environments where certain nodes might have different resource capacities or roles.</li>
+      </ul>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must be logged in as a user with <code>cluster-admin</code> privileges.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      If you want to use load concurrency for specific nodes, add labels to those nodes:
+      <CodeBlock code={"$ oc label node/<node_name> label.io/instance-type='large'"} lang="terminal" />
+      </li>
+      <li>
+      Configure the load concurrency fields for your DPA instance:
+      <CodeBlock code={"  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n      loadConcurrency:\n        globalConfig: 1\n        perNodeConfig:\n        - nodeSelector:\n              matchLabels:\n                 label.io/instance-type: large\n          number: 3"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>globalConfig</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the global concurrent number. The default value is 1, which means there is no concurrency and only one load is allowed. The <code>globalConfig</code> value does not have a limit.</p></dd>
+      <dt class="font-semibold"><code>label.io/instance-type</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the label for per-node concurrency.</p></dd>
+      <dt class="font-semibold"><code>number</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the per-node concurrent number. You can specify many per-node concurrent numbers, for example, based on the instance type and size. The range of per-node concurrent number is the same as the global concurrent number. If the configuration file contains a per-node concurrent number and a global concurrent number, the per-node concurrent number takes precedence.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <h2 id="oadp-configuring-repository-maintenance_installing-oadp-ibm-cloud" class="group scroll-mt-20">Configuring repository maintenance<a href="#oadp-configuring-repository-maintenance_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OADP repository maintenance is a background job, you can configure it independently of the node agent pods. This means that you can schedule the repository maintenance pod on a node where the node agent is or is not running.</p>
+      <p>You can use the repository maintenance job affinity configurations in the <code>DataProtectionApplication</code> (DPA) custom resource (CR) only if you use Kopia as the backup repository.</p>
+      <p>You have the option to configure the load affinity at the global level affecting all repositories. Or you can configure the load affinity for each repository. You can also use a combination of global and per-repository configuration.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must be logged in as a user with <code>cluster-admin</code> privileges.</li>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have configured the DPA CR.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Configure the <code>loadAffinity</code> object in the DPA spec by using either one or both of the following methods:
+      <ul>
+      <li>
+      Global configuration: Configure load affinity for all repositories as shown in the following example:
+      <CodeBlock code={"...\nspec:\n  configuration:\n    repositoryMaintenance:\n      global:\n        podResources:\n          cpuRequest: \"100m\"\n          cpuLimit: \"200m\"\n          memoryRequest: \"100Mi\"\n          memoryLimit: \"200Mi\"\n        loadAffinity:\n          - nodeSelector:\n              matchLabels:\n                label.io/gpu: 'no'\n              matchExpressions:\n                - key: label.io/location\n                  operator: In\n                  values:\n                    - US\n                    - EU"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>repositoryMaintenance</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>repositoryMaintenance</code> object as shown in the example.</p></dd>
+      <dt class="font-semibold"><code>global</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>global</code> object to configure load affinity for all repositories.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Per-repository configuration: Configure load affinity per repository as shown in the following example:
+      <CodeBlock code={"...\nspec:\n  configuration:\n    repositoryMaintenance:\n      myrepositoryname:\n        loadAffinity:\n          - nodeSelector:\n              matchLabels:\n                label.io/cpu: 'yes'"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>myrepositoryname</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>repositoryMaintenance</code> object for each repository.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="oadp-configuring-velero-load-affinity_installing-oadp-ibm-cloud" class="group scroll-mt-20">Configuring Velero load affinity<a href="#oadp-configuring-velero-load-affinity_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">With each OADP deployment, there is one Velero pod and its main purpose is to schedule Velero workloads. To schedule the Velero pod, you can use the <code>velero.podConfig.nodeSelector</code> and the <code>velero.loadAffinity</code> objects in the <code>DataProtectionApplication</code> (DPA) custom resource (CR) spec.</p>
+      <p>Use the <code>podConfig.nodeSelector</code> object to assign the Velero pod to specific nodes. You can also configure the <code>velero.loadAffinity</code> object for pod-level affinity and anti-affinity.</p>
+      <p>The OpenShift scheduler applies the rules and performs the scheduling of the Velero pod deployment.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must be logged in as a user with <code>cluster-admin</code> privileges.</li>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have configured the DPA CR.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Configure the <code>velero.podConfig.nodeSelector</code> and the <code>velero.loadAffinity</code> objects in the DPA spec as shown in the following examples:
+      <ul>
+      <li>
+      <code>velero.podConfig.nodeSelector</code> object configuration:
+      <CodeBlock code={"...\nspec:\n  configuration:\n    velero:\n      podConfig:\n        nodeSelector:\n          some-label.io/custom-node-role: backup-core"} lang="yaml" />
+      </li>
+      <li>
+      <code>velero.loadAffinity</code> object configuration:
+      <CodeBlock code={"...\nspec:\n  configuration:\n    velero:\n      loadAffinity:\n        - nodeSelector:\n            matchLabels:\n              label.io/gpu: 'no'\n            matchExpressions:\n              - key: label.io/location\n                operator: In\n                values:\n                  - US\n                  - EU"} lang="yaml" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="oadp-configuring-imagepullpolicy_installing-oadp-ibm-cloud" class="group scroll-mt-20">Overriding the imagePullPolicy setting in the DPA <a href="#oadp-configuring-imagepullpolicy_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In OADP 1.4.0 or earlier, the Operator sets the <code>imagePullPolicy</code> field of the Velero and node agent pods to <code>Always</code> for all images.</p>
+      <p>In OADP 1.4.1 or later, the Operator first checks if each image has the <code>sha256</code> or <code>sha512</code> digest and sets the <code>imagePullPolicy</code> field accordingly:</p>
+      <ul>
+      <li>If the image has the digest, the Operator sets <code>imagePullPolicy</code> to <code>IfNotPresent</code>.</li>
+      <li>If the image does not have the digest, the Operator sets <code>imagePullPolicy</code> to <code>Always</code>.</li>
+      </ul>
+      <p>You can also override the <code>imagePullPolicy</code> field by using the <code>spec.imagePullPolicy</code> field in the Data Protection Application (DPA).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OADP Operator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Configure the <code>spec.imagePullPolicy</code> field in the DPA as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: test-dpa\n  namespace: openshift-adp\nspec:\n  backupLocations:\n    - name: default\n      velero:\n        config:\n          insecureSkipTLSVerify: \"true\"\n          profile: \"default\"\n          region: <bucket_region>\n          s3ForcePathStyle: \"true\"\n          s3Url: <bucket_url>\n        credential:\n          key: cloud\n          name: cloud-credentials\n        default: true\n        objectStorage:\n          bucket: <bucket_name>\n          prefix: velero\n        provider: aws\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n    velero:\n      defaultPlugins:\n        - openshift\n        - aws\n        - kubevirt\n        - csi\n  imagePullPolicy: Never"} lang="yaml" title="Example Data Protection Application" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>imagePullPolicy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the value for <code>imagePullPolicy</code>. In this example, the <code>imagePullPolicy</code> field is set to <code>Never</code>.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h2 id="oadp-configuring-dpa-multiple-bsl_installing-oadp-ibm-cloud" class="group scroll-mt-20">Configuring the DPA with more than one BSL<a href="#oadp-configuring-dpa-multiple-bsl_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>DataProtectionApplication</code> (DPA) custom resource (CR) with multiple <code>BackupStorageLocation</code> (BSL) resources to store backups across different locations using provider-specific credentials. This provides backup distribution and location-specific restore capabilities.</p>
+      <p>For example, you have configured the following two BSLs:</p>
+      <ul>
+      <li>Configured one BSL in the DPA and set it as the default BSL.</li>
+      <li>Created another BSL independently by using the <code>BackupStorageLocation</code> CR.</li>
+      </ul>
+      <p>As you have already set the BSL created through the DPA as the default, you cannot set the independently created BSL again as the default. This means, at any given time, you can set only one BSL as the default BSL.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must install the OADP Operator.</li>
+      <li>You must create the secrets by using the credentials provided by the cloud provider.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Configure the <code>DataProtectionApplication</code> CR with more than one <code>BackupStorageLocation</code> CR. See the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\n#...\nbackupLocations:\n  - name: aws\n    velero:\n      provider: aws\n      default: true\n      objectStorage:\n        bucket: <bucket_name>\n        prefix: <prefix>\n      config:\n        region: <region_name>\n        profile: \"default\"\n      credential:\n        key: cloud\n        name: cloud-credentials\n  - name: odf\n    velero:\n      provider: aws\n      default: false\n      objectStorage:\n        bucket: <bucket_name>\n        prefix: <prefix>\n      config:\n        profile: \"default\"\n        region: <region_name>\n        s3Url: <url>\n        insecureSkipTLSVerify: \"true\"\n        s3ForcePathStyle: \"true\"\n      credential:\n        key: cloud\n        name: <custom_secret_name_odf>\n#..."} lang="yaml" title="Example DPA" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>name: aws</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the first BSL.</p></dd>
+      <dt class="font-semibold"><code>default: true</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Indicates that this BSL is the default BSL. If a BSL is not set in the <code>Backup CR</code>, the default BSL is used. You can set only one BSL as the default.</p></dd>
+      <dt class="font-semibold"><code>&lt;bucket_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the bucket name.</p></dd>
+      <dt class="font-semibold"><code>&lt;prefix&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a prefix for Velero backups. For example, <code>velero</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;region_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS region for the bucket.</p></dd>
+      <dt class="font-semibold"><code>cloud-credentials</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the default <code>Secret</code> object that you created.</p></dd>
+      <dt class="font-semibold"><code>name: odf</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the second BSL.</p></dd>
+      <dt class="font-semibold"><code>&lt;url&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the URL of the S3 endpoint.</p></dd>
+      <dt class="font-semibold"><code>&lt;custom_secret_name_odf&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the correct name for the <code>Secret</code>. For example, <code>custom_secret_name_odf</code>. If you do not specify a <code>Secret</code> name, the default name is used.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Specify the BSL to be used in the backup CR. See the following example.
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Backup\n# ...\nspec:\n  includedNamespaces:\n  - <namespace>\n  storageLocation: <backup_storage_location>\n  defaultVolumesToFsBackup: true"} lang="yaml" title="Example backup CR" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace to back up.</p></dd>
+      <dt class="font-semibold"><code>&lt;backup_storage_location&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the storage location.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <h2 id="oadp-about-disable-node-agent-dpa_installing-oadp-ibm-cloud" class="group scroll-mt-20">Disabling the node agent in DataProtectionApplication<a href="#oadp-about-disable-node-agent-dpa_installing-oadp-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you are not using <code>Restic</code>, <code>Kopia</code>, or <code>DataMover</code> for your backups, you can disable the <code>nodeAgent</code> field in the <code>DataProtectionApplication</code> custom resource (CR). Before you disable <code>nodeAgent</code>, ensure the OADP Operator is idle and not running any backups.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To disable the <code>nodeAgent</code>, set the <code>enable</code> flag to <code>false</code>. See the following example:
+      <CodeBlock code={"# ...\nconfiguration:\n  nodeAgent:\n    enable: false\n    uploaderType: kopia\n# ..."} lang="yaml" title="Example DataProtectionApplication CR" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>enable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Enables the node agent.</p></dd>
+      </dl>
+      </li>
+      <li>
+      To enable the <code>nodeAgent</code>, set the <code>enable</code> flag to <code>true</code>. See the following example:
+      <CodeBlock code={"# ...\nconfiguration:\n  nodeAgent:\n    enable: true\n    uploaderType: kopia\n# ..."} lang="yaml" title="Example DataProtectionApplication CR" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>enable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Enables the node agent. You can set up a job to enable and disable the <code>nodeAgent</code> field in the <code>DataProtectionApplication</code> CR. For more information, see "Running tasks in pods using jobs".</p></dd>
+      </dl>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

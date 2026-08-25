@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"using-sriov-multicast","text":"Using high performance multicast"}];
+const headings = [{"depth":1,"slug":"using-sriov-multicast","text":"Using high performance multicast"},{"depth":2,"slug":"nw-high-performance-multicast_using-sriov-multicast","text":"High performance multicast"},{"depth":2,"slug":"nw-using-an-sriov-interface-for-multicast_using-sriov-multicast","text":"Configuring an SR-IOV interface for multicast"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/hardware_networks/using-sriov-multicast";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/hardware_networks"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using high performance multicast {#using-sriov-multicast}\n\nYou can use multicast on your Single Root I/O Virtualization (SR-IOV) hardware network.\n\nBefore you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/hardware_networks/using-sriov-multicast.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using high performance multicast {#using-sriov-multicast}\n\nYou can use multicast on your Single Root I/O Virtualization (SR-IOV) hardware network.\n\nBefore you perform any tasks in the following documentation, ensure that you [installed the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator).\n\n## High performance multicast {#nw-high-performance-multicast_using-sriov-multicast}\n\nThe OVN-Kubernetes network plugin supports multicast between pods on the default network. This is best used for low-bandwidth coordination or service discovery, and not high-bandwidth applications. For applications such as streaming media, such as Internet Protocol television (IPTV) and multipoint videoconferencing, you can use Single Root I/O Virtualization (SR-IOV) hardware to provide near-native performance.\n\nWhen using additional SR-IOV interfaces for multicast:\n\n- Multicast packages must be sent or received by a pod through the additional SR-IOV interface.\n- The physical network which connects the SR-IOV interfaces decides the multicast routing and topology, which is not controlled by OpenShift Container Platform.\n\n## Configuring an SR-IOV interface for multicast {#nw-using-an-sriov-interface-for-multicast_using-sriov-multicast}\n\nThe following procedure creates an example SR-IOV interface for multicast.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n- You must log in to the cluster with a user that has the `cluster-admin` role.\n\n**Procedure**\n\n1. Create a `SriovNetworkNodePolicy` object:\n\n   ```yaml\n   apiVersion: sriovnetwork.openshift.io/v1\n   kind: SriovNetworkNodePolicy\n   metadata:\n     name: policy-example\n     namespace: openshift-sriov-network-operator\n   spec:\n     resourceName: example\n     nodeSelector:\n       feature.node.kubernetes.io/network-sriov.capable: \"true\"\n     numVfs: 4\n     nicSelector:\n       vendor: \"8086\"\n       pfNames: ['ens803f0']\n       rootDevices: ['0000:86:00.0']\n   ```\n2. Create a `SriovNetwork` object:\n\n   ```yaml\n   apiVersion: sriovnetwork.openshift.io/v1\n   kind: SriovNetwork\n   metadata:\n     name: net-example\n     namespace: openshift-sriov-network-operator\n   spec:\n     networkNamespace: default\n     ipam: |\n       {\n         \"type\": \"host-local\",\n         \"subnet\": \"10.56.217.0/24\",\n         \"rangeStart\": \"10.56.217.171\",\n         \"rangeEnd\": \"10.56.217.181\",\n         \"routes\": [\n           {\"dst\": \"224.0.0.0/5\"},\n           {\"dst\": \"232.0.0.0/5\"}\n         ],\n         \"gateway\": \"10.56.217.1\"\n       }\n     resourceName: example\n   ```\n\n   - If you choose to configure DHCP as IPAM, ensure that you provision the following default routes through your DHCP server: `224.0.0.0/5` and `232.0.0.0/5`. This is to override the static multicast route set by the default network provider.\n3. Create a pod with multicast application:\n\n   ```yaml\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     name: testpmd\n     namespace: default\n     annotations:\n       k8s.v1.cni.cncf.io/networks: nic1\n   spec:\n     containers:\n     - name: example\n       image: rhel7:latest\n       securityContext:\n         capabilities:\n           add: [\"NET_ADMIN\"]\n       command: [ \"sleep\", \"infinity\"]\n   ```\n\n   - The `NET_ADMIN` capability is required only if your application needs to assign the multicast IP address to the SR-IOV interface. Otherwise, you can omit it.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/hardware_networks/using-sriov-multicast.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +92,39 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="using-sriov-multicast" class="group scroll-mt-20">Using high performance multicast<a href="#using-sriov-multicast" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can use multicast on your Single Root I/O Virtualization (SR-IOV) hardware network.</p>
       <p>Before you perform any tasks in the following documentation, ensure that you <a href="/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/installing-sriov-operator#installing-sriov-operator">installed the SR-IOV Network Operator</a>.</p>
-      <p class="/modules/nw-high-performance-multicast.md"></p>
-      <p class="/modules/nw-configuring-high-performance-multicast-with-sriov.md"></p>
+      <h2 id="nw-high-performance-multicast_using-sriov-multicast" class="group scroll-mt-20">High performance multicast<a href="#nw-high-performance-multicast_using-sriov-multicast" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The OVN-Kubernetes network plugin supports multicast between pods on the default network. This is best used for low-bandwidth coordination or service discovery, and not high-bandwidth applications. For applications such as streaming media, such as Internet Protocol television (IPTV) and multipoint videoconferencing, you can use Single Root I/O Virtualization (SR-IOV) hardware to provide near-native performance.</p>
+      <p>When using additional SR-IOV interfaces for multicast:</p>
+      <ul>
+      <li>Multicast packages must be sent or received by a pod through the additional SR-IOV interface.</li>
+      <li>The physical network which connects the SR-IOV interfaces decides the multicast routing and topology, which is not controlled by OpenShift Container Platform.</li>
+      </ul>
+      <h2 id="nw-using-an-sriov-interface-for-multicast_using-sriov-multicast" class="group scroll-mt-20">Configuring an SR-IOV interface for multicast<a href="#nw-using-an-sriov-interface-for-multicast_using-sriov-multicast" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following procedure creates an example SR-IOV interface for multicast.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>You must log in to the cluster with a user that has the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>SriovNetworkNodePolicy</code> object:
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetworkNodePolicy\nmetadata:\n  name: policy-example\n  namespace: openshift-sriov-network-operator\nspec:\n  resourceName: example\n  nodeSelector:\n    feature.node.kubernetes.io/network-sriov.capable: \"true\"\n  numVfs: 4\n  nicSelector:\n    vendor: \"8086\"\n    pfNames: ['ens803f0']\n    rootDevices: ['0000:86:00.0']"} lang="yaml" />
+      </li>
+      <li>
+      Create a <code>SriovNetwork</code> object:
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetwork\nmetadata:\n  name: net-example\n  namespace: openshift-sriov-network-operator\nspec:\n  networkNamespace: default\n  ipam: |\n    {\n      \"type\": \"host-local\",\n      \"subnet\": \"10.56.217.0/24\",\n      \"rangeStart\": \"10.56.217.171\",\n      \"rangeEnd\": \"10.56.217.181\",\n      \"routes\": [\n        {\"dst\": \"224.0.0.0/5\"},\n        {\"dst\": \"232.0.0.0/5\"}\n      ],\n      \"gateway\": \"10.56.217.1\"\n    }\n  resourceName: example"} lang="yaml" />
+      <ul><li>If you choose to configure DHCP as IPAM, ensure that you provision the following default routes through your DHCP server: <code>224.0.0.0/5</code> and <code>232.0.0.0/5</code>. This is to override the static multicast route set by the default network provider.</li></ul>
+      </li>
+      <li>
+      Create a pod with multicast application:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: testpmd\n  namespace: default\n  annotations:\n    k8s.v1.cni.cncf.io/networks: nic1\nspec:\n  containers:\n  - name: example\n    image: rhel7:latest\n    securityContext:\n      capabilities:\n        add: [\"NET_ADMIN\"]\n    command: [ \"sleep\", \"infinity\"]"} lang="yaml" />
+      <ul><li>The <code>NET_ADMIN</code> capability is required only if your application needs to assign the multicast IP address to the SR-IOV interface. Otherwise, you can omit it.</li></ul>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

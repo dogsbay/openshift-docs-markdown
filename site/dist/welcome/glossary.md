@@ -73,7 +73,7 @@ hybrid cloud deployments
 :   Deployments that deliver a consistent platform across bare metal, virtual, private, and public cloud environments. This offers speed, agility, and portability.
 
 Ignition
-:   A utility that {{ op_system }} uses to manipulate disks during initial configuration. It completes common disk tasks, including partitioning disks, formatting partitions, writing files, and configuring users.
+:   A utility that RHCOS uses to manipulate disks during initial configuration. It completes common disk tasks, including partitioning disks, formatting partitions, writing files, and configuring users.
 
 installer-provisioned infrastructure
 :   The installation program deploys and configures the infrastructure that the cluster runs on.
@@ -121,12 +121,12 @@ OpenShift CLI (`oc`)
 :   A command line tool to run OpenShift Container Platform commands on the terminal.
 
 OpenShift Dedicated
-:   A managed {{ op_system_base }} OpenShift Container Platform offering on Amazon Web Services (AWS) and {{ gcp_first }}. OpenShift Dedicated focuses on building and scaling applications.
+:   A managed RHEL OpenShift Container Platform offering on Amazon Web Services (AWS) and Google Cloud. OpenShift Dedicated focuses on building and scaling applications.
 
 OpenShift Update Service (OSUS)
-:   For clusters with internet access, {{ op_system_base_full }} provides over-the-air updates by using an OpenShift update service as a hosted service located behind public APIs.
+:   For clusters with internet access, Red Hat Enterprise Linux (RHEL) provides over-the-air updates by using an OpenShift update service as a hosted service located behind public APIs.
 
-{{ product_registry }}
+OpenShift image registry
 :   A registry provided by OpenShift Container Platform to manage images.
 
 Operator
@@ -146,7 +146,7 @@ OSTree
 :   An upgrade system for Linux-based operating systems that performs atomic upgrades of complete file system trees. OSTree tracks meaningful changes to the file system tree using an addressable object store, and is designed to complement existing package management systems.
 
 over-the-air (OTA) updates
-:   The OpenShift Container Platform Update Service (OSUS) provides over-the-air updates to OpenShift Container Platform, including {{ op_system_first }}.
+:   The OpenShift Container Platform Update Service (OSUS) provides over-the-air updates to OpenShift Container Platform, including Red Hat Enterprise Linux CoreOS (RHCOS).
 
 pod
 :   A pod is one or more containers deployed together on one host. It consists of a colocated group of containers with shared resources such as volumes and IP addresses. A pod is also the smallest compute unit defined, deployed, and managed. In OpenShift Container Platform, pods replace individual application containers as the smallest deployable unit. Pods are the orchestrated unit in OpenShift Container Platform. OpenShift Container Platform schedules and runs all containers in a pod on the same node. Complex applications are made up of multiple pods, each with their own containers. They interact externally and also with another inside the OpenShift Container Platform environment.
@@ -160,10 +160,10 @@ project
 public registry
 :   OpenShift Container Platform can use any server implementing the container image registry API as a source of the image which allows the developers to push and pull their public container images.
 
-{{ op_system_base }} OpenShift Container Platform Cluster Manager
+RHEL OpenShift Container Platform Cluster Manager
 :   A managed service where you can install, modify, operate, and upgrade your OpenShift Container Platform clusters.
 
-{{ op_system_base }} Quay Container Registry
+RHEL Quay Container Registry
 :   A Quay.io container registry that serves most of the container images and Operators to OpenShift Container Platform clusters.
 
 replication controllers

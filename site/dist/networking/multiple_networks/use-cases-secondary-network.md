@@ -51,6 +51,272 @@ OpenShift Container Platform provides the following CNI plugins for creating sec
 
   - [Configure a `route-override` based secondary network](/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni#nw-route-override-cni_configuring-additional-network-cni)
 
+## UserDefinedNetwork and NetworkAttachmentDefinition support matrix {#support-matrix-for-udn-nad_use-cases-secondary-network}
+
+You can use user defined networks and network attachment definitions to define and configure customized networks for your needs.
+
+By creating `UserDefinedNetwork` and `NetworkAttachmentDefinition` custom resources (CRs), cluster administrators can complete the following tasks:
+
+- Create customizable network configurations
+- Define their own network topologies
+- Ensure network isolation
+- Manage IP addressing for workloads
+- Configure advanced network features
+
+By creating a `ClusterUserDefinedNetwork` CR, administrators can create and define secondary networks that span multiple namespaces at the cluster level.
+
+User-defined networks and network attachment definitions can serve as both the primary and secondary network interface, and each support `layer2` and `layer3` topologies.
+
+> [!NOTE]
+> As of OpenShift Container Platform 4.19, the use of the `Localnet` topology by `ClusterUserDefinedNetwork` CRs is generally available. This configuration is the preferred method for connecting physical networks to virtual networks. Or, you can use the `NetworkAttachmentDefinition` CR to create secondary networks with `Localnet` topologies.
+
+The following section highlights the supported features of the `UserDefinedNetwork` and `NetworkAttachmentDefinition` CRs when used as either the primary or secondary network. A separate table for the `ClusterUserDefinedNetwork` CR is also included.
+
+***Primary network support matrix for `UserDefinedNetwork` and `NetworkAttachmentDefinition` CRs***
+
+<table>
+<thead>
+<tr>
+  <th>^</th>
+  <th>Network feature ^</th>
+  <th>Layer2 topology ^</th>
+  <th>Layer3 topology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>^</td>
+  <td>east-west traffic ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003;</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>north-south traffic ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003;</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Persistent IPs ^</td>
+  <td>&#10003; ^</td>
+  <td>X</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Services ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003;</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Routes ^</td>
+  <td>X ^</td>
+  <td>X</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td><code>EgressIP</code> resource ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003;</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Multicast ^</td>
+  <td>X ^</td>
+  <td>&#10003;</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td><code>NetworkPolicy</code> resource ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003;</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td><code>MultinetworkPolicy</code> resource ^</td>
+  <td>X ^</td>
+  <td>X</td>
+</tr>
+</tbody>
+</table>
+
+where:
+
+Multicast
+:   Must be enabled in the namespace, and it is only available between OVN-Kubernetes network pods. For more information, see "About multicast".
+
+`NetworkPolicy` resource
+:   When creating a `ClusterUserDefinedNetwork` CR with a primary network type, network policies must be created *after* the `UserDefinedNetwork` CR.
+
+***Secondary network support matrix for `UserDefinedNetwork` and `NetworkAttachmentDefinition` CRs***
+
+<table>
+<thead>
+<tr>
+  <th>^</th>
+  <th>Network feature ^</th>
+  <th>Layer2 topology ^</th>
+  <th>Layer3 topology ^</th>
+  <th>Localnet topology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>^</td>
+  <td>east-west traffic ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003; (<code>NetworkAttachmentDefinition</code> CR only)</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>north-south traffic ^</td>
+  <td>X ^</td>
+  <td>X ^</td>
+  <td>&#10003; (<code>NetworkAttachmentDefinition</code> CR only)</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Persistent IPs ^</td>
+  <td>&#10003; ^</td>
+  <td>X ^</td>
+  <td>&#10003; (<code>NetworkAttachmentDefinition</code> CR only)</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Services ^</td>
+  <td>X ^</td>
+  <td>X ^</td>
+  <td>X</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Routes ^</td>
+  <td>X ^</td>
+  <td>X ^</td>
+  <td>X</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td><code>EgressIP</code> resource ^</td>
+  <td>X ^</td>
+  <td>X ^</td>
+  <td>X</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Multicast ^</td>
+  <td>X ^</td>
+  <td>X ^</td>
+  <td>X</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td><code>NetworkPolicy</code> resource ^</td>
+  <td>X ^</td>
+  <td>X ^</td>
+  <td>X</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td><code>MultinetworkPolicy</code> resource ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003; (<code>NetworkAttachmentDefinition</code> CR only)</td>
+</tr>
+</tbody>
+</table>
+
+The Localnet topology is unavailable for use with the `UserDefinedNetwork` CR. It is only supported on secondary networks for `NetworkAttachmentDefinition` CRs.
+
+***Support matrix for `ClusterUserDefinedNetwork` CRs***
+
+<table>
+<thead>
+<tr>
+  <th>^</th>
+  <th>Network feature ^</th>
+  <th>Layer2 topology ^</th>
+  <th>Layer3 topology ^</th>
+  <th>Localnet topology</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>^</td>
+  <td>east-west traffic ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003;</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>north-south traffic ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003;</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Persistent IPs ^</td>
+  <td>&#10003; ^</td>
+  <td>X ^</td>
+  <td>&#10003;</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Services ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003; ^</td>
+  <td></td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Routes ^</td>
+  <td>X ^</td>
+  <td>X ^</td>
+  <td></td>
+</tr>
+<tr>
+  <td>^</td>
+  <td><code>EgressIP</code> resource ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003; ^</td>
+  <td></td>
+</tr>
+<tr>
+  <td>^</td>
+  <td>Multicast ^</td>
+  <td>X ^</td>
+  <td>&#10003; ^</td>
+  <td></td>
+</tr>
+<tr>
+  <td>^</td>
+  <td><code>MultinetworkPolicy</code> resource ^</td>
+  <td>X ^</td>
+  <td>X ^</td>
+  <td>&#10003;</td>
+</tr>
+<tr>
+  <td>^</td>
+  <td><code>NetworkPolicy</code> resource ^</td>
+  <td>&#10003; ^</td>
+  <td>&#10003; ^</td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+
+where:
+
+Multicast
+:   must be enabled in the namespace, and it is only available between OVN-Kubernetes network pods. For more information, see "About multicast".
+
+`NetworkPolicy` resource
+:   When creating a `ClusterUserDefinedNetwork` CR with a primary network type, network policies must be created *after* the `UserDefinedNetwork` CR.
+
 ## Additional resources {#additional-resources_use-cases-secondary-network}
 
 - [Enabling multicast for a project](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/enabling-multicast#nw-ovn-kubernetes-enabling-multicast)

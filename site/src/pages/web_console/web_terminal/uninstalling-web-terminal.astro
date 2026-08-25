@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"uninstalling-web-terminal","text":"Uninstalling the web terminal"}];
+const headings = [{"depth":1,"slug":"uninstalling-web-terminal","text":"Uninstalling the web terminal"},{"depth":2,"slug":"removing-web-terminal-operator_uninstalling-web-terminal","text":"Removing the Web Terminal Operator"},{"depth":2,"slug":"removing-devworkspace-operator_uninstalling-web-terminal","text":"Removing the DevWorkspace Operator"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/web_terminal/uninstalling-web-terminal";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Uninstalling the web terminal";
-const description = "Uninstalling the {{ web_terminal_op }} does not remove any of the custom resource definitions (CRDs) or managed resources that are created when the…" || undefined;
+const description = "Uninstalling the Web Terminal Operator does not remove any of the custom resource definitions (CRDs) or managed resources that are created when the…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["web_console","web_console/web_terminal"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the web terminal {#uninstalling-web-terminal}\n\nUninstalling the {{ web_terminal_op }} does not remove any of the custom resource definitions (CRDs) or managed resources that are created when the Operator is installed. For security purposes, you must manually uninstall these components. By removing these components, you save cluster resources because terminals do not idle when the Operator is uninstalled.\n\nUninstalling the web terminal is a two-step process:\n\n1. Uninstall the {{ web_terminal_op }} and related custom resources (CRs) that were added when you installed the Operator.\n2. Uninstall the DevWorkspace Operator and its related custom resources that were added as a dependency of the {{ web_terminal_op }}.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/uninstalling-web-terminal.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the web terminal {#uninstalling-web-terminal}\n\nUninstalling the Web Terminal Operator does not remove any of the custom resource definitions (CRDs) or managed resources that are created when the Operator is installed. For security purposes, you must manually uninstall these components. By removing these components, you save cluster resources because terminals do not idle when the Operator is uninstalled.\n\nUninstalling the web terminal is a two-step process:\n\n1. Uninstall the Web Terminal Operator and related custom resources (CRs) that were added when you installed the Operator.\n2. Uninstall the DevWorkspace Operator and its related custom resources that were added as a dependency of the Web Terminal Operator.\n\n## Removing the Web Terminal Operator {#removing-web-terminal-operator_uninstalling-web-terminal}\n\nYou can uninstall the web terminal by removing the Web Terminal Operator and custom resources used by the Operator.\n\n**Prerequisites**\n\n- You have access to the OpenShift Container Platform web console as a user with the `cluster-admin` role.\n- You have installed the `oc` CLI.\n\n**Procedure**\n\n1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.\n2. Scroll the filter list or type a keyword into the **Filter by name** box to find the Web Terminal Operator.\n3. Click the Options menu ![](kebab.png \"Options menu\") for the Web Terminal Operator, and then select **Uninstall Operator**.\n4. In the **Uninstall Operator** confirmation dialog box, click **Uninstall** to remove the Operator, Operator deployments, and pods from the cluster. The Operator stops running and no longer receives updates.\n\n## Removing the DevWorkspace Operator {#removing-devworkspace-operator_uninstalling-web-terminal}\n\nTo completely uninstall the web terminal, you must also remove the DevWorkspace Operator and custom resources used by the Operator.\n\n> [!IMPORTANT]\n> The DevWorkspace Operator is a standalone Operator and might be required as a dependency for other Operators installed in the cluster. Follow the steps below only if you are sure that the DevWorkspace Operator is no longer needed.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform\n\ncluster with cluster administrator permissions.\n\n- You have installed the `oc` CLI.\n\n**Procedure**\n\n1. Remove the `DevWorkspace` custom resources used by the Operator, along with any related Kubernetes objects:\n\n   ```terminal\n   $ oc delete devworkspaces.workspace.devfile.io --all-namespaces --all --wait\n   ```\n\n   ```terminal\n   $ oc delete devworkspaceroutings.controller.devfile.io --all-namespaces --all --wait\n   ```\n\n   > [!WARNING]\n   > If this step is not complete, finalizers make it difficult to fully uninstall the Operator.\n2. Remove the CRDs used by the Operator:\n\n   > [!WARNING]\n   > The DevWorkspace Operator provides custom resource definitions (CRDs) that use conversion webhooks. Failing to remove these CRDs can cause issues in the cluster.\n\n   ```terminal\n   $ oc delete customresourcedefinitions.apiextensions.k8s.io devworkspaceroutings.controller.devfile.io\n   ```\n\n   ```terminal\n   $ oc delete customresourcedefinitions.apiextensions.k8s.io devworkspaces.workspace.devfile.io\n   ```\n\n   ```terminal\n   $ oc delete customresourcedefinitions.apiextensions.k8s.io devworkspacetemplates.workspace.devfile.io\n   ```\n\n   ```terminal\n   $ oc delete customresourcedefinitions.apiextensions.k8s.io devworkspaceoperatorconfigs.controller.devfile.io\n   ```\n3. Verify that all involved custom resource definitions are removed. The following command should not display any output:\n\n   ```terminal\n   $ oc get customresourcedefinitions.apiextensions.k8s.io | grep \"devfile.io\"\n   ```\n4. Remove the `devworkspace-webhook-server` deployment, mutating, and validating webhooks:\n\n   ```terminal\n   $ oc delete deployment/devworkspace-webhook-server -n openshift-operators\n   ```\n\n   ```terminal\n   $ oc delete mutatingwebhookconfigurations controller.devfile.io\n   ```\n\n   ```terminal\n   $ oc delete validatingwebhookconfigurations controller.devfile.io\n   ```\n\n   > [!NOTE]\n   > If you remove the `devworkspace-webhook-server` deployment without removing the mutating and validating webhooks, you cannot use `oc exec` commands to run commands in a container in the cluster. After you remove the webhooks you can use the `oc exec` commands again.\n5. Remove any remaining services, secrets, and config maps. Depending on the installation, some resources included in the following commands might not exist in the cluster.\n\n   ```terminal\n   $ oc delete all --selector app.kubernetes.io/part-of=devworkspace-operator,app.kubernetes.io/name=devworkspace-webhook-server -n openshift-operators\n   ```\n\n   ```terminal\n   $ oc delete serviceaccounts devworkspace-webhook-server -n openshift-operators\n   ```\n\n   ```terminal\n   $ oc delete clusterrole devworkspace-webhook-server\n   ```\n\n   ```terminal\n   $ oc delete clusterrolebinding devworkspace-webhook-server\n   ```\n6. Uninstall the DevWorkspace Operator:\n\n   1. In the **Administrator** perspective of the web console, navigate to **Ecosystem** -> **Installed Operators**.\n   2. Scroll the filter list or type a keyword into the **Filter by name** box to find the DevWorkspace Operator.\n   3. Click the Options menu ![](kebab.png \"Options menu\") for the Operator, and then select **Uninstall Operator**.\n   4. In the **Uninstall Operator** confirmation dialog box, click **Uninstall** to remove the Operator, Operator deployments, and pods from the cluster. The Operator stops running and no longer receives updates.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/web_terminal/uninstalling-web-terminal.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,97 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="uninstalling-web-terminal" class="group scroll-mt-20">Uninstalling the web terminal<a href="#uninstalling-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
-      <p>Uninstalling the {"{"}{"{"} web_terminal_op {"}"}{"}"} does not remove any of the custom resource definitions (CRDs) or managed resources that are created when the Operator is installed. For security purposes, you must manually uninstall these components. By removing these components, you save cluster resources because terminals do not idle when the Operator is uninstalled.</p>
+      <p>Uninstalling the Web Terminal Operator does not remove any of the custom resource definitions (CRDs) or managed resources that are created when the Operator is installed. For security purposes, you must manually uninstall these components. By removing these components, you save cluster resources because terminals do not idle when the Operator is uninstalled.</p>
       <p>Uninstalling the web terminal is a two-step process:</p>
       <ol>
-      <li>Uninstall the {"{"}{"{"} web_terminal_op {"}"}{"}"} and related custom resources (CRs) that were added when you installed the Operator.</li>
-      <li>Uninstall the DevWorkspace Operator and its related custom resources that were added as a dependency of the {"{"}{"{"} web_terminal_op {"}"}{"}"}.</li>
+      <li>Uninstall the Web Terminal Operator and related custom resources (CRs) that were added when you installed the Operator.</li>
+      <li>Uninstall the DevWorkspace Operator and its related custom resources that were added as a dependency of the Web Terminal Operator.</li>
       </ol>
-      <p class="/modules/removing-devworkspace-operator.md"></p>
+      <h2 id="removing-web-terminal-operator_uninstalling-web-terminal" class="group scroll-mt-20">Removing the Web Terminal Operator<a href="#removing-web-terminal-operator_uninstalling-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can uninstall the web terminal by removing the Web Terminal Operator and custom resources used by the Operator.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the OpenShift Container Platform web console as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the <code>oc</code> CLI.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the web console, navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Scroll the filter list or type a keyword into the <strong>Filter by name</strong> box to find the Web Terminal Operator.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> for the Web Terminal Operator, and then select <strong>Uninstall Operator</strong>.</li>
+      <li>In the <strong>Uninstall Operator</strong> confirmation dialog box, click <strong>Uninstall</strong> to remove the Operator, Operator deployments, and pods from the cluster. The Operator stops running and no longer receives updates.</li>
+      </ol>
+      <h2 id="removing-devworkspace-operator_uninstalling-web-terminal" class="group scroll-mt-20">Removing the DevWorkspace Operator<a href="#removing-devworkspace-operator_uninstalling-web-terminal" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To completely uninstall the web terminal, you must also remove the DevWorkspace Operator and custom resources used by the Operator.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The DevWorkspace Operator is a standalone Operator and might be required as a dependency for other Operators installed in the cluster. Follow the steps below only if you are sure that the DevWorkspace Operator is no longer needed.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to an OpenShift Container Platform</li></ul>
+      <p>cluster with cluster administrator permissions.</p>
+      <ul><li>You have installed the <code>oc</code> CLI.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Remove the <code>DevWorkspace</code> custom resources used by the Operator, along with any related Kubernetes objects:
+      <CodeBlock code={"$ oc delete devworkspaces.workspace.devfile.io --all-namespaces --all --wait"} lang="terminal" />
+      <CodeBlock code={"$ oc delete devworkspaceroutings.controller.devfile.io --all-namespaces --all --wait"} lang="terminal" />
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>If this step is not complete, finalizers make it difficult to fully uninstall the Operator.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Remove the CRDs used by the Operator:
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>The DevWorkspace Operator provides custom resource definitions (CRDs) that use conversion webhooks. Failing to remove these CRDs can cause issues in the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ oc delete customresourcedefinitions.apiextensions.k8s.io devworkspaceroutings.controller.devfile.io"} lang="terminal" />
+      <CodeBlock code={"$ oc delete customresourcedefinitions.apiextensions.k8s.io devworkspaces.workspace.devfile.io"} lang="terminal" />
+      <CodeBlock code={"$ oc delete customresourcedefinitions.apiextensions.k8s.io devworkspacetemplates.workspace.devfile.io"} lang="terminal" />
+      <CodeBlock code={"$ oc delete customresourcedefinitions.apiextensions.k8s.io devworkspaceoperatorconfigs.controller.devfile.io"} lang="terminal" />
+      </li>
+      <li>
+      Verify that all involved custom resource definitions are removed. The following command should not display any output:
+      <CodeBlock code={"$ oc get customresourcedefinitions.apiextensions.k8s.io | grep \"devfile.io\""} lang="terminal" />
+      </li>
+      <li>
+      Remove the <code>devworkspace-webhook-server</code> deployment, mutating, and validating webhooks:
+      <CodeBlock code={"$ oc delete deployment/devworkspace-webhook-server -n openshift-operators"} lang="terminal" />
+      <CodeBlock code={"$ oc delete mutatingwebhookconfigurations controller.devfile.io"} lang="terminal" />
+      <CodeBlock code={"$ oc delete validatingwebhookconfigurations controller.devfile.io"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you remove the <code>devworkspace-webhook-server</code> deployment without removing the mutating and validating webhooks, you cannot use <code>oc exec</code> commands to run commands in a container in the cluster. After you remove the webhooks you can use the <code>oc exec</code> commands again.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Remove any remaining services, secrets, and config maps. Depending on the installation, some resources included in the following commands might not exist in the cluster.
+      <CodeBlock code={"$ oc delete all --selector app.kubernetes.io/part-of=devworkspace-operator,app.kubernetes.io/name=devworkspace-webhook-server -n openshift-operators"} lang="terminal" />
+      <CodeBlock code={"$ oc delete serviceaccounts devworkspace-webhook-server -n openshift-operators"} lang="terminal" />
+      <CodeBlock code={"$ oc delete clusterrole devworkspace-webhook-server"} lang="terminal" />
+      <CodeBlock code={"$ oc delete clusterrolebinding devworkspace-webhook-server"} lang="terminal" />
+      </li>
+      <li>
+      Uninstall the DevWorkspace Operator:
+      <ol>
+      <li>In the <strong>Administrator</strong> perspective of the web console, navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Scroll the filter list or type a keyword into the <strong>Filter by name</strong> box to find the DevWorkspace Operator.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> for the Operator, and then select <strong>Uninstall Operator</strong>.</li>
+      <li>In the <strong>Uninstall Operator</strong> confirmation dialog box, click <strong>Uninstall</strong> to remove the Operator, Operator deployments, and pods from the cluster. The Operator stops running and no longer receives updates.</li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

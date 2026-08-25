@@ -8,6 +8,13 @@ You can use Intel Gaudi AI accelerators for your OpenShift Container Platform ge
 
 Red Hat supports Intel Gaudi 2 and Intel Gaudi 3 devices. Intel Gaudi 3 devices provide significant improvements in training speed and energy efficiency.
 
+## Intel Gaudi AI accelerators prerequisites {#gaudi-ai-accelerators-prerequisites_gaudi-ai-accelerator}
+
+- You have a working OpenShift Container Platform cluster with at least one GPU worker node.
+- You have access to the OpenShift Container Platform cluster as a cluster-admin to perform the required steps.
+- You have installed OpenShift CLI (`oc`).
+- You have installed the Node Feature Discovery (NFD) Operator and created a `NodeFeatureDiscovery` instance.
+
 **Additional resources**
 
 - [OpenShift Installation](https://docs.habana.ai/en/latest/Installation_Guide/Additional_Installation/OpenShift_Installation/index.html) (Intel Gaudi documentation)

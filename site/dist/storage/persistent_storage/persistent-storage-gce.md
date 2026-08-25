@@ -26,3 +26,33 @@ Persistent volumes are not bound to a single project or namespace; they can be s
 
 - [GCE Persistent Disk](https://cloud.google.com/compute/docs/disks/)
 - [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)
+
+## About the GCE storage class {#storage-create-storage-class_persistent-storage-gce}
+
+To enable dynamic provisioning of persistent volumes, create a storage class that defines storage characteristics and allows users to automatically provision volumes on-demand.
+
+## Creating the persistent volume claim {#creating-volume-claim_persistent-storage-gce}
+
+You can create a persistent volume claim to dynamically provision and bind storage from a pre-configured storage class, so that your applications can consume persistent storage in OpenShift Container Platform.
+
+**Prerequisites**
+
+- Storage must exist in the underlying infrastructure before it can be mounted as a volume in OpenShift Container Platform.
+
+**Procedure**
+
+1. In the OpenShift Container Platform web console, click **Storage** -> **Persistent Volume Claims**.
+2. In the persistent volume claims overview, click **Create Persistent Volume Claim**.
+3. Define the required options on the page that is displayed.
+
+   1. Select the previously-created storage class from the drop-down menu.
+   2. Enter a unique name for the storage claim.
+   3. Select the access mode. This selection determines the read and write access for the storage claim.
+   4. Define the size of the storage claim.
+4. Click **Create** to create the persistent volume claim and generate a persistent volume.
+
+## Volume format {#volume-format-GCE_persistent-storage-gce}
+
+You can use unformatted GCE volumes as persistent volumes, because OpenShift Container Platform automatically formats the device before mounting it to a container.
+
+Before OpenShift Container Platform mounts the volume and passes it to a container, it checks that the volume contains a file system as specified by the `fsType` parameter in the persistent volume definition. If the device is not formatted with the file system, all data from the device is erased and the device is automatically formatted with the given file system.

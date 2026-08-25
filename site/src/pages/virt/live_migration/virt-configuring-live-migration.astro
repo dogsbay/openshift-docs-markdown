@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-configuring-live-migration","text":"Configuring live migration"},{"depth":2,"slug":"additional-resources_virt-configuring-live-migration","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-configuring-live-migration","text":"Configuring live migration"},{"depth":2,"slug":"virt-configuring-live-migration-limits_virt-configuring-live-migration","text":"Configuring live migration limits and timeouts"},{"depth":2,"slug":"virt-configuring-live-migration-heavy_virt-configuring-live-migration","text":"Configure live migration for heavy workloads"},{"depth":2,"slug":"virt-live-migration-policies_virt-configuring-live-migration","text":"Live migration policies"},{"depth":2,"slug":"virt-configuring-a-live-migration-policy_virt-configuring-live-migration","text":"Creating a live migration policy by using the CLI"},{"depth":2,"slug":"additional-resources_virt-configuring-live-migration","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/live_migration/virt-configuring-live-migration";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/live_migration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring live migration {#virt-configuring-live-migration}\n\nYou can configure live migration settings to ensure that the migration processes do not overwhelm the cluster. You can configure live migration policies to apply different migration configurations to groups of virtual machines (VMs).\n\n## Additional resources {#additional-resources_virt-configuring-live-migration}\n\n- [Configuring a dedicated network for live migration](/openshift-docs-markdown/virt/vm_networking/virt-dedicated-network-live-migration#virt-configuring-secondary-network-vm-live-migration_virt-dedicated-network-live-migration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/live_migration/virt-configuring-live-migration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring live migration {#virt-configuring-live-migration}\n\nYou can configure live migration settings to ensure that the migration processes do not overwhelm the cluster. You can configure live migration policies to apply different migration configurations to groups of virtual machines (VMs).\n\n## Configuring live migration limits and timeouts {#virt-configuring-live-migration-limits_virt-configuring-live-migration}\n\nConfigure live migration limits and timeouts for the cluster by updating the `HyperConverged` custom resource (CR), which is located in the `{{ CNVNamespace }}` namespace.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Edit the `HyperConverged` CR and add the necessary live migration parameters:\n\n  ```terminal\n  $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n  ```\n\n  Example configuration file:\n\n  ```yaml\n  apiVersion: hco.kubevirt.io/v1beta1\n  kind: HyperConverged\n  metadata:\n    name: kubevirt-hyperconverged\n    namespace: {{ CNVNamespace }}\n  spec:\n    liveMigrationConfig:\n      bandwidthPerMigration: 64Mi\n      completionTimeoutPerGiB: 800\n      parallelMigrationsPerCluster: 5\n      parallelOutboundMigrationsPerNode: 2\n      progressTimeout: 150\n      allowPostCopy: false\n  ```\n\n  where:\n\n  `bandwidthPerMigration`\n  :   Specifies the bandwidth of each migration in bytes per second. For example, a value of 2048Mi means 2048 MiB/s. Default: 0, which is unlimited.\n\n  `completionTimeoutPerGiB`\n  :   Specifies the length of time, in seconds per GiB of memory, at which the migration is canceled if it has not completed. For example, a VM with 6GiB memory times out if it has not completed migration in 4800 seconds. If the `Migration Method` is `BlockMigration`, the size of the migrating disks is included in the calculation.\n\n  `parallelMigrationsPerCluster`\n  :   Specifies the number of migrations running in parallel in the cluster. Default: `5`.\n\n  `parallelOutboundMigrationsPerNode`\n  :   Specifies the maximum number of outbound migrations per node. Default: `2`.\n\n  `progressTimeout`\n  :   Specifies the length of time, in seconds, at which the migration is canceled if memory copy fails to make progress. Default: `150`.\n\n  `allowPostCopy`\n  :   Specifies whether the post copy mode is enabled. You can enable post copy mode to allow the migration of one node to another to converge, even if a VM is running a heavy workload and the memory dirty rate is too high. By default, `allowPostCopy` is set to `false`.\n\n  > [!NOTE]\n  > You can restore the default value for any `spec.liveMigrationConfig` field by deleting that key/value pair and saving the file. For example, delete `progressTimeout: <value>` to restore the default `progressTimeout: 150`.\n\n## Configure live migration for heavy workloads {#virt-configuring-live-migration-heavy_virt-configuring-live-migration}\n\nWhen migrating a VM running a heavy workload, such as database processing, higher memory dirty rates can prevent the migration from completing. To address this, you can enable post copy mode, which allows the migration to complete when the pre-copy phase cannot converge.\n\nConfigure live migration for heavy workloads by updating the `HyperConverged` custom resource (CR) in the `{{ CNVNamespace }}` namespace.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Edit the `HyperConverged` CR and add the necessary parameters for migrating heavy workloads:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n\n   Example configuration file:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n     namespace: {{ CNVNamespace }}\n   spec:\n     liveMigrationConfig:\n       bandwidthPerMigration: 0Mi\n       completionTimeoutPerGiB: 150\n       parallelMigrationsPerCluster: 5\n       parallelOutboundMigrationsPerNode: 1\n       progressTimeout: 150\n       allowPostCopy: true\n   ```\n\n   where:\n\n   `bandwidthPerMigration`\n   :   Specifies the bandwidth of each migration in bytes per second. The default is `0`, which is unlimited.\n\n   `completionTimeoutPerGiB`\n   :   Specifies the length of time, in seconds per GiB of memory, at which the migration is canceled if it has not completed and post copy mode is triggered, if enabled. You can lower `completionTimeoutPerGiB` to trigger post copy mode earlier in the migration process, or raise the  `completionTimeoutPerGiB` to trigger post copy mode later in the migration process.\n\n   `parallelMigrationsPerCluster`\n   :   Specifies the number of migrations running in parallel in the cluster. The default is `5`. Keeping the `parallelMigrationsPerCluster` setting low is better when migrating heavy workloads.\n\n   `parallelOutboundMigrationsPerNode`\n   :   Specifies the maximum number of outbound migrations per node. Configure a single VM per node for heavy workloads.\n\n   `progressTimeout`\n   :   Specifies the length of time, in seconds, at which the migration is canceled if memory copy fails to make progress. Increase this parameter for large memory sizes running heavy workloads.\n\n   `allowPostCopy`\n   :   Specifies whether the post copy mode is enabled. You can enable post copy mode to allow the migration of one node to another to converge, even if a VM is running a heavy workload and the memory dirty rate is too high. Set allowPostCopy to true to enable post copy mode. 1.  Optional: If your main network is too busy for the migration, configure a secondary, dedicated migration network.\n\n   > [!NOTE]\n   > Post copy mode can impact performance during the transfer, and should not be used for critical data, or with unstable networks.\n\n## Live migration policies {#virt-live-migration-policies_virt-configuring-live-migration}\n\nYou can create live migration policies to apply different migration configurations to groups of VMs that are defined by VM or project labels.\n\n> [!TIP]\n> You can create live migration policies by using the OpenShift Container Platform web console.\n\n## Creating a live migration policy by using the CLI {#virt-configuring-a-live-migration-policy_virt-configuring-live-migration}\n\nYou can create a live migration policy by using the command line.\n\nKubeVirt applies the live migration policy to selected virtual machines (VMs) by using any combination of labels:\n\n- VM labels such as `size`, `os`, or `gpu`\n- Project labels such as `priority`, `bandwidth`, or `hpc-workload`\n\nFor the policy to apply to a specific group of VMs, all labels on the group of VMs must match the labels of the policy.\n\n> [!NOTE]\n> If multiple live migration policies apply to a VM, the policy with the greatest number of matching labels takes precedence.\n>\n> If multiple policies meet this criteria, the policies are sorted by alphabetical order of the matching label keys, and the first one in that order takes precedence.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Edit the VM object to which you want to apply a live migration policy, and add the corresponding VM labels.\n\n   1. Open the YAML configuration of the resource:\n\n      ```terminal\n      $ oc edit vm <vm_name>\n      ```\n   2. Adjust the required label values in the `.spec.template.metadata.labels` section of the configuration. For example, to mark the VM as a `production` VM for the purposes of migration policies, add the `kubevirt.io/environment: production` line:\n\n      ```yaml\n      apiVersion: migrations.kubevirt.io/v1alpha1\n      kind: VirtualMachine\n      metadata:\n        name: <vm_name>\n        namespace: default\n        labels:\n          app: my-app\n          environment: production\n      spec:\n        template:\n          metadata:\n            labels:\n              kubevirt.io/domain: <vm_name>\n              kubevirt.io/size: large\n              kubevirt.io/environment: production\n      # ...\n      ```\n   3. Save and exit the configuration.\n2. Configure a `MigrationPolicy` object with the corresponding labels. The following example configures a policy that applies to all VMs that are labeled as `production`:\n\n   ```yaml\n   apiVersion: migrations.kubevirt.io/v1alpha1\n   kind: MigrationPolicy\n   metadata:\n     name: <migration_policy>\n   spec:\n     selectors:\n       namespaceSelector:\n         hpc-workloads: \"True\"\n         xyz-workloads-type: \"\"\n       virtualMachineInstanceSelector:\n         kubevirt.io/environment: \"production\"\n   ```\n\n   where:\n\n   `namespaceSelector`\n   :   Specifies the project labels.\n\n   `virtualMachineInstanceSelector`\n   :   Specifies the VM labels. 1.  Create the migration policy by running the following command:\n\n   ```terminal\n   $ oc create -f <migration_policy>.yaml\n   ```\n\n## Additional resources {#additional-resources_virt-configuring-live-migration}\n\n- [Configuring a dedicated network for live migration](/openshift-docs-markdown/virt/vm_networking/virt-dedicated-network-live-migration#virt-configuring-secondary-network-vm-live-migration_virt-dedicated-network-live-migration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/live_migration/virt-configuring-live-migration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,130 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-configuring-live-migration" class="group scroll-mt-20">Configuring live migration<a href="#virt-configuring-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure live migration settings to ensure that the migration processes do not overwhelm the cluster. You can configure live migration policies to apply different migration configurations to groups of virtual machines (VMs).</p>
-      <p class="/modules/virt-configuring-live-migration-limits.md"></p>
-      <p class="/modules/virt-configuring-live-migration-heavy.md"></p>
-      <p class="/modules/virt-live-migration-policies.md"></p>
-      <p class="/modules/virt-configuring-a-live-migration-policy.md"></p>
+      <h2 id="virt-configuring-live-migration-limits_virt-configuring-live-migration" class="group scroll-mt-20">Configuring live migration limits and timeouts<a href="#virt-configuring-live-migration-limits_virt-configuring-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure live migration limits and timeouts for the cluster by updating the <code>HyperConverged</code> custom resource (CR), which is located in the <code>{"{"}{"{"} CNVNamespace {"}"}{"}"}</code> namespace.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the <code>HyperConverged</code> CR and add the necessary live migration parameters:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      <p>Example configuration file:</p>
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  liveMigrationConfig:\n    bandwidthPerMigration: 64Mi\n    completionTimeoutPerGiB: 800\n    parallelMigrationsPerCluster: 5\n    parallelOutboundMigrationsPerNode: 2\n    progressTimeout: 150\n    allowPostCopy: false"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>bandwidthPerMigration</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the bandwidth of each migration in bytes per second. For example, a value of 2048Mi means 2048 MiB/s. Default: 0, which is unlimited.</p></dd>
+      <dt class="font-semibold"><code>completionTimeoutPerGiB</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the length of time, in seconds per GiB of memory, at which the migration is canceled if it has not completed. For example, a VM with 6GiB memory times out if it has not completed migration in 4800 seconds. If the <code>Migration Method</code> is <code>BlockMigration</code>, the size of the migrating disks is included in the calculation.</p></dd>
+      <dt class="font-semibold"><code>parallelMigrationsPerCluster</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the number of migrations running in parallel in the cluster. Default: <code>5</code>.</p></dd>
+      <dt class="font-semibold"><code>parallelOutboundMigrationsPerNode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum number of outbound migrations per node. Default: <code>2</code>.</p></dd>
+      <dt class="font-semibold"><code>progressTimeout</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the length of time, in seconds, at which the migration is canceled if memory copy fails to make progress. Default: <code>150</code>.</p></dd>
+      <dt class="font-semibold"><code>allowPostCopy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether the post copy mode is enabled. You can enable post copy mode to allow the migration of one node to another to converge, even if a VM is running a heavy workload and the memory dirty rate is too high. By default, <code>allowPostCopy</code> is set to <code>false</code>.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can restore the default value for any <code>spec.liveMigrationConfig</code> field by deleting that key/value pair and saving the file. For example, delete <code>progressTimeout: &lt;value&gt;</code> to restore the default <code>progressTimeout: 150</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h2 id="virt-configuring-live-migration-heavy_virt-configuring-live-migration" class="group scroll-mt-20">Configure live migration for heavy workloads<a href="#virt-configuring-live-migration-heavy_virt-configuring-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When migrating a VM running a heavy workload, such as database processing, higher memory dirty rates can prevent the migration from completing. To address this, you can enable post copy mode, which allows the migration to complete when the pre-copy phase cannot converge.</p>
+      <p>Configure live migration for heavy workloads by updating the <code>HyperConverged</code> custom resource (CR) in the <code>{"{"}{"{"} CNVNamespace {"}"}{"}"}</code> namespace.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>HyperConverged</code> CR and add the necessary parameters for migrating heavy workloads:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      <p>Example configuration file:</p>
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  liveMigrationConfig:\n    bandwidthPerMigration: 0Mi\n    completionTimeoutPerGiB: 150\n    parallelMigrationsPerCluster: 5\n    parallelOutboundMigrationsPerNode: 1\n    progressTimeout: 150\n    allowPostCopy: true"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>bandwidthPerMigration</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the bandwidth of each migration in bytes per second. The default is <code>0</code>, which is unlimited.</p></dd>
+      <dt class="font-semibold"><code>completionTimeoutPerGiB</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the length of time, in seconds per GiB of memory, at which the migration is canceled if it has not completed and post copy mode is triggered, if enabled. You can lower <code>completionTimeoutPerGiB</code> to trigger post copy mode earlier in the migration process, or raise the  <code>completionTimeoutPerGiB</code> to trigger post copy mode later in the migration process.</p></dd>
+      <dt class="font-semibold"><code>parallelMigrationsPerCluster</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the number of migrations running in parallel in the cluster. The default is <code>5</code>. Keeping the <code>parallelMigrationsPerCluster</code> setting low is better when migrating heavy workloads.</p></dd>
+      <dt class="font-semibold"><code>parallelOutboundMigrationsPerNode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum number of outbound migrations per node. Configure a single VM per node for heavy workloads.</p></dd>
+      <dt class="font-semibold"><code>progressTimeout</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the length of time, in seconds, at which the migration is canceled if memory copy fails to make progress. Increase this parameter for large memory sizes running heavy workloads.</p></dd>
+      <dt class="font-semibold"><code>allowPostCopy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether the post copy mode is enabled. You can enable post copy mode to allow the migration of one node to another to converge, even if a VM is running a heavy workload and the memory dirty rate is too high. Set allowPostCopy to true to enable post copy mode. 1.  Optional: If your main network is too busy for the migration, configure a secondary, dedicated migration network.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Post copy mode can impact performance during the transfer, and should not be used for critical data, or with unstable networks.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="virt-live-migration-policies_virt-configuring-live-migration" class="group scroll-mt-20">Live migration policies<a href="#virt-live-migration-policies_virt-configuring-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create live migration policies to apply different migration configurations to groups of VMs that are defined by VM or project labels.</p>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can create live migration policies by using the OpenShift Container Platform web console.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="virt-configuring-a-live-migration-policy_virt-configuring-live-migration" class="group scroll-mt-20">Creating a live migration policy by using the CLI<a href="#virt-configuring-a-live-migration-policy_virt-configuring-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a live migration policy by using the command line.</p>
+      <p>KubeVirt applies the live migration policy to selected virtual machines (VMs) by using any combination of labels:</p>
+      <ul>
+      <li>VM labels such as <code>size</code>, <code>os</code>, or <code>gpu</code></li>
+      <li>Project labels such as <code>priority</code>, <code>bandwidth</code>, or <code>hpc-workload</code></li>
+      </ul>
+      <p>For the policy to apply to a specific group of VMs, all labels on the group of VMs must match the labels of the policy.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If multiple live migration policies apply to a VM, the policy with the greatest number of matching labels takes precedence.</p>
+          <p>If multiple policies meet this criteria, the policies are sorted by alphabetical order of the matching label keys, and the first one in that order takes precedence.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the VM object to which you want to apply a live migration policy, and add the corresponding VM labels.
+      <ol>
+      <li>
+      Open the YAML configuration of the resource:
+      <CodeBlock code={"$ oc edit vm <vm_name>"} lang="terminal" />
+      </li>
+      <li>
+      Adjust the required label values in the <code>.spec.template.metadata.labels</code> section of the configuration. For example, to mark the VM as a <code>production</code> VM for the purposes of migration policies, add the <code>kubevirt.io/environment: production</code> line:
+      <CodeBlock code={"apiVersion: migrations.kubevirt.io/v1alpha1\nkind: VirtualMachine\nmetadata:\n  name: <vm_name>\n  namespace: default\n  labels:\n    app: my-app\n    environment: production\nspec:\n  template:\n    metadata:\n      labels:\n        kubevirt.io/domain: <vm_name>\n        kubevirt.io/size: large\n        kubevirt.io/environment: production\n# ..."} lang="yaml" />
+      </li>
+      <li>Save and exit the configuration.</li>
+      </ol>
+      </li>
+      <li>
+      Configure a <code>MigrationPolicy</code> object with the corresponding labels. The following example configures a policy that applies to all VMs that are labeled as <code>production</code>:
+      <CodeBlock code={"apiVersion: migrations.kubevirt.io/v1alpha1\nkind: MigrationPolicy\nmetadata:\n  name: <migration_policy>\nspec:\n  selectors:\n    namespaceSelector:\n      hpc-workloads: \"True\"\n      xyz-workloads-type: \"\"\n    virtualMachineInstanceSelector:\n      kubevirt.io/environment: \"production\""} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>namespaceSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the project labels.</p></dd>
+      <dt class="font-semibold"><code>virtualMachineInstanceSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the VM labels. 1.  Create the migration policy by running the following command:</p></dd>
+      </dl>
+      <CodeBlock code={"$ oc create -f <migration_policy>.yaml"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="additional-resources_virt-configuring-live-migration" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-configuring-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/virt/vm_networking/virt-dedicated-network-live-migration#virt-configuring-secondary-network-vm-live-migration_virt-dedicated-network-live-migration">Configuring a dedicated network for live migration</a></li></ul>
     </article>

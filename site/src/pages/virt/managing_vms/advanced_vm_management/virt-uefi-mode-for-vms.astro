@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-uefi-mode-for-vms","text":"Using UEFI mode for virtual machines"}];
+const headings = [{"depth":1,"slug":"virt-uefi-mode-for-vms","text":"Using UEFI mode for virtual machines"},{"depth":2,"slug":"virt-about-uefi-mode-for-vms_virt-uefi-mode-for-vms","text":"About UEFI mode for virtual machines"},{"depth":2,"slug":"virt-booting-vms-uefi-mode_virt-uefi-mode-for-vms","text":"Booting virtual machines in UEFI mode"},{"depth":2,"slug":"configuring-vm-with-persistent-efi_virt-uefi-mode-for-vms","text":"Configuring VMs with persistent EFI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-uefi-mode-for-vms";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/advanced_vm_
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using UEFI mode for virtual machines {#virt-uefi-mode-for-vms}\n\nYou can boot a virtual machine (VM) in Unified Extensible Firmware Interface (UEFI) mode for faster boot times, the ability to boot to larger disks, and added security features.\n\n{% include \"./modules/virt-about-uefi-mode-for-vms.md\" %}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-uefi-mode-for-vms.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using UEFI mode for virtual machines {#virt-uefi-mode-for-vms}\n\nYou can boot a virtual machine (VM) in Unified Extensible Firmware Interface (UEFI) mode for faster boot times, the ability to boot to larger disks, and added security features.\n\n## About UEFI mode for virtual machines {#virt-about-uefi-mode-for-vms_virt-uefi-mode-for-vms}\n\nUnified Extensible Firmware Interface (UEFI), like legacy BIOS, initializes hardware components and operating system image files when a computer starts. UEFI supports more modern features and customization options than BIOS, enabling faster boot times.\n\nIt stores all the information about initialization and startup in a file with a `.efi` extension, which is stored on a special partition called EFI System Partition (ESP). The ESP also contains the boot loader programs for the operating system that is installed on the computer.\n\n## Booting virtual machines in UEFI mode {#virt-booting-vms-uefi-mode_virt-uefi-mode-for-vms}\n\nYou can configure a virtual machine to boot in UEFI mode by editing the `VirtualMachine` manifest.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. To boot a virtual machine (VM) in UEFI mode with secure boot active, edit or create a `VirtualMachine` manifest file. Use the `spec.firmware.bootloader` stanza to configure UEFI mode:\n\n   ```yaml\n   apiversion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     labels:\n       special: vm-secureboot\n     name: vm-secureboot\n   spec:\n     template:\n       metadata:\n         labels:\n           special: vm-secureboot\n       spec:\n         domain:\n           devices:\n             disks:\n             - disk:\n                 bus: virtio\n               name: containerdisk\n           features:\n             acpi: {}\n             smm:\n               enabled: true\n           firmware:\n             bootloader:\n               efi:\n                 secureBoot: true\n   # ...\n   ```\n\n   - You must set `spec.template.spec.domain.features.ssm.enabled` to have a value of `true`.\n   - If `spec.template.spec.domain.firmware.bootloader.efi.secureBoot` is set to `true`, then UEFI mode is required. However, you can enable UEFI mode without using Secure Boot.\n2. Apply the manifest to your cluster by running the following command:\n\n   ```terminal\n   $ oc create -f <file_name>.yaml\n   ```\n\n## Configuring VMs with persistent EFI {#configuring-vm-with-persistent-efi_virt-uefi-mode-for-vms}\n\nYou can configure a VM to have EFI persistence enabled by editing its manifest file.\n\n**Procedure**\n\n- Edit the VM manifest file and save to apply settings.\n\n  ```yaml\n  apiVersion: kubevirt.io/v1\n  kind: VirtualMachine\n  metadata:\n    name: vm\n  spec:\n    template:\n      spec:\n        domain:\n          firmware:\n            bootloader:\n              efi:\n                persistent: true\n  # ...\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-uefi-mode-for-vms.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,38 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-uefi-mode-for-vms" class="group scroll-mt-20">Using UEFI mode for virtual machines<a href="#virt-uefi-mode-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can boot a virtual machine (VM) in Unified Extensible Firmware Interface (UEFI) mode for faster boot times, the ability to boot to larger disks, and added security features.</p>
-      <p class="/modules/virt-configuring-vm-with-persistent-efi.md /modules/virt-booting-vms-uefi-mode.md">{"{"}% include "./modules/virt-about-uefi-mode-for-vms.md" %{"}"} </p>
+      <h2 id="virt-about-uefi-mode-for-vms_virt-uefi-mode-for-vms" class="group scroll-mt-20">About UEFI mode for virtual machines<a href="#virt-about-uefi-mode-for-vms_virt-uefi-mode-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Unified Extensible Firmware Interface (UEFI), like legacy BIOS, initializes hardware components and operating system image files when a computer starts. UEFI supports more modern features and customization options than BIOS, enabling faster boot times.</p>
+      <p>It stores all the information about initialization and startup in a file with a <code>.efi</code> extension, which is stored on a special partition called EFI System Partition (ESP). The ESP also contains the boot loader programs for the operating system that is installed on the computer.</p>
+      <h2 id="virt-booting-vms-uefi-mode_virt-uefi-mode-for-vms" class="group scroll-mt-20">Booting virtual machines in UEFI mode<a href="#virt-booting-vms-uefi-mode_virt-uefi-mode-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure a virtual machine to boot in UEFI mode by editing the <code>VirtualMachine</code> manifest.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Install the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To boot a virtual machine (VM) in UEFI mode with secure boot active, edit or create a <code>VirtualMachine</code> manifest file. Use the <code>spec.firmware.bootloader</code> stanza to configure UEFI mode:
+      <CodeBlock code={"apiversion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  labels:\n    special: vm-secureboot\n  name: vm-secureboot\nspec:\n  template:\n    metadata:\n      labels:\n        special: vm-secureboot\n    spec:\n      domain:\n        devices:\n          disks:\n          - disk:\n              bus: virtio\n            name: containerdisk\n        features:\n          acpi: {}\n          smm:\n            enabled: true\n        firmware:\n          bootloader:\n            efi:\n              secureBoot: true\n# ..."} lang="yaml" />
+      <ul>
+      <li>You must set <code>spec.template.spec.domain.features.ssm.enabled</code> to have a value of <code>true</code>.</li>
+      <li>If <code>spec.template.spec.domain.firmware.bootloader.efi.secureBoot</code> is set to <code>true</code>, then UEFI mode is required. However, you can enable UEFI mode without using Secure Boot.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the manifest to your cluster by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="configuring-vm-with-persistent-efi_virt-uefi-mode-for-vms" class="group scroll-mt-20">Configuring VMs with persistent EFI<a href="#configuring-vm-with-persistent-efi_virt-uefi-mode-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure a VM to have EFI persistence enabled by editing its manifest file.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the VM manifest file and save to apply settings.
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: vm\nspec:\n  template:\n    spec:\n      domain:\n        firmware:\n          bootloader:\n            efi:\n              persistent: true\n# ..."} lang="yaml" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

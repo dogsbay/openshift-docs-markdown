@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"getting-support","text":"Getting support"},{"depth":2,"slug":"getting-support-rh-kb","text":"About the Red Hat Knowledgebase"},{"depth":2,"slug":"getting-support-additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"getting-support","text":"Getting support"},{"depth":2,"slug":"getting-support-rh-kb","text":"About the Red Hat Knowledgebase"},{"depth":2,"slug":"gathering-cluster-data_getting-support","text":"Collecting data for Red Hat Support"},{"depth":2,"slug":"getting-support-additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/getting-support";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Getting support";
-const description = "If you experience difficulty with a procedure described in this documentation, or with {{ kueue_name }} in general, visit the Red Hat Customer Portal." || undefined;
+const description = "If you experience difficulty with a procedure described in this documentation, or with Red Hat build of Kueue in general, visit the Red Hat Customer…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Getting support {#getting-support}\n\nIf you experience difficulty with a procedure described in this documentation, or with {{ kueue_name }} in general, visit the Red Hat Customer Portal.\n\nFrom the Customer Portal, you can:\n\n- Search or browse through the Red Hat Knowledgebase of articles and solutions relating to Red Hat products.\n- Submit a support case to Red Hat Support.\n- Access other product documentation.\n\n## About the Red Hat Knowledgebase {#getting-support-rh-kb}\n\nThe Red Hat Knowledgebase provides rich content aimed at helping you make the most of Red Hat’s products and technologies. The Red Hat Knowledgebase consists of articles, product documentation, and videos outlining best practices on installing, configuring, and using Red Hat products. In addition, you can search for solutions to known issues, each providing concise root cause descriptions and remedial steps.\n\n## Additional resources {#getting-support-additional-resources}\n\n- [Red Hat Customer Portal](https://access.redhat.com)\n- [Red Hat Knowledgebase](https://access.redhat.com/knowledgebase)\n- [How to find the cluster-id or name on OpenShift cluster](https://access.redhat.com/solutions/5280291)\n- [Customer Support page](https://access.redhat.com/support/cases/#/case/list)\n- [Support overview](/openshift-docs-markdown/support/index#support-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/getting-support.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Getting support {#getting-support}\n\nIf you experience difficulty with a procedure described in this documentation, or with Red Hat build of Kueue in general, visit the Red Hat Customer Portal.\n\nFrom the Customer Portal, you can:\n\n- Search or browse through the Red Hat Knowledgebase of articles and solutions relating to Red Hat products.\n- Submit a support case to Red Hat Support.\n- Access other product documentation.\n\n## About the Red Hat Knowledgebase {#getting-support-rh-kb}\n\nThe Red Hat Knowledgebase provides rich content aimed at helping you make the most of Red Hat’s products and technologies. The Red Hat Knowledgebase consists of articles, product documentation, and videos outlining best practices on installing, configuring, and using Red Hat products. In addition, you can search for solutions to known issues, each providing concise root cause descriptions and remedial steps.\n\n## Collecting data for Red Hat Support {#gathering-cluster-data_getting-support}\n\nYou can use the `oc adm must-gather` CLI command to collect the information about your Red Hat build of Kueue instance that is most likely needed for debugging issues.\n\nInformation collected includes:\n\n- Red Hat build of Kueue custom resources, such as workloads, cluster queues, local queues, resource flavors, admission checks, and their corresponding cluster resource definitions (CRDs)\n- Services\n- Endpoints\n- Webhook configurations\n- Logs from the `openshift-kueue-operator` namespace and `kueue-controller-manager` pods\n\nCollected data is written into a new directory named `must-gather/` in the current working directory by default.\n\n**Prerequisites**\n\n- The Red Hat build of Kueue Operator is installed on your cluster.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Navigate to the directory where you want to store the `must-gather` data.\n2. Collect `must-gather` data by running the following command:\n\n   ```terminal\n   $ oc adm must-gather \\\n     --image=registry.redhat.io/kueue/kueue-must-gather-rhel9:<version>\n   ```\n\n   Where `<version>` is your current version of Red Hat build of Kueue.\n3. Create a compressed file from the `must-gather` directory that was just created in your working directory. Make sure you provide the date and cluster ID for the unique `must-gather` data. For more information about how to find the cluster ID, see \"How to find the cluster-id or name on OpenShift cluster\".\n4. Attach the compressed file to your support case on the **Customer Support** page of the Red Hat Customer Portal.\n\n## Additional resources {#getting-support-additional-resources}\n\n- [Red Hat Customer Portal](https://access.redhat.com)\n- [Red Hat Knowledgebase](https://access.redhat.com/knowledgebase)\n- [How to find the cluster-id or name on OpenShift cluster](https://access.redhat.com/solutions/5280291)\n- [Customer Support page](https://access.redhat.com/support/cases/#/case/list)\n- [Support overview](/openshift-docs-markdown/support/index#support-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/getting-support.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,9 +91,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="getting-support" class="group scroll-mt-20">Getting support<a href="#getting-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>If you experience difficulty with a procedure described in this documentation, or with {"{"}{"{"} kueue_name {"}"}{"}"} in general, visit the Red Hat Customer Portal.</p>
+      <p>If you experience difficulty with a procedure described in this documentation, or with Red Hat build of Kueue in general, visit the Red Hat Customer Portal.</p>
       <p>From the Customer Portal, you can:</p>
       <ul>
       <li>Search or browse through the Red Hat Knowledgebase of articles and solutions relating to Red Hat products.</li>
@@ -101,7 +101,33 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <h2 id="getting-support-rh-kb" class="group scroll-mt-20">About the Red Hat Knowledgebase<a href="#getting-support-rh-kb" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>The Red Hat Knowledgebase provides rich content aimed at helping you make the most of Red Hat’s products and technologies. The Red Hat Knowledgebase consists of articles, product documentation, and videos outlining best practices on installing, configuring, and using Red Hat products. In addition, you can search for solutions to known issues, each providing concise root cause descriptions and remedial steps.</p>
-      <p class="/modules/kueue-gathering-cluster-data.md"></p>
+      <h2 id="gathering-cluster-data_getting-support" class="group scroll-mt-20">Collecting data for Red Hat Support<a href="#gathering-cluster-data_getting-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the <code>oc adm must-gather</code> CLI command to collect the information about your Red Hat build of Kueue instance that is most likely needed for debugging issues.</p>
+      <p>Information collected includes:</p>
+      <ul>
+      <li>Red Hat build of Kueue custom resources, such as workloads, cluster queues, local queues, resource flavors, admission checks, and their corresponding cluster resource definitions (CRDs)</li>
+      <li>Services</li>
+      <li>Endpoints</li>
+      <li>Webhook configurations</li>
+      <li>Logs from the <code>openshift-kueue-operator</code> namespace and <code>kueue-controller-manager</code> pods</li>
+      </ul>
+      <p>Collected data is written into a new directory named <code>must-gather/</code> in the current working directory by default.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The Red Hat build of Kueue Operator is installed on your cluster.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to the directory where you want to store the <code>must-gather</code> data.</li>
+      <li>
+      Collect <code>must-gather</code> data by running the following command:
+      <CodeBlock code={"$ oc adm must-gather \\\n  --image=registry.redhat.io/kueue/kueue-must-gather-rhel9:<version>"} lang="terminal" />
+      <p>Where <code>&lt;version&gt;</code> is your current version of Red Hat build of Kueue.</p>
+      </li>
+      <li>Create a compressed file from the <code>must-gather</code> directory that was just created in your working directory. Make sure you provide the date and cluster ID for the unique <code>must-gather</code> data. For more information about how to find the cluster ID, see "How to find the cluster-id or name on OpenShift cluster".</li>
+      <li>Attach the compressed file to your support case on the <strong>Customer Support</strong> page of the Red Hat Customer Portal.</li>
+      </ol>
       <h2 id="getting-support-additional-resources" class="group scroll-mt-20">Additional resources<a href="#getting-support-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://access.redhat.com">Red Hat Customer Portal</a></li>

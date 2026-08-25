@@ -16,6 +16,123 @@ The Kubernetes persistent volume framework allows administrators to provision a 
 >
 > CSI automatic migration should be seamless. Migration does not change how you use all existing API objects, such as persistent volumes, persistent volume claims, and storage classes. For more information about migration, see CSI automatic migration.
 
+## About the EBS storage class {#storage-create-storage-class_persistent-storage-aws}
+
+To enable dynamic provisioning of persistent volumes, create a storage class that defines storage characteristics and allows users to automatically provision volumes on-demand.
+
+## Creating the persistent volume claim {#creating-volume-claim_persistent-storage-aws}
+
+You can create a persistent volume claim to dynamically provision and bind storage from a pre-configured storage class, so that your applications can consume persistent storage in OpenShift Container Platform.
+
+**Prerequisites**
+
+- Storage must exist in the underlying infrastructure before it can be mounted as a volume in OpenShift Container Platform.
+
+**Procedure**
+
+1. In the OpenShift Container Platform web console, click **Storage** -> **Persistent Volume Claims**.
+2. In the persistent volume claims overview, click **Create Persistent Volume Claim**.
+3. Define the required options on the page that is displayed.
+
+   1. Select the previously-created storage class from the drop-down menu.
+   2. Enter a unique name for the storage claim.
+   3. Select the access mode. This selection determines the read and write access for the storage claim.
+   4. Define the size of the storage claim.
+4. Click **Create** to create the persistent volume claim and generate a persistent volume.
+
+## Volume format {#volume-format-AWS_persistent-storage-aws}
+
+You can use unformatted AWS volumes as persistent volumes, because OpenShift Container Platform automatically formats the device before mounting it to a container.
+
+Before OpenShift Container Platform mounts the volume and passes it to a container, it checks that the volume contains a file system as specified by the `fsType` parameter in the persistent volume definition. If the device is not formatted with the file system, all data from the device is erased and the device is automatically formatted with the given file system.
+
+## Maximum number of EBS volumes on a node {#maximum-number-of-ebs-volumes-on-a-node_persistent-storage-aws}
+
+By default, you can attach a maximum of 39 EBS volumes attached to one node. This limit is consistent with the AWS volume limits. The volume limit depends on the instance type.
+
+> [!IMPORTANT]
+> As a cluster administrator, you must use either in-tree or Container Storage Interface (CSI) volumes and their respective storage classes, but never both volume types at the same time. The maximum attached EBS volume number is counted separately for in-tree and CSI volumes, which means you could have up to 39 EBS volumes of each type.
+
+## Encrypting container persistent volumes on AWS with a KMS key {#aws-container-persistent-volumes-encrypt_persistent-storage-aws}
+
+You can define a KMS key to encrypt container-persistent volumes on AWS if you have explicit compliance and security guidelines when deploying to AWS.
+
+**Prerequisites**
+
+- Underlying infrastructure must contain storage.
+- You must create a customer KMS key on AWS.
+
+**Procedure**
+
+1. Create a storage class:
+
+   ```yaml
+   $ cat << EOF | oc create -f -
+   apiVersion: storage.k8s.io/v1
+   kind: StorageClass
+   metadata:
+     name: <storage-class-name>
+   parameters:
+     fsType: ext4
+     encrypted: "true"
+     kmsKeyId: keyvalue
+   provisioner: ebs.csi.aws.com
+   reclaimPolicy: Delete
+   volumeBindingMode: WaitForFirstConsumer
+   EOF
+   ```
+
+   where:
+
+   `metadata.name`
+   :   Specifies the name of the storage class.
+
+   `parameters.fsType`
+   :   Specifies the file system that is created on provisioned volumes.
+
+   `parameters.kmsKeyId`
+   :   Specifies the full Amazon Resource Name (ARN) of the key to use when encrypting the container-persistent volume. If you do not provide any key, but the `encrypted` field is set to `true`, then the default KMS key is used.
+2. Create a persistent volume claim (PVC) with the storage class specifying the KMS key:
+
+   ```yaml
+   $ cat << EOF | oc create -f -
+   apiVersion: v1
+   kind: PersistentVolumeClaim
+   metadata:
+     name: mypvc
+   spec:
+     accessModes:
+       - ReadWriteOnce
+     volumeMode: Filesystem
+     storageClassName: <storage-class-name>
+     resources:
+       requests:
+         storage: 1Gi
+   EOF
+   ```
+3. Create workload containers to consume the PVC:
+
+   ```yaml
+   $ cat << EOF | oc create -f -
+   kind: Pod
+   metadata:
+     name: mypod
+   spec:
+     containers:
+       - name: httpd
+         image: quay.io/centos7/httpd-24-centos7
+         ports:
+           - containerPort: 80
+         volumeMounts:
+           - mountPath: /mnt/storage
+             name: data
+     volumes:
+       - name: data
+         persistentVolumeClaim:
+           claimName: mypvc
+   EOF
+   ```
+
 ## Additional resources {#additional-resources_persistent-storage-aws}
 
 - [Amazon EC2 documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.html)

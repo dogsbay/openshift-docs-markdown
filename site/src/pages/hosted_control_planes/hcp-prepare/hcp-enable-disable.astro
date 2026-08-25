@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-enable-disable","text":"Enabling or disabling the {{ hcp }} feature"}];
+const headings = [{"depth":1,"slug":"hcp-enable-disable","text":"Enabling or disabling the {{ hcp }} feature"},{"depth":2,"slug":"hcp-enable-manual_hcp-enable-disable","text":"Manually enabling the hosted control planes feature"},{"depth":2,"slug":"hcp-enable-manual-addon_hcp-enable-disable","text":"Manually enabling the hypershift-addon managed cluster add-on for local-cluster"},{"depth":2,"slug":"hcp-uninstall-operator_hcp-enable-disable","text":"Uninstalling the HyperShift Operator"},{"depth":2,"slug":"hcp-disable-feature_hcp-enable-disable","text":"Disabling the hosted control planes feature"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Enabling or disabling the {{ hcp }} feature";
-const description = "The {{ hcp }} feature, as well as the hypershift-addon managed cluster add-on, are enabled by default. If needed, you can disable the feature, or if you…" || undefined;
+const description = "The hosted control planes feature, as well as the hypershift-addon managed cluster add-on, are enabled by default. If needed, you can disable the feature…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-prepare
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling or disabling the {{ hcp }} feature {#hcp-enable-disable}\n\nThe {{ hcp }} feature, as well as the `hypershift-addon` managed cluster add-on, are enabled by default. If needed, you can disable the feature, or if you disabled it, you can manually enable it.\n\nYou can uninstall the HyperShift Operator and disable the {{ hcp }} feature. When you disable the {{ hcp }} feature, you must destroy the hosted cluster and the managed cluster resource on {{ mce_short }}, as described in the *Destroying a hosted cluster* section.\n\n**Additional resources**\n\n- [Destroying a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-aws#hcp-destroy-aws)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling or disabling the {{ hcp }} feature {#hcp-enable-disable}\n\nThe hosted control planes feature, as well as the `hypershift-addon` managed cluster add-on, are enabled by default. If needed, you can disable the feature, or if you disabled it, you can manually enable it.\n\nYou can uninstall the HyperShift Operator and disable the hosted control planes feature. When you disable the hosted control planes feature, you must destroy the hosted cluster and the managed cluster resource on multicluster engine Operator, as described in the *Destroying a hosted cluster* section.\n\n**Additional resources**\n\n- [Destroying a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-aws#hcp-destroy-aws)\n\n## Manually enabling the hosted control planes feature {#hcp-enable-manual_hcp-enable-disable}\n\nIf the hosted control planes feature is disabled, you can manually enable it.\n\n**Procedure**\n\n1. Run the following command to enable the feature:\n\n   ```terminal\n   $ oc patch mce multiclusterengine --type=merge -p \\\n     '{\"spec\":{\"overrides\":{\"components\":[{\"name\":\"hypershift\",\"enabled\": true}]}}}'\n   ```\n\n   The default `MultiClusterEngine` resource instance name is `multiclusterengine`, but you can get the `MultiClusterEngine` name from your cluster by running the following command: `$ oc get mce`.\n2. Run the following command to verify that the `hypershift` and `hypershift-local-hosting` features are enabled in the `MultiClusterEngine` custom resource:\n\n   ```terminal\n   $ oc get mce multiclusterengine -o yaml\n   ```\n\n   The default `MultiClusterEngine` resource instance name is `multiclusterengine`, but you can get the `MultiClusterEngine` name from your cluster by running the following command: `$ oc get mce`.\n\n   ```yaml {title=\"Example output\"}\n   apiVersion: multicluster.openshift.io/v1\n   kind: MultiClusterEngine\n   metadata:\n     name: multiclusterengine\n   spec:\n     overrides:\n       components:\n       - name: hypershift\n         enabled: true\n       - name: hypershift-local-hosting\n         enabled: true\n   ```\n\n## Manually enabling the hypershift-addon managed cluster add-on for local-cluster {#hcp-enable-manual-addon_hcp-enable-disable}\n\nEnabling the hosted control planes feature automatically enables the `hypershift-addon` managed cluster add-on. If you need to enable the `hypershift-addon` managed cluster add-on manually, use the `hypershift-addon` to install the HyperShift Operator on `local-cluster`.\n\n**Procedure**\n\n1. Create the `ManagedClusterAddon` add-on named `hypershift-addon` by creating a file that resembles the following example:\n\n   ```yaml\n   apiVersion: addon.open-cluster-management.io/v1alpha1\n   kind: ManagedClusterAddOn\n   metadata:\n     name: hypershift-addon\n     namespace: local-cluster\n   spec:\n     installNamespace: open-cluster-management-agent-addon\n   ```\n2. Apply the file by running the following command:\n\n   ```terminal\n   $ oc apply -f <filename>\n   ```\n\n   Replace `filename` with the name of the file that you created.\n3. Confirm that the `hypershift-addon` managed cluster add-on is installed by running the following command:\n\n   ```terminal\n   $ oc get managedclusteraddons -n local-cluster hypershift-addon\n   ```\n\n   If the add-on is installed, the output resembles the following example:\n\n   ```terminal\n   NAME               AVAILABLE   DEGRADED   PROGRESSING\n   hypershift-addon   True\n   ```\n\n   Your `hypershift-addon` managed cluster add-on is installed and the hosting cluster is available to create and manage hosted clusters.\n\n## Uninstalling the HyperShift Operator {#hcp-uninstall-operator_hcp-enable-disable}\n\nBefore you can disable the hosted control planes feature, you need to uninstall the HyperShift Operator and disable the `hypershift-addon` from the `local-cluster`.\n\n**Procedure**\n\n1. Run the following command to ensure that there is no hosted cluster running:\n\n   ```terminal\n   $ oc get hostedcluster -A\n   ```\n\n   > [!IMPORTANT]\n   > If a hosted cluster is running, the HyperShift Operator does not uninstall, even if the `hypershift-addon` is disabled.\n2. Disable the `hypershift-addon` by running the following command:\n\n   ```terminal\n   $ oc patch mce multiclusterengine --type=merge -p \\\n     '{\"spec\":{\"overrides\":{\"components\":[{\"name\":\"hypershift-local-hosting\",\"enabled\": false}]}}}'\n   ```\n\n   The default `MultiClusterEngine` resource instance name is `multiclusterengine`, but you can get the `MultiClusterEngine` name from your cluster by running the following command: `$ oc get mce`.\n\n   > [!NOTE]\n   > You can also disable the `hypershift-addon` for the `local-cluster` from the multicluster engine Operator console after disabling the `hypershift-addon`.\n\n## Disabling the hosted control planes feature {#hcp-disable-feature_hcp-enable-disable}\n\nIf you no longer use the hosted control planes feature, you can disable it.\n\n**Prerequisites**\n\n- You uninstalled the HyperShift Operator. For more information, see \"Uninstalling the HyperShift Operator\".\n\n**Procedure**\n\n1. Run the following command to disable the hosted control planes feature:\n\n   ```terminal\n   $ oc patch mce multiclusterengine --type=merge -p \\\n     '{\"spec\":{\"overrides\":{\"components\":[{\"name\":\"hypershift\",\"enabled\": false}]}}}'\n   ```\n\n   The default `MultiClusterEngine` resource instance name is `multiclusterengine`, but you can get the `MultiClusterEngine` name from your cluster by running the following command: `$ oc get mce`.\n2. You can verify that the `hypershift` and `hypershift-local-hosting` features are disabled in the `MultiClusterEngine` custom resource by running the following command:\n\n   ```terminal\n   $ oc get mce multiclusterengine -o yaml\n   ```\n\n   The default `MultiClusterEngine` resource instance name is `multiclusterengine`, but you can get the `MultiClusterEngine` name from your cluster by running the following command: `$ oc get mce`.\n\n   See the following example where `hypershift` and `hypershift-local-hosting` have their `enabled:` flags set to `false`:\n\n   ```yaml\n   apiVersion: multicluster.openshift.io/v1\n   kind: MultiClusterEngine\n   metadata:\n     name: multiclusterengine\n   spec:\n     overrides:\n       components:\n       - name: hypershift\n         enabled: false\n       - name: hypershift-local-hosting\n         enabled: false\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,92 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hcp-enable-disable" class="group scroll-mt-20">Enabling or disabling the {"{"}{"{"} hcp {"}"}{"}"} feature<a href="#hcp-enable-disable" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>The {"{"}{"{"} hcp {"}"}{"}"} feature, as well as the <code>hypershift-addon</code> managed cluster add-on, are enabled by default. If needed, you can disable the feature, or if you disabled it, you can manually enable it.</p>
-      <p>You can uninstall the HyperShift Operator and disable the {"{"}{"{"} hcp {"}"}{"}"} feature. When you disable the {"{"}{"{"} hcp {"}"}{"}"} feature, you must destroy the hosted cluster and the managed cluster resource on {"{"}{"{"} mce_short {"}"}{"}"}, as described in the <em>Destroying a hosted cluster</em> section.</p>
+      <p>The hosted control planes feature, as well as the <code>hypershift-addon</code> managed cluster add-on, are enabled by default. If needed, you can disable the feature, or if you disabled it, you can manually enable it.</p>
+      <p>You can uninstall the HyperShift Operator and disable the hosted control planes feature. When you disable the hosted control planes feature, you must destroy the hosted cluster and the managed cluster resource on multicluster engine Operator, as described in the <em>Destroying a hosted cluster</em> section.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-aws#hcp-destroy-aws">Destroying a hosted cluster</a></li></ul>
-      <p class="/modules/hcp-enable-manual-addon.md"></p>
-      <p class="/modules/hcp-uninstall-operator.md"></p>
-      <p class="/modules/hcp-disable-feature.md"></p>
+      <h2 id="hcp-enable-manual_hcp-enable-disable" class="group scroll-mt-20">Manually enabling the hosted control planes feature<a href="#hcp-enable-manual_hcp-enable-disable" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If the hosted control planes feature is disabled, you can manually enable it.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run the following command to enable the feature:
+      <CodeBlock code={"$ oc patch mce multiclusterengine --type=merge -p \\\n  '{\"spec\":{\"overrides\":{\"components\":[{\"name\":\"hypershift\",\"enabled\": true}]}}}'"} lang="terminal" />
+      <p>The default <code>MultiClusterEngine</code> resource instance name is <code>multiclusterengine</code>, but you can get the <code>MultiClusterEngine</code> name from your cluster by running the following command: <code>$ oc get mce</code>.</p>
+      </li>
+      <li>
+      Run the following command to verify that the <code>hypershift</code> and <code>hypershift-local-hosting</code> features are enabled in the <code>MultiClusterEngine</code> custom resource:
+      <CodeBlock code={"$ oc get mce multiclusterengine -o yaml"} lang="terminal" />
+      <p>The default <code>MultiClusterEngine</code> resource instance name is <code>multiclusterengine</code>, but you can get the <code>MultiClusterEngine</code> name from your cluster by running the following command: <code>$ oc get mce</code>.</p>
+      <CodeBlock code={"apiVersion: multicluster.openshift.io/v1\nkind: MultiClusterEngine\nmetadata:\n  name: multiclusterengine\nspec:\n  overrides:\n    components:\n    - name: hypershift\n      enabled: true\n    - name: hypershift-local-hosting\n      enabled: true"} lang="yaml" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="hcp-enable-manual-addon_hcp-enable-disable" class="group scroll-mt-20">Manually enabling the hypershift-addon managed cluster add-on for local-cluster<a href="#hcp-enable-manual-addon_hcp-enable-disable" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enabling the hosted control planes feature automatically enables the <code>hypershift-addon</code> managed cluster add-on. If you need to enable the <code>hypershift-addon</code> managed cluster add-on manually, use the <code>hypershift-addon</code> to install the HyperShift Operator on <code>local-cluster</code>.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the <code>ManagedClusterAddon</code> add-on named <code>hypershift-addon</code> by creating a file that resembles the following example:
+      <CodeBlock code={"apiVersion: addon.open-cluster-management.io/v1alpha1\nkind: ManagedClusterAddOn\nmetadata:\n  name: hypershift-addon\n  namespace: local-cluster\nspec:\n  installNamespace: open-cluster-management-agent-addon"} lang="yaml" />
+      </li>
+      <li>
+      Apply the file by running the following command:
+      <CodeBlock code={"$ oc apply -f <filename>"} lang="terminal" />
+      <p>Replace <code>filename</code> with the name of the file that you created.</p>
+      </li>
+      <li>
+      Confirm that the <code>hypershift-addon</code> managed cluster add-on is installed by running the following command:
+      <CodeBlock code={"$ oc get managedclusteraddons -n local-cluster hypershift-addon"} lang="terminal" />
+      <p>If the add-on is installed, the output resembles the following example:</p>
+      <CodeBlock code={"NAME               AVAILABLE   DEGRADED   PROGRESSING\nhypershift-addon   True"} lang="terminal" />
+      <p>Your <code>hypershift-addon</code> managed cluster add-on is installed and the hosting cluster is available to create and manage hosted clusters.</p>
+      </li>
+      </ol>
+      <h2 id="hcp-uninstall-operator_hcp-enable-disable" class="group scroll-mt-20">Uninstalling the HyperShift Operator<a href="#hcp-uninstall-operator_hcp-enable-disable" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you can disable the hosted control planes feature, you need to uninstall the HyperShift Operator and disable the <code>hypershift-addon</code> from the <code>local-cluster</code>.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run the following command to ensure that there is no hosted cluster running:
+      <CodeBlock code={"$ oc get hostedcluster -A"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If a hosted cluster is running, the HyperShift Operator does not uninstall, even if the <code>hypershift-addon</code> is disabled.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Disable the <code>hypershift-addon</code> by running the following command:
+      <CodeBlock code={"$ oc patch mce multiclusterengine --type=merge -p \\\n  '{\"spec\":{\"overrides\":{\"components\":[{\"name\":\"hypershift-local-hosting\",\"enabled\": false}]}}}'"} lang="terminal" />
+      <p>The default <code>MultiClusterEngine</code> resource instance name is <code>multiclusterengine</code>, but you can get the <code>MultiClusterEngine</code> name from your cluster by running the following command: <code>$ oc get mce</code>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can also disable the <code>hypershift-addon</code> for the <code>local-cluster</code> from the multicluster engine Operator console after disabling the <code>hypershift-addon</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="hcp-disable-feature_hcp-enable-disable" class="group scroll-mt-20">Disabling the hosted control planes feature<a href="#hcp-disable-feature_hcp-enable-disable" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you no longer use the hosted control planes feature, you can disable it.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You uninstalled the HyperShift Operator. For more information, see "Uninstalling the HyperShift Operator".</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run the following command to disable the hosted control planes feature:
+      <CodeBlock code={"$ oc patch mce multiclusterengine --type=merge -p \\\n  '{\"spec\":{\"overrides\":{\"components\":[{\"name\":\"hypershift\",\"enabled\": false}]}}}'"} lang="terminal" />
+      <p>The default <code>MultiClusterEngine</code> resource instance name is <code>multiclusterengine</code>, but you can get the <code>MultiClusterEngine</code> name from your cluster by running the following command: <code>$ oc get mce</code>.</p>
+      </li>
+      <li>
+      You can verify that the <code>hypershift</code> and <code>hypershift-local-hosting</code> features are disabled in the <code>MultiClusterEngine</code> custom resource by running the following command:
+      <CodeBlock code={"$ oc get mce multiclusterengine -o yaml"} lang="terminal" />
+      <p>The default <code>MultiClusterEngine</code> resource instance name is <code>multiclusterengine</code>, but you can get the <code>MultiClusterEngine</code> name from your cluster by running the following command: <code>$ oc get mce</code>.</p>
+      <p>See the following example where <code>hypershift</code> and <code>hypershift-local-hosting</code> have their <code>enabled:</code> flags set to <code>false</code>:</p>
+      <CodeBlock code={"apiVersion: multicluster.openshift.io/v1\nkind: MultiClusterEngine\nmetadata:\n  name: multiclusterengine\nspec:\n  overrides:\n    components:\n    - name: hypershift\n      enabled: false\n    - name: hypershift-local-hosting\n      enabled: false"} lang="yaml" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

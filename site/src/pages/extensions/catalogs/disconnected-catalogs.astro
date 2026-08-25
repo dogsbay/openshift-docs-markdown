@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"disconnected-catalogs","text":"Disconnected environment support in {{ olmv1 }}"}];
+const headings = [{"depth":1,"slug":"disconnected-catalogs","text":"Disconnected environment support in {{ olmv1 }}"},{"depth":2,"slug":"olmv1-about-disconnected_disconnected-catalogs","text":"About disconnected support and the oc-mirror plugin in OLM v1"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/extensions/catalogs/disconnected-catalogs";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Disconnected environment support in {{ olmv1 }}";
-const description = "{{ olmv1_first }} supports cluster extension lifecycle management in internet-disconnected environments. This feature helps cluster administrators run…" || undefined;
+const description = "Operator Lifecycle Manager (OLM) v1 supports cluster extension lifecycle management in internet-disconnected environments. This feature helps cluster…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +42,7 @@ const pageCategory = ["extensions","extensions/catalogs"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disconnected environment support in {{ olmv1 }} {#disconnected-catalogs}\n\n{{ olmv1_first }} supports cluster extension lifecycle management in internet-disconnected environments. This feature helps cluster administrators run mission-critical production workloads in high-security, disconnected clusters.\n\n**Additional resources**\n\n- [Mirroring images for a disconnected installation using the oc-mirror plugin v1](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)\n- [Mirroring images for a disconnected installation using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/catalogs/disconnected-catalogs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disconnected environment support in {{ olmv1 }} {#disconnected-catalogs}\n\nOperator Lifecycle Manager (OLM) v1 supports cluster extension lifecycle management in internet-disconnected environments. This feature helps cluster administrators run mission-critical production workloads in high-security, disconnected clusters.\n\n## About disconnected support and the oc-mirror plugin in OLM v1 {#olmv1-about-disconnected_disconnected-catalogs}\n\nAfter you use the oc-mirror plugin for the OpenShift CLI (`oc`) to mirror images to a mirror registry, OLM v1 relies on specific resource sets to function.\n\nDepending on your oc-mirror plugin version, OLM v1 uses one of the following resource sets:\n\noc-mirror plugin v1\n:   Automatically generates `ImageContentSourcePolicy` resources and requires manually created `ClusterCatalog` resources.\n\noc-mirror plugin v2\n:   Automatically generates `ImageDigestMirrorSet`, `ImageTagMirrorSet`, and `ClusterCatalog` resources.\n\n> [!NOTE]\n> The oc-mirror plugin v2 is the recommended version for mirroring.\n\n**Additional resources**\n\n- [Mirroring images for a disconnected installation using the oc-mirror plugin v1](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)\n- [Mirroring images for a disconnected installation using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/catalogs/disconnected-catalogs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +94,22 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="disconnected-catalogs" class="group scroll-mt-20">Disconnected environment support in {"{"}{"{"} olmv1 {"}"}{"}"}<a href="#disconnected-catalogs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>{"{"}{"{"} olmv1_first {"}"}{"}"} supports cluster extension lifecycle management in internet-disconnected environments. This feature helps cluster administrators run mission-critical production workloads in high-security, disconnected clusters.</p>
-      <p class="/modules/olmv1-about-disconnected.md"></p>
+      <p>Operator Lifecycle Manager (OLM) v1 supports cluster extension lifecycle management in internet-disconnected environments. This feature helps cluster administrators run mission-critical production workloads in high-security, disconnected clusters.</p>
+      <h2 id="olmv1-about-disconnected_disconnected-catalogs" class="group scroll-mt-20">About disconnected support and the oc-mirror plugin in OLM v1<a href="#olmv1-about-disconnected_disconnected-catalogs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you use the oc-mirror plugin for the OpenShift CLI (<code>oc</code>) to mirror images to a mirror registry, OLM v1 relies on specific resource sets to function.</p>
+      <p>Depending on your oc-mirror plugin version, OLM v1 uses one of the following resource sets:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">oc-mirror plugin v1</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Automatically generates <code>ImageContentSourcePolicy</code> resources and requires manually created <code>ClusterCatalog</code> resources.</p></dd>
+      <dt class="font-semibold">oc-mirror plugin v2</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Automatically generates <code>ImageDigestMirrorSet</code>, <code>ImageTagMirrorSet</code>, and <code>ClusterCatalog</code> resources.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The oc-mirror plugin v2 is the recommended version for mirroring.</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected">Mirroring images for a disconnected installation using the oc-mirror plugin v1</a></li>

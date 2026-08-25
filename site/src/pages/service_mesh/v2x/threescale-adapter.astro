@@ -18,8 +18,15 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"threescale-adapter","text":"Using the 3scale Istio adapter"}];
+const headings = [{"depth":1,"slug":"threescale-adapter","text":"Using the 3scale Istio adapter"},{"depth":2,"slug":"ossm-threescale-integrate_threescale-adapter","text":"Integrate the 3scale adapter with Red Hat OpenShift Service Mesh"},{"depth":3,"slug":"ossm-threescale-cr_threescale-adapter","text":"Generating 3scale custom resources"},{"depth":4,"slug":"ossm-threescale-templates_threescale-adapter","text":"Generate templates from URL examples"},{"depth":3,"slug":"ossm-threescale-manifests_threescale-adapter","text":"Generating manifests from a deployed adapter"},{"depth":3,"slug":"ossm-threescale-routing_threescale-adapter","text":"Routing service traffic through the adapter"},{"depth":2,"slug":"ossm-threescale-integration-settings_threescale-adapter","text":"Configure the integration settings in 3scale"},{"depth":2,"slug":"ossm-threescale-caching_threescale-adapter","text":"Caching behavior"},{"depth":2,"slug":"ossm-threescale-authentication_threescale-adapter","text":"Authenticating requests"},{"depth":3,"slug":"ossm-threescale-authentication-patterns_threescale-adapter","text":"Applying authentication patterns"},{"depth":4,"slug":"ossm-threescale-apikey-authentication_threescale-adapter","text":"API key authentication method"},{"depth":4,"slug":"ossm-threescale-appidapikey-authentication_threescale-adapter","text":"Application ID and application key pair authentication method"},{"depth":4,"slug":"ossm-threescale-openid-authentication_threescale-adapter","text":"OpenID authentication method"},{"depth":4,"slug":"ossm-threescale-hybrid-authentication_threescale-adapter","text":"Hybrid authentication method"},{"depth":2,"slug":"ossm-threescale-metrics_threescale-adapter","text":"3scale Adapter metrics"},{"depth":2,"slug":"threescale-backend-cache_threescale-adapter","text":"3scale backend cache"},{"depth":3,"slug":"_advantages_of_enabling_backend_cache","text":"Advantages of enabling backend cache"},{"depth":3,"slug":"_trade-offs_for_having_lower_latencies","text":"Trade-offs for having lower latencies"},{"depth":3,"slug":"_backend_cache_configuration_settings","text":"Backend cache configuration settings"},{"depth":2,"slug":"threescale-istio-adapter-apicast_threescale-adapter","text":"3scale Istio Adapter APIcast emulation"},{"depth":2,"slug":"ossm-threescale-istio-adapter-verification_threescale-adapter","text":"3scale Istio adapter verification"},{"depth":2,"slug":"ossm-threescale-istio-adapter-troubleshooting-checklist_threescale-adapter","text":"3scale Istio adapter troubleshooting checklist"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/service_mesh/v2x/threescale-adapter";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Using the 3scale Istio adapter";
-const description = "The 3scale Istio Adapter is an optional adapter that allows you to label a service running within the {{ SMProductName }} and integrate that service with…" || undefined;
+const description = "The 3scale Istio Adapter is an optional adapter that allows you to label a service running within the Red Hat OpenShift Service Mesh and integrate that…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +49,7 @@ const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the 3scale Istio adapter {#threescale-adapter}\n\nThe 3scale Istio Adapter is an optional adapter that allows you to label a service running within the {{ SMProductName }} and integrate that service with the 3scale API Management solution. It is not required for {{ SMProductName }}.\n\n> [!IMPORTANT]\n> You can only use the 3scale Istio adapter with {{ SMProductName }} versions 2.0 and below. The Mixer component was deprecated in release 2.0 and removed in release 2.1. For {{ SMProductName }} versions 2.1.0 and later you should use the [3scale WebAssembly module](/openshift-docs-markdown/service_mesh/v2x/ossm-threescale-webassembly-module#ossm-threescale-webassembly-module).\n>\n> If you want to enable 3scale backend cache with the 3scale Istio adapter, you must also enable Mixer policy and Mixer telemetry. See [Deploying the Red Hat OpenShift Service Mesh control plane](/openshift-docs-markdown/service_mesh/v2x/ossm-create-smcp#ossm-create-smcp).\n\n**Additional resources**\n\n- [Inspecting pod and container logs](https://docs.openshift.com/container-platform/4.7/support/troubleshooting/investigating-pod-issues.html#inspecting-pod-and-container-logs_investigating-pod-issues).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/threescale-adapter.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the 3scale Istio adapter {#threescale-adapter}\n\nThe 3scale Istio Adapter is an optional adapter that allows you to label a service running within the Red Hat OpenShift Service Mesh and integrate that service with the 3scale API Management solution. It is not required for Red Hat OpenShift Service Mesh.\n\n> [!IMPORTANT]\n> You can only use the 3scale Istio adapter with Red Hat OpenShift Service Mesh versions 2.0 and below. The Mixer component was deprecated in release 2.0 and removed in release 2.1. For Red Hat OpenShift Service Mesh versions 2.1.0 and later you should use the [3scale WebAssembly module](/openshift-docs-markdown/service_mesh/v2x/ossm-threescale-webassembly-module#ossm-threescale-webassembly-module).\n>\n> If you want to enable 3scale backend cache with the 3scale Istio adapter, you must also enable Mixer policy and Mixer telemetry. See [Deploying the Red Hat OpenShift Service Mesh control plane](/openshift-docs-markdown/service_mesh/v2x/ossm-create-smcp#ossm-create-smcp).\n\n## Integrate the 3scale adapter with Red Hat OpenShift Service Mesh {#ossm-threescale-integrate_threescale-adapter}\n\nYou can use these examples to configure requests to your services using the 3scale Istio Adapter.\n\n**Prerequisites**\n\n- Red Hat OpenShift Service Mesh version 2.x\n- A working 3scale account ([SaaS](https://www.3scale.net/signup/) or [3scale 2.9 On-Premises](https://access.redhat.com/documentation/en-us/red_hat_3scale_api_management/2.9/html/installing_3scale/install-threescale-on-openshift-guide))\n- Enabling backend cache requires 3scale 2.9 or greater\n- Red Hat OpenShift Service Mesh prerequisites\n- Ensure Mixer policy enforcement is enabled. Update Mixer policy enforcement section provides instructions to check the current Mixer policy enforcement status and enable policy enforcement.\n- Mixer policy and telemetry must be enabled if you are using a mixer plugin.\n\n  - You will need to properly configure the Service Mesh Control Plane (SMCP) when upgrading.\n\n> [!NOTE]\n> To configure the 3scale Istio Adapter, refer to Red Hat OpenShift Service Mesh custom resources for instructions on adding adapter parameters to the custom resource file.\n\n> [!NOTE]\n> Pay particular attention to the `kind: handler` resource. You must update this with your 3scale account credentials. You can optionally add a `service_id` to a handler, but this is kept for backwards compatibility only, since it would render the handler only useful for one service in your 3scale account. If you add `service_id` to a handler, enabling 3scale for other services requires you to create more handlers with different `service_ids`.\n\nUse a single handler per 3scale account by following the steps below:\n\n**Procedure**\n\n1. Create a handler for your 3scale account and specify your account credentials. Omit any service identifier.\n\n   ```yaml\n     apiVersion: \"config.istio.io/v1alpha2\"\n     kind: handler\n     metadata:\n      name: threescale\n     spec:\n      adapter: threescale\n      params:\n        system_url: \"https://<organization>-admin.3scale.net/\"\n        access_token: \"<ACCESS_TOKEN>\"\n      connection:\n        address: \"threescale-istio-adapter:3333\"\n   ```\n\n   Optionally, you can provide a `backend_url` field within the *params* section to override the URL provided by the 3scale configuration. This may be useful if the adapter runs on the same cluster as the 3scale on-premise instance, and you wish to leverage the internal cluster DNS.\n2. Edit or patch the Deployment resource of any services belonging to your 3scale account as follows:\n\n   1. Add the `\"service-mesh.3scale.net/service-id\"` label with a value corresponding to a valid `service_id`.\n   2. Add the `\"service-mesh.3scale.net/credentials\"` label with its value being the *name of the handler resource* from step 1.\n3. Do step 2 to link it to your 3scale account credentials and to its service identifier, whenever you intend to add more services.\n4. Modify the rule configuration with your 3scale configuration to dispatch the rule to the threescale handler.\n\n   ```yaml {title=\"Rule configuration example\"}\n     apiVersion: \"config.istio.io/v1alpha2\"\n     kind: rule\n     metadata:\n       name: threescale\n     spec:\n       match: destination.labels[\"service-mesh.3scale.net\"] == \"true\"\n       actions:\n         - handler: threescale.handler\n           instances:\n             - threescale-authorization.instance\n   ```\n\n### Generating 3scale custom resources {#ossm-threescale-cr_threescale-adapter}\n\nThe adapter includes a tool that allows you to generate the `handler`, `instance`, and `rule` custom resources.\n\n**Usage**\n\n| Option | Description | Required | Default value |\n| --- | --- | --- | --- |\n| `-h, --help` | Produces help output for available options | No |  |\n| `--name` | Unique name for this URL, token pair | Yes |  |\n| `-n, --namespace` | Namespace to generate templates | No | istio-system |\n| `-t, --token` | 3scale access token | Yes |  |\n| `-u, --url` | 3scale Admin Portal URL | Yes |  |\n| `--backend-url` | 3scale backend URL. If set, it overrides the value that is read from system configuration | No |  |\n| `-s, --service` | 3scale API/Service ID | No |  |\n| `--auth` | 3scale authentication pattern to specify (1=API Key, 2=App Id/App Key, 3=OIDC) | No | Hybrid |\n| `-o, --output` | File to save produced manifests to | No | Standard output |\n| `--version` | Outputs the CLI version and exits immediately | No |  |\n\n#### Generate templates from URL examples {#ossm-threescale-templates_threescale-adapter}\n\n> [!NOTE]\n> - Run the following commands via `oc exec` from the 3scale adapter container image in [Generating manifests from a deployed adapter](#ossm-threescale-manifests_threescale-adapter).\n> - Use the `3scale-config-gen` command to help avoid YAML syntax and indentation errors.\n> - You can omit the `--service` if you use the annotations.\n> - This command must be invoked from within the container image via `oc exec`.\n\n**Procedure**\n\n- Use the `3scale-config-gen` command to autogenerate templates files allowing the token, URL pair to be shared by multiple services as a single handler:\n\n  ```\n  $ 3scale-config-gen --name=admin-credentials --url=\"https://<organization>-admin.3scale.net:443\" --token=\"[redacted]\"\n  ```\n- The following example generates the templates with the service ID embedded in the handler:\n\n  ```\n  $ 3scale-config-gen --url=\"https://<organization>-admin.3scale.net\" --name=\"my-unique-id\" --service=\"123456789\" --token=\"[redacted]\"\n  ```\n\n- [Tokens](https://access.redhat.com/documentation/en-us/red_hat_3scale_api_management/2.10/html-single/admin_portal_guide/index#tokens).\n\n### Generating manifests from a deployed adapter {#ossm-threescale-manifests_threescale-adapter}\n\n> [!NOTE]\n> - `NAME` is an identifier you use to identify with the service you are managing with 3scale.\n> - The `CREDENTIALS_NAME` reference is an identifier that corresponds to the `match` section in the rule configuration. This is automatically set to the `NAME` identifier if you are using the CLI tool.\n> - Its value does not need to be anything specific: the label value should just match the contents of the rule. See [Routing service traffic through the adapter](https://github.com/3scale/3scale-istio-adapter/blob/v2.X/README.md#routing-service-traffic-through-the-adapter) for more information.\n\n1. Run this command to generate manifests from a deployed adapter in the `istio-system` namespace:\n\n   ```\n   $ export NS=\"istio-system\" URL=\"https://replaceme-admin.3scale.net:443\" NAME=\"name\" TOKEN=\"token\"\n   oc exec -n ${NS} $(oc get po -n ${NS} -o jsonpath='{.items[?(@.metadata.labels.app==\"3scale-istio-adapter\")].metadata.name}') \\\n   -it -- ./3scale-config-gen \\\n   --url ${URL} --name ${NAME} --token ${TOKEN} -n ${NS}\n   ```\n2. This will produce sample output to the terminal. Edit these samples if required and create the objects using the `oc create` command.\n3. When the request reaches the adapter, the adapter needs to know how the service maps to an API on 3scale. You can provide this information in two ways:\n\n   1. Label the workload (recommended)\n   2. Hard code the handler as `service_id`\n4. Update the workload with the required annotations:\n\n   > [!NOTE]\n   > You only need to update the service ID provided in this example if it is not already embedded in the handler. **The setting in the handler takes precedence**.\n\n   ```\n   $ export CREDENTIALS_NAME=\"replace-me\"\n   export SERVICE_ID=\"replace-me\"\n   export DEPLOYMENT=\"replace-me\"\n   patch=\"$(oc get deployment \"${DEPLOYMENT}\"\n   patch=\"$(oc get deployment \"${DEPLOYMENT}\" --template='{\"spec\":{\"template\":{\"metadata\":{\"labels\":{ {{ range $k,$v := .spec.template.metadata.labels }}\"{{ $k }}\":\"{{ $v }}\",{{ end }}\"service-mesh.3scale.net/service-id\":\"'\"${SERVICE_ID}\"'\",\"service-mesh.3scale.net/credentials\":\"'\"${CREDENTIALS_NAME}\"'\"}}}}}' )\"\n   oc patch deployment \"${DEPLOYMENT}\" --patch ''\"${patch}\"''\n   ```\n\n### Routing service traffic through the adapter {#ossm-threescale-routing_threescale-adapter}\n\nFollow these steps to drive traffic for your service through the 3scale adapter.\n\n**Prerequisites**\n\n- Credentials and service ID from your 3scale administrator.\n\n**Procedure**\n\n1. Match the rule `destination.labels[\"service-mesh.3scale.net/credentials\"] == \"threescale\"` that you previously created in the configuration, in the `kind: rule` resource.\n2. Add the above label to `PodTemplateSpec` on the Deployment of the target workload to integrate a service. the value, `threescale`, refers to the name of the generated handler. This handler stores the access token required to call 3scale.\n3. Add the `destination.labels[\"service-mesh.3scale.net/service-id\"] == \"replace-me\"` label to the workload to pass the service ID to the adapter via the instance at request time.\n\n## Configure the integration settings in 3scale {#ossm-threescale-integration-settings_threescale-adapter}\n\nFollow this procedure to configure the 3scale integration settings.\n\n> [!NOTE]\n> For 3scale SaaS customers, Red Hat OpenShift Service Mesh is enabled as part of the Early Access program.\n\n**Procedure**\n\n1. Navigate to **\\[your_API_name\\]** -> **Integration**\n2. Click **Settings**.\n3. Select the **Istio** option under *Deployment*.\n\n   - The **API Key (user_key)** option under *Authentication* is selected by default.\n4. Click **Update Product** to save your selection.\n5. Click **Configuration**.\n6. Click **Update Configuration**.\n\n## Caching behavior {#ossm-threescale-caching_threescale-adapter}\n\nResponses from 3scale System APIs are cached by default within the adapter. Entries will be purged from the cache when they become older than the `cacheTTLSeconds` value. Also by default, automatic refreshing of cached entries will be attempted seconds before they expire, based on the `cacheRefreshSeconds` value. You can disable automatic refreshing by setting this value higher than the `cacheTTLSeconds` value.\n\nCaching can be disabled entirely by setting `cacheEntriesMax` to a non-positive value.\n\nBy using the refreshing process, cached values whose hosts become unreachable will be retried before eventually being purged when past their expiry.\n\n## Authenticating requests {#ossm-threescale-authentication_threescale-adapter}\n\nThis release supports the following authentication methods:\n\n- **Standard API Keys**: single randomized strings or hashes acting as an identifier and a secret token.\n- **Application identifier and key pairs**: immutable identifier and mutable secret key strings.\n- **OpenID authentication method**: client ID string parsed from the JSON Web Token.\n\n### Applying authentication patterns {#ossm-threescale-authentication-patterns_threescale-adapter}\n\nModify the `instance` custom resource, as illustrated in the following authentication method examples, to configure authentication behavior. You can accept the authentication credentials from:\n\n- Request headers\n- Request parameters\n- Both request headers and query parameters\n\n> [!NOTE]\n> When specifying values from headers, they must be lower case. For example, if you want to send a header as `User-Key`, this must be referenced in the configuration as `request.headers[\"user-key\"]`.\n\n#### API key authentication method {#ossm-threescale-apikey-authentication_threescale-adapter}\n\nService Mesh looks for the API key in query parameters and request headers as specified in the `user` option in the `subject` custom resource parameter. It checks the values in the order given in the custom resource file. You can restrict the search for the API key to either query parameters or request headers by omitting the unwanted option.\n\nIn this example, Service Mesh looks for the API key in the `user_key` query parameter. If the API key is not in the query parameter, Service Mesh then checks the `user-key` header.\n\n```yaml {title=\"API key authentication method example\"}\napiVersion: \"config.istio.io/v1alpha2\"\nkind: instance\nmetadata:\n  name: threescale-authorization\n  namespace: istio-system\nspec:\n  template: authorization\n  params:\n    subject:\n      user: request.query_params[\"user_key\"] | request.headers[\"user-key\"] | \"\"\n    action:\n      path: request.url_path\n      method: request.method | \"get\"\n```\n\nIf you want the adapter to examine a different query parameter or request header, change the name as appropriate. For example, to check for the API key in a query parameter named “key”, change `request.query_params[\"user_key\"]` to `request.query_params[\"key\"]`.\n\n#### Application ID and application key pair authentication method {#ossm-threescale-appidapikey-authentication_threescale-adapter}\n\nService Mesh looks for the application ID and application key in query parameters and request headers, as specified in the `properties` option in the `subject` custom resource parameter. The application key is optional. It checks the values in the order given in the custom resource file. You can restrict the search for the credentials to either query parameters or request headers by not including the unwanted option.\n\nIn this example, Service Mesh looks for the application ID and application key in the query parameters first, moving on to the request headers if needed.\n\n```yaml {title=\"Application ID and application key pair authentication method example\"}\napiVersion: \"config.istio.io/v1alpha2\"\nkind: instance\nmetadata:\n  name: threescale-authorization\n  namespace: istio-system\nspec:\n  template: authorization\n  params:\n    subject:\n        app_id: request.query_params[\"app_id\"] | request.headers[\"app-id\"] | \"\"\n        app_key: request.query_params[\"app_key\"] | request.headers[\"app-key\"] | \"\"\n    action:\n      path: request.url_path\n      method: request.method | \"get\"\n```\n\nIf you want the adapter to examine a different query parameter or request header, change the name as appropriate. For example, to check for the application ID in a query parameter named `identification`, change `request.query_params[\"app_id\"]` to `request.query_params[\"identification\"]`.\n\n#### OpenID authentication method {#ossm-threescale-openid-authentication_threescale-adapter}\n\nTo use the *OpenID Connect (OIDC) authentication method*, use the `properties` value on the `subject` field to set `client_id`, and optionally `app_key`.\n\nYou can manipulate this object using the methods described previously. In the example configuration shown below, the client identifier (application ID) is parsed from the JSON Web Token (JWT) under the label *azp*. You can modify this as needed.\n\n```yaml {title=\"OpenID authentication method example\"}\napiVersion: \"config.istio.io/v1alpha2\"\nkind: instance\nmetadata:\n  name: threescale-authorization\nspec:\n  template: threescale-authorization\n  params:\n    subject:\n      properties:\n        app_key: request.query_params[\"app_key\"] | request.headers[\"app-key\"] | \"\"\n        client_id: request.auth.claims[\"azp\"] | \"\"\n      action:\n        path: request.url_path\n        method: request.method | \"get\"\n        service: destination.labels[\"service-mesh.3scale.net/service-id\"] | \"\"\n```\n\nFor this integration to work correctly, OIDC must still be done in 3scale for the client to be created in the identity provider (IdP). You should create a [Request authorization](https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/) for the service you want to protect in the same namespace as that service. The JWT is passed in the `Authorization` header of the request.\n\nIn the sample `RequestAuthentication` defined below, replace `issuer`, `jwksUri`, and `selector` as appropriate.\n\n```yaml {title=\"OpenID Policy example\"}\napiVersion: security.istio.io/v1beta1\nkind: RequestAuthentication\nmetadata:\n  name: jwt-example\n  namespace: bookinfo\nspec:\n  selector:\n    matchLabels:\n      app: productpage\n  jwtRules:\n  - issuer: >-\n      http://keycloak-keycloak.34.242.107.254.nip.io/auth/realms/3scale-keycloak\n    jwksUri: >-\n      http://keycloak-keycloak.34.242.107.254.nip.io/auth/realms/3scale-keycloak/protocol/openid-connect/certs\n```\n\n#### Hybrid authentication method {#ossm-threescale-hybrid-authentication_threescale-adapter}\n\nYou can choose to not enforce a particular authentication method and accept any valid credentials for either method. If both an API key and an application ID/application key pair are provided, Service Mesh uses the API key.\n\nIn this example, Service Mesh checks for an API key in the query parameters, then the request headers. If there is no API key, it then checks for an application ID and key in the query parameters, then the request headers.\n\n```yaml {title=\"Hybrid authentication method example\"}\napiVersion: \"config.istio.io/v1alpha2\"\nkind: instance\nmetadata:\n  name: threescale-authorization\nspec:\n  template: authorization\n  params:\n    subject:\n      user: request.query_params[\"user_key\"] | request.headers[\"user-key\"] |\n      properties:\n        app_id: request.query_params[\"app_id\"] | request.headers[\"app-id\"] | \"\"\n        app_key: request.query_params[\"app_key\"] | request.headers[\"app-key\"] | \"\"\n        client_id: request.auth.claims[\"azp\"] | \"\"\n    action:\n      path: request.url_path\n      method: request.method | \"get\"\n      service: destination.labels[\"service-mesh.3scale.net/service-id\"] | \"\"\n```\n\n## 3scale Adapter metrics {#ossm-threescale-metrics_threescale-adapter}\n\nThe adapter, by default reports various Prometheus metrics that are exposed on port `8080` at the `/metrics` endpoint. These metrics provide insight into how the interactions between the adapter and 3scale are performing. The service is labeled to be automatically discovered and scraped by Prometheus.\n\n> [!NOTE]\n> There are incompatible changes in the 3scale Istio Adapter metrics since the previous releases in Service Mesh 1.x.\n\nIn Prometheus, metrics have been renamed with one addition for the backend cache, so that the following metrics exist as of Service Mesh 2.0:\n\n**Prometheus metrics**\n\n| Metric | Type | Description |\n| --- | --- | --- |\n| `threescale_latency` | Histogram | Request latency between adapter and 3scale. |\n| `threescale_http_total` | Counter | HTTP Status response codes for requests to 3scale backend. |\n| `threescale_system_cache_hits` | Counter | Total number of requests to the 3scale system fetched from the configuration cache. |\n| `threescale_backend_cache_hits` | Counter | Total number of requests to 3scale backend fetched from the backend cache. |\n\n## 3scale backend cache {#threescale-backend-cache_threescale-adapter}\n\nThe 3scale backend cache provides an authorization and reporting cache for clients of the 3scale Service Management API. This cache is embedded in the adapter to enable lower latencies in responses in certain situations assuming the administrator is willing to accept the trade-offs.\n\n> [!NOTE]\n> 3scale backend cache is disabled by default. 3scale backend cache functionality trades inaccuracy in rate limiting and potential loss of hits since the last flush was performed for low latency and higher consumption of resources in the processor and memory.\n\n### Advantages of enabling backend cache {#_advantages_of_enabling_backend_cache}\n\nThe following are advantages to enabling the backend cache:\n\n- Enable the backend cache when you find latencies are high while accessing services managed by the 3scale Istio Adapter.\n- Enabling the backend cache will stop the adapter from continually checking with the 3scale API manager for request authorizations, which will lower the latency.\n\n  - This creates an in-memory cache of 3scale authorizations for the 3scale Istio Adapter to store and reuse before attempting to contact the 3scale API manager for authorizations. Authorizations will then take much less time to be granted or denied.\n- Backend caching is useful in cases when you are hosting the 3scale API manager in another geographical location from the service mesh running the 3scale Istio Adapter.\n\n  - This is generally the case with the 3scale Hosted (SaaS) platform, but also if a user hosts their 3scale API manager in another cluster located in a different geographical location, in a different availability zone, or in any case where the network overhead to reach the 3scale API manager is noticeable.\n\n### Trade-offs for having lower latencies {#_trade-offs_for_having_lower_latencies}\n\nThe following are trade-offs for having lower latencies:\n\n- Each 3scale adapter’s authorization state updates every time a flush happens.\n\n  - This means two or more instances of the adapter will introduce more inaccuracy between flushing periods.\n  - There is a greater chance of too many requests being granted that exceed limits and introduce erratic behavior, which leads to some requests going through and some not, depending on which adapter processes each request.\n- An adapter cache that cannot flush its data and update its authorization information risks shut down or crashing without reporting its information to the API manager.\n- A fail open or fail closed policy will be applied when an adapter cache cannot determine whether a request must be granted or denied, possibly due to network connectivity issues in contacting the API manager.\n- When cache misses occur, typically right after booting the adapter or after a long period of no connectivity, latencies will grow in order to query the API manager.\n- An adapter cache must do much more work on computing authorizations than it would without an enabled cache, which will tax processor resources.\n- Memory requirements will grow proportionally to the combination of the amount of limits, applications, and services managed by the cache.\n\n### Backend cache configuration settings {#_backend_cache_configuration_settings}\n\nThe following points explain the backend cache configuration settings:\n\n- Find the settings to configure the backend cache in the 3scale configuration options.\n- The last 3 settings control enabling of backend cache:\n\n  - `PARAM_USE_CACHE_BACKEND` - set to true to enable backend cache.\n  - `PARAM_BACKEND_CACHE_FLUSH_INTERVAL_SECONDS` - sets time in seconds between consecutive attempts to flush cache data to the API manager.\n  - `PARAM_BACKEND_CACHE_POLICY_FAIL_CLOSED` - set whether or not to allow/open or deny/close requests to the services when there is not enough cached data and the 3scale API manager cannot be reached.\n\n## 3scale Istio Adapter APIcast emulation {#threescale-istio-adapter-apicast_threescale-adapter}\n\nThe 3scale Istio Adapter performs as APIcast would when the following conditions occur:\n\n- When a request cannot match any mapping rule defined, the returned HTTP code is 404 Not Found. This was previously 403 Forbidden.\n- When a request is denied because it goes over limits, the returned HTTP code is 429 Too Many Requests. This was previously 403 Forbidden.\n- When generating default templates via the CLI, it will use underscores rather than dashes for the headers, for example: `user_key` rather than `user-key`.\n\n## 3scale Istio adapter verification {#ossm-threescale-istio-adapter-verification_threescale-adapter}\n\nYou might want to check whether the 3scale Istio adapter is working as expected. If your adapter is not working, use the following steps to help troubleshoot the problem.\n\n**Procedure**\n\n1. Ensure the *3scale-adapter* pod is running in the Service Mesh control plane namespace:\n\n   ```terminal\n   $ oc get pods -n istio-system\n   ```\n2. Check that the *3scale-adapter* pod has printed out information about itself booting up, such as its version:\n\n   ```terminal\n   $ oc logs istio-system\n   ```\n3. When performing requests to the services protected by the 3scale adapter integration, always try requests that lack the right credentials and ensure they fail. Check the 3scale adapter logs to gather additional information.\n\n**Additional resources**\n\n- [Inspecting pod and container logs](https://docs.openshift.com/container-platform/4.7/support/troubleshooting/investigating-pod-issues.html#inspecting-pod-and-container-logs_investigating-pod-issues).\n\n## 3scale Istio adapter troubleshooting checklist {#ossm-threescale-istio-adapter-troubleshooting-checklist_threescale-adapter}\n\nAs the administrator installing the 3scale Istio adapter, there are a number of scenarios that might be causing your integration to not function properly. Use the following list to troubleshoot your installation:\n\n- Incorrect YAML indentation.\n- Missing YAML sections.\n- Forgot to apply the changes in the YAML to the cluster.\n- Forgot to label the service workloads with the `service-mesh.3scale.net/credentials` key.\n- Forgot to label the service workloads with `service-mesh.3scale.net/service-id` when using handlers that do not contain a `service_id` so they are reusable per account.\n- The *Rule* custom resource points to the wrong handler or instance custom resources, or the references lack the corresponding namespace suffix.\n- The *Rule* custom resource `match` section cannot possibly match the service you are configuring, or it points to a destination workload that is not currently running or does not exist.\n- Wrong access token or URL for the 3scale Admin Portal in the handler.\n- The *Instance* custom resource’s `params/subject/properties` section fails to list the right parameters for `app_id`, `app_key`, or `client_id`, either because they specify the wrong location such as the query parameters, headers, and authorization claims, or the parameter names do not match the requests used for testing.\n- Failing to use the configuration generator without realizing that it actually lives in the adapter container image and needs `oc exec` to invoke it.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/threescale-adapter.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,29 +101,401 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="threescale-adapter" class="group scroll-mt-20">Using the 3scale Istio adapter<a href="#threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>The 3scale Istio Adapter is an optional adapter that allows you to label a service running within the {"{"}{"{"} SMProductName {"}"}{"}"} and integrate that service with the 3scale API Management solution. It is not required for {"{"}{"{"} SMProductName {"}"}{"}"}.</p>
+      <p>The 3scale Istio Adapter is an optional adapter that allows you to label a service running within the Red Hat OpenShift Service Mesh and integrate that service with the 3scale API Management solution. It is not required for Red Hat OpenShift Service Mesh.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
-          <p>You can only use the 3scale Istio adapter with {"{"}{"{"} SMProductName {"}"}{"}"} versions 2.0 and below. The Mixer component was deprecated in release 2.0 and removed in release 2.1. For {"{"}{"{"} SMProductName {"}"}{"}"} versions 2.1.0 and later you should use the <a href="/openshift-docs-markdown/service_mesh/v2x/ossm-threescale-webassembly-module#ossm-threescale-webassembly-module">3scale WebAssembly module</a>.</p>
+          <p>You can only use the 3scale Istio adapter with Red Hat OpenShift Service Mesh versions 2.0 and below. The Mixer component was deprecated in release 2.0 and removed in release 2.1. For Red Hat OpenShift Service Mesh versions 2.1.0 and later you should use the <a href="/openshift-docs-markdown/service_mesh/v2x/ossm-threescale-webassembly-module#ossm-threescale-webassembly-module">3scale WebAssembly module</a>.</p>
           <p>If you want to enable 3scale backend cache with the 3scale Istio adapter, you must also enable Mixer policy and Mixer telemetry. See <a href="/openshift-docs-markdown/service_mesh/v2x/ossm-create-smcp#ossm-create-smcp">Deploying the Red Hat OpenShift Service Mesh control plane</a>.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/ossm-threescale-integrate.md"></p>
-      <p class="/modules/ossm-threescale-cr.md"></p>
-      <p class="/modules/ossm-threescale-templates.md"></p>
-      <p class="/modules/ossm-threescale-manifests.md"></p>
-      <p class="/modules/ossm-threescale-routing.md"></p>
-      <p class="/modules/ossm-threescale-integration-settings.md"></p>
-      <p class="/modules/ossm-threescale-caching.md"></p>
-      <p class="/modules/ossm-threescale-authentication.md"></p>
-      <p class="/modules/ossm-threescale-metrics.md"></p>
-      <p class="/modules/threescale-backend-cache.md"></p>
-      <p class="/modules/threescale-istio-adapter-apicast.md"></p>
-      <p class="/modules/ossm-threescale-istio-adapter-verification.md"></p>
+      <h2 id="ossm-threescale-integrate_threescale-adapter" class="group scroll-mt-20">Integrate the 3scale adapter with Red Hat OpenShift Service Mesh<a href="#ossm-threescale-integrate_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can use these examples to configure requests to your services using the 3scale Istio Adapter.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Red Hat OpenShift Service Mesh version 2.x</li>
+      <li>A working 3scale account (<a href="https://www.3scale.net/signup/">SaaS</a> or <a href="https://access.redhat.com/documentation/en-us/red_hat_3scale_api_management/2.9/html/installing_3scale/install-threescale-on-openshift-guide">3scale 2.9 On-Premises</a>)</li>
+      <li>Enabling backend cache requires 3scale 2.9 or greater</li>
+      <li>Red Hat OpenShift Service Mesh prerequisites</li>
+      <li>Ensure Mixer policy enforcement is enabled. Update Mixer policy enforcement section provides instructions to check the current Mixer policy enforcement status and enable policy enforcement.</li>
+      <li>
+      Mixer policy and telemetry must be enabled if you are using a mixer plugin.
+      <ul><li>You will need to properly configure the Service Mesh Control Plane (SMCP) when upgrading.</li></ul>
+      </li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To configure the 3scale Istio Adapter, refer to Red Hat OpenShift Service Mesh custom resources for instructions on adding adapter parameters to the custom resource file.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Pay particular attention to the <code>kind: handler</code> resource. You must update this with your 3scale account credentials. You can optionally add a <code>service_id</code> to a handler, but this is kept for backwards compatibility only, since it would render the handler only useful for one service in your 3scale account. If you add <code>service_id</code> to a handler, enabling 3scale for other services requires you to create more handlers with different <code>service_ids</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Use a single handler per 3scale account by following the steps below:</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a handler for your 3scale account and specify your account credentials. Omit any service identifier.
+      <CodeBlock code={"  apiVersion: \"config.istio.io/v1alpha2\"\n  kind: handler\n  metadata:\n   name: threescale\n  spec:\n   adapter: threescale\n   params:\n     system_url: \"https://<organization>-admin.3scale.net/\"\n     access_token: \"<ACCESS_TOKEN>\"\n   connection:\n     address: \"threescale-istio-adapter:3333\""} lang="yaml" />
+      <p>Optionally, you can provide a <code>backend_url</code> field within the <em>params</em> section to override the URL provided by the 3scale configuration. This may be useful if the adapter runs on the same cluster as the 3scale on-premise instance, and you wish to leverage the internal cluster DNS.</p>
+      </li>
+      <li>
+      Edit or patch the Deployment resource of any services belonging to your 3scale account as follows:
+      <ol>
+      <li>Add the <code>"service-mesh.3scale.net/service-id"</code> label with a value corresponding to a valid <code>service_id</code>.</li>
+      <li>Add the <code>"service-mesh.3scale.net/credentials"</code> label with its value being the <em>name of the handler resource</em> from step 1.</li>
+      </ol>
+      </li>
+      <li>Do step 2 to link it to your 3scale account credentials and to its service identifier, whenever you intend to add more services.</li>
+      <li>
+      Modify the rule configuration with your 3scale configuration to dispatch the rule to the threescale handler.
+      <CodeBlock code={"  apiVersion: \"config.istio.io/v1alpha2\"\n  kind: rule\n  metadata:\n    name: threescale\n  spec:\n    match: destination.labels[\"service-mesh.3scale.net\"] == \"true\"\n    actions:\n      - handler: threescale.handler\n        instances:\n          - threescale-authorization.instance"} lang="yaml" title="Rule configuration example" />
+      </li>
+      </ol>
+      <h3 id="ossm-threescale-cr_threescale-adapter" class="group scroll-mt-20">Generating 3scale custom resources<a href="#ossm-threescale-cr_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The adapter includes a tool that allows you to generate the <code>handler</code>, <code>instance</code>, and <code>rule</code> custom resources.</p>
+      <p><strong>Usage</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Option</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Required</TableHead>
+      <TableHead>Default value</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-h, --help</code></TableCell>
+      <TableCell>Produces help output for available options</TableCell>
+      <TableCell>No</TableCell>
+      <TableCell></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--name</code></TableCell>
+      <TableCell>Unique name for this URL, token pair</TableCell>
+      <TableCell>Yes</TableCell>
+      <TableCell></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-n, --namespace</code></TableCell>
+      <TableCell>Namespace to generate templates</TableCell>
+      <TableCell>No</TableCell>
+      <TableCell>istio-system</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-t, --token</code></TableCell>
+      <TableCell>3scale access token</TableCell>
+      <TableCell>Yes</TableCell>
+      <TableCell></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-u, --url</code></TableCell>
+      <TableCell>3scale Admin Portal URL</TableCell>
+      <TableCell>Yes</TableCell>
+      <TableCell></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--backend-url</code></TableCell>
+      <TableCell>3scale backend URL. If set, it overrides the value that is read from system configuration</TableCell>
+      <TableCell>No</TableCell>
+      <TableCell></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-s, --service</code></TableCell>
+      <TableCell>3scale API/Service ID</TableCell>
+      <TableCell>No</TableCell>
+      <TableCell></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--auth</code></TableCell>
+      <TableCell>3scale authentication pattern to specify (1=API Key, 2=App Id/App Key, 3=OIDC)</TableCell>
+      <TableCell>No</TableCell>
+      <TableCell>Hybrid</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-o, --output</code></TableCell>
+      <TableCell>File to save produced manifests to</TableCell>
+      <TableCell>No</TableCell>
+      <TableCell>Standard output</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--version</code></TableCell>
+      <TableCell>Outputs the CLI version and exits immediately</TableCell>
+      <TableCell>No</TableCell>
+      <TableCell></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h4 id="ossm-threescale-templates_threescale-adapter" class="group scroll-mt-20">Generate templates from URL examples<a href="#ossm-threescale-templates_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>Run the following commands via <code>oc exec</code> from the 3scale adapter container image in <a href="#ossm-threescale-manifests_threescale-adapter">Generating manifests from a deployed adapter</a>.</li>
+          <li>Use the <code>3scale-config-gen</code> command to help avoid YAML syntax and indentation errors.</li>
+          <li>You can omit the <code>--service</code> if you use the annotations.</li>
+          <li>This command must be invoked from within the container image via <code>oc exec</code>.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Use the <code>3scale-config-gen</code> command to autogenerate templates files allowing the token, URL pair to be shared by multiple services as a single handler:
+      <CodeBlock code={"$ 3scale-config-gen --name=admin-credentials --url=\"https://<organization>-admin.3scale.net:443\" --token=\"[redacted]\""} lang="plaintext" />
+      </li>
+      <li>
+      The following example generates the templates with the service ID embedded in the handler:
+      <CodeBlock code={"$ 3scale-config-gen --url=\"https://<organization>-admin.3scale.net\" --name=\"my-unique-id\" --service=\"123456789\" --token=\"[redacted]\""} lang="plaintext" />
+      </li>
+      </ul>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://access.redhat.com/documentation/en-us/red_hat_3scale_api_management/2.10/html-single/admin_portal_guide/index#tokens">Tokens</a>.</li></ul>
+      </section>
+      <h3 id="ossm-threescale-manifests_threescale-adapter" class="group scroll-mt-20">Generating manifests from a deployed adapter<a href="#ossm-threescale-manifests_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li><code>NAME</code> is an identifier you use to identify with the service you are managing with 3scale.</li>
+          <li>The <code>CREDENTIALS_NAME</code> reference is an identifier that corresponds to the <code>match</code> section in the rule configuration. This is automatically set to the <code>NAME</code> identifier if you are using the CLI tool.</li>
+          <li>Its value does not need to be anything specific: the label value should just match the contents of the rule. See <a href="https://github.com/3scale/3scale-istio-adapter/blob/v2.X/README.md#routing-service-traffic-through-the-adapter">Routing service traffic through the adapter</a> for more information.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <ol>
+      <li>
+      Run this command to generate manifests from a deployed adapter in the <code>istio-system</code> namespace:
+      <CodeBlock code={"$ export NS=\"istio-system\" URL=\"https://replaceme-admin.3scale.net:443\" NAME=\"name\" TOKEN=\"token\"\noc exec -n ${NS} $(oc get po -n ${NS} -o jsonpath='{.items[?(@.metadata.labels.app==\"3scale-istio-adapter\")].metadata.name}') \\\n-it -- ./3scale-config-gen \\\n--url ${URL} --name ${NAME} --token ${TOKEN} -n ${NS}"} lang="plaintext" />
+      </li>
+      <li>This will produce sample output to the terminal. Edit these samples if required and create the objects using the <code>oc create</code> command.</li>
+      <li>
+      When the request reaches the adapter, the adapter needs to know how the service maps to an API on 3scale. You can provide this information in two ways:
+      <ol>
+      <li>Label the workload (recommended)</li>
+      <li>Hard code the handler as <code>service_id</code></li>
+      </ol>
+      </li>
+      <li>
+      Update the workload with the required annotations:
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You only need to update the service ID provided in this example if it is not already embedded in the handler. <strong>The setting in the handler takes precedence</strong>.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ export CREDENTIALS_NAME=\"replace-me\"\nexport SERVICE_ID=\"replace-me\"\nexport DEPLOYMENT=\"replace-me\"\npatch=\"$(oc get deployment \"${DEPLOYMENT}\"\npatch=\"$(oc get deployment \"${DEPLOYMENT}\" --template='{\"spec\":{\"template\":{\"metadata\":{\"labels\":{ {{ range $k,$v := .spec.template.metadata.labels }}\"{{ $k }}\":\"{{ $v }}\",{{ end }}\"service-mesh.3scale.net/service-id\":\"'\"${SERVICE_ID}\"'\",\"service-mesh.3scale.net/credentials\":\"'\"${CREDENTIALS_NAME}\"'\"}}}}}' )\"\noc patch deployment \"${DEPLOYMENT}\" --patch ''\"${patch}\"''\n"} lang="plaintext" />
+      </li>
+      </ol>
+      <h3 id="ossm-threescale-routing_threescale-adapter" class="group scroll-mt-20">Routing service traffic through the adapter<a href="#ossm-threescale-routing_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Follow these steps to drive traffic for your service through the 3scale adapter.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Credentials and service ID from your 3scale administrator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Match the rule <code>destination.labels["service-mesh.3scale.net/credentials"] == "threescale"</code> that you previously created in the configuration, in the <code>kind: rule</code> resource.</li>
+      <li>Add the above label to <code>PodTemplateSpec</code> on the Deployment of the target workload to integrate a service. the value, <code>threescale</code>, refers to the name of the generated handler. This handler stores the access token required to call 3scale.</li>
+      <li>Add the <code>destination.labels["service-mesh.3scale.net/service-id"] == "replace-me"</code> label to the workload to pass the service ID to the adapter via the instance at request time.</li>
+      </ol>
+      <h2 id="ossm-threescale-integration-settings_threescale-adapter" class="group scroll-mt-20">Configure the integration settings in 3scale<a href="#ossm-threescale-integration-settings_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Follow this procedure to configure the 3scale integration settings.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For 3scale SaaS customers, Red Hat OpenShift Service Mesh is enabled as part of the Early Access program.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>[your_API_name]</strong> -&gt; <strong>Integration</strong></li>
+      <li>Click <strong>Settings</strong>.</li>
+      <li>
+      Select the <strong>Istio</strong> option under <em>Deployment</em>.
+      <ul><li>The <strong>API Key (user_key)</strong> option under <em>Authentication</em> is selected by default.</li></ul>
+      </li>
+      <li>Click <strong>Update Product</strong> to save your selection.</li>
+      <li>Click <strong>Configuration</strong>.</li>
+      <li>Click <strong>Update Configuration</strong>.</li>
+      </ol>
+      <h2 id="ossm-threescale-caching_threescale-adapter" class="group scroll-mt-20">Caching behavior<a href="#ossm-threescale-caching_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Responses from 3scale System APIs are cached by default within the adapter. Entries will be purged from the cache when they become older than the <code>cacheTTLSeconds</code> value. Also by default, automatic refreshing of cached entries will be attempted seconds before they expire, based on the <code>cacheRefreshSeconds</code> value. You can disable automatic refreshing by setting this value higher than the <code>cacheTTLSeconds</code> value.</p>
+      <p>Caching can be disabled entirely by setting <code>cacheEntriesMax</code> to a non-positive value.</p>
+      <p>By using the refreshing process, cached values whose hosts become unreachable will be retried before eventually being purged when past their expiry.</p>
+      <h2 id="ossm-threescale-authentication_threescale-adapter" class="group scroll-mt-20">Authenticating requests<a href="#ossm-threescale-authentication_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>This release supports the following authentication methods:</p>
+      <ul>
+      <li><strong>Standard API Keys</strong>: single randomized strings or hashes acting as an identifier and a secret token.</li>
+      <li><strong>Application identifier and key pairs</strong>: immutable identifier and mutable secret key strings.</li>
+      <li><strong>OpenID authentication method</strong>: client ID string parsed from the JSON Web Token.</li>
+      </ul>
+      <h3 id="ossm-threescale-authentication-patterns_threescale-adapter" class="group scroll-mt-20">Applying authentication patterns<a href="#ossm-threescale-authentication-patterns_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Modify the <code>instance</code> custom resource, as illustrated in the following authentication method examples, to configure authentication behavior. You can accept the authentication credentials from:</p>
+      <ul>
+      <li>Request headers</li>
+      <li>Request parameters</li>
+      <li>Both request headers and query parameters</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When specifying values from headers, they must be lower case. For example, if you want to send a header as <code>User-Key</code>, this must be referenced in the configuration as <code>request.headers["user-key"]</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <h4 id="ossm-threescale-apikey-authentication_threescale-adapter" class="group scroll-mt-20">API key authentication method<a href="#ossm-threescale-apikey-authentication_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Service Mesh looks for the API key in query parameters and request headers as specified in the <code>user</code> option in the <code>subject</code> custom resource parameter. It checks the values in the order given in the custom resource file. You can restrict the search for the API key to either query parameters or request headers by omitting the unwanted option.</p>
+      <p>In this example, Service Mesh looks for the API key in the <code>user_key</code> query parameter. If the API key is not in the query parameter, Service Mesh then checks the <code>user-key</code> header.</p>
+      <CodeBlock code={"apiVersion: \"config.istio.io/v1alpha2\"\nkind: instance\nmetadata:\n  name: threescale-authorization\n  namespace: istio-system\nspec:\n  template: authorization\n  params:\n    subject:\n      user: request.query_params[\"user_key\"] | request.headers[\"user-key\"] | \"\"\n    action:\n      path: request.url_path\n      method: request.method | \"get\""} lang="yaml" title="API key authentication method example" />
+      <p>If you want the adapter to examine a different query parameter or request header, change the name as appropriate. For example, to check for the API key in a query parameter named “key”, change <code>request.query_params["user_key"]</code> to <code>request.query_params["key"]</code>.</p>
+      <h4 id="ossm-threescale-appidapikey-authentication_threescale-adapter" class="group scroll-mt-20">Application ID and application key pair authentication method<a href="#ossm-threescale-appidapikey-authentication_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Service Mesh looks for the application ID and application key in query parameters and request headers, as specified in the <code>properties</code> option in the <code>subject</code> custom resource parameter. The application key is optional. It checks the values in the order given in the custom resource file. You can restrict the search for the credentials to either query parameters or request headers by not including the unwanted option.</p>
+      <p>In this example, Service Mesh looks for the application ID and application key in the query parameters first, moving on to the request headers if needed.</p>
+      <CodeBlock code={"apiVersion: \"config.istio.io/v1alpha2\"\nkind: instance\nmetadata:\n  name: threescale-authorization\n  namespace: istio-system\nspec:\n  template: authorization\n  params:\n    subject:\n        app_id: request.query_params[\"app_id\"] | request.headers[\"app-id\"] | \"\"\n        app_key: request.query_params[\"app_key\"] | request.headers[\"app-key\"] | \"\"\n    action:\n      path: request.url_path\n      method: request.method | \"get\""} lang="yaml" title="Application ID and application key pair authentication method example" />
+      <p>If you want the adapter to examine a different query parameter or request header, change the name as appropriate. For example, to check for the application ID in a query parameter named <code>identification</code>, change <code>request.query_params["app_id"]</code> to <code>request.query_params["identification"]</code>.</p>
+      <h4 id="ossm-threescale-openid-authentication_threescale-adapter" class="group scroll-mt-20">OpenID authentication method<a href="#ossm-threescale-openid-authentication_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>To use the <em>OpenID Connect (OIDC) authentication method</em>, use the <code>properties</code> value on the <code>subject</code> field to set <code>client_id</code>, and optionally <code>app_key</code>.</p>
+      <p>You can manipulate this object using the methods described previously. In the example configuration shown below, the client identifier (application ID) is parsed from the JSON Web Token (JWT) under the label <em>azp</em>. You can modify this as needed.</p>
+      <CodeBlock code={"apiVersion: \"config.istio.io/v1alpha2\"\nkind: instance\nmetadata:\n  name: threescale-authorization\nspec:\n  template: threescale-authorization\n  params:\n    subject:\n      properties:\n        app_key: request.query_params[\"app_key\"] | request.headers[\"app-key\"] | \"\"\n        client_id: request.auth.claims[\"azp\"] | \"\"\n      action:\n        path: request.url_path\n        method: request.method | \"get\"\n        service: destination.labels[\"service-mesh.3scale.net/service-id\"] | \"\""} lang="yaml" title="OpenID authentication method example" />
+      <p>For this integration to work correctly, OIDC must still be done in 3scale for the client to be created in the identity provider (IdP). You should create a <a href="https://istio.io/latest/docs/tasks/security/authorization/authz-jwt/">Request authorization</a> for the service you want to protect in the same namespace as that service. The JWT is passed in the <code>Authorization</code> header of the request.</p>
+      <p>In the sample <code>RequestAuthentication</code> defined below, replace <code>issuer</code>, <code>jwksUri</code>, and <code>selector</code> as appropriate.</p>
+      <CodeBlock code={"apiVersion: security.istio.io/v1beta1\nkind: RequestAuthentication\nmetadata:\n  name: jwt-example\n  namespace: bookinfo\nspec:\n  selector:\n    matchLabels:\n      app: productpage\n  jwtRules:\n  - issuer: >-\n      http://keycloak-keycloak.34.242.107.254.nip.io/auth/realms/3scale-keycloak\n    jwksUri: >-\n      http://keycloak-keycloak.34.242.107.254.nip.io/auth/realms/3scale-keycloak/protocol/openid-connect/certs"} lang="yaml" title="OpenID Policy example" />
+      <h4 id="ossm-threescale-hybrid-authentication_threescale-adapter" class="group scroll-mt-20">Hybrid authentication method<a href="#ossm-threescale-hybrid-authentication_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>You can choose to not enforce a particular authentication method and accept any valid credentials for either method. If both an API key and an application ID/application key pair are provided, Service Mesh uses the API key.</p>
+      <p>In this example, Service Mesh checks for an API key in the query parameters, then the request headers. If there is no API key, it then checks for an application ID and key in the query parameters, then the request headers.</p>
+      <CodeBlock code={"apiVersion: \"config.istio.io/v1alpha2\"\nkind: instance\nmetadata:\n  name: threescale-authorization\nspec:\n  template: authorization\n  params:\n    subject:\n      user: request.query_params[\"user_key\"] | request.headers[\"user-key\"] |\n      properties:\n        app_id: request.query_params[\"app_id\"] | request.headers[\"app-id\"] | \"\"\n        app_key: request.query_params[\"app_key\"] | request.headers[\"app-key\"] | \"\"\n        client_id: request.auth.claims[\"azp\"] | \"\"\n    action:\n      path: request.url_path\n      method: request.method | \"get\"\n      service: destination.labels[\"service-mesh.3scale.net/service-id\"] | \"\""} lang="yaml" title="Hybrid authentication method example" />
+      <h2 id="ossm-threescale-metrics_threescale-adapter" class="group scroll-mt-20">3scale Adapter metrics<a href="#ossm-threescale-metrics_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The adapter, by default reports various Prometheus metrics that are exposed on port <code>8080</code> at the <code>/metrics</code> endpoint. These metrics provide insight into how the interactions between the adapter and 3scale are performing. The service is labeled to be automatically discovered and scraped by Prometheus.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>There are incompatible changes in the 3scale Istio Adapter metrics since the previous releases in Service Mesh 1.x.</p>
+        </AlertDescription>
+      </Alert>
+      <p>In Prometheus, metrics have been renamed with one addition for the backend cache, so that the following metrics exist as of Service Mesh 2.0:</p>
+      <p><strong>Prometheus metrics</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Metric</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>threescale_latency</code></TableCell>
+      <TableCell>Histogram</TableCell>
+      <TableCell>Request latency between adapter and 3scale.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>threescale_http_total</code></TableCell>
+      <TableCell>Counter</TableCell>
+      <TableCell>HTTP Status response codes for requests to 3scale backend.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>threescale_system_cache_hits</code></TableCell>
+      <TableCell>Counter</TableCell>
+      <TableCell>Total number of requests to the 3scale system fetched from the configuration cache.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>threescale_backend_cache_hits</code></TableCell>
+      <TableCell>Counter</TableCell>
+      <TableCell>Total number of requests to 3scale backend fetched from the backend cache.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="threescale-backend-cache_threescale-adapter" class="group scroll-mt-20">3scale backend cache<a href="#threescale-backend-cache_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The 3scale backend cache provides an authorization and reporting cache for clients of the 3scale Service Management API. This cache is embedded in the adapter to enable lower latencies in responses in certain situations assuming the administrator is willing to accept the trade-offs.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>3scale backend cache is disabled by default. 3scale backend cache functionality trades inaccuracy in rate limiting and potential loss of hits since the last flush was performed for low latency and higher consumption of resources in the processor and memory.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="_advantages_of_enabling_backend_cache" class="group scroll-mt-20">Advantages of enabling backend cache<a href="#_advantages_of_enabling_backend_cache" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following are advantages to enabling the backend cache:</p>
+      <ul>
+      <li>Enable the backend cache when you find latencies are high while accessing services managed by the 3scale Istio Adapter.</li>
+      <li>
+      Enabling the backend cache will stop the adapter from continually checking with the 3scale API manager for request authorizations, which will lower the latency.
+      <ul><li>This creates an in-memory cache of 3scale authorizations for the 3scale Istio Adapter to store and reuse before attempting to contact the 3scale API manager for authorizations. Authorizations will then take much less time to be granted or denied.</li></ul>
+      </li>
+      <li>
+      Backend caching is useful in cases when you are hosting the 3scale API manager in another geographical location from the service mesh running the 3scale Istio Adapter.
+      <ul><li>This is generally the case with the 3scale Hosted (SaaS) platform, but also if a user hosts their 3scale API manager in another cluster located in a different geographical location, in a different availability zone, or in any case where the network overhead to reach the 3scale API manager is noticeable.</li></ul>
+      </li>
+      </ul>
+      <h3 id="_trade-offs_for_having_lower_latencies" class="group scroll-mt-20">Trade-offs for having lower latencies<a href="#_trade-offs_for_having_lower_latencies" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following are trade-offs for having lower latencies:</p>
+      <ul>
+      <li>
+      Each 3scale adapter’s authorization state updates every time a flush happens.
+      <ul>
+      <li>This means two or more instances of the adapter will introduce more inaccuracy between flushing periods.</li>
+      <li>There is a greater chance of too many requests being granted that exceed limits and introduce erratic behavior, which leads to some requests going through and some not, depending on which adapter processes each request.</li>
+      </ul>
+      </li>
+      <li>An adapter cache that cannot flush its data and update its authorization information risks shut down or crashing without reporting its information to the API manager.</li>
+      <li>A fail open or fail closed policy will be applied when an adapter cache cannot determine whether a request must be granted or denied, possibly due to network connectivity issues in contacting the API manager.</li>
+      <li>When cache misses occur, typically right after booting the adapter or after a long period of no connectivity, latencies will grow in order to query the API manager.</li>
+      <li>An adapter cache must do much more work on computing authorizations than it would without an enabled cache, which will tax processor resources.</li>
+      <li>Memory requirements will grow proportionally to the combination of the amount of limits, applications, and services managed by the cache.</li>
+      </ul>
+      <h3 id="_backend_cache_configuration_settings" class="group scroll-mt-20">Backend cache configuration settings<a href="#_backend_cache_configuration_settings" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following points explain the backend cache configuration settings:</p>
+      <ul>
+      <li>Find the settings to configure the backend cache in the 3scale configuration options.</li>
+      <li>
+      The last 3 settings control enabling of backend cache:
+      <ul>
+      <li><code>PARAM_USE_CACHE_BACKEND</code> - set to true to enable backend cache.</li>
+      <li><code>PARAM_BACKEND_CACHE_FLUSH_INTERVAL_SECONDS</code> - sets time in seconds between consecutive attempts to flush cache data to the API manager.</li>
+      <li><code>PARAM_BACKEND_CACHE_POLICY_FAIL_CLOSED</code> - set whether or not to allow/open or deny/close requests to the services when there is not enough cached data and the 3scale API manager cannot be reached.</li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="threescale-istio-adapter-apicast_threescale-adapter" class="group scroll-mt-20">3scale Istio Adapter APIcast emulation<a href="#threescale-istio-adapter-apicast_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The 3scale Istio Adapter performs as APIcast would when the following conditions occur:</p>
+      <ul>
+      <li>When a request cannot match any mapping rule defined, the returned HTTP code is 404 Not Found. This was previously 403 Forbidden.</li>
+      <li>When a request is denied because it goes over limits, the returned HTTP code is 429 Too Many Requests. This was previously 403 Forbidden.</li>
+      <li>When generating default templates via the CLI, it will use underscores rather than dashes for the headers, for example: <code>user_key</code> rather than <code>user-key</code>.</li>
+      </ul>
+      <h2 id="ossm-threescale-istio-adapter-verification_threescale-adapter" class="group scroll-mt-20">3scale Istio adapter verification<a href="#ossm-threescale-istio-adapter-verification_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You might want to check whether the 3scale Istio adapter is working as expected. If your adapter is not working, use the following steps to help troubleshoot the problem.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Ensure the <em>3scale-adapter</em> pod is running in the Service Mesh control plane namespace:
+      <CodeBlock code={"$ oc get pods -n istio-system"} lang="terminal" />
+      </li>
+      <li>
+      Check that the <em>3scale-adapter</em> pod has printed out information about itself booting up, such as its version:
+      <CodeBlock code={"$ oc logs istio-system"} lang="terminal" />
+      </li>
+      <li>When performing requests to the services protected by the 3scale adapter integration, always try requests that lack the right credentials and ensure they fail. Check the 3scale adapter logs to gather additional information.</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.openshift.com/container-platform/4.7/support/troubleshooting/investigating-pod-issues.html#inspecting-pod-and-container-logs_investigating-pod-issues">Inspecting pod and container logs</a>.</li></ul>
+      <h2 id="ossm-threescale-istio-adapter-troubleshooting-checklist_threescale-adapter" class="group scroll-mt-20">3scale Istio adapter troubleshooting checklist<a href="#ossm-threescale-istio-adapter-troubleshooting-checklist_threescale-adapter" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>As the administrator installing the 3scale Istio adapter, there are a number of scenarios that might be causing your integration to not function properly. Use the following list to troubleshoot your installation:</p>
+      <ul>
+      <li>Incorrect YAML indentation.</li>
+      <li>Missing YAML sections.</li>
+      <li>Forgot to apply the changes in the YAML to the cluster.</li>
+      <li>Forgot to label the service workloads with the <code>service-mesh.3scale.net/credentials</code> key.</li>
+      <li>Forgot to label the service workloads with <code>service-mesh.3scale.net/service-id</code> when using handlers that do not contain a <code>service_id</code> so they are reusable per account.</li>
+      <li>The <em>Rule</em> custom resource points to the wrong handler or instance custom resources, or the references lack the corresponding namespace suffix.</li>
+      <li>The <em>Rule</em> custom resource <code>match</code> section cannot possibly match the service you are configuring, or it points to a destination workload that is not currently running or does not exist.</li>
+      <li>Wrong access token or URL for the 3scale Admin Portal in the handler.</li>
+      <li>The <em>Instance</em> custom resource’s <code>params/subject/properties</code> section fails to list the right parameters for <code>app_id</code>, <code>app_key</code>, or <code>client_id</code>, either because they specify the wrong location such as the query parameters, headers, and authorization claims, or the parameter names do not match the requests used for testing.</li>
+      <li>Failing to use the configuration generator without realizing that it actually lives in the adapter container image and needs <code>oc exec</code> to invoke it.</li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

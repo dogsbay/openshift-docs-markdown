@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"run-once-duration-override-install","text":"Overriding the active deadline for run-once pods"}];
+const headings = [{"depth":1,"slug":"run-once-duration-override-install","text":"Overriding the active deadline for run-once pods"},{"depth":2,"slug":"rodoo-install-operator_run-once-duration-override-install","text":"Installing the Run Once Duration Override Operator"},{"depth":2,"slug":"rodoo-enable-override_run-once-duration-override-install","text":"Enabling the run-once duration override on a namespace"},{"depth":2,"slug":"rodoo-update-active-deadline-seconds_run-once-duration-override-install","text":"Updating the run-once active deadline override value"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/pods/run_once_duration_override/run-once-duration-override-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Overriding the active deadline for run-once pods";
-const description = "You can use the {{ run_once_operator }} to set a maximum active deadline for run-once pods in your cluster." || undefined;
+const description = "You can use the Run Once Duration Override Operator to set a maximum active deadline for run-once pods in your cluster." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["nodes","nodes/pods","nodes/pods/run_once_duration_overrid
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overriding the active deadline for run-once pods {#run-once-duration-override-install}\n\nYou can use the {{ run_once_operator }} to set a maximum active deadline for run-once pods in your cluster.\n\nBy enabling the run-once duration override on a namespace, all future run-once pods created or updated in that namespace have their `activeDeadlineSeconds` field set to the value specified by the {{ run_once_operator }}.\n\n> [!NOTE]\n> If both the run-once pod and the {{ run_once_operator }} have their `activeDeadlineSeconds` value set, the lower of the two values is used.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/run_once_duration_override/run-once-duration-override-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overriding the active deadline for run-once pods {#run-once-duration-override-install}\n\nYou can use the Run Once Duration Override Operator to set a maximum active deadline for run-once pods in your cluster.\n\nBy enabling the run-once duration override on a namespace, all future run-once pods created or updated in that namespace have their `activeDeadlineSeconds` field set to the value specified by the Run Once Duration Override Operator.\n\n> [!NOTE]\n> If both the run-once pod and the Run Once Duration Override Operator have their `activeDeadlineSeconds` value set, the lower of the two values is used.\n\n## Installing the Run Once Duration Override Operator {#rodoo-install-operator_run-once-duration-override-install}\n\nInstall the Run Once Duration Override Operator by using the web console to create the required namespace, install the Operator from the software catalog, and create a `RunOnceDurationOverride` instance.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Create the required namespace for the Run Once Duration Override Operator.\n\n   1. Navigate to **Administration** -> **Namespaces** and click **Create Namespace**.\n   2. Enter `openshift-run-once-duration-override-operator` in the **Name** field and click **Create**.\n3. Install the Run Once Duration Override Operator.\n\n   1. Navigate to **Ecosystem** -> **Software Catalog**.\n   2. Enter **Run Once Duration Override Operator** into the filter box.\n   3. Select the **Run Once Duration Override Operator** and click **Install**.\n   4. On the **Install Operator** page:\n\n      1. The **Update channel** is set to **stable**, which installs the latest stable release of the Run Once Duration Override Operator.\n      2. Select **A specific namespace on the cluster**.\n      3. Choose **openshift-run-once-duration-override-operator** from the dropdown menu under **Installed namespace**.\n      4. Select an **Update approval** strategy.\n\n         - The **Automatic** strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.\n         - The **Manual** strategy requires a user with appropriate credentials to approve the Operator update.\n      5. Click **Install**.\n4. Create a `RunOnceDurationOverride` instance.\n\n   1. From the **Ecosystem** -> **Installed Operators** page, click **Run Once Duration Override Operator**.\n   2. Select the **Run Once Duration Override** tab and click **Create RunOnceDurationOverride**.\n   3. Edit the settings as necessary.\n\n      Under the `runOnceDurationOverride` section, you can update the `spec.activeDeadlineSeconds` value, if required. The predefined value is `3600` seconds, or 1 hour.\n   4. Click **Create**.\n\n**Verification**\n\n1. Log in to the OpenShift CLI.\n2. Verify all pods are created and running properly.\n\n   ```terminal\n   $ oc get pods -n openshift-run-once-duration-override-operator\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                                   READY   STATUS    RESTARTS   AGE\n   run-once-duration-override-operator-7b88c676f6-lcxgc   1/1     Running   0          7m46s\n   runoncedurationoverride-62blp                          1/1     Running   0          41s\n   runoncedurationoverride-h8h8b                          1/1     Running   0          41s\n   runoncedurationoverride-tdsqk                          1/1     Running   0          41s\n   ```\n\n## Enabling the run-once duration override on a namespace {#rodoo-enable-override_run-once-duration-override-install}\n\nEnable the run-once duration override on a namespace by adding the `runoncedurationoverrides.admission.runoncedurationoverride.openshift.io/enabled=true` label to the namespace.\n\n**Prerequisites**\n\n- The Run Once Duration Override Operator is installed.\n\n**Procedure**\n\n1. Log in to the OpenShift CLI.\n2. Add the label to enable the run-once duration override to your namespace:\n\n   ```terminal\n   $ oc label namespace <namespace> \\\n       runoncedurationoverrides.admission.runoncedurationoverride.openshift.io/enabled=true\n   ```\n\n   Replace <namespace> with the namespace to enable the run-once duration override on.\n\n   After you enable the run-once duration override on this namespace, future run-once pods that are created in this namespace will have their `activeDeadlineSeconds` field set to the override value from the Run Once Duration Override Operator. Existing pods in this namespace will also have their `activeDeadlineSeconds` value set when they are updated next.\n\n**Verification**\n\n1. Create a test run-once pod in the namespace that you enabled the run-once duration override on:\n\n   ```yaml\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     name: example\n     namespace: namespace\n   spec:\n     restartPolicy: Never\n     securityContext:\n       runAsNonRoot: true\n       seccompProfile:\n         type: RuntimeDefault\n     containers:\n       - name: busybox\n         securityContext:\n           allowPrivilegeEscalation: false\n           capabilities:\n             drop: [ALL]\n         image: busybox:1.25\n         command:\n           - /bin/sh\n           - -ec\n           - |\n             while sleep 5; do date; done\n   ```\n\n   where:\n\n   `metadata.namespace`\n   :   Specifies your namespace.\n\n   `spec.restartPolicy`\n   :   Specifies the restart policy. The `restartPolicy` must be `Never` or `OnFailure` to be a run-once pod.\n2. Verify that the pod has its `activeDeadlineSeconds` field set:\n\n   ```terminal\n   $ oc get pods -n <namespace> -o yaml | grep activeDeadlineSeconds\n   ```\n\n   ```terminal {title=\"Example output\"}\n       activeDeadlineSeconds: 3600\n   ```\n\n## Updating the run-once active deadline override value {#rodoo-update-active-deadline-seconds_run-once-duration-override-install}\n\nUpdate the `activeDeadlineSeconds` field in the `RunOnceDurationOverride` resource to customize the override value that the operator applies to run-once pods.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have installed the Run Once Duration Override Operator.\n\n**Procedure**\n\n1. Log in to the OpenShift CLI.\n2. Edit the `RunOnceDurationOverride` resource:\n\n   ```terminal\n   $ oc edit runoncedurationoverride cluster\n   ```\n3. Update the `activeDeadlineSeconds` field:\n\n   ```yaml\n   apiVersion: operator.openshift.io/v1\n   kind: RunOnceDurationOverride\n   metadata:\n   # ...\n   spec:\n     runOnceDurationOverride:\n       spec:\n         activeDeadlineSeconds: 1800\n   # ...\n   ```\n\n   where:\n\n   `spec.runOnceDurationOverride.spec.activeDeadlineSeconds`\n   :   Specifies the desired time limit value, in seconds.\n4. Save the file to apply the changes.\n\n   Any future run-once pods created in namespaces where the run-once duration override is enabled will have their `activeDeadlineSeconds` field set to this new value. Existing run-once pods in these namespaces will receive this new value when they are updated.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/run_once_duration_override/run-once-duration-override-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,18 +95,138 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="run-once-duration-override-install" class="group scroll-mt-20">Overriding the active deadline for run-once pods<a href="#run-once-duration-override-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can use the {"{"}{"{"} run_once_operator {"}"}{"}"} to set a maximum active deadline for run-once pods in your cluster.</p>
-      <p>By enabling the run-once duration override on a namespace, all future run-once pods created or updated in that namespace have their <code>activeDeadlineSeconds</code> field set to the value specified by the {"{"}{"{"} run_once_operator {"}"}{"}"}.</p>
+      <p>You can use the Run Once Duration Override Operator to set a maximum active deadline for run-once pods in your cluster.</p>
+      <p>By enabling the run-once duration override on a namespace, all future run-once pods created or updated in that namespace have their <code>activeDeadlineSeconds</code> field set to the value specified by the Run Once Duration Override Operator.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>If both the run-once pod and the {"{"}{"{"} run_once_operator {"}"}{"}"} have their <code>activeDeadlineSeconds</code> value set, the lower of the two values is used.</p>
+          <p>If both the run-once pod and the Run Once Duration Override Operator have their <code>activeDeadlineSeconds</code> value set, the lower of the two values is used.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/rodoo-install-operator.md"></p>
-      <p class="/modules/rodoo-enable-override.md"></p>
-      <p class="/modules/rodoo-update-active-deadline-seconds.md"></p>
+      <h2 id="rodoo-install-operator_run-once-duration-override-install" class="group scroll-mt-20">Installing the Run Once Duration Override Operator<a href="#rodoo-install-operator_run-once-duration-override-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Install the Run Once Duration Override Operator by using the web console to create the required namespace, install the Operator from the software catalog, and create a <code>RunOnceDurationOverride</code> instance.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>
+      Create the required namespace for the Run Once Duration Override Operator.
+      <ol>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>Namespaces</strong> and click <strong>Create Namespace</strong>.</li>
+      <li>Enter <code>openshift-run-once-duration-override-operator</code> in the <strong>Name</strong> field and click <strong>Create</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Install the Run Once Duration Override Operator.
+      <ol>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong>.</li>
+      <li>Enter <strong>Run Once Duration Override Operator</strong> into the filter box.</li>
+      <li>Select the <strong>Run Once Duration Override Operator</strong> and click <strong>Install</strong>.</li>
+      <li>
+      On the <strong>Install Operator</strong> page:
+      <ol>
+      <li>The <strong>Update channel</strong> is set to <strong>stable</strong>, which installs the latest stable release of the Run Once Duration Override Operator.</li>
+      <li>Select <strong>A specific namespace on the cluster</strong>.</li>
+      <li>Choose <strong>openshift-run-once-duration-override-operator</strong> from the dropdown menu under <strong>Installed namespace</strong>.</li>
+      <li>
+      Select an <strong>Update approval</strong> strategy.
+      <ul>
+      <li>The <strong>Automatic</strong> strategy allows Operator Lifecycle Manager (OLM) to automatically update the Operator when a new version is available.</li>
+      <li>The <strong>Manual</strong> strategy requires a user with appropriate credentials to approve the Operator update.</li>
+      </ul>
+      </li>
+      <li>Click <strong>Install</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a <code>RunOnceDurationOverride</code> instance.
+      <ol>
+      <li>From the <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> page, click <strong>Run Once Duration Override Operator</strong>.</li>
+      <li>Select the <strong>Run Once Duration Override</strong> tab and click <strong>Create RunOnceDurationOverride</strong>.</li>
+      <li>
+      Edit the settings as necessary.
+      <p>Under the <code>runOnceDurationOverride</code> section, you can update the <code>spec.activeDeadlineSeconds</code> value, if required. The predefined value is <code>3600</code> seconds, or 1 hour.</p>
+      </li>
+      <li>Click <strong>Create</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>Log in to the OpenShift CLI.</li>
+      <li>
+      Verify all pods are created and running properly.
+      <CodeBlock code={"$ oc get pods -n openshift-run-once-duration-override-operator"} lang="terminal" />
+      <CodeBlock code={"NAME                                                   READY   STATUS    RESTARTS   AGE\nrun-once-duration-override-operator-7b88c676f6-lcxgc   1/1     Running   0          7m46s\nrunoncedurationoverride-62blp                          1/1     Running   0          41s\nrunoncedurationoverride-h8h8b                          1/1     Running   0          41s\nrunoncedurationoverride-tdsqk                          1/1     Running   0          41s"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="rodoo-enable-override_run-once-duration-override-install" class="group scroll-mt-20">Enabling the run-once duration override on a namespace<a href="#rodoo-enable-override_run-once-duration-override-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enable the run-once duration override on a namespace by adding the <code>runoncedurationoverrides.admission.runoncedurationoverride.openshift.io/enabled=true</code> label to the namespace.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>The Run Once Duration Override Operator is installed.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift CLI.</li>
+      <li>
+      Add the label to enable the run-once duration override to your namespace:
+      <CodeBlock code={"$ oc label namespace <namespace> \\\n    runoncedurationoverrides.admission.runoncedurationoverride.openshift.io/enabled=true"} lang="terminal" />
+      <p>Replace &lt;namespace&gt; with the namespace to enable the run-once duration override on.</p>
+      <p>After you enable the run-once duration override on this namespace, future run-once pods that are created in this namespace will have their <code>activeDeadlineSeconds</code> field set to the override value from the Run Once Duration Override Operator. Existing pods in this namespace will also have their <code>activeDeadlineSeconds</code> value set when they are updated next.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Create a test run-once pod in the namespace that you enabled the run-once duration override on:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: example\n  namespace: namespace\nspec:\n  restartPolicy: Never\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n    - name: busybox\n      securityContext:\n        allowPrivilegeEscalation: false\n        capabilities:\n          drop: [ALL]\n      image: busybox:1.25\n      command:\n        - /bin/sh\n        - -ec\n        - |\n          while sleep 5; do date; done"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.namespace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies your namespace.</p></dd>
+      <dt class="font-semibold"><code>spec.restartPolicy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the restart policy. The <code>restartPolicy</code> must be <code>Never</code> or <code>OnFailure</code> to be a run-once pod.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Verify that the pod has its <code>activeDeadlineSeconds</code> field set:
+      <CodeBlock code={"$ oc get pods -n <namespace> -o yaml | grep activeDeadlineSeconds"} lang="terminal" />
+      <CodeBlock code={"    activeDeadlineSeconds: 3600"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="rodoo-update-active-deadline-seconds_run-once-duration-override-install" class="group scroll-mt-20">Updating the run-once active deadline override value<a href="#rodoo-update-active-deadline-seconds_run-once-duration-override-install" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Update the <code>activeDeadlineSeconds</code> field in the <code>RunOnceDurationOverride</code> resource to customize the override value that the operator applies to run-once pods.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have installed the Run Once Duration Override Operator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift CLI.</li>
+      <li>
+      Edit the <code>RunOnceDurationOverride</code> resource:
+      <CodeBlock code={"$ oc edit runoncedurationoverride cluster"} lang="terminal" />
+      </li>
+      <li>
+      Update the <code>activeDeadlineSeconds</code> field:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: RunOnceDurationOverride\nmetadata:\n# ...\nspec:\n  runOnceDurationOverride:\n    spec:\n      activeDeadlineSeconds: 1800\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.runOnceDurationOverride.spec.activeDeadlineSeconds</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the desired time limit value, in seconds.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Save the file to apply the changes.
+      <p>Any future run-once pods created in namespaces where the run-once duration override is enabled will have their <code>activeDeadlineSeconds</code> field set to this new value. Existing run-once pods in these namespaces will receive this new value when they are updated.</p>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -92,7 +92,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-creating-backup-hooks-doc" class="group scroll-mt-20">Creating backup hooks<a href="#oadp-creating-backup-hooks-doc" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Create backup hooks to run commands in a container in a pod by editing the <code>Backup</code> custom resource (CR). This helps you to run pre-backup and post-backup actions such as quiescing a database or flushing data to disk.</p>
       <p>The commands can be configured to performed before any custom action processing (<em>Pre</em> hooks), or after all custom actions have been completed and any additional items specified by the custom action have been backed up (<em>Post</em> hooks).</p>
       <p><strong>Procedure</strong></p>

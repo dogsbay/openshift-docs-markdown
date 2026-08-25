@@ -4,13 +4,18 @@ title: "{{ external_secrets_console_plugin }}"
 
 # {{ external_secrets_console_plugin }} {#external-secrets-console-plugin-overview}
 
-The {{ external_secrets_console_plugin }} is an Operator that manages the secrets and custom resource definitions (CRDs) for the secrets management Operators. Using {{ external_secrets_console_plugin }}, you can monitor and delete the custom resources (CRs) of all the installed secrets management Operators.
+The External Secrets Management Console Plug-in is an Operator that manages the secrets and custom resource definitions (CRDs) for the secrets management Operators. Using External Secrets Management Console Plug-in, you can monitor and delete the custom resources (CRs) of all the installed secrets management Operators.
 
-The following secrets management Operators can be managed with {{ external_secrets_console_plugin }}:
+> [!IMPORTANT]
+> External Secrets Management Console Plug-in is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+>
+> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
-- {{ external_secrets_operator }}
-- {{ cert_manager_operator }}
-- {{ secrets_store_operator }}
+The following secrets management Operators can be managed with External Secrets Management Console Plug-in:
+
+- External Secrets Operator for Red Hat OpenShift
+- cert-manager Operator for Red Hat OpenShift
+- Secrets Store CSI Driver Operator
 
 You can use the plug-in to complete the following tasks:
 

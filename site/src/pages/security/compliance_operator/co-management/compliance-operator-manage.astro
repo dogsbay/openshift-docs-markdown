@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"compliance-operator-understanding","text":"Managing the Compliance Operator"},{"depth":2,"slug":"additional-resources_managing-compliance","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"compliance-operator-understanding","text":"Managing the Compliance Operator"},{"depth":2,"slug":"compliance-profilebundle_managing-compliance","text":"ProfileBundle CR example"},{"depth":2,"slug":"compliance-update_managing-compliance","text":"Updating security content"},{"depth":2,"slug":"additional-resources_managing-compliance","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/compliance_operator/co-management/compliance-operator-manage";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["security","security/compliance_operator","security/compli
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing the Compliance Operator {#compliance-operator-understanding}\n\nYou can manage the Compliance Operator security content lifecycle to keep compliance profiles current and create custom `ProfileBundle` objects tailored to your organization security requirements.\n\n## Additional resources {#additional-resources_managing-compliance}\n\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-management/compliance-operator-manage.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing the Compliance Operator {#compliance-operator-understanding}\n\nYou can manage the Compliance Operator security content lifecycle to keep compliance profiles current and create custom `ProfileBundle` objects tailored to your organization security requirements.\n\n## ProfileBundle CR example {#compliance-profilebundle_managing-compliance}\n\nYou can configure a `ProfileBundle` to provide the Compliance Operator with the security profiles it needs to scan your cluster.\n\nA `ProfileBundle` custom resource (CR) defines the container image URL in `contentImage` and the compliance content file path in `contentFile`, relative to the root of the file system.\n\n```yaml\napiVersion: compliance.openshift.io/v1alpha1\nkind: ProfileBundle\nmetadata:\n  creationTimestamp: \"2022-10-19T12:06:30Z\"\n  finalizers:\n  - profilebundle.finalizers.compliance.openshift.io\n  generation: 1\n  name: rhcos4\n  namespace: openshift-compliance\n  resourceVersion: \"46741\"\n  uid: 22350850-af4a-4f5c-9a42-5e7b68b82d7d\nspec:\n  contentFile: ssg-rhcos4-ds.xml\n  contentImage: registry.redhat.io/compliance/openshift-compliance-content-rhel8@sha256:900e...\nstatus:\n  conditions:\n  - lastTransitionTime: \"2022-10-19T12:07:51Z\"\n    message: Profile bundle successfully parsed\n    reason: Valid\n    status: \"True\"\n    type: Ready\n  dataStreamStatus: VALID\n```\n\nwhere:\n\n`spec.contentFile`\n:   Specifies the location of the file containing the compliance content.\n\n`spec.contentImage`\n:   Specifies the content image location.\n\n    > [!IMPORTANT]\n    > The base image used for the content images must include `coreutils`.\n\n## Updating security content {#compliance-update_managing-compliance}\n\nTrack `ProfileBundle` updates accurately and ensure predictable compliance profile versions across cluster deployments, by using container image digests instead of tags.\n\nSecurity content is included as container images that the `ProfileBundle` objects refer to. To accurately track updates to `ProfileBundles` and the custom resources parsed from the bundles, such as rules or profiles, you can view the container image digest in the `ProfileBundle` status.\n\n```terminal\n$ oc -n openshift-compliance get profilebundles rhcos4 -oyaml\n```\n\n```yaml {title=\"Example output\"}\napiVersion: compliance.openshift.io/v1alpha1\nkind: ProfileBundle\nmetadata:\n  creationTimestamp: \"2022-10-19T12:06:30Z\"\n  finalizers:\n  - profilebundle.finalizers.compliance.openshift.io\n  generation: 1\n  name: rhcos4\n  namespace: openshift-compliance\n  resourceVersion: \"46741\"\n  uid: 22350850-af4a-4f5c-9a42-5e7b68b82d7d\nspec:\n  contentFile: ssg-rhcos4-ds.xml\n  contentImage: registry.redhat.io/compliance/openshift-compliance-content-rhel8@sha256:900e...\nstatus:\n  conditions:\n  - lastTransitionTime: \"2022-10-19T12:07:51Z\"\n    message: Profile bundle successfully parsed\n    reason: Valid\n    status: \"True\"\n    type: Ready\n  dataStreamStatus: VALID\n```\n\nwhere:\n\n`spec.contentImage`\n:   Specifies the security container image.\n\n    Each `ProfileBundle` is backed by a deployment. When the Compliance Operator detects that the container image digest has changed, the deployment is updated to reflect the change and parse the content again. Using the digest instead of a tag ensures that you use a stable and predictable set of profiles.\n\n## Additional resources {#additional-resources_managing-compliance}\n\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-management/compliance-operator-manage.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,39 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="compliance-operator-understanding" class="group scroll-mt-20">Managing the Compliance Operator<a href="#compliance-operator-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can manage the Compliance Operator security content lifecycle to keep compliance profiles current and create custom <code>ProfileBundle</code> objects tailored to your organization security requirements.</p>
-      <p class="/modules/compliance-profilebundle.md"></p>
-      <p class="/modules/compliance-update.md"></p>
+      <h2 id="compliance-profilebundle_managing-compliance" class="group scroll-mt-20">ProfileBundle CR example<a href="#compliance-profilebundle_managing-compliance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure a <code>ProfileBundle</code> to provide the Compliance Operator with the security profiles it needs to scan your cluster.</p>
+      <p>A <code>ProfileBundle</code> custom resource (CR) defines the container image URL in <code>contentImage</code> and the compliance content file path in <code>contentFile</code>, relative to the root of the file system.</p>
+      <CodeBlock code={"apiVersion: compliance.openshift.io/v1alpha1\nkind: ProfileBundle\nmetadata:\n  creationTimestamp: \"2022-10-19T12:06:30Z\"\n  finalizers:\n  - profilebundle.finalizers.compliance.openshift.io\n  generation: 1\n  name: rhcos4\n  namespace: openshift-compliance\n  resourceVersion: \"46741\"\n  uid: 22350850-af4a-4f5c-9a42-5e7b68b82d7d\nspec:\n  contentFile: ssg-rhcos4-ds.xml\n  contentImage: registry.redhat.io/compliance/openshift-compliance-content-rhel8@sha256:900e...\nstatus:\n  conditions:\n  - lastTransitionTime: \"2022-10-19T12:07:51Z\"\n    message: Profile bundle successfully parsed\n    reason: Valid\n    status: \"True\"\n    type: Ready\n  dataStreamStatus: VALID"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.contentFile</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the location of the file containing the compliance content.</p></dd>
+      <dt class="font-semibold"><code>spec.contentImage</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the content image location.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The base image used for the content images must include <code>coreutils</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </dd>
+      </dl>
+      <h2 id="compliance-update_managing-compliance" class="group scroll-mt-20">Updating security content<a href="#compliance-update_managing-compliance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Track <code>ProfileBundle</code> updates accurately and ensure predictable compliance profile versions across cluster deployments, by using container image digests instead of tags.</p>
+      <p>Security content is included as container images that the <code>ProfileBundle</code> objects refer to. To accurately track updates to <code>ProfileBundles</code> and the custom resources parsed from the bundles, such as rules or profiles, you can view the container image digest in the <code>ProfileBundle</code> status.</p>
+      <CodeBlock code={"$ oc -n openshift-compliance get profilebundles rhcos4 -oyaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: compliance.openshift.io/v1alpha1\nkind: ProfileBundle\nmetadata:\n  creationTimestamp: \"2022-10-19T12:06:30Z\"\n  finalizers:\n  - profilebundle.finalizers.compliance.openshift.io\n  generation: 1\n  name: rhcos4\n  namespace: openshift-compliance\n  resourceVersion: \"46741\"\n  uid: 22350850-af4a-4f5c-9a42-5e7b68b82d7d\nspec:\n  contentFile: ssg-rhcos4-ds.xml\n  contentImage: registry.redhat.io/compliance/openshift-compliance-content-rhel8@sha256:900e...\nstatus:\n  conditions:\n  - lastTransitionTime: \"2022-10-19T12:07:51Z\"\n    message: Profile bundle successfully parsed\n    reason: Valid\n    status: \"True\"\n    type: Ready\n  dataStreamStatus: VALID"} lang="yaml" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.contentImage</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the security container image.</p>
+      <p>Each <code>ProfileBundle</code> is backed by a deployment. When the Compliance Operator detects that the container image digest has changed, the deployment is updated to reflect the change and parse the content again. Using the digest instead of a tag ensures that you use a stable and predictable set of profiles.</p>
+      </dd>
+      </dl>
       <h2 id="additional-resources_managing-compliance" class="group scroll-mt-20">Additional resources<a href="#additional-resources_managing-compliance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li></ul>
     </article>

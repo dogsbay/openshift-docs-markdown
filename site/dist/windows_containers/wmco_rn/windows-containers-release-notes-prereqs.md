@@ -37,7 +37,7 @@ The following table lists the [Windows Server versions](https://docs.microsoft.c
   <td><ul><li>Windows Server 2025, OS Build <a href="https://support.microsoft.com/en-us/topic/may-12-2026-kb5087539-os-build-26100-32860-fe3fd635-23fc-41bd-b7a7-00e57c1c4f91">10.0.26100</a> or later</li><li>Windows Server 2022, OS Build <a href="https://support.microsoft.com/en-us/topic/april-25-2022-kb5012637-os-build-20348-681-preview-2233d69c-d4a5-4be9-8c24-04a450861a8d">20348.681</a> or later</li></ul></td>
 </tr>
 <tr>
-  <td>{{ gcp_first }}</td>
+  <td>Google Cloud</td>
   <td><ul><li>Windows Server 2025, OS Build <a href="https://support.microsoft.com/en-us/topic/may-12-2026-kb5087539-os-build-26100-32860-fe3fd635-23fc-41bd-b7a7-00e57c1c4f91">10.0.26100</a> or later</li><li>Windows Server 2022, OS Build <a href="https://support.microsoft.com/en-us/topic/april-25-2022-kb5012637-os-build-20348-681-preview-2233d69c-d4a5-4be9-8c24-04a450861a8d">20348.681</a> or later</li></ul></td>
 </tr>
 <tr>
@@ -68,7 +68,7 @@ Hybrid networking with OVN-Kubernetes is the only supported networking configura
 | Amazon Web Services (AWS) | Hybrid networking with OVN-Kubernetes |
 | Microsoft Azure | Hybrid networking with OVN-Kubernetes |
 | VMware vSphere | Hybrid networking with OVN-Kubernetes with a custom VXLAN port |
-| {{ gcp_first }} | Hybrid networking with OVN-Kubernetes |
+| Google Cloud | Hybrid networking with OVN-Kubernetes |
 | Nutanix | Hybrid networking with OVN-Kubernetes |
 | Bare metal or provider agnostic | Hybrid networking with OVN-Kubernetes |
 

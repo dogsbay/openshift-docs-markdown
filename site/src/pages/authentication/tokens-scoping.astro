@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"tokens-scoping","text":"Scoping tokens"}];
+const headings = [{"depth":1,"slug":"tokens-scoping","text":"Scoping tokens"},{"depth":2,"slug":"tokens-scoping-about_configuring-internal-oauth","text":"About scoping tokens"},{"depth":3,"slug":"scoping-tokens-user-scopes_configuring-internal-oauth","text":"User scopes"},{"depth":3,"slug":"scoping-tokens-role-scope_configuring-internal-oauth","text":"Role scope"},{"depth":2,"slug":"unauthenticated-users-cluster-role-bindings_configuring-internal-oauth","text":"Adding unauthenticated groups to cluster roles"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/authentication/tokens-scoping";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["authentication"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Scoping tokens {#tokens-scoping}\n\nYou can create scoped tokens to delegate specific permissions to users or service accounts, and configure cluster role bindings for unauthenticated users when required.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/tokens-scoping.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Scoping tokens {#tokens-scoping}\n\nYou can create scoped tokens to delegate specific permissions to users or service accounts, and configure cluster role bindings for unauthenticated users when required.\n\n## About scoping tokens {#tokens-scoping-about_configuring-internal-oauth}\n\nYou can create scoped tokens to delegate some of your permissions to another user or service account. For example, a project administrator might want to delegate the power to create pods.\n\nA scoped token is a token that identifies as a given user but is limited to certain actions by its scope. Only a user with the `cluster-admin` role can create scoped tokens.\n\nScopes are evaluated by converting the set of scopes for a token into a set of `PolicyRules`. Then, the request is matched against those rules. The request attributes must match at least one of the scope rules to be passed to the \"normal\" authorizer for further authorization checks.\n\n### User scopes {#scoping-tokens-user-scopes_configuring-internal-oauth}\n\nUser scopes are focused on getting information about a given user. They are intent-based, so the rules are automatically created for you:\n\n- `user:full` - Allows full read/write access to the API with all of the user’s permissions.\n- `user:info` - Allows read-only access to information about the user, such as name and groups.\n- `user:check-access` - Allows access to `self-localsubjectaccessreviews` and `self-subjectaccessreviews`. These are the variables where you pass an empty user and groups in your request object.\n- `user:list-projects` - Allows read-only access to list the projects the user has access to.\n\n### Role scope {#scoping-tokens-role-scope_configuring-internal-oauth}\n\nThe role scope allows you to have the same level of access as a given role filtered by namespace.\n\n- `role:<cluster-role name>:<namespace or * for all>` - Limits the scope to the rules specified by the cluster-role, but only in the specified namespace .\n\n  > [!NOTE]\n  > Caveat: This prevents escalating access. Even if the role allows access to resources like secrets, rolebindings, and roles, this scope will deny access to those resources. This helps prevent unexpected escalations. Many people do not think of a role like `edit` as being an escalating role, but with access to a secret it is.\n- `role:<cluster-role name>:<namespace or * for all>:!` -  This is similar to the example above, except that including the bang causes this scope to allow escalating access.\n\n## Adding unauthenticated groups to cluster roles {#unauthenticated-users-cluster-role-bindings_configuring-internal-oauth}\n\nGrant unauthenticated users access to specific cluster roles to enable features that require cluster access without authentication, such as external webhooks or automated token management.\n\nYou can add unauthenticated users to the following cluster roles:\n\n- `system:scope-impersonation`\n- `system:webhook`\n- `system:oauth-token-deleter`\n- `self-access-reviewer`\n\n> [!IMPORTANT]\n> Always verify compliance with your organization’s security standards when modifying unauthenticated access.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a YAML file named `add-<cluster_role>-unauth.yaml` and add the following content:\n\n   ```yaml\n   apiVersion: rbac.authorization.k8s.io/v1\n   kind: ClusterRoleBinding\n   metadata:\n    annotations:\n      rbac.authorization.kubernetes.io/autoupdate: \"true\"\n    name: <cluster_role>access-unauthenticated\n   roleRef:\n    apiGroup: rbac.authorization.k8s.io\n    kind: ClusterRole\n    name: <cluster_role>\n   subjects:\n    - apiGroup: rbac.authorization.k8s.io\n      kind: Group\n      name: system:unauthenticated\n   ```\n2. Apply the configuration by running the following command:\n\n   ```terminal\n   $ oc apply -f add-<cluster_role>.yaml\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/tokens-scoping.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,64 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="tokens-scoping" class="group scroll-mt-20">Scoping tokens<a href="#tokens-scoping" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can create scoped tokens to delegate specific permissions to users or service accounts, and configure cluster role bindings for unauthenticated users when required.</p>
-      <p class="/modules/tokens-scoping-about.md"></p>
-      <p class="/modules/unauthenticated-users-cluster-role-binding.md"></p>
+      <h2 id="tokens-scoping-about_configuring-internal-oauth" class="group scroll-mt-20">About scoping tokens<a href="#tokens-scoping-about_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create scoped tokens to delegate some of your permissions to another user or service account. For example, a project administrator might want to delegate the power to create pods.</p>
+      <p>A scoped token is a token that identifies as a given user but is limited to certain actions by its scope. Only a user with the <code>cluster-admin</code> role can create scoped tokens.</p>
+      <p>Scopes are evaluated by converting the set of scopes for a token into a set of <code>PolicyRules</code>. Then, the request is matched against those rules. The request attributes must match at least one of the scope rules to be passed to the "normal" authorizer for further authorization checks.</p>
+      <h3 id="scoping-tokens-user-scopes_configuring-internal-oauth" class="group scroll-mt-20">User scopes<a href="#scoping-tokens-user-scopes_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>User scopes are focused on getting information about a given user. They are intent-based, so the rules are automatically created for you:</p>
+      <ul>
+      <li><code>user:full</code> - Allows full read/write access to the API with all of the user’s permissions.</li>
+      <li><code>user:info</code> - Allows read-only access to information about the user, such as name and groups.</li>
+      <li><code>user:check-access</code> - Allows access to <code>self-localsubjectaccessreviews</code> and <code>self-subjectaccessreviews</code>. These are the variables where you pass an empty user and groups in your request object.</li>
+      <li><code>user:list-projects</code> - Allows read-only access to list the projects the user has access to.</li>
+      </ul>
+      <h3 id="scoping-tokens-role-scope_configuring-internal-oauth" class="group scroll-mt-20">Role scope<a href="#scoping-tokens-role-scope_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The role scope allows you to have the same level of access as a given role filtered by namespace.</p>
+      <ul>
+      <li>
+      <code>role:&lt;cluster-role name&gt;:&lt;namespace or * for all&gt;</code> - Limits the scope to the rules specified by the cluster-role, but only in the specified namespace .
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Caveat: This prevents escalating access. Even if the role allows access to resources like secrets, rolebindings, and roles, this scope will deny access to those resources. This helps prevent unexpected escalations. Many people do not think of a role like <code>edit</code> as being an escalating role, but with access to a secret it is.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li><code>role:&lt;cluster-role name&gt;:&lt;namespace or * for all&gt;:!</code> -  This is similar to the example above, except that including the bang causes this scope to allow escalating access.</li>
+      </ul>
+      <h2 id="unauthenticated-users-cluster-role-bindings_configuring-internal-oauth" class="group scroll-mt-20">Adding unauthenticated groups to cluster roles<a href="#unauthenticated-users-cluster-role-bindings_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Grant unauthenticated users access to specific cluster roles to enable features that require cluster access without authentication, such as external webhooks or automated token management.</p>
+      <p>You can add unauthenticated users to the following cluster roles:</p>
+      <ul>
+      <li><code>system:scope-impersonation</code></li>
+      <li><code>system:webhook</code></li>
+      <li><code>system:oauth-token-deleter</code></li>
+      <li><code>self-access-reviewer</code></li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Always verify compliance with your organization’s security standards when modifying unauthenticated access.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file named <code>add-&lt;cluster_role&gt;-unauth.yaml</code> and add the following content:
+      <CodeBlock code={"apiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRoleBinding\nmetadata:\n annotations:\n   rbac.authorization.kubernetes.io/autoupdate: \"true\"\n name: <cluster_role>access-unauthenticated\nroleRef:\n apiGroup: rbac.authorization.k8s.io\n kind: ClusterRole\n name: <cluster_role>\nsubjects:\n - apiGroup: rbac.authorization.k8s.io\n   kind: Group\n   name: system:unauthenticated"} lang="yaml" />
+      </li>
+      <li>
+      Apply the configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f add-<cluster_role>.yaml"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

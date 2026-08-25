@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"viewing-egress-firewall-ovn","text":"Viewing an egress firewall for a project"}];
+const headings = [{"depth":1,"slug":"viewing-egress-firewall-ovn","text":"Viewing an egress firewall for a project"},{"depth":2,"slug":"nw-egress-firewall-view_viewing-egress-firewall-ovn","text":"Viewing an EgressFirewall custom resource (CR)"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_security/egress_firewall/viewing-egress-firewall-ovn";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/network_security","networking/net
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing an egress firewall for a project {#viewing-egress-firewall-ovn}\n\nAs a cluster administrator, you can list the names of any existing egress firewalls and view the traffic rules for a specific egress firewall.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/egress_firewall/viewing-egress-firewall-ovn.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing an egress firewall for a project {#viewing-egress-firewall-ovn}\n\nAs a cluster administrator, you can list the names of any existing egress firewalls and view the traffic rules for a specific egress firewall.\n\n## Viewing an EgressFirewall custom resource (CR) {#nw-egress-firewall-view_viewing-egress-firewall-ovn}\n\nYou can view an `EgressFirewall` CR in your cluster.\n\n**Prerequisites**\n\n- A cluster using the OVN-Kubernetes network plugin.\n- Install the OpenShift Command-line Interface (CLI), commonly known as `oc`.\n- You must log in to the cluster.\n\n**Procedure**\n\n1. Optional: To view the names of the `EgressFirewall` CR defined in your cluster, enter the following command:\n\n   ```terminal\n   $ oc get egressfirewall --all-namespaces\n   ```\n2. To inspect a policy, enter the following command. Replace `<policy_name>` with the name of the policy to inspect.\n\n   ```terminal\n   $ oc describe egressfirewall <policy_name>\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Name:\t\tdefault\n   Namespace:\tproject1\n   Created:\t20 minutes ago\n   Labels:\t\t<none>\n   Annotations:\t<none>\n   Rule:\t\tAllow to 1.2.3.0/24\n   Rule:\t\tAllow to www.example.com\n   Rule:\t\tDeny to 0.0.0.0/0\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/egress_firewall/viewing-egress-firewall-ovn.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,27 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="viewing-egress-firewall-ovn" class="group scroll-mt-20">Viewing an egress firewall for a project<a href="#viewing-egress-firewall-ovn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As a cluster administrator, you can list the names of any existing egress firewalls and view the traffic rules for a specific egress firewall.</p>
-      <p class="/modules/nw-egress-firewall-view.md"></p>
+      <h2 id="nw-egress-firewall-view_viewing-egress-firewall-ovn" class="group scroll-mt-20">Viewing an EgressFirewall custom resource (CR)<a href="#nw-egress-firewall-view_viewing-egress-firewall-ovn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can view an <code>EgressFirewall</code> CR in your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>A cluster using the OVN-Kubernetes network plugin.</li>
+      <li>Install the OpenShift Command-line Interface (CLI), commonly known as <code>oc</code>.</li>
+      <li>You must log in to the cluster.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Optional: To view the names of the <code>EgressFirewall</code> CR defined in your cluster, enter the following command:
+      <CodeBlock code={"$ oc get egressfirewall --all-namespaces"} lang="terminal" />
+      </li>
+      <li>
+      To inspect a policy, enter the following command. Replace <code>&lt;policy_name&gt;</code> with the name of the policy to inspect.
+      <CodeBlock code={"$ oc describe egressfirewall <policy_name>"} lang="terminal" />
+      <CodeBlock code={"Name:\t\tdefault\nNamespace:\tproject1\nCreated:\t20 minutes ago\nLabels:\t\t<none>\nAnnotations:\t<none>\nRule:\t\tAllow to 1.2.3.0/24\nRule:\t\tAllow to www.example.com\nRule:\t\tDeny to 0.0.0.0/0"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

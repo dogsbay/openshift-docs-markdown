@@ -8230,6 +8230,10 @@
             "href": "/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-rh-images-overview"
           },
           {
+            "label": "Import a virtual machine image using the DataVolume API",
+            "href": "/openshift-docs-markdown/virt/creating_vm/virt-import-dv-vms"
+          },
+          {
             "label": "Cloning VMs",
             "href": "/openshift-docs-markdown/virt/creating_vm/virt-cloning-vms"
           }

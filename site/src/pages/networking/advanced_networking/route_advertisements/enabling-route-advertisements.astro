@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"enabling-route-advertisements","text":"Enabling route advertisements"}];
+const headings = [{"depth":1,"slug":"enabling-route-advertisements","text":"Enabling route advertisements"},{"depth":2,"slug":"nw-route-advertisements-enable_enabling-route-advertisements","text":"Enabling route advertisements"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/advanced_networking/route_advertisements/enabling-route-advertisements";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/advanced_networking","networking/
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling route advertisements {#enabling-route-advertisements}\n\nTo improve network reachability and failover visibility for your cluster, you can enable route advertisements for pod and egress IP addresses. This configuration requires the OVN-Kubernetes network plugin and allows your cluster to share routes with an external provider network.\n\nAs a cluster administrator, you can configure additional route advertisements for your cluster. You must use the OVN-Kubernetes network plugin.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/advanced_networking/route_advertisements/enabling-route-advertisements.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling route advertisements {#enabling-route-advertisements}\n\nTo improve network reachability and failover visibility for your cluster, you can enable route advertisements for pod and egress IP addresses. This configuration requires the OVN-Kubernetes network plugin and allows your cluster to share routes with an external provider network.\n\nAs a cluster administrator, you can configure additional route advertisements for your cluster. You must use the OVN-Kubernetes network plugin.\n\n## Enabling route advertisements {#nw-route-advertisements-enable_enabling-route-advertisements}\n\nTo improve network reachability and failover visibility, you can enable additional routing support for your cluster. You can enable route advertisements to manage network traffic within your environment.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You are logged in to the cluster as a user with the `cluster-admin` role.\n- The cluster is installed on compatible infrastructure.\n\n**Procedure**\n\n- To enable a routing provider and additional route advertisements, enter the following command:\n\n  ```terminal\n  $ oc patch Network.operator.openshift.io cluster --type=merge \\\n    -p='{\n      \"spec\": {\n        \"additionalRoutingCapabilities\": {\n          \"providers\": [\"FRR\"]\n          },\n          \"defaultNetwork\": {\n            \"ovnKubernetesConfig\": {\n              \"routeAdvertisements\": \"Enabled\"\n      }}}}'\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/advanced_networking/route_advertisements/enabling-route-advertisements.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,23 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="enabling-route-advertisements" class="group scroll-mt-20">Enabling route advertisements<a href="#enabling-route-advertisements" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To improve network reachability and failover visibility for your cluster, you can enable route advertisements for pod and egress IP addresses. This configuration requires the OVN-Kubernetes network plugin and allows your cluster to share routes with an external provider network.</p>
       <p>As a cluster administrator, you can configure additional route advertisements for your cluster. You must use the OVN-Kubernetes network plugin.</p>
-      <p class="/modules/nw-route-advertisements-enable.md"></p>
+      <h2 id="nw-route-advertisements-enable_enabling-route-advertisements" class="group scroll-mt-20">Enabling route advertisements<a href="#nw-route-advertisements-enable_enabling-route-advertisements" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To improve network reachability and failover visibility, you can enable additional routing support for your cluster. You can enable route advertisements to manage network traffic within your environment.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You are logged in to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>The cluster is installed on compatible infrastructure.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To enable a routing provider and additional route advertisements, enter the following command:
+      <CodeBlock code={"$ oc patch Network.operator.openshift.io cluster --type=merge \\\n  -p='{\n    \"spec\": {\n      \"additionalRoutingCapabilities\": {\n        \"providers\": [\"FRR\"]\n        },\n        \"defaultNetwork\": {\n          \"ovnKubernetesConfig\": {\n            \"routeAdvertisements\": \"Enabled\"\n    }}}}'"} lang="terminal" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

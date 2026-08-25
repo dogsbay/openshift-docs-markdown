@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"monitoring-metallb-configuration-status-idmonitoring-metallb-status","text":"Monitoring MetalLB configuration status {id=\"monitoring-metallb-status\"\"}"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"monitoring-metallb-configuration-status-idmonitoring-metallb-status","text":"Monitoring MetalLB configuration status {id=\"monitoring-metallb-status\"\"}"},{"depth":2,"slug":"nw-metallb-status-reporting_monitor-metallb-config-status","text":"Understanding MetalLB status custom resources"},{"depth":2,"slug":"nw-metallb-configure-address-pool_monitor-metallb-config-status","text":"Viewing the  status"},{"depth":2,"slug":"nw-viewing-service-bgp-status_monitor-metallb-config-status","text":"Viewing the ServiceBGPStatus custom resource"},{"depth":2,"slug":"nw-metallb-verifying-bgp-session_monitor-metallb-config-status","text":"Verifying BGP session state"},{"depth":2,"slug":"nw-metallb-checking-configuration-status_monitor-metallb-config-status","text":"Checking MetalLB configuration status"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/metallb/monitoring-metallb-status";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["networking","networking/ingress_load_balancing","networki
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring MetalLB configuration status {id=\"monitoring-metallb-status\"\"} {#monitoring-metallb-configuration-status-idmonitoring-metallb-status}\n\nAs an OpenShift Container Platform system administrator, you can monitor the operational status of your MetalLB deployment by examining its custom resources (CRs). These status fields provide information about IP address allocations, BGP peer announcements, and session states, which are important for effective monitoring and troubleshooting.\n\n## Additional resources {#_additional_resources}\n\n- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/monitoring-metallb-status.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring MetalLB configuration status {id=\"monitoring-metallb-status\"\"} {#monitoring-metallb-configuration-status-idmonitoring-metallb-status}\n\nAs an OpenShift Container Platform system administrator, you can monitor the operational status of your MetalLB deployment by examining its custom resources (CRs). These status fields provide information about IP address allocations, BGP peer announcements, and session states, which are important for effective monitoring and troubleshooting.\n\n## Understanding MetalLB status custom resources {#nw-metallb-status-reporting_monitor-metallb-config-status}\n\nMetalLB provides a scalable framework for monitoring the health of network traffic and IP addresses. Use status fields in MetalLB custom resources to track session status and troubleshoot configuration.\n\nMetalLB exposes status information for several key components, providing a comprehensive view of its configuration and operation.\n\n**MetalLB status resources**\n\n| Resource | Description | Troubleshooting command |\n| --- | --- | --- |\n| `IPAddressPool`** (status field)** | Shows the cluster-wide allocation and availability of IP addresses within a defined pool, including the number of assigned and available addresses for both IPv4 and IPv6. | `oc get ipaddresspool _<IPAddressPool-name>_ -n metallb-system -o yaml` |\n| `ServiceBGPStatus` | Shows which service IP addresses the system announces to specific BGP peers across the network infrastructure. | `oc get servicebgpstatus -n metallb-system` |\n| `BGPSessionStatus` | Shows the real-time operational state of the border gateway protocol (BGP) and bidirectional forwarding detection (BFD) sessions between a specific cluster node and a BGP peer, indicating if the channel is `Established` or `Up` based on routing stack feedback. | `oc get bgpsessionstatus -o wide` |\n| `ConfigurationState` | Shows whether the MetalLB controller and speakers have successfully validated and applied the current configuration. MetalLB creates one resource for the controller and one for each speaker node. Reports errors when custom resources are incompatible. | `oc get configurationstates -n metallb-system` |\n\nThe MetalLB controller, typically deployed as `metallb-system/controller`, is responsible for managing IP address assignments and updating the `IPAddressPool` status. When a service requests a `LoadBalancer` IP, the controller allocates an IP from an appropriate `IPAddressPool` and updates the status fields to reflect the current number of assigned and available IP addresses.\n\n## Viewing the `IPAddressPool` status {#nw-metallb-configure-address-pool_monitor-metallb-config-status}\n\nCheck IP address allocation from your MetalLB pools by viewing the `IPAddressPool` status. This status shows the number of addresses assigned to services and the number remaining available for assignment.\n\nAs a cluster administrator, you can add address pools to your cluster to control the IP addresses that MetalLB can assign to load-balancer services. This example shows how to create an `IPAddressPool` custom resource (CR) and view its status. The configuration sets the advertisement mode to Layer 2 (L2).\n\n**Prerequisites**\n\n- You have an OpenShift Container Platform cluster with the MetalLB Operator installed.\n- You have deployed a MetalLB instance.\n\n**Procedure**\n\n1. Create an IP address pool.\n\n   1. Create a file, named for example `ipaddresspool.yaml`, with content such as the following:\n\n      ```yaml\n      apiVersion: metallb.io/v1beta1\n      kind: IPAddressPool\n      metadata:\n        name: doc-example-l2\n        namespace: metallb-system\n      spec:\n        addresses:\n        - 192.168.122.200-192.168.122.220\n        autoAssign: true\n        avoidBuggyIPs: false\n      ```\n   2. Apply the configuration for the IP address pool:\n\n      ```terminal\n      $ oc apply -f ipaddresspool.yaml\n      ```\n2. View the status of the IP address pool by running the following command:\n\n   ```terminal\n   $ oc get ipaddresspool doc-example-l2 -n metallb-system -o yaml\n   ```\n\n   The output is similar to the following:\n\n   ```yaml\n   apiVersion: metallb.io/v1beta1\n   kind: IPAddressPool\n   metadata:\n     annotations:\n       kubectl.kubernetes.io/last-applied-configuration: |\n         {\"apiVersion\":\"metallb.io/v1beta1\",\"kind\":\"IPAddressPool\",\"metadata\":{\"annotations\":{},\"name\":\"doc-example-l2\",\"namespace\":\"metallb-system\"},\"spec\":{\"addresses\":[\"192.168.122.200-192.168.122.220\"],\"autoAssign\":true,\"avoidBuggyIPs\":false}}\n     creationTimestamp: \"2025-07-17T10:13:37Z\"\n     generation: 1\n     name: doc-example-l2\n     namespace: metallb-system\n     resourceVersion: \"29080\"\n     uid: 8df1c303-03ac-4d31-8970-6dacdb173dc2\n   spec:\n     addresses:\n     - 192.168.122.200-192.168.122.220\n     autoAssign: true\n     avoidBuggyIPs: false\n   status:\n     assignedIPv4: 0\n     assignedIPv6: 0\n     availableIPv4: 21\n     availableIPv6: 0\n   ```\n\n   - `assignedIPv4` represents the total number of IPv4 addresses that MetalLB has successfully assigned from this pool to `LoadBalancer` services.\n   - `assignedIPv6` represents the total number of IPv6 addresses that MetalLB has successfully assigned from this pool to `LoadBalancer` services.\n   - `availableIPv4` indicates the total number of IPv4 addresses remaining and available for assignment within this pool. MetalLB calculates this value by subtracting `assignedIPv4` from the total theoretical IPv4 addresses in the `spec.addresses` ranges, potentially accounting for `avoidBuggyIPs` if enabled.\n   - `availableIPv6` indicates the total number of IPv6 addresses remaining and available for assignment within this pool. The system calculates this value similarly to `availableIPv4`, using the total theoretical IPv6 addresses in the `spec.addresses` ranges.\n3. Create an `L2Advertisement` CR for Layer 2 mode with the following sample YAML:\n\n   ```yaml\n   apiVersion: metallb.io/v1beta1\n   kind: L2Advertisement\n   metadata:\n     name: l2advertisement\n     namespace: metallb-system\n   spec:\n     ipAddressPools:\n     - doc-example-l2\n   ```\n\n   1. Apply the configuration for the L2 advertisement by running the following command:\n\n      ```terminal\n      $ oc apply -f l2advertisement.yaml\n      ```\n4. Deploy an application and expose it with a `LoadBalancer` service.\n\n   1. Create a file, like `nginx.yaml`, with the following content to deploy an Nginx application:\n\n      ```yaml\n      apiVersion: apps/v1\n      kind: Deployment\n      metadata:\n        name: nginx-deployment\n        labels:\n          app: nginx\n      spec:\n        replicas: 2\n        selector:\n          matchLabels:\n            app: nginx\n        template:\n          metadata:\n            labels:\n              app: nginx\n          spec:\n            containers:\n            - name: nginx\n              image: quay.io/openshifttest/hello-openshift:multiarch\n              ports:\n              - containerPort: 8080\n      ```\n   2. Apply the configuration by running the following command:\n\n      ```terminal\n      $ oc apply -f nginx.yaml\n      ```\n   3. Expose the deployment as a `LoadBalancer` service by creating a file, such as `nginx-service.yaml`, with content like the following:\n\n      ```yaml\n      apiVersion: v1\n      kind: Service\n      metadata:\n        name: nginx-service\n        namespace: default\n        annotations:\n          metallb.universe.tf/address-pool: doc-example-l2\n      spec:\n        selector:\n          app: nginx\n        ports:\n          - protocol: TCP\n            port: 80\n            targetPort: 8080\n        type: LoadBalancer\n      ```\n\n      > [!IMPORTANT]\n      > The service must be in the same namespace as your application deployment. The `metallb.universe.tf/address-pool` annotation tells MetalLB which `IPAddressPool` to use for IP allocation.\n   4. Apply the service configuration by running the following command:\n\n      ```terminal\n      $ oc apply -f nginx-service.yaml\n      ```\n5. View the updated `IPAddressPool` status to see the assigned and available IP addresses by running the following command:\n\n   ```terminal\n   $ oc get ipaddresspool doc-example-l2 -n metallb-system -o yaml\n   ```\n\n   The output is similar to the following:\n\n   ```yaml\n   apiVersion: metallb.io/v1beta1\n   kind: IPAddressPool\n   metadata:\n     annotations:\n       kubectl.kubernetes.io/last-applied-configuration: |\n         {\"apiVersion\":\"metallb.io/v1beta1\",\"kind\":\"IPAddressPool\",\"metadata\":{\"annotations\":{},\"name\":\"doc-example-l2\",\"namespace\":\"metallb-system\"},\"spec\":{\"addresses\":[\"192.168.122.200-192.168.122.220\"],\"autoAssign\":true,\"avoidBuggyIPs\":false}}\n     creationTimestamp: \"2025-07-17T10:13:37Z\"\n     generation: 1\n     name: doc-example-l2\n     namespace: metallb-system\n     resourceVersion: \"30250\"\n     uid: 8df1c303-03ac-4d31-8970-6dacdb173dc2\n   spec:\n     addresses:\n     - 192.168.122.200-192.168.122.220\n     autoAssign: true\n     avoidBuggyIPs: false\n   status:\n     assignedIPv4: 1\n     assignedIPv6: 0\n     availableIPv4: 20\n     availableIPv6: 0\n   ```\n\n   The `assignedIPv4` value of `1` indicates that one IPv4 address from this pool has been successfully assigned by MetalLB to your `nginx-service` `LoadBalancer`.\n\n## Viewing the ServiceBGPStatus custom resource {#nw-viewing-service-bgp-status_monitor-metallb-config-status}\n\nYou can verify border gateway protocol (BGP) advertisement status for your services by viewing the `ServiceBGPStatus` custom resource, which shows which BGP peers receive advertisements from each node. This is essential for debugging connectivity in telco environments.\n\nThe `ServiceBGPStatus` CR reports the BGP peering status for a service, detailing which neighbors are receiving updates from a specific node.\n\n> [!NOTE]\n> `ServiceBGPStatus` resources are created in the `metallb-system` namespace, not in the namespace where your `LoadBalancer` service is deployed. Always query these resources with `-n metallb-system`.\n\n**Prerequisites**\n\n- You have an OpenShift Container Platform cluster with the MetalLB Operator installed.\n- You have deployed a MetalLB instance.\n\nThis example shows how to configure MetalLB for BGP mode, deploy a service, and view the `ServiceBGPStatus` to verify BGP advertisements.\n\n**Procedure**\n\n1. Create an `IPAddressPool` CR for BGP, like the following example, and save it as `ipaddresspool.yaml`:\n\n   ```yaml\n   apiVersion: metallb.io/v1beta1\n   kind: IPAddressPool\n   metadata:\n     name: bgp-pool\n     namespace: metallb-system\n   spec:\n     addresses:\n     - 192.168.122.210-192.168.122.220\n     autoAssign: true\n   ```\n2. Run the following command to create the `IPAddressPool` configuration:\n\n   ```terminal\n   $ oc apply -f ipaddresspool.yaml\n   ```\n3. To configure a BGP peer, create a file named `bgppeer.yaml` with the following content:\n\n   ```yaml\n   apiVersion: metallb.io/v1beta2\n   kind: BGPPeer\n   metadata:\n     name: bgp-peer\n     namespace: metallb-system\n   spec:\n     myASN: 64501\n     peerASN: 64500\n     peerAddress: 192.168.1.1\n   ```\n\n   - Set the `spec:peerAddress` field to the IP address of your BGP router.\n4. Apply the BGPPeer configuration by running the following command:\n\n   ```terminal\n   $ oc apply -f bgppeer.yaml\n   ```\n5. To create a BGP advertisement to advertise the pool, create a file named `bgpadvertisement.yaml` with the following content:\n\n   ```yaml\n   apiVersion: metallb.io/v1beta1\n   kind: BGPAdvertisement\n   metadata:\n     name: bgp-advertisement\n     namespace: metallb-system\n   spec:\n     ipAddressPools:\n     - bgp-pool\n   ```\n6. Apply the BGPAdvertisement configuration by running the following command:\n\n   ```terminal\n   $ oc apply -f bgpadvertisement.yaml\n   ```\n7. Deploy an application and expose it with a `LoadBalancer` service. For this example, create a simple test application named for example `test-app` by creating a file named `deployment.yaml` with the following content:\n\n   ```yaml\n   apiVersion: apps/v1\n   kind: Deployment\n   metadata:\n     name: test-app\n     namespace: default\n   spec:\n     replicas: 2\n     selector:\n       matchLabels:\n         app: test-app\n     template:\n       metadata:\n         labels:\n           app: test-app\n       spec:\n         containers:\n         - name: test-app\n           image: quay.io/openshifttest/hello-openshift:multiarch\n           ports:\n           - containerPort: 8080\n   ```\n8. Apply the deployment:\n\n   ```terminal\n   $ oc apply -f deployment.yaml\n   ```\n9. Create a `LoadBalancer` service for the application:\n\n   ```yaml\n   apiVersion: v1\n   kind: Service\n   metadata:\n     name: test-service\n     namespace: default\n   spec:\n     selector:\n       app: test-app\n     ports:\n       - protocol: TCP\n         port: 80\n         targetPort: 8080\n     type: LoadBalancer\n   ```\n\n   > [!IMPORTANT]\n   > The system creates `ServiceBGPStatus` resources automatically only when the service has at least one ready endpoint (running pod). Ensure your application pods are running before checking for `ServiceBGPStatus` resources.\n10. Apply the service configuration by running the following command:\n\n    ```terminal\n    $ oc apply -f service.yaml\n    ```\n11. Verify the service received an external IP by running the following command:\n\n    ```terminal\n    $ oc get svc test-service -n default\n    ```\n\n    The output is similar to the following:\n\n    ```terminal\n    NAME           TYPE           CLUSTER-IP       EXTERNAL-IP       PORT(S)        AGE\n    test-service   LoadBalancer   172.30.116.108   192.168.122.210   80:32431/TCP   2m\n    ```\n12. View the `ServiceBGPStatus` resources by running the following command:\n\n    ```terminal\n    $ oc get servicebgpstatus -n metallb-system\n    ```\n\n    The output is similar to the following:\n\n    ```terminal\n    NAME                  NODE       SERVICE NAME   SERVICE NAMESPACE\n    bgp-xxxxx             worker0    test-service   default\n    ```\n\n    > [!NOTE]\n    > `ServiceBGPStatus` resources are created with generated names. Use labels to find the status for your service:\n    >\n    > ```terminal\n    > $ oc get servicebgpstatus -n metallb-system -l metallb.io/service-name=test-service\n    > ```\n13. View the details of the `ServiceBGPStatus` CR for your service:\n\n    ```terminal\n    $ oc get servicebgpstatus bgp-xxxxx -n metallb-system -o yaml\n    ```\n\n    The output is similar to the following:\n\n    ```yaml\n    apiVersion: metallb.io/v1beta1\n    kind: ServiceBGPStatus\n    metadata:\n      name: bgp-xxxxx\n      namespace: metallb-system\n      labels:\n        metallb.io/node: worker0\n        metallb.io/service-name: test-service\n        metallb.io/service-namespace: default\n    status:\n      node: worker0\n      peers:\n      - bgp-peer\n      serviceName: test-service\n      serviceNamespace: default\n    ```\n\n    - `metadata.labels.metallb.io/node` indicates the node that is advertising the service via BGP.\n    - `metadata.labels.metallb.io/service-name` identifies the service being advertised.\n    - `metadata.labels.metallb.io/service-namespace` identifies the namespace of the service being advertised.\n    - `status.node` confirms the name of the node advertising the service.\n    - `status.peers` lists the names of the BGPPeer resources to which the service is being advertised. This is useful for confirming that the advertisement is reaching the intended peers.\n    - `status.serviceName` indicates the name of the service being advertised.\n    - `status.serviceNamespace` indicates the namespace of the service being advertised.\n\n## Verifying BGP session state {#nw-metallb-verifying-bgp-session_monitor-metallb-config-status}\n\nOnce you configure MetalLB for border gateway protocol (BGP) mode, you can verify that the system has established BGP sessions and is advertising routes. You can examine the `BGPSessionState` custom resource (CR) and the `FRRNodeState` CR to troubleshoot BGP connectivity and confirm proper route advertisement.\n\n> [!NOTE]\n> The `BGPSessionState` CR is updated at a regular poll interval of 2 minutes. It can take up to 2 minutes for the CR to reflect the actual BGP state.\n\n**Prerequisites**\n\n- You have an OpenShift Container Platform cluster with the MetalLB Operator installed.\n- You have configured MetalLB for BGP mode with:\n\n  - An `IPAddressPool`\n  - A `BGPPeer` configuration\n  - A `BGPAdvertisement`\n- You have deployed at least one `LoadBalancer` service.\n\n**Procedure**\n\n1. Check BGP session status by running the following command:\n\n   ```terminal\n   $ oc get bgpsessionstates.frrk8s.metallb.io -A -o wide\n   ```\n\n   This example output shows the BGP session status between each node and its configured BGP peers. Look for the `BGP` column to confirm that the session is `Established`.\n\n   ```terminal\n   NAMESPACE           NAME               NODE       PEER         VRF   BGP           BFD\n   openshift-frr-k8s   worker-2gjfq       worker     10.89.0.64         Active        N/A\n   openshift-frr-k8s   worker-9gtnb       worker     10.89.0.63         Established   N/A\n   openshift-frr-k8s   worker2-rknga      worker2    10.89.0.66         Established   Up\n   openshift-frr-k8s   worker2-t7bfc      worker2    172.30.0.2         Established   Down\n   ```\n2. Check `FRRNodeState` to see the BGP configuration on each node by running the following command:\n\n   ```terminal\n   $ oc get frrnodestate -n metallb-system\n   ```\n\n   The example output lists the `FRRNodeState` resources for each node where the MetalLB speaker is running.\n\n   ```terminal\n   NAME                 AGE\n   worker0.example.com  5m\n   ```\n3. View the detailed BGP configuration and running state by running the following command for a specific node:\n\n   ```terminal\n   $ oc get frrnodestate worker0.example.com -n metallb-system -o yaml\n   ```\n\n   The `status.runningConfig` field shows the FRR BGP configuration including configured BGP neighbors, route advertisements, and prefix lists.\n4. Verify that the system is advertising routes by checking the `FRRNodeState` resource for the relevant node with this command:\n\n   ```terminal\n   $ oc get frrnodestate _<node-name>_ -n metallb-system -o jsonpath='{.status.runningConfig}' | grep \"network\"\n   ```\n\n   The output displays the network prefixes that BGP advertises. For example:\n\n   ```terminal\n    address-family ipv4 unicast\n     network 192.168.122.210/32\n   ```\n\n   This confirms that BGP is advertising the service IP.\n\n## Checking MetalLB configuration status {#nw-metallb-checking-configuration-status_monitor-metallb-config-status}\n\nYou can verify that the MetalLB controller and speakers have successfully applied the current configuration by viewing the `ConfigurationState` custom resource (CR). MetalLB creates a `ConfigurationState` resource for the controller and one for each speaker node. These resources report whether the configuration is valid and surface error details when validation fails, such as incompatible custom resources.\n\n**Prerequisites**\n\n- You have an OpenShift Container Platform cluster with the MetalLB Operator installed.\n- You have deployed a MetalLB instance.\n- You have configured MetalLB resources such as `IPAddressPool`, `BGPPeer`, `BFDProfile`, `Community`, or `FRRConfiguration`.\n\n**Procedure**\n\n1. List the `ConfigurationState` resources by running the following command:\n\n   ```terminal\n   $ oc get configurationstates -n metallb-system\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                         RESULT   ERRORSUMMARY   AGE\n   controller                   Valid                   75m\n   speaker-mysno-sno.demo.lab   Valid                   28m\n   ```\n\n   The `controller` resource shows the status for the MetalLB controller. Each `speaker-<node-name>` resource shows the status for the speaker on that node.\n2. Verify that the controller has a valid configuration by inspecting the `ConfigurationState` details. Run the following command:\n\n   ```terminal\n   $ oc get configurationstates controller -n metallb-system -o yaml\n   ```\n\n   ```yaml {title=\"Example output\"}\n   apiVersion: metallb.io/v1beta1\n   kind: ConfigurationState\n   metadata:\n     creationTimestamp: \"2026-04-21T09:46:47Z\"\n     generation: 1\n     labels:\n       metallb.io/component-type: controller\n     name: controller\n     namespace: metallb-system\n     resourceVersion: \"28268\"\n     uid: 23f5c492-4d5c-4893-84ea-77904c006404\n   status:\n     conditions:\n     - lastTransitionTime: \"2026-04-21T09:54:00Z\"\n       message: \"\"\n       reason: Reconciled\n       status: \"True\"\n       type: poolReconcilerValid\n     result: Valid\n   ```\n\n   Confirm that the output has the following values:\n\n   - `result: Valid` indicates that all configured resources are compatible and active. If this value is `Invalid`, check the `errorSummary` field for aggregated error messages that identify which part of the configuration has failed.\n   - `message: Describes any configuration problem that occurs.  Here, `\"\"\\` confirms that no errors were reported.\n   - `reason: Reconciled` with `status: \"True\"` confirms that the reconciler has successfully processed the configuration. If the `reason` is `ReconciliationFailed` and `status` is `\"False\"`, the `message` field contains details about the failure.\n\n     > [!NOTE]\n     > The controller does not validate peer-level settings. Errors such as a missing `BFDProfile`, undefined `Community`, or missing authentication secret are reported only by the speakers. A `Valid` controller with one or more `Invalid` speakers is expected in these cases. Always check both controller and speaker `ConfigurationState` resources.\n\n     If the configuration is invalid, the output is similar to the following example:\n\n     ```yaml\n     apiVersion: metallb.io/v1beta1\n     kind: ConfigurationState\n     metadata:\n       creationTimestamp: \"2026-04-21T09:51:17Z\"\n       generation: 1\n       labels:\n         metallb.io/component-type: speaker\n         metallb.io/node-name: mysno-sno.demo.lab\n       name: speaker-mysno-sno.demo.lab\n       namespace: metallb-system\n       resourceVersion: \"31161\"\n       uid: 339781bf-ec9a-4ba9-aaba-0a9ac8ebce78\n     status:\n       conditions:\n       - lastTransitionTime: \"2026-04-21T10:09:34Z\"\n         message: 'configuration error: peer peer1 referencing non existing bfd profile\n           my-bfd-profile'\n         reason: ConfigurationError\n         status: \"False\"\n         type: configReconcilerValid\n       errorSummary: 'configuration error: peer peer1 referencing non existing bfd profile\n         my-bfd-profile'\n       result: Invalid\n     ```\n\n     Confirm that the output has the following values to identify the problem:\n   - `result: Invalid` indicates that one or more configured resources are incompatible. The `errorSummary` field provides an aggregated description of the problem.\n   - `reason: ConfigurationError` with `status: \"False\"` indicates that the reconciler failed to process the configuration. The `message` field describes the specific error.\n   - In this example, the `BGPPeer` resource `peer1` references a `BFDProfile` named `my-bfd-profile` that does not exist. To resolve this error, either create the missing `BFDProfile` resource or update the `BGPPeer` to reference an existing `BFDProfile`.\n\n     > [!NOTE]\n     > The `ConfigurationState` resource does not report errors that arise when the configuration applied by the speaker to the `frr-k8s` daemon conflicts with other external configurations within that daemon.\n3. After correcting the configuration, verify that the status shows a valid configuration by running the following command:\n\n   ```terminal\n   $ oc get configurationstates -n metallb-system -o jsonpath='{range .items[*]}{.metadata.name}{\"\\t\"}{.status.result}{\"\\n\"}{end}'\n   ```\n\n   A return value of `Valid` for all entries confirms that the MetalLB controller and speakers are operating with a valid configuration.\n\n## Additional resources {#_additional_resources}\n\n- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/metallb/monitoring-metallb-status.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +101,325 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="monitoring-metallb-configuration-status-idmonitoring-metallb-status" class="group scroll-mt-20">Monitoring MetalLB configuration status {"{"}id="monitoring-metallb-status""{"}"}<a href="#monitoring-metallb-configuration-status-idmonitoring-metallb-status" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As an OpenShift Container Platform system administrator, you can monitor the operational status of your MetalLB deployment by examining its custom resources (CRs). These status fields provide information about IP address allocations, BGP peer announcements, and session states, which are important for effective monitoring and troubleshooting.</p>
-      <p class="/modules/nw-metallb-status-reporting.md"></p>
-      <p class="/modules/nw-metallb-viewing-ipaddresspool-status.md"></p>
-      <p class="/modules/nw-metallb-viewing-servicebgpstatus.md"></p>
-      <p class="/modules/nw-metallb-verifying-bgp-session.md"></p>
-      <p class="/modules/nw-metallb-checking-configuration-status.md"></p>
+      <h2 id="nw-metallb-status-reporting_monitor-metallb-config-status" class="group scroll-mt-20">Understanding MetalLB status custom resources<a href="#nw-metallb-status-reporting_monitor-metallb-config-status" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">MetalLB provides a scalable framework for monitoring the health of network traffic and IP addresses. Use status fields in MetalLB custom resources to track session status and troubleshoot configuration.</p>
+      <p>MetalLB exposes status information for several key components, providing a comprehensive view of its configuration and operation.</p>
+      <p><strong>MetalLB status resources</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Resource</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Troubleshooting command</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>IPAddressPool</code><strong> (status field)</strong></TableCell>
+      <TableCell>Shows the cluster-wide allocation and availability of IP addresses within a defined pool, including the number of assigned and available addresses for both IPv4 and IPv6.</TableCell>
+      <TableCell><code>oc get ipaddresspool _&lt;IPAddressPool-name&gt;_ -n metallb-system -o yaml</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ServiceBGPStatus</code></TableCell>
+      <TableCell>Shows which service IP addresses the system announces to specific BGP peers across the network infrastructure.</TableCell>
+      <TableCell><code>oc get servicebgpstatus -n metallb-system</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>BGPSessionStatus</code></TableCell>
+      <TableCell>Shows the real-time operational state of the border gateway protocol (BGP) and bidirectional forwarding detection (BFD) sessions between a specific cluster node and a BGP peer, indicating if the channel is <code>Established</code> or <code>Up</code> based on routing stack feedback.</TableCell>
+      <TableCell><code>oc get bgpsessionstatus -o wide</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ConfigurationState</code></TableCell>
+      <TableCell>Shows whether the MetalLB controller and speakers have successfully validated and applied the current configuration. MetalLB creates one resource for the controller and one for each speaker node. Reports errors when custom resources are incompatible.</TableCell>
+      <TableCell><code>oc get configurationstates -n metallb-system</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>The MetalLB controller, typically deployed as <code>metallb-system/controller</code>, is responsible for managing IP address assignments and updating the <code>IPAddressPool</code> status. When a service requests a <code>LoadBalancer</code> IP, the controller allocates an IP from an appropriate <code>IPAddressPool</code> and updates the status fields to reflect the current number of assigned and available IP addresses.</p>
+      <h2 id="nw-metallb-configure-address-pool_monitor-metallb-config-status" class="group scroll-mt-20">Viewing the <code>IPAddressPool</code> status<a href="#nw-metallb-configure-address-pool_monitor-metallb-config-status" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Check IP address allocation from your MetalLB pools by viewing the <code>IPAddressPool</code> status. This status shows the number of addresses assigned to services and the number remaining available for assignment.</p>
+      <p>As a cluster administrator, you can add address pools to your cluster to control the IP addresses that MetalLB can assign to load-balancer services. This example shows how to create an <code>IPAddressPool</code> custom resource (CR) and view its status. The configuration sets the advertisement mode to Layer 2 (L2).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have an OpenShift Container Platform cluster with the MetalLB Operator installed.</li>
+      <li>You have deployed a MetalLB instance.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an IP address pool.
+      <ol>
+      <li>
+      Create a file, named for example <code>ipaddresspool.yaml</code>, with content such as the following:
+      <CodeBlock code={"apiVersion: metallb.io/v1beta1\nkind: IPAddressPool\nmetadata:\n  name: doc-example-l2\n  namespace: metallb-system\nspec:\n  addresses:\n  - 192.168.122.200-192.168.122.220\n  autoAssign: true\n  avoidBuggyIPs: false"} lang="yaml" />
+      </li>
+      <li>
+      Apply the configuration for the IP address pool:
+      <CodeBlock code={"$ oc apply -f ipaddresspool.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      View the status of the IP address pool by running the following command:
+      <CodeBlock code={"$ oc get ipaddresspool doc-example-l2 -n metallb-system -o yaml"} lang="terminal" />
+      <p>The output is similar to the following:</p>
+      <CodeBlock code={"apiVersion: metallb.io/v1beta1\nkind: IPAddressPool\nmetadata:\n  annotations:\n    kubectl.kubernetes.io/last-applied-configuration: |\n      {\"apiVersion\":\"metallb.io/v1beta1\",\"kind\":\"IPAddressPool\",\"metadata\":{\"annotations\":{},\"name\":\"doc-example-l2\",\"namespace\":\"metallb-system\"},\"spec\":{\"addresses\":[\"192.168.122.200-192.168.122.220\"],\"autoAssign\":true,\"avoidBuggyIPs\":false}}\n  creationTimestamp: \"2025-07-17T10:13:37Z\"\n  generation: 1\n  name: doc-example-l2\n  namespace: metallb-system\n  resourceVersion: \"29080\"\n  uid: 8df1c303-03ac-4d31-8970-6dacdb173dc2\nspec:\n  addresses:\n  - 192.168.122.200-192.168.122.220\n  autoAssign: true\n  avoidBuggyIPs: false\nstatus:\n  assignedIPv4: 0\n  assignedIPv6: 0\n  availableIPv4: 21\n  availableIPv6: 0"} lang="yaml" />
+      <ul>
+      <li><code>assignedIPv4</code> represents the total number of IPv4 addresses that MetalLB has successfully assigned from this pool to <code>LoadBalancer</code> services.</li>
+      <li><code>assignedIPv6</code> represents the total number of IPv6 addresses that MetalLB has successfully assigned from this pool to <code>LoadBalancer</code> services.</li>
+      <li><code>availableIPv4</code> indicates the total number of IPv4 addresses remaining and available for assignment within this pool. MetalLB calculates this value by subtracting <code>assignedIPv4</code> from the total theoretical IPv4 addresses in the <code>spec.addresses</code> ranges, potentially accounting for <code>avoidBuggyIPs</code> if enabled.</li>
+      <li><code>availableIPv6</code> indicates the total number of IPv6 addresses remaining and available for assignment within this pool. The system calculates this value similarly to <code>availableIPv4</code>, using the total theoretical IPv6 addresses in the <code>spec.addresses</code> ranges.</li>
+      </ul>
+      </li>
+      <li>
+      Create an <code>L2Advertisement</code> CR for Layer 2 mode with the following sample YAML:
+      <CodeBlock code={"apiVersion: metallb.io/v1beta1\nkind: L2Advertisement\nmetadata:\n  name: l2advertisement\n  namespace: metallb-system\nspec:\n  ipAddressPools:\n  - doc-example-l2"} lang="yaml" />
+      <ol>
+      <li>
+      Apply the configuration for the L2 advertisement by running the following command:
+      <CodeBlock code={"$ oc apply -f l2advertisement.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Deploy an application and expose it with a <code>LoadBalancer</code> service.
+      <ol>
+      <li>
+      Create a file, like <code>nginx.yaml</code>, with the following content to deploy an Nginx application:
+      <CodeBlock code={"apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: nginx-deployment\n  labels:\n    app: nginx\nspec:\n  replicas: 2\n  selector:\n    matchLabels:\n      app: nginx\n  template:\n    metadata:\n      labels:\n        app: nginx\n    spec:\n      containers:\n      - name: nginx\n        image: quay.io/openshifttest/hello-openshift:multiarch\n        ports:\n        - containerPort: 8080"} lang="yaml" />
+      </li>
+      <li>
+      Apply the configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f nginx.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Expose the deployment as a <code>LoadBalancer</code> service by creating a file, such as <code>nginx-service.yaml</code>, with content like the following:
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  name: nginx-service\n  namespace: default\n  annotations:\n    metallb.universe.tf/address-pool: doc-example-l2\nspec:\n  selector:\n    app: nginx\n  ports:\n    - protocol: TCP\n      port: 80\n      targetPort: 8080\n  type: LoadBalancer"} lang="yaml" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The service must be in the same namespace as your application deployment. The <code>metallb.universe.tf/address-pool</code> annotation tells MetalLB which <code>IPAddressPool</code> to use for IP allocation.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Apply the service configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f nginx-service.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      View the updated <code>IPAddressPool</code> status to see the assigned and available IP addresses by running the following command:
+      <CodeBlock code={"$ oc get ipaddresspool doc-example-l2 -n metallb-system -o yaml"} lang="terminal" />
+      <p>The output is similar to the following:</p>
+      <CodeBlock code={"apiVersion: metallb.io/v1beta1\nkind: IPAddressPool\nmetadata:\n  annotations:\n    kubectl.kubernetes.io/last-applied-configuration: |\n      {\"apiVersion\":\"metallb.io/v1beta1\",\"kind\":\"IPAddressPool\",\"metadata\":{\"annotations\":{},\"name\":\"doc-example-l2\",\"namespace\":\"metallb-system\"},\"spec\":{\"addresses\":[\"192.168.122.200-192.168.122.220\"],\"autoAssign\":true,\"avoidBuggyIPs\":false}}\n  creationTimestamp: \"2025-07-17T10:13:37Z\"\n  generation: 1\n  name: doc-example-l2\n  namespace: metallb-system\n  resourceVersion: \"30250\"\n  uid: 8df1c303-03ac-4d31-8970-6dacdb173dc2\nspec:\n  addresses:\n  - 192.168.122.200-192.168.122.220\n  autoAssign: true\n  avoidBuggyIPs: false\nstatus:\n  assignedIPv4: 1\n  assignedIPv6: 0\n  availableIPv4: 20\n  availableIPv6: 0"} lang="yaml" />
+      <p>The <code>assignedIPv4</code> value of <code>1</code> indicates that one IPv4 address from this pool has been successfully assigned by MetalLB to your <code>nginx-service</code> <code>LoadBalancer</code>.</p>
+      </li>
+      </ol>
+      <h2 id="nw-viewing-service-bgp-status_monitor-metallb-config-status" class="group scroll-mt-20">Viewing the ServiceBGPStatus custom resource<a href="#nw-viewing-service-bgp-status_monitor-metallb-config-status" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can verify border gateway protocol (BGP) advertisement status for your services by viewing the <code>ServiceBGPStatus</code> custom resource, which shows which BGP peers receive advertisements from each node. This is essential for debugging connectivity in telco environments.</p>
+      <p>The <code>ServiceBGPStatus</code> CR reports the BGP peering status for a service, detailing which neighbors are receiving updates from a specific node.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p><code>ServiceBGPStatus</code> resources are created in the <code>metallb-system</code> namespace, not in the namespace where your <code>LoadBalancer</code> service is deployed. Always query these resources with <code>-n metallb-system</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have an OpenShift Container Platform cluster with the MetalLB Operator installed.</li>
+      <li>You have deployed a MetalLB instance.</li>
+      </ul>
+      <p>This example shows how to configure MetalLB for BGP mode, deploy a service, and view the <code>ServiceBGPStatus</code> to verify BGP advertisements.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an <code>IPAddressPool</code> CR for BGP, like the following example, and save it as <code>ipaddresspool.yaml</code>:
+      <CodeBlock code={"apiVersion: metallb.io/v1beta1\nkind: IPAddressPool\nmetadata:\n  name: bgp-pool\n  namespace: metallb-system\nspec:\n  addresses:\n  - 192.168.122.210-192.168.122.220\n  autoAssign: true"} lang="yaml" />
+      </li>
+      <li>
+      Run the following command to create the <code>IPAddressPool</code> configuration:
+      <CodeBlock code={"$ oc apply -f ipaddresspool.yaml"} lang="terminal" />
+      </li>
+      <li>
+      To configure a BGP peer, create a file named <code>bgppeer.yaml</code> with the following content:
+      <CodeBlock code={"apiVersion: metallb.io/v1beta2\nkind: BGPPeer\nmetadata:\n  name: bgp-peer\n  namespace: metallb-system\nspec:\n  myASN: 64501\n  peerASN: 64500\n  peerAddress: 192.168.1.1"} lang="yaml" />
+      <ul><li>Set the <code>spec:peerAddress</code> field to the IP address of your BGP router.</li></ul>
+      </li>
+      <li>
+      Apply the BGPPeer configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f bgppeer.yaml"} lang="terminal" />
+      </li>
+      <li>
+      To create a BGP advertisement to advertise the pool, create a file named <code>bgpadvertisement.yaml</code> with the following content:
+      <CodeBlock code={"apiVersion: metallb.io/v1beta1\nkind: BGPAdvertisement\nmetadata:\n  name: bgp-advertisement\n  namespace: metallb-system\nspec:\n  ipAddressPools:\n  - bgp-pool"} lang="yaml" />
+      </li>
+      <li>
+      Apply the BGPAdvertisement configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f bgpadvertisement.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Deploy an application and expose it with a <code>LoadBalancer</code> service. For this example, create a simple test application named for example <code>test-app</code> by creating a file named <code>deployment.yaml</code> with the following content:
+      <CodeBlock code={"apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: test-app\n  namespace: default\nspec:\n  replicas: 2\n  selector:\n    matchLabels:\n      app: test-app\n  template:\n    metadata:\n      labels:\n        app: test-app\n    spec:\n      containers:\n      - name: test-app\n        image: quay.io/openshifttest/hello-openshift:multiarch\n        ports:\n        - containerPort: 8080"} lang="yaml" />
+      </li>
+      <li>
+      Apply the deployment:
+      <CodeBlock code={"$ oc apply -f deployment.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create a <code>LoadBalancer</code> service for the application:
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  name: test-service\n  namespace: default\nspec:\n  selector:\n    app: test-app\n  ports:\n    - protocol: TCP\n      port: 80\n      targetPort: 8080\n  type: LoadBalancer"} lang="yaml" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The system creates <code>ServiceBGPStatus</code> resources automatically only when the service has at least one ready endpoint (running pod). Ensure your application pods are running before checking for <code>ServiceBGPStatus</code> resources.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Apply the service configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f service.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Verify the service received an external IP by running the following command:
+      <CodeBlock code={"$ oc get svc test-service -n default"} lang="terminal" />
+      <p>The output is similar to the following:</p>
+      <CodeBlock code={"NAME           TYPE           CLUSTER-IP       EXTERNAL-IP       PORT(S)        AGE\ntest-service   LoadBalancer   172.30.116.108   192.168.122.210   80:32431/TCP   2m"} lang="terminal" />
+      </li>
+      <li>
+      View the <code>ServiceBGPStatus</code> resources by running the following command:
+      <CodeBlock code={"$ oc get servicebgpstatus -n metallb-system"} lang="terminal" />
+      <p>The output is similar to the following:</p>
+      <CodeBlock code={"NAME                  NODE       SERVICE NAME   SERVICE NAMESPACE\nbgp-xxxxx             worker0    test-service   default"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p><code>ServiceBGPStatus</code> resources are created with generated names. Use labels to find the status for your service:</p>
+          <CodeBlock code={"$ oc get servicebgpstatus -n metallb-system -l metallb.io/service-name=test-service"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      View the details of the <code>ServiceBGPStatus</code> CR for your service:
+      <CodeBlock code={"$ oc get servicebgpstatus bgp-xxxxx -n metallb-system -o yaml"} lang="terminal" />
+      <p>The output is similar to the following:</p>
+      <CodeBlock code={"apiVersion: metallb.io/v1beta1\nkind: ServiceBGPStatus\nmetadata:\n  name: bgp-xxxxx\n  namespace: metallb-system\n  labels:\n    metallb.io/node: worker0\n    metallb.io/service-name: test-service\n    metallb.io/service-namespace: default\nstatus:\n  node: worker0\n  peers:\n  - bgp-peer\n  serviceName: test-service\n  serviceNamespace: default"} lang="yaml" />
+      <ul>
+      <li><code>metadata.labels.metallb.io/node</code> indicates the node that is advertising the service via BGP.</li>
+      <li><code>metadata.labels.metallb.io/service-name</code> identifies the service being advertised.</li>
+      <li><code>metadata.labels.metallb.io/service-namespace</code> identifies the namespace of the service being advertised.</li>
+      <li><code>status.node</code> confirms the name of the node advertising the service.</li>
+      <li><code>status.peers</code> lists the names of the BGPPeer resources to which the service is being advertised. This is useful for confirming that the advertisement is reaching the intended peers.</li>
+      <li><code>status.serviceName</code> indicates the name of the service being advertised.</li>
+      <li><code>status.serviceNamespace</code> indicates the namespace of the service being advertised.</li>
+      </ul>
+      </li>
+      </ol>
+      <h2 id="nw-metallb-verifying-bgp-session_monitor-metallb-config-status" class="group scroll-mt-20">Verifying BGP session state<a href="#nw-metallb-verifying-bgp-session_monitor-metallb-config-status" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Once you configure MetalLB for border gateway protocol (BGP) mode, you can verify that the system has established BGP sessions and is advertising routes. You can examine the <code>BGPSessionState</code> custom resource (CR) and the <code>FRRNodeState</code> CR to troubleshoot BGP connectivity and confirm proper route advertisement.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>BGPSessionState</code> CR is updated at a regular poll interval of 2 minutes. It can take up to 2 minutes for the CR to reflect the actual BGP state.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have an OpenShift Container Platform cluster with the MetalLB Operator installed.</li>
+      <li>
+      You have configured MetalLB for BGP mode with:
+      <ul>
+      <li>An <code>IPAddressPool</code></li>
+      <li>A <code>BGPPeer</code> configuration</li>
+      <li>A <code>BGPAdvertisement</code></li>
+      </ul>
+      </li>
+      <li>You have deployed at least one <code>LoadBalancer</code> service.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check BGP session status by running the following command:
+      <CodeBlock code={"$ oc get bgpsessionstates.frrk8s.metallb.io -A -o wide"} lang="terminal" />
+      <p>This example output shows the BGP session status between each node and its configured BGP peers. Look for the <code>BGP</code> column to confirm that the session is <code>Established</code>.</p>
+      <CodeBlock code={"NAMESPACE           NAME               NODE       PEER         VRF   BGP           BFD\nopenshift-frr-k8s   worker-2gjfq       worker     10.89.0.64         Active        N/A\nopenshift-frr-k8s   worker-9gtnb       worker     10.89.0.63         Established   N/A\nopenshift-frr-k8s   worker2-rknga      worker2    10.89.0.66         Established   Up\nopenshift-frr-k8s   worker2-t7bfc      worker2    172.30.0.2         Established   Down"} lang="terminal" />
+      </li>
+      <li>
+      Check <code>FRRNodeState</code> to see the BGP configuration on each node by running the following command:
+      <CodeBlock code={"$ oc get frrnodestate -n metallb-system"} lang="terminal" />
+      <p>The example output lists the <code>FRRNodeState</code> resources for each node where the MetalLB speaker is running.</p>
+      <CodeBlock code={"NAME                 AGE\nworker0.example.com  5m"} lang="terminal" />
+      </li>
+      <li>
+      View the detailed BGP configuration and running state by running the following command for a specific node:
+      <CodeBlock code={"$ oc get frrnodestate worker0.example.com -n metallb-system -o yaml"} lang="terminal" />
+      <p>The <code>status.runningConfig</code> field shows the FRR BGP configuration including configured BGP neighbors, route advertisements, and prefix lists.</p>
+      </li>
+      <li>
+      Verify that the system is advertising routes by checking the <code>FRRNodeState</code> resource for the relevant node with this command:
+      <CodeBlock code={"$ oc get frrnodestate _<node-name>_ -n metallb-system -o jsonpath='{.status.runningConfig}' | grep \"network\""} lang="terminal" />
+      <p>The output displays the network prefixes that BGP advertises. For example:</p>
+      <CodeBlock code={" address-family ipv4 unicast\n  network 192.168.122.210/32"} lang="terminal" />
+      <p>This confirms that BGP is advertising the service IP.</p>
+      </li>
+      </ol>
+      <h2 id="nw-metallb-checking-configuration-status_monitor-metallb-config-status" class="group scroll-mt-20">Checking MetalLB configuration status<a href="#nw-metallb-checking-configuration-status_monitor-metallb-config-status" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can verify that the MetalLB controller and speakers have successfully applied the current configuration by viewing the <code>ConfigurationState</code> custom resource (CR). MetalLB creates a <code>ConfigurationState</code> resource for the controller and one for each speaker node. These resources report whether the configuration is valid and surface error details when validation fails, such as incompatible custom resources.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have an OpenShift Container Platform cluster with the MetalLB Operator installed.</li>
+      <li>You have deployed a MetalLB instance.</li>
+      <li>You have configured MetalLB resources such as <code>IPAddressPool</code>, <code>BGPPeer</code>, <code>BFDProfile</code>, <code>Community</code>, or <code>FRRConfiguration</code>.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      List the <code>ConfigurationState</code> resources by running the following command:
+      <CodeBlock code={"$ oc get configurationstates -n metallb-system"} lang="terminal" />
+      <CodeBlock code={"NAME                         RESULT   ERRORSUMMARY   AGE\ncontroller                   Valid                   75m\nspeaker-mysno-sno.demo.lab   Valid                   28m"} lang="terminal" title="Example output" />
+      <p>The <code>controller</code> resource shows the status for the MetalLB controller. Each <code>speaker-&lt;node-name&gt;</code> resource shows the status for the speaker on that node.</p>
+      </li>
+      <li>
+      Verify that the controller has a valid configuration by inspecting the <code>ConfigurationState</code> details. Run the following command:
+      <CodeBlock code={"$ oc get configurationstates controller -n metallb-system -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: metallb.io/v1beta1\nkind: ConfigurationState\nmetadata:\n  creationTimestamp: \"2026-04-21T09:46:47Z\"\n  generation: 1\n  labels:\n    metallb.io/component-type: controller\n  name: controller\n  namespace: metallb-system\n  resourceVersion: \"28268\"\n  uid: 23f5c492-4d5c-4893-84ea-77904c006404\nstatus:\n  conditions:\n  - lastTransitionTime: \"2026-04-21T09:54:00Z\"\n    message: \"\"\n    reason: Reconciled\n    status: \"True\"\n    type: poolReconcilerValid\n  result: Valid"} lang="yaml" title="Example output" />
+      <p>Confirm that the output has the following values:</p>
+      <ul>
+      <li><code>result: Valid</code> indicates that all configured resources are compatible and active. If this value is <code>Invalid</code>, check the <code>errorSummary</code> field for aggregated error messages that identify which part of the configuration has failed.</li>
+      <li><code>message: Describes any configuration problem that occurs.  Here, </code>""` confirms that no errors were reported.</li>
+      <li>
+      <code>reason: Reconciled</code> with <code>status: "True"</code> confirms that the reconciler has successfully processed the configuration. If the <code>reason</code> is <code>ReconciliationFailed</code> and <code>status</code> is <code>"False"</code>, the <code>message</code> field contains details about the failure.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The controller does not validate peer-level settings. Errors such as a missing <code>BFDProfile</code>, undefined <code>Community</code>, or missing authentication secret are reported only by the speakers. A <code>Valid</code> controller with one or more <code>Invalid</code> speakers is expected in these cases. Always check both controller and speaker <code>ConfigurationState</code> resources.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If the configuration is invalid, the output is similar to the following example:</p>
+      <CodeBlock code={"apiVersion: metallb.io/v1beta1\nkind: ConfigurationState\nmetadata:\n  creationTimestamp: \"2026-04-21T09:51:17Z\"\n  generation: 1\n  labels:\n    metallb.io/component-type: speaker\n    metallb.io/node-name: mysno-sno.demo.lab\n  name: speaker-mysno-sno.demo.lab\n  namespace: metallb-system\n  resourceVersion: \"31161\"\n  uid: 339781bf-ec9a-4ba9-aaba-0a9ac8ebce78\nstatus:\n  conditions:\n  - lastTransitionTime: \"2026-04-21T10:09:34Z\"\n    message: 'configuration error: peer peer1 referencing non existing bfd profile\n      my-bfd-profile'\n    reason: ConfigurationError\n    status: \"False\"\n    type: configReconcilerValid\n  errorSummary: 'configuration error: peer peer1 referencing non existing bfd profile\n    my-bfd-profile'\n  result: Invalid"} lang="yaml" />
+      <p>Confirm that the output has the following values to identify the problem:</p>
+      </li>
+      <li><code>result: Invalid</code> indicates that one or more configured resources are incompatible. The <code>errorSummary</code> field provides an aggregated description of the problem.</li>
+      <li><code>reason: ConfigurationError</code> with <code>status: "False"</code> indicates that the reconciler failed to process the configuration. The <code>message</code> field describes the specific error.</li>
+      <li>
+      In this example, the <code>BGPPeer</code> resource <code>peer1</code> references a <code>BFDProfile</code> named <code>my-bfd-profile</code> that does not exist. To resolve this error, either create the missing <code>BFDProfile</code> resource or update the <code>BGPPeer</code> to reference an existing <code>BFDProfile</code>.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>ConfigurationState</code> resource does not report errors that arise when the configuration applied by the speaker to the <code>frr-k8s</code> daemon conflicts with other external configurations within that daemon.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      <li>
+      After correcting the configuration, verify that the status shows a valid configuration by running the following command:
+      <CodeBlock code={"$ oc get configurationstates -n metallb-system -o jsonpath='{range .items[*]}{.metadata.name}{\"\\t\"}{.status.result}{\"\\n\"}{end}'"} lang="terminal" />
+      <p>A return value of <code>Valid</code> for all entries confirms that the MetalLB controller and speakers are operating with a valid configuration.</p>
+      </li>
+      </ol>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb">About MetalLB and the MetalLB Operator</a></li></ul>
     </article>

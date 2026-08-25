@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-containers-dev-fuse","text":"Accessing faster builds with /dev/fuse"}];
+const headings = [{"depth":1,"slug":"nodes-containers-dev-fuse","text":"Accessing faster builds with /dev/fuse"},{"depth":2,"slug":"nodes-containers-dev-fuse-configuring_nodes-containers-dev-fuse","text":"Configuring /dev/fuse for unprivileged builds in pods"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/containers/nodes-containers-dev-fuse";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/containers"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing faster builds with /dev/fuse {#nodes-containers-dev-fuse}\n\nYou can configure your pods with the `/dev/fuse` device to enable faster and more efficient container image builds, particularly for unprivileged users. This device allows unprivileged pods to mount overlay filesystems, which can be leveraged by tools such as Podman.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/containers/nodes-containers-dev-fuse.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing faster builds with /dev/fuse {#nodes-containers-dev-fuse}\n\nYou can configure your pods with the `/dev/fuse` device to enable faster and more efficient container image builds, particularly for unprivileged users. This device allows unprivileged pods to mount overlay filesystems, which can be leveraged by tools such as Podman.\n\n## Configuring /dev/fuse for unprivileged builds in pods {#nodes-containers-dev-fuse-configuring_nodes-containers-dev-fuse}\n\nYou can grant an unprivileged pod the capability to perform Filesystem in Userspace (FUSE) mounts by exposing the `/dev/fuse` device. With this setup, an unprivileged user within the pod can use tools such as `podman` with storage drivers such as `fuse-overlayfs` by mimicking privileged build capabilities in a secure and efficient manner without granting full privileged access to the pod.\n\nYou expose the `/dev/fuse` device by adding the `io.kubernetes.cri-o.Devices: \"/dev/fuse\"` annotation to your pod definition.\n\n**Procedure**\n\n1. Define the pod with `/dev/fuse` access:\n\n   1. Create a YAML file named `fuse-builder-pod.yaml` with the following content:\n\n      ```yaml\n      apiVersion: v1\n      kind: Pod\n      metadata:\n        name: fuse-builder-pod\n        annotations:\n          io.kubernetes.cri-o.Devices: \"/dev/fuse\"\n      spec:\n        containers:\n        - name: build-container\n          image: quay.io/podman/stable\n          command: [\"/bin/sh\", \"-c\"]\n          args: [\"echo 'Container is running. Use oc exec to get a shell.'; sleep infinity\"]\n          securityContext:\n            runAsUser: 1000\n      ```\n\n      where:\n\n      `metadata.annotations`\n      :   Specifies that the `io.kubernetes.cri-o.Devices: \"/dev/fuse\"` annotation makes the FUSE device available.\n\n      `spec.containers.image`\n      :   Specifies a container that uses an image that includes `podman` (for example, `quay.io/podman/stable`).\n\n      `spec.containers.args`\n      :   Specifies a command to keep the container running so you can `exec` into it.\n\n      `spec.containers.securityContext`\n      :   Specifies a `securityContext` that runs the container as an unprivileged user (for example, `runAsUser: 1000`).\n\n      > [!NOTE]\n      > Depending on your cluster’s Security Context Constraints (SCCs) or other policies, you might need to further adjust the `securityContext` specification, for example, by allowing specific capabilities if `/dev/fuse` alone is not sufficient for `fuse-overlayfs` to operate.\n   2. Create the pod by running the following command:\n\n      ```terminal\n      $ oc apply -f fuse-builder-pod.yaml\n      ```\n2. Verify that the pod is running by running the following command:\n\n   ```terminal\n   $ oc get pods fuse-builder-pod\n   ```\n3. Access the pod and prepare the build environment:\n\n   1. After the `fuse-builder-pod` pod is in the `Running` state, open a shell session into the `build-container` environment by running the following command:\n\n      ```terminal\n      $ oc exec -ti fuse-builder-pod -- /bin/bash\n      ```\n\n      You are now inside the container.\n   2. Because the default working directory might not be writable by an unprivileged user, change to a writable directory such as `/tmp` by running the following commands:\n\n      ```terminal\n      $ cd /tmp\n      ```\n\n      ```terminal\n      $ pwd\n      ```\n\n      ```terminal\n      /tmp\n      ```\n4. Create a dockerfile and build an image by using Podman:\n\n   Inside the pod’s shell and within the `/tmp` directory, you can now create a `Dockerfile` and use `podman` to build a container image. If `fuse-overlayfs` is the default or configured storage driver, Podman is able to leverage `fuse-overlayfs` because of the available `/dev/fuse` device.\n\n   1. Create a sample `Dockerfile`:\n\n      ```terminal\n      $ cat > Dockerfile <<EOF\n      FROM registry.access.redhat.com/ubi9/ubi-minimal\n      RUN microdnf install -y findutils && microdnf clean all\n      RUN echo \"This image was built inside a pod with /dev/fuse by user $(id -u)\" > /app/build_info.txt\n      COPY Dockerfile /app/Dockerfile_copied\n      WORKDIR /app\n      CMD [\"sh\", \"-c\", \"cat /app/build_info.txt && echo '--- Copied Dockerfile ---' && cat /app/Dockerfile_copied\"]\n      EOF\n      ```\n   2. Build the image by running the following command. The `-t` flag tags the image.\n\n      ```terminal\n      $ podman build -t my-fuse-built-image:latest .\n      ```\n\n      You should see Podman executing the build steps.\n5. Optional: Test the built image:\n\n   Still inside the `fuse-builder-pod`, you can run a container from the image you just built to test it by running the following command:\n\n   ```terminal\n   $ podman run --rm my-fuse-built-image:latest\n   ```\n\n   This should output the content of the `/app/build_info.txt` file and the copied Dockerfile.\n6. Exit the pod and clean up:\n\n   1. After you are done, exit the shell session in the pod by running the following command:\n\n      ```terminal\n      $ exit\n      ```\n   2. Delete the pod if it is no longer needed by running the following command:\n\n      ```terminal\n      $ oc delete pod fuse-builder-pod\n      ```\n   3. Remove the local YAML file by running the following command:\n\n      ```terminal\n      $ rm fuse-builder-pod.yaml\n      ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/containers/nodes-containers-dev-fuse.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,101 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-containers-dev-fuse" class="group scroll-mt-20">Accessing faster builds with /dev/fuse<a href="#nodes-containers-dev-fuse" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure your pods with the <code>/dev/fuse</code> device to enable faster and more efficient container image builds, particularly for unprivileged users. This device allows unprivileged pods to mount overlay filesystems, which can be leveraged by tools such as Podman.</p>
-      <p class="/modules/nodes-containers-dev-fuse-configuring.md"></p>
+      <h2 id="nodes-containers-dev-fuse-configuring_nodes-containers-dev-fuse" class="group scroll-mt-20">Configuring /dev/fuse for unprivileged builds in pods<a href="#nodes-containers-dev-fuse-configuring_nodes-containers-dev-fuse" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can grant an unprivileged pod the capability to perform Filesystem in Userspace (FUSE) mounts by exposing the <code>/dev/fuse</code> device. With this setup, an unprivileged user within the pod can use tools such as <code>podman</code> with storage drivers such as <code>fuse-overlayfs</code> by mimicking privileged build capabilities in a secure and efficient manner without granting full privileged access to the pod.</p>
+      <p>You expose the <code>/dev/fuse</code> device by adding the <code>io.kubernetes.cri-o.Devices: "/dev/fuse"</code> annotation to your pod definition.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Define the pod with <code>/dev/fuse</code> access:
+      <ol>
+      <li>
+      Create a YAML file named <code>fuse-builder-pod.yaml</code> with the following content:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: fuse-builder-pod\n  annotations:\n    io.kubernetes.cri-o.Devices: \"/dev/fuse\"\nspec:\n  containers:\n  - name: build-container\n    image: quay.io/podman/stable\n    command: [\"/bin/sh\", \"-c\"]\n    args: [\"echo 'Container is running. Use oc exec to get a shell.'; sleep infinity\"]\n    securityContext:\n      runAsUser: 1000"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.annotations</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the <code>io.kubernetes.cri-o.Devices: "/dev/fuse"</code> annotation makes the FUSE device available.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.image</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a container that uses an image that includes <code>podman</code> (for example, <code>quay.io/podman/stable</code>).</p></dd>
+      <dt class="font-semibold"><code>spec.containers.args</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a command to keep the container running so you can <code>exec</code> into it.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a <code>securityContext</code> that runs the container as an unprivileged user (for example, <code>runAsUser: 1000</code>).</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Depending on your cluster’s Security Context Constraints (SCCs) or other policies, you might need to further adjust the <code>securityContext</code> specification, for example, by allowing specific capabilities if <code>/dev/fuse</code> alone is not sufficient for <code>fuse-overlayfs</code> to operate.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Create the pod by running the following command:
+      <CodeBlock code={"$ oc apply -f fuse-builder-pod.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Verify that the pod is running by running the following command:
+      <CodeBlock code={"$ oc get pods fuse-builder-pod"} lang="terminal" />
+      </li>
+      <li>
+      Access the pod and prepare the build environment:
+      <ol>
+      <li>
+      After the <code>fuse-builder-pod</code> pod is in the <code>Running</code> state, open a shell session into the <code>build-container</code> environment by running the following command:
+      <CodeBlock code={"$ oc exec -ti fuse-builder-pod -- /bin/bash"} lang="terminal" />
+      <p>You are now inside the container.</p>
+      </li>
+      <li>
+      Because the default working directory might not be writable by an unprivileged user, change to a writable directory such as <code>/tmp</code> by running the following commands:
+      <CodeBlock code={"$ cd /tmp"} lang="terminal" />
+      <CodeBlock code={"$ pwd"} lang="terminal" />
+      <CodeBlock code={"/tmp"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a dockerfile and build an image by using Podman:
+      <p>Inside the pod’s shell and within the <code>/tmp</code> directory, you can now create a <code>Dockerfile</code> and use <code>podman</code> to build a container image. If <code>fuse-overlayfs</code> is the default or configured storage driver, Podman is able to leverage <code>fuse-overlayfs</code> because of the available <code>/dev/fuse</code> device.</p>
+      <ol>
+      <li>
+      Create a sample <code>Dockerfile</code>:
+      <CodeBlock code={"$ cat > Dockerfile <<EOF\nFROM registry.access.redhat.com/ubi9/ubi-minimal\nRUN microdnf install -y findutils && microdnf clean all\nRUN echo \"This image was built inside a pod with /dev/fuse by user $(id -u)\" > /app/build_info.txt\nCOPY Dockerfile /app/Dockerfile_copied\nWORKDIR /app\nCMD [\"sh\", \"-c\", \"cat /app/build_info.txt && echo '--- Copied Dockerfile ---' && cat /app/Dockerfile_copied\"]\nEOF"} lang="terminal" />
+      </li>
+      <li>
+      Build the image by running the following command. The <code>-t</code> flag tags the image.
+      <CodeBlock code={"$ podman build -t my-fuse-built-image:latest ."} lang="terminal" />
+      <p>You should see Podman executing the build steps.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Optional: Test the built image:
+      <p>Still inside the <code>fuse-builder-pod</code>, you can run a container from the image you just built to test it by running the following command:</p>
+      <CodeBlock code={"$ podman run --rm my-fuse-built-image:latest"} lang="terminal" />
+      <p>This should output the content of the <code>/app/build_info.txt</code> file and the copied Dockerfile.</p>
+      </li>
+      <li>
+      Exit the pod and clean up:
+      <ol>
+      <li>
+      After you are done, exit the shell session in the pod by running the following command:
+      <CodeBlock code={"$ exit"} lang="terminal" />
+      </li>
+      <li>
+      Delete the pod if it is no longer needed by running the following command:
+      <CodeBlock code={"$ oc delete pod fuse-builder-pod"} lang="terminal" />
+      </li>
+      <li>
+      Remove the local YAML file by running the following command:
+      <CodeBlock code={"$ rm fuse-builder-pod.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"sno-configure-for-vdu","text":"Recommended {{ sno }} cluster configuration for vDU application workloads"}];
+const headings = [{"depth":1,"slug":"sno-configure-for-vdu","text":"Recommended {{ sno }} cluster configuration for vDU application workloads"},{"depth":2,"slug":"ztp-low-latency_sno-configure-for-vdu","text":"Running low latency applications on OpenShift Container Platform"},{"depth":2,"slug":"ztp-install-sno-hardware-reqs_sno-configure-for-vdu","text":"Recommended cluster host requirements for vDU application workloads"},{"depth":2,"slug":"ztp-du-configuring-host-firmware-requirements_sno-configure-for-vdu","text":"Configuring host firmware for low latency and high performance"},{"depth":2,"slug":"ztp-managed-cluster-network-prereqs_sno-configure-for-vdu","text":"Connectivity prerequisites for managed cluster networks"},{"depth":2,"slug":"ztp-workload-partitioning-sno_sno-configure-for-vdu","text":"Workload partitioning in single-node OpenShift with GitOps ZTP"},{"depth":2,"slug":"ztp-sno-install-time-cluster-config_sno-configure-for-vdu","text":"Recommended cluster install manifests"},{"depth":3,"slug":"ztp-sno-du-configuring-the-container-mountspace_sno-configure-for-vdu","text":"Reduced platform management footprint"},{"depth":3,"slug":"ztp-sno-du-enabling-sctp_sno-configure-for-vdu","text":"SCTP"},{"depth":3,"slug":"ztp-setting-rcu-normal_sno-configure-for-vdu","text":"Setting rcu_normal"},{"depth":3,"slug":"ztp-sno-du-enabling-kdump_sno-configure-for-vdu","text":"Automatic kernel crash dumps with kdump"},{"depth":3,"slug":"ztp-sno-du-disabling-crio-wipe_sno-configure-for-vdu","text":"Disable automatic CRI-O cache wipe"},{"depth":3,"slug":"ztp-sno-du-configuring-crun-container-runtime_sno-configure-for-vdu","text":"Configuring crun as the default container runtime"},{"depth":2,"slug":"ztp-sno-post-install-time-cluster-config_sno-configure-for-vdu","text":"Recommended postinstallation cluster configurations"},{"depth":3,"slug":"ztp-sno-du-configuring-the-operators_sno-configure-for-vdu","text":"Operators"},{"depth":3,"slug":"ztp-sno-du-subscribing-to-the-operators-needed-for-platform-configuration_sno-configure-for-vdu","text":"Operator subscriptions"},{"depth":3,"slug":"ztp-sno-du-configuring-logging-locally-and-forwarding_sno-configure-for-vdu","text":"Cluster logging and log forwarding"},{"depth":3,"slug":"ztp-sno-du-configuring-performance-addons_sno-configure-for-vdu","text":"Performance profile"},{"depth":3,"slug":"ztp-sno-du-configuring-time-sync_sno-configure-for-vdu","text":"Configuring cluster time synchronization"},{"depth":3,"slug":"ztp-sno-du-configuring-ptp_sno-configure-for-vdu","text":"PTP"},{"depth":3,"slug":"ztp-sno-du-tuning-the-performance-patch_sno-configure-for-vdu","text":"Extended Tuned profile"},{"depth":3,"slug":"ztp-sno-du-configuring-sriov_sno-configure-for-vdu","text":"SR-IOV"},{"depth":3,"slug":"ztp-sno-du-removing-the-console-operator_sno-configure-for-vdu","text":"Console Operator"},{"depth":3,"slug":"ztp-sno-du-reducing-resource-usage-with-cluster-monitoring_sno-configure-for-vdu","text":"Alertmanager"},{"depth":3,"slug":"ztp-sno-du-reducing-resource-usage-with-olm-pprof_sno-configure-for-vdu","text":"Operator Lifecycle Manager"},{"depth":3,"slug":"lvms-configuring-lvms-on-sno_sno-configure-for-vdu","text":"LVM Storage"},{"depth":3,"slug":"ztp-sno-du-disabling-network-diagnostics_sno-configure-for-vdu","text":"Network diagnostics"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Recommended {{ sno }} cluster configuration for vDU application workloads";
-const description = "Use the following reference information to understand the {{ sno }} configurations required to deploy virtual distributed unit (vDU) applications in the…" || undefined;
+const description = "Use the following reference information to understand the single-node OpenShift configurations required to deploy virtual distributed unit (vDU)…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["edge_computing"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Recommended {{ sno }} cluster configuration for vDU application workloads {#sno-configure-for-vdu}\n\nUse the following reference information to understand the {{ sno }} configurations required to deploy virtual distributed unit (vDU) applications in the cluster. Configurations include cluster optimizations for high performance workloads, enabling workload partitioning, and minimizing the number of reboots required postinstallation.\n\n**Additional resources**\n\n- [Manually installing a {{ sno }} cluster with {{ ztp }}](/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-manual-install)\n- [Deploying far edge sites with {{ ztp }}](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)\n\n**Additional resources**\n\n- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)\n- [Tuning nodes for low latency with the performance profile](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-tuning-low-latency-nodes-with-perf-profile)\n\n**Additional resources**\n\n- [TPM encryption](/openshift-docs-markdown/security/network_bound_disk_encryption/nbde-about-disk-encryption-technology#nbde-tpm-encryption_nbde-implementation)\n\n**Additional resources**\n\n- [Advanced managed cluster configuration with ClusterInstance CRs](/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-advanced-install-ztp)\n\n**Additional resources**\n\n**Additional resources**\n\n- [Deploying a managed cluster with ClusterInstance and {{ ztp }}](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-a-site_ztp-deploying-far-edge-sites)\n\n**Additional resources**\n\n- [Deploying far edge sites using ZTP](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Recommended {{ sno }} cluster configuration for vDU application workloads {#sno-configure-for-vdu}\n\nUse the following reference information to understand the single-node OpenShift configurations required to deploy virtual distributed unit (vDU) applications in the cluster. Configurations include cluster optimizations for high performance workloads, enabling workload partitioning, and minimizing the number of reboots required postinstallation.\n\n**Additional resources**\n\n- [Manually installing a single-node OpenShift cluster with GitOps ZTP](/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-manual-install)\n- [Deploying far edge sites with GitOps ZTP](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)\n\n## Running low latency applications on OpenShift Container Platform {#ztp-low-latency_sno-configure-for-vdu}\n\nOpenShift Container Platform enables low latency processing for applications running on commercial off-the-shelf (COTS) hardware by using several technologies and specialized hardware devices:\n\nReal-time kernel for RHCOS\n:   Ensures workloads are handled with a high degree of process determinism.\n\nCPU isolation\n:   Avoids CPU scheduling delays and ensures CPU capacity is available consistently.\n\nNUMA-aware topology management\n:   Aligns memory and huge pages with CPU and PCI devices to pin guaranteed container memory and huge pages to the non-uniform memory access (NUMA) node. Pod resources for all Quality of Service (QoS) classes stay on the same NUMA node. This decreases latency and improves performance of the node.\n\nHuge pages memory management\n:   Using huge page sizes improves system performance by reducing the amount of system resources required to access page tables.\n\nPrecision timing synchronization using PTP\n:   Allows synchronization between nodes in the network with sub-microsecond accuracy.\n\n## Recommended cluster host requirements for vDU application workloads {#ztp-install-sno-hardware-reqs_sno-configure-for-vdu}\n\nRunning vDU application workloads requires a bare-metal host with sufficient resources to run OpenShift Container Platform services and production workloads.\n\n**Minimum resource requirements**\n\n| Profile | vCPU | Memory | Storage |\n| --- | --- | --- | --- |\n| Minimum | 4 vCPU | 32 GB of RAM | 120 GB |\n| Recommended | 8 vCPU | 32 GB of RAM | 120 GB |\n\n> [!IMPORTANT]\n> Running single-node OpenShift on 4 vCPUs leaves very little headroom for vDU application workloads. With all cluster capabilities enabled, the platform alone can request over 2.5 vCPUs and consume over 2 vCPUs at idle, leaving minimal capacity for application workloads.\n\nTo run on 4 vCPUs, you must minimize the cluster resource footprint:\n\n- Set `baselineCapabilitySet` to `None` in the `install-config.yaml` file and use `additionalEnabledCapabilities` to enable only the capabilities that your workload requires, such as `Storage`, `Console`, and `Ingress`. For more information, see \"Cluster capabilities\".\n- Use a performance profile to partition CPU resources between cluster housekeeping duties and application workloads, ensuring that your vDU containers run on isolated CPUs with minimal interruption. For more information, see \"Tuning nodes for low latency with the performance profile\".\n\nIf your deployment does not require these optimizations, it is recommended to use at least 8 vCPUs..\n\n> [!NOTE]\n> One vCPU equals one physical core. However, if you enable simultaneous multithreading (SMT), or Hyper-Threading, use the following formula to calculate the number of vCPUs that represent one physical core:\n>\n> - (threads per core × cores) × sockets = vCPUs\n\n> [!IMPORTANT]\n> The server must have a Baseboard Management Controller (BMC) when booting with virtual media.\n\n**Additional resources**\n\n- [Cluster capabilities](/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities)\n- [Tuning nodes for low latency with the performance profile](/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-tuning-low-latency-nodes-with-perf-profile)\n\n## Configuring host firmware for low latency and high performance {#ztp-du-configuring-host-firmware-requirements_sno-configure-for-vdu}\n\nBare-metal hosts require the firmware to be configured before the host can be provisioned. The firmware configuration is dependent on the specific hardware and the particular requirements of your installation.\n\n**Procedure**\n\n1. Set the **UEFI/BIOS Boot Mode** to `UEFI`.\n2. In the host boot sequence order, set **Hard drive first**.\n3. Apply the specific firmware configuration for your hardware. The following table describes a representative firmware configuration for an Intel Xeon Skylake server and later hardware generations, based on the Intel FlexRAN 4G and 5G baseband PHY reference design.\n\n   > [!IMPORTANT]\n   > The exact firmware configuration depends on your specific hardware and network requirements. The following sample configuration is for illustrative purposes only.\n\n   **Sample firmware configuration**\n\n   | Firmware setting | Configuration |\n   | --- | --- |\n   | CPU Power and Performance Policy | Performance |\n   | Uncore Frequency Scaling | Disabled |\n   | Performance P-limit | Disabled |\n   | Enhanced Intel SpeedStep (R) Tech | Enabled |\n   | Intel Configurable TDP | Enabled |\n   | Configurable TDP Level | Level 2 |\n   | Intel(R) Turbo Boost Technology | Enabled |\n   | Energy Efficient Turbo | Disabled |\n   | Hardware P-States | Disabled |\n   | Package C-State | C0/C1 state |\n   | C1E | Disabled |\n   | Processor C6 | Disabled |\n\n   > [!NOTE]\n   > Enable global SR-IOV and VT-d settings in the firmware for the host. These settings are relevant to bare-metal environments.\n\n## Connectivity prerequisites for managed cluster networks {#ztp-managed-cluster-network-prereqs_sno-configure-for-vdu}\n\nBefore you can install and provision a managed cluster with the GitOps Zero Touch Provisioning (ZTP) pipeline, the managed cluster host must meet the following networking prerequisites:\n\n- There must be bi-directional connectivity between the GitOps ZTP container in the hub cluster and the Baseboard Management Controller (BMC) of the target bare-metal host.\n- The managed cluster must be able to resolve and reach the API hostname of the hub hostname and `&#42;.apps` hostname. Here is an example of the API hostname of the hub and `&#42;.apps` hostname:\n\n  - `api.hub-cluster.internal.domain.com`\n  - `console-openshift-console.apps.hub-cluster.internal.domain.com`\n- The hub cluster must be able to resolve and reach the API and `&#42;.apps` hostname of the managed cluster. Here is an example of the API hostname of the managed cluster and `&#42;.apps` hostname:\n\n  - `api.sno-managed-cluster-1.internal.domain.com`\n  - `console-openshift-console.apps.sno-managed-cluster-1.internal.domain.com`\n\n## Workload partitioning in single-node OpenShift with GitOps ZTP {#ztp-workload-partitioning-sno_sno-configure-for-vdu}\n\nWorkload partitioning configures OpenShift Container Platform services, cluster management workloads, and infrastructure pods to run on a reserved number of host CPUs.\n\nTo configure workload partitioning with GitOps Zero Touch Provisioning (ZTP), you configure a `cpuPartitioningMode` field in the `ClusterInstance` custom resource (CR) that you use to install the cluster and you apply a `PerformanceProfile` CR that configures the `isolated` and `reserved` CPUs on the host.\n\nConfiguring the `ClusterInstance` CR enables workload partitioning at cluster installation time and applying the `PerformanceProfile` CR configures the specific allocation of CPUs to reserved and isolated sets. Both of these steps happen at different points during cluster provisioning.\n\nThe workload partitioning configuration pins the OpenShift Container Platform infrastructure pods to the `reserved` CPU set. Platform services such as systemd, CRI-O, and kubelet run on the `reserved` CPU set. The `isolated` CPU sets are exclusively allocated to your container workloads. Isolating CPUs ensures that the workload has guaranteed access to the specified CPUs without contention from other applications running on the same node. All CPUs that are not isolated should be reserved.\n\n> [!IMPORTANT]\n> Ensure that `reserved` and `isolated` CPU sets do not overlap with each other.\n\n**Additional resources**\n\n- [TPM encryption](/openshift-docs-markdown/security/network_bound_disk_encryption/nbde-about-disk-encryption-technology#nbde-tpm-encryption_nbde-implementation)\n\n## Recommended cluster install manifests {#ztp-sno-install-time-cluster-config_sno-configure-for-vdu}\n\nThe ZTP pipeline applies the following custom resources (CRs) during cluster installation. These configuration CRs ensure that the cluster meets the feature and performance requirements necessary for running a vDU application.\n\n> [!NOTE]\n> When using the GitOps ZTP plugin and `ClusterInstance` CRs for cluster deployment, the following `MachineConfig` CRs are included by default.\n\nUse the `ClusterInstance` `extraManifestRefs` to alter the CRs that are included by default. For more information, see \"Advanced managed cluster configuration with ClusterInstance CRs\".\n\n**Additional resources**\n\n- [Advanced managed cluster configuration with ClusterInstance CRs](/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-advanced-install-ztp)\n\n### Reduced platform management footprint {#ztp-sno-du-configuring-the-container-mountspace_sno-configure-for-vdu}\n\nTo reduce the overall management footprint of the platform, a `MachineConfig` custom resource (CR) is required that places all Kubernetes-specific mount points in a new namespace separate from the host operating system. The following base64-encoded example `MachineConfig` CR illustrates this configuration.\n\n```yaml {title=\"Recommended container mount namespace configuration (01-container-mount-ns-and-kubelet-conf-master.yaml)\"}\n{% include \"./snippets/ztp_01-container-mount-ns-and-kubelet-conf-master.yaml\" %}\n```\n\n### SCTP {#ztp-sno-du-enabling-sctp_sno-configure-for-vdu}\n\nStream Control Transmission Protocol (SCTP) is a key protocol used in RAN applications. This `MachineConfig` object adds the SCTP kernel module to the node to enable this protocol.\n\n```yaml {title=\"Recommended control plane node SCTP configuration (03-sctp-machine-config-master.yaml)\"}\n{% include \"./snippets/ztp_03-sctp-machine-config-master.yaml\" %}\n```\n\n```yaml {title=\"Recommended worker node SCTP configuration (03-sctp-machine-config-worker.yaml)\"}\n{% include \"./snippets/ztp_03-sctp-machine-config-worker.yaml\" %}\n```\n\n### Setting rcu_normal {#ztp-setting-rcu-normal_sno-configure-for-vdu}\n\nThe following `MachineConfig` CR configures the system to set `rcu_normal` to 1 after the system has finished startup. This improves kernel latency for vDU applications.\n\n```yaml {title=\"Recommended configuration for disabling rcu_expedited after the node has finished startup (08-set-rcu-normal-master.yaml)\"}\n{% include \"./snippets/ztp_08-set-rcu-normal-master.yaml\" %}\n```\n\n### Automatic kernel crash dumps with kdump {#ztp-sno-du-enabling-kdump_sno-configure-for-vdu}\n\n`kdump` is a Linux kernel feature that creates a kernel crash dump when the kernel crashes. `kdump` is enabled with the following `MachineConfig` CRs.\n\n```yaml {title=\"Recommended control plane node kdump configuration (06-kdump-master.yaml)\"}\n{% include \"./snippets/ztp_06-kdump-master.yaml\" %}\n```\n\n```yaml {title=\"Recommended kdump worker node configuration (06-kdump-worker.yaml)\"}\n{% include \"./snippets/ztp_06-kdump-worker.yaml\" %}\n```\n\n### Disable automatic CRI-O cache wipe {#ztp-sno-du-disabling-crio-wipe_sno-configure-for-vdu}\n\nAfter an uncontrolled host shutdown or cluster reboot, CRI-O automatically deletes the entire CRI-O cache, causing all images to be pulled from the registry when the node reboots. This can result in unacceptably slow recovery times or recovery failures. To prevent this from happening in single-node OpenShift clusters that you install with GitOps ZTP, disable the CRI-O delete cache feature during cluster installation.\n\n```yaml {title=\"Recommended MachineConfig CR to disable CRI-O cache wipe on control plane nodes (99-crio-disable-wipe-master.yaml)\"}\n{% include \"./snippets/ztp_99-crio-disable-wipe-master.yaml\" %}\n```\n\n```yaml {title=\"Recommended MachineConfig CR to disable CRI-O cache wipe on worker nodes (99-crio-disable-wipe-worker.yaml)\"}\n{% include \"./snippets/ztp_99-crio-disable-wipe-worker.yaml\" %}\n```\n\n### Configuring crun as the default container runtime {#ztp-sno-du-configuring-crun-container-runtime_sno-configure-for-vdu}\n\nThe following `ContainerRuntimeConfig` custom resources (CRs) configure crun as the default OCI container runtime for control plane and worker nodes. The crun container runtime is fast and lightweight and has a low memory footprint.\n\n> [!IMPORTANT]\n> For optimal performance, enable crun for control plane and worker nodes in single-node OpenShift, three-node OpenShift, and standard clusters. To avoid the cluster rebooting when the CR is applied, apply the change as a GitOps ZTP additional Day 0 install-time manifest.\n\n```yaml {title=\"Recommended ContainerRuntimeConfig CR for control plane nodes (enable-crun-master.yaml)\"}\n{% include \"./snippets/ztp_enable-crun-master.yaml\" %}\n```\n\n```yaml {title=\"Recommended ContainerRuntimeConfig CR for worker nodes (enable-crun-worker.yaml)\"}\n{% include \"./snippets/ztp_enable-crun-worker.yaml\" %}\n```\n\n**Additional resources**\n\n## Recommended postinstallation cluster configurations {#ztp-sno-post-install-time-cluster-config_sno-configure-for-vdu}\n\nWhen the cluster installation is complete, the ZTP pipeline applies the following custom resources (CRs) that are required to run DU workloads.\n\n> [!NOTE]\n> In GitOps ZTP v4.10 and earlier, you configure UEFI secure boot with a `MachineConfig` CR. This is no longer required in GitOps ZTP v4.11 and later. In v4.11, you configure UEFI secure boot for single-node OpenShift clusters by updating the `spec.nodes[].bootMode` field in the `ClusterInstance` CR that you use to install the cluster. For more information, see \"Deploying a managed cluster with ClusterInstance and GitOps ZTP\".\n\n**Additional resources**\n\n- [Deploying a managed cluster with ClusterInstance and GitOps ZTP](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-a-site_ztp-deploying-far-edge-sites)\n\n### Operators {#ztp-sno-du-configuring-the-operators_sno-configure-for-vdu}\n\nSingle-node OpenShift clusters that run DU workloads require the following Operators to be installed:\n\n- Local Storage Operator\n- Logging Operator\n- PTP Operator\n- SR-IOV Network Operator\n\nYou also need to configure a custom `CatalogSource` CR, disable the default `OperatorHub` configuration, and configure an `ImageContentSourcePolicy` mirror registry that is accessible from the clusters that you install.\n\n```yaml {title=\"Recommended Storage Operator namespace and Operator group configuration (StorageNS.yaml, StorageOperGroup.yaml)\"}\n---\n{% include \"./snippets/ztp_StorageNS.yaml\" %}\n---\n{% include \"./snippets/ztp_StorageOperGroup.yaml\" %}\n```\n\n```yaml {title=\"Recommended Cluster Logging Operator namespace and Operator group configuration (ClusterLogNS.yaml, ClusterLogOperGroup.yaml)\"}\n{% include \"./snippets/ztp_ClusterLogNS.yaml\" %}\n{% include \"./snippets/ztp_ClusterLogOperGroup.yaml\" %}\n```\n\n```yaml {title=\"Recommended PTP Operator namespace and Operator group configuration (PtpSubscriptionNS.yaml, PtpSubscriptionOperGroup.yaml)\"}\n{% include \"./snippets/ztp_PtpSubscriptionNS.yaml\" %}\n---\n{% include \"./snippets/ztp_PtpSubscriptionOperGroup.yaml\" %}\n```\n\n```yaml {title=\"Recommended SR-IOV Operator namespace and Operator group configuration (SriovSubscriptionNS.yaml, SriovSubscriptionOperGroup.yaml)\"}\n---\n{% include \"./snippets/ztp_SriovSubscriptionNS.yaml\" %}\n---\n{% include \"./snippets/ztp_SriovSubscriptionOperGroup.yaml\" %}\n```\n\n```yaml {title=\"Recommended CatalogSource configuration (DefaultCatsrc.yaml)\"}\n{% include \"./snippets/ztp_DefaultCatsrc.yaml\" %}\n```\n\n```yaml {title=\"Recommended ImageContentSourcePolicy configuration (DisconnectedICSP.yaml)\"}\n{% include \"./snippets/ztp_DisconnectedICSP.yaml\" %}\n```\n\n```yaml {title=\"Recommended OperatorHub configuration (OperatorHub.yaml)\"}\n{% include \"./snippets/ztp_OperatorHub.yaml\" %}\n```\n\n### Operator subscriptions {#ztp-sno-du-subscribing-to-the-operators-needed-for-platform-configuration_sno-configure-for-vdu}\n\nSingle-node OpenShift clusters that run DU workloads require the following `Subscription` CRs. The subscription provides the location to download the following Operators:\n\n- Local Storage Operator\n- Logging Operator\n- PTP Operator\n- SR-IOV Network Operator\n- SRIOV-FEC Operator\n\nFor each Operator subscription, specify the channel to get the Operator from. The recommended channel is `stable`.\n\nYou can specify `Manual` or `Automatic` updates. In `Automatic` mode, the Operator automatically updates to the latest versions in the channel as they become available in the registry. In `Manual` mode, new Operator versions are installed only when they are explicitly approved.\n\n> [!TIP]\n> Use `Manual` mode for subscriptions. This allows you to control the timing of Operator updates to fit within scheduled maintenance windows.\n\n```yaml {title=\"Recommended Local Storage Operator subscription (StorageSubscription.yaml)\"}\n{% include \"./snippets/ztp_StorageSubscription.yaml\" %}\n```\n\n```yaml {title=\"Recommended SR-IOV Operator subscription (SriovSubscription.yaml)\"}\n{% include \"./snippets/ztp_SriovSubscription.yaml\" %}\n```\n\n```yaml {title=\"Recommended PTP Operator subscription (PtpSubscription.yaml)\"}\n{% include \"./snippets/ztp_PtpSubscription.yaml\" %}\n```\n\n```yaml {title=\"Recommended Cluster Logging Operator subscription (ClusterLogSubscription.yaml)\"}\n{% include \"./snippets/ztp_ClusterLogSubscription.yaml\" %}\n```\n\n### Cluster logging and log forwarding {#ztp-sno-du-configuring-logging-locally-and-forwarding_sno-configure-for-vdu}\n\nSingle-node OpenShift clusters that run DU workloads require logging and log forwarding for debugging. The following custom resources (CRs) are required.\n\n<a name=\"ztp-clusterlogforwarder-yaml\"></a>\n\n```yaml {title=\"Recommended ClusterLogForwarder.yaml\"}\n{% include \"./snippets/ztp_ClusterLogForwarder.yaml\" %}\n```\n\n> [!NOTE]\n> Set the `spec.outputs.kafka.url` field to the URL of the Kafka server where the logs are forwarded to.\n\n<a name=\"ztp-clusterlogns-yaml\"></a>\n\n```yaml {title=\"Recommended ClusterLogNS.yaml\"}\n{% include \"./snippets/ztp_ClusterLogNS.yaml\" %}\n```\n\n<a name=\"ztp-clusterlogopergroup-yaml\"></a>\n\n```yaml {title=\"Recommended ClusterLogOperGroup.yaml\"}\n{% include \"./snippets/ztp_ClusterLogOperGroup.yaml\" %}\n```\n\n<a name=\"ztp-clusterlogserviceaccount-yaml\"></a>\n\n```yaml {title=\"Recommended ClusterLogServiceAccount.yaml\"}\n{% include \"./snippets/ztp_ClusterLogServiceAccount.yaml\" %}\n```\n\n<a name=\"ztp-clusterlogserviceaccountauditbinding-yaml\"></a>\n\n```yaml {title=\"Recommended ClusterLogServiceAccountAuditBinding.yaml\"}\n{% include \"./snippets/ztp_ClusterLogServiceAccountAuditBinding.yaml\" %}\n```\n\n<a name=\"ztp-clusterlogserviceaccountinfrastructurebinding-yaml\"></a>\n\n```yaml {title=\"Recommended ClusterLogServiceAccountInfrastructureBinding.yaml\"}\n{% include \"./snippets/ztp_ClusterLogServiceAccountInfrastructureBinding.yaml\" %}\n```\n\n<a name=\"ztp-clusterlogsubscription-yaml\"></a>\n\n```yaml {title=\"Recommended ClusterLogSubscription.yaml\"}\n{% include \"./snippets/ztp_ClusterLogSubscription.yaml\" %}\n```\n\n### Performance profile {#ztp-sno-du-configuring-performance-addons_sno-configure-for-vdu}\n\nSingle-node OpenShift clusters that run DU workloads require a Node Tuning Operator performance profile to use real-time host capabilities and services.\n\n> [!NOTE]\n> In earlier versions of OpenShift Container Platform, the Performance Addon Operator was used to implement automatic tuning to achieve low latency performance for OpenShift applications. In OpenShift Container Platform 4.11 and later, this functionality is part of the Node Tuning Operator.\n\nThe following example `PerformanceProfile` CR illustrates the required single-node OpenShift cluster configuration.\n\n```yaml {title=\"Recommended performance profile configuration (PerformanceProfile.yaml)\"}\n{% include \"./snippets/ztp_PerformanceProfile.yaml\" %}\n```\n\n***PerformanceProfile CR options for single-node OpenShift clusters***\n\n<table>\n<thead>\n<tr>\n  <th>PerformanceProfile CR field</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>metadata.name</code></td>\n  <td>Ensure that <code>name</code> matches the following fields set in related GitOps ZTP custom resources (CRs):<br><br><ul><li><code>include=openshift-node-performance-${PerformanceProfile.metadata.name}</code> in <code>TunedPerformancePatch.yaml</code></li><li><code>name: 50-performance-${PerformanceProfile.metadata.name}</code> in <code>validatorCRs/informDuValidator.yaml</code></li></ul></td>\n</tr>\n<tr>\n  <td><code>spec.additionalKernelArgs</code></td>\n  <td><code>\"efi=runtime\"</code> Configures UEFI secure boot for the cluster host.</td>\n</tr>\n<tr>\n  <td><code>spec.cpu.isolated</code></td>\n  <td>Set the isolated CPUs. Ensure all of the Hyper-Threading pairs match.<br><br><dl><dt>Important</dt><dd>The reserved and isolated CPU pools must not overlap and together must span all available cores. CPU cores that are not accounted for cause an undefined behaviour in the system.</dd></dl></td>\n</tr>\n<tr>\n  <td><code>spec.cpu.reserved</code></td>\n  <td>Set the reserved CPUs. When workload partitioning is enabled, system processes, kernel threads, and system container threads are restricted to these CPUs. All CPUs that are not isolated should be reserved.</td>\n</tr>\n<tr>\n  <td><code>spec.hugepages.pages</code></td>\n  <td><ul><li>Set the number of huge pages (<code>count</code>)</li><li>Set the huge pages size (<code>size</code>).</li><li>Set <code>node</code> to the NUMA node where the <code>hugepages</code> are allocated (<code>node</code>)</li></ul></td>\n</tr>\n<tr>\n  <td><code>spec.realTimeKernel</code></td>\n  <td>Set <code>enabled</code> to <code>true</code> to use the realtime kernel.</td>\n</tr>\n<tr>\n  <td><code>spec.workloadHints</code></td>\n  <td>Use <code>workloadHints</code> to define the set of top level flags for different type of workloads.</td>\n</tr>\n</tbody>\n</table>\n\n### Configuring cluster time synchronization {#ztp-sno-du-configuring-time-sync_sno-configure-for-vdu}\n\nRun a one-time system time synchronization job for control plane or worker nodes.\n\n```yaml {title=\"Recommended one time time-sync for control plane nodes (99-sync-time-once-master.yaml)\"}\n{% include \"./snippets/ztp_99-sync-time-once-master.yaml\" %}\n```\n\n```yaml {title=\"Recommended one time time-sync for worker nodes (99-sync-time-once-worker.yaml)\"}\n{% include \"./snippets/ztp_99-sync-time-once-worker.yaml\" %}\n```\n\n### PTP {#ztp-sno-du-configuring-ptp_sno-configure-for-vdu}\n\nSingle-node OpenShift clusters use Precision Time Protocol (PTP) for network time synchronization. The following example `PtpConfig` custom resources (CRs) illustrate configurations for ordinary clocks, boundary clocks, and Telecom Grandmaster clocks on supported Intel Ethernet hardware. You must select the profile that matches your qualified GNR-D hardware layout and complete interface renaming prerequisites before you apply Granite Rapids-D Telecom Grandmaster YAML on Intel Granite Rapids-D servers.\n\n```yaml {title=\"Recommended PTP ordinary clock configuration (PtpConfigSlave.yaml)\"}\n{% include \"./snippets/ztp_PtpConfigSlave.yaml\" %}\n```\n\n```yaml {title=\"Recommended boundary clock configuration (PtpConfigBoundary.yaml)\"}\n{% include \"./snippets/ztp_PtpConfigBoundary.yaml\" %}\n```\n\n```yaml {title=\"Recommended PTP Westport Channel e810 grandmaster clock configuration (PtpConfigGmWpc.yaml)\"}\n{% include \"./snippets/ztp_PtpConfigGmWpc.yaml\" %}\n```\n\n> [!IMPORTANT]\n> Telecom Grandmaster clock configuration on Intel Granite Rapids-D (GNR-D) hardware is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n```yaml {title=\"Recommended PTP Granite Rapids-D Telecom Grandmaster clock configuration (PtpConfigGnrdTGM.yaml)\"}\n{% include \"./snippets/ptp_PtpConfigGnrdTGM.yaml\" %}\n```\n\nThe following optional `PtpOperatorConfig` CR configures PTP events reporting for the node.\n\n```yaml {title=\"Recommended PTP events configuration (PtpOperatorConfigForEvent.yaml)\"}\n{% include \"./snippets/ztp_PtpOperatorConfigForEvent.yaml\" %}\n```\n\n- [Configuring linuxptp services as a Telecom Grandmaster clock on Intel Granite Rapids-D hardware](/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#configuring-linuxptp-services-as-grandmaster-clock-gnrd_configuring-ptp)\n\n### Extended Tuned profile {#ztp-sno-du-tuning-the-performance-patch_sno-configure-for-vdu}\n\nSingle-node OpenShift clusters that run DU workloads require additional performance tuning configurations necessary for high-performance workloads. The following example `Tuned` CR extends the `Tuned` profile:\n\n```yaml {title=\"Recommended extended Tuned profile configuration (TunedPerformancePatch.yaml)\"}\n{% include \"./snippets/ztp_TunedPerformancePatch.yaml\" %}\n```\n\n*`Tuned`** CR options for single-node OpenShift clusters***\n\n<table>\n<thead>\n<tr>\n  <th>Tuned CR field</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>spec.profile.data</code></td>\n  <td><ul><li>The <code>include</code> line that you set in <code>spec.profile.data</code> must match the associated <code>PerformanceProfile</code> CR name.</li></ul>For example, <code>include=openshift-node-performance-${PerformanceProfile.metadata.name}</code>.</td>\n</tr>\n</tbody>\n</table>\n\n### SR-IOV {#ztp-sno-du-configuring-sriov_sno-configure-for-vdu}\n\nSingle root I/O virtualization (SR-IOV) is commonly used to enable fronthaul and midhaul networks. The following YAML example configures SR-IOV for a single-node OpenShift cluster.\n\n> [!NOTE]\n> The configuration of the `SriovNetwork` CR will vary depending on your specific network and infrastructure requirements.\n\n```yaml {title=\"Recommended SriovOperatorConfig CR configuration (SriovOperatorConfig.yaml)\"}\n{% include \"./snippets/ztp_SriovOperatorConfig.yaml\" %}\n```\n\n*`SriovOperatorConfig`** CR options for single-node OpenShift clusters***\n\n<table>\n<thead>\n<tr>\n  <th>SriovOperatorConfig CR field</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>spec.enableInjector</code></td>\n  <td>Disable <code>Injector</code> pods to reduce the number of management pods.Start with the <code>Injector</code> pods enabled, and only disable them after verifying the user manifests.If the injector is disabled, containers that use SR-IOV resources must explicitly assign them in the <code>requests</code> and <code>limits</code> section of the container spec.<br><br>For example:<pre>containers:&#10;- name: my-sriov-workload-container&#10;  resources:&#10;    limits:&#10;      openshift.io/&lt;resource_name&gt;:  \"1\"&#10;    requests:&#10;      openshift.io/&lt;resource_name&gt;:  \"1\"</pre></td>\n</tr>\n<tr>\n  <td><code>spec.enableOperatorWebhook</code></td>\n  <td>Disable <code>OperatorWebhook</code> pods to reduce the number of management pods. Start with the <code>OperatorWebhook</code> pods enabled, and only disable them after verifying the user manifests.</td>\n</tr>\n</tbody>\n</table>\n\n```yaml {title=\"Recommended SriovNetwork configuration (SriovNetwork.yaml)\"}\n{% include \"./snippets/ztp_SriovNetwork.yaml\" %}\n```\n\n`SriovNetwork`** CR options for single-node OpenShift clusters**\n\n| SriovNetwork CR field | Description |\n| --- | --- |\n| `spec.vlan` | Configure `vlan` with the VLAN for the midhaul network. |\n\n```yaml {title=\"Recommended SriovNetworkNodePolicy CR configuration (SriovNetworkNodePolicy.yaml)\"}\n{% include \"./snippets/ztp_SriovNetworkNodePolicy.yaml\" %}\n```\n\n`SriovNetworkPolicy`** CR options for single-node OpenShift clusters**\n\n| SriovNetworkNodePolicy CR field | Description |\n| --- | --- |\n| `spec.deviceType` | Configure `deviceType` as `vfio-pci` or `netdevice`. For Mellanox NICs, set `deviceType: netdevice`, and `isRdma: true`. For Intel based NICs, set `deviceType: vfio-pci` and `isRdma: false`. |\n| `spec.nicSelector.pfNames` | Specifies the interface connected to the fronthaul network. |\n| `spec.numVfs` | Specifies the number of VFs for the fronthaul network. |\n| `spec.nicSelector.pfNames` | The exact name of physical function must match the hardware. |\n\n```yaml {title=\"Recommended SR-IOV kernel configurations (07-sriov-related-kernel-args-master.yaml)\"}\n{% include \"./snippets/ztp_07-sriov-related-kernel-args-master.yaml\" %}\n```\n\n### Console Operator {#ztp-sno-du-removing-the-console-operator_sno-configure-for-vdu}\n\nUse the cluster capabilities feature to prevent the Console Operator from being installed. When the node is centrally managed it is not needed. Removing the Operator provides additional space and capacity for application workloads.\n\nTo disable the Console Operator during the installation of the managed cluster, set the following in the `spec.installConfigOverrides` field of the `ClusterInstance` custom resource (CR):\n\n```yaml\ninstallConfigOverrides:  \"{\\\"capabilities\\\":{\\\"baselineCapabilitySet\\\": \\\"None\\\" }}\"\n```\n\n### Alertmanager {#ztp-sno-du-reducing-resource-usage-with-cluster-monitoring_sno-configure-for-vdu}\n\nSingle-node OpenShift clusters that run DU workloads require reduced CPU resources consumed by the OpenShift Container Platform monitoring components. The following `ConfigMap` custom resource (CR) disables Alertmanager.\n\n```yaml {title=\"Recommended cluster monitoring configuration (ReduceMonitoringFootprint.yaml)\"}\n{% include \"./snippets/ztp_ReduceMonitoringFootprint.yaml\" %}\n```\n\n### Operator Lifecycle Manager {#ztp-sno-du-reducing-resource-usage-with-olm-pprof_sno-configure-for-vdu}\n\nSingle-node OpenShift clusters that run distributed unit workloads require consistent access to CPU resources. Operator Lifecycle Manager (OLM) collects performance data from Operators at regular intervals, resulting in an increase in CPU utilisation. The following `ConfigMap` custom resource (CR) disables the collection of Operator performance data by OLM.\n\n```yaml {title=\"Recommended cluster OLM configuration (ReduceOLMFootprint.yaml)\"}\n{% include \"./snippets/ztp_ReduceOLMFootprint.yaml\" %}\n```\n\n### LVM Storage {#lvms-configuring-lvms-on-sno_sno-configure-for-vdu}\n\nYou can dynamically provision local storage on single-node OpenShift clusters with Logical Volume Manager (LVM) Storage.\n\n> [!NOTE]\n> The recommended storage solution for single-node OpenShift is the Local Storage Operator. Alternatively, you can use LVM Storage but it requires additional CPU resources to be allocated.\n\nThe following YAML example configures the storage of the node to be available to OpenShift Container Platform applications.\n\n```yaml {title=\"Recommended LVMCluster configuration (StorageLVMCluster.yaml)\"}\n{% include \"./snippets/ztp_StorageLVMCluster.yaml\" %}\n```\n\n`LVMCluster`** CR options for single-node OpenShift clusters**\n\n| LVMCluster CR field | Description |\n| --- | --- |\n| `deviceSelector.paths` | Configure the disks used for LVM storage. If no disks are specified, the LVM Storage uses all the unused disks in the specified thin pool. |\n\n### Network diagnostics {#ztp-sno-du-disabling-network-diagnostics_sno-configure-for-vdu}\n\nSingle-node OpenShift clusters that run DU workloads require less inter-pod network connectivity checks to reduce the additional load created by these pods. The following custom resource (CR) disables these checks.\n\n```yaml {title=\"Recommended network diagnostics configuration (DisableSnoNetworkDiag.yaml)\"}\n{% include \"./snippets/ztp_DisableSnoNetworkDiag.yaml\" %}\n```\n\n**Additional resources**\n\n- [Deploying far edge sites using ZTP](/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-reference-cluster-configuration-for-vdu.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,46 +101,439 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="sno-configure-for-vdu" class="group scroll-mt-20">Recommended {"{"}{"{"} sno {"}"}{"}"} cluster configuration for vDU application workloads<a href="#sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Use the following reference information to understand the {"{"}{"{"} sno {"}"}{"}"} configurations required to deploy virtual distributed unit (vDU) applications in the cluster. Configurations include cluster optimizations for high performance workloads, enabling workload partitioning, and minimizing the number of reboots required postinstallation.</p>
+      <p>Use the following reference information to understand the single-node OpenShift configurations required to deploy virtual distributed unit (vDU) applications in the cluster. Configurations include cluster optimizations for high performance workloads, enabling workload partitioning, and minimizing the number of reboots required postinstallation.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-manual-install">Manually installing a {"{"}{"{"} sno {"}"}{"}"} cluster with {"{"}{"{"} ztp {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites">Deploying far edge sites with {"{"}{"{"} ztp {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-manual-install#ztp-manual-install">Manually installing a single-node OpenShift cluster with GitOps ZTP</a></li>
+      <li><a href="/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites">Deploying far edge sites with GitOps ZTP</a></li>
       </ul>
-      <p class="/modules/ztp-install-sno-hardware-reqs.md"></p>
+      <h2 id="ztp-low-latency_sno-configure-for-vdu" class="group scroll-mt-20">Running low latency applications on OpenShift Container Platform<a href="#ztp-low-latency_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Container Platform enables low latency processing for applications running on commercial off-the-shelf (COTS) hardware by using several technologies and specialized hardware devices:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Real-time kernel for RHCOS</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Ensures workloads are handled with a high degree of process determinism.</p></dd>
+      <dt class="font-semibold">CPU isolation</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Avoids CPU scheduling delays and ensures CPU capacity is available consistently.</p></dd>
+      <dt class="font-semibold">NUMA-aware topology management</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Aligns memory and huge pages with CPU and PCI devices to pin guaranteed container memory and huge pages to the non-uniform memory access (NUMA) node. Pod resources for all Quality of Service (QoS) classes stay on the same NUMA node. This decreases latency and improves performance of the node.</p></dd>
+      <dt class="font-semibold">Huge pages memory management</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Using huge page sizes improves system performance by reducing the amount of system resources required to access page tables.</p></dd>
+      <dt class="font-semibold">Precision timing synchronization using PTP</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Allows synchronization between nodes in the network with sub-microsecond accuracy.</p></dd>
+      </dl>
+      <h2 id="ztp-install-sno-hardware-reqs_sno-configure-for-vdu" class="group scroll-mt-20">Recommended cluster host requirements for vDU application workloads<a href="#ztp-install-sno-hardware-reqs_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Running vDU application workloads requires a bare-metal host with sufficient resources to run OpenShift Container Platform services and production workloads.</p>
+      <p><strong>Minimum resource requirements</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Profile</TableHead>
+      <TableHead>vCPU</TableHead>
+      <TableHead>Memory</TableHead>
+      <TableHead>Storage</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Minimum</TableCell>
+      <TableCell>4 vCPU</TableCell>
+      <TableCell>32 GB of RAM</TableCell>
+      <TableCell>120 GB</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Recommended</TableCell>
+      <TableCell>8 vCPU</TableCell>
+      <TableCell>32 GB of RAM</TableCell>
+      <TableCell>120 GB</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Running single-node OpenShift on 4 vCPUs leaves very little headroom for vDU application workloads. With all cluster capabilities enabled, the platform alone can request over 2.5 vCPUs and consume over 2 vCPUs at idle, leaving minimal capacity for application workloads.</p>
+        </AlertDescription>
+      </Alert>
+      <p>To run on 4 vCPUs, you must minimize the cluster resource footprint:</p>
+      <ul>
+      <li>Set <code>baselineCapabilitySet</code> to <code>None</code> in the <code>install-config.yaml</code> file and use <code>additionalEnabledCapabilities</code> to enable only the capabilities that your workload requires, such as <code>Storage</code>, <code>Console</code>, and <code>Ingress</code>. For more information, see "Cluster capabilities".</li>
+      <li>Use a performance profile to partition CPU resources between cluster housekeeping duties and application workloads, ensuring that your vDU containers run on isolated CPUs with minimal interruption. For more information, see "Tuning nodes for low latency with the performance profile".</li>
+      </ul>
+      <p>If your deployment does not require these optimizations, it is recommended to use at least 8 vCPUs..</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>One vCPU equals one physical core. However, if you enable simultaneous multithreading (SMT), or Hyper-Threading, use the following formula to calculate the number of vCPUs that represent one physical core:</p>
+          <ul><li>(threads per core × cores) × sockets = vCPUs</li></ul>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The server must have a Baseboard Management Controller (BMC) when booting with virtual media.</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/overview/cluster-capabilities#cluster-capabilities">Cluster capabilities</a></li>
       <li><a href="/openshift-docs-markdown/scalability_and_performance/cnf-tuning-low-latency-nodes-with-perf-profile#cnf-tuning-low-latency-nodes-with-perf-profile">Tuning nodes for low latency with the performance profile</a></li>
       </ul>
-      <p class="/modules/ztp-managed-cluster-network-prereqs.md"></p>
-      <p class="/modules/ztp-enabling-workload-partitioning-sno.md"></p>
+      <h2 id="ztp-du-configuring-host-firmware-requirements_sno-configure-for-vdu" class="group scroll-mt-20">Configuring host firmware for low latency and high performance<a href="#ztp-du-configuring-host-firmware-requirements_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Bare-metal hosts require the firmware to be configured before the host can be provisioned. The firmware configuration is dependent on the specific hardware and the particular requirements of your installation.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Set the <strong>UEFI/BIOS Boot Mode</strong> to <code>UEFI</code>.</li>
+      <li>In the host boot sequence order, set <strong>Hard drive first</strong>.</li>
+      <li>
+      Apply the specific firmware configuration for your hardware. The following table describes a representative firmware configuration for an Intel Xeon Skylake server and later hardware generations, based on the Intel FlexRAN 4G and 5G baseband PHY reference design.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The exact firmware configuration depends on your specific hardware and network requirements. The following sample configuration is for illustrative purposes only.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Sample firmware configuration</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Firmware setting</TableHead>
+      <TableHead>Configuration</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>CPU Power and Performance Policy</TableCell>
+      <TableCell>Performance</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Uncore Frequency Scaling</TableCell>
+      <TableCell>Disabled</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Performance P-limit</TableCell>
+      <TableCell>Disabled</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Enhanced Intel SpeedStep (R) Tech</TableCell>
+      <TableCell>Enabled</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Intel Configurable TDP</TableCell>
+      <TableCell>Enabled</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Configurable TDP Level</TableCell>
+      <TableCell>Level 2</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Intel(R) Turbo Boost Technology</TableCell>
+      <TableCell>Enabled</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Energy Efficient Turbo</TableCell>
+      <TableCell>Disabled</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Hardware P-States</TableCell>
+      <TableCell>Disabled</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Package C-State</TableCell>
+      <TableCell>C0/C1 state</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>C1E</TableCell>
+      <TableCell>Disabled</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Processor C6</TableCell>
+      <TableCell>Disabled</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Enable global SR-IOV and VT-d settings in the firmware for the host. These settings are relevant to bare-metal environments.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="ztp-managed-cluster-network-prereqs_sno-configure-for-vdu" class="group scroll-mt-20">Connectivity prerequisites for managed cluster networks<a href="#ztp-managed-cluster-network-prereqs_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you can install and provision a managed cluster with the GitOps Zero Touch Provisioning (ZTP) pipeline, the managed cluster host must meet the following networking prerequisites:</p>
+      <ul>
+      <li>There must be bi-directional connectivity between the GitOps ZTP container in the hub cluster and the Baseboard Management Controller (BMC) of the target bare-metal host.</li>
+      <li>
+      The managed cluster must be able to resolve and reach the API hostname of the hub hostname and <code>&amp;#42;.apps</code> hostname. Here is an example of the API hostname of the hub and <code>&amp;#42;.apps</code> hostname:
+      <ul>
+      <li><code>api.hub-cluster.internal.domain.com</code></li>
+      <li><code>console-openshift-console.apps.hub-cluster.internal.domain.com</code></li>
+      </ul>
+      </li>
+      <li>
+      The hub cluster must be able to resolve and reach the API and <code>&amp;#42;.apps</code> hostname of the managed cluster. Here is an example of the API hostname of the managed cluster and <code>&amp;#42;.apps</code> hostname:
+      <ul>
+      <li><code>api.sno-managed-cluster-1.internal.domain.com</code></li>
+      <li><code>console-openshift-console.apps.sno-managed-cluster-1.internal.domain.com</code></li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="ztp-workload-partitioning-sno_sno-configure-for-vdu" class="group scroll-mt-20">Workload partitioning in single-node OpenShift with GitOps ZTP<a href="#ztp-workload-partitioning-sno_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Workload partitioning configures OpenShift Container Platform services, cluster management workloads, and infrastructure pods to run on a reserved number of host CPUs.</p>
+      <p>To configure workload partitioning with GitOps Zero Touch Provisioning (ZTP), you configure a <code>cpuPartitioningMode</code> field in the <code>ClusterInstance</code> custom resource (CR) that you use to install the cluster and you apply a <code>PerformanceProfile</code> CR that configures the <code>isolated</code> and <code>reserved</code> CPUs on the host.</p>
+      <p>Configuring the <code>ClusterInstance</code> CR enables workload partitioning at cluster installation time and applying the <code>PerformanceProfile</code> CR configures the specific allocation of CPUs to reserved and isolated sets. Both of these steps happen at different points during cluster provisioning.</p>
+      <p>The workload partitioning configuration pins the OpenShift Container Platform infrastructure pods to the <code>reserved</code> CPU set. Platform services such as systemd, CRI-O, and kubelet run on the <code>reserved</code> CPU set. The <code>isolated</code> CPU sets are exclusively allocated to your container workloads. Isolating CPUs ensures that the workload has guaranteed access to the specified CPUs without contention from other applications running on the same node. All CPUs that are not isolated should be reserved.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Ensure that <code>reserved</code> and <code>isolated</code> CPU sets do not overlap with each other.</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/security/network_bound_disk_encryption/nbde-about-disk-encryption-technology#nbde-tpm-encryption_nbde-implementation">TPM encryption</a></li></ul>
+      <h2 id="ztp-sno-install-time-cluster-config_sno-configure-for-vdu" class="group scroll-mt-20">Recommended cluster install manifests<a href="#ztp-sno-install-time-cluster-config_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The ZTP pipeline applies the following custom resources (CRs) during cluster installation. These configuration CRs ensure that the cluster meets the feature and performance requirements necessary for running a vDU application.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When using the GitOps ZTP plugin and <code>ClusterInstance</code> CRs for cluster deployment, the following <code>MachineConfig</code> CRs are included by default.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Use the <code>ClusterInstance</code> <code>extraManifestRefs</code> to alter the CRs that are included by default. For more information, see "Advanced managed cluster configuration with ClusterInstance CRs".</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-advanced-install-ztp">Advanced managed cluster configuration with ClusterInstance CRs</a></li></ul>
-      <p class="/modules/ztp-sno-du-enabling-sctp.md"></p>
-      <p class="/modules/ztp-sno-du-setting-rcu-normal.md"></p>
-      <p class="/modules/ztp-sno-du-enabling-kdump.md"></p>
-      <p class="/modules/ztp-sno-du-disabling-crio-wipe.md"></p>
-      <p class="/modules/ztp-sno-du-configuring-crun-container-runtime.md"></p>
+      <h3 id="ztp-sno-du-configuring-the-container-mountspace_sno-configure-for-vdu" class="group scroll-mt-20">Reduced platform management footprint<a href="#ztp-sno-du-configuring-the-container-mountspace_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To reduce the overall management footprint of the platform, a <code>MachineConfig</code> custom resource (CR) is required that places all Kubernetes-specific mount points in a new namespace separate from the host operating system. The following base64-encoded example <code>MachineConfig</code> CR illustrates this configuration.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_01-container-mount-ns-and-kubelet-conf-master.yaml\" %}"} lang="yaml" title="Recommended container mount namespace configuration (01-container-mount-ns-and-kubelet-conf-master.yaml)" />
+      <h3 id="ztp-sno-du-enabling-sctp_sno-configure-for-vdu" class="group scroll-mt-20">SCTP<a href="#ztp-sno-du-enabling-sctp_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Stream Control Transmission Protocol (SCTP) is a key protocol used in RAN applications. This <code>MachineConfig</code> object adds the SCTP kernel module to the node to enable this protocol.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_03-sctp-machine-config-master.yaml\" %}"} lang="yaml" title="Recommended control plane node SCTP configuration (03-sctp-machine-config-master.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_03-sctp-machine-config-worker.yaml\" %}"} lang="yaml" title="Recommended worker node SCTP configuration (03-sctp-machine-config-worker.yaml)" />
+      <h3 id="ztp-setting-rcu-normal_sno-configure-for-vdu" class="group scroll-mt-20">Setting rcu_normal<a href="#ztp-setting-rcu-normal_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The following <code>MachineConfig</code> CR configures the system to set <code>rcu_normal</code> to 1 after the system has finished startup. This improves kernel latency for vDU applications.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_08-set-rcu-normal-master.yaml\" %}"} lang="yaml" title="Recommended configuration for disabling rcu_expedited after the node has finished startup (08-set-rcu-normal-master.yaml)" />
+      <h3 id="ztp-sno-du-enabling-kdump_sno-configure-for-vdu" class="group scroll-mt-20">Automatic kernel crash dumps with kdump<a href="#ztp-sno-du-enabling-kdump_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract"><code>kdump</code> is a Linux kernel feature that creates a kernel crash dump when the kernel crashes. <code>kdump</code> is enabled with the following <code>MachineConfig</code> CRs.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_06-kdump-master.yaml\" %}"} lang="yaml" title="Recommended control plane node kdump configuration (06-kdump-master.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_06-kdump-worker.yaml\" %}"} lang="yaml" title="Recommended kdump worker node configuration (06-kdump-worker.yaml)" />
+      <h3 id="ztp-sno-du-disabling-crio-wipe_sno-configure-for-vdu" class="group scroll-mt-20">Disable automatic CRI-O cache wipe<a href="#ztp-sno-du-disabling-crio-wipe_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">After an uncontrolled host shutdown or cluster reboot, CRI-O automatically deletes the entire CRI-O cache, causing all images to be pulled from the registry when the node reboots. This can result in unacceptably slow recovery times or recovery failures. To prevent this from happening in single-node OpenShift clusters that you install with GitOps ZTP, disable the CRI-O delete cache feature during cluster installation.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_99-crio-disable-wipe-master.yaml\" %}"} lang="yaml" title="Recommended MachineConfig CR to disable CRI-O cache wipe on control plane nodes (99-crio-disable-wipe-master.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_99-crio-disable-wipe-worker.yaml\" %}"} lang="yaml" title="Recommended MachineConfig CR to disable CRI-O cache wipe on worker nodes (99-crio-disable-wipe-worker.yaml)" />
+      <h3 id="ztp-sno-du-configuring-crun-container-runtime_sno-configure-for-vdu" class="group scroll-mt-20">Configuring crun as the default container runtime<a href="#ztp-sno-du-configuring-crun-container-runtime_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The following <code>ContainerRuntimeConfig</code> custom resources (CRs) configure crun as the default OCI container runtime for control plane and worker nodes. The crun container runtime is fast and lightweight and has a low memory footprint.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>For optimal performance, enable crun for control plane and worker nodes in single-node OpenShift, three-node OpenShift, and standard clusters. To avoid the cluster rebooting when the CR is applied, apply the change as a GitOps ZTP additional Day 0 install-time manifest.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"{% include \"./snippets/ztp_enable-crun-master.yaml\" %}"} lang="yaml" title="Recommended ContainerRuntimeConfig CR for control plane nodes (enable-crun-master.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_enable-crun-worker.yaml\" %}"} lang="yaml" title="Recommended ContainerRuntimeConfig CR for worker nodes (enable-crun-worker.yaml)" />
       <p><strong>Additional resources</strong></p>
-      <p class="/modules/ztp-sno-du-recommended-postinstallation-cluster-configurations.md"></p>
+      <h2 id="ztp-sno-post-install-time-cluster-config_sno-configure-for-vdu" class="group scroll-mt-20">Recommended postinstallation cluster configurations<a href="#ztp-sno-post-install-time-cluster-config_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When the cluster installation is complete, the ZTP pipeline applies the following custom resources (CRs) that are required to run DU workloads.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>In GitOps ZTP v4.10 and earlier, you configure UEFI secure boot with a <code>MachineConfig</code> CR. This is no longer required in GitOps ZTP v4.11 and later. In v4.11, you configure UEFI secure boot for single-node OpenShift clusters by updating the <code>spec.nodes[].bootMode</code> field in the <code>ClusterInstance</code> CR that you use to install the cluster. For more information, see "Deploying a managed cluster with ClusterInstance and GitOps ZTP".</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-a-site_ztp-deploying-far-edge-sites">Deploying a managed cluster with ClusterInstance and {"{"}{"{"} ztp {"}"}{"}"}</a></li></ul>
-      <p class="/modules/ztp-sno-du-subscribing-to-the-operators-needed-for-platform-configuration.md"></p>
-      <p class="/modules/ztp-sno-du-configuring-logging-locally-and-forwarding.md"></p>
-      <p class="/modules/ztp-sno-du-configuring-performance-addons.md"></p>
-      <p class="/modules/ztp-sno-du-configuring-time-sync.md"></p>
-      <p class="/modules/ztp-sno-du-configuring-ptp.md"></p>
-      <p class="/modules/ztp-sno-du-tuning-the-performance-patch.md"></p>
-      <p class="/modules/ztp-sno-du-configuring-sriov.md"></p>
-      <p class="/modules/ztp-sno-du-removing-the-console-operator.md"></p>
-      <p class="/modules/ztp-sno-du-reducing-resource-usage-with-cluster-monitoring.md"></p>
-      <p class="/modules/ztp-sno-du-reducing-resource-usage-with-olm-pprof.md"></p>
-      <p class="/modules/ztp-sno-du-configuring-lvms.md"></p>
-      <p class="/modules/ztp-sno-du-disabling-network-diagnostics.md"></p>
+      <ul><li><a href="/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-a-site_ztp-deploying-far-edge-sites">Deploying a managed cluster with ClusterInstance and GitOps ZTP</a></li></ul>
+      <h3 id="ztp-sno-du-configuring-the-operators_sno-configure-for-vdu" class="group scroll-mt-20">Operators<a href="#ztp-sno-du-configuring-the-operators_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Single-node OpenShift clusters that run DU workloads require the following Operators to be installed:</p>
+      <ul>
+      <li>Local Storage Operator</li>
+      <li>Logging Operator</li>
+      <li>PTP Operator</li>
+      <li>SR-IOV Network Operator</li>
+      </ul>
+      <p>You also need to configure a custom <code>CatalogSource</code> CR, disable the default <code>OperatorHub</code> configuration, and configure an <code>ImageContentSourcePolicy</code> mirror registry that is accessible from the clusters that you install.</p>
+      <CodeBlock code={"---\n{% include \"./snippets/ztp_StorageNS.yaml\" %}\n---\n{% include \"./snippets/ztp_StorageOperGroup.yaml\" %}"} lang="yaml" title="Recommended Storage Operator namespace and Operator group configuration (StorageNS.yaml, StorageOperGroup.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_ClusterLogNS.yaml\" %}\n{% include \"./snippets/ztp_ClusterLogOperGroup.yaml\" %}"} lang="yaml" title="Recommended Cluster Logging Operator namespace and Operator group configuration (ClusterLogNS.yaml, ClusterLogOperGroup.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_PtpSubscriptionNS.yaml\" %}\n---\n{% include \"./snippets/ztp_PtpSubscriptionOperGroup.yaml\" %}"} lang="yaml" title="Recommended PTP Operator namespace and Operator group configuration (PtpSubscriptionNS.yaml, PtpSubscriptionOperGroup.yaml)" />
+      <CodeBlock code={"---\n{% include \"./snippets/ztp_SriovSubscriptionNS.yaml\" %}\n---\n{% include \"./snippets/ztp_SriovSubscriptionOperGroup.yaml\" %}"} lang="yaml" title="Recommended SR-IOV Operator namespace and Operator group configuration (SriovSubscriptionNS.yaml, SriovSubscriptionOperGroup.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_DefaultCatsrc.yaml\" %}"} lang="yaml" title="Recommended CatalogSource configuration (DefaultCatsrc.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_DisconnectedICSP.yaml\" %}"} lang="yaml" title="Recommended ImageContentSourcePolicy configuration (DisconnectedICSP.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_OperatorHub.yaml\" %}"} lang="yaml" title="Recommended OperatorHub configuration (OperatorHub.yaml)" />
+      <h3 id="ztp-sno-du-subscribing-to-the-operators-needed-for-platform-configuration_sno-configure-for-vdu" class="group scroll-mt-20">Operator subscriptions<a href="#ztp-sno-du-subscribing-to-the-operators-needed-for-platform-configuration_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Single-node OpenShift clusters that run DU workloads require the following <code>Subscription</code> CRs. The subscription provides the location to download the following Operators:</p>
+      <ul>
+      <li>Local Storage Operator</li>
+      <li>Logging Operator</li>
+      <li>PTP Operator</li>
+      <li>SR-IOV Network Operator</li>
+      <li>SRIOV-FEC Operator</li>
+      </ul>
+      <p>For each Operator subscription, specify the channel to get the Operator from. The recommended channel is <code>stable</code>.</p>
+      <p>You can specify <code>Manual</code> or <code>Automatic</code> updates. In <code>Automatic</code> mode, the Operator automatically updates to the latest versions in the channel as they become available in the registry. In <code>Manual</code> mode, new Operator versions are installed only when they are explicitly approved.</p>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>Use <code>Manual</code> mode for subscriptions. This allows you to control the timing of Operator updates to fit within scheduled maintenance windows.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"{% include \"./snippets/ztp_StorageSubscription.yaml\" %}"} lang="yaml" title="Recommended Local Storage Operator subscription (StorageSubscription.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_SriovSubscription.yaml\" %}"} lang="yaml" title="Recommended SR-IOV Operator subscription (SriovSubscription.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_PtpSubscription.yaml\" %}"} lang="yaml" title="Recommended PTP Operator subscription (PtpSubscription.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_ClusterLogSubscription.yaml\" %}"} lang="yaml" title="Recommended Cluster Logging Operator subscription (ClusterLogSubscription.yaml)" />
+      <h3 id="ztp-sno-du-configuring-logging-locally-and-forwarding_sno-configure-for-vdu" class="group scroll-mt-20">Cluster logging and log forwarding<a href="#ztp-sno-du-configuring-logging-locally-and-forwarding_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Single-node OpenShift clusters that run DU workloads require logging and log forwarding for debugging. The following custom resources (CRs) are required.</p>
+      <p><Fragment set:html={"<a name=\"ztp-clusterlogforwarder-yaml\">"} /><Fragment set:html={"</a>"} /></p>
+      <CodeBlock code={"{% include \"./snippets/ztp_ClusterLogForwarder.yaml\" %}"} lang="yaml" title="Recommended ClusterLogForwarder.yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Set the <code>spec.outputs.kafka.url</code> field to the URL of the Kafka server where the logs are forwarded to.</p>
+        </AlertDescription>
+      </Alert>
+      <p><Fragment set:html={"<a name=\"ztp-clusterlogns-yaml\">"} /><Fragment set:html={"</a>"} /></p>
+      <CodeBlock code={"{% include \"./snippets/ztp_ClusterLogNS.yaml\" %}"} lang="yaml" title="Recommended ClusterLogNS.yaml" />
+      <p><Fragment set:html={"<a name=\"ztp-clusterlogopergroup-yaml\">"} /><Fragment set:html={"</a>"} /></p>
+      <CodeBlock code={"{% include \"./snippets/ztp_ClusterLogOperGroup.yaml\" %}"} lang="yaml" title="Recommended ClusterLogOperGroup.yaml" />
+      <p><Fragment set:html={"<a name=\"ztp-clusterlogserviceaccount-yaml\">"} /><Fragment set:html={"</a>"} /></p>
+      <CodeBlock code={"{% include \"./snippets/ztp_ClusterLogServiceAccount.yaml\" %}"} lang="yaml" title="Recommended ClusterLogServiceAccount.yaml" />
+      <p><Fragment set:html={"<a name=\"ztp-clusterlogserviceaccountauditbinding-yaml\">"} /><Fragment set:html={"</a>"} /></p>
+      <CodeBlock code={"{% include \"./snippets/ztp_ClusterLogServiceAccountAuditBinding.yaml\" %}"} lang="yaml" title="Recommended ClusterLogServiceAccountAuditBinding.yaml" />
+      <p><Fragment set:html={"<a name=\"ztp-clusterlogserviceaccountinfrastructurebinding-yaml\">"} /><Fragment set:html={"</a>"} /></p>
+      <CodeBlock code={"{% include \"./snippets/ztp_ClusterLogServiceAccountInfrastructureBinding.yaml\" %}"} lang="yaml" title="Recommended ClusterLogServiceAccountInfrastructureBinding.yaml" />
+      <p><Fragment set:html={"<a name=\"ztp-clusterlogsubscription-yaml\">"} /><Fragment set:html={"</a>"} /></p>
+      <CodeBlock code={"{% include \"./snippets/ztp_ClusterLogSubscription.yaml\" %}"} lang="yaml" title="Recommended ClusterLogSubscription.yaml" />
+      <h3 id="ztp-sno-du-configuring-performance-addons_sno-configure-for-vdu" class="group scroll-mt-20">Performance profile<a href="#ztp-sno-du-configuring-performance-addons_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Single-node OpenShift clusters that run DU workloads require a Node Tuning Operator performance profile to use real-time host capabilities and services.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>In earlier versions of OpenShift Container Platform, the Performance Addon Operator was used to implement automatic tuning to achieve low latency performance for OpenShift applications. In OpenShift Container Platform 4.11 and later, this functionality is part of the Node Tuning Operator.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following example <code>PerformanceProfile</code> CR illustrates the required single-node OpenShift cluster configuration.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_PerformanceProfile.yaml\" %}"} lang="yaml" title="Recommended performance profile configuration (PerformanceProfile.yaml)" />
+      <p><em></em><em><strong>PerformanceProfile CR options for single-node OpenShift clusters</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>PerformanceProfile CR field</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>metadata.name</code></td>\n  <td>Ensure that <code>name</code> matches the following fields set in related GitOps ZTP custom resources (CRs):<br><br><ul><li><code>include=openshift-node-performance-${PerformanceProfile.metadata.name}</code> in <code>TunedPerformancePatch.yaml</code></li><li><code>name: 50-performance-${PerformanceProfile.metadata.name}</code> in <code>validatorCRs/informDuValidator.yaml</code></li></ul></td>\n</tr>\n<tr>\n  <td><code>spec.additionalKernelArgs</code></td>\n  <td><code>\"efi=runtime\"</code> Configures UEFI secure boot for the cluster host.</td>\n</tr>\n<tr>\n  <td><code>spec.cpu.isolated</code></td>\n  <td>Set the isolated CPUs. Ensure all of the Hyper-Threading pairs match.<br><br><dl><dt>Important</dt><dd>The reserved and isolated CPU pools must not overlap and together must span all available cores. CPU cores that are not accounted for cause an undefined behaviour in the system.</dd></dl></td>\n</tr>\n<tr>\n  <td><code>spec.cpu.reserved</code></td>\n  <td>Set the reserved CPUs. When workload partitioning is enabled, system processes, kernel threads, and system container threads are restricted to these CPUs. All CPUs that are not isolated should be reserved.</td>\n</tr>\n<tr>\n  <td><code>spec.hugepages.pages</code></td>\n  <td><ul><li>Set the number of huge pages (<code>count</code>)</li><li>Set the huge pages size (<code>size</code>).</li><li>Set <code>node</code> to the NUMA node where the <code>hugepages</code> are allocated (<code>node</code>)</li></ul></td>\n</tr>\n<tr>\n  <td><code>spec.realTimeKernel</code></td>\n  <td>Set <code>enabled</code> to <code>true</code> to use the realtime kernel.</td>\n</tr>\n<tr>\n  <td><code>spec.workloadHints</code></td>\n  <td>Use <code>workloadHints</code> to define the set of top level flags for different type of workloads.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <h3 id="ztp-sno-du-configuring-time-sync_sno-configure-for-vdu" class="group scroll-mt-20">Configuring cluster time synchronization<a href="#ztp-sno-du-configuring-time-sync_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Run a one-time system time synchronization job for control plane or worker nodes.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_99-sync-time-once-master.yaml\" %}"} lang="yaml" title="Recommended one time time-sync for control plane nodes (99-sync-time-once-master.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_99-sync-time-once-worker.yaml\" %}"} lang="yaml" title="Recommended one time time-sync for worker nodes (99-sync-time-once-worker.yaml)" />
+      <h3 id="ztp-sno-du-configuring-ptp_sno-configure-for-vdu" class="group scroll-mt-20">PTP<a href="#ztp-sno-du-configuring-ptp_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Single-node OpenShift clusters use Precision Time Protocol (PTP) for network time synchronization. The following example <code>PtpConfig</code> custom resources (CRs) illustrate configurations for ordinary clocks, boundary clocks, and Telecom Grandmaster clocks on supported Intel Ethernet hardware. You must select the profile that matches your qualified GNR-D hardware layout and complete interface renaming prerequisites before you apply Granite Rapids-D Telecom Grandmaster YAML on Intel Granite Rapids-D servers.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_PtpConfigSlave.yaml\" %}"} lang="yaml" title="Recommended PTP ordinary clock configuration (PtpConfigSlave.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_PtpConfigBoundary.yaml\" %}"} lang="yaml" title="Recommended boundary clock configuration (PtpConfigBoundary.yaml)" />
+      <CodeBlock code={"{% include \"./snippets/ztp_PtpConfigGmWpc.yaml\" %}"} lang="yaml" title="Recommended PTP Westport Channel e810 grandmaster clock configuration (PtpConfigGmWpc.yaml)" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Telecom Grandmaster clock configuration on Intel Granite Rapids-D (GNR-D) hardware is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"{% include \"./snippets/ptp_PtpConfigGnrdTGM.yaml\" %}"} lang="yaml" title="Recommended PTP Granite Rapids-D Telecom Grandmaster clock configuration (PtpConfigGnrdTGM.yaml)" />
+      <p>The following optional <code>PtpOperatorConfig</code> CR configures PTP events reporting for the node.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_PtpOperatorConfigForEvent.yaml\" %}"} lang="yaml" title="Recommended PTP events configuration (PtpOperatorConfigForEvent.yaml)" />
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="/openshift-docs-markdown/networking/advanced_networking/ptp/configuring-ptp#configuring-linuxptp-services-as-grandmaster-clock-gnrd_configuring-ptp">Configuring linuxptp services as a Telecom Grandmaster clock on Intel Granite Rapids-D hardware</a></li></ul>
+      </section>
+      <h3 id="ztp-sno-du-tuning-the-performance-patch_sno-configure-for-vdu" class="group scroll-mt-20">Extended Tuned profile<a href="#ztp-sno-du-tuning-the-performance-patch_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Single-node OpenShift clusters that run DU workloads require additional performance tuning configurations necessary for high-performance workloads. The following example <code>Tuned</code> CR extends the <code>Tuned</code> profile:</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_TunedPerformancePatch.yaml\" %}"} lang="yaml" title="Recommended extended Tuned profile configuration (TunedPerformancePatch.yaml)" />
+      <p><em></em><code>Tuned</code><em><strong> CR options for single-node OpenShift clusters</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Tuned CR field</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>spec.profile.data</code></td>\n  <td><ul><li>The <code>include</code> line that you set in <code>spec.profile.data</code> must match the associated <code>PerformanceProfile</code> CR name.</li></ul>For example, <code>include=openshift-node-performance-${PerformanceProfile.metadata.name}</code>.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <h3 id="ztp-sno-du-configuring-sriov_sno-configure-for-vdu" class="group scroll-mt-20">SR-IOV<a href="#ztp-sno-du-configuring-sriov_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Single root I/O virtualization (SR-IOV) is commonly used to enable fronthaul and midhaul networks. The following YAML example configures SR-IOV for a single-node OpenShift cluster.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The configuration of the <code>SriovNetwork</code> CR will vary depending on your specific network and infrastructure requirements.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"{% include \"./snippets/ztp_SriovOperatorConfig.yaml\" %}"} lang="yaml" title="Recommended SriovOperatorConfig CR configuration (SriovOperatorConfig.yaml)" />
+      <p><em></em><code>SriovOperatorConfig</code><em><strong> CR options for single-node OpenShift clusters</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>SriovOperatorConfig CR field</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>spec.enableInjector</code></td>\n  <td>Disable <code>Injector</code> pods to reduce the number of management pods.Start with the <code>Injector</code> pods enabled, and only disable them after verifying the user manifests.If the injector is disabled, containers that use SR-IOV resources must explicitly assign them in the <code>requests</code> and <code>limits</code> section of the container spec.<br><br>For example:<pre>containers:&#10;- name: my-sriov-workload-container&#10;  resources:&#10;    limits:&#10;      openshift.io/&lt;resource_name&gt;:  \"1\"&#10;    requests:&#10;      openshift.io/&lt;resource_name&gt;:  \"1\"</pre></td>\n</tr>\n<tr>\n  <td><code>spec.enableOperatorWebhook</code></td>\n  <td>Disable <code>OperatorWebhook</code> pods to reduce the number of management pods. Start with the <code>OperatorWebhook</code> pods enabled, and only disable them after verifying the user manifests.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <CodeBlock code={"{% include \"./snippets/ztp_SriovNetwork.yaml\" %}"} lang="yaml" title="Recommended SriovNetwork configuration (SriovNetwork.yaml)" />
+      <p><code>SriovNetwork</code><strong> CR options for single-node OpenShift clusters</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>SriovNetwork CR field</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>spec.vlan</code></TableCell>
+      <TableCell>Configure <code>vlan</code> with the VLAN for the midhaul network.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <CodeBlock code={"{% include \"./snippets/ztp_SriovNetworkNodePolicy.yaml\" %}"} lang="yaml" title="Recommended SriovNetworkNodePolicy CR configuration (SriovNetworkNodePolicy.yaml)" />
+      <p><code>SriovNetworkPolicy</code><strong> CR options for single-node OpenShift clusters</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>SriovNetworkNodePolicy CR field</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>spec.deviceType</code></TableCell>
+      <TableCell>Configure <code>deviceType</code> as <code>vfio-pci</code> or <code>netdevice</code>. For Mellanox NICs, set <code>deviceType: netdevice</code>, and <code>isRdma: true</code>. For Intel based NICs, set <code>deviceType: vfio-pci</code> and <code>isRdma: false</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.nicSelector.pfNames</code></TableCell>
+      <TableCell>Specifies the interface connected to the fronthaul network.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.numVfs</code></TableCell>
+      <TableCell>Specifies the number of VFs for the fronthaul network.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.nicSelector.pfNames</code></TableCell>
+      <TableCell>The exact name of physical function must match the hardware.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <CodeBlock code={"{% include \"./snippets/ztp_07-sriov-related-kernel-args-master.yaml\" %}"} lang="yaml" title="Recommended SR-IOV kernel configurations (07-sriov-related-kernel-args-master.yaml)" />
+      <h3 id="ztp-sno-du-removing-the-console-operator_sno-configure-for-vdu" class="group scroll-mt-20">Console Operator<a href="#ztp-sno-du-removing-the-console-operator_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Use the cluster capabilities feature to prevent the Console Operator from being installed. When the node is centrally managed it is not needed. Removing the Operator provides additional space and capacity for application workloads.</p>
+      <p>To disable the Console Operator during the installation of the managed cluster, set the following in the <code>spec.installConfigOverrides</code> field of the <code>ClusterInstance</code> custom resource (CR):</p>
+      <CodeBlock code={"installConfigOverrides:  \"{\\\"capabilities\\\":{\\\"baselineCapabilitySet\\\": \\\"None\\\" }}\""} lang="yaml" />
+      <h3 id="ztp-sno-du-reducing-resource-usage-with-cluster-monitoring_sno-configure-for-vdu" class="group scroll-mt-20">Alertmanager<a href="#ztp-sno-du-reducing-resource-usage-with-cluster-monitoring_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Single-node OpenShift clusters that run DU workloads require reduced CPU resources consumed by the OpenShift Container Platform monitoring components. The following <code>ConfigMap</code> custom resource (CR) disables Alertmanager.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_ReduceMonitoringFootprint.yaml\" %}"} lang="yaml" title="Recommended cluster monitoring configuration (ReduceMonitoringFootprint.yaml)" />
+      <h3 id="ztp-sno-du-reducing-resource-usage-with-olm-pprof_sno-configure-for-vdu" class="group scroll-mt-20">Operator Lifecycle Manager<a href="#ztp-sno-du-reducing-resource-usage-with-olm-pprof_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Single-node OpenShift clusters that run distributed unit workloads require consistent access to CPU resources. Operator Lifecycle Manager (OLM) collects performance data from Operators at regular intervals, resulting in an increase in CPU utilisation. The following <code>ConfigMap</code> custom resource (CR) disables the collection of Operator performance data by OLM.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_ReduceOLMFootprint.yaml\" %}"} lang="yaml" title="Recommended cluster OLM configuration (ReduceOLMFootprint.yaml)" />
+      <h3 id="lvms-configuring-lvms-on-sno_sno-configure-for-vdu" class="group scroll-mt-20">LVM Storage<a href="#lvms-configuring-lvms-on-sno_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can dynamically provision local storage on single-node OpenShift clusters with Logical Volume Manager (LVM) Storage.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The recommended storage solution for single-node OpenShift is the Local Storage Operator. Alternatively, you can use LVM Storage but it requires additional CPU resources to be allocated.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following YAML example configures the storage of the node to be available to OpenShift Container Platform applications.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_StorageLVMCluster.yaml\" %}"} lang="yaml" title="Recommended LVMCluster configuration (StorageLVMCluster.yaml)" />
+      <p><code>LVMCluster</code><strong> CR options for single-node OpenShift clusters</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>LVMCluster CR field</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>deviceSelector.paths</code></TableCell>
+      <TableCell>Configure the disks used for LVM storage. If no disks are specified, the LVM Storage uses all the unused disks in the specified thin pool.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="ztp-sno-du-disabling-network-diagnostics_sno-configure-for-vdu" class="group scroll-mt-20">Network diagnostics<a href="#ztp-sno-du-disabling-network-diagnostics_sno-configure-for-vdu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Single-node OpenShift clusters that run DU workloads require less inter-pod network connectivity checks to reduce the additional load created by these pods. The following custom resource (CR) disables these checks.</p>
+      <CodeBlock code={"{% include \"./snippets/ztp_DisableSnoNetworkDiag.yaml\" %}"} lang="yaml" title="Recommended network diagnostics configuration (DisableSnoNetworkDiag.yaml)" />
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/edge_computing/ztp-deploying-far-edge-sites#ztp-deploying-far-edge-sites">Deploying far edge sites using ZTP</a></li></ul>
     </article>

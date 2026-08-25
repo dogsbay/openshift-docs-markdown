@@ -4,7 +4,7 @@ title: Troubleshooting
 
 # Troubleshooting {#troubleshooting}
 
-Troubleshoot {{ oadp_first }} issues by using diagnostic tools such as the OADP CLI, webhooks, `must-gather` custom resource, and other methods. This helps you identify and resolve problems with backup and restore operations.
+Troubleshoot OpenShift API for Data Protection (OADP) issues by using diagnostic tools such as the OADP CLI, webhooks, `must-gather` custom resource, and other methods. This helps you identify and resolve problems with backup and restore operations.
 
 You can troubleshoot OADP issues by using the following methods:
 

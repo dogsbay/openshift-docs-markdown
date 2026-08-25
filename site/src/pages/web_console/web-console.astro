@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"web-console","text":"Accessing the web console"},{"depth":2,"slug":"_prerequisites","text":"Prerequisites"}];
+const headings = [{"depth":1,"slug":"web-console","text":"Accessing the web console"},{"depth":2,"slug":"_prerequisites","text":"Prerequisites"},{"depth":2,"slug":"web-console-overview_web-console","text":"Understanding and accessing the web console"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/web_console/web-console";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["web_console"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing the web console {#web-console}\n\nThe OpenShift Container Platform web console is a user interface accessible from a web browser. You can use the web console to visualize, browse, and manage the contents of projects.\n\n## Prerequisites {#_prerequisites}\n\n- You must use one of the following supported web browsers: Edge, Chrome, Safari, or Mozilla Firefox. Internet Explorer 11 and earlier is not supported.\n- Review the OpenShift Container Platform 4.x Tested Integrations page before you create the supporting infrastructure for your cluster.\n\n**Additional resources**\n\n- [OpenShift Container Platform 4.x Tested Integrations](https://access.redhat.com/articles/4128421)\n- [Enabling feature sets using the web console](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/web-console.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing the web console {#web-console}\n\nThe OpenShift Container Platform web console is a user interface accessible from a web browser. You can use the web console to visualize, browse, and manage the contents of projects.\n\n## Prerequisites {#_prerequisites}\n\n- You must use one of the following supported web browsers: Edge, Chrome, Safari, or Mozilla Firefox. Internet Explorer 11 and earlier is not supported.\n- Review the OpenShift Container Platform 4.x Tested Integrations page before you create the supporting infrastructure for your cluster.\n\n## Understanding and accessing the web console {#web-console-overview_web-console}\n\nThe web console runs as a pod on the control plane node. The static assets required to run the web console are served by the pod.\n\nAfter you install OpenShift Container Platform using the `openshift-install create cluster` command, you can find the web console URL and login credentials for the installed cluster in the CLI output of the installation program. For example:\n\n```terminal\nINFO Install complete!\nINFO Run 'export KUBECONFIG=<your working directory>/auth/kubeconfig' to manage the cluster with 'oc', the OpenShift CLI.\nINFO The cluster is ready when 'oc login -u kubeadmin -p <provided>' succeeds (wait a few minutes).\nINFO Access the OpenShift web-console here: https://console-openshift-console.apps.demo1.openshift4-beta-abcorp.com\nINFO Login to the console with user: kubeadmin, password: <provided>\n```\n\nUse those details to log in and access the web console.\n\nFor existing clusters that you did not install, you can use `oc whoami --show-console` to see the web console URL.\n\n> [!IMPORTANT]\n> The `dir` parameter specifies the `assets` directory, which stores the manifest files, the ISO image, and the `auth` directory. The `auth` directory stores the `kubeadmin-password` and `kubeconfig` files. As a `kubeadmin` user, you can use the `kubeconfig` file to access the cluster with the following setting: `export KUBECONFIG=<install_directory>/auth/kubeconfig`. The `kubeconfig` is specific to the generated ISO image, so if the `kubeconfig` is set and the `oc` command fails, it is possible that the system did not boot with the generated ISO image. To perform debugging, during the bootstrap process, you can log in to the console as the `core` user by using the contents of the `kubeadmin-password` file.\n\n**Additional resources**\n\n- [OpenShift Container Platform 4.x Tested Integrations](https://access.redhat.com/articles/4128421)\n- [Enabling feature sets using the web console](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/web_console/web-console.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +95,24 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="web-console" class="group scroll-mt-20">Accessing the web console<a href="#web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
       <p>The OpenShift Container Platform web console is a user interface accessible from a web browser. You can use the web console to visualize, browse, and manage the contents of projects.</p>
       <h2 id="_prerequisites" class="group scroll-mt-20">Prerequisites<a href="#_prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li>You must use one of the following supported web browsers: Edge, Chrome, Safari, or Mozilla Firefox. Internet Explorer 11 and earlier is not supported.</li>
       <li>Review the OpenShift Container Platform 4.x Tested Integrations page before you create the supporting infrastructure for your cluster.</li>
       </ul>
+      <h2 id="web-console-overview_web-console" class="group scroll-mt-20">Understanding and accessing the web console<a href="#web-console-overview_web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The web console runs as a pod on the control plane node. The static assets required to run the web console are served by the pod.</p>
+      <p>After you install OpenShift Container Platform using the <code>openshift-install create cluster</code> command, you can find the web console URL and login credentials for the installed cluster in the CLI output of the installation program. For example:</p>
+      <CodeBlock code={"INFO Install complete!\nINFO Run 'export KUBECONFIG=<your working directory>/auth/kubeconfig' to manage the cluster with 'oc', the OpenShift CLI.\nINFO The cluster is ready when 'oc login -u kubeadmin -p <provided>' succeeds (wait a few minutes).\nINFO Access the OpenShift web-console here: https://console-openshift-console.apps.demo1.openshift4-beta-abcorp.com\nINFO Login to the console with user: kubeadmin, password: <provided>"} lang="terminal" />
+      <p>Use those details to log in and access the web console.</p>
+      <p>For existing clusters that you did not install, you can use <code>oc whoami --show-console</code> to see the web console URL.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The <code>dir</code> parameter specifies the <code>assets</code> directory, which stores the manifest files, the ISO image, and the <code>auth</code> directory. The <code>auth</code> directory stores the <code>kubeadmin-password</code> and <code>kubeconfig</code> files. As a <code>kubeadmin</code> user, you can use the <code>kubeconfig</code> file to access the cluster with the following setting: <code>export KUBECONFIG=&lt;install_directory&gt;/auth/kubeconfig</code>. The <code>kubeconfig</code> is specific to the generated ISO image, so if the <code>kubeconfig</code> is set and the <code>oc</code> command fails, it is possible that the system did not boot with the generated ISO image. To perform debugging, during the bootstrap process, you can log in to the console as the <code>core</code> user by using the contents of the <code>kubeadmin-password</code> file.</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://access.redhat.com/articles/4128421">OpenShift Container Platform 4.x Tested Integrations</a></li>

@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-tkn","text":"Installing tkn"}];
+const headings = [{"depth":1,"slug":"installing-tkn","text":"Installing tkn"},{"depth":2,"slug":"installing-tkn-on-linux","text":"Installing the Red Hat OpenShift Pipelines CLI on Linux"},{"depth":2,"slug":"installing-tkn-on-linux-using-rpm","text":"Installing the Red Hat OpenShift Pipelines CLI on Linux using an RPM"},{"depth":2,"slug":"installing-tkn-on-windows","text":"Installing the Red Hat OpenShift Pipelines CLI on Windows"},{"depth":2,"slug":"installing-tkn-on-macos","text":"Installing the Red Hat OpenShift Pipelines CLI on macOS"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/tkn_cli/installing-tkn";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Installing tkn";
-const description = "Use the CLI tool to manage {{ pipelines_title }} from a terminal. The following section describes how to install the CLI tool on different platforms." || undefined;
+const description = "Use the CLI tool to manage Red Hat OpenShift Pipelines from a terminal. The following section describes how to install the CLI tool on different platforms." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["cli_reference","cli_reference/tkn_cli"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing tkn {#installing-tkn}\n\nUse the CLI tool to manage {{ pipelines_title }} from a terminal. The following section describes how to install the CLI tool on different platforms.\n\nYou can also find the URL to the latest binaries from the OpenShift Container Platform web console by clicking the **?** icon in the upper-right corner and selecting **Command Line Tools**.\n\n> [!NOTE]\n> Both the archives and the RPMs contain the following executables:\n>\n> - `tkn`\n> - `tkn-pac`\n> - `opc`\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/installing-tkn.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing tkn {#installing-tkn}\n\nUse the CLI tool to manage Red Hat OpenShift Pipelines from a terminal. The following section describes how to install the CLI tool on different platforms.\n\nYou can also find the URL to the latest binaries from the OpenShift Container Platform web console by clicking the **?** icon in the upper-right corner and selecting **Command Line Tools**.\n\n> [!NOTE]\n> Both the archives and the RPMs contain the following executables:\n>\n> - `tkn`\n> - `tkn-pac`\n> - `opc`\n\n> [!IMPORTANT]\n> Running Red Hat OpenShift Pipelines with the `opc` CLI tool is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Installing the Red Hat OpenShift Pipelines CLI on Linux {#installing-tkn-on-linux}\n\nFor Linux distributions, you can download the CLI as a `tar.gz` archive.\n\n**Procedure**\n\n1. Download the relevant CLI tool.\n\n   - [Linux (x86_64, amd64)](https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-linux-amd64.tar.gz)\n   - [Linux on IBM Z(R) and IBM(R) LinuxONE (s390x)](https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-linux-s390x.tar.gz)\n   - [Linux on IBM Power(R) (ppc64le)](https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-linux-ppc64le.tar.gz)\n   - [Linux on ARM (aarch64, arm64)](https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-linux-arm64.tar.gz)\n2. Unpack the archive:\n\n   ```terminal\n   $ tar xvzf <file>\n   ```\n3. Add the location of your `tkn`, `tkn-pac`, and `opc` files to your `PATH` environment variable.\n4. To check your `PATH`, run the following command:\n\n   ```terminal\n   $ echo $PATH\n   ```\n\n## Installing the Red Hat OpenShift Pipelines CLI on Linux using an RPM {#installing-tkn-on-linux-using-rpm}\n\nFor Red Hat Enterprise Linux (RHEL) version 8, you can install the Red Hat OpenShift Pipelines CLI as an RPM.\n\n**Prerequisites**\n\n- You have an active OpenShift Container Platform subscription on your Red Hat account.\n- You have root or sudo privileges on your local system.\n\n**Procedure**\n\n1. Register with Red Hat Subscription Manager:\n\n   ```terminal\n   # subscription-manager register\n   ```\n2. Pull the latest subscription data:\n\n   ```terminal\n   # subscription-manager refresh\n   ```\n3. List the available subscriptions:\n\n   ```terminal\n   # subscription-manager list --available --matches '*pipelines*'\n   ```\n4. In the output for the previous command, find the pool ID for your OpenShift Container Platform subscription and attach the subscription to the registered system:\n\n   ```terminal\n   # subscription-manager attach --pool=<pool_id>\n   ```\n5. Enable the repositories required by Red Hat OpenShift Pipelines:\n\n   - Linux (x86_64, amd64)\n\n     ```terminal\n     # subscription-manager repos --enable=\"pipelines-{{ pipelines_version_number }}-for-rhel-8-x86_64-rpms\"\n     ```\n   - Linux on IBM Z(R) and IBM(R) LinuxONE (s390x)\n\n     ```terminal\n     # subscription-manager repos --enable=\"pipelines-{{ pipelines_version_number }}-for-rhel-8-s390x-rpms\"\n     ```\n   - Linux on IBM Power(R) (ppc64le)\n\n     ```terminal\n     # subscription-manager repos --enable=\"pipelines-{{ pipelines_version_number }}-for-rhel-8-ppc64le-rpms\"\n     ```\n   - Linux on ARM (aarch64, arm64)\n\n     ```terminal\n     # subscription-manager repos --enable=\"pipelines-{{ pipelines_version_number }}-for-rhel-8-aarch64-rpms\"\n     ```\n6. Install the `openshift-pipelines-client` package:\n\n   ```terminal\n   # yum install openshift-pipelines-client\n   ```\n\nAfter you install the CLI, it is available using the `tkn` command:\n\n```terminal\n$ tkn version\n```\n\n## Installing the Red Hat OpenShift Pipelines CLI on Windows {#installing-tkn-on-windows}\n\nFor Windows, you can download the CLI as a `zip` archive.\n\n**Procedure**\n\n1. Download the [CLI tool](https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-windows-amd64.zip).\n2. Extract the archive with a ZIP program.\n3. Add the location of your `tkn`, `tkn-pac`, and `opc` files to your `PATH` environment variable.\n4. To check your `PATH`, run the following command:\n\n   ```terminal\n   C:\\> path\n   ```\n\n## Installing the Red Hat OpenShift Pipelines CLI on macOS {#installing-tkn-on-macos}\n\nFor macOS, you can download the CLI as a `tar.gz` archive.\n\n**Procedure**\n\n1. Download the relevant CLI tool.\n\n   - [macOS](https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-macos-amd64.tar.gz)\n   - [macOS on ARM](https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-macos-arm64.tar.gz)\n2. Unpack and extract the archive.\n3. Add the location of your `tkn`, `tkn-pac`, and `opc` files to your `PATH` environment variable.\n4. To check your `PATH`, run the following command:\n\n   ```terminal\n   $ echo $PATH\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/tkn_cli/installing-tkn.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,8 +95,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-tkn" class="group scroll-mt-20">Installing tkn<a href="#installing-tkn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Use the CLI tool to manage {"{"}{"{"} pipelines_title {"}"}{"}"} from a terminal. The following section describes how to install the CLI tool on different platforms.</p>
+      <p>Use the CLI tool to manage Red Hat OpenShift Pipelines from a terminal. The following section describes how to install the CLI tool on different platforms.</p>
       <p>You can also find the URL to the latest binaries from the OpenShift Container Platform web console by clicking the <strong>?</strong> icon in the upper-right corner and selecting <strong>Command Line Tools</strong>.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
@@ -108,11 +108,119 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           </ul>
         </AlertDescription>
       </Alert>
-      <p class="/snippets/technology-preview.md"></p>
-      <p class="/modules/op-installing-tkn-on-linux.md"></p>
-      <p class="/modules/op-installing-tkn-on-linux-using-rpm.md"></p>
-      <p class="/modules/op-installing-tkn-on-windows.md"></p>
-      <p class="/modules/op-installing-tkn-on-macos.md"></p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Running Red Hat OpenShift Pipelines with the <code>opc</code> CLI tool is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="installing-tkn-on-linux" class="group scroll-mt-20">Installing the Red Hat OpenShift Pipelines CLI on Linux<a href="#installing-tkn-on-linux" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">For Linux distributions, you can download the CLI as a <code>tar.gz</code> archive.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Download the relevant CLI tool.
+      <ul>
+      <li><a href="https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-linux-amd64.tar.gz">Linux (x86_64, amd64)</a></li>
+      <li><a href="https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-linux-s390x.tar.gz">Linux on IBM Z(R) and IBM(R) LinuxONE (s390x)</a></li>
+      <li><a href="https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-linux-ppc64le.tar.gz">Linux on IBM Power(R) (ppc64le)</a></li>
+      <li><a href="https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-linux-arm64.tar.gz">Linux on ARM (aarch64, arm64)</a></li>
+      </ul>
+      </li>
+      <li>
+      Unpack the archive:
+      <CodeBlock code={"$ tar xvzf <file>"} lang="terminal" />
+      </li>
+      <li>Add the location of your <code>tkn</code>, <code>tkn-pac</code>, and <code>opc</code> files to your <code>PATH</code> environment variable.</li>
+      <li>
+      To check your <code>PATH</code>, run the following command:
+      <CodeBlock code={"$ echo $PATH"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="installing-tkn-on-linux-using-rpm" class="group scroll-mt-20">Installing the Red Hat OpenShift Pipelines CLI on Linux using an RPM<a href="#installing-tkn-on-linux-using-rpm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">For Red Hat Enterprise Linux (RHEL) version 8, you can install the Red Hat OpenShift Pipelines CLI as an RPM.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have an active OpenShift Container Platform subscription on your Red Hat account.</li>
+      <li>You have root or sudo privileges on your local system.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Register with Red Hat Subscription Manager:
+      <CodeBlock code={"# subscription-manager register"} lang="terminal" />
+      </li>
+      <li>
+      Pull the latest subscription data:
+      <CodeBlock code={"# subscription-manager refresh"} lang="terminal" />
+      </li>
+      <li>
+      List the available subscriptions:
+      <CodeBlock code={"# subscription-manager list --available --matches '*pipelines*'"} lang="terminal" />
+      </li>
+      <li>
+      In the output for the previous command, find the pool ID for your OpenShift Container Platform subscription and attach the subscription to the registered system:
+      <CodeBlock code={"# subscription-manager attach --pool=<pool_id>"} lang="terminal" />
+      </li>
+      <li>
+      Enable the repositories required by Red Hat OpenShift Pipelines:
+      <ul>
+      <li>
+      Linux (x86_64, amd64)
+      <CodeBlock code={"# subscription-manager repos --enable=\"pipelines-{{ pipelines_version_number }}-for-rhel-8-x86_64-rpms\""} lang="terminal" />
+      </li>
+      <li>
+      Linux on IBM Z(R) and IBM(R) LinuxONE (s390x)
+      <CodeBlock code={"# subscription-manager repos --enable=\"pipelines-{{ pipelines_version_number }}-for-rhel-8-s390x-rpms\""} lang="terminal" />
+      </li>
+      <li>
+      Linux on IBM Power(R) (ppc64le)
+      <CodeBlock code={"# subscription-manager repos --enable=\"pipelines-{{ pipelines_version_number }}-for-rhel-8-ppc64le-rpms\""} lang="terminal" />
+      </li>
+      <li>
+      Linux on ARM (aarch64, arm64)
+      <CodeBlock code={"# subscription-manager repos --enable=\"pipelines-{{ pipelines_version_number }}-for-rhel-8-aarch64-rpms\""} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Install the <code>openshift-pipelines-client</code> package:
+      <CodeBlock code={"# yum install openshift-pipelines-client"} lang="terminal" />
+      </li>
+      </ol>
+      <p>After you install the CLI, it is available using the <code>tkn</code> command:</p>
+      <CodeBlock code={"$ tkn version"} lang="terminal" />
+      <h2 id="installing-tkn-on-windows" class="group scroll-mt-20">Installing the Red Hat OpenShift Pipelines CLI on Windows<a href="#installing-tkn-on-windows" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">For Windows, you can download the CLI as a <code>zip</code> archive.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Download the <a href="https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-windows-amd64.zip">CLI tool</a>.</li>
+      <li>Extract the archive with a ZIP program.</li>
+      <li>Add the location of your <code>tkn</code>, <code>tkn-pac</code>, and <code>opc</code> files to your <code>PATH</code> environment variable.</li>
+      <li>
+      To check your <code>PATH</code>, run the following command:
+      <CodeBlock code={"C:\\> path"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="installing-tkn-on-macos" class="group scroll-mt-20">Installing the Red Hat OpenShift Pipelines CLI on macOS<a href="#installing-tkn-on-macos" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">For macOS, you can download the CLI as a <code>tar.gz</code> archive.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Download the relevant CLI tool.
+      <ul>
+      <li><a href="https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-macos-amd64.tar.gz">macOS</a></li>
+      <li><a href="https://mirror.openshift.com/pub/openshift-v4/clients/pipelines/1.18.0/tkn-macos-arm64.tar.gz">macOS on ARM</a></li>
+      </ul>
+      </li>
+      <li>Unpack and extract the archive.</li>
+      <li>Add the location of your <code>tkn</code>, <code>tkn-pac</code>, and <code>opc</code> files to your <code>PATH</code> environment variable.</li>
+      <li>
+      To check your <code>PATH</code>, run the following command:
+      <CodeBlock code={"$ echo $PATH"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

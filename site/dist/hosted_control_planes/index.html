@@ -1,24 +1,371 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{{ hcp_capital }} overview | OpenShift Container Platform</title><meta name="description" content="You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or {{ hcp }}."><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/hosted_control_planes.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="{{ hcp_capital }} overview"><meta property="og:description" content="You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or {{ hcp }}."><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="{{ hcp_capital }} overview"><meta name="twitter:description" content="You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or {{ hcp }}."><script>
+<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>{{ hcp_capital }} overview | OpenShift Container Platform</title><meta name="description" content="You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or hosted control planes."><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/hosted_control_planes.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="{{ hcp_capital }} overview"><meta property="og:description" content="You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or hosted control planes."><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="{{ hcp_capital }} overview"><meta name="twitter:description" content="You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or hosted control planes."><script>
       if (localStorage.getItem("theme") === "dark") {
         document.documentElement.classList.add("dark");
       }
-    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BTNukzuO.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/hosted_control_planes" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>{{ hcp_capital }} overview</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# {{ hcp_capital }} overview {#hcp-overview}
+    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BrFMoueR.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/hosted_control_planes" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>{{ hcp_capital }} overview</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Hosted control planes overview {#hcp-overview}
 
-You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or {{ hcp }}.
+You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or hosted control planes.
 
-The standalone configuration uses dedicated virtual machines or physical machines to host the control plane. With {{ hcp }} for OpenShift Container Platform, you create control planes as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.
+The standalone configuration uses dedicated virtual machines or physical machines to host the control plane. With hosted control planes for OpenShift Container Platform, you create control planes as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.
+
+## Introduction to hosted control planes {#hosted-control-planes-overview_hcp-overview}
+
+Hosted control planes is available by using a supported version of multicluster engine for Kubernetes Operator on several platforms.
+
+You can deploy hosted control planes on the following platforms:
+
+- Bare metal by using the Agent provider
+- Non-bare-metal Agent machines, as a Technology Preview feature
+- OpenShift Virtualization
+- Amazon Web Services (AWS)
+- IBM Z
+- IBM Power
+- Red Hat OpenStack Platform (RHOSP) 17.1, as a Technology Preview feature
+
+The hosted control planes feature is enabled by default.
+
+> [!NOTE]
+> The multicluster engine Operator is an integral part of Red Hat Advanced Cluster Management (RHACM) and is enabled by default with RHACM. However, you do not need RHACM to use hosted control planes.
+
+### Architecture of hosted control planes {#hosted-control-planes-architecture_hcp-overview}
+
+OpenShift Container Platform is often deployed in a coupled, or standalone, model, where a cluster consists of a control plane and a data plane. The control plane includes an API endpoint, a storage endpoint, a workload scheduler, and an actuator that ensures state. The data plane includes compute, storage, and networking where workloads and applications run.
+
+The standalone control plane is hosted by a dedicated group of nodes, which can be physical or virtual, with a minimum number to ensure quorum. The network stack is shared. Administrator access to a cluster offers visibility into the cluster’s control plane, machine management APIs, and other components that contribute to the state of a cluster.
+
+Although the standalone model works well, some situations require an architecture where the control plane and data plane are decoupled. In those cases, the data plane is on a separate network domain with a dedicated physical hosting environment. The control plane is hosted by using high-level primitives such as deployments and stateful sets that are native to Kubernetes. The control plane is treated as any other workload.
+
+![Diagram that compares the hosted control plane model against OpenShift with a coupled control plane and workers](/openshift-docs-markdown/_assets/images/hosted-control-planes-diagram.png)
+
+### Benefits of hosted control planes {#hosted-control-planes-benefits_hcp-overview}
+
+With hosted control planes, you can pave the way for a true hybrid-cloud approach and enjoy several other benefits.
+
+- The security boundaries between management and workloads are stronger because the control plane is decoupled and hosted on a dedicated hosting service cluster. As a result, you are less likely to leak credentials for clusters to other users. Because infrastructure secret account management is also decoupled, cluster infrastructure administrators cannot accidentally delete control plane infrastructure.
+- With hosted control planes, you can run many control planes on fewer nodes. As a result, clusters are more affordable.
+- Because the control planes consist of pods that are launched on OpenShift Container Platform, control planes start quickly. The same principles apply to control planes and workloads, such as monitoring, logging, and auto-scaling.
+- From an infrastructure perspective, you can push registries, HAProxy, cluster monitoring, storage nodes, and other infrastructure components to the tenant’s cloud provider account, isolating usage to the tenant.
+- From an operational perspective, multicluster management is more centralized, which results in fewer external factors that affect the cluster status and consistency. Site reliability engineers have a central place to debug issues and navigate to the cluster data plane, which can lead to shorter Time to Resolution (TTR) and greater productivity.
 
 **Additional resources**
 
-- [Cluster lifecycle with {{ mce }} overview ({{ rh_rhacm_title }} official documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#cluster_mce_overview)
+- [Cluster lifecycle with multicluster engine for Kubernetes Operator overview (Red Hat Advanced Cluster Management official documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#cluster_mce_overview)
+
+## Differences between hosted control planes and OpenShift Container Platform {#hcp-ocp-differences_hcp-overview}
+
+Hosted control planes is a form factor of OpenShift Container Platform. Hosted clusters and the standalone OpenShift Container Platform clusters are configured and managed differently.
+
+See the following tables to understand the differences between OpenShift Container Platform and hosted control planes:
+
+### Cluster creation and lifecycle {#cluster-creation_hcp-overview}
+
+<table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>You install a standalone OpenShift Container Platform cluster by using the <code>openshift-install</code> binary or the Assisted Installer.</td>
+  <td>You install a hosted cluster by using the <code>hypershift.openshift.io</code> API resources such as <code>HostedCluster</code> and <code>NodePool</code>, on an existing OpenShift Container Platform cluster.</td>
+</tr>
+</tbody>
+</table>
+
+### Cluster configuration {#cluster-configuration_hcp-overview}
+
+<table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>You configure cluster-scoped resources such as authentication, API server, and proxy by using the <code>config.openshift.io</code> API group.</td>
+  <td>You configure resources that impact the control plane in the <code>HostedCluster</code> resource.</td>
+</tr>
+</tbody>
+</table>
+
+### etcd encryption {#etcd-encryption_hcp-overview}
+
+<table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>You configure etcd encryption by using the <code>APIServer</code> resource with AES-GCM or AES-CBC. For more information, see &quot;Enabling etcd encryption&quot;.</td>
+  <td>You configure etcd encryption by using the <code>HostedCluster</code> resource in the <code>SecretEncryption</code> field with AES-CBC or KMS for Amazon Web Services.</td>
+</tr>
+</tbody>
+</table>
+
+### Operators and control plane {#operators-and-control-plane_hcp-overview}
+
+<table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>A standalone OpenShift Container Platform cluster contains separate Operators for each control plane component.</td>
+  <td>A hosted cluster contains a single Operator named Control Plane Operator that runs in the hosted control plane namespace on the management cluster.</td>
+</tr>
+<tr>
+  <td>etcd uses storage that is mounted on the control plane nodes. The etcd cluster Operator manages etcd.</td>
+  <td>etcd uses a persistent volume claim for storage and is managed by the Control Plane Operator.</td>
+</tr>
+<tr>
+  <td>The Ingress Operator, network related Operators, and Operator Lifecycle Manager (OLM) run on the cluster.</td>
+  <td>The Ingress Operator, network related Operators, and Operator Lifecycle Manager (OLM) run in the hosted control plane namespace on the management cluster.</td>
+</tr>
+<tr>
+  <td>The OAuth server runs inside the cluster and is exposed through a route in the cluster.</td>
+  <td>The OAuth server runs inside the control plane and is exposed through a route, node port, or load balancer on the management cluster.</td>
+</tr>
+</tbody>
+</table>
+
+### Updates {#upgrades_hcp-overview}
+
+<table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>The Cluster Version Operator (CVO) orchestrates the update process and monitors the <code>ClusterVersion</code> resource. Administrators and OpenShift components can interact with the CVO through the <code>ClusterVersion</code> resource. The <code>oc adm upgrade</code> command results in a change to the <code>ClusterVersion.Spec.DesiredUpdate</code> field in the <code>ClusterVersion</code> resource.</td>
+  <td>The hosted control planes update results in a change to the <code>.spec.release.image</code> field in the <code>HostedCluster</code> and <code>NodePool</code> resources. Any changes to the <code>ClusterVersion</code> resource are ignored.</td>
+</tr>
+<tr>
+  <td>After you update an OpenShift Container Platform cluster, both the control plane and compute machines are updated.</td>
+  <td>After you update the hosted cluster, only the control plane is updated. You perform node pool updates separately.</td>
+</tr>
+</tbody>
+</table>
+
+### Machine configuration and management {#machine-config-manage_hcp-overview}
+
+<table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>The <code>MachineSets</code> resource manages machines in the <code>openshift-machine-api</code> namespace.</td>
+  <td>The <code>NodePool</code> resource manages machines on the management cluster.</td>
+</tr>
+<tr>
+  <td>A set of control plane machines are available.</td>
+  <td>A set of control plane machines do not exist.</td>
+</tr>
+<tr>
+  <td>You enable a machine health check by using the <code>MachineHealthCheck</code> resource.</td>
+  <td>You enable a machine health check through the <code>.spec.management.autoRepair</code> field in the <code>NodePool</code> resource.</td>
+</tr>
+<tr>
+  <td>You enable autoscaling by using the <code>ClusterAutoscaler</code> and <code>MachineAutoscaler</code> resources.</td>
+  <td>You enable autoscaling through the <code>spec.autoScaling</code> field in the <code>NodePool</code> resource.</td>
+</tr>
+<tr>
+  <td>Machines and machine sets are exposed in the cluster.</td>
+  <td>Machines, machine sets, and machine deployments from upstream Cluster CAPI Operator are used to manage machines but are not exposed to the user.</td>
+</tr>
+<tr>
+  <td>All machine sets are upgraded automatically when you update the cluster.</td>
+  <td>You update your node pools independently from the hosted cluster updates.</td>
+</tr>
+<tr>
+  <td>Only an in-place upgrade is supported in the cluster.</td>
+  <td>Both replace and in-place upgrades are supported in the hosted cluster.</td>
+</tr>
+<tr>
+  <td>The Machine Config Operator manages configurations for machines.</td>
+  <td>The Machine Config Operator does not exist in hosted control planes.</td>
+</tr>
+<tr>
+  <td>You configure machine Ignition by using the <code>MachineConfig</code>, <code>KubeletConfig</code>, and <code>ContainerRuntimeConfig</code> resources that are selected from a <code>MachineConfigPool</code> selector.</td>
+  <td>You configure the <code>MachineConfig</code>, <code>KubeletConfig</code>, and <code>ContainerRuntimeConfig</code> resources through the config map referenced in the <code>spec.config</code> field of the <code>NodePool</code> resource.</td>
+</tr>
+<tr>
+  <td>The Machine Config Daemon (MCD) manages configuration changes and updates on each of the nodes.</td>
+  <td>For an in-place upgrade, the node pool controller creates a run-once pod that updates a machine based on your configuration.</td>
+</tr>
+<tr>
+  <td>You can modify the machine configuration resources such as the SR-IOV Operator.</td>
+  <td>You cannot modify the machine configuration resources.</td>
+</tr>
+</tbody>
+</table>
+
+### Networking {#netowrking_hcp-overview}
+
+<table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>The Kube API server communicates with nodes directly, because the Kube API server and nodes exist in the same Virtual Private Cloud (VPC).</td>
+  <td>The Kube API server communicates with nodes through Konnectivity. The Kube API server and nodes exist in a different Virtual Private Cloud (VPC).</td>
+</tr>
+<tr>
+  <td>Nodes communicate with the Kube API server through the internal load balancer.</td>
+  <td>Nodes communicate with the Kube API server through an external load balancer or a node port.</td>
+</tr>
+</tbody>
+</table>
+
+### Web console {#web-console_hcp-overview}
+
+<table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>The web console shows the status of a control plane.</td>
+  <td>The web console does not show the status of a control plane.</td>
+</tr>
+<tr>
+  <td>You can update your cluster by using the web console.</td>
+  <td>You cannot update the hosted cluster by using the web console.</td>
+</tr>
+<tr>
+  <td>The web console displays the infrastructure resources such as machines.</td>
+  <td>The web console does not display the infrastructure resources.</td>
+</tr>
+<tr>
+  <td>You can configure machines through the <code>MachineConfig</code> resource by using the web console.</td>
+  <td>You cannot configure machines by using the web console.</td>
+</tr>
+</tbody>
+</table>
 
 **Additional resources**
 
 - [Enabling etcd encryption](/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt)
 
+## Relationship between hosted control planes, multicluster engine Operator, and RHACM {#hcp-mce-acm-relationship-intro_hcp-overview}
+
+You can configure hosted control planes by using the multicluster engine for Kubernetes Operator. The multicluster engine Operator cluster lifecycle defines the process of creating, importing, managing, and destroying Kubernetes clusters across various infrastructure cloud providers, private clouds, and on-premise data centers.
+
+> [!NOTE]
+> The multicluster engine Operator is an integral part of Red Hat Advanced Cluster Management and is enabled by default with RHACM. However, you do not need Red Hat Advanced Cluster Management to use hosted control planes.
+
+The multicluster engine Operator is the cluster lifecycle Operator that provides cluster management capabilities for OpenShift Container Platform and RHACM hub clusters. The multicluster engine Operator enhances cluster fleet management and supports OpenShift Container Platform cluster lifecycle management across clouds and data centers.
+
+**Figure 1. Cluster life cycle and foundation**
+
+![Cluster life cycle and foundation](/openshift-docs-markdown/_assets/images/acm-mce-intro-diagram.png)
+
+You can use the multicluster engine Operator with OpenShift Container Platform as a standalone cluster manager or as part of a RHACM hub cluster.
+
+> [!TIP]
+> A management cluster is also known as the hosting cluster.
+
+You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or hosted control planes. The standalone configuration uses dedicated virtual machines or physical machines to host the control plane. With hosted control planes for OpenShift Container Platform, you create control planes as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.
+
+**Figure 2. RHACM and the multicluster engine Operator introduction diagram**
+
+![RHACM and the multicluster engine Operator introduction diagram](/openshift-docs-markdown/_assets/images/rhacm-flow.png)
+
+### Hosted clusters in Red Hat Advanced Cluster Management {#hcp-acm-discover_hcp-overview}
+
+You can bring hosted clusters to a Red Hat Advanced Cluster Management hub cluster to manage them with Red Hat Advanced Cluster Management management components.
+
+For more information, see &quot;Discovering multicluster engine Operator hosted clusters in Red Hat Advanced Cluster Management&quot;.
+
 **Additional resources**
 
-- [Discovering {{ mce_short }} hosted clusters in {{ rh_rhacm_title }} ({{ rh_rhacm_title }} official documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html/clusters/cluster_mce_overview#discover-hosted-acm)
+- [Discovering multicluster engine Operator hosted clusters in Red Hat Advanced Cluster Management (Red Hat Advanced Cluster Management official documentation)](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html/clusters/cluster_mce_overview#discover-hosted-acm)
+
+## Versioning for hosted control planes {#hosted-control-planes-version-support_hcp-overview}
+
+The hosted control planes feature includes several components that might require independent versioning and support levels.
+
+Those components are as follows:
+
+- Management cluster
+- HyperShift Operator
+- Hosted control planes (`hcp`) command-line interface (CLI)
+- `hypershift.openshift.io` API
+- Control Plane Operator
+
+### Management cluster {#hcp-versioning-mgmt_hcp-overview}
+
+In management clusters for production use, you need multicluster engine for Kubernetes Operator, which is available through the software catalog. The multicluster engine Operator bundles a supported build of the HyperShift Operator. For your management clusters to remain supported, you must use the version of OpenShift Container Platform that multicluster engine Operator runs on. In general, a new release of multicluster engine Operator runs on the following versions of OpenShift Container Platform:
+
+- The latest General Availability version of OpenShift Container Platform
+- Two versions before the latest General Availability version of OpenShift Container Platform
+
+The full list of OpenShift Container Platform versions that you can install through the HyperShift Operator on a management cluster depends on the version of your HyperShift Operator. However, the list always includes at least the same OpenShift Container Platform version as the management cluster and two previous minor versions relative to the management cluster. For example, if the management cluster is running 4.17 and a supported version of multicluster engine Operator, the HyperShift Operator can install 4.17, 4.16, 4.15, and 4.14 hosted clusters.
+
+With each major, minor, or patch version release of OpenShift Container Platform, two components of hosted control planes are released:
+
+- The HyperShift Operator
+- The `hcp` command-line interface (CLI)
+
+### HyperShift Operator {#hcp-versioning-ho_hcp-overview}
+
+The HyperShift Operator manages the lifecycle of hosted clusters that are represented by the `HostedCluster` API resources. The HyperShift Operator is released with each OpenShift Container Platform release. The HyperShift Operator creates the `supported-versions` config map in the `hypershift` namespace. The config map contains the supported hosted cluster versions.
+
+You can host different versions of control planes on the same management cluster.
+
+```yaml {title=&quot;Example supported-versions config map object&quot;}
+    apiVersion: v1
+    data:
+      supported-versions: '{&quot;versions&quot;:[&quot;4.22&quot;]}'
+    kind: ConfigMap
+    metadata:
+      labels:
+        hypershift.openshift.io/supported-versions: &quot;true&quot;
+      name: supported-versions
+      namespace: hypershift
+```
+
+### hosted control planes CLI {#hcp-versioning-cli_hcp-overview}
+
+You can use the `hcp` CLI to create hosted clusters. You can download the CLI from multicluster engine Operator. When you run the `hcp version` command, the output shows the latest OpenShift Container Platform that the CLI supports against your `kubeconfig` file.
+
+### hypershift.openshift.io API {#hcp-versioning-api_hcp-overview}
+
+You can use the `hypershift.openshift.io` API resources, such as, `HostedCluster` and `NodePool`, to create and manage OpenShift Container Platform clusters at scale. A `HostedCluster` resource contains the control plane and common data plane configuration. When you create a `HostedCluster` resource, you have a fully functional control plane with no attached nodes. A `NodePool` resource is a scalable set of worker nodes that is attached to a `HostedCluster` resource.
+
+The API version policy generally aligns with the policy for Kubernetes API versioning.
+
+Updates for hosted control planes involve updating the hosted cluster and the node pools. For more information, see &quot;Updates for hosted control planes&quot;.
+
+### Control Plane Operator {#hcp-versioning-cpo_hcp-overview}
+
+The Control Plane Operator is released as part of each OpenShift Container Platform payload release image for the following architectures:
+
+- amd64
+- arm64
+- multi-arch
 
 **Additional resources**
 
@@ -26,4 +373,255 @@ The standalone configuration uses dedicated virtual machines or physical machine
 - [AMD64 release images](https://amd64.ocp.releases.ci.openshift.org/)
 - [ARM64 release images](https://arm64.ocp.releases.ci.openshift.org/)
 - [Multi-arch release images](https://multi.ocp.releases.ci.openshift.org/)
-"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fhosted_control_planes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fhosted_control_planes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fhosted_control_planes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fhosted_control_planes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><h1 class="text-3xl font-bold tracking-tight mb-2" data-astro-cid-vg5xjwtk>{{ hcp_capital }} overview</h1><article class="docs-prose"><p class="/_attributes/common-attributes.md"></p><h1 id="hcp-overview" class="group scroll-mt-20">{{ hcp_capital }} overview<a href="#hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or {{ hcp }}.</p><p>The standalone configuration uses dedicated virtual machines or physical machines to host the control plane. With {{ hcp }} for OpenShift Container Platform, you create control planes as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.</p><p class="/modules/hosted-control-planes-overview.md"></p><p><strong>Additional resources</strong></p><ul><li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#cluster_mce_overview">Cluster lifecycle with {{ mce }} overview ({{ rh_rhacm_title }} official documentation)</a></li></ul><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt">Enabling etcd encryption</a></li></ul><p class="/modules/hcp-acm-discover.md"></p><p><strong>Additional resources</strong></p><ul><li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html/clusters/cluster_mce_overview#discover-hosted-acm">Discovering {{ mce_short }} hosted clusters in {{ rh_rhacm_title }} ({{ rh_rhacm_title }} official documentation)</a></li></ul><p><strong>Additional resources</strong></p><ul><li><a href="https://kubernetes.io/docs/reference/using-api/#api-versioning">Kubernetes API versioning</a></li><li><a href="https://amd64.ocp.releases.ci.openshift.org/">AMD64 release images</a></li><li><a href="https://arm64.ocp.releases.ci.openshift.org/">ARM64 release images</a></li><li><a href="https://multi.ocp.releases.ci.openshift.org/">Multi-arch release images</a></li></ul></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/hosted_control_planes/hcp-release-notes" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Hosted control planes release notes</div></div></a><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Requirements for hosted control planes</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>
+
+## Glossary of common concepts and personas for hosted control planes {#hosted-control-planes-concepts-personas_hcp-overview}
+
+When you use hosted control planes for OpenShift Container Platform, it is important to understand its key concepts and the personas that are involved.
+
+### Concepts {#hosted-control-planes-concepts_hcp-overview}
+
+data plane
+:   The part of the cluster that includes the compute, storage, and networking where workloads and applications run.
+
+hosted cluster
+:   An OpenShift Container Platform cluster with its control plane and API endpoint hosted on a management cluster. The hosted cluster includes the control plane and its corresponding data plane.
+
+hosted cluster infrastructure
+:   Network, compute, and storage resources that exist in the tenant or end-user cloud account.
+
+hosted control plane
+:   An OpenShift Container Platform control plane that runs on the management cluster, which is exposed by the API endpoint of a hosted cluster. The components of a control plane include etcd, the Kubernetes API server, the Kubernetes controller manager, and a VPN.
+
+hosting cluster
+:   See *management cluster*.
+
+managed cluster
+:   A cluster that the hub cluster manages. This term is specific to the cluster lifecycle that the multicluster engine for Kubernetes Operator manages in Red Hat Advanced Cluster Management. A managed cluster is not the same thing as a *management cluster*. For more information, see [Managed cluster](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/about/welcome-to-red-hat-advanced-cluster-management-for-kubernetes#managed-cluster).
+
+management cluster
+:   An OpenShift Container Platform cluster where the HyperShift Operator is deployed and where the control planes for hosted clusters are hosted. The management cluster is synonymous with the *hosting cluster*.
+
+management cluster infrastructure
+:   Network, compute, and storage resources of the management cluster.
+
+node pool
+:   A resource that manages a set of compute nodes that are associated with a hosted cluster. The compute nodes run applications and workloads within the hosted cluster.
+
+### Personas {#hosted-control-planes-personas_hcp-overview}
+
+cluster instance administrator
+:   Users who assume this role are the equivalent of administrators in standalone OpenShift Container Platform. This user has the `cluster-admin` role in the provisioned cluster, but might not have power over when or how the cluster is updated or configured. This user might have read-only access to see some configuration projected into the cluster.
+
+cluster instance user
+:   Users who assume this role are the equivalent of developers in standalone OpenShift Container Platform. This user does not have a view into the software catalog or machines.
+
+cluster service consumer
+:   Users who assume this role can request control planes and worker nodes, drive updates, or modify externalized configurations. Typically, this user does not manage or access cloud credentials or infrastructure encryption keys. The cluster service consumer persona can request hosted clusters and interact with node pools. Users who assume this role have role-based access control (RBAC) to create, read, update, or delete hosted clusters and node pools within a logical boundary.
+
+cluster service provider
+:   Users who assume this role typically have the `cluster-admin` role on the management cluster and have RBAC to monitor and own the availability of the HyperShift Operator and the control planes for the tenant’s hosted clusters. The cluster service provider persona is responsible for several activities, including the following examples:
+
+    - Owning service-level objects for control plane availability, uptime, and stability
+    - Configuring the cloud account for the management cluster to host control planes
+    - Configuring the user-provisioned infrastructure, which includes the host awareness of available compute resources
+"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fhosted_control_planes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fhosted_control_planes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fhosted_control_planes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fhosted_control_planes.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><details class="dba-toc-top not-prose mb-6 rounded-md border" data-toc-top data-astro-cid-vg5xjwtk><summary class="cursor-pointer list-none px-3 py-2 text-sm font-medium text-muted-foreground" data-astro-cid-vg5xjwtk>On this page</summary><div class="border-t px-3 py-2" data-astro-cid-vg5xjwtk><nav class="text-sm" aria-label="Table of contents"><ul class="mt-2 space-y-1"><li><a href="#hosted-control-planes-overview_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="hosted-control-planes-overview_hcp-overview">Introduction to hosted control planes</a></li><li><a href="#hosted-control-planes-architecture_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="hosted-control-planes-architecture_hcp-overview">Architecture of hosted control planes</a></li><li><a href="#hosted-control-planes-benefits_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="hosted-control-planes-benefits_hcp-overview">Benefits of hosted control planes</a></li><li><a href="#hcp-ocp-differences_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="hcp-ocp-differences_hcp-overview">Differences between hosted control planes and OpenShift Container Platform</a></li><li><a href="#cluster-creation_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="cluster-creation_hcp-overview">Cluster creation and lifecycle</a></li><li><a href="#cluster-configuration_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="cluster-configuration_hcp-overview">Cluster configuration</a></li><li><a href="#etcd-encryption_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="etcd-encryption_hcp-overview">etcd encryption</a></li><li><a href="#operators-and-control-plane_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="operators-and-control-plane_hcp-overview">Operators and control plane</a></li><li><a href="#upgrades_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="upgrades_hcp-overview">Updates</a></li><li><a href="#machine-config-manage_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="machine-config-manage_hcp-overview">Machine configuration and management</a></li><li><a href="#netowrking_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="netowrking_hcp-overview">Networking</a></li><li><a href="#web-console_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="web-console_hcp-overview">Web console</a></li><li><a href="#hcp-mce-acm-relationship-intro_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="hcp-mce-acm-relationship-intro_hcp-overview">Relationship between hosted control planes, multicluster engine Operator, and RHACM</a></li><li><a href="#hcp-acm-discover_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="hcp-acm-discover_hcp-overview">Hosted clusters in Red Hat Advanced Cluster Management</a></li><li><a href="#hosted-control-planes-version-support_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="hosted-control-planes-version-support_hcp-overview">Versioning for hosted control planes</a></li><li><a href="#hcp-versioning-mgmt_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="hcp-versioning-mgmt_hcp-overview">Management cluster</a></li><li><a href="#hcp-versioning-ho_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="hcp-versioning-ho_hcp-overview">HyperShift Operator</a></li><li><a href="#hcp-versioning-cli_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="hcp-versioning-cli_hcp-overview">hosted control planes CLI</a></li><li><a href="#hcp-versioning-api_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="hcp-versioning-api_hcp-overview">hypershift.openshift.io API</a></li><li><a href="#hcp-versioning-cpo_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="hcp-versioning-cpo_hcp-overview">Control Plane Operator</a></li><li><a href="#hosted-control-planes-concepts-personas_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="hosted-control-planes-concepts-personas_hcp-overview">Glossary of common concepts and personas for hosted control planes</a></li><li><a href="#hosted-control-planes-concepts_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="hosted-control-planes-concepts_hcp-overview">Concepts</a></li><li><a href="#hosted-control-planes-personas_hcp-overview" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="hosted-control-planes-personas_hcp-overview">Personas</a></li></ul></nav></div></details><article class="docs-prose"><h1 id="hcp-overview" class="group scroll-mt-20">Hosted control planes overview<a href="#hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or hosted control planes.</p><p>The standalone configuration uses dedicated virtual machines or physical machines to host the control plane. With hosted control planes for OpenShift Container Platform, you create control planes as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.</p><h2 id="hosted-control-planes-overview_hcp-overview" class="group scroll-mt-20">Introduction to hosted control planes<a href="#hosted-control-planes-overview_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">Hosted control planes is available by using a supported version of multicluster engine for Kubernetes Operator on several platforms.</p><p>You can deploy hosted control planes on the following platforms:</p><ul><li>Bare metal by using the Agent provider</li><li>Non-bare-metal Agent machines, as a Technology Preview feature</li><li>OpenShift Virtualization</li><li>Amazon Web Services (AWS)</li><li>IBM Z</li><li>IBM Power</li><li>Red Hat OpenStack Platform (RHOSP) 17.1, as a Technology Preview feature</li></ul><p>The hosted control planes feature is enabled by default.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The multicluster engine Operator is an integral part of Red Hat Advanced Cluster Management (RHACM) and is enabled by default with RHACM. However, you do not need RHACM to use hosted control planes.</p></div></div><h3 id="hosted-control-planes-architecture_hcp-overview" class="group scroll-mt-20">Architecture of hosted control planes<a href="#hosted-control-planes-architecture_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>OpenShift Container Platform is often deployed in a coupled, or standalone, model, where a cluster consists of a control plane and a data plane. The control plane includes an API endpoint, a storage endpoint, a workload scheduler, and an actuator that ensures state. The data plane includes compute, storage, and networking where workloads and applications run.</p><p>The standalone control plane is hosted by a dedicated group of nodes, which can be physical or virtual, with a minimum number to ensure quorum. The network stack is shared. Administrator access to a cluster offers visibility into the cluster’s control plane, machine management APIs, and other components that contribute to the state of a cluster.</p><p>Although the standalone model works well, some situations require an architecture where the control plane and data plane are decoupled. In those cases, the data plane is on a separate network domain with a dedicated physical hosting environment. The control plane is hosted by using high-level primitives such as deployments and stateful sets that are native to Kubernetes. The control plane is treated as any other workload.</p><img src="/openshift-docs-markdown/_assets/images/hosted-control-planes-diagram.png" alt="Diagram that compares the hosted control plane model against OpenShift with a coupled control plane and workers" loading="lazy" decoding="async"><h3 id="hosted-control-planes-benefits_hcp-overview" class="group scroll-mt-20">Benefits of hosted control planes<a href="#hosted-control-planes-benefits_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>With hosted control planes, you can pave the way for a true hybrid-cloud approach and enjoy several other benefits.</p><ul><li>The security boundaries between management and workloads are stronger because the control plane is decoupled and hosted on a dedicated hosting service cluster. As a result, you are less likely to leak credentials for clusters to other users. Because infrastructure secret account management is also decoupled, cluster infrastructure administrators cannot accidentally delete control plane infrastructure.</li><li>With hosted control planes, you can run many control planes on fewer nodes. As a result, clusters are more affordable.</li><li>Because the control planes consist of pods that are launched on OpenShift Container Platform, control planes start quickly. The same principles apply to control planes and workloads, such as monitoring, logging, and auto-scaling.</li><li>From an infrastructure perspective, you can push registries, HAProxy, cluster monitoring, storage nodes, and other infrastructure components to the tenant’s cloud provider account, isolating usage to the tenant.</li><li>From an operational perspective, multicluster management is more centralized, which results in fewer external factors that affect the cluster status and consistency. Site reliability engineers have a central place to debug issues and navigate to the cluster data plane, which can lead to shorter Time to Resolution (TTR) and greater productivity.</li></ul><p><strong>Additional resources</strong></p><ul><li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/clusters/cluster_mce_overview#cluster_mce_overview">Cluster lifecycle with multicluster engine for Kubernetes Operator overview (Red Hat Advanced Cluster Management official documentation)</a></li></ul><h2 id="hcp-ocp-differences_hcp-overview" class="group scroll-mt-20">Differences between hosted control planes and OpenShift Container Platform<a href="#hcp-ocp-differences_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">Hosted control planes is a form factor of OpenShift Container Platform. Hosted clusters and the standalone OpenShift Container Platform clusters are configured and managed differently. </p><p>See the following tables to understand the differences between OpenShift Container Platform and hosted control planes:</p><h3 id="cluster-creation_hcp-overview" class="group scroll-mt-20">Cluster creation and lifecycle<a href="#cluster-creation_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>You install a standalone OpenShift Container Platform cluster by using the <code>openshift-install</code> binary or the Assisted Installer.</td>
+  <td>You install a hosted cluster by using the <code>hypershift.openshift.io</code> API resources such as <code>HostedCluster</code> and <code>NodePool</code>, on an existing OpenShift Container Platform cluster.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cluster-configuration_hcp-overview" class="group scroll-mt-20">Cluster configuration<a href="#cluster-configuration_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>You configure cluster-scoped resources such as authentication, API server, and proxy by using the <code>config.openshift.io</code> API group.</td>
+  <td>You configure resources that impact the control plane in the <code>HostedCluster</code> resource.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="etcd-encryption_hcp-overview" class="group scroll-mt-20">etcd encryption<a href="#etcd-encryption_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>You configure etcd encryption by using the <code>APIServer</code> resource with AES-GCM or AES-CBC. For more information, see "Enabling etcd encryption".</td>
+  <td>You configure etcd encryption by using the <code>HostedCluster</code> resource in the <code>SecretEncryption</code> field with AES-CBC or KMS for Amazon Web Services.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="operators-and-control-plane_hcp-overview" class="group scroll-mt-20">Operators and control plane<a href="#operators-and-control-plane_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>A standalone OpenShift Container Platform cluster contains separate Operators for each control plane component.</td>
+  <td>A hosted cluster contains a single Operator named Control Plane Operator that runs in the hosted control plane namespace on the management cluster.</td>
+</tr>
+<tr>
+  <td>etcd uses storage that is mounted on the control plane nodes. The etcd cluster Operator manages etcd.</td>
+  <td>etcd uses a persistent volume claim for storage and is managed by the Control Plane Operator.</td>
+</tr>
+<tr>
+  <td>The Ingress Operator, network related Operators, and Operator Lifecycle Manager (OLM) run on the cluster.</td>
+  <td>The Ingress Operator, network related Operators, and Operator Lifecycle Manager (OLM) run in the hosted control plane namespace on the management cluster.</td>
+</tr>
+<tr>
+  <td>The OAuth server runs inside the cluster and is exposed through a route in the cluster.</td>
+  <td>The OAuth server runs inside the control plane and is exposed through a route, node port, or load balancer on the management cluster.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="upgrades_hcp-overview" class="group scroll-mt-20">Updates<a href="#upgrades_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>The Cluster Version Operator (CVO) orchestrates the update process and monitors the <code>ClusterVersion</code> resource. Administrators and OpenShift components can interact with the CVO through the <code>ClusterVersion</code> resource. The <code>oc adm upgrade</code> command results in a change to the <code>ClusterVersion.Spec.DesiredUpdate</code> field in the <code>ClusterVersion</code> resource.</td>
+  <td>The hosted control planes update results in a change to the <code>.spec.release.image</code> field in the <code>HostedCluster</code> and <code>NodePool</code> resources. Any changes to the <code>ClusterVersion</code> resource are ignored.</td>
+</tr>
+<tr>
+  <td>After you update an OpenShift Container Platform cluster, both the control plane and compute machines are updated.</td>
+  <td>After you update the hosted cluster, only the control plane is updated. You perform node pool updates separately.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="machine-config-manage_hcp-overview" class="group scroll-mt-20">Machine configuration and management<a href="#machine-config-manage_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>The <code>MachineSets</code> resource manages machines in the <code>openshift-machine-api</code> namespace.</td>
+  <td>The <code>NodePool</code> resource manages machines on the management cluster.</td>
+</tr>
+<tr>
+  <td>A set of control plane machines are available.</td>
+  <td>A set of control plane machines do not exist.</td>
+</tr>
+<tr>
+  <td>You enable a machine health check by using the <code>MachineHealthCheck</code> resource.</td>
+  <td>You enable a machine health check through the <code>.spec.management.autoRepair</code> field in the <code>NodePool</code> resource.</td>
+</tr>
+<tr>
+  <td>You enable autoscaling by using the <code>ClusterAutoscaler</code> and <code>MachineAutoscaler</code> resources.</td>
+  <td>You enable autoscaling through the <code>spec.autoScaling</code> field in the <code>NodePool</code> resource.</td>
+</tr>
+<tr>
+  <td>Machines and machine sets are exposed in the cluster.</td>
+  <td>Machines, machine sets, and machine deployments from upstream Cluster CAPI Operator are used to manage machines but are not exposed to the user.</td>
+</tr>
+<tr>
+  <td>All machine sets are upgraded automatically when you update the cluster.</td>
+  <td>You update your node pools independently from the hosted cluster updates.</td>
+</tr>
+<tr>
+  <td>Only an in-place upgrade is supported in the cluster.</td>
+  <td>Both replace and in-place upgrades are supported in the hosted cluster.</td>
+</tr>
+<tr>
+  <td>The Machine Config Operator manages configurations for machines.</td>
+  <td>The Machine Config Operator does not exist in hosted control planes.</td>
+</tr>
+<tr>
+  <td>You configure machine Ignition by using the <code>MachineConfig</code>, <code>KubeletConfig</code>, and <code>ContainerRuntimeConfig</code> resources that are selected from a <code>MachineConfigPool</code> selector.</td>
+  <td>You configure the <code>MachineConfig</code>, <code>KubeletConfig</code>, and <code>ContainerRuntimeConfig</code> resources through the config map referenced in the <code>spec.config</code> field of the <code>NodePool</code> resource.</td>
+</tr>
+<tr>
+  <td>The Machine Config Daemon (MCD) manages configuration changes and updates on each of the nodes.</td>
+  <td>For an in-place upgrade, the node pool controller creates a run-once pod that updates a machine based on your configuration.</td>
+</tr>
+<tr>
+  <td>You can modify the machine configuration resources such as the SR-IOV Operator.</td>
+  <td>You cannot modify the machine configuration resources.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="netowrking_hcp-overview" class="group scroll-mt-20">Networking<a href="#netowrking_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>The Kube API server communicates with nodes directly, because the Kube API server and nodes exist in the same Virtual Private Cloud (VPC).</td>
+  <td>The Kube API server communicates with nodes through Konnectivity. The Kube API server and nodes exist in a different Virtual Private Cloud (VPC).</td>
+</tr>
+<tr>
+  <td>Nodes communicate with the Kube API server through the internal load balancer.</td>
+  <td>Nodes communicate with the Kube API server through an external load balancer or a node port.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="web-console_hcp-overview" class="group scroll-mt-20">Web console<a href="#web-console_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><table>
+<thead>
+<tr>
+  <th>OpenShift Container Platform</th>
+  <th>Hosted control planes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>The web console shows the status of a control plane.</td>
+  <td>The web console does not show the status of a control plane.</td>
+</tr>
+<tr>
+  <td>You can update your cluster by using the web console.</td>
+  <td>You cannot update the hosted cluster by using the web console.</td>
+</tr>
+<tr>
+  <td>The web console displays the infrastructure resources such as machines.</td>
+  <td>The web console does not display the infrastructure resources.</td>
+</tr>
+<tr>
+  <td>You can configure machines through the <code>MachineConfig</code> resource by using the web console.</td>
+  <td>You cannot configure machines by using the web console.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/etcd/etcd-encrypt#etcd-encrypt">Enabling etcd encryption</a></li></ul><h2 id="hcp-mce-acm-relationship-intro_hcp-overview" class="group scroll-mt-20">Relationship between hosted control planes, multicluster engine Operator, and RHACM<a href="#hcp-mce-acm-relationship-intro_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can configure hosted control planes by using the multicluster engine for Kubernetes Operator. The multicluster engine Operator cluster lifecycle defines the process of creating, importing, managing, and destroying Kubernetes clusters across various infrastructure cloud providers, private clouds, and on-premise data centers.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The multicluster engine Operator is an integral part of Red Hat Advanced Cluster Management and is enabled by default with RHACM. However, you do not need Red Hat Advanced Cluster Management to use hosted control planes.</p></div></div><p>The multicluster engine Operator is the cluster lifecycle Operator that provides cluster management capabilities for OpenShift Container Platform and RHACM hub clusters. The multicluster engine Operator enhances cluster fleet management and supports OpenShift Container Platform cluster lifecycle management across clouds and data centers.</p><p><strong>Figure 1. Cluster life cycle and foundation</strong></p><img src="/openshift-docs-markdown/_assets/images/acm-mce-intro-diagram.png" alt="Cluster life cycle and foundation" loading="lazy" decoding="async"><p>You can use the multicluster engine Operator with OpenShift Container Platform as a standalone cluster manager or as part of a RHACM hub cluster.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-tip/50 bg-tip/5 text-foreground [&amp;>svg]:text-tip my-4" data-variant="tip" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.66 11.2c-.23-.3-.51-.56-.77-.82-.67-.6-1.43-1.03-2.07-1.66C13.33 7.26 13 4.85 13.95 3c-.95.23-1.78.75-2.49 1.32-2.59 2.08-3.61 5.75-2.39 8.9.04.1.08.2.08.33 0 .22-.15.42-.35.5-.23.1-.47.04-.66-.12a.6.6 0 0 1-.14-.17c-1.13-1.43-1.31-3.48-.55-5.12C5.78 10 4.87 12.3 5 14.47c.06.5.12 1 .29 1.5.14.6.41 1.2.71 1.73 1.08 1.73 2.95 2.97 4.96 3.22 2.14.27 4.43-.12 6.07-1.6 1.83-1.66 2.47-4.32 1.53-6.6l-.13-.26c-.21-.46-.77-1.26-.77-1.26m-3.16 6.3c-.28.24-.74.5-1.1.6-1.12.4-2.24-.16-2.9-.82 1.19-.28 1.9-1.16 2.11-2.05.17-.8-.15-1.46-.28-2.23-.12-.74-.1-1.37.17-2.06.19.38.39.76.63 1.06.77 1 1.98 1.44 2.24 2.8.04.14.06.28.06.43.03.82-.33 1.72-.93 2.27"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Tip</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>A management cluster is also known as the hosting cluster.</p></div></div><p>You can deploy OpenShift Container Platform clusters by using two different control plane configurations: standalone or hosted control planes. The standalone configuration uses dedicated virtual machines or physical machines to host the control plane. With hosted control planes for OpenShift Container Platform, you create control planes as pods on a management cluster without the need for dedicated virtual or physical machines for each control plane.</p><p><strong>Figure 2. RHACM and the multicluster engine Operator introduction diagram</strong></p><img src="/openshift-docs-markdown/_assets/images/rhacm-flow.png" alt="RHACM and the multicluster engine Operator introduction diagram" loading="lazy" decoding="async"><h3 id="hcp-acm-discover_hcp-overview" class="group scroll-mt-20">Hosted clusters in Red Hat Advanced Cluster Management<a href="#hcp-acm-discover_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p class="_abstract">You can bring hosted clusters to a Red Hat Advanced Cluster Management hub cluster to manage them with Red Hat Advanced Cluster Management management components.</p><p>For more information, see "Discovering multicluster engine Operator hosted clusters in Red Hat Advanced Cluster Management".</p><p><strong>Additional resources</strong></p><ul><li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.11/html/clusters/cluster_mce_overview#discover-hosted-acm">Discovering multicluster engine Operator hosted clusters in Red Hat Advanced Cluster Management (Red Hat Advanced Cluster Management official documentation)</a></li></ul><h2 id="hosted-control-planes-version-support_hcp-overview" class="group scroll-mt-20">Versioning for hosted control planes<a href="#hosted-control-planes-version-support_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">The hosted control planes feature includes several components that might require independent versioning and support levels.</p><p>Those components are as follows:</p><ul><li>Management cluster</li><li>HyperShift Operator</li><li>Hosted control planes (<code>hcp</code>) command-line interface (CLI)</li><li><code>hypershift.openshift.io</code> API</li><li>Control Plane Operator</li></ul><h3 id="hcp-versioning-mgmt_hcp-overview" class="group scroll-mt-20">Management cluster<a href="#hcp-versioning-mgmt_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>In management clusters for production use, you need multicluster engine for Kubernetes Operator, which is available through the software catalog. The multicluster engine Operator bundles a supported build of the HyperShift Operator. For your management clusters to remain supported, you must use the version of OpenShift Container Platform that multicluster engine Operator runs on. In general, a new release of multicluster engine Operator runs on the following versions of OpenShift Container Platform:</p><ul><li>The latest General Availability version of OpenShift Container Platform</li><li>Two versions before the latest General Availability version of OpenShift Container Platform</li></ul><p>The full list of OpenShift Container Platform versions that you can install through the HyperShift Operator on a management cluster depends on the version of your HyperShift Operator. However, the list always includes at least the same OpenShift Container Platform version as the management cluster and two previous minor versions relative to the management cluster. For example, if the management cluster is running 4.17 and a supported version of multicluster engine Operator, the HyperShift Operator can install 4.17, 4.16, 4.15, and 4.14 hosted clusters.</p><p>With each major, minor, or patch version release of OpenShift Container Platform, two components of hosted control planes are released:</p><ul><li>The HyperShift Operator</li><li>The <code>hcp</code> command-line interface (CLI)</li></ul><h3 id="hcp-versioning-ho_hcp-overview" class="group scroll-mt-20">HyperShift Operator<a href="#hcp-versioning-ho_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>The HyperShift Operator manages the lifecycle of hosted clusters that are represented by the <code>HostedCluster</code> API resources. The HyperShift Operator is released with each OpenShift Container Platform release. The HyperShift Operator creates the <code>supported-versions</code> config map in the <code>hypershift</code> namespace. The config map contains the supported hosted cluster versions.</p><p>You can host different versions of control planes on the same management cluster.</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">Example supported-versions config map object</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="    apiVersion: v1
+    data:
+      supported-versions: '{&quot;versions&quot;:[&quot;4.22&quot;]}'
+    kind: ConfigMap
+    metadata:
+      labels:
+        hypershift.openshift.io/supported-versions: &quot;true&quot;
+      name: supported-versions
+      namespace: hypershift" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    apiVersion</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">v1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    data</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      supported-versions</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">'{"versions":["4.22"]}'</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    kind</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ConfigMap</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    metadata</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      labels</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">        hypershift.openshift.io/supported-versions</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">"true"</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">supported-versions</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      namespace</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">hypershift</span></span></code></pre></div></div><script type="module">function e(){document.querySelectorAll(`[data-component='code-block'] [data-part='copy']`).forEach(e=>{e.__copyBound||(e.__copyBound=!0,e.addEventListener(`click`,async()=>{let t=e.getAttribute(`data-copy-text`)||``;try{await navigator.clipboard.writeText(t);let n=e.querySelector(`[data-copy-icon]`),r=e.querySelector(`[data-check-icon]`);n&&r&&(n.classList.add(`hidden`),r.classList.remove(`hidden`),setTimeout(()=>{n.classList.remove(`hidden`),r.classList.add(`hidden`)},2e3))}catch{}}))})}e(),document.addEventListener(`astro:after-swap`,e);</script><h3 id="hcp-versioning-cli_hcp-overview" class="group scroll-mt-20">hosted control planes CLI<a href="#hcp-versioning-cli_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>You can use the <code>hcp</code> CLI to create hosted clusters. You can download the CLI from multicluster engine Operator. When you run the <code>hcp version</code> command, the output shows the latest OpenShift Container Platform that the CLI supports against your <code>kubeconfig</code> file.</p><h3 id="hcp-versioning-api_hcp-overview" class="group scroll-mt-20">hypershift.openshift.io API<a href="#hcp-versioning-api_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>You can use the <code>hypershift.openshift.io</code> API resources, such as, <code>HostedCluster</code> and <code>NodePool</code>, to create and manage OpenShift Container Platform clusters at scale. A <code>HostedCluster</code> resource contains the control plane and common data plane configuration. When you create a <code>HostedCluster</code> resource, you have a fully functional control plane with no attached nodes. A <code>NodePool</code> resource is a scalable set of worker nodes that is attached to a <code>HostedCluster</code> resource.</p><p>The API version policy generally aligns with the policy for Kubernetes API versioning.</p><p>Updates for hosted control planes involve updating the hosted cluster and the node pools. For more information, see "Updates for hosted control planes".</p><h3 id="hcp-versioning-cpo_hcp-overview" class="group scroll-mt-20">Control Plane Operator<a href="#hcp-versioning-cpo_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>The Control Plane Operator is released as part of each OpenShift Container Platform payload release image for the following architectures:</p><ul><li>amd64</li><li>arm64</li><li>multi-arch</li></ul><p><strong>Additional resources</strong></p><ul><li><a href="https://kubernetes.io/docs/reference/using-api/#api-versioning">Kubernetes API versioning</a></li><li><a href="https://amd64.ocp.releases.ci.openshift.org/">AMD64 release images</a></li><li><a href="https://arm64.ocp.releases.ci.openshift.org/">ARM64 release images</a></li><li><a href="https://multi.ocp.releases.ci.openshift.org/">Multi-arch release images</a></li></ul><h2 id="hosted-control-planes-concepts-personas_hcp-overview" class="group scroll-mt-20">Glossary of common concepts and personas for hosted control planes<a href="#hosted-control-planes-concepts-personas_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">When you use hosted control planes for OpenShift Container Platform, it is important to understand its key concepts and the personas that are involved.</p><h3 id="hosted-control-planes-concepts_hcp-overview" class="group scroll-mt-20">Concepts<a href="#hosted-control-planes-concepts_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><dl class="my-4 space-y-2"><dt class="font-semibold">data plane</dt><dd class="ml-6 text-muted-foreground"><p>The part of the cluster that includes the compute, storage, and networking where workloads and applications run.</p></dd><dt class="font-semibold">hosted cluster</dt><dd class="ml-6 text-muted-foreground"><p>An OpenShift Container Platform cluster with its control plane and API endpoint hosted on a management cluster. The hosted cluster includes the control plane and its corresponding data plane.</p></dd><dt class="font-semibold">hosted cluster infrastructure</dt><dd class="ml-6 text-muted-foreground"><p>Network, compute, and storage resources that exist in the tenant or end-user cloud account.</p></dd><dt class="font-semibold">hosted control plane</dt><dd class="ml-6 text-muted-foreground"><p>An OpenShift Container Platform control plane that runs on the management cluster, which is exposed by the API endpoint of a hosted cluster. The components of a control plane include etcd, the Kubernetes API server, the Kubernetes controller manager, and a VPN.</p></dd><dt class="font-semibold">hosting cluster</dt><dd class="ml-6 text-muted-foreground"><p>See <em>management cluster</em>.</p></dd><dt class="font-semibold">managed cluster</dt><dd class="ml-6 text-muted-foreground"><p>A cluster that the hub cluster manages. This term is specific to the cluster lifecycle that the multicluster engine for Kubernetes Operator manages in Red Hat Advanced Cluster Management. A managed cluster is not the same thing as a <em>management cluster</em>. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.16/html/about/welcome-to-red-hat-advanced-cluster-management-for-kubernetes#managed-cluster">Managed cluster</a>.</p></dd><dt class="font-semibold">management cluster</dt><dd class="ml-6 text-muted-foreground"><p>An OpenShift Container Platform cluster where the HyperShift Operator is deployed and where the control planes for hosted clusters are hosted. The management cluster is synonymous with the <em>hosting cluster</em>.</p></dd><dt class="font-semibold">management cluster infrastructure</dt><dd class="ml-6 text-muted-foreground"><p>Network, compute, and storage resources of the management cluster.</p></dd><dt class="font-semibold">node pool</dt><dd class="ml-6 text-muted-foreground"><p>A resource that manages a set of compute nodes that are associated with a hosted cluster. The compute nodes run applications and workloads within the hosted cluster.</p></dd></dl><h3 id="hosted-control-planes-personas_hcp-overview" class="group scroll-mt-20">Personas<a href="#hosted-control-planes-personas_hcp-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><dl class="my-4 space-y-2"><dt class="font-semibold">cluster instance administrator</dt><dd class="ml-6 text-muted-foreground"><p>Users who assume this role are the equivalent of administrators in standalone OpenShift Container Platform. This user has the <code>cluster-admin</code> role in the provisioned cluster, but might not have power over when or how the cluster is updated or configured. This user might have read-only access to see some configuration projected into the cluster.</p></dd><dt class="font-semibold">cluster instance user</dt><dd class="ml-6 text-muted-foreground"><p>Users who assume this role are the equivalent of developers in standalone OpenShift Container Platform. This user does not have a view into the software catalog or machines.</p></dd><dt class="font-semibold">cluster service consumer</dt><dd class="ml-6 text-muted-foreground"><p>Users who assume this role can request control planes and worker nodes, drive updates, or modify externalized configurations. Typically, this user does not manage or access cloud credentials or infrastructure encryption keys. The cluster service consumer persona can request hosted clusters and interact with node pools. Users who assume this role have role-based access control (RBAC) to create, read, update, or delete hosted clusters and node pools within a logical boundary.</p></dd><dt class="font-semibold">cluster service provider</dt><dd class="ml-6 text-muted-foreground"><p>Users who assume this role typically have the <code>cluster-admin</code> role on the management cluster and have RBAC to monitor and own the availability of the HyperShift Operator and the control planes for the tenant’s hosted clusters. The cluster service provider persona is responsible for several activities, including the following examples:</p><ul><li>Owning service-level objects for control plane availability, uptime, and stability</li><li>Configuring the cloud account for the management cluster to host control planes</li><li>Configuring the user-provisioned infrastructure, which includes the host awareness of available compute resources</li></ul></dd></dl></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/hosted_control_planes/hcp-release-notes" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Hosted control planes release notes</div></div></a><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Requirements for hosted control planes</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>

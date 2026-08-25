@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"deployment-operations","text":"Managing deployment processes"},{"depth":2,"slug":"deploymentconfig-operations","text":"Managing DeploymentConfig objects"}];
+const headings = [{"depth":1,"slug":"deployment-operations","text":"Managing deployment processes"},{"depth":2,"slug":"deploymentconfig-operations","text":"Managing DeploymentConfig objects"},{"depth":3,"slug":"deployments-starting-a-deployment_deployment-operations","text":"Starting a deployment"},{"depth":3,"slug":"deployments-viewing-a-deployment_deployment-operations","text":"Viewing a deployment"},{"depth":3,"slug":"deployments-retrying-deployment_deployment-operations","text":"Retrying a deployment"},{"depth":3,"slug":"deployments-rolling-back_deployment-operations","text":"Rolling back a deployment"},{"depth":3,"slug":"deployments-exe-cmd-in-container_deployment-operations","text":"Executing commands inside a container"},{"depth":3,"slug":"deployments-viewing-logs_deployment-operations","text":"Viewing deployment logs"},{"depth":3,"slug":"deployments-triggers_deployment-operations","text":"Deployment triggers"},{"depth":4,"slug":"deployments-configchange-trigger_deployment-operations","text":"Config change deployment triggers"},{"depth":4,"slug":"deployments-imagechange-trigger_deployment-operations","text":"Image change deployment triggers"},{"depth":4,"slug":"deployments-setting-triggers_deployment-operations","text":"Setting deployment triggers"},{"depth":3,"slug":"deployments-setting-resources_deployment-operations","text":"Setting deployment resources"},{"depth":3,"slug":"deployments-scaling-manually_deployment-operations","text":"Scaling manually"},{"depth":3,"slug":"deployments-accessing-private-repos_deployment-operations","text":"Accessing private repositories from DeploymentConfig objects"},{"depth":3,"slug":"deployments-assigning-pods-to-nodes_deployment-operations","text":"Assigning pods to specific nodes"},{"depth":3,"slug":"deployments-running-pod-svc-acct_deployment-operations","text":"Running a pod with a different service account"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/deployments/managing-deployment-processes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["applications","applications/deployments"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing deployment processes {#deployment-operations}\n\n## Managing DeploymentConfig objects {#deploymentconfig-operations}\n\n`DeploymentConfig` objects can be managed from the OpenShift Container Platform web console’s **Workloads** page or using the `oc` CLI. The following procedures show CLI usage unless otherwise stated.\n\n**Additional resources**\n\n- For more information about resource limits and requests, see [Understanding managing application memory](/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/deployments/managing-deployment-processes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing deployment processes {#deployment-operations}\n\n## Managing DeploymentConfig objects {#deploymentconfig-operations}\n\n> [!IMPORTANT]\n> As of OpenShift Container Platform 4.14, `DeploymentConfig` objects are deprecated. `DeploymentConfig` objects are still supported, but are not recommended for new installations. Only security-related and critical issues will be fixed.\n>\n> Instead, use `Deployment` objects or another alternative to provide declarative updates for pods.\n\n`DeploymentConfig` objects can be managed from the OpenShift Container Platform web console’s **Workloads** page or using the `oc` CLI. The following procedures show CLI usage unless otherwise stated.\n\n### Starting a deployment {#deployments-starting-a-deployment_deployment-operations}\n\nYou can start a rollout to begin the deployment process of your application.\n\n**Procedure**\n\n1. To start a new deployment process from an existing `DeploymentConfig` object, run the following command:\n\n   ```terminal\n   $ oc rollout latest dc/<name>\n   ```\n\n   > [!NOTE]\n   > If a deployment process is already in progress, the command displays a message and a new replication controller will not be deployed.\n\n### Viewing a deployment {#deployments-viewing-a-deployment_deployment-operations}\n\nYou can view a deployment to get basic information about all the available revisions of your application.\n\n**Procedure**\n\n1. To show details about all recently created replication controllers for the provided `DeploymentConfig` object, including any currently running deployment process, run the following command:\n\n   ```terminal\n   $ oc rollout history dc/<name>\n   ```\n2. To view details specific to a revision, add the `--revision` flag:\n\n   ```terminal\n   $ oc rollout history dc/<name> --revision=1\n   ```\n3. For more detailed information about a `DeploymentConfig` object and its latest revision, use the `oc describe` command:\n\n   ```terminal\n   $ oc describe dc <name>\n   ```\n\n### Retrying a deployment {#deployments-retrying-deployment_deployment-operations}\n\nIf the current revision of your `DeploymentConfig` object failed to deploy, you can restart the deployment process.\n\n**Procedure**\n\n1. To restart a failed deployment process:\n\n   ```terminal\n   $ oc rollout retry dc/<name>\n   ```\n\n   If the latest revision of it was deployed successfully, the command displays a message and the deployment process is not retried.\n\n   > [!NOTE]\n   > Retrying a deployment restarts the deployment process and does not create a new deployment revision. The restarted replication controller has the same configuration it had when it failed.\n\n### Rolling back a deployment {#deployments-rolling-back_deployment-operations}\n\nRollbacks revert an application back to a previous revision and can be performed using the REST API, the CLI, or the web console.\n\n**Procedure**\n\n1. To rollback to the last successful deployed revision of your configuration:\n\n   ```terminal\n   $ oc rollout undo dc/<name>\n   ```\n\n   The `DeploymentConfig` object’s template is reverted to match the deployment revision specified in the undo command, and a new replication controller is started. If no revision is specified with `--to-revision`, then the last successfully deployed revision is used.\n2. Image change triggers on the `DeploymentConfig` object are disabled as part of the rollback to prevent accidentally starting a new deployment process soon after the rollback is complete.\n\n   To re-enable the image change triggers:\n\n   ```terminal\n   $ oc set triggers dc/<name> --auto\n   ```\n\n> [!NOTE]\n> Deployment configs also support automatically rolling back to the last successful revision of the configuration in case the latest deployment process fails. In that case, the latest template that failed to deploy stays intact by the system and it is up to users to fix their configurations.\n\n### Executing commands inside a container {#deployments-exe-cmd-in-container_deployment-operations}\n\nYou can add a command to a container, which modifies the container’s startup behavior by overruling the image’s `ENTRYPOINT`. This is different from a lifecycle hook, which instead can be run once per deployment at a specified time.\n\n**Procedure**\n\n1. Add the `command` parameters to the `spec` field of the `DeploymentConfig` object. You can also add an `args` field, which modifies the `command` (or the `ENTRYPOINT` if `command` does not exist).\n\n   ```yaml\n   kind: DeploymentConfig\n   apiVersion: apps.openshift.io/v1\n   metadata:\n     name: example-dc\n   # ...\n   spec:\n     template:\n   # ...\n       spec:\n        containers:\n        - name: <container_name>\n          image: 'image'\n          command:\n            - '<command>'\n          args:\n            - '<argument_1>'\n            - '<argument_2>'\n            - '<argument_3>'\n   ```\n\n   For example, to execute the `java` command with the `-jar` and `/opt/app-root/springboots2idemo.jar` arguments:\n\n   ```yaml\n   kind: DeploymentConfig\n   apiVersion: apps.openshift.io/v1\n   metadata:\n     name: example-dc\n   # ...\n   spec:\n     template:\n   # ...\n       spec:\n         containers:\n           - name: example-spring-boot\n             image: 'image'\n             command:\n               - java\n             args:\n               - '-jar'\n               - /opt/app-root/springboots2idemo.jar\n   # ...\n   ```\n\n### Viewing deployment logs {#deployments-viewing-logs_deployment-operations}\n\n**Procedure**\n\n1. To stream the logs of the latest revision for a given `DeploymentConfig` object:\n\n   ```terminal\n   $ oc logs -f dc/<name>\n   ```\n\n   If the latest revision is running or failed, the command returns the logs of the process that is responsible for deploying your pods. If it is successful, it returns the logs from a pod of your application.\n2. You can also view logs from older failed deployment processes, if and only if these processes (old replication controllers and their deployer pods) exist and have not been pruned or deleted manually:\n\n   ```terminal\n   $ oc logs --version=1 dc/<name>\n   ```\n\n### Deployment triggers {#deployments-triggers_deployment-operations}\n\nA `DeploymentConfig` object can contain triggers, which drive the creation of new deployment processes in response to events inside the cluster.\n\n> [!WARNING]\n> If no triggers are defined on a `DeploymentConfig` object, a config change trigger is added by default. If triggers are defined as an empty field, deployments must be started manually.\n\n#### Config change deployment triggers {#deployments-configchange-trigger_deployment-operations}\n\nThe config change trigger results in a new replication controller whenever configuration changes are detected in the pod template of the `DeploymentConfig` object.\n\n> [!NOTE]\n> If a config change trigger is defined on a `DeploymentConfig` object, the first replication controller is automatically created soon after the `DeploymentConfig` object itself is created and it is not paused.\n\n```yaml {title=\"Config change deployment trigger\"}\nkind: DeploymentConfig\napiVersion: apps.openshift.io/v1\nmetadata:\n  name: example-dc\n# ...\nspec:\n# ...\n  triggers:\n    - type: \"ConfigChange\"\n```\n\n#### Image change deployment triggers {#deployments-imagechange-trigger_deployment-operations}\n\nThe image change trigger results in a new replication controller whenever the content of an image stream tag changes (when a new version of the image is pushed).\n\n```yaml {title=\"Image change deployment trigger\"}\nkind: DeploymentConfig\napiVersion: apps.openshift.io/v1\nmetadata:\n  name: example-dc\n# ...\nspec:\n# ...\n  triggers:\n    - type: \"ImageChange\"\n      imageChangeParams:\n        automatic: true (1)\n        from:\n          kind: \"ImageStreamTag\"\n          name: \"origin-ruby-sample:latest\"\n          namespace: \"myproject\"\n        containerNames:\n          - \"helloworld\"\n```\n\n1. If the `imageChangeParams.automatic` field is set to `false`, the trigger is disabled.\n\nWith the above example, when the `latest` tag value of the `origin-ruby-sample` image stream changes and the new image value differs from the current image specified in the `DeploymentConfig` object’s `helloworld` container, a new replication controller is created using the new image for the `helloworld` container.\n\n> [!NOTE]\n> If an image change trigger is defined on a `DeploymentConfig` object (with a config change trigger and `automatic=false`, or with `automatic=true`) and the image stream tag pointed by the image change trigger does not exist yet, the initial deployment process will automatically start as soon as an image is imported or pushed by a build to the image stream tag.\n\n#### Setting deployment triggers {#deployments-setting-triggers_deployment-operations}\n\n**Procedure**\n\n1. You can set deployment triggers for a `DeploymentConfig` object using the `oc set triggers` command. For example, to set a image change trigger, use the following command:\n\n   ```terminal\n   $ oc set triggers dc/<dc_name> \\\n       --from-image=<project>/<image>:<tag> -c <container_name>\n   ```\n\n### Setting deployment resources {#deployments-setting-resources_deployment-operations}\n\nA deployment is completed by a pod that consumes resources (memory, CPU, and ephemeral storage) on a node. By default, pods consume unbounded node resources. However, if a project specifies default container limits, then pods consume resources up to those limits.\n\n> [!NOTE]\n> The minimum memory limit for a deployment is 12 MB. If a container fails to start due to a `Cannot allocate memory` pod event, the memory limit is too low. Either increase or remove the memory limit. Removing the limit allows pods to consume unbounded node resources.\n\nYou can also limit resource use by specifying resource limits as part of the deployment strategy. Deployment resources can be used with the recreate, rolling, or custom deployment strategies.\n\n**Procedure**\n\n1. In the following example, each of `resources`, `cpu`, `memory`, and `ephemeral-storage` is optional:\n\n   ```yaml\n   kind: Deployment\n   apiVersion: apps/v1\n   metadata:\n     name: hello-openshift\n   # ...\n   spec:\n   # ...\n     type: \"Recreate\"\n     resources:\n       limits:\n         cpu: \"100m\" (1)\n         memory: \"256Mi\" (2)\n         ephemeral-storage: \"1Gi\" (3)\n   ```\n\n   1. `cpu` is in CPU units: `100m` represents 0.1 CPU units (100 \\* 1e-3).\n   2. `memory` is in bytes: `256Mi` represents 268435456 bytes (256 \\* 2 ^ 20).\n   3. `ephemeral-storage` is in bytes: `1Gi` represents 1073741824 bytes (2 ^ 30).\n\n      However, if a quota has been defined for your project, one of the following two items is required:\n\n      - A `resources` section set with an explicit `requests`:\n\n        ```yaml\n        kind: Deployment\n        apiVersion: apps/v1\n        metadata:\n          name: hello-openshift\n        # ...\n        spec:\n        # ...\n          type: \"Recreate\"\n          resources:\n            requests: (1)\n              cpu: \"100m\"\n              memory: \"256Mi\"\n              ephemeral-storage: \"1Gi\"\n        ```\n\n        1. The `requests` object contains the list of resources that correspond to the list of resources in the quota.\n      - A limit range defined in your project, where the defaults from the `LimitRange` object apply to pods created during the deployment process.\n\n      To set deployment resources, choose one of the above options. Otherwise, deploy pod creation fails, citing a failure to satisfy quota.\n\n**Additional resources**\n\n- For more information about resource limits and requests, see [Understanding managing application memory](/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure).\n\n### Scaling manually {#deployments-scaling-manually_deployment-operations}\n\nIn addition to rollbacks, you can exercise fine-grained control over the number of replicas by manually scaling them.\n\n> [!NOTE]\n> Pods can also be auto-scaled using the `oc autoscale` command.\n\n**Procedure**\n\n1. To manually scale a `DeploymentConfig` object, use the `oc scale` command. For example, the following command sets the replicas in the `frontend` `DeploymentConfig` object to `3`.\n\n   ```terminal\n   $ oc scale dc frontend --replicas=3\n   ```\n\n   The number of replicas eventually propagates to the desired and current state of the deployment configured by the `DeploymentConfig` object `frontend`.\n\n### Accessing private repositories from DeploymentConfig objects {#deployments-accessing-private-repos_deployment-operations}\n\nYou can add a secret to your `DeploymentConfig` object so that it can access images from a private repository. This procedure shows the OpenShift Container Platform web console method.\n\n**Procedure**\n\n1. Create a new project.\n2. Navigate to **Workloads** -> **Secrets**.\n3. Create a secret that contains credentials for accessing a private image repository.\n4. Navigate to **Workloads** -> **DeploymentConfigs**.\n5. Create a `DeploymentConfig` object.\n6. On the `DeploymentConfig` object editor page, set the **Pull Secret** and save your changes.\n\n### Assigning pods to specific nodes {#deployments-assigning-pods-to-nodes_deployment-operations}\n\nYou can use node selectors in conjunction with labeled nodes to control pod placement.\n\nCluster administrators can set the default node selector for a project in order to restrict pod placement to specific nodes. As a developer, you can set a node selector on a `Pod` configuration to restrict nodes even further.\n\n**Procedure**\n\n1. To add a node selector when creating a pod, edit the `Pod` configuration, and add the `nodeSelector` value. This can be added to a single `Pod` configuration, or in a `Pod` template:\n\n   ```yaml\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     name: my-pod\n   # ...\n   spec:\n     nodeSelector:\n       disktype: ssd\n   # ...\n   ```\n\n   Pods created when the node selector is in place are assigned to nodes with the specified labels. The labels specified here are used in conjunction with the labels added by a cluster administrator.\n\n   For example, if a project has the `type=user-node` and `region=east` labels added to a project by the cluster administrator, and you add the above `disktype: ssd` label to a pod, the pod is only ever scheduled on nodes that have all three labels.\n\n   > [!NOTE]\n   > Labels can only be set to one value, so setting a node selector of `region=west` in a `Pod` configuration that has `region=east` as the administrator-set default, results in a pod that will never be scheduled.\n\n### Running a pod with a different service account {#deployments-running-pod-svc-acct_deployment-operations}\n\nYou can run a pod with a service account other than the default.\n\n**Procedure**\n\n1. Edit the `DeploymentConfig` object:\n\n   ```terminal\n   $ oc edit dc/<deployment_config>\n   ```\n2. Add the `serviceAccount` and `serviceAccountName` parameters to the `spec` field, and specify the service account you want to use:\n\n   ```yaml\n   apiVersion: apps.openshift.io/v1\n   kind: DeploymentConfig\n   metadata:\n     name: example-dc\n   # ...\n   spec:\n   # ...\n     securityContext: {}\n     serviceAccount: <service_account>\n     serviceAccountName: <service_account>\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/deployments/managing-deployment-processes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,24 +95,237 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="deployment-operations" class="group scroll-mt-20">Managing deployment processes<a href="#deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <h2 id="deploymentconfig-operations" class="group scroll-mt-20">Managing DeploymentConfig objects<a href="#deploymentconfig-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p class="/snippets/deployment-config-deprecated.md"></p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>As of OpenShift Container Platform 4.14, <code>DeploymentConfig</code> objects are deprecated. <code>DeploymentConfig</code> objects are still supported, but are not recommended for new installations. Only security-related and critical issues will be fixed.</p>
+          <p>Instead, use <code>Deployment</code> objects or another alternative to provide declarative updates for pods.</p>
+        </AlertDescription>
+      </Alert>
       <p><code>DeploymentConfig</code> objects can be managed from the OpenShift Container Platform web console’s <strong>Workloads</strong> page or using the <code>oc</code> CLI. The following procedures show CLI usage unless otherwise stated.</p>
-      <p class="/modules/deployments-starting-deployment.md"></p>
-      <p class="/modules/deployments-viewing-deployment.md"></p>
-      <p class="/modules/deployments-retrying-deployment.md"></p>
-      <p class="/modules/deployments-rolling-back.md"></p>
-      <p class="/modules/deployments-exec-cmd-in-container.md"></p>
-      <p class="/modules/deployments-viewing-logs.md"></p>
-      <p class="/modules/deployments-triggers.md"></p>
-      <p class="/modules/deployments-setting-triggers.md"></p>
-      <p class="/modules/deployments-setting-resources.md"></p>
+      <h3 id="deployments-starting-a-deployment_deployment-operations" class="group scroll-mt-20">Starting a deployment<a href="#deployments-starting-a-deployment_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can start a rollout to begin the deployment process of your application.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To start a new deployment process from an existing <code>DeploymentConfig</code> object, run the following command:
+      <CodeBlock code={"$ oc rollout latest dc/<name>"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If a deployment process is already in progress, the command displays a message and a new replication controller will not be deployed.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h3 id="deployments-viewing-a-deployment_deployment-operations" class="group scroll-mt-20">Viewing a deployment<a href="#deployments-viewing-a-deployment_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can view a deployment to get basic information about all the available revisions of your application.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To show details about all recently created replication controllers for the provided <code>DeploymentConfig</code> object, including any currently running deployment process, run the following command:
+      <CodeBlock code={"$ oc rollout history dc/<name>"} lang="terminal" />
+      </li>
+      <li>
+      To view details specific to a revision, add the <code>--revision</code> flag:
+      <CodeBlock code={"$ oc rollout history dc/<name> --revision=1"} lang="terminal" />
+      </li>
+      <li>
+      For more detailed information about a <code>DeploymentConfig</code> object and its latest revision, use the <code>oc describe</code> command:
+      <CodeBlock code={"$ oc describe dc <name>"} lang="terminal" />
+      </li>
+      </ol>
+      <h3 id="deployments-retrying-deployment_deployment-operations" class="group scroll-mt-20">Retrying a deployment<a href="#deployments-retrying-deployment_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>If the current revision of your <code>DeploymentConfig</code> object failed to deploy, you can restart the deployment process.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To restart a failed deployment process:
+      <CodeBlock code={"$ oc rollout retry dc/<name>"} lang="terminal" />
+      <p>If the latest revision of it was deployed successfully, the command displays a message and the deployment process is not retried.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Retrying a deployment restarts the deployment process and does not create a new deployment revision. The restarted replication controller has the same configuration it had when it failed.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h3 id="deployments-rolling-back_deployment-operations" class="group scroll-mt-20">Rolling back a deployment<a href="#deployments-rolling-back_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Rollbacks revert an application back to a previous revision and can be performed using the REST API, the CLI, or the web console.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To rollback to the last successful deployed revision of your configuration:
+      <CodeBlock code={"$ oc rollout undo dc/<name>"} lang="terminal" />
+      <p>The <code>DeploymentConfig</code> object’s template is reverted to match the deployment revision specified in the undo command, and a new replication controller is started. If no revision is specified with <code>--to-revision</code>, then the last successfully deployed revision is used.</p>
+      </li>
+      <li>
+      Image change triggers on the <code>DeploymentConfig</code> object are disabled as part of the rollback to prevent accidentally starting a new deployment process soon after the rollback is complete.
+      <p>To re-enable the image change triggers:</p>
+      <CodeBlock code={"$ oc set triggers dc/<name> --auto"} lang="terminal" />
+      </li>
+      </ol>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Deployment configs also support automatically rolling back to the last successful revision of the configuration in case the latest deployment process fails. In that case, the latest template that failed to deploy stays intact by the system and it is up to users to fix their configurations.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="deployments-exe-cmd-in-container_deployment-operations" class="group scroll-mt-20">Executing commands inside a container<a href="#deployments-exe-cmd-in-container_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can add a command to a container, which modifies the container’s startup behavior by overruling the image’s <code>ENTRYPOINT</code>. This is different from a lifecycle hook, which instead can be run once per deployment at a specified time.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add the <code>command</code> parameters to the <code>spec</code> field of the <code>DeploymentConfig</code> object. You can also add an <code>args</code> field, which modifies the <code>command</code> (or the <code>ENTRYPOINT</code> if <code>command</code> does not exist).
+      <CodeBlock code={"kind: DeploymentConfig\napiVersion: apps.openshift.io/v1\nmetadata:\n  name: example-dc\n# ...\nspec:\n  template:\n# ...\n    spec:\n     containers:\n     - name: <container_name>\n       image: 'image'\n       command:\n         - '<command>'\n       args:\n         - '<argument_1>'\n         - '<argument_2>'\n         - '<argument_3>'"} lang="yaml" />
+      <p>For example, to execute the <code>java</code> command with the <code>-jar</code> and <code>/opt/app-root/springboots2idemo.jar</code> arguments:</p>
+      <CodeBlock code={"kind: DeploymentConfig\napiVersion: apps.openshift.io/v1\nmetadata:\n  name: example-dc\n# ...\nspec:\n  template:\n# ...\n    spec:\n      containers:\n        - name: example-spring-boot\n          image: 'image'\n          command:\n            - java\n          args:\n            - '-jar'\n            - /opt/app-root/springboots2idemo.jar\n# ..."} lang="yaml" />
+      </li>
+      </ol>
+      <h3 id="deployments-viewing-logs_deployment-operations" class="group scroll-mt-20">Viewing deployment logs<a href="#deployments-viewing-logs_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To stream the logs of the latest revision for a given <code>DeploymentConfig</code> object:
+      <CodeBlock code={"$ oc logs -f dc/<name>"} lang="terminal" />
+      <p>If the latest revision is running or failed, the command returns the logs of the process that is responsible for deploying your pods. If it is successful, it returns the logs from a pod of your application.</p>
+      </li>
+      <li>
+      You can also view logs from older failed deployment processes, if and only if these processes (old replication controllers and their deployer pods) exist and have not been pruned or deleted manually:
+      <CodeBlock code={"$ oc logs --version=1 dc/<name>"} lang="terminal" />
+      </li>
+      </ol>
+      <h3 id="deployments-triggers_deployment-operations" class="group scroll-mt-20">Deployment triggers<a href="#deployments-triggers_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>A <code>DeploymentConfig</code> object can contain triggers, which drive the creation of new deployment processes in response to events inside the cluster.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>If no triggers are defined on a <code>DeploymentConfig</code> object, a config change trigger is added by default. If triggers are defined as an empty field, deployments must be started manually.</p>
+        </AlertDescription>
+      </Alert>
+      <h4 id="deployments-configchange-trigger_deployment-operations" class="group scroll-mt-20">Config change deployment triggers<a href="#deployments-configchange-trigger_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>The config change trigger results in a new replication controller whenever configuration changes are detected in the pod template of the <code>DeploymentConfig</code> object.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If a config change trigger is defined on a <code>DeploymentConfig</code> object, the first replication controller is automatically created soon after the <code>DeploymentConfig</code> object itself is created and it is not paused.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"kind: DeploymentConfig\napiVersion: apps.openshift.io/v1\nmetadata:\n  name: example-dc\n# ...\nspec:\n# ...\n  triggers:\n    - type: \"ConfigChange\""} lang="yaml" title="Config change deployment trigger" />
+      <h4 id="deployments-imagechange-trigger_deployment-operations" class="group scroll-mt-20">Image change deployment triggers<a href="#deployments-imagechange-trigger_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>The image change trigger results in a new replication controller whenever the content of an image stream tag changes (when a new version of the image is pushed).</p>
+      <CodeBlock code={"kind: DeploymentConfig\napiVersion: apps.openshift.io/v1\nmetadata:\n  name: example-dc\n# ...\nspec:\n# ...\n  triggers:\n    - type: \"ImageChange\"\n      imageChangeParams:\n        automatic: true (1)\n        from:\n          kind: \"ImageStreamTag\"\n          name: \"origin-ruby-sample:latest\"\n          namespace: \"myproject\"\n        containerNames:\n          - \"helloworld\""} lang="yaml" title="Image change deployment trigger" />
+      <ol><li>If the <code>imageChangeParams.automatic</code> field is set to <code>false</code>, the trigger is disabled.</li></ol>
+      <p>With the above example, when the <code>latest</code> tag value of the <code>origin-ruby-sample</code> image stream changes and the new image value differs from the current image specified in the <code>DeploymentConfig</code> object’s <code>helloworld</code> container, a new replication controller is created using the new image for the <code>helloworld</code> container.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If an image change trigger is defined on a <code>DeploymentConfig</code> object (with a config change trigger and <code>automatic=false</code>, or with <code>automatic=true</code>) and the image stream tag pointed by the image change trigger does not exist yet, the initial deployment process will automatically start as soon as an image is imported or pushed by a build to the image stream tag.</p>
+        </AlertDescription>
+      </Alert>
+      <h4 id="deployments-setting-triggers_deployment-operations" class="group scroll-mt-20">Setting deployment triggers<a href="#deployments-setting-triggers_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      You can set deployment triggers for a <code>DeploymentConfig</code> object using the <code>oc set triggers</code> command. For example, to set a image change trigger, use the following command:
+      <CodeBlock code={"$ oc set triggers dc/<dc_name> \\\n    --from-image=<project>/<image>:<tag> -c <container_name>"} lang="terminal" />
+      </li>
+      </ol>
+      <h3 id="deployments-setting-resources_deployment-operations" class="group scroll-mt-20">Setting deployment resources<a href="#deployments-setting-resources_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>A deployment is completed by a pod that consumes resources (memory, CPU, and ephemeral storage) on a node. By default, pods consume unbounded node resources. However, if a project specifies default container limits, then pods consume resources up to those limits.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The minimum memory limit for a deployment is 12 MB. If a container fails to start due to a <code>Cannot allocate memory</code> pod event, the memory limit is too low. Either increase or remove the memory limit. Removing the limit allows pods to consume unbounded node resources.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can also limit resource use by specifying resource limits as part of the deployment strategy. Deployment resources can be used with the recreate, rolling, or custom deployment strategies.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      In the following example, each of <code>resources</code>, <code>cpu</code>, <code>memory</code>, and <code>ephemeral-storage</code> is optional:
+      <CodeBlock code={"kind: Deployment\napiVersion: apps/v1\nmetadata:\n  name: hello-openshift\n# ...\nspec:\n# ...\n  type: \"Recreate\"\n  resources:\n    limits:\n      cpu: \"100m\" (1)\n      memory: \"256Mi\" (2)\n      ephemeral-storage: \"1Gi\" (3)"} lang="yaml" />
+      <ol>
+      <li><code>cpu</code> is in CPU units: <code>100m</code> represents 0.1 CPU units (100 * 1e-3).</li>
+      <li><code>memory</code> is in bytes: <code>256Mi</code> represents 268435456 bytes (256 * 2 ^ 20).</li>
+      <li>
+      <code>ephemeral-storage</code> is in bytes: <code>1Gi</code> represents 1073741824 bytes (2 ^ 30).
+      <p>However, if a quota has been defined for your project, one of the following two items is required:</p>
+      <ul>
+      <li>
+      A <code>resources</code> section set with an explicit <code>requests</code>:
+      <CodeBlock code={"kind: Deployment\napiVersion: apps/v1\nmetadata:\n  name: hello-openshift\n# ...\nspec:\n# ...\n  type: \"Recreate\"\n  resources:\n    requests: (1)\n      cpu: \"100m\"\n      memory: \"256Mi\"\n      ephemeral-storage: \"1Gi\""} lang="yaml" />
+      <ol><li>The <code>requests</code> object contains the list of resources that correspond to the list of resources in the quota.</li></ol>
+      </li>
+      <li>A limit range defined in your project, where the defaults from the <code>LimitRange</code> object apply to pods created during the deployment process.</li>
+      </ul>
+      <p>To set deployment resources, choose one of the above options. Otherwise, deploy pod creation fails, citing a failure to satisfy quota.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li>For more information about resource limits and requests, see <a href="/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-configure#nodes-cluster-resource-configure-about_nodes-cluster-resource-configure">Understanding managing application memory</a>.</li></ul>
-      <p class="/modules/deployments-accessing-private-repos.md"></p>
-      <p class="/modules/deployments-assigning-pods-to-nodes.md"></p>
-      <p class="/modules/deployments-running-pod-svc-acct.md"></p>
+      <h3 id="deployments-scaling-manually_deployment-operations" class="group scroll-mt-20">Scaling manually<a href="#deployments-scaling-manually_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>In addition to rollbacks, you can exercise fine-grained control over the number of replicas by manually scaling them.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Pods can also be auto-scaled using the <code>oc autoscale</code> command.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To manually scale a <code>DeploymentConfig</code> object, use the <code>oc scale</code> command. For example, the following command sets the replicas in the <code>frontend</code> <code>DeploymentConfig</code> object to <code>3</code>.
+      <CodeBlock code={"$ oc scale dc frontend --replicas=3"} lang="terminal" />
+      <p>The number of replicas eventually propagates to the desired and current state of the deployment configured by the <code>DeploymentConfig</code> object <code>frontend</code>.</p>
+      </li>
+      </ol>
+      <h3 id="deployments-accessing-private-repos_deployment-operations" class="group scroll-mt-20">Accessing private repositories from DeploymentConfig objects<a href="#deployments-accessing-private-repos_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can add a secret to your <code>DeploymentConfig</code> object so that it can access images from a private repository. This procedure shows the OpenShift Container Platform web console method.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create a new project.</li>
+      <li>Navigate to <strong>Workloads</strong> -&gt; <strong>Secrets</strong>.</li>
+      <li>Create a secret that contains credentials for accessing a private image repository.</li>
+      <li>Navigate to <strong>Workloads</strong> -&gt; <strong>DeploymentConfigs</strong>.</li>
+      <li>Create a <code>DeploymentConfig</code> object.</li>
+      <li>On the <code>DeploymentConfig</code> object editor page, set the <strong>Pull Secret</strong> and save your changes.</li>
+      </ol>
+      <h3 id="deployments-assigning-pods-to-nodes_deployment-operations" class="group scroll-mt-20">Assigning pods to specific nodes<a href="#deployments-assigning-pods-to-nodes_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can use node selectors in conjunction with labeled nodes to control pod placement.</p>
+      <p>Cluster administrators can set the default node selector for a project in order to restrict pod placement to specific nodes. As a developer, you can set a node selector on a <code>Pod</code> configuration to restrict nodes even further.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To add a node selector when creating a pod, edit the <code>Pod</code> configuration, and add the <code>nodeSelector</code> value. This can be added to a single <code>Pod</code> configuration, or in a <code>Pod</code> template:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: my-pod\n# ...\nspec:\n  nodeSelector:\n    disktype: ssd\n# ..."} lang="yaml" />
+      <p>Pods created when the node selector is in place are assigned to nodes with the specified labels. The labels specified here are used in conjunction with the labels added by a cluster administrator.</p>
+      <p>For example, if a project has the <code>type=user-node</code> and <code>region=east</code> labels added to a project by the cluster administrator, and you add the above <code>disktype: ssd</code> label to a pod, the pod is only ever scheduled on nodes that have all three labels.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Labels can only be set to one value, so setting a node selector of <code>region=west</code> in a <code>Pod</code> configuration that has <code>region=east</code> as the administrator-set default, results in a pod that will never be scheduled.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h3 id="deployments-running-pod-svc-acct_deployment-operations" class="group scroll-mt-20">Running a pod with a different service account<a href="#deployments-running-pod-svc-acct_deployment-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can run a pod with a service account other than the default.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>DeploymentConfig</code> object:
+      <CodeBlock code={"$ oc edit dc/<deployment_config>"} lang="terminal" />
+      </li>
+      <li>
+      Add the <code>serviceAccount</code> and <code>serviceAccountName</code> parameters to the <code>spec</code> field, and specify the service account you want to use:
+      <CodeBlock code={"apiVersion: apps.openshift.io/v1\nkind: DeploymentConfig\nmetadata:\n  name: example-dc\n# ...\nspec:\n# ...\n  securityContext: {}\n  serviceAccount: <service_account>\n  serviceAccountName: <service_account>"} lang="yaml" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

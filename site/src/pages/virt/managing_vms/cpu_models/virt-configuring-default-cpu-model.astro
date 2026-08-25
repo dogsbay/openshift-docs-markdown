@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-configuring-default-cpu-model","text":"Configure CPU models"}];
+const headings = [{"depth":1,"slug":"virt-configuring-default-cpu-model","text":"Configure CPU models"},{"depth":2,"slug":"virt-configuring-default-cpu-model_virt-configuring-default-cpu-model","text":"Configure the default CPU model"},{"depth":2,"slug":"virt-per-vm-cpu-model-configuration_virt-configuring-default-cpu-model","text":"Configure a CPU model per-VM"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/cpu_models/virt-configuring-default-cpu-model";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/cpu_models"]
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configure CPU models {#virt-configuring-default-cpu-model}\n\nYou can configure CPU models for your virtual machines at both the cluster level and individual VM level. Set a cluster-wide default CPU model to automatically apply to all new VMs, or configure a specific CPU model for individual VMs to override the cluster default.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/cpu_models/virt-configuring-default-cpu-model.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configure CPU models {#virt-configuring-default-cpu-model}\n\nYou can configure CPU models for your virtual machines at both the cluster level and individual VM level. Set a cluster-wide default CPU model to automatically apply to all new VMs, or configure a specific CPU model for individual VMs to override the cluster default.\n\n## Configure the default CPU model {#virt-configuring-default-cpu-model_virt-configuring-default-cpu-model}\n\nUse the `defaultCPUModel` setting in the `HyperConverged` custom resource (CR) to define a cluster-wide default CPU model.\n\nWhen you set a cluster-wide default CPU model:\n\n- Every new virtual machine (VM) that does not have an explicit CPU model defined receives a node selector for the chosen CPU model.\n- Only nodes labeled with `cpu-model.node.kubevirt.io/<cpuModel>` are eligible to run VMs using the default model.\n- Nodes that do not support the selected CPU model are not considered during VM scheduling.\n\n> [!NOTE]\n> The `defaultCPUModel` is case sensitive and must match a CPU model supported by nodes in your cluster.\n\nA CPU model configured at the VM level always takes precedence over the cluster-wide default CPU model.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HyperConverged` CR by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Add the `defaultCPUModel` field to the CR and set the value to the name of a CPU model that exists in the cluster:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n    name: kubevirt-hyperconverged\n    namespace: {{ CNVNamespace }}\n   spec:\n     defaultCPUModel: \"EPYC-IBPB\"\n   ```\n\n   where:\n\n   `EPYC-IBPB`\n   :   Specifies a CPU model that is supported by nodes in your cluster.\n3. Apply the YAML file to your cluster.\n\n## Configure a CPU model per-VM {#virt-per-vm-cpu-model-configuration_virt-configuring-default-cpu-model}\n\nYou can specify a named CPU model in the virtual machine (VM) specification. This per-VM configuration takes precedence over any cluster-wide default CPU model.\n\nThe VM CPU model depends on the availability of CPU models within the VM and the cluster.\n\n- If the VM does not have a defined CPU model, the `defaultCPUModel` is automatically set using the CPU model defined at the cluster-wide level.\n- If both the VM and the cluster have a defined CPU model, the VM’s CPU model takes precedence.\n- If neither the VM nor the cluster have a defined CPU model, the host-model is automatically set using the CPU model defined at the host level.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. To configure a named CPU model for a specific VM, edit the `VirtualMachine` custom resource (CR):\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: myvm\n   spec:\n     template:\n       spec:\n         domain:\n           cpu:\n             model: Conroe\n   ```\n\n   - `spec.template.spec.domain.cpu.model` defines the named CPU model for the VM.\n2. Apply the CR to your cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/cpu_models/virt-configuring-default-cpu-model.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +94,61 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-configuring-default-cpu-model" class="group scroll-mt-20">Configure CPU models<a href="#virt-configuring-default-cpu-model" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You can configure CPU models for your virtual machines at both the cluster level and individual VM level. Set a cluster-wide default CPU model to automatically apply to all new VMs, or configure a specific CPU model for individual VMs to override the cluster default.</p>
-      <p class="/modules/virt-configuring-default-cpu-model.md"></p>
-      <p class="/modules/virt-per-vm-cpu-model-configuration.md"></p>
+      <h2 id="virt-configuring-default-cpu-model_virt-configuring-default-cpu-model" class="group scroll-mt-20">Configure the default CPU model<a href="#virt-configuring-default-cpu-model_virt-configuring-default-cpu-model" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the <code>defaultCPUModel</code> setting in the <code>HyperConverged</code> custom resource (CR) to define a cluster-wide default CPU model.</p>
+      <p>When you set a cluster-wide default CPU model:</p>
+      <ul>
+      <li>Every new virtual machine (VM) that does not have an explicit CPU model defined receives a node selector for the chosen CPU model.</li>
+      <li>Only nodes labeled with <code>cpu-model.node.kubevirt.io/&lt;cpuModel&gt;</code> are eligible to run VMs using the default model.</li>
+      <li>Nodes that do not support the selected CPU model are not considered during VM scheduling.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>defaultCPUModel</code> is case sensitive and must match a CPU model supported by nodes in your cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <p>A CPU model configured at the VM level always takes precedence over the cluster-wide default CPU model.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Install the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Open the <code>HyperConverged</code> CR by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Add the <code>defaultCPUModel</code> field to the CR and set the value to the name of a CPU model that exists in the cluster:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n name: kubevirt-hyperconverged\n namespace: {{ CNVNamespace }}\nspec:\n  defaultCPUModel: \"EPYC-IBPB\""} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>EPYC-IBPB</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a CPU model that is supported by nodes in your cluster.</p></dd>
+      </dl>
+      </li>
+      <li>Apply the YAML file to your cluster.</li>
+      </ol>
+      <h2 id="virt-per-vm-cpu-model-configuration_virt-configuring-default-cpu-model" class="group scroll-mt-20">Configure a CPU model per-VM<a href="#virt-per-vm-cpu-model-configuration_virt-configuring-default-cpu-model" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can specify a named CPU model in the virtual machine (VM) specification. This per-VM configuration takes precedence over any cluster-wide default CPU model.</p>
+      <p>The VM CPU model depends on the availability of CPU models within the VM and the cluster.</p>
+      <ul>
+      <li>If the VM does not have a defined CPU model, the <code>defaultCPUModel</code> is automatically set using the CPU model defined at the cluster-wide level.</li>
+      <li>If both the VM and the cluster have a defined CPU model, the VM’s CPU model takes precedence.</li>
+      <li>If neither the VM nor the cluster have a defined CPU model, the host-model is automatically set using the CPU model defined at the host level.</li>
+      </ul>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Install the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To configure a named CPU model for a specific VM, edit the <code>VirtualMachine</code> custom resource (CR):
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: myvm\nspec:\n  template:\n    spec:\n      domain:\n        cpu:\n          model: Conroe"} lang="yaml" />
+      <ul><li><code>spec.template.spec.domain.cpu.model</code> defines the named CPU model for the VM.</li></ul>
+      </li>
+      <li>Apply the CR to your cluster.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

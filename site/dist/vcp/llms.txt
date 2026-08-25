@@ -2,7 +2,7 @@
 
 ## Virtualized control planes
 
-- [Understanding virtualized control planes](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-overview.md)
-- [Prerequisites for virtualized control planes](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-prerequisites.md)
-- [Preparing the environment for virtualized control planes](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-preparing-environment.md)
-- [Deploying a virtualized control plane](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-installing-cluster.md)
+- [Understanding virtualized control planes](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-overview.md): A virtualized control plane deployment is an OpenShift Container Platform cluster whose control plane nodes run as virtual machines (VMs) on a hosting cluster…
+- [Prerequisites for virtualized control planes](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-prerequisites.md): Before deploying a virtualized control plane cluster, ensure your environment meets the following requirements.
+- [Preparing the environment for virtualized control planes](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-preparing-environment.md): Prepare your hosting cluster environment before deploying a virtualized control plane cluster. This includes installing and configuring KubeVirt Redfish and…
+- [Deploying a virtualized control plane](https://dogsbay.github.io/openshift-docs-markdown/vcp/vcp-installing-cluster.md): After preparing your environment, install the virtualized control plane cluster by using your preferred installation method. The agent-based installer and…

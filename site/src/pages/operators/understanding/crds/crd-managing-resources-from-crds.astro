@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"crd-managing-resources-from-crds","text":"Managing resources from custom resource definitions"}];
+const headings = [{"depth":1,"slug":"crd-managing-resources-from-crds","text":"Managing resources from custom resource definitions"},{"depth":2,"slug":"crd-custom-resource-definitions_crd-managing-resources-from-crds","text":"Custom resource definitions"},{"depth":2,"slug":"crd-creating-custom-resources-from-file_crd-managing-resources-from-crds","text":"Creating custom resources from a file"},{"depth":2,"slug":"crd-inspecting-custom-resources_crd-managing-resources-from-crds","text":"Inspecting custom resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/operators/understanding/crds/crd-managing-resources-from-crds";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["operators","operators/understanding","operators/understan
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing resources from custom resource definitions {#crd-managing-resources-from-crds}\n\nAs a developer, you can manage custom resources (CRs) that come from custom resource definitions (CRDs) to work with the custom object types available in your cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/understanding/crds/crd-managing-resources-from-crds.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing resources from custom resource definitions {#crd-managing-resources-from-crds}\n\nAs a developer, you can manage custom resources (CRs) that come from custom resource definitions (CRDs) to work with the custom object types available in your cluster.\n\n## Custom resource definitions {#crd-custom-resource-definitions_crd-managing-resources-from-crds}\n\nIn the Kubernetes API, a *resource* is an endpoint that stores a collection of API objects of a certain kind. For example, the built-in `Pods` resource contains a collection of `Pod` objects.\n\nA *custom resource definition* (CRD) object defines a new, unique object type, called a *kind*, in the cluster and lets the Kubernetes API server handle its entire lifecycle.\n\n*Custom resource* (CR) objects are created from CRDs that have been added to the cluster by a cluster administrator, allowing all cluster users to add the new resource type into projects.\n\nOperators in particular make use of CRDs by packaging them with any required RBAC policy and other software-specific logic. Cluster administrators can also add CRDs manually to the cluster outside of the lifecycle of an Operator, making them available to all users.\n\n> [!NOTE]\n> While only cluster administrators can create CRDs, developers can create the CR from an existing CRD if they have read and write permission to it.\n\n## Creating custom resources from a file {#crd-creating-custom-resources-from-file_crd-managing-resources-from-crds}\n\nAfter you add a custom resource definition (CRD) to the cluster, you can create custom resources (CRs) from a file by using the CLI.\n\n**Prerequisites**\n\n- CRD added to the cluster by a cluster administrator.\n\n**Procedure**\n\n1. Create a YAML file for the CR. In the following example definition, the `cronSpec` and `image` custom fields are set in a CR of `Kind: CronTab`. The `Kind` comes from the `spec.kind` field of the CRD object:\n\n   ```yaml {title=\"Example YAML file for a CR\"}\n   apiVersion: \"stable.example.com/v1\"\n   kind: CronTab\n   metadata:\n     name: my-new-cron-object\n     finalizers:\n     - finalizer.stable.example.com\n   spec:\n     cronSpec: \"* * * * /5\"\n     image: my-awesome-cron-image\n   ```\n\n   where:\n\n   `apiVersion`\n   :   Specifies the group name and API version (name/version) from the CRD.\n\n   `kind`\n   :   Specifies the type in the CRD.\n\n   `metadata.name`\n   :   Specifies a name for the object.\n\n   `metadata.finalizers`\n   :   Specifies the finalizers for the object, if any. Finalizers allow controllers to implement conditions that must be completed before the object can be deleted.\n\n   `spec`\n   :   Specifies conditions specific to the type of object.\n2. After you create the file, create the object:\n\n   ```terminal\n   $ oc create -f <file_name>.yaml\n   ```\n\n## Inspecting custom resources {#crd-inspecting-custom-resources_crd-managing-resources-from-crds}\n\nYou can inspect custom resource (CR) objects that exist in your cluster using the CLI.\n\n**Prerequisites**\n\n- A CR object exists in a namespace to which you have access.\n\n**Procedure**\n\n1. To get information on a specific kind of a CR, run:\n\n   ```terminal\n   $ oc get <kind>\n   ```\n\n   For example:\n\n   ```terminal\n   $ oc get crontab\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                 KIND\n   my-new-cron-object   CronTab.v1.stable.example.com\n   ```\n\n   Resource names are not case-sensitive, and you can use either the singular or plural forms defined in the CRD, as well as any short name. For example:\n\n   ```terminal\n   $ oc get crontabs\n   ```\n\n   ```terminal\n   $ oc get crontab\n   ```\n\n   ```terminal\n   $ oc get ct\n   ```\n2. You can also view the raw YAML data for a CR:\n\n   ```terminal\n   $ oc get <kind> -o yaml\n   ```\n\n   For example:\n\n   ```terminal\n   $ oc get ct -o yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   apiVersion: v1\n   items:\n   - apiVersion: stable.example.com/v1\n     kind: CronTab\n     metadata:\n       clusterName: \"\"\n       creationTimestamp: 2017-05-31T12:56:35Z\n       deletionGracePeriodSeconds: null\n       deletionTimestamp: null\n       name: my-new-cron-object\n       namespace: default\n       resourceVersion: \"285\"\n       selfLink: /apis/stable.example.com/v1/namespaces/default/crontabs/my-new-cron-object\n       uid: 9423255b-4600-11e7-af6a-28d2447dc82b\n     spec:\n       cronSpec: '* * * * /5'\n       image: my-awesome-cron-image\n   ```\n\n   The `spec` section in the output displays the custom configuration settings, such as `cronSpec` and `image`, that you defined when creating the object.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/understanding/crds/crd-managing-resources-from-crds.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,72 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="crd-managing-resources-from-crds" class="group scroll-mt-20">Managing resources from custom resource definitions<a href="#crd-managing-resources-from-crds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As a developer, you can manage custom resources (CRs) that come from custom resource definitions (CRDs) to work with the custom object types available in your cluster.</p>
-      <p class="/modules/crd-custom-resource-definitions.md"></p>
-      <p class="/modules/crd-creating-custom-resources-from-file.md"></p>
-      <p class="/modules/crd-inspecting-custom-resources.md"></p>
+      <h2 id="crd-custom-resource-definitions_crd-managing-resources-from-crds" class="group scroll-mt-20">Custom resource definitions<a href="#crd-custom-resource-definitions_crd-managing-resources-from-crds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In the Kubernetes API, a <em>resource</em> is an endpoint that stores a collection of API objects of a certain kind. For example, the built-in <code>Pods</code> resource contains a collection of <code>Pod</code> objects.</p>
+      <p>A <em>custom resource definition</em> (CRD) object defines a new, unique object type, called a <em>kind</em>, in the cluster and lets the Kubernetes API server handle its entire lifecycle.</p>
+      <p><em>Custom resource</em> (CR) objects are created from CRDs that have been added to the cluster by a cluster administrator, allowing all cluster users to add the new resource type into projects.</p>
+      <p>Operators in particular make use of CRDs by packaging them with any required RBAC policy and other software-specific logic. Cluster administrators can also add CRDs manually to the cluster outside of the lifecycle of an Operator, making them available to all users.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>While only cluster administrators can create CRDs, developers can create the CR from an existing CRD if they have read and write permission to it.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="crd-creating-custom-resources-from-file_crd-managing-resources-from-crds" class="group scroll-mt-20">Creating custom resources from a file<a href="#crd-creating-custom-resources-from-file_crd-managing-resources-from-crds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you add a custom resource definition (CRD) to the cluster, you can create custom resources (CRs) from a file by using the CLI.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>CRD added to the cluster by a cluster administrator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file for the CR. In the following example definition, the <code>cronSpec</code> and <code>image</code> custom fields are set in a CR of <code>Kind: CronTab</code>. The <code>Kind</code> comes from the <code>spec.kind</code> field of the CRD object:
+      <CodeBlock code={"apiVersion: \"stable.example.com/v1\"\nkind: CronTab\nmetadata:\n  name: my-new-cron-object\n  finalizers:\n  - finalizer.stable.example.com\nspec:\n  cronSpec: \"* * * * /5\"\n  image: my-awesome-cron-image"} lang="yaml" title="Example YAML file for a CR" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>apiVersion</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the group name and API version (name/version) from the CRD.</p></dd>
+      <dt class="font-semibold"><code>kind</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the type in the CRD.</p></dd>
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the object.</p></dd>
+      <dt class="font-semibold"><code>metadata.finalizers</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the finalizers for the object, if any. Finalizers allow controllers to implement conditions that must be completed before the object can be deleted.</p></dd>
+      <dt class="font-semibold"><code>spec</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies conditions specific to the type of object.</p></dd>
+      </dl>
+      </li>
+      <li>
+      After you create the file, create the object:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="crd-inspecting-custom-resources_crd-managing-resources-from-crds" class="group scroll-mt-20">Inspecting custom resources<a href="#crd-inspecting-custom-resources_crd-managing-resources-from-crds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can inspect custom resource (CR) objects that exist in your cluster using the CLI.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>A CR object exists in a namespace to which you have access.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To get information on a specific kind of a CR, run:
+      <CodeBlock code={"$ oc get <kind>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc get crontab"} lang="terminal" />
+      <CodeBlock code={"NAME                 KIND\nmy-new-cron-object   CronTab.v1.stable.example.com"} lang="terminal" title="Example output" />
+      <p>Resource names are not case-sensitive, and you can use either the singular or plural forms defined in the CRD, as well as any short name. For example:</p>
+      <CodeBlock code={"$ oc get crontabs"} lang="terminal" />
+      <CodeBlock code={"$ oc get crontab"} lang="terminal" />
+      <CodeBlock code={"$ oc get ct"} lang="terminal" />
+      </li>
+      <li>
+      You can also view the raw YAML data for a CR:
+      <CodeBlock code={"$ oc get <kind> -o yaml"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc get ct -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: v1\nitems:\n- apiVersion: stable.example.com/v1\n  kind: CronTab\n  metadata:\n    clusterName: \"\"\n    creationTimestamp: 2017-05-31T12:56:35Z\n    deletionGracePeriodSeconds: null\n    deletionTimestamp: null\n    name: my-new-cron-object\n    namespace: default\n    resourceVersion: \"285\"\n    selfLink: /apis/stable.example.com/v1/namespaces/default/crontabs/my-new-cron-object\n    uid: 9423255b-4600-11e7-af6a-28d2447dc82b\n  spec:\n    cronSpec: '* * * * /5'\n    image: my-awesome-cron-image"} lang="terminal" title="Example output" />
+      <p>The <code>spec</code> section in the output displays the custom configuration settings, such as <code>cronSpec</code> and <code>image</code>, that you defined when creating the object.</p>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

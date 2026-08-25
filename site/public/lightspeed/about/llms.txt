@@ -2,4 +2,4 @@
 
 ## OpenShift Lightspeed
 
-- [OpenShift Lightspeed overview](https://dogsbay.github.io/openshift-docs-markdown/lightspeed/about/ols-openshift-lightspeed-overview.md)
+- [OpenShift Lightspeed overview](https://dogsbay.github.io/openshift-docs-markdown/lightspeed/about/ols-openshift-lightspeed-overview.md): Red Hat OpenShift Lightspeed provides intelligent, natural language processing capabilities designed to make Red Hat cloud-native application platforms easier…

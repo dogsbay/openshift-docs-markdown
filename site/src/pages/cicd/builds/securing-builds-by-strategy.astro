@@ -15,6 +15,10 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 import Table from "@ui/table/Table.astro";
 import TableBody from "@ui/table/TableBody.astro";
 import TableCell from "@ui/table/TableCell.astro";
@@ -22,7 +26,7 @@ import TableHead from "@ui/table/TableHead.astro";
 import TableHeader from "@ui/table/TableHeader.astro";
 import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"securing-builds-by-strategy","text":"Securing builds by strategy"}];
+const headings = [{"depth":1,"slug":"securing-builds-by-strategy","text":"Securing builds by strategy"},{"depth":2,"slug":"builds-disabling-build-strategy-globally_securing-builds-by-strategy","text":"Disabling access to a build strategy globally"},{"depth":2,"slug":"builds-restricting-build-strategy-globally_securing-builds-by-strategy","text":"Restricting build strategies to users globally"},{"depth":2,"slug":"builds-restricting-build-strategy-to-user_securing-builds-by-strategy","text":"Restricting build strategies to a user within a project"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cicd/builds/securing-builds-by-strategy";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -45,7 +49,7 @@ const pageCategory = ["cicd","cicd/builds"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Securing builds by strategy {#securing-builds-by-strategy}\n\nBuilds in OpenShift Container Platform are run in privileged containers. Depending on the build strategy used, if you have privileges, you can run builds to escalate their permissions on the cluster and host nodes. And as a security measure, it limits who can run builds and the strategy that is used for those builds. Custom builds are inherently less safe than source builds, because they can execute any code within a privileged container, and are disabled by default. Grant docker build permissions with caution, because a vulnerability in the Dockerfile processing logic could result in a privileges being granted on the host node.\n\nBy default, all users that can create builds are granted permission to use the docker and Source-to-image (S2I) build strategies. Users with cluster administrator privileges can enable the custom build strategy, as referenced in the restricting build strategies to a user globally section.\n\nYou can control who can build and which build strategies they can use by using an authorization policy. Each build strategy has a corresponding build subresource. A user must have permission to create a build and permission to create on the build strategy subresource to create builds using that strategy. Default roles are provided that grant the create permission on the build strategy subresource.\n\n**Build Strategy Subresources and Roles**\n\n| Strategy | Subresource | Role |\n| --- | --- | --- |\n| Docker | builds/docker | system:build-strategy-docker |\n| Source-to-Image | builds/source | system:build-strategy-source |\n| Custom | builds/custom | system:build-strategy-custom |\n| JenkinsPipeline | builds/jenkinspipeline | system:build-strategy-jenkinspipeline |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/securing-builds-by-strategy.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Securing builds by strategy {#securing-builds-by-strategy}\n\nBuilds in OpenShift Container Platform are run in privileged containers. Depending on the build strategy used, if you have privileges, you can run builds to escalate their permissions on the cluster and host nodes. And as a security measure, it limits who can run builds and the strategy that is used for those builds. Custom builds are inherently less safe than source builds, because they can execute any code within a privileged container, and are disabled by default. Grant docker build permissions with caution, because a vulnerability in the Dockerfile processing logic could result in a privileges being granted on the host node.\n\nBy default, all users that can create builds are granted permission to use the docker and Source-to-image (S2I) build strategies. Users with cluster administrator privileges can enable the custom build strategy, as referenced in the restricting build strategies to a user globally section.\n\nYou can control who can build and which build strategies they can use by using an authorization policy. Each build strategy has a corresponding build subresource. A user must have permission to create a build and permission to create on the build strategy subresource to create builds using that strategy. Default roles are provided that grant the create permission on the build strategy subresource.\n\n**Build Strategy Subresources and Roles**\n\n| Strategy | Subresource | Role |\n| --- | --- | --- |\n| Docker | builds/docker | system:build-strategy-docker |\n| Source-to-Image | builds/source | system:build-strategy-source |\n| Custom | builds/custom | system:build-strategy-custom |\n| JenkinsPipeline | builds/jenkinspipeline | system:build-strategy-jenkinspipeline |\n\n## Disabling access to a build strategy globally {#builds-disabling-build-strategy-globally_securing-builds-by-strategy}\n\nTo prevent access to a particular build strategy globally, log in as a user with cluster administrator privileges, remove the corresponding role from the `system:authenticated` group, and apply the annotation `rbac.authorization.kubernetes.io/autoupdate: \"false\"` to protect them from changes between the API restarts. The following example shows disabling the docker build strategy.\n\n**Procedure**\n\n1. Apply the `rbac.authorization.kubernetes.io/autoupdate` annotation by entering the following command:\n\n   ```terminal\n   $ oc annotate clusterrolebinding.rbac system:build-strategy-docker-binding 'rbac.authorization.kubernetes.io/autoupdate=false' --overwrite\n   ```\n2. Remove the role by entering the following command:\n\n   ```terminal\n   $ oc adm policy remove-cluster-role-from-group system:build-strategy-docker system:authenticated\n   ```\n3. Ensure the build strategy subresources are also removed from the `admin` and `edit` user roles:\n\n   ```terminal\n   $ oc get clusterrole admin -o yaml | grep \"builds/docker\"\n   ```\n\n   ```terminal\n   $ oc get clusterrole edit -o yaml | grep \"builds/docker\"\n   ```\n\n## Restricting build strategies to users globally {#builds-restricting-build-strategy-globally_securing-builds-by-strategy}\n\nYou can allow a set of specific users to create builds with a particular strategy.\n\n**Procedure**\n\n- Assign the role that corresponds to the build strategy to a specific user. For example, to add the `system:build-strategy-docker` cluster role to the user `devuser`:\n\n  ```terminal\n  $ oc adm policy add-cluster-role-to-user system:build-strategy-docker devuser\n  ```\n\n  > [!WARNING]\n  > Granting a user access at the cluster level to the `builds/docker` subresource means that the user can create builds with the docker strategy in any project in which they can create builds.\n\n## Restricting build strategies to a user within a project {#builds-restricting-build-strategy-to-user_securing-builds-by-strategy}\n\nSimilar to granting the build strategy role to a user globally, you can allow a set of specific users within a project to create builds with a particular strategy.\n\n**Procedure**\n\n- Assign the role that corresponds to the build strategy to a specific user within a project. For example, to add the `system:build-strategy-docker` role within the project `devproject` to the user `devuser`:\n\n  ```terminal\n  $ oc adm policy add-role-to-user system:build-strategy-docker devuser -n devproject\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/securing-builds-by-strategy.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -97,7 +101,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="securing-builds-by-strategy" class="group scroll-mt-20">Securing builds by strategy<a href="#securing-builds-by-strategy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Builds in OpenShift Container Platform are run in privileged containers. Depending on the build strategy used, if you have privileges, you can run builds to escalate their permissions on the cluster and host nodes. And as a security measure, it limits who can run builds and the strategy that is used for those builds. Custom builds are inherently less safe than source builds, because they can execute any code within a privileged container, and are disabled by default. Grant docker build permissions with caution, because a vulnerability in the Dockerfile processing logic could result in a privileges being granted on the host node.</p>
       <p>By default, all users that can create builds are granted permission to use the docker and Source-to-image (S2I) build strategies. Users with cluster administrator privileges can enable the custom build strategy, as referenced in the restricting build strategies to a user globally section.</p>
       <p>You can control who can build and which build strategies they can use by using an authorization policy. Each build strategy has a corresponding build subresource. A user must have permission to create a build and permission to create on the build strategy subresource to create builds using that strategy. Default roles are provided that grant the create permission on the build strategy subresource.</p>
@@ -133,6 +136,48 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </TableRow>
       </TableBody>
       </Table>
+      <h2 id="builds-disabling-build-strategy-globally_securing-builds-by-strategy" class="group scroll-mt-20">Disabling access to a build strategy globally<a href="#builds-disabling-build-strategy-globally_securing-builds-by-strategy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>To prevent access to a particular build strategy globally, log in as a user with cluster administrator privileges, remove the corresponding role from the <code>system:authenticated</code> group, and apply the annotation <code>rbac.authorization.kubernetes.io/autoupdate: "false"</code> to protect them from changes between the API restarts. The following example shows disabling the docker build strategy.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Apply the <code>rbac.authorization.kubernetes.io/autoupdate</code> annotation by entering the following command:
+      <CodeBlock code={"$ oc annotate clusterrolebinding.rbac system:build-strategy-docker-binding 'rbac.authorization.kubernetes.io/autoupdate=false' --overwrite"} lang="terminal" />
+      </li>
+      <li>
+      Remove the role by entering the following command:
+      <CodeBlock code={"$ oc adm policy remove-cluster-role-from-group system:build-strategy-docker system:authenticated"} lang="terminal" />
+      </li>
+      <li>
+      Ensure the build strategy subresources are also removed from the <code>admin</code> and <code>edit</code> user roles:
+      <CodeBlock code={"$ oc get clusterrole admin -o yaml | grep \"builds/docker\""} lang="terminal" />
+      <CodeBlock code={"$ oc get clusterrole edit -o yaml | grep \"builds/docker\""} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="builds-restricting-build-strategy-globally_securing-builds-by-strategy" class="group scroll-mt-20">Restricting build strategies to users globally<a href="#builds-restricting-build-strategy-globally_securing-builds-by-strategy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can allow a set of specific users to create builds with a particular strategy.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Assign the role that corresponds to the build strategy to a specific user. For example, to add the <code>system:build-strategy-docker</code> cluster role to the user <code>devuser</code>:
+      <CodeBlock code={"$ oc adm policy add-cluster-role-to-user system:build-strategy-docker devuser"} lang="terminal" />
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Granting a user access at the cluster level to the <code>builds/docker</code> subresource means that the user can create builds with the docker strategy in any project in which they can create builds.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h2 id="builds-restricting-build-strategy-to-user_securing-builds-by-strategy" class="group scroll-mt-20">Restricting build strategies to a user within a project<a href="#builds-restricting-build-strategy-to-user_securing-builds-by-strategy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Similar to granting the build strategy role to a user globally, you can allow a set of specific users within a project to create builds with a particular strategy.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Assign the role that corresponds to the build strategy to a specific user within a project. For example, to add the <code>system:build-strategy-docker</code> role within the project <code>devproject</code> to the user <code>devuser</code>:
+      <CodeBlock code={"$ oc adm policy add-role-to-user system:build-strategy-docker devuser -n devproject"} lang="terminal" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

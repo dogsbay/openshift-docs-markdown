@@ -18,8 +18,15 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"install-ibm-cloud-prerequisites","text":"Prerequisites for installing a cluster on {{ ibm_cloud_bm }}"},{"depth":2,"slug":"additional-resources_install-ibm-cloud","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"install-ibm-cloud-prerequisites","text":"Prerequisites for installing a cluster on {{ ibm_cloud_bm }}"},{"depth":2,"slug":"setting-up-ibm-cloud-infrastructure_install-ibm-cloud","text":"About setting up IBM Cloud Bare Metal (Classic) infrastructure"},{"depth":3,"slug":"_use_one_data_center_per_cluster","text":"Use one data center per cluster"},{"depth":3,"slug":"_create_public_and_private_vlans","text":"Create public and private VLANs"},{"depth":3,"slug":"_ensure_subnets_have_enough_ip_addresses","text":"Ensure subnets have enough IP addresses"},{"depth":3,"slug":"_configuring_nics","text":"Configuring NICs"},{"depth":3,"slug":"_configure_canonical_names","text":"Configure canonical names"},{"depth":3,"slug":"_create_dns_entries","text":"Create DNS entries"},{"depth":3,"slug":"_network_time_protocol_ntp","text":"Network Time Protocol (NTP)"},{"depth":3,"slug":"_configure_a_dhcp_server","text":"Configure a DHCP server"},{"depth":3,"slug":"_ensure_bmc_access_privileges","text":"Ensure BMC access privileges"},{"depth":3,"slug":"_create_bare-metal_servers","text":"Create bare-metal servers"},{"depth":2,"slug":"additional-resources_install-ibm-cloud","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_ibm_cloud_classic/install-ibm-cloud-prerequisites";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Prerequisites for installing a cluster on {{ ibm_cloud_bm }}";
-const description = "You can use installer-provisioned installation to install OpenShift Container Platform on {{ ibm_cloud_bm }} nodes. Review the prerequisites and…" || undefined;
+const description = "You can use installer-provisioned installation to install OpenShift Container Platform on IBM Cloud(R) Bare Metal (Classic) nodes. Review the…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +49,7 @@ const pageCategory = ["installing","installing/installing_ibm_cloud_classic"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Prerequisites for installing a cluster on {{ ibm_cloud_bm }} {#install-ibm-cloud-prerequisites}\n\nYou can use installer-provisioned installation to install OpenShift Container Platform on {{ ibm_cloud_bm }} nodes. Review the prerequisites and requirements before you begin an installer-provisioned installation on {{ ibm_cloud_name }} nodes.\n\n> [!IMPORTANT]\n> Red Hat supports Intelligent Platform Management Interface (IPMI) and PXE on the provisioning network only. Red Hat has not tested Red Fish, virtual media, or other complementary technologies such as Secure Boot on {{ ibm_cloud_name }} deployments. You must configure a provisioning network.\n\nInstaller-provisioned installation of OpenShift Container Platform requires:\n\n- One node with {{ op_system_first }} 8.x installed, for running the provisioner\n- Three control plane nodes\n- One routable network\n- One provisioning network\n\n## Additional resources {#additional-resources_install-ibm-cloud}\n\n- [{{ ibm_cloud_name }} dashboard](https://cloud.ibm.com)\n- [Installing the standalone {{ ibm_cloud_name }} CLI](https://cloud.ibm.com/docs/cli?topic=cli-install-ibmcloud-cli)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_cloud_classic/install-ibm-cloud-prerequisites.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Prerequisites for installing a cluster on {{ ibm_cloud_bm }} {#install-ibm-cloud-prerequisites}\n\nYou can use installer-provisioned installation to install OpenShift Container Platform on IBM Cloud(R) Bare Metal (Classic) nodes. Review the prerequisites and requirements before you begin an installer-provisioned installation on IBM Cloud(R) nodes.\n\n> [!IMPORTANT]\n> Red Hat supports Intelligent Platform Management Interface (IPMI) and PXE on the provisioning network only. Red Hat has not tested Red Fish, virtual media, or other complementary technologies such as Secure Boot on IBM Cloud(R) deployments. You must configure a provisioning network.\n\nInstaller-provisioned installation of OpenShift Container Platform requires:\n\n- One node with Red Hat Enterprise Linux CoreOS (RHCOS) 8.x installed, for running the provisioner\n- Three control plane nodes\n- One routable network\n- One provisioning network\n\n## About setting up IBM Cloud Bare Metal (Classic) infrastructure {#setting-up-ibm-cloud-infrastructure_install-ibm-cloud}\n\nTo deploy an OpenShift Container Platform cluster on IBM Cloud(R) Bare Metal (Classic) infrastructure, you must provision the IBM Cloud(R) nodes and configure the supporting infrastructure. This includes setting up virtual networking and creating the bare-metal servers that make up the cluster.\n\n> [!IMPORTANT]\n> Red Hat supports Intelligent Platform Management Interface (IPMI) and PXE on the `provisioning` network only. Red Hat has not tested Red Fish, virtual media, or other complementary technologies such as Secure Boot on IBM Cloud(R) deployments. You must configure a `provisioning` network.\n\nYou can customize IBM Cloud(R) nodes by using the IBM Cloud(R) API. When creating IBM Cloud(R) nodes, you must consider the following requirements.\n\n### Use one data center per cluster {#_use_one_data_center_per_cluster}\n\nAll nodes in the OpenShift Container Platform cluster must run in the same IBM Cloud(R) data center.\n\n### Create public and private VLANs {#_create_public_and_private_vlans}\n\nCreate all nodes with a single public virtual LAN (VLAN) and a single private VLAN.\n\n### Ensure subnets have enough IP addresses {#_ensure_subnets_have_enough_ip_addresses}\n\nIBM Cloud(R) public VLAN subnets use a `/28` prefix by default, which provides 16 IP addresses. That is enough for a cluster consisting of three control plane nodes, four compute nodes, and two IP addresses for the API virtual IP (VIP) and Ingress VIP on the `baremetal` network. For larger clusters, you might need a smaller prefix.\n\nIBM Cloud(R) private VLAN subnets use a `/26` prefix by default, which provides 64 IP addresses. IBM Cloud(R) Bare Metal (Classic) uses private network IP addresses to access the Baseboard Management Controller (BMC) of each node. OpenShift Container Platform creates an additional subnet for the `provisioning` network. Network traffic for the `provisioning` network subnet routes through the private VLAN. For larger clusters, you might need a smaller prefix.\n\n**IP addresses per prefix**\n\n| IP addresses | Prefix |\n| --- | --- |\n| 32 | `/27` |\n| 64 | `/26` |\n| 128 | `/25` |\n| 256 | `/24` |\n\n### Configuring NICs {#_configuring_nics}\n\nOpenShift Container Platform deploys with two networks:\n\n- `provisioning`: The `provisioning` network is a non-routable network used for provisioning the underlying operating system on each node that is a part of the OpenShift Container Platform cluster.\n- `baremetal`: The `baremetal` network is a routable network. You can use any NIC order to interface with the `baremetal` network, provided it is not the NIC specified in the `provisioningNetworkInterface` configuration setting or the NIC associated to a node’s `bootMACAddress` configuration setting for the `provisioning` network.\n\nWhile the cluster nodes can contain more than two NICs, the installation process only focuses on the first two NICs. For example:\n\n| NIC | Network | VLAN |\n| --- | --- | --- |\n| NIC1 | `provisioning` | <provisioning_vlan> |\n| NIC2 | `baremetal` | <baremetal_vlan> |\n\nIn the earlier example, NIC1 on all control plane and worker nodes connects to the non-routable network (`provisioning`) that is only used for the installation of the OpenShift Container Platform cluster. NIC2 on all control plane and worker nodes connects to the `baremetal` network.\n\n| PXE | Boot order |\n| --- | --- |\n| NIC1 PXE-enabled `provisioning` network | 1 |\n| NIC2 `baremetal` network. | 2 |\n\n> [!NOTE]\n> Enable PXE on the NIC used for the `provisioning` network and disable it on all other NICs.\n\n### Configure canonical names {#_configure_canonical_names}\n\nClients access the OpenShift Container Platform cluster nodes over the `baremetal` network. Configure IBM Cloud(R) subdomains or subzones where the canonical name extension is the cluster name.\n\n```\n<cluster_name>.<domain>\n```\n\nFor example:\n\n```\ntest-cluster.example.com\n```\n\n### Create DNS entries {#_create_dns_entries}\n\nYou must create DNS `A` record entries resolving to unused IP addresses on the public subnet for the following:\n\n| Usage | Hostname | IP |\n| --- | --- | --- |\n| API | api.<cluster_name>.<domain> | <ip> |\n| Ingress LB (apps) | \\*.apps.<cluster_name>.<domain> | <ip> |\n\nControl plane and worker nodes already have DNS entries after provisioning.\n\nThe following table provides an example of fully qualified domain names. The API and name server addresses begin with canonical name extensions. The hostnames of the control plane and worker nodes are examples, so you can use any host naming convention you prefer.\n\n| Usage | Hostname | IP |\n| --- | --- | --- |\n| API | api.<cluster_name>.<domain> | <ip> |\n| Ingress LB (apps) | \\*.apps.<cluster_name>.<domain> | <ip> |\n| Provisioner node | provisioner.<cluster_name>.<domain> | <ip> |\n| Control plane 0 | openshift-control-0.<cluster_name>.<domain> | <ip> |\n| Control plane 1 | openshift-control-1.<cluster_name>.<domain> | <ip> |\n| Control plane 2 | openshift-control-2.<cluster_name>.<domain> | <ip> |\n| Compute 0 | openshift-compute-0.<cluster_name>.<domain> | <ip> |\n| Compute 1 | openshift-compute-1.<cluster_name>.<domain> | <ip> |\n| Compute n | openshift-compute-n.<cluster_name>.<domain> | <ip> |\n\nOpenShift Container Platform includes functionality that uses cluster membership information to generate `A` records. This resolves the node names to their IP addresses. After the nodes register with the API, the cluster can disperse node information without using CoreDNS-mDNS. This eliminates the network traffic associated with multicast DNS.\n\n> [!IMPORTANT]\n> After provisioning the IBM Cloud(R) nodes, you must create a DNS entry for the `api.<cluster_name>.<domain>` domain name on the external DNS because removing CoreDNS causes the local entry to disappear. Failure to create a DNS record for the `api.<cluster_name>.<domain>` domain name in the external DNS server prevents worker nodes from joining the cluster.\n\n### Network Time Protocol (NTP) {#_network_time_protocol_ntp}\n\nEach OpenShift Container Platform node in the cluster must have access to an NTP server. OpenShift Container Platform nodes use NTP to synchronize their clocks. For example, cluster nodes use SSL/TLS certificates that require validation, which might fail if the date and time between the nodes are not in sync.\n\n> [!IMPORTANT]\n> Define a consistent clock date and time format in each cluster node’s firmware settings, or installation might fail.\n\n### Configure a DHCP server {#_configure_a_dhcp_server}\n\nIBM Cloud(R) Bare Metal (Classic) does not run DHCP on the public or private VLANs. After provisioning IBM Cloud(R) nodes, you must set up a DHCP server for the public VLAN, which corresponds to OpenShift Container Platform's `baremetal` network.\n\n> [!NOTE]\n> The IP addresses allocated to each node do not need to match the IP addresses allocated by the IBM Cloud(R) Bare Metal (Classic) provisioning system.\n\nSee the \"Configuring the public subnet\" section for details.\n\n### Ensure BMC access privileges {#_ensure_bmc_access_privileges}\n\nThe **Remote management** page for each node on the dashboard has the node’s IPMI credentials. The default IPMI privileges prevent the user from making certain boot target changes. You must change the privilege level to `OPERATOR` so that Ironic can make those changes.\n\nIn the `install-config.yaml` file, add the `privilegelevel` parameter to the URLs used to configure each BMC. See the \"Configuring the install-config.yaml file\" section for additional details. For example:\n\n```yaml\nipmi://<IP>:<port>?privilegelevel=OPERATOR\n```\n\nContact IBM Cloud(R) support to request that they increase the IPMI privileges to `ADMINISTRATOR` for each node.\n\n### Create bare-metal servers {#_create_bare-metal_servers}\n\nCreate bare-metal servers in the IBM Cloud(R) dashboard by navigating to **Create resource** -> **Bare Metal Servers for Classic**.\n\nYou can also create bare-metal servers with the `ibmcloud` CLI utility. For example:\n\n```terminal\n$ ibmcloud sl hardware create --hostname <SERVERNAME> \\\n                            --domain <DOMAIN> \\\n                            --size <SIZE> \\\n                            --os <OS-TYPE> \\\n                            --datacenter <DC-NAME> \\\n                            --port-speed <SPEED> \\\n                            --billing <BILLING>\n```\n\n> [!NOTE]\n> IBM Cloud(R) servers might take 3-5 hours to become available.\n\n## Additional resources {#additional-resources_install-ibm-cloud}\n\n- [IBM Cloud(R) dashboard](https://cloud.ibm.com)\n- [Installing the standalone IBM Cloud(R) CLI](https://cloud.ibm.com/docs/cli?topic=cli-install-ibmcloud-cli)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_cloud_classic/install-ibm-cloud-prerequisites.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,25 +101,245 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="install-ibm-cloud-prerequisites" class="group scroll-mt-20">Prerequisites for installing a cluster on {"{"}{"{"} ibm_cloud_bm {"}"}{"}"}<a href="#install-ibm-cloud-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can use installer-provisioned installation to install OpenShift Container Platform on {"{"}{"{"} ibm_cloud_bm {"}"}{"}"} nodes. Review the prerequisites and requirements before you begin an installer-provisioned installation on {"{"}{"{"} ibm_cloud_name {"}"}{"}"} nodes.</p>
+      <p>You can use installer-provisioned installation to install OpenShift Container Platform on IBM Cloud(R) Bare Metal (Classic) nodes. Review the prerequisites and requirements before you begin an installer-provisioned installation on IBM Cloud(R) nodes.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
-          <p>Red Hat supports Intelligent Platform Management Interface (IPMI) and PXE on the provisioning network only. Red Hat has not tested Red Fish, virtual media, or other complementary technologies such as Secure Boot on {"{"}{"{"} ibm_cloud_name {"}"}{"}"} deployments. You must configure a provisioning network.</p>
+          <p>Red Hat supports Intelligent Platform Management Interface (IPMI) and PXE on the provisioning network only. Red Hat has not tested Red Fish, virtual media, or other complementary technologies such as Secure Boot on IBM Cloud(R) deployments. You must configure a provisioning network.</p>
         </AlertDescription>
       </Alert>
       <p>Installer-provisioned installation of OpenShift Container Platform requires:</p>
       <ul>
-      <li>One node with {"{"}{"{"} op_system_first {"}"}{"}"} 8.x installed, for running the provisioner</li>
+      <li>One node with Red Hat Enterprise Linux CoreOS (RHCOS) 8.x installed, for running the provisioner</li>
       <li>Three control plane nodes</li>
       <li>One routable network</li>
       <li>One provisioning network</li>
       </ul>
+      <h2 id="setting-up-ibm-cloud-infrastructure_install-ibm-cloud" class="group scroll-mt-20">About setting up IBM Cloud Bare Metal (Classic) infrastructure<a href="#setting-up-ibm-cloud-infrastructure_install-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To deploy an OpenShift Container Platform cluster on IBM Cloud(R) Bare Metal (Classic) infrastructure, you must provision the IBM Cloud(R) nodes and configure the supporting infrastructure. This includes setting up virtual networking and creating the bare-metal servers that make up the cluster.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Red Hat supports Intelligent Platform Management Interface (IPMI) and PXE on the <code>provisioning</code> network only. Red Hat has not tested Red Fish, virtual media, or other complementary technologies such as Secure Boot on IBM Cloud(R) deployments. You must configure a <code>provisioning</code> network.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can customize IBM Cloud(R) nodes by using the IBM Cloud(R) API. When creating IBM Cloud(R) nodes, you must consider the following requirements.</p>
+      <h3 id="_use_one_data_center_per_cluster" class="group scroll-mt-20">Use one data center per cluster<a href="#_use_one_data_center_per_cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>All nodes in the OpenShift Container Platform cluster must run in the same IBM Cloud(R) data center.</p>
+      <h3 id="_create_public_and_private_vlans" class="group scroll-mt-20">Create public and private VLANs<a href="#_create_public_and_private_vlans" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Create all nodes with a single public virtual LAN (VLAN) and a single private VLAN.</p>
+      <h3 id="_ensure_subnets_have_enough_ip_addresses" class="group scroll-mt-20">Ensure subnets have enough IP addresses<a href="#_ensure_subnets_have_enough_ip_addresses" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>IBM Cloud(R) public VLAN subnets use a <code>/28</code> prefix by default, which provides 16 IP addresses. That is enough for a cluster consisting of three control plane nodes, four compute nodes, and two IP addresses for the API virtual IP (VIP) and Ingress VIP on the <code>baremetal</code> network. For larger clusters, you might need a smaller prefix.</p>
+      <p>IBM Cloud(R) private VLAN subnets use a <code>/26</code> prefix by default, which provides 64 IP addresses. IBM Cloud(R) Bare Metal (Classic) uses private network IP addresses to access the Baseboard Management Controller (BMC) of each node. OpenShift Container Platform creates an additional subnet for the <code>provisioning</code> network. Network traffic for the <code>provisioning</code> network subnet routes through the private VLAN. For larger clusters, you might need a smaller prefix.</p>
+      <p><strong>IP addresses per prefix</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>IP addresses</TableHead>
+      <TableHead>Prefix</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>32</TableCell>
+      <TableCell><code>/27</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>64</TableCell>
+      <TableCell><code>/26</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>128</TableCell>
+      <TableCell><code>/25</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>256</TableCell>
+      <TableCell><code>/24</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="_configuring_nics" class="group scroll-mt-20">Configuring NICs<a href="#_configuring_nics" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>OpenShift Container Platform deploys with two networks:</p>
+      <ul>
+      <li><code>provisioning</code>: The <code>provisioning</code> network is a non-routable network used for provisioning the underlying operating system on each node that is a part of the OpenShift Container Platform cluster.</li>
+      <li><code>baremetal</code>: The <code>baremetal</code> network is a routable network. You can use any NIC order to interface with the <code>baremetal</code> network, provided it is not the NIC specified in the <code>provisioningNetworkInterface</code> configuration setting or the NIC associated to a node’s <code>bootMACAddress</code> configuration setting for the <code>provisioning</code> network.</li>
+      </ul>
+      <p>While the cluster nodes can contain more than two NICs, the installation process only focuses on the first two NICs. For example:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>NIC</TableHead>
+      <TableHead>Network</TableHead>
+      <TableHead>VLAN</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>NIC1</TableCell>
+      <TableCell><code>provisioning</code></TableCell>
+      <TableCell>&lt;provisioning_vlan&gt;</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>NIC2</TableCell>
+      <TableCell><code>baremetal</code></TableCell>
+      <TableCell>&lt;baremetal_vlan&gt;</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>In the earlier example, NIC1 on all control plane and worker nodes connects to the non-routable network (<code>provisioning</code>) that is only used for the installation of the OpenShift Container Platform cluster. NIC2 on all control plane and worker nodes connects to the <code>baremetal</code> network.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>PXE</TableHead>
+      <TableHead>Boot order</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>NIC1 PXE-enabled <code>provisioning</code> network</TableCell>
+      <TableCell>1</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>NIC2 <code>baremetal</code> network.</TableCell>
+      <TableCell>2</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Enable PXE on the NIC used for the <code>provisioning</code> network and disable it on all other NICs.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="_configure_canonical_names" class="group scroll-mt-20">Configure canonical names<a href="#_configure_canonical_names" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Clients access the OpenShift Container Platform cluster nodes over the <code>baremetal</code> network. Configure IBM Cloud(R) subdomains or subzones where the canonical name extension is the cluster name.</p>
+      <CodeBlock code={"<cluster_name>.<domain>"} lang="plaintext" />
+      <p>For example:</p>
+      <CodeBlock code={"test-cluster.example.com"} lang="plaintext" />
+      <h3 id="_create_dns_entries" class="group scroll-mt-20">Create DNS entries<a href="#_create_dns_entries" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You must create DNS <code>A</code> record entries resolving to unused IP addresses on the public subnet for the following:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Usage</TableHead>
+      <TableHead>Hostname</TableHead>
+      <TableHead>IP</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>API</TableCell>
+      <TableCell>api.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Ingress LB (apps)</TableCell>
+      <TableCell>*.apps.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>Control plane and worker nodes already have DNS entries after provisioning.</p>
+      <p>The following table provides an example of fully qualified domain names. The API and name server addresses begin with canonical name extensions. The hostnames of the control plane and worker nodes are examples, so you can use any host naming convention you prefer.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Usage</TableHead>
+      <TableHead>Hostname</TableHead>
+      <TableHead>IP</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>API</TableCell>
+      <TableCell>api.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Ingress LB (apps)</TableCell>
+      <TableCell>*.apps.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Provisioner node</TableCell>
+      <TableCell>provisioner.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Control plane 0</TableCell>
+      <TableCell>openshift-control-0.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Control plane 1</TableCell>
+      <TableCell>openshift-control-1.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Control plane 2</TableCell>
+      <TableCell>openshift-control-2.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Compute 0</TableCell>
+      <TableCell>openshift-compute-0.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Compute 1</TableCell>
+      <TableCell>openshift-compute-1.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Compute n</TableCell>
+      <TableCell>openshift-compute-n.&lt;cluster_name&gt;.&lt;domain&gt;</TableCell>
+      <TableCell>&lt;ip&gt;</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>OpenShift Container Platform includes functionality that uses cluster membership information to generate <code>A</code> records. This resolves the node names to their IP addresses. After the nodes register with the API, the cluster can disperse node information without using CoreDNS-mDNS. This eliminates the network traffic associated with multicast DNS.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>After provisioning the IBM Cloud(R) nodes, you must create a DNS entry for the <code>api.&lt;cluster_name&gt;.&lt;domain&gt;</code> domain name on the external DNS because removing CoreDNS causes the local entry to disappear. Failure to create a DNS record for the <code>api.&lt;cluster_name&gt;.&lt;domain&gt;</code> domain name in the external DNS server prevents worker nodes from joining the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="_network_time_protocol_ntp" class="group scroll-mt-20">Network Time Protocol (NTP)<a href="#_network_time_protocol_ntp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Each OpenShift Container Platform node in the cluster must have access to an NTP server. OpenShift Container Platform nodes use NTP to synchronize their clocks. For example, cluster nodes use SSL/TLS certificates that require validation, which might fail if the date and time between the nodes are not in sync.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Define a consistent clock date and time format in each cluster node’s firmware settings, or installation might fail.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="_configure_a_dhcp_server" class="group scroll-mt-20">Configure a DHCP server<a href="#_configure_a_dhcp_server" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>IBM Cloud(R) Bare Metal (Classic) does not run DHCP on the public or private VLANs. After provisioning IBM Cloud(R) nodes, you must set up a DHCP server for the public VLAN, which corresponds to OpenShift Container Platform's <code>baremetal</code> network.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The IP addresses allocated to each node do not need to match the IP addresses allocated by the IBM Cloud(R) Bare Metal (Classic) provisioning system.</p>
+        </AlertDescription>
+      </Alert>
+      <p>See the "Configuring the public subnet" section for details.</p>
+      <h3 id="_ensure_bmc_access_privileges" class="group scroll-mt-20">Ensure BMC access privileges<a href="#_ensure_bmc_access_privileges" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The <strong>Remote management</strong> page for each node on the dashboard has the node’s IPMI credentials. The default IPMI privileges prevent the user from making certain boot target changes. You must change the privilege level to <code>OPERATOR</code> so that Ironic can make those changes.</p>
+      <p>In the <code>install-config.yaml</code> file, add the <code>privilegelevel</code> parameter to the URLs used to configure each BMC. See the "Configuring the install-config.yaml file" section for additional details. For example:</p>
+      <CodeBlock code={"ipmi://<IP>:<port>?privilegelevel=OPERATOR"} lang="yaml" />
+      <p>Contact IBM Cloud(R) support to request that they increase the IPMI privileges to <code>ADMINISTRATOR</code> for each node.</p>
+      <h3 id="_create_bare-metal_servers" class="group scroll-mt-20">Create bare-metal servers<a href="#_create_bare-metal_servers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Create bare-metal servers in the IBM Cloud(R) dashboard by navigating to <strong>Create resource</strong> -&gt; <strong>Bare Metal Servers for Classic</strong>.</p>
+      <p>You can also create bare-metal servers with the <code>ibmcloud</code> CLI utility. For example:</p>
+      <CodeBlock code={"$ ibmcloud sl hardware create --hostname <SERVERNAME> \\\n                            --domain <DOMAIN> \\\n                            --size <SIZE> \\\n                            --os <OS-TYPE> \\\n                            --datacenter <DC-NAME> \\\n                            --port-speed <SPEED> \\\n                            --billing <BILLING>"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>IBM Cloud(R) servers might take 3-5 hours to become available.</p>
+        </AlertDescription>
+      </Alert>
       <h2 id="additional-resources_install-ibm-cloud" class="group scroll-mt-20">Additional resources<a href="#additional-resources_install-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="https://cloud.ibm.com">{"{"}{"{"} ibm_cloud_name {"}"}{"}"} dashboard</a></li>
-      <li><a href="https://cloud.ibm.com/docs/cli?topic=cli-install-ibmcloud-cli">Installing the standalone {"{"}{"{"} ibm_cloud_name {"}"}{"}"} CLI</a></li>
+      <li><a href="https://cloud.ibm.com">IBM Cloud(R) dashboard</a></li>
+      <li><a href="https://cloud.ibm.com/docs/cli?topic=cli-install-ibmcloud-cli">Installing the standalone IBM Cloud(R) CLI</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

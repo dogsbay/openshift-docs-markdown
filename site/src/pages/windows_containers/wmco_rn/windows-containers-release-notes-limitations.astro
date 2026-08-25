@@ -39,7 +39,7 @@ const pageCategory = ["windows_containers","windows_containers/wmco_rn"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Windows Machine Config Operator known limitations {#windows-containers-release-notes-limitations}\n\nNote the following limitations when working with Windows nodes managed by the WMCO (Windows nodes):\n\n- The following OpenShift Container Platform features are not supported on Windows nodes:\n\n  - Image builds\n  - OpenShift Pipelines\n  - OpenShift Service Mesh\n  - OpenShift monitoring of user-defined projects\n  - {{ ServerlessProductName }}\n  - Vertical Pod Autoscaling\n  - Hosted Control Planes\n- The following Red Hat features are not supported on Windows nodes:\n\n  - [{{ red_hat_lightspeed }} cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)\n  - [Red Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview)\n- Dual NIC is not supported on WMCO-managed Windows instances.\n- Windows nodes do not support workloads created by using deployment configs. You can use a deployment or other method to deploy workloads.\n- {{ productwinc }} does not support adding Windows nodes to a cluster through a trunk port. The only supported networking configuration for adding Windows nodes is through an access port that carries traffic for the VLAN.\n- {{ productwinc }} does not support any Windows operating system language other than English (United States).\n- Due to a limitation within the Windows operating system, `clusterNetwork` CIDR addresses of class E, such as `240.0.0.0`, are not compatible with Windows nodes.\n- Kubernetes has identified the following node feature limitations. For more information, see \"Compatibility and limitations (Kubernetes documenation)\".\n\n  - Huge pages are not supported for Windows containers.\n  - Privileged containers are not supported for Windows containers.\n- Kubernetes has identified several API compatibility issues. For more information, see \"API compatibility (Kubernetes documenation)\".\n\n## Additional resources {#additional-resources_windows-containers-release-notes-limitations}\n\n- [{{ red_hat_lightspeed }} cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)\n- [{{ openshift_local_productname }}](https://developers.redhat.com/products/openshift-local/overview)\n- [Compatibility and limitations (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#limitations)\n- [API compatibility (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#api)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes-limitations.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Windows Machine Config Operator known limitations {#windows-containers-release-notes-limitations}\n\nNote the following limitations when working with Windows nodes managed by the WMCO (Windows nodes):\n\n- The following OpenShift Container Platform features are not supported on Windows nodes:\n\n  - Image builds\n  - OpenShift Pipelines\n  - OpenShift Service Mesh\n  - OpenShift monitoring of user-defined projects\n  - OpenShift Serverless\n  - Vertical Pod Autoscaling\n  - Hosted Control Planes\n- The following Red Hat features are not supported on Windows nodes:\n\n  - [Red Hat Lightspeed cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)\n  - [Red Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview)\n- Dual NIC is not supported on WMCO-managed Windows instances.\n- Windows nodes do not support workloads created by using deployment configs. You can use a deployment or other method to deploy workloads.\n- Red Hat OpenShift support for Windows Containers does not support adding Windows nodes to a cluster through a trunk port. The only supported networking configuration for adding Windows nodes is through an access port that carries traffic for the VLAN.\n- Red Hat OpenShift support for Windows Containers does not support any Windows operating system language other than English (United States).\n- Due to a limitation within the Windows operating system, `clusterNetwork` CIDR addresses of class E, such as `240.0.0.0`, are not compatible with Windows nodes.\n- Kubernetes has identified the following node feature limitations. For more information, see \"Compatibility and limitations (Kubernetes documenation)\".\n\n  - Huge pages are not supported for Windows containers.\n  - Privileged containers are not supported for Windows containers.\n- Kubernetes has identified several API compatibility issues. For more information, see \"API compatibility (Kubernetes documenation)\".\n\n## Additional resources {#additional-resources_windows-containers-release-notes-limitations}\n\n- [Red Hat Lightspeed cost management](https://docs.redhat.com/en/documentation/cost_management_service/1-latest)\n- [Red Hat OpenShift Local](https://developers.redhat.com/products/openshift-local/overview)\n- [Compatibility and limitations (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#limitations)\n- [API compatibility (Kubernetes documenation)](https://kubernetes.io/docs/concepts/windows/intro/#api)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/windows_containers/wmco_rn/windows-containers-release-notes-limitations.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,7 +91,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="windows-containers-release-notes-limitations" class="group scroll-mt-20">Windows Machine Config Operator known limitations<a href="#windows-containers-release-notes-limitations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Note the following limitations when working with Windows nodes managed by the WMCO (Windows nodes):</p>
       <ul>
       <li>
@@ -101,7 +100,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>OpenShift Pipelines</li>
       <li>OpenShift Service Mesh</li>
       <li>OpenShift monitoring of user-defined projects</li>
-      <li>{"{"}{"{"} ServerlessProductName {"}"}{"}"}</li>
+      <li>OpenShift Serverless</li>
       <li>Vertical Pod Autoscaling</li>
       <li>Hosted Control Planes</li>
       </ul>
@@ -109,14 +108,14 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>
       The following Red Hat features are not supported on Windows nodes:
       <ul>
-      <li><a href="https://docs.redhat.com/en/documentation/cost_management_service/1-latest">{"{"}{"{"} red_hat_lightspeed {"}"}{"}"} cost management</a></li>
+      <li><a href="https://docs.redhat.com/en/documentation/cost_management_service/1-latest">Red Hat Lightspeed cost management</a></li>
       <li><a href="https://developers.redhat.com/products/openshift-local/overview">Red Hat OpenShift Local</a></li>
       </ul>
       </li>
       <li>Dual NIC is not supported on WMCO-managed Windows instances.</li>
       <li>Windows nodes do not support workloads created by using deployment configs. You can use a deployment or other method to deploy workloads.</li>
-      <li>{"{"}{"{"} productwinc {"}"}{"}"} does not support adding Windows nodes to a cluster through a trunk port. The only supported networking configuration for adding Windows nodes is through an access port that carries traffic for the VLAN.</li>
-      <li>{"{"}{"{"} productwinc {"}"}{"}"} does not support any Windows operating system language other than English (United States).</li>
+      <li>Red Hat OpenShift support for Windows Containers does not support adding Windows nodes to a cluster through a trunk port. The only supported networking configuration for adding Windows nodes is through an access port that carries traffic for the VLAN.</li>
+      <li>Red Hat OpenShift support for Windows Containers does not support any Windows operating system language other than English (United States).</li>
       <li>Due to a limitation within the Windows operating system, <code>clusterNetwork</code> CIDR addresses of class E, such as <code>240.0.0.0</code>, are not compatible with Windows nodes.</li>
       <li>
       Kubernetes has identified the following node feature limitations. For more information, see "Compatibility and limitations (Kubernetes documenation)".
@@ -129,8 +128,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </ul>
       <h2 id="additional-resources_windows-containers-release-notes-limitations" class="group scroll-mt-20">Additional resources<a href="#additional-resources_windows-containers-release-notes-limitations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="https://docs.redhat.com/en/documentation/cost_management_service/1-latest">{"{"}{"{"} red_hat_lightspeed {"}"}{"}"} cost management</a></li>
-      <li><a href="https://developers.redhat.com/products/openshift-local/overview">{"{"}{"{"} openshift_local_productname {"}"}{"}"}</a></li>
+      <li><a href="https://docs.redhat.com/en/documentation/cost_management_service/1-latest">Red Hat Lightspeed cost management</a></li>
+      <li><a href="https://developers.redhat.com/products/openshift-local/overview">Red Hat OpenShift Local</a></li>
       <li><a href="https://kubernetes.io/docs/concepts/windows/intro/#limitations">Compatibility and limitations (Kubernetes documenation)</a></li>
       <li><a href="https://kubernetes.io/docs/concepts/windows/intro/#api">API compatibility (Kubernetes documenation)</a></li>
       </ul>

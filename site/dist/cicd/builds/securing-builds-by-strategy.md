@@ -18,3 +18,56 @@ You can control who can build and which build strategies they can use by using a
 | Source-to-Image | builds/source | system:build-strategy-source |
 | Custom | builds/custom | system:build-strategy-custom |
 | JenkinsPipeline | builds/jenkinspipeline | system:build-strategy-jenkinspipeline |
+
+## Disabling access to a build strategy globally {#builds-disabling-build-strategy-globally_securing-builds-by-strategy}
+
+To prevent access to a particular build strategy globally, log in as a user with cluster administrator privileges, remove the corresponding role from the `system:authenticated` group, and apply the annotation `rbac.authorization.kubernetes.io/autoupdate: "false"` to protect them from changes between the API restarts. The following example shows disabling the docker build strategy.
+
+**Procedure**
+
+1. Apply the `rbac.authorization.kubernetes.io/autoupdate` annotation by entering the following command:
+
+   ```terminal
+   $ oc annotate clusterrolebinding.rbac system:build-strategy-docker-binding 'rbac.authorization.kubernetes.io/autoupdate=false' --overwrite
+   ```
+2. Remove the role by entering the following command:
+
+   ```terminal
+   $ oc adm policy remove-cluster-role-from-group system:build-strategy-docker system:authenticated
+   ```
+3. Ensure the build strategy subresources are also removed from the `admin` and `edit` user roles:
+
+   ```terminal
+   $ oc get clusterrole admin -o yaml | grep "builds/docker"
+   ```
+
+   ```terminal
+   $ oc get clusterrole edit -o yaml | grep "builds/docker"
+   ```
+
+## Restricting build strategies to users globally {#builds-restricting-build-strategy-globally_securing-builds-by-strategy}
+
+You can allow a set of specific users to create builds with a particular strategy.
+
+**Procedure**
+
+- Assign the role that corresponds to the build strategy to a specific user. For example, to add the `system:build-strategy-docker` cluster role to the user `devuser`:
+
+  ```terminal
+  $ oc adm policy add-cluster-role-to-user system:build-strategy-docker devuser
+  ```
+
+  > [!WARNING]
+  > Granting a user access at the cluster level to the `builds/docker` subresource means that the user can create builds with the docker strategy in any project in which they can create builds.
+
+## Restricting build strategies to a user within a project {#builds-restricting-build-strategy-to-user_securing-builds-by-strategy}
+
+Similar to granting the build strategy role to a user globally, you can allow a set of specific users within a project to create builds with a particular strategy.
+
+**Procedure**
+
+- Assign the role that corresponds to the build strategy to a specific user within a project. For example, to add the `system:build-strategy-docker` role within the project `devproject` to the user `devuser`:
+
+  ```terminal
+  $ oc adm policy add-role-to-user system:build-strategy-docker devuser -n devproject
+  ```

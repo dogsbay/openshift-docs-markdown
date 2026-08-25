@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"zero-trust-manager-mesh-integration-multi-cluster","text":"Integrating SPIRE federation with multi-cluster {{ SMProductName }}"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"},{"depth":2,"slug":"additional-resources-spire-multicluster_zero-trust-manager-mesh-integration-multi-cluster","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"zero-trust-manager-mesh-integration-multi-cluster","text":"Integrating SPIRE federation with multi-cluster {{ SMProductName }}"},{"depth":2,"slug":"zero-trust-manager-multi-cluster-spire-mesh-about_zero-trust-manager-mesh-integration-multi-cluster","text":"Multi-cluster SPIFFE Runtime Environment integration with Red Hat OpenShift Service Mesh"},{"depth":3,"slug":"what-gets-federated_zero-trust-manager-mesh-integration-multi-cluster","text":"What gets federated"},{"depth":2,"slug":"zero-trust-manager-prepare-spire-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster","text":"Preparing the environment for multi-cluster SPIFFE Runtime Environment federation"},{"depth":2,"slug":"zero-trust-manager-deploy-spire-federation-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster","text":"Deploying SPIFFE Runtime Environment with federation on both clusters"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"},{"depth":2,"slug":"zero-trust-manager-configure-spire-mesh-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster","text":"Configuring Red Hat OpenShift Service Mesh for multi-cluster SPIFFE Runtime Environment integration"},{"depth":2,"slug":"zero-trust-manager-deploy-istiocni_zero-trust-manager-mesh-integration-multi-cluster","text":"Deploying the Red Hat OpenShift Service Mesh CNI on both clusters"},{"depth":2,"slug":"zero-trust-manager-deploy-istio-cr_zero-trust-manager-mesh-integration-multi-cluster","text":"Deploying the Istio custom resource with the federation configuration"},{"depth":2,"slug":"zero-trust-manager-verify-spire-istio-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster","text":"Verifying SPIRE integration with Istio on each cluster"},{"depth":2,"slug":"zero-trust-manager-mutual-tls-verification_zero-trust-manager-mesh-integration-multi-cluster","text":"Verifying workload mTLS with SPIRE-issued identities on each cluster"},{"depth":2,"slug":"zero-trust-manager-deploy-east-west_zero-trust-manager-mesh-integration-multi-cluster","text":"Deploying east-west gateways"},{"depth":2,"slug":"zero-trust-manager-exchange-remote-secrets_zero-trust-manager-mesh-integration-multi-cluster","text":"Exchanging remote secrets"},{"depth":2,"slug":"zero-trust-manager-multi-mesh-verification_zero-trust-manager-mesh-integration-multi-cluster","text":"Verifying cross-cluster service communication"},{"depth":2,"slug":"additional-resources-spire-multicluster_zero-trust-manager-mesh-integration-multi-cluster","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-mesh-integration-multi-cluster";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Integrating SPIRE federation with multi-cluster {{ SMProductName }}";
-const description = "Configure {{ spire_full }} (SPIRE) federation across multiple OpenShift Container Platform clusters to enable cross-cluster mutual TLS (mTLS)…" || undefined;
+const description = "Configure SPIFFE Runtime Environment (SPIRE) federation across multiple OpenShift Container Platform clusters to enable cross-cluster mutual TLS (mTLS)…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["security","security/zero_trust_workload_identity_manager"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Integrating SPIRE federation with multi-cluster {{ SMProductName }} {#zero-trust-manager-mesh-integration-multi-cluster}\n\nConfigure {{ spire_full }} (SPIRE) federation across multiple OpenShift Container Platform clusters to enable cross-cluster mutual TLS (mTLS) authentication and zero trust workload identity in a multi-cluster service mesh deployment.\n\n## Additional resources {#_additional_resources}\n\n- [Installing the Zero Trust Workload Identity Manager](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html-single/security_and_compliance/index#zero-trust-manager-install)\n- [Zero Trust Workload Identity Manager SPIRE federation](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/zero-trust-workload-identity-manager#zero-trust-manager-spire-federation_zero-trust-manager-oidc-federation)\n\n## Additional resources {#additional-resources-spire-multicluster_zero-trust-manager-mesh-integration-multi-cluster}\n\n- [Multi-cluster configuration overview](https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/latest/html-single/installing/index#ossm-multi-cluster-configuration-overview_ossm-multi-cluster-topologies)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-mesh-integration-multi-cluster.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Integrating SPIRE federation with multi-cluster {{ SMProductName }} {#zero-trust-manager-mesh-integration-multi-cluster}\n\nConfigure SPIFFE Runtime Environment (SPIRE) federation across multiple OpenShift Container Platform clusters to enable cross-cluster mutual TLS (mTLS) authentication and zero trust workload identity in a multi-cluster service mesh deployment.\n\n## Multi-cluster SPIFFE Runtime Environment integration with Red Hat OpenShift Service Mesh {#zero-trust-manager-multi-cluster-spire-mesh-about_zero-trust-manager-mesh-integration-multi-cluster}\n\nUnderstand how SPIFFE Runtime Environment (SPIRE) federation integrates with multi-cluster Red Hat OpenShift Service Mesh. Cross-cluster mutual TLS (mTLS) lets workloads on separate clusters authenticate each other under a unified zero-trust identity framework.\n\nMulti-cluster SPIRE integration extends single-cluster SPIRE capabilities to enable workloads in different clusters to authenticate each other using Secure Production Identity Framework for Everyone (SPIFFE) identities. This eliminates the need for separate certificate authorities per cluster and enables true cross-cluster zero-trust architecture.\n\n### What gets federated {#what-gets-federated_zero-trust-manager-mesh-integration-multi-cluster}\n\nFederation happens at two layers, and both are required:\n\n| Layer | What | How |\n| --- | --- | --- |\n| SPIRE Federation | Trust bundles | SPIRE Servers exchange bundles via `https_spiffe` profile |\n| Istio Federation | Service discovery and routing | `Istiod` discovers remote endpoints via remote secrets, routes traffic through east-west gateways |\n\n## Preparing the environment for multi-cluster SPIFFE Runtime Environment federation {#zero-trust-manager-prepare-spire-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster}\n\nExport kubeconfig paths, trust domains, federation endpoints, and JWT issuer URLs for Cluster A and Cluster B before you deploy federated SPIFFE Runtime Environment (SPIRE) operands on both clusters.\n\n**Prerequisites**\n\n- You have two OpenShift Container Platform clusters (4.x) with network connectivity between them.\n- You have installed Zero Trust Workload Identity Manager on both clusters.\n- The OpenShift CLI (`oc`) is configured with access to both clusters.\n- You have installed the `istioctl` CLI tool.\n- You have installed `helm`. This is used for gateway deployment.\n- You have Istio version 1.29.2 or later.\n\n**Procedure**\n\n1. Export the namespace variables by running the following commands:\n\n   ```terminal\n   $ export ZTWIM_NS=zero-trust-workload-identity-manager\n   ```\n\n   ```terminal\n   $ export OSSM_NS=istio-system\n   ```\n\n   ```terminal\n   $ export OSSM_CNI=istio-cni\n   ```\n2. Export the kubeconfig file paths for Cluster A and Cluster B by running the following commands:\n\n   ```terminal\n   $ export CLUSTER_A_KUBECONFIG=\"/path/to/cluster-a/kubeconfig\"\n   ```\n\n   ```terminal\n   $ export CLUSTER_B_KUBECONFIG=\"/path/to/cluster-b/kubeconfig\"\n   ```\n3. Set the base domain environment variables for Cluster A and Cluster B by running the following commands:\n\n   ```terminal\n   $ export CLUSTER_A_BASE_DOMAIN=$(oc get ingresses.config/cluster \\\n     -o jsonpath='{.spec.domain}' --kubeconfig \"${CLUSTER_A_KUBECONFIG}\")\n   ```\n\n   ```terminal\n   $ export CLUSTER_B_BASE_DOMAIN=$(oc get ingresses.config/cluster \\\n     -o jsonpath='{.spec.domain}' --kubeconfig \"${CLUSTER_B_KUBECONFIG}\")\n   ```\n4. Export the trust domain environment variables from the base domain of each cluster by running the following commands:\n\n   ```terminal\n   $ export CLUSTER_A_TRUST_DOMAIN=\"${CLUSTER_A_BASE_DOMAIN}\"\n   ```\n\n   ```terminal\n   $ export CLUSTER_B_TRUST_DOMAIN=\"${CLUSTER_B_BASE_DOMAIN}\"\n   ```\n5. Define the cluster and network environment variables by running the following commands:\n\n   ```terminal\n   $ export CLUSTER_A=cluster-a\n   ```\n\n   ```terminal\n   $ export CLUSTER_B=cluster-b\n   ```\n\n   ```terminal\n   $ export NETWORK_A=network-a\n   ```\n\n   ```terminal\n   $ export NETWORK_B=network-b\n   ```\n6. Export the federation endpoint URLs for Cluster A and Cluster B by running the following commands:\n\n   ```terminal\n   $ export FEDERATION_ENDPOINT_A=\"https://federation.${CLUSTER_A_BASE_DOMAIN}\"\n   ```\n\n   ```terminal\n   $ export FEDERATION_ENDPOINT_B=\"https://federation.${CLUSTER_B_BASE_DOMAIN}\"\n   ```\n7. Set the JWT issuer environment variables for Cluster A and Cluster B by running the following commands:\n\n   ```terminal\n   $ export JWT_ISSUER_A=\"https://oidc-discovery.${CLUSTER_A_BASE_DOMAIN}\"\n   ```\n\n   ```terminal\n   $ export JWT_ISSUER_B=\"https://oidc-discovery.${CLUSTER_B_BASE_DOMAIN}\"\n   ```\n\n## Deploying SPIFFE Runtime Environment with federation on both clusters {#zero-trust-manager-deploy-spire-federation-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster}\n\nDeploy SPIFFE Runtime Environment (SPIRE) operand custom resources (CRs) with federation enabled on Cluster A and Cluster B, wait for operands to become ready, and verify SDS configuration.\n\n**Prerequisites**\n\n- You have completed preparing the environment for multi-cluster SPIRE federation. For more information, see \"Preparing the environment for multi-cluster SPIFFE Runtime Environment federation\".\n- The environment variables from the \"Preparing the environment for multi-cluster SPIFFE Runtime Environment federation\" procedure are set.\n\n**Procedure**\n\n1. Deploy SPIRE with federation enabled on Cluster A:\n\n   1. Create a YAML file that defines the `ZeroTrustWorkloadIdentityManager` CR on Cluster A:\n\n      ```yaml\n      apiVersion: operator.openshift.io/v1alpha1\n      kind: ZeroTrustWorkloadIdentityManager\n      metadata:\n        name: cluster\n      spec:\n        trustDomain: ${CLUSTER_A_TRUST_DOMAIN}\n        clusterName: ${CLUSTER_A}\n        bundleConfigMap: \"spire-bundle\"\n      ```\n   2. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n   3. Create a YAML file that defines the `SpireServer` CR on Cluster A:\n\n      ```yaml\n      apiVersion: operator.openshift.io/v1alpha1\n      kind: SpireServer\n      metadata:\n        name: cluster\n      spec:\n        logLevel: \"info\"\n        logFormat: \"text\"\n        jwtIssuer: $JWT_ISSUER_A\n        caValidity: \"24h\"\n        defaultX509Validity: \"1h\"\n        defaultJWTValidity: \"5m\"\n        caKeytype: \"rsa-2048\"\n        jwtKeyType: \"rsa-2048\"\n        keyManager: \"\"\n        caSubject:\n          country: \"US\"\n          organization: \"RH\"\n          commonName: \"SPIRE Server CA\"\n        persistence:\n          size: \"5Gi\"\n          accessMode: \"ReadWriteOnce\"\n        datastore:\n          databaseType: \"sqlite3\"\n          connectionString: \"/run/spire/data/datastore.sqlite3\"\n          tlsSecretName: \"\"\n          maxOpenConns: 100\n          maxIdleConns: 10\n          connMaxLifetime: 0\n          disableMigration: \"false\"\n        federation:\n          bundleEndpoint:\n            profile: \"https_spiffe\"\n      ```\n   4. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n   5. Create a YAML file that defines the `SpireAgent` CR on Cluster A:\n\n      ```yaml\n      apiVersion: operator.openshift.io/v1alpha1\n      kind: SpireAgent\n      metadata:\n        name: cluster\n      spec:\n        socketPath: \"/run/spire/agent-sockets\"\n        logLevel: \"info\"\n        logFormat: \"text\"\n        nodeAttestor:\n          k8sPSATEnabled: \"true\"\n        workloadAttestors:\n          k8sEnabled: \"true\"\n          workloadAttestorsVerification:\n            type: \"auto\"\n            hostCertBasePath: \"/etc/kubernetes\"\n            hostCertFileName: \"kubelet-ca.crt\"\n          useNewContainerLocator: \"true\"\n      ```\n   6. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n   7. Create a YAML file that defines the `SpiffeCSIDriver` CR on Cluster A:\n\n      ```yaml\n      apiVersion: operator.openshift.io/v1alpha1\n      kind: SpiffeCSIDriver\n      metadata:\n        name: cluster\n      spec:\n        agentSocketPath: \"/run/spire/agent-sockets\"\n        pluginName: csi.spiffe.io\n      ```\n   8. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n   9. Create a YAML file that defines the `SpireOIDCDiscoveryProvider` CR on Cluster A:\n\n      ```yaml\n      apiVersion: operator.openshift.io/v1alpha1\n      kind: SpireOIDCDiscoveryProvider\n      metadata:\n        name: cluster\n      spec:\n        logLevel: \"info\"\n        logFormat: \"text\"\n        csiDriverName: \"csi.spiffe.io\"\n        jwtIssuer: $JWT_ISSUER_A\n        replicaCount: 1\n        managedRoute: \"true\"\n      ```\n   10. Apply the YAML file on Cluster A by running the following command:\n\n       ```terminal\n       $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n       ```\n2. Deploy SPIRE with federation enabled on Cluster B:\n\n   1. Create a YAML file that defines the `ZeroTrustWorkloadIdentityManager` CR on Cluster B:\n\n      ```yaml\n      apiVersion: operator.openshift.io/v1alpha1\n      kind: ZeroTrustWorkloadIdentityManager\n      metadata:\n        name: cluster\n      spec:\n        trustDomain: ${CLUSTER_B_TRUST_DOMAIN}\n        clusterName: ${CLUSTER_B}\n        bundleConfigMap: \"spire-bundle\"\n      ```\n   2. Apply the YAML file on Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n      ```\n   3. Create a YAML file that defines the `SpireServer` CR on Cluster B:\n\n      ```yaml\n      apiVersion: operator.openshift.io/v1alpha1\n      kind: SpireServer\n      metadata:\n        name: cluster\n      spec:\n        logLevel: \"info\"\n        logFormat: \"text\"\n        jwtIssuer: $JWT_ISSUER_B\n        caValidity: \"24h\"\n        defaultX509Validity: \"1h\"\n        defaultJWTValidity: \"5m\"\n        caKeytype: \"rsa-2048\"\n        jwtKeyType: \"rsa-2048\"\n        keyManager: \"\"\n        caSubject:\n          country: \"US\"\n          organization: \"RH\"\n          commonName: \"SPIRE Server CA\"\n        persistence:\n          size: \"5Gi\"\n          accessMode: \"ReadWriteOnce\"\n        datastore:\n          databaseType: \"sqlite3\"\n          connectionString: \"/run/spire/data/datastore.sqlite3\"\n          tlsSecretName: \"\"\n          maxOpenConns: 100\n          maxIdleConns: 10\n          connMaxLifetime: 0\n          disableMigration: \"false\"\n        federation:\n          bundleEndpoint:\n            profile: \"https_spiffe\"\n      ```\n   4. Apply the YAML file on Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n      ```\n   5. Create a YAML file that defines the `SpireAgent` CR on Cluster B:\n\n      ```yaml\n      apiVersion: operator.openshift.io/v1alpha1\n      kind: SpireAgent\n      metadata:\n        name: cluster\n      spec:\n        socketPath: \"/run/spire/agent-sockets\"\n        logLevel: \"info\"\n        logFormat: \"text\"\n        nodeAttestor:\n          k8sPSATEnabled: \"true\"\n        workloadAttestors:\n          k8sEnabled: \"true\"\n          workloadAttestorsVerification:\n            type: \"auto\"\n            hostCertBasePath: \"/etc/kubernetes\"\n            hostCertFileName: \"kubelet-ca.crt\"\n          useNewContainerLocator: \"true\"\n      ```\n   6. Apply the YAML file on Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n      ```\n   7. Create a YAML file that defines the `SpiffeCSIDriver` CR on Cluster B:\n\n      ```yaml\n      apiVersion: operator.openshift.io/v1alpha1\n      kind: SpiffeCSIDriver\n      metadata:\n        name: cluster\n      spec:\n        agentSocketPath: \"/run/spire/agent-sockets\"\n        pluginName: csi.spiffe.io\n      ```\n   8. Apply the YAML file on Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n      ```\n   9. Create a YAML file that defines the `SpireOIDCDiscoveryProvider` CR on Cluster B:\n\n      ```yaml\n      apiVersion: operator.openshift.io/v1alpha1\n      kind: SpireOIDCDiscoveryProvider\n      metadata:\n        name: cluster\n      spec:\n        logLevel: \"info\"\n        logFormat: \"text\"\n        csiDriverName: \"csi.spiffe.io\"\n        jwtIssuer: $JWT_ISSUER_B\n        replicaCount: 1\n        managedRoute: \"true\"\n      ```\n   10. Apply the YAML file on Cluster B by running the following command:\n\n       ```terminal\n       $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n       ```\n3. Wait for the `spire-server` StatefulSet to become ready on Cluster A by running the following command:\n\n   ```terminal\n   $ oc rollout status statefulset/spire-server --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s\n   ```\n4. Wait for the `spire-agent` DaemonSet to become ready on Cluster A by running the following command:\n\n   ```terminal\n   $ oc rollout status daemonset/spire-agent --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s\n   ```\n5. Wait for the `spire-spiffe-csi-driver` DaemonSet to become ready on Cluster A by running the following command:\n\n   ```terminal\n   $ oc rollout status daemonset/spire-spiffe-csi-driver --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s\n   ```\n6. Wait for the `spire-spiffe-oidc-discovery-provider` deployment to become available on Cluster A by running the following command:\n\n   ```terminal\n   $ oc wait --for=condition=Available deployment/spire-spiffe-oidc-discovery-provider \\\n     --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s\n   ```\n7. Wait for the `spire-server` StatefulSet to become ready on Cluster B by running the following command:\n\n   ```terminal\n   $ oc rollout status statefulset/spire-server --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s\n   ```\n8. Wait for the `spire-agent` DaemonSet to become ready on Cluster B by running the following command:\n\n   ```terminal\n   $ oc rollout status daemonset/spire-agent --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s\n   ```\n9. Wait for the `spire-spiffe-csi-driver` DaemonSet to become ready on Cluster B by running the following command:\n\n   ```terminal\n   $ oc rollout status daemonset/spire-spiffe-csi-driver --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s\n   ```\n10. Wait for the `spire-spiffe-oidc-discovery-provider` deployment to become available on Cluster B by running the following command:\n\n    ```terminal\n    $ oc wait --for=condition=Available deployment/spire-spiffe-oidc-discovery-provider \\\n      --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s\n    ```\n\n**Verification**\n\n1. Verify that the SDS configuration is available on Cluster A by running the following command:\n\n   ```terminal\n   $ oc get cm spire-agent --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n \"${ZTWIM_NS}\" \\\n     -o jsonpath='{.data.agent\\.conf}' | grep -A5 '\"sds\"'\n   ```\n2. Verify that the SDS configuration is available on Cluster B by running the following command:\n\n   ```terminal\n   $ oc get cm spire-agent --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n \"${ZTWIM_NS}\" \\\n     -o jsonpath='{.data.agent\\.conf}' | grep -A5 '\"sds\"'\n   ```\n\n   ```terminal {title=\"Example output\"}\n   \"sds\": {\n     \"default_all_bundles_name\": \"ROOTCA\",\n     \"default_bundle_name\": \"null\"\n   },\n   ```\n\n## Additional resources {#_additional_resources}\n\n- [Installing the Zero Trust Workload Identity Manager](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html-single/security_and_compliance/index#zero-trust-manager-install)\n- [Zero Trust Workload Identity Manager SPIRE federation](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/zero-trust-workload-identity-manager#zero-trust-manager-spire-federation_zero-trust-manager-oidc-federation)\n\n## Configuring Red Hat OpenShift Service Mesh for multi-cluster SPIFFE Runtime Environment integration {#zero-trust-manager-configure-spire-mesh-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster}\n\nConfigure Red Hat OpenShift Service Mesh on each cluster with federation settings, east-west gateways, and remote secrets to enable cross-cluster service communication by using SPIRE-issued certificates.\n\n**Prerequisites**\n\n- You deployed SPIFFE Runtime Environment (SPIRE) with federation for multi-cluster integration. For more information, see \"Deploying SPIFFE Runtime Environment with federation on both clusters\".\n\n**Procedure**\n\n1. Verify that the federation routes are created on Cluster A by running the following command:\n\n   ```terminal\n   $ oc get route -n ${ZTWIM_NS} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" | grep federation\n   ```\n2. Verify that the federation routes are created on Cluster B by running the following command:\n\n   ```terminal\n   $ oc get route -n ${ZTWIM_NS} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" | grep federation\n   ```\n3. On Cluster A, create a `ClusterFederatedTrustDomain` object pointing to Cluster B by running the following command:\n\n   1. Create a YAML file that defines the `ClusterFederatedTrustDomain` CR on Cluster A:\n\n      ```yaml\n      apiVersion: spire.spiffe.io/v1alpha1\n      kind: ClusterFederatedTrustDomain\n      metadata:\n        name: federation-to-cluster-b\n      spec:\n        trustDomain: ${CLUSTER_B_TRUST_DOMAIN}\n        bundleEndpointURL: ${FEDERATION_ENDPOINT_B}\n        bundleEndpointProfile:\n          type: https_spiffe\n          endpointSPIFFEID: spiffe://${CLUSTER_B_TRUST_DOMAIN}/spire/server\n      ```\n   2. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n4. On Cluster B, create a `ClusterFederatedTrustDomain` object pointing to Cluster A by running the following command:\n\n   1. Create a YAML file that defines the `ClusterFederatedTrustDomain` CR on Cluster B:\n\n      ```yaml\n      apiVersion: spire.spiffe.io/v1alpha1\n      kind: ClusterFederatedTrustDomain\n      metadata:\n        name: federation-to-cluster-a\n      spec:\n        trustDomain: ${CLUSTER_A_TRUST_DOMAIN}\n        bundleEndpointURL: ${FEDERATION_ENDPOINT_A}\n        bundleEndpointProfile:\n          type: https_spiffe\n          endpointSPIFFEID: spiffe://${CLUSTER_A_TRUST_DOMAIN}/spire/server\n      ```\n   2. Apply the YAML file on Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n      ```\n\n**Verification**\n\n1. Verify that the SPIRE Server on Cluster A has the trust bundle from Cluster B by running the following command:\n\n   ```terminal\n   $ oc exec --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} spire-server-0 -c spire-server -- \\\n     spire-server bundle list -socketPath /tmp/spire-server/private/api.sock -format spiffe 2>&1 | head -5\n   ```\n\n   The output must show public keys for `${{ CLUSTER_B_TRUST_DOMAIN }}`.\n\n   ```text {title=\"Example output\"}\n   {\n     \"trust_domains\": {\n       \"${CLUSTER_B_TRUST_DOMAIN}\": {\n         \"keys\": [\n   ```\n2. Verify that the SPIRE Server on Cluster B has the trust bundle from Cluster A by running the following command:\n\n   ```terminal\n   $ oc exec --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} spire-server-0 -c spire-server -- \\\n     spire-server bundle list -socketPath /tmp/spire-server/private/api.sock -format spiffe 2>&1 | head -5\n   ```\n\n   The output must show public keys for `${{ CLUSTER_A_TRUST_DOMAIN }}`.\n\n   ```text {title=\"Example output\"}\n   {\n     \"trust_domains\": {\n       \"${CLUSTER_A_TRUST_DOMAIN}\": {\n         \"keys\": [\n   ```\n3. Verify that the federation endpoint on Cluster A is reachable by running the following command:\n\n   ```terminal\n   $ curl -sk \"${FEDERATION_ENDPOINT_A}\" | python3 -c \"import sys,json; print(f'Keys: {len(json.load(sys.stdin).get(\\\"keys\\\",[]))}')\"\n   ```\n\n   The output must show at least one `x509-svid` key and one `jwt-svid` key.\n\n   ```text {title=\"Example output\"}\n   Keys: 2\n   ```\n4. Verify that the federation endpoint on Cluster B is reachable by running the following command:\n\n   ```terminal\n   $ curl -sk \"${FEDERATION_ENDPOINT_B}\" | python3 -c \"import sys,json; print(f'Keys: {len(json.load(sys.stdin).get(\\\"keys\\\",[]))}')\"\n   ```\n\n   The output must show at least one `x509-svid` key and one `jwt-svid` key.\n\n   ```text {title=\"Example output\"}\n   Keys: 2\n   ```\n\n## Deploying the Red Hat OpenShift Service Mesh CNI on both clusters {#zero-trust-manager-deploy-istiocni_zero-trust-manager-mesh-integration-multi-cluster}\n\nDeploy the `IstioCNI` CR and federated `ClusterSPIFFEID` resources on Cluster A and Cluster B. This configures Red Hat OpenShift Service Mesh CNI networking and federated SPIFFE trust for cross-cluster mesh workloads.\n\n**Prerequisites**\n\n- You have configured Red Hat OpenShift Service Mesh for multi-cluster integration. For more information, see \"Configuring Red Hat OpenShift Service Mesh for multi-cluster SPIFFE Runtime Environment integration\".\n- The environment variables from the \"Preparing the environment for multi-cluster SPIFFE Runtime Environment federation\" and \"Deploying SPIFFE Runtime Environment with federation on both clusters\" procedures are set.\n- You have installed Red Hat OpenShift Service Mesh 2.6.11 on both clusters.\n\n**Procedure**\n\n1. Create the Red Hat OpenShift Service Mesh CNI namespace on Cluster A by running the following command:\n\n   ```terminal\n   $ oc new-project \"${OSSM_CNI}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" 2>/dev/null || true\n   ```\n2. Deploy the `IstioCNI` CR on Cluster A by running the following command:\n\n   1. Create a YAML file that defines the `IstioCNI` CR on Cluster A:\n\n      ```yaml\n      apiVersion: sailoperator.io/v1\n      kind: IstioCNI\n      metadata:\n        name: default\n      spec:\n        namespace: ${OSSM_CNI}\n      ```\n   2. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n3. Wait for the `istio-cni-node` DaemonSet to be created on Cluster A by running the following command:\n\n   ```terminal\n   $ until oc get daemonset/istio-cni-node --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n \"${OSSM_CNI}\" &> /dev/null; do\n     sleep 3\n   done\n   ```\n4. Wait for the `IstioCNI` DaemonSet to become ready on Cluster A by running the following command:\n\n   ```terminal\n   $ oc rollout status daemonset/istio-cni-node --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n \"${OSSM_CNI}\" --timeout=300s\n   ```\n5. Create the Red Hat OpenShift Service Mesh CNI namespace on Cluster B by running the following command:\n\n   ```terminal\n   $ oc new-project \"${OSSM_CNI}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" 2>/dev/null || true\n   ```\n6. Deploy the `IstioCNI` CR on Cluster B by running the following command:\n\n   1. Create a YAML file that defines the `IstioCNI` CR on Cluster B:\n\n      ```yaml\n      apiVersion: sailoperator.io/v1\n      kind: IstioCNI\n      metadata:\n        name: default\n      spec:\n        namespace: ${OSSM_CNI}\n      ```\n   2. Apply the YAML file on Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n      ```\n7. Wait for the `istio-cni-node` DaemonSet to be created on Cluster B by running the following command:\n\n   ```terminal\n   $ until oc get daemonset/istio-cni-node --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n \"${OSSM_CNI}\" &> /dev/null; do\n     sleep 3\n   done\n   ```\n8. Wait for the `IstioCNI` DaemonSet to become ready on Cluster B by running the following command:\n\n   ```terminal\n   $ oc rollout status daemonset/istio-cni-node --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n \"${OSSM_CNI}\" --timeout=300s\n   ```\n9. Create the federated `ClusterSPIFFEID` resources on Cluster A by running the following command:\n\n   1. Create a YAML file that defines the federated `ClusterSPIFFEID` resources on Cluster A:\n\n      ```yaml\n      apiVersion: spire.spiffe.io/v1alpha1\n      kind: ClusterSPIFFEID\n      metadata:\n        name: sample-federation\n      spec:\n        className: zero-trust-workload-identity-manager-spire\n        spiffeIDTemplate: \"spiffe://{{ .TrustDomain }}/ns/{{ .PodMeta.Namespace }}/sa/{{ .PodSpec.ServiceAccountName }}\"\n        namespaceSelector:\n          matchLabels:\n            kubernetes.io/metadata.name: sample\n        federatesWith:\n          - \"${CLUSTER_B_TRUST_DOMAIN}\"\n      ---\n      apiVersion: spire.spiffe.io/v1alpha1\n      kind: ClusterSPIFFEID\n      metadata:\n        name: istio-system-federation\n      spec:\n        className: zero-trust-workload-identity-manager-spire\n        spiffeIDTemplate: \"spiffe://{{ .TrustDomain }}/ns/{{ .PodMeta.Namespace }}/sa/{{ .PodSpec.ServiceAccountName }}\"\n        namespaceSelector:\n          matchLabels:\n            kubernetes.io/metadata.name: istio-system\n        federatesWith:\n          - \"${CLUSTER_B_TRUST_DOMAIN}\"\n      ```\n   2. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n10. Create federated `ClusterSPIFFEID` resources on Cluster B by running the following command:\n\n    1. Create a YAML file that defines the federated `ClusterSPIFFEID` resources on Cluster B:\n\n       ```yaml\n       apiVersion: spire.spiffe.io/v1alpha1\n       kind: ClusterSPIFFEID\n       metadata:\n         name: sample-federation\n       spec:\n         className: zero-trust-workload-identity-manager-spire\n         spiffeIDTemplate: \"spiffe://{{ .TrustDomain }}/ns/{{ .PodMeta.Namespace }}/sa/{{ .PodSpec.ServiceAccountName }}\"\n         namespaceSelector:\n           matchLabels:\n             kubernetes.io/metadata.name: sample\n         federatesWith:\n           - \"${CLUSTER_A_TRUST_DOMAIN}\"\n       ---\n       apiVersion: spire.spiffe.io/v1alpha1\n       kind: ClusterSPIFFEID\n       metadata:\n         name: istio-system-federation\n       spec:\n         className: zero-trust-workload-identity-manager-spire\n         spiffeIDTemplate: \"spiffe://{{ .TrustDomain }}/ns/{{ .PodMeta.Namespace }}/sa/{{ .PodSpec.ServiceAccountName }}\"\n         namespaceSelector:\n           matchLabels:\n             kubernetes.io/metadata.name: istio-system\n         federatesWith:\n           - \"${CLUSTER_A_TRUST_DOMAIN}\"\n       ```\n    2. Apply the YAML file on Cluster B by running the following command:\n\n       ```terminal\n       $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n       ```\n\n       > [!IMPORTANT]\n       > Do not patch the default `ClusterSPIFFEID` (`zero-trust-workload-identity-manager-spire-default`). The Zero Trust Workload Identity Manager reconciles and reverts manual changes. Instead, create custom `ClusterSPIFFEID` resources for the specific namespaces.\n\n## Deploying the Istio custom resource with the federation configuration {#zero-trust-manager-deploy-istio-cr_zero-trust-manager-mesh-integration-multi-cluster}\n\nDeploy the Istio custom resource on Cluster A and Cluster B with SPIFFE Runtime Environment (SPIRE) federation and multi-cluster Red Hat OpenShift Service Mesh settings. This configures Istiod to obtain workload certificates from SPIRE and to trust SPIFFE bundles from both clusters for cross-cluster mTLS.\n\nThe Istio CR must include the following fields and values:\n\n- A `meshConfig.trustDomain` value that matches the SPIRE trust domain.\n- A `meshConfig.caCertificates` value with bundle URLs for both clusters. This handles cross-trust-domain validation.\n- A `WORKLOAD_IDENTITY_SOCKET_FILE` value for SPIRE SDS integration.\n- A `jwksResolverExtraRootCA` value for OIDC validation.\n- A multi-cluster configuration that includes `meshID`, `clusterName`, and `network`.\n- A SPIRE injection template configuration.\n\n> [!NOTE]\n> Do not use `meshConfig.trustDomainAliases`. Use `meshConfig.caCertificates` with `spiffeBundleUrl` instead.\n\n**Prerequisites**\n\n- You have completed deploying the Istio Container Network Interface (CNI) on both clusters. For more information, see \"Deploying Red Hat OpenShift Service Mesh CNI on both clusters\".\n- The environment variables from the \"Preparing the environment for multi-cluster SPIFFE Runtime Environment federation\" and \"Deploying SPIFFE Runtime Environment with federation on both clusters\" procedures are set.\n\n**Procedure**\n\n1. Extract the OpenID Connect (OIDC) certificate on Cluster A by running the following command:\n\n   ```terminal\n   $ export EXTRA_ROOT_CA_A=\"$(oc get secret oidc-serving-cert \\\n     --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} -o json | \\\n     jq -r '.data.\"tls.crt\"' | base64 -d | sed 's/^/        /')\"\n   ```\n2. Extract the OpenID Connect (OIDC) certificate on Cluster B by running the following command:\n\n   ```terminal\n   $ export EXTRA_ROOT_CA_B=\"$(oc get secret oidc-serving-cert \\\n     --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} -o json | \\\n     jq -r '.data.\"tls.crt\"' | base64 -d | sed 's/^/        /')\"\n   ```\n3. Get the bundle endpoint URL for Cluster A by running the following command:\n\n   ```terminal\n   $ export BUNDLE_URL_A=\"${FEDERATION_ENDPOINT_A}\"\n   ```\n4. Get the bundle endpoint URL for Cluster B by running the following command:\n\n   ```terminal\n   $ export BUNDLE_URL_B=\"${FEDERATION_ENDPOINT_B}\"\n   ```\n5. Create the `Istio` custom resource (CR) on Cluster A by running the following command:\n\n   ```terminal\n   $ oc new-project \"${OSSM_NS}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" 2>/dev/null || true\n   ```\n6. Apply the `Istio` CR on Cluster A by running the following command:\n\n   1. Create a YAML file that defines the `Istio` CR on Cluster A:\n\n      ```yaml\n      apiVersion: sailoperator.io/v1\n      kind: Istio\n      metadata:\n        name: default\n      spec:\n        namespace: istio-system\n        updateStrategy:\n          type: InPlace\n        values:\n          meshConfig:\n            trustDomain: ${CLUSTER_A_TRUST_DOMAIN}\n            defaultConfig:\n              proxyMetadata:\n                WORKLOAD_IDENTITY_SOCKET_FILE: \"spire-agent.sock\"\n            caCertificates:\n              - spiffeBundleUrl: ${BUNDLE_URL_A}\n                trustDomains:\n                  - ${CLUSTER_A_TRUST_DOMAIN}\n              - spiffeBundleUrl: ${BUNDLE_URL_B}\n                trustDomains:\n                  - ${CLUSTER_B_TRUST_DOMAIN}\n          global:\n            meshID: mesh1\n            multiCluster:\n              clusterName: ${CLUSTER_A}\n            network: ${NETWORK_A}\n          pilot:\n            jwksResolverExtraRootCA: |\n              ${EXTRA_ROOT_CA_A}\n            env:\n              ENABLE_CA_SERVER: \"true\"\n          sidecarInjectorWebhook:\n            templates:\n              spire: |\n                spec:\n                  initContainers:\n                  - name: istio-proxy\n                    volumeMounts:\n                    - name: workload-socket\n                      mountPath: /run/secrets/workload-spiffe-uds\n                      readOnly: true\n                  volumes:\n                    - name: workload-socket\n                      csi:\n                        driver: \"csi.spiffe.io\"\n                        readOnly: true\n              spireGw: |\n                spec:\n                  containers:\n                  - name: istio-proxy\n                    volumeMounts:\n                    - name: workload-socket\n                      mountPath: /run/secrets/workload-spiffe-uds\n                      readOnly: true\n                  volumes:\n                    - name: workload-socket\n                      csi:\n                        driver: \"csi.spiffe.io\"\n                        readOnly: true\n      ```\n   2. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n7. Create the `Istio` CR on Cluster B by running the following command:\n\n   ```terminal\n   $ oc new-project \"${OSSM_NS}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" 2>/dev/null || true\n   ```\n8. Apply the `Istio` CR on Cluster B by running the following command:\n\n   1. Create a YAML file that defines the `Istio` CR on Cluster B:\n\n      ```yaml\n      apiVersion: sailoperator.io/v1\n      kind: Istio\n      metadata:\n        name: default\n      spec:\n        namespace: istio-system\n        updateStrategy:\n          type: InPlace\n        values:\n          meshConfig:\n            trustDomain: ${CLUSTER_B_TRUST_DOMAIN}\n            defaultConfig:\n              proxyMetadata:\n                WORKLOAD_IDENTITY_SOCKET_FILE: \"spire-agent.sock\"\n            caCertificates:\n              - spiffeBundleUrl: ${BUNDLE_URL_B}\n                trustDomains:\n                  - ${CLUSTER_B_TRUST_DOMAIN}\n              - spiffeBundleUrl: ${BUNDLE_URL_A}\n                trustDomains:\n                  - ${CLUSTER_A_TRUST_DOMAIN}\n          global:\n            meshID: mesh1\n            multiCluster:\n              clusterName: ${CLUSTER_B}\n            network: ${NETWORK_B}\n          pilot:\n            jwksResolverExtraRootCA: |\n              ${EXTRA_ROOT_CA_B}\n            env:\n              ENABLE_CA_SERVER: \"true\"\n          sidecarInjectorWebhook:\n            templates:\n              spire: |\n                spec:\n                  initContainers:\n                  - name: istio-proxy\n                    volumeMounts:\n                    - name: workload-socket\n                      mountPath: /run/secrets/workload-spiffe-uds\n                      readOnly: true\n                  volumes:\n                    - name: workload-socket\n                      csi:\n                        driver: \"csi.spiffe.io\"\n                        readOnly: true\n              spireGw: |\n                spec:\n                  containers:\n                  - name: istio-proxy\n                    volumeMounts:\n                    - name: workload-socket\n                      mountPath: /run/secrets/workload-spiffe-uds\n                      readOnly: true\n                  volumes:\n                    - name: workload-socket\n                      csi:\n                        driver: \"csi.spiffe.io\"\n                        readOnly: true\n      ```\n   2. Apply the YAML file on Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n      ```\n9. Wait for the `istiod` deployment to be created on Cluster A by running the following command:\n\n   ```terminal\n   $ until oc get deployment istiod --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n \"${OSSM_NS}\" &> /dev/null; do\n     sleep 3\n   done\n   ```\n10. Wait for `Istiod` to become ready on Cluster A by running the following command:\n\n    ```terminal\n    $ oc wait --for=condition=Available deployment/istiod \\\n      --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n \"${OSSM_NS}\" --timeout=300s\n    ```\n11. Wait for the `istiod` deployment to be created on Cluster B by running the following command:\n\n    ```terminal\n    $ until oc get deployment istiod --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n \"${OSSM_NS}\" &> /dev/null; do\n      sleep 3\n    done\n    ```\n12. Wait for `Istiod` to become ready on Cluster B by running the following command:\n\n    ```terminal\n    $ oc wait --for=condition=Available deployment/istiod \\\n      --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n \"${OSSM_NS}\" --timeout=300s\n    ```\n\n## Verifying SPIRE integration with Istio on each cluster {#zero-trust-manager-verify-spire-istio-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster}\n\nVerify that Red Hat OpenShift Service Mesh on Cluster A and Cluster B obtains workload certificates from SPIFFE Runtime Environment (SPIRE). This confirms Istio sidecars use SPIRE-issued identities rather than the built-in Istio certificate authority (CA) before you proceed with cross-cluster mesh verification.\n\n**Prerequisites**\n\n- You have deployed the Istio custom resource (CR) with the federation configuration. For more information, see \"Deploying the Istio custom resource with the federation configuration\".\n- The environment variables from the \"Preparing the environment for multi-cluster SPIFFE Runtime Environment federation\" and \"Deploying SPIFFE Runtime Environment with federation on both clusters\" procedures are set.\n- Istiod is running and ready on Cluster A and Cluster B.\n\n**Procedure**\n\n1. Set the verification namespace variable by running the following command:\n\n   ```terminal\n   $ export VERIFY_NS=verify-ossm-ztwim\n   ```\n2. Prepare the verification namespace on both clusters by running the following commands:\n\n   1. Create the verification namespace on Cluster A:\n\n      ```terminal\n      $ oc create namespace ${VERIFY_NS} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" 2>/dev/null || true\n      ```\n   2. Enable Istio injection for the verification namespace on Cluster A:\n\n      ```terminal\n      $ oc label namespace ${VERIFY_NS} istio-injection=enabled \\\n        --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --overwrite\n      ```\n   3. Create the verification namespace on Cluster B:\n\n      ```terminal\n      $ oc create namespace ${VERIFY_NS} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" 2>/dev/null || true\n      ```\n   4. Enable Istio injection for the verification namespace on Cluster B:\n\n      ```terminal\n      $ oc label namespace ${VERIFY_NS} istio-injection=enabled \\\n        --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --overwrite\n      ```\n3. Deploy the `httpbin` workload on Cluster A by running the following command:\n\n   1. Create a YAML file that defines the `httpbin` `Deployment` on Cluster A:\n\n      ```yaml\n      apiVersion: apps/v1\n      kind: Deployment\n      metadata:\n        name: httpbin\n        namespace: ${VERIFY_NS}\n      spec:\n        replicas: 1\n        selector:\n          matchLabels:\n            app: httpbin\n            version: v1\n        template:\n          metadata:\n            annotations:\n              inject.istio.io/templates: \"sidecar,spire\"\n              spiffe.io/audience: \"test-audience\"\n            labels:\n              app: httpbin\n              version: v1\n          spec:\n            containers:\n            - image: docker.io/mccutchen/go-httpbin:v2.15.0\n              imagePullPolicy: IfNotPresent\n              name: httpbin\n              ports:\n              - containerPort: 8080\n      ```\n   2. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n4. Deploy the `httpbin` workload on Cluster B by running the following command:\n\n   1. Create a YAML file that defines the `httpbin` `Deployment` on Cluster B:\n\n      ```yaml\n      apiVersion: apps/v1\n      kind: Deployment\n      metadata:\n        name: httpbin\n        namespace: ${VERIFY_NS}\n      spec:\n        replicas: 1\n        selector:\n          matchLabels:\n            app: httpbin\n            version: v1\n        template:\n          metadata:\n            annotations:\n              inject.istio.io/templates: \"sidecar,spire\"\n              spiffe.io/audience: \"test-audience\"\n            labels:\n              app: httpbin\n              version: v1\n          spec:\n            containers:\n            - image: docker.io/mccutchen/go-httpbin:v2.15.0\n              imagePullPolicy: IfNotPresent\n              name: httpbin\n              ports:\n              - containerPort: 8080\n      ```\n   2. Apply the YAML file on Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n      ```\n5. Wait for the `httpbin` deployment to become available on Cluster A by running the following command:\n\n   ```terminal\n   $ oc rollout status deployment/httpbin \\\n     -n \"${VERIFY_NS}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --timeout=300s\n   ```\n6. Wait for the `httpbin` deployment to become available on Cluster B by running the following command:\n\n   ```terminal\n   $ oc rollout status deployment/httpbin \\\n     -n \"${VERIFY_NS}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --timeout=300s\n   ```\n7. Verify the Envoy sidecar certificate on Cluster A by running the following commands:\n\n   1. Get the `httpbin` pod name on Cluster A:\n\n      ```terminal\n      $ HTTPBIN_POD=$(oc get pod -l app=httpbin -n \"${VERIFY_NS}\" \\\n        --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -o jsonpath=\"{.items[0].metadata.name}\")\n      ```\n   2. Export the Envoy sidecar certificate chain for the `httpbin` pod on Cluster A:\n\n      ```terminal\n      $ istioctl --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" proxy-config secret \"${HTTPBIN_POD}\" \\\n        -n \"${VERIFY_NS}\" -o json \\\n        | jq -r '.dynamicActiveSecrets[0].secret.tlsCertificate.certificateChain.inlineBytes' \\\n        | base64 --decode > chain-a.pem\n      ```\n   3. Confirm the certificate was issued by SPIRE on Cluster A:\n\n      ```terminal\n      $ openssl x509 -in chain-a.pem -text | grep SPIRE\n      ```\n8. Verify the Envoy sidecar certificate on Cluster B by running the following commands:\n\n   1. Get the `httpbin` pod name on Cluster B:\n\n      ```terminal\n      $ HTTPBIN_POD=$(oc get pod -l app=httpbin -n \"${VERIFY_NS}\" \\\n        --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -o jsonpath=\"{.items[0].metadata.name}\")\n      ```\n   2. Export the Envoy sidecar certificate chain for the `httpbin` pod on Cluster B:\n\n      ```terminal\n      $ istioctl --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" proxy-config secret \"${HTTPBIN_POD}\" \\\n        -n \"${VERIFY_NS}\" -o json \\\n        | jq -r '.dynamicActiveSecrets[0].secret.tlsCertificate.certificateChain.inlineBytes' \\\n        | base64 --decode > chain-b.pem\n      ```\n   3. Confirm the certificate was issued by SPIRE on Cluster B:\n\n      ```terminal\n      $ openssl x509 -in chain-b.pem -text | grep SPIRE\n      ```\n\n      ```text {title=\"Example output\"}\n       Issuer: C=US, O=RH, CN=<APP_DOMAIN>/serialNumber=...\n              Subject: C=US, O=SPIRE\n      ```\n\n      If you see `SPIRE` in both `Issuer` and `Subject` on each cluster, Red Hat OpenShift Service Mesh is obtaining workload certificates from SPIRE rather than the Istio built-in CA.\n9. Remove the verification namespace from both clusters by running the following commands:\n\n   1. Remove the verification namespace from Cluster A:\n\n      ```terminal\n      $ oc delete namespace ${VERIFY_NS} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --ignore-not-found\n      ```\n   2. Remove the verification namespace from Cluster B:\n\n      ```terminal\n      $ oc delete namespace ${VERIFY_NS} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --ignore-not-found\n      ```\n\n## Verifying workload mTLS with SPIRE-issued identities on each cluster {#zero-trust-manager-mutual-tls-verification_zero-trust-manager-mesh-integration-multi-cluster}\n\nDeploy `httpbin` and `curl` test workloads with SPIFFE Runtime Environment (SPIRE) sidecar injection on both clusters, enable `STRICT` mTLS with `ISTIO_MUTUAL`, and verify HTTP connectivity on each cluster. This confirms workloads use SPIRE-issued certificates under `STRICT` mTLS.\n\n**Prerequisites**\n\n- You have verified that SPIRE is integrated with Istio on each cluster. For more information, see \"Verifying SPIRE integration with Istio on each cluster\".\n- The environment variables from the \"Preparing the environment for multi-cluster SPIFFE Runtime Environment federation\" and \"Deploying SPIFFE Runtime Environment with federation on both clusters\" procedures are set.\n- Istiod is running and ready on both clusters.\n\n**Procedure**\n\n1. Set the test environment variables by running the following commands:\n\n   1. Set the test namespace environment variable:\n\n      ```terminal\n      $ export TPJ=test-ossm-with-ztwim\n      ```\n   2. Set the SPIFFE audience environment variable:\n\n      ```terminal\n      $ export SPIFFE_AUDIENCE=\"sky-computing-demo\"\n      ```\n2. Prepare the test namespace on both clusters by running the following commands:\n\n   1. Create the test namespace on Cluster A:\n\n      ```terminal\n      $ oc create namespace ${TPJ} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" 2>/dev/null || true\n      ```\n   2. Enable Istio injection for the test namespace on Cluster A:\n\n      ```terminal\n      $ oc label namespace ${TPJ} istio-injection=enabled \\\n        --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --overwrite\n      ```\n   3. Create the test namespace on Cluster B:\n\n      ```terminal\n      $ oc create namespace ${TPJ} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" 2>/dev/null || true\n      ```\n   4. Enable Istio injection for the test namespace on Cluster B:\n\n      ```terminal\n      $ oc label namespace ${TPJ} istio-injection=enabled \\\n        --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --overwrite\n      ```\n3. Create the `httpbin` server on Cluster A by running the following command:\n\n   1. Create a YAML file that defines the `httpbin` `ServiceAccount`, `Service`, and `Deployment` on Cluster A:\n\n      ```yaml\n      apiVersion: v1\n      kind: ServiceAccount\n      metadata:\n        name: httpbin\n        namespace: ${TPJ}\n      ---\n      apiVersion: v1\n      kind: Service\n      metadata:\n        name: httpbin\n        namespace: ${TPJ}\n        labels:\n          app: httpbin\n          service: httpbin\n      spec:\n        ports:\n        - name: http-ex-spiffe\n          port: 443\n          targetPort: 8080\n        - name: http\n          port: 80\n          targetPort: 8080\n        selector:\n          app: httpbin\n      ---\n      apiVersion: apps/v1\n      kind: Deployment\n      metadata:\n        name: httpbin\n        namespace: ${TPJ}\n      spec:\n        replicas: 1\n        selector:\n          matchLabels:\n            app: httpbin\n            version: v1\n        template:\n          metadata:\n            annotations:\n              inject.istio.io/templates: \"sidecar,spire\"\n              spiffe.io/audience: \"${SPIFFE_AUDIENCE}\"\n            labels:\n              app: httpbin\n              version: v1\n          spec:\n            serviceAccountName: httpbin\n            containers:\n            - image: docker.io/mccutchen/go-httpbin:v2.15.0\n              imagePullPolicy: IfNotPresent\n              name: httpbin\n              ports:\n              - containerPort: 8080\n      ```\n   2. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n4. Create the `httpbin` server on Cluster B by running the following command:\n\n   1. Create a YAML file that defines the `httpbin` `ServiceAccount`, `Service`, and `Deployment` on Cluster B:\n\n      ```yaml\n      apiVersion: v1\n      kind: ServiceAccount\n      metadata:\n        name: httpbin\n        namespace: ${TPJ}\n      ---\n      apiVersion: v1\n      kind: Service\n      metadata:\n        name: httpbin\n        namespace: ${TPJ}\n        labels:\n          app: httpbin\n          service: httpbin\n      spec:\n        ports:\n        - name: http-ex-spiffe\n          port: 443\n          targetPort: 8080\n        - name: http\n          port: 80\n          targetPort: 8080\n        selector:\n          app: httpbin\n      ---\n      apiVersion: apps/v1\n      kind: Deployment\n      metadata:\n        name: httpbin\n        namespace: ${TPJ}\n      spec:\n        replicas: 1\n        selector:\n          matchLabels:\n            app: httpbin\n            version: v1\n        template:\n          metadata:\n            annotations:\n              inject.istio.io/templates: \"sidecar,spire\"\n              spiffe.io/audience: \"${SPIFFE_AUDIENCE}\"\n            labels:\n              app: httpbin\n              version: v1\n          spec:\n            serviceAccountName: httpbin\n            containers:\n            - image: docker.io/mccutchen/go-httpbin:v2.15.0\n              imagePullPolicy: IfNotPresent\n              name: httpbin\n              ports:\n              - containerPort: 8080\n      ```\n   2. Apply the YAML file on Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n      ```\n5. Wait for the `httpbin` deployment to become available on both clusters by running the following commands:\n\n   1. Wait for the `httpbin` deployment on Cluster A:\n\n      ```terminal\n      $ oc rollout status deployment/httpbin \\\n        -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --timeout=300s\n      ```\n   2. Wait for the `httpbin` deployment on Cluster B:\n\n      ```terminal\n      $ oc rollout status deployment/httpbin \\\n        -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --timeout=300s\n      ```\n6. Create the `curl` client on Cluster A by running the following command:\n\n   1. Create a YAML file that defines the `curl` `ServiceAccount`, `Service`, and `Deployment` on Cluster A:\n\n      ```yaml\n      apiVersion: v1\n      kind: ServiceAccount\n      metadata:\n        name: curl\n        namespace: ${TPJ}\n      ---\n      apiVersion: v1\n      kind: Service\n      metadata:\n        name: curl\n        namespace: ${TPJ}\n        labels:\n          app: curl\n          service: curl\n      spec:\n        ports:\n        - port: 80\n          name: http\n        selector:\n          app: curl\n      ---\n      apiVersion: apps/v1\n      kind: Deployment\n      metadata:\n        name: curl\n        namespace: ${TPJ}\n      spec:\n        replicas: 1\n        selector:\n          matchLabels:\n            app: curl\n        template:\n          metadata:\n            annotations:\n              inject.istio.io/templates: \"sidecar,spire\"\n              spiffe.io/audience: \"${SPIFFE_AUDIENCE}\"\n            labels:\n              app: curl\n          spec:\n            terminationGracePeriodSeconds: 0\n            serviceAccountName: curl\n            containers:\n            - name: curl\n              image: curlimages/curl:8.16.0\n              command:\n              - /bin/sh\n              - -c\n              - sleep inf\n              imagePullPolicy: IfNotPresent\n      ```\n   2. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n7. Create the `curl` client on Cluster B by running the following command:\n\n   1. Create a YAML file that defines the `curl` `ServiceAccount`, `Service`, and `Deployment` on Cluster B:\n\n      ```yaml\n      apiVersion: v1\n      kind: ServiceAccount\n      metadata:\n        name: curl\n        namespace: ${TPJ}\n      ---\n      apiVersion: v1\n      kind: Service\n      metadata:\n        name: curl\n        namespace: ${TPJ}\n        labels:\n          app: curl\n          service: curl\n      spec:\n        ports:\n        - port: 80\n          name: http\n        selector:\n          app: curl\n      ---\n      apiVersion: apps/v1\n      kind: Deployment\n      metadata:\n        name: curl\n        namespace: ${TPJ}\n      spec:\n        replicas: 1\n        selector:\n          matchLabels:\n            app: curl\n        template:\n          metadata:\n            annotations:\n              inject.istio.io/templates: \"sidecar,spire\"\n              spiffe.io/audience: \"${SPIFFE_AUDIENCE}\"\n            labels:\n              app: curl\n          spec:\n            terminationGracePeriodSeconds: 0\n            serviceAccountName: curl\n            containers:\n            - name: curl\n              image: curlimages/curl:8.16.0\n              command:\n              - /bin/sh\n              - -c\n              - sleep inf\n              imagePullPolicy: IfNotPresent\n      ```\n   2. Apply the YAML file on Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n      ```\n8. Wait for the `curl` deployment to become available on both clusters by running the following commands:\n\n   1. Wait for the `curl` deployment on Cluster A:\n\n      ```terminal\n      $ oc rollout status deployment/curl \\\n        -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --timeout=300s\n      ```\n   2. Wait for the `curl` deployment on Cluster B:\n\n      ```terminal\n      $ oc rollout status deployment/curl \\\n        -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --timeout=300s\n      ```\n9. Verify that the `curl` client can reach `httpbin` on both clusters before enabling `STRICT` mTLS by running the following commands:\n\n   1. Verify connectivity on Cluster A:\n\n      ```terminal\n      $ oc exec deploy/curl -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -it -- \\\n        curl -s -o /dev/null -w \"%{http_code}\" http://httpbin\n      ```\n   2. Verify connectivity on Cluster B:\n\n      ```terminal\n      $ oc exec deploy/curl -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -it -- \\\n        curl -s -o /dev/null -w \"%{http_code}\" http://httpbin\n      ```\n\n      ```terminal {title=\"Example output\"}\n      200\n      ```\n\n      You must receive an HTTP `200` status code on each cluster.\n10. Enable `STRICT` mTLS between the services on Cluster A by running the following command:\n\n    1. Create a YAML file that defines the `PeerAuthentication` and `DestinationRule` resources on Cluster A:\n\n       ```yaml\n       apiVersion: security.istio.io/v1beta1\n       kind: PeerAuthentication\n       metadata:\n         name: default\n         namespace: ${TPJ}\n       spec:\n         mtls:\n           mode: STRICT\n       ---\n       apiVersion: networking.istio.io/v1\n       kind: DestinationRule\n       metadata:\n         name: curl\n         namespace: ${TPJ}\n       spec:\n         host: curl\n         trafficPolicy:\n           tls:\n             mode: ISTIO_MUTUAL\n       ---\n       apiVersion: networking.istio.io/v1\n       kind: DestinationRule\n       metadata:\n         name: httpbin\n         namespace: ${TPJ}\n       spec:\n         host: httpbin\n         trafficPolicy:\n           tls:\n             mode: ISTIO_MUTUAL\n       ```\n    2. Apply the YAML file on Cluster A by running the following command:\n\n       ```terminal\n       $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n       ```\n11. Enable `STRICT` mTLS between the services on Cluster B by running the following command:\n\n    1. Create a YAML file that defines the `PeerAuthentication` and `DestinationRule` resources on Cluster B:\n\n       ```yaml\n       apiVersion: security.istio.io/v1beta1\n       kind: PeerAuthentication\n       metadata:\n         name: default\n         namespace: ${TPJ}\n       spec:\n         mtls:\n           mode: STRICT\n       ---\n       apiVersion: networking.istio.io/v1\n       kind: DestinationRule\n       metadata:\n         name: curl\n         namespace: ${TPJ}\n       spec:\n         host: curl\n         trafficPolicy:\n           tls:\n             mode: ISTIO_MUTUAL\n       ---\n       apiVersion: networking.istio.io/v1\n       kind: DestinationRule\n       metadata:\n         name: httpbin\n         namespace: ${TPJ}\n       spec:\n         host: httpbin\n         trafficPolicy:\n           tls:\n             mode: ISTIO_MUTUAL\n       ```\n    2. Apply the YAML file on Cluster B by running the following command:\n\n       ```terminal\n       $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n       ```\n12. Verify that the `curl` client can reach `httpbin` on both clusters with `STRICT` mTLS enabled by running the following commands:\n\n    1. Verify connectivity on Cluster A:\n\n       ```terminal\n       $ oc exec deploy/curl -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -it -- \\\n         curl -s -o /dev/null -w \"%{http_code}\" http://httpbin\n       ```\n    2. Verify connectivity on Cluster B:\n\n       ```terminal\n       $ oc exec deploy/curl -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -it -- \\\n         curl -s -o /dev/null -w \"%{http_code}\" http://httpbin\n       ```\n\n       ```terminal {title=\"Example output\"}\n       200\n       ```\n\n       If you receive an HTTP `200` status code on each cluster, Red Hat OpenShift Service Mesh workloads are communicating under `STRICT` mTLS using SPIRE-issued identities.\n13. Remove the test namespace from both clusters by running the following commands:\n\n    1. Remove the test namespace from Cluster A:\n\n       ```terminal\n       $ oc delete namespace ${TPJ} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --ignore-not-found\n       ```\n    2. Remove the test namespace from Cluster B:\n\n       ```terminal\n       $ oc delete namespace ${TPJ} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --ignore-not-found\n       ```\n\n## Deploying east-west gateways {#zero-trust-manager-deploy-east-west_zero-trust-manager-mesh-integration-multi-cluster}\n\nDeploy SPIRE-enabled east-west gateways on both clusters using Helm. Red Hat OpenShift Service Mesh uses east-west gateways to connect cluster networks and enable secure cross-cluster communication in a multi-cluster mesh.\n\n**Prerequisites**\n\n- You deployed the Istio custom resource with the federation configuration. For more information, see \"Deploying the Istio custom resource with the federation configuration\".\n- The environment variables from the \"Preparing the environment for multi-cluster SPIFFE Runtime Environment federation\" and \"Deploying SPIFFE Runtime Environment with federation on both clusters\" procedures are set.\n- Federated `ClusterSPIFFEID` resources exist on both clusters.\n\n**Procedure**\n\n1. Add the Istio Helm repository by running the following command:\n\n   ```terminal\n   $ helm repo add istio https://istio-release.storage.googleapis.com/charts\n   ```\n2. Update the Istio Helm repository by running the following command:\n\n   ```terminal\n   $ helm repo update\n   ```\n3. Grant security context constraints (SCC) permissions on Cluster A by running the following command:\n\n   ```terminal\n   $ oc adm policy add-scc-to-user anyuid \\\n     -z istio-eastwestgateway -n istio-system --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\"\n   ```\n4. Grant security context constraints (SCC) permissions on Cluster B by running the following command:\n\n   ```terminal\n   $ oc adm policy add-scc-to-user anyuid \\\n     -z istio-eastwestgateway -n istio-system --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\"\n   ```\n5. Install the Istio gateway on Cluster A by running the following command:\n\n   ```terminal\n   $ helm upgrade --install istio-eastwestgateway istio/gateway \\\n     -n istio-system \\\n     --set-json 'podAnnotations={\"inject.istio.io/templates\":\"gateway,spireGw\"}' \\\n     --set name=istio-eastwestgateway \\\n     --set networkGateway=\"${NETWORK_A}\" \\\n     --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\"\n   ```\n6. Install the Istio gateway on Cluster B by running the following command:\n\n   ```terminal\n   $ helm upgrade --install istio-eastwestgateway istio/gateway \\\n     -n istio-system \\\n     --set-json 'podAnnotations={\"inject.istio.io/templates\":\"gateway,spireGw\"}' \\\n     --set name=istio-eastwestgateway \\\n     --set networkGateway=\"${NETWORK_B}\" \\\n     --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\"\n   ```\n7. Wait for the east-west gateway to become available on Cluster A by running the following command:\n\n   ```terminal\n   $ oc wait --for=condition=Available deployment/istio-eastwestgateway \\\n     --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n istio-system --timeout=300s\n   ```\n8. Wait for the east-west gateway to become available on Cluster B by running the following command:\n\n   ```terminal\n   $ oc wait --for=condition=Available deployment/istio-eastwestgateway \\\n     --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n istio-system --timeout=300s\n   ```\n9. Create the cross-network `Gateway` custom resource (CR) on Cluster A by running the following command:\n\n   1. Create a YAML file that defines the `Gateway` CR on Cluster A:\n\n      ```yaml\n      apiVersion: networking.istio.io/v1alpha3\n      kind: Gateway\n      metadata:\n        name: cross-network-gateway\n        namespace: istio-system\n      spec:\n        selector:\n          istio: eastwestgateway\n        servers:\n          - port:\n              number: 15443\n              name: tls\n              protocol: TLS\n            tls:\n              mode: AUTO_PASSTHROUGH\n            hosts:\n              - \"*.local\"\n      ```\n   2. Apply the YAML file on Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>\n      ```\n10. Create the cross-network `Gateway` CR on Cluster B by running the following command:\n\n    1. Create a YAML file that defines the `Gateway` CR on Cluster B:\n\n       ```yaml\n       apiVersion: networking.istio.io/v1alpha3\n       kind: Gateway\n       metadata:\n         name: cross-network-gateway\n         namespace: istio-system\n       spec:\n         selector:\n           istio: eastwestgateway\n         servers:\n           - port:\n               number: 15443\n               name: tls\n               protocol: TLS\n             tls:\n               mode: AUTO_PASSTHROUGH\n             hosts:\n               - \"*.local\"\n       ```\n    2. Apply the YAML file on Cluster B by running the following command:\n\n       ```terminal\n       $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>\n       ```\n\n       The `Gateway` CRs configure the east-west gateway deployment to accept cross-cluster TLS traffic on port 15443 using `AUTO_PASSTHROUGH` mode. This preserves SPIRE-issued certificates for end-to-end mTLS.\n\n**Verification**\n\n1. Verify that the cross-network `Gateway` exists on Cluster A by running the following command:\n\n   ```terminal\n   $ oc get gateway cross-network-gateway -n istio-system \\\n     --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" \\\n     -o jsonpath='{.spec.servers[0].tls.mode}{\"\\n\"}'\n   ```\n\n   ```text {title=\"Example output\"}\n   AUTO_PASSTHROUGH\n   ```\n2. Verify that the cross-network `Gateway` exists on Cluster B by running the following command:\n\n   ```terminal\n   $ oc get gateway cross-network-gateway -n istio-system \\\n     --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" \\\n     -o jsonpath='{.spec.servers[0].tls.mode}{\"\\n\"}'\n   ```\n\n   ```text {title=\"Example output\"}\n   AUTO_PASSTHROUGH\n   ```\n\n## Exchanging remote secrets {#zero-trust-manager-exchange-remote-secrets_zero-trust-manager-mesh-integration-multi-cluster}\n\nCreate remote secrets on both clusters so `Istiod` can discover services in the peer cluster and route cross-cluster traffic through the east-west gateways.\n\n**Prerequisites**\n\n- You have deployed the east-west gateway, including the cross-network `Gateway` CR on both clusters. For more information, see \"Deploying east-west gateways\".\n- The environment variables from the \"Preparing the environment for multi-cluster SPIFFE Runtime Environment federation\" and \"Deploying SPIFFE Runtime Environment with federation on both clusters\" procedures are set.\n- The `istioctl` CLI is available and configured for both clusters.\n\n**Procedure**\n\n1. Create an Istio remote secret on Cluster A by running the following command:\n\n   ```terminal\n   $ istioctl create-remote-secret \\\n     --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" \\\n     --name=\"${CLUSTER_A}\" \\\n     --istioNamespace=istio-system | \\\n     oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f -\n   ```\n2. Create an Istio remote secret on Cluster B by running the following command:\n\n   ```terminal\n   $ istioctl create-remote-secret \\\n     --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" \\\n     --name=\"${CLUSTER_B}\" \\\n     --istioNamespace=istio-system | \\\n     oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f -\n   ```\n3. Verify that the remote cluster is synced on Cluster A by running the following command:\n\n   ```terminal\n   $ istioctl remote-clusters --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\"\n   ```\n\n   The output must show `${{ CLUSTER_B }}` with status `synced`.\n\n   ```text {title=\"Example output\"}\n   NAME         STATUS   SECRET\n   cluster-b    synced   istio-remote-secret-cluster-b\n   ```\n4. Verify that the remote cluster is synced on Cluster B by running the following command:\n\n   ```terminal\n   $ istioctl remote-clusters --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\"\n   ```\n\n   The output must show `${{ CLUSTER_A }}` with status `synced`.\n\n   ```text {title=\"Example output\"}\n   NAME         STATUS   SECRET\n   cluster-a    synced   istio-remote-secret-cluster-a\n   ```\n\n## Verifying cross-cluster service communication {#zero-trust-manager-multi-mesh-verification_zero-trust-manager-mesh-integration-multi-cluster}\n\nVerify cross-cluster service communication between Red Hat OpenShift Service Mesh clusters using sample workloads. This confirms SPIRE-issued identities and federated mesh routing enable end-to-end cross-cluster communication.\n\n**Prerequisites**\n\n- You have deployed east-west gateways and created the cross-network `Gateway` CR on both clusters.\n- You have exchanged remote secrets between clusters.\n\n**Procedure**\n\n1. Set the sample namespace environment variable by running the following command:\n\n   ```terminal\n   $ export SAMPLE_NS=sample\n   ```\n2. Create the `sample` namespace on Cluster A by running the following command:\n\n   ```terminal\n   $ oc create namespace ${SAMPLE_NS} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" 2>/dev/null || true\n   ```\n3. Enable Istio injection for the `sample` namespace on Cluster A by running the following command:\n\n   ```terminal\n   $ oc label namespace ${SAMPLE_NS} istio-injection=enabled \\\n     --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --overwrite\n   ```\n4. Create the `sample` namespace on Cluster B by running the following command:\n\n   ```terminal\n   $ oc create namespace ${SAMPLE_NS} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" 2>/dev/null || true\n   ```\n5. Enable Istio injection for the `sample` namespace on Cluster B by running the following command:\n\n   ```terminal\n   $ oc label namespace ${SAMPLE_NS} istio-injection=enabled \\\n     --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --overwrite\n   ```\n6. Install the Istio `HelloWorld` `Service` in Cluster B by running the following command:\n\n   1. Create a YAML file that defines the `HelloWorld` `Service` in Cluster B:\n\n      ```yaml\n      apiVersion: v1\n      kind: Service\n      metadata:\n        name: helloworld\n        labels:\n          app: helloworld\n          service: helloworld\n      spec:\n        ports:\n        - port: 5000\n          name: http\n        selector:\n          app: helloworld\n      ```\n   2. Apply the YAML file in Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${SAMPLE_NS} -f <filename>\n      ```\n7. Install the `helloworld-v1` `Deployment` in Cluster B by running the following command:\n\n   1. Create a YAML file that defines the `helloworld-v1` `Deployment` in Cluster B:\n\n      ```yaml\n      apiVersion: apps/v1\n      kind: Deployment\n      metadata:\n        name: helloworld-v1\n        labels:\n          app: helloworld\n          version: v1\n      spec:\n        replicas: 1\n        selector:\n          matchLabels:\n            app: helloworld\n            version: v1\n        template:\n          metadata:\n            labels:\n              app: helloworld\n              version: v1\n          spec:\n            containers:\n            - name: helloworld\n              image: registry.istio.io/release/examples-helloworld-v1:1.0\n              resources:\n                requests:\n                  cpu: \"100m\"\n              imagePullPolicy: IfNotPresent\n              ports:\n              - containerPort: 5000\n      ```\n   2. Apply the YAML file in Cluster B by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${SAMPLE_NS} -f <filename>\n      ```\n8. Install the Istio `HelloWorld` `Service` in Cluster A by running the following command:\n\n   1. Create a YAML file that defines the `HelloWorld` `Service` in Cluster A:\n\n      ```yaml\n      apiVersion: v1\n      kind: Service\n      metadata:\n        name: helloworld\n        labels:\n          app: helloworld\n          service: helloworld\n      spec:\n        ports:\n        - port: 5000\n          name: http\n        selector:\n          app: helloworld\n      ```\n   2. Apply the YAML file in Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${SAMPLE_NS} -f <filename>\n      ```\n9. Install the `sleep` client in Cluster A by running the following command:\n\n   1. Create a YAML file that defines the `sleep` `ServiceAccount`, `Service`, and `Deployment` in Cluster A:\n\n      ```yaml\n      apiVersion: v1\n      kind: ServiceAccount\n      metadata:\n        name: sleep\n      ---\n      apiVersion: v1\n      kind: Service\n      metadata:\n        name: sleep\n        labels:\n          app: sleep\n          service: sleep\n      spec:\n        ports:\n        - port: 80\n          name: http\n        selector:\n          app: sleep\n      ---\n      apiVersion: apps/v1\n      kind: Deployment\n      metadata:\n        name: sleep\n      spec:\n        replicas: 1\n        selector:\n          matchLabels:\n            app: sleep\n        template:\n          metadata:\n            labels:\n              app: sleep\n          spec:\n            terminationGracePeriodSeconds: 0\n            serviceAccountName: sleep\n            containers:\n            - name: sleep\n              image: docker.io/curlimages/curl:8.16.0\n              command: [\"/bin/sleep\", \"infinity\"]\n              imagePullPolicy: IfNotPresent\n              volumeMounts:\n              - mountPath: /etc/sleep/tls\n                name: secret-volume\n            volumes:\n            - name: secret-volume\n              secret:\n                secretName: sleep-secret\n                optional: true\n      ```\n   2. Apply the YAML file in Cluster A by running the following command:\n\n      ```terminal\n      $ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${SAMPLE_NS} -f <filename>\n      ```\n10. Add the SPIRE injection template to the `sleep` application in Cluster A by running the following command:\n\n    ```terminal\n    $ oc patch deploy sleep \\\n        -n ${SAMPLE_NS} \\\n        --type='merge' \\\n        --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" \\\n        -p '{\"spec\": {\"template\": {\"metadata\": {\"annotations\": {\"inject.istio.io/templates\": \"sidecar,spire\"}}}}}'\n    ```\n11. Add the SPIRE injection template to the `HelloWorld` application in Cluster B by running the following command:\n\n    ```terminal\n    $ oc patch deploy helloworld-v1 \\\n       -n ${SAMPLE_NS} \\\n       --type='merge' \\\n       --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" \\\n        -p '{\"spec\": {\"template\": {\"metadata\": {\"annotations\": {\"inject.istio.io/templates\": \"sidecar,spire\"}}}}}'\n    ```\n12. Wait for the `sleep` deployment to become available on Cluster A by running the following command:\n\n    ```terminal\n    $ oc rollout status deploy/sleep --kubeconfig \"${CLUSTER_A_KUBECONFIG}\" -n ${SAMPLE_NS} --timeout=300s\n    ```\n13. Wait for the `helloworld-v1` deployment to become available on Cluster B by running the following command:\n\n    ```terminal\n    $ oc rollout status deploy/helloworld-v1 --kubeconfig \"${CLUSTER_B_KUBECONFIG}\" -n ${SAMPLE_NS} --timeout=300s\n    ```\n14. Verify that the `sleep` pod uses a SPIRE-issued identity by running the following command:\n\n    ```terminal\n    $ oc exec deploy/sleep -n ${SAMPLE_NS} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -c istio-proxy -- \\\n      curl -s localhost:15000/certs | jq -r '.certificates[0].cert_chain[0].subject_alt_names[0].uri'\n    ```\n\n    ```text {title=\"Example output\"}\n    spiffe://${CLUSTER_A_TRUST_DOMAIN}/ns/sample/sa/sleep\n    ```\n15. Verify that the `sleep` pod on Cluster A can reach the `helloworld.sample` service by running the following command:\n\n    ```terminal\n    $ oc exec deploy/sleep \\\n      -n ${SAMPLE_NS} \\\n      --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" \\\n      -- curl -sS helloworld.sample:5000/hello\n    ```\n\n    ```text {title=\"Example output\"}\n    Hello version: v1, instance: helloworld-v1-5859666d7-pcb8v\n    ```\n\n## Additional resources {#additional-resources-spire-multicluster_zero-trust-manager-mesh-integration-multi-cluster}\n\n- [Multi-cluster configuration overview](https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/latest/html-single/installing/index#ossm-multi-cluster-configuration-overview_ossm-multi-cluster-topologies)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-mesh-integration-multi-cluster.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,23 +101,1019 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Integrating SPIRE federation with multi-cluster {"{"}{"{"} SMProductName {"}"}{"}"}<a href="#zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Configure {"{"}{"{"} spire_full {"}"}{"}"} (SPIRE) federation across multiple OpenShift Container Platform clusters to enable cross-cluster mutual TLS (mTLS) authentication and zero trust workload identity in a multi-cluster service mesh deployment.</p>
-      <p class="/modules/zero-trust-manager-multi-cluster-spire-mesh-about.md"></p>
-      <p class="/modules/zero-trust-manager-prepare-spire-multi-cluster.md"></p>
-      <p class="/modules/zero-trust-manager-deploy-spire-federation-multi-cluster.md"></p>
+      <p>Configure SPIFFE Runtime Environment (SPIRE) federation across multiple OpenShift Container Platform clusters to enable cross-cluster mutual TLS (mTLS) authentication and zero trust workload identity in a multi-cluster service mesh deployment.</p>
+      <h2 id="zero-trust-manager-multi-cluster-spire-mesh-about_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Multi-cluster SPIFFE Runtime Environment integration with Red Hat OpenShift Service Mesh<a href="#zero-trust-manager-multi-cluster-spire-mesh-about_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Understand how SPIFFE Runtime Environment (SPIRE) federation integrates with multi-cluster Red Hat OpenShift Service Mesh. Cross-cluster mutual TLS (mTLS) lets workloads on separate clusters authenticate each other under a unified zero-trust identity framework.</p>
+      <p>Multi-cluster SPIRE integration extends single-cluster SPIRE capabilities to enable workloads in different clusters to authenticate each other using Secure Production Identity Framework for Everyone (SPIFFE) identities. This eliminates the need for separate certificate authorities per cluster and enables true cross-cluster zero-trust architecture.</p>
+      <h3 id="what-gets-federated_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">What gets federated<a href="#what-gets-federated_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Federation happens at two layers, and both are required:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Layer</TableHead>
+      <TableHead>What</TableHead>
+      <TableHead>How</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>SPIRE Federation</TableCell>
+      <TableCell>Trust bundles</TableCell>
+      <TableCell>SPIRE Servers exchange bundles via <code>https_spiffe</code> profile</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Istio Federation</TableCell>
+      <TableCell>Service discovery and routing</TableCell>
+      <TableCell><code>Istiod</code> discovers remote endpoints via remote secrets, routes traffic through east-west gateways</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="zero-trust-manager-prepare-spire-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Preparing the environment for multi-cluster SPIFFE Runtime Environment federation<a href="#zero-trust-manager-prepare-spire-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Export kubeconfig paths, trust domains, federation endpoints, and JWT issuer URLs for Cluster A and Cluster B before you deploy federated SPIFFE Runtime Environment (SPIRE) operands on both clusters.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have two OpenShift Container Platform clusters (4.x) with network connectivity between them.</li>
+      <li>You have installed Zero Trust Workload Identity Manager on both clusters.</li>
+      <li>The OpenShift CLI (<code>oc</code>) is configured with access to both clusters.</li>
+      <li>You have installed the <code>istioctl</code> CLI tool.</li>
+      <li>You have installed <code>helm</code>. This is used for gateway deployment.</li>
+      <li>You have Istio version 1.29.2 or later.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Export the namespace variables by running the following commands:
+      <CodeBlock code={"$ export ZTWIM_NS=zero-trust-workload-identity-manager"} lang="terminal" />
+      <CodeBlock code={"$ export OSSM_NS=istio-system"} lang="terminal" />
+      <CodeBlock code={"$ export OSSM_CNI=istio-cni"} lang="terminal" />
+      </li>
+      <li>
+      Export the kubeconfig file paths for Cluster A and Cluster B by running the following commands:
+      <CodeBlock code={"$ export CLUSTER_A_KUBECONFIG=\"/path/to/cluster-a/kubeconfig\""} lang="terminal" />
+      <CodeBlock code={"$ export CLUSTER_B_KUBECONFIG=\"/path/to/cluster-b/kubeconfig\""} lang="terminal" />
+      </li>
+      <li>
+      Set the base domain environment variables for Cluster A and Cluster B by running the following commands:
+      <CodeBlock code={"$ export CLUSTER_A_BASE_DOMAIN=$(oc get ingresses.config/cluster \\\n  -o jsonpath='{.spec.domain}' --kubeconfig \"${CLUSTER_A_KUBECONFIG}\")"} lang="terminal" />
+      <CodeBlock code={"$ export CLUSTER_B_BASE_DOMAIN=$(oc get ingresses.config/cluster \\\n  -o jsonpath='{.spec.domain}' --kubeconfig \"${CLUSTER_B_KUBECONFIG}\")"} lang="terminal" />
+      </li>
+      <li>
+      Export the trust domain environment variables from the base domain of each cluster by running the following commands:
+      <CodeBlock code={"$ export CLUSTER_A_TRUST_DOMAIN=\"${CLUSTER_A_BASE_DOMAIN}\""} lang="terminal" />
+      <CodeBlock code={"$ export CLUSTER_B_TRUST_DOMAIN=\"${CLUSTER_B_BASE_DOMAIN}\""} lang="terminal" />
+      </li>
+      <li>
+      Define the cluster and network environment variables by running the following commands:
+      <CodeBlock code={"$ export CLUSTER_A=cluster-a"} lang="terminal" />
+      <CodeBlock code={"$ export CLUSTER_B=cluster-b"} lang="terminal" />
+      <CodeBlock code={"$ export NETWORK_A=network-a"} lang="terminal" />
+      <CodeBlock code={"$ export NETWORK_B=network-b"} lang="terminal" />
+      </li>
+      <li>
+      Export the federation endpoint URLs for Cluster A and Cluster B by running the following commands:
+      <CodeBlock code={"$ export FEDERATION_ENDPOINT_A=\"https://federation.${CLUSTER_A_BASE_DOMAIN}\""} lang="terminal" />
+      <CodeBlock code={"$ export FEDERATION_ENDPOINT_B=\"https://federation.${CLUSTER_B_BASE_DOMAIN}\""} lang="terminal" />
+      </li>
+      <li>
+      Set the JWT issuer environment variables for Cluster A and Cluster B by running the following commands:
+      <CodeBlock code={"$ export JWT_ISSUER_A=\"https://oidc-discovery.${CLUSTER_A_BASE_DOMAIN}\""} lang="terminal" />
+      <CodeBlock code={"$ export JWT_ISSUER_B=\"https://oidc-discovery.${CLUSTER_B_BASE_DOMAIN}\""} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="zero-trust-manager-deploy-spire-federation-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Deploying SPIFFE Runtime Environment with federation on both clusters<a href="#zero-trust-manager-deploy-spire-federation-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Deploy SPIFFE Runtime Environment (SPIRE) operand custom resources (CRs) with federation enabled on Cluster A and Cluster B, wait for operands to become ready, and verify SDS configuration.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have completed preparing the environment for multi-cluster SPIRE federation. For more information, see "Preparing the environment for multi-cluster SPIFFE Runtime Environment federation".</li>
+      <li>The environment variables from the "Preparing the environment for multi-cluster SPIFFE Runtime Environment federation" procedure are set.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Deploy SPIRE with federation enabled on Cluster A:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>ZeroTrustWorkloadIdentityManager</code> CR on Cluster A:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: ZeroTrustWorkloadIdentityManager\nmetadata:\n  name: cluster\nspec:\n  trustDomain: ${CLUSTER_A_TRUST_DOMAIN}\n  clusterName: ${CLUSTER_A}\n  bundleConfigMap: \"spire-bundle\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file that defines the <code>SpireServer</code> CR on Cluster A:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: SpireServer\nmetadata:\n  name: cluster\nspec:\n  logLevel: \"info\"\n  logFormat: \"text\"\n  jwtIssuer: $JWT_ISSUER_A\n  caValidity: \"24h\"\n  defaultX509Validity: \"1h\"\n  defaultJWTValidity: \"5m\"\n  caKeytype: \"rsa-2048\"\n  jwtKeyType: \"rsa-2048\"\n  keyManager: \"\"\n  caSubject:\n    country: \"US\"\n    organization: \"RH\"\n    commonName: \"SPIRE Server CA\"\n  persistence:\n    size: \"5Gi\"\n    accessMode: \"ReadWriteOnce\"\n  datastore:\n    databaseType: \"sqlite3\"\n    connectionString: \"/run/spire/data/datastore.sqlite3\"\n    tlsSecretName: \"\"\n    maxOpenConns: 100\n    maxIdleConns: 10\n    connMaxLifetime: 0\n    disableMigration: \"false\"\n  federation:\n    bundleEndpoint:\n      profile: \"https_spiffe\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file that defines the <code>SpireAgent</code> CR on Cluster A:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: SpireAgent\nmetadata:\n  name: cluster\nspec:\n  socketPath: \"/run/spire/agent-sockets\"\n  logLevel: \"info\"\n  logFormat: \"text\"\n  nodeAttestor:\n    k8sPSATEnabled: \"true\"\n  workloadAttestors:\n    k8sEnabled: \"true\"\n    workloadAttestorsVerification:\n      type: \"auto\"\n      hostCertBasePath: \"/etc/kubernetes\"\n      hostCertFileName: \"kubelet-ca.crt\"\n    useNewContainerLocator: \"true\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file that defines the <code>SpiffeCSIDriver</code> CR on Cluster A:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: SpiffeCSIDriver\nmetadata:\n  name: cluster\nspec:\n  agentSocketPath: \"/run/spire/agent-sockets\"\n  pluginName: csi.spiffe.io"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file that defines the <code>SpireOIDCDiscoveryProvider</code> CR on Cluster A:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: SpireOIDCDiscoveryProvider\nmetadata:\n  name: cluster\nspec:\n  logLevel: \"info\"\n  logFormat: \"text\"\n  csiDriverName: \"csi.spiffe.io\"\n  jwtIssuer: $JWT_ISSUER_A\n  replicaCount: 1\n  managedRoute: \"true\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Deploy SPIRE with federation enabled on Cluster B:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>ZeroTrustWorkloadIdentityManager</code> CR on Cluster B:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: ZeroTrustWorkloadIdentityManager\nmetadata:\n  name: cluster\nspec:\n  trustDomain: ${CLUSTER_B_TRUST_DOMAIN}\n  clusterName: ${CLUSTER_B}\n  bundleConfigMap: \"spire-bundle\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file that defines the <code>SpireServer</code> CR on Cluster B:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: SpireServer\nmetadata:\n  name: cluster\nspec:\n  logLevel: \"info\"\n  logFormat: \"text\"\n  jwtIssuer: $JWT_ISSUER_B\n  caValidity: \"24h\"\n  defaultX509Validity: \"1h\"\n  defaultJWTValidity: \"5m\"\n  caKeytype: \"rsa-2048\"\n  jwtKeyType: \"rsa-2048\"\n  keyManager: \"\"\n  caSubject:\n    country: \"US\"\n    organization: \"RH\"\n    commonName: \"SPIRE Server CA\"\n  persistence:\n    size: \"5Gi\"\n    accessMode: \"ReadWriteOnce\"\n  datastore:\n    databaseType: \"sqlite3\"\n    connectionString: \"/run/spire/data/datastore.sqlite3\"\n    tlsSecretName: \"\"\n    maxOpenConns: 100\n    maxIdleConns: 10\n    connMaxLifetime: 0\n    disableMigration: \"false\"\n  federation:\n    bundleEndpoint:\n      profile: \"https_spiffe\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file that defines the <code>SpireAgent</code> CR on Cluster B:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: SpireAgent\nmetadata:\n  name: cluster\nspec:\n  socketPath: \"/run/spire/agent-sockets\"\n  logLevel: \"info\"\n  logFormat: \"text\"\n  nodeAttestor:\n    k8sPSATEnabled: \"true\"\n  workloadAttestors:\n    k8sEnabled: \"true\"\n    workloadAttestorsVerification:\n      type: \"auto\"\n      hostCertBasePath: \"/etc/kubernetes\"\n      hostCertFileName: \"kubelet-ca.crt\"\n    useNewContainerLocator: \"true\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file that defines the <code>SpiffeCSIDriver</code> CR on Cluster B:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: SpiffeCSIDriver\nmetadata:\n  name: cluster\nspec:\n  agentSocketPath: \"/run/spire/agent-sockets\"\n  pluginName: csi.spiffe.io"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file that defines the <code>SpireOIDCDiscoveryProvider</code> CR on Cluster B:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: SpireOIDCDiscoveryProvider\nmetadata:\n  name: cluster\nspec:\n  logLevel: \"info\"\n  logFormat: \"text\"\n  csiDriverName: \"csi.spiffe.io\"\n  jwtIssuer: $JWT_ISSUER_B\n  replicaCount: 1\n  managedRoute: \"true\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Wait for the <code>spire-server</code> StatefulSet to become ready on Cluster A by running the following command:
+      <CodeBlock code={"$ oc rollout status statefulset/spire-server --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>spire-agent</code> DaemonSet to become ready on Cluster A by running the following command:
+      <CodeBlock code={"$ oc rollout status daemonset/spire-agent --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>spire-spiffe-csi-driver</code> DaemonSet to become ready on Cluster A by running the following command:
+      <CodeBlock code={"$ oc rollout status daemonset/spire-spiffe-csi-driver --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>spire-spiffe-oidc-discovery-provider</code> deployment to become available on Cluster A by running the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Available deployment/spire-spiffe-oidc-discovery-provider \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>spire-server</code> StatefulSet to become ready on Cluster B by running the following command:
+      <CodeBlock code={"$ oc rollout status statefulset/spire-server --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>spire-agent</code> DaemonSet to become ready on Cluster B by running the following command:
+      <CodeBlock code={"$ oc rollout status daemonset/spire-agent --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>spire-spiffe-csi-driver</code> DaemonSet to become ready on Cluster B by running the following command:
+      <CodeBlock code={"$ oc rollout status daemonset/spire-spiffe-csi-driver --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>spire-spiffe-oidc-discovery-provider</code> deployment to become available on Cluster B by running the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Available deployment/spire-spiffe-oidc-discovery-provider \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} --timeout=300s"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the SDS configuration is available on Cluster A by running the following command:
+      <CodeBlock code={"$ oc get cm spire-agent --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n \"${ZTWIM_NS}\" \\\n  -o jsonpath='{.data.agent\\.conf}' | grep -A5 '\"sds\"'"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the SDS configuration is available on Cluster B by running the following command:
+      <CodeBlock code={"$ oc get cm spire-agent --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n \"${ZTWIM_NS}\" \\\n  -o jsonpath='{.data.agent\\.conf}' | grep -A5 '\"sds\"'"} lang="terminal" />
+      <CodeBlock code={"\"sds\": {\n  \"default_all_bundles_name\": \"ROOTCA\",\n  \"default_bundle_name\": \"null\"\n},"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html-single/security_and_compliance/index#zero-trust-manager-install">Installing the Zero Trust Workload Identity Manager</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/zero-trust-workload-identity-manager#zero-trust-manager-spire-federation_zero-trust-manager-oidc-federation">Zero Trust Workload Identity Manager SPIRE federation</a></li>
       </ul>
-      <p class="/modules/zero-trust-manager-deploy-istiocni.md"></p>
-      <p class="/modules/zero-trust-manager-deploy-istio-cr.md"></p>
-      <p class="/modules/zero-trust-manager-verify-spire-istio-multi-cluster.md"></p>
-      <p class="/modules/zero-trust-manager-mutual-tls-verification.md"></p>
-      <p class="/modules/zero-trust-manager-deploy-east-west.md"></p>
-      <p class="/modules/zero-trust-manager-exchange-remote-secrets.md"></p>
-      <p class="/modules/zero-trust-manager-multi-mesh-verification.md"></p>
+      <h2 id="zero-trust-manager-configure-spire-mesh-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Configuring Red Hat OpenShift Service Mesh for multi-cluster SPIFFE Runtime Environment integration<a href="#zero-trust-manager-configure-spire-mesh-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure Red Hat OpenShift Service Mesh on each cluster with federation settings, east-west gateways, and remote secrets to enable cross-cluster service communication by using SPIRE-issued certificates.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You deployed SPIFFE Runtime Environment (SPIRE) with federation for multi-cluster integration. For more information, see "Deploying SPIFFE Runtime Environment with federation on both clusters".</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Verify that the federation routes are created on Cluster A by running the following command:
+      <CodeBlock code={"$ oc get route -n ${ZTWIM_NS} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" | grep federation"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the federation routes are created on Cluster B by running the following command:
+      <CodeBlock code={"$ oc get route -n ${ZTWIM_NS} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" | grep federation"} lang="terminal" />
+      </li>
+      <li>
+      On Cluster A, create a <code>ClusterFederatedTrustDomain</code> object pointing to Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>ClusterFederatedTrustDomain</code> CR on Cluster A:
+      <CodeBlock code={"apiVersion: spire.spiffe.io/v1alpha1\nkind: ClusterFederatedTrustDomain\nmetadata:\n  name: federation-to-cluster-b\nspec:\n  trustDomain: ${CLUSTER_B_TRUST_DOMAIN}\n  bundleEndpointURL: ${FEDERATION_ENDPOINT_B}\n  bundleEndpointProfile:\n    type: https_spiffe\n    endpointSPIFFEID: spiffe://${CLUSTER_B_TRUST_DOMAIN}/spire/server"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      On Cluster B, create a <code>ClusterFederatedTrustDomain</code> object pointing to Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>ClusterFederatedTrustDomain</code> CR on Cluster B:
+      <CodeBlock code={"apiVersion: spire.spiffe.io/v1alpha1\nkind: ClusterFederatedTrustDomain\nmetadata:\n  name: federation-to-cluster-a\nspec:\n  trustDomain: ${CLUSTER_A_TRUST_DOMAIN}\n  bundleEndpointURL: ${FEDERATION_ENDPOINT_A}\n  bundleEndpointProfile:\n    type: https_spiffe\n    endpointSPIFFEID: spiffe://${CLUSTER_A_TRUST_DOMAIN}/spire/server"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the SPIRE Server on Cluster A has the trust bundle from Cluster B by running the following command:
+      <CodeBlock code={"$ oc exec --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} spire-server-0 -c spire-server -- \\\n  spire-server bundle list -socketPath /tmp/spire-server/private/api.sock -format spiffe 2>&1 | head -5"} lang="terminal" />
+      <p>The output must show public keys for <code>${"{"}{"{"} CLUSTER_B_TRUST_DOMAIN {"}"}{"}"}</code>.</p>
+      <CodeBlock code={"{\n  \"trust_domains\": {\n    \"${CLUSTER_B_TRUST_DOMAIN}\": {\n      \"keys\": ["} lang="text" title="Example output" />
+      </li>
+      <li>
+      Verify that the SPIRE Server on Cluster B has the trust bundle from Cluster A by running the following command:
+      <CodeBlock code={"$ oc exec --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} spire-server-0 -c spire-server -- \\\n  spire-server bundle list -socketPath /tmp/spire-server/private/api.sock -format spiffe 2>&1 | head -5"} lang="terminal" />
+      <p>The output must show public keys for <code>${"{"}{"{"} CLUSTER_A_TRUST_DOMAIN {"}"}{"}"}</code>.</p>
+      <CodeBlock code={"{\n  \"trust_domains\": {\n    \"${CLUSTER_A_TRUST_DOMAIN}\": {\n      \"keys\": ["} lang="text" title="Example output" />
+      </li>
+      <li>
+      Verify that the federation endpoint on Cluster A is reachable by running the following command:
+      <CodeBlock code={"$ curl -sk \"${FEDERATION_ENDPOINT_A}\" | python3 -c \"import sys,json; print(f'Keys: {len(json.load(sys.stdin).get(\\\"keys\\\",[]))}')\""} lang="terminal" />
+      <p>The output must show at least one <code>x509-svid</code> key and one <code>jwt-svid</code> key.</p>
+      <CodeBlock code={"Keys: 2"} lang="text" title="Example output" />
+      </li>
+      <li>
+      Verify that the federation endpoint on Cluster B is reachable by running the following command:
+      <CodeBlock code={"$ curl -sk \"${FEDERATION_ENDPOINT_B}\" | python3 -c \"import sys,json; print(f'Keys: {len(json.load(sys.stdin).get(\\\"keys\\\",[]))}')\""} lang="terminal" />
+      <p>The output must show at least one <code>x509-svid</code> key and one <code>jwt-svid</code> key.</p>
+      <CodeBlock code={"Keys: 2"} lang="text" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="zero-trust-manager-deploy-istiocni_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Deploying the Red Hat OpenShift Service Mesh CNI on both clusters<a href="#zero-trust-manager-deploy-istiocni_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Deploy the <code>IstioCNI</code> CR and federated <code>ClusterSPIFFEID</code> resources on Cluster A and Cluster B. This configures Red Hat OpenShift Service Mesh CNI networking and federated SPIFFE trust for cross-cluster mesh workloads.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have configured Red Hat OpenShift Service Mesh for multi-cluster integration. For more information, see "Configuring Red Hat OpenShift Service Mesh for multi-cluster SPIFFE Runtime Environment integration".</li>
+      <li>The environment variables from the "Preparing the environment for multi-cluster SPIFFE Runtime Environment federation" and "Deploying SPIFFE Runtime Environment with federation on both clusters" procedures are set.</li>
+      <li>You have installed Red Hat OpenShift Service Mesh 2.6.11 on both clusters.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the Red Hat OpenShift Service Mesh CNI namespace on Cluster A by running the following command:
+      <CodeBlock code={"$ oc new-project \"${OSSM_CNI}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" 2>/dev/null || true"} lang="terminal" />
+      </li>
+      <li>
+      Deploy the <code>IstioCNI</code> CR on Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>IstioCNI</code> CR on Cluster A:
+      <CodeBlock code={"apiVersion: sailoperator.io/v1\nkind: IstioCNI\nmetadata:\n  name: default\nspec:\n  namespace: ${OSSM_CNI}"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Wait for the <code>istio-cni-node</code> DaemonSet to be created on Cluster A by running the following command:
+      <CodeBlock code={"$ until oc get daemonset/istio-cni-node --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n \"${OSSM_CNI}\" &> /dev/null; do\n  sleep 3\ndone"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>IstioCNI</code> DaemonSet to become ready on Cluster A by running the following command:
+      <CodeBlock code={"$ oc rollout status daemonset/istio-cni-node --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n \"${OSSM_CNI}\" --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Create the Red Hat OpenShift Service Mesh CNI namespace on Cluster B by running the following command:
+      <CodeBlock code={"$ oc new-project \"${OSSM_CNI}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" 2>/dev/null || true"} lang="terminal" />
+      </li>
+      <li>
+      Deploy the <code>IstioCNI</code> CR on Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>IstioCNI</code> CR on Cluster B:
+      <CodeBlock code={"apiVersion: sailoperator.io/v1\nkind: IstioCNI\nmetadata:\n  name: default\nspec:\n  namespace: ${OSSM_CNI}"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Wait for the <code>istio-cni-node</code> DaemonSet to be created on Cluster B by running the following command:
+      <CodeBlock code={"$ until oc get daemonset/istio-cni-node --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n \"${OSSM_CNI}\" &> /dev/null; do\n  sleep 3\ndone"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>IstioCNI</code> DaemonSet to become ready on Cluster B by running the following command:
+      <CodeBlock code={"$ oc rollout status daemonset/istio-cni-node --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n \"${OSSM_CNI}\" --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Create the federated <code>ClusterSPIFFEID</code> resources on Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the federated <code>ClusterSPIFFEID</code> resources on Cluster A:
+      <CodeBlock code={"apiVersion: spire.spiffe.io/v1alpha1\nkind: ClusterSPIFFEID\nmetadata:\n  name: sample-federation\nspec:\n  className: zero-trust-workload-identity-manager-spire\n  spiffeIDTemplate: \"spiffe://{{ .TrustDomain }}/ns/{{ .PodMeta.Namespace }}/sa/{{ .PodSpec.ServiceAccountName }}\"\n  namespaceSelector:\n    matchLabels:\n      kubernetes.io/metadata.name: sample\n  federatesWith:\n    - \"${CLUSTER_B_TRUST_DOMAIN}\"\n---\napiVersion: spire.spiffe.io/v1alpha1\nkind: ClusterSPIFFEID\nmetadata:\n  name: istio-system-federation\nspec:\n  className: zero-trust-workload-identity-manager-spire\n  spiffeIDTemplate: \"spiffe://{{ .TrustDomain }}/ns/{{ .PodMeta.Namespace }}/sa/{{ .PodSpec.ServiceAccountName }}\"\n  namespaceSelector:\n    matchLabels:\n      kubernetes.io/metadata.name: istio-system\n  federatesWith:\n    - \"${CLUSTER_B_TRUST_DOMAIN}\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create federated <code>ClusterSPIFFEID</code> resources on Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the federated <code>ClusterSPIFFEID</code> resources on Cluster B:
+      <CodeBlock code={"apiVersion: spire.spiffe.io/v1alpha1\nkind: ClusterSPIFFEID\nmetadata:\n  name: sample-federation\nspec:\n  className: zero-trust-workload-identity-manager-spire\n  spiffeIDTemplate: \"spiffe://{{ .TrustDomain }}/ns/{{ .PodMeta.Namespace }}/sa/{{ .PodSpec.ServiceAccountName }}\"\n  namespaceSelector:\n    matchLabels:\n      kubernetes.io/metadata.name: sample\n  federatesWith:\n    - \"${CLUSTER_A_TRUST_DOMAIN}\"\n---\napiVersion: spire.spiffe.io/v1alpha1\nkind: ClusterSPIFFEID\nmetadata:\n  name: istio-system-federation\nspec:\n  className: zero-trust-workload-identity-manager-spire\n  spiffeIDTemplate: \"spiffe://{{ .TrustDomain }}/ns/{{ .PodMeta.Namespace }}/sa/{{ .PodSpec.ServiceAccountName }}\"\n  namespaceSelector:\n    matchLabels:\n      kubernetes.io/metadata.name: istio-system\n  federatesWith:\n    - \"${CLUSTER_A_TRUST_DOMAIN}\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not patch the default <code>ClusterSPIFFEID</code> (<code>zero-trust-workload-identity-manager-spire-default</code>). The Zero Trust Workload Identity Manager reconciles and reverts manual changes. Instead, create custom <code>ClusterSPIFFEID</code> resources for the specific namespaces.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="zero-trust-manager-deploy-istio-cr_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Deploying the Istio custom resource with the federation configuration<a href="#zero-trust-manager-deploy-istio-cr_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Deploy the Istio custom resource on Cluster A and Cluster B with SPIFFE Runtime Environment (SPIRE) federation and multi-cluster Red Hat OpenShift Service Mesh settings. This configures Istiod to obtain workload certificates from SPIRE and to trust SPIFFE bundles from both clusters for cross-cluster mTLS.</p>
+      <p>The Istio CR must include the following fields and values:</p>
+      <ul>
+      <li>A <code>meshConfig.trustDomain</code> value that matches the SPIRE trust domain.</li>
+      <li>A <code>meshConfig.caCertificates</code> value with bundle URLs for both clusters. This handles cross-trust-domain validation.</li>
+      <li>A <code>WORKLOAD_IDENTITY_SOCKET_FILE</code> value for SPIRE SDS integration.</li>
+      <li>A <code>jwksResolverExtraRootCA</code> value for OIDC validation.</li>
+      <li>A multi-cluster configuration that includes <code>meshID</code>, <code>clusterName</code>, and <code>network</code>.</li>
+      <li>A SPIRE injection template configuration.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Do not use <code>meshConfig.trustDomainAliases</code>. Use <code>meshConfig.caCertificates</code> with <code>spiffeBundleUrl</code> instead.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have completed deploying the Istio Container Network Interface (CNI) on both clusters. For more information, see "Deploying Red Hat OpenShift Service Mesh CNI on both clusters".</li>
+      <li>The environment variables from the "Preparing the environment for multi-cluster SPIFFE Runtime Environment federation" and "Deploying SPIFFE Runtime Environment with federation on both clusters" procedures are set.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Extract the OpenID Connect (OIDC) certificate on Cluster A by running the following command:
+      <CodeBlock code={"$ export EXTRA_ROOT_CA_A=\"$(oc get secret oidc-serving-cert \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${ZTWIM_NS} -o json | \\\n  jq -r '.data.\"tls.crt\"' | base64 -d | sed 's/^/        /')\""} lang="terminal" />
+      </li>
+      <li>
+      Extract the OpenID Connect (OIDC) certificate on Cluster B by running the following command:
+      <CodeBlock code={"$ export EXTRA_ROOT_CA_B=\"$(oc get secret oidc-serving-cert \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${ZTWIM_NS} -o json | \\\n  jq -r '.data.\"tls.crt\"' | base64 -d | sed 's/^/        /')\""} lang="terminal" />
+      </li>
+      <li>
+      Get the bundle endpoint URL for Cluster A by running the following command:
+      <CodeBlock code={"$ export BUNDLE_URL_A=\"${FEDERATION_ENDPOINT_A}\""} lang="terminal" />
+      </li>
+      <li>
+      Get the bundle endpoint URL for Cluster B by running the following command:
+      <CodeBlock code={"$ export BUNDLE_URL_B=\"${FEDERATION_ENDPOINT_B}\""} lang="terminal" />
+      </li>
+      <li>
+      Create the <code>Istio</code> custom resource (CR) on Cluster A by running the following command:
+      <CodeBlock code={"$ oc new-project \"${OSSM_NS}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" 2>/dev/null || true"} lang="terminal" />
+      </li>
+      <li>
+      Apply the <code>Istio</code> CR on Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>Istio</code> CR on Cluster A:
+      <CodeBlock code={"apiVersion: sailoperator.io/v1\nkind: Istio\nmetadata:\n  name: default\nspec:\n  namespace: istio-system\n  updateStrategy:\n    type: InPlace\n  values:\n    meshConfig:\n      trustDomain: ${CLUSTER_A_TRUST_DOMAIN}\n      defaultConfig:\n        proxyMetadata:\n          WORKLOAD_IDENTITY_SOCKET_FILE: \"spire-agent.sock\"\n      caCertificates:\n        - spiffeBundleUrl: ${BUNDLE_URL_A}\n          trustDomains:\n            - ${CLUSTER_A_TRUST_DOMAIN}\n        - spiffeBundleUrl: ${BUNDLE_URL_B}\n          trustDomains:\n            - ${CLUSTER_B_TRUST_DOMAIN}\n    global:\n      meshID: mesh1\n      multiCluster:\n        clusterName: ${CLUSTER_A}\n      network: ${NETWORK_A}\n    pilot:\n      jwksResolverExtraRootCA: |\n        ${EXTRA_ROOT_CA_A}\n      env:\n        ENABLE_CA_SERVER: \"true\"\n    sidecarInjectorWebhook:\n      templates:\n        spire: |\n          spec:\n            initContainers:\n            - name: istio-proxy\n              volumeMounts:\n              - name: workload-socket\n                mountPath: /run/secrets/workload-spiffe-uds\n                readOnly: true\n            volumes:\n              - name: workload-socket\n                csi:\n                  driver: \"csi.spiffe.io\"\n                  readOnly: true\n        spireGw: |\n          spec:\n            containers:\n            - name: istio-proxy\n              volumeMounts:\n              - name: workload-socket\n                mountPath: /run/secrets/workload-spiffe-uds\n                readOnly: true\n            volumes:\n              - name: workload-socket\n                csi:\n                  driver: \"csi.spiffe.io\"\n                  readOnly: true"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the <code>Istio</code> CR on Cluster B by running the following command:
+      <CodeBlock code={"$ oc new-project \"${OSSM_NS}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" 2>/dev/null || true"} lang="terminal" />
+      </li>
+      <li>
+      Apply the <code>Istio</code> CR on Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>Istio</code> CR on Cluster B:
+      <CodeBlock code={"apiVersion: sailoperator.io/v1\nkind: Istio\nmetadata:\n  name: default\nspec:\n  namespace: istio-system\n  updateStrategy:\n    type: InPlace\n  values:\n    meshConfig:\n      trustDomain: ${CLUSTER_B_TRUST_DOMAIN}\n      defaultConfig:\n        proxyMetadata:\n          WORKLOAD_IDENTITY_SOCKET_FILE: \"spire-agent.sock\"\n      caCertificates:\n        - spiffeBundleUrl: ${BUNDLE_URL_B}\n          trustDomains:\n            - ${CLUSTER_B_TRUST_DOMAIN}\n        - spiffeBundleUrl: ${BUNDLE_URL_A}\n          trustDomains:\n            - ${CLUSTER_A_TRUST_DOMAIN}\n    global:\n      meshID: mesh1\n      multiCluster:\n        clusterName: ${CLUSTER_B}\n      network: ${NETWORK_B}\n    pilot:\n      jwksResolverExtraRootCA: |\n        ${EXTRA_ROOT_CA_B}\n      env:\n        ENABLE_CA_SERVER: \"true\"\n    sidecarInjectorWebhook:\n      templates:\n        spire: |\n          spec:\n            initContainers:\n            - name: istio-proxy\n              volumeMounts:\n              - name: workload-socket\n                mountPath: /run/secrets/workload-spiffe-uds\n                readOnly: true\n            volumes:\n              - name: workload-socket\n                csi:\n                  driver: \"csi.spiffe.io\"\n                  readOnly: true\n        spireGw: |\n          spec:\n            containers:\n            - name: istio-proxy\n              volumeMounts:\n              - name: workload-socket\n                mountPath: /run/secrets/workload-spiffe-uds\n                readOnly: true\n            volumes:\n              - name: workload-socket\n                csi:\n                  driver: \"csi.spiffe.io\"\n                  readOnly: true"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Wait for the <code>istiod</code> deployment to be created on Cluster A by running the following command:
+      <CodeBlock code={"$ until oc get deployment istiod --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n \"${OSSM_NS}\" &> /dev/null; do\n  sleep 3\ndone"} lang="terminal" />
+      </li>
+      <li>
+      Wait for <code>Istiod</code> to become ready on Cluster A by running the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Available deployment/istiod \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n \"${OSSM_NS}\" --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>istiod</code> deployment to be created on Cluster B by running the following command:
+      <CodeBlock code={"$ until oc get deployment istiod --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n \"${OSSM_NS}\" &> /dev/null; do\n  sleep 3\ndone"} lang="terminal" />
+      </li>
+      <li>
+      Wait for <code>Istiod</code> to become ready on Cluster B by running the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Available deployment/istiod \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n \"${OSSM_NS}\" --timeout=300s"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="zero-trust-manager-verify-spire-istio-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Verifying SPIRE integration with Istio on each cluster<a href="#zero-trust-manager-verify-spire-istio-multi-cluster_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Verify that Red Hat OpenShift Service Mesh on Cluster A and Cluster B obtains workload certificates from SPIFFE Runtime Environment (SPIRE). This confirms Istio sidecars use SPIRE-issued identities rather than the built-in Istio certificate authority (CA) before you proceed with cross-cluster mesh verification.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have deployed the Istio custom resource (CR) with the federation configuration. For more information, see "Deploying the Istio custom resource with the federation configuration".</li>
+      <li>The environment variables from the "Preparing the environment for multi-cluster SPIFFE Runtime Environment federation" and "Deploying SPIFFE Runtime Environment with federation on both clusters" procedures are set.</li>
+      <li>Istiod is running and ready on Cluster A and Cluster B.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set the verification namespace variable by running the following command:
+      <CodeBlock code={"$ export VERIFY_NS=verify-ossm-ztwim"} lang="terminal" />
+      </li>
+      <li>
+      Prepare the verification namespace on both clusters by running the following commands:
+      <ol>
+      <li>
+      Create the verification namespace on Cluster A:
+      <CodeBlock code={"$ oc create namespace ${VERIFY_NS} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" 2>/dev/null || true"} lang="terminal" />
+      </li>
+      <li>
+      Enable Istio injection for the verification namespace on Cluster A:
+      <CodeBlock code={"$ oc label namespace ${VERIFY_NS} istio-injection=enabled \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --overwrite"} lang="terminal" />
+      </li>
+      <li>
+      Create the verification namespace on Cluster B:
+      <CodeBlock code={"$ oc create namespace ${VERIFY_NS} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" 2>/dev/null || true"} lang="terminal" />
+      </li>
+      <li>
+      Enable Istio injection for the verification namespace on Cluster B:
+      <CodeBlock code={"$ oc label namespace ${VERIFY_NS} istio-injection=enabled \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --overwrite"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Deploy the <code>httpbin</code> workload on Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>httpbin</code> <code>Deployment</code> on Cluster A:
+      <CodeBlock code={"apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: httpbin\n  namespace: ${VERIFY_NS}\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: httpbin\n      version: v1\n  template:\n    metadata:\n      annotations:\n        inject.istio.io/templates: \"sidecar,spire\"\n        spiffe.io/audience: \"test-audience\"\n      labels:\n        app: httpbin\n        version: v1\n    spec:\n      containers:\n      - image: docker.io/mccutchen/go-httpbin:v2.15.0\n        imagePullPolicy: IfNotPresent\n        name: httpbin\n        ports:\n        - containerPort: 8080"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Deploy the <code>httpbin</code> workload on Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>httpbin</code> <code>Deployment</code> on Cluster B:
+      <CodeBlock code={"apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: httpbin\n  namespace: ${VERIFY_NS}\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: httpbin\n      version: v1\n  template:\n    metadata:\n      annotations:\n        inject.istio.io/templates: \"sidecar,spire\"\n        spiffe.io/audience: \"test-audience\"\n      labels:\n        app: httpbin\n        version: v1\n    spec:\n      containers:\n      - image: docker.io/mccutchen/go-httpbin:v2.15.0\n        imagePullPolicy: IfNotPresent\n        name: httpbin\n        ports:\n        - containerPort: 8080"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Wait for the <code>httpbin</code> deployment to become available on Cluster A by running the following command:
+      <CodeBlock code={"$ oc rollout status deployment/httpbin \\\n  -n \"${VERIFY_NS}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>httpbin</code> deployment to become available on Cluster B by running the following command:
+      <CodeBlock code={"$ oc rollout status deployment/httpbin \\\n  -n \"${VERIFY_NS}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Verify the Envoy sidecar certificate on Cluster A by running the following commands:
+      <ol>
+      <li>
+      Get the <code>httpbin</code> pod name on Cluster A:
+      <CodeBlock code={"$ HTTPBIN_POD=$(oc get pod -l app=httpbin -n \"${VERIFY_NS}\" \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -o jsonpath=\"{.items[0].metadata.name}\")"} lang="terminal" />
+      </li>
+      <li>
+      Export the Envoy sidecar certificate chain for the <code>httpbin</code> pod on Cluster A:
+      <CodeBlock code={"$ istioctl --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" proxy-config secret \"${HTTPBIN_POD}\" \\\n  -n \"${VERIFY_NS}\" -o json \\\n  | jq -r '.dynamicActiveSecrets[0].secret.tlsCertificate.certificateChain.inlineBytes' \\\n  | base64 --decode > chain-a.pem"} lang="terminal" />
+      </li>
+      <li>
+      Confirm the certificate was issued by SPIRE on Cluster A:
+      <CodeBlock code={"$ openssl x509 -in chain-a.pem -text | grep SPIRE"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Verify the Envoy sidecar certificate on Cluster B by running the following commands:
+      <ol>
+      <li>
+      Get the <code>httpbin</code> pod name on Cluster B:
+      <CodeBlock code={"$ HTTPBIN_POD=$(oc get pod -l app=httpbin -n \"${VERIFY_NS}\" \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -o jsonpath=\"{.items[0].metadata.name}\")"} lang="terminal" />
+      </li>
+      <li>
+      Export the Envoy sidecar certificate chain for the <code>httpbin</code> pod on Cluster B:
+      <CodeBlock code={"$ istioctl --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" proxy-config secret \"${HTTPBIN_POD}\" \\\n  -n \"${VERIFY_NS}\" -o json \\\n  | jq -r '.dynamicActiveSecrets[0].secret.tlsCertificate.certificateChain.inlineBytes' \\\n  | base64 --decode > chain-b.pem"} lang="terminal" />
+      </li>
+      <li>
+      Confirm the certificate was issued by SPIRE on Cluster B:
+      <CodeBlock code={"$ openssl x509 -in chain-b.pem -text | grep SPIRE"} lang="terminal" />
+      <CodeBlock code={" Issuer: C=US, O=RH, CN=<APP_DOMAIN>/serialNumber=...\n        Subject: C=US, O=SPIRE"} lang="text" title="Example output" />
+      <p>If you see <code>SPIRE</code> in both <code>Issuer</code> and <code>Subject</code> on each cluster, Red Hat OpenShift Service Mesh is obtaining workload certificates from SPIRE rather than the Istio built-in CA.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Remove the verification namespace from both clusters by running the following commands:
+      <ol>
+      <li>
+      Remove the verification namespace from Cluster A:
+      <CodeBlock code={"$ oc delete namespace ${VERIFY_NS} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --ignore-not-found"} lang="terminal" />
+      </li>
+      <li>
+      Remove the verification namespace from Cluster B:
+      <CodeBlock code={"$ oc delete namespace ${VERIFY_NS} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --ignore-not-found"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="zero-trust-manager-mutual-tls-verification_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Verifying workload mTLS with SPIRE-issued identities on each cluster<a href="#zero-trust-manager-mutual-tls-verification_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Deploy <code>httpbin</code> and <code>curl</code> test workloads with SPIFFE Runtime Environment (SPIRE) sidecar injection on both clusters, enable <code>STRICT</code> mTLS with <code>ISTIO_MUTUAL</code>, and verify HTTP connectivity on each cluster. This confirms workloads use SPIRE-issued certificates under <code>STRICT</code> mTLS.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have verified that SPIRE is integrated with Istio on each cluster. For more information, see "Verifying SPIRE integration with Istio on each cluster".</li>
+      <li>The environment variables from the "Preparing the environment for multi-cluster SPIFFE Runtime Environment federation" and "Deploying SPIFFE Runtime Environment with federation on both clusters" procedures are set.</li>
+      <li>Istiod is running and ready on both clusters.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set the test environment variables by running the following commands:
+      <ol>
+      <li>
+      Set the test namespace environment variable:
+      <CodeBlock code={"$ export TPJ=test-ossm-with-ztwim"} lang="terminal" />
+      </li>
+      <li>
+      Set the SPIFFE audience environment variable:
+      <CodeBlock code={"$ export SPIFFE_AUDIENCE=\"sky-computing-demo\""} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Prepare the test namespace on both clusters by running the following commands:
+      <ol>
+      <li>
+      Create the test namespace on Cluster A:
+      <CodeBlock code={"$ oc create namespace ${TPJ} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" 2>/dev/null || true"} lang="terminal" />
+      </li>
+      <li>
+      Enable Istio injection for the test namespace on Cluster A:
+      <CodeBlock code={"$ oc label namespace ${TPJ} istio-injection=enabled \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --overwrite"} lang="terminal" />
+      </li>
+      <li>
+      Create the test namespace on Cluster B:
+      <CodeBlock code={"$ oc create namespace ${TPJ} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" 2>/dev/null || true"} lang="terminal" />
+      </li>
+      <li>
+      Enable Istio injection for the test namespace on Cluster B:
+      <CodeBlock code={"$ oc label namespace ${TPJ} istio-injection=enabled \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --overwrite"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the <code>httpbin</code> server on Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>httpbin</code> <code>ServiceAccount</code>, <code>Service</code>, and <code>Deployment</code> on Cluster A:
+      <CodeBlock code={"apiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: httpbin\n  namespace: ${TPJ}\n---\napiVersion: v1\nkind: Service\nmetadata:\n  name: httpbin\n  namespace: ${TPJ}\n  labels:\n    app: httpbin\n    service: httpbin\nspec:\n  ports:\n  - name: http-ex-spiffe\n    port: 443\n    targetPort: 8080\n  - name: http\n    port: 80\n    targetPort: 8080\n  selector:\n    app: httpbin\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: httpbin\n  namespace: ${TPJ}\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: httpbin\n      version: v1\n  template:\n    metadata:\n      annotations:\n        inject.istio.io/templates: \"sidecar,spire\"\n        spiffe.io/audience: \"${SPIFFE_AUDIENCE}\"\n      labels:\n        app: httpbin\n        version: v1\n    spec:\n      serviceAccountName: httpbin\n      containers:\n      - image: docker.io/mccutchen/go-httpbin:v2.15.0\n        imagePullPolicy: IfNotPresent\n        name: httpbin\n        ports:\n        - containerPort: 8080"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the <code>httpbin</code> server on Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>httpbin</code> <code>ServiceAccount</code>, <code>Service</code>, and <code>Deployment</code> on Cluster B:
+      <CodeBlock code={"apiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: httpbin\n  namespace: ${TPJ}\n---\napiVersion: v1\nkind: Service\nmetadata:\n  name: httpbin\n  namespace: ${TPJ}\n  labels:\n    app: httpbin\n    service: httpbin\nspec:\n  ports:\n  - name: http-ex-spiffe\n    port: 443\n    targetPort: 8080\n  - name: http\n    port: 80\n    targetPort: 8080\n  selector:\n    app: httpbin\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: httpbin\n  namespace: ${TPJ}\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: httpbin\n      version: v1\n  template:\n    metadata:\n      annotations:\n        inject.istio.io/templates: \"sidecar,spire\"\n        spiffe.io/audience: \"${SPIFFE_AUDIENCE}\"\n      labels:\n        app: httpbin\n        version: v1\n    spec:\n      serviceAccountName: httpbin\n      containers:\n      - image: docker.io/mccutchen/go-httpbin:v2.15.0\n        imagePullPolicy: IfNotPresent\n        name: httpbin\n        ports:\n        - containerPort: 8080"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Wait for the <code>httpbin</code> deployment to become available on both clusters by running the following commands:
+      <ol>
+      <li>
+      Wait for the <code>httpbin</code> deployment on Cluster A:
+      <CodeBlock code={"$ oc rollout status deployment/httpbin \\\n  -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>httpbin</code> deployment on Cluster B:
+      <CodeBlock code={"$ oc rollout status deployment/httpbin \\\n  -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --timeout=300s"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the <code>curl</code> client on Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>curl</code> <code>ServiceAccount</code>, <code>Service</code>, and <code>Deployment</code> on Cluster A:
+      <CodeBlock code={"apiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: curl\n  namespace: ${TPJ}\n---\napiVersion: v1\nkind: Service\nmetadata:\n  name: curl\n  namespace: ${TPJ}\n  labels:\n    app: curl\n    service: curl\nspec:\n  ports:\n  - port: 80\n    name: http\n  selector:\n    app: curl\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: curl\n  namespace: ${TPJ}\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: curl\n  template:\n    metadata:\n      annotations:\n        inject.istio.io/templates: \"sidecar,spire\"\n        spiffe.io/audience: \"${SPIFFE_AUDIENCE}\"\n      labels:\n        app: curl\n    spec:\n      terminationGracePeriodSeconds: 0\n      serviceAccountName: curl\n      containers:\n      - name: curl\n        image: curlimages/curl:8.16.0\n        command:\n        - /bin/sh\n        - -c\n        - sleep inf\n        imagePullPolicy: IfNotPresent"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the <code>curl</code> client on Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>curl</code> <code>ServiceAccount</code>, <code>Service</code>, and <code>Deployment</code> on Cluster B:
+      <CodeBlock code={"apiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: curl\n  namespace: ${TPJ}\n---\napiVersion: v1\nkind: Service\nmetadata:\n  name: curl\n  namespace: ${TPJ}\n  labels:\n    app: curl\n    service: curl\nspec:\n  ports:\n  - port: 80\n    name: http\n  selector:\n    app: curl\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: curl\n  namespace: ${TPJ}\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: curl\n  template:\n    metadata:\n      annotations:\n        inject.istio.io/templates: \"sidecar,spire\"\n        spiffe.io/audience: \"${SPIFFE_AUDIENCE}\"\n      labels:\n        app: curl\n    spec:\n      terminationGracePeriodSeconds: 0\n      serviceAccountName: curl\n      containers:\n      - name: curl\n        image: curlimages/curl:8.16.0\n        command:\n        - /bin/sh\n        - -c\n        - sleep inf\n        imagePullPolicy: IfNotPresent"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Wait for the <code>curl</code> deployment to become available on both clusters by running the following commands:
+      <ol>
+      <li>
+      Wait for the <code>curl</code> deployment on Cluster A:
+      <CodeBlock code={"$ oc rollout status deployment/curl \\\n  -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>curl</code> deployment on Cluster B:
+      <CodeBlock code={"$ oc rollout status deployment/curl \\\n  -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --timeout=300s"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Verify that the <code>curl</code> client can reach <code>httpbin</code> on both clusters before enabling <code>STRICT</code> mTLS by running the following commands:
+      <ol>
+      <li>
+      Verify connectivity on Cluster A:
+      <CodeBlock code={"$ oc exec deploy/curl -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -it -- \\\n  curl -s -o /dev/null -w \"%{http_code}\" http://httpbin"} lang="terminal" />
+      </li>
+      <li>
+      Verify connectivity on Cluster B:
+      <CodeBlock code={"$ oc exec deploy/curl -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -it -- \\\n  curl -s -o /dev/null -w \"%{http_code}\" http://httpbin"} lang="terminal" />
+      <CodeBlock code={"200"} lang="terminal" title="Example output" />
+      <p>You must receive an HTTP <code>200</code> status code on each cluster.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Enable <code>STRICT</code> mTLS between the services on Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>PeerAuthentication</code> and <code>DestinationRule</code> resources on Cluster A:
+      <CodeBlock code={"apiVersion: security.istio.io/v1beta1\nkind: PeerAuthentication\nmetadata:\n  name: default\n  namespace: ${TPJ}\nspec:\n  mtls:\n    mode: STRICT\n---\napiVersion: networking.istio.io/v1\nkind: DestinationRule\nmetadata:\n  name: curl\n  namespace: ${TPJ}\nspec:\n  host: curl\n  trafficPolicy:\n    tls:\n      mode: ISTIO_MUTUAL\n---\napiVersion: networking.istio.io/v1\nkind: DestinationRule\nmetadata:\n  name: httpbin\n  namespace: ${TPJ}\nspec:\n  host: httpbin\n  trafficPolicy:\n    tls:\n      mode: ISTIO_MUTUAL"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Enable <code>STRICT</code> mTLS between the services on Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>PeerAuthentication</code> and <code>DestinationRule</code> resources on Cluster B:
+      <CodeBlock code={"apiVersion: security.istio.io/v1beta1\nkind: PeerAuthentication\nmetadata:\n  name: default\n  namespace: ${TPJ}\nspec:\n  mtls:\n    mode: STRICT\n---\napiVersion: networking.istio.io/v1\nkind: DestinationRule\nmetadata:\n  name: curl\n  namespace: ${TPJ}\nspec:\n  host: curl\n  trafficPolicy:\n    tls:\n      mode: ISTIO_MUTUAL\n---\napiVersion: networking.istio.io/v1\nkind: DestinationRule\nmetadata:\n  name: httpbin\n  namespace: ${TPJ}\nspec:\n  host: httpbin\n  trafficPolicy:\n    tls:\n      mode: ISTIO_MUTUAL"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Verify that the <code>curl</code> client can reach <code>httpbin</code> on both clusters with <code>STRICT</code> mTLS enabled by running the following commands:
+      <ol>
+      <li>
+      Verify connectivity on Cluster A:
+      <CodeBlock code={"$ oc exec deploy/curl -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -it -- \\\n  curl -s -o /dev/null -w \"%{http_code}\" http://httpbin"} lang="terminal" />
+      </li>
+      <li>
+      Verify connectivity on Cluster B:
+      <CodeBlock code={"$ oc exec deploy/curl -n \"${TPJ}\" --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -it -- \\\n  curl -s -o /dev/null -w \"%{http_code}\" http://httpbin"} lang="terminal" />
+      <CodeBlock code={"200"} lang="terminal" title="Example output" />
+      <p>If you receive an HTTP <code>200</code> status code on each cluster, Red Hat OpenShift Service Mesh workloads are communicating under <code>STRICT</code> mTLS using SPIRE-issued identities.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Remove the test namespace from both clusters by running the following commands:
+      <ol>
+      <li>
+      Remove the test namespace from Cluster A:
+      <CodeBlock code={"$ oc delete namespace ${TPJ} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --ignore-not-found"} lang="terminal" />
+      </li>
+      <li>
+      Remove the test namespace from Cluster B:
+      <CodeBlock code={"$ oc delete namespace ${TPJ} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --ignore-not-found"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="zero-trust-manager-deploy-east-west_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Deploying east-west gateways<a href="#zero-trust-manager-deploy-east-west_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Deploy SPIRE-enabled east-west gateways on both clusters using Helm. Red Hat OpenShift Service Mesh uses east-west gateways to connect cluster networks and enable secure cross-cluster communication in a multi-cluster mesh.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You deployed the Istio custom resource with the federation configuration. For more information, see "Deploying the Istio custom resource with the federation configuration".</li>
+      <li>The environment variables from the "Preparing the environment for multi-cluster SPIFFE Runtime Environment federation" and "Deploying SPIFFE Runtime Environment with federation on both clusters" procedures are set.</li>
+      <li>Federated <code>ClusterSPIFFEID</code> resources exist on both clusters.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add the Istio Helm repository by running the following command:
+      <CodeBlock code={"$ helm repo add istio https://istio-release.storage.googleapis.com/charts"} lang="terminal" />
+      </li>
+      <li>
+      Update the Istio Helm repository by running the following command:
+      <CodeBlock code={"$ helm repo update"} lang="terminal" />
+      </li>
+      <li>
+      Grant security context constraints (SCC) permissions on Cluster A by running the following command:
+      <CodeBlock code={"$ oc adm policy add-scc-to-user anyuid \\\n  -z istio-eastwestgateway -n istio-system --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\""} lang="terminal" />
+      </li>
+      <li>
+      Grant security context constraints (SCC) permissions on Cluster B by running the following command:
+      <CodeBlock code={"$ oc adm policy add-scc-to-user anyuid \\\n  -z istio-eastwestgateway -n istio-system --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\""} lang="terminal" />
+      </li>
+      <li>
+      Install the Istio gateway on Cluster A by running the following command:
+      <CodeBlock code={"$ helm upgrade --install istio-eastwestgateway istio/gateway \\\n  -n istio-system \\\n  --set-json 'podAnnotations={\"inject.istio.io/templates\":\"gateway,spireGw\"}' \\\n  --set name=istio-eastwestgateway \\\n  --set networkGateway=\"${NETWORK_A}\" \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\""} lang="terminal" />
+      </li>
+      <li>
+      Install the Istio gateway on Cluster B by running the following command:
+      <CodeBlock code={"$ helm upgrade --install istio-eastwestgateway istio/gateway \\\n  -n istio-system \\\n  --set-json 'podAnnotations={\"inject.istio.io/templates\":\"gateway,spireGw\"}' \\\n  --set name=istio-eastwestgateway \\\n  --set networkGateway=\"${NETWORK_B}\" \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\""} lang="terminal" />
+      </li>
+      <li>
+      Wait for the east-west gateway to become available on Cluster A by running the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Available deployment/istio-eastwestgateway \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n istio-system --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the east-west gateway to become available on Cluster B by running the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Available deployment/istio-eastwestgateway \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n istio-system --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Create the cross-network <code>Gateway</code> custom resource (CR) on Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>Gateway</code> CR on Cluster A:
+      <CodeBlock code={"apiVersion: networking.istio.io/v1alpha3\nkind: Gateway\nmetadata:\n  name: cross-network-gateway\n  namespace: istio-system\nspec:\n  selector:\n    istio: eastwestgateway\n  servers:\n    - port:\n        number: 15443\n        name: tls\n        protocol: TLS\n      tls:\n        mode: AUTO_PASSTHROUGH\n      hosts:\n        - \"*.local\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the cross-network <code>Gateway</code> CR on Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>Gateway</code> CR on Cluster B:
+      <CodeBlock code={"apiVersion: networking.istio.io/v1alpha3\nkind: Gateway\nmetadata:\n  name: cross-network-gateway\n  namespace: istio-system\nspec:\n  selector:\n    istio: eastwestgateway\n  servers:\n    - port:\n        number: 15443\n        name: tls\n        protocol: TLS\n      tls:\n        mode: AUTO_PASSTHROUGH\n      hosts:\n        - \"*.local\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file on Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f <filename>"} lang="terminal" />
+      <p>The <code>Gateway</code> CRs configure the east-west gateway deployment to accept cross-cluster TLS traffic on port 15443 using <code>AUTO_PASSTHROUGH</code> mode. This preserves SPIRE-issued certificates for end-to-end mTLS.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the cross-network <code>Gateway</code> exists on Cluster A by running the following command:
+      <CodeBlock code={"$ oc get gateway cross-network-gateway -n istio-system \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" \\\n  -o jsonpath='{.spec.servers[0].tls.mode}{\"\\n\"}'"} lang="terminal" />
+      <CodeBlock code={"AUTO_PASSTHROUGH"} lang="text" title="Example output" />
+      </li>
+      <li>
+      Verify that the cross-network <code>Gateway</code> exists on Cluster B by running the following command:
+      <CodeBlock code={"$ oc get gateway cross-network-gateway -n istio-system \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" \\\n  -o jsonpath='{.spec.servers[0].tls.mode}{\"\\n\"}'"} lang="terminal" />
+      <CodeBlock code={"AUTO_PASSTHROUGH"} lang="text" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="zero-trust-manager-exchange-remote-secrets_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Exchanging remote secrets<a href="#zero-trust-manager-exchange-remote-secrets_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Create remote secrets on both clusters so <code>Istiod</code> can discover services in the peer cluster and route cross-cluster traffic through the east-west gateways.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have deployed the east-west gateway, including the cross-network <code>Gateway</code> CR on both clusters. For more information, see "Deploying east-west gateways".</li>
+      <li>The environment variables from the "Preparing the environment for multi-cluster SPIFFE Runtime Environment federation" and "Deploying SPIFFE Runtime Environment with federation on both clusters" procedures are set.</li>
+      <li>The <code>istioctl</code> CLI is available and configured for both clusters.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an Istio remote secret on Cluster A by running the following command:
+      <CodeBlock code={"$ istioctl create-remote-secret \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" \\\n  --name=\"${CLUSTER_A}\" \\\n  --istioNamespace=istio-system | \\\n  oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -f -"} lang="terminal" />
+      </li>
+      <li>
+      Create an Istio remote secret on Cluster B by running the following command:
+      <CodeBlock code={"$ istioctl create-remote-secret \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" \\\n  --name=\"${CLUSTER_B}\" \\\n  --istioNamespace=istio-system | \\\n  oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -f -"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the remote cluster is synced on Cluster A by running the following command:
+      <CodeBlock code={"$ istioctl remote-clusters --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\""} lang="terminal" />
+      <p>The output must show <code>${"{"}{"{"} CLUSTER_B {"}"}{"}"}</code> with status <code>synced</code>.</p>
+      <CodeBlock code={"NAME         STATUS   SECRET\ncluster-b    synced   istio-remote-secret-cluster-b"} lang="text" title="Example output" />
+      </li>
+      <li>
+      Verify that the remote cluster is synced on Cluster B by running the following command:
+      <CodeBlock code={"$ istioctl remote-clusters --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\""} lang="terminal" />
+      <p>The output must show <code>${"{"}{"{"} CLUSTER_A {"}"}{"}"}</code> with status <code>synced</code>.</p>
+      <CodeBlock code={"NAME         STATUS   SECRET\ncluster-a    synced   istio-remote-secret-cluster-a"} lang="text" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="zero-trust-manager-multi-mesh-verification_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Verifying cross-cluster service communication<a href="#zero-trust-manager-multi-mesh-verification_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Verify cross-cluster service communication between Red Hat OpenShift Service Mesh clusters using sample workloads. This confirms SPIRE-issued identities and federated mesh routing enable end-to-end cross-cluster communication.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have deployed east-west gateways and created the cross-network <code>Gateway</code> CR on both clusters.</li>
+      <li>You have exchanged remote secrets between clusters.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set the sample namespace environment variable by running the following command:
+      <CodeBlock code={"$ export SAMPLE_NS=sample"} lang="terminal" />
+      </li>
+      <li>
+      Create the <code>sample</code> namespace on Cluster A by running the following command:
+      <CodeBlock code={"$ oc create namespace ${SAMPLE_NS} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" 2>/dev/null || true"} lang="terminal" />
+      </li>
+      <li>
+      Enable Istio injection for the <code>sample</code> namespace on Cluster A by running the following command:
+      <CodeBlock code={"$ oc label namespace ${SAMPLE_NS} istio-injection=enabled \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" --overwrite"} lang="terminal" />
+      </li>
+      <li>
+      Create the <code>sample</code> namespace on Cluster B by running the following command:
+      <CodeBlock code={"$ oc create namespace ${SAMPLE_NS} --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" 2>/dev/null || true"} lang="terminal" />
+      </li>
+      <li>
+      Enable Istio injection for the <code>sample</code> namespace on Cluster B by running the following command:
+      <CodeBlock code={"$ oc label namespace ${SAMPLE_NS} istio-injection=enabled \\\n  --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" --overwrite"} lang="terminal" />
+      </li>
+      <li>
+      Install the Istio <code>HelloWorld</code> <code>Service</code> in Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>HelloWorld</code> <code>Service</code> in Cluster B:
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  name: helloworld\n  labels:\n    app: helloworld\n    service: helloworld\nspec:\n  ports:\n  - port: 5000\n    name: http\n  selector:\n    app: helloworld"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file in Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${SAMPLE_NS} -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Install the <code>helloworld-v1</code> <code>Deployment</code> in Cluster B by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>helloworld-v1</code> <code>Deployment</code> in Cluster B:
+      <CodeBlock code={"apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: helloworld-v1\n  labels:\n    app: helloworld\n    version: v1\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: helloworld\n      version: v1\n  template:\n    metadata:\n      labels:\n        app: helloworld\n        version: v1\n    spec:\n      containers:\n      - name: helloworld\n        image: registry.istio.io/release/examples-helloworld-v1:1.0\n        resources:\n          requests:\n            cpu: \"100m\"\n        imagePullPolicy: IfNotPresent\n        ports:\n        - containerPort: 5000"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file in Cluster B by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" -n ${SAMPLE_NS} -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Install the Istio <code>HelloWorld</code> <code>Service</code> in Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>HelloWorld</code> <code>Service</code> in Cluster A:
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  name: helloworld\n  labels:\n    app: helloworld\n    service: helloworld\nspec:\n  ports:\n  - port: 5000\n    name: http\n  selector:\n    app: helloworld"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file in Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${SAMPLE_NS} -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Install the <code>sleep</code> client in Cluster A by running the following command:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>sleep</code> <code>ServiceAccount</code>, <code>Service</code>, and <code>Deployment</code> in Cluster A:
+      <CodeBlock code={"apiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: sleep\n---\napiVersion: v1\nkind: Service\nmetadata:\n  name: sleep\n  labels:\n    app: sleep\n    service: sleep\nspec:\n  ports:\n  - port: 80\n    name: http\n  selector:\n    app: sleep\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: sleep\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: sleep\n  template:\n    metadata:\n      labels:\n        app: sleep\n    spec:\n      terminationGracePeriodSeconds: 0\n      serviceAccountName: sleep\n      containers:\n      - name: sleep\n        image: docker.io/curlimages/curl:8.16.0\n        command: [\"/bin/sleep\", \"infinity\"]\n        imagePullPolicy: IfNotPresent\n        volumeMounts:\n        - mountPath: /etc/sleep/tls\n          name: secret-volume\n      volumes:\n      - name: secret-volume\n        secret:\n          secretName: sleep-secret\n          optional: true"} lang="yaml" />
+      </li>
+      <li>
+      Apply the YAML file in Cluster A by running the following command:
+      <CodeBlock code={"$ oc apply --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -n ${SAMPLE_NS} -f <filename>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Add the SPIRE injection template to the <code>sleep</code> application in Cluster A by running the following command:
+      <CodeBlock code={"$ oc patch deploy sleep \\\n    -n ${SAMPLE_NS} \\\n    --type='merge' \\\n    --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" \\\n    -p '{\"spec\": {\"template\": {\"metadata\": {\"annotations\": {\"inject.istio.io/templates\": \"sidecar,spire\"}}}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Add the SPIRE injection template to the <code>HelloWorld</code> application in Cluster B by running the following command:
+      <CodeBlock code={"$ oc patch deploy helloworld-v1 \\\n   -n ${SAMPLE_NS} \\\n   --type='merge' \\\n   --kubeconfig=\"${CLUSTER_B_KUBECONFIG}\" \\\n    -p '{\"spec\": {\"template\": {\"metadata\": {\"annotations\": {\"inject.istio.io/templates\": \"sidecar,spire\"}}}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>sleep</code> deployment to become available on Cluster A by running the following command:
+      <CodeBlock code={"$ oc rollout status deploy/sleep --kubeconfig \"${CLUSTER_A_KUBECONFIG}\" -n ${SAMPLE_NS} --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the <code>helloworld-v1</code> deployment to become available on Cluster B by running the following command:
+      <CodeBlock code={"$ oc rollout status deploy/helloworld-v1 --kubeconfig \"${CLUSTER_B_KUBECONFIG}\" -n ${SAMPLE_NS} --timeout=300s"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the <code>sleep</code> pod uses a SPIRE-issued identity by running the following command:
+      <CodeBlock code={"$ oc exec deploy/sleep -n ${SAMPLE_NS} --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" -c istio-proxy -- \\\n  curl -s localhost:15000/certs | jq -r '.certificates[0].cert_chain[0].subject_alt_names[0].uri'"} lang="terminal" />
+      <CodeBlock code={"spiffe://${CLUSTER_A_TRUST_DOMAIN}/ns/sample/sa/sleep"} lang="text" title="Example output" />
+      </li>
+      <li>
+      Verify that the <code>sleep</code> pod on Cluster A can reach the <code>helloworld.sample</code> service by running the following command:
+      <CodeBlock code={"$ oc exec deploy/sleep \\\n  -n ${SAMPLE_NS} \\\n  --kubeconfig=\"${CLUSTER_A_KUBECONFIG}\" \\\n  -- curl -sS helloworld.sample:5000/hello"} lang="terminal" />
+      <CodeBlock code={"Hello version: v1, instance: helloworld-v1-5859666d7-pcb8v"} lang="text" title="Example output" />
+      </li>
+      </ol>
       <h2 id="additional-resources-spire-multicluster_zero-trust-manager-mesh-integration-multi-cluster" class="group scroll-mt-20">Additional resources<a href="#additional-resources-spire-multicluster_zero-trust-manager-mesh-integration-multi-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/latest/html-single/installing/index#ossm-multi-cluster-configuration-overview_ossm-multi-cluster-topologies">Multi-cluster configuration overview</a></li></ul>
     </article>

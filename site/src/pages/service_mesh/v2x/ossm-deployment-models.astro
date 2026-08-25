@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"ossm-deployment-models","text":"Service mesh deployment models"}];
+const headings = [{"depth":1,"slug":"ossm-deployment-models","text":"Service mesh deployment models"},{"depth":2,"slug":"ossm-deploy-cluster-wide-mesh_ossm-deployment-models","text":"Cluster-Wide (Single Tenant) mesh deployment model"},{"depth":2,"slug":"ossm-deploy-multitenant_ossm-deployment-models","text":"Multitenant deployment model"},{"depth":3,"slug":"ossm-about-about-migrating-to-cluster-wide_ossm-deployment-models","text":"About migrating to a cluster-wide mesh"},{"depth":4,"slug":"ossm-excluding-namespaces-from-cluster-wide-mesh-console_ossm-deployment-models","text":"Including and excluding namespaces from a cluster-wide mesh by using the web console"},{"depth":4,"slug":"ossm-excluding-namespaces-from-cluster-wide-mesh-cli_ossm-deployment-models","text":"Including and excluding namespaces from a cluster-wide mesh by using the CLI"},{"depth":4,"slug":"ossm-defining-namespace-receive-sidecar-injection-cluster-wide-mesh-console_ossm-deployment-models","text":"Defining which namespaces receive sidecar injection in a cluster-wide mesh by using the web console"},{"depth":4,"slug":"ossm-defining-namespace-receive-sidecar-injection-cluster-wide-mesh-cli_ossm-deployment-models","text":"Defining which namespaces receive sidecar injection in a cluster-wide mesh by using the CLI"},{"depth":4,"slug":"ossm-excluding-individual-pods-from-cluster-wide-mesh-console_ossm-deployment-models","text":"Excluding individual pods from a cluster-wide mesh by using the web console"},{"depth":4,"slug":"ossm-excluding-individual-pods-from-cluster-wide-mesh-cli_ossm-deployment-models","text":"Excluding individual pods from a cluster-wide mesh by using the CLI"},{"depth":2,"slug":"ossm-deploy-multi-mesh_ossm-deployment-models","text":"Multimesh or federated deployment model"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/service_mesh/v2x/ossm-deployment-models";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Service mesh deployment models";
-const description = "{{ SMProductName }} supports several different deployment models that can be combined in different ways to best suit your business requirements." || undefined;
+const description = "Red Hat OpenShift Service Mesh supports several different deployment models that can be combined in different ways to best suit your business requirements." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Service mesh deployment models {#ossm-deployment-models}\n\n{{ SMProductName }} supports several different deployment models that can be combined in different ways to best suit your business requirements.\n\nIn Istio, a tenant is a group of users that share common access and privileges for a set of deployed workloads. You can use tenants to provide a level of isolation between different teams. You can segregate access to different tenants using `NetworkPolicies`, `AuthorizationPolicies`, and `exportTo` annotations on istio.io or service resources.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-deployment-models.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Service mesh deployment models {#ossm-deployment-models}\n\nRed Hat OpenShift Service Mesh supports several different deployment models that can be combined in different ways to best suit your business requirements.\n\nIn Istio, a tenant is a group of users that share common access and privileges for a set of deployed workloads. You can use tenants to provide a level of isolation between different teams. You can segregate access to different tenants using `NetworkPolicies`, `AuthorizationPolicies`, and `exportTo` annotations on istio.io or service resources.\n\n## Cluster-Wide (Single Tenant) mesh deployment model {#ossm-deploy-cluster-wide-mesh_ossm-deployment-models}\n\nA cluster-wide deployment contains a Service Mesh Control Plane that monitors resources for an entire cluster. Monitoring resources for an entire cluster closely resembles Istio functionality in that the control plane uses a single query across all namespaces to monitor Istio and Kubernetes resources. As a result, cluster-wide deployments decrease the number of requests sent to the API server.\n\nSimilar to Istio, a cluster-wide mesh includes namespaces with the `istio-injection=enabled` namespace label by default. You can change this label by modifying the `spec.memberSelectors` field of the `ServiceMeshMemberRoll` resource.\n\n## Multitenant deployment model {#ossm-deploy-multitenant_ossm-deployment-models}\n\nRed Hat OpenShift Service Mesh installs a `ServiceMeshControlPlane` that is configured for multitenancy by default. Red Hat OpenShift Service Mesh uses a multitenant Operator to manage the Service Mesh control plane lifecycle. Within a mesh, namespaces are used for tenancy.\n\nRed Hat OpenShift Service Mesh uses `ServiceMeshControlPlane` resources to manage mesh installations, whose scope is limited by default to namespace that contains the resource. You use `ServiceMeshMemberRoll` and `ServiceMeshMember` resources to include additional namespaces into the mesh. A namespace can only be included in a single mesh, and multiple meshes can be installed in a single OpenShift cluster.\n\nTypical service mesh deployments use a single Service Mesh control plane to configure communication between services in the mesh. Red Hat OpenShift Service Mesh supports “soft multitenancy”, where there is one control plane and one mesh per tenant, and there can be multiple independent control planes within the cluster. Multitenant deployments specify the projects that can access the Service Mesh and isolate the Service Mesh from other control plane instances.\n\nThe cluster administrator gets control and visibility across all the Istio control planes, while the tenant administrator only gets control over their specific Service Mesh, Kiali, and Jaeger instances.\n\nYou can grant a team permission to deploy its workloads only to a given namespace or set of namespaces. If granted the `mesh-user` role by the service mesh administrator, users can create a `ServiceMeshMember` resource to add namespaces to the `ServiceMeshMemberRoll`.\n\n### About migrating to a cluster-wide mesh {#ossm-about-about-migrating-to-cluster-wide_ossm-deployment-models}\n\nIn a cluster-wide mesh, one `ServiceMeshControlPlane` (SMCP) watches all of the namespaces for an entire cluster. You can migrate an existing cluster from a multitenant mesh to a cluster-wide mesh using Red Hat OpenShift Service Mesh version 2.5 or later.\n\n> [!NOTE]\n> If a cluster must have more than one SMCP, then you cannot migrate to a cluster-wide mesh.\n\nBy default, a cluster-wide mesh discovers all of the namespaces that comprise a cluster. However, you can configure the mesh to access a limited set of namespaces. Namespaces do not receive sidecar injection by default. You must specify which namespaces receive sidecar injection.\n\nSimilarly, you must specify which pods receive sidecar injection. Pods that exist in a namespace that receives sidecar injection do not inherit sidecar injection. Applying sidecar injection to namespaces and to pods are separate operations.\n\nIf you change the Istio version when migrating to a cluster-wide mesh, then you must restart the applications. If you use the same Istio version, the application proxies will connect to the new SMCP for the cluster-wide mesh, and work the same way they did for a multitenant mesh.\n\n#### Including and excluding namespaces from a cluster-wide mesh by using the web console {#ossm-excluding-namespaces-from-cluster-wide-mesh-console_ossm-deployment-models}\n\nUsing the OpenShift Container Platform web console, you can add discovery selectors to the `ServiceMeshControlPlane` resource in a cluster-wide mesh. Discovery selectors define the namespaces that the control plane can discover. The control plane ignores any namespace that does not match one of the discovery selectors, which excludes the namespace from the mesh.\n\n> [!NOTE]\n> If you install ingress or egress gateways in the control plane namespace, you must include the control plane namespace in the discovery selectors.\n\n**Prerequisites**\n\n- You have installed the Red Hat OpenShift Service Mesh Operator.\n- You have deployed a `ServiceMeshControlPlane` resource.\n- You are logged in as a user with the `cluster-admin` role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the `dedicated-admin` role.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Navigate to **Ecosystem** -> **Installed Operators**.\n3. Click the Red Hat OpenShift Service Mesh Operator.\n4. Click **Istio Service Mesh Control Plane**.\n5. Click the name of the control plane.\n6. Click **YAML**.\n7. Modify the YAML file so that the `spec.meshConfig` field of the `ServiceMeshControlPlane` resource includes the discovery selector.\n\n   > [!NOTE]\n   > When configuring namespaces that the `Istiod` service can discover, exclude namespaces that might contain sensitive services that should not be exposed to the rest of the mesh.\n\n   In the following example, the `Istiod` service discovers any namespace that is labeled `istio-discovery: enabled` or any namespace that has the name `bookinfo`, `httpbin` or `istio-system`:\n\n   ```yaml\n   apiVersion: maistra.io/v2\n   kind: ServiceMeshControlPlane\n   metadata:\n     name: basic\n   spec:\n     mode: ClusterWide\n     meshConfig:\n       discoverySelectors:\n       - matchLabels:\n           istio-discovery: enabled (1)\n       - matchExpressions:\n         - key: kubernetes.io/metadata.name (2)\n           operator: In\n           values:\n           - bookinfo\n           - httpbin\n           - istio-system\n   ```\n\n   1. Ensures that the mesh discovers namespaces that contain the label `istio-discovery: enabled`.\n   2. Ensures that the mesh discovers namespaces `bookinfo`, `httpbin` and `istio-system`.\n\n      If a namespace matches any of the discovery selectors, then the mesh discovers the namespace. The mesh excludes namespaces that do not match any of the discovery selectors.\n8. Save the file.\n\n#### Including and excluding namespaces from a cluster-wide mesh by using the CLI {#ossm-excluding-namespaces-from-cluster-wide-mesh-cli_ossm-deployment-models}\n\nUsing the OpenShift Container Platform CLI, you can add discovery selectors to the `ServiceMeshControlPlane` resource in a cluster-wide mesh. Discovery selectors define the namespaces that the control plane can discover. The control plane ignores any namespace that does not match one of the discovery selectors, which excludes the namespace from the mesh.\n\n> [!NOTE]\n> If you install ingress or egress gateways in the control plane namespace, you must include the control plane namespace in the discovery selectors.\n\n**Prerequisites**\n\n- You have installed the Red Hat OpenShift Service Mesh Operator.\n- You have deployed a `ServiceMeshControlPlane` resource.\n- You are logged in as a user with the `cluster-admin` role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the `dedicated-admin` role.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform CLI.\n2. Open the `ServiceMeshControlPlane` resource as a YAML file by running the following command:\n\n   ```terminal\n   $ oc -n istio-system edit smcp <name> (1)\n   ```\n\n   1. `<name>` represents the name of the `ServiceMeshControlPlane` resource.\n3. Modify the YAML file so that the `spec.meshConfig` field of the `ServiceMeshControlPlane` resource includes the discovery selector.\n\n   > [!NOTE]\n   > When configuring namespaces that the `Istiod` service can discover, exclude namespaces that might contain sensitive services that should not be exposed to the rest of the mesh.\n\n   In the following example, the `Istiod` service discovers any namespace that is labeled `istio-discovery: enabled` or any namespace that has the name `bookinfo`, `httpbin` or `istio-system`:\n\n   ```yaml\n   apiVersion: maistra.io/v2\n   kind: ServiceMeshControlPlane\n   metadata:\n     name: basic\n   spec:\n     mode: ClusterWide\n     meshConfig:\n       discoverySelectors:\n       - matchLabels:\n           istio-discovery: enabled (1)\n       - matchExpressions:\n         - key: kubernetes.io/metadata.name (2)\n           operator: In\n           values:\n           - bookinfo\n           - httpbin\n           - istio-system\n   ```\n\n   1. Ensures that the mesh discovers namespaces that contain the label `istio-discovery: enabled`.\n   2. Ensures that the mesh discovers namespaces `bookinfo`, `httpbin` and `istio-system`.\n\n      If a namespace matches any of the discovery selectors, then the mesh discovers the namespace. The mesh excludes namespaces that do not match any of the discovery selectors.\n4. Save the file and exit the editor.\n\n#### Defining which namespaces receive sidecar injection in a cluster-wide mesh by using the web console {#ossm-defining-namespace-receive-sidecar-injection-cluster-wide-mesh-console_ossm-deployment-models}\n\nBy default, the Red Hat OpenShift Service Mesh Operator uses member selectors to identify which namespaces receive sidecar injection. Namespaces that do not match the `istio-injection=enabled` label as defined in the `ServiceMeshMemberRoll` resource do not receive sidecar injection.\n\n> [!NOTE]\n> Using discovery selectors to determine which namespaces the mesh can discover has no effect on sidecar injection. Discovering namespaces and configuring sidecar injection are separate operations.\n\n**Prerequisites**\n\n- You have installed the Red Hat OpenShift Service Mesh Operator.\n- You have deployed a `ServiceMeshControlPlanae` resource with the `mode: ClusterWide` annotation.\n- You are logged in as a user with the `cluster-admin` role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the `dedicated-admin` role.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Navigate to **Ecosystem** -> **Installed Operators**.\n3. Click the Red Hat OpenShift Service Mesh Operator.\n4. Click **Istio Service Mesh Member Roll**.\n5. Click the `ServiceMeshMemberRoll` resource.\n6. Click **YAML**.\n7. Modify the `spec.memberSelectors` field in the `ServiceMeshMemberRoll` resource by adding a member selector that matches the `inject` label. The following example uses `istio-injection: enabled`:\n\n   ```yaml\n   apiVersion: maistra.io/v1\n   kind: ServiceMeshMemberRoll\n   metadata:\n     name: default\n   spec:\n     memberSelectors:\n     - matchLabels:\n         istio-injection: enabled (1)\n   ```\n\n   1. Ensures that the namespace receives sidecar injection.\n8. Save the file.\n\n#### Defining which namespaces receive sidecar injection in a cluster-wide mesh by using the CLI {#ossm-defining-namespace-receive-sidecar-injection-cluster-wide-mesh-cli_ossm-deployment-models}\n\nBy default, the Red Hat OpenShift Service Mesh Operator uses member selectors to identify which namespaces receive sidecar injection. Namespaces that do not match the `istio-injection=enabled` label as defined in the `ServiceMeshMemberRoll` resource do not receive sidecar injection.\n\n> [!NOTE]\n> Using discovery selectors to determine which namespaces the mesh can discover has no effect on sidecar injection. Discovering namespaces and configuring sidecar injection are separate operations.\n\n**Prerequisites**\n\n- You have installed the Red Hat OpenShift Service Mesh Operator.\n- You have deployed a `ServiceMeshControlPlanae` resource with the `mode: ClusterWide` annotation.\n- You are logged in as a user with the `cluster-admin` role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the `dedicated-admin` role.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform CLI.\n2. Edit the `ServiceMeshMemberRoll` resource.\n\n   ```terminal\n   $ oc edit smmr -n <controlplane-namespace>\n   ```\n3. Modify the `spec.memberSelectors` field in the `ServiceMeshMemberRoll` resource by adding a member selector that matches the `inject` label. The following example uses `istio-injection: enabled`:\n\n   ```yaml\n   apiVersion: maistra.io/v1\n   kind: ServiceMeshMemberRoll\n   metadata:\n     name: default\n   spec:\n     memberSelectors:\n     - matchLabels:\n         istio-injection: enabled (1)\n   ```\n\n   1. Ensures that the namespace receives sidecar injection.\n4. Save the file and exit the editor.\n\n#### Excluding individual pods from a cluster-wide mesh by using the web console {#ossm-excluding-individual-pods-from-cluster-wide-mesh-console_ossm-deployment-models}\n\nA pod receives sidecar injection if it has the `sidecar.istio.io/inject: true` annotation applied, and the pod exists in a namespace that matches either the label selector or the members list defined in the `ServiceMeshMemberRoll` resource.\n\nIf a pod does not have the `sidecar.istio.io/inject` annotation applied, it cannot receive sidecar injection.\n\n**Prerequisites**\n\n- You have installed the Red Hat OpenShift Service Mesh Operator.\n- You have deployed a `ServiceMeshControlPlane` resource with the `mode: ClusterWide` annotation.\n- You are logged in as a user with the `cluster-admin` role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the `dedicated-admin` role.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Navigate to **Workloads** -> **Deployments**.\n3. Click the name of the deployment.\n4. Click **YAML**.\n5. Modify the YAML file to deploy one application that receives sidecar injection and one that does not, as shown in the following example:\n\n   ```yaml\n   apiVersion: apps/v1\n   kind: Deployment\n   metadata:\n     name: nginx\n   spec:\n     selector:\n       matchLabels:\n         app: nginx\n     template:\n       metadata:\n         annotations:\n           sidecar.istio.io/inject: 'true' (1)\n         labels:\n           app: nginx\n       spec:\n         containers:\n         - name: nginx\n           image: nginx:1.14.2\n           ports:\n           - containerPort: 80\n   ---\n   apiVersion: apps/v1\n   kind: Deployment\n   metadata:\n     name: nginx-without-sidecar\n   spec:\n     selector:\n       matchLabels:\n         app: nginx-without-sidecar\n     template:\n       metadata:\n         labels:\n           app: nginx-without-sidecar (2)\n       spec:\n         containers:\n         - name: nginx\n           image: nginx:1.14.2\n           ports:\n           - containerPort: 80\n   ```\n\n   1. This pod has the `sidecar.istio.io/inject` annotation applied, so it receives sidecar injection.\n   2. This pod does not have the annotation, so it does not receive sidecar injection.\n6. Save the file.\n\n#### Excluding individual pods from a cluster-wide mesh by using the CLI {#ossm-excluding-individual-pods-from-cluster-wide-mesh-cli_ossm-deployment-models}\n\nA pod receives sidecar injection if it has the `sidecar.istio.io/inject: true` annotation applied, and the pod exists in a namespace that matches either the label selector or the members list defined in the `ServiceMeshMemberRoll` resource.\n\nIf a pod does not have the `sidecar.istio.io/inject` annotation applied, it cannot receive sidecar injection.\n\n**Prerequisites**\n\n- You have installed the Red Hat OpenShift Service Mesh Operator.\n- You have deployed a `ServiceMeshControlPlane` resource with the `mode: ClusterWide` annotation.\n- You are logged in as a user with the `cluster-admin` role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the `dedicated-admin` role.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform CLI.\n2. Edit the deployment by running the following command:\n\n   ```terminal\n   $ oc edit deployment -n <namespace> <deploymentName>\n   ```\n3. Modify the YAML file to deploy one application that receives sidecar injection and one that does not, as shown in the following example:\n\n   ```yaml\n   apiVersion: apps/v1\n   kind: Deployment\n   metadata:\n     name: nginx\n   spec:\n     selector:\n       matchLabels:\n         app: nginx\n     template:\n       metadata:\n         annotations:\n           sidecar.istio.io/inject: 'true' (1)\n         labels:\n           app: nginx\n       spec:\n         containers:\n         - name: nginx\n           image: nginx:1.14.2\n           ports:\n           - containerPort: 80\n   ---\n   apiVersion: apps/v1\n   kind: Deployment\n   metadata:\n     name: nginx-without-sidecar\n   spec:\n     selector:\n       matchLabels:\n         app: nginx-without-sidecar\n     template:\n       metadata:\n         labels:\n           app: nginx-without-sidecar (2)\n       spec:\n         containers:\n         - name: nginx\n           image: nginx:1.14.2\n           ports:\n           - containerPort: 80\n   ```\n\n   1. This pod has the `sidecar.istio.io/inject` annotation applied, so it receives sidecar injection.\n   2. This pod does not have the annotation, so it does not receive sidecar injection.\n4. Save the file.\n\n## Multimesh or federated deployment model {#ossm-deploy-multi-mesh_ossm-deployment-models}\n\n*Federation* is a deployment model that lets you share services and workloads between separate meshes managed in distinct administrative domains.\n\nThe Istio multi-cluster model requires a high level of trust between meshes and remote access to all Kubernetes API servers on which the individual meshes reside. Red Hat OpenShift Service Mesh federation takes an opinionated approach to a multi-cluster implementation of Service Mesh that assumes *minimal* trust between meshes.\n\nA *federated mesh* is a group of meshes behaving as a single mesh. The services in each mesh can be unique services, for example a mesh adding services by importing them from another mesh, can provide additional workloads for the same services across the meshes, providing high availability, or a combination of both. All meshes that are joined into a federated mesh remain managed individually, and you must explicitly configure which services are exported to and imported from other meshes in the federation. Support functions such as certificate generation, metrics and trace collection remain local in their respective meshes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-deployment-models.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,19 +95,224 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ossm-deployment-models" class="group scroll-mt-20">Service mesh deployment models<a href="#ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>{"{"}{"{"} SMProductName {"}"}{"}"} supports several different deployment models that can be combined in different ways to best suit your business requirements.</p>
+      <p>Red Hat OpenShift Service Mesh supports several different deployment models that can be combined in different ways to best suit your business requirements.</p>
       <p>In Istio, a tenant is a group of users that share common access and privileges for a set of deployed workloads. You can use tenants to provide a level of isolation between different teams. You can segregate access to different tenants using <code>NetworkPolicies</code>, <code>AuthorizationPolicies</code>, and <code>exportTo</code> annotations on istio.io or service resources.</p>
-      <p class="/modules/ossm-deploy-cluster-wide-mesh.md"></p>
-      <p class="/modules/ossm-deploy-multitenant.md"></p>
-      <p class="/modules/ossm-about-migrating-to-cluster-wide.md"></p>
-      <p class="/modules/ossm-excluding-namespaces-from-cluster-wide-mesh-console.md"></p>
-      <p class="/modules/ossm-excluding-namespaces-from-cluster-wide-mesh-cli.md"></p>
-      <p class="/modules/ossm-defining-namespace-receive-sidecar-injection-cluster-wide-mesh-console.md"></p>
-      <p class="/modules/ossm-defining-namespace-receive-sidecar-injection-cluster-wide-mesh-cli.md"></p>
-      <p class="/modules/ossm-excluding-individual-pods-from-cluster-wide-mesh-console.md"></p>
-      <p class="/modules/ossm-excluding-individual-pods-from-cluster-wide-mesh-cli.md"></p>
-      <p class="/modules/ossm-deploy-multi-mesh.md"></p>
+      <h2 id="ossm-deploy-cluster-wide-mesh_ossm-deployment-models" class="group scroll-mt-20">Cluster-Wide (Single Tenant) mesh deployment model<a href="#ossm-deploy-cluster-wide-mesh_ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>A cluster-wide deployment contains a Service Mesh Control Plane that monitors resources for an entire cluster. Monitoring resources for an entire cluster closely resembles Istio functionality in that the control plane uses a single query across all namespaces to monitor Istio and Kubernetes resources. As a result, cluster-wide deployments decrease the number of requests sent to the API server.</p>
+      <p>Similar to Istio, a cluster-wide mesh includes namespaces with the <code>istio-injection=enabled</code> namespace label by default. You can change this label by modifying the <code>spec.memberSelectors</code> field of the <code>ServiceMeshMemberRoll</code> resource.</p>
+      <h2 id="ossm-deploy-multitenant_ossm-deployment-models" class="group scroll-mt-20">Multitenant deployment model<a href="#ossm-deploy-multitenant_ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Red Hat OpenShift Service Mesh installs a <code>ServiceMeshControlPlane</code> that is configured for multitenancy by default. Red Hat OpenShift Service Mesh uses a multitenant Operator to manage the Service Mesh control plane lifecycle. Within a mesh, namespaces are used for tenancy.</p>
+      <p>Red Hat OpenShift Service Mesh uses <code>ServiceMeshControlPlane</code> resources to manage mesh installations, whose scope is limited by default to namespace that contains the resource. You use <code>ServiceMeshMemberRoll</code> and <code>ServiceMeshMember</code> resources to include additional namespaces into the mesh. A namespace can only be included in a single mesh, and multiple meshes can be installed in a single OpenShift cluster.</p>
+      <p>Typical service mesh deployments use a single Service Mesh control plane to configure communication between services in the mesh. Red Hat OpenShift Service Mesh supports “soft multitenancy”, where there is one control plane and one mesh per tenant, and there can be multiple independent control planes within the cluster. Multitenant deployments specify the projects that can access the Service Mesh and isolate the Service Mesh from other control plane instances.</p>
+      <p>The cluster administrator gets control and visibility across all the Istio control planes, while the tenant administrator only gets control over their specific Service Mesh, Kiali, and Jaeger instances.</p>
+      <p>You can grant a team permission to deploy its workloads only to a given namespace or set of namespaces. If granted the <code>mesh-user</code> role by the service mesh administrator, users can create a <code>ServiceMeshMember</code> resource to add namespaces to the <code>ServiceMeshMemberRoll</code>.</p>
+      <h3 id="ossm-about-about-migrating-to-cluster-wide_ossm-deployment-models" class="group scroll-mt-20">About migrating to a cluster-wide mesh<a href="#ossm-about-about-migrating-to-cluster-wide_ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>In a cluster-wide mesh, one <code>ServiceMeshControlPlane</code> (SMCP) watches all of the namespaces for an entire cluster. You can migrate an existing cluster from a multitenant mesh to a cluster-wide mesh using Red Hat OpenShift Service Mesh version 2.5 or later.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If a cluster must have more than one SMCP, then you cannot migrate to a cluster-wide mesh.</p>
+        </AlertDescription>
+      </Alert>
+      <p>By default, a cluster-wide mesh discovers all of the namespaces that comprise a cluster. However, you can configure the mesh to access a limited set of namespaces. Namespaces do not receive sidecar injection by default. You must specify which namespaces receive sidecar injection.</p>
+      <p>Similarly, you must specify which pods receive sidecar injection. Pods that exist in a namespace that receives sidecar injection do not inherit sidecar injection. Applying sidecar injection to namespaces and to pods are separate operations.</p>
+      <p>If you change the Istio version when migrating to a cluster-wide mesh, then you must restart the applications. If you use the same Istio version, the application proxies will connect to the new SMCP for the cluster-wide mesh, and work the same way they did for a multitenant mesh.</p>
+      <h4 id="ossm-excluding-namespaces-from-cluster-wide-mesh-console_ossm-deployment-models" class="group scroll-mt-20">Including and excluding namespaces from a cluster-wide mesh by using the web console<a href="#ossm-excluding-namespaces-from-cluster-wide-mesh-console_ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Using the OpenShift Container Platform web console, you can add discovery selectors to the <code>ServiceMeshControlPlane</code> resource in a cluster-wide mesh. Discovery selectors define the namespaces that the control plane can discover. The control plane ignores any namespace that does not match one of the discovery selectors, which excludes the namespace from the mesh.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you install ingress or egress gateways in the control plane namespace, you must include the control plane namespace in the discovery selectors.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the Red Hat OpenShift Service Mesh Operator.</li>
+      <li>You have deployed a <code>ServiceMeshControlPlane</code> resource.</li>
+      <li>You are logged in as a user with the <code>cluster-admin</code> role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the <code>dedicated-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Click the Red Hat OpenShift Service Mesh Operator.</li>
+      <li>Click <strong>Istio Service Mesh Control Plane</strong>.</li>
+      <li>Click the name of the control plane.</li>
+      <li>Click <strong>YAML</strong>.</li>
+      <li>
+      Modify the YAML file so that the <code>spec.meshConfig</code> field of the <code>ServiceMeshControlPlane</code> resource includes the discovery selector.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When configuring namespaces that the <code>Istiod</code> service can discover, exclude namespaces that might contain sensitive services that should not be exposed to the rest of the mesh.</p>
+        </AlertDescription>
+      </Alert>
+      <p>In the following example, the <code>Istiod</code> service discovers any namespace that is labeled <code>istio-discovery: enabled</code> or any namespace that has the name <code>bookinfo</code>, <code>httpbin</code> or <code>istio-system</code>:</p>
+      <CodeBlock code={"apiVersion: maistra.io/v2\nkind: ServiceMeshControlPlane\nmetadata: \n  name: basic\nspec: \n  mode: ClusterWide\n  meshConfig: \n    discoverySelectors:\n    - matchLabels: \n        istio-discovery: enabled (1)\n    - matchExpressions:\n      - key: kubernetes.io/metadata.name (2)\n        operator: In\n        values:\n        - bookinfo\n        - httpbin\n        - istio-system"} lang="yaml" />
+      <ol>
+      <li>Ensures that the mesh discovers namespaces that contain the label <code>istio-discovery: enabled</code>.</li>
+      <li>
+      Ensures that the mesh discovers namespaces <code>bookinfo</code>, <code>httpbin</code> and <code>istio-system</code>.
+      <p>If a namespace matches any of the discovery selectors, then the mesh discovers the namespace. The mesh excludes namespaces that do not match any of the discovery selectors.</p>
+      </li>
+      </ol>
+      </li>
+      <li>Save the file.</li>
+      </ol>
+      <h4 id="ossm-excluding-namespaces-from-cluster-wide-mesh-cli_ossm-deployment-models" class="group scroll-mt-20">Including and excluding namespaces from a cluster-wide mesh by using the CLI<a href="#ossm-excluding-namespaces-from-cluster-wide-mesh-cli_ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Using the OpenShift Container Platform CLI, you can add discovery selectors to the <code>ServiceMeshControlPlane</code> resource in a cluster-wide mesh. Discovery selectors define the namespaces that the control plane can discover. The control plane ignores any namespace that does not match one of the discovery selectors, which excludes the namespace from the mesh.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you install ingress or egress gateways in the control plane namespace, you must include the control plane namespace in the discovery selectors.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the Red Hat OpenShift Service Mesh Operator.</li>
+      <li>You have deployed a <code>ServiceMeshControlPlane</code> resource.</li>
+      <li>You are logged in as a user with the <code>cluster-admin</code> role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the <code>dedicated-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform CLI.</li>
+      <li>
+      Open the <code>ServiceMeshControlPlane</code> resource as a YAML file by running the following command:
+      <CodeBlock code={"$ oc -n istio-system edit smcp <name> (1)"} lang="terminal" />
+      <ol><li><code>&lt;name&gt;</code> represents the name of the <code>ServiceMeshControlPlane</code> resource.</li></ol>
+      </li>
+      <li>
+      Modify the YAML file so that the <code>spec.meshConfig</code> field of the <code>ServiceMeshControlPlane</code> resource includes the discovery selector.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When configuring namespaces that the <code>Istiod</code> service can discover, exclude namespaces that might contain sensitive services that should not be exposed to the rest of the mesh.</p>
+        </AlertDescription>
+      </Alert>
+      <p>In the following example, the <code>Istiod</code> service discovers any namespace that is labeled <code>istio-discovery: enabled</code> or any namespace that has the name <code>bookinfo</code>, <code>httpbin</code> or <code>istio-system</code>:</p>
+      <CodeBlock code={"apiVersion: maistra.io/v2\nkind: ServiceMeshControlPlane\nmetadata: \n  name: basic\nspec: \n  mode: ClusterWide\n  meshConfig: \n    discoverySelectors:\n    - matchLabels: \n        istio-discovery: enabled (1)\n    - matchExpressions:\n      - key: kubernetes.io/metadata.name (2)\n        operator: In\n        values:\n        - bookinfo\n        - httpbin\n        - istio-system"} lang="yaml" />
+      <ol>
+      <li>Ensures that the mesh discovers namespaces that contain the label <code>istio-discovery: enabled</code>.</li>
+      <li>
+      Ensures that the mesh discovers namespaces <code>bookinfo</code>, <code>httpbin</code> and <code>istio-system</code>.
+      <p>If a namespace matches any of the discovery selectors, then the mesh discovers the namespace. The mesh excludes namespaces that do not match any of the discovery selectors.</p>
+      </li>
+      </ol>
+      </li>
+      <li>Save the file and exit the editor.</li>
+      </ol>
+      <h4 id="ossm-defining-namespace-receive-sidecar-injection-cluster-wide-mesh-console_ossm-deployment-models" class="group scroll-mt-20">Defining which namespaces receive sidecar injection in a cluster-wide mesh by using the web console<a href="#ossm-defining-namespace-receive-sidecar-injection-cluster-wide-mesh-console_ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>By default, the Red Hat OpenShift Service Mesh Operator uses member selectors to identify which namespaces receive sidecar injection. Namespaces that do not match the <code>istio-injection=enabled</code> label as defined in the <code>ServiceMeshMemberRoll</code> resource do not receive sidecar injection.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Using discovery selectors to determine which namespaces the mesh can discover has no effect on sidecar injection. Discovering namespaces and configuring sidecar injection are separate operations.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the Red Hat OpenShift Service Mesh Operator.</li>
+      <li>You have deployed a <code>ServiceMeshControlPlanae</code> resource with the <code>mode: ClusterWide</code> annotation.</li>
+      <li>You are logged in as a user with the <code>cluster-admin</code> role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the <code>dedicated-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Click the Red Hat OpenShift Service Mesh Operator.</li>
+      <li>Click <strong>Istio Service Mesh Member Roll</strong>.</li>
+      <li>Click the <code>ServiceMeshMemberRoll</code> resource.</li>
+      <li>Click <strong>YAML</strong>.</li>
+      <li>
+      Modify the <code>spec.memberSelectors</code> field in the <code>ServiceMeshMemberRoll</code> resource by adding a member selector that matches the <code>inject</code> label. The following example uses <code>istio-injection: enabled</code>:
+      <CodeBlock code={"apiVersion: maistra.io/v1\nkind: ServiceMeshMemberRoll\nmetadata: \n  name: default\nspec: \n  memberSelectors: \n  - matchLabels: \n      istio-injection: enabled (1)"} lang="yaml" />
+      <ol><li>Ensures that the namespace receives sidecar injection.</li></ol>
+      </li>
+      <li>Save the file.</li>
+      </ol>
+      <h4 id="ossm-defining-namespace-receive-sidecar-injection-cluster-wide-mesh-cli_ossm-deployment-models" class="group scroll-mt-20">Defining which namespaces receive sidecar injection in a cluster-wide mesh by using the CLI<a href="#ossm-defining-namespace-receive-sidecar-injection-cluster-wide-mesh-cli_ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>By default, the Red Hat OpenShift Service Mesh Operator uses member selectors to identify which namespaces receive sidecar injection. Namespaces that do not match the <code>istio-injection=enabled</code> label as defined in the <code>ServiceMeshMemberRoll</code> resource do not receive sidecar injection.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Using discovery selectors to determine which namespaces the mesh can discover has no effect on sidecar injection. Discovering namespaces and configuring sidecar injection are separate operations.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the Red Hat OpenShift Service Mesh Operator.</li>
+      <li>You have deployed a <code>ServiceMeshControlPlanae</code> resource with the <code>mode: ClusterWide</code> annotation.</li>
+      <li>You are logged in as a user with the <code>cluster-admin</code> role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the <code>dedicated-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform CLI.</li>
+      <li>
+      Edit the <code>ServiceMeshMemberRoll</code> resource.
+      <CodeBlock code={"$ oc edit smmr -n <controlplane-namespace>"} lang="terminal" />
+      </li>
+      <li>
+      Modify the <code>spec.memberSelectors</code> field in the <code>ServiceMeshMemberRoll</code> resource by adding a member selector that matches the <code>inject</code> label. The following example uses <code>istio-injection: enabled</code>:
+      <CodeBlock code={"apiVersion: maistra.io/v1\nkind: ServiceMeshMemberRoll\nmetadata: \n  name: default\nspec: \n  memberSelectors: \n  - matchLabels: \n      istio-injection: enabled (1)"} lang="yaml" />
+      <ol><li>Ensures that the namespace receives sidecar injection.</li></ol>
+      </li>
+      <li>Save the file and exit the editor.</li>
+      </ol>
+      <h4 id="ossm-excluding-individual-pods-from-cluster-wide-mesh-console_ossm-deployment-models" class="group scroll-mt-20">Excluding individual pods from a cluster-wide mesh by using the web console<a href="#ossm-excluding-individual-pods-from-cluster-wide-mesh-console_ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>A pod receives sidecar injection if it has the <code>sidecar.istio.io/inject: true</code> annotation applied, and the pod exists in a namespace that matches either the label selector or the members list defined in the <code>ServiceMeshMemberRoll</code> resource.</p>
+      <p>If a pod does not have the <code>sidecar.istio.io/inject</code> annotation applied, it cannot receive sidecar injection.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the Red Hat OpenShift Service Mesh Operator.</li>
+      <li>You have deployed a <code>ServiceMeshControlPlane</code> resource with the <code>mode: ClusterWide</code> annotation.</li>
+      <li>You are logged in as a user with the <code>cluster-admin</code> role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the <code>dedicated-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>Navigate to <strong>Workloads</strong> -&gt; <strong>Deployments</strong>.</li>
+      <li>Click the name of the deployment.</li>
+      <li>Click <strong>YAML</strong>.</li>
+      <li>
+      Modify the YAML file to deploy one application that receives sidecar injection and one that does not, as shown in the following example:
+      <CodeBlock code={"apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: nginx\nspec:\n  selector:\n    matchLabels:\n      app: nginx\n  template:\n    metadata:\n      annotations:\n        sidecar.istio.io/inject: 'true' (1)\n      labels:\n        app: nginx\n    spec:\n      containers:\n      - name: nginx\n        image: nginx:1.14.2\n        ports:\n        - containerPort: 80\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: nginx-without-sidecar\nspec:\n  selector:\n    matchLabels:\n      app: nginx-without-sidecar \n  template:\n    metadata:\n      labels:\n        app: nginx-without-sidecar (2)\n    spec:\n      containers:\n      - name: nginx\n        image: nginx:1.14.2\n        ports:\n        - containerPort: 80"} lang="yaml" />
+      <ol>
+      <li>This pod has the <code>sidecar.istio.io/inject</code> annotation applied, so it receives sidecar injection.</li>
+      <li>This pod does not have the annotation, so it does not receive sidecar injection.</li>
+      </ol>
+      </li>
+      <li>Save the file.</li>
+      </ol>
+      <h4 id="ossm-excluding-individual-pods-from-cluster-wide-mesh-cli_ossm-deployment-models" class="group scroll-mt-20">Excluding individual pods from a cluster-wide mesh by using the CLI<a href="#ossm-excluding-individual-pods-from-cluster-wide-mesh-cli_ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>A pod receives sidecar injection if it has the <code>sidecar.istio.io/inject: true</code> annotation applied, and the pod exists in a namespace that matches either the label selector or the members list defined in the <code>ServiceMeshMemberRoll</code> resource.</p>
+      <p>If a pod does not have the <code>sidecar.istio.io/inject</code> annotation applied, it cannot receive sidecar injection.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the Red Hat OpenShift Service Mesh Operator.</li>
+      <li>You have deployed a <code>ServiceMeshControlPlane</code> resource with the <code>mode: ClusterWide</code> annotation.</li>
+      <li>You are logged in as a user with the <code>cluster-admin</code> role. If you use Red Hat OpenShift Dedicated, you are logged in as a user with the <code>dedicated-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform CLI.</li>
+      <li>
+      Edit the deployment by running the following command:
+      <CodeBlock code={"$ oc edit deployment -n <namespace> <deploymentName>"} lang="terminal" />
+      </li>
+      <li>
+      Modify the YAML file to deploy one application that receives sidecar injection and one that does not, as shown in the following example:
+      <CodeBlock code={"apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: nginx\nspec:\n  selector:\n    matchLabels:\n      app: nginx\n  template:\n    metadata:\n      annotations:\n        sidecar.istio.io/inject: 'true' (1)\n      labels:\n        app: nginx\n    spec:\n      containers:\n      - name: nginx\n        image: nginx:1.14.2\n        ports:\n        - containerPort: 80\n---\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: nginx-without-sidecar\nspec:\n  selector:\n    matchLabels:\n      app: nginx-without-sidecar \n  template:\n    metadata:\n      labels:\n        app: nginx-without-sidecar (2)\n    spec:\n      containers:\n      - name: nginx\n        image: nginx:1.14.2\n        ports:\n        - containerPort: 80"} lang="yaml" />
+      <ol>
+      <li>This pod has the <code>sidecar.istio.io/inject</code> annotation applied, so it receives sidecar injection.</li>
+      <li>This pod does not have the annotation, so it does not receive sidecar injection.</li>
+      </ol>
+      </li>
+      <li>Save the file.</li>
+      </ol>
+      <h2 id="ossm-deploy-multi-mesh_ossm-deployment-models" class="group scroll-mt-20">Multimesh or federated deployment model<a href="#ossm-deploy-multi-mesh_ossm-deployment-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p><em>Federation</em> is a deployment model that lets you share services and workloads between separate meshes managed in distinct administrative domains.</p>
+      <p>The Istio multi-cluster model requires a high level of trust between meshes and remote access to all Kubernetes API servers on which the individual meshes reside. Red Hat OpenShift Service Mesh federation takes an opinionated approach to a multi-cluster implementation of Service Mesh that assumes <em>minimal</em> trust between meshes.</p>
+      <p>A <em>federated mesh</em> is a group of meshes behaving as a single mesh. The services in each mesh can be unique services, for example a mesh adding services by importing them from another mesh, can provide additional workloads for the same services across the meshes, providing high availability, or a combination of both. All meshes that are joined into a federated mesh remain managed individually, and you must explicitly configure which services are exported to and imported from other meshes in the federation. Support functions such as certificate generation, metrics and trace collection remain local in their respective meshes.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

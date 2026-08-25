@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"increasing-aws-flavor-size","text":"Selecting a larger AWS instance type for control plane machines"}];
+const headings = [{"depth":1,"slug":"increasing-aws-flavor-size","text":"Selecting a larger AWS instance type for control plane machines"},{"depth":2,"slug":"cpms-changing-aws-instance-type_increasing-aws-flavor-size","text":"Changing the Amazon Web Services instance type by using a control plane machine set"},{"depth":2,"slug":"aws-console-changing-aws-instance-type_increasing-aws-flavor-size","text":"Changing the Amazon Web Services instance type by using the AWS console"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/increasing-aws-flavor-size";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Selecting a larger AWS instance type for control plane machines";
-const description = "If the control plane machines in an {{ aws_first }} cluster require more resources, you can select a larger {{ aws_short }} instance type for the control…" || undefined;
+const description = "If the control plane machines in an Amazon Web Services (AWS) cluster require more resources, you can select a larger AWS instance type for the control…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["scalability_and_performance","scalability_and_performance
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Selecting a larger AWS instance type for control plane machines {#increasing-aws-flavor-size}\n\nIf the control plane machines in an {{ aws_first }} cluster require more resources, you can select a larger {{ aws_short }} instance type for the control plane machines to use.\n\n> [!NOTE]\n> The procedure for clusters that use a control plane machine set is different from the procedure for clusters that do not use a control plane machine set.\n>\n> If you are uncertain about the state of the `ControlPlaneMachineSet` CR in your cluster, you can verify the CR status.\n\n**Additional resources**\n\n- [Verify the CR status](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started)\n\n**Additional resources**\n\n- [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)\n\n**Additional resources**\n\n- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)\n- [AWS documentation about changing the instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/increasing-aws-flavor-size.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Selecting a larger AWS instance type for control plane machines {#increasing-aws-flavor-size}\n\nIf the control plane machines in an Amazon Web Services (AWS) cluster require more resources, you can select a larger AWS instance type for the control plane machines to use.\n\n> [!NOTE]\n> The procedure for clusters that use a control plane machine set is different from the procedure for clusters that do not use a control plane machine set.\n>\n> If you are uncertain about the state of the `ControlPlaneMachineSet` CR in your cluster, you can verify the CR status.\n\n**Additional resources**\n\n- [Verify the CR status](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started)\n\n## Changing the Amazon Web Services instance type by using a control plane machine set {#cpms-changing-aws-instance-type_increasing-aws-flavor-size}\n\nIf you need more resources for your control plane machines, you can change the Amazon Web Services (AWS) instance type that they use. To change the instance type, you update the instance type value in the control plane machine set custom resource (CR).\n\n**Prerequisites**\n\n- You have access to the OpenShift CLI (`oc`) as a user with administrator privileges.\n- Your AWS cluster uses a control plane machine set.\n\n**Procedure**\n\n1. Edit your control plane machine set CR by running the following command:\n\n   ```terminal\n   $ oc edit controlplanemachineset.machine.openshift.io cluster --namespace openshift-machine-api\n   ```\n2. Update the CR to implement your configuration changes:\n\n   ```yaml\n   apiVersion: machine.openshift.io/v1\n   kind: ControlPlaneMachineSet\n   # ...\n   spec:\n     template:\n       machines_v1beta1_machine_openshift_io:\n         spec:\n           providerSpec:\n             value:\n               instanceType: <compatible_aws_instance_type>\n   ```\n\n   where `<compatible_aws_instance_type>` specifies a larger AWS instance type with the same base. For example, you can change this value from `m6i.xlarge` to `m6i.2xlarge` or `m6i.4xlarge`.\n3. Save your changes and exit the object specification.\n\n   When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.\n\n   - For clusters that use the default `RollingUpdate` update strategy, the Operator automatically propagates the changes to your control plane configuration.\n   - For clusters that are configured to use the `OnDelete` update strategy, you must replace your control plane machines manually.\n\n**Additional resources**\n\n- [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)\n\n## Changing the Amazon Web Services instance type by using the AWS console {#aws-console-changing-aws-instance-type_increasing-aws-flavor-size}\n\nYou can change the Amazon Web Services (AWS) instance type that your control plane machines use by updating the instance type in the AWS console.\n\n**Prerequisites**\n\n- You have access to the AWS console with the permissions required to modify the EC2 Instance for your cluster.\n- You have access to the OpenShift Container Platform cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Open the AWS console and fetch the instances for the control plane machines.\n2. Choose one control plane machine instance.\n\n   1. For the selected control plane machine, back up the etcd data by creating an etcd snapshot. For more information, see \"Backing up etcd\".\n   2. In the AWS console, stop the control plane machine instance.\n   3. Select the stopped instance, and click **Actions** -> **Instance Settings** -> **Change instance type**.\n   4. Change the instance to a larger type, ensuring that the type is the same base as the previous selection, and apply changes. For example, you can change `m6i.xlarge` to `m6i.2xlarge` or `m6i.4xlarge`.\n   5. Start the instance.\n   6. If your OpenShift Container Platform cluster has a corresponding `Machine` object for the instance, update the instance type of the object to match the instance type set in the AWS console.\n3. Repeat this process for each control plane machine.\n\n**Additional resources**\n\n- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd)\n- [AWS documentation about changing the instance type](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-resize.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/increasing-aws-flavor-size.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,8 +95,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="increasing-aws-flavor-size" class="group scroll-mt-20">Selecting a larger AWS instance type for control plane machines<a href="#increasing-aws-flavor-size" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>If the control plane machines in an {"{"}{"{"} aws_first {"}"}{"}"} cluster require more resources, you can select a larger {"{"}{"{"} aws_short {"}"}{"}"} instance type for the control plane machines to use.</p>
+      <p>If the control plane machines in an Amazon Web Services (AWS) cluster require more resources, you can select a larger AWS instance type for the control plane machines to use.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
@@ -105,8 +105,58 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </Alert>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-getting-started#cpmso-checking-status_cpmso-getting-started">Verify the CR status</a></li></ul>
+      <h2 id="cpms-changing-aws-instance-type_increasing-aws-flavor-size" class="group scroll-mt-20">Changing the Amazon Web Services instance type by using a control plane machine set<a href="#cpms-changing-aws-instance-type_increasing-aws-flavor-size" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you need more resources for your control plane machines, you can change the Amazon Web Services (AWS) instance type that they use. To change the instance type, you update the instance type value in the control plane machine set custom resource (CR).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the OpenShift CLI (<code>oc</code>) as a user with administrator privileges.</li>
+      <li>Your AWS cluster uses a control plane machine set.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit your control plane machine set CR by running the following command:
+      <CodeBlock code={"$ oc edit controlplanemachineset.machine.openshift.io cluster --namespace openshift-machine-api"} lang="terminal" />
+      </li>
+      <li>
+      Update the CR to implement your configuration changes:
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1\nkind: ControlPlaneMachineSet\n# ...\nspec:\n  template:\n    machines_v1beta1_machine_openshift_io:\n      spec:\n        providerSpec:\n          value:\n            instanceType: <compatible_aws_instance_type>"} lang="yaml" />
+      <p>where <code>&lt;compatible_aws_instance_type&gt;</code> specifies a larger AWS instance type with the same base. For example, you can change this value from <code>m6i.xlarge</code> to <code>m6i.2xlarge</code> or <code>m6i.4xlarge</code>.</p>
+      </li>
+      <li>
+      Save your changes and exit the object specification.
+      <p>When you save an update to the control plane machine set, the Control Plane Machine Set Operator updates the control plane machines according to your configured update strategy.</p>
+      <ul>
+      <li>For clusters that use the default <code>RollingUpdate</code> update strategy, the Operator automatically propagates the changes to your control plane configuration.</li>
+      <li>For clusters that are configured to use the <code>OnDelete</code> update strategy, you must replace your control plane machines manually.</li>
+      </ul>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines">Managing control plane machines with control plane machine sets</a></li></ul>
+      <h2 id="aws-console-changing-aws-instance-type_increasing-aws-flavor-size" class="group scroll-mt-20">Changing the Amazon Web Services instance type by using the AWS console<a href="#aws-console-changing-aws-instance-type_increasing-aws-flavor-size" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can change the Amazon Web Services (AWS) instance type that your control plane machines use by updating the instance type in the AWS console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the AWS console with the permissions required to modify the EC2 Instance for your cluster.</li>
+      <li>You have access to the OpenShift Container Platform cluster as a user with the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Open the AWS console and fetch the instances for the control plane machines.</li>
+      <li>
+      Choose one control plane machine instance.
+      <ol>
+      <li>For the selected control plane machine, back up the etcd data by creating an etcd snapshot. For more information, see "Backing up etcd".</li>
+      <li>In the AWS console, stop the control plane machine instance.</li>
+      <li>Select the stopped instance, and click <strong>Actions</strong> -&gt; <strong>Instance Settings</strong> -&gt; <strong>Change instance type</strong>.</li>
+      <li>Change the instance to a larger type, ensuring that the type is the same base as the previous selection, and apply changes. For example, you can change <code>m6i.xlarge</code> to <code>m6i.2xlarge</code> or <code>m6i.4xlarge</code>.</li>
+      <li>Start the instance.</li>
+      <li>If your OpenShift Container Platform cluster has a corresponding <code>Machine</code> object for the instance, update the instance type of the object to match the instance type set in the AWS console.</li>
+      </ol>
+      </li>
+      <li>Repeat this process for each control plane machine.</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backing-up-etcd">Backing up etcd</a></li>

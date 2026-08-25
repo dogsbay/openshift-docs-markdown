@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-machine-config","text":"Handling machine configuration for {{ hcp }}"}];
+const headings = [{"depth":1,"slug":"hcp-machine-config","text":"Handling machine configuration for hosted control planes"},{"depth":2,"slug":"configuring-node-pools-for-hcp_hcp-machine-config","text":"Configuring node pools for hosted control planes"},{"depth":2,"slug":"hcp-kubeconf-nodepool_hcp-machine-config","text":"Referencing the kubelet configuration in node pools"},{"depth":2,"slug":"node-tuning-hosted-cluster_hcp-machine-config","text":"Configuring node tuning in a hosted cluster"},{"depth":2,"slug":"sriov-operator-hosted-control-planes_hcp-machine-config","text":"Deploying the SR-IOV Operator for hosted control planes"},{"depth":2,"slug":"hcp-configure-ntp_hcp-machine-config","text":"Configuring the NTP server for hosted clusters"},{"depth":2,"slug":"scale-up-down-autoscaler-hcp_hcp-machine-config","text":"Scaling up and down workloads in a hosted cluster"},{"depth":2,"slug":"scale-up-autoscaler-hcp_hcp-machine-config","text":"Scaling up workloads in a hosted cluster"},{"depth":2,"slug":"priority-expander-autoscaler-hcp_hcp-machine-config","text":"Setting the priority expander in a hosted cluster"},{"depth":2,"slug":"balance-ignored-labels-autoscaler-hcp_hcp-machine-config","text":"Balancing ignored labels in a hosted cluster"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-machine-config";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["hosted_control_planes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Handling machine configuration for {{ hcp }} {#hcp-machine-config}\n\nIn a standalone OpenShift Container Platform cluster, a machine config pool manages a set of nodes. You can handle a machine configuration by using the `MachineConfigPool` custom resource (CR).\n\n> [!TIP]\n> You can reference any `machineconfiguration.openshift.io` resources in the `nodepool.spec.config` field of the `NodePool` CR.\n\nIn {{ hcp }}, the `MachineConfigPool` CR does not exist. A node pool contains a set of compute nodes. You can handle a machine configuration by using node pools.\n\nYou can manage your workloads in your hosted cluster by using the cluster autoscaler.\n\n> [!NOTE]\n> In OpenShift Container Platform 4.18 or later, the default container runtime for worker nodes is changed from runC to crun.\n\n**Additional resources**\n\n- [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)\n- [Creating a host inventory by using the command line interface](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html-single/clusters/index#create-host-inventory-cli)\n\n**Additional resources**\n\n- [Scaling the NodePool object for a hosted cluster (bare-metal platforms)](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm)\n- [Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm)\n- [Scaling a node pool ({{ VirtProductName }})](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-machine-config.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Handling machine configuration for hosted control planes {#hcp-machine-config}\n\nIn a standalone OpenShift Container Platform cluster, a machine config pool manages a set of nodes. You can handle a machine configuration by using the `MachineConfigPool` custom resource (CR).\n\n> [!TIP]\n> You can reference any `machineconfiguration.openshift.io` resources in the `nodepool.spec.config` field of the `NodePool` CR.\n\nIn hosted control planes, the `MachineConfigPool` CR does not exist. A node pool contains a set of compute nodes. You can handle a machine configuration by using node pools.\n\nYou can manage your workloads in your hosted cluster by using the cluster autoscaler.\n\n> [!NOTE]\n> In OpenShift Container Platform 4.18 or later, the default container runtime for worker nodes is changed from runC to crun.\n\n## Configuring node pools for hosted control planes {#configuring-node-pools-for-hcp_hcp-machine-config}\n\nIn hosted control planes, you can configure node pools by creating a `MachineConfig` object inside of a config map in the management cluster.\n\n**Procedure**\n\n1. To create a `MachineConfig` object inside of a config map in the management cluster, enter the following information:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: <configmap_name>\n     namespace: clusters\n   data:\n     config: |\n       apiVersion: machineconfiguration.openshift.io/v1\n       kind: MachineConfig\n       metadata:\n         labels:\n           machineconfiguration.openshift.io/role: worker\n         name: <machineconfig_name>\n       spec:\n         config:\n           ignition:\n             version: 3.2.0\n           storage:\n             files:\n             - contents:\n                 source: data:...\n               mode: 420\n               overwrite: true\n               path: ${PATH}\n   ```\n\n   The `path` field specifies the path on the node where the `MachineConfig` object is stored.\n2. After you add the object to the config map, you can apply the config map to the node pool as follows:\n\n   ```yaml\n   $ oc edit nodepool <nodepool_name> --namespace <hosted_cluster_namespace>\n   ```\n3. Edit the `NodePool` resource to include the config map:\n\n   ```yaml\n   apiVersion: hypershift.openshift.io/v1alpha1\n   kind: NodePool\n   metadata:\n   # ...\n     name: nodepool-1\n     namespace: clusters\n   # ...\n   spec:\n     config:\n     - name: <configmap_name>\n   # ...\n   ```\n\n   Replace `<configmap_name>` with the name of your config map.\n\n## Referencing the kubelet configuration in node pools {#hcp-kubeconf-nodepool_hcp-machine-config}\n\nTo reference your kubelet configuration in node pools, you add the kubelet configuration in a config map and then apply the config map in the `NodePool` resource.\n\n**Procedure**\n\n1. Add the kubelet configuration inside of a config map in the management cluster by entering the following information:\n\n   ```yaml {title=\"Example ConfigMap object with the kubelet configuration\"}\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: <configmap_name>\n     namespace: clusters\n   data:\n     config: |\n       apiVersion: machineconfiguration.openshift.io/v1\n       kind: KubeletConfig\n       metadata:\n         name: <kubeletconfig_name>\n       spec:\n         kubeletConfig:\n           registerWithTaints:\n           - key: \"example.sh/unregistered\"\n             value: \"true\"\n             effect: \"NoExecute\"\n   ```\n\n   - `<configmap_name>` specifies the name of your config map.\n   - `<kubeletconfig_name>` specifies the name of the `KubeletConfig` resource.\n2. Apply the config map to the node pool by entering the following command:\n\n   ```yaml\n   $ oc edit nodepool <nodepool_name> --namespace clusters\n   ```\n\n   Replace `<nodepool_name>` with the name of your node pool.\n\n   ```yaml {title=\"Example NodePool resource configuration\"}\n   apiVersion: hypershift.openshift.io/v1alpha1\n   kind: NodePool\n   metadata:\n   # ...\n     name: nodepool-1\n     namespace: clusters\n   # ...\n   spec:\n     config:\n     - name: example-configmap-1\n   # ...\n   ```\n\n## Configuring node tuning in a hosted cluster {#node-tuning-hosted-cluster_hcp-machine-config}\n\nTo set node-level tuning on the nodes in your hosted cluster, you can use the Node Tuning Operator. In hosted control planes, you can configure node tuning by creating config maps that contain `Tuned` objects and referencing those config maps in your node pools.\n\n**Procedure**\n\n1. Create a config map that contains a valid tuned manifest, and reference the manifest in a node pool. In the following example, a `Tuned` manifest defines a profile that sets `vm.dirty_ratio` to 55 on nodes that contain the `tuned-1-node-label` node label with any value. Save the following `ConfigMap` manifest in a file named `tuned-1.yaml`:\n\n   ```yaml\n       apiVersion: v1\n       kind: ConfigMap\n       metadata:\n         name: tuned-1\n         namespace: clusters\n       data:\n         tuning: |\n           apiVersion: tuned.openshift.io/v1\n           kind: Tuned\n           metadata:\n             name: tuned-1\n             namespace: openshift-cluster-node-tuning-operator\n           spec:\n             profile:\n             - data: |\n                 [main]\n                 summary=Custom OpenShift profile\n                 include=openshift-node\n                 [sysctl]\n                 vm.dirty_ratio=\"55\"\n               name: tuned-1-profile\n             recommend:\n             - priority: 20\n               profile: tuned-1-profile\n   ```\n\n   > [!NOTE]\n   > If you do not add any labels to an entry in the `spec.recommend` section of the Tuned spec, node-pool-based matching is assumed, so the highest priority profile in the `spec.recommend` section is applied to nodes in the pool. Although you can achieve more fine-grained node-label-based matching by setting a label value in the Tuned `.spec.recommend.match` section, node labels will not persist during an upgrade unless you set the `.spec.management.upgradeType` value of the node pool to `InPlace`.\n2. Create the `ConfigMap` object in the management cluster:\n\n   ```terminal\n   $ oc --kubeconfig=\"$MGMT_KUBECONFIG\" create -f tuned-1.yaml\n   ```\n3. Reference the `ConfigMap` object in the `spec.tuningConfig` field of the node pool, either by editing a node pool or creating one. In this example, assume that you have only one `NodePool`, named `nodepool-1`, which contains 2 nodes.\n\n   ```yaml\n       apiVersion: hypershift.openshift.io/v1alpha1\n       kind: NodePool\n       metadata:\n         ...\n         name: nodepool-1\n         namespace: clusters\n       ...\n       spec:\n         ...\n         tuningConfig:\n         - name: tuned-1\n       status:\n       ...\n   ```\n\n   > [!NOTE]\n   > You can reference the same config map in multiple node pools. In hosted control planes, the Node Tuning Operator appends a hash of the node pool name and namespace to the name of the Tuned CRs to distinguish them. Outside of this case, do not create multiple TuneD profiles of the same name in different Tuned CRs for the same hosted cluster.\n\n**Verification**\n\nNow that you have created the `ConfigMap` object that contains a `Tuned` manifest and referenced it in a `NodePool`, the Node Tuning Operator syncs the `Tuned` objects into the hosted cluster. You can verify which `Tuned` objects are defined and which TuneD profiles are applied to each node.\n\n1. List the `Tuned` objects in the hosted cluster:\n\n   ```terminal\n   $ oc --kubeconfig=\"$HC_KUBECONFIG\" get tuned.tuned.openshift.io \\\n     -n openshift-cluster-node-tuning-operator\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME       AGE\n   default    7m36s\n   rendered   7m36s\n   tuned-1    65s\n   ```\n2. List the `Profile` objects in the hosted cluster:\n\n   ```terminal\n   $ oc --kubeconfig=\"$HC_KUBECONFIG\" get profile.tuned.openshift.io \\\n     -n openshift-cluster-node-tuning-operator\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                           TUNED            APPLIED   DEGRADED   AGE\n   nodepool-1-worker-1            tuned-1-profile  True      False      7m43s\n   nodepool-1-worker-2            tuned-1-profile  True      False      7m14s\n   ```\n\n   > [!NOTE]\n   > If no custom profiles are created, the `openshift-node` profile is applied by default.\n3. To confirm that the tuning was applied correctly, start a debug shell on a node and check the sysctl values:\n\n   ```terminal\n   $ oc --kubeconfig=\"$HC_KUBECONFIG\" \\\n     debug node/nodepool-1-worker-1 -- chroot /host sysctl vm.dirty_ratio\n   ```\n\n   ```terminal {title=\"Example output\"}\n   vm.dirty_ratio = 55\n   ```\n\n## Deploying the SR-IOV Operator for hosted control planes {#sriov-operator-hosted-control-planes_hcp-machine-config}\n\nAfter you configure and deploy your hosting service cluster, you can create a subscription to the SR-IOV Operator on a hosted cluster. The SR-IOV pod runs on worker machines rather than the control plane.\n\n**Prerequisites**\n\nYou must configure and deploy the hosted cluster on AWS.\n\n**Procedure**\n\n1. Create a namespace and an Operator group:\n\n   ```yaml\n   apiVersion: v1\n   kind: Namespace\n   metadata:\n     name: openshift-sriov-network-operator\n   ---\n   apiVersion: operators.coreos.com/v1\n   kind: OperatorGroup\n   metadata:\n     name: sriov-network-operators\n     namespace: openshift-sriov-network-operator\n   spec:\n     targetNamespaces:\n     - openshift-sriov-network-operator\n   ```\n2. Create a subscription to the SR-IOV Operator:\n\n   ```yaml\n   apiVersion: operators.coreos.com/v1alpha1\n   kind: Subscription\n   metadata:\n     name: sriov-network-operator-subsription\n     namespace: openshift-sriov-network-operator\n   spec:\n     channel: stable\n     name: sriov-network-operator\n     config:\n       nodeSelector:\n         node-role.kubernetes.io/worker: \"\"\n     source: redhat-operators\n     sourceNamespace: openshift-marketplace\n   ```\n\n**Verification**\n\n1. To verify that the SR-IOV Operator is ready, run the following command and view the resulting output:\n\n   ```terminal\n   $ oc get csv -n openshift-sriov-network-operator\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                         DISPLAY                   VERSION               REPLACES                                     PHASE\n   sriov-network-operator.{{ product_version }}.0-202211021237   SR-IOV Network Operator   {{ product_version }}.0-202211021237   sriov-network-operator.{{ product_version }}.0-202210290517   Succeeded\n   ```\n2. To verify that the SR-IOV pods are deployed, run the following command:\n\n   ```terminal\n   $ oc get pods -n openshift-sriov-network-operator\n   ```\n\n## Configuring the NTP server for hosted clusters {#hcp-configure-ntp_hcp-machine-config}\n\nYou can configure the Network Time Protocol (NTP) server for your hosted clusters by using Butane.\n\n**Procedure**\n\n1. Create a Butane config file, `99-worker-chrony.bu`, that includes the contents of the `chrony.conf` file. For more information about Butane, see \"Creating machine configs with Butane\".\n\n   ```yaml {title=\"Example 99-worker-chrony.bu configuration\"}\n   # ...\n   variant: openshift\n   version: {{ product_version }}.0\n   metadata:\n     name: 99-worker-chrony\n     labels:\n       machineconfiguration.openshift.io/role: worker\n   storage:\n     files:\n     - path: /etc/chrony.conf\n       mode: 0644\n       overwrite: true\n       contents:\n         inline: |\n           pool 0.rhel.pool.ntp.org iburst\n           driftfile /var/lib/chrony/drift\n           makestep 1.0 3\n           rtcsync\n           logdir /var/log/chrony\n   # ...\n   ```\n\n   - `storage.files.mode` specifies an octal value mode for the `mode` field in the machine config file. After you create the file and apply the changes, the `mode` field is converted to a decimal value.\n   - `storage.files.contents.inline` specifies any valid, reachable time source, such as the one provided by your Dynamic Host Configuration Protocol (DHCP) server.\n\n     > [!NOTE]\n     > For machine-to-machine communication, the NTP on the User Datagram Protocol (UDP) port is `123`. If you configured an external NTP time server, you must open UDP port `123`.\n2. Use Butane to generate a `MachineConfig` object file, `99-worker-chrony.yaml`, that contains a configuration that Butane sends to the nodes. Run the following command:\n\n   ```terminal\n   $ butane 99-worker-chrony.bu -o 99-worker-chrony.yaml\n   ```\n\n   ```yaml {title=\"Example 99-worker-chrony.yaml configuration\"}\n   # Generated by Butane; do not edit\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: worker\n     name: <machineconfig_name>\n   spec:\n     config:\n       ignition:\n         version: 3.2.0\n       storage:\n         files:\n           - contents:\n               source: data:...\n             mode: 420\n             overwrite: true\n             path: /example/path\n   ```\n3. Add the contents of the `99-worker-chrony.yaml` file inside of a config map in the management cluster:\n\n   ```yaml {title=\"Example config map\"}\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: <configmap_name>\n     namespace: <namespace>\n   data:\n     config: |\n       apiVersion: machineconfiguration.openshift.io/v1\n       kind: MachineConfig\n       metadata:\n         labels:\n           machineconfiguration.openshift.io/role: worker\n         name: <machineconfig_name>\n       spec:\n         config:\n           ignition:\n             version: 3.2.0\n           storage:\n             files:\n             - contents:\n                 source: data:...\n               mode: 420\n               overwrite: true\n               path: /example/path\n   # ...\n   ```\n\n   Replace `<namespace>` with the name of your namespace where you created the node pool, such as `clusters`.\n4. Apply the config map to your node pool by running the following command:\n\n   ```terminal\n   $ oc edit nodepool <nodepool_name> --namespace <hosted_cluster_namespace>\n   ```\n\n   ```yaml {title=\"Example NodePool configuration\"}\n   apiVersion: hypershift.openshift.io/v1alpha1\n   kind: NodePool\n   metadata:\n   # ...\n     name: nodepool-1\n     namespace: clusters\n   # ...\n   spec:\n     config:\n     - name: example-config-map\n   # ...\n   ```\n5. Add the list of your NTP servers in the `infra-env.yaml` file, which defines the `InfraEnv` custom resource (CR):\n\n   ```yaml {title=\"Example infra-env.yaml file\"}\n   apiVersion: agent-install.openshift.io/v1beta1\n   kind: InfraEnv\n   # ...\n   spec:\n     additionalNTPSources:\n     - <ntp_server>\n     - <ntp_server1>\n     - <ntp_server2>\n   # ...\n   ```\n\n   Replace `<ntp_server>` with the name of your NTP server. For more details about creating a host inventory and the `InfraEnv` CR, see \"Creating a host inventory\".\n6. Apply the `InfraEnv` CR by running the following command:\n\n   ```terminal\n   $ oc apply -f infra-env.yaml\n   ```\n\n**Verification**\n\n- Check the following fields to know the status of your host inventory:\n\n  - `conditions`:  The standard Kubernetes conditions indicating if the image was created successfully.\n  - `isoDownloadURL`: The URL to download the Discovery Image.\n  - `createdTime`: The time at which the image was last created. If you modify the `InfraEnv` CR, ensure that you have updated the timestamp before downloading a new image.\n\n    Verify that your host inventory is created by running the following command:\n\n    ```terminal\n    $ oc describe infraenv <infraenv_resource_name> -n <infraenv_namespace>\n    ```\n\n    > [!NOTE]\n    > If you modify the `InfraEnv` CR, confirm that the `InfraEnv` CR has created a new Discovery Image by looking at the `createdTime` field. If you already booted hosts, boot them again with the latest Discovery Image.\n\n**Additional resources**\n\n- [Creating machine configs with Butane](/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing)\n- [Creating a host inventory by using the command line interface](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html-single/clusters/index#create-host-inventory-cli)\n\n## Scaling up and down workloads in a hosted cluster {#scale-up-down-autoscaler-hcp_hcp-machine-config}\n\nTo scale up and down the workloads in your hosted cluster, you can use the `ScaleUpAndScaleDown` behavior. The compute nodes scale up when you add workloads and scale down when you delete workloads.\n\n**Prerequisites**\n\n- You have created the `HostedCluster` and `NodePool` resources.\n\n**Procedure**\n\n1. Enable cluster autoscaling for your hosted cluster by setting the scaling behavior to `ScaleUpAndScaleDown`. Run the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n     hostedcluster <hosted_cluster_name> \\\n     --type=merge \\\n     --patch='{\"spec\": {\"autoscaling\": {\"scaling\": \"ScaleUpAndScaleDown\", \"maxPodGracePeriod\": 60, \"scaleDown\": {\"utilizationThresholdPercent\": 50}}}}'\n   ```\n2. Remove the `spec.replicas` field from the `NodePool` resource to allow cluster autoscaler to manage the node count. Run the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n     nodepool <node_pool_name> \\\n     --type=json  \\\n     --patch='[{\"op\": \"remove\", \"path\": \"/spec/replicas\"}]'\n   ```\n3. Enable cluster autoscaling to configure the minimum and maximum node counts for your node pools. Run the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n     nodepool <nodepool_name> \\\n     --type=merge --patch='{\"spec\": {\"autoScaling\": {\"max\": 3, \"min\": 1}}}'\n   ```\n\n**Verification**\n\n- To verify that all compute nodes are in the `Ready` status, run the following command:\n\n  ```terminal\n  $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes\n  ```\n\n**Additional resources**\n\n- [Scaling the NodePool object for a hosted cluster (bare-metal platforms)](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm)\n- [Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)](/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm)\n- [Scaling a node pool (OpenShift Virtualization)](/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt)\n\n## Scaling up workloads in a hosted cluster {#scale-up-autoscaler-hcp_hcp-machine-config}\n\nTo scale up the workloads in your hosted cluster, you can use the `ScaleUpOnly` behavior.\n\n**Prerequisites**\n\n- You have created the `HostedCluster` and `NodePool` resources.\n\n**Procedure**\n\n1. Enable cluster autoscaling for your hosted cluster by setting the scaling behavior to `ScaleUpOnly`. Run the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> hostedcluster <hosted_cluster_name> --type=merge --patch='{\"spec\": {\"autoscaling\": {\"scaling\": \"ScaleUpOnly\", \"maxPodGracePeriod\": 60}}}'\n   ```\n2. Remove the `spec.replicas` field from the `NodePool` resource to allow the cluster autoscaler to manage the node count. Additionally, enable cluster autoscaling to configure the minimum and maximum node counts for your node pools. Enter the following command:\n\n   ```terminal\n   $ oc -n clusters patch nodepool yhe-hosted-ap-northeast-1a \\\n     --type=json \\\n     -p='[\n       {\"op\":\"remove\",\"path\":\"/spec/replicas\"},\n       {\"op\":\"add\",\"path\":\"/spec/autoScaling\",\"value\":{\"min\":2,\"max\":4}}\n     ]'\n   ```\n\n**Verification**\n\n1. Verify that all compute nodes are in the `Ready` status by running the following command:\n\n   ```terminal\n   $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes\n   ```\n2. Verify that the compute nodes are scaled up successfully by checking the node count for your node pools. Run the following command:\n\n   ```terminal\n   $ oc --kubeconfig nested.config get nodes -l 'hypershift.openshift.io/nodePool=<node_pool_name>'\n   ```\n\n## Setting the priority expander in a hosted cluster {#priority-expander-autoscaler-hcp_hcp-machine-config}\n\nYou can define the priority for your node pools and create high priority machines before low priority machines by using the priority expander in your hosted cluster.\n\n**Prerequisites**\n\n- You have created the `HostedCluster` and `NodePool` resources.\n\n**Procedure**\n\n1. To define the priority for your node pools, create a config map named `priority-expander-configmap.yaml` in your hosted cluster. Node pools with low numbers receive high priority. See the following example configuration:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: cluster-autoscaler-priority-expander\n     namespace: kube-system\n   # ...\n   data:\n     priorities: |-\n       10:\n         - \".*<node_pool_name1>.*\"\n       100:\n         - \".*<node_pool_name2>.*\"\n   # ...\n   ```\n2. Generate the `kubeconfig` file by running the following command:\n\n   ```terminal\n   $ hcp create kubeconfig --name <hosted_cluster_name> --namespace <hosted_cluster_namespace> > nested.config\n   ```\n3. Create the `ConfigMap` object by running the following command:\n\n   ```terminal\n   $ oc --kubeconfig nested.config create -f priority-expander-configmap.yaml\n   ```\n4. Enable cluster autoscaling by setting the priority expander for your hosted cluster. Run the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n     hostedcluster <hosted_cluster_name> \\\n     --type=merge \\\n     --patch='{\"spec\": {\"autoscaling\": {\"scaling\": \"ScaleUpOnly\", \"maxPodGracePeriod\": 60, \"expanders\": [\"Priority\"]}}}'\n   ```\n5. Remove the `spec.replicas` field from the `NodePool` resource to allow the cluster autoscaler to manage the node count. Run the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n     nodepool <node_pool_name> \\\n     --type=json\n     --patch='[{\"op\": \"remove\", \"path\": \"/spec/replicas\"}]'\n   ```\n6. Enable cluster autoscaling to configure the minimum and maximum node counts for your node pools. Run the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n     nodepool <nodepool_name> \\\n     --type=merge --patch='{\"spec\": {\"autoScaling\": {\"max\": 3, \"min\": 1}}}'\n   ```\n\n**Verification**\n\n- After you apply new workloads, verify that the compute nodes associated with the priority node pool are scaled up first. Run the following command to check the status of the compute node:\n\n  ```terminal\n  $ oc --kubeconfig nested.config get nodes -l 'hypershift.openshift.io/nodePool=<node_pool_name>'\n  ```\n\n## Balancing ignored labels in a hosted cluster {#balance-ignored-labels-autoscaler-hcp_hcp-machine-config}\n\nAfter you scale up your node pools, you can use `balancingIgnoredLabels` to evenly distribute the machines across node pools.\n\n**Prerequisites**\n\n- You have created the `HostedCluster` and `NodePool` resources.\n\n**Procedure**\n\n1. Add the `node.group.balancing.ignored` label to each of the relevant node pool by using the same label value. Run the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n     nodepool <node_pool_name> \\\n     --type=merge \\\n     --patch='{\"spec\": {\"nodeLabels\": {\"node.group.balancing.ignored\": \"<label_name>\"}}}'\n   ```\n2. Enable cluster autoscaling for your hosted cluster by running the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n    hostedcluster <hosted_cluster_name> \\\n    --type=merge \\\n    --patch='{\"spec\": {\"autoscaling\": {\"balancingIgnoredLabels\": [\"node.group.balancing.ignored\"]}}}'\n   ```\n3. Remove the `spec.replicas` field from the `NodePool` resource to allow the cluster autoscaler to manage the node count. Run the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n     nodepool <node_pool_name> \\\n     --type=json \\\n     --patch='[{\"op\": \"remove\", \"path\": \"/spec/replicas\"}]'\n   ```\n4. Enable cluster autoscaling to configure the minimum and maximum node counts for your node pools. Run the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n     nodepool <nodepool_name> \\\n     --type=merge --patch='{\"spec\": {\"autoScaling\": {\"max\": 3, \"min\": 1}}}'\n   ```\n5. Generate the `kubeconfig` file by running the following command:\n\n   ```terminal\n   $ hcp create kubeconfig \\\n     --name <hosted_cluster_name> \\\n     --namespace <hosted_cluster_namespace> > nested.config\n   ```\n6. After you scale up the node pools, check that all compute nodes are in the `Ready` status by running the following command:\n\n   ```terminal\n   $ oc --kubeconfig nested.config get nodes -l 'hypershift.openshift.io/nodePool=<node_pool_name>'\n   ```\n7. Confirm that the new nodes contain the `node.group.balancing.ignored` label by running the following command:\n\n   ```terminal\n   $ oc --kubeconfig nested.config get nodes \\\n     -l 'hypershift.openshift.io/nodePool=<node_pool_name>' \\\n     -o jsonpath='{.items[*].metadata.labels}' | grep \"node.group.balancing.ignored\"\n   ```\n8. Enable cluster autoscaling for your hosted cluster by running the following command:\n\n   ```terminal\n   $ oc patch -n <hosted_cluster_namespace> \\\n     hostedcluster <hosted_cluster_name> \\\n     --type=merge \\\n     --patch='{\"spec\": {\"autoscaling\": {\"balancingIgnoredLabels\": [\"node.group.balancing.ignored\"]}}}'\n   ```\n\n**Verification**\n\n- Verify that the number of nodes provisioned by each node pool is evenly distributed. For example, if you created three node pools with the same label value, the node counts might be 3, 2, and 3. Run the following command:\n\n  ```terminal\n  $ oc --kubeconfig nested.config get nodes -l 'hypershift.openshift.io/nodePool=<node_pool_name>'\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-machine-config.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,8 +94,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-machine-config" class="group scroll-mt-20">Handling machine configuration for {"{"}{"{"} hcp {"}"}{"}"}<a href="#hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <h1 id="hcp-machine-config" class="group scroll-mt-20">Handling machine configuration for hosted control planes<a href="#hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>In a standalone OpenShift Container Platform cluster, a machine config pool manages a set of nodes. You can handle a machine configuration by using the <code>MachineConfigPool</code> custom resource (CR).</p>
       <Alert variant="tip" class="my-4">
         <AlertTitle>Tip</AlertTitle>
@@ -102,7 +102,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>You can reference any <code>machineconfiguration.openshift.io</code> resources in the <code>nodepool.spec.config</code> field of the <code>NodePool</code> CR.</p>
         </AlertDescription>
       </Alert>
-      <p>In {"{"}{"{"} hcp {"}"}{"}"}, the <code>MachineConfigPool</code> CR does not exist. A node pool contains a set of compute nodes. You can handle a machine configuration by using node pools.</p>
+      <p>In hosted control planes, the <code>MachineConfigPool</code> CR does not exist. A node pool contains a set of compute nodes. You can handle a machine configuration by using node pools.</p>
       <p>You can manage your workloads in your hosted cluster by using the cluster autoscaler.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
@@ -110,24 +110,338 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>In OpenShift Container Platform 4.18 or later, the default container runtime for worker nodes is changed from runC to crun.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/configuring-node-pools-for-hcp.md"></p>
-      <p class="/modules/hcp-kubeconf-nodepool.md"></p>
-      <p class="/modules/node-tuning-hosted-cluster.md"></p>
-      <p class="/modules/sriov-operator-hosted-control-planes.md"></p>
-      <p class="/modules/hcp-configure-ntp.md"></p>
+      <h2 id="configuring-node-pools-for-hcp_hcp-machine-config" class="group scroll-mt-20">Configuring node pools for hosted control planes<a href="#configuring-node-pools-for-hcp_hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In hosted control planes, you can configure node pools by creating a <code>MachineConfig</code> object inside of a config map in the management cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To create a <code>MachineConfig</code> object inside of a config map in the management cluster, enter the following information:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: <configmap_name>\n  namespace: clusters\ndata:\n  config: |\n    apiVersion: machineconfiguration.openshift.io/v1\n    kind: MachineConfig\n    metadata:\n      labels:\n        machineconfiguration.openshift.io/role: worker\n      name: <machineconfig_name>\n    spec:\n      config:\n        ignition:\n          version: 3.2.0\n        storage:\n          files:\n          - contents:\n              source: data:...\n            mode: 420\n            overwrite: true\n            path: ${PATH}"} lang="yaml" />
+      <p>The <code>path</code> field specifies the path on the node where the <code>MachineConfig</code> object is stored.</p>
+      </li>
+      <li>
+      After you add the object to the config map, you can apply the config map to the node pool as follows:
+      <CodeBlock code={"$ oc edit nodepool <nodepool_name> --namespace <hosted_cluster_namespace>"} lang="yaml" />
+      </li>
+      <li>
+      Edit the <code>NodePool</code> resource to include the config map:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1alpha1\nkind: NodePool\nmetadata:\n# ...\n  name: nodepool-1\n  namespace: clusters\n# ...\nspec:\n  config:\n  - name: <configmap_name>\n# ..."} lang="yaml" />
+      <p>Replace <code>&lt;configmap_name&gt;</code> with the name of your config map.</p>
+      </li>
+      </ol>
+      <h2 id="hcp-kubeconf-nodepool_hcp-machine-config" class="group scroll-mt-20">Referencing the kubelet configuration in node pools<a href="#hcp-kubeconf-nodepool_hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To reference your kubelet configuration in node pools, you add the kubelet configuration in a config map and then apply the config map in the <code>NodePool</code> resource.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add the kubelet configuration inside of a config map in the management cluster by entering the following information:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: <configmap_name>\n  namespace: clusters\ndata:\n  config: |\n    apiVersion: machineconfiguration.openshift.io/v1\n    kind: KubeletConfig\n    metadata:\n      name: <kubeletconfig_name>\n    spec:\n      kubeletConfig:\n        registerWithTaints:\n        - key: \"example.sh/unregistered\"\n          value: \"true\"\n          effect: \"NoExecute\""} lang="yaml" title="Example ConfigMap object with the kubelet configuration" />
+      <ul>
+      <li><code>&lt;configmap_name&gt;</code> specifies the name of your config map.</li>
+      <li><code>&lt;kubeletconfig_name&gt;</code> specifies the name of the <code>KubeletConfig</code> resource.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the config map to the node pool by entering the following command:
+      <CodeBlock code={"$ oc edit nodepool <nodepool_name> --namespace clusters"} lang="yaml" />
+      <p>Replace <code>&lt;nodepool_name&gt;</code> with the name of your node pool.</p>
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1alpha1\nkind: NodePool\nmetadata:\n# ...\n  name: nodepool-1\n  namespace: clusters\n# ...\nspec:\n  config:\n  - name: example-configmap-1\n# ..."} lang="yaml" title="Example NodePool resource configuration" />
+      </li>
+      </ol>
+      <h2 id="node-tuning-hosted-cluster_hcp-machine-config" class="group scroll-mt-20">Configuring node tuning in a hosted cluster<a href="#node-tuning-hosted-cluster_hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To set node-level tuning on the nodes in your hosted cluster, you can use the Node Tuning Operator. In hosted control planes, you can configure node tuning by creating config maps that contain <code>Tuned</code> objects and referencing those config maps in your node pools.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a config map that contains a valid tuned manifest, and reference the manifest in a node pool. In the following example, a <code>Tuned</code> manifest defines a profile that sets <code>vm.dirty_ratio</code> to 55 on nodes that contain the <code>tuned-1-node-label</code> node label with any value. Save the following <code>ConfigMap</code> manifest in a file named <code>tuned-1.yaml</code>:
+      <CodeBlock code={"    apiVersion: v1\n    kind: ConfigMap\n    metadata:\n      name: tuned-1\n      namespace: clusters\n    data:\n      tuning: |\n        apiVersion: tuned.openshift.io/v1\n        kind: Tuned\n        metadata:\n          name: tuned-1\n          namespace: openshift-cluster-node-tuning-operator\n        spec:\n          profile:\n          - data: |\n              [main]\n              summary=Custom OpenShift profile\n              include=openshift-node\n              [sysctl]\n              vm.dirty_ratio=\"55\"\n            name: tuned-1-profile\n          recommend:\n          - priority: 20\n            profile: tuned-1-profile"} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you do not add any labels to an entry in the <code>spec.recommend</code> section of the Tuned spec, node-pool-based matching is assumed, so the highest priority profile in the <code>spec.recommend</code> section is applied to nodes in the pool. Although you can achieve more fine-grained node-label-based matching by setting a label value in the Tuned <code>.spec.recommend.match</code> section, node labels will not persist during an upgrade unless you set the <code>.spec.management.upgradeType</code> value of the node pool to <code>InPlace</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Create the <code>ConfigMap</code> object in the management cluster:
+      <CodeBlock code={"$ oc --kubeconfig=\"$MGMT_KUBECONFIG\" create -f tuned-1.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Reference the <code>ConfigMap</code> object in the <code>spec.tuningConfig</code> field of the node pool, either by editing a node pool or creating one. In this example, assume that you have only one <code>NodePool</code>, named <code>nodepool-1</code>, which contains 2 nodes.
+      <CodeBlock code={"    apiVersion: hypershift.openshift.io/v1alpha1\n    kind: NodePool\n    metadata:\n      ...\n      name: nodepool-1\n      namespace: clusters\n    ...\n    spec:\n      ...\n      tuningConfig:\n      - name: tuned-1\n    status:\n    ..."} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can reference the same config map in multiple node pools. In hosted control planes, the Node Tuning Operator appends a hash of the node pool name and namespace to the name of the Tuned CRs to distinguish them. Outside of this case, do not create multiple TuneD profiles of the same name in different Tuned CRs for the same hosted cluster.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <p>Now that you have created the <code>ConfigMap</code> object that contains a <code>Tuned</code> manifest and referenced it in a <code>NodePool</code>, the Node Tuning Operator syncs the <code>Tuned</code> objects into the hosted cluster. You can verify which <code>Tuned</code> objects are defined and which TuneD profiles are applied to each node.</p>
+      <ol>
+      <li>
+      List the <code>Tuned</code> objects in the hosted cluster:
+      <CodeBlock code={"$ oc --kubeconfig=\"$HC_KUBECONFIG\" get tuned.tuned.openshift.io \\\n  -n openshift-cluster-node-tuning-operator"} lang="terminal" />
+      <CodeBlock code={"NAME       AGE\ndefault    7m36s\nrendered   7m36s\ntuned-1    65s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      List the <code>Profile</code> objects in the hosted cluster:
+      <CodeBlock code={"$ oc --kubeconfig=\"$HC_KUBECONFIG\" get profile.tuned.openshift.io \\\n  -n openshift-cluster-node-tuning-operator"} lang="terminal" />
+      <CodeBlock code={"NAME                           TUNED            APPLIED   DEGRADED   AGE\nnodepool-1-worker-1            tuned-1-profile  True      False      7m43s\nnodepool-1-worker-2            tuned-1-profile  True      False      7m14s"} lang="terminal" title="Example output" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If no custom profiles are created, the <code>openshift-node</code> profile is applied by default.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      To confirm that the tuning was applied correctly, start a debug shell on a node and check the sysctl values:
+      <CodeBlock code={"$ oc --kubeconfig=\"$HC_KUBECONFIG\" \\\n  debug node/nodepool-1-worker-1 -- chroot /host sysctl vm.dirty_ratio"} lang="terminal" />
+      <CodeBlock code={"vm.dirty_ratio = 55"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="sriov-operator-hosted-control-planes_hcp-machine-config" class="group scroll-mt-20">Deploying the SR-IOV Operator for hosted control planes<a href="#sriov-operator-hosted-control-planes_hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you configure and deploy your hosting service cluster, you can create a subscription to the SR-IOV Operator on a hosted cluster. The SR-IOV pod runs on worker machines rather than the control plane.</p>
+      <p><strong>Prerequisites</strong></p>
+      <p>You must configure and deploy the hosted cluster on AWS.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a namespace and an Operator group:
+      <CodeBlock code={"apiVersion: v1\nkind: Namespace\nmetadata:\n  name: openshift-sriov-network-operator\n---\napiVersion: operators.coreos.com/v1\nkind: OperatorGroup\nmetadata:\n  name: sriov-network-operators\n  namespace: openshift-sriov-network-operator\nspec:\n  targetNamespaces:\n  - openshift-sriov-network-operator"} lang="yaml" />
+      </li>
+      <li>
+      Create a subscription to the SR-IOV Operator:
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: sriov-network-operator-subsription\n  namespace: openshift-sriov-network-operator\nspec:\n  channel: stable\n  name: sriov-network-operator\n  config:\n    nodeSelector:\n      node-role.kubernetes.io/worker: \"\"\n  source: redhat-operators\n  sourceNamespace: openshift-marketplace"} lang="yaml" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      To verify that the SR-IOV Operator is ready, run the following command and view the resulting output:
+      <CodeBlock code={"$ oc get csv -n openshift-sriov-network-operator"} lang="terminal" />
+      <CodeBlock code={"NAME                                         DISPLAY                   VERSION               REPLACES                                     PHASE\nsriov-network-operator.{{ product_version }}.0-202211021237   SR-IOV Network Operator   {{ product_version }}.0-202211021237   sriov-network-operator.{{ product_version }}.0-202210290517   Succeeded"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To verify that the SR-IOV pods are deployed, run the following command:
+      <CodeBlock code={"$ oc get pods -n openshift-sriov-network-operator"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="hcp-configure-ntp_hcp-machine-config" class="group scroll-mt-20">Configuring the NTP server for hosted clusters<a href="#hcp-configure-ntp_hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure the Network Time Protocol (NTP) server for your hosted clusters by using Butane.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a Butane config file, <code>99-worker-chrony.bu</code>, that includes the contents of the <code>chrony.conf</code> file. For more information about Butane, see "Creating machine configs with Butane".
+      <CodeBlock code={"# ...        \nvariant: openshift\nversion: {{ product_version }}.0\nmetadata:\n  name: 99-worker-chrony\n  labels:\n    machineconfiguration.openshift.io/role: worker\nstorage:\n  files:\n  - path: /etc/chrony.conf\n    mode: 0644\n    overwrite: true\n    contents:\n      inline: |\n        pool 0.rhel.pool.ntp.org iburst\n        driftfile /var/lib/chrony/drift\n        makestep 1.0 3\n        rtcsync\n        logdir /var/log/chrony\n# ..."} lang="yaml" title="Example 99-worker-chrony.bu configuration" />
+      <ul>
+      <li><code>storage.files.mode</code> specifies an octal value mode for the <code>mode</code> field in the machine config file. After you create the file and apply the changes, the <code>mode</code> field is converted to a decimal value.</li>
+      <li>
+      <code>storage.files.contents.inline</code> specifies any valid, reachable time source, such as the one provided by your Dynamic Host Configuration Protocol (DHCP) server.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For machine-to-machine communication, the NTP on the User Datagram Protocol (UDP) port is <code>123</code>. If you configured an external NTP time server, you must open UDP port <code>123</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      <li>
+      Use Butane to generate a <code>MachineConfig</code> object file, <code>99-worker-chrony.yaml</code>, that contains a configuration that Butane sends to the nodes. Run the following command:
+      <CodeBlock code={"$ butane 99-worker-chrony.bu -o 99-worker-chrony.yaml"} lang="terminal" />
+      <CodeBlock code={"# Generated by Butane; do not edit\napiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: worker\n  name: <machineconfig_name>\nspec:\n  config:\n    ignition:\n      version: 3.2.0\n    storage:\n      files:\n        - contents:\n            source: data:...\n          mode: 420\n          overwrite: true\n          path: /example/path"} lang="yaml" title="Example 99-worker-chrony.yaml configuration" />
+      </li>
+      <li>
+      Add the contents of the <code>99-worker-chrony.yaml</code> file inside of a config map in the management cluster:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: <configmap_name>\n  namespace: <namespace>\ndata:\n  config: |\n    apiVersion: machineconfiguration.openshift.io/v1\n    kind: MachineConfig\n    metadata:\n      labels:\n        machineconfiguration.openshift.io/role: worker\n      name: <machineconfig_name>\n    spec:\n      config:\n        ignition:\n          version: 3.2.0\n        storage:\n          files:\n          - contents:\n              source: data:...\n            mode: 420\n            overwrite: true\n            path: /example/path\n# ..."} lang="yaml" title="Example config map" />
+      <p>Replace <code>&lt;namespace&gt;</code> with the name of your namespace where you created the node pool, such as <code>clusters</code>.</p>
+      </li>
+      <li>
+      Apply the config map to your node pool by running the following command:
+      <CodeBlock code={"$ oc edit nodepool <nodepool_name> --namespace <hosted_cluster_namespace>"} lang="terminal" />
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1alpha1\nkind: NodePool\nmetadata:\n# ...\n  name: nodepool-1\n  namespace: clusters\n# ...\nspec:\n  config:\n  - name: example-config-map\n# ..."} lang="yaml" title="Example NodePool configuration" />
+      </li>
+      <li>
+      Add the list of your NTP servers in the <code>infra-env.yaml</code> file, which defines the <code>InfraEnv</code> custom resource (CR):
+      <CodeBlock code={"apiVersion: agent-install.openshift.io/v1beta1\nkind: InfraEnv\n# ...\nspec:\n  additionalNTPSources:\n  - <ntp_server>\n  - <ntp_server1>\n  - <ntp_server2>\n# ..."} lang="yaml" title="Example infra-env.yaml file" />
+      <p>Replace <code>&lt;ntp_server&gt;</code> with the name of your NTP server. For more details about creating a host inventory and the <code>InfraEnv</code> CR, see "Creating a host inventory".</p>
+      </li>
+      <li>
+      Apply the <code>InfraEnv</code> CR by running the following command:
+      <CodeBlock code={"$ oc apply -f infra-env.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Check the following fields to know the status of your host inventory:
+      <ul>
+      <li><code>conditions</code>:  The standard Kubernetes conditions indicating if the image was created successfully.</li>
+      <li><code>isoDownloadURL</code>: The URL to download the Discovery Image.</li>
+      <li>
+      <code>createdTime</code>: The time at which the image was last created. If you modify the <code>InfraEnv</code> CR, ensure that you have updated the timestamp before downloading a new image.
+      <p>Verify that your host inventory is created by running the following command:</p>
+      <CodeBlock code={"$ oc describe infraenv <infraenv_resource_name> -n <infraenv_namespace>"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you modify the <code>InfraEnv</code> CR, confirm that the <code>InfraEnv</code> CR has created a new Discovery Image by looking at the <code>createdTime</code> field. If you already booted hosts, boot them again with the latest Discovery Image.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/install_config/installing-customizing#installation-special-config-butane_installing-customizing">Creating machine configs with Butane</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/latest/html-single/clusters/index#create-host-inventory-cli">Creating a host inventory by using the command line interface</a></li>
       </ul>
+      <h2 id="scale-up-down-autoscaler-hcp_hcp-machine-config" class="group scroll-mt-20">Scaling up and down workloads in a hosted cluster<a href="#scale-up-down-autoscaler-hcp_hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To scale up and down the workloads in your hosted cluster, you can use the <code>ScaleUpAndScaleDown</code> behavior. The compute nodes scale up when you add workloads and scale down when you delete workloads.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have created the <code>HostedCluster</code> and <code>NodePool</code> resources.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Enable cluster autoscaling for your hosted cluster by setting the scaling behavior to <code>ScaleUpAndScaleDown</code>. Run the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n  hostedcluster <hosted_cluster_name> \\\n  --type=merge \\\n  --patch='{\"spec\": {\"autoscaling\": {\"scaling\": \"ScaleUpAndScaleDown\", \"maxPodGracePeriod\": 60, \"scaleDown\": {\"utilizationThresholdPercent\": 50}}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Remove the <code>spec.replicas</code> field from the <code>NodePool</code> resource to allow cluster autoscaler to manage the node count. Run the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n  nodepool <node_pool_name> \\\n  --type=json  \\\n  --patch='[{\"op\": \"remove\", \"path\": \"/spec/replicas\"}]'"} lang="terminal" />
+      </li>
+      <li>
+      Enable cluster autoscaling to configure the minimum and maximum node counts for your node pools. Run the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n  nodepool <nodepool_name> \\\n  --type=merge --patch='{\"spec\": {\"autoScaling\": {\"max\": 3, \"min\": 1}}}'"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that all compute nodes are in the <code>Ready</code> status, run the following command:
+      <CodeBlock code={"$ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes"} lang="terminal" />
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-bm#hcp-bm-scale-np_hcp-manage-bm">Scaling the NodePool object for a hosted cluster (bare-metal platforms)</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-non-bm#hcp-bm-scale-np_hcp-manage-non-bm">Scaling the NodePool object for a hosted cluster (non-bare metal agent machines)</a></li>
-      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt">Scaling a node pool ({"{"}{"{"} VirtProductName {"}"}{"}"})</a></li>
+      <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-virt-scale-nodpool_hcp-deploy-virt">Scaling a node pool (OpenShift Virtualization)</a></li>
       </ul>
-      <p class="/modules/priority-expander-autoscaler-hcp.md"></p>
-      <p class="/modules/balance-ignored-labels-autoscaler-hcp.md"></p>
+      <h2 id="scale-up-autoscaler-hcp_hcp-machine-config" class="group scroll-mt-20">Scaling up workloads in a hosted cluster<a href="#scale-up-autoscaler-hcp_hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To scale up the workloads in your hosted cluster, you can use the <code>ScaleUpOnly</code> behavior.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have created the <code>HostedCluster</code> and <code>NodePool</code> resources.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Enable cluster autoscaling for your hosted cluster by setting the scaling behavior to <code>ScaleUpOnly</code>. Run the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> hostedcluster <hosted_cluster_name> --type=merge --patch='{\"spec\": {\"autoscaling\": {\"scaling\": \"ScaleUpOnly\", \"maxPodGracePeriod\": 60}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Remove the <code>spec.replicas</code> field from the <code>NodePool</code> resource to allow the cluster autoscaler to manage the node count. Additionally, enable cluster autoscaling to configure the minimum and maximum node counts for your node pools. Enter the following command:
+      <CodeBlock code={"$ oc -n clusters patch nodepool yhe-hosted-ap-northeast-1a \\\n  --type=json \\\n  -p='[\n    {\"op\":\"remove\",\"path\":\"/spec/replicas\"},\n    {\"op\":\"add\",\"path\":\"/spec/autoScaling\",\"value\":{\"min\":2,\"max\":4}}\n  ]'"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that all compute nodes are in the <code>Ready</code> status by running the following command:
+      <CodeBlock code={"$ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the compute nodes are scaled up successfully by checking the node count for your node pools. Run the following command:
+      <CodeBlock code={"$ oc --kubeconfig nested.config get nodes -l 'hypershift.openshift.io/nodePool=<node_pool_name>'"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="priority-expander-autoscaler-hcp_hcp-machine-config" class="group scroll-mt-20">Setting the priority expander in a hosted cluster<a href="#priority-expander-autoscaler-hcp_hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can define the priority for your node pools and create high priority machines before low priority machines by using the priority expander in your hosted cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have created the <code>HostedCluster</code> and <code>NodePool</code> resources.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To define the priority for your node pools, create a config map named <code>priority-expander-configmap.yaml</code> in your hosted cluster. Node pools with low numbers receive high priority. See the following example configuration:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: cluster-autoscaler-priority-expander\n  namespace: kube-system\n# ...\ndata:\n  priorities: |-\n    10:\n      - \".*<node_pool_name1>.*\"\n    100:\n      - \".*<node_pool_name2>.*\"\n# ..."} lang="yaml" />
+      </li>
+      <li>
+      Generate the <code>kubeconfig</code> file by running the following command:
+      <CodeBlock code={"$ hcp create kubeconfig --name <hosted_cluster_name> --namespace <hosted_cluster_namespace> > nested.config"} lang="terminal" />
+      </li>
+      <li>
+      Create the <code>ConfigMap</code> object by running the following command:
+      <CodeBlock code={"$ oc --kubeconfig nested.config create -f priority-expander-configmap.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Enable cluster autoscaling by setting the priority expander for your hosted cluster. Run the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n  hostedcluster <hosted_cluster_name> \\\n  --type=merge \\\n  --patch='{\"spec\": {\"autoscaling\": {\"scaling\": \"ScaleUpOnly\", \"maxPodGracePeriod\": 60, \"expanders\": [\"Priority\"]}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Remove the <code>spec.replicas</code> field from the <code>NodePool</code> resource to allow the cluster autoscaler to manage the node count. Run the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n  nodepool <node_pool_name> \\\n  --type=json\n  --patch='[{\"op\": \"remove\", \"path\": \"/spec/replicas\"}]'"} lang="terminal" />
+      </li>
+      <li>
+      Enable cluster autoscaling to configure the minimum and maximum node counts for your node pools. Run the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n  nodepool <nodepool_name> \\\n  --type=merge --patch='{\"spec\": {\"autoScaling\": {\"max\": 3, \"min\": 1}}}'"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      After you apply new workloads, verify that the compute nodes associated with the priority node pool are scaled up first. Run the following command to check the status of the compute node:
+      <CodeBlock code={"$ oc --kubeconfig nested.config get nodes -l 'hypershift.openshift.io/nodePool=<node_pool_name>'"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="balance-ignored-labels-autoscaler-hcp_hcp-machine-config" class="group scroll-mt-20">Balancing ignored labels in a hosted cluster<a href="#balance-ignored-labels-autoscaler-hcp_hcp-machine-config" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you scale up your node pools, you can use <code>balancingIgnoredLabels</code> to evenly distribute the machines across node pools.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have created the <code>HostedCluster</code> and <code>NodePool</code> resources.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add the <code>node.group.balancing.ignored</code> label to each of the relevant node pool by using the same label value. Run the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n  nodepool <node_pool_name> \\\n  --type=merge \\\n  --patch='{\"spec\": {\"nodeLabels\": {\"node.group.balancing.ignored\": \"<label_name>\"}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Enable cluster autoscaling for your hosted cluster by running the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n hostedcluster <hosted_cluster_name> \\\n --type=merge \\\n --patch='{\"spec\": {\"autoscaling\": {\"balancingIgnoredLabels\": [\"node.group.balancing.ignored\"]}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Remove the <code>spec.replicas</code> field from the <code>NodePool</code> resource to allow the cluster autoscaler to manage the node count. Run the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n  nodepool <node_pool_name> \\\n  --type=json \\\n  --patch='[{\"op\": \"remove\", \"path\": \"/spec/replicas\"}]'"} lang="terminal" />
+      </li>
+      <li>
+      Enable cluster autoscaling to configure the minimum and maximum node counts for your node pools. Run the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n  nodepool <nodepool_name> \\\n  --type=merge --patch='{\"spec\": {\"autoScaling\": {\"max\": 3, \"min\": 1}}}'"} lang="terminal" />
+      </li>
+      <li>
+      Generate the <code>kubeconfig</code> file by running the following command:
+      <CodeBlock code={"$ hcp create kubeconfig \\\n  --name <hosted_cluster_name> \\\n  --namespace <hosted_cluster_namespace> > nested.config"} lang="terminal" />
+      </li>
+      <li>
+      After you scale up the node pools, check that all compute nodes are in the <code>Ready</code> status by running the following command:
+      <CodeBlock code={"$ oc --kubeconfig nested.config get nodes -l 'hypershift.openshift.io/nodePool=<node_pool_name>'"} lang="terminal" />
+      </li>
+      <li>
+      Confirm that the new nodes contain the <code>node.group.balancing.ignored</code> label by running the following command:
+      <CodeBlock code={"$ oc --kubeconfig nested.config get nodes \\\n  -l 'hypershift.openshift.io/nodePool=<node_pool_name>' \\\n  -o jsonpath='{.items[*].metadata.labels}' | grep \"node.group.balancing.ignored\""} lang="terminal" />
+      </li>
+      <li>
+      Enable cluster autoscaling for your hosted cluster by running the following command:
+      <CodeBlock code={"$ oc patch -n <hosted_cluster_namespace> \\\n  hostedcluster <hosted_cluster_name> \\\n  --type=merge \\\n  --patch='{\"spec\": {\"autoscaling\": {\"balancingIgnoredLabels\": [\"node.group.balancing.ignored\"]}}}'"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the number of nodes provisioned by each node pool is evenly distributed. For example, if you created three node pools with the same label value, the node counts might be 3, 2, and 3. Run the following command:
+      <CodeBlock code={"$ oc --kubeconfig nested.config get nodes -l 'hypershift.openshift.io/nodePool=<node_pool_name>'"} lang="terminal" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

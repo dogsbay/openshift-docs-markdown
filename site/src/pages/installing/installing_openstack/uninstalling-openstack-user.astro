@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"uninstalling-openstack-user","text":"Uninstalling a cluster on {{ rh_openstack }} from your own infrastructure"}];
+const headings = [{"depth":1,"slug":"uninstalling-openstack-user","text":"Uninstalling a cluster on {{ rh_openstack }} from your own infrastructure"},{"depth":2,"slug":"installation-osp-downloading-modules_uninstalling-openstack-user","text":"Downloading playbook dependencies"},{"depth":2,"slug":"installation-uninstall-infra_uninstalling-openstack-user","text":"Removing a cluster from RHOSP that uses your own infrastructure"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_openstack/uninstalling-openstack-user";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Uninstalling a cluster on {{ rh_openstack }} from your own infrastructure";
-const description = "You can remove a cluster that you deployed to {{ rh_openstack_first }} on user-provisioned infrastructure." || undefined;
+const description = "You can remove a cluster that you deployed to Red Hat OpenStack Platform (RHOSP) on user-provisioned infrastructure." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_openstack"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling a cluster on {{ rh_openstack }} from your own infrastructure {#uninstalling-openstack-user}\n\nYou can remove a cluster that you deployed to {{ rh_openstack_first }} on user-provisioned infrastructure.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_openstack/uninstalling-openstack-user.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling a cluster on {{ rh_openstack }} from your own infrastructure {#uninstalling-openstack-user}\n\nYou can remove a cluster that you deployed to Red Hat OpenStack Platform (RHOSP) on user-provisioned infrastructure.\n\n## Downloading playbook dependencies {#installation-osp-downloading-modules_uninstalling-openstack-user}\n\n```\nThe Ansible playbooks that simplify the removal process on user-provisioned\ninfrastructure require several Python modules. On the machine where you will run the process,\nadd the modules' repositories and then download them.\n```\n\n> [!NOTE]\n> These instructions assume that you are using Red Hat Enterprise Linux (RHEL) 8.\n\n**Prerequisites**\n\n- Python 3 is installed on your machine.\n\n**Procedure**\n\n1. On a command line, add the following repositories:\n\n   1. Register with Red Hat Subscription Manager:\n\n      ```terminal\n      $ sudo subscription-manager register # If not done already\n      ```\n   2. Pull the latest subscription data:\n\n      ```terminal\n      $ sudo subscription-manager attach --pool=$YOUR_POOLID # If not done already\n      ```\n   3. Disable the current repositories:\n\n      ```terminal\n      $ sudo subscription-manager repos --disable=* # If not done already\n      ```\n   4. Add the required repositories:\n\n      ```terminal\n      $ sudo subscription-manager repos \\\n        --enable=rhel-9-for-x86_64-appstream-rpms \\\n        --enable=rhel-9-for-x86_64-baseos-rpms \\\n        --enable=openstack-17.1-for-rhel-9-x86_64-rpms\n      ```\n2. Install the modules:\n\n   ```terminal\n   $ sudo yum install python3-openstackclient ansible python3-openstacksdk\n   ```\n3. Ensure that the `python` command points to `python3`:\n\n   ```terminal\n   $ sudo alternatives --set python /usr/bin/python3\n   ```\n\n## Removing a cluster from RHOSP that uses your own infrastructure {#installation-uninstall-infra_uninstalling-openstack-user}\n\nYou can remove an OpenShift Container Platform cluster on Red Hat OpenStack Platform (RHOSP) that uses your own infrastructure. To complete the removal process quickly, run several Ansible playbooks.\n\n**Prerequisites**\n\n- Python 3 is installed on your machine.\n- You downloaded the modules in \"Downloading playbook dependencies.\"\n- You have the playbooks that you used to install the cluster.\n- You modified the playbooks that are prefixed with `down-` to reflect any changes that you made to their corresponding installation playbooks. For example, changes to the `bootstrap.yaml` file are reflected in the `down-bootstrap.yaml` file.\n- All of the playbooks are in a common directory.\n\n**Procedure**\n\n1. On a command line, run the playbooks that you downloaded by entering the following command:\n\n   ```terminal\n   $ ansible-playbook -i inventory.yaml  \\\n   \tdown-bootstrap.yaml      \\\n   \tdown-control-plane.yaml  \\\n   \tdown-compute-nodes.yaml  \\\n   \tdown-load-balancers.yaml \\\n   \tdown-network.yaml        \\\n   \tdown-security-groups.yaml\n   ```\n2. Remove any DNS record changes you made for the OpenShift Container Platform installation.\n\n   OpenShift Container Platform is removed from your infrastructure.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_openstack/uninstalling-openstack-user.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,70 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="uninstalling-openstack-user" class="group scroll-mt-20">Uninstalling a cluster on {"{"}{"{"} rh_openstack {"}"}{"}"} from your own infrastructure<a href="#uninstalling-openstack-user" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can remove a cluster that you deployed to {"{"}{"{"} rh_openstack_first {"}"}{"}"} on user-provisioned infrastructure.</p>
-      <p class="/modules/installation-osp-downloading-modules.md"></p>
-      <p class="/modules/installation-uninstall-infra.md"></p>
+      <p>You can remove a cluster that you deployed to Red Hat OpenStack Platform (RHOSP) on user-provisioned infrastructure.</p>
+      <h2 id="installation-osp-downloading-modules_uninstalling-openstack-user" class="group scroll-mt-20">Downloading playbook dependencies<a href="#installation-osp-downloading-modules_uninstalling-openstack-user" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <CodeBlock code={"The Ansible playbooks that simplify the removal process on user-provisioned\ninfrastructure require several Python modules. On the machine where you will run the process,\nadd the modules' repositories and then download them."} lang="plaintext" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>These instructions assume that you are using Red Hat Enterprise Linux (RHEL) 8.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Python 3 is installed on your machine.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      On a command line, add the following repositories:
+      <ol>
+      <li>
+      Register with Red Hat Subscription Manager:
+      <CodeBlock code={"$ sudo subscription-manager register # If not done already"} lang="terminal" />
+      </li>
+      <li>
+      Pull the latest subscription data:
+      <CodeBlock code={"$ sudo subscription-manager attach --pool=$YOUR_POOLID # If not done already"} lang="terminal" />
+      </li>
+      <li>
+      Disable the current repositories:
+      <CodeBlock code={"$ sudo subscription-manager repos --disable=* # If not done already"} lang="terminal" />
+      </li>
+      <li>
+      Add the required repositories:
+      <CodeBlock code={"$ sudo subscription-manager repos \\\n  --enable=rhel-9-for-x86_64-appstream-rpms \\\n  --enable=rhel-9-for-x86_64-baseos-rpms \\\n  --enable=openstack-17.1-for-rhel-9-x86_64-rpms"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Install the modules:
+      <CodeBlock code={"$ sudo yum install python3-openstackclient ansible python3-openstacksdk"} lang="terminal" />
+      </li>
+      <li>
+      Ensure that the <code>python</code> command points to <code>python3</code>:
+      <CodeBlock code={"$ sudo alternatives --set python /usr/bin/python3"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="installation-uninstall-infra_uninstalling-openstack-user" class="group scroll-mt-20">Removing a cluster from RHOSP that uses your own infrastructure<a href="#installation-uninstall-infra_uninstalling-openstack-user" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can remove an OpenShift Container Platform cluster on Red Hat OpenStack Platform (RHOSP) that uses your own infrastructure. To complete the removal process quickly, run several Ansible playbooks.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Python 3 is installed on your machine.</li>
+      <li>You downloaded the modules in "Downloading playbook dependencies."</li>
+      <li>You have the playbooks that you used to install the cluster.</li>
+      <li>You modified the playbooks that are prefixed with <code>down-</code> to reflect any changes that you made to their corresponding installation playbooks. For example, changes to the <code>bootstrap.yaml</code> file are reflected in the <code>down-bootstrap.yaml</code> file.</li>
+      <li>All of the playbooks are in a common directory.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      On a command line, run the playbooks that you downloaded by entering the following command:
+      <CodeBlock code={"$ ansible-playbook -i inventory.yaml  \\\n\tdown-bootstrap.yaml      \\\n\tdown-control-plane.yaml  \\\n\tdown-compute-nodes.yaml  \\\n\tdown-load-balancers.yaml \\\n\tdown-network.yaml        \\\n\tdown-security-groups.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Remove any DNS record changes you made for the OpenShift Container Platform installation.
+      <p>OpenShift Container Platform is removed from your infrastructure.</p>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

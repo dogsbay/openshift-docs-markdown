@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"accessing-hosts","text":"Accessing hosts"}];
+const headings = [{"depth":1,"slug":"accessing-hosts","text":"Accessing hosts"},{"depth":2,"slug":"accessing-hosts-on-aws_accessing-hosts","text":"Accessing hosts on Amazon Web Services in an installer-provisioned infrastructure cluster"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_overview/accessing-hosts";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["networking","networking/networking_overview"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing hosts {#accessing-hosts}\n\nTo establish secure administrative access to OpenShift Container Platform instances and control plane nodes, create a bastion host.\n\nConfiguring a bastion host provides an entry point for Secure Shell (SSH) traffic, ensuring that your cluster remains protected while allowing for remote management.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_overview/accessing-hosts.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Accessing hosts {#accessing-hosts}\n\nTo establish secure administrative access to OpenShift Container Platform instances and control plane nodes, create a bastion host.\n\nConfiguring a bastion host provides an entry point for Secure Shell (SSH) traffic, ensuring that your cluster remains protected while allowing for remote management.\n\n## Accessing hosts on Amazon Web Services in an installer-provisioned infrastructure cluster {#accessing-hosts-on-aws_accessing-hosts}\n\nThe OpenShift Container Platform installer does not create any public IP addresses for any of the Amazon Elastic Compute Cloud (Amazon EC2) instances that it provisions for your OpenShift Container Platform cluster. After you provisioned your Amazon EC2 instance, you can use SSH to access your OpenShift Container Platform hosts.\n\n**Procedure**\n\n1. Create a security group that allows SSH access into the virtual private cloud (VPC) that the `openshift-install` command-line interface creates.\n2. Create an Amazon EC2 instance on one of the public subnets the installation program created.\n3. Associate a public IP address with the Amazon EC2 instance that you created.\n\n   Unlike with the OpenShift Container Platform installation, associate the Amazon EC2 instance you created with an SSH keypair. The operating system selection is not important for this instance, because the instanace serves as an SSH bastion to bridge the internet into the VPC of your OpenShift Container Platform cluster. The Amazon Machine Image (AMI) you use does matter. With Red Hat Enterprise Linux CoreOS (RHCOS), for example, you can provide keys through Ignition by using a similar method to the installation program.\n4. After you provisioned your Amazon EC2 instance and can SSH into the instance, add the SSH key that you associated with your OpenShift Container Platform installation. This key can be different from the key for the bastion instance, but this is not a strict requirement.\n\n   > [!NOTE]\n   > Use direct SSH access only for disaster recovery. When the Kubernetes API is responsive, run privileged pods instead.\n5. Run `oc get nodes`, inspect the output, and choose one of the nodes that is a control plane. The hostname looks similar to `ip-10-0-1-163.ec2.internal`.\n6. From the bastion SSH host that you manually deployed into Amazon EC2, SSH into that control plane host by entering the following command. Ensure that you use the same SSH key that you specified during installation:\n\n   ```terminal\n   $ ssh -i <ssh-key-path> core@<control_plane_hostname>\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_overview/accessing-hosts.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,33 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="accessing-hosts" class="group scroll-mt-20">Accessing hosts<a href="#accessing-hosts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To establish secure administrative access to OpenShift Container Platform instances and control plane nodes, create a bastion host.</p>
       <p>Configuring a bastion host provides an entry point for Secure Shell (SSH) traffic, ensuring that your cluster remains protected while allowing for remote management.</p>
-      <p class="/modules/accessing-hosts-on-aws.md"></p>
+      <h2 id="accessing-hosts-on-aws_accessing-hosts" class="group scroll-mt-20">Accessing hosts on Amazon Web Services in an installer-provisioned infrastructure cluster<a href="#accessing-hosts-on-aws_accessing-hosts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The OpenShift Container Platform installer does not create any public IP addresses for any of the Amazon Elastic Compute Cloud (Amazon EC2) instances that it provisions for your OpenShift Container Platform cluster. After you provisioned your Amazon EC2 instance, you can use SSH to access your OpenShift Container Platform hosts.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create a security group that allows SSH access into the virtual private cloud (VPC) that the <code>openshift-install</code> command-line interface creates.</li>
+      <li>Create an Amazon EC2 instance on one of the public subnets the installation program created.</li>
+      <li>
+      Associate a public IP address with the Amazon EC2 instance that you created.
+      <p>Unlike with the OpenShift Container Platform installation, associate the Amazon EC2 instance you created with an SSH keypair. The operating system selection is not important for this instance, because the instanace serves as an SSH bastion to bridge the internet into the VPC of your OpenShift Container Platform cluster. The Amazon Machine Image (AMI) you use does matter. With Red Hat Enterprise Linux CoreOS (RHCOS), for example, you can provide keys through Ignition by using a similar method to the installation program.</p>
+      </li>
+      <li>
+      After you provisioned your Amazon EC2 instance and can SSH into the instance, add the SSH key that you associated with your OpenShift Container Platform installation. This key can be different from the key for the bastion instance, but this is not a strict requirement.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Use direct SSH access only for disaster recovery. When the Kubernetes API is responsive, run privileged pods instead.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Run <code>oc get nodes</code>, inspect the output, and choose one of the nodes that is a control plane. The hostname looks similar to <code>ip-10-0-1-163.ec2.internal</code>.</li>
+      <li>
+      From the bastion SSH host that you manually deployed into Amazon EC2, SSH into that control plane host by entering the following command. Ensure that you use the same SSH key that you specified during installation:
+      <CodeBlock code={"$ ssh -i <ssh-key-path> core@<control_plane_hostname>"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

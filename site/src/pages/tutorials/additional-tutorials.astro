@@ -15,8 +15,14 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"additional-tutorials","text":"Additional hands-on learning"}];
+const headings = [{"depth":1,"slug":"additional-tutorials","text":"Additional hands-on learning"},{"depth":2,"slug":"tutorial-developer-paths_additional-tutorials","text":"Red Hat Developer learning paths"},{"depth":2,"slug":"tutorial-training-courses_additional-tutorials","text":"Red Hat Training courses"},{"depth":2,"slug":"tutorial-cheat-sheets_additional-tutorials","text":"Red Hat cheat sheets"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/tutorials/additional-tutorials";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +45,7 @@ const pageCategory = ["tutorials"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Additional hands-on learning {#additional-tutorials}\n\nExplore additional learning resources provided by Red Hat for administrators and developers to gain hands-on experience with OpenShift Container Platform.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/tutorials/additional-tutorials.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Additional hands-on learning {#additional-tutorials}\n\nExplore additional learning resources provided by Red Hat for administrators and developers to gain hands-on experience with OpenShift Container Platform.\n\n## Red Hat Developer learning paths {#tutorial-developer-paths_additional-tutorials}\n\nThe Red Hat Developer program provides several learning paths for developers to get started working with OpenShift Container Platform.\n\nThe following table lists several recommended learning paths for OpenShift Container Platform:\n\n**Red Hat Developer learning paths**\n\n| Learning path | Description |\n| --- | --- |\n| [Foundations of OpenShift](https://developers.redhat.com/learn/openshift/foundations-openshift) | This learning path covers basic Red Hat OpenShift concepts and how to create and deploy applications through various methods. |\n| [Using OpenShift](https://developers.redhat.com/learn/openshift/using-openshift) | This learning path covers managing cluster access, database operations, and resource management. |\n| [Developing applications on OpenShift](https://developers.redhat.com/learn/openshift/develop-on-openshift) | This learning path covers deploying applications from source code and images, and developing with Node.js. |\n| [How to deploy full-stack JavaScript applications in OpenShift](https://developers.redhat.com/learn/openshift/how-deploy-full-stack-javascript-applications-openshift) | This learning path covers how to deploy a full-stack JavaScript application in an OpenShift Container Platform cluster. |\n| [Store persistent data in Red Hat OpenShift using PVCs](https://developers.redhat.com/learn/openshift/store-persistent-data-red-hat-openshift-using-pvcs) | This learning path covers how to create and use persistent volume claims (PVCs) for persistent storage in OpenShift Container Platform. |\n\nFor the full list of available Red Hat Developer learning paths for OpenShift Container Platform, see [OpenShift and Kubernetes learning](https://developers.redhat.com/learn/openshift).\n\n## Red Hat Training courses {#tutorial-training-courses_additional-tutorials}\n\nRed Hat Training offers a variety of courses to help you learn Red Hat OpenShift and related technologies. Free and paid courses are available online and in-person.\n\nThe following tables list several recommended training courses for OpenShift Container Platform, both for developers and administrators:\n\n**Red Hat Training courses for developers**\n\n| Course | Description |\n| --- | --- |\n| [DO101: Introduction to OpenShift Applications](https://www.redhat.com/en/services/training/do101-introduction-openshift-applications) | This course helps developers learn to deploy, scale, and troubleshoot applications in OpenShift Container Platform. |\n| [DO188: Red Hat OpenShift Development I: Introduction to Containers with Podman](https://www.redhat.com/en/services/training/do188-red-hat-open-shift-development-introduction-containers-with-podman) | This course helps developers learn to build, run, and manage containers with Podman and OpenShift Container Platform. |\n| [DO288: Red Hat OpenShift Developer II: Building and Deploying Cloud-native Applications](https://www.redhat.com/en/services/training/red-hat-openshift-developer-ii-building-and-deploying-cloud-native-applications) | This course helps developers learn to design, build, and deploy containerized software applications on an OpenShift Container Platform cluster. |\n\n**Red Hat Training courses for administrators**\n\n| Course | Description |\n| --- | --- |\n| [DO180: Red Hat OpenShift Administration I: Operating a Production Cluster](https://www.redhat.com/en/services/training/red-hat-openshift-administration-i-operating-a-production-cluster) | This course helps cluster administrators learn to manage OpenShift Container Platform clusters and collaborate with developers to support application workloads. |\n| [DO280: Red Hat OpenShift Administration II: Configuring a Production Cluster](https://www.redhat.com/en/services/training/red-hat-openshift-administration-ii-configuring-a-production-cluster) | This course helps cluster administrators learn to configure security features, manage Operators, and perform cluster updates. |\n| [DO322: Red Hat OpenShift Installation Lab](https://www.redhat.com/en/services/training/do322-red-hat-openshift-installation-lab) | This course helps cluster administrators learn to install OpenShift Container Platform clusters in various environments. |\n\nFor the full list of available courses, see [Red Hat Training and Certification](https://www.redhat.com/en/services/training-and-certification). You can also take the [skills assessment](https://skills.ole.redhat.com/en) to get recommendations for where to start learning.\n\n## Red Hat cheat sheets {#tutorial-cheat-sheets_additional-tutorials}\n\nRed Hat publishes several cheat sheets that provide quick references of common OpenShift CLI (`oc`) commands for working with OpenShift Container Platform.\n\nThe following table lists several recommended cheat sheets for OpenShift Container Platform:\n\n**Red Hat cheat sheets**\n\n| Cheat sheet | Description |\n| --- | --- |\n| [Red Hat OpenShift Cheat Sheet](https://developers.redhat.com/cheat-sheets/red-hat-openshift-container-platform) | This cheat sheet provides many OpenShift CLI (`oc`) commands for managing an application’s lifecycle. |\n| [OpenShift command line essentials cheat sheet](https://developers.redhat.com/cheat-sheets/openshift-command-line-essentials-cheat-sheet) | This cheat sheet provides a quick look at several essential OpenShift CLI (`oc`) commands, such as creating applications, debugging, and editing deployments. |\n\nFor the full list of available cheat sheets, see [Red Hat Developer cheat sheets](https://developers.redhat.com/cheat-sheets).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/tutorials/additional-tutorials.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +97,115 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="additional-tutorials" class="group scroll-mt-20">Additional hands-on learning<a href="#additional-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Explore additional learning resources provided by Red Hat for administrators and developers to gain hands-on experience with OpenShift Container Platform.</p>
-      <p class="/modules/tutorial-developer-paths.md"></p>
-      <p class="/modules/tutorial-training-courses.md"></p>
-      <p class="/modules/tutorial-cheat-sheets.md"></p>
+      <h2 id="tutorial-developer-paths_additional-tutorials" class="group scroll-mt-20">Red Hat Developer learning paths<a href="#tutorial-developer-paths_additional-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Red Hat Developer program provides several learning paths for developers to get started working with OpenShift Container Platform.</p>
+      <p>The following table lists several recommended learning paths for OpenShift Container Platform:</p>
+      <p><strong>Red Hat Developer learning paths</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Learning path</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><a href="https://developers.redhat.com/learn/openshift/foundations-openshift">Foundations of OpenShift</a></TableCell>
+      <TableCell>This learning path covers basic Red Hat OpenShift concepts and how to create and deploy applications through various methods.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><a href="https://developers.redhat.com/learn/openshift/using-openshift">Using OpenShift</a></TableCell>
+      <TableCell>This learning path covers managing cluster access, database operations, and resource management.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><a href="https://developers.redhat.com/learn/openshift/develop-on-openshift">Developing applications on OpenShift</a></TableCell>
+      <TableCell>This learning path covers deploying applications from source code and images, and developing with Node.js.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><a href="https://developers.redhat.com/learn/openshift/how-deploy-full-stack-javascript-applications-openshift">How to deploy full-stack JavaScript applications in OpenShift</a></TableCell>
+      <TableCell>This learning path covers how to deploy a full-stack JavaScript application in an OpenShift Container Platform cluster.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><a href="https://developers.redhat.com/learn/openshift/store-persistent-data-red-hat-openshift-using-pvcs">Store persistent data in Red Hat OpenShift using PVCs</a></TableCell>
+      <TableCell>This learning path covers how to create and use persistent volume claims (PVCs) for persistent storage in OpenShift Container Platform.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>For the full list of available Red Hat Developer learning paths for OpenShift Container Platform, see <a href="https://developers.redhat.com/learn/openshift">OpenShift and Kubernetes learning</a>.</p>
+      <h2 id="tutorial-training-courses_additional-tutorials" class="group scroll-mt-20">Red Hat Training courses<a href="#tutorial-training-courses_additional-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Red Hat Training offers a variety of courses to help you learn Red Hat OpenShift and related technologies. Free and paid courses are available online and in-person.</p>
+      <p>The following tables list several recommended training courses for OpenShift Container Platform, both for developers and administrators:</p>
+      <p><strong>Red Hat Training courses for developers</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Course</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><a href="https://www.redhat.com/en/services/training/do101-introduction-openshift-applications">DO101: Introduction to OpenShift Applications</a></TableCell>
+      <TableCell>This course helps developers learn to deploy, scale, and troubleshoot applications in OpenShift Container Platform.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><a href="https://www.redhat.com/en/services/training/do188-red-hat-open-shift-development-introduction-containers-with-podman">DO188: Red Hat OpenShift Development I: Introduction to Containers with Podman</a></TableCell>
+      <TableCell>This course helps developers learn to build, run, and manage containers with Podman and OpenShift Container Platform.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><a href="https://www.redhat.com/en/services/training/red-hat-openshift-developer-ii-building-and-deploying-cloud-native-applications">DO288: Red Hat OpenShift Developer II: Building and Deploying Cloud-native Applications</a></TableCell>
+      <TableCell>This course helps developers learn to design, build, and deploy containerized software applications on an OpenShift Container Platform cluster.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Red Hat Training courses for administrators</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Course</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><a href="https://www.redhat.com/en/services/training/red-hat-openshift-administration-i-operating-a-production-cluster">DO180: Red Hat OpenShift Administration I: Operating a Production Cluster</a></TableCell>
+      <TableCell>This course helps cluster administrators learn to manage OpenShift Container Platform clusters and collaborate with developers to support application workloads.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><a href="https://www.redhat.com/en/services/training/red-hat-openshift-administration-ii-configuring-a-production-cluster">DO280: Red Hat OpenShift Administration II: Configuring a Production Cluster</a></TableCell>
+      <TableCell>This course helps cluster administrators learn to configure security features, manage Operators, and perform cluster updates.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><a href="https://www.redhat.com/en/services/training/do322-red-hat-openshift-installation-lab">DO322: Red Hat OpenShift Installation Lab</a></TableCell>
+      <TableCell>This course helps cluster administrators learn to install OpenShift Container Platform clusters in various environments.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>For the full list of available courses, see <a href="https://www.redhat.com/en/services/training-and-certification">Red Hat Training and Certification</a>. You can also take the <a href="https://skills.ole.redhat.com/en">skills assessment</a> to get recommendations for where to start learning.</p>
+      <h2 id="tutorial-cheat-sheets_additional-tutorials" class="group scroll-mt-20">Red Hat cheat sheets<a href="#tutorial-cheat-sheets_additional-tutorials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Red Hat publishes several cheat sheets that provide quick references of common OpenShift CLI (<code>oc</code>) commands for working with OpenShift Container Platform.</p>
+      <p>The following table lists several recommended cheat sheets for OpenShift Container Platform:</p>
+      <p><strong>Red Hat cheat sheets</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Cheat sheet</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><a href="https://developers.redhat.com/cheat-sheets/red-hat-openshift-container-platform">Red Hat OpenShift Cheat Sheet</a></TableCell>
+      <TableCell>This cheat sheet provides many OpenShift CLI (<code>oc</code>) commands for managing an application’s lifecycle.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><a href="https://developers.redhat.com/cheat-sheets/openshift-command-line-essentials-cheat-sheet">OpenShift command line essentials cheat sheet</a></TableCell>
+      <TableCell>This cheat sheet provides a quick look at several essential OpenShift CLI (<code>oc</code>) commands, such as creating applications, debugging, and editing deployments.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>For the full list of available cheat sheets, see <a href="https://developers.redhat.com/cheat-sheets">Red Hat Developer cheat sheets</a>.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

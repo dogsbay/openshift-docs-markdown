@@ -15,8 +15,19 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"ipi-install-prerequisites","text":"Prerequisites"}];
+const headings = [{"depth":1,"slug":"ipi-install-prerequisites","text":"Prerequisites"},{"depth":2,"slug":"node-requirements_ipi-install-prerequisites","text":"Node requirements"},{"depth":2,"slug":"installation-minimum-resource-requirements_ipi-install-prerequisites","text":"Minimum resource requirements for cluster installation"},{"depth":2,"slug":"virt-planning-bare-metal-cluster-for-ocp-virt_ipi-install-prerequisites","text":"Bare-metal cluster installation requirements for OpenShift Virtualization"},{"depth":3,"slug":"virt-planning-bare-metal-cluster-for-ocp-virt-HA_ipi-install-prerequisites","text":"High availability requirements for OpenShift Virtualization"},{"depth":3,"slug":"virt-planning-bare-metal-cluster-for-ocp-virt-LM_ipi-install-prerequisites","text":"Live migration requirements for OpenShift Virtualization"},{"depth":3,"slug":"virt-planning-bare-metal-cluster-for-ocp-virt-SR-IOV_ipi-install-prerequisites","text":"SR-IOV requirements for OpenShift Virtualization"},{"depth":2,"slug":"ipi-install-firmware-requirements-for-installing-with-virtual-media_ipi-install-prerequisites","text":"Firmware requirements for installing with virtual media"},{"depth":2,"slug":"ncsi-hardware-requirements-for-bare-metal_ipi-install-prerequisites","text":"NC-SI hardware requirements for bare metal"},{"depth":2,"slug":"network-requirements_ipi-install-prerequisites","text":"Network requirements"},{"depth":3,"slug":"network-requirements-one-ip-per-subnet_ipi-install-prerequisites","text":"One IP address for each subnet"},{"depth":3,"slug":"network-requirements-ensuring-required-ports-are-open_ipi-install-prerequisites","text":"Ensuring required ports are open"},{"depth":3,"slug":"network-requirements-increase-mtu_ipi-install-prerequisites","text":"Increase the network MTU"},{"depth":3,"slug":"network-requirements-config-nics_ipi-install-prerequisites","text":"Configuring NICs"},{"depth":3,"slug":"network-requirements-dns_ipi-install-prerequisites","text":"DNS requirements"},{"depth":3,"slug":"network-requirements-dhcp-reqs_ipi-install-prerequisites","text":"Dynamic Host Configuration Protocol (DHCP) requirements"},{"depth":3,"slug":"network-requirements-reserving-ip-addresses_ipi-install-prerequisites","text":"Reserving IP addresses for nodes with the DHCP server"},{"depth":3,"slug":"network-requirements-provisioner_ipi-install-prerequisites","text":"Provisioner node requirements"},{"depth":3,"slug":"network-requirements-ntp_ipi-install-prerequisites","text":"Network Time Protocol (NTP)"},{"depth":3,"slug":"network-requirements-out-of-band_ipi-install-prerequisites","text":"Port access for the out-of-band management IP address"},{"depth":2,"slug":"configuring-nodes_ipi-install-prerequisites","text":"Nodes configuration"},{"depth":3,"slug":"_node_configuration_when_using_the_provisioning_network","text":"Node configuration when using the  network"},{"depth":3,"slug":"_node_configuration_without_the_provisioning_network","text":"Node configuration without the  network"},{"depth":3,"slug":"configuring-nodes-for-secure-boot_ipi-install-prerequisites","text":"Configuring nodes for Secure Boot manually"},{"depth":2,"slug":"out-of-band-management_ipi-install-prerequisites","text":"Out-of-band management"},{"depth":2,"slug":"required-data-for-installation_ipi-install-prerequisites","text":"Required data for installation"},{"depth":2,"slug":"validation-checklist-for-nodes_ipi-install-prerequisites","text":"Validation checklist for nodes"},{"depth":2,"slug":"installation-overview_ipi-install-prerequisites","text":"Installation overview"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-prerequisites";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +37,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Prerequisites";
-const description = "Installer-provisioned installation of OpenShift Container Platform requires:" || undefined;
+const description = "You must meet several prerequisites before installing a cluster on bare metal by using installer-provisioned infrastructure." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +50,7 @@ const pageCategory = ["installing","installing/installing_bare_metal","installin
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Prerequisites {#ipi-install-prerequisites}\n\nInstaller-provisioned installation of OpenShift Container Platform requires:\n\n1. One provisioner node with {{ op_system_base_full }} {{ op_system_version }} installed. The provisioner can be removed after installation.\n2. Three control plane nodes\n3. Baseboard management controller (BMC) access to each node\n4. At least one network:\n\n   1. One required routable network\n   2. One optional provisioning network\n   3. One optional management network\n\nBefore starting an installer-provisioned installation of OpenShift Container Platform, ensure the hardware environment meets the following requirements.\n\n**Additional resources**\n\n- [Preparing your cluster for {{ VirtProductName }}](/openshift-docs-markdown/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt)\n- [About Single Root I/O Virtualization (SR-IOV) hardware networks](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)\n- [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)\n\n**Additional resources**\n\n- [Red Hat third-party support policy](https://access.redhat.com/third-party-software-support)\n- [UCSHCL](https://ucshcltool.cloudapps.cisco.com/public/)\n- [Unable to discover new bare-metal hosts by using the BMC](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-troubleshooting#unable-to-discover-new-bare-metal-hosts-using-the-bmc_ipi-install-troubleshooting)\n\n**Additional resources**\n\n- [Ironic NC-SI Specification](https://specs.openstack.org/openstack/ironic-specs/specs/approved/nc-si.html)\n- [DMTF: Network Controller Sideband Interface (NC-SI) Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0222_1.1.1.pdf)\n\n**Additional resources**\n\n- [Using DNS forwarding](/openshift-docs-markdown/networking/networking_operators/dns-operator#nw-dns-forward_dns-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-prerequisites.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Prerequisites {#ipi-install-prerequisites}\n\nYou must meet several prerequisites before installing a cluster on bare metal by using installer-provisioned infrastructure.\n\nInstaller-provisioned installation of OpenShift Container Platform requires:\n\n1. One provisioner node with Red Hat Enterprise Linux (RHEL) 9.x installed. The provisioner can be removed after installation.\n2. Three control plane nodes\n3. Baseboard management controller (BMC) access to each node\n4. At least one network:\n\n   1. One required routable network\n   2. One optional provisioning network\n   3. One optional management network\n\nBefore starting an installer-provisioned installation of OpenShift Container Platform, ensure the hardware environment meets the following requirements.\n\n## Node requirements {#node-requirements_ipi-install-prerequisites}\n\nBefore starting an installer-provisioned installation of OpenShift Container Platform, ensure the hardware environment is set up correctly.\n\nInstaller-provisioned installation involves several hardware node requirements:\n\n- **CPU architecture:** All nodes must use `x86_64` or `aarch64`\n\nCPU architecture.\n\n- **Similar nodes:** Red Hat recommends nodes have an identical configuration per role. That is, Red Hat recommends nodes be the same brand and model with the same CPU, memory, and storage configuration.\n- **Baseboard Management Controller:** The `provisioner` node must be able to access the baseboard management controller (BMC) of each OpenShift Container Platform cluster node. You may use IPMI, Redfish, or a proprietary protocol.\n- **Latest generation:** Nodes must be of the most recent generation. Installer-provisioned installation relies on BMC protocols, which must be compatible across nodes. Additionally, RHEL 9.x ships with the most recent drivers for RAID controllers. Ensure that the nodes are recent enough to support RHEL 9.x for the `provisioner` node and RHCOS 9.x for the control plane and worker nodes.\n- **Registry node:** (Optional) If setting up a disconnected mirrored registry, it is recommended the registry reside in its own node.\n- **Provisioner node:** Installer-provisioned installation requires one `provisioner` node.\n- **Control plane:** Installer-provisioned installation requires three control plane nodes for high availability. You can deploy an OpenShift Container Platform cluster with only three control plane nodes, making the control plane nodes schedulable as worker nodes. Smaller clusters are more resource efficient for administrators and developers during development, production, and testing.\n- **Worker nodes:** While not required, a typical production cluster has two or more worker nodes.\n\n  > [!IMPORTANT]\n  > Do not deploy a cluster with only one worker node, because the cluster will deploy with routers and ingress traffic in a degraded state.\n- **Network interfaces:** Each node must have at least one network interface for the routable `baremetal` network. Each node must have one network interface for a `provisioning` network when using the `provisioning` network for deployment. Using the `provisioning` network is the default configuration.\n\n  > [!NOTE]\n  > Only one network card (NIC) on the same subnet can route traffic through the gateway. By default, Address Resolution Protocol (ARP) uses the lowest numbered NIC. Use a single NIC for each node in the same subnet to ensure that network load balancing works as expected. When using multiple NICs for a node in the same subnet, use a single bond or team interface. Then add the other IP addresses to that interface in the form of an alias IP address. If you require fault tolerance or load balancing at the network interface level, use an alias IP address on the bond or team interface. Alternatively, you can disable a secondary NIC on the same subnet or ensure that it has no IP address.\n- **Unified Extensible Firmware Interface (UEFI):** Installer-provisioned installation requires UEFI boot on all OpenShift Container Platform nodes when using IPv6 addressing on the `provisioning` network. In addition, UEFI Device PXE Settings must be set to use the IPv6 protocol on the `provisioning` network NIC, but omitting the `provisioning` network removes this requirement.\n\n  > [!IMPORTANT]\n  > When starting the installation from virtual media such as an ISO image, delete all old UEFI boot table entries. If the boot table includes entries that are not generic entries provided by the firmware, the installation might fail.\n- **Secure Boot:** Many production scenarios require nodes with Secure Boot enabled to verify the node only boots with trusted software, such as UEFI firmware drivers, EFI applications, and the operating system. You may deploy with Secure Boot manually or managed.\n\n  1. **Manually:** To deploy an OpenShift Container Platform cluster with Secure Boot manually, you must enable UEFI boot mode and Secure Boot on each control plane node and each worker node. Red Hat supports Secure Boot with manually enabled UEFI and Secure Boot only when installer-provisioned installations use Redfish virtual media. See \"Configuring nodes for Secure Boot manually\" in the \"Configuring nodes\" section for additional details.\n  2. **Managed:** To deploy an OpenShift Container Platform cluster with managed Secure Boot, you must set the `bootMode` value to `UEFISecureBoot` in the `install-config.yaml` file. Red Hat only supports installer-provisioned installation with managed Secure Boot on 10th generation HPE hardware and 13th generation Dell hardware running firmware version `2.75.75.75` or greater. Deploying with managed Secure Boot does not require Redfish virtual media. See \"Configuring managed Secure Boot\" in the \"Setting up the environment for an OpenShift installation\" section for details.\n\n     > [!NOTE]\n     > Red Hat does not support managing self-generated keys, or other keys, for Secure Boot.\n\n## Minimum resource requirements for cluster installation {#installation-minimum-resource-requirements_ipi-install-prerequisites}\n\nTo ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.\n\n***Minimum resource requirements***\n\n<table>\n<thead>\n<tr>\n  <th>Machine</th>\n  <th>Operating system</th>\n\n  <th>CPU</th>\n  <th>RAM</th>\n  <th>Storage</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Input/Output Per Second (IOPS)</td>\n  <td>Bootstrap</td>\n\n  <td>RHEL</td>\n\n  <td>4</td>\n  <td>16 GB</td>\n  <td>100 GB</td>\n  <td>300</td>\n</tr>\n<tr>\n\n  <td>Control plane</td>\n  <td>RHCOS</td>\n\n  <td>4</td>\n  <td>16 GB</td>\n  <td>100 GB</td>\n</tr>\n<tr>\n  <td>300</td>\n\n  <td>Compute</td>\n  <td>RHCOS</td>\n\n  <td>2</td>\n  <td>8 GB</td>\n  <td>100 GB</td>\n  <td>300</td>\n\n</tr>\n<tr>\n\n</tr>\n</tbody>\n</table>\n\n- One CPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = CPUs.\n- OpenShift Container Platform and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.\n\n> [!NOTE]\n> In OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):\n>\n> - x86-64 architecture requires x86-64-v2 ISA\n> - ARM64 architecture requires ARMv8.0-A ISA\n> - ppc64le architecture requires IBM(R) Power9 ISA\n> - s390x architecture requires IBM(R) z14 ISA\n>\n> For more information, see [Architectures](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/9.8_release_notes/index#architectures) in the RHEL documentation.\n\nIf an instance type for your platform meets the minimum requirements for cluster machines, it is supported to use in OpenShift Container Platform.\n\n## Bare-metal cluster installation requirements for OpenShift Virtualization {#virt-planning-bare-metal-cluster-for-ocp-virt_ipi-install-prerequisites}\n\nConfigure your bare-metal cluster correctly during installation to support OpenShift Virtualization, as certain required settings cannot be changed after installation.\n\n### High availability requirements for OpenShift Virtualization {#virt-planning-bare-metal-cluster-for-ocp-virt-HA_ipi-install-prerequisites}\n\nWhen discussing high availability (HA) features in the context of OpenShift Virtualization, this refers only to the replication model of the core cluster components, determined by the `controlPlaneTopology` and `infrastructureTopology` fields in the `Infrastructure` custom resource (CR). Setting these fields to `HighlyAvailable` offers component redundancy, which is distinct from general cluster-wide application HA. Setting these fields to `SingleReplica` disables component redundancy, and therefore disables OpenShift Virtualization HA features.\n\nIf you plan to use OpenShift Virtualization HA features, you must have three control plane nodes at the time of cluster installation. The `controlPlaneTopology` status in the `Infrastructure` CR for the cluster must be `HighlyAvailable`.\n\n> [!NOTE]\n> You can install OpenShift Virtualization on a single-node cluster, but single-node OpenShift does not support HA features.\n\n### Live migration requirements for OpenShift Virtualization {#virt-planning-bare-metal-cluster-for-ocp-virt-LM_ipi-install-prerequisites}\n\n- If you plan to use live migration, you must have multiple worker nodes. The `infrastructureTopology` status in the `Infrastructure` CR for the cluster must be `HighlyAvailable`. A minimum of three worker nodes is recommended.\n\n  > [!NOTE]\n  > You can install OpenShift Virtualization on a single-node cluster, but single-node OpenShift does not support live migration.\n- Live migration requires shared storage. Storage for OpenShift Virtualization must support and use the ReadWriteMany (RWX) access mode.\n\n### SR-IOV requirements for OpenShift Virtualization {#virt-planning-bare-metal-cluster-for-ocp-virt-SR-IOV_ipi-install-prerequisites}\n\nIf you plan to use Single Root I/O Virtualization (SR-IOV), ensure that your network interface controllers (NICs) are supported by OpenShift Container Platform.\n\n**Additional resources**\n\n- [Preparing your cluster for OpenShift Virtualization](/openshift-docs-markdown/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt)\n- [About Single Root I/O Virtualization (SR-IOV) hardware networks](/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov)\n- [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)\n\n## Firmware requirements for installing with virtual media {#ipi-install-firmware-requirements-for-installing-with-virtual-media_ipi-install-prerequisites}\n\nThe installation program for installer-provisioned OpenShift Container Platform clusters depends on the hardware and firmware compatibility with Redfish virtual media. The installation may not succeed if the node firmware is not compatible.\n\nThe following tables list the firmware versions tested and verified to work for installer-provisioned OpenShift Container Platform clusters deployed by using Redfish virtual media.\n\n> [!NOTE]\n> Red Hat does not test every combination of firmware, hardware, or other third-party components. For further information about third-party support, see \"Red Hat third-party support policy\". For information about updating the firmware, see the hardware documentation for the nodes or contact the hardware vendor.\n\n**Firmware compatibility for HP hardware with Redfish virtual media**\n\n| Model | Management | Firmware versions |\n| --- | --- | --- |\n| 11th Generation | iLO6 | 1.57 or later |\n| 10th Generation | iLO5 | 2.63 or later |\n\n**Firmware compatibility for Dell hardware with Redfish virtual media**\n\n| Model | Management | Firmware versions |\n| --- | --- | --- |\n| 17th Generation | iDRAC 10 | v1.20.25.00, v1.20.60.50, and v1.20.70.50 |\n| 16th Generation | iDRAC 9 | v7.10.70.00 |\n| 15th Generation | iDRAC 9 | v6.10.30.00, v7.10.50.00, and v7.10.70.00 |\n| 14th Generation | iDRAC 9 | v6.10.30.00 |\n\n**Firmware compatibility for Cisco UCS hardware with Redfish virtual media**\n\n| Model | Management | Firmware versions |\n| --- | --- | --- |\n| UCS X-Series servers | Intersight Managed Mode | 5.2(2) or later |\n| FI-Attached UCS C-Series servers | Intersight Managed Mode | 4.3 or later |\n| Standalone UCS C-Series servers | Standalone / Intersight | 4.3 or later |\n\n> [!NOTE]\n> Always confirm that your server supports Red Hat Enterprise Linux CoreOS (RHCOS) on UCS Hardware and Software Compatibility. For more information, see \"UCSHCL\".\n\n**Additional resources**\n\n- [Red Hat third-party support policy](https://access.redhat.com/third-party-software-support)\n- [UCSHCL](https://ucshcltool.cloudapps.cisco.com/public/)\n- [Unable to discover new bare-metal hosts by using the BMC](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-troubleshooting#unable-to-discover-new-bare-metal-hosts-using-the-bmc_ipi-install-troubleshooting)\n\n## NC-SI hardware requirements for bare metal {#ncsi-hardware-requirements-for-bare-metal_ipi-install-prerequisites}\n\nTo deploy OpenShift Container Platform 4.19 and later with a Network Controller Sideband Interface (NC-SI) on bare metal, you must use hardware with baseboard management controllers (BMCs) and network interface cards (NICs) that support NC-SI.\n\nNC-SI enables the BMC to share a system NIC with the host, requiring the `DisablePowerOff` feature to prevent loss of BMC connectivity during power-offs.\n\n**Server compatibility for NC-SI**\n\n| Vendor | Models | Generation | Management |\n| --- | --- | --- | --- |\n| Dell | PowerEdge | 14th generation and later | iDRAC 9 and later (Redfish, IPMI, racadm, WS-MAN) |\n| HPE | ProLiant | 10th generation and later | iLO 5 and later (Redfish, IPMI, iLO RESTful API) |\n| Lenovo | ThinkSystem SR | 1st generation and later | XClarity Controller (Redfish, IPMI, proprietary APIs) |\n| Supermicro | SuperServer | X11 series and later | Supermicro BMC (Redfish, IPMI, proprietary web/CLI) |\n| Intel | Server Systems | S2600BP and later | Intel BMC (Redfish, IPMI, proprietary APIs) |\n| Fujitsu | PRIMERGY | M4 series and later | iRMC S5 and later (Redfish, IPMI, proprietary web/CLI) |\n| Cisco | UCS C-Series | M5 series and later | Cisco IMC (Redfish, IPMI, proprietary XML API) |\n\n**Compatible Network Interface Cards (NICs) for NC-SI**\n\n| Vendor | Models | Specifications |\n| --- | --- | --- |\n| Broadcom | NetXtreme BCM5720, BCM57416, BCM57504 | Gigabit and 10/25/100GbE, RMII sideband, supports Redfish, IPMI, and vendor protocols. |\n| Intel | I210, X710, XXV710, E810 | Gigabit to 100GbE, RMII and SMBus sideband, supports Redfish, IPMI, and vendor protocols. |\n| NVIDIA | ConnectX-5, ConnectX-6, ConnectX-7 | 25/50/100/200/400GbE, RMII sideband, supports Redfish, IPMI, and NVIDIA BMC APIs. |\n| NVIDIA | BlueField-2 and later | 200/400GbE, supports Redfish, IPMI, and NVIDIA BMC APIs. |\n| Marvell/Cavium | ThunderX CN88xx, FastLinQ QL41000 | 10/25/50GbE, RMII sideband, supports Redfish, IPMI, and vendor protocols. |\n| Mellanox (NVIDIA) | MCX4121A-ACAT, MCX512A-ACAT | 10/25/50GbE, RMII sideband, supports Redfish, IPMI, and Mellanox APIs. |\n\n> [!NOTE]\n> Verify NC-SI support with vendor documentation, because compatibility depends on BMC, NIC, and firmware configurations. NC-SI NICs require a compatible BMC to enable shared NIC functionality.\n\n**Additional resources**\n\n- [Ironic NC-SI Specification](https://specs.openstack.org/openstack/ironic-specs/specs/approved/nc-si.html)\n- [DMTF: Network Controller Sideband Interface (NC-SI) Specification](https://www.dmtf.org/sites/default/files/standards/documents/DSP0222_1.1.1.pdf)\n\n## Network requirements {#network-requirements_ipi-install-prerequisites}\n\nInstaller-provisioned installation of OpenShift Container Platform involves multiple network requirements. First, installer-provisioned installation involves an optional non-routable `provisioning` network for provisioning the operating system on each bare-metal node. Second, installer-provisioned installation involves a routable `baremetal` network.\n\n**Figure 1. Installer-provisioned networking**\n\n![Installer-provisioned networking](/openshift-docs-markdown/_assets/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_2.png)\n\n> [!IMPORTANT]\n> Red Hat supports any valid host network configuration that meets the documented requirements, regardless of how that configuration is applied. However, Red Hat only supports the configuration application process when approved tools are used. The following list details examples of these tools:\n>\n> - A documented tool, such as NMState or Kubernetes-NMState.\n> - Other tools might be supported to perform a specific task. Red Hat does not support these other tools for general network configurations.\n\n### One IP address for each subnet {#network-requirements-one-ip-per-subnet_ipi-install-prerequisites}\n\nFor the primary interface, assign one IP address for each subnet. This configuration ensures the node IP address selection handles traffic without experiencing traffic handling issues.\n\nYou can assign multiple IP addresses from the same subnet to a single interface, in a process known as *IP aliasing*. However, the node IP address selection process cannot consistently determine which address to use, causing routing conflicts and unpredictable IP selection.\n\n### Ensuring required ports are open {#network-requirements-ensuring-required-ports-are-open_ipi-install-prerequisites}\n\nCertain ports must be open between cluster nodes for installer-provisioned installations to complete successfully. In certain situations, such as using separate subnets for far edge worker nodes, you must ensure that the nodes in these subnets can communicate with nodes in the other subnets on the following required ports.\n\n**Required ports**\n\n| Port | Description |\n| --- | --- |\n| `67`,`68` | When using a provisioning network, cluster nodes access the `dnsmasq` DHCP server over their provisioning network interfaces using ports `67` and `68`. |\n| `69` | When using a provisioning network, cluster nodes communicate with the TFTP server on port `69` using their provisioning network interfaces. The TFTP server runs on the bootstrap VM. The bootstrap VM runs on the provisioner node. |\n| `80` | When not using the image caching option or when using virtual media, the provisioner node must have port `80` open on the `baremetal` machine network interface to stream the Red Hat Enterprise Linux CoreOS (RHCOS) image from the provisioner node to the cluster nodes. |\n| `123` | The cluster nodes must access the NTP server on port `123` using the `baremetal` machine network. |\n| `5050` | The Ironic Inspector API runs on the control plane nodes and listens on port `5050`. The Inspector API is responsible for hardware introspection, which collects information about the hardware characteristics of the bare-metal nodes. |\n| `5051` | Port `5050` uses port `5051` as a proxy. |\n| `6180` | When deploying with virtual media and not using TLS, the provisioner node and the control plane nodes must have port `6180` open on the `baremetal` machine network interface so that the baseboard management controller (BMC) of the worker nodes can access the RHCOS image. Starting with OpenShift Container Platform 4.13, the default HTTP port is `6180`. |\n| `6183` | When deploying with virtual media and using TLS, the provisioner node and the control plane nodes must have port `6183` open on the `baremetal` machine network interface so that the BMC of the worker nodes can access the RHCOS image. |\n| `6385` | The Ironic API server runs initially on the bootstrap VM and later on the control plane nodes and listens on port `6385`. The Ironic API allows clients to interact with Ironic for bare-metal node provisioning and management, including operations such as enrolling new nodes, managing their power state, deploying images, and cleaning the hardware. |\n| `6388` | Port `6385` uses port `6388` as a proxy. |\n| `8080` | When using image caching without TLS, port `8080` must be open on the provisioner node and accessible by the BMC interfaces of the cluster nodes. |\n| `8083` | When using the image caching option with TLS, port `8083` must be open on the provisioner node and accessible by the BMC interfaces of the cluster nodes. |\n| `9999` | By default, the Ironic Python Agent (IPA) listens on TCP port `9999` for API calls from the Ironic conductor service. Communication between the bare-metal node where IPA is running and the Ironic conductor service uses this port. |\n\n### Increase the network MTU {#network-requirements-increase-mtu_ipi-install-prerequisites}\n\nBefore deploying OpenShift Container Platform, increase the network maximum transmission unit (MTU) to 1500 or more. If the MTU is lower than 1500, the Ironic image that is used to boot the node might fail to communicate with the Ironic inspector pod, and inspection will fail. If this occurs, installation stops because the nodes are not available for installation.\n\n### Configuring NICs {#network-requirements-config-nics_ipi-install-prerequisites}\n\nOpenShift Container Platform deploys with two networks:\n\n- `provisioning`: The `provisioning` network is an optional non-routable network used for provisioning the underlying operating system on each node that is a part of the OpenShift Container Platform cluster. The network interface for the `provisioning` network on each cluster node must have the BIOS or UEFI configured to PXE boot.\n\n  The `provisioningNetworkInterface` configuration setting specifies the `provisioning` network NIC name on the control plane nodes, which must be identical on the control plane nodes. The `bootMACAddress` configuration setting provides a means to specify a particular NIC on each node for the `provisioning` network.\n\n  The `provisioning` network is optional, but it is required for PXE booting. If you deploy without a `provisioning` network, you must use a virtual media BMC addressing option such as `redfish-virtualmedia` or `idrac-virtualmedia`.\n- `baremetal`: The `baremetal` network is a routable network. You can use any NIC to interface with the `baremetal` network provided the NIC is not configured to use the `provisioning` network.\n\n> [!IMPORTANT]\n> When using a VLAN, each NIC must be on a separate VLAN corresponding to the appropriate network.\n\n### DNS requirements {#network-requirements-dns_ipi-install-prerequisites}\n\nClients access the OpenShift Container Platform cluster nodes over the `baremetal` network. A network administrator must configure a subdomain or subzone where the canonical name extension is the cluster name.\n\n```text\n<cluster_name>.<base_domain>\n```\n\nFor example:\n\n```text\ntest-cluster.example.com\n```\n\nOpenShift Container Platform includes functionality that uses cluster membership information to generate A/AAAA records. This resolves the node names to their IP addresses. After the nodes are registered with the API, the cluster can disperse node information without using CoreDNS-mDNS. This eliminates the network traffic associated with multicast DNS.\n\nCoreDNS requires both TCP and UDP connections to the upstream DNS server to function correctly. Ensure the upstream DNS server can receive both TCP and UDP connections from OpenShift Container Platform cluster nodes.\n\nIn OpenShift Container Platform deployments, DNS name resolution is required for the following components:\n\n- The Kubernetes API\n- The OpenShift Container Platform application wildcard ingress API\n\nA/AAAA records are used for name resolution and PTR records are used for reverse name resolution. Red Hat Enterprise Linux CoreOS (RHCOS) uses the reverse records or DHCP to set the hostnames for all the nodes.\n\nInstaller-provisioned installation includes functionality that uses cluster membership information to generate A/AAAA records. This resolves the node names to their IP addresses. In each record, `<cluster_name>` is the cluster name and `<base_domain>` is the base domain that you specify in the `install-config.yaml` file. A complete DNS record takes the form: `<component>.<cluster_name>.<base_domain>.`.\n\n***Required DNS records***\n\n<table>\n<thead>\n<tr>\n  <th>Component</th>\n  <th>Record</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Kubernetes API</td>\n  <td><code>api.<cluster_name>.<base_domain>.</code></td>\n  <td>An A/AAAA record and a PTR record identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>\n</tr>\n<tr>\n  <td>Routes</td>\n  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>\n  <td>The wildcard A/AAAA record refers to the application ingress load balancer. The application ingress load balancer targets the nodes that run the Ingress Controller pods. The Ingress Controller pods run on the worker nodes by default. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.<cluster_name>.<base_domain></code> is used as a wildcard route to the OpenShift Container Platform console.</td>\n</tr>\n</tbody>\n</table>\n\n> [!TIP]\n> You can use the `dig` command to verify DNS resolution.\n\n### Dynamic Host Configuration Protocol (DHCP) requirements {#network-requirements-dhcp-reqs_ipi-install-prerequisites}\n\nBy default, installer-provisioned installation deploys `ironic-dnsmasq` with DHCP enabled for the `provisioning` network. No other DHCP servers should be running on the `provisioning` network when the `provisioningNetwork` configuration setting is set to `managed`, which is the default value. If you have a DHCP server running on the `provisioning` network, you must set the `provisioningNetwork` configuration setting to `unmanaged` in the `install-config.yaml` file.\n\nNetwork administrators must reserve IP addresses for each node in the OpenShift Container Platform cluster for the `baremetal` network on an external DHCP server.\n\n### Reserving IP addresses for nodes with the DHCP server {#network-requirements-reserving-ip-addresses_ipi-install-prerequisites}\n\nFor the `baremetal` network, a network administrator must reserve several IP addresses, including:\n\n1. Two unique virtual IP addresses.\n\n   - One virtual IP address for the API endpoint.\n   - One virtual IP address for the wildcard ingress endpoint.\n2. One IP address for the provisioner node.\n3. One IP address for each control plane node.\n4. One IP address for each worker node, if applicable.\n\n> [!IMPORTANT]\n> Reserving IP addresses so they become static IP addresses example:\n>\n> Some administrators prefer to use static IP addresses so that each node’s IP address remains constant in the absence of a DHCP server. To configure static IP addresses with NMState, see \"(Optional) Configuring node network interfaces\" in the \"Setting up the environment for an OpenShift installation\" section.\n\n> [!IMPORTANT]\n> Networking between external load balancers and control plane nodes example:\n>\n> External load balancing services and the control plane nodes must run on the same L2 network, and on the same VLAN when using VLANs to route traffic between the load balancing services and the control plane nodes.\n\n> [!IMPORTANT]\n> The storage interface requires a DHCP reservation or a static IP.\n\nThe following table provides an exemplary embodiment of fully qualified domain names. The API and name server addresses begin with canonical name extensions. The hostnames of the control plane and worker nodes are exemplary, so you can use any host naming convention you prefer.\n\n| Usage | Host Name | IP |\n| --- | --- | --- |\n| API | `api.<cluster_name>.<base_domain>` | `<ip>` |\n| Ingress LB (apps) | `*.apps.<cluster_name>.<base_domain>` | `<ip>` |\n| Provisioner node | `provisioner.<cluster_name>.<base_domain>` | `<ip>` |\n| Control-plane-0 | `openshift-control-plane-0.<cluster_name>.<base_domain>` | `<ip>` |\n| Control-plane-1 | `openshift-control-plane-1.<cluster_name>-.<base_domain>` | `<ip>` |\n| Control-plane-2 | `openshift-control-plane-2.<cluster_name>.<base_domain>` | `<ip>` |\n| Worker-0 | `openshift-worker-0.<cluster_name>.<base_domain>` | `<ip>` |\n| Worker-1 | `openshift-worker-1.<cluster_name>.<base_domain>` | `<ip>` |\n| Worker-n | `openshift-worker-n.<cluster_name>.<base_domain>` | `<ip>` |\n\n> [!NOTE]\n> If you do not create DHCP reservations, the installation program requires reverse DNS resolution to set the hostnames for the Kubernetes API node, the provisioner node, the control plane nodes, and the worker nodes.\n\n### Provisioner node requirements {#network-requirements-provisioner_ipi-install-prerequisites}\n\nYou must specify the MAC address for the provisioner node in your installation configuration. The `bootMacAddress` specification is typically associated with PXE network booting. However, the Ironic provisioning service also requires the `bootMacAddress` specification to identify nodes during the inspection of the cluster, or during node redeployment in the cluster.\n\nThe provisioner node requires layer 2 connectivity for network booting, DHCP and DNS resolution, and local network communication. The provisioner node requires layer 3 connectivity for virtual media booting.\n\n### Network Time Protocol (NTP) {#network-requirements-ntp_ipi-install-prerequisites}\n\nEach OpenShift Container Platform node in the cluster must have access to an NTP server. OpenShift Container Platform nodes use NTP to synchronize their clocks. For example, cluster nodes use SSL/TLS certificates that require validation, which might fail if the date and time between the nodes are not in sync.\n\n> [!IMPORTANT]\n> Define a consistent clock date and time format in each cluster node’s BIOS settings, or installation might fail.\n\nYou can reconfigure the control plane nodes to act as NTP servers on disconnected clusters, and reconfigure worker nodes to retrieve time from the control plane nodes.\n\n### Port access for the out-of-band management IP address {#network-requirements-out-of-band_ipi-install-prerequisites}\n\nThe out-of-band management IP address is on a separate network from the node. To ensure that the out-of-band management can communicate with the provisioner node during installation, the out-of-band management IP address must be granted access to port `6180` on the provisioner node and on the OpenShift Container Platform control plane nodes. TLS port `6183` is required for virtual media installation, for example, by using Redfish.\n\n**Additional resources**\n\n- [Using DNS forwarding](/openshift-docs-markdown/networking/networking_operators/dns-operator#nw-dns-forward_dns-operator)\n\n## Nodes configuration {#configuring-nodes_ipi-install-prerequisites}\n\nYou can configure nodes for an installer-provisioned installation of OpenShift Container Platform on bare metal by using either a `provisioning` network, a `baremetal` network, or with manually configured secure boot.\n\n### Node configuration when using the `provisioning` network {#_node_configuration_when_using_the_provisioning_network}\n\nEach node in the cluster requires the following configuration for proper installation.\n\n> [!WARNING]\n> A mismatch between nodes will cause an installation failure.\n\nWhile the cluster nodes can contain more than two NICs, the installation process only focuses on the first two NICs. In the following table, NIC1 is a non-routable network (`provisioning`) that is only used for the installation of the OpenShift Container Platform cluster.\n\n| NIC | Network | VLAN |\n| --- | --- | --- |\n| NIC1 | `provisioning` | `<provisioning_vlan>` |\n| NIC2 | `baremetal` | `<baremetal_vlan>` |\n\nThe Red Hat Enterprise Linux (RHEL) 9.x installation process on the provisioner node might vary. To install Red Hat Enterprise Linux (RHEL) 9.x using a local Satellite server or a PXE server, PXE-enable NIC2.\n\n| PXE | Boot order |\n| --- | --- |\n| NIC1 PXE-enabled `provisioning` network | 1 |\n| NIC2 `baremetal` network. PXE-enabled is optional. | 2 |\n\n> [!NOTE]\n> Ensure PXE is disabled on all other NICs.\n\nConfigure the control plane and worker nodes as follows:\n\n| PXE | Boot order |\n| --- | --- |\n| NIC1 PXE-enabled (provisioning network) | 1 |\n\n### Node configuration without the `provisioning` network {#_node_configuration_without_the_provisioning_network}\n\nThe installation process requires one NIC.\n\n| NIC | Network | VLAN |\n| --- | --- | --- |\n| NICx | `baremetal` | `<baremetal_vlan>` |\n\nNICx is a routable network (`baremetal`) that is used for the installation of the OpenShift Container Platform cluster, and routable to the internet.\n\n> [!IMPORTANT]\n> The `provisioning` network is optional, but it is required for PXE booting. If you deploy without a `provisioning` network, you must use a virtual media BMC addressing option such as `redfish-virtualmedia` or `idrac-virtualmedia`.\n\n### Configuring nodes for Secure Boot manually {#configuring-nodes-for-secure-boot_ipi-install-prerequisites}\n\nSecure Boot prevents a node from booting unless it verifies the node is using only trusted software, such as UEFI firmware drivers, EFI applications, and the operating system.\n\n> [!NOTE]\n> Red Hat only supports manually configured Secure Boot when deploying with Redfish virtual media.\n\nTo enable Secure Boot manually, refer to the hardware guide for the node and execute the following:\n\n**Procedure**\n\n1. Boot the node and enter the BIOS menu.\n2. Set the node’s boot mode to `UEFI Enabled`.\n3. Enable Secure Boot.\n\n   > [!IMPORTANT]\n   > Red Hat does not support Secure Boot with self-generated keys.\n\n## Out-of-band management {#out-of-band-management_ipi-install-prerequisites}\n\nOut-of-band management uses baseboard management controllers (BMCs) to provide the provisioner node with access to your cluster nodes.\n\nNodes typically have an additional NIC used by the BMCs. These BMCs must be accessible from the provisioner node.\n\nEach node must be accessible via out-of-band management. When using an out-of-band management network, the provisioner node requires access to the out-of-band management network for a successful OpenShift Container Platform installation.\n\nThe out-of-band management setup is out of scope for this document. Using a separate management network for out-of-band management can enhance performance and improve security. However, using the provisioning network or the bare metal network are valid options.\n\n> [!NOTE]\n> The bootstrap VM features a maximum of two network interfaces. If you configure a separate management network for out-of-band management, and you are using a provisioning network, the bootstrap VM requires routing access to the management network through one of the network interfaces. In this scenario, the bootstrap VM can then access three networks:\n>\n> - the bare metal network\n> - the provisioning network\n> - the management network routed through one of the network interfaces\n\n## Required data for installation {#required-data-for-installation_ipi-install-prerequisites}\n\nBefore you deploy OpenShift Container Platform, collect the essential information required for your environment.\n\nGather the following information from all cluster nodes:\n\n- Out-of-band management IP\n\n  - Examples\n\n    - Dell (iDRAC) IP\n    - HP (iLO) IP\n    - Fujitsu (iRMC) IP\n- When using the `provisioning` network\n\n  - NIC (`provisioning`) MAC address\n  - NIC (`baremetal`) MAC address\n- When omitting the `provisioning` network\n\n  - NIC (`baremetal`) MAC address\n\n## Validation checklist for nodes {#validation-checklist-for-nodes_ipi-install-prerequisites}\n\n- When using the `provisioning` network\n\n  - \\[ \\] NIC1 VLAN is configured for the `provisioning` network.\n  - \\[ \\] NIC1 for the `provisioning` network is PXE-enabled on the provisioner, control plane, and worker nodes.\n  - \\[ \\] NIC2 VLAN is configured for the `baremetal` network.\n  - \\[ \\] PXE has been disabled on all other NICs.\n  - \\[ \\] DNS is configured with API and Ingress endpoints.\n  - \\[ \\] Control plane and worker nodes are configured.\n  - \\[ \\] All nodes accessible via out-of-band management.\n  - \\[ \\] (Optional) A separate management network has been created.\n  - \\[ \\] Required data for installation.\n- When omitting the `provisioning` network\n\n  - \\[ \\] NIC1 VLAN is configured for the `baremetal` network.\n  - \\[ \\] DNS is configured with API and Ingress endpoints.\n  - \\[ \\] Control plane and worker nodes are configured.\n  - \\[ \\] All nodes accessible via out-of-band management.\n  - \\[ \\] (Optional) A separate management network has been created.\n  - \\[ \\] Required data for installation.\n\n## Installation overview {#installation-overview_ipi-install-prerequisites}\n\nThe installation program supports interactive mode. However, you can prepare an `install-config.yaml` file containing the provisioning details for all of the bare-metal hosts, and the relevant cluster details, in advance.\n\nThe installation program loads the `install-config.yaml` file and the administrator generates the manifests and verifies all prerequisites.\n\nThe installation program performs the following tasks:\n\n- Enrolls all nodes in the cluster\n- Starts the bootstrap virtual machine (VM)\n- Starts the metal platform components as `systemd` services, which have the following containers:\n\n  - Ironic-dnsmasq: The DHCP server responsible for handing over the IP addresses to the provisioning interface of various nodes on the provisioning network. Ironic-dnsmasq is only enabled when you deploy an OpenShift Container Platform cluster with a provisioning network.\n  - Ironic-httpd: The HTTP server that is used to ship the images to the nodes.\n  - Image-customization\n  - Ironic\n  - Ironic-inspector (available in OpenShift Container Platform 4.16 and earlier)\n  - Ironic-ramdisk-logs\n  - Extract-machine-os\n  - Provisioning-interface\n  - Metal3-baremetal-operator\n\nThe nodes enter the validation phase, where each node moves to a *manageable* state after Ironic validates the credentials to access the Baseboard Management Controller (BMC).\n\nWhen the node is in the manageable state, the *inspection* phase starts. The inspection phase ensures that the hardware meets the minimum requirements needed for a successful deployment of OpenShift Container Platform.\n\nThe `install-config.yaml` file details the provisioning network. On the bootstrap VM, the installation program uses the Pre-Boot Execution Environment (PXE) to push a live image to every node with the Ironic Python Agent (IPA) loaded. When using virtual media, it connects directly to the BMC of each node to virtually attach the image.\n\nWhen using PXE boot, all nodes reboot to start the process:\n\n- The `ironic-dnsmasq` service running on the bootstrap VM provides the IP address of the node and the TFTP boot server.\n- The first-boot software loads the root file system over HTTP.\n- The `ironic` service on the bootstrap VM receives the hardware information from each node.\n\nThe nodes enter the cleaning state, where each node must clean all the disks before continuing with the configuration.\n\nAfter the cleaning state finishes, the nodes enter the available state and the installation program moves the nodes to the deploying state.\n\nIPA runs the `coreos-installer` command to install the Red Hat Enterprise Linux CoreOS (RHCOS) image on the disk defined by the `rootDeviceHints` parameter in the `install-config.yaml` file. The node boots by using RHCOS.\n\nAfter the installation program configures the control plane nodes, it moves control from the bootstrap VM to the control plane nodes and deletes the bootstrap VM.\n\nThe Bare-Metal Operator continues the deployment of the workers, storage, and infra nodes.\n\nAfter the installation completes, the nodes move to the active state. You can then proceed with postinstallation configuration and other Day 2 tasks.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-prerequisites.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +102,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ipi-install-prerequisites" class="group scroll-mt-20">Prerequisites<a href="#ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
+      <p>You must meet several prerequisites before installing a cluster on bare metal by using installer-provisioned infrastructure.</p>
       <p>Installer-provisioned installation of OpenShift Container Platform requires:</p>
       <ol>
-      <li>One provisioner node with {"{"}{"{"} op_system_base_full {"}"}{"}"} {"{"}{"{"} op_system_version {"}"}{"}"} installed. The provisioner can be removed after installation.</li>
+      <li>One provisioner node with Red Hat Enterprise Linux (RHEL) 9.x installed. The provisioner can be removed after installation.</li>
       <li>Three control plane nodes</li>
       <li>Baseboard management controller (BMC) access to each node</li>
       <li>
@@ -107,32 +118,805 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       </li>
       </ol>
       <p>Before starting an installer-provisioned installation of OpenShift Container Platform, ensure the hardware environment meets the following requirements.</p>
-      <p class="/modules/ipi-install-node-requirements.md"></p>
-      <p class="/modules/installation-minimum-resource-requirements.md"></p>
-      <p class="/modules/virt-planning-bare-metal-cluster-for-ocp-virt.md"></p>
+      <h2 id="node-requirements_ipi-install-prerequisites" class="group scroll-mt-20">Node requirements<a href="#node-requirements_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before starting an installer-provisioned installation of OpenShift Container Platform, ensure the hardware environment is set up correctly.</p>
+      <p>Installer-provisioned installation involves several hardware node requirements:</p>
+      <ul><li><strong>CPU architecture:</strong> All nodes must use <code>x86_64</code> or <code>aarch64</code></li></ul>
+      <p>CPU architecture.</p>
+      <ul>
+      <li><strong>Similar nodes:</strong> Red Hat recommends nodes have an identical configuration per role. That is, Red Hat recommends nodes be the same brand and model with the same CPU, memory, and storage configuration.</li>
+      <li><strong>Baseboard Management Controller:</strong> The <code>provisioner</code> node must be able to access the baseboard management controller (BMC) of each OpenShift Container Platform cluster node. You may use IPMI, Redfish, or a proprietary protocol.</li>
+      <li><strong>Latest generation:</strong> Nodes must be of the most recent generation. Installer-provisioned installation relies on BMC protocols, which must be compatible across nodes. Additionally, RHEL 9.x ships with the most recent drivers for RAID controllers. Ensure that the nodes are recent enough to support RHEL 9.x for the <code>provisioner</code> node and RHCOS 9.x for the control plane and worker nodes.</li>
+      <li><strong>Registry node:</strong> (Optional) If setting up a disconnected mirrored registry, it is recommended the registry reside in its own node.</li>
+      <li><strong>Provisioner node:</strong> Installer-provisioned installation requires one <code>provisioner</code> node.</li>
+      <li><strong>Control plane:</strong> Installer-provisioned installation requires three control plane nodes for high availability. You can deploy an OpenShift Container Platform cluster with only three control plane nodes, making the control plane nodes schedulable as worker nodes. Smaller clusters are more resource efficient for administrators and developers during development, production, and testing.</li>
+      <li>
+      <strong>Worker nodes:</strong> While not required, a typical production cluster has two or more worker nodes.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not deploy a cluster with only one worker node, because the cluster will deploy with routers and ingress traffic in a degraded state.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      <strong>Network interfaces:</strong> Each node must have at least one network interface for the routable <code>baremetal</code> network. Each node must have one network interface for a <code>provisioning</code> network when using the <code>provisioning</code> network for deployment. Using the <code>provisioning</code> network is the default configuration.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Only one network card (NIC) on the same subnet can route traffic through the gateway. By default, Address Resolution Protocol (ARP) uses the lowest numbered NIC. Use a single NIC for each node in the same subnet to ensure that network load balancing works as expected. When using multiple NICs for a node in the same subnet, use a single bond or team interface. Then add the other IP addresses to that interface in the form of an alias IP address. If you require fault tolerance or load balancing at the network interface level, use an alias IP address on the bond or team interface. Alternatively, you can disable a secondary NIC on the same subnet or ensure that it has no IP address.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      <strong>Unified Extensible Firmware Interface (UEFI):</strong> Installer-provisioned installation requires UEFI boot on all OpenShift Container Platform nodes when using IPv6 addressing on the <code>provisioning</code> network. In addition, UEFI Device PXE Settings must be set to use the IPv6 protocol on the <code>provisioning</code> network NIC, but omitting the <code>provisioning</code> network removes this requirement.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>When starting the installation from virtual media such as an ISO image, delete all old UEFI boot table entries. If the boot table includes entries that are not generic entries provided by the firmware, the installation might fail.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      <strong>Secure Boot:</strong> Many production scenarios require nodes with Secure Boot enabled to verify the node only boots with trusted software, such as UEFI firmware drivers, EFI applications, and the operating system. You may deploy with Secure Boot manually or managed.
+      <ol>
+      <li><strong>Manually:</strong> To deploy an OpenShift Container Platform cluster with Secure Boot manually, you must enable UEFI boot mode and Secure Boot on each control plane node and each worker node. Red Hat supports Secure Boot with manually enabled UEFI and Secure Boot only when installer-provisioned installations use Redfish virtual media. See "Configuring nodes for Secure Boot manually" in the "Configuring nodes" section for additional details.</li>
+      <li>
+      <strong>Managed:</strong> To deploy an OpenShift Container Platform cluster with managed Secure Boot, you must set the <code>bootMode</code> value to <code>UEFISecureBoot</code> in the <code>install-config.yaml</code> file. Red Hat only supports installer-provisioned installation with managed Secure Boot on 10th generation HPE hardware and 13th generation Dell hardware running firmware version <code>2.75.75.75</code> or greater. Deploying with managed Secure Boot does not require Redfish virtual media. See "Configuring managed Secure Boot" in the "Setting up the environment for an OpenShift installation" section for details.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Red Hat does not support managing self-generated keys, or other keys, for Secure Boot.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      </ul>
+      <h2 id="installation-minimum-resource-requirements_ipi-install-prerequisites" class="group scroll-mt-20">Minimum resource requirements for cluster installation<a href="#installation-minimum-resource-requirements_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To ensure that your OpenShift Container Platform cluster runs as expected, each cluster machine must meet minimum CPU, memory, and storage requirements.</p>
+      <p><em></em><em><strong>Minimum resource requirements</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Machine</th>\n  <th>Operating system</th>\n"} />
+      <Fragment set:html={"  <th>CPU</th>\n  <th>RAM</th>\n  <th>Storage</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Input/Output Per Second (IOPS)</td>\n  <td>Bootstrap</td>\n"} />
+      <Fragment set:html={"  <td>RHEL</td>\n"} />
+      <Fragment set:html={"  <td>4</td>\n  <td>16 GB</td>\n  <td>100 GB</td>\n  <td>300</td>\n</tr>\n<tr>\n"} />
+      <Fragment set:html={"  <td>Control plane</td>\n  <td>RHCOS</td>\n"} />
+      <Fragment set:html={"  <td>4</td>\n  <td>16 GB</td>\n  <td>100 GB</td>\n</tr>\n<tr>\n  <td>300</td>\n"} />
+      <Fragment set:html={"  <td>Compute</td>\n  <td>RHCOS</td>\n"} />
+      <Fragment set:html={"  <td>2</td>\n  <td>8 GB</td>\n  <td>100 GB</td>\n  <td>300</td>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n</tbody>\n</table>\n"} />
+      <ul>
+      <li>One CPU is equal to one physical core when simultaneous multithreading (SMT), or Hyper-Threading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio: (threads per core × cores) × sockets = CPUs.</li>
+      <li>OpenShift Container Platform and Kubernetes are sensitive to disk performance, and Red Hat recommends faster storage, particularly for etcd on the control plane nodes. On many cloud platforms, storage size and IOPS scale together, so you might need to provision more storage to get enough performance.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>In OpenShift Container Platform version 4.22, RHCOS uses RHEL version 9.8, which updates the micro-architecture requirements. Each architecture requires the following minimum instruction set architectures (ISA):</p>
+          <ul>
+          <li>x86-64 architecture requires x86-64-v2 ISA</li>
+          <li>ARM64 architecture requires ARMv8.0-A ISA</li>
+          <li>ppc64le architecture requires IBM(R) Power9 ISA</li>
+          <li>s390x architecture requires IBM(R) z14 ISA</li>
+          </ul>
+          <p>For more information, see <a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html-single/9.8_release_notes/index#architectures">Architectures</a> in the RHEL documentation.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If an instance type for your platform meets the minimum requirements for cluster machines, it is supported to use in OpenShift Container Platform.</p>
+      <h2 id="virt-planning-bare-metal-cluster-for-ocp-virt_ipi-install-prerequisites" class="group scroll-mt-20">Bare-metal cluster installation requirements for OpenShift Virtualization<a href="#virt-planning-bare-metal-cluster-for-ocp-virt_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure your bare-metal cluster correctly during installation to support OpenShift Virtualization, as certain required settings cannot be changed after installation.</p>
+      <h3 id="virt-planning-bare-metal-cluster-for-ocp-virt-HA_ipi-install-prerequisites" class="group scroll-mt-20">High availability requirements for OpenShift Virtualization<a href="#virt-planning-bare-metal-cluster-for-ocp-virt-HA_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>When discussing high availability (HA) features in the context of OpenShift Virtualization, this refers only to the replication model of the core cluster components, determined by the <code>controlPlaneTopology</code> and <code>infrastructureTopology</code> fields in the <code>Infrastructure</code> custom resource (CR). Setting these fields to <code>HighlyAvailable</code> offers component redundancy, which is distinct from general cluster-wide application HA. Setting these fields to <code>SingleReplica</code> disables component redundancy, and therefore disables OpenShift Virtualization HA features.</p>
+      <p>If you plan to use OpenShift Virtualization HA features, you must have three control plane nodes at the time of cluster installation. The <code>controlPlaneTopology</code> status in the <code>Infrastructure</code> CR for the cluster must be <code>HighlyAvailable</code>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can install OpenShift Virtualization on a single-node cluster, but single-node OpenShift does not support HA features.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="virt-planning-bare-metal-cluster-for-ocp-virt-LM_ipi-install-prerequisites" class="group scroll-mt-20">Live migration requirements for OpenShift Virtualization<a href="#virt-planning-bare-metal-cluster-for-ocp-virt-LM_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul>
+      <li>
+      If you plan to use live migration, you must have multiple worker nodes. The <code>infrastructureTopology</code> status in the <code>Infrastructure</code> CR for the cluster must be <code>HighlyAvailable</code>. A minimum of three worker nodes is recommended.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can install OpenShift Virtualization on a single-node cluster, but single-node OpenShift does not support live migration.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Live migration requires shared storage. Storage for OpenShift Virtualization must support and use the ReadWriteMany (RWX) access mode.</li>
+      </ul>
+      <h3 id="virt-planning-bare-metal-cluster-for-ocp-virt-SR-IOV_ipi-install-prerequisites" class="group scroll-mt-20">SR-IOV requirements for OpenShift Virtualization<a href="#virt-planning-bare-metal-cluster-for-ocp-virt-SR-IOV_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>If you plan to use Single Root I/O Virtualization (SR-IOV), ensure that your network interface controllers (NICs) are supported by OpenShift Container Platform.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt">Preparing your cluster for {"{"}{"{"} VirtProductName {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/virt/install/preparing-cluster-for-virt#preparing-cluster-for-virt">Preparing your cluster for OpenShift Virtualization</a></li>
       <li><a href="/openshift-docs-markdown/networking/hardware_networks/about-sriov#about-sriov">About Single Root I/O Virtualization (SR-IOV) hardware networks</a></li>
       <li><a href="/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov">Connecting a virtual machine to an SR-IOV network</a></li>
       </ul>
+      <h2 id="ipi-install-firmware-requirements-for-installing-with-virtual-media_ipi-install-prerequisites" class="group scroll-mt-20">Firmware requirements for installing with virtual media<a href="#ipi-install-firmware-requirements-for-installing-with-virtual-media_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The installation program for installer-provisioned OpenShift Container Platform clusters depends on the hardware and firmware compatibility with Redfish virtual media. The installation may not succeed if the node firmware is not compatible.</p>
+      <p>The following tables list the firmware versions tested and verified to work for installer-provisioned OpenShift Container Platform clusters deployed by using Redfish virtual media.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Red Hat does not test every combination of firmware, hardware, or other third-party components. For further information about third-party support, see "Red Hat third-party support policy". For information about updating the firmware, see the hardware documentation for the nodes or contact the hardware vendor.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Firmware compatibility for HP hardware with Redfish virtual media</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Model</TableHead>
+      <TableHead>Management</TableHead>
+      <TableHead>Firmware versions</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>11th Generation</TableCell>
+      <TableCell>iLO6</TableCell>
+      <TableCell>1.57 or later</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>10th Generation</TableCell>
+      <TableCell>iLO5</TableCell>
+      <TableCell>2.63 or later</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Firmware compatibility for Dell hardware with Redfish virtual media</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Model</TableHead>
+      <TableHead>Management</TableHead>
+      <TableHead>Firmware versions</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>17th Generation</TableCell>
+      <TableCell>iDRAC 10</TableCell>
+      <TableCell>v1.20.25.00, v1.20.60.50, and v1.20.70.50</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>16th Generation</TableCell>
+      <TableCell>iDRAC 9</TableCell>
+      <TableCell>v7.10.70.00</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>15th Generation</TableCell>
+      <TableCell>iDRAC 9</TableCell>
+      <TableCell>v6.10.30.00, v7.10.50.00, and v7.10.70.00</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>14th Generation</TableCell>
+      <TableCell>iDRAC 9</TableCell>
+      <TableCell>v6.10.30.00</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Firmware compatibility for Cisco UCS hardware with Redfish virtual media</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Model</TableHead>
+      <TableHead>Management</TableHead>
+      <TableHead>Firmware versions</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>UCS X-Series servers</TableCell>
+      <TableCell>Intersight Managed Mode</TableCell>
+      <TableCell>5.2(2) or later</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>FI-Attached UCS C-Series servers</TableCell>
+      <TableCell>Intersight Managed Mode</TableCell>
+      <TableCell>4.3 or later</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Standalone UCS C-Series servers</TableCell>
+      <TableCell>Standalone / Intersight</TableCell>
+      <TableCell>4.3 or later</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Always confirm that your server supports Red Hat Enterprise Linux CoreOS (RHCOS) on UCS Hardware and Software Compatibility. For more information, see "UCSHCL".</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://access.redhat.com/third-party-software-support">Red Hat third-party support policy</a></li>
       <li><a href="https://ucshcltool.cloudapps.cisco.com/public/">UCSHCL</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-troubleshooting#unable-to-discover-new-bare-metal-hosts-using-the-bmc_ipi-install-troubleshooting">Unable to discover new bare-metal hosts by using the BMC</a></li>
       </ul>
+      <h2 id="ncsi-hardware-requirements-for-bare-metal_ipi-install-prerequisites" class="group scroll-mt-20">NC-SI hardware requirements for bare metal<a href="#ncsi-hardware-requirements-for-bare-metal_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To deploy OpenShift Container Platform 4.19 and later with a Network Controller Sideband Interface (NC-SI) on bare metal, you must use hardware with baseboard management controllers (BMCs) and network interface cards (NICs) that support NC-SI. </p>
+      <p>NC-SI enables the BMC to share a system NIC with the host, requiring the <code>DisablePowerOff</code> feature to prevent loss of BMC connectivity during power-offs.</p>
+      <p><strong>Server compatibility for NC-SI</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Vendor</TableHead>
+      <TableHead>Models</TableHead>
+      <TableHead>Generation</TableHead>
+      <TableHead>Management</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Dell</TableCell>
+      <TableCell>PowerEdge</TableCell>
+      <TableCell>14th generation and later</TableCell>
+      <TableCell>iDRAC 9 and later (Redfish, IPMI, racadm, WS-MAN)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>HPE</TableCell>
+      <TableCell>ProLiant</TableCell>
+      <TableCell>10th generation and later</TableCell>
+      <TableCell>iLO 5 and later (Redfish, IPMI, iLO RESTful API)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Lenovo</TableCell>
+      <TableCell>ThinkSystem SR</TableCell>
+      <TableCell>1st generation and later</TableCell>
+      <TableCell>XClarity Controller (Redfish, IPMI, proprietary APIs)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Supermicro</TableCell>
+      <TableCell>SuperServer</TableCell>
+      <TableCell>X11 series and later</TableCell>
+      <TableCell>Supermicro BMC (Redfish, IPMI, proprietary web/CLI)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Intel</TableCell>
+      <TableCell>Server Systems</TableCell>
+      <TableCell>S2600BP and later</TableCell>
+      <TableCell>Intel BMC (Redfish, IPMI, proprietary APIs)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Fujitsu</TableCell>
+      <TableCell>PRIMERGY</TableCell>
+      <TableCell>M4 series and later</TableCell>
+      <TableCell>iRMC S5 and later (Redfish, IPMI, proprietary web/CLI)</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Cisco</TableCell>
+      <TableCell>UCS C-Series</TableCell>
+      <TableCell>M5 series and later</TableCell>
+      <TableCell>Cisco IMC (Redfish, IPMI, proprietary XML API)</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Compatible Network Interface Cards (NICs) for NC-SI</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Vendor</TableHead>
+      <TableHead>Models</TableHead>
+      <TableHead>Specifications</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Broadcom</TableCell>
+      <TableCell>NetXtreme BCM5720, BCM57416, BCM57504</TableCell>
+      <TableCell>Gigabit and 10/25/100GbE, RMII sideband, supports Redfish, IPMI, and vendor protocols.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Intel</TableCell>
+      <TableCell>I210, X710, XXV710, E810</TableCell>
+      <TableCell>Gigabit to 100GbE, RMII and SMBus sideband, supports Redfish, IPMI, and vendor protocols.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>NVIDIA</TableCell>
+      <TableCell>ConnectX-5, ConnectX-6, ConnectX-7</TableCell>
+      <TableCell>25/50/100/200/400GbE, RMII sideband, supports Redfish, IPMI, and NVIDIA BMC APIs.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>NVIDIA</TableCell>
+      <TableCell>BlueField-2 and later</TableCell>
+      <TableCell>200/400GbE, supports Redfish, IPMI, and NVIDIA BMC APIs.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Marvell/Cavium</TableCell>
+      <TableCell>ThunderX CN88xx, FastLinQ QL41000</TableCell>
+      <TableCell>10/25/50GbE, RMII sideband, supports Redfish, IPMI, and vendor protocols.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Mellanox (NVIDIA)</TableCell>
+      <TableCell>MCX4121A-ACAT, MCX512A-ACAT</TableCell>
+      <TableCell>10/25/50GbE, RMII sideband, supports Redfish, IPMI, and Mellanox APIs.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Verify NC-SI support with vendor documentation, because compatibility depends on BMC, NIC, and firmware configurations. NC-SI NICs require a compatible BMC to enable shared NIC functionality.</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://specs.openstack.org/openstack/ironic-specs/specs/approved/nc-si.html">Ironic NC-SI Specification</a></li>
       <li><a href="https://www.dmtf.org/sites/default/files/standards/documents/DSP0222_1.1.1.pdf">DMTF: Network Controller Sideband Interface (NC-SI) Specification</a></li>
       </ul>
+      <h2 id="network-requirements_ipi-install-prerequisites" class="group scroll-mt-20">Network requirements<a href="#network-requirements_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Installer-provisioned installation of OpenShift Container Platform involves multiple network requirements. First, installer-provisioned installation involves an optional non-routable <code>provisioning</code> network for provisioning the operating system on each bare-metal node. Second, installer-provisioned installation involves a routable <code>baremetal</code> network.</p>
+      <p><strong>Figure 1. Installer-provisioned networking</strong></p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/210_OpenShift_Baremetal_IPI_Deployment_updates_0122_2.png" alt="Installer-provisioned networking" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Red Hat supports any valid host network configuration that meets the documented requirements, regardless of how that configuration is applied. However, Red Hat only supports the configuration application process when approved tools are used. The following list details examples of these tools:</p>
+          <ul>
+          <li>A documented tool, such as NMState or Kubernetes-NMState.</li>
+          <li>Other tools might be supported to perform a specific task. Red Hat does not support these other tools for general network configurations.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <h3 id="network-requirements-one-ip-per-subnet_ipi-install-prerequisites" class="group scroll-mt-20">One IP address for each subnet<a href="#network-requirements-one-ip-per-subnet_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>For the primary interface, assign one IP address for each subnet. This configuration ensures the node IP address selection handles traffic without experiencing traffic handling issues.</p>
+      <p>You can assign multiple IP addresses from the same subnet to a single interface, in a process known as <em>IP aliasing</em>. However, the node IP address selection process cannot consistently determine which address to use, causing routing conflicts and unpredictable IP selection.</p>
+      <h3 id="network-requirements-ensuring-required-ports-are-open_ipi-install-prerequisites" class="group scroll-mt-20">Ensuring required ports are open<a href="#network-requirements-ensuring-required-ports-are-open_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Certain ports must be open between cluster nodes for installer-provisioned installations to complete successfully. In certain situations, such as using separate subnets for far edge worker nodes, you must ensure that the nodes in these subnets can communicate with nodes in the other subnets on the following required ports.</p>
+      <p><strong>Required ports</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Port</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>67</code>,<code>68</code></TableCell>
+      <TableCell>When using a provisioning network, cluster nodes access the <code>dnsmasq</code> DHCP server over their provisioning network interfaces using ports <code>67</code> and <code>68</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>69</code></TableCell>
+      <TableCell>When using a provisioning network, cluster nodes communicate with the TFTP server on port <code>69</code> using their provisioning network interfaces. The TFTP server runs on the bootstrap VM. The bootstrap VM runs on the provisioner node.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>80</code></TableCell>
+      <TableCell>When not using the image caching option or when using virtual media, the provisioner node must have port <code>80</code> open on the <code>baremetal</code> machine network interface to stream the Red Hat Enterprise Linux CoreOS (RHCOS) image from the provisioner node to the cluster nodes.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>123</code></TableCell>
+      <TableCell>The cluster nodes must access the NTP server on port <code>123</code> using the <code>baremetal</code> machine network.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>5050</code></TableCell>
+      <TableCell>The Ironic Inspector API runs on the control plane nodes and listens on port <code>5050</code>. The Inspector API is responsible for hardware introspection, which collects information about the hardware characteristics of the bare-metal nodes.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>5051</code></TableCell>
+      <TableCell>Port <code>5050</code> uses port <code>5051</code> as a proxy.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>6180</code></TableCell>
+      <TableCell>When deploying with virtual media and not using TLS, the provisioner node and the control plane nodes must have port <code>6180</code> open on the <code>baremetal</code> machine network interface so that the baseboard management controller (BMC) of the worker nodes can access the RHCOS image. Starting with OpenShift Container Platform 4.13, the default HTTP port is <code>6180</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>6183</code></TableCell>
+      <TableCell>When deploying with virtual media and using TLS, the provisioner node and the control plane nodes must have port <code>6183</code> open on the <code>baremetal</code> machine network interface so that the BMC of the worker nodes can access the RHCOS image.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>6385</code></TableCell>
+      <TableCell>The Ironic API server runs initially on the bootstrap VM and later on the control plane nodes and listens on port <code>6385</code>. The Ironic API allows clients to interact with Ironic for bare-metal node provisioning and management, including operations such as enrolling new nodes, managing their power state, deploying images, and cleaning the hardware.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>6388</code></TableCell>
+      <TableCell>Port <code>6385</code> uses port <code>6388</code> as a proxy.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>8080</code></TableCell>
+      <TableCell>When using image caching without TLS, port <code>8080</code> must be open on the provisioner node and accessible by the BMC interfaces of the cluster nodes.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>8083</code></TableCell>
+      <TableCell>When using the image caching option with TLS, port <code>8083</code> must be open on the provisioner node and accessible by the BMC interfaces of the cluster nodes.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>9999</code></TableCell>
+      <TableCell>By default, the Ironic Python Agent (IPA) listens on TCP port <code>9999</code> for API calls from the Ironic conductor service. Communication between the bare-metal node where IPA is running and the Ironic conductor service uses this port.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="network-requirements-increase-mtu_ipi-install-prerequisites" class="group scroll-mt-20">Increase the network MTU<a href="#network-requirements-increase-mtu_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Before deploying OpenShift Container Platform, increase the network maximum transmission unit (MTU) to 1500 or more. If the MTU is lower than 1500, the Ironic image that is used to boot the node might fail to communicate with the Ironic inspector pod, and inspection will fail. If this occurs, installation stops because the nodes are not available for installation.</p>
+      <h3 id="network-requirements-config-nics_ipi-install-prerequisites" class="group scroll-mt-20">Configuring NICs<a href="#network-requirements-config-nics_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>OpenShift Container Platform deploys with two networks:</p>
+      <ul>
+      <li>
+      <code>provisioning</code>: The <code>provisioning</code> network is an optional non-routable network used for provisioning the underlying operating system on each node that is a part of the OpenShift Container Platform cluster. The network interface for the <code>provisioning</code> network on each cluster node must have the BIOS or UEFI configured to PXE boot.
+      <p>The <code>provisioningNetworkInterface</code> configuration setting specifies the <code>provisioning</code> network NIC name on the control plane nodes, which must be identical on the control plane nodes. The <code>bootMACAddress</code> configuration setting provides a means to specify a particular NIC on each node for the <code>provisioning</code> network.</p>
+      <p>The <code>provisioning</code> network is optional, but it is required for PXE booting. If you deploy without a <code>provisioning</code> network, you must use a virtual media BMC addressing option such as <code>redfish-virtualmedia</code> or <code>idrac-virtualmedia</code>.</p>
+      </li>
+      <li><code>baremetal</code>: The <code>baremetal</code> network is a routable network. You can use any NIC to interface with the <code>baremetal</code> network provided the NIC is not configured to use the <code>provisioning</code> network.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>When using a VLAN, each NIC must be on a separate VLAN corresponding to the appropriate network.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="network-requirements-dns_ipi-install-prerequisites" class="group scroll-mt-20">DNS requirements<a href="#network-requirements-dns_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Clients access the OpenShift Container Platform cluster nodes over the <code>baremetal</code> network. A network administrator must configure a subdomain or subzone where the canonical name extension is the cluster name.</p>
+      <CodeBlock code={"<cluster_name>.<base_domain>"} lang="text" />
+      <p>For example:</p>
+      <CodeBlock code={"test-cluster.example.com"} lang="text" />
+      <p>OpenShift Container Platform includes functionality that uses cluster membership information to generate A/AAAA records. This resolves the node names to their IP addresses. After the nodes are registered with the API, the cluster can disperse node information without using CoreDNS-mDNS. This eliminates the network traffic associated with multicast DNS.</p>
+      <p>CoreDNS requires both TCP and UDP connections to the upstream DNS server to function correctly. Ensure the upstream DNS server can receive both TCP and UDP connections from OpenShift Container Platform cluster nodes.</p>
+      <p>In OpenShift Container Platform deployments, DNS name resolution is required for the following components:</p>
+      <ul>
+      <li>The Kubernetes API</li>
+      <li>The OpenShift Container Platform application wildcard ingress API</li>
+      </ul>
+      <p>A/AAAA records are used for name resolution and PTR records are used for reverse name resolution. Red Hat Enterprise Linux CoreOS (RHCOS) uses the reverse records or DHCP to set the hostnames for all the nodes.</p>
+      <p>Installer-provisioned installation includes functionality that uses cluster membership information to generate A/AAAA records. This resolves the node names to their IP addresses. In each record, <code>&lt;cluster_name&gt;</code> is the cluster name and <code>&lt;base_domain&gt;</code> is the base domain that you specify in the <code>install-config.yaml</code> file. A complete DNS record takes the form: <code>&lt;component&gt;.&lt;cluster_name&gt;.&lt;base_domain&gt;.</code>.</p>
+      <p><em></em><em><strong>Required DNS records</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Component</th>\n  <th>Record</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Kubernetes API</td>\n  <td><code>api.<cluster_name>.<base_domain>.</code></td>\n  <td>An A/AAAA record and a PTR record identify the API load balancer. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.</td>\n</tr>\n<tr>\n  <td>Routes</td>\n  <td><code>*.apps.<cluster_name>.<base_domain>.</code></td>\n  <td>The wildcard A/AAAA record refers to the application ingress load balancer. The application ingress load balancer targets the nodes that run the Ingress Controller pods. The Ingress Controller pods run on the worker nodes by default. These records must be resolvable by both clients external to the cluster and from all the nodes within the cluster.<br><br>For example, <code>console-openshift-console.apps.<cluster_name>.<base_domain></code> is used as a wildcard route to the OpenShift Container Platform console.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can use the <code>dig</code> command to verify DNS resolution.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="network-requirements-dhcp-reqs_ipi-install-prerequisites" class="group scroll-mt-20">Dynamic Host Configuration Protocol (DHCP) requirements<a href="#network-requirements-dhcp-reqs_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>By default, installer-provisioned installation deploys <code>ironic-dnsmasq</code> with DHCP enabled for the <code>provisioning</code> network. No other DHCP servers should be running on the <code>provisioning</code> network when the <code>provisioningNetwork</code> configuration setting is set to <code>managed</code>, which is the default value. If you have a DHCP server running on the <code>provisioning</code> network, you must set the <code>provisioningNetwork</code> configuration setting to <code>unmanaged</code> in the <code>install-config.yaml</code> file.</p>
+      <p>Network administrators must reserve IP addresses for each node in the OpenShift Container Platform cluster for the <code>baremetal</code> network on an external DHCP server.</p>
+      <h3 id="network-requirements-reserving-ip-addresses_ipi-install-prerequisites" class="group scroll-mt-20">Reserving IP addresses for nodes with the DHCP server<a href="#network-requirements-reserving-ip-addresses_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>For the <code>baremetal</code> network, a network administrator must reserve several IP addresses, including:</p>
+      <ol>
+      <li>
+      Two unique virtual IP addresses.
+      <ul>
+      <li>One virtual IP address for the API endpoint.</li>
+      <li>One virtual IP address for the wildcard ingress endpoint.</li>
+      </ul>
+      </li>
+      <li>One IP address for the provisioner node.</li>
+      <li>One IP address for each control plane node.</li>
+      <li>One IP address for each worker node, if applicable.</li>
+      </ol>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Reserving IP addresses so they become static IP addresses example:</p>
+          <p>Some administrators prefer to use static IP addresses so that each node’s IP address remains constant in the absence of a DHCP server. To configure static IP addresses with NMState, see "(Optional) Configuring node network interfaces" in the "Setting up the environment for an OpenShift installation" section.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Networking between external load balancers and control plane nodes example:</p>
+          <p>External load balancing services and the control plane nodes must run on the same L2 network, and on the same VLAN when using VLANs to route traffic between the load balancing services and the control plane nodes.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The storage interface requires a DHCP reservation or a static IP.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following table provides an exemplary embodiment of fully qualified domain names. The API and name server addresses begin with canonical name extensions. The hostnames of the control plane and worker nodes are exemplary, so you can use any host naming convention you prefer.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Usage</TableHead>
+      <TableHead>Host Name</TableHead>
+      <TableHead>IP</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>API</TableCell>
+      <TableCell><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell><code>&lt;ip&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Ingress LB (apps)</TableCell>
+      <TableCell><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell><code>&lt;ip&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Provisioner node</TableCell>
+      <TableCell><code>provisioner.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell><code>&lt;ip&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Control-plane-0</TableCell>
+      <TableCell><code>openshift-control-plane-0.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell><code>&lt;ip&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Control-plane-1</TableCell>
+      <TableCell><code>openshift-control-plane-1.&lt;cluster_name&gt;-.&lt;base_domain&gt;</code></TableCell>
+      <TableCell><code>&lt;ip&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Control-plane-2</TableCell>
+      <TableCell><code>openshift-control-plane-2.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell><code>&lt;ip&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Worker-0</TableCell>
+      <TableCell><code>openshift-worker-0.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell><code>&lt;ip&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Worker-1</TableCell>
+      <TableCell><code>openshift-worker-1.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell><code>&lt;ip&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Worker-n</TableCell>
+      <TableCell><code>openshift-worker-n.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell><code>&lt;ip&gt;</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you do not create DHCP reservations, the installation program requires reverse DNS resolution to set the hostnames for the Kubernetes API node, the provisioner node, the control plane nodes, and the worker nodes.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="network-requirements-provisioner_ipi-install-prerequisites" class="group scroll-mt-20">Provisioner node requirements<a href="#network-requirements-provisioner_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You must specify the MAC address for the provisioner node in your installation configuration. The <code>bootMacAddress</code> specification is typically associated with PXE network booting. However, the Ironic provisioning service also requires the <code>bootMacAddress</code> specification to identify nodes during the inspection of the cluster, or during node redeployment in the cluster.</p>
+      <p>The provisioner node requires layer 2 connectivity for network booting, DHCP and DNS resolution, and local network communication. The provisioner node requires layer 3 connectivity for virtual media booting.</p>
+      <h3 id="network-requirements-ntp_ipi-install-prerequisites" class="group scroll-mt-20">Network Time Protocol (NTP)<a href="#network-requirements-ntp_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Each OpenShift Container Platform node in the cluster must have access to an NTP server. OpenShift Container Platform nodes use NTP to synchronize their clocks. For example, cluster nodes use SSL/TLS certificates that require validation, which might fail if the date and time between the nodes are not in sync.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Define a consistent clock date and time format in each cluster node’s BIOS settings, or installation might fail.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can reconfigure the control plane nodes to act as NTP servers on disconnected clusters, and reconfigure worker nodes to retrieve time from the control plane nodes.</p>
+      <h3 id="network-requirements-out-of-band_ipi-install-prerequisites" class="group scroll-mt-20">Port access for the out-of-band management IP address<a href="#network-requirements-out-of-band_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The out-of-band management IP address is on a separate network from the node. To ensure that the out-of-band management can communicate with the provisioner node during installation, the out-of-band management IP address must be granted access to port <code>6180</code> on the provisioner node and on the OpenShift Container Platform control plane nodes. TLS port <code>6183</code> is required for virtual media installation, for example, by using Redfish.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/networking/networking_operators/dns-operator#nw-dns-forward_dns-operator">Using DNS forwarding</a></li></ul>
-      <p class="/modules/ipi-install-out-of-band-management.md"></p>
-      <p class="/modules/ipi-install-required-data-for-installation.md"></p>
-      <p class="/modules/ipi-install-validation-checklist-for-nodes.md"></p>
-      <p class="/modules/ref_ipi-installation-overview.md"></p>
+      <h2 id="configuring-nodes_ipi-install-prerequisites" class="group scroll-mt-20">Nodes configuration<a href="#configuring-nodes_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure nodes for an installer-provisioned installation of OpenShift Container Platform on bare metal by using either a <code>provisioning</code> network, a <code>baremetal</code> network, or with manually configured secure boot.</p>
+      <h3 id="_node_configuration_when_using_the_provisioning_network" class="group scroll-mt-20">Node configuration when using the <code>provisioning</code> network<a href="#_node_configuration_when_using_the_provisioning_network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Each node in the cluster requires the following configuration for proper installation.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>A mismatch between nodes will cause an installation failure.</p>
+        </AlertDescription>
+      </Alert>
+      <p>While the cluster nodes can contain more than two NICs, the installation process only focuses on the first two NICs. In the following table, NIC1 is a non-routable network (<code>provisioning</code>) that is only used for the installation of the OpenShift Container Platform cluster.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>NIC</TableHead>
+      <TableHead>Network</TableHead>
+      <TableHead>VLAN</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>NIC1</TableCell>
+      <TableCell><code>provisioning</code></TableCell>
+      <TableCell><code>&lt;provisioning_vlan&gt;</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>NIC2</TableCell>
+      <TableCell><code>baremetal</code></TableCell>
+      <TableCell><code>&lt;baremetal_vlan&gt;</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>The Red Hat Enterprise Linux (RHEL) 9.x installation process on the provisioner node might vary. To install Red Hat Enterprise Linux (RHEL) 9.x using a local Satellite server or a PXE server, PXE-enable NIC2.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>PXE</TableHead>
+      <TableHead>Boot order</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>NIC1 PXE-enabled <code>provisioning</code> network</TableCell>
+      <TableCell>1</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>NIC2 <code>baremetal</code> network. PXE-enabled is optional.</TableCell>
+      <TableCell>2</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Ensure PXE is disabled on all other NICs.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Configure the control plane and worker nodes as follows:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>PXE</TableHead>
+      <TableHead>Boot order</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>NIC1 PXE-enabled (provisioning network)</TableCell>
+      <TableCell>1</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="_node_configuration_without_the_provisioning_network" class="group scroll-mt-20">Node configuration without the <code>provisioning</code> network<a href="#_node_configuration_without_the_provisioning_network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The installation process requires one NIC.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>NIC</TableHead>
+      <TableHead>Network</TableHead>
+      <TableHead>VLAN</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>NICx</TableCell>
+      <TableCell><code>baremetal</code></TableCell>
+      <TableCell><code>&lt;baremetal_vlan&gt;</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>NICx is a routable network (<code>baremetal</code>) that is used for the installation of the OpenShift Container Platform cluster, and routable to the internet.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The <code>provisioning</code> network is optional, but it is required for PXE booting. If you deploy without a <code>provisioning</code> network, you must use a virtual media BMC addressing option such as <code>redfish-virtualmedia</code> or <code>idrac-virtualmedia</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="configuring-nodes-for-secure-boot_ipi-install-prerequisites" class="group scroll-mt-20">Configuring nodes for Secure Boot manually<a href="#configuring-nodes-for-secure-boot_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Secure Boot prevents a node from booting unless it verifies the node is using only trusted software, such as UEFI firmware drivers, EFI applications, and the operating system.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Red Hat only supports manually configured Secure Boot when deploying with Redfish virtual media.</p>
+        </AlertDescription>
+      </Alert>
+      <p>To enable Secure Boot manually, refer to the hardware guide for the node and execute the following:</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Boot the node and enter the BIOS menu.</li>
+      <li>Set the node’s boot mode to <code>UEFI Enabled</code>.</li>
+      <li>
+      Enable Secure Boot.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Red Hat does not support Secure Boot with self-generated keys.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="out-of-band-management_ipi-install-prerequisites" class="group scroll-mt-20">Out-of-band management<a href="#out-of-band-management_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Out-of-band management uses baseboard management controllers (BMCs) to provide the provisioner node with access to your cluster nodes. </p>
+      <p>Nodes typically have an additional NIC used by the BMCs. These BMCs must be accessible from the provisioner node.</p>
+      <p>Each node must be accessible via out-of-band management. When using an out-of-band management network, the provisioner node requires access to the out-of-band management network for a successful OpenShift Container Platform installation.</p>
+      <p>The out-of-band management setup is out of scope for this document. Using a separate management network for out-of-band management can enhance performance and improve security. However, using the provisioning network or the bare metal network are valid options.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The bootstrap VM features a maximum of two network interfaces. If you configure a separate management network for out-of-band management, and you are using a provisioning network, the bootstrap VM requires routing access to the management network through one of the network interfaces. In this scenario, the bootstrap VM can then access three networks:</p>
+          <ul>
+          <li>the bare metal network</li>
+          <li>the provisioning network</li>
+          <li>the management network routed through one of the network interfaces</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <h2 id="required-data-for-installation_ipi-install-prerequisites" class="group scroll-mt-20">Required data for installation<a href="#required-data-for-installation_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you deploy OpenShift Container Platform, collect the essential information required for your environment. </p>
+      <p>Gather the following information from all cluster nodes:</p>
+      <ul>
+      <li>
+      Out-of-band management IP
+      <ul>
+      <li>
+      Examples
+      <ul>
+      <li>Dell (iDRAC) IP</li>
+      <li>HP (iLO) IP</li>
+      <li>Fujitsu (iRMC) IP</li>
+      </ul>
+      </li>
+      </ul>
+      </li>
+      <li>
+      When using the <code>provisioning</code> network
+      <ul>
+      <li>NIC (<code>provisioning</code>) MAC address</li>
+      <li>NIC (<code>baremetal</code>) MAC address</li>
+      </ul>
+      </li>
+      <li>
+      When omitting the <code>provisioning</code> network
+      <ul><li>NIC (<code>baremetal</code>) MAC address</li></ul>
+      </li>
+      </ul>
+      <h2 id="validation-checklist-for-nodes_ipi-install-prerequisites" class="group scroll-mt-20">Validation checklist for nodes<a href="#validation-checklist-for-nodes_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <ul>
+      <li>
+      When using the <code>provisioning</code> network
+      <ul>
+      <li>[ ] NIC1 VLAN is configured for the <code>provisioning</code> network.</li>
+      <li>[ ] NIC1 for the <code>provisioning</code> network is PXE-enabled on the provisioner, control plane, and worker nodes.</li>
+      <li>[ ] NIC2 VLAN is configured for the <code>baremetal</code> network.</li>
+      <li>[ ] PXE has been disabled on all other NICs.</li>
+      <li>[ ] DNS is configured with API and Ingress endpoints.</li>
+      <li>[ ] Control plane and worker nodes are configured.</li>
+      <li>[ ] All nodes accessible via out-of-band management.</li>
+      <li>[ ] (Optional) A separate management network has been created.</li>
+      <li>[ ] Required data for installation.</li>
+      </ul>
+      </li>
+      <li>
+      When omitting the <code>provisioning</code> network
+      <ul>
+      <li>[ ] NIC1 VLAN is configured for the <code>baremetal</code> network.</li>
+      <li>[ ] DNS is configured with API and Ingress endpoints.</li>
+      <li>[ ] Control plane and worker nodes are configured.</li>
+      <li>[ ] All nodes accessible via out-of-band management.</li>
+      <li>[ ] (Optional) A separate management network has been created.</li>
+      <li>[ ] Required data for installation.</li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="installation-overview_ipi-install-prerequisites" class="group scroll-mt-20">Installation overview<a href="#installation-overview_ipi-install-prerequisites" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The installation program supports interactive mode. However, you can prepare an <code>install-config.yaml</code> file containing the provisioning details for all of the bare-metal hosts, and the relevant cluster details, in advance.</p>
+      <p>The installation program loads the <code>install-config.yaml</code> file and the administrator generates the manifests and verifies all prerequisites.</p>
+      <p>The installation program performs the following tasks:</p>
+      <ul>
+      <li>Enrolls all nodes in the cluster</li>
+      <li>Starts the bootstrap virtual machine (VM)</li>
+      <li>
+      Starts the metal platform components as <code>systemd</code> services, which have the following containers:
+      <ul>
+      <li>Ironic-dnsmasq: The DHCP server responsible for handing over the IP addresses to the provisioning interface of various nodes on the provisioning network. Ironic-dnsmasq is only enabled when you deploy an OpenShift Container Platform cluster with a provisioning network.</li>
+      <li>Ironic-httpd: The HTTP server that is used to ship the images to the nodes.</li>
+      <li>Image-customization</li>
+      <li>Ironic</li>
+      <li>Ironic-inspector (available in OpenShift Container Platform 4.16 and earlier)</li>
+      <li>Ironic-ramdisk-logs</li>
+      <li>Extract-machine-os</li>
+      <li>Provisioning-interface</li>
+      <li>Metal3-baremetal-operator</li>
+      </ul>
+      </li>
+      </ul>
+      <p>The nodes enter the validation phase, where each node moves to a <em>manageable</em> state after Ironic validates the credentials to access the Baseboard Management Controller (BMC).</p>
+      <p>When the node is in the manageable state, the <em>inspection</em> phase starts. The inspection phase ensures that the hardware meets the minimum requirements needed for a successful deployment of OpenShift Container Platform.</p>
+      <p>The <code>install-config.yaml</code> file details the provisioning network. On the bootstrap VM, the installation program uses the Pre-Boot Execution Environment (PXE) to push a live image to every node with the Ironic Python Agent (IPA) loaded. When using virtual media, it connects directly to the BMC of each node to virtually attach the image.</p>
+      <p>When using PXE boot, all nodes reboot to start the process:</p>
+      <ul>
+      <li>The <code>ironic-dnsmasq</code> service running on the bootstrap VM provides the IP address of the node and the TFTP boot server.</li>
+      <li>The first-boot software loads the root file system over HTTP.</li>
+      <li>The <code>ironic</code> service on the bootstrap VM receives the hardware information from each node.</li>
+      </ul>
+      <p>The nodes enter the cleaning state, where each node must clean all the disks before continuing with the configuration.</p>
+      <p>After the cleaning state finishes, the nodes enter the available state and the installation program moves the nodes to the deploying state.</p>
+      <p>IPA runs the <code>coreos-installer</code> command to install the Red Hat Enterprise Linux CoreOS (RHCOS) image on the disk defined by the <code>rootDeviceHints</code> parameter in the <code>install-config.yaml</code> file. The node boots by using RHCOS.</p>
+      <p>After the installation program configures the control plane nodes, it moves control from the bootstrap VM to the control plane nodes and deletes the bootstrap VM.</p>
+      <p>The Bare-Metal Operator continues the deployment of the workers, storage, and infra nodes.</p>
+      <p>After the installation completes, the nodes move to the active state. You can then proceed with postinstallation configuration and other Day 2 tasks.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

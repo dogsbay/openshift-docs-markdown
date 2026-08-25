@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"securing-exposing-registry","text":"Exposing the registry"}];
+const headings = [{"depth":1,"slug":"securing-exposing-registry","text":"Exposing the registry"},{"depth":2,"slug":"registry-exposing-default-registry-manually_securing-exposing-registry","text":"Exposing a default registry manually"},{"depth":2,"slug":"registry-exposing-secure-registry-manually_securing-exposing-registry","text":"Exposing a secure registry manually"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/registry/securing-exposing-registry";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Exposing the registry";
-const description = "By default, the {{ product_registry }} is secured during cluster installation so that it serves traffic through the Transport Layer Security (TLS)…" || undefined;
+const description = "By default, the OpenShift image registry is secured during cluster installation so that it serves traffic through the Transport Layer Security (TLS)…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["registry"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Exposing the registry {#securing-exposing-registry}\n\nBy default, the {{ product_registry }} is secured during cluster installation so that it serves traffic through the Transport Layer Security (TLS) protocol. Unlike previous versions of OpenShift Container Platform, the registry is not exposed outside of the cluster at the time of installation.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry/securing-exposing-registry.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Exposing the registry {#securing-exposing-registry}\n\nBy default, the OpenShift image registry is secured during cluster installation so that it serves traffic through the Transport Layer Security (TLS) protocol. Unlike previous versions of OpenShift Container Platform, the registry is not exposed outside of the cluster at the time of installation.\n\n## Exposing a default registry manually {#registry-exposing-default-registry-manually_securing-exposing-registry}\n\nInstead of logging in to the default OpenShift image registry from within the cluster, you can gain external access to the OpenShift image registry by exposing the registry with a route. With this external access, you can log in to the registry from outside the cluster by using the route address. You can then tag and push images to an existing project by using the route host.\n\n**Prerequisites**\n\n- The following prerequisites are automatically performed:\n\n  - Deploy the Registry Operator.\n  - Deploy the Ingress Operator.\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. To expose the registry by using the `defaultRoute` parameter that exists in the `configs.imageregistry.operator.openshift.io` resource, set `defaultRoute` to `true` by running the following command:\n\n   ```terminal\n   $ oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{\"spec\":{\"defaultRoute\":true}}' --type=merge\n   ```\n2. Get the default registry route by running the following command:\n\n   ```terminal\n   $ HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')\n   ```\n3. Get the certificate of the Ingress Operator by running the following command:\n\n   ```terminal\n   $ oc extract secret/$(oc get ingresscontroller -n openshift-ingress-operator default -o json | jq '.spec.defaultCertificate.name // \"router-certs-default\"' -r) -n openshift-ingress --confirm\n   ```\n4. Move the extracted certificate to the trusted CA directory of the system by running the following command:\n\n   ```terminal\n   $ sudo mv tls.crt /etc/pki/ca-trust/source/anchors/\n   ```\n5. Enable the default certificate of the cluster to trust the route by running the following command:\n\n   ```terminal\n   $ sudo update-ca-trust enable\n   ```\n6. Log in with podman with the default route by running the following command:\n\n   ```terminal\n   $ sudo podman login -u kubeadmin -p $(oc whoami -t) $HOST\n   ```\n\n## Exposing a secure registry manually {#registry-exposing-secure-registry-manually_securing-exposing-registry}\n\nInstead of logging in to the OpenShift image registry from within the cluster, you can gain external access to the OpenShift image registry by exposing the registry with a route. With this external access, you can log in to the registry from outside the cluster by using the route address. You can then tag and push images to an existing project by using the route host.\n\nYou can expose the route by using `DefaultRoute` parameter in the `configs.imageregistry.operator.openshift.io` resource or by using custom routes.\n\n**Prerequisites**\n\n- The following prerequisites are automatically performed:\n\n  - Deploy the Registry Operator.\n  - Deploy the Ingress Operator.\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. To expose the registry using `DefaultRoute` parameter, set `DefaultRoute` to `True`:\n\n   ```terminal\n   $ oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{\"spec\":{\"defaultRoute\":true}}' --type=merge\n   ```\n2. Log in with `podman` by entering the following command:\n\n   ```terminal\n   $ HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')\n   ```\n\n   ```terminal\n   $ podman login -u kubeadmin -p $(oc whoami -t) --tls-verify=false $HOST\n   ```\n\n   - `--tls-verify=false`: Set this parameter to `false` if the default certificate of the cluster for routes is untrusted. You can set a custom, trusted certificate as the default certificate with the Ingress Operator.\n3. To expose the registry using custom routes, create a secret with your route’s TLS keys. This step is optional. If you do not create a secret, the route uses the default TLS configuration from the Ingress Operator.\n\n   ```terminal\n   $ oc create secret tls public-route-tls \\\n       -n openshift-image-registry \\\n       --cert=</path/to/tls.crt> \\\n       --key=</path/to/tls.key>\n   ```\n4. On the Registry Operator, enter the following command:\n\n   ```terminal\n   $ oc edit configs.imageregistry.operator.openshift.io/cluster\n   ```\n\n   ```yaml\n   spec:\n     routes:\n       - name: public-routes\n         hostname: myregistry.mycorp.organization\n         secretName: public-route-tls\n   ...\n   ```\n\n   > [!NOTE]\n   > Only set `secretName` if you are providing a custom TLS configuration for the route of the registry.\n\n**Troubleshooting**\n\n- [Error creating TLS secret](https://access.redhat.com/solutions/5419501)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry/securing-exposing-registry.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,91 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="securing-exposing-registry" class="group scroll-mt-20">Exposing the registry<a href="#securing-exposing-registry" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>By default, the {"{"}{"{"} product_registry {"}"}{"}"} is secured during cluster installation so that it serves traffic through the Transport Layer Security (TLS) protocol. Unlike previous versions of OpenShift Container Platform, the registry is not exposed outside of the cluster at the time of installation.</p>
-      <p class="/modules/registry-exposing-default-registry-manually.md"></p>
-      <p class="/modules/registry-exposing-secure-registry-manually.md"></p>
+      <p>By default, the OpenShift image registry is secured during cluster installation so that it serves traffic through the Transport Layer Security (TLS) protocol. Unlike previous versions of OpenShift Container Platform, the registry is not exposed outside of the cluster at the time of installation.</p>
+      <h2 id="registry-exposing-default-registry-manually_securing-exposing-registry" class="group scroll-mt-20">Exposing a default registry manually<a href="#registry-exposing-default-registry-manually_securing-exposing-registry" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Instead of logging in to the default OpenShift image registry from within the cluster, you can gain external access to the OpenShift image registry by exposing the registry with a route. With this external access, you can log in to the registry from outside the cluster by using the route address. You can then tag and push images to an existing project by using the route host.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>
+      The following prerequisites are automatically performed:
+      <ul>
+      <li>Deploy the Registry Operator.</li>
+      <li>Deploy the Ingress Operator.</li>
+      </ul>
+      </li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To expose the registry by using the <code>defaultRoute</code> parameter that exists in the <code>configs.imageregistry.operator.openshift.io</code> resource, set <code>defaultRoute</code> to <code>true</code> by running the following command:
+      <CodeBlock code={"$ oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{\"spec\":{\"defaultRoute\":true}}' --type=merge"} lang="terminal" />
+      </li>
+      <li>
+      Get the default registry route by running the following command:
+      <CodeBlock code={"$ HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')"} lang="terminal" />
+      </li>
+      <li>
+      Get the certificate of the Ingress Operator by running the following command:
+      <CodeBlock code={"$ oc extract secret/$(oc get ingresscontroller -n openshift-ingress-operator default -o json | jq '.spec.defaultCertificate.name // \"router-certs-default\"' -r) -n openshift-ingress --confirm"} lang="terminal" />
+      </li>
+      <li>
+      Move the extracted certificate to the trusted CA directory of the system by running the following command:
+      <CodeBlock code={"$ sudo mv tls.crt /etc/pki/ca-trust/source/anchors/"} lang="terminal" />
+      </li>
+      <li>
+      Enable the default certificate of the cluster to trust the route by running the following command:
+      <CodeBlock code={"$ sudo update-ca-trust enable"} lang="terminal" />
+      </li>
+      <li>
+      Log in with podman with the default route by running the following command:
+      <CodeBlock code={"$ sudo podman login -u kubeadmin -p $(oc whoami -t) $HOST"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="registry-exposing-secure-registry-manually_securing-exposing-registry" class="group scroll-mt-20">Exposing a secure registry manually<a href="#registry-exposing-secure-registry-manually_securing-exposing-registry" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Instead of logging in to the OpenShift image registry from within the cluster, you can gain external access to the OpenShift image registry by exposing the registry with a route. With this external access, you can log in to the registry from outside the cluster by using the route address. You can then tag and push images to an existing project by using the route host.</p>
+      <p>You can expose the route by using <code>DefaultRoute</code> parameter in the <code>configs.imageregistry.operator.openshift.io</code> resource or by using custom routes.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>
+      The following prerequisites are automatically performed:
+      <ul>
+      <li>Deploy the Registry Operator.</li>
+      <li>Deploy the Ingress Operator.</li>
+      </ul>
+      </li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To expose the registry using <code>DefaultRoute</code> parameter, set <code>DefaultRoute</code> to <code>True</code>:
+      <CodeBlock code={"$ oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{\"spec\":{\"defaultRoute\":true}}' --type=merge"} lang="terminal" />
+      </li>
+      <li>
+      Log in with <code>podman</code> by entering the following command:
+      <CodeBlock code={"$ HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')"} lang="terminal" />
+      <CodeBlock code={"$ podman login -u kubeadmin -p $(oc whoami -t) --tls-verify=false $HOST"} lang="terminal" />
+      <ul><li><code>--tls-verify=false</code>: Set this parameter to <code>false</code> if the default certificate of the cluster for routes is untrusted. You can set a custom, trusted certificate as the default certificate with the Ingress Operator.</li></ul>
+      </li>
+      <li>
+      To expose the registry using custom routes, create a secret with your route’s TLS keys. This step is optional. If you do not create a secret, the route uses the default TLS configuration from the Ingress Operator.
+      <CodeBlock code={"$ oc create secret tls public-route-tls \\\n    -n openshift-image-registry \\\n    --cert=</path/to/tls.crt> \\\n    --key=</path/to/tls.key>"} lang="terminal" />
+      </li>
+      <li>
+      On the Registry Operator, enter the following command:
+      <CodeBlock code={"$ oc edit configs.imageregistry.operator.openshift.io/cluster"} lang="terminal" />
+      <CodeBlock code={"spec:\n  routes:\n    - name: public-routes\n      hostname: myregistry.mycorp.organization\n      secretName: public-route-tls\n..."} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Only set <code>secretName</code> if you are providing a custom TLS configuration for the route of the registry.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <p><strong>Troubleshooting</strong></p>
+      <ul><li><a href="https://access.redhat.com/solutions/5419501">Error creating TLS secret</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

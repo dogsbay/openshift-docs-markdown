@@ -2,9 +2,9 @@
 title: "{{ olmv1 }} components overview"
 ---
 
-# {{ olmv1 }} components overview {#olm-components}
+# OLM v1 components overview {#olm-components}
 
-{{ olmv1_first }} uses two key microservice components, Operator Controller and Catalogd, to unpack content and manage extensions on your cluster.
+Operator Lifecycle Manager (OLM) v1 uses two key microservice components, Operator Controller and Catalogd, to unpack content and manage extensions on your cluster.
 
 Operator Controller
 :   Extends Kubernetes with an API to install and manage Operators and extensions using metadata from Catalogd.

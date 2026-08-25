@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"editing-egress-firewall-ovn","text":"Editing an egress firewall for a project"}];
+const headings = [{"depth":1,"slug":"editing-egress-firewall-ovn","text":"Editing an egress firewall for a project"},{"depth":2,"slug":"nw-egress-firewall-edit_editing-egress-firewall-ovn","text":"Editing an EgressFirewall custom resource (CR)"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_security/egress_firewall/editing-egress-firewall-ovn";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/network_security","networking/net
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Editing an egress firewall for a project {#editing-egress-firewall-ovn}\n\nAs a cluster administrator, you can modify network traffic rules for an existing egress firewall.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/egress_firewall/editing-egress-firewall-ovn.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Editing an egress firewall for a project {#editing-egress-firewall-ovn}\n\nAs a cluster administrator, you can modify network traffic rules for an existing egress firewall.\n\n## Editing an EgressFirewall custom resource (CR) {#nw-egress-firewall-edit_editing-egress-firewall-ovn}\n\nAs a cluster administrator, you can update the egress firewall for a project.\n\n**Prerequisites**\n\n- A cluster using the OVN-Kubernetes network plugin.\n- Install the OpenShift CLI (`oc`).\n- You must log in to the cluster as a cluster administrator.\n\n**Procedure**\n\n1. Find the name of the `EgressFirewall` CR for the project. Replace `<project>` with the name of the project.\n\n   ```terminal\n   $ oc get -n <project> egressfirewall\n   ```\n2. Optional: If you did not save a copy of the `EgressFirewall` object when you created the egress network firewall, enter the following command to create a copy.\n\n   ```terminal\n   $ oc get -n <project> egressfirewall <name> -o yaml > <filename>.yaml\n   ```\n\n   Replace `<project>` with the name of the project. Replace `<name>` with the name of the object. Replace `<filename>` with the name of the file to save the YAML to.\n3. After making changes to the policy rules, enter the following command to replace the `EgressFirewall` CR. Replace `<filename>` with the name of the file containing the updated `EgressFirewall` CR.\n\n   ```terminal\n   $ oc replace -f <filename>.yaml\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/egress_firewall/editing-egress-firewall-ovn.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,31 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="editing-egress-firewall-ovn" class="group scroll-mt-20">Editing an egress firewall for a project<a href="#editing-egress-firewall-ovn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As a cluster administrator, you can modify network traffic rules for an existing egress firewall.</p>
-      <p class="/modules/nw-egress-firewall-edit.md"></p>
+      <h2 id="nw-egress-firewall-edit_editing-egress-firewall-ovn" class="group scroll-mt-20">Editing an EgressFirewall custom resource (CR)<a href="#nw-egress-firewall-edit_editing-egress-firewall-ovn" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">As a cluster administrator, you can update the egress firewall for a project.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>A cluster using the OVN-Kubernetes network plugin.</li>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>You must log in to the cluster as a cluster administrator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Find the name of the <code>EgressFirewall</code> CR for the project. Replace <code>&lt;project&gt;</code> with the name of the project.
+      <CodeBlock code={"$ oc get -n <project> egressfirewall"} lang="terminal" />
+      </li>
+      <li>
+      Optional: If you did not save a copy of the <code>EgressFirewall</code> object when you created the egress network firewall, enter the following command to create a copy.
+      <CodeBlock code={"$ oc get -n <project> egressfirewall <name> -o yaml > <filename>.yaml"} lang="terminal" />
+      <p>Replace <code>&lt;project&gt;</code> with the name of the project. Replace <code>&lt;name&gt;</code> with the name of the object. Replace <code>&lt;filename&gt;</code> with the name of the file to save the YAML to.</p>
+      </li>
+      <li>
+      After making changes to the policy rules, enter the following command to replace the <code>EgressFirewall</code> CR. Replace <code>&lt;filename&gt;</code> with the name of the file containing the updated <code>EgressFirewall</code> CR.
+      <CodeBlock code={"$ oc replace -f <filename>.yaml"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

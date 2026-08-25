@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"zero-trust-manager-uninstall_{{ context }}","text":"Uninstalling the {{ zero_trust_full }}"}];
+const headings = [{"depth":1,"slug":"zero-trust-manager-uninstall_{{ context }}","text":"Uninstalling the {{ zero_trust_full }}"},{"depth":2,"slug":"zero-trust-manager-uninstall-console_zero-trust-manager-uninstall","text":"Uninstalling the Zero Trust Workload Identity Manager"},{"depth":2,"slug":"zero-trust-manager-uninstall-resources_zero-trust-manager-uninstall","text":"Uninstalling Zero Trust Workload Identity Manager resources by using the CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-uninstall";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Uninstalling the {{ zero_trust_full }}";
-const description = "To remove the {{ zero_trust_full }} from OpenShift Container Platform, uninstall the Operator and delete its related resources. This process removes the…" || undefined;
+const description = "To remove the Zero Trust Workload Identity Manager from OpenShift Container Platform, uninstall the Operator and delete its related resources. This…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["security","security/zero_trust_workload_identity_manager"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the {{ zero_trust_full }} {#zero-trust-manager-uninstall_{{ context }}}\n\nTo remove the {{ zero_trust_full }} from OpenShift Container Platform, uninstall the Operator and delete its related resources. This process removes the component from your cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-uninstall.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the {{ zero_trust_full }} {#zero-trust-manager-uninstall_{{ context }}}\n\nTo remove the Zero Trust Workload Identity Manager from OpenShift Container Platform, uninstall the Operator and delete its related resources. This process removes the component from your cluster.\n\n## Uninstalling the Zero Trust Workload Identity Manager {#zero-trust-manager-uninstall-console_zero-trust-manager-uninstall}\n\nTo remove the Zero Trust Workload Identity Manager from your cluster, uninstall the Operator using the web console. This helps you clean up resources and delete the service from your environment.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- The Zero Trust Workload Identity Manager is installed.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Uninstall the Zero Trust Workload Identity Manager.\n\n   1. Go to **Ecosystem** -> **Installed Operators**.\n   2. Click the **Options** menu next to the **Zero Trust Workload Identity Manager** entry, and then click **Uninstall Operator**.\n   3. In the confirmation dialog, click **Uninstall**.\n\n**Verification**\n\n- Verify that the Zero Trust Workload Identity Manager Operator is uninstalled.\n\n  ```terminal\n  $ oc get csv -n openshift-zero-trust-workload-identity\n  ```\n\n  ```terminal {title=\"Example output\"}\n  No resources found in openshift-zero-trust-workload-identity namespace.\n  ```\n\n## Uninstalling Zero Trust Workload Identity Manager resources by using the CLI {#zero-trust-manager-uninstall-resources_zero-trust-manager-uninstall}\n\nRemove Zero Trust Workload Identity Manager resources from your cluster using the CLI. This deletes the remaining operands and definitions to help ensure a clean environment after you uninstall the product.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Uninstall the operands by running each of the following commands:\n\n   1. Delete the `SpireOIDCDiscoveryProvider` cluster by running the following command:\n\n      ```terminal\n      $ oc delete SpireOIDCDiscoveryProvider cluster\n      ```\n   2. Delete the `SpiffeCSIDriver` cluster by running the following command:\n\n      ```terminal\n      $ oc delete SpiffeCSIDriver cluster -l\n      ```\n   3. Delete the `SpireAgent` cluster by running the following command:\n\n      ```terminal\n      $ oc delete SpireAgent cluster\n      ```\n   4. Delete the `SpireServer` cluster by running the following command:\n\n      ```terminal\n      $ oc delete SpireServer cluster\n      ```\n   5. Delete the `ZeroTrustWorkloadIdentityManager` cluster by running the following command:\n\n      ```terminal\n      $ oc delete ZeroTrustWorkloadIdentityManager cluster\n      ```\n   6. Delete the persistent volume claim (PVC) by running the following command:\n\n      ```terminal\n      $ oc delete pvc -l=app.kubernetes.io/name=spire-server\n      ```\n   7. Delete the service by running the following command:\n\n      ```terminal\n      $ oc delete service -l=app.kubernetes.io/name=zero-trust-workload-identity-manager -n zero-trust-workload-identity-manager\n      ```\n   8. Delete the namespace by running the following command:\n\n      ```terminal\n      $ oc delete ns zero-trust-workload-identity-manager\n      ```\n   9. Delete the cluster role by running the following command:\n\n      ```terminal\n      $ oc delete clusterrole -l=app.kubernetes.io/name=zero-trust-workload-identity-manager\n      ```\n   10. Delete the admission webhook configuration by running the following command:\n\n       ```terminal\n       $ oc delete validatingwebhookconfigurations -l=app.kubernetes.io/name=zero-trust-workload-identity-manager\n       ```\n2. Delete the custom resource definitions (CRDs) by running each of the following commands:\n\n   1. Delete the SPIRE Server CRD by running the following command:\n\n      ```terminal\n      $ oc delete crd spireservers.operator.openshift.io\n      ```\n   2. Delete the SPIRE Agent CRD by running the following command:\n\n      ```terminal\n      $ oc delete crd spireagents.operator.openshift.io\n      ```\n   3. Delete the SPIFFEE CSI Drivers CRD by running the following command:\n\n      ```terminal\n      $ oc delete crd spiffecsidrivers.operator.openshift.io\n      ```\n   4. Delete the SPIRE OIDC Discovery Provider CRD by running the following command:\n\n      ```terminal\n      $ oc delete crd spireoidcdiscoveryproviders.operator.openshift.io\n      ```\n   5. Delete the SPIRE and SPIFFE cluster federated trust domains CRD by running the following command:\n\n      ```terminal\n      $ oc delete crd clusterfederatedtrustdomains.spire.spiffe.io\n      ```\n   6. Delete the cluster SPIFFE IDs CRD by running the following command:\n\n      ```terminal\n      $ oc delete crd clusterspiffeids.spire.spiffe.io\n      ```\n   7. Delete the SPIRE and SPIFFE cluster static entries CRD by running the following command:\n\n      ```terminal\n      $ oc delete crd clusterstaticentries.spire.spiffe.io\n      ```\n   8. Delete the Zero Trust Workload Identity Manager CRD by running the following command:\n\n      ```terminal\n      $ oc delete crd zerotrustworkloadidentitymanagers.operator.openshift.io\n      ```\n\n**Verification**\n\nTo verify that the resources have been deleted, replace each `oc delete` command with `oc get`, and then run the command. If no resources are returned, the deletion was successful.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-uninstall.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,126 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="zero-trust-manager-uninstall_{{ context }}" class="group scroll-mt-20">Uninstalling the {"{"}{"{"} zero_trust_full {"}"}{"}"}<a href="#zero-trust-manager-uninstall_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>To remove the {"{"}{"{"} zero_trust_full {"}"}{"}"} from OpenShift Container Platform, uninstall the Operator and delete its related resources. This process removes the component from your cluster.</p>
-      <p class="/modules/zero-trust-manager-uninstall-console.md"></p>
-      <p class="/modules/zero-trust-manager-uninstall-resources.md"></p>
+      <p>To remove the Zero Trust Workload Identity Manager from OpenShift Container Platform, uninstall the Operator and delete its related resources. This process removes the component from your cluster.</p>
+      <h2 id="zero-trust-manager-uninstall-console_zero-trust-manager-uninstall" class="group scroll-mt-20">Uninstalling the Zero Trust Workload Identity Manager<a href="#zero-trust-manager-uninstall-console_zero-trust-manager-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To remove the Zero Trust Workload Identity Manager from your cluster, uninstall the Operator using the web console. This helps you clean up resources and delete the service from your environment.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      <li>The Zero Trust Workload Identity Manager is installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>
+      Uninstall the Zero Trust Workload Identity Manager.
+      <ol>
+      <li>Go to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Click the <strong>Options</strong> menu next to the <strong>Zero Trust Workload Identity Manager</strong> entry, and then click <strong>Uninstall Operator</strong>.</li>
+      <li>In the confirmation dialog, click <strong>Uninstall</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the Zero Trust Workload Identity Manager Operator is uninstalled.
+      <CodeBlock code={"$ oc get csv -n openshift-zero-trust-workload-identity"} lang="terminal" />
+      <CodeBlock code={"No resources found in openshift-zero-trust-workload-identity namespace."} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="zero-trust-manager-uninstall-resources_zero-trust-manager-uninstall" class="group scroll-mt-20">Uninstalling Zero Trust Workload Identity Manager resources by using the CLI<a href="#zero-trust-manager-uninstall-resources_zero-trust-manager-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Remove Zero Trust Workload Identity Manager resources from your cluster using the CLI. This deletes the remaining operands and definitions to help ensure a clean environment after you uninstall the product.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to the cluster with <code>cluster-admin</code> privileges.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Uninstall the operands by running each of the following commands:
+      <ol>
+      <li>
+      Delete the <code>SpireOIDCDiscoveryProvider</code> cluster by running the following command:
+      <CodeBlock code={"$ oc delete SpireOIDCDiscoveryProvider cluster"} lang="terminal" />
+      </li>
+      <li>
+      Delete the <code>SpiffeCSIDriver</code> cluster by running the following command:
+      <CodeBlock code={"$ oc delete SpiffeCSIDriver cluster -l"} lang="terminal" />
+      </li>
+      <li>
+      Delete the <code>SpireAgent</code> cluster by running the following command:
+      <CodeBlock code={"$ oc delete SpireAgent cluster"} lang="terminal" />
+      </li>
+      <li>
+      Delete the <code>SpireServer</code> cluster by running the following command:
+      <CodeBlock code={"$ oc delete SpireServer cluster"} lang="terminal" />
+      </li>
+      <li>
+      Delete the <code>ZeroTrustWorkloadIdentityManager</code> cluster by running the following command:
+      <CodeBlock code={"$ oc delete ZeroTrustWorkloadIdentityManager cluster"} lang="terminal" />
+      </li>
+      <li>
+      Delete the persistent volume claim (PVC) by running the following command:
+      <CodeBlock code={"$ oc delete pvc -l=app.kubernetes.io/name=spire-server"} lang="terminal" />
+      </li>
+      <li>
+      Delete the service by running the following command:
+      <CodeBlock code={"$ oc delete service -l=app.kubernetes.io/name=zero-trust-workload-identity-manager -n zero-trust-workload-identity-manager"} lang="terminal" />
+      </li>
+      <li>
+      Delete the namespace by running the following command:
+      <CodeBlock code={"$ oc delete ns zero-trust-workload-identity-manager"} lang="terminal" />
+      </li>
+      <li>
+      Delete the cluster role by running the following command:
+      <CodeBlock code={"$ oc delete clusterrole -l=app.kubernetes.io/name=zero-trust-workload-identity-manager"} lang="terminal" />
+      </li>
+      <li>
+      Delete the admission webhook configuration by running the following command:
+      <CodeBlock code={"$ oc delete validatingwebhookconfigurations -l=app.kubernetes.io/name=zero-trust-workload-identity-manager"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Delete the custom resource definitions (CRDs) by running each of the following commands:
+      <ol>
+      <li>
+      Delete the SPIRE Server CRD by running the following command:
+      <CodeBlock code={"$ oc delete crd spireservers.operator.openshift.io"} lang="terminal" />
+      </li>
+      <li>
+      Delete the SPIRE Agent CRD by running the following command:
+      <CodeBlock code={"$ oc delete crd spireagents.operator.openshift.io"} lang="terminal" />
+      </li>
+      <li>
+      Delete the SPIFFEE CSI Drivers CRD by running the following command:
+      <CodeBlock code={"$ oc delete crd spiffecsidrivers.operator.openshift.io"} lang="terminal" />
+      </li>
+      <li>
+      Delete the SPIRE OIDC Discovery Provider CRD by running the following command:
+      <CodeBlock code={"$ oc delete crd spireoidcdiscoveryproviders.operator.openshift.io"} lang="terminal" />
+      </li>
+      <li>
+      Delete the SPIRE and SPIFFE cluster federated trust domains CRD by running the following command:
+      <CodeBlock code={"$ oc delete crd clusterfederatedtrustdomains.spire.spiffe.io"} lang="terminal" />
+      </li>
+      <li>
+      Delete the cluster SPIFFE IDs CRD by running the following command:
+      <CodeBlock code={"$ oc delete crd clusterspiffeids.spire.spiffe.io"} lang="terminal" />
+      </li>
+      <li>
+      Delete the SPIRE and SPIFFE cluster static entries CRD by running the following command:
+      <CodeBlock code={"$ oc delete crd clusterstaticentries.spire.spiffe.io"} lang="terminal" />
+      </li>
+      <li>
+      Delete the Zero Trust Workload Identity Manager CRD by running the following command:
+      <CodeBlock code={"$ oc delete crd zerotrustworkloadidentitymanagers.operator.openshift.io"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <p>To verify that the resources have been deleted, replace each <code>oc delete</code> command with <code>oc get</code>, and then run the command. If no resources are returned, the deletion was successful.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

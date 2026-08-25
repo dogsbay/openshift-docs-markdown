@@ -15,9 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"pods-crash-or-restart-due-to-lack-of-memory-or-cpu","text":"Pods crash or restart due to lack of memory or CPU"}];
+const headings = [{"depth":1,"slug":"pods-crash-or-restart-due-to-lack-of-memory-or-cpu","text":"Pods crash or restart due to lack of memory or CPU"},{"depth":2,"slug":"oadp-pod-crash-resource-request-velero_pods-crash-or-restart-due-to-lack-of-memory-or-cpu","text":"Setting resource requests for a Velero pod"},{"depth":2,"slug":"velero-oomkilled-large-kopia-repos_pods-crash-or-restart-due-to-lack-of-memory-or-cpu","text":"Velero server terminates with OOMKilled when accessing large Kopia repositories"},{"depth":2,"slug":"oadp-pod-crash-resource-request-retics_pods-crash-or-restart-due-to-lack-of-memory-or-cpu","text":"Setting resource requests for a Restic pod"},{"depth":2,"slug":"setting-resource-requests-for-a-nodeagent-pod_pods-crash-or-restart-due-to-lack-of-memory-or-cpu","text":"Setting resource requests for a nodeAgent pod"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/pods-crash-or-restart-due-to-lack-of-memory-or-cpu";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -40,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Pods crash or restart due to lack of memory or CPU {#pods-crash-or-restart-due-to-lack-of-memory-or-cpu}\n\nResolve Velero or Restic pod crashes caused by insufficient memory or CPU by configuring resource requests in the `DataProtectionApplication` custom resource (CR). This helps you allocate adequate CPU and memory resources to prevent pod restarts and ensure stable backup and restore operations.\n\nEnsure that the values for the resource request fields follow the same format as Kubernetes resource requirements.\n\nIf you do not specify `configuration.velero.podConfig.resourceAllocations` or `configuration.restic.podConfig.resourceAllocations`, see the following default `resources` specification configuration for a Velero or Restic pod:\n\n```yaml\nrequests:\n  cpu: 500m\n  memory: 128Mi\n```\n\n**Additional resources**\n\n- [Velero CPU and memory requirements based on collected data](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#oadp-velero-cpu-memory-requirements_about-installing-oadp)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/pods-crash-or-restart-due-to-lack-of-memory-or-cpu.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Pods crash or restart due to lack of memory or CPU {#pods-crash-or-restart-due-to-lack-of-memory-or-cpu}\n\nResolve Velero or Restic pod crashes caused by insufficient memory or CPU by configuring resource requests in the `DataProtectionApplication` custom resource (CR). This helps you allocate adequate CPU and memory resources to prevent pod restarts and ensure stable backup and restore operations.\n\nEnsure that the values for the resource request fields follow the same format as Kubernetes resource requirements.\n\nIf you do not specify `configuration.velero.podConfig.resourceAllocations` or `configuration.restic.podConfig.resourceAllocations`, see the following default `resources` specification configuration for a Velero or Restic pod:\n\n```yaml\nrequests:\n  cpu: 500m\n  memory: 128Mi\n```\n\n**Additional resources**\n\n- [Velero CPU and memory requirements based on collected data](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#oadp-velero-cpu-memory-requirements_about-installing-oadp)\n\n## Setting resource requests for a Velero pod {#oadp-pod-crash-resource-request-velero_pods-crash-or-restart-due-to-lack-of-memory-or-cpu}\n\nUse the `configuration.velero.podConfig.resourceAllocations` specification field in the `oadp_v1alpha1_dpa.yaml` file to set specific resource requests for a `Velero` pod.\n\n**Procedure**\n\n- Set the `cpu` and `memory` resource requests as shown in the following example:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  ...\n  configuration:\n    velero:\n      podConfig:\n        resourceAllocations:\n          requests:\n            cpu: 200m\n            memory: 256Mi\n  ```\n\n  The `resourceAllocations` listed are for average usage.\n\n## Velero server terminates with OOMKilled when accessing large Kopia repositories {#velero-oomkilled-large-kopia-repos_pods-crash-or-restart-due-to-lack-of-memory-or-cpu}\n\nIf the Velero server accesses large Kopia repositories, the Velero pod might crash and report an `OOMKilled` event.\n\nDuring operations that access large Kopia repositories, such as backup deletion or checking repository existence, the Velero pod crashes and reports an `OOMKilled` event.\n\nThis issue is typically caused by high memory usage when the Velero server loads many Kopia index blobs and related repository metadata. When the Backup Repository controller accesses a large-scale repository, the required memory can exceed the default limits.\n\nTo resolve this issue, identify the peak memory usage and increase the memory limits in the `DataProtectionApplication` (DPA) custom resource (CR) so that the Velero server has enough memory to load the repository metadata.\n\n**Procedure**\n\n1. Check the Velero logs around the time of the `OOMKilled` event for repository-open or index-loading activity.\n2. Note the approximate maximum memory usage observed for the Velero pod by using a command such as `oc top pods`.\n3. Edit the `DataProtectionApplication` CR:\n\n   ```terminal\n   $ oc edit dpa __<dpa_name>__ -n openshift-adp\n   ```\n\n   where:\n\n   `<dpa_name>`\n   :   Specifies the name of your `DataProtectionApplication` CR.\n4. Increase the Velero container memory request or limit in the `spec.configuration.velero.podConfig` block to exceed the observed peak. For example:\n\n   ```yaml\n   spec:\n     configuration:\n       velero:\n         podConfig:\n           resourceAllocations:\n             limits:\n               memory: __<memory_limit>__\n             requests:\n               memory: 512Mi\n   ```\n\n   where:\n\n   `<memory_limit>`\n   :   Specifies a value that exceeds the maximum memory usage you observed in the logs, for example, `2Gi`.\n5. Save your changes.\n\n   The Velero pod redeploys automatically with the new limits.\n6. Monitor the environment and repeat the process if necessary until `OOMKilled` events no longer occur.\n7. Record the final stable memory values for your environment to use for future sizing guidance.\n\n## Setting resource requests for a Restic pod {#oadp-pod-crash-resource-request-retics_pods-crash-or-restart-due-to-lack-of-memory-or-cpu}\n\nUse the `configuration.restic.podConfig.resourceAllocations` specification field to set specific resource requests for a `Restic` pod.\n\n> [!NOTE]\n> With OADP 1.5.0, the `configuration.restic.podConfig.resourceAllocations` specification field is removed from Data Protection Application (DPA). Use the `nodeAgent` section with the `uploaderType` field set to `Kopia` instead of `Restic` .\n\n**Procedure**\n\n- Set the `cpu` and `memory` resource requests as shown in the following example:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  ...\n  configuration:\n    restic:\n      podConfig:\n        resourceAllocations:\n          requests:\n            cpu: 1000m\n            memory: 16Gi\n  ```\n\n  The `resourceAllocations` listed are for average usage.\n\n## Setting resource requests for a nodeAgent pod {#setting-resource-requests-for-a-nodeagent-pod_pods-crash-or-restart-due-to-lack-of-memory-or-cpu}\n\nUse the `configuration.nodeAgent.podConfig.resourceAllocations` specification field to set specific resource requests for a `nodeAgent` pod.\n\n> [!NOTE]\n> With OADP 1.5.0, the `configuration.restic.podConfig.resourceAllocations` specification field is removed from Data Protection Application (DPA). Use the `nodeAgent` section with the `uploaderType` field set to `Kopia` instead of `Restic` .\n\n**Procedure**\n\n1. Set the `cpu` and `memory` resource requests in the YAML file:\n\n   ```yaml\n   apiVersion: oadp.openshift.io/v1alpha1\n   kind: DataProtectionApplication\n   metadata:\n     name: ts-dpa\n   spec:\n     backupLocations:\n     - velero:\n         default: true\n         objectStorage:\n           bucket: oadp.....njph\n           prefix: velero\n         credential:\n           key: cloud\n           name: cloud-credentials-gcp\n         provider: gcp\n     configuration:\n       velero:\n         defaultPlugins:\n         - gcp\n         - openshift\n         - csi\n       nodeAgent:\n         enable: true\n         uploaderType: kopia\n         podConfig:\n           resourceAllocations:\n             requests:\n               cpu: 1000m\n               memory: 16Gi\n   ```\n\n   where:\n\n   `resourceAllocations`\n   :   The resource allocation examples shown are for average usage.\n\n   `memory`\n   :   You can modify this parameter depending on your infrastructure and usage.\n2. Create the DPA CR by running the following command:\n\n   ```terminal\n   $ oc create -f nodeAgent.yaml\n   ```\n\n**Verification**\n\n1. Verify that the `nodeAgent` pods are running by using the following command:\n\n   ```terminal\n   $ oc get pods\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                                        READY   STATUS      RESTARTS   AGE\n   node-agent-hbj9l                                            1/1     Running     0          97s\n   node-agent-wmwgz                                            1/1     Running     0          95s\n   node-agent-zvc7k                                            1/1     Running     0          98s\n   openshift-adp-controller-manager-7f9db86d96-4lhgq           1/1     Running     0          137m\n   velero-7b6c7fb8d7-ppc8m                                     1/1     Running     0          4m2s\n   ```\n2. Check the resource requests by describing one of the `nodeAgent` pod:\n\n   ```terminal\n   $ oc describe pod node-agent-hbj9l | grep -C 5 Requests\n   ```\n\n   ```terminal {title=\"Example output\"}\n         --log-format=text\n       State:          Running\n         Started:      Mon, 09 Jun 2025 16:22:15 +0530\n       Ready:          True\n       Restart Count:  0\n       Requests:\n         cpu:     1\n         memory:  1Gi\n       Environment:\n         NODE_NAME:            (v1:spec.nodeName)\n         VELERO_NAMESPACE:    openshift-adp (v1:metadata.namespace)\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/pods-crash-or-restart-due-to-lack-of-memory-or-cpu.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -92,16 +95,111 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="pods-crash-or-restart-due-to-lack-of-memory-or-cpu" class="group scroll-mt-20">Pods crash or restart due to lack of memory or CPU<a href="#pods-crash-or-restart-due-to-lack-of-memory-or-cpu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
       <p>Resolve Velero or Restic pod crashes caused by insufficient memory or CPU by configuring resource requests in the <code>DataProtectionApplication</code> custom resource (CR). This helps you allocate adequate CPU and memory resources to prevent pod restarts and ensure stable backup and restore operations.</p>
       <p>Ensure that the values for the resource request fields follow the same format as Kubernetes resource requirements.</p>
       <p>If you do not specify <code>configuration.velero.podConfig.resourceAllocations</code> or <code>configuration.restic.podConfig.resourceAllocations</code>, see the following default <code>resources</code> specification configuration for a Velero or Restic pod:</p>
       <CodeBlock code={"requests:\n  cpu: 500m\n  memory: 128Mi"} lang="yaml" />
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp#oadp-velero-cpu-memory-requirements_about-installing-oadp">Velero CPU and memory requirements based on collected data</a></li></ul>
-      <p class="/modules/velero-oomkilled-large-kopia-repos.md"></p>
-      <p class="/modules/oadp-pod-crash-set-resource-request-restic.md"></p>
-      <p class="/modules/setting-resource-requests-for-a-nodeagent-pod.md"></p>
+      <h2 id="oadp-pod-crash-resource-request-velero_pods-crash-or-restart-due-to-lack-of-memory-or-cpu" class="group scroll-mt-20">Setting resource requests for a Velero pod<a href="#oadp-pod-crash-resource-request-velero_pods-crash-or-restart-due-to-lack-of-memory-or-cpu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the <code>configuration.velero.podConfig.resourceAllocations</code> specification field in the <code>oadp_v1alpha1_dpa.yaml</code> file to set specific resource requests for a <code>Velero</code> pod.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Set the <code>cpu</code> and <code>memory</code> resource requests as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\n...\nconfiguration:\n  velero:\n    podConfig:\n      resourceAllocations:\n        requests:\n          cpu: 200m\n          memory: 256Mi"} lang="yaml" />
+      <p>The <code>resourceAllocations</code> listed are for average usage.</p>
+      </li>
+      </ul>
+      <h2 id="velero-oomkilled-large-kopia-repos_pods-crash-or-restart-due-to-lack-of-memory-or-cpu" class="group scroll-mt-20">Velero server terminates with OOMKilled when accessing large Kopia repositories<a href="#velero-oomkilled-large-kopia-repos_pods-crash-or-restart-due-to-lack-of-memory-or-cpu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If the Velero server accesses large Kopia repositories, the Velero pod might crash and report an <code>OOMKilled</code> event.</p>
+      <p>During operations that access large Kopia repositories, such as backup deletion or checking repository existence, the Velero pod crashes and reports an <code>OOMKilled</code> event.</p>
+      <p>This issue is typically caused by high memory usage when the Velero server loads many Kopia index blobs and related repository metadata. When the Backup Repository controller accesses a large-scale repository, the required memory can exceed the default limits.</p>
+      <p>To resolve this issue, identify the peak memory usage and increase the memory limits in the <code>DataProtectionApplication</code> (DPA) custom resource (CR) so that the Velero server has enough memory to load the repository metadata.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Check the Velero logs around the time of the <code>OOMKilled</code> event for repository-open or index-loading activity.</li>
+      <li>Note the approximate maximum memory usage observed for the Velero pod by using a command such as <code>oc top pods</code>.</li>
+      <li>
+      Edit the <code>DataProtectionApplication</code> CR:
+      <CodeBlock code={"$ oc edit dpa __<dpa_name>__ -n openshift-adp"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;dpa_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of your <code>DataProtectionApplication</code> CR.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Increase the Velero container memory request or limit in the <code>spec.configuration.velero.podConfig</code> block to exceed the observed peak. For example:
+      <CodeBlock code={"spec:\n  configuration:\n    velero:\n      podConfig:\n        resourceAllocations:\n          limits:\n            memory: __<memory_limit>__\n          requests:\n            memory: 512Mi"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;memory_limit&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a value that exceeds the maximum memory usage you observed in the logs, for example, <code>2Gi</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Save your changes.
+      <p>The Velero pod redeploys automatically with the new limits.</p>
+      </li>
+      <li>Monitor the environment and repeat the process if necessary until <code>OOMKilled</code> events no longer occur.</li>
+      <li>Record the final stable memory values for your environment to use for future sizing guidance.</li>
+      </ol>
+      <h2 id="oadp-pod-crash-resource-request-retics_pods-crash-or-restart-due-to-lack-of-memory-or-cpu" class="group scroll-mt-20">Setting resource requests for a Restic pod<a href="#oadp-pod-crash-resource-request-retics_pods-crash-or-restart-due-to-lack-of-memory-or-cpu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the <code>configuration.restic.podConfig.resourceAllocations</code> specification field to set specific resource requests for a <code>Restic</code> pod.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>With OADP 1.5.0, the <code>configuration.restic.podConfig.resourceAllocations</code> specification field is removed from Data Protection Application (DPA). Use the <code>nodeAgent</code> section with the <code>uploaderType</code> field set to <code>Kopia</code> instead of <code>Restic</code> .</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Set the <code>cpu</code> and <code>memory</code> resource requests as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\n...\nconfiguration:\n  restic:\n    podConfig:\n      resourceAllocations:\n        requests:\n          cpu: 1000m\n          memory: 16Gi"} lang="yaml" />
+      <p>The <code>resourceAllocations</code> listed are for average usage.</p>
+      </li>
+      </ul>
+      <h2 id="setting-resource-requests-for-a-nodeagent-pod_pods-crash-or-restart-due-to-lack-of-memory-or-cpu" class="group scroll-mt-20">Setting resource requests for a nodeAgent pod<a href="#setting-resource-requests-for-a-nodeagent-pod_pods-crash-or-restart-due-to-lack-of-memory-or-cpu" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the <code>configuration.nodeAgent.podConfig.resourceAllocations</code> specification field to set specific resource requests for a <code>nodeAgent</code> pod.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>With OADP 1.5.0, the <code>configuration.restic.podConfig.resourceAllocations</code> specification field is removed from Data Protection Application (DPA). Use the <code>nodeAgent</code> section with the <code>uploaderType</code> field set to <code>Kopia</code> instead of <code>Restic</code> .</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set the <code>cpu</code> and <code>memory</code> resource requests in the YAML file:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: ts-dpa\nspec:\n  backupLocations:\n  - velero:\n      default: true\n      objectStorage:\n        bucket: oadp.....njph \n        prefix: velero\n      credential:\n        key: cloud\n        name: cloud-credentials-gcp\n      provider: gcp \n  configuration:\n    velero:\n      defaultPlugins:\n      - gcp\n      - openshift\n      - csi\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n      podConfig:\n        resourceAllocations:\n          requests:\n            cpu: 1000m\n            memory: 16Gi"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>resourceAllocations</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The resource allocation examples shown are for average usage.</p></dd>
+      <dt class="font-semibold"><code>memory</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>You can modify this parameter depending on your infrastructure and usage.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the DPA CR by running the following command:
+      <CodeBlock code={"$ oc create -f nodeAgent.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the <code>nodeAgent</code> pods are running by using the following command:
+      <CodeBlock code={"$ oc get pods"} lang="terminal" />
+      <CodeBlock code={"NAME                                                        READY   STATUS      RESTARTS   AGE\nnode-agent-hbj9l                                            1/1     Running     0          97s\nnode-agent-wmwgz                                            1/1     Running     0          95s\nnode-agent-zvc7k                                            1/1     Running     0          98s\nopenshift-adp-controller-manager-7f9db86d96-4lhgq           1/1     Running     0          137m\nvelero-7b6c7fb8d7-ppc8m                                     1/1     Running     0          4m2s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check the resource requests by describing one of the <code>nodeAgent</code> pod:
+      <CodeBlock code={"$ oc describe pod node-agent-hbj9l | grep -C 5 Requests"} lang="terminal" />
+      <CodeBlock code={"      --log-format=text\n    State:          Running\n      Started:      Mon, 09 Jun 2025 16:22:15 +0530\n    Ready:          True\n    Restart Count:  0\n    Requests:\n      cpu:     1\n      memory:  1Gi\n    Environment:\n      NODE_NAME:            (v1:spec.nodeName)\n      VELERO_NAMESPACE:    openshift-adp (v1:metadata.namespace)"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"virt-managing-vms-openshift-pipelines","text":"Manage virtual machines with {{ pipelines_shortname }}"},{"depth":2,"slug":"prerequisites_virt-managing-vms-openshift-pipelines","text":"Prerequisites"},{"depth":2,"slug":"additional-resources_virt-managing-vms-openshift-pipelines","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-managing-vms-openshift-pipelines","text":"Manage virtual machines with {{ pipelines_shortname }}"},{"depth":2,"slug":"prerequisites_virt-managing-vms-openshift-pipelines","text":"Prerequisites"},{"depth":2,"slug":"virt-supported-ssp-tasks_virt-managing-vms-openshift-pipelines","text":"Supported virtual machine tasks"},{"depth":2,"slug":"virt-windows-efi-installer-pipeline_virt-managing-vms-openshift-pipelines","text":"Windows EFI installer pipeline"},{"depth":3,"slug":"virt-running-tto-pipeline-web_virt-managing-vms-openshift-pipelines","text":"Running the example pipelines using the web console"},{"depth":3,"slug":"virt-running-tto-pipeline-cli_virt-managing-vms-openshift-pipelines","text":"Running the example pipelines using the CLI"},{"depth":2,"slug":"virt-deprecated-tasks.web_virt-managing-vms-openshift-pipelines","text":"Removing deprecated or unused resources"},{"depth":2,"slug":"additional-resources_virt-managing-vms-openshift-pipelines","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/virt-managing-vms-openshift-pipelines";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Manage virtual machines with {{ pipelines_shortname }}";
-const description = "{{ pipelines_title }} is a Kubernetes-native CI/CD framework that allows developers to design and run each step of the CI/CD pipeline in its own container." || undefined;
+const description = "Red Hat OpenShift Pipelines is a Kubernetes-native CI/CD framework that allows developers to design and run each step of the CI/CD pipeline in its own…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["virt","virt/managing_vms"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Manage virtual machines with {{ pipelines_shortname }} {#virt-managing-vms-openshift-pipelines}\n\n{{ pipelines_title }} is a Kubernetes-native CI/CD framework that allows developers to design and run each step of the CI/CD pipeline in its own container.\n\nBy using {{ pipelines_shortname }} tasks and the example pipeline, you can do the following:\n\n- Create and manage virtual machines (VMs), persistent volume claims (PVCs), data volumes, and data sources.\n- Run commands in VMs.\n- Manipulate disk images with `libguestfs` tools.\n\nThe tasks are located in the task catalog (ArtifactHub).\n\nThe example Windows pipeline is located in the pipeline catalog (ArtifactHub).\n\n## Prerequisites {#prerequisites_virt-managing-vms-openshift-pipelines}\n\n- You have access to an OpenShift Container Platform cluster with `cluster-admin` permissions.\n- You have installed the {{ oc_first }}.\n- You have installed {{ pipelines_shortname }}.\n\n## Additional resources {#additional-resources_virt-managing-vms-openshift-pipelines}\n\n- [Understanding {{ pipelines_shortname }}](https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html)\n- [Task catalog (ArtifactHub)](https://artifacthub.io/packages/search?repo=redhat-tekton-tasks&sort=relevance&page=1)\n- [Windows EFI installer pipeline (ArtifactHub)](https://artifacthub.io/packages/tekton-pipeline/redhat-pipelines/windows-efi-installer)\n- [Installing {{ pipelines_shortname }}](https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html)\n- [Creating CI/CD solutions for applications using {{ pipelines_title }}](https://docs.openshift.com/pipelines/latest/create/creating-applications-with-cicd-pipelines.html)\n- [Creating a Windows VM](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-uploading-images#virt-creating-windows-vm_virt-creating-vms-uploading-images)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-managing-vms-openshift-pipelines.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Manage virtual machines with {{ pipelines_shortname }} {#virt-managing-vms-openshift-pipelines}\n\nRed Hat OpenShift Pipelines is a Kubernetes-native CI/CD framework that allows developers to design and run each step of the CI/CD pipeline in its own container.\n\nBy using OpenShift Pipelines tasks and the example pipeline, you can do the following:\n\n- Create and manage virtual machines (VMs), persistent volume claims (PVCs), data volumes, and data sources.\n- Run commands in VMs.\n- Manipulate disk images with `libguestfs` tools.\n\nThe tasks are located in the task catalog (ArtifactHub).\n\nThe example Windows pipeline is located in the pipeline catalog (ArtifactHub).\n\n## Prerequisites {#prerequisites_virt-managing-vms-openshift-pipelines}\n\n- You have access to an OpenShift Container Platform cluster with `cluster-admin` permissions.\n- You have installed the OpenShift CLI (`oc`).\n- You have installed OpenShift Pipelines.\n\n## Supported virtual machine tasks {#virt-supported-ssp-tasks_virt-managing-vms-openshift-pipelines}\n\nAutomate virtual machine (VM) provisioning and management in your CI/CD workflows with OpenShift Pipelines tasks designed for virtualization. These tasks allow you to manage VMs and their disks as part of your automated deployment pipelines, streamlining VM lifecycle management.\n\n**Supported virtual machine tasks**\n\n| Task | Description |\n| --- | --- |\n| `create-vm-from-manifest` | Create a virtual machine from a provided manifest or with `virtctl`. |\n| `create-vm-from-template` | Create a virtual machine from a template. |\n| `copy-template` | Copy a virtual machine template. |\n| `modify-vm-template` | Modify a virtual machine template. |\n| `modify-data-object` | Create or delete data volumes or data sources. |\n| `cleanup-vm` | Run a script or a command in a virtual machine and stop or delete the virtual machine afterward. |\n| `disk-virt-customize` | Use the `virt-customize` tool to run a customization script on a target PVC. |\n| `disk-virt-sysprep` | Use the `virt-sysprep` tool to run a sysprep script on a target PVC. |\n| `wait-for-vmi-status` | Wait for a specific status of a virtual machine instance and fail or succeed based on the status. |\n\n> [!NOTE]\n> Virtual machine creation in pipelines now utilizes `ClusterInstanceType` and `ClusterPreference` instead of template-based tasks, which have been deprecated. The `create-vm-from-template`, `copy-template`, and `modify-vm-template` commands remain available but are not used in default pipeline tasks.\n\n## Windows EFI installer pipeline {#virt-windows-efi-installer-pipeline_virt-managing-vms-openshift-pipelines}\n\nYou can run the Windows EFI installer pipeline by using the web console or CLI.\n\nThe Windows EFI installer pipeline installs Windows 10, Windows 11, or Windows Server 2022 into a new data volume from a Windows installation image (ISO file). A custom answer file is used to run the installation process.\n\n> [!NOTE]\n> The Windows EFI installer pipeline uses a config map file with `sysprep` predefined by OpenShift Container Platform and suitable for Microsoft ISO files. For ISO files pertaining to different Windows editions, it may be necessary to create a new config map file with a system-specific `sysprep` definition.\n\n### Running the example pipelines using the web console {#virt-running-tto-pipeline-web_virt-managing-vms-openshift-pipelines}\n\nYou can run the example pipelines from the **Pipelines** menu in the web console.\n\n**Procedure**\n\n1. Click **Pipelines** -> **Pipelines** in the side menu.\n2. Select a pipeline to open the **Pipeline details** page.\n3. From the **Actions** list, select **Start**. The **Start Pipeline** dialog is displayed.\n4. Keep the default values for the parameters and then click **Start** to run the pipeline. The **Details** tab tracks the progress of each task and displays the pipeline status.\n\n### Running the example pipelines using the CLI {#virt-running-tto-pipeline-cli_virt-managing-vms-openshift-pipelines}\n\nUse a `PipelineRun` resource to run the example pipelines. A `PipelineRun` object is the running instance of a pipeline. It instantiates a pipeline for execution with specific inputs, outputs, and execution parameters on a cluster. It also creates a `TaskRun` object for each task in the pipeline.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. To run the Microsoft Windows 11 installer pipeline, create the following `PipelineRun` manifest:\n\n   ```yaml\n   apiVersion: tekton.dev/v1\n   kind: PipelineRun\n   metadata:\n     generateName: windows11-installer-run-\n     labels:\n       pipelinerun: windows11-installer-run\n   spec:\n       params:\n       -   name: winImageDownloadURL\n           value: <windows_image_download_url>\n       -   name: acceptEula\n           value: false\n       pipelineRef:\n           params:\n           -   name: catalog\n               value: redhat-pipelines\n           -   name: type\n               value: artifact\n           -   name: kind\n               value: pipeline\n           -   name: name\n               value: windows-efi-installer\n           -   name: version\n               value: {{ product_version }}\n           resolver: hub\n       taskRunSpecs:\n       -   pipelineTaskName: modify-windows-iso-file\n           PodTemplate:\n               securityContext:\n                   fsGroup: 107\n                   runAsUser: 107\n   ```\n\n   - For `<windows_image_download_url>`, specify the URL for the Windows 11 64-bit ISO file. The product’s language must be English (United States).\n   - Example `PipelineRun` objects have a special parameter, `acceptEula`. By setting this parameter, you are agreeing to the applicable Microsoft user license agreements for each deployment or installation of the Microsoft products. If you set it to false, the pipeline exits at the first task.\n2. Apply the `PipelineRun` manifest:\n\n   ```terminal\n   $ oc apply -f windows11-customize-run.yaml\n   ```\n\n## Removing deprecated or unused resources {#virt-deprecated-tasks.web_virt-managing-vms-openshift-pipelines}\n\nYou can clean up deprecated or unused resources associated with the Red Hat OpenShift Pipelines Operator.\n\n**Procedure**\n\n- Remove any remaining OpenShift Pipelines resources from the cluster by running the following command:\n\n  ```terminal\n  $ oc delete clusterroles,rolebindings,serviceaccounts,configmaps,pipelines,tasks \\\n    --selector 'app.kubernetes.io/managed-by=ssp-operator' \\\n    --selector 'app.kubernetes.io/component in (tektonPipelines,tektonTasks)' \\\n    --selector 'app.kubernetes.io/name in (tekton-pipelines,tekton-tasks)' \\\n    --ignore-not-found \\\n    --all-namespaces\n  ```\n\n  If the Red Hat OpenShift Pipelines Operator custom resource definitions (CRDs) have already been removed, the command may return an error. You can safely ignore this, as all other matching resources will still be deleted.\n\n## Additional resources {#additional-resources_virt-managing-vms-openshift-pipelines}\n\n- [Understanding OpenShift Pipelines](https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html)\n- [Task catalog (ArtifactHub)](https://artifacthub.io/packages/search?repo=redhat-tekton-tasks&sort=relevance&page=1)\n- [Windows EFI installer pipeline (ArtifactHub)](https://artifacthub.io/packages/tekton-pipeline/redhat-pipelines/windows-efi-installer)\n- [Installing OpenShift Pipelines](https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html)\n- [Creating CI/CD solutions for applications using Red Hat OpenShift Pipelines](https://docs.openshift.com/pipelines/latest/create/creating-applications-with-cicd-pipelines.html)\n- [Creating a Windows VM](/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-uploading-images#virt-creating-windows-vm_virt-creating-vms-uploading-images)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-managing-vms-openshift-pipelines.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +101,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-managing-vms-openshift-pipelines" class="group scroll-mt-20">Manage virtual machines with {"{"}{"{"} pipelines_shortname {"}"}{"}"}<a href="#virt-managing-vms-openshift-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>{"{"}{"{"} pipelines_title {"}"}{"}"} is a Kubernetes-native CI/CD framework that allows developers to design and run each step of the CI/CD pipeline in its own container.</p>
-      <p>By using {"{"}{"{"} pipelines_shortname {"}"}{"}"} tasks and the example pipeline, you can do the following:</p>
+      <p>Red Hat OpenShift Pipelines is a Kubernetes-native CI/CD framework that allows developers to design and run each step of the CI/CD pipeline in its own container.</p>
+      <p>By using OpenShift Pipelines tasks and the example pipeline, you can do the following:</p>
       <ul>
       <li>Create and manage virtual machines (VMs), persistent volume claims (PVCs), data volumes, and data sources.</li>
       <li>Run commands in VMs.</li>
@@ -104,20 +113,118 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <h2 id="prerequisites_virt-managing-vms-openshift-pipelines" class="group scroll-mt-20">Prerequisites<a href="#prerequisites_virt-managing-vms-openshift-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li>You have access to an OpenShift Container Platform cluster with <code>cluster-admin</code> permissions.</li>
-      <li>You have installed the {"{"}{"{"} oc_first {"}"}{"}"}.</li>
-      <li>You have installed {"{"}{"{"} pipelines_shortname {"}"}{"}"}.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have installed OpenShift Pipelines.</li>
       </ul>
-      <p class="/modules/virt-windows-efi-installer-pipeline.md"></p>
-      <p class="/modules/virt-running-ssp-pipeline-web.md"></p>
-      <p class="/modules/virt-running-ssp-pipeline-cli.md"></p>
-      <p class="/modules/virt-deprecated-tasks-web.md"></p>
+      <h2 id="virt-supported-ssp-tasks_virt-managing-vms-openshift-pipelines" class="group scroll-mt-20">Supported virtual machine tasks<a href="#virt-supported-ssp-tasks_virt-managing-vms-openshift-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Automate virtual machine (VM) provisioning and management in your CI/CD workflows with OpenShift Pipelines tasks designed for virtualization. These tasks allow you to manage VMs and their disks as part of your automated deployment pipelines, streamlining VM lifecycle management.</p>
+      <p><strong>Supported virtual machine tasks</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Task</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>create-vm-from-manifest</code></TableCell>
+      <TableCell>Create a virtual machine from a provided manifest or with <code>virtctl</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>create-vm-from-template</code></TableCell>
+      <TableCell>Create a virtual machine from a template.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>copy-template</code></TableCell>
+      <TableCell>Copy a virtual machine template.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>modify-vm-template</code></TableCell>
+      <TableCell>Modify a virtual machine template.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>modify-data-object</code></TableCell>
+      <TableCell>Create or delete data volumes or data sources.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>cleanup-vm</code></TableCell>
+      <TableCell>Run a script or a command in a virtual machine and stop or delete the virtual machine afterward.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>disk-virt-customize</code></TableCell>
+      <TableCell>Use the <code>virt-customize</code> tool to run a customization script on a target PVC.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>disk-virt-sysprep</code></TableCell>
+      <TableCell>Use the <code>virt-sysprep</code> tool to run a sysprep script on a target PVC.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>wait-for-vmi-status</code></TableCell>
+      <TableCell>Wait for a specific status of a virtual machine instance and fail or succeed based on the status.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Virtual machine creation in pipelines now utilizes <code>ClusterInstanceType</code> and <code>ClusterPreference</code> instead of template-based tasks, which have been deprecated. The <code>create-vm-from-template</code>, <code>copy-template</code>, and <code>modify-vm-template</code> commands remain available but are not used in default pipeline tasks.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="virt-windows-efi-installer-pipeline_virt-managing-vms-openshift-pipelines" class="group scroll-mt-20">Windows EFI installer pipeline<a href="#virt-windows-efi-installer-pipeline_virt-managing-vms-openshift-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can run the Windows EFI installer pipeline by using the web console or CLI.</p>
+      <p>The Windows EFI installer pipeline installs Windows 10, Windows 11, or Windows Server 2022 into a new data volume from a Windows installation image (ISO file). A custom answer file is used to run the installation process.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The Windows EFI installer pipeline uses a config map file with <code>sysprep</code> predefined by OpenShift Container Platform and suitable for Microsoft ISO files. For ISO files pertaining to different Windows editions, it may be necessary to create a new config map file with a system-specific <code>sysprep</code> definition.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="virt-running-tto-pipeline-web_virt-managing-vms-openshift-pipelines" class="group scroll-mt-20">Running the example pipelines using the web console<a href="#virt-running-tto-pipeline-web_virt-managing-vms-openshift-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can run the example pipelines from the <strong>Pipelines</strong> menu in the web console.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Click <strong>Pipelines</strong> -&gt; <strong>Pipelines</strong> in the side menu.</li>
+      <li>Select a pipeline to open the <strong>Pipeline details</strong> page.</li>
+      <li>From the <strong>Actions</strong> list, select <strong>Start</strong>. The <strong>Start Pipeline</strong> dialog is displayed.</li>
+      <li>Keep the default values for the parameters and then click <strong>Start</strong> to run the pipeline. The <strong>Details</strong> tab tracks the progress of each task and displays the pipeline status.</li>
+      </ol>
+      <h3 id="virt-running-tto-pipeline-cli_virt-managing-vms-openshift-pipelines" class="group scroll-mt-20">Running the example pipelines using the CLI<a href="#virt-running-tto-pipeline-cli_virt-managing-vms-openshift-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Use a <code>PipelineRun</code> resource to run the example pipelines. A <code>PipelineRun</code> object is the running instance of a pipeline. It instantiates a pipeline for execution with specific inputs, outputs, and execution parameters on a cluster. It also creates a <code>TaskRun</code> object for each task in the pipeline.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To run the Microsoft Windows 11 installer pipeline, create the following <code>PipelineRun</code> manifest:
+      <CodeBlock code={"apiVersion: tekton.dev/v1\nkind: PipelineRun\nmetadata:\n  generateName: windows11-installer-run-\n  labels:\n    pipelinerun: windows11-installer-run\nspec:\n    params:\n    -   name: winImageDownloadURL\n        value: <windows_image_download_url>\n    -   name: acceptEula\n        value: false\n    pipelineRef:\n        params:\n        -   name: catalog\n            value: redhat-pipelines\n        -   name: type\n            value: artifact\n        -   name: kind\n            value: pipeline\n        -   name: name\n            value: windows-efi-installer\n        -   name: version\n            value: {{ product_version }}\n        resolver: hub\n    taskRunSpecs:\n    -   pipelineTaskName: modify-windows-iso-file\n        PodTemplate:\n            securityContext:\n                fsGroup: 107\n                runAsUser: 107"} lang="yaml" />
+      <ul>
+      <li>For <code>&lt;windows_image_download_url&gt;</code>, specify the URL for the Windows 11 64-bit ISO file. The product’s language must be English (United States).</li>
+      <li>Example <code>PipelineRun</code> objects have a special parameter, <code>acceptEula</code>. By setting this parameter, you are agreeing to the applicable Microsoft user license agreements for each deployment or installation of the Microsoft products. If you set it to false, the pipeline exits at the first task.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the <code>PipelineRun</code> manifest:
+      <CodeBlock code={"$ oc apply -f windows11-customize-run.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-deprecated-tasks.web_virt-managing-vms-openshift-pipelines" class="group scroll-mt-20">Removing deprecated or unused resources<a href="#virt-deprecated-tasks.web_virt-managing-vms-openshift-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can clean up deprecated or unused resources associated with the Red Hat OpenShift Pipelines Operator.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Remove any remaining OpenShift Pipelines resources from the cluster by running the following command:
+      <CodeBlock code={"$ oc delete clusterroles,rolebindings,serviceaccounts,configmaps,pipelines,tasks \\\n  --selector 'app.kubernetes.io/managed-by=ssp-operator' \\\n  --selector 'app.kubernetes.io/component in (tektonPipelines,tektonTasks)' \\\n  --selector 'app.kubernetes.io/name in (tekton-pipelines,tekton-tasks)' \\\n  --ignore-not-found \\\n  --all-namespaces"} lang="terminal" />
+      <p>If the Red Hat OpenShift Pipelines Operator custom resource definitions (CRDs) have already been removed, the command may return an error. You can safely ignore this, as all other matching resources will still be deleted.</p>
+      </li>
+      </ul>
       <h2 id="additional-resources_virt-managing-vms-openshift-pipelines" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-managing-vms-openshift-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html">Understanding {"{"}{"{"} pipelines_shortname {"}"}{"}"}</a></li>
+      <li><a href="https://docs.openshift.com/pipelines/latest/about/understanding-openshift-pipelines.html">Understanding OpenShift Pipelines</a></li>
       <li><a href="https://artifacthub.io/packages/search?repo=redhat-tekton-tasks&amp;sort=relevance&amp;page=1">Task catalog (ArtifactHub)</a></li>
       <li><a href="https://artifacthub.io/packages/tekton-pipeline/redhat-pipelines/windows-efi-installer">Windows EFI installer pipeline (ArtifactHub)</a></li>
-      <li><a href="https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html">Installing {"{"}{"{"} pipelines_shortname {"}"}{"}"}</a></li>
-      <li><a href="https://docs.openshift.com/pipelines/latest/create/creating-applications-with-cicd-pipelines.html">Creating CI/CD solutions for applications using {"{"}{"{"} pipelines_title {"}"}{"}"}</a></li>
+      <li><a href="https://docs.openshift.com/pipelines/latest/install_config/installing-pipelines.html">Installing OpenShift Pipelines</a></li>
+      <li><a href="https://docs.openshift.com/pipelines/latest/create/creating-applications-with-cicd-pipelines.html">Creating CI/CD solutions for applications using Red Hat OpenShift Pipelines</a></li>
       <li><a href="/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-uploading-images#virt-creating-windows-vm_virt-creating-vms-uploading-images">Creating a Windows VM</a></li>
       </ul>
     </article>

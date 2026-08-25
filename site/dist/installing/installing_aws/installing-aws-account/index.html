@@ -1,27 +1,815 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Configuring an {{ aws_short }} account | OpenShift Container Platform</title><meta name="description" content="To ensure OpenShift Container Platform can successfully install and run the cluster in {{ aws_first }}, you must configure an {{ aws_short }} account with…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/installing-aws-account/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/installing/installing_aws/installing-aws-account.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Configuring an {{ aws_short }} account"><meta property="og:description" content="To ensure OpenShift Container Platform can successfully install and run the cluster in {{ aws_first }}, you must configure an {{ aws_short }} account with…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/installing-aws-account/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Configuring an {{ aws_short }} account"><meta name="twitter:description" content="To ensure OpenShift Container Platform can successfully install and run the cluster in {{ aws_first }}, you must configure an {{ aws_short }} account with…"><script>
+<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Configuring an {{ aws_short }} account | OpenShift Container Platform</title><meta name="description" content="To ensure OpenShift Container Platform can successfully install and run the cluster in Amazon Web Services (AWS), you must configure an AWS account with…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/installing-aws-account/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/installing/installing_aws/installing-aws-account.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Configuring an {{ aws_short }} account"><meta property="og:description" content="To ensure OpenShift Container Platform can successfully install and run the cluster in Amazon Web Services (AWS), you must configure an AWS account with…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/installing-aws-account/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Configuring an {{ aws_short }} account"><meta name="twitter:description" content="To ensure OpenShift Container Platform can successfully install and run the cluster in Amazon Web Services (AWS), you must configure an AWS account with…"><script>
       if (localStorage.getItem("theme") === "dark") {
         document.documentElement.classList.add("dark");
       }
-    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BTNukzuO.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/installing/installing_aws/installing-aws-account" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Configuring an {{ aws_short }} account</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Configuring an {{ aws_short }} account {#installing-aws-account}
+    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BrFMoueR.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/installing/installing_aws/installing-aws-account" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Configuring an {{ aws_short }} account</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Configuring an AWS account {#installing-aws-account}
 
-To ensure OpenShift Container Platform can successfully install and run the cluster in {{ aws_first }}, you must configure an {{ aws_short }} account with the correct identity and permissions before you start the installation.
+To ensure OpenShift Container Platform can successfully install and run the cluster in Amazon Web Services (AWS), you must configure an AWS account with the correct identity and permissions before you start the installation.
+
+## Configuring Route 53 {#installation-aws-route53_installing-aws-account}
+
+To install OpenShift Container Platform, the Amazon Web Services (AWS) account you use must have a dedicated public hosted zone in your Route 53 service. This zone must be authoritative for the domain. The Route 53 service provides cluster DNS resolution and name lookup for external connections to the cluster.
+
+**Procedure**
+
+1. Identify your domain, or subdomain, and registrar. You can transfer an existing domain and registrar or obtain a new one through AWS or another source.
+
+   > [!NOTE]
+   > If you purchase a new domain through AWS, it takes time for the relevant DNS changes to propagate. For more information about purchasing domains through AWS, see [Registering Domain Names Using Amazon Route 53](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html) in the AWS documentation.
+2. If you are using an existing domain and registrar, migrate its DNS to AWS. See [Making Amazon Route 53 the DNS Service for an Existing Domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/MigratingDNS.html) in the AWS documentation.
+3. Create a public hosted zone for your domain or subdomain. See [Creating a Public Hosted Zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html) in the AWS documentation.
+
+   Use an appropriate root domain, such as `openshiftcorp.com`, or subdomain, such as `clusters.openshiftcorp.com`.
+4. Extract the new authoritative name servers from the hosted zone records. See [Getting the Name Servers for a Public Hosted Zone](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/GetInfoAboutHostedZone.html) in the AWS documentation.
+5. Update the registrar records for the AWS Route 53 name servers that your domain uses. For example, if you registered your domain to a Route 53 service in a different accounts, see the following topic in the AWS documentation: [Adding or Changing Name Servers or Glue Records](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-name-servers-glue-records.html#domain-name-servers-glue-records-procedure).
+6. If you are using a subdomain, add its delegation records to the parent domain. This gives Amazon Route 53 responsibility for the subdomain. Follow the delegation procedure outlined by the DNS provider of the parent domain. See [Creating a subdomain that uses Amazon Route 53 as the DNS service without migrating the parent domain](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html) in the AWS documentation for an example high level procedure.
+
+### Ingress Operator endpoint configuration for AWS Route 53 {#nw-endpoint-route53_installing-aws-account}
+
+Configure Ingress Operator endpoints for OpenShift Container Platform clusters in Amazon Web Services (AWS) GovCloud (US) regions. Verifying these settings helps to ensure that your cluster connects to the correct API endpoints.
+
+If you install in either AWS GovCloud (US) US-West or US-East region, the Ingress Operator uses `us-gov-west-1` region for Route53 and tagging API clients.
+
+The Ingress Operator uses `https://tagging.us-gov-west-1.amazonaws.com` as the tagging API endpoint if a tagging custom endpoint is configured that includes the string 'us-gov-east-1'.
+
+For more information on AWS GovCloud (US) endpoints, see the [Service Endpoints](https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html) in the AWS documentation about GovCloud (US).
+
+> [!IMPORTANT]
+> Private, disconnected installations are not supported for AWS GovCloud when you install in the `us-gov-east-1` region.
+
+```yaml {title=&quot;Example Route 53 configuration&quot;}
+platform:
+  aws:
+    region: us-gov-west-1
+    serviceEndpoints:
+    - name: ec2
+      url: https://ec2.us-gov-west-1.amazonaws.com
+    - name: elasticloadbalancing
+      url: https://elasticloadbalancing.us-gov-west-1.amazonaws.com
+    - name: route53
+      url: https://route53.us-gov.amazonaws.com
+    - name: tagging
+      url: https://tagging.us-gov-west-1.amazonaws.com
+```
+
+++ where: ++
+
+`https://route53.us-gov.amazonaws.com`
+:   Defaults to `https://route53.us-gov.amazonaws.com` for both AWS GovCloud (US) regions.
+
+`https://tagging.us-gov-west-1.amazonaws.com`
+:   Only the US-West region has endpoints for tagging. Omit this parameter if your cluster is in another region.
+
+## AWS account limits {#installation-aws-limits_installing-aws-account}
+
+The OpenShift Container Platform cluster uses several Amazon Web Services (AWS) components, and the default service limits affect your ability to install OpenShift Container Platform clusters.
+
+If you use certain cluster configurations, deploy your cluster in certain AWS regions, or run multiple clusters from your account, you might need to request additional resources for your AWS account.
+
+The following table summarizes the AWS  components whose limits can impact your ability to install and run OpenShift Container Platform clusters.
+
+<table>
+<thead>
+<tr>
+  <th>Component</th>
+  <th>Number of clusters available by default</th>
+  <th>Default AWS limit</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Instance Limits</td>
+  <td>Varies</td>
+  <td>Varies</td>
+  <td>By default, each cluster creates the following instances:<br><br><ul><li>One bootstrap machine, which is removed after installation</li><li>Three control plane nodes</li><li>Three worker nodes</li></ul>These instance type counts are within a new account's default limit. To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, review your account limits to ensure that your cluster can deploy the machines that you need.<br><br>In most regions, the worker machines use an <code>m6i.large</code> instanceand the bootstrap and control plane machines use <code>m6i.xlarge</code> instances. In some regions, including all regions that do not support these instance types, <code>m5.large</code> and <code>m5.xlarge</code> instances are used instead.</td>
+</tr>
+<tr>
+  <td>Elastic IPs (EIPs)</td>
+  <td>0 to 1</td>
+  <td>5 EIPs per account</td>
+  <td>To provision the cluster in a highly available configuration, the installation program creates a public and private subnet for each availability zone within a region.Each private subnet requires a NAT gateway, and each NAT gateway requires a separate elastic IP.Review the AWS region map to determine how many availability zones are in each region. To take advantage of the default high availability, install the cluster in a region with at least three availability zones. To install a cluster in a region with more than five availability zones, you must increase the EIP limit.<br><br><dl><dt>Important</dt><dd>To use the <code>us-east-1</code> region, you must increase the EIP limit for your account.</dd></dl></td>
+</tr>
+<tr>
+  <td>Virtual Private Clouds (VPCs)</td>
+  <td>5</td>
+  <td>5 VPCs per region</td>
+  <td>Each cluster creates its own VPC.</td>
+</tr>
+<tr>
+  <td>Elastic Load Balancing (ELB/NLB)</td>
+  <td>3</td>
+  <td>20 per region</td>
+  <td>By default, each cluster creates internal and external network load balancers for the masterAPI server and a single Classic Load Balancer for the router. Deploying more Kubernetes <code>Service</code> objects with type <code>LoadBalancer</code> will create additional load balancers.</td>
+</tr>
+<tr>
+  <td>NAT Gateways</td>
+  <td>5</td>
+  <td>5 per availability zone</td>
+  <td>The cluster deploys one NAT gateway in each availability zone.</td>
+</tr>
+<tr>
+  <td>Elastic Network Interfaces (ENIs)</td>
+  <td>At least 12</td>
+  <td>350 per region</td>
+  <td>The default installation creates 21 ENIs and an ENI for each availability zonein your region. For example, the <code>us-east-1</code> region contains six availability zones, so a cluster that is deployed in that zone uses 27 ENIs. Review the AWS region map to determine how many availability zones are in each region.<br><br>Additional ENIs are created for additional machines and ELB load balancers that are created by cluster usage and deployed workloads.</td>
+</tr>
+<tr>
+  <td>VPC Gateway</td>
+  <td>20</td>
+  <td>20 per account</td>
+  <td>Each cluster creates a single VPC Gateway for S3 access.</td>
+</tr>
+<tr>
+  <td>S3 buckets</td>
+  <td>99</td>
+  <td>100 buckets per account</td>
+  <td>Because the installation process creates a temporary bucket and the registry component in each cluster creates a bucket, you can create only 99 OpenShift Container Platform clusters per AWS account.</td>
+</tr>
+<tr>
+  <td>Security Groups</td>
+  <td>250</td>
+  <td>2,500 per account</td>
+  <td>Each cluster creates 10 distinct security groups.</td>
+</tr>
+<tr>
+  <td>Security Groups on network interfaces</td>
+  <td>Varies</td>
+  <td>5 per network interface</td>
+  <td>By default, AWS allows 5 security groups per network interface. The installation program creates 2 security groups for compute machines and 3 security groups for control plane machines. If you are installing a cluster into a shared VPC, there are three scenarios in which you must increase this quota:<br><br><ul><li>You specified 4 or more custom security groups for compute machines using the <code>compute.platform.aws.additionalSecurityGroupIDs</code> parameter in the <code>install-config.yaml</code> file.</li><li>You specified 3 or more custom security groups for control plane machines using the <code>controlPlane.platform.aws.additionalSecurityGroupIDs</code> parameter in the <code>install-config.yaml</code> file.</li><li>You specified 3 or more custom security groups for all machines using the <code>platform.aws.defaultMachinePlatform</code> parameter in the <code>install-config.yaml</code> file.</li></ul>You must increase the quota of security groups per network interface to a number greater than or equal to <code>3 + (number of control plane custom security groups OR number of default machine platform custom security groups)</code>, or <code>2 + (number of compute custom security groups OR number of default machine platform custom security groups)</code>, whichever is higher. If you do not specify a sufficient quota, the installation will succeed, but it will generate <code>SecurityGroupsPerInterfaceLimitExceeded</code> errors in the installation log, and the additional security groups will not be applied. The maximum allowed quota is 16 and the maximum number of user-specified security groups is 10.</td>
+</tr>
+</tbody>
+</table>
 
 **Additional resources**
 
-- [Service Limits ({{ aws_short }} documentation)](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
-- [Regions and Zones ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
-- [NAT Gateways ({{ aws_short }} documentation)](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
-- [Elastic IP Addresses ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
-- [Region map ({{ aws_short }} documentation)](https://aws.amazon.com/about-aws/global-infrastructure)
-- [Elastic load balancing ({{ aws_short }} documentation)](https://aws.amazon.com/elasticloadbalancing)
+- [Service Limits (AWS documentation)](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+- [Regions and Zones (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html)
+- [NAT Gateways (AWS documentation)](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html)
+- [Elastic IP Addresses (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html)
+- [Region map (AWS documentation)](https://aws.amazon.com/about-aws/global-infrastructure)
+- [Elastic load balancing (AWS documentation)](https://aws.amazon.com/elasticloadbalancing)
+
+## Required AWS permissions for the IAM user {#installation-aws-permissions_installing-aws-account}
+
+To deploy all components of an OpenShift Container Platform cluster, you must grant all the required permissions to the IAM user that you create in Amazon Web Services (AWS).
+
+> [!NOTE]
+> Your IAM user must have the permission `tag:GetResources` in the region `us-east-1` to delete the base cluster resources. As part of the AWS API requirement, the OpenShift Container Platform installation program performs various actions in this region.
+
+When you attach the `AdministratorAccess` policy to the IAM user that you create in AWS, you grant that user all of the required permissions. To deploy all components of an OpenShift Container Platform cluster, the IAM user requires the following permissions:
+
+**Required EC2 permissions for installation**
+
+- `ec2:AttachNetworkInterface`
+- `ec2:AuthorizeSecurityGroupEgress`
+- `ec2:AuthorizeSecurityGroupIngress`
+- `ec2:CopyImage`
+- `ec2:CreateNetworkInterface`
+- `ec2:CreateSecurityGroup`
+- `ec2:CreateTags`
+- `ec2:CreateVolume`
+- `ec2:DeleteSecurityGroup`
+- `ec2:DeleteSnapshot`
+- `ec2:DeleteTags`
+- `ec2:DeregisterImage`
+- `ec2:DescribeAccountAttributes`
+- `ec2:DescribeAddresses`
+- `ec2:DescribeAvailabilityZones`
+- `ec2:DescribeDhcpOptions`
+- `ec2:DescribeImages`
+- `ec2:DescribeInstanceAttribute`
+- `ec2:DescribeInstanceCreditSpecifications`
+- `ec2:DescribeInstances`
+- `ec2:DescribeInstanceTypes`
+- `ec2:DescribeInstanceTypeOfferings`
+- `ec2:DescribeInternetGateways`
+- `ec2:DescribeKeyPairs`
+- `ec2:DescribeNatGateways`
+- `ec2:DescribeNetworkAcls`
+- `ec2:DescribeNetworkInterfaces`
+- `ec2:DescribePrefixLists`
+- `ec2:DescribePublicIpv4Pools` (only required if you specify `publicIpv4Pool` in `install-config.yaml`)
+- `ec2:DescribeRegions`
+- `ec2:DescribeRouteTables`
+- `ec2:DescribeSecurityGroupRules`
+- `ec2:DescribeSecurityGroups`
+- `ec2:DescribeSubnets`
+- `ec2:DescribeTags`
+- `ec2:DescribeVolumes`
+- `ec2:DescribeVpcAttribute`
+- `ec2:DescribeVpcClassicLink`
+- `ec2:DescribeVpcClassicLinkDnsSupport`
+- `ec2:DescribeVpcEndpoints`
+- `ec2:DescribeVpcs`
+- `ec2:DisassociateAddress` (only required if you specify `publicIpv4Pool` in `install-config.yaml`)
+- `ec2:GetEbsDefaultKmsKeyId`
+- `ec2:ModifyInstanceAttribute`
+- `ec2:ModifyNetworkInterfaceAttribute`
+- `ec2:RevokeSecurityGroupEgress`
+- `ec2:RevokeSecurityGroupIngress`
+- `ec2:RunInstances`
+- `ec2:TerminateInstances`
+
+**Required permissions for creating network resources during installation**
+
+- `ec2:AllocateAddress`
+- `ec2:AssociateAddress`
+- `ec2:AssociateDhcpOptions`
+- `ec2:AssociateRouteTable`
+- `ec2:AttachInternetGateway`
+- `ec2:CreateDhcpOptions`
+- `ec2:CreateInternetGateway`
+- `ec2:CreateNatGateway`
+- `ec2:CreateRoute`
+- `ec2:CreateRouteTable`
+- `ec2:CreateSubnet`
+- `ec2:CreateVpc`
+- `ec2:CreateVpcEndpoint`
+- `ec2:ModifySubnetAttribute`
+- `ec2:ModifyVpcAttribute`
+
+> [!NOTE]
+> If you use an existing Virtual Private Cloud (VPC), your account does not require these permissions for creating network resources.
+
+**Required Elastic Load Balancing permissions (ELB) for installation**
+
+- `elasticloadbalancing:AddTags`
+- `elasticloadbalancing:ApplySecurityGroupsToLoadBalancer`
+- `elasticloadbalancing:AttachLoadBalancerToSubnets`
+- `elasticloadbalancing:ConfigureHealthCheck`
+- `elasticloadbalancing:CreateListener`
+- `elasticloadbalancing:CreateLoadBalancer`
+- `elasticloadbalancing:CreateLoadBalancerListeners`
+- `elasticloadbalancing:CreateTargetGroup`
+- `elasticloadbalancing:DeleteLoadBalancer`
+- `elasticloadbalancing:DeregisterInstancesFromLoadBalancer`
+- `elasticloadbalancing:DeregisterTargets`
+- `elasticloadbalancing:DescribeInstanceHealth`
+- `elasticloadbalancing:DescribeListeners`
+- `elasticloadbalancing:DescribeLoadBalancerAttributes`
+- `elasticloadbalancing:DescribeLoadBalancers`
+- `elasticloadbalancing:DescribeTags`
+- `elasticloadbalancing:DescribeTargetGroupAttributes`
+- `elasticloadbalancing:DescribeTargetHealth`
+- `elasticloadbalancing:ModifyLoadBalancerAttributes`
+- `elasticloadbalancing:ModifyTargetGroup`
+- `elasticloadbalancing:ModifyTargetGroupAttributes`
+- `elasticloadbalancing:RegisterInstancesWithLoadBalancer`
+- `elasticloadbalancing:RegisterTargets`
+- `elasticloadbalancing:SetLoadBalancerPoliciesOfListener`
+- `elasticloadbalancing:SetSecurityGroups`
+
+> [!IMPORTANT]
+> OpenShift Container Platform uses both the ELB and ELBv2 API services to provision load balancers. The permission list shows permissions required by both services. A known issue exists in the AWS web console where both services use the same `elasticloadbalancing` action prefix but do not recognize the same actions. You can ignore the warnings about the service not recognizing certain `elasticloadbalancing` actions.
+
+**Required IAM permissions for installation**
+
+- `iam:AddRoleToInstanceProfile`
+- `iam:CreateInstanceProfile`
+- `iam:CreateRole`
+- `iam:DeleteInstanceProfile`
+- `iam:DeleteRole`
+- `iam:DeleteRolePolicy`
+- `iam:GetInstanceProfile`
+- `iam:GetRole`
+- `iam:GetRolePolicy`
+- `iam:GetUser`
+- `iam:ListInstanceProfilesForRole`
+- `iam:ListRoles`
+- `iam:ListUsers`
+- `iam:PassRole`
+- `iam:PutRolePolicy`
+- `iam:RemoveRoleFromInstanceProfile`
+- `iam:SimulatePrincipalPolicy`
+- `iam:TagInstanceProfile`
+- `iam:TagRole`
+
+> [!NOTE]
+> - If you specify an existing IAM role in the `install-config.yaml` file, the following IAM permissions are not required: `iam:CreateRole`,`iam:DeleteRole`, `iam:DeleteRolePolicy`, and `iam:PutRolePolicy`.
+> - If you have not created a load balancer in your AWS account, the IAM user also requires the `iam:CreateServiceLinkedRole` permission.
+
+**Required Route 53 permissions for installation**
+
+- `route53:ChangeResourceRecordSets`
+- `route53:ChangeTagsForResource`
+- `route53:CreateHostedZone`
+- `route53:DeleteHostedZone`
+- `route53:GetChange`
+- `route53:GetHostedZone`
+- `route53:ListHostedZones`
+- `route53:ListHostedZonesByName`
+- `route53:ListResourceRecordSets`
+- `route53:ListTagsForResource`
+- `route53:UpdateHostedZoneComment`
+
+**Required Amazon Simple Storage Service (S3) permissions for installation**
+
+- `s3:CreateBucket`
+- `s3:DeleteBucket`
+- `s3:GetAccelerateConfiguration`
+- `s3:GetBucketAcl`
+- `s3:GetBucketCors`
+- `s3:GetBucketLocation`
+- `s3:GetBucketLogging`
+- `s3:GetBucketObjectLockConfiguration`
+- `s3:GetBucketPolicy`
+- `s3:GetBucketRequestPayment`
+- `s3:GetBucketTagging`
+- `s3:GetBucketVersioning`
+- `s3:GetBucketWebsite`
+- `s3:GetEncryptionConfiguration`
+- `s3:GetLifecycleConfiguration`
+- `s3:GetReplicationConfiguration`
+- `s3:ListBucket`
+- `s3:PutBucketAcl`
+- `s3:PutBucketPolicy`
+- `s3:PutBucketTagging`
+- `s3:PutEncryptionConfiguration`
+
+**S3 permissions that cluster Operators require**
+
+- `s3:DeleteObject`
+- `s3:GetObject`
+- `s3:GetObjectAcl`
+- `s3:GetObjectTagging`
+- `s3:GetObjectVersion`
+- `s3:PutObject`
+- `s3:PutObjectAcl`
+- `s3:PutObjectTagging`
+
+**Required permissions to delete base cluster resources**
+
+- `autoscaling:DescribeAutoScalingGroups`
+- `ec2:DeleteNetworkInterface`
+- `ec2:DeletePlacementGroup`
+- `ec2:DeleteVolume`
+- `elasticloadbalancing:DeleteTargetGroup`
+- `elasticloadbalancing:DescribeTargetGroups`
+- `iam:DeleteAccessKey`
+- `iam:DeleteUser`
+- `iam:DeleteUserPolicy`
+- `iam:ListAttachedRolePolicies`
+- `iam:ListInstanceProfiles`
+- `iam:ListRolePolicies`
+- `iam:ListUserPolicies`
+- `s3:DeleteObject`
+- `s3:ListBucketVersions`
+- `tag:GetResources`
+
+**Required permissions to delete network resources**
+
+- `ec2:DeleteDhcpOptions`
+- `ec2:DeleteInternetGateway`
+- `ec2:DeleteNatGateway`
+- `ec2:DeleteRoute`
+- `ec2:DeleteRouteTable`
+- `ec2:DeleteSubnet`
+- `ec2:DeleteVpc`
+- `ec2:DeleteVpcEndpoints`
+- `ec2:DetachInternetGateway`
+- `ec2:DisassociateRouteTable`
+- `ec2:ReleaseAddress`
+- `ec2:ReplaceRouteTableAssociation`
+
+> [!NOTE]
+> If you use an existing VPC, your account does not require these permissions to delete network resources. Instead, your account only requires the `tag:UntagResources` permission to delete network resources.
+
+**Optional permissions for installing a cluster with a custom Key Management Service (KMS) key**
+
+- `kms:CreateGrant`
+- `kms:Decrypt`
+- `kms:DescribeKey`
+- `kms:Encrypt`
+- `kms:GenerateDataKey`
+- `kms:GenerateDataKeyWithoutPlainText`
+- `kms:ListGrants`
+- `kms:RevokeGrant`
+
+> [!NOTE]
+> If you use an Amazon Machine Image (AMI) encrypted with a customer-managed key, you must grant the `kms:ReEncrypt*` permissions in addition to these permissions.
+
+**Required permissions to delete a cluster with shared instance roles**
+
+- `iam:UntagRole`
+
+**Required permissions to delete a cluster with shared instance profiles**
+
+- `tag:UntagResources`
+
+**Additional IAM and S3 permissions required to create manifests**
+
+- `iam:GetUserPolicy`
+- `iam:ListAccessKeys`
+- `iam:PutUserPolicy`
+- `iam:TagUser`
+- `s3:AbortMultipartUpload`
+- `s3:GetBucketPublicAccessBlock`
+- `s3:ListBucket`
+- `s3:ListBucketMultipartUploads`
+- `s3:PutBucketPublicAccessBlock`
+- `s3:PutLifecycleConfiguration`
+
+> [!NOTE]
+> If you are managing your cloud provider credentials with mint mode, the IAM user also requires the `iam:CreateAccessKey` and `iam:CreateUser` permissions.
+
+**Optional permissions for instance and quota checks for installation**
+
+- `servicequotas:ListAWSDefaultServiceQuotas`
+
+**Optional permissions for the cluster owner account when installing a cluster on a shared VPC**
+
+- `sts:AssumeRole`
+
+**Required permissions for enabling Bring your own public IPv4 addresses (BYOIP) feature for installation**
+
+- `ec2:DescribePublicIpv4Pools`
+- `ec2:DisassociateAddress`
+
+**Required permissions to install a cluster with dual-stack networking**
+
+- `ec2:DescribeEgressOnlyInternetGateways`
+- `ec2:CreateEgressOnlyInternetGateway`
+
+**Required permissions to delete a cluster with dual-stack networking**
+
+- `ec2:DeleteEgressOnlyInternetGateway`
+
+## Creating an IAM user {#installation-aws-iam-user_installing-aws-account}
+
+Before you install OpenShift Container Platform, you must create a secondary IAM administrative user and assign permissions to create the cluster.
+
+Each Amazon Web Services (AWS) account contains a root user account that is based on the email address you used to create the account.
+
+> [!IMPORTANT]
+> This is a highly-privileged account, and it is recommended to use it for only initial account and billing configuration, creating an initial set of users, and securing the account.
+
+As you complete the [Creating an IAM User in Your AWS Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html) procedure in the Amazon Web Services (AWS) documentation, set the following options:
+
+**Procedure**
+
+1. Specify the IAM user name and select `Programmatic access`.
+2. Attach the `AdministratorAccess` policy to ensure that the account has sufficient permission to create the cluster. This policy provides the cluster with the ability to grant credentials to each OpenShift Container Platform component. The cluster grants the components only the credentials that they require.
+
+   > [!NOTE]
+   > While it is possible to create a policy that grants the all of the required AWS permissions and attach it to the user, this is not the preferred option. The cluster will not have the ability to grant additional credentials to individual components, so the same credentials are used by all components.
+3. Optional: Add metadata to the user by attaching tags.
+4. Confirm that the user name that you specified is granted the `AdministratorAccess` policy.
+5. Record the access key ID and secret access key values. You must use these values when you configure your local machine to run the installation program.
+
+   > [!IMPORTANT]
+   > You cannot use a temporary session token that you generated while using a multi-factor authentication device to authenticate to AWS when you deploy a cluster. The cluster continues to use your current AWS credentials to create AWS resources for the entire life of the cluster, so you must use key-based, long-term credentials.
+
+## IAM Policies and AWS authentication {#iam-policies-and-aws-authentication_installing-aws-account}
+
+You can specify your own IAM roles if required. By default, the installation program creates instance profiles for the bootstrap, control plane, and compute instances with the necessary permissions for the cluster to operate.
+
+> [!NOTE]
+> To enable pulling images from the Amazon Elastic Container Registry (ECR) as a postinstallation task in a single-node OpenShift cluster, you must add the `AmazonEC2ContainerRegistryReadOnly` policy to the IAM role associated with the cluster’s control plane role.
+
+However, you can create your own IAM roles and specify them as part of the installation process. You might need to specify your own roles to deploy the cluster or to manage the cluster after installation. For example:
+
+- Your organization’s security policies require that you use a more restrictive set of permissions to install the cluster.
+- After the installation, the cluster is configured with an Operator that requires access to additional services.
+
+If you choose to specify your own IAM roles, you can take the following steps:
+
+- Begin with the default policies and adapt as required. For more information, see &quot;Default permissions for IAM instance profiles&quot;.
+- To create a policy template that is based on the cluster’s activity, see &quot;Using AWS IAM Analyzer to create policy templates&quot;.
+
+### Default permissions for IAM instance profiles {#installation-aws-permissions-iam-roles_installing-aws-account}
+
+To ensure your cluster operates with the correct security permissions in OpenShift Container Platform, review the default IAM instance profiles created by the installation program.
+
+By default, the installation program creates IAM instance profiles for the bootstrap, control plane, and compute instances with the necessary permissions for the cluster to operate.
+
+The following list specifies the default IAM role permissions for control plane instance profiles:
+
+- `ec2:AttachVolume`
+- `ec2:AuthorizeSecurityGroupIngress`
+- `ec2:CreateSecurityGroup`
+- `ec2:CreateTags`
+- `ec2:CreateVolume`
+- `ec2:DeleteSecurityGroup`
+- `ec2:DeleteVolume`
+- `ec2:Describe*`
+- `ec2:DetachVolume`
+- `ec2:ModifyInstanceAttribute`
+- `ec2:ModifyVolume`
+- `ec2:RevokeSecurityGroupIngress`
+- `elasticloadbalancing:AddTags`
+- `elasticloadbalancing:AttachLoadBalancerToSubnets`
+- `elasticloadbalancing:ApplySecurityGroupsToLoadBalancer`
+- `elasticloadbalancing:CreateListener`
+- `elasticloadbalancing:CreateLoadBalancer`
+- `elasticloadbalancing:CreateLoadBalancerPolicy`
+- `elasticloadbalancing:CreateLoadBalancerListeners`
+- `elasticloadbalancing:CreateTargetGroup`
+- `elasticloadbalancing:ConfigureHealthCheck`
+- `elasticloadbalancing:DeleteListener`
+- `elasticloadbalancing:DeleteLoadBalancer`
+- `elasticloadbalancing:DeleteLoadBalancerListeners`
+- `elasticloadbalancing:DeleteTargetGroup`
+- `elasticloadbalancing:DeregisterInstancesFromLoadBalancer`
+- `elasticloadbalancing:DeregisterTargets`
+- `elasticloadbalancing:Describe*`
+- `elasticloadbalancing:DetachLoadBalancerFromSubnets`
+- `elasticloadbalancing:ModifyListener`
+- `elasticloadbalancing:ModifyLoadBalancerAttributes`
+- `elasticloadbalancing:ModifyTargetGroup`
+- `elasticloadbalancing:ModifyTargetGroupAttributes`
+- `elasticloadbalancing:RegisterInstancesWithLoadBalancer`
+- `elasticloadbalancing:RegisterTargets`
+- `elasticloadbalancing:SetLoadBalancerPoliciesForBackendServer`
+- `elasticloadbalancing:SetLoadBalancerPoliciesOfListener`
+- `kms:DescribeKey`
+
+The following list specifies the default IAM permissions for compute instance profiles:
+
+- `ec2:DescribeInstances`
+- `ec2:DescribeRegions`
+
+### Specifying an existing IAM role {#specify-an-existing-iam-role_installing-aws-account}
+
+Instead of allowing the installation program to create IAM instance profiles with the default permissions, you can use the `install-config.yaml` file to specify an existing IAM role for control plane and compute instances.
+
+**Prerequisites**
+
+- You have an existing `install-config.yaml` file.
+
+**Procedure**
+
+1. Update `compute.platform.aws.iamRole` with an existing role for the compute machines.
+
+   ```yaml {title=&quot;Sample install-config.yaml file with an IAM role for compute instances&quot;}
+   compute:
+   - hyperthreading: Enabled
+     name: worker
+     platform:
+       aws:
+         iamRole: ExampleRole
+   ```
+2. Update `controlPlane.platform.aws.iamRole` with an existing role for the control plane machines.
+
+   ```yaml {title=&quot;Sample install-config.yaml file with an IAM role for control plane instances&quot;}
+   controlPlane:
+     hyperthreading: Enabled
+     name: master
+     platform:
+       aws:
+         iamRole: ExampleRole
+   ```
+3. Save the file and reference it when installing the OpenShift Container Platform cluster.
+
+   > [!NOTE]
+   > To change or update an IAM account after the cluster has been installed, see [RHOCP 4 AWS cloud-credentials access key is expired](https://access.redhat.com/solutions/4284011) (Red Hat Knowledgebase).
 
 **Additional resources**
 
 - [Deploying the cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations)
+
+### Using AWS IAM Analyzer to create policy templates {#create-custom-permissions-for-iam-instance-profiles_installing-aws-account}
+
+To reduce security risk, you can use AWS IAM Access Analyzer and CloudTrail to generate and apply minimal, fine-grained IAM policies for cluster control plane and compute instance profiles.
+
+The minimal set of permissions that the control plane and compute instance profiles require depends on how the cluster is configured for its daily operation.
+
+One way to determine which permissions the cluster instances require is to use the AWS Identity and Access Management Access Analyzer (IAM Access Analyzer) to create a policy template:
+
+- A policy template contains the permissions the cluster has used over a specified period of time.
+- You can then use the template to create policies with fine-grained permissions.
+
+**Procedure**
+
+1. Ensure that CloudTrail is enabled. CloudTrail records all of the actions and events in your AWS account, including the API calls that are required to create a policy template. For more information, see the AWS documentation for [working with CloudTrail](https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-getting-started.html).
+2. Create an instance profile for control plane instances and an instance profile for compute instances. Be sure to assign each role a permissive policy, such as PowerUserAccess. For more information, see the AWS documentation for [creating instance profile roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html).
+3. Install the cluster in a development environment and configure it as required. Be sure to deploy all of applications the cluster will host in a production environment.
+4. Test the cluster thoroughly. Testing the cluster ensures that all of the required API calls are logged.
+5. Use the IAM Access Analyzer to create a policy template for each instance profile. For more information, see the AWS documentation for [generating policies based on the CloudTrail logs](https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html).
+6. Create and add a fine-grained policy to each instance profile.
+7. Remove the permissive policy from each instance profile.
+8. Deploy a production cluster using the existing instance profiles with the new policies.
+
+   > [!NOTE]
+   > You can add [IAM Conditions](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html) to your policy to make it more restrictive and compliant with your organization security requirements.
+
+## Supported AWS Marketplace regions {#installation-aws-marketplace_installing-aws-account}
+
+Installing an OpenShift Container Platform cluster using an AWS Marketplace image is available to customers who purchase the offer in North America.
+
+While the offer must be purchased in North America, you can deploy the cluster to any of the following supported partitions:
+
+- Public
+- GovCloud
+
+> [!NOTE]
+> Deploying a OpenShift Container Platform cluster using an AWS Marketplace image is not supported for the AWS secret regions or China regions.
+
+## Supported AWS regions {#installation-aws-regions_installing-aws-account}
+
+You can deploy an OpenShift Container Platform cluster to the following regions.
+
+> [!NOTE]
+> Your IAM user must have the permission `tag:GetResources` in the region `us-east-1` to delete the base cluster resources. As part of the AWS API requirement, the OpenShift Container Platform installation program performs various actions in this region.
+
+### AWS public regions {#installation-aws-public_installing-aws-account}
+
+The following AWS public regions are supported:
+
+- `af-south-1` (Cape Town)
+- `ap-east-1` (Hong Kong)
+- `ap-east-2` (Taipei)
+- `ap-northeast-1` (Tokyo)
+- `ap-northeast-2` (Seoul)
+- `ap-northeast-3` (Osaka)
+- `ap-south-1` (Mumbai)
+- `ap-south-2` (Hyderabad)
+- `ap-southeast-1` (Singapore)
+- `ap-southeast-2` (Sydney)
+- `ap-southeast-3` (Jakarta)
+- `ap-southeast-4` (Melbourne)
+- `ap-southeast-5` (Malaysia)
+- `ap-southeast-6` (New Zealand)
+- `ap-southeast-7` (Thailand)
+- `ca-central-1` (Central Canada)
+- `ca-west-1` (Calgary)
+- `eu-central-1` (Frankfurt)
+- `eu-central-2` (Zurich)
+- `eu-north-1` (Stockholm)
+- `eu-south-1` (Milan)
+- `eu-south-2` (Spain)
+- `eu-west-1` (Ireland)
+- `eu-west-2` (London)
+- `eu-west-3` (Paris)
+- `il-central-1` (Tel Aviv)
+- `me-central-1` (UAE)
+- `me-south-1` (Bahrain)
+- `mx-central-1` (Central Mexico)
+- `sa-east-1` (São Paulo)
+- `us-east-1` (N. Virginia)
+- `us-east-2` (Ohio)
+- `us-west-1` (N. California)
+- `us-west-2` (Oregon)
+
+### AWS EUSC region {#installation-aws-eusc_region_installing-aws-account}
+
+> [!IMPORTANT]
+> European Sovereign Cloud (EUSC) region is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+>
+> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
+
+Installing an OpenShift Container Platform cluster into the AWS European Sovereign Cloud (EUSC) region helps maximize the sovereignty of your data and satisfy your organization’s regulatory requirements. The AWS EUSC is separate and independent from other AWS regions. The infrastructure is located wholly within the European Union (EU). For more information, see [Establishing a European trust service provider for the AWS European Sovereign Cloud](https://aws.amazon.com/blogs/security/establishing-a-european-trust-service-provider-for-the-aws-european-sovereign-cloud/) in the AWS documentation.
+
+The following AWS EUSC region is supported:
+
+- `eusc-de-east-1` (Brandenburg)
+
+> [!IMPORTANT]
+> The following list outlines the limitations that apply to installing an OpenShift Container Platform cluster into the AWS EUSC region:
+>
+> - Only one region, `eusc-de-east-1`, and two zones in that region are available.
+> - The Amazon Machine Images (AMIs) for public Red Hat Enterprise Linux CoreOS (RHCOS) are not yet available in the EUSC region. As a workaround, until the AMI publication for RHCOS is extended to the EUSC region, you must edit your `install-config.yaml` file to specify a custom AMI in the `amiID` field.
+> - Support is not yet provided for the AWS Security Token Service (STS).
+> - Support is not yet provided for installing a cluster into a shared Virtual Private Cloud (VPC) with a cross-account private hosted zone.
+
+### AWS GovCloud regions {#installation-aws-govcloud_installing-aws-account}
+
+The following AWS GovCloud regions are supported:
+
+- `us-gov-west-1`
+- `us-gov-east-1`
+
+### AWS SC2S and C2S secret regions {#installation-aws-c2s_installing-aws-account}
+
+The following AWS secret regions are supported:
+
+- `us-isob-east-1` Secret Commercial Cloud Services (SC2S)
+- `us-iso-east-1` Commercial Cloud Services (C2S)
+
+### AWS China regions {#installation-aws-china_installing-aws-account}
+
+The following AWS China regions are supported:
+
+- `cn-north-1` (Beijing)
+- `cn-northwest-1` (Ningxia)
 
 **Additional resources**
 
 - [Quickly install a cluster](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default)
 - [Install a cluster with cloud customizations on installer-provisioned infrastructure](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)
 - [Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)
-"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/installing-aws-account.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Finstalling%2Finstalling_aws%2Finstalling-aws-account.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Finstalling%2Finstalling_aws%2Finstalling-aws-account.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Finstalling%2Finstalling_aws%2Finstalling-aws-account.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Finstalling%2Finstalling_aws%2Finstalling-aws-account.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:installing" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:installing/installing_aws" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><h1 class="text-3xl font-bold tracking-tight mb-2" data-astro-cid-vg5xjwtk>Configuring an {{ aws_short }} account</h1><article class="docs-prose"><p class="/_attributes/common-attributes.md"></p><h1 id="installing-aws-account" class="group scroll-mt-20">Configuring an {{ aws_short }} account<a href="#installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>To ensure OpenShift Container Platform can successfully install and run the cluster in {{ aws_first }}, you must configure an {{ aws_short }} account with the correct identity and permissions before you start the installation.</p><p class="/modules/installation-aws-route53.md"></p><p class="/modules/nw-endpoint-route53.md"></p><p class="/modules/installation-aws-limits.md"></p><p><strong>Additional resources</strong></p><ul><li><a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">Service Limits ({{ aws_short }} documentation)</a></li><li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">Regions and Zones ({{ aws_short }} documentation)</a></li><li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT Gateways ({{ aws_short }} documentation)</a></li><li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses ({{ aws_short }} documentation)</a></li><li><a href="https://aws.amazon.com/about-aws/global-infrastructure">Region map ({{ aws_short }} documentation)</a></li><li><a href="https://aws.amazon.com/elasticloadbalancing">Elastic load balancing ({{ aws_short }} documentation)</a></li></ul><p class="/modules/installation-aws-iam-user.md"></p><p class="/modules/installation-aws-iam-policies-about.md"></p><p class="/modules/installation-aws-permissions-iam-roles.md"></p><p class="/modules/installation-aws-add-iam-roles.md"></p><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations">Deploying the cluster</a></li></ul><p class="/modules/installation-aws-marketplace.md"></p><p class="/modules/installation-aws-regions.md"></p><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default">Quickly install a cluster</a></li><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations">Install a cluster with cloud customizations on installer-provisioned infrastructure</a></li><li><a href="/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra">Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates</a></li></ul></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/installing/installing_aws/preparing-to-install-on-aws" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Installation methods</div></div></a><a href="/openshift-docs-markdown/installing/installing_aws/ipi/ipi-aws-preparing-to-install" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Preparing to install a cluster</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>
+"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/installing-aws-account.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Finstalling%2Finstalling_aws%2Finstalling-aws-account.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Finstalling%2Finstalling_aws%2Finstalling-aws-account.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Finstalling%2Finstalling_aws%2Finstalling-aws-account.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Finstalling%2Finstalling_aws%2Finstalling-aws-account.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:installing" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:installing/installing_aws" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><details class="dba-toc-top not-prose mb-6 rounded-md border" data-toc-top data-astro-cid-vg5xjwtk><summary class="cursor-pointer list-none px-3 py-2 text-sm font-medium text-muted-foreground" data-astro-cid-vg5xjwtk>On this page</summary><div class="border-t px-3 py-2" data-astro-cid-vg5xjwtk><nav class="text-sm" aria-label="Table of contents"><ul class="mt-2 space-y-1"><li><a href="#installation-aws-route53_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="installation-aws-route53_installing-aws-account">Configuring Route 53</a></li><li><a href="#nw-endpoint-route53_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="nw-endpoint-route53_installing-aws-account">Ingress Operator endpoint configuration for AWS Route 53</a></li><li><a href="#installation-aws-limits_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="installation-aws-limits_installing-aws-account">AWS account limits</a></li><li><a href="#installation-aws-permissions_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="installation-aws-permissions_installing-aws-account">Required AWS permissions for the IAM user</a></li><li><a href="#installation-aws-iam-user_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="installation-aws-iam-user_installing-aws-account">Creating an IAM user</a></li><li><a href="#iam-policies-and-aws-authentication_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="iam-policies-and-aws-authentication_installing-aws-account">IAM Policies and AWS authentication</a></li><li><a href="#installation-aws-permissions-iam-roles_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="installation-aws-permissions-iam-roles_installing-aws-account">Default permissions for IAM instance profiles</a></li><li><a href="#specify-an-existing-iam-role_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="specify-an-existing-iam-role_installing-aws-account">Specifying an existing IAM role</a></li><li><a href="#create-custom-permissions-for-iam-instance-profiles_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="create-custom-permissions-for-iam-instance-profiles_installing-aws-account">Using AWS IAM Analyzer to create policy templates</a></li><li><a href="#installation-aws-marketplace_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="installation-aws-marketplace_installing-aws-account">Supported AWS Marketplace regions</a></li><li><a href="#installation-aws-regions_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="installation-aws-regions_installing-aws-account">Supported AWS regions</a></li><li><a href="#installation-aws-public_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="installation-aws-public_installing-aws-account">AWS public regions</a></li><li><a href="#installation-aws-eusc_region_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="installation-aws-eusc_region_installing-aws-account">AWS EUSC region</a></li><li><a href="#installation-aws-govcloud_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="installation-aws-govcloud_installing-aws-account">AWS GovCloud regions</a></li><li><a href="#installation-aws-c2s_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="installation-aws-c2s_installing-aws-account">AWS SC2S and C2S secret regions</a></li><li><a href="#installation-aws-china_installing-aws-account" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0.75rem" data-toc-link="installation-aws-china_installing-aws-account">AWS China regions</a></li></ul></nav></div></details><article class="docs-prose"><h1 id="installing-aws-account" class="group scroll-mt-20">Configuring an AWS account<a href="#installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>To ensure OpenShift Container Platform can successfully install and run the cluster in Amazon Web Services (AWS), you must configure an AWS account with the correct identity and permissions before you start the installation.</p><h2 id="installation-aws-route53_installing-aws-account" class="group scroll-mt-20">Configuring Route 53<a href="#installation-aws-route53_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">To install OpenShift Container Platform, the Amazon Web Services (AWS) account you use must have a dedicated public hosted zone in your Route 53 service. This zone must be authoritative for the domain. The Route 53 service provides cluster DNS resolution and name lookup for external connections to the cluster.</p><p><strong>Procedure</strong></p><ol><li>Identify your domain, or subdomain, and registrar. You can transfer an existing domain and registrar or obtain a new one through AWS or another source.<div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>If you purchase a new domain through AWS, it takes time for the relevant DNS changes to propagate. For more information about purchasing domains through AWS, see <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/registrar.html">Registering Domain Names Using Amazon Route 53</a> in the AWS documentation.</p></div></div></li><li>If you are using an existing domain and registrar, migrate its DNS to AWS. See <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/MigratingDNS.html">Making Amazon Route 53 the DNS Service for an Existing Domain</a> in the AWS documentation.</li><li>Create a public hosted zone for your domain or subdomain. See <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingHostedZone.html">Creating a Public Hosted Zone</a> in the AWS documentation.<p>Use an appropriate root domain, such as <code>openshiftcorp.com</code>, or subdomain, such as <code>clusters.openshiftcorp.com</code>.</p></li><li>Extract the new authoritative name servers from the hosted zone records. See <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/GetInfoAboutHostedZone.html">Getting the Name Servers for a Public Hosted Zone</a> in the AWS documentation.</li><li>Update the registrar records for the AWS Route 53 name servers that your domain uses. For example, if you registered your domain to a Route 53 service in a different accounts, see the following topic in the AWS documentation: <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-name-servers-glue-records.html#domain-name-servers-glue-records-procedure">Adding or Changing Name Servers or Glue Records</a>.</li><li>If you are using a subdomain, add its delegation records to the parent domain. This gives Amazon Route 53 responsibility for the subdomain. Follow the delegation procedure outlined by the DNS provider of the parent domain. See <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html">Creating a subdomain that uses Amazon Route 53 as the DNS service without migrating the parent domain</a> in the AWS documentation for an example high level procedure.</li></ol><h3 id="nw-endpoint-route53_installing-aws-account" class="group scroll-mt-20">Ingress Operator endpoint configuration for AWS Route 53<a href="#nw-endpoint-route53_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p class="_abstract">Configure Ingress Operator endpoints for OpenShift Container Platform clusters in Amazon Web Services (AWS) GovCloud (US) regions. Verifying these settings helps to ensure that your cluster connects to the correct API endpoints.</p><p>If you install in either AWS GovCloud (US) US-West or US-East region, the Ingress Operator uses <code>us-gov-west-1</code> region for Route53 and tagging API clients.</p><p>The Ingress Operator uses <code>https://tagging.us-gov-west-1.amazonaws.com</code> as the tagging API endpoint if a tagging custom endpoint is configured that includes the string 'us-gov-east-1'.</p><p>For more information on AWS GovCloud (US) endpoints, see the <a href="https://docs.aws.amazon.com/govcloud-us/latest/UserGuide/using-govcloud-endpoints.html">Service Endpoints</a> in the AWS documentation about GovCloud (US).</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>Private, disconnected installations are not supported for AWS GovCloud when you install in the <code>us-gov-east-1</code> region.</p></div></div><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">Example Route 53 configuration</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="platform:
+  aws:
+    region: us-gov-west-1
+    serviceEndpoints:
+    - name: ec2
+      url: https://ec2.us-gov-west-1.amazonaws.com
+    - name: elasticloadbalancing
+      url: https://elasticloadbalancing.us-gov-west-1.amazonaws.com
+    - name: route53
+      url: https://route53.us-gov.amazonaws.com
+    - name: tagging
+      url: https://tagging.us-gov-west-1.amazonaws.com" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">platform</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  aws</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    region</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">us-gov-west-1</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    serviceEndpoints</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ec2</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      url</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">https://ec2.us-gov-west-1.amazonaws.com</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">elasticloadbalancing</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      url</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">https://elasticloadbalancing.us-gov-west-1.amazonaws.com</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">route53</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      url</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">https://route53.us-gov.amazonaws.com</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">    - </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">tagging</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      url</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">https://tagging.us-gov-west-1.amazonaws.com</span></span></code></pre></div></div><script type="module">function e(){document.querySelectorAll(`[data-component='code-block'] [data-part='copy']`).forEach(e=>{e.__copyBound||(e.__copyBound=!0,e.addEventListener(`click`,async()=>{let t=e.getAttribute(`data-copy-text`)||``;try{await navigator.clipboard.writeText(t);let n=e.querySelector(`[data-copy-icon]`),r=e.querySelector(`[data-check-icon]`);n&&r&&(n.classList.add(`hidden`),r.classList.remove(`hidden`),setTimeout(()=>{n.classList.remove(`hidden`),r.classList.add(`hidden`)},2e3))}catch{}}))})}e(),document.addEventListener(`astro:after-swap`,e);</script><p>++ where: ++</p><dl class="my-4 space-y-2"><dt class="font-semibold"><code>https://route53.us-gov.amazonaws.com</code></dt><dd class="ml-6 text-muted-foreground"><p>Defaults to <code>https://route53.us-gov.amazonaws.com</code> for both AWS GovCloud (US) regions.</p></dd><dt class="font-semibold"><code>https://tagging.us-gov-west-1.amazonaws.com</code></dt><dd class="ml-6 text-muted-foreground"><p>Only the US-West region has endpoints for tagging. Omit this parameter if your cluster is in another region.</p></dd></dl><h2 id="installation-aws-limits_installing-aws-account" class="group scroll-mt-20">AWS account limits<a href="#installation-aws-limits_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">The OpenShift Container Platform cluster uses several Amazon Web Services (AWS) components, and the default service limits affect your ability to install OpenShift Container Platform clusters.</p><p>If you use certain cluster configurations, deploy your cluster in certain AWS regions, or run multiple clusters from your account, you might need to request additional resources for your AWS account.</p><p>The following table summarizes the AWS  components whose limits can impact your ability to install and run OpenShift Container Platform clusters.</p><table>
+<thead>
+<tr>
+  <th>Component</th>
+  <th>Number of clusters available by default</th>
+  <th>Default AWS limit</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Instance Limits</td>
+  <td>Varies</td>
+  <td>Varies</td>
+  <td>By default, each cluster creates the following instances:<br><br><ul><li>One bootstrap machine, which is removed after installation</li><li>Three control plane nodes</li><li>Three worker nodes</li></ul>These instance type counts are within a new account's default limit. To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, review your account limits to ensure that your cluster can deploy the machines that you need.<br><br>In most regions, the worker machines use an <code>m6i.large</code> instanceand the bootstrap and control plane machines use <code>m6i.xlarge</code> instances. In some regions, including all regions that do not support these instance types, <code>m5.large</code> and <code>m5.xlarge</code> instances are used instead.</td>
+</tr>
+<tr>
+  <td>Elastic IPs (EIPs)</td>
+  <td>0 to 1</td>
+  <td>5 EIPs per account</td>
+  <td>To provision the cluster in a highly available configuration, the installation program creates a public and private subnet for each availability zone within a region.Each private subnet requires a NAT gateway, and each NAT gateway requires a separate elastic IP.Review the AWS region map to determine how many availability zones are in each region. To take advantage of the default high availability, install the cluster in a region with at least three availability zones. To install a cluster in a region with more than five availability zones, you must increase the EIP limit.<br><br><dl><dt>Important</dt><dd>To use the <code>us-east-1</code> region, you must increase the EIP limit for your account.</dd></dl></td>
+</tr>
+<tr>
+  <td>Virtual Private Clouds (VPCs)</td>
+  <td>5</td>
+  <td>5 VPCs per region</td>
+  <td>Each cluster creates its own VPC.</td>
+</tr>
+<tr>
+  <td>Elastic Load Balancing (ELB/NLB)</td>
+  <td>3</td>
+  <td>20 per region</td>
+  <td>By default, each cluster creates internal and external network load balancers for the masterAPI server and a single Classic Load Balancer for the router. Deploying more Kubernetes <code>Service</code> objects with type <code>LoadBalancer</code> will create additional load balancers.</td>
+</tr>
+<tr>
+  <td>NAT Gateways</td>
+  <td>5</td>
+  <td>5 per availability zone</td>
+  <td>The cluster deploys one NAT gateway in each availability zone.</td>
+</tr>
+<tr>
+  <td>Elastic Network Interfaces (ENIs)</td>
+  <td>At least 12</td>
+  <td>350 per region</td>
+  <td>The default installation creates 21 ENIs and an ENI for each availability zonein your region. For example, the <code>us-east-1</code> region contains six availability zones, so a cluster that is deployed in that zone uses 27 ENIs. Review the AWS region map to determine how many availability zones are in each region.<br><br>Additional ENIs are created for additional machines and ELB load balancers that are created by cluster usage and deployed workloads.</td>
+</tr>
+<tr>
+  <td>VPC Gateway</td>
+  <td>20</td>
+  <td>20 per account</td>
+  <td>Each cluster creates a single VPC Gateway for S3 access.</td>
+</tr>
+<tr>
+  <td>S3 buckets</td>
+  <td>99</td>
+  <td>100 buckets per account</td>
+  <td>Because the installation process creates a temporary bucket and the registry component in each cluster creates a bucket, you can create only 99 OpenShift Container Platform clusters per AWS account.</td>
+</tr>
+<tr>
+  <td>Security Groups</td>
+  <td>250</td>
+  <td>2,500 per account</td>
+  <td>Each cluster creates 10 distinct security groups.</td>
+</tr>
+<tr>
+  <td>Security Groups on network interfaces</td>
+  <td>Varies</td>
+  <td>5 per network interface</td>
+  <td>By default, AWS allows 5 security groups per network interface. The installation program creates 2 security groups for compute machines and 3 security groups for control plane machines. If you are installing a cluster into a shared VPC, there are three scenarios in which you must increase this quota:<br><br><ul><li>You specified 4 or more custom security groups for compute machines using the <code>compute.platform.aws.additionalSecurityGroupIDs</code> parameter in the <code>install-config.yaml</code> file.</li><li>You specified 3 or more custom security groups for control plane machines using the <code>controlPlane.platform.aws.additionalSecurityGroupIDs</code> parameter in the <code>install-config.yaml</code> file.</li><li>You specified 3 or more custom security groups for all machines using the <code>platform.aws.defaultMachinePlatform</code> parameter in the <code>install-config.yaml</code> file.</li></ul>You must increase the quota of security groups per network interface to a number greater than or equal to <code>3 + (number of control plane custom security groups OR number of default machine platform custom security groups)</code>, or <code>2 + (number of compute custom security groups OR number of default machine platform custom security groups)</code>, whichever is higher. If you do not specify a sufficient quota, the installation will succeed, but it will generate <code>SecurityGroupsPerInterfaceLimitExceeded</code> errors in the installation log, and the additional security groups will not be applied. The maximum allowed quota is 16 and the maximum number of user-specified security groups is 10.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Additional resources</strong></p><ul><li><a href="https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html">Service Limits (AWS documentation)</a></li><li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html">Regions and Zones (AWS documentation)</a></li><li><a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html">NAT Gateways (AWS documentation)</a></li><li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html">Elastic IP Addresses (AWS documentation)</a></li><li><a href="https://aws.amazon.com/about-aws/global-infrastructure">Region map (AWS documentation)</a></li><li><a href="https://aws.amazon.com/elasticloadbalancing">Elastic load balancing (AWS documentation)</a></li></ul><h2 id="installation-aws-permissions_installing-aws-account" class="group scroll-mt-20">Required AWS permissions for the IAM user<a href="#installation-aws-permissions_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">To deploy all components of an OpenShift Container Platform cluster, you must grant all the required permissions to the IAM user that you create in Amazon Web Services (AWS).</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>Your IAM user must have the permission <code>tag:GetResources</code> in the region <code>us-east-1</code> to delete the base cluster resources. As part of the AWS API requirement, the OpenShift Container Platform installation program performs various actions in this region.</p></div></div><p>When you attach the <code>AdministratorAccess</code> policy to the IAM user that you create in AWS, you grant that user all of the required permissions. To deploy all components of an OpenShift Container Platform cluster, the IAM user requires the following permissions:</p><p><strong>Required EC2 permissions for installation</strong></p><ul><li><code>ec2:AttachNetworkInterface</code></li><li><code>ec2:AuthorizeSecurityGroupEgress</code></li><li><code>ec2:AuthorizeSecurityGroupIngress</code></li><li><code>ec2:CopyImage</code></li><li><code>ec2:CreateNetworkInterface</code></li><li><code>ec2:CreateSecurityGroup</code></li><li><code>ec2:CreateTags</code></li><li><code>ec2:CreateVolume</code></li><li><code>ec2:DeleteSecurityGroup</code></li><li><code>ec2:DeleteSnapshot</code></li><li><code>ec2:DeleteTags</code></li><li><code>ec2:DeregisterImage</code></li><li><code>ec2:DescribeAccountAttributes</code></li><li><code>ec2:DescribeAddresses</code></li><li><code>ec2:DescribeAvailabilityZones</code></li><li><code>ec2:DescribeDhcpOptions</code></li><li><code>ec2:DescribeImages</code></li><li><code>ec2:DescribeInstanceAttribute</code></li><li><code>ec2:DescribeInstanceCreditSpecifications</code></li><li><code>ec2:DescribeInstances</code></li><li><code>ec2:DescribeInstanceTypes</code></li><li><code>ec2:DescribeInstanceTypeOfferings</code></li><li><code>ec2:DescribeInternetGateways</code></li><li><code>ec2:DescribeKeyPairs</code></li><li><code>ec2:DescribeNatGateways</code></li><li><code>ec2:DescribeNetworkAcls</code></li><li><code>ec2:DescribeNetworkInterfaces</code></li><li><code>ec2:DescribePrefixLists</code></li><li><code>ec2:DescribePublicIpv4Pools</code> (only required if you specify <code>publicIpv4Pool</code> in <code>install-config.yaml</code>)</li><li><code>ec2:DescribeRegions</code></li><li><code>ec2:DescribeRouteTables</code></li><li><code>ec2:DescribeSecurityGroupRules</code></li><li><code>ec2:DescribeSecurityGroups</code></li><li><code>ec2:DescribeSubnets</code></li><li><code>ec2:DescribeTags</code></li><li><code>ec2:DescribeVolumes</code></li><li><code>ec2:DescribeVpcAttribute</code></li><li><code>ec2:DescribeVpcClassicLink</code></li><li><code>ec2:DescribeVpcClassicLinkDnsSupport</code></li><li><code>ec2:DescribeVpcEndpoints</code></li><li><code>ec2:DescribeVpcs</code></li><li><code>ec2:DisassociateAddress</code> (only required if you specify <code>publicIpv4Pool</code> in <code>install-config.yaml</code>)</li><li><code>ec2:GetEbsDefaultKmsKeyId</code></li><li><code>ec2:ModifyInstanceAttribute</code></li><li><code>ec2:ModifyNetworkInterfaceAttribute</code></li><li><code>ec2:RevokeSecurityGroupEgress</code></li><li><code>ec2:RevokeSecurityGroupIngress</code></li><li><code>ec2:RunInstances</code></li><li><code>ec2:TerminateInstances</code></li></ul><p><strong>Required permissions for creating network resources during installation</strong></p><ul><li><code>ec2:AllocateAddress</code></li><li><code>ec2:AssociateAddress</code></li><li><code>ec2:AssociateDhcpOptions</code></li><li><code>ec2:AssociateRouteTable</code></li><li><code>ec2:AttachInternetGateway</code></li><li><code>ec2:CreateDhcpOptions</code></li><li><code>ec2:CreateInternetGateway</code></li><li><code>ec2:CreateNatGateway</code></li><li><code>ec2:CreateRoute</code></li><li><code>ec2:CreateRouteTable</code></li><li><code>ec2:CreateSubnet</code></li><li><code>ec2:CreateVpc</code></li><li><code>ec2:CreateVpcEndpoint</code></li><li><code>ec2:ModifySubnetAttribute</code></li><li><code>ec2:ModifyVpcAttribute</code></li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>If you use an existing Virtual Private Cloud (VPC), your account does not require these permissions for creating network resources.</p></div></div><p><strong>Required Elastic Load Balancing permissions (ELB) for installation</strong></p><ul><li><code>elasticloadbalancing:AddTags</code></li><li><code>elasticloadbalancing:ApplySecurityGroupsToLoadBalancer</code></li><li><code>elasticloadbalancing:AttachLoadBalancerToSubnets</code></li><li><code>elasticloadbalancing:ConfigureHealthCheck</code></li><li><code>elasticloadbalancing:CreateListener</code></li><li><code>elasticloadbalancing:CreateLoadBalancer</code></li><li><code>elasticloadbalancing:CreateLoadBalancerListeners</code></li><li><code>elasticloadbalancing:CreateTargetGroup</code></li><li><code>elasticloadbalancing:DeleteLoadBalancer</code></li><li><code>elasticloadbalancing:DeregisterInstancesFromLoadBalancer</code></li><li><code>elasticloadbalancing:DeregisterTargets</code></li><li><code>elasticloadbalancing:DescribeInstanceHealth</code></li><li><code>elasticloadbalancing:DescribeListeners</code></li><li><code>elasticloadbalancing:DescribeLoadBalancerAttributes</code></li><li><code>elasticloadbalancing:DescribeLoadBalancers</code></li><li><code>elasticloadbalancing:DescribeTags</code></li><li><code>elasticloadbalancing:DescribeTargetGroupAttributes</code></li><li><code>elasticloadbalancing:DescribeTargetHealth</code></li><li><code>elasticloadbalancing:ModifyLoadBalancerAttributes</code></li><li><code>elasticloadbalancing:ModifyTargetGroup</code></li><li><code>elasticloadbalancing:ModifyTargetGroupAttributes</code></li><li><code>elasticloadbalancing:RegisterInstancesWithLoadBalancer</code></li><li><code>elasticloadbalancing:RegisterTargets</code></li><li><code>elasticloadbalancing:SetLoadBalancerPoliciesOfListener</code></li><li><code>elasticloadbalancing:SetSecurityGroups</code></li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>OpenShift Container Platform uses both the ELB and ELBv2 API services to provision load balancers. The permission list shows permissions required by both services. A known issue exists in the AWS web console where both services use the same <code>elasticloadbalancing</code> action prefix but do not recognize the same actions. You can ignore the warnings about the service not recognizing certain <code>elasticloadbalancing</code> actions.</p></div></div><p><strong>Required IAM permissions for installation</strong></p><ul><li><code>iam:AddRoleToInstanceProfile</code></li><li><code>iam:CreateInstanceProfile</code></li><li><code>iam:CreateRole</code></li><li><code>iam:DeleteInstanceProfile</code></li><li><code>iam:DeleteRole</code></li><li><code>iam:DeleteRolePolicy</code></li><li><code>iam:GetInstanceProfile</code></li><li><code>iam:GetRole</code></li><li><code>iam:GetRolePolicy</code></li><li><code>iam:GetUser</code></li><li><code>iam:ListInstanceProfilesForRole</code></li><li><code>iam:ListRoles</code></li><li><code>iam:ListUsers</code></li><li><code>iam:PassRole</code></li><li><code>iam:PutRolePolicy</code></li><li><code>iam:RemoveRoleFromInstanceProfile</code></li><li><code>iam:SimulatePrincipalPolicy</code></li><li><code>iam:TagInstanceProfile</code></li><li><code>iam:TagRole</code></li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><ul><li>If you specify an existing IAM role in the <code>install-config.yaml</code> file, the following IAM permissions are not required: <code>iam:CreateRole</code>,<code>iam:DeleteRole</code>, <code>iam:DeleteRolePolicy</code>, and <code>iam:PutRolePolicy</code>.</li><li>If you have not created a load balancer in your AWS account, the IAM user also requires the <code>iam:CreateServiceLinkedRole</code> permission.</li></ul></div></div><p><strong>Required Route 53 permissions for installation</strong></p><ul><li><code>route53:ChangeResourceRecordSets</code></li><li><code>route53:ChangeTagsForResource</code></li><li><code>route53:CreateHostedZone</code></li><li><code>route53:DeleteHostedZone</code></li><li><code>route53:GetChange</code></li><li><code>route53:GetHostedZone</code></li><li><code>route53:ListHostedZones</code></li><li><code>route53:ListHostedZonesByName</code></li><li><code>route53:ListResourceRecordSets</code></li><li><code>route53:ListTagsForResource</code></li><li><code>route53:UpdateHostedZoneComment</code></li></ul><p><strong>Required Amazon Simple Storage Service (S3) permissions for installation</strong></p><ul><li><code>s3:CreateBucket</code></li><li><code>s3:DeleteBucket</code></li><li><code>s3:GetAccelerateConfiguration</code></li><li><code>s3:GetBucketAcl</code></li><li><code>s3:GetBucketCors</code></li><li><code>s3:GetBucketLocation</code></li><li><code>s3:GetBucketLogging</code></li><li><code>s3:GetBucketObjectLockConfiguration</code></li><li><code>s3:GetBucketPolicy</code></li><li><code>s3:GetBucketRequestPayment</code></li><li><code>s3:GetBucketTagging</code></li><li><code>s3:GetBucketVersioning</code></li><li><code>s3:GetBucketWebsite</code></li><li><code>s3:GetEncryptionConfiguration</code></li><li><code>s3:GetLifecycleConfiguration</code></li><li><code>s3:GetReplicationConfiguration</code></li><li><code>s3:ListBucket</code></li><li><code>s3:PutBucketAcl</code></li><li><code>s3:PutBucketPolicy</code></li><li><code>s3:PutBucketTagging</code></li><li><code>s3:PutEncryptionConfiguration</code></li></ul><p><strong>S3 permissions that cluster Operators require</strong></p><ul><li><code>s3:DeleteObject</code></li><li><code>s3:GetObject</code></li><li><code>s3:GetObjectAcl</code></li><li><code>s3:GetObjectTagging</code></li><li><code>s3:GetObjectVersion</code></li><li><code>s3:PutObject</code></li><li><code>s3:PutObjectAcl</code></li><li><code>s3:PutObjectTagging</code></li></ul><p><strong>Required permissions to delete base cluster resources</strong></p><ul><li><code>autoscaling:DescribeAutoScalingGroups</code></li><li><code>ec2:DeleteNetworkInterface</code></li><li><code>ec2:DeletePlacementGroup</code></li><li><code>ec2:DeleteVolume</code></li><li><code>elasticloadbalancing:DeleteTargetGroup</code></li><li><code>elasticloadbalancing:DescribeTargetGroups</code></li><li><code>iam:DeleteAccessKey</code></li><li><code>iam:DeleteUser</code></li><li><code>iam:DeleteUserPolicy</code></li><li><code>iam:ListAttachedRolePolicies</code></li><li><code>iam:ListInstanceProfiles</code></li><li><code>iam:ListRolePolicies</code></li><li><code>iam:ListUserPolicies</code></li><li><code>s3:DeleteObject</code></li><li><code>s3:ListBucketVersions</code></li><li><code>tag:GetResources</code></li></ul><p><strong>Required permissions to delete network resources</strong></p><ul><li><code>ec2:DeleteDhcpOptions</code></li><li><code>ec2:DeleteInternetGateway</code></li><li><code>ec2:DeleteNatGateway</code></li><li><code>ec2:DeleteRoute</code></li><li><code>ec2:DeleteRouteTable</code></li><li><code>ec2:DeleteSubnet</code></li><li><code>ec2:DeleteVpc</code></li><li><code>ec2:DeleteVpcEndpoints</code></li><li><code>ec2:DetachInternetGateway</code></li><li><code>ec2:DisassociateRouteTable</code></li><li><code>ec2:ReleaseAddress</code></li><li><code>ec2:ReplaceRouteTableAssociation</code></li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>If you use an existing VPC, your account does not require these permissions to delete network resources. Instead, your account only requires the <code>tag:UntagResources</code> permission to delete network resources.</p></div></div><p><strong>Optional permissions for installing a cluster with a custom Key Management Service (KMS) key</strong></p><ul><li><code>kms:CreateGrant</code></li><li><code>kms:Decrypt</code></li><li><code>kms:DescribeKey</code></li><li><code>kms:Encrypt</code></li><li><code>kms:GenerateDataKey</code></li><li><code>kms:GenerateDataKeyWithoutPlainText</code></li><li><code>kms:ListGrants</code></li><li><code>kms:RevokeGrant</code></li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>If you use an Amazon Machine Image (AMI) encrypted with a customer-managed key, you must grant the <code>kms:ReEncrypt*</code> permissions in addition to these permissions.</p></div></div><p><strong>Required permissions to delete a cluster with shared instance roles</strong></p><ul><li><code>iam:UntagRole</code></li></ul><p><strong>Required permissions to delete a cluster with shared instance profiles</strong></p><ul><li><code>tag:UntagResources</code></li></ul><p><strong>Additional IAM and S3 permissions required to create manifests</strong></p><ul><li><code>iam:GetUserPolicy</code></li><li><code>iam:ListAccessKeys</code></li><li><code>iam:PutUserPolicy</code></li><li><code>iam:TagUser</code></li><li><code>s3:AbortMultipartUpload</code></li><li><code>s3:GetBucketPublicAccessBlock</code></li><li><code>s3:ListBucket</code></li><li><code>s3:ListBucketMultipartUploads</code></li><li><code>s3:PutBucketPublicAccessBlock</code></li><li><code>s3:PutLifecycleConfiguration</code></li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>If you are managing your cloud provider credentials with mint mode, the IAM user also requires the <code>iam:CreateAccessKey</code> and <code>iam:CreateUser</code> permissions.</p></div></div><p><strong>Optional permissions for instance and quota checks for installation</strong></p><ul><li><code>servicequotas:ListAWSDefaultServiceQuotas</code></li></ul><p><strong>Optional permissions for the cluster owner account when installing a cluster on a shared VPC</strong></p><ul><li><code>sts:AssumeRole</code></li></ul><p><strong>Required permissions for enabling Bring your own public IPv4 addresses (BYOIP) feature for installation</strong></p><ul><li><code>ec2:DescribePublicIpv4Pools</code></li><li><code>ec2:DisassociateAddress</code></li></ul><p><strong>Required permissions to install a cluster with dual-stack networking</strong></p><ul><li><code>ec2:DescribeEgressOnlyInternetGateways</code></li><li><code>ec2:CreateEgressOnlyInternetGateway</code></li></ul><p><strong>Required permissions to delete a cluster with dual-stack networking</strong></p><ul><li><code>ec2:DeleteEgressOnlyInternetGateway</code></li></ul><h2 id="installation-aws-iam-user_installing-aws-account" class="group scroll-mt-20">Creating an IAM user<a href="#installation-aws-iam-user_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">Before you install OpenShift Container Platform, you must create a secondary IAM administrative user and assign permissions to create the cluster.</p><p>Each Amazon Web Services (AWS) account contains a root user account that is based on the email address you used to create the account.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>This is a highly-privileged account, and it is recommended to use it for only initial account and billing configuration, creating an initial set of users, and securing the account.</p></div></div><p>As you complete the <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html">Creating an IAM User in Your AWS Account</a> procedure in the Amazon Web Services (AWS) documentation, set the following options:</p><p><strong>Procedure</strong></p><ol><li>Specify the IAM user name and select <code>Programmatic access</code>.</li><li>Attach the <code>AdministratorAccess</code> policy to ensure that the account has sufficient permission to create the cluster. This policy provides the cluster with the ability to grant credentials to each OpenShift Container Platform component. The cluster grants the components only the credentials that they require.<div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>While it is possible to create a policy that grants the all of the required AWS permissions and attach it to the user, this is not the preferred option. The cluster will not have the ability to grant additional credentials to individual components, so the same credentials are used by all components.</p></div></div></li><li>Optional: Add metadata to the user by attaching tags.</li><li>Confirm that the user name that you specified is granted the <code>AdministratorAccess</code> policy.</li><li>Record the access key ID and secret access key values. You must use these values when you configure your local machine to run the installation program.<div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>You cannot use a temporary session token that you generated while using a multi-factor authentication device to authenticate to AWS when you deploy a cluster. The cluster continues to use your current AWS credentials to create AWS resources for the entire life of the cluster, so you must use key-based, long-term credentials.</p></div></div></li></ol><h2 id="iam-policies-and-aws-authentication_installing-aws-account" class="group scroll-mt-20">IAM Policies and AWS authentication<a href="#iam-policies-and-aws-authentication_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can specify your own IAM roles if required. By default, the installation program creates instance profiles for the bootstrap, control plane, and compute instances with the necessary permissions for the cluster to operate.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>To enable pulling images from the Amazon Elastic Container Registry (ECR) as a postinstallation task in a single-node OpenShift cluster, you must add the <code>AmazonEC2ContainerRegistryReadOnly</code> policy to the IAM role associated with the cluster’s control plane role.</p></div></div><p>However, you can create your own IAM roles and specify them as part of the installation process. You might need to specify your own roles to deploy the cluster or to manage the cluster after installation. For example:</p><ul><li>Your organization’s security policies require that you use a more restrictive set of permissions to install the cluster.</li><li>After the installation, the cluster is configured with an Operator that requires access to additional services.</li></ul><p>If you choose to specify your own IAM roles, you can take the following steps:</p><ul><li>Begin with the default policies and adapt as required. For more information, see "Default permissions for IAM instance profiles".</li><li>To create a policy template that is based on the cluster’s activity, see "Using AWS IAM Analyzer to create policy templates".</li></ul><h3 id="installation-aws-permissions-iam-roles_installing-aws-account" class="group scroll-mt-20">Default permissions for IAM instance profiles<a href="#installation-aws-permissions-iam-roles_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p class="_abstract">To ensure your cluster operates with the correct security permissions in OpenShift Container Platform, review the default IAM instance profiles created by the installation program.</p><p>By default, the installation program creates IAM instance profiles for the bootstrap, control plane, and compute instances with the necessary permissions for the cluster to operate.</p><p>The following list specifies the default IAM role permissions for control plane instance profiles:</p><ul><li><code>ec2:AttachVolume</code></li><li><code>ec2:AuthorizeSecurityGroupIngress</code></li><li><code>ec2:CreateSecurityGroup</code></li><li><code>ec2:CreateTags</code></li><li><code>ec2:CreateVolume</code></li><li><code>ec2:DeleteSecurityGroup</code></li><li><code>ec2:DeleteVolume</code></li><li><code>ec2:Describe*</code></li><li><code>ec2:DetachVolume</code></li><li><code>ec2:ModifyInstanceAttribute</code></li><li><code>ec2:ModifyVolume</code></li><li><code>ec2:RevokeSecurityGroupIngress</code></li><li><code>elasticloadbalancing:AddTags</code></li><li><code>elasticloadbalancing:AttachLoadBalancerToSubnets</code></li><li><code>elasticloadbalancing:ApplySecurityGroupsToLoadBalancer</code></li><li><code>elasticloadbalancing:CreateListener</code></li><li><code>elasticloadbalancing:CreateLoadBalancer</code></li><li><code>elasticloadbalancing:CreateLoadBalancerPolicy</code></li><li><code>elasticloadbalancing:CreateLoadBalancerListeners</code></li><li><code>elasticloadbalancing:CreateTargetGroup</code></li><li><code>elasticloadbalancing:ConfigureHealthCheck</code></li><li><code>elasticloadbalancing:DeleteListener</code></li><li><code>elasticloadbalancing:DeleteLoadBalancer</code></li><li><code>elasticloadbalancing:DeleteLoadBalancerListeners</code></li><li><code>elasticloadbalancing:DeleteTargetGroup</code></li><li><code>elasticloadbalancing:DeregisterInstancesFromLoadBalancer</code></li><li><code>elasticloadbalancing:DeregisterTargets</code></li><li><code>elasticloadbalancing:Describe*</code></li><li><code>elasticloadbalancing:DetachLoadBalancerFromSubnets</code></li><li><code>elasticloadbalancing:ModifyListener</code></li><li><code>elasticloadbalancing:ModifyLoadBalancerAttributes</code></li><li><code>elasticloadbalancing:ModifyTargetGroup</code></li><li><code>elasticloadbalancing:ModifyTargetGroupAttributes</code></li><li><code>elasticloadbalancing:RegisterInstancesWithLoadBalancer</code></li><li><code>elasticloadbalancing:RegisterTargets</code></li><li><code>elasticloadbalancing:SetLoadBalancerPoliciesForBackendServer</code></li><li><code>elasticloadbalancing:SetLoadBalancerPoliciesOfListener</code></li><li><code>kms:DescribeKey</code></li></ul><p>The following list specifies the default IAM permissions for compute instance profiles:</p><ul><li><code>ec2:DescribeInstances</code></li><li><code>ec2:DescribeRegions</code></li></ul><h3 id="specify-an-existing-iam-role_installing-aws-account" class="group scroll-mt-20">Specifying an existing IAM role<a href="#specify-an-existing-iam-role_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p class="_abstract">Instead of allowing the installation program to create IAM instance profiles with the default permissions, you can use the <code>install-config.yaml</code> file to specify an existing IAM role for control plane and compute instances.</p><p><strong>Prerequisites</strong></p><ul><li>You have an existing <code>install-config.yaml</code> file.</li></ul><p><strong>Procedure</strong></p><ol><li>Update <code>compute.platform.aws.iamRole</code> with an existing role for the compute machines.<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">Sample install-config.yaml file with an IAM role for compute instances</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="compute:
+- hyperthreading: Enabled
+  name: worker
+  platform:
+    aws:
+      iamRole: ExampleRole" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">compute</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">- </span><span style="--shiki-light:#116329;--shiki-dark:#7EE787">hyperthreading</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">Enabled</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">worker</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  platform</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    aws</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      iamRole</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ExampleRole</span></span></code></pre></div></div></li><li>Update <code>controlPlane.platform.aws.iamRole</code> with an existing role for the control plane machines.<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">Sample install-config.yaml file with an IAM role for control plane instances</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="controlPlane:
+  hyperthreading: Enabled
+  name: master
+  platform:
+    aws:
+      iamRole: ExampleRole" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="yaml"><code><span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">controlPlane</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  hyperthreading</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">Enabled</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  name</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">master</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">  platform</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">    aws</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">:</span></span>
+<span class="line"><span style="--shiki-light:#116329;--shiki-dark:#7EE787">      iamRole</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">: </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">ExampleRole</span></span></code></pre></div></div></li><li>Save the file and reference it when installing the OpenShift Container Platform cluster.<div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>To change or update an IAM account after the cluster has been installed, see <a href="https://access.redhat.com/solutions/4284011">RHOCP 4 AWS cloud-credentials access key is expired</a> (Red Hat Knowledgebase).</p></div></div></li></ol><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-launching-installer_installing-aws-customizations">Deploying the cluster</a></li></ul><h3 id="create-custom-permissions-for-iam-instance-profiles_installing-aws-account" class="group scroll-mt-20">Using AWS IAM Analyzer to create policy templates<a href="#create-custom-permissions-for-iam-instance-profiles_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p class="_abstract">To reduce security risk, you can use AWS IAM Access Analyzer and CloudTrail to generate and apply minimal, fine-grained IAM policies for cluster control plane and compute instance profiles.</p><p>The minimal set of permissions that the control plane and compute instance profiles require depends on how the cluster is configured for its daily operation.</p><p>One way to determine which permissions the cluster instances require is to use the AWS Identity and Access Management Access Analyzer (IAM Access Analyzer) to create a policy template:</p><ul><li>A policy template contains the permissions the cluster has used over a specified period of time.</li><li>You can then use the template to create policies with fine-grained permissions.</li></ul><p><strong>Procedure</strong></p><ol><li>Ensure that CloudTrail is enabled. CloudTrail records all of the actions and events in your AWS account, including the API calls that are required to create a policy template. For more information, see the AWS documentation for <a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-getting-started.html">working with CloudTrail</a>.</li><li>Create an instance profile for control plane instances and an instance profile for compute instances. Be sure to assign each role a permissive policy, such as PowerUserAccess. For more information, see the AWS documentation for <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2.html">creating instance profile roles</a>.</li><li>Install the cluster in a development environment and configure it as required. Be sure to deploy all of applications the cluster will host in a production environment.</li><li>Test the cluster thoroughly. Testing the cluster ensures that all of the required API calls are logged.</li><li>Use the IAM Access Analyzer to create a policy template for each instance profile. For more information, see the AWS documentation for <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-policy-generation.html">generating policies based on the CloudTrail logs</a>.</li><li>Create and add a fine-grained policy to each instance profile.</li><li>Remove the permissive policy from each instance profile.</li><li>Deploy a production cluster using the existing instance profiles with the new policies.<div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>You can add <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_condition.html">IAM Conditions</a> to your policy to make it more restrictive and compliant with your organization security requirements.</p></div></div></li></ol><h2 id="installation-aws-marketplace_installing-aws-account" class="group scroll-mt-20">Supported AWS Marketplace regions<a href="#installation-aws-marketplace_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">Installing an OpenShift Container Platform cluster using an AWS Marketplace image is available to customers who purchase the offer in North America.</p><p>While the offer must be purchased in North America, you can deploy the cluster to any of the following supported partitions:</p><ul><li>Public</li><li>GovCloud</li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>Deploying a OpenShift Container Platform cluster using an AWS Marketplace image is not supported for the AWS secret regions or China regions.</p></div></div><h2 id="installation-aws-regions_installing-aws-account" class="group scroll-mt-20">Supported AWS regions<a href="#installation-aws-regions_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can deploy an OpenShift Container Platform cluster to the following regions.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>Your IAM user must have the permission <code>tag:GetResources</code> in the region <code>us-east-1</code> to delete the base cluster resources. As part of the AWS API requirement, the OpenShift Container Platform installation program performs various actions in this region.</p></div></div><h3 id="installation-aws-public_installing-aws-account" class="group scroll-mt-20">AWS public regions<a href="#installation-aws-public_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>The following AWS public regions are supported:</p><ul><li><code>af-south-1</code> (Cape Town)</li><li><code>ap-east-1</code> (Hong Kong)</li><li><code>ap-east-2</code> (Taipei)</li><li><code>ap-northeast-1</code> (Tokyo)</li><li><code>ap-northeast-2</code> (Seoul)</li><li><code>ap-northeast-3</code> (Osaka)</li><li><code>ap-south-1</code> (Mumbai)</li><li><code>ap-south-2</code> (Hyderabad)</li><li><code>ap-southeast-1</code> (Singapore)</li><li><code>ap-southeast-2</code> (Sydney)</li><li><code>ap-southeast-3</code> (Jakarta)</li><li><code>ap-southeast-4</code> (Melbourne)</li><li><code>ap-southeast-5</code> (Malaysia)</li><li><code>ap-southeast-6</code> (New Zealand)</li><li><code>ap-southeast-7</code> (Thailand)</li><li><code>ca-central-1</code> (Central Canada)</li><li><code>ca-west-1</code> (Calgary)</li><li><code>eu-central-1</code> (Frankfurt)</li><li><code>eu-central-2</code> (Zurich)</li><li><code>eu-north-1</code> (Stockholm)</li><li><code>eu-south-1</code> (Milan)</li><li><code>eu-south-2</code> (Spain)</li><li><code>eu-west-1</code> (Ireland)</li><li><code>eu-west-2</code> (London)</li><li><code>eu-west-3</code> (Paris)</li><li><code>il-central-1</code> (Tel Aviv)</li><li><code>me-central-1</code> (UAE)</li><li><code>me-south-1</code> (Bahrain)</li><li><code>mx-central-1</code> (Central Mexico)</li><li><code>sa-east-1</code> (São Paulo)</li><li><code>us-east-1</code> (N. Virginia)</li><li><code>us-east-2</code> (Ohio)</li><li><code>us-west-1</code> (N. California)</li><li><code>us-west-2</code> (Oregon)</li></ul><h3 id="installation-aws-eusc_region_installing-aws-account" class="group scroll-mt-20">AWS EUSC region<a href="#installation-aws-eusc_region_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>European Sovereign Cloud (EUSC) region is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p><p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p></div></div><p>Installing an OpenShift Container Platform cluster into the AWS European Sovereign Cloud (EUSC) region helps maximize the sovereignty of your data and satisfy your organization’s regulatory requirements. The AWS EUSC is separate and independent from other AWS regions. The infrastructure is located wholly within the European Union (EU). For more information, see <a href="https://aws.amazon.com/blogs/security/establishing-a-european-trust-service-provider-for-the-aws-european-sovereign-cloud/">Establishing a European trust service provider for the AWS European Sovereign Cloud</a> in the AWS documentation.</p><p>The following AWS EUSC region is supported:</p><ul><li><code>eusc-de-east-1</code> (Brandenburg)</li></ul><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The following list outlines the limitations that apply to installing an OpenShift Container Platform cluster into the AWS EUSC region:</p><ul><li>Only one region, <code>eusc-de-east-1</code>, and two zones in that region are available.</li><li>The Amazon Machine Images (AMIs) for public Red Hat Enterprise Linux CoreOS (RHCOS) are not yet available in the EUSC region. As a workaround, until the AMI publication for RHCOS is extended to the EUSC region, you must edit your <code>install-config.yaml</code> file to specify a custom AMI in the <code>amiID</code> field.</li><li>Support is not yet provided for the AWS Security Token Service (STS).</li><li>Support is not yet provided for installing a cluster into a shared Virtual Private Cloud (VPC) with a cross-account private hosted zone.</li></ul></div></div><h3 id="installation-aws-govcloud_installing-aws-account" class="group scroll-mt-20">AWS GovCloud regions<a href="#installation-aws-govcloud_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>The following AWS GovCloud regions are supported:</p><ul><li><code>us-gov-west-1</code></li><li><code>us-gov-east-1</code></li></ul><h3 id="installation-aws-c2s_installing-aws-account" class="group scroll-mt-20">AWS SC2S and C2S secret regions<a href="#installation-aws-c2s_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>The following AWS secret regions are supported:</p><ul><li><code>us-isob-east-1</code> Secret Commercial Cloud Services (SC2S)</li><li><code>us-iso-east-1</code> Commercial Cloud Services (C2S)</li></ul><h3 id="installation-aws-china_installing-aws-account" class="group scroll-mt-20">AWS China regions<a href="#installation-aws-china_installing-aws-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3><p>The following AWS China regions are supported:</p><ul><li><code>cn-north-1</code> (Beijing)</li><li><code>cn-northwest-1</code> (Ningxia)</li></ul><p><strong>Additional resources</strong></p><ul><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-default#installing-aws-default">Quickly install a cluster</a></li><li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations">Install a cluster with cloud customizations on installer-provisioned infrastructure</a></li><li><a href="/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra">Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates</a></li></ul></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/installing/installing_aws/preparing-to-install-on-aws" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Installation methods</div></div></a><a href="/openshift-docs-markdown/installing/installing_aws/ipi/ipi-aws-preparing-to-install" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Preparing to install a cluster</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>

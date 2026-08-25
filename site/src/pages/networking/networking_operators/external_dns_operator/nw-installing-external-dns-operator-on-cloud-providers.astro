@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-external-dns-on-cloud-providers","text":"Installing the External DNS Operator"}];
+const headings = [{"depth":1,"slug":"installing-external-dns-on-cloud-providers","text":"Installing the External DNS Operator"},{"depth":2,"slug":"nw-installing-external-dns-operator_installing-external-dns-on-cloud-providers","text":"Installing the External DNS Operator with the Software Catalog"},{"depth":2,"slug":"nw-installing-external-dns-operator-cli_installing-external-dns-on-cloud-providers","text":"Installing the External DNS Operator by using the CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-installing-external-dns-operator-on-cloud-providers";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/networking_operators","networking
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the External DNS Operator {#installing-external-dns-on-cloud-providers}\n\nTo manage DNS records on your cloud infrastructure, install the External DNS Operator. This Operator supports deployment on major cloud providers, including {{ aws_first }}, {{ azure_first }}, and {{ gcp_first }}.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-installing-external-dns-operator-on-cloud-providers.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing the External DNS Operator {#installing-external-dns-on-cloud-providers}\n\nTo manage DNS records on your cloud infrastructure, install the External DNS Operator. This Operator supports deployment on major cloud providers, including Amazon Web Services (AWS), Microsoft Azure, and Google Cloud.\n\n## Installing the External DNS Operator with the Software Catalog {#nw-installing-external-dns-operator_installing-external-dns-on-cloud-providers}\n\nYou can install the External DNS Operator by using the OpenShift Container Platform Software Catalog. You can then manage the Operator lifecycle directly from the web console.\n\n**Procedure**\n\n1. Click **Ecosystem** -> **Software Catalog** in the OpenShift Container Platform web console.\n2. Click **External DNS Operator**. You can use the **Filter by keyword** text box or the filter list to search for External DNS Operator from the list of Operators.\n3. Select the `external-dns-operator` namespace.\n4. On the **External DNS Operator** page, click **Install**.\n5. On the **Install Operator** page, ensure that you selected the following options:\n\n   1. Update the channel as **stable-v1**.\n   2. Installation mode as **A specific name on the cluster**.\n   3. Installed namespace as `external-dns-operator`. If namespace `external-dns-operator` does not exist, the Operator gets created during the Operator installation.\n   4. Select **Approval Strategy** as **Automatic** or **Manual**. The Approval Strategy defaults to **Automatic**.\n   5. Click **Install**.\n\n      If you select **Automatic** updates, the Operator Lifecycle Manager (OLM) automatically upgrades the running instance of your Operator without any intervention.\n\n      If you select **Manual** updates, the OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the Operator updated to the new version.\n\n**Verification**\n\n- Verify that the External DNS Operator shows the **Status** as **Succeeded** on the **Installed Operators** dashboard.\n\n## Installing the External DNS Operator by using the CLI {#nw-installing-external-dns-operator-cli_installing-external-dns-on-cloud-providers}\n\nYou can use the OpenShift CLI (`oc`) to install the External DNS Operator. The Operator manages the installation process directly from your terminal without you having to use the web console.\n\n**Prerequisites**\n\n- You are logged in to the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a `Namespace` object:\n\n   1. Create a YAML file that defines the `Namespace` object:\n\n      ```yaml {title=\"Example namespace.yaml file\"}\n      apiVersion: v1\n      kind: Namespace\n      metadata:\n        name: external-dns-operator\n      # ...\n      ```\n   2. Create the `Namespace` object by running the following command:\n\n      ```terminal\n      $ oc apply -f namespace.yaml\n      ```\n2. Create an `OperatorGroup` object:\n\n   1. Create a YAML file that defines the `OperatorGroup` object:\n\n      ```yaml {title=\"Example operatorgroup.yaml file\"}\n      apiVersion: operators.coreos.com/v1\n      kind: OperatorGroup\n      metadata:\n        name: external-dns-operator\n        namespace: external-dns-operator\n      spec:\n        upgradeStrategy: Default\n        targetNamespaces:\n        - external-dns-operator\n      # ...\n      ```\n   2. Create the `OperatorGroup` object by running the following command:\n\n      ```terminal\n      $ oc apply -f operatorgroup.yaml\n      ```\n3. Create a `Subscription` object:\n\n   1. Create a YAML file that defines the `Subscription` object:\n\n      ```yaml {title=\"Example subscription.yaml file\"}\n      apiVersion: operators.coreos.com/v1alpha1\n      kind: Subscription\n      metadata:\n        name: external-dns-operator\n        namespace: external-dns-operator\n      spec:\n        channel: stable-v1\n        installPlanApproval: Automatic\n        name: external-dns-operator\n        source: redhat-operators\n        sourceNamespace: openshift-marketplace\n      # ...\n      ```\n   2. Create the `Subscription` object by running the following command:\n\n      ```terminal\n      $ oc apply -f subscription.yaml\n      ```\n\n**Verification**\n\n1. Get the name of the install plan from the subscription by running the following command:\n\n   ```terminal\n   $ oc -n external-dns-operator \\\n     get subscription external-dns-operator \\\n     --template='{{.status.installplan.name}}{{\"\\n\"}}'\n   ```\n2. Verify that the status of the install plan is `Complete` by running the following command:\n\n   ```terminal\n   $ oc -n external-dns-operator \\\n     get ip <install_plan_name> \\\n     --template='{{.status.phase}}{{\"\\n\"}}'\n   ```\n3. Verify that the status of the `external-dns-operator` pod is `Running` by running the following command:\n\n   ```terminal\n   $ oc -n external-dns-operator get pod\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                     READY   STATUS    RESTARTS   AGE\n   external-dns-operator-5584585fd7-5lwqm   2/2     Running   0          11m\n   ```\n4. Verify that the catalog source of the subscription is `redhat-operators` by running the following command:\n\n   ```terminal\n   $ oc -n external-dns-operator get subscription\n   ```\n5. Check the `external-dns-operator` version by running the following command:\n\n   ```terminal\n   $ oc -n external-dns-operator get csv\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-installing-external-dns-operator-on-cloud-providers.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,102 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-external-dns-on-cloud-providers" class="group scroll-mt-20">Installing the External DNS Operator<a href="#installing-external-dns-on-cloud-providers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>To manage DNS records on your cloud infrastructure, install the External DNS Operator. This Operator supports deployment on major cloud providers, including {"{"}{"{"} aws_first {"}"}{"}"}, {"{"}{"{"} azure_first {"}"}{"}"}, and {"{"}{"{"} gcp_first {"}"}{"}"}.</p>
-      <p class="/modules/nw-installing-external-dns-operator.md"></p>
-      <p class="/modules/nw-installing-external-dns-operator-cli.md"></p>
+      <p>To manage DNS records on your cloud infrastructure, install the External DNS Operator. This Operator supports deployment on major cloud providers, including Amazon Web Services (AWS), Microsoft Azure, and Google Cloud.</p>
+      <h2 id="nw-installing-external-dns-operator_installing-external-dns-on-cloud-providers" class="group scroll-mt-20">Installing the External DNS Operator with the Software Catalog<a href="#nw-installing-external-dns-operator_installing-external-dns-on-cloud-providers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can install the External DNS Operator by using the OpenShift Container Platform Software Catalog. You can then manage the Operator lifecycle directly from the web console.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Click <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong> in the OpenShift Container Platform web console.</li>
+      <li>Click <strong>External DNS Operator</strong>. You can use the <strong>Filter by keyword</strong> text box or the filter list to search for External DNS Operator from the list of Operators.</li>
+      <li>Select the <code>external-dns-operator</code> namespace.</li>
+      <li>On the <strong>External DNS Operator</strong> page, click <strong>Install</strong>.</li>
+      <li>
+      On the <strong>Install Operator</strong> page, ensure that you selected the following options:
+      <ol>
+      <li>Update the channel as <strong>stable-v1</strong>.</li>
+      <li>Installation mode as <strong>A specific name on the cluster</strong>.</li>
+      <li>Installed namespace as <code>external-dns-operator</code>. If namespace <code>external-dns-operator</code> does not exist, the Operator gets created during the Operator installation.</li>
+      <li>Select <strong>Approval Strategy</strong> as <strong>Automatic</strong> or <strong>Manual</strong>. The Approval Strategy defaults to <strong>Automatic</strong>.</li>
+      <li>
+      Click <strong>Install</strong>.
+      <p>If you select <strong>Automatic</strong> updates, the Operator Lifecycle Manager (OLM) automatically upgrades the running instance of your Operator without any intervention.</p>
+      <p>If you select <strong>Manual</strong> updates, the OLM creates an update request. As a cluster administrator, you must then manually approve that update request to have the Operator updated to the new version.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>Verify that the External DNS Operator shows the <strong>Status</strong> as <strong>Succeeded</strong> on the <strong>Installed Operators</strong> dashboard.</li></ul>
+      <h2 id="nw-installing-external-dns-operator-cli_installing-external-dns-on-cloud-providers" class="group scroll-mt-20">Installing the External DNS Operator by using the CLI<a href="#nw-installing-external-dns-operator-cli_installing-external-dns-on-cloud-providers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the OpenShift CLI (<code>oc</code>) to install the External DNS Operator. The Operator manages the installation process directly from your terminal without you having to use the web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You are logged in to the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>Namespace</code> object:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>Namespace</code> object:
+      <CodeBlock code={"apiVersion: v1\nkind: Namespace\nmetadata:\n  name: external-dns-operator\n# ..."} lang="yaml" title="Example namespace.yaml file" />
+      </li>
+      <li>
+      Create the <code>Namespace</code> object by running the following command:
+      <CodeBlock code={"$ oc apply -f namespace.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create an <code>OperatorGroup</code> object:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>OperatorGroup</code> object:
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1\nkind: OperatorGroup\nmetadata:\n  name: external-dns-operator\n  namespace: external-dns-operator\nspec:\n  upgradeStrategy: Default\n  targetNamespaces:\n  - external-dns-operator\n# ..."} lang="yaml" title="Example operatorgroup.yaml file" />
+      </li>
+      <li>
+      Create the <code>OperatorGroup</code> object by running the following command:
+      <CodeBlock code={"$ oc apply -f operatorgroup.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a <code>Subscription</code> object:
+      <ol>
+      <li>
+      Create a YAML file that defines the <code>Subscription</code> object:
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: external-dns-operator\n  namespace: external-dns-operator\nspec:\n  channel: stable-v1\n  installPlanApproval: Automatic\n  name: external-dns-operator\n  source: redhat-operators\n  sourceNamespace: openshift-marketplace\n# ..."} lang="yaml" title="Example subscription.yaml file" />
+      </li>
+      <li>
+      Create the <code>Subscription</code> object by running the following command:
+      <CodeBlock code={"$ oc apply -f subscription.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Get the name of the install plan from the subscription by running the following command:
+      <CodeBlock code={"$ oc -n external-dns-operator \\\n  get subscription external-dns-operator \\\n  --template='{{.status.installplan.name}}{{\"\\n\"}}'"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the status of the install plan is <code>Complete</code> by running the following command:
+      <CodeBlock code={"$ oc -n external-dns-operator \\\n  get ip <install_plan_name> \\\n  --template='{{.status.phase}}{{\"\\n\"}}'"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the status of the <code>external-dns-operator</code> pod is <code>Running</code> by running the following command:
+      <CodeBlock code={"$ oc -n external-dns-operator get pod"} lang="terminal" />
+      <CodeBlock code={"NAME                                     READY   STATUS    RESTARTS   AGE\nexternal-dns-operator-5584585fd7-5lwqm   2/2     Running   0          11m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Verify that the catalog source of the subscription is <code>redhat-operators</code> by running the following command:
+      <CodeBlock code={"$ oc -n external-dns-operator get subscription"} lang="terminal" />
+      </li>
+      <li>
+      Check the <code>external-dns-operator</code> version by running the following command:
+      <CodeBlock code={"$ oc -n external-dns-operator get csv"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

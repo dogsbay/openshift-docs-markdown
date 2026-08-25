@@ -2,7 +2,7 @@
 // Source: applications/odc-deleting-applications.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Deleting applications\n---\n\n# Deleting applications {#odc-deleting-applications}\n\nYou can delete applications created in your project.\n";
+const body = "---\ntitle: Deleting applications\n---\n\n# Deleting applications {#odc-deleting-applications}\n\nYou can delete applications created in your project.\n\n## Deleting applications using the Developer perspective {#odc-deleting-applications-using-developer-perspective_odc-deleting-applications}\n\nYou can delete an application and all of its associated components using the **Topology** view in the **Developer** perspective:\n\n1. Click the application you want to delete to see the side panel with the resource details of the application.\n2. Click the **Actions** drop-down menu displayed on the upper right of the panel, and select **Delete Application** to see a confirmation dialog box.\n3. Enter the name of the application and click **Delete** to delete it.\n\nYou can also right-click the application you want to delete and click **Delete Application** to delete it.\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

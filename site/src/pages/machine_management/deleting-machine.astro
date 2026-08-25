@@ -15,8 +15,13 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"deleting-machine","text":"Deleting a machine"},{"depth":2,"slug":"additional-resources_unhealthy-etcd-member","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"deleting-machine","text":"Deleting a machine"},{"depth":2,"slug":"machine-delete_deleting-machine","text":"Deleting a specific machine"},{"depth":2,"slug":"machine-lifecycle-hook-deletion_deleting-machine","text":"Lifecycle hooks for the machine deletion phase"},{"depth":3,"slug":"machine-lifecycle-hook-deletion-terms_deleting-machine","text":"Terminology and definitions"},{"depth":3,"slug":"machine-lifecycle-hook-deletion-order_deleting-machine","text":"Machine deletion processing order"},{"depth":3,"slug":"machine-lifecycle-hook-deletion-format_deleting-machine","text":"Deletion lifecycle hook configuration"},{"depth":4,"slug":"machine-lifecycle-hook-deletion-example_deleting-machine","text":"Example lifecycle hook configuration"},{"depth":3,"slug":"machine-lifecycle-hook-deletion-uses_deleting-machine","text":"Machine deletion lifecycle hook examples for Operator developers"},{"depth":4,"slug":"machine-lifecycle-hook-deletion-uses-predrain_deleting-machine","text":"Example use cases for  lifecycle hooks"},{"depth":4,"slug":"machine-lifecycle-hook-deletion-uses-preterminate_deleting-machine","text":"Example use cases for  lifecycle hooks"},{"depth":3,"slug":"machine-lifecycle-hook-deletion-etcd_deleting-machine","text":"Quorum protection with machine lifecycle hooks"},{"depth":4,"slug":"machine-lifecycle-hook-deletion-etcd-order_deleting-machine","text":"Control plane deletion with quorum protection processing order"},{"depth":2,"slug":"additional-resources_unhealthy-etcd-member","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_management/deleting-machine";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +44,7 @@ const pageCategory = ["machine_management"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deleting a machine {#deleting-machine}\n\nIf you need to remove a machine from your cluster, you can delete a specific machine. If the machine is part of a machine set, deleting the machine can help troubleshoot and resolve unhealthy nodes and other technical issues.\n\n## Additional resources {#additional-resources_unhealthy-etcd-member}\n\n- [Machine phases and lifecycle](/openshift-docs-markdown/machine_management/machine-phases-lifecycle#machine-phases-lifecycle)\n- [Replacing an unhealthy etcd member](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member#replacing-unhealthy-etcd-member)\n- [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/deleting-machine.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deleting a machine {#deleting-machine}\n\nIf you need to remove a machine from your cluster, you can delete a specific machine. If the machine is part of a machine set, deleting the machine can help troubleshoot and resolve unhealthy nodes and other technical issues.\n\n## Deleting a specific machine {#machine-delete_deleting-machine}\n\nTo remove a machine from your cluster, or restart a machine that is part of a machine set, you can use the OpenShift CLI (`oc`) to delete a specific machine.\n\n> [!IMPORTANT]\n> Do not delete a control plane machine unless your cluster uses a control plane machine set. If the machine that you delete belongs to a machine set, a new machine is immediately created to satisfy the specified number of replicas.\n\n**Prerequisites**\n\n- Install an OpenShift Container Platform cluster.\n- Install the OpenShift CLI (`oc`).\n- Log in to `oc` as a user with `cluster-admin` permission.\n\n**Procedure**\n\n1. View the machines that are in the cluster by running the following command:\n\n   ```terminal\n   $ oc get machine -n openshift-machine-api\n   ```\n\n   The command output contains a list of machines in the `<clusterid>-<role>-<cloud_region>` format.\n2. Identify the machine that you want to delete.\n3. Delete the machine by running the following command:\n\n   ```terminal\n   $ oc delete machine <machine> -n openshift-machine-api\n   ```\n\n   Replace `<machine>` with the name of the machine.\n\n   > [!IMPORTANT]\n   > By default, the machine controller tries to drain the node that is backed by the machine until it succeeds. In some situations, such as with a misconfigured pod disruption budget, the drain operation might not be able to succeed. If the drain operation fails, the machine controller cannot proceed removing the machine.\n   >\n   > You can skip draining the node by annotating `machine.openshift.io/exclude-node-draining` in a specific machine.\n\n## Lifecycle hooks for the machine deletion phase {#machine-lifecycle-hook-deletion_deleting-machine}\n\nYou can use lifecycle hooks to modify the process of machine deletion. Machine lifecycle hooks are points in the reconciliation lifecycle of a machine where the normal lifecycle process can be interrupted.\n\nFor example, you might use a `preDrain` lifecycle hook to maintain etcd quorum when deleting a control plane machine.\n\n### Terminology and definitions {#machine-lifecycle-hook-deletion-terms_deleting-machine}\n\nTo understand the behavior of lifecycle hooks for the machine deletion phase, you must understand the following concepts:\n\nReconciliation\n:   Reconciliation is the process by which a controller attempts to make the real state of the cluster and the objects that it comprises match the requirements in an object specification.\n\nMachine controller\n:   The machine controller manages the reconciliation lifecycle for a machine. For machines on cloud platforms, the machine controller is the combination of an OpenShift Container Platform controller and a platform-specific actuator from the cloud provider.\n\n    In the context of machine deletion, the machine controller performs the following actions:\n\n    - Drain the node that is backed by the machine.\n    - Delete the machine instance from the cloud provider.\n    - Delete the `Node` object.\n\nLifecycle hook\n:   A lifecycle hook is a defined point in the reconciliation lifecycle of an object where the normal lifecycle process can be interrupted. Components can use a lifecycle hook to inject changes into the process to accomplish a desired outcome.\n\n    There are two lifecycle hooks in the machine `Deleting` phase:\n\n    - `preDrain` lifecycle hooks must be resolved before the node that is backed by the machine can be drained.\n    - `preTerminate` lifecycle hooks must be resolved before the instance can be removed from the infrastructure provider.\n\nHook-implementing controller\n:   A hook-implementing controller is a controller, other than the machine controller, that can interact with a lifecycle hook. A hook-implementing controller can do one or more of the following actions:\n\n    - Add a lifecycle hook.\n    - Respond to a lifecycle hook.\n    - Remove a lifecycle hook.\n\n    Each lifecycle hook has a single hook-implementing controller, but a hook-implementing controller can manage one or more hooks.\n\n### Machine deletion processing order {#machine-lifecycle-hook-deletion-order_deleting-machine}\n\nIn OpenShift Container Platform 4.22, there are two lifecycle hooks for the machine deletion phase: `preDrain` and `preTerminate`. When all hooks for a given lifecycle point are removed, reconciliation continues as normal.\n\n**Figure 1. Machine deletion flow**\n\n![The sequence of events in the machine \\`Deleting\\` phase.](/openshift-docs-markdown/_assets/images/310_OpenShift_machine_deletion_hooks_0223.png)\n\nThe machine `Deleting` phase proceeds in the following order:\n\n1. An existing machine is slated for deletion for one of the following reasons:\n\n   - A user with `cluster-admin` permissions uses the `oc delete machine` command.\n   - The machine gets a `machine.openshift.io/delete-machine` annotation.\n   - The machine set that manages the machine marks it for deletion to reduce the replica count as part of reconciliation.\n   - The cluster autoscaler identifies a node that is unnecessary to meet the deployment needs of the cluster.\n   - A machine health check is configured to replace an unhealthy machine.\n2. The machine enters the `Deleting` phase, in which it is marked for deletion but is still present in the API.\n3. If a `preDrain` lifecycle hook exists, the hook-implementing controller that manages it does a specified action.\n\n   Until all `preDrain` lifecycle hooks are satisfied, the machine status condition `Drainable` is set to `False`.\n4. There are no unresolved `preDrain` lifecycle hooks and the machine status condition `Drainable` is set to `True`.\n5. The machine controller attempts to drain the node that is backed by the machine.\n\n   - If draining fails, `Drained` is set to `False` and the machine controller attempts to drain the node again.\n   - If draining succeeds, `Drained` is set to `True`.\n6. The machine status condition `Drained` is set to `True`.\n7. If a `preTerminate`  lifecycle hook exists, the hook-implementing controller that manages it does a specified action.\n\n   Until all `preTerminate` lifecycle hooks are satisfied, the machine status condition `Terminable` is set to `False`.\n8. There are no unresolved `preTerminate` lifecycle hooks and the machine status condition `Terminable` is set to `True`.\n9. The machine controller removes the instance from the infrastructure provider.\n10. The machine controller deletes the `Node` object.\n\n### Deletion lifecycle hook configuration {#machine-lifecycle-hook-deletion-format_deleting-machine}\n\nThe following YAML snippets demonstrate the format and placement of deletion lifecycle hook configurations within a machine set:\n\n```yaml {title=\"YAML snippet demonstrating a preDrain lifecycle hook\"}\napiVersion: machine.openshift.io/v1beta1\nkind: Machine\nmetadata:\n  ...\nspec:\n  lifecycleHooks:\n    preDrain:\n    - name: <hook_name>\n      owner: <hook_owner>\n  ...\n```\n\nwhere:\n\n`<hook_name>`\n:   Specifies the name of the `preDrain` lifecycle hook.\n\n`<hook_owner>`\n:   Specifies the hook-implementing controller that manages the `preDrain` lifecycle hook.\n\n```yaml {title=\"YAML snippet demonstrating a preTerminate lifecycle hook\"}\napiVersion: machine.openshift.io/v1beta1\nkind: Machine\nmetadata:\n  ...\nspec:\n  lifecycleHooks:\n    preTerminate:\n    - name: <hook_name>\n      owner: <hook_owner>\n  ...\n```\n\nwhere:\n\n`<hook_name>`\n:   Specifies the name of the `preDrain` lifecycle hook.\n\n`<hook_owner>`\n:   Specifies the hook-implementing controller that manages the `preDrain` lifecycle hook.\n\n#### Example lifecycle hook configuration {#machine-lifecycle-hook-deletion-example_deleting-machine}\n\nThe following example demonstrates the implementation of multiple fictional lifecycle hooks that interrupt the machine deletion process:\n\n```yaml {title=\"Example configuration for lifecycle hooks\"}\napiVersion: machine.openshift.io/v1beta1\nkind: Machine\nmetadata:\n  ...\nspec:\n  lifecycleHooks:\n    preDrain:\n    - name: MigrateImportantApp\n      owner: my-app-migration-controller\n    preTerminate:\n    - name: BackupFileSystem\n      owner: my-backup-controller\n    - name: CloudProviderSpecialCase\n      owner: my-custom-storage-detach-controller\n    - name: WaitForStorageDetach\n      owner: my-custom-storage-detach-controller\n  ...\n```\n\nwhere:\n\n`spec.lifecycleHooks.preDrain`\n:   Specifies a `preDrain` lifecycle hook stanza that contains a single lifecycle hook.\n\n`spec.lifecycleHooks.preTerminate`\n:   Specifies a `preTerminate` lifecycle hook stanza that contains three lifecycle hooks. Note that one controller can own multiple lifecycle hooks, as `my-custom-storage-detach-controller` does in the example.\n\n### Machine deletion lifecycle hook examples for Operator developers {#machine-lifecycle-hook-deletion-uses_deleting-machine}\n\nOperators can use lifecycle hooks for the machine deletion phase to modify the machine deletion process.\n\nThe following examples demonstrate possible ways that an Operator can use this functionality.\n\n#### Example use cases for `preDrain` lifecycle hooks {#machine-lifecycle-hook-deletion-uses-predrain_deleting-machine}\n\nProactively replacing machines\n:   An Operator can use a `preDrain` lifecycle hook to ensure that a replacement machine is successfully created and joined to the cluster before removing the instance of a deleted machine. This can mitigate the impact of disruptions during machine replacement or of replacement instances that do not initialize promptly.\n\nImplementing custom draining logic\n:   An Operator can use a `preDrain` lifecycle hook to replace the machine controller draining logic with a different draining controller. By replacing the draining logic, the Operator would have more flexibility and control over the lifecycle of the workloads on each node.\n\n    For example, the machine controller drain libraries do not support ordering, but a custom drain provider could provide this functionality. By using a custom drain provider, an Operator could prioritize moving mission-critical applications before draining the node to ensure that service interruptions are minimized in cases where cluster capacity is limited.\n\n#### Example use cases for `preTerminate` lifecycle hooks {#machine-lifecycle-hook-deletion-uses-preterminate_deleting-machine}\n\nVerifying storage detachment\n:   An Operator can use a `preTerminate` lifecycle hook to ensure that storage that is attached to a machine is detached before the machine is removed from the infrastructure provider.\n\nImproving log reliability\n:   After a node is drained, the log exporter daemon requires some time to synchronize logs to the centralized logging system.\n\n    A logging Operator can use a `preTerminate` lifecycle hook to add a delay between when the node drains and when the machine is removed from the infrastructure provider. This delay would provide time for the Operator to ensure that the main workloads are removed and no longer adding to the log backlog. When no new data is being added to the log backlog, the log exporter can catch up on the synchronization process, thus ensuring that all application logs are captured.\n\n### Quorum protection with machine lifecycle hooks {#machine-lifecycle-hook-deletion-etcd_deleting-machine}\n\nTo protect etcd quorum on OpenShift Container Platform clusters that use the Machine API Operator, the etcd Operator uses lifecycle hooks for the machine deletion phase to implement a quorum protection mechanism.\n\nBy using a `preDrain` lifecycle hook, the etcd Operator can control when the pods on a control plane machine are drained and removed. To protect etcd quorum, the etcd Operator prevents the removal of an etcd member until it migrates that member onto a new node within the cluster.\n\nThis mechanism allows the etcd Operator precise control over the members of the etcd quorum and allows the Machine API Operator to safely create and remove control plane machines without specific operational knowledge of the etcd cluster.\n\n#### Control plane deletion with quorum protection processing order {#machine-lifecycle-hook-deletion-etcd-order_deleting-machine}\n\nWhen a control plane machine is replaced on a cluster that uses a control plane machine set, the cluster temporarily has four control plane machines. When the fourth control plane node joins the cluster, the etcd Operator starts a new etcd member on the replacement node. When the etcd Operator observes that the old control plane machine is marked for deletion, it stops the etcd member on the old node and promotes the replacement etcd member to join the quorum of the cluster.\n\nThe control plane machine `Deleting` phase proceeds in the following order:\n\n1. A control plane machine is slated for deletion.\n2. The control plane machine enters the `Deleting` phase.\n3. To satisfy the `preDrain` lifecycle hook, the etcd Operator takes the following actions:\n\n   1. The etcd Operator waits until a fourth control plane machine is added to the cluster as an etcd member. This new etcd member has a state of `Running` but not `ready` until it receives the full database update from the etcd leader.\n   2. When the new etcd member receives the full database update, the etcd Operator promotes the new etcd member to a voting member and removes the old etcd member from the cluster.\n\n   After this transition is complete, it is safe for the old etcd pod and its data to be removed, so the `preDrain` lifecycle hook is removed.\n4. The control plane machine status condition `Drainable` is set to `True`.\n5. The machine controller attempts to drain the node that is backed by the control plane machine.\n\n   - If draining fails, `Drained` is set to `False` and the machine controller attempts to drain the node again.\n   - If draining succeeds, `Drained` is set to `True`.\n6. The control plane machine status condition `Drained` is set to `True`.\n7. If no other Operators have added a `preTerminate` lifecycle hook, the control plane machine status condition `Terminable` is set to `True`.\n8. The machine controller removes the instance from the infrastructure provider.\n9. The machine controller deletes the `Node` object.\n\n```yaml {title=\"YAML snippet demonstrating the etcd quorum protection preDrain lifecycle hook\"}\napiVersion: machine.openshift.io/v1beta1\nkind: Machine\nmetadata:\n  ...\nspec:\n  lifecycleHooks:\n    preDrain:\n    - name: EtcdQuorumOperator\n      owner: clusteroperator/etcd\n  ...\n```\n\nwhere:\n\n`spec.lifecycleHooks.preDrain.name`\n:   Specifies the name of the `preDrain` lifecycle hook.\n\n`spec.lifecycleHooks.preDrain.owner`\n:   Specifies the hook-implementing controller that manages the `preDrain` lifecycle hook.\n\n## Additional resources {#additional-resources_unhealthy-etcd-member}\n\n- [Machine phases and lifecycle](/openshift-docs-markdown/machine_management/machine-phases-lifecycle#machine-phases-lifecycle)\n- [Replacing an unhealthy etcd member](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/replacing-unhealthy-etcd-member#replacing-unhealthy-etcd-member)\n- [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/deleting-machine.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +96,208 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="deleting-machine" class="group scroll-mt-20">Deleting a machine<a href="#deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>If you need to remove a machine from your cluster, you can delete a specific machine. If the machine is part of a machine set, deleting the machine can help troubleshoot and resolve unhealthy nodes and other technical issues.</p>
-      <p class="/modules/machine-delete.md"></p>
-      <p class="/modules/machine-lifecycle-hook-deletion.md"></p>
-      <p class="/modules/machine-lifecycle-hook-deletion-format.md"></p>
-      <p class="/modules/machine-lifecycle-hook-deletion-uses.md"></p>
-      <p class="/modules/machine-lifecycle-hook-deletion-etcd.md"></p>
+      <h2 id="machine-delete_deleting-machine" class="group scroll-mt-20">Deleting a specific machine<a href="#machine-delete_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To remove a machine from your cluster, or restart a machine that is part of a machine set, you can use the OpenShift CLI (<code>oc</code>) to delete a specific machine.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not delete a control plane machine unless your cluster uses a control plane machine set. If the machine that you delete belongs to a machine set, a new machine is immediately created to satisfy the specified number of replicas.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install an OpenShift Container Platform cluster.</li>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Log in to <code>oc</code> as a user with <code>cluster-admin</code> permission.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      View the machines that are in the cluster by running the following command:
+      <CodeBlock code={"$ oc get machine -n openshift-machine-api"} lang="terminal" />
+      <p>The command output contains a list of machines in the <code>&lt;clusterid&gt;-&lt;role&gt;-&lt;cloud_region&gt;</code> format.</p>
+      </li>
+      <li>Identify the machine that you want to delete.</li>
+      <li>
+      Delete the machine by running the following command:
+      <CodeBlock code={"$ oc delete machine <machine> -n openshift-machine-api"} lang="terminal" />
+      <p>Replace <code>&lt;machine&gt;</code> with the name of the machine.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>By default, the machine controller tries to drain the node that is backed by the machine until it succeeds. In some situations, such as with a misconfigured pod disruption budget, the drain operation might not be able to succeed. If the drain operation fails, the machine controller cannot proceed removing the machine.</p>
+          <p>You can skip draining the node by annotating <code>machine.openshift.io/exclude-node-draining</code> in a specific machine.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="machine-lifecycle-hook-deletion_deleting-machine" class="group scroll-mt-20">Lifecycle hooks for the machine deletion phase<a href="#machine-lifecycle-hook-deletion_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use lifecycle hooks to modify the process of machine deletion. Machine lifecycle hooks are points in the reconciliation lifecycle of a machine where the normal lifecycle process can be interrupted.</p>
+      <p>For example, you might use a <code>preDrain</code> lifecycle hook to maintain etcd quorum when deleting a control plane machine.</p>
+      <h3 id="machine-lifecycle-hook-deletion-terms_deleting-machine" class="group scroll-mt-20">Terminology and definitions<a href="#machine-lifecycle-hook-deletion-terms_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>To understand the behavior of lifecycle hooks for the machine deletion phase, you must understand the following concepts:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Reconciliation</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Reconciliation is the process by which a controller attempts to make the real state of the cluster and the objects that it comprises match the requirements in an object specification.</p></dd>
+      <dt class="font-semibold">Machine controller</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>The machine controller manages the reconciliation lifecycle for a machine. For machines on cloud platforms, the machine controller is the combination of an OpenShift Container Platform controller and a platform-specific actuator from the cloud provider.</p>
+      <p>In the context of machine deletion, the machine controller performs the following actions:</p>
+      <ul>
+      <li>Drain the node that is backed by the machine.</li>
+      <li>Delete the machine instance from the cloud provider.</li>
+      <li>Delete the <code>Node</code> object.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Lifecycle hook</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A lifecycle hook is a defined point in the reconciliation lifecycle of an object where the normal lifecycle process can be interrupted. Components can use a lifecycle hook to inject changes into the process to accomplish a desired outcome.</p>
+      <p>There are two lifecycle hooks in the machine <code>Deleting</code> phase:</p>
+      <ul>
+      <li><code>preDrain</code> lifecycle hooks must be resolved before the node that is backed by the machine can be drained.</li>
+      <li><code>preTerminate</code> lifecycle hooks must be resolved before the instance can be removed from the infrastructure provider.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Hook-implementing controller</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A hook-implementing controller is a controller, other than the machine controller, that can interact with a lifecycle hook. A hook-implementing controller can do one or more of the following actions:</p>
+      <ul>
+      <li>Add a lifecycle hook.</li>
+      <li>Respond to a lifecycle hook.</li>
+      <li>Remove a lifecycle hook.</li>
+      </ul>
+      <p>Each lifecycle hook has a single hook-implementing controller, but a hook-implementing controller can manage one or more hooks.</p>
+      </dd>
+      </dl>
+      <h3 id="machine-lifecycle-hook-deletion-order_deleting-machine" class="group scroll-mt-20">Machine deletion processing order<a href="#machine-lifecycle-hook-deletion-order_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>In OpenShift Container Platform 4.22, there are two lifecycle hooks for the machine deletion phase: <code>preDrain</code> and <code>preTerminate</code>. When all hooks for a given lifecycle point are removed, reconciliation continues as normal.</p>
+      <p><strong>Figure 1. Machine deletion flow</strong></p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/310_OpenShift_machine_deletion_hooks_0223.png" alt="The sequence of events in the machine `Deleting` phase." />
+      <p>The machine <code>Deleting</code> phase proceeds in the following order:</p>
+      <ol>
+      <li>
+      An existing machine is slated for deletion for one of the following reasons:
+      <ul>
+      <li>A user with <code>cluster-admin</code> permissions uses the <code>oc delete machine</code> command.</li>
+      <li>The machine gets a <code>machine.openshift.io/delete-machine</code> annotation.</li>
+      <li>The machine set that manages the machine marks it for deletion to reduce the replica count as part of reconciliation.</li>
+      <li>The cluster autoscaler identifies a node that is unnecessary to meet the deployment needs of the cluster.</li>
+      <li>A machine health check is configured to replace an unhealthy machine.</li>
+      </ul>
+      </li>
+      <li>The machine enters the <code>Deleting</code> phase, in which it is marked for deletion but is still present in the API.</li>
+      <li>
+      If a <code>preDrain</code> lifecycle hook exists, the hook-implementing controller that manages it does a specified action.
+      <p>Until all <code>preDrain</code> lifecycle hooks are satisfied, the machine status condition <code>Drainable</code> is set to <code>False</code>.</p>
+      </li>
+      <li>There are no unresolved <code>preDrain</code> lifecycle hooks and the machine status condition <code>Drainable</code> is set to <code>True</code>.</li>
+      <li>
+      The machine controller attempts to drain the node that is backed by the machine.
+      <ul>
+      <li>If draining fails, <code>Drained</code> is set to <code>False</code> and the machine controller attempts to drain the node again.</li>
+      <li>If draining succeeds, <code>Drained</code> is set to <code>True</code>.</li>
+      </ul>
+      </li>
+      <li>The machine status condition <code>Drained</code> is set to <code>True</code>.</li>
+      <li>
+      If a <code>preTerminate</code>  lifecycle hook exists, the hook-implementing controller that manages it does a specified action.
+      <p>Until all <code>preTerminate</code> lifecycle hooks are satisfied, the machine status condition <code>Terminable</code> is set to <code>False</code>.</p>
+      </li>
+      <li>There are no unresolved <code>preTerminate</code> lifecycle hooks and the machine status condition <code>Terminable</code> is set to <code>True</code>.</li>
+      <li>The machine controller removes the instance from the infrastructure provider.</li>
+      <li>The machine controller deletes the <code>Node</code> object.</li>
+      </ol>
+      <h3 id="machine-lifecycle-hook-deletion-format_deleting-machine" class="group scroll-mt-20">Deletion lifecycle hook configuration<a href="#machine-lifecycle-hook-deletion-format_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The following YAML snippets demonstrate the format and placement of deletion lifecycle hook configurations within a machine set:</p>
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: Machine\nmetadata:\n  ...\nspec:\n  lifecycleHooks:\n    preDrain:\n    - name: <hook_name>\n      owner: <hook_owner>\n  ..."} lang="yaml" title="YAML snippet demonstrating a preDrain lifecycle hook" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hook_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>preDrain</code> lifecycle hook.</p></dd>
+      <dt class="font-semibold"><code>&lt;hook_owner&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hook-implementing controller that manages the <code>preDrain</code> lifecycle hook.</p></dd>
+      </dl>
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: Machine\nmetadata:\n  ...\nspec:\n  lifecycleHooks:\n    preTerminate:\n    - name: <hook_name>\n      owner: <hook_owner>\n  ..."} lang="yaml" title="YAML snippet demonstrating a preTerminate lifecycle hook" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hook_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>preDrain</code> lifecycle hook.</p></dd>
+      <dt class="font-semibold"><code>&lt;hook_owner&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hook-implementing controller that manages the <code>preDrain</code> lifecycle hook.</p></dd>
+      </dl>
+      <h4 id="machine-lifecycle-hook-deletion-example_deleting-machine" class="group scroll-mt-20">Example lifecycle hook configuration<a href="#machine-lifecycle-hook-deletion-example_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>The following example demonstrates the implementation of multiple fictional lifecycle hooks that interrupt the machine deletion process:</p>
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: Machine\nmetadata:\n  ...\nspec:\n  lifecycleHooks:\n    preDrain:\n    - name: MigrateImportantApp\n      owner: my-app-migration-controller\n    preTerminate:\n    - name: BackupFileSystem\n      owner: my-backup-controller\n    - name: CloudProviderSpecialCase\n      owner: my-custom-storage-detach-controller\n    - name: WaitForStorageDetach\n      owner: my-custom-storage-detach-controller\n  ..."} lang="yaml" title="Example configuration for lifecycle hooks" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.lifecycleHooks.preDrain</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a <code>preDrain</code> lifecycle hook stanza that contains a single lifecycle hook.</p></dd>
+      <dt class="font-semibold"><code>spec.lifecycleHooks.preTerminate</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a <code>preTerminate</code> lifecycle hook stanza that contains three lifecycle hooks. Note that one controller can own multiple lifecycle hooks, as <code>my-custom-storage-detach-controller</code> does in the example.</p></dd>
+      </dl>
+      <h3 id="machine-lifecycle-hook-deletion-uses_deleting-machine" class="group scroll-mt-20">Machine deletion lifecycle hook examples for Operator developers<a href="#machine-lifecycle-hook-deletion-uses_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Operators can use lifecycle hooks for the machine deletion phase to modify the machine deletion process.</p>
+      <p>The following examples demonstrate possible ways that an Operator can use this functionality.</p>
+      <h4 id="machine-lifecycle-hook-deletion-uses-predrain_deleting-machine" class="group scroll-mt-20">Example use cases for <code>preDrain</code> lifecycle hooks<a href="#machine-lifecycle-hook-deletion-uses-predrain_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Proactively replacing machines</dt>
+      <dd class="ml-6 text-muted-foreground"><p>An Operator can use a <code>preDrain</code> lifecycle hook to ensure that a replacement machine is successfully created and joined to the cluster before removing the instance of a deleted machine. This can mitigate the impact of disruptions during machine replacement or of replacement instances that do not initialize promptly.</p></dd>
+      <dt class="font-semibold">Implementing custom draining logic</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>An Operator can use a <code>preDrain</code> lifecycle hook to replace the machine controller draining logic with a different draining controller. By replacing the draining logic, the Operator would have more flexibility and control over the lifecycle of the workloads on each node.</p>
+      <p>For example, the machine controller drain libraries do not support ordering, but a custom drain provider could provide this functionality. By using a custom drain provider, an Operator could prioritize moving mission-critical applications before draining the node to ensure that service interruptions are minimized in cases where cluster capacity is limited.</p>
+      </dd>
+      </dl>
+      <h4 id="machine-lifecycle-hook-deletion-uses-preterminate_deleting-machine" class="group scroll-mt-20">Example use cases for <code>preTerminate</code> lifecycle hooks<a href="#machine-lifecycle-hook-deletion-uses-preterminate_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Verifying storage detachment</dt>
+      <dd class="ml-6 text-muted-foreground"><p>An Operator can use a <code>preTerminate</code> lifecycle hook to ensure that storage that is attached to a machine is detached before the machine is removed from the infrastructure provider.</p></dd>
+      <dt class="font-semibold">Improving log reliability</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>After a node is drained, the log exporter daemon requires some time to synchronize logs to the centralized logging system.</p>
+      <p>A logging Operator can use a <code>preTerminate</code> lifecycle hook to add a delay between when the node drains and when the machine is removed from the infrastructure provider. This delay would provide time for the Operator to ensure that the main workloads are removed and no longer adding to the log backlog. When no new data is being added to the log backlog, the log exporter can catch up on the synchronization process, thus ensuring that all application logs are captured.</p>
+      </dd>
+      </dl>
+      <h3 id="machine-lifecycle-hook-deletion-etcd_deleting-machine" class="group scroll-mt-20">Quorum protection with machine lifecycle hooks<a href="#machine-lifecycle-hook-deletion-etcd_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To protect etcd quorum on OpenShift Container Platform clusters that use the Machine API Operator, the etcd Operator uses lifecycle hooks for the machine deletion phase to implement a quorum protection mechanism.</p>
+      <p>By using a <code>preDrain</code> lifecycle hook, the etcd Operator can control when the pods on a control plane machine are drained and removed. To protect etcd quorum, the etcd Operator prevents the removal of an etcd member until it migrates that member onto a new node within the cluster.</p>
+      <p>This mechanism allows the etcd Operator precise control over the members of the etcd quorum and allows the Machine API Operator to safely create and remove control plane machines without specific operational knowledge of the etcd cluster.</p>
+      <h4 id="machine-lifecycle-hook-deletion-etcd-order_deleting-machine" class="group scroll-mt-20">Control plane deletion with quorum protection processing order<a href="#machine-lifecycle-hook-deletion-etcd-order_deleting-machine" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>When a control plane machine is replaced on a cluster that uses a control plane machine set, the cluster temporarily has four control plane machines. When the fourth control plane node joins the cluster, the etcd Operator starts a new etcd member on the replacement node. When the etcd Operator observes that the old control plane machine is marked for deletion, it stops the etcd member on the old node and promotes the replacement etcd member to join the quorum of the cluster.</p>
+      <p>The control plane machine <code>Deleting</code> phase proceeds in the following order:</p>
+      <ol>
+      <li>A control plane machine is slated for deletion.</li>
+      <li>The control plane machine enters the <code>Deleting</code> phase.</li>
+      <li>
+      To satisfy the <code>preDrain</code> lifecycle hook, the etcd Operator takes the following actions:
+      <ol>
+      <li>The etcd Operator waits until a fourth control plane machine is added to the cluster as an etcd member. This new etcd member has a state of <code>Running</code> but not <code>ready</code> until it receives the full database update from the etcd leader.</li>
+      <li>When the new etcd member receives the full database update, the etcd Operator promotes the new etcd member to a voting member and removes the old etcd member from the cluster.</li>
+      </ol>
+      <p>After this transition is complete, it is safe for the old etcd pod and its data to be removed, so the <code>preDrain</code> lifecycle hook is removed.</p>
+      </li>
+      <li>The control plane machine status condition <code>Drainable</code> is set to <code>True</code>.</li>
+      <li>
+      The machine controller attempts to drain the node that is backed by the control plane machine.
+      <ul>
+      <li>If draining fails, <code>Drained</code> is set to <code>False</code> and the machine controller attempts to drain the node again.</li>
+      <li>If draining succeeds, <code>Drained</code> is set to <code>True</code>.</li>
+      </ul>
+      </li>
+      <li>The control plane machine status condition <code>Drained</code> is set to <code>True</code>.</li>
+      <li>If no other Operators have added a <code>preTerminate</code> lifecycle hook, the control plane machine status condition <code>Terminable</code> is set to <code>True</code>.</li>
+      <li>The machine controller removes the instance from the infrastructure provider.</li>
+      <li>The machine controller deletes the <code>Node</code> object.</li>
+      </ol>
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: Machine\nmetadata:\n  ...\nspec:\n  lifecycleHooks:\n    preDrain:\n    - name: EtcdQuorumOperator\n      owner: clusteroperator/etcd\n  ..."} lang="yaml" title="YAML snippet demonstrating the etcd quorum protection preDrain lifecycle hook" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.lifecycleHooks.preDrain.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>preDrain</code> lifecycle hook.</p></dd>
+      <dt class="font-semibold"><code>spec.lifecycleHooks.preDrain.owner</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hook-implementing controller that manages the <code>preDrain</code> lifecycle hook.</p></dd>
+      </dl>
       <h2 id="additional-resources_unhealthy-etcd-member" class="group scroll-mt-20">Additional resources<a href="#additional-resources_unhealthy-etcd-member" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/machine_management/machine-phases-lifecycle#machine-phases-lifecycle">Machine phases and lifecycle</a></li>

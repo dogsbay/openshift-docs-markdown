@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"cco-mode-mint","text":"About the Cloud Credential Operator in mint mode"},{"depth":2,"slug":"additional-resources_cco-mode-mint","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"cco-mode-mint","text":"About the Cloud Credential Operator in mint mode"},{"depth":2,"slug":"mint-mode-credentials-management_cco-mode-mint","text":"About mint mode credentials management"},{"depth":3,"slug":"mint-mode-permission-requirements_cco-mode-mint","text":"About mint mode permissions requirements"},{"depth":4,"slug":"mint-mode-permission-requirements_aws_cco-mode-mint","text":"Required AWS permissions"},{"depth":4,"slug":"mint-mode-permission-requirements_gcp_cco-mode-mint","text":"Required Google Cloud permissions"},{"depth":3,"slug":"admin-credentials-root-secret-formats_cco-mode-mint","text":"Admin credentials root secret format"},{"depth":2,"slug":"_maintaining_cloud_provider_credentials","text":"Maintaining cloud provider credentials"},{"depth":2,"slug":"additional-resources_cco-mode-mint","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-mint";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["authentication","authentication/managing_cloud_provider_c
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the Cloud Credential Operator in mint mode {#cco-mode-mint}\n\nYou can use the Cloud Credential Operator (CCO) in mint mode to create and reconcile credentials for components in the cluster.\n\nMint mode is the default CCO credentials mode for OpenShift Container Platform on platforms that support it. Mint mode supports {{ aws_first }} and {{ gcp_first }} clusters.\n\n## Additional resources {#additional-resources_cco-mode-mint}\n\n- [Removing cloud provider credentials](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-mint.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the Cloud Credential Operator in mint mode {#cco-mode-mint}\n\nYou can use the Cloud Credential Operator (CCO) in mint mode to create and reconcile credentials for components in the cluster.\n\nMint mode is the default CCO credentials mode for OpenShift Container Platform on platforms that support it. Mint mode supports Amazon Web Services (AWS) and Google Cloud clusters.\n\n## About mint mode credentials management {#mint-mode-credentials-management_cco-mode-mint}\n\nWhen using the Cloud Credential Operator (CCO) in mint mode, you should be familiar with how the CCO uses provider credentials.\n\nFor clusters that use the CCO in mint mode, the administrator-level credential is stored in the `kube-system` namespace. The CCO uses the `admin` credential to process the `CredentialsRequest` objects in the cluster and create users for components with limited permissions.\n\nWith mint mode, each cluster component has only the specific permissions it requires. Cloud credential reconciliation is automatic and continuous so that components can perform actions that require additional credentials or permissions.\n\nFor example, a minor version cluster update (such as updating from OpenShift Container Platform 4.21 to 4.22) might include an updated `CredentialsRequest` resource for a cluster component. The CCO, operating in mint mode, uses the `admin` credential to process the `CredentialsRequest` resource and create users with limited permissions to satisfy the updated authentication requirements.\n\n> [!NOTE]\n> By default, mint mode requires storing the `admin` credential in the cluster `kube-system` namespace. If this approach does not meet the security requirements of your organization, you can remove the credential after installing the cluster. For more information, see \"Removing cloud provider credentials\".\n\n### About mint mode permissions requirements {#mint-mode-permission-requirements_cco-mode-mint}\n\nWhen using the Cloud Credential Operator (CCO) in mint mode, ensure that the credential you provide meets the requirements of the cloud on which you are running or installing OpenShift Container Platform. If the provided credentials are not sufficient for mint mode, the CCO cannot create an IAM user.\n\n#### Required AWS permissions {#mint-mode-permission-requirements_aws_cco-mode-mint}\n\nThe credential you provide for mint mode in Amazon Web Services (AWS) must have the following permissions:\n\n- `iam:CreateAccessKey`\n- `iam:CreateUser`\n- `iam:DeleteAccessKey`\n- `iam:DeleteUser`\n- `iam:DeleteUserPolicy`\n- `iam:GetUser`\n- `iam:GetUserPolicy`\n- `iam:ListAccessKeys`\n- `iam:PutUserPolicy`\n- `iam:TagUser`\n- `iam:SimulatePrincipalPolicy`\n\n#### Required Google Cloud permissions {#mint-mode-permission-requirements_gcp_cco-mode-mint}\n\nThe credential you provide for mint mode in Google Cloud must have the following permissions:\n\n- `resourcemanager.projects.get`\n- `serviceusage.services.list`\n- `iam.serviceAccountKeys.create`\n- `iam.serviceAccountKeys.delete`\n- `iam.serviceAccountKeys.list`\n- `iam.serviceAccounts.create`\n- `iam.serviceAccounts.delete`\n- `iam.serviceAccounts.get`\n- `iam.roles.create`\n- `iam.roles.get`\n- `iam.roles.list`\n- `iam.roles.undelete`\n- `iam.roles.update`\n- `resourcemanager.projects.getIamPolicy`\n- `resourcemanager.projects.setIamPolicy`\n\n### Admin credentials root secret format {#admin-credentials-root-secret-formats_cco-mode-mint}\n\nThe Cloud Credential Operator (CCO) creates a credentials root secret by minting new credentials with *mint mode* or by copying the credentials root secret with *passthrough mode*.\n\nEach cloud provider uses a credentials root secret in the `kube-system` namespace by convention, which is then used to satisfy all credentials requests and create their respective secrets.\n\nThe format for the secret varies by cloud, and is also used for each `CredentialsRequest` secret.\n\n```yaml {title=\"Amazon Web Services (AWS) secret format\"}\napiVersion: v1\nkind: Secret\nmetadata:\n  namespace: kube-system\n  name: aws-creds\nstringData:\n  aws_access_key_id: <base64-encoded_access_key_id>\n  aws_secret_access_key: <base64-encoded_secret_access_key>\n```\n\n```yaml {title=\"Google Cloud secret format\"}\napiVersion: v1\nkind: Secret\nmetadata:\n  namespace: kube-system\n  name: gcp-credentials\nstringData:\n  service_account.json: <base64-encoded_service_account>\n```\n\n## Maintaining cloud provider credentials {#_maintaining_cloud_provider_credentials}\n\nIf your cloud provider credentials are changed for any reason, you must manually update the secret that the Cloud Credential Operator (CCO) uses to manage cloud provider credentials.\n\nThe process for rotating cloud credentials depends on the mode that the CCO is configured to use. After you rotate credentials for a cluster that is using mint mode, you must manually remove the component credentials that were created by the removed credential.\n\n**Prerequisites**\n\n- Your cluster is installed on a platform that supports rotating cloud credentials manually with the CCO mode that you are using:\n\n  - For mint mode, Amazon Web Services (AWS) and Google Cloud are supported.\n- You have changed the credentials that are used to interface with your cloud provider.\n- The new credentials have sufficient permissions for the mode CCO is configured to use in your cluster.\n\n**Procedure**\n\n1. In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.\n2. In the table on the **Secrets** page, find the root secret for your cloud provider.\n\n<table>\n<thead>\n<tr>\n  <th>Platform</th>\n  <th>Secret name</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>AWS</td>\n  <td><code>aws-creds</code></td>\n</tr>\n<tr>\n\n</tr>\n<tr>\n  <td>Google Cloud</td>\n  <td><code>gcp-credentials</code></td>\n</tr>\n<tr>\n\n</tr>\n<tr>\n\n</tr>\n</tbody>\n</table>\n1.  Click the Options menu ![](kebab.png 'Options menu') in the same row as the secret and select **Edit Secret**.\n1.  Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.\n1.  Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.\n\n1. Delete each component secret that is referenced by the individual `CredentialsRequest` objects.\n\n   1. Log in to the OpenShift Container Platform CLI as a user with the `cluster-admin` role.\n   2. Get the names and namespaces of all referenced component secrets:\n\n      ```terminal\n      $ oc -n openshift-cloud-credential-operator get CredentialsRequest \\\n        -o json | jq -r '.items[] | select (.spec.providerSpec.kind==\"<provider_spec>\") | .spec.secretRef'\n      ```\n\n      where `<provider_spec>` is the corresponding value for your cloud provider:\n\n      - AWS: `AWSProviderSpec`\n      - Google Cloud: `GCPProviderSpec`\n\n      The following example is partial output for the command on an AWS cluster:\n\n      ```json\n      {\n        \"name\": \"ebs-cloud-credentials\",\n        \"namespace\": \"openshift-cluster-csi-drivers\"\n      }\n      {\n        \"name\": \"cloud-credential-operator-iam-ro-creds\",\n        \"namespace\": \"openshift-cloud-credential-operator\"\n      }\n      ```\n   3. Delete each of the referenced component secrets:\n\n      ```terminal\n      $ oc delete secret <secret_name> \\//<1>\n        -n <secret_namespace> (2)\n      ```\n\n      where:\n\n      `<secret_name>`\n      :   Specifies the name of a secret.\n\n      `<secret_namespace>`\n      :   Specifies the namespace that contains the secret.\n\n      The following example is a command to delete an AWS secret:\n\n      ```terminal\n      $ oc delete secret ebs-cloud-credentials -n openshift-cluster-csi-drivers\n      ```\n\n      You do not need to manually delete the credentials from your provider console. Deleting the referenced component secrets will cause the CCO to delete the existing credentials from the platform and create new ones.\n\n**Verification**\n\n1. In the **Administrator** perspective of the web console, navigate to **Workloads** -> **Secrets**.\n2. Verify that the contents of the **Value** field or fields have changed.\n\n## Additional resources {#additional-resources_cco-mode-mint}\n\n- [Removing cloud provider credentials](/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/cco-mode-mint.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +95,120 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cco-mode-mint" class="group scroll-mt-20">About the Cloud Credential Operator in mint mode<a href="#cco-mode-mint" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can use the Cloud Credential Operator (CCO) in mint mode to create and reconcile credentials for components in the cluster.</p>
-      <p>Mint mode is the default CCO credentials mode for OpenShift Container Platform on platforms that support it. Mint mode supports {"{"}{"{"} aws_first {"}"}{"}"} and {"{"}{"{"} gcp_first {"}"}{"}"} clusters.</p>
-      <p class="/modules/mint-mode-credentials-management.md"></p>
-      <p class="/modules/mint-mode-permission-requirements.md"></p>
-      <p class="/modules/admin-credentials-root-secret-formats.md"></p>
-      <p class="/modules/manually-rotating-cloud-creds.md"></p>
+      <p>Mint mode is the default CCO credentials mode for OpenShift Container Platform on platforms that support it. Mint mode supports Amazon Web Services (AWS) and Google Cloud clusters.</p>
+      <h2 id="mint-mode-credentials-management_cco-mode-mint" class="group scroll-mt-20">About mint mode credentials management<a href="#mint-mode-credentials-management_cco-mode-mint" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When using the Cloud Credential Operator (CCO) in mint mode, you should be familiar with how the CCO uses provider credentials.</p>
+      <p>For clusters that use the CCO in mint mode, the administrator-level credential is stored in the <code>kube-system</code> namespace. The CCO uses the <code>admin</code> credential to process the <code>CredentialsRequest</code> objects in the cluster and create users for components with limited permissions.</p>
+      <p>With mint mode, each cluster component has only the specific permissions it requires. Cloud credential reconciliation is automatic and continuous so that components can perform actions that require additional credentials or permissions.</p>
+      <p>For example, a minor version cluster update (such as updating from OpenShift Container Platform 4.21 to 4.22) might include an updated <code>CredentialsRequest</code> resource for a cluster component. The CCO, operating in mint mode, uses the <code>admin</code> credential to process the <code>CredentialsRequest</code> resource and create users with limited permissions to satisfy the updated authentication requirements.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>By default, mint mode requires storing the <code>admin</code> credential in the cluster <code>kube-system</code> namespace. If this approach does not meet the security requirements of your organization, you can remove the credential after installing the cluster. For more information, see "Removing cloud provider credentials".</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="mint-mode-permission-requirements_cco-mode-mint" class="group scroll-mt-20">About mint mode permissions requirements<a href="#mint-mode-permission-requirements_cco-mode-mint" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When using the Cloud Credential Operator (CCO) in mint mode, ensure that the credential you provide meets the requirements of the cloud on which you are running or installing OpenShift Container Platform. If the provided credentials are not sufficient for mint mode, the CCO cannot create an IAM user.</p>
+      <h4 id="mint-mode-permission-requirements_aws_cco-mode-mint" class="group scroll-mt-20">Required AWS permissions<a href="#mint-mode-permission-requirements_aws_cco-mode-mint" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>The credential you provide for mint mode in Amazon Web Services (AWS) must have the following permissions:</p>
+      <ul>
+      <li><code>iam:CreateAccessKey</code></li>
+      <li><code>iam:CreateUser</code></li>
+      <li><code>iam:DeleteAccessKey</code></li>
+      <li><code>iam:DeleteUser</code></li>
+      <li><code>iam:DeleteUserPolicy</code></li>
+      <li><code>iam:GetUser</code></li>
+      <li><code>iam:GetUserPolicy</code></li>
+      <li><code>iam:ListAccessKeys</code></li>
+      <li><code>iam:PutUserPolicy</code></li>
+      <li><code>iam:TagUser</code></li>
+      <li><code>iam:SimulatePrincipalPolicy</code></li>
+      </ul>
+      <h4 id="mint-mode-permission-requirements_gcp_cco-mode-mint" class="group scroll-mt-20">Required Google Cloud permissions<a href="#mint-mode-permission-requirements_gcp_cco-mode-mint" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>The credential you provide for mint mode in Google Cloud must have the following permissions:</p>
+      <ul>
+      <li><code>resourcemanager.projects.get</code></li>
+      <li><code>serviceusage.services.list</code></li>
+      <li><code>iam.serviceAccountKeys.create</code></li>
+      <li><code>iam.serviceAccountKeys.delete</code></li>
+      <li><code>iam.serviceAccountKeys.list</code></li>
+      <li><code>iam.serviceAccounts.create</code></li>
+      <li><code>iam.serviceAccounts.delete</code></li>
+      <li><code>iam.serviceAccounts.get</code></li>
+      <li><code>iam.roles.create</code></li>
+      <li><code>iam.roles.get</code></li>
+      <li><code>iam.roles.list</code></li>
+      <li><code>iam.roles.undelete</code></li>
+      <li><code>iam.roles.update</code></li>
+      <li><code>resourcemanager.projects.getIamPolicy</code></li>
+      <li><code>resourcemanager.projects.setIamPolicy</code></li>
+      </ul>
+      <h3 id="admin-credentials-root-secret-formats_cco-mode-mint" class="group scroll-mt-20">Admin credentials root secret format<a href="#admin-credentials-root-secret-formats_cco-mode-mint" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The Cloud Credential Operator (CCO) creates a credentials root secret by minting new credentials with <em>mint mode</em> or by copying the credentials root secret with <em>passthrough mode</em>.</p>
+      <p>Each cloud provider uses a credentials root secret in the <code>kube-system</code> namespace by convention, which is then used to satisfy all credentials requests and create their respective secrets.</p>
+      <p>The format for the secret varies by cloud, and is also used for each <code>CredentialsRequest</code> secret.</p>
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n  namespace: kube-system\n  name: aws-creds\nstringData:\n  aws_access_key_id: <base64-encoded_access_key_id>\n  aws_secret_access_key: <base64-encoded_secret_access_key>"} lang="yaml" title="Amazon Web Services (AWS) secret format" />
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n  namespace: kube-system\n  name: gcp-credentials\nstringData:\n  service_account.json: <base64-encoded_service_account>"} lang="yaml" title="Google Cloud secret format" />
+      <h2 id="_maintaining_cloud_provider_credentials" class="group scroll-mt-20">Maintaining cloud provider credentials<a href="#_maintaining_cloud_provider_credentials" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If your cloud provider credentials are changed for any reason, you must manually update the secret that the Cloud Credential Operator (CCO) uses to manage cloud provider credentials.</p>
+      <p>The process for rotating cloud credentials depends on the mode that the CCO is configured to use. After you rotate credentials for a cluster that is using mint mode, you must manually remove the component credentials that were created by the removed credential.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>
+      Your cluster is installed on a platform that supports rotating cloud credentials manually with the CCO mode that you are using:
+      <ul><li>For mint mode, Amazon Web Services (AWS) and Google Cloud are supported.</li></ul>
+      </li>
+      <li>You have changed the credentials that are used to interface with your cloud provider.</li>
+      <li>The new credentials have sufficient permissions for the mode CCO is configured to use in your cluster.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the <strong>Administrator</strong> perspective of the web console, navigate to <strong>Workloads</strong> -&gt; <strong>Secrets</strong>.</li>
+      <li>In the table on the <strong>Secrets</strong> page, find the root secret for your cloud provider.</li>
+      </ol>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Platform</th>\n  <th>Secret name</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>AWS</td>\n  <td><code>aws-creds</code></td>\n</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n  <td>Google Cloud</td>\n  <td><code>gcp-credentials</code></td>\n</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n</tbody>\n</table>\n1.  Click the Options menu ![](kebab.png 'Options menu') in the same row as the secret and select **Edit Secret**.\n1.  Record the contents of the **Value** field or fields. You can use this information to verify that the value is different after updating the credentials.\n1.  Update the text in the **Value** field or fields with the new authentication information for your cloud provider, and then click **Save**.\n"} />
+      <ol>
+      <li>
+      Delete each component secret that is referenced by the individual <code>CredentialsRequest</code> objects.
+      <ol>
+      <li>Log in to the OpenShift Container Platform CLI as a user with the <code>cluster-admin</code> role.</li>
+      <li>
+      Get the names and namespaces of all referenced component secrets:
+      <CodeBlock code={"$ oc -n openshift-cloud-credential-operator get CredentialsRequest \\\n  -o json | jq -r '.items[] | select (.spec.providerSpec.kind==\"<provider_spec>\") | .spec.secretRef'"} lang="terminal" />
+      <p>where <code>&lt;provider_spec&gt;</code> is the corresponding value for your cloud provider:</p>
+      <ul>
+      <li>AWS: <code>AWSProviderSpec</code></li>
+      <li>Google Cloud: <code>GCPProviderSpec</code></li>
+      </ul>
+      <p>The following example is partial output for the command on an AWS cluster:</p>
+      <CodeBlock code={"{\n  \"name\": \"ebs-cloud-credentials\",\n  \"namespace\": \"openshift-cluster-csi-drivers\"\n}\n{\n  \"name\": \"cloud-credential-operator-iam-ro-creds\",\n  \"namespace\": \"openshift-cloud-credential-operator\"\n}"} lang="json" />
+      </li>
+      <li>
+      Delete each of the referenced component secrets:
+      <CodeBlock code={"$ oc delete secret <secret_name> \\//<1>\n  -n <secret_namespace> (2)"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;secret_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of a secret.</p></dd>
+      <dt class="font-semibold"><code>&lt;secret_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace that contains the secret.</p></dd>
+      </dl>
+      <p>The following example is a command to delete an AWS secret:</p>
+      <CodeBlock code={"$ oc delete secret ebs-cloud-credentials -n openshift-cluster-csi-drivers"} lang="terminal" />
+      <p>You do not need to manually delete the credentials from your provider console. Deleting the referenced component secrets will cause the CCO to delete the existing credentials from the platform and create new ones.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>In the <strong>Administrator</strong> perspective of the web console, navigate to <strong>Workloads</strong> -&gt; <strong>Secrets</strong>.</li>
+      <li>Verify that the contents of the <strong>Value</strong> field or fields have changed.</li>
+      </ol>
       <h2 id="additional-resources_cco-mode-mint" class="group scroll-mt-20">Additional resources<a href="#additional-resources_cco-mode-mint" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/post_installation_configuration/changing-cloud-credentials-configuration#manually-removing-cloud-creds_changing-cloud-credentials-configuration">Removing cloud provider credentials</a></li></ul>
     </article>

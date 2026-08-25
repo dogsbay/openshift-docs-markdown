@@ -4,7 +4,7 @@ title: Monitoring and OpenShift Logging Operator component certificates
 
 # Monitoring and OpenShift Logging Operator component certificates {#cert-types-monitoring-and-cluster-logging-operator-component-certificates}
 
-Review service certificate authority (CA) certificates for monitoring and {{ clo }} components in OpenShift Container Platform, including validity, automatic rotation, and system-managed namespaces.
+Review service certificate authority (CA) certificates for monitoring and Red Hat OpenShift Logging Operator components in OpenShift Container Platform, including validity, automatic rotation, and system-managed namespaces.
 
 ## Expiration {#monitor-logging-component-certificates-expiration_cert-types-monitoring-and-cluster-logging-operator-component-certificates}
 

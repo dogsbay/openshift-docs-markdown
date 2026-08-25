@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-namespaced-sriov-resources","text":"Configuring namespaced SR-IOV resources"}];
+const headings = [{"depth":1,"slug":"configuring-namespaced-sriov-resources","text":"Configuring namespaced SR-IOV resources"},{"depth":2,"slug":"introduction-to-namespaced-sriovnetwork-resources_configuring-namespaced-sriov-resources","text":"An introduction to namespaced SriovNetwork resources"},{"depth":3,"slug":"nw-configuring-sriov-in-app-namespace_configuring-namespaced-sriov-resources","text":"Configuring SriovNetwork in application namespaces"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/hardware_networks/configuring-namespaced-sriov-resources";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/hardware_networks"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring namespaced SR-IOV resources {#configuring-namespaced-sriov-resources}\n\nNamespaced SriovNetwork Resources allow application owners to create and manage their own SriovNetwork resources directly within their namespaces, rather than relying on a cluster administrator to do it in a shared operator namespace. This method simplifies permissions, improves security, and provides better separation between applications.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/hardware_networks/configuring-namespaced-sriov-resources.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring namespaced SR-IOV resources {#configuring-namespaced-sriov-resources}\n\nNamespaced SriovNetwork Resources allow application owners to create and manage their own SriovNetwork resources directly within their namespaces, rather than relying on a cluster administrator to do it in a shared operator namespace. This method simplifies permissions, improves security, and provides better separation between applications.\n\n## An introduction to namespaced SriovNetwork resources {#introduction-to-namespaced-sriovnetwork-resources_configuring-namespaced-sriov-resources}\n\nSR-IOV networks can be created and managed directly within application namespaces. This capability provides application owners with fine-grained control over network configurations, simplifying their workflow.\n\nThis approach offers several key advantages that enhance the user experience:\n\n- Increased Autonomy and Control: Application owners gain direct control over their network configurations, eliminating the need for a cluster administrator to create `SriovNetwork` objects on their behalf.\n- Enhanced Security: By allowing users to manage resources within their own namespaces, the feature improves security and provides better separation between applications. This also helps avoid the unintentional incorrect configuration of other applications' NetworkAttachmentDefinition objects.\n- Simplified Permissions: Managing `SriovNetwork` resources directly in their own namespaces simplifies user permissions. This streamlines the workflow and reduces the operational burden for developers.\n\n### Configuring SriovNetwork in application namespaces {#nw-configuring-sriov-in-app-namespace_configuring-namespaced-sriov-resources}\n\nWhen an SriovNetwork custom resource (CR) is deployed in an application namespace, do not define or populate the `spec.networkNamespace` field. In this scenario, the NetworkAttachmentDefinition will be created in the same namespace as the SriovNetwork CR.\n\nThe SR-IOV Network Operator webhook rejects the creation of an `SriovNetwork` resource in an application namespace if the `spec.networkNamespace` field is defined.\n\nFollow this procedure to create an `SriovNetwork` resource in an application namespace and attach a pod to the additional network.\n\n**Prerequisites**\n\nThe following steps must be completed by a cluster administrator before an application owner can configure a namespaced SriovNetwork resource:\n\n- The SR-IOV Network Operator is installed in the `openshift-sriov-network-operator` namespace.\n- Nodes with SR-IOV hardware are labeled for the operator to identify the nodes.\n\nAs an application owner you need to have administrator privileges on the application namespace.\n\n**Procedure**\n\n1. Specify the SR-IOV network device configuration for a node by creating an SR-IOV network node policy. The `SriovNetworkNodePolicy` object is created in the `openshift-sriov-network-operator` namespace to define the SR-IOV network device configuration for nodes. Example configuration for Intel DPK is as follows:\n\n   ```yaml\n   apiVersion: sriovnetwork.openshift.io/v1\n   kind: SriovNetworkNodePolicy\n   metadata:\n     name: intel-dpdk-node-policy\n     namespace: openshift-sriov-network-operator\n   spec:\n     resourceName: intelnics\n     nodeSelector:\n       feature.node.kubernetes.io/network-sriov.capable: \"true\"\n     priority: 10\n     numVfs: 4\n     nicSelector:\n       vendor: \"8086\"\n       deviceID: \"158b\"\n       pfNames: [\"\"]\n     deviceType: netdevice\n   ```\n2. Create an application namespace. For example, create a namespace named `sriov-app` by running the following command:\n\n   ```terminal\n   $ cat <<EOF | oc create -f -\n   apiVersion: v1\n   kind: Namespace\n   metadata:\n       name: sriov-app\n   EOF\n   ```\n3. Create a YAML file, for example, `sriovnetwork.yaml`, to define the `SriovNetwork` object in the application namespace.\n\n   ```yaml\n   apiVersion: sriovnetwork.openshift.io/v1\n   kind: SriovNetwork\n   metadata:\n     name: test-network\n     namespace: sriov-app\n   spec:\n     resourceName: intelnics\n     ipam:\n       type: host-local\n       subnet: \"10.0.0.0/24\"\n       routes:\n         - dst: \"0.0.0.0/0\"\n           gw: \"10.0.0.1\"\n     vlan: 10\n   ```\n\n   - `namespace`: The value must match the name of the application namespace, for example, `sriov-app`.\n   - `resourceName`: This value must match the `spec.resourceName` defined in the `SriovNetworkNodePolicy` created by the cluster administrator, which in the example is `intelnics`.\n4. Apply the YAML file to create the `SriovNetwork` object in the application namespace.\n\n   ```terminal\n   $ oc create -f sriovnetwork.yaml\n   ```\n\n   After an application owner has created the SriovNetwork resource, they can create a pod that uses the newly defined network. You attach a pod to the additional network by adding a specific annotation to the pod’s YAML manifest.\n5. Create a YAML file, for example, `test-pod.yaml`, to define a pod that uses the new network attachment:\n\n   ```yaml\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     name: test-pod\n     namespace: sriov-app\n     annotations:\n       k8s.v1.cni.cncf.io/networks: test-network\n   spec:\n     containers:\n     - name: test-pod-container\n       image: centos/tools\n       command: [\"/bin/bash\", \"-c\", \"sleep 3600\"]\n   ```\n\n   - `namespace`: The namespace where the pod is created. This must be the same namespace where the `SriovNetwork` object is created.\n   - `annotations`: `k8s.v1.cni.cncf.io/networks` specifies the additional network that the pod connects to. The value must match the `metadata.name` of the `SriovNetwork` object.\n6. Apply the YAML file to create the pod in the application namespace by running the following command:\n\n   ```terminal\n   $ oc create -f test-pod.yaml\n   ```\n\n**Verification**\n\n1. Verify that the NetworkAttachmentDefinition has been created in the same namespace by running the following command:\n\n   ```terminal\n   $ oc get net-attach-def -n sriov-app\n   ```\n\n   Where `sriov-app` is the application namespace where the `SriovNetwork` object is created.\n\n   The following is example output:\n\n   ```terminal\n   NAME           AGE\n   test-network   2m\n   ```\n2. Verify the pod is running and get its network status by describing the pod with the following command:\n\n   ```terminal\n   $ oc describe pod test-pod -n sriov-app\n   ```\n\n   Where `sriov-app` is the application namespace where the pod is created.\n\n   In the output, look for the `k8s.v1.cni.cncf.io/network-status` annotation. This shows the name of the network and the IP assigned to the pod on that interface.\n3. Check that the pod has the additional network interface by running the following command:\n\n   ```terminal\n   $ oc exec -it test-pod -n sriov-app -- ip a\n   ```\n\n   Look for a secondary network interface, for example `net1` or `eth1`, in addition to the default eth0 interface. The `net1` interface should have an IP address from the subnet you defined in the SriovNetwork object, for example `10.0.0.0/24`. This confirms the pod is using the new network attachment definition.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/hardware_networks/configuring-namespaced-sriov-resources.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,83 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-namespaced-sriov-resources" class="group scroll-mt-20">Configuring namespaced SR-IOV resources<a href="#configuring-namespaced-sriov-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Namespaced SriovNetwork Resources allow application owners to create and manage their own SriovNetwork resources directly within their namespaces, rather than relying on a cluster administrator to do it in a shared operator namespace. This method simplifies permissions, improves security, and provides better separation between applications.</p>
-      <p class="/modules/nw-introduction-namespaced-sriov.md"></p>
-      <p class="/modules/nw-configuring-sriov-in-app-namespace.md"></p>
+      <h2 id="introduction-to-namespaced-sriovnetwork-resources_configuring-namespaced-sriov-resources" class="group scroll-mt-20">An introduction to namespaced SriovNetwork resources<a href="#introduction-to-namespaced-sriovnetwork-resources_configuring-namespaced-sriov-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">SR-IOV networks can be created and managed directly within application namespaces. This capability provides application owners with fine-grained control over network configurations, simplifying their workflow.</p>
+      <p>This approach offers several key advantages that enhance the user experience:</p>
+      <ul>
+      <li>Increased Autonomy and Control: Application owners gain direct control over their network configurations, eliminating the need for a cluster administrator to create <code>SriovNetwork</code> objects on their behalf.</li>
+      <li>Enhanced Security: By allowing users to manage resources within their own namespaces, the feature improves security and provides better separation between applications. This also helps avoid the unintentional incorrect configuration of other applications' NetworkAttachmentDefinition objects.</li>
+      <li>Simplified Permissions: Managing <code>SriovNetwork</code> resources directly in their own namespaces simplifies user permissions. This streamlines the workflow and reduces the operational burden for developers.</li>
+      </ul>
+      <h3 id="nw-configuring-sriov-in-app-namespace_configuring-namespaced-sriov-resources" class="group scroll-mt-20">Configuring SriovNetwork in application namespaces<a href="#nw-configuring-sriov-in-app-namespace_configuring-namespaced-sriov-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When an SriovNetwork custom resource (CR) is deployed in an application namespace, do not define or populate the <code>spec.networkNamespace</code> field. In this scenario, the NetworkAttachmentDefinition will be created in the same namespace as the SriovNetwork CR.</p>
+      <p>The SR-IOV Network Operator webhook rejects the creation of an <code>SriovNetwork</code> resource in an application namespace if the <code>spec.networkNamespace</code> field is defined.</p>
+      <p>Follow this procedure to create an <code>SriovNetwork</code> resource in an application namespace and attach a pod to the additional network.</p>
+      <p><strong>Prerequisites</strong></p>
+      <p>The following steps must be completed by a cluster administrator before an application owner can configure a namespaced SriovNetwork resource:</p>
+      <ul>
+      <li>The SR-IOV Network Operator is installed in the <code>openshift-sriov-network-operator</code> namespace.</li>
+      <li>Nodes with SR-IOV hardware are labeled for the operator to identify the nodes.</li>
+      </ul>
+      <p>As an application owner you need to have administrator privileges on the application namespace.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Specify the SR-IOV network device configuration for a node by creating an SR-IOV network node policy. The <code>SriovNetworkNodePolicy</code> object is created in the <code>openshift-sriov-network-operator</code> namespace to define the SR-IOV network device configuration for nodes. Example configuration for Intel DPK is as follows:
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetworkNodePolicy\nmetadata:\n  name: intel-dpdk-node-policy\n  namespace: openshift-sriov-network-operator\nspec:\n  resourceName: intelnics\n  nodeSelector:\n    feature.node.kubernetes.io/network-sriov.capable: \"true\"\n  priority: 10\n  numVfs: 4\n  nicSelector:\n    vendor: \"8086\"\n    deviceID: \"158b\"\n    pfNames: [\"\"]\n  deviceType: netdevice"} lang="yaml" />
+      </li>
+      <li>
+      Create an application namespace. For example, create a namespace named <code>sriov-app</code> by running the following command:
+      <CodeBlock code={"$ cat <<EOF | oc create -f -\napiVersion: v1\nkind: Namespace\nmetadata:\n    name: sriov-app\nEOF"} lang="terminal" />
+      </li>
+      <li>
+      Create a YAML file, for example, <code>sriovnetwork.yaml</code>, to define the <code>SriovNetwork</code> object in the application namespace.
+      <CodeBlock code={"apiVersion: sriovnetwork.openshift.io/v1\nkind: SriovNetwork\nmetadata:\n  name: test-network\n  namespace: sriov-app \nspec:\n  resourceName: intelnics\n  ipam:\n    type: host-local\n    subnet: \"10.0.0.0/24\"\n    routes:\n      - dst: \"0.0.0.0/0\"\n        gw: \"10.0.0.1\"\n  vlan: 10"} lang="yaml" />
+      <ul>
+      <li><code>namespace</code>: The value must match the name of the application namespace, for example, <code>sriov-app</code>.</li>
+      <li><code>resourceName</code>: This value must match the <code>spec.resourceName</code> defined in the <code>SriovNetworkNodePolicy</code> created by the cluster administrator, which in the example is <code>intelnics</code>.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the YAML file to create the <code>SriovNetwork</code> object in the application namespace.
+      <CodeBlock code={"$ oc create -f sriovnetwork.yaml"} lang="terminal" />
+      <p>After an application owner has created the SriovNetwork resource, they can create a pod that uses the newly defined network. You attach a pod to the additional network by adding a specific annotation to the pod’s YAML manifest.</p>
+      </li>
+      <li>
+      Create a YAML file, for example, <code>test-pod.yaml</code>, to define a pod that uses the new network attachment:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: test-pod\n  namespace: sriov-app \n  annotations:\n    k8s.v1.cni.cncf.io/networks: test-network\nspec:\n  containers:\n  - name: test-pod-container\n    image: centos/tools\n    command: [\"/bin/bash\", \"-c\", \"sleep 3600\"]"} lang="yaml" />
+      <ul>
+      <li><code>namespace</code>: The namespace where the pod is created. This must be the same namespace where the <code>SriovNetwork</code> object is created.</li>
+      <li><code>annotations</code>: <code>k8s.v1.cni.cncf.io/networks</code> specifies the additional network that the pod connects to. The value must match the <code>metadata.name</code> of the <code>SriovNetwork</code> object.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the YAML file to create the pod in the application namespace by running the following command:
+      <CodeBlock code={"$ oc create -f test-pod.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the NetworkAttachmentDefinition has been created in the same namespace by running the following command:
+      <CodeBlock code={"$ oc get net-attach-def -n sriov-app"} lang="terminal" />
+      <p>Where <code>sriov-app</code> is the application namespace where the <code>SriovNetwork</code> object is created.</p>
+      <p>The following is example output:</p>
+      <CodeBlock code={"NAME           AGE\ntest-network   2m"} lang="terminal" />
+      </li>
+      <li>
+      Verify the pod is running and get its network status by describing the pod with the following command:
+      <CodeBlock code={"$ oc describe pod test-pod -n sriov-app"} lang="terminal" />
+      <p>Where <code>sriov-app</code> is the application namespace where the pod is created.</p>
+      <p>In the output, look for the <code>k8s.v1.cni.cncf.io/network-status</code> annotation. This shows the name of the network and the IP assigned to the pod on that interface.</p>
+      </li>
+      <li>
+      Check that the pod has the additional network interface by running the following command:
+      <CodeBlock code={"$ oc exec -it test-pod -n sriov-app -- ip a"} lang="terminal" />
+      <p>Look for a secondary network interface, for example <code>net1</code> or <code>eth1</code>, in addition to the default eth0 interface. The <code>net1</code> interface should have an IP address from the subnet you defined in the SriovNetwork object, for example <code>10.0.0.0/24</code>. This confirms the pod is using the new network attachment definition.</p>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

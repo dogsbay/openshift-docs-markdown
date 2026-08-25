@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"optimizing-storage","text":"Optimizing storage"},{"depth":2,"slug":"additional-resources_persistent-storage","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"optimizing-storage","text":"Optimizing storage"},{"depth":2,"slug":"available-persistent-storage-options_persistent-storage","text":"Available persistent storage options"},{"depth":2,"slug":"recommended-configurable-storage-technology_persistent-storage","text":"Recommended configurable storage technology"},{"depth":3,"slug":"specific-application-storage-recommendations_persistent-storage","text":"Specific application storage recommendations"},{"depth":2,"slug":"additional-resources_persistent-storage","text":"Additional resources"},{"depth":2,"slug":"data-storage-management_persistent-storage","text":"Data storage management"},{"depth":2,"slug":"optimizing-storage-azure_persistent-storage","text":"Optimizing storage performance for Microsoft Azure"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["scalability_and_performance","scalability_and_performance
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Optimizing storage {#optimizing-storage}\n\nOptimizing storage helps to minimize storage use across all resources. As an administrator, you can optimize storage to ensure that existing storage resources are working in an efficient manner.\n\n## Additional resources {#additional-resources_persistent-storage}\n\n- [Is NFS supported for OpenShift cluster internal components in Production?](https://access.redhat.com/solutions/3428661)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Optimizing storage {#optimizing-storage}\n\nOptimizing storage helps to minimize storage use across all resources. As an administrator, you can optimize storage to ensure that existing storage resources are working in an efficient manner.\n\n## Available persistent storage options {#available-persistent-storage-options_persistent-storage}\n\nTo optimize your OpenShift Container Platform environment, review the available persistent storage options. By understanding these choices, you can select the appropriate storage configuration to meet your specific workload requirements.\n\n***Available storage options***\n\n<table>\n<thead>\n<tr>\n  <th>Storage type</th>\n  <th>Description</th>\n  <th>Examples</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Block</td>\n  <td><ul><li>Presented to the operating system (OS) as a block device</li><li>Suitable for applications that need full control of storage and operate at a low level on files bypassing the file system.</li><li>Also referred to as a Storage Area Network (SAN).</li><li>Non-shareable, which means that only one client at a time can mount an endpoint of this type.</li></ul></td>\n  <td>AWS EBS and VMware vSphere support dynamic persistent volume (PV) provisioning natively in OpenShift Container Platform.</td>\n</tr>\n<tr>\n  <td>File</td>\n  <td><ul><li>Presented to the OS as a file system export to be mounted</li><li>Also referred to as Network Attached Storage (NAS).</li><li>Concurrency, latency, file locking mechanisms, and other capabilities vary widely between protocols, implementations, vendors, and scales.</li></ul></td>\n  <td>RHEL NFS, NetApp NFS, and Vendor NFS.</td>\n</tr>\n<tr>\n  <td>Object</td>\n  <td><ul><li>Accessible through a REST API endpoint.</li><li>Configurable for use in the OpenShift image registry</li><li>Applications must build their drivers into the application and/or container.</li></ul></td>\n  <td>AWS S3.</td>\n</tr>\n</tbody>\n</table>\n\n- `File`: NetApp NFS supports dynamic PV provisioning when using the Trident plugin.\n\n## Recommended configurable storage technology {#recommended-configurable-storage-technology_persistent-storage}\n\nReview the recommended and configurable storage technologies for the given OpenShift Container Platform cluster application.\n\n**Recommended and configurable storage technology**\n\n| Storage type | Block | File | Object |\n| --- | --- | --- | --- |\n| ROX | Yes | Yes | Yes |\n| RWX | No | Yes | Yes |\n| Registry | Configurable | Configurable | Recommended |\n| Scaled registry | Not configurable | Configurable | Recommended |\n| Metrics | Recommended | Configurable | Not configurable |\n| Elasticsearch Logging | Recommended | Configurable | Not supported |\n| Loki Logging | Not configurable | Not configurable | Recommended |\n| Apps | Recommended | Recommended | Not configurable |\n\nwhere:\n\n`ROX`\n:   Specifies `ReadOnlyMany` access mode.\n\n`ROX.Yes`\n:   Specifies that this access mode\n\n`RWX`\n:   Specifies `ReadWriteMany` access mode.\n\n`Metrics`\n:   Specifies Prometheus as the underlying technology used for metrics.\n\n`Metrics.Configurable`\n:   For metrics, using file storage with the `ReadWriteMany` (RWX) access mode is unreliable. If you use file storage, do not configure the RWX access mode on any persistent volume claims (PVCs) that are configured for use with metrics.\n\n`Elasticsearch Logging.Configurable`\n:   For logging, review the recommended storage solution in Configuring persistent storage for the log store section. Using NFS storage as a persistent volume or through NAS, such as Gluster, can corrupt the data. Therefore, NFS is not supported for Elasticsearch storage and LokiStack log store in OpenShift Container Platform Logging. You must use one persistent volume type per log store.\n\n`Apps.Not configurable`\n:   Specifies that object storage is not consumed through PVs or PVCs of OpenShift Container Platform. Apps must integrate with the object storage REST API.\n\n> [!NOTE]\n> A scaled registry is an OpenShift image registry where two or more pod replicas are running.\n\n### Specific application storage recommendations {#specific-application-storage-recommendations_persistent-storage}\n\nReview the specific storage recommendations for registries, scaled registries, metrics, logs, and applications to better understand the storage requirements for each of these entities.\n\n> [!IMPORTANT]\n> Testing shows issues with using the NFS server on Red Hat Enterprise Linux (RHEL) as a storage backend for core services. This includes the OpenShift Container Registry and Quay, Prometheus for monitoring storage, and Elasticsearch for logging storage. Therefore, using RHEL NFS to back PVs used by core services is not recommended.\n>\n> Other NFS implementations in the marketplace might not have these issues. Contact the individual NFS implementation vendor for more information on any testing that was possibly completed against these OpenShift Container Platform core components.\n\nRegistry\n:   In a non-scaled/high-availability (HA) OpenShift image registry cluster deployment:\n\n    - The storage technology does not have to support RWX access mode.\n    - The storage technology must ensure read-after-write consistency.\n    - The preferred storage technology is object storage followed by block storage.\n    - File storage is not recommended for OpenShift image registry cluster deployment with production workloads.\n\nScaled registry\n:   In a scaled/HA OpenShift image registry cluster deployment:\n\n- The storage technology must support RWX access mode.\n- The storage technology must ensure read-after-write consistency.\n- The preferred storage technology is object storage.\n- Red Hat OpenShift Data Foundation, Amazon Simple Storage Service (Amazon S3), Google Cloud Storage (GCS), Microsoft Azure Blob Storage, and OpenStack Swift are supported.\n- Object storage should be S3 or Swift compliant.\n- For non-cloud platforms, such as vSphere and bare-metal installations, the only configurable technology is file storage.\n- Block storage is not configurable.\n- The use of Network File System (NFS) storage with OpenShift Container Platform is supported. However, the use of NFS storage with a scaled registry can cause known issues. For more information, see the \"Is NFS supported for OpenShift cluster internal components in Production?\" Red Hat Knowledgebase solution.\n\nMetrics\n:   In an OpenShift Container Platform hosted metrics cluster deployment:\n\n- The preferred storage technology is block storage.\n- Object storage is not configurable.\n\n> [!IMPORTANT]\n> It is not recommended to use file storage for a hosted metrics cluster deployment with production workloads.\n\nLogging\n:   In an OpenShift Container Platform hosted logging cluster deployment:\n\n    - Loki Operator:\n\n      - The preferred storage technology is S3 compatible Object storage.\n      - Block storage is not configurable.\n\n- OpenShift Elasticsearch Operator:\n\n  - The preferred storage technology is block storage.\n  - Object storage is not supported.\n\n> [!NOTE]\n> As of logging version 5.4.3 the OpenShift Elasticsearch Operator is deprecated and is planned to be removed in a future release. Red Hat will provide bug fixes and support for this feature during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. As an alternative to using the OpenShift Elasticsearch Operator to manage the default log storage, you can use the Loki Operator.\n\nApplications\n:   Application use cases vary from application to application, as described in the following examples:\n\n    - Storage technologies that support dynamic PV provisioning have low mount time latencies, and are not tied to nodes to support a healthy cluster.\n    - Application developers are responsible for knowing and understanding the storage requirements for their application, and how it works with the provided storage to ensure that issues do not occur when an application scales or interacts with the storage layer.\n\nOther specific application storage recommendations\n\n```\n:::important\n```\n\n:   Red Hat does not recommend using RAID configurations on `Write` intensive workloads, such as `etcd`. If you are running `etcd` with a RAID configuration, you might be at risk of encountering performance issues with your workloads.\n\n```\n:::\n```\n\n- Red Hat OpenStack Platform (RHOSP) Cinder: RHOSP Cinder tends to be adept at ROX access mode use cases.\n- Databases: Databases (RDBMSs, NoSQL DBs, etc.) tend to perform best with dedicated block storage.\n- The etcd database must have enough storage and adequate performance capacity to enable a large cluster. Information about monitoring and benchmarking tools to establish ample storage and a high-performance environment is described in *Recommended etcd practices*.\n\n## Additional resources {#additional-resources_persistent-storage}\n\n- [Is NFS supported for OpenShift cluster internal components in Production?](https://access.redhat.com/solutions/3428661)\n\n## Data storage management {#data-storage-management_persistent-storage}\n\nTo effectively manage data storage in OpenShift Container Platform, review the main directories where components write data.\n\nThe following table summarizes the main directories that OpenShift Container Platform components write data to.\n\n**Main directories for storing OpenShift Container Platform data**\n\n| Directory | Notes | Sizing | Expected growth |\n| --- | --- | --- | --- |\n| ***/var/lib/etcd*** | Used for etcd storage when storing the database. | Less than 20 GB. Database can grow up to 8 GB. | Will grow slowly with the environment. Only storing metadata. Additional 20-25 GB for every additional 8 GB of memory. |\n| ***/var/lib/containers*** | This is the mount point for the CRI-O runtime. Storage used for active container runtimes, including pods, and storage of local images. Not used for registry storage. | 50 GB for a node with 16 GB memory. Note that this sizing should not be used to determine minimum cluster requirements. Additional 20-25 GB for every additional 8 GB of memory. | Growth is limited by capacity for running containers. |\n| ***/var/lib/kubelet*** | Ephemeral volume storage for pods. This includes anything external that is mounted into a container at runtime. Includes environment variables, kube secrets, and data volumes not backed by persistent volumes. | Varies | Minimal if pods requiring storage are using persistent volumes. If using ephemeral storage, this can grow quickly. |\n| ***/var/log*** | Log files for all components. | 10 to 30 GB. | Log files can grow quickly; size can be managed by growing disks or by using log rotate. |\n\n## Optimizing storage performance for Microsoft Azure {#optimizing-storage-azure_persistent-storage}\n\nTo ensure optimal cluster performance on Microsoft Azure, configure faster storage for OpenShift Container Platform and Kubernetes. Red Hat recommends faster storage, particularly for etcd on the control plane nodes.\n\nFor production Azure clusters and clusters with intensive workloads, the virtual machine operating system disk for control plane machines should be able to sustain a tested and recommended minimum throughput of 5000 IOPS / 200 MBps. This throughput can be provided by having a minimum of 1 TiB Premium SSD (P30). In Azure and Azure Stack Hub, disk performance is directly dependent on SSD disk sizes. To achieve the throughput supported by a `Standard_D8s_v3` virtual machine, or other similar machine types, and the target of 5000 IOPS, at least a P30 disk is required.\n\nHost caching must be set to `ReadOnly` for low latency and high IOPS and throughput when reading data. Reading data from the cache, which is present either in the VM memory or in the local SSD disk, is much faster than reading from the disk, which is in the blob storage.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +101,240 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="optimizing-storage" class="group scroll-mt-20">Optimizing storage<a href="#optimizing-storage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Optimizing storage helps to minimize storage use across all resources. As an administrator, you can optimize storage to ensure that existing storage resources are working in an efficient manner.</p>
-      <p class="/modules/available-persistent-storage-options.md"></p>
-      <p class="/modules/recommended-configurable-storage-technology.md"></p>
-      <p class="/modules/specific-application-storage-recommendations.md"></p>
+      <h2 id="available-persistent-storage-options_persistent-storage" class="group scroll-mt-20">Available persistent storage options<a href="#available-persistent-storage-options_persistent-storage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To optimize your OpenShift Container Platform environment, review the available persistent storage options. By understanding these choices, you can select the appropriate storage configuration to meet your specific workload requirements.</p>
+      <p><em></em><em><strong>Available storage options</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Storage type</th>\n  <th>Description</th>\n  <th>Examples</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>Block</td>\n  <td><ul><li>Presented to the operating system (OS) as a block device</li><li>Suitable for applications that need full control of storage and operate at a low level on files bypassing the file system.</li><li>Also referred to as a Storage Area Network (SAN).</li><li>Non-shareable, which means that only one client at a time can mount an endpoint of this type.</li></ul></td>\n  <td>AWS EBS and VMware vSphere support dynamic persistent volume (PV) provisioning natively in OpenShift Container Platform.</td>\n</tr>\n<tr>\n  <td>File</td>\n  <td><ul><li>Presented to the OS as a file system export to be mounted</li><li>Also referred to as Network Attached Storage (NAS).</li><li>Concurrency, latency, file locking mechanisms, and other capabilities vary widely between protocols, implementations, vendors, and scales.</li></ul></td>\n  <td>RHEL NFS, NetApp NFS, and Vendor NFS.</td>\n</tr>\n<tr>\n  <td>Object</td>\n  <td><ul><li>Accessible through a REST API endpoint.</li><li>Configurable for use in the OpenShift image registry</li><li>Applications must build their drivers into the application and/or container.</li></ul></td>\n  <td>AWS S3.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <ul><li><code>File</code>: NetApp NFS supports dynamic PV provisioning when using the Trident plugin.</li></ul>
+      <h2 id="recommended-configurable-storage-technology_persistent-storage" class="group scroll-mt-20">Recommended configurable storage technology<a href="#recommended-configurable-storage-technology_persistent-storage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the recommended and configurable storage technologies for the given OpenShift Container Platform cluster application.</p>
+      <p><strong>Recommended and configurable storage technology</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Storage type</TableHead>
+      <TableHead>Block</TableHead>
+      <TableHead>File</TableHead>
+      <TableHead>Object</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>ROX</TableCell>
+      <TableCell>Yes</TableCell>
+      <TableCell>Yes</TableCell>
+      <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>RWX</TableCell>
+      <TableCell>No</TableCell>
+      <TableCell>Yes</TableCell>
+      <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Registry</TableCell>
+      <TableCell>Configurable</TableCell>
+      <TableCell>Configurable</TableCell>
+      <TableCell>Recommended</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Scaled registry</TableCell>
+      <TableCell>Not configurable</TableCell>
+      <TableCell>Configurable</TableCell>
+      <TableCell>Recommended</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Metrics</TableCell>
+      <TableCell>Recommended</TableCell>
+      <TableCell>Configurable</TableCell>
+      <TableCell>Not configurable</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Elasticsearch Logging</TableCell>
+      <TableCell>Recommended</TableCell>
+      <TableCell>Configurable</TableCell>
+      <TableCell>Not supported</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Loki Logging</TableCell>
+      <TableCell>Not configurable</TableCell>
+      <TableCell>Not configurable</TableCell>
+      <TableCell>Recommended</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Apps</TableCell>
+      <TableCell>Recommended</TableCell>
+      <TableCell>Recommended</TableCell>
+      <TableCell>Not configurable</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>ROX</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies <code>ReadOnlyMany</code> access mode.</p></dd>
+      <dt class="font-semibold"><code>ROX.Yes</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that this access mode</p></dd>
+      <dt class="font-semibold"><code>RWX</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies <code>ReadWriteMany</code> access mode.</p></dd>
+      <dt class="font-semibold"><code>Metrics</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies Prometheus as the underlying technology used for metrics.</p></dd>
+      <dt class="font-semibold"><code>Metrics.Configurable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>For metrics, using file storage with the <code>ReadWriteMany</code> (RWX) access mode is unreliable. If you use file storage, do not configure the RWX access mode on any persistent volume claims (PVCs) that are configured for use with metrics.</p></dd>
+      <dt class="font-semibold"><code>Elasticsearch Logging.Configurable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>For logging, review the recommended storage solution in Configuring persistent storage for the log store section. Using NFS storage as a persistent volume or through NAS, such as Gluster, can corrupt the data. Therefore, NFS is not supported for Elasticsearch storage and LokiStack log store in OpenShift Container Platform Logging. You must use one persistent volume type per log store.</p></dd>
+      <dt class="font-semibold"><code>Apps.Not configurable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that object storage is not consumed through PVs or PVCs of OpenShift Container Platform. Apps must integrate with the object storage REST API.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>A scaled registry is an OpenShift image registry where two or more pod replicas are running.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="specific-application-storage-recommendations_persistent-storage" class="group scroll-mt-20">Specific application storage recommendations<a href="#specific-application-storage-recommendations_persistent-storage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Review the specific storage recommendations for registries, scaled registries, metrics, logs, and applications to better understand the storage requirements for each of these entities.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Testing shows issues with using the NFS server on Red Hat Enterprise Linux (RHEL) as a storage backend for core services. This includes the OpenShift Container Registry and Quay, Prometheus for monitoring storage, and Elasticsearch for logging storage. Therefore, using RHEL NFS to back PVs used by core services is not recommended.</p>
+          <p>Other NFS implementations in the marketplace might not have these issues. Contact the individual NFS implementation vendor for more information on any testing that was possibly completed against these OpenShift Container Platform core components.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Registry</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>In a non-scaled/high-availability (HA) OpenShift image registry cluster deployment:</p>
+      <ul>
+      <li>The storage technology does not have to support RWX access mode.</li>
+      <li>The storage technology must ensure read-after-write consistency.</li>
+      <li>The preferred storage technology is object storage followed by block storage.</li>
+      <li>File storage is not recommended for OpenShift image registry cluster deployment with production workloads.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Scaled registry</dt>
+      <dd class="ml-6 text-muted-foreground"><p>In a scaled/HA OpenShift image registry cluster deployment:</p></dd>
+      </dl>
+      <ul>
+      <li>The storage technology must support RWX access mode.</li>
+      <li>The storage technology must ensure read-after-write consistency.</li>
+      <li>The preferred storage technology is object storage.</li>
+      <li>Red Hat OpenShift Data Foundation, Amazon Simple Storage Service (Amazon S3), Google Cloud Storage (GCS), Microsoft Azure Blob Storage, and OpenStack Swift are supported.</li>
+      <li>Object storage should be S3 or Swift compliant.</li>
+      <li>For non-cloud platforms, such as vSphere and bare-metal installations, the only configurable technology is file storage.</li>
+      <li>Block storage is not configurable.</li>
+      <li>The use of Network File System (NFS) storage with OpenShift Container Platform is supported. However, the use of NFS storage with a scaled registry can cause known issues. For more information, see the "Is NFS supported for OpenShift cluster internal components in Production?" Red Hat Knowledgebase solution.</li>
+      </ul>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Metrics</dt>
+      <dd class="ml-6 text-muted-foreground"><p>In an OpenShift Container Platform hosted metrics cluster deployment:</p></dd>
+      </dl>
+      <ul>
+      <li>The preferred storage technology is block storage.</li>
+      <li>Object storage is not configurable.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>It is not recommended to use file storage for a hosted metrics cluster deployment with production workloads.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Logging</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>In an OpenShift Container Platform hosted logging cluster deployment:</p>
+      <ul>
+      <li>
+      Loki Operator:
+      <ul>
+      <li>The preferred storage technology is S3 compatible Object storage.</li>
+      <li>Block storage is not configurable.</li>
+      </ul>
+      </li>
+      </ul>
+      </dd>
+      </dl>
+      <ul>
+      <li>
+      OpenShift Elasticsearch Operator:
+      <ul>
+      <li>The preferred storage technology is block storage.</li>
+      <li>Object storage is not supported.</li>
+      </ul>
+      </li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>As of logging version 5.4.3 the OpenShift Elasticsearch Operator is deprecated and is planned to be removed in a future release. Red Hat will provide bug fixes and support for this feature during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. As an alternative to using the OpenShift Elasticsearch Operator to manage the default log storage, you can use the Loki Operator.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Applications</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Application use cases vary from application to application, as described in the following examples:</p>
+      <ul>
+      <li>Storage technologies that support dynamic PV provisioning have low mount time latencies, and are not tied to nodes to support a healthy cluster.</li>
+      <li>Application developers are responsible for knowing and understanding the storage requirements for their application, and how it works with the provided storage to ensure that issues do not occur when an application scales or interacts with the storage layer.</li>
+      </ul>
+      </dd>
+      </dl>
+      <p>Other specific application storage recommendations</p>
+      <CodeBlock code={":::important"} lang="plaintext" />
+      <p>:   Red Hat does not recommend using RAID configurations on <code>Write</code> intensive workloads, such as <code>etcd</code>. If you are running <code>etcd</code> with a RAID configuration, you might be at risk of encountering performance issues with your workloads.</p>
+      <CodeBlock code={":::"} lang="plaintext" />
+      <ul>
+      <li>Red Hat OpenStack Platform (RHOSP) Cinder: RHOSP Cinder tends to be adept at ROX access mode use cases.</li>
+      <li>Databases: Databases (RDBMSs, NoSQL DBs, etc.) tend to perform best with dedicated block storage.</li>
+      <li>The etcd database must have enough storage and adequate performance capacity to enable a large cluster. Information about monitoring and benchmarking tools to establish ample storage and a high-performance environment is described in <em>Recommended etcd practices</em>.</li>
+      </ul>
       <h2 id="additional-resources_persistent-storage" class="group scroll-mt-20">Additional resources<a href="#additional-resources_persistent-storage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="https://access.redhat.com/solutions/3428661">Is NFS supported for OpenShift cluster internal components in Production?</a></li></ul>
-      <p class="/modules/optimizing-storage-azure.md"></p>
+      <h2 id="data-storage-management_persistent-storage" class="group scroll-mt-20">Data storage management<a href="#data-storage-management_persistent-storage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To effectively manage data storage in OpenShift Container Platform, review the main directories where components write data.</p>
+      <p>The following table summarizes the main directories that OpenShift Container Platform components write data to.</p>
+      <p><strong>Main directories for storing OpenShift Container Platform data</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Directory</TableHead>
+      <TableHead>Notes</TableHead>
+      <TableHead>Sizing</TableHead>
+      <TableHead>Expected growth</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><em><strong>/var/lib/etcd</strong></em></TableCell>
+      <TableCell>Used for etcd storage when storing the database.</TableCell>
+      <TableCell>Less than 20 GB. Database can grow up to 8 GB.</TableCell>
+      <TableCell>Will grow slowly with the environment. Only storing metadata. Additional 20-25 GB for every additional 8 GB of memory.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><em><strong>/var/lib/containers</strong></em></TableCell>
+      <TableCell>This is the mount point for the CRI-O runtime. Storage used for active container runtimes, including pods, and storage of local images. Not used for registry storage.</TableCell>
+      <TableCell>50 GB for a node with 16 GB memory. Note that this sizing should not be used to determine minimum cluster requirements. Additional 20-25 GB for every additional 8 GB of memory.</TableCell>
+      <TableCell>Growth is limited by capacity for running containers.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><em><strong>/var/lib/kubelet</strong></em></TableCell>
+      <TableCell>Ephemeral volume storage for pods. This includes anything external that is mounted into a container at runtime. Includes environment variables, kube secrets, and data volumes not backed by persistent volumes.</TableCell>
+      <TableCell>Varies</TableCell>
+      <TableCell>Minimal if pods requiring storage are using persistent volumes. If using ephemeral storage, this can grow quickly.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><em><strong>/var/log</strong></em></TableCell>
+      <TableCell>Log files for all components.</TableCell>
+      <TableCell>10 to 30 GB.</TableCell>
+      <TableCell>Log files can grow quickly; size can be managed by growing disks or by using log rotate.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="optimizing-storage-azure_persistent-storage" class="group scroll-mt-20">Optimizing storage performance for Microsoft Azure<a href="#optimizing-storage-azure_persistent-storage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To ensure optimal cluster performance on Microsoft Azure, configure faster storage for OpenShift Container Platform and Kubernetes. Red Hat recommends faster storage, particularly for etcd on the control plane nodes.</p>
+      <p>For production Azure clusters and clusters with intensive workloads, the virtual machine operating system disk for control plane machines should be able to sustain a tested and recommended minimum throughput of 5000 IOPS / 200 MBps. This throughput can be provided by having a minimum of 1 TiB Premium SSD (P30). In Azure and Azure Stack Hub, disk performance is directly dependent on SSD disk sizes. To achieve the throughput supported by a <code>Standard_D8s_v3</code> virtual machine, or other similar machine types, and the target of 5000 IOPS, at least a P30 disk is required.</p>
+      <p>Host caching must be set to <code>ReadOnly</code> for low latency and high IOPS and throughput when reading data. Reading data from the cache, which is present either in the VM memory or in the local SSD disk, is much faster than reading from the disk, which is in the blob storage.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

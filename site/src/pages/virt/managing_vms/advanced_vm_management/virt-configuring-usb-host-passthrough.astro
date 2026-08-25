@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-configuring-usb-host-passthrough","text":"Configuring USB host passthrough"}];
+const headings = [{"depth":1,"slug":"virt-configuring-usb-host-passthrough","text":"Configuring USB host passthrough"},{"depth":2,"slug":"virt-enabling-usb-host-passthrough_virt-configuring-usb-host-passthrough","text":"Enabling USB host passthrough"},{"depth":2,"slug":"virt-configuring-vm-use-usb-device_virt-configuring-usb-host-passthrough","text":"Connecting a USB device to a virtual machine"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-usb-host-passthrough";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/advanced_vm_
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring USB host passthrough {#virt-configuring-usb-host-passthrough}\n\nYou can enable passthrough of USB devices to allow a virtual machine (VM) to connect to USB hardware that is attached to an OpenShift Container Platform node, as if the hardware and the VM are physically connected.\n\nTo expose a USB device, first enable host passthrough and then configure the VM to use the USB device.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-usb-host-passthrough.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring USB host passthrough {#virt-configuring-usb-host-passthrough}\n\nYou can enable passthrough of USB devices to allow a virtual machine (VM) to connect to USB hardware that is attached to an OpenShift Container Platform node, as if the hardware and the VM are physically connected.\n\nTo expose a USB device, first enable host passthrough and then configure the VM to use the USB device.\n\n## Enabling USB host passthrough {#virt-enabling-usb-host-passthrough_virt-configuring-usb-host-passthrough}\n\nTo attach a USB device to a virtual machine (VM), you must first enable USB host passthrough at the cluster level.\n\nTo do this, specify a resource name and USB device name for each device you want first to add and then assign to a VM. You can allocate more than one device, each of which is known as a `selector` in the `HyperConverged` custom resource (CR), to a single resource name. If you have multiple identical USB devices on the cluster, you can choose to allocate a VM to a specific device.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform cluster as a user who has the `cluster-admin` role.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Identify the USB device vendor and product:\n\n   ```terminal\n   $ lsusb\n   ```\n\n   **Example output**\n\n   ```terminal\n   Bus 003 Device 007: ID 1b1c:0a60 example_manufacturer example_product_name\n   ```\n\n   - If you cannot use the `lsusb` command, inspect the USB device configurations in the host’s `/sys/bus/usb/devices/` directory:\n\n     ```terminal\n     for dev in *; do\n         if [[ -f \"$dev/idVendor\" && -f \"$dev/idProduct\" ]]; then\n             echo \"Device: $dev\"\n             echo -n \"  Manufacturer : \"; cat \"$dev/manufacturer\"\n             echo -n \"  Product: \"; cat \"$dev/product\"\n             echo -n \"  Vendor ID : \"; cat \"$dev/idVendor\"\n             echo -n \"  Product ID: \"; cat \"$dev/idProduct\"\n             echo\n         fi\n     done\n     ```\n\n     **Example output**\n\n     ```terminal\n     Device: 3-7\n       Manufacturer : example_manufacturer\n       Product: example_product_name\n       Vendor ID : 1b1c\n       Product ID: 0a60\n     ```\n2. Open the `HyperConverged` CR in your default editor by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n3. Add the required USB device to the `permittedHostDevices` stanza of the `HyperConvered` CR. The following example adds a device with vendor ID `045e` and product ID `07a5`:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n     namespace: {{ CNVNamespace }}\n   spec:\n     permittedHostDevices:\n       usbHostDevices:\n       - resourceName: kubevirt.io/peripherals\n         selectors:\n         - vendor: \"045e\"\n           product: \"07a5\"\n         - vendor: \"062a\"\n           product: \"4102\"\n         - vendor: \"072f\"\n           product: \"b100\"\n   ```\n\n   - `spec.permittedHostDevices` defines the host devices that have permission to be used in the cluster.\n   - `spec.permittedHostDevices.usbHostDevices` defines a list of available USB devices.\n   - `spec.permittedHostDevices.usbHostDevices.resourceName` defines the USB device that you want to add and assign to the VM. In this example, the resource is bound to three devices, each of which is identified by `vendor` and `product` and is known as a `selector`.\n\n## Connecting a USB device to a virtual machine {#virt-configuring-vm-use-usb-device_virt-configuring-usb-host-passthrough}\n\nYou can configure virtual machine (VM) access to a USB device. This configuration enables the VM to connect to USB hardware that is attached to an OpenShift Container Platform node, as if the hardware and the VM are physically connected.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have attached the required USB device as a resource at the cluster level.\n\n**Procedure**\n\n1. In the `HyperConverged` custom resource (CR), find the assigned resource name of the USB device:\n\n   ```terminal\n   $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n\n   Example output:\n\n   ```yaml\n   # ...\n     spec:\n       permittedHostDevices:\n         usbHostDevices:\n           - resourceName: kubevirt.io/peripherals\n             selectors:\n               - vendor: \"045e\"\n                 product: \"07a5\"\n               - vendor: \"062a\"\n                 product: \"4102\"\n               - vendor: \"072f\"\n                 product: \"b100\"\n   ```\n2. Open the VM CR:\n\n   ```terminal\n   $ oc edit vm <vm_name>\n   ```\n\n   where:\n\n   `<vm_name>`\n   :   Specifies the name of the `VirtualMachine` CR.\n3. Edit the CR by adding the USB device, as shown in the following example:\n\n   Example configuration:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: example-vm\n   spec:\n     template:\n       spec:\n         architecture: amd64\n         domain:\n           devices:\n             hostDevices:\n             - deviceName: kubevirt.io/peripherals\n               name: local-peripherals\n   # ...\n   ```\n\n   - `spec.template.spec.domain.devices.hostDevices.deviceName` specifies the resource name from the `HyperConverged` CR.\n   - `spec.template.spec.domain.devices.hostDevices.name` defines the name of the USB device.\n4. Save and apply your changes:\n\n   ```terminal\n   $ oc apply -f <filename>.yaml\n   ```\n\n   where:\n\n   `<filename>`\n   :   Specifies the name of the `VirtualMachine` manifest YAML file.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-usb-host-passthrough.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,89 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-configuring-usb-host-passthrough" class="group scroll-mt-20">Configuring USB host passthrough<a href="#virt-configuring-usb-host-passthrough" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can enable passthrough of USB devices to allow a virtual machine (VM) to connect to USB hardware that is attached to an OpenShift Container Platform node, as if the hardware and the VM are physically connected.</p>
       <p>To expose a USB device, first enable host passthrough and then configure the VM to use the USB device.</p>
-      <p class="/modules/virt-configuring-vm-use-usb-device.md /modules/virt-enabling-usb-host-passthrough.md"></p>
+      <h2 id="virt-enabling-usb-host-passthrough_virt-configuring-usb-host-passthrough" class="group scroll-mt-20">Enabling USB host passthrough<a href="#virt-enabling-usb-host-passthrough_virt-configuring-usb-host-passthrough" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To attach a USB device to a virtual machine (VM), you must first enable USB host passthrough at the cluster level.</p>
+      <p>To do this, specify a resource name and USB device name for each device you want first to add and then assign to a VM. You can allocate more than one device, each of which is known as a <code>selector</code> in the <code>HyperConverged</code> custom resource (CR), to a single resource name. If you have multiple identical USB devices on the cluster, you can choose to allocate a VM to a specific device.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to an OpenShift Container Platform cluster as a user who has the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Identify the USB device vendor and product:
+      <CodeBlock code={"$ lsusb"} lang="terminal" />
+      <p><strong>Example output</strong></p>
+      <CodeBlock code={"Bus 003 Device 007: ID 1b1c:0a60 example_manufacturer example_product_name"} lang="terminal" />
+      <ul>
+      <li>
+      If you cannot use the <code>lsusb</code> command, inspect the USB device configurations in the host’s <code>/sys/bus/usb/devices/</code> directory:
+      <CodeBlock code={"for dev in *; do\n    if [[ -f \"$dev/idVendor\" && -f \"$dev/idProduct\" ]]; then\n        echo \"Device: $dev\"\n        echo -n \"  Manufacturer : \"; cat \"$dev/manufacturer\"\n        echo -n \"  Product: \"; cat \"$dev/product\"\n        echo -n \"  Vendor ID : \"; cat \"$dev/idVendor\"\n        echo -n \"  Product ID: \"; cat \"$dev/idProduct\"\n        echo\n    fi\ndone"} lang="terminal" />
+      <p><strong>Example output</strong></p>
+      <CodeBlock code={"Device: 3-7\n  Manufacturer : example_manufacturer\n  Product: example_product_name\n  Vendor ID : 1b1c\n  Product ID: 0a60"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Open the <code>HyperConverged</code> CR in your default editor by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Add the required USB device to the <code>permittedHostDevices</code> stanza of the <code>HyperConvered</code> CR. The following example adds a device with vendor ID <code>045e</code> and product ID <code>07a5</code>:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  permittedHostDevices:\n    usbHostDevices:\n    - resourceName: kubevirt.io/peripherals\n      selectors:\n      - vendor: \"045e\"\n        product: \"07a5\"\n      - vendor: \"062a\"\n        product: \"4102\"\n      - vendor: \"072f\"\n        product: \"b100\""} lang="yaml" />
+      <ul>
+      <li><code>spec.permittedHostDevices</code> defines the host devices that have permission to be used in the cluster.</li>
+      <li><code>spec.permittedHostDevices.usbHostDevices</code> defines a list of available USB devices.</li>
+      <li><code>spec.permittedHostDevices.usbHostDevices.resourceName</code> defines the USB device that you want to add and assign to the VM. In this example, the resource is bound to three devices, each of which is identified by <code>vendor</code> and <code>product</code> and is known as a <code>selector</code>.</li>
+      </ul>
+      </li>
+      </ol>
+      <h2 id="virt-configuring-vm-use-usb-device_virt-configuring-usb-host-passthrough" class="group scroll-mt-20">Connecting a USB device to a virtual machine<a href="#virt-configuring-vm-use-usb-device_virt-configuring-usb-host-passthrough" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure virtual machine (VM) access to a USB device. This configuration enables the VM to connect to USB hardware that is attached to an OpenShift Container Platform node, as if the hardware and the VM are physically connected.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have attached the required USB device as a resource at the cluster level.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      In the <code>HyperConverged</code> custom resource (CR), find the assigned resource name of the USB device:
+      <CodeBlock code={"$ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"# ...\n  spec:\n    permittedHostDevices:\n      usbHostDevices:\n        - resourceName: kubevirt.io/peripherals\n          selectors:\n            - vendor: \"045e\"\n              product: \"07a5\"\n            - vendor: \"062a\"\n              product: \"4102\"\n            - vendor: \"072f\"\n              product: \"b100\""} lang="yaml" />
+      </li>
+      <li>
+      Open the VM CR:
+      <CodeBlock code={"$ oc edit vm <vm_name>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;vm_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>VirtualMachine</code> CR.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Edit the CR by adding the USB device, as shown in the following example:
+      <p>Example configuration:</p>
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: example-vm\nspec:\n  template:\n    spec:\n      architecture: amd64\n      domain:\n        devices:\n          hostDevices:\n          - deviceName: kubevirt.io/peripherals\n            name: local-peripherals\n# ..."} lang="yaml" />
+      <ul>
+      <li><code>spec.template.spec.domain.devices.hostDevices.deviceName</code> specifies the resource name from the <code>HyperConverged</code> CR.</li>
+      <li><code>spec.template.spec.domain.devices.hostDevices.name</code> defines the name of the USB device.</li>
+      </ul>
+      </li>
+      <li>
+      Save and apply your changes:
+      <CodeBlock code={"$ oc apply -f <filename>.yaml"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;filename&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>VirtualMachine</code> manifest YAML file.</p></dd>
+      </dl>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-creating-vms-from-web-images","text":"Creating VMs by importing images from web pages"},{"depth":2,"slug":"additional-resources_virt-creating-vms-from-web-images","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-creating-vms-from-web-images","text":"Creating VMs by importing images from web pages"},{"depth":2,"slug":"virt-creating-vm-custom-image-web_virt-creating-vms-from-web-images","text":"Creating a VM from an image on a web page by using the web console"},{"depth":2,"slug":"virt-creating-vm-import-cli_virt-creating-vms-from-web-images","text":"Creating a VM from an image on a web page by using the CLI"},{"depth":2,"slug":"additional-resources_virt-creating-vms-from-web-images","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-web-images";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/creating_vm"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating VMs by importing images from web pages {#virt-creating-vms-from-web-images}\n\nYou can create virtual machines (VMs) by importing operating system images from web pages.\n\n> [!IMPORTANT]\n> You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-web-images}\n\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-web-images.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating VMs by importing images from web pages {#virt-creating-vms-from-web-images}\n\nYou can create virtual machines (VMs) by importing operating system images from web pages.\n\n> [!IMPORTANT]\n> You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.\n\n## Creating a VM from an image on a web page by using the web console {#virt-creating-vm-custom-image-web_virt-creating-vms-from-web-images}\n\nYou can create a virtual machine (VM) by importing an image from a web page by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You must have access to the web page that contains the image.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **Catalog** in the web console.\n2. Click a template tile without an available boot source.\n3. Click **Customize VirtualMachine**.\n4. On the **Customize template parameters** page, expand **Storage** and select **URL (creates PVC)** from the **Disk source** list.\n5. Enter the image URL. Example: `https://access.redhat.com/downloads/content/69/ver=/rhel---7/7.9/x86_64/product-software`\n6. Set the disk size.\n7. Click **Next**.\n8. Click **Create VirtualMachine**.\n\n## Creating a VM from an image on a web page by using the CLI {#virt-creating-vm-import-cli_virt-creating-vms-from-web-images}\n\nYou can create a virtual machine (VM) from an image on a web page by using the command line.\n\nWhen the VM is created, the data volume with the image is imported into persistent storage.\n\n**Prerequisites**\n\n- You must have access credentials for the web page that contains the image.\n- You have installed the `virtctl` CLI.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a `VirtualMachine` manifest for your VM and save it as a YAML file. For example, to create a minimal Red Hat Enterprise Linux (RHEL) VM from an image on a web page, run the following command:\n\n   ```terminal\n   $ virtctl create vm --name vm-rhel-9 --instancetype u1.small --preference rhel.9 --volume-import type:http,url:https://example.com/rhel9.qcow2,size:10Gi\n   ```\n2. Review the `VirtualMachine` manifest for your VM:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: vm-rhel-9\n   spec:\n     dataVolumeTemplates:\n     - metadata:\n         name: imported-volume-6dcpf\n       spec:\n         source:\n           http:\n             url: https://example.com/rhel9.qcow2\n         storage:\n           resources:\n             requests:\n               storage: 10Gi\n     instancetype:\n       name: u1.small\n     preference:\n       name: rhel.9\n     runStrategy: Always\n     template:\n       spec:\n         domain:\n           devices: {}\n           resources: {}\n         terminationGracePeriodSeconds: 180\n         volumes:\n         - dataVolume:\n             name: imported-volume-6dcpf\n           name: imported-volume-6dcpf\n   ```\n\n   - `metadata.name` defines the VM name.\n   - `spec.dataVolumeTemplates.metadata.name` defines the data volume name.\n   - `spec.dataVolumeTemplates.spec.source.http.url` defines the URL of the image.\n   - `spec.dataVolumeTemplates.spec.storage.resources.requests.storage` defines the size of the storage requested for the data volume.\n   - `spec.instancetype.name` defines the instance type to use to control resource sizing of the VM.\n   - `spec.preference.name` defines the preference to use.\n3. Create the VM by running the following command:\n\n   ```terminal\n   $ oc create -f <vm_manifest_file>.yaml\n   ```\n\n   The `oc create` command creates the data volume and the VM. The CDI controller creates an underlying PVC with the correct annotation and the import process begins. When the import is complete, the data volume status changes to `Succeeded`. You can start the VM.\n\n   Data volume provisioning happens in the background, so there is no need to monitor the process.\n\n**Verification**\n\n1. The importer pod downloads the image from the specified URL and stores it on the provisioned persistent volume. View the status of the importer pod:\n\n   ```terminal\n   $ oc get pods\n   ```\n2. Monitor the status of the data volume:\n\n   ```terminal\n   $ oc get dv <data_volume_name>\n   ```\n\n   If the provisioning is successful, the data volume phase is `Succeeded`.\n\n   Example output:\n\n   ```terminal\n   NAME                    PHASE       PROGRESS   RESTARTS   AGE\n   imported-volume-6dcpf   Succeeded   100.0%                18s\n   ```\n3. Verify that provisioning is complete and that the VM has started by accessing its serial console:\n\n   ```terminal\n   $ virtctl console <vm_name>\n   ```\n\n   If the VM is running and the serial console is accessible, the output looks as follows:\n\n   ```terminal\n   Successfully connected to vm-rhel-9 console. The escape sequence is ^]\n   ```\n\n## Additional resources {#additional-resources_virt-creating-vms-from-web-images}\n\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-web-images.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-creating-vms-from-web-images" class="group scroll-mt-20">Creating VMs by importing images from web pages<a href="#virt-creating-vms-from-web-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can create virtual machines (VMs) by importing operating system images from web pages.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
@@ -102,8 +102,76 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>You must install the QEMU guest agent on VMs created from operating system images that are not provided by Red Hat.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/virt-creating-vm-custom-image-web.md"></p>
-      <p class="/modules/virt-creating-vm-web-page-cli.md"></p>
+      <h2 id="virt-creating-vm-custom-image-web_virt-creating-vms-from-web-images" class="group scroll-mt-20">Creating a VM from an image on a web page by using the web console<a href="#virt-creating-vm-custom-image-web_virt-creating-vms-from-web-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can create a virtual machine (VM) by importing an image from a web page by using the OpenShift Container Platform web console.</p>
+      <p class="_abstract"></p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have access to the web page that contains the image.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>Catalog</strong> in the web console.</li>
+      <li>Click a template tile without an available boot source.</li>
+      <li>Click <strong>Customize VirtualMachine</strong>.</li>
+      <li>On the <strong>Customize template parameters</strong> page, expand <strong>Storage</strong> and select <strong>URL (creates PVC)</strong> from the <strong>Disk source</strong> list.</li>
+      <li>Enter the image URL. Example: <code>https://access.redhat.com/downloads/content/69/ver=/rhel---7/7.9/x86_64/product-software</code></li>
+      <li>Set the disk size.</li>
+      <li>Click <strong>Next</strong>.</li>
+      <li>Click <strong>Create VirtualMachine</strong>.</li>
+      </ol>
+      <h2 id="virt-creating-vm-import-cli_virt-creating-vms-from-web-images" class="group scroll-mt-20">Creating a VM from an image on a web page by using the CLI<a href="#virt-creating-vm-import-cli_virt-creating-vms-from-web-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a virtual machine (VM) from an image on a web page by using the command line.</p>
+      <p>When the VM is created, the data volume with the image is imported into persistent storage.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have access credentials for the web page that contains the image.</li>
+      <li>You have installed the <code>virtctl</code> CLI.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>VirtualMachine</code> manifest for your VM and save it as a YAML file. For example, to create a minimal Red Hat Enterprise Linux (RHEL) VM from an image on a web page, run the following command:
+      <CodeBlock code={"$ virtctl create vm --name vm-rhel-9 --instancetype u1.small --preference rhel.9 --volume-import type:http,url:https://example.com/rhel9.qcow2,size:10Gi"} lang="terminal" />
+      </li>
+      <li>
+      Review the <code>VirtualMachine</code> manifest for your VM:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: vm-rhel-9\nspec:\n  dataVolumeTemplates:\n  - metadata:\n      name: imported-volume-6dcpf\n    spec:\n      source:\n        http:\n          url: https://example.com/rhel9.qcow2\n      storage:\n        resources:\n          requests:\n            storage: 10Gi\n  instancetype:\n    name: u1.small\n  preference:\n    name: rhel.9\n  runStrategy: Always\n  template:\n    spec:\n      domain:\n        devices: {}\n        resources: {}\n      terminationGracePeriodSeconds: 180\n      volumes:\n      - dataVolume:\n          name: imported-volume-6dcpf\n        name: imported-volume-6dcpf"} lang="yaml" />
+      <ul>
+      <li><code>metadata.name</code> defines the VM name.</li>
+      <li><code>spec.dataVolumeTemplates.metadata.name</code> defines the data volume name.</li>
+      <li><code>spec.dataVolumeTemplates.spec.source.http.url</code> defines the URL of the image.</li>
+      <li><code>spec.dataVolumeTemplates.spec.storage.resources.requests.storage</code> defines the size of the storage requested for the data volume.</li>
+      <li><code>spec.instancetype.name</code> defines the instance type to use to control resource sizing of the VM.</li>
+      <li><code>spec.preference.name</code> defines the preference to use.</li>
+      </ul>
+      </li>
+      <li>
+      Create the VM by running the following command:
+      <CodeBlock code={"$ oc create -f <vm_manifest_file>.yaml"} lang="terminal" />
+      <p>The <code>oc create</code> command creates the data volume and the VM. The CDI controller creates an underlying PVC with the correct annotation and the import process begins. When the import is complete, the data volume status changes to <code>Succeeded</code>. You can start the VM.</p>
+      <p>Data volume provisioning happens in the background, so there is no need to monitor the process.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      The importer pod downloads the image from the specified URL and stores it on the provisioned persistent volume. View the status of the importer pod:
+      <CodeBlock code={"$ oc get pods"} lang="terminal" />
+      </li>
+      <li>
+      Monitor the status of the data volume:
+      <CodeBlock code={"$ oc get dv <data_volume_name>"} lang="terminal" />
+      <p>If the provisioning is successful, the data volume phase is <code>Succeeded</code>.</p>
+      <p>Example output:</p>
+      <CodeBlock code={"NAME                    PHASE       PROGRESS   RESTARTS   AGE\nimported-volume-6dcpf   Succeeded   100.0%                18s"} lang="terminal" />
+      </li>
+      <li>
+      Verify that provisioning is complete and that the VM has started by accessing its serial console:
+      <CodeBlock code={"$ virtctl console <vm_name>"} lang="terminal" />
+      <p>If the VM is running and the serial console is accessible, the output looks as follows:</p>
+      <CodeBlock code={"Successfully connected to vm-rhel-9 console. The escape sequence is ^]"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="additional-resources_virt-creating-vms-from-web-images" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-creating-vms-from-web-images" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent">Installing the QEMU guest agent</a></li></ul>
     </article>

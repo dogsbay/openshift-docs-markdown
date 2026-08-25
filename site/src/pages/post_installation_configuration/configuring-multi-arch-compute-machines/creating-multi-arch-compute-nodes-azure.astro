@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"creating-multi-arch-compute-nodes-azure","text":"Creating a cluster with multi-architecture compute machines on Azure"},{"depth":2,"slug":"additional-resources_creating-multi-arch-compute-nodes-azure","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"creating-multi-arch-compute-nodes-azure","text":"Creating a cluster with multi-architecture compute machines on Azure"},{"depth":2,"slug":"multi-architecture-creating-bootimage_creating-multi-arch-compute-nodes-azure","text":"Creating a 64-bit ARM boot image using the Azure image gallery"},{"depth":2,"slug":"multi-architecture-modify-machine-set-azure_creating-multi-arch-compute-nodes-azure","text":"Adding a multi-architecture compute machine set to your Azure cluster"},{"depth":2,"slug":"additional-resources_creating-multi-arch-compute-nodes-azure","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-azure";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Creating a cluster with multi-architecture compute machines on Azure";
-const description = "To deploy a cluster on {{ azure_full }} with multi-architecture compute machines, you must first create a single-architecture installer-provisioned…" || undefined;
+const description = "To deploy a cluster on Microsoft Azure with multi-architecture compute machines, you must first create a single-architecture installer-provisioned cluster…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a cluster with multi-architecture compute machines on Azure {#creating-multi-arch-compute-nodes-azure}\n\nTo deploy a cluster on {{ azure_full }} with multi-architecture compute machines, you must first create a single-architecture installer-provisioned cluster that uses the multi-architecture installer binary.\n\nYou can also migrate your current cluster with single-architecture compute machines to a cluster with multi-architecture compute machines. After creating a multi-architecture cluster, you can add nodes with different architectures to the cluster.\n\n## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-azure}\n\n- [Installing a cluster on Azure with customizations](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n- [Creating a compute machine set on Azure](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-azure#creating-machineset-azure)\n- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-azure.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a cluster with multi-architecture compute machines on Azure {#creating-multi-arch-compute-nodes-azure}\n\nTo deploy a cluster on Microsoft Azure with multi-architecture compute machines, you must first create a single-architecture installer-provisioned cluster that uses the multi-architecture installer binary.\n\nYou can also migrate your current cluster with single-architecture compute machines to a cluster with multi-architecture compute machines. After creating a multi-architecture cluster, you can add nodes with different architectures to the cluster.\n\n## Creating a 64-bit ARM boot image using the Azure image gallery {#multi-architecture-creating-bootimage_creating-multi-arch-compute-nodes-azure}\n\nYou can generate a 64-bit x86 boot image or a 64-bit ARM boot image by using the Azure image gallery.\n\nThe procedure example describes how to manually generate a 64-bit ARM boot image. If you want to generate a 64-bit x86 boot image, replace `aarch64` with `x86_64`; Additionally, replace any instances of `rhcos-arm64` with `rhcos-x86_64`.\n\n**Prerequisites**\n\n- You installed the Azure CLI (`az`).\n- You created a single-architecture Azure installer-provisioned cluster with the multi-architecture installer binary.\n\n**Procedure**\n\n1. Log in to your Azure account by running the following command:\n\n   ```terminal\n   $ az login\n   ```\n2. Create a storage account and upload the `aarch64` virtual hard drive (VHD) to your storage account. The OpenShift Container Platform installation program creates a resource group, however, the boot image can also be uploaded to a custom named resource group:\n\n   ```terminal\n   $ az storage account create -n ${STORAGE_ACCOUNT_NAME} -g ${RESOURCE_GROUP} -l westus --sku Standard_LRS\n   ```\n\n   - The `westus` object is an example region.\n3. Create a storage container using the storage account you generated by entering the following command:\n\n   ```terminal\n   $ az storage container create -n ${CONTAINER_NAME} --account-name ${STORAGE_ACCOUNT_NAME}\n   ```\n4. You must use the OpenShift Container Platform installation program JSON file to extract the URL and `aarch64` VHD name:\n\n   1. Extract the `URL` field and set it to `RHCOS_VHD_ORIGIN_URL` as the file name by running the following command:\n\n      ```terminal\n      $ RHCOS_VHD_ORIGIN_URL=$(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' | jq -r '.architectures.aarch64.\"rhel-coreos-extensions\".\"azure-disk\".url')\n      ```\n\n      - For a 64-bit x86 boot image, replace `architectures.aarch64` with `architectures.x86_64`.\n   2. Extract the `aarch64` VHD name and set it to `BLOB_NAME` as the file name by running the following command:\n\n      ```terminal\n      $ BLOB_NAME=rhcos-$(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' | jq -r '.architectures.aarch64.\"rhel-coreos-extensions\".\"azure-disk\".release')-azure.aarch64.vhd\n      ```\n\n      - For a 64-bit x86 boot image, replace `architectures.aarch64` with `architectures.x86_64` and replace `aarch64.vhd` with `x86_64.vhd`.\n5. Generate a shared access signature (SAS) token. Use this token to upload the RHCOS VHD to your storage container with the following commands:\n\n   ```terminal\n   $ end=`date -u -d \"30 minutes\" '+%Y-%m-%dT%H:%MZ'`\n   ```\n\n   ```terminal\n   $ sas=`az storage container generate-sas -n ${CONTAINER_NAME} --account-name ${STORAGE_ACCOUNT_NAME} --https-only --permissions dlrw --expiry $end -o tsv`\n   ```\n6. Copy the RHCOS VHD into the storage container:\n\n   ```terminal\n   $ az storage blob copy start --account-name ${STORAGE_ACCOUNT_NAME} --sas-token \"$sas\" \\\n    --source-uri \"${RHCOS_VHD_ORIGIN_URL}\" \\\n    --destination-blob \"${BLOB_NAME}\" --destination-container ${CONTAINER_NAME}\n   ```\n\n   You can check the status of the copying process with the following command:\n\n   ```terminal\n   $ az storage blob show -c ${CONTAINER_NAME} -n ${BLOB_NAME} --account-name ${STORAGE_ACCOUNT_NAME} | jq .properties.copy\n   ```\n\n   ```terminal {title=\"Example output\"}\n   {\n    \"completionTime\": null,\n    \"destinationSnapshot\": null,\n    \"id\": \"1fd97630-03ca-489a-8c4e-cfe839c9627d\",\n    \"incrementalCopy\": null,\n    \"progress\": \"17179869696/17179869696\",\n    \"source\": \"https://rhcos.blob.core.windows.net/imagebucket/rhcos-411.86.202207130959-0-azure.aarch64.vhd\",\n    \"status\": \"success\",\n    \"statusDescription\": null\n   }\n   ```\n\n   If the status parameter displays the `success` object, the copying process is complete.\n7. Create an image gallery using the following command:\n\n   ```terminal\n   $ az sig create --resource-group ${RESOURCE_GROUP} --gallery-name ${GALLERY_NAME}\n   ```\n\n   Use the image gallery to create an image definition. In the following example command, `rhcos-arm64` is the name of the image definition.\n\n   ```terminal\n   $ az sig image-definition create --resource-group ${RESOURCE_GROUP} --gallery-name ${GALLERY_NAME} --gallery-image-definition rhcos-arm64 --publisher RedHat --offer arm --sku arm64 --os-type linux --architecture Arm64 --hyper-v-generation V2\n   ```\n\n   - For a 64-bit x86 boot image, replace `--offer arm --sku arm64` with `--offer x86_64 --sku x86_64 `.\n8. To get the URL of the VHD and set it to `RHCOS_VHD_URL` as the file name, run the following command:\n\n   ```terminal\n   $ RHCOS_VHD_URL=$(az storage blob url --account-name ${STORAGE_ACCOUNT_NAME} -c ${CONTAINER_NAME} -n \"${BLOB_NAME}\" -o tsv)\n   ```\n9. Use the `RHCOS_VHD_URL` file, your storage account, resource group, and image gallery to create an image version. In the following example, `1.0.0` is the image version.\n\n   ```terminal\n   $ az sig image-version create --resource-group ${RESOURCE_GROUP} --gallery-name ${GALLERY_NAME} --gallery-image-definition rhcos-arm64 --gallery-image-version 1.0.0 --os-vhd-storage-account ${STORAGE_ACCOUNT_NAME} --os-vhd-uri ${RHCOS_VHD_URL}\n   ```\n10. Optional: Now that your `arm64` boot image is now generated, you can access the ID of your image with the following command:\n\n    ```terminal\n    $ az sig image-version show -r $GALLERY_NAME -g $RESOURCE_GROUP -i rhcos-arm64 -e 1.0.0\n    ```\n\n    The following example image ID is used in the `recourseID` parameter of the compute machine set:\n\n    ```terminal {title=\"Example resourceID\"}\n    /resourceGroups/${RESOURCE_GROUP}/providers/Microsoft.Compute/galleries/${GALLERY_NAME}/images/rhcos-arm64/versions/1.0.0\n    ```\n\n## Adding a multi-architecture compute machine set to your Azure cluster {#multi-architecture-modify-machine-set-azure_creating-multi-arch-compute-nodes-azure}\n\nAfter creating a multi-architecture cluster, you can add nodes with different architectures.\n\nYou can add multi-architecture compute machines to a multi-architecture cluster in the following ways:\n\n- Adding 64-bit x86 compute machines to a cluster that uses 64-bit ARM control plane machines and already includes 64-bit ARM compute machines. In this case, 64-bit x86 is considered the secondary architecture.\n- Adding 64-bit ARM compute machines to a cluster that uses 64-bit x86 control plane machines and already includes 64-bit x86 compute machines. In this case, 64-bit ARM is considered the secondary architecture.\n\nTo create a custom compute machine set on Azure, see \"Creating a compute machine set on Azure\".\n\n> [!NOTE]\n> Before adding a secondary architecture node to your cluster, it is recommended to install the Multiarch Tuning Operator, and deploy a `ClusterPodPlacementConfig` custom resource. For more information, see \"Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator\".\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n- You created a 64-bit ARM or 64-bit x86 boot image.\n- You used the installation program to create a 64-bit ARM or 64-bit x86 single-architecture cluster with the multi-architecture installer binary.\n\n**Procedure**\n\n1. Log in to the OpenShift CLI (`oc`).\n2. Create a YAML file and add the configuration to create a compute machine set to control the 64-bit ARM or 64-bit x86 compute nodes in your cluster.\n\n   ```yaml {title=\"Example MachineSet object for an Azure 64-bit ARM or x86 compute node\"}\n   apiVersion: machine.openshift.io/v1beta1\n   kind: MachineSet\n   metadata:\n     labels:\n       machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n       machine.openshift.io/cluster-api-machine-role: worker\n       machine.openshift.io/cluster-api-machine-type: worker\n     name: <infrastructure_id>-machine-set-0\n     namespace: openshift-machine-api\n   spec:\n     replicas: 2\n     selector:\n       matchLabels:\n         machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-machine-set-0\n     template:\n       metadata:\n         labels:\n           machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n           machine.openshift.io/cluster-api-machine-role: worker\n           machine.openshift.io/cluster-api-machine-type: worker\n           machine.openshift.io/cluster-api-machineset: <infrastructure_id>-machine-set-0\n       spec:\n         lifecycleHooks: {}\n         metadata: {}\n         providerSpec:\n           value:\n             acceleratedNetworking: true\n             apiVersion: machine.openshift.io/v1beta1\n             credentialsSecret:\n               name: azure-cloud-credentials\n               namespace: openshift-machine-api\n             image:\n               offer: \"\"\n               publisher: \"\"\n               resourceID: /resourceGroups/${RESOURCE_GROUP}/providers/Microsoft.Compute/galleries/${GALLERY_NAME}/images/rhcos-arm64/versions/1.0.0\n               sku: \"\"\n               version: \"\"\n             kind: AzureMachineProviderSpec\n             location: <region>\n             managedIdentity: <infrastructure_id>-identity\n             networkResourceGroup: <infrastructure_id>-rg\n             osDisk:\n               diskSettings: {}\n               diskSizeGB: 128\n               managedDisk:\n                 storageAccountType: Premium_LRS\n               osType: Linux\n             publicIP: false\n             publicLoadBalancer: <infrastructure_id>\n             resourceGroup: <infrastructure_id>-rg\n             subnet: <infrastructure_id>-worker-subnet\n             userDataSecret:\n               name: worker-user-data\n             vmSize: Standard_D4ps_v5\n             vnet: <infrastructure_id>-vnet\n             zone: \"<zone>\"\n   ```\n\n   where:\n\n   `image.resourceID`\n   :   Specifies the boot image, such as `arm64` or `amd64`.\n\n   `vmSize`\n   :   Specifies the instance type used in your installation. Some example instance types are `Standard_D4ps_v5` or `D8ps`.\n3. Create the compute machine set by running the following command:\n\n   ```terminal\n   $ oc create -f <file_name>\n   ```\n\n   - Replace `<file_name>` with the name of the YAML file with compute machine set configuration. For example: `arm64-machine-set-0.yaml`, or `amd64-machine-set-0.yaml`.\n\n**Verification**\n\n1. Verify that the new machines are running by running the following command:\n\n   ```terminal\n   $ oc get machineset -n openshift-machine-api\n   ```\n\n   The output must include the machine set that you created.\n\n   ```terminal {title=\"Example output\"}\n   NAME                                                DESIRED  CURRENT  READY  AVAILABLE  AGE\n   <infrastructure_id>-machine-set-0                   2        2      2          2  10m\n   ```\n2. You can check if the nodes are ready and schedulable by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-azure}\n\n- [Installing a cluster on Azure with customizations](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n- [Creating a compute machine set on Azure](/openshift-docs-markdown/machine_management/creating_machinesets/creating-machineset-azure#creating-machineset-azure)\n- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-azure.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,134 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-multi-arch-compute-nodes-azure" class="group scroll-mt-20">Creating a cluster with multi-architecture compute machines on Azure<a href="#creating-multi-arch-compute-nodes-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>To deploy a cluster on {"{"}{"{"} azure_full {"}"}{"}"} with multi-architecture compute machines, you must first create a single-architecture installer-provisioned cluster that uses the multi-architecture installer binary.</p>
+      <p>To deploy a cluster on Microsoft Azure with multi-architecture compute machines, you must first create a single-architecture installer-provisioned cluster that uses the multi-architecture installer binary.</p>
       <p>You can also migrate your current cluster with single-architecture compute machines to a cluster with multi-architecture compute machines. After creating a multi-architecture cluster, you can add nodes with different architectures to the cluster.</p>
-      <p class="/modules/multi-architecture-creating-bootimage.md"></p>
-      <p class="/modules/multi-architecture-modify-machine-set-azure.md"></p>
+      <h2 id="multi-architecture-creating-bootimage_creating-multi-arch-compute-nodes-azure" class="group scroll-mt-20">Creating a 64-bit ARM boot image using the Azure image gallery<a href="#multi-architecture-creating-bootimage_creating-multi-arch-compute-nodes-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can generate a 64-bit x86 boot image or a 64-bit ARM boot image by using the Azure image gallery.</p>
+      <p>The procedure example describes how to manually generate a 64-bit ARM boot image. If you want to generate a 64-bit x86 boot image, replace <code>aarch64</code> with <code>x86_64</code>; Additionally, replace any instances of <code>rhcos-arm64</code> with <code>rhcos-x86_64</code>.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the Azure CLI (<code>az</code>).</li>
+      <li>You created a single-architecture Azure installer-provisioned cluster with the multi-architecture installer binary.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Log in to your Azure account by running the following command:
+      <CodeBlock code={"$ az login"} lang="terminal" />
+      </li>
+      <li>
+      Create a storage account and upload the <code>aarch64</code> virtual hard drive (VHD) to your storage account. The OpenShift Container Platform installation program creates a resource group, however, the boot image can also be uploaded to a custom named resource group:
+      <CodeBlock code={"$ az storage account create -n ${STORAGE_ACCOUNT_NAME} -g ${RESOURCE_GROUP} -l westus --sku Standard_LRS"} lang="terminal" />
+      <ul><li>The <code>westus</code> object is an example region.</li></ul>
+      </li>
+      <li>
+      Create a storage container using the storage account you generated by entering the following command:
+      <CodeBlock code={"$ az storage container create -n ${CONTAINER_NAME} --account-name ${STORAGE_ACCOUNT_NAME}"} lang="terminal" />
+      </li>
+      <li>
+      You must use the OpenShift Container Platform installation program JSON file to extract the URL and <code>aarch64</code> VHD name:
+      <ol>
+      <li>
+      Extract the <code>URL</code> field and set it to <code>RHCOS_VHD_ORIGIN_URL</code> as the file name by running the following command:
+      <CodeBlock code={"$ RHCOS_VHD_ORIGIN_URL=$(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' | jq -r '.architectures.aarch64.\"rhel-coreos-extensions\".\"azure-disk\".url')"} lang="terminal" />
+      <ul><li>For a 64-bit x86 boot image, replace <code>architectures.aarch64</code> with <code>architectures.x86_64</code>.</li></ul>
+      </li>
+      <li>
+      Extract the <code>aarch64</code> VHD name and set it to <code>BLOB_NAME</code> as the file name by running the following command:
+      <CodeBlock code={"$ BLOB_NAME=rhcos-$(oc -n openshift-machine-config-operator get configmap/coreos-bootimages -o jsonpath='{.data.stream}' | jq -r '.architectures.aarch64.\"rhel-coreos-extensions\".\"azure-disk\".release')-azure.aarch64.vhd"} lang="terminal" />
+      <ul><li>For a 64-bit x86 boot image, replace <code>architectures.aarch64</code> with <code>architectures.x86_64</code> and replace <code>aarch64.vhd</code> with <code>x86_64.vhd</code>.</li></ul>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Generate a shared access signature (SAS) token. Use this token to upload the RHCOS VHD to your storage container with the following commands:
+      <CodeBlock code={"$ end=`date -u -d \"30 minutes\" '+%Y-%m-%dT%H:%MZ'`"} lang="terminal" />
+      <CodeBlock code={"$ sas=`az storage container generate-sas -n ${CONTAINER_NAME} --account-name ${STORAGE_ACCOUNT_NAME} --https-only --permissions dlrw --expiry $end -o tsv`"} lang="terminal" />
+      </li>
+      <li>
+      Copy the RHCOS VHD into the storage container:
+      <CodeBlock code={"$ az storage blob copy start --account-name ${STORAGE_ACCOUNT_NAME} --sas-token \"$sas\" \\\n --source-uri \"${RHCOS_VHD_ORIGIN_URL}\" \\\n --destination-blob \"${BLOB_NAME}\" --destination-container ${CONTAINER_NAME}"} lang="terminal" />
+      <p>You can check the status of the copying process with the following command:</p>
+      <CodeBlock code={"$ az storage blob show -c ${CONTAINER_NAME} -n ${BLOB_NAME} --account-name ${STORAGE_ACCOUNT_NAME} | jq .properties.copy"} lang="terminal" />
+      <CodeBlock code={"{\n \"completionTime\": null,\n \"destinationSnapshot\": null,\n \"id\": \"1fd97630-03ca-489a-8c4e-cfe839c9627d\",\n \"incrementalCopy\": null,\n \"progress\": \"17179869696/17179869696\",\n \"source\": \"https://rhcos.blob.core.windows.net/imagebucket/rhcos-411.86.202207130959-0-azure.aarch64.vhd\",\n \"status\": \"success\",\n \"statusDescription\": null\n}"} lang="terminal" title="Example output" />
+      <p>If the status parameter displays the <code>success</code> object, the copying process is complete.</p>
+      </li>
+      <li>
+      Create an image gallery using the following command:
+      <CodeBlock code={"$ az sig create --resource-group ${RESOURCE_GROUP} --gallery-name ${GALLERY_NAME}"} lang="terminal" />
+      <p>Use the image gallery to create an image definition. In the following example command, <code>rhcos-arm64</code> is the name of the image definition.</p>
+      <CodeBlock code={"$ az sig image-definition create --resource-group ${RESOURCE_GROUP} --gallery-name ${GALLERY_NAME} --gallery-image-definition rhcos-arm64 --publisher RedHat --offer arm --sku arm64 --os-type linux --architecture Arm64 --hyper-v-generation V2"} lang="terminal" />
+      <ul><li>For a 64-bit x86 boot image, replace <code>--offer arm --sku arm64</code> with <code>--offer x86_64 --sku x86_64 </code>.</li></ul>
+      </li>
+      <li>
+      To get the URL of the VHD and set it to <code>RHCOS_VHD_URL</code> as the file name, run the following command:
+      <CodeBlock code={"$ RHCOS_VHD_URL=$(az storage blob url --account-name ${STORAGE_ACCOUNT_NAME} -c ${CONTAINER_NAME} -n \"${BLOB_NAME}\" -o tsv)"} lang="terminal" />
+      </li>
+      <li>
+      Use the <code>RHCOS_VHD_URL</code> file, your storage account, resource group, and image gallery to create an image version. In the following example, <code>1.0.0</code> is the image version.
+      <CodeBlock code={"$ az sig image-version create --resource-group ${RESOURCE_GROUP} --gallery-name ${GALLERY_NAME} --gallery-image-definition rhcos-arm64 --gallery-image-version 1.0.0 --os-vhd-storage-account ${STORAGE_ACCOUNT_NAME} --os-vhd-uri ${RHCOS_VHD_URL}"} lang="terminal" />
+      </li>
+      <li>
+      Optional: Now that your <code>arm64</code> boot image is now generated, you can access the ID of your image with the following command:
+      <CodeBlock code={"$ az sig image-version show -r $GALLERY_NAME -g $RESOURCE_GROUP -i rhcos-arm64 -e 1.0.0"} lang="terminal" />
+      <p>The following example image ID is used in the <code>recourseID</code> parameter of the compute machine set:</p>
+      <CodeBlock code={"/resourceGroups/${RESOURCE_GROUP}/providers/Microsoft.Compute/galleries/${GALLERY_NAME}/images/rhcos-arm64/versions/1.0.0"} lang="terminal" title="Example resourceID" />
+      </li>
+      </ol>
+      <h2 id="multi-architecture-modify-machine-set-azure_creating-multi-arch-compute-nodes-azure" class="group scroll-mt-20">Adding a multi-architecture compute machine set to your Azure cluster<a href="#multi-architecture-modify-machine-set-azure_creating-multi-arch-compute-nodes-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After creating a multi-architecture cluster, you can add nodes with different architectures. </p>
+      <p>You can add multi-architecture compute machines to a multi-architecture cluster in the following ways:</p>
+      <ul>
+      <li>Adding 64-bit x86 compute machines to a cluster that uses 64-bit ARM control plane machines and already includes 64-bit ARM compute machines. In this case, 64-bit x86 is considered the secondary architecture.</li>
+      <li>Adding 64-bit ARM compute machines to a cluster that uses 64-bit x86 control plane machines and already includes 64-bit x86 compute machines. In this case, 64-bit ARM is considered the secondary architecture.</li>
+      </ul>
+      <p>To create a custom compute machine set on Azure, see "Creating a compute machine set on Azure".</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Before adding a secondary architecture node to your cluster, it is recommended to install the Multiarch Tuning Operator, and deploy a <code>ClusterPodPlacementConfig</code> custom resource. For more information, see "Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator".</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You created a 64-bit ARM or 64-bit x86 boot image.</li>
+      <li>You used the installation program to create a 64-bit ARM or 64-bit x86 single-architecture cluster with the multi-architecture installer binary.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift CLI (<code>oc</code>).</li>
+      <li>
+      Create a YAML file and add the configuration to create a compute machine set to control the 64-bit ARM or 64-bit x86 compute nodes in your cluster.
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: MachineSet\nmetadata:\n  labels:\n    machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n    machine.openshift.io/cluster-api-machine-role: worker\n    machine.openshift.io/cluster-api-machine-type: worker\n  name: <infrastructure_id>-machine-set-0\n  namespace: openshift-machine-api\nspec:\n  replicas: 2\n  selector:\n    matchLabels:\n      machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-machine-set-0\n  template:\n    metadata:\n      labels:\n        machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n        machine.openshift.io/cluster-api-machine-role: worker\n        machine.openshift.io/cluster-api-machine-type: worker\n        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-machine-set-0\n    spec:\n      lifecycleHooks: {}\n      metadata: {}\n      providerSpec:\n        value:\n          acceleratedNetworking: true\n          apiVersion: machine.openshift.io/v1beta1\n          credentialsSecret:\n            name: azure-cloud-credentials\n            namespace: openshift-machine-api\n          image:\n            offer: \"\"\n            publisher: \"\"\n            resourceID: /resourceGroups/${RESOURCE_GROUP}/providers/Microsoft.Compute/galleries/${GALLERY_NAME}/images/rhcos-arm64/versions/1.0.0\n            sku: \"\"\n            version: \"\"\n          kind: AzureMachineProviderSpec\n          location: <region>\n          managedIdentity: <infrastructure_id>-identity\n          networkResourceGroup: <infrastructure_id>-rg\n          osDisk:\n            diskSettings: {}\n            diskSizeGB: 128\n            managedDisk:\n              storageAccountType: Premium_LRS\n            osType: Linux\n          publicIP: false\n          publicLoadBalancer: <infrastructure_id>\n          resourceGroup: <infrastructure_id>-rg\n          subnet: <infrastructure_id>-worker-subnet\n          userDataSecret:\n            name: worker-user-data\n          vmSize: Standard_D4ps_v5\n          vnet: <infrastructure_id>-vnet\n          zone: \"<zone>\""} lang="yaml" title="Example MachineSet object for an Azure 64-bit ARM or x86 compute node" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>image.resourceID</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the boot image, such as <code>arm64</code> or <code>amd64</code>.</p></dd>
+      <dt class="font-semibold"><code>vmSize</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the instance type used in your installation. Some example instance types are <code>Standard_D4ps_v5</code> or <code>D8ps</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the compute machine set by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>"} lang="terminal" />
+      <ul><li>Replace <code>&lt;file_name&gt;</code> with the name of the YAML file with compute machine set configuration. For example: <code>arm64-machine-set-0.yaml</code>, or <code>amd64-machine-set-0.yaml</code>.</li></ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the new machines are running by running the following command:
+      <CodeBlock code={"$ oc get machineset -n openshift-machine-api"} lang="terminal" />
+      <p>The output must include the machine set that you created.</p>
+      <CodeBlock code={"NAME                                                DESIRED  CURRENT  READY  AVAILABLE  AGE\n<infrastructure_id>-machine-set-0                   2        2      2          2  10m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      You can check if the nodes are ready and schedulable by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="additional-resources_creating-multi-arch-compute-nodes-azure" class="group scroll-mt-20">Additional resources<a href="#additional-resources_creating-multi-arch-compute-nodes-azure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations">Installing a cluster on Azure with customizations</a></li>

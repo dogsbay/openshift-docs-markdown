@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"configuring-file-integrity-operator","text":"Configuring the Custom File Integrity Operator"}];
+const headings = [{"depth":1,"slug":"configuring-file-integrity-operator","text":"Configuring the Custom File Integrity Operator"},{"depth":2,"slug":"viewing-file-integrity-object-attributes_file-integrity-operator","text":"Viewing FileIntegrity object attributes"},{"depth":2,"slug":"important-file-integrity-object-attributes_file-integrity-operator","text":"Important attributes"},{"depth":2,"slug":"file-integrity-examine-default-config_file-integrity-operator","text":"Examine the default configuration"},{"depth":2,"slug":"file-integrity-understanding-default-config_file-integrity-operator","text":"Understanding the default File Integrity Operator configuration"},{"depth":2,"slug":"file-integrity-operator-supplying-custom-aide-config_file-integrity-operator","text":"Supplying a custom AIDE configuration"},{"depth":2,"slug":"file-integrity-operator-defining-custom-config_file-integrity-operator","text":"Defining a custom File Integrity Operator configuration"},{"depth":2,"slug":"file-integrity-operator-changing-custom-config_file-integrity-operator","text":"Changing the custom File Integrity configuration"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-configuring";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["security","security/file_integrity_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the Custom File Integrity Operator {#configuring-file-integrity-operator}\n\nYou can configure the Custom File Integrity Operator to meet your cluster requirements.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-configuring.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the Custom File Integrity Operator {#configuring-file-integrity-operator}\n\nYou can configure the Custom File Integrity Operator to meet your cluster requirements.\n\n## Viewing FileIntegrity object attributes {#viewing-file-integrity-object-attributes_file-integrity-operator}\n\nAs with any Kubernetes custom resources (CRs), you can run `oc explain fileintegrity`, and then examine the individual attributes.\n\n**Procedure**\n\n- View the `FileIntegrity` spec attributes by running the following command:\n\n  ```terminal\n  $ oc explain fileintegrity.spec\n  ```\n- View the `FileIntegrity` config attributes by running the following command:\n\n  ```terminal\n  $ oc explain fileintegrity.spec.config\n  ```\n\n## Important attributes {#important-file-integrity-object-attributes_file-integrity-operator}\n\nThe following `spec` and `spec.config` attributes are important when configuring a `FileIntegrity` CR.\n\n**Important `spec` and `spec.config` attributes**\n\n| Attribute | Description |\n| --- | --- |\n| `spec.nodeSelector` | Specifies a map of key-value pairs that labels for a node must match for a cluster to schedule Advanced Intrusion Detection Environment (AIDE) pods on that node. Typically, you can configure only a single key-value pair. For example, `node-role.kubernetes.io/worker: \"\"` schedules AIDE on all compute nodes, while `node.openshift.io/os_id: \"rhel\"` schedules AIDE on all RHEL nodes. |\n| `spec.debug` | A boolean attribute. If set to `true`, the daemon running in the AIDE daemon set pods would output extra information. |\n| `spec.tolerations` | Specify tolerations to schedule on nodes with custom taints. When not specified, a default toleration is applied, which allows tolerations to run on control plane nodes. |\n| `spec.config.gracePeriod` | The number of seconds to pause in between AIDE integrity checks. Frequent AIDE checks on a node can be resource intensive, so it can be useful to specify a longer interval. Defaults to `900`, or 15 minutes. |\n| `maxBackups` | The maximum number of AIDE database and log backups leftover from the `re-init` process to keep on a node. Older backups beyond this number are automatically pruned by the daemon. |\n| `spec.config.name` | Name of a configMap that contains custom AIDE configuration. If omitted, a default configuration is created. |\n| `spec.config.namespace` | Namespace of a configMap that contains custom AIDE configuration. If unset, the FIO generates a default configuration suitable for RHCOS systems. |\n| `spec.config.key` | Key that contains actual AIDE configuration in a config map specified by `name` and `namespace`. The default value is `aide.conf`. |\n| `spec.config.initialDelay` | The number of seconds to wait before starting the first AIDE integrity check. Default is set to 0. This attribute is optional. |\n\n## Examine the default configuration {#file-integrity-examine-default-config_file-integrity-operator}\n\nThe default File Integrity Operator configuration is stored in a config map with the same name as the `FileIntegrity` CR.\n\n**Procedure**\n\n- To examine the default config, run:\n\n  ```terminal\n  $ oc describe cm/worker-fileintegrity\n  ```\n\n## Understanding the default File Integrity Operator configuration {#file-integrity-understanding-default-config_file-integrity-operator}\n\nThe default configuration for a `FileIntegrity` instance provides coverage for files under key system directories and excludes others.\n\nBelow is an excerpt from the `aide.conf` key of the config map:\n\n```bash\n@@define DBDIR /hostroot/etc/kubernetes\n@@define LOGDIR /hostroot/etc/kubernetes\ndatabase=file:@@{DBDIR}/aide.db.gz\ndatabase_out=file:@@{DBDIR}/aide.db.gz\ngzip_dbout=yes\nverbose=5\nreport_url=file:@@{LOGDIR}/aide.log\nreport_url=stdout\nPERMS = p+u+g+acl+selinux+xattrs\nCONTENT_EX = sha512+ftype+p+u+g+n+acl+selinux+xattrs\n\n/hostroot/boot/    \tCONTENT_EX\n/hostroot/root/\\..* PERMS\n/hostroot/root/   CONTENT_EX\n```\n\nThe default configuration for a `FileIntegrity` instance provides coverage for files under the following directories:\n\n- `/root`\n- `/boot`\n- `/usr`\n- `/etc`\n\nThe following directories are not covered:\n\n- `/var`\n- `/opt`\n- Some OpenShift Container Platform-specific excludes under `/etc/`\n\n## Supplying a custom AIDE configuration {#file-integrity-operator-supplying-custom-aide-config_file-integrity-operator}\n\nAny entries that configure AIDE internal behavior such as `DBDIR`, `LOGDIR`, `database`, and `database_out` are overwritten by the Operator. The Operator adds a prefix to `/hostroot/` before all paths to be watched for integrity changes. As a result, you can reuse existing AIDE configs that might not be tailored for a containerized environment and that start from the root directory.\n\n> [!NOTE]\n> `/hostroot` is the directory where the pods running AIDE mount the host file system. Changing the configuration triggers a reinitializing of the database.\n\n## Defining a custom File Integrity Operator configuration {#file-integrity-operator-defining-custom-config_file-integrity-operator}\n\nThis example focuses on defining a custom configuration for a scanner that runs on the control plane nodes based on the default configuration provided for the `worker-fileintegrity` CR. This workflow might be useful if you are planning to deploy a custom software running as a daemon set and storing its data under `/opt/mydaemon` on the control plane nodes.\n\n**Procedure**\n\n1. Make a copy of the default configuration.\n2. Edit the default configuration with the files that must be watched or excluded.\n3. Store the edited contents in a new config map.\n4. Point the `FileIntegrity` object to the new config map through the attributes in `spec.config`.\n5. Extract the default configuration:\n\n   ```terminal\n   $ oc extract cm/worker-fileintegrity --keys=aide.conf\n   ```\n\n   This creates a file named `aide.conf` that you can edit. To illustrate how the Operator post-processes the paths, this example adds an exclude directory without the prefix:\n\n   ```terminal\n   $ vim aide.conf\n   ```\n\n   ```terminal {title=\"Example output\"}\n   /hostroot/etc/kubernetes/static-pod-resources\n   !/hostroot/etc/kubernetes/aide.*\n   !/hostroot/etc/kubernetes/manifests\n   !/hostroot/etc/docker/certs.d\n   !/hostroot/etc/selinux/targeted\n   !/hostroot/etc/openvswitch/conf.db\n   ```\n\n   Exclude a path specific to control plane nodes:\n\n   ```terminal\n   !/opt/mydaemon/\n   ```\n\n   Store the other content in `/etc`:\n\n   ```terminal\n   /hostroot/etc/\tCONTENT_EX\n   ```\n6. Create a config map based on this file:\n\n   ```terminal\n   $ oc create cm master-aide-conf --from-file=aide.conf\n   ```\n7. Define a `FileIntegrity` CR manifest that references the config map:\n\n   ```yaml\n   apiVersion: fileintegrity.openshift.io/v1alpha1\n   kind: FileIntegrity\n   metadata:\n     name: master-fileintegrity\n     namespace: openshift-file-integrity\n   spec:\n     nodeSelector:\n         node-role.kubernetes.io/master: \"\"\n     config:\n         name: master-aide-conf\n         namespace: openshift-file-integrity\n   ```\n\n   The Operator processes the provided config map file and stores the result in a config map with the same name as the `FileIntegrity` object:\n\n   ```terminal\n   $ oc describe cm/master-fileintegrity | grep /opt/mydaemon\n   ```\n\n   ```terminal {title=\"Example output\"}\n   !/hostroot/opt/mydaemon\n   ```\n\n## Changing the custom File Integrity configuration {#file-integrity-operator-changing-custom-config_file-integrity-operator}\n\nTo change the File Integrity configuration, never change the generated config map. Instead, change the config map that is linked to the `FileIntegrity` object through the `spec.name`, `namespace`, and `key` attributes.\n\n**Procedure**\n\n- Update the config map referenced by the `spec.config` attributes of the `FileIntegrity` object.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/file_integrity_operator/file-integrity-operator-configuring.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,15 +101,138 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-file-integrity-operator" class="group scroll-mt-20">Configuring the Custom File Integrity Operator<a href="#configuring-file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure the Custom File Integrity Operator to meet your cluster requirements.</p>
-      <p class="/modules/file-integrity-operator-viewing-attributes.md"></p>
-      <p class="/modules/file-integrity-important-attributes.md"></p>
-      <p class="/modules/file-integrity-examine-default-config.md"></p>
-      <p class="/modules/file-integrity-understanding-default-config.md"></p>
-      <p class="/modules/file-integrity-supplying-custom-aide-config.md"></p>
-      <p class="/modules/file-integrity-operator-defining-custom-config.md"></p>
-      <p class="/modules/file-integrity-operator-changing-custom-config.md"></p>
+      <h2 id="viewing-file-integrity-object-attributes_file-integrity-operator" class="group scroll-mt-20">Viewing FileIntegrity object attributes<a href="#viewing-file-integrity-object-attributes_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">As with any Kubernetes custom resources (CRs), you can run <code>oc explain fileintegrity</code>, and then examine the individual attributes.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      View the <code>FileIntegrity</code> spec attributes by running the following command:
+      <CodeBlock code={"$ oc explain fileintegrity.spec"} lang="terminal" />
+      </li>
+      <li>
+      View the <code>FileIntegrity</code> config attributes by running the following command:
+      <CodeBlock code={"$ oc explain fileintegrity.spec.config"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="important-file-integrity-object-attributes_file-integrity-operator" class="group scroll-mt-20">Important attributes<a href="#important-file-integrity-object-attributes_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following <code>spec</code> and <code>spec.config</code> attributes are important when configuring a <code>FileIntegrity</code> CR.</p>
+      <p><strong>Important </strong><code>spec</code><strong> and </strong><code>spec.config</code><strong> attributes</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Attribute</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>spec.nodeSelector</code></TableCell>
+      <TableCell>Specifies a map of key-value pairs that labels for a node must match for a cluster to schedule Advanced Intrusion Detection Environment (AIDE) pods on that node. Typically, you can configure only a single key-value pair. For example, <code>node-role.kubernetes.io/worker: ""</code> schedules AIDE on all compute nodes, while <code>node.openshift.io/os_id: "rhel"</code> schedules AIDE on all RHEL nodes.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.debug</code></TableCell>
+      <TableCell>A boolean attribute. If set to <code>true</code>, the daemon running in the AIDE daemon set pods would output extra information.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.tolerations</code></TableCell>
+      <TableCell>Specify tolerations to schedule on nodes with custom taints. When not specified, a default toleration is applied, which allows tolerations to run on control plane nodes.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.config.gracePeriod</code></TableCell>
+      <TableCell>The number of seconds to pause in between AIDE integrity checks. Frequent AIDE checks on a node can be resource intensive, so it can be useful to specify a longer interval. Defaults to <code>900</code>, or 15 minutes.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>maxBackups</code></TableCell>
+      <TableCell>The maximum number of AIDE database and log backups leftover from the <code>re-init</code> process to keep on a node. Older backups beyond this number are automatically pruned by the daemon.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.config.name</code></TableCell>
+      <TableCell>Name of a configMap that contains custom AIDE configuration. If omitted, a default configuration is created.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.config.namespace</code></TableCell>
+      <TableCell>Namespace of a configMap that contains custom AIDE configuration. If unset, the FIO generates a default configuration suitable for RHCOS systems.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.config.key</code></TableCell>
+      <TableCell>Key that contains actual AIDE configuration in a config map specified by <code>name</code> and <code>namespace</code>. The default value is <code>aide.conf</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.config.initialDelay</code></TableCell>
+      <TableCell>The number of seconds to wait before starting the first AIDE integrity check. Default is set to 0. This attribute is optional.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="file-integrity-examine-default-config_file-integrity-operator" class="group scroll-mt-20">Examine the default configuration<a href="#file-integrity-examine-default-config_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The default File Integrity Operator configuration is stored in a config map with the same name as the <code>FileIntegrity</code> CR.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To examine the default config, run:
+      <CodeBlock code={"$ oc describe cm/worker-fileintegrity"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="file-integrity-understanding-default-config_file-integrity-operator" class="group scroll-mt-20">Understanding the default File Integrity Operator configuration<a href="#file-integrity-understanding-default-config_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The default configuration for a <code>FileIntegrity</code> instance provides coverage for files under key system directories and excludes others.</p>
+      <p>Below is an excerpt from the <code>aide.conf</code> key of the config map:</p>
+      <CodeBlock code={"@@define DBDIR /hostroot/etc/kubernetes\n@@define LOGDIR /hostroot/etc/kubernetes\ndatabase=file:@@{DBDIR}/aide.db.gz\ndatabase_out=file:@@{DBDIR}/aide.db.gz\ngzip_dbout=yes\nverbose=5\nreport_url=file:@@{LOGDIR}/aide.log\nreport_url=stdout\nPERMS = p+u+g+acl+selinux+xattrs\nCONTENT_EX = sha512+ftype+p+u+g+n+acl+selinux+xattrs\n\n/hostroot/boot/    \tCONTENT_EX\n/hostroot/root/\\..* PERMS\n/hostroot/root/   CONTENT_EX"} lang="bash" />
+      <p>The default configuration for a <code>FileIntegrity</code> instance provides coverage for files under the following directories:</p>
+      <ul>
+      <li><code>/root</code></li>
+      <li><code>/boot</code></li>
+      <li><code>/usr</code></li>
+      <li><code>/etc</code></li>
+      </ul>
+      <p>The following directories are not covered:</p>
+      <ul>
+      <li><code>/var</code></li>
+      <li><code>/opt</code></li>
+      <li>Some OpenShift Container Platform-specific excludes under <code>/etc/</code></li>
+      </ul>
+      <h2 id="file-integrity-operator-supplying-custom-aide-config_file-integrity-operator" class="group scroll-mt-20">Supplying a custom AIDE configuration<a href="#file-integrity-operator-supplying-custom-aide-config_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Any entries that configure AIDE internal behavior such as <code>DBDIR</code>, <code>LOGDIR</code>, <code>database</code>, and <code>database_out</code> are overwritten by the Operator. The Operator adds a prefix to <code>/hostroot/</code> before all paths to be watched for integrity changes. As a result, you can reuse existing AIDE configs that might not be tailored for a containerized environment and that start from the root directory.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p><code>/hostroot</code> is the directory where the pods running AIDE mount the host file system. Changing the configuration triggers a reinitializing of the database.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="file-integrity-operator-defining-custom-config_file-integrity-operator" class="group scroll-mt-20">Defining a custom File Integrity Operator configuration<a href="#file-integrity-operator-defining-custom-config_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">This example focuses on defining a custom configuration for a scanner that runs on the control plane nodes based on the default configuration provided for the <code>worker-fileintegrity</code> CR. This workflow might be useful if you are planning to deploy a custom software running as a daemon set and storing its data under <code>/opt/mydaemon</code> on the control plane nodes.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Make a copy of the default configuration.</li>
+      <li>Edit the default configuration with the files that must be watched or excluded.</li>
+      <li>Store the edited contents in a new config map.</li>
+      <li>Point the <code>FileIntegrity</code> object to the new config map through the attributes in <code>spec.config</code>.</li>
+      <li>
+      Extract the default configuration:
+      <CodeBlock code={"$ oc extract cm/worker-fileintegrity --keys=aide.conf"} lang="terminal" />
+      <p>This creates a file named <code>aide.conf</code> that you can edit. To illustrate how the Operator post-processes the paths, this example adds an exclude directory without the prefix:</p>
+      <CodeBlock code={"$ vim aide.conf"} lang="terminal" />
+      <CodeBlock code={"/hostroot/etc/kubernetes/static-pod-resources\n!/hostroot/etc/kubernetes/aide.*\n!/hostroot/etc/kubernetes/manifests\n!/hostroot/etc/docker/certs.d\n!/hostroot/etc/selinux/targeted\n!/hostroot/etc/openvswitch/conf.db"} lang="terminal" title="Example output" />
+      <p>Exclude a path specific to control plane nodes:</p>
+      <CodeBlock code={"!/opt/mydaemon/"} lang="terminal" />
+      <p>Store the other content in <code>/etc</code>:</p>
+      <CodeBlock code={"/hostroot/etc/\tCONTENT_EX"} lang="terminal" />
+      </li>
+      <li>
+      Create a config map based on this file:
+      <CodeBlock code={"$ oc create cm master-aide-conf --from-file=aide.conf"} lang="terminal" />
+      </li>
+      <li>
+      Define a <code>FileIntegrity</code> CR manifest that references the config map:
+      <CodeBlock code={"apiVersion: fileintegrity.openshift.io/v1alpha1\nkind: FileIntegrity\nmetadata:\n  name: master-fileintegrity\n  namespace: openshift-file-integrity\nspec:\n  nodeSelector:\n      node-role.kubernetes.io/master: \"\"\n  config:\n      name: master-aide-conf\n      namespace: openshift-file-integrity"} lang="yaml" />
+      <p>The Operator processes the provided config map file and stores the result in a config map with the same name as the <code>FileIntegrity</code> object:</p>
+      <CodeBlock code={"$ oc describe cm/master-fileintegrity | grep /opt/mydaemon"} lang="terminal" />
+      <CodeBlock code={"!/hostroot/opt/mydaemon"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="file-integrity-operator-changing-custom-config_file-integrity-operator" class="group scroll-mt-20">Changing the custom File Integrity configuration<a href="#file-integrity-operator-changing-custom-config_file-integrity-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To change the File Integrity configuration, never change the generated config map. Instead, change the config map that is linked to the <code>FileIntegrity</code> object through the <code>spec.name</code>, <code>namespace</code>, and <code>key</code> attributes.</p>
+      <p><strong>Procedure</strong></p>
+      <ul><li>Update the config map referenced by the <code>spec.config</code> attributes of the <code>FileIntegrity</code> object.</li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

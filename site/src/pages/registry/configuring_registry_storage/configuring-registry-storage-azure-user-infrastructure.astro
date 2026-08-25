@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-registry-storage-azure-user-infrastructure","text":"Configuring the registry for Azure user-provisioned infrastructure"}];
+const headings = [{"depth":1,"slug":"configuring-registry-storage-azure-user-infrastructure","text":"Configuring the registry for Azure user-provisioned infrastructure"},{"depth":2,"slug":"registry-operator-config-resources-secret-azure_configuring-registry-storage-azure-user-infrastructure","text":"Configuring a secret for the Image Registry Operator"},{"depth":2,"slug":"registry-configuring-storage-azure-user-infra_configuring-registry-storage-azure-user-infrastructure","text":"Configuring registry storage for Azure"},{"depth":2,"slug":"registry-configuring-storage-azure-gov-cloud_configuring-registry-storage-azure-user-infrastructure","text":"Configuring registry storage for Azure Government"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-azure-user-infrastructure";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["registry","registry/configuring_registry_storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the registry for Azure user-provisioned infrastructure {#configuring-registry-storage-azure-user-infrastructure}\n\nSave your container images to a durable storage location by configuring the built-in image registry to use dedicated Azure storage. This setup provides persistent scalable storage for your registry, separate from ephemeral cluster storage.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-azure-user-infrastructure.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the registry for Azure user-provisioned infrastructure {#configuring-registry-storage-azure-user-infrastructure}\n\nSave your container images to a durable storage location by configuring the built-in image registry to use dedicated Azure storage. This setup provides persistent scalable storage for your registry, separate from ephemeral cluster storage.\n\n## Configuring a secret for the Image Registry Operator {#registry-operator-config-resources-secret-azure_configuring-registry-storage-azure-user-infrastructure}\n\nIn addition to the `configs.imageregistry.operator.openshift.io` and ConfigMap resources, configuration is provided to the Operator by a separate secret resource located within the `openshift-image-registry` namespace.\n\nThe `image-registry-private-configuration-user` secret provides credentials needed for storage access and management. It overrides the default credentials used by the Operator, if default credentials were found.\n\nFor Azure registry storage, the secret is expected to contain one key whose value is the contents of a credentials file provided by Azure:\n\n- `REGISTRY_STORAGE_AZURE_ACCOUNTKEY`\n\n**Procedure**\n\n- Create an OpenShift Container Platform secret that contains the required key.\n\n  ```terminal\n  $ oc create secret generic image-registry-private-configuration-user --from-literal=REGISTRY_STORAGE_AZURE_ACCOUNTKEY=<accountkey> --namespace openshift-image-registry\n  ```\n\n## Configuring registry storage for Azure {#registry-configuring-storage-azure-user-infra_configuring-registry-storage-azure-user-infrastructure}\n\nDuring installation, your cloud credentials are sufficient to create Azure Blob Storage, and the Registry Operator automatically configures storage.\n\n**Prerequisites**\n\n- A cluster on Azure with user-provisioned infrastructure.\n- To configure registry storage for Azure, provide Registry Operator cloud credentials.\n- For Azure storage the secret is expected to contain one key:\n\n  - `REGISTRY_STORAGE_AZURE_ACCOUNTKEY`\n\n**Procedure**\n\n1. Create an [Azure storage container](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal).\n2. Fill in the storage configuration in `configs.imageregistry.operator.openshift.io/cluster`:\n\n   ```terminal\n   $ oc edit configs.imageregistry.operator.openshift.io/cluster\n   ```\n\n   ```yaml {title=\"Example configuration\"}\n   apiVersion: imageregistry.operator.openshift.io/v1\n   kind: Config\n   metadata:\n     name: cluster\n   spec:\n     storage:\n       azure:\n         accountName: <storage_account_name>\n         container: <container_name>\n   ```\n\n## Configuring registry storage for Azure Government {#registry-configuring-storage-azure-gov-cloud_configuring-registry-storage-azure-user-infrastructure}\n\nDuring installation, your cloud credentials are sufficient to create Azure Blob Storage, and the Registry Operator automatically configures storage.\n\n**Prerequisites**\n\n- A cluster on Azure with user-provisioned infrastructure in a government region.\n- To configure registry storage for Azure, provide Registry Operator cloud credentials.\n- For Azure storage, the secret is expected to contain one key:\n\n  - `REGISTRY_STORAGE_AZURE_ACCOUNTKEY`\n\n**Procedure**\n\n1. Create an [Azure storage container](https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal).\n2. Fill in the storage configuration in `configs.imageregistry.operator.openshift.io/cluster`:\n\n   ```terminal\n   $ oc edit configs.imageregistry.operator.openshift.io/cluster\n   ```\n\n   ```yaml {title=\"Example configuration\"}\n   storage:\n     azure:\n       accountName: <storage-account-name>\n       container: <container-name>\n       cloudName: AzureUSGovernmentCloud\n   ```\n\n   `cloudName` is the name of the Azure cloud environment, which can be used to configure the Azure SDK with the appropriate Azure API endpoints. Defaults to `AzurePublicCloud`. You can also set `cloudName` to `AzureUSGovernmentCloud`, `AzureChinaCloud`, or `AzureGermanCloud` with sufficient credentials.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-azure-user-infrastructure.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +92,60 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-registry-storage-azure-user-infrastructure" class="group scroll-mt-20">Configuring the registry for Azure user-provisioned infrastructure<a href="#configuring-registry-storage-azure-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Save your container images to a durable storage location by configuring the built-in image registry to use dedicated Azure storage. This setup provides persistent scalable storage for your registry, separate from ephemeral cluster storage.</p>
-      <p class="/modules/registry-operator-config-resources-secret-azure.md"></p>
-      <p class="/modules/registry-configuring-storage-azure-user-infra.md"></p>
-      <p class="/modules/registry-configuring-storage-azure-gov-cloud.md"></p>
+      <h2 id="registry-operator-config-resources-secret-azure_configuring-registry-storage-azure-user-infrastructure" class="group scroll-mt-20">Configuring a secret for the Image Registry Operator<a href="#registry-operator-config-resources-secret-azure_configuring-registry-storage-azure-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In addition to the <code>configs.imageregistry.operator.openshift.io</code> and ConfigMap resources, configuration is provided to the Operator by a separate secret resource located within the <code>openshift-image-registry</code> namespace.</p>
+      <p>The <code>image-registry-private-configuration-user</code> secret provides credentials needed for storage access and management. It overrides the default credentials used by the Operator, if default credentials were found.</p>
+      <p>For Azure registry storage, the secret is expected to contain one key whose value is the contents of a credentials file provided by Azure:</p>
+      <ul><li><code>REGISTRY_STORAGE_AZURE_ACCOUNTKEY</code></li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create an OpenShift Container Platform secret that contains the required key.
+      <CodeBlock code={"$ oc create secret generic image-registry-private-configuration-user --from-literal=REGISTRY_STORAGE_AZURE_ACCOUNTKEY=<accountkey> --namespace openshift-image-registry"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="registry-configuring-storage-azure-user-infra_configuring-registry-storage-azure-user-infrastructure" class="group scroll-mt-20">Configuring registry storage for Azure<a href="#registry-configuring-storage-azure-user-infra_configuring-registry-storage-azure-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">During installation, your cloud credentials are sufficient to create Azure Blob Storage, and the Registry Operator automatically configures storage.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>A cluster on Azure with user-provisioned infrastructure.</li>
+      <li>To configure registry storage for Azure, provide Registry Operator cloud credentials.</li>
+      <li>
+      For Azure storage the secret is expected to contain one key:
+      <ul><li><code>REGISTRY_STORAGE_AZURE_ACCOUNTKEY</code></li></ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create an <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal">Azure storage container</a>.</li>
+      <li>
+      Fill in the storage configuration in <code>configs.imageregistry.operator.openshift.io/cluster</code>:
+      <CodeBlock code={"$ oc edit configs.imageregistry.operator.openshift.io/cluster"} lang="terminal" />
+      <CodeBlock code={"apiVersion: imageregistry.operator.openshift.io/v1\nkind: Config\nmetadata:\n  name: cluster\nspec:\n  storage:\n    azure:\n      accountName: <storage_account_name>\n      container: <container_name>"} lang="yaml" title="Example configuration" />
+      </li>
+      </ol>
+      <h2 id="registry-configuring-storage-azure-gov-cloud_configuring-registry-storage-azure-user-infrastructure" class="group scroll-mt-20">Configuring registry storage for Azure Government<a href="#registry-configuring-storage-azure-gov-cloud_configuring-registry-storage-azure-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">During installation, your cloud credentials are sufficient to create Azure Blob Storage, and the Registry Operator automatically configures storage.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>A cluster on Azure with user-provisioned infrastructure in a government region.</li>
+      <li>To configure registry storage for Azure, provide Registry Operator cloud credentials.</li>
+      <li>
+      For Azure storage, the secret is expected to contain one key:
+      <ul><li><code>REGISTRY_STORAGE_AZURE_ACCOUNTKEY</code></li></ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create an <a href="https://docs.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal">Azure storage container</a>.</li>
+      <li>
+      Fill in the storage configuration in <code>configs.imageregistry.operator.openshift.io/cluster</code>:
+      <CodeBlock code={"$ oc edit configs.imageregistry.operator.openshift.io/cluster"} lang="terminal" />
+      <CodeBlock code={"storage:\n  azure:\n    accountName: <storage-account-name>\n    container: <container-name>\n    cloudName: AzureUSGovernmentCloud"} lang="yaml" title="Example configuration" />
+      <p><code>cloudName</code> is the name of the Azure cloud environment, which can be used to configure the Azure SDK with the appropriate Azure API endpoints. Defaults to <code>AzurePublicCloud</code>. You can also set <code>cloudName</code> to <code>AzureUSGovernmentCloud</code>, <code>AzureChinaCloud</code>, or <code>AzureGermanCloud</code> with sufficient credentials.</p>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

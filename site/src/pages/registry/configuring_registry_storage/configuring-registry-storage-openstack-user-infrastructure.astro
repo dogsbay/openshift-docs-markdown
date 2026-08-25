@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-registry-storage-openstack-user-infrastructure","text":"Configuring the registry for OpenStack user-provisioned infrastructure"}];
+const headings = [{"depth":1,"slug":"configuring-registry-storage-openstack-user-infrastructure","text":"Configuring the registry for OpenStack user-provisioned infrastructure"},{"depth":2,"slug":"registry-configuring-registry-storage-swift-trust_configuring-registry-storage-openstack-user-infrastructure","text":"Configuring Image Registry Operator redirects"},{"depth":2,"slug":"registry-operator-config-resources-secret-openstack_configuring-registry-storage-openstack-user-infrastructure","text":"Configuring a secret for the Image Registry Operator"},{"depth":2,"slug":"registry-configuring-storage-openstack-user-infra_configuring-registry-storage-openstack-user-infrastructure","text":"Registry storage for RHOSP with user-provisioned infrastructure"},{"depth":2,"slug":"registry-operator-configuration-resource-overview-openstack-swift_configuring-registry-storage-openstack-user-infrastructure","text":"Image Registry Operator configuration parameters for RHOSP Swift"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-openstack-user-infrastructure";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring the registry for OpenStack user-provisioned infrastructure";
-const description = "You can configure the registry of a cluster that runs on your own {{ rh_openstack_first }} infrastructure." || undefined;
+const description = "You can configure the registry of a cluster that runs on your own Red Hat OpenStack Platform (RHOSP) infrastructure." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["registry","registry/configuring_registry_storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the registry for OpenStack user-provisioned infrastructure {#configuring-registry-storage-openstack-user-infrastructure}\n\nYou can configure the registry of a cluster that runs on your own {{ rh_openstack_first }} infrastructure.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-openstack-user-infrastructure.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the registry for OpenStack user-provisioned infrastructure {#configuring-registry-storage-openstack-user-infrastructure}\n\nYou can configure the registry of a cluster that runs on your own Red Hat OpenStack Platform (RHOSP) infrastructure.\n\n## Configuring Image Registry Operator redirects {#registry-configuring-registry-storage-swift-trust_configuring-registry-storage-openstack-user-infrastructure}\n\nBy disabling redirects, you can configure the Image Registry Operator to control whether clients such as OpenShift Container Platform cluster builds or external systems like developer machines are redirected to pull images directly from Red Hat OpenStack Platform (RHOSP) Swift storage. This configuration is optional and depends on whether the clients trust the storage’s SSL/TLS certificates.\n\n> [!NOTE]\n> In situations where clients to not trust the storage certificate, setting the `disableRedirect` option can be set to `true` proxies traffic through the image registry. Consequently, however, the image registry might require more resources, especially network bandwidth, to handle the increased load.\n>\n> Alternatively, if clients trust the storage certificate, the registry can allow redirects. This reduces resource demand on the registry itself.\n>\n> Some users might prefer to configure their clients to trust their self-signed certificate authorities (CAs) instead of disabling redirects. If you are using a self-signed CA, you must decide between trusting the custom CAs or disabling redirects.\n\n**Procedure**\n\n- To ensures that the image registry proxies traffic instead of relying on Swift storage, change the value of the `spec.disableRedirect` field in the `config.imageregistry` object to `true` by running the following command:\n\n  ```terminal\n  $ oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\":{\"disableRedirect\":true}}'\n  ```\n\n## Configuring a secret for the Image Registry Operator {#registry-operator-config-resources-secret-openstack_configuring-registry-storage-openstack-user-infrastructure}\n\nIn addition to the `configs.imageregistry.operator.openshift.io` and ConfigMap resources, configuration is provided to the Operator by a separate secret resource located within the `openshift-image-registry` namespace.\n\nThe `image-registry-private-configuration-user` secret provides credentials needed for storage access and management. It overrides the default credentials used by the Operator, if default credentials were found.\n\nFor Swift on Red Hat OpenStack Platform (RHOSP) storage, the secret is expected to contain the following two keys:\n\n- `REGISTRY_STORAGE_SWIFT_USERNAME`\n- `REGISTRY_STORAGE_SWIFT_PASSWORD`\n\n**Procedure**\n\n- Create an OpenShift Container Platform secret that contains the required keys.\n\n  ```terminal\n  $ oc create secret generic image-registry-private-configuration-user --from-literal=REGISTRY_STORAGE_SWIFT_USERNAME=<username> --from-literal=REGISTRY_STORAGE_SWIFT_PASSWORD=<password> -n openshift-image-registry\n  ```\n\n## Registry storage for RHOSP with user-provisioned infrastructure {#registry-configuring-storage-openstack-user-infra_configuring-registry-storage-openstack-user-infrastructure}\n\nIf the Registry Operator cannot create a Swift bucket, you must set up the storage medium manually and configure the settings in the registry custom resource (CR).\n\n**Prerequisites**\n\n- A cluster on Red Hat OpenStack Platform (RHOSP) with user-provisioned infrastructure.\n- To configure registry storage for RHOSP, you need to provide Registry Operator cloud credentials.\n- For Swift on RHOSP storage, the secret is expected to contain the following two keys:\n\n  - `REGISTRY_STORAGE_SWIFT_USERNAME`\n  - `REGISTRY_STORAGE_SWIFT_PASSWORD`\n\n**Procedure**\n\n- Fill in the storage configuration in `configs.imageregistry.operator.openshift.io/cluster`:\n\n  ```terminal\n  $ oc edit configs.imageregistry.operator.openshift.io/cluster\n  ```\n\n  ```yaml {title=\"Example configuration\"}\n  apiVersion: imageregistry.operator.openshift.io/v1\n  kind: Config\n  metadata:\n    name: cluster\n  spec:\n    storage:\n      swift:\n        container: <container_id>\n  ```\n\n## Image Registry Operator configuration parameters for RHOSP Swift {#registry-operator-configuration-resource-overview-openstack-swift_configuring-registry-storage-openstack-user-infrastructure}\n\nThe following parameters are available for you to configure your Red Hat OpenStack Platform (RHOSP) Swift registry storage.\n\n<table>\n<thead>\n<tr>\n  <th>Parameter</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>authURL</code></td>\n  <td>Defines the URL for obtaining the authentication token. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>authVersion</code></td>\n  <td>Specifies the Auth version of RHOSP, for example, <code>authVersion: \"3\"</code>. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>container</code></td>\n  <td>Defines the name of a Swift container for storing registry data. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>domain</code></td>\n  <td>Specifies the RHOSP domain name for the Identity v3 API. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>domainID</code></td>\n  <td>Specifies the RHOSP domain ID for the Identity v3 API. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>tenant</code></td>\n  <td>Defines the RHOSP tenant name to be used by the registry. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>tenantID</code></td>\n  <td>Defines the RHOSP tenant ID to be used by the registry. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>regionName</code></td>\n  <td>Defines the RHOSP region in which the container exists. This value is optional.</td>\n</tr>\n</tbody>\n</table>\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/registry/configuring_registry_storage/configuring-registry-storage-openstack-user-infrastructure.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,64 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-registry-storage-openstack-user-infrastructure" class="group scroll-mt-20">Configuring the registry for OpenStack user-provisioned infrastructure<a href="#configuring-registry-storage-openstack-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can configure the registry of a cluster that runs on your own {"{"}{"{"} rh_openstack_first {"}"}{"}"} infrastructure.</p>
-      <p class="/modules/registry-configuring-registry-storage-swift-trust.md"></p>
-      <p class="/modules/registry-operator-config-resources-secret-openstack.md"></p>
-      <p class="/modules/registry-configuring-storage-openstack-user-infra.md"></p>
-      <p class="/modules/registry-operator-configuration-resource-overview-openstack-swift.md"></p>
+      <p>You can configure the registry of a cluster that runs on your own Red Hat OpenStack Platform (RHOSP) infrastructure.</p>
+      <h2 id="registry-configuring-registry-storage-swift-trust_configuring-registry-storage-openstack-user-infrastructure" class="group scroll-mt-20">Configuring Image Registry Operator redirects<a href="#registry-configuring-registry-storage-swift-trust_configuring-registry-storage-openstack-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By disabling redirects, you can configure the Image Registry Operator to control whether clients such as OpenShift Container Platform cluster builds or external systems like developer machines are redirected to pull images directly from Red Hat OpenStack Platform (RHOSP) Swift storage. This configuration is optional and depends on whether the clients trust the storage’s SSL/TLS certificates.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>In situations where clients to not trust the storage certificate, setting the <code>disableRedirect</code> option can be set to <code>true</code> proxies traffic through the image registry. Consequently, however, the image registry might require more resources, especially network bandwidth, to handle the increased load.</p>
+          <p>Alternatively, if clients trust the storage certificate, the registry can allow redirects. This reduces resource demand on the registry itself.</p>
+          <p>Some users might prefer to configure their clients to trust their self-signed certificate authorities (CAs) instead of disabling redirects. If you are using a self-signed CA, you must decide between trusting the custom CAs or disabling redirects.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To ensures that the image registry proxies traffic instead of relying on Swift storage, change the value of the <code>spec.disableRedirect</code> field in the <code>config.imageregistry</code> object to <code>true</code> by running the following command:
+      <CodeBlock code={"$ oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\":{\"disableRedirect\":true}}'"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="registry-operator-config-resources-secret-openstack_configuring-registry-storage-openstack-user-infrastructure" class="group scroll-mt-20">Configuring a secret for the Image Registry Operator<a href="#registry-operator-config-resources-secret-openstack_configuring-registry-storage-openstack-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In addition to the <code>configs.imageregistry.operator.openshift.io</code> and ConfigMap resources, configuration is provided to the Operator by a separate secret resource located within the <code>openshift-image-registry</code> namespace.</p>
+      <p>The <code>image-registry-private-configuration-user</code> secret provides credentials needed for storage access and management. It overrides the default credentials used by the Operator, if default credentials were found.</p>
+      <p>For Swift on Red Hat OpenStack Platform (RHOSP) storage, the secret is expected to contain the following two keys:</p>
+      <ul>
+      <li><code>REGISTRY_STORAGE_SWIFT_USERNAME</code></li>
+      <li><code>REGISTRY_STORAGE_SWIFT_PASSWORD</code></li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create an OpenShift Container Platform secret that contains the required keys.
+      <CodeBlock code={"$ oc create secret generic image-registry-private-configuration-user --from-literal=REGISTRY_STORAGE_SWIFT_USERNAME=<username> --from-literal=REGISTRY_STORAGE_SWIFT_PASSWORD=<password> -n openshift-image-registry"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="registry-configuring-storage-openstack-user-infra_configuring-registry-storage-openstack-user-infrastructure" class="group scroll-mt-20">Registry storage for RHOSP with user-provisioned infrastructure<a href="#registry-configuring-storage-openstack-user-infra_configuring-registry-storage-openstack-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If the Registry Operator cannot create a Swift bucket, you must set up the storage medium manually and configure the settings in the registry custom resource (CR).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>A cluster on Red Hat OpenStack Platform (RHOSP) with user-provisioned infrastructure.</li>
+      <li>To configure registry storage for RHOSP, you need to provide Registry Operator cloud credentials.</li>
+      <li>
+      For Swift on RHOSP storage, the secret is expected to contain the following two keys:
+      <ul>
+      <li><code>REGISTRY_STORAGE_SWIFT_USERNAME</code></li>
+      <li><code>REGISTRY_STORAGE_SWIFT_PASSWORD</code></li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Fill in the storage configuration in <code>configs.imageregistry.operator.openshift.io/cluster</code>:
+      <CodeBlock code={"$ oc edit configs.imageregistry.operator.openshift.io/cluster"} lang="terminal" />
+      <CodeBlock code={"apiVersion: imageregistry.operator.openshift.io/v1\nkind: Config\nmetadata:\n  name: cluster\nspec:\n  storage:\n    swift:\n      container: <container_id>"} lang="yaml" title="Example configuration" />
+      </li>
+      </ul>
+      <h2 id="registry-operator-configuration-resource-overview-openstack-swift_configuring-registry-storage-openstack-user-infrastructure" class="group scroll-mt-20">Image Registry Operator configuration parameters for RHOSP Swift<a href="#registry-operator-configuration-resource-overview-openstack-swift_configuring-registry-storage-openstack-user-infrastructure" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following parameters are available for you to configure your Red Hat OpenStack Platform (RHOSP) Swift registry storage.</p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Parameter</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>authURL</code></td>\n  <td>Defines the URL for obtaining the authentication token. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>authVersion</code></td>\n  <td>Specifies the Auth version of RHOSP, for example, <code>authVersion: \"3\"</code>. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>container</code></td>\n  <td>Defines the name of a Swift container for storing registry data. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>domain</code></td>\n  <td>Specifies the RHOSP domain name for the Identity v3 API. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>domainID</code></td>\n  <td>Specifies the RHOSP domain ID for the Identity v3 API. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>tenant</code></td>\n  <td>Defines the RHOSP tenant name to be used by the registry. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>tenantID</code></td>\n  <td>Defines the RHOSP tenant ID to be used by the registry. This value is optional.</td>\n</tr>\n<tr>\n  <td><code>regionName</code></td>\n  <td>Defines the RHOSP region in which the container exists. This value is optional.</td>\n</tr>\n</tbody>\n</table>"} />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

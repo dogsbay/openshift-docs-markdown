@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"viewing-network-policy","text":"Viewing a network policy"}];
+const headings = [{"depth":1,"slug":"viewing-network-policy","text":"Viewing a network policy"},{"depth":2,"slug":"nw-networkpolicy-object_viewing-network-policy","text":"Example NetworkPolicy object"},{"depth":2,"slug":"nw-networkpolicy-view-cli_viewing-network-policy","text":"View network policies using the CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_security/network_policy/viewing-network-policy";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["networking","networking/network_security","networking/net
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing a network policy {#viewing-network-policy}\n\nAs a cluster administrator, you can view a network policy for a namespace.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/network_policy/viewing-network-policy.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing a network policy {#viewing-network-policy}\n\nAs a cluster administrator, you can view a network policy for a namespace.\n\n## Example NetworkPolicy object {#nw-networkpolicy-object_viewing-network-policy}\n\nReference the example `NetworkPolicy` object to understand how to configure this object.\n\n```yaml\nkind: NetworkPolicy\napiVersion: networking.k8s.io/v1\nmetadata:\n  name: allow-27107\nspec:\n  podSelector:\n    matchLabels:\n      app: mongodb\n  ingress:\n  - from:\n    - podSelector:\n        matchLabels:\n          app: app\n    ports:\n    - protocol: TCP\n      port: 27017\n```\n\nwhere:\n\n`name`\n:   The name of the NetworkPolicy object.\n\n`spec.podSelector`\n:   A selector that describes the pods to which the policy applies. The policy object can only select pods in the project that defines the NetworkPolicy object.\n\n`ingress.from.podSelector`\n:   A selector that matches the pods from which the policy object allows ingress traffic. The selector matches pods in the same namespace as the NetworkPolicy.\n\n`ingress.ports`\n:   A list of one or more destination ports on which to accept traffic.\n\n## View network policies using the CLI {#nw-networkpolicy-view-cli_viewing-network-policy}\n\nYou can examine the network policies in a namespace.\n\n> [!NOTE]\n> If you log in with `cluster-admin` privileges, you can edit network policies in any namespace in the cluster.\n\n> [!NOTE]\n> If you log in with `cluster-admin` privileges, you can edit network policies in any namespace in the cluster. In the web console, you can edit policies directly in YAML or by using the **Actions** menu.\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n- You are logged in to the cluster with a user with `{{ role }}` privileges.\n- You are working in the namespace where the network policy exists.\n\n**Procedure**\n\n1. List network policies in a namespace.\n\n   1. To view network policy objects defined in a namespace enter the following command:\n\n      ```terminal\n      $ oc get {{ name }}policy\n      ```\n   2. Optional: To examine a specific network policy enter the following command:\n\n      ```terminal\n      $ oc describe {{ name }}policy <policy_name> -n <namespace>\n      ```\n\n      where:\n\n      `<policy_name>`\n      :   Specifies the name of the network policy to inspect.\n\n      `<namespace>`\n      :   Optional: Specifies the namespace if the object is defined in a different namespace than the current namespace.\n\n      ```terminal\n      $ oc describe networkpolicy allow-same-namespace\n      ```\n\n      ```text\n      Name:         allow-same-namespace\n      Namespace:    ns1\n      Created on:   2021-05-24 22:28:56 -0400 EDT\n      Labels:       <none>\n      Annotations:  <none>\n      Spec:\n        PodSelector:     <none> (Allowing the specific traffic to all pods in this namespace)\n        Allowing ingress traffic:\n          To Port: <any> (traffic allowed to all ports)\n          From:\n            PodSelector: <none>\n        Not affecting egress traffic\n        Policy Types: Ingress\n      ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_security/network_policy/viewing-network-policy.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,66 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="viewing-network-policy" class="group scroll-mt-20">Viewing a network policy<a href="#viewing-network-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As a cluster administrator, you can view a network policy for a namespace.</p>
-      <p class="/modules/nw-networkpolicy-object.md"></p>
-      <p class="/modules/nw-networkpolicy-view-cli.md"></p>
+      <h2 id="nw-networkpolicy-object_viewing-network-policy" class="group scroll-mt-20">Example NetworkPolicy object<a href="#nw-networkpolicy-object_viewing-network-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Reference the example <code>NetworkPolicy</code> object to understand how to configure this object.</p>
+      <CodeBlock code={"kind: NetworkPolicy\napiVersion: networking.k8s.io/v1\nmetadata:\n  name: allow-27107\nspec:\n  podSelector:\n    matchLabels:\n      app: mongodb\n  ingress:\n  - from:\n    - podSelector:\n        matchLabels:\n          app: app\n    ports:\n    - protocol: TCP\n      port: 27017"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The name of the NetworkPolicy object.</p></dd>
+      <dt class="font-semibold"><code>spec.podSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>A selector that describes the pods to which the policy applies. The policy object can only select pods in the project that defines the NetworkPolicy object.</p></dd>
+      <dt class="font-semibold"><code>ingress.from.podSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>A selector that matches the pods from which the policy object allows ingress traffic. The selector matches pods in the same namespace as the NetworkPolicy.</p></dd>
+      <dt class="font-semibold"><code>ingress.ports</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>A list of one or more destination ports on which to accept traffic.</p></dd>
+      </dl>
+      <h2 id="nw-networkpolicy-view-cli_viewing-network-policy" class="group scroll-mt-20">View network policies using the CLI<a href="#nw-networkpolicy-view-cli_viewing-network-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can examine the network policies in a namespace.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you log in with <code>cluster-admin</code> privileges, you can edit network policies in any namespace in the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you log in with <code>cluster-admin</code> privileges, you can edit network policies in any namespace in the cluster. In the web console, you can edit policies directly in YAML or by using the <strong>Actions</strong> menu.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You are logged in to the cluster with a user with <code>{"{"}{"{"} role {"}"}{"}"}</code> privileges.</li>
+      <li>You are working in the namespace where the network policy exists.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      List network policies in a namespace.
+      <ol>
+      <li>
+      To view network policy objects defined in a namespace enter the following command:
+      <CodeBlock code={"$ oc get {{ name }}policy"} lang="terminal" />
+      </li>
+      <li>
+      Optional: To examine a specific network policy enter the following command:
+      <CodeBlock code={"$ oc describe {{ name }}policy <policy_name> -n <namespace>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;policy_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the network policy to inspect.</p></dd>
+      <dt class="font-semibold"><code>&lt;namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the namespace if the object is defined in a different namespace than the current namespace.</p></dd>
+      </dl>
+      <CodeBlock code={"$ oc describe networkpolicy allow-same-namespace"} lang="terminal" />
+      <CodeBlock code={"Name:         allow-same-namespace\nNamespace:    ns1\nCreated on:   2021-05-24 22:28:56 -0400 EDT\nLabels:       <none>\nAnnotations:  <none>\nSpec:\n  PodSelector:     <none> (Allowing the specific traffic to all pods in this namespace)\n  Allowing ingress traffic:\n    To Port: <any> (traffic allowed to all ports)\n    From:\n      PodSelector: <none>\n  Not affecting egress traffic\n  Policy Types: Ingress"} lang="text" />
+      </li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"network-observability-network-policy","text":"Network Policy"}];
+const headings = [{"depth":1,"slug":"network-observability-network-policy","text":"Network Policy"},{"depth":2,"slug":"network-observability-deploy-network-policy_network_observability","text":"Configuring network policy by using the FlowCollector custom resource"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/network_observability/network-observability-network-policy";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["observability","observability/network_observability"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network Policy {#network-observability-network-policy}\n\nAs an administrator, you can create a network policy for the `netobserv` namespace. This policy secures inbound and outbound access to the Network Observability Operator.\n\n**Additional resources**\n\n- [Creating a network policy using the CLI](/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#nw-networkpolicy-object_creating-network-policy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-network-policy.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network Policy {#network-observability-network-policy}\n\nAs an administrator, you can create a network policy for the `netobserv` namespace. This policy secures inbound and outbound access to the Network Observability Operator.\n\n## Configuring network policy by using the FlowCollector custom resource {#network-observability-deploy-network-policy_network_observability}\n\nYou can set up ingress and egress network policies to control pod traffic. This enhances security and collects only the network flow data you need. This reduces noise, supports compliance, and improves visibility into network communication.\n\nYou can configure the `FlowCollector` custom resource (CR) to deploy an egress and ingress network policy for network observability. By default, the `spec.NetworkPolicy.enable` specification is set to `true`.\n\nIf you have installed Loki, Kafka or any exporter in a different namespace that also has a network policy, you must ensure that the network observability components can communicate with them. Consider the following about your setup:\n\n- Connection to Loki (as defined in the `FlowCollector` CR `spec.loki` parameter)\n- Connection to Kafka (as defined in the `FlowCollector` CR `spec.kafka` parameter)\n- Connection to any exporter (as defined in FlowCollector CR `spec.exporters` parameter)\n- If you are using Loki and including it in the policy target, connection to an external object storage (as defined in your `LokiStack` related secret)\n\n**Procedure**\n\n1. In the web console, go to **Ecosystem** -> **Installed Operators** page.\n2. Under the **Provided APIs** heading for **Network Observability**, select **Flow Collector**.\n3. Select **cluster** then select the **YAML** tab.\n4. Configure the `FlowCollector` CR. A sample configuration is as follows: <a name=\"network-observability-flowcollector-configuring-network-policy_network_observability\"></a>\n\n   ```yaml {title=\"Example FlowCollector CR for network policy\"}\n   apiVersion: flows.netobserv.io/v1beta2\n   kind: FlowCollector\n   metadata:\n     name: cluster\n   spec:\n     namespace: netobserv\n     networkPolicy:\n       enable: true\n       additionalNamespaces: [\"openshift-console\", \"openshift-monitoring\"]\n   # ...\n   ```\n\n   where:\n\n   `spec.networkPolicy.enable`\n   :   Specifies whether to enable network policy management. The default value is `true`.\n\n   `spec.networkPolicy.additionalNamespaces`\n   :   Specifies the namespaces to include in the network policy. The default values are `[\"openshift-console\", \"openshift-monitoring\"]`.\n\n**Additional resources**\n\n- [Creating a network policy using the CLI](/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#nw-networkpolicy-object_creating-network-policy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-network-policy.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,34 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="network-observability-network-policy" class="group scroll-mt-20">Network Policy<a href="#network-observability-network-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As an administrator, you can create a network policy for the <code>netobserv</code> namespace. This policy secures inbound and outbound access to the Network Observability Operator.</p>
-      <p class="/modules/network-observability-deploy-network-policy.md"></p>
+      <h2 id="network-observability-deploy-network-policy_network_observability" class="group scroll-mt-20">Configuring network policy by using the FlowCollector custom resource<a href="#network-observability-deploy-network-policy_network_observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can set up ingress and egress network policies to control pod traffic. This enhances security and collects only the network flow data you need. This reduces noise, supports compliance, and improves visibility into network communication.</p>
+      <p>You can configure the <code>FlowCollector</code> custom resource (CR) to deploy an egress and ingress network policy for network observability. By default, the <code>spec.NetworkPolicy.enable</code> specification is set to <code>true</code>.</p>
+      <p>If you have installed Loki, Kafka or any exporter in a different namespace that also has a network policy, you must ensure that the network observability components can communicate with them. Consider the following about your setup:</p>
+      <ul>
+      <li>Connection to Loki (as defined in the <code>FlowCollector</code> CR <code>spec.loki</code> parameter)</li>
+      <li>Connection to Kafka (as defined in the <code>FlowCollector</code> CR <code>spec.kafka</code> parameter)</li>
+      <li>Connection to any exporter (as defined in FlowCollector CR <code>spec.exporters</code> parameter)</li>
+      <li>If you are using Loki and including it in the policy target, connection to an external object storage (as defined in your <code>LokiStack</code> related secret)</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the web console, go to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> page.</li>
+      <li>Under the <strong>Provided APIs</strong> heading for <strong>Network Observability</strong>, select <strong>Flow Collector</strong>.</li>
+      <li>Select <strong>cluster</strong> then select the <strong>YAML</strong> tab.</li>
+      <li>
+      Configure the <code>FlowCollector</code> CR. A sample configuration is as follows: <Fragment set:html={"<a name=\"network-observability-flowcollector-configuring-network-policy_network_observability\">"} /><Fragment set:html={"</a>"} />
+      <CodeBlock code={"apiVersion: flows.netobserv.io/v1beta2\nkind: FlowCollector\nmetadata:\n  name: cluster\nspec:\n  namespace: netobserv\n  networkPolicy:\n    enable: true\n    additionalNamespaces: [\"openshift-console\", \"openshift-monitoring\"]\n# ..."} lang="yaml" title="Example FlowCollector CR for network policy" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.networkPolicy.enable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether to enable network policy management. The default value is <code>true</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.networkPolicy.additionalNamespaces</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespaces to include in the network policy. The default values are <code>["openshift-console", "openshift-monitoring"]</code>.</p></dd>
+      </dl>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/networking/network_security/network_policy/creating-network-policy#nw-networkpolicy-object_creating-network-policy">Creating a network policy using the CLI</a></li></ul>
     </article>

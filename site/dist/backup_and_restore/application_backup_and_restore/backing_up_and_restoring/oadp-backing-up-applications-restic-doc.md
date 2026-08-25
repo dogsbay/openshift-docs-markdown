@@ -4,7 +4,7 @@ title: "Backing up applications with File System Backup: Kopia or Restic"
 
 # Backing up applications with File System Backup: Kopia or Restic {#oadp-backing-up-applications-restic-doc}
 
-Use {{ oadp_short }} File System Backup (FSB) with Kopia or Restic to back up and restore Kubernetes volumes attached to pods when snapshots are not available. This helps you to protect application data on NFS or other non-snapshot storage.
+Use OADP File System Backup (FSB) with Kopia or Restic to back up and restore Kubernetes volumes attached to pods when snapshots are not available. This helps you to protect application data on NFS or other non-snapshot storage.
 
 If your cloud provider does not support snapshots or if your applications are on NFS data volumes, you can create backups by using FSB.
 
@@ -23,6 +23,44 @@ You do not need to specify a snapshot location in the `DataProtectionApplication
 
 > [!IMPORTANT]
 > FSB does not support backing up `hostPath` volumes. For more information, see *FSB limitations*.
+
+> [!IMPORTANT]
+> The `.../.snapshot` directory is a snapshot copy directory, which is used by several NFS servers. This directory has read-only access by default, so Velero cannot restore to this directory.
+>
+> Do not give Velero write access to the `.snapshot` directory, and disable client access to this directory.
+
+## Backing up applications with File System Backup {#oadp-backingup-file-system-backup_backing-up-applications}
+
+Create a `Backup` custom resource (CR) to back up applications by using File System Backup (FSB) with Kopia as the uploader. This helps you to protect Kubernetes volumes attached to pods when snapshots are not available or when using NFS data volumes.
+
+**Prerequisites**
+
+- You must install the OpenShift API for Data Protection (OADP) Operator.
+- You must not disable the default `nodeAgent` installation by setting `spec.configuration.nodeAgent.enable` to `false` in the `DataProtectionApplication` CR.
+- You must select Kopia or Restic as the uploader by setting `spec.configuration.nodeAgent.uploaderType` to `kopia` or `restic` in the `DataProtectionApplication` CR.
+- The `DataProtectionApplication` CR must be in a `Ready` state.
+
+**Procedure**
+
+- Create the `Backup` CR, as in the following example:
+
+  ```yaml
+  apiVersion: velero.io/v1
+  kind: Backup
+  metadata:
+    name: <backup>
+    labels:
+      velero.io/storage-location: default
+    namespace: openshift-adp
+  spec:
+    defaultVolumesToFsBackup: true
+  ...
+  ```
+
+  where:
+
+  `defaultVolumesToFsBackup: true`
+  :   Specifies the FSB setting within the `spec` block for OADP version 1.2 and later. In OADP version 1.1, add `defaultVolumesToRestic: true` instead.
 
 **Additional resources**
 

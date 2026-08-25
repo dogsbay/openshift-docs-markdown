@@ -2,16 +2,60 @@
 title: Installing a three-node cluster on {{ aws_short }}
 ---
 
-# Installing a three-node cluster on {{ aws_short }} {#installing-aws-three-node}
+# Installing a three-node cluster on AWS {#installing-aws-three-node}
 
-In OpenShift Container Platform version 4.22, you can install a three-node cluster on {{ aws_first }}. A three-node cluster consists of three control plane machines, which also act as compute machines.
+In OpenShift Container Platform version 4.22, you can install a three-node cluster on Amazon Web Services (AWS). A three-node cluster consists of three control plane machines, which also act as compute machines.
 
 This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.
 
 You can install a three-node cluster using either installer-provisioned or user-provisioned infrastructure.
 
 > [!NOTE]
-> Deploying a three-node cluster using an {{ aws_short }} Marketplace image is not supported.
+> Deploying a three-node cluster using an AWS Marketplace image is not supported.
+
+## Configuring a three-node cluster {#installation-three-node-cluster_installing-aws-three-node}
+
+To configure a three-node cluster, set the number of worker nodes to `0` in the `install-config.yaml` file before you deploy the cluster.
+
+Setting the number of worker nodes to `0` ensures that the control plane machines are schedulable. This allows application workloads to be scheduled to run from the control plane nodes.
+
+> [!NOTE]
+> Because application workloads run from control plane nodes, additional subscriptions are required, as the control plane nodes are considered to be compute nodes.
+
+**Prerequisites**
+
+- You have an existing `install-config.yaml` file.
+
+**Procedure**
+
+1. Set the number of compute replicas to `0` in your `install-config.yaml` file, as shown in the following `compute` stanza:
+
+   ```yaml {title="Example install-config.yaml file for a three-node cluster"}
+   apiVersion: v1
+   baseDomain: example.com
+   compute:
+   - name: worker
+     platform: {}
+     replicas: 0
+   # ...
+   ```
+2. If you are deploying a cluster with user-provisioned infrastructure:
+
+   - After you create the Kubernetes manifest files, make sure that the `spec.mastersSchedulable` parameter is set to `true` in `cluster-scheduler-02-config.yml` file. You can locate this file in `<installation_directory>/manifests`. For more information, see "Creating the Kubernetes manifest and Ignition config files" in "Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates".
+   - Do not create additional worker nodes.
+
+     ```yaml {title="Example cluster-scheduler-02-config.yml file for a three-node cluster"}
+     apiVersion: config.openshift.io/v1
+     kind: Scheduler
+     metadata:
+       creationTimestamp: null
+       name: cluster
+     spec:
+       mastersSchedulable: true
+       policy:
+         name: ""
+     status: {}
+     ```
 
 ## Additional resources {#_additional_resources}
 

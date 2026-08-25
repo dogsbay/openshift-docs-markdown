@@ -29,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Backing up and restoring 3scale API Management by using OADP";
-const description = "Back up and restore Red Hat 3scale API Management deployments by using {{ oadp_first }} to protect application resources, persistent volumes, and…" || undefined;
+const description = "Back up and restore Red Hat 3scale API Management deployments by using OpenShift API for Data Protection (OADP) to protect application resources…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +42,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring 3scale API Management by using OADP {#backing-up-and-restoring-3scale-api-management-by-using-oadp}\n\nBack up and restore Red Hat 3scale API Management deployments by using {{ oadp_first }} to protect application resources, persistent volumes, and configurations. This helps you to safeguard your 3scale components for disaster recovery.\n\nYou can deploy 3scale components on-premise, in the cloud, as a managed service, or in any combination based on your requirements.\n\nWith {{ oadp_first }}, you can safeguard 3scale API Management deployments by backing up application resources, persistent volumes, and configurations.\n\n> [!NOTE]\n> You can use the {{ oadp_first }} Operator to back up and restore your 3scale API Management on-cluster storage databases without affecting your running services\n\nYou can configure {{ oadp_short }} to perform the following operations with 3scale API Management:\n\n- Create a backup of 3scale components. For more details, see *Backing up 3scale API Management*.\n- Restore the components to scale up the 3scale operator and deployment. For more details, see *Restoring 3scale API Management*.\n\n**Additional resources**\n\n- [Backing up 3scale API Management](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-3scale/backing-up-3scale-api-management-by-using-oadp#backing-up-3scale-api-management-by-using-oadp)\n- [Restoring 3scale API Management](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-3scale/restoring-3scale-api-management-by-using-oadp#restoring-3scale-api-management-by-using-oadp)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-3scale/backing-up-and-restoring-3scale-api-management-by-using-oadp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring 3scale API Management by using OADP {#backing-up-and-restoring-3scale-api-management-by-using-oadp}\n\nBack up and restore Red Hat 3scale API Management deployments by using OpenShift API for Data Protection (OADP) to protect application resources, persistent volumes, and configurations. This helps you to safeguard your 3scale components for disaster recovery.\n\nYou can deploy 3scale components on-premise, in the cloud, as a managed service, or in any combination based on your requirements.\n\nWith OpenShift API for Data Protection (OADP), you can safeguard 3scale API Management deployments by backing up application resources, persistent volumes, and configurations.\n\n> [!NOTE]\n> You can use the OpenShift API for Data Protection (OADP) Operator to back up and restore your 3scale API Management on-cluster storage databases without affecting your running services\n\nYou can configure OADP to perform the following operations with 3scale API Management:\n\n- Create a backup of 3scale components. For more details, see *Backing up 3scale API Management*.\n- Restore the components to scale up the 3scale operator and deployment. For more details, see *Restoring 3scale API Management*.\n\n**Additional resources**\n\n- [Backing up 3scale API Management](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-3scale/backing-up-3scale-api-management-by-using-oadp#backing-up-3scale-api-management-by-using-oadp)\n- [Restoring 3scale API Management](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-3scale/restoring-3scale-api-management-by-using-oadp#restoring-3scale-api-management-by-using-oadp)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-3scale/backing-up-and-restoring-3scale-api-management-by-using-oadp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,17 +94,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="backing-up-and-restoring-3scale-api-management-by-using-oadp" class="group scroll-mt-20">Backing up and restoring 3scale API Management by using OADP<a href="#backing-up-and-restoring-3scale-api-management-by-using-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Back up and restore Red Hat 3scale API Management deployments by using {"{"}{"{"} oadp_first {"}"}{"}"} to protect application resources, persistent volumes, and configurations. This helps you to safeguard your 3scale components for disaster recovery.</p>
+      <p>Back up and restore Red Hat 3scale API Management deployments by using OpenShift API for Data Protection (OADP) to protect application resources, persistent volumes, and configurations. This helps you to safeguard your 3scale components for disaster recovery.</p>
       <p>You can deploy 3scale components on-premise, in the cloud, as a managed service, or in any combination based on your requirements.</p>
-      <p>With {"{"}{"{"} oadp_first {"}"}{"}"}, you can safeguard 3scale API Management deployments by backing up application resources, persistent volumes, and configurations.</p>
+      <p>With OpenShift API for Data Protection (OADP), you can safeguard 3scale API Management deployments by backing up application resources, persistent volumes, and configurations.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>You can use the {"{"}{"{"} oadp_first {"}"}{"}"} Operator to back up and restore your 3scale API Management on-cluster storage databases without affecting your running services</p>
+          <p>You can use the OpenShift API for Data Protection (OADP) Operator to back up and restore your 3scale API Management on-cluster storage databases without affecting your running services</p>
         </AlertDescription>
       </Alert>
-      <p>You can configure {"{"}{"{"} oadp_short {"}"}{"}"} to perform the following operations with 3scale API Management:</p>
+      <p>You can configure OADP to perform the following operations with 3scale API Management:</p>
       <ul>
       <li>Create a backup of 3scale components. For more details, see <em>Backing up 3scale API Management</em>.</li>
       <li>Restore the components to scale up the 3scale operator and deployment. For more details, see <em>Restoring 3scale API Management</em>.</li>

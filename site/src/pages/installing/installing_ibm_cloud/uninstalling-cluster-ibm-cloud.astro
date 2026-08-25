@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"uninstalling-cluster-ibm-cloud","text":"Uninstalling a cluster on {{ ibm_cloud_title }}"}];
+const headings = [{"depth":1,"slug":"uninstalling-cluster-ibm-cloud","text":"Uninstalling a cluster on IBM Cloud"},{"depth":2,"slug":"installation-uninstall-clouds_uninstalling-cluster-ibm-cloud","text":"Removing a cluster that uses installer-provisioned infrastructure"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_ibm_cloud/uninstalling-cluster-ibm-cloud";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Uninstalling a cluster on {{ ibm_cloud_title }}";
-const description = "You can remove an OpenShift Container Platform cluster that you deployed to {{ ibm_cloud_name }}. The uninstall process removes all cluster resources and…" || undefined;
+const description = "You can remove an OpenShift Container Platform cluster that you deployed to IBM Cloud(R). The uninstall process removes all cluster resources and…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_ibm_cloud"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling a cluster on {{ ibm_cloud_title }} {#uninstalling-cluster-ibm-cloud}\n\nYou can remove an OpenShift Container Platform cluster that you deployed to {{ ibm_cloud_name }}. The uninstall process removes all cluster resources and infrastructure components that the installation program provisioned.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_cloud/uninstalling-cluster-ibm-cloud.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling a cluster on IBM Cloud {#uninstalling-cluster-ibm-cloud}\n\nYou can remove an OpenShift Container Platform cluster that you deployed to IBM Cloud(R). The uninstall process removes all cluster resources and infrastructure components that the installation program provisioned.\n\n## Removing a cluster that uses installer-provisioned infrastructure {#installation-uninstall-clouds_uninstalling-cluster-ibm-cloud}\n\nTo remove an OpenShift Container Platform cluster that uses installer-provisioned infrastructure, you can use the installation program and the installation files from your original deployment to uninstall the cluster from your cloud platform.\n\n> [!NOTE]\n> After uninstallation, check your cloud provider for any resources that were not removed properly, especially with user-provisioned infrastructure clusters. Some resources might exist because either the installation program did not create the resource or could not access the resource.\n\n**Prerequisites**\n\n- You have a copy of the installation program that you used to deploy the cluster.\n- You have the files that the installation program generated when you created your cluster.\n- You have configured the `ccoctl` binary.\n- You have installed the IBM Cloud(R) CLI and installed or updated the VPC infrastructure service plugin. For more information see \"Prerequisites\" in the [IBM Cloud(R) CLI documentation](https://cloud.ibm.com/docs/vpc?topic=vpc-infrastructure-cli-plugin-vpc-reference&interface=ui#cli-ref-prereqs).\n\n**Procedure**\n\n1. If the following conditions are met, this step is required:\n\n   - The installer created a resource group as part of the installation process.\n   - You or one of your applications created persistent volume claims (PVCs) after the cluster was deployed.\n\n     In which case, the PVCs are not removed when uninstalling the cluster, which might prevent the resource group from being successfully removed. To prevent a failure:\n\n     1. Log in to the IBM Cloud(R) using the CLI.\n     2. To list the PVCs, run the following command:\n\n        ```terminal\n        $ ibmcloud is volumes --resource-group-name <infrastructure_id>\n        ```\n\n        For more information about listing volumes, see the [IBM Cloud(R) CLI documentation](https://cloud.ibm.com/docs/vpc?topic=vpc-infrastructure-cli-plugin-vpc-reference&interface=ui#volume-cli).\n     3. To delete the PVCs, run the following command:\n\n        ```terminal\n        $ ibmcloud is volume-delete --force <volume_id>\n        ```\n\n        For more information about deleting volumes, see the [IBM Cloud(R) CLI documentation](https://cloud.ibm.com/docs/vpc?topic=vpc-infrastructure-cli-plugin-vpc-reference&interface=ui#volume-delete).\n2. Export the API key that was created as part of the installation process.\n\n   ```terminal\n   $ export IC_API_KEY=<api_key>\n   ```\n\n   > [!NOTE]\n   > You must set the variable name exactly as specified. The installation program expects the variable name to be present to remove the service IDs that were created when the cluster was installed.\n3. From the directory that has the installation program on the computer that you used to install the cluster, run the following command:\n\n   ```terminal\n   $ ./openshift-install destroy cluster \\\n   --dir <installation_directory> --log-level info\n   ```\n\n   where:\n\n   `<installation_directory>`\n   :   Specify the path to the directory that you stored the installation files in.\n\n   `--log-level info`\n   :   To view different details, specify `warn`, `debug`, or `error` instead of `info`.\n\n   > [!NOTE]\n   > You must specify the directory that includes the cluster definition files for your cluster. The installation program requires the `metadata.json` file in this directory to delete the cluster.\n4. Remove the manual CCO credentials that were created for the cluster:\n\n   ```terminal\n   $ ccoctl ibmcloud delete-service-id \\\n       --credentials-requests-dir <path_to_credential_requests_directory> \\\n       --name <cluster_name>\n   ```\n\n   > [!NOTE]\n   > If your cluster uses Technology Preview features that are enabled by the `TechPreviewNoUpgrade` feature set, you must include the `--enable-tech-preview` parameter.\n5. Optional: Delete the `<installation_directory>` directory and the OpenShift Container Platform installation program.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_cloud/uninstalling-cluster-ibm-cloud.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +94,87 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="uninstalling-cluster-ibm-cloud" class="group scroll-mt-20">Uninstalling a cluster on {"{"}{"{"} ibm_cloud_title {"}"}{"}"}<a href="#uninstalling-cluster-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can remove an OpenShift Container Platform cluster that you deployed to {"{"}{"{"} ibm_cloud_name {"}"}{"}"}. The uninstall process removes all cluster resources and infrastructure components that the installation program provisioned.</p>
-      <p class="/modules/installation-uninstall-clouds.md"></p>
+      <h1 id="uninstalling-cluster-ibm-cloud" class="group scroll-mt-20">Uninstalling a cluster on IBM Cloud<a href="#uninstalling-cluster-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can remove an OpenShift Container Platform cluster that you deployed to IBM Cloud(R). The uninstall process removes all cluster resources and infrastructure components that the installation program provisioned.</p>
+      <h2 id="installation-uninstall-clouds_uninstalling-cluster-ibm-cloud" class="group scroll-mt-20">Removing a cluster that uses installer-provisioned infrastructure<a href="#installation-uninstall-clouds_uninstalling-cluster-ibm-cloud" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To remove an OpenShift Container Platform cluster that uses installer-provisioned infrastructure, you can use the installation program and the installation files from your original deployment to uninstall the cluster from your cloud platform.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>After uninstallation, check your cloud provider for any resources that were not removed properly, especially with user-provisioned infrastructure clusters. Some resources might exist because either the installation program did not create the resource or could not access the resource.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a copy of the installation program that you used to deploy the cluster.</li>
+      <li>You have the files that the installation program generated when you created your cluster.</li>
+      <li>You have configured the <code>ccoctl</code> binary.</li>
+      <li>You have installed the IBM Cloud(R) CLI and installed or updated the VPC infrastructure service plugin. For more information see "Prerequisites" in the <a href="https://cloud.ibm.com/docs/vpc?topic=vpc-infrastructure-cli-plugin-vpc-reference&amp;interface=ui#cli-ref-prereqs">IBM Cloud(R) CLI documentation</a>.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      If the following conditions are met, this step is required:
+      <ul>
+      <li>The installer created a resource group as part of the installation process.</li>
+      <li>
+      You or one of your applications created persistent volume claims (PVCs) after the cluster was deployed.
+      <p>In which case, the PVCs are not removed when uninstalling the cluster, which might prevent the resource group from being successfully removed. To prevent a failure:</p>
+      <ol>
+      <li>Log in to the IBM Cloud(R) using the CLI.</li>
+      <li>
+      To list the PVCs, run the following command:
+      <CodeBlock code={"$ ibmcloud is volumes --resource-group-name <infrastructure_id>"} lang="terminal" />
+      <p>For more information about listing volumes, see the <a href="https://cloud.ibm.com/docs/vpc?topic=vpc-infrastructure-cli-plugin-vpc-reference&amp;interface=ui#volume-cli">IBM Cloud(R) CLI documentation</a>.</p>
+      </li>
+      <li>
+      To delete the PVCs, run the following command:
+      <CodeBlock code={"$ ibmcloud is volume-delete --force <volume_id>"} lang="terminal" />
+      <p>For more information about deleting volumes, see the <a href="https://cloud.ibm.com/docs/vpc?topic=vpc-infrastructure-cli-plugin-vpc-reference&amp;interface=ui#volume-delete">IBM Cloud(R) CLI documentation</a>.</p>
+      </li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      <li>
+      Export the API key that was created as part of the installation process.
+      <CodeBlock code={"$ export IC_API_KEY=<api_key>"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You must set the variable name exactly as specified. The installation program expects the variable name to be present to remove the service IDs that were created when the cluster was installed.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      From the directory that has the installation program on the computer that you used to install the cluster, run the following command:
+      <CodeBlock code={"$ ./openshift-install destroy cluster \\\n--dir <installation_directory> --log-level info"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;installation_directory&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specify the path to the directory that you stored the installation files in.</p></dd>
+      <dt class="font-semibold"><code>--log-level info</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>To view different details, specify <code>warn</code>, <code>debug</code>, or <code>error</code> instead of <code>info</code>.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You must specify the directory that includes the cluster definition files for your cluster. The installation program requires the <code>metadata.json</code> file in this directory to delete the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Remove the manual CCO credentials that were created for the cluster:
+      <CodeBlock code={"$ ccoctl ibmcloud delete-service-id \\\n    --credentials-requests-dir <path_to_credential_requests_directory> \\\n    --name <cluster_name>"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If your cluster uses Technology Preview features that are enabled by the <code>TechPreviewNoUpgrade</code> feature set, you must include the <code>--enable-tech-preview</code> parameter.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Optional: Delete the <code>&lt;installation_directory&gt;</code> directory and the OpenShift Container Platform installation program.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"preparing-to-install-on-ibm-power","text":"Installation methods"},{"depth":2,"slug":"additional-resources_preparing-to-install-on-ibm-power","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"preparing-to-install-on-ibm-power","text":"Installation methods"},{"depth":2,"slug":"installation-methods-ibm-power_preparing-to-install-on-ibm-power","text":"Installing a cluster on user-provisioned infrastructure"},{"depth":2,"slug":"additional-resources_preparing-to-install-on-ibm-power","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_ibm_power/preparing-to-install-on-ibm-power";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Installation methods";
-const description = "Before you install OpenShift Container Platform on {{ ibm_power_name }}, review the available installation methods to select the approach that fits your…" || undefined;
+const description = "Before you install OpenShift Container Platform on IBM Power(R), review the available installation methods to select the approach that fits your…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["installing","installing/installing_ibm_power"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installation methods {#preparing-to-install-on-ibm-power}\n\nBefore you install OpenShift Container Platform on {{ ibm_power_name }}, review the available installation methods to select the approach that fits your environment.\n\n## Additional resources {#additional-resources_preparing-to-install-on-ibm-power}\n\n- [Installing a cluster on {{ ibm_power_name }}](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power)\n- [Installing a cluster on {{ ibm_power_name }} in a restricted network](/openshift-docs-markdown/installing/installing_ibm_power/installing-restricted-networks-ibm-power#installing-restricted-networks-ibm-power)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_power/preparing-to-install-on-ibm-power.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installation methods {#preparing-to-install-on-ibm-power}\n\nBefore you install OpenShift Container Platform on IBM Power(R), review the available installation methods to select the approach that fits your environment.\n\n## Installing a cluster on user-provisioned infrastructure {#installation-methods-ibm-power_preparing-to-install-on-ibm-power}\n\nChoose an installation method for IBM Power(R) based on your network connectivity requirements.\n\n- ***Installing a cluster on IBM Power(R)***: You can install OpenShift Container Platform on IBM Power(R) infrastructure that you provision.\n- ***Installing a cluster on IBM Power(R) in a restricted network***: You can install OpenShift Container Platform on IBM Power(R) infrastructure that you provision in a restricted or disconnected network by using an internal mirror of the installation release content. You can use this method to install a cluster that does not have an active internet connection to obtain the software components. You can also use this installation method to ensure that your clusters only use container images that satisfy your organizational controls on external content.\n\n## Additional resources {#additional-resources_preparing-to-install-on-ibm-power}\n\n- [Installing a cluster on IBM Power(R)](/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power)\n- [Installing a cluster on IBM Power(R) in a restricted network](/openshift-docs-markdown/installing/installing_ibm_power/installing-restricted-networks-ibm-power#installing-restricted-networks-ibm-power)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_power/preparing-to-install-on-ibm-power.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +91,17 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="preparing-to-install-on-ibm-power" class="group scroll-mt-20">Installation methods<a href="#preparing-to-install-on-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Before you install OpenShift Container Platform on {"{"}{"{"} ibm_power_name {"}"}{"}"}, review the available installation methods to select the approach that fits your environment.</p>
-      <p class="/modules/installation-methods-ibm-power.md"></p>
+      <p>Before you install OpenShift Container Platform on IBM Power(R), review the available installation methods to select the approach that fits your environment.</p>
+      <h2 id="installation-methods-ibm-power_preparing-to-install-on-ibm-power" class="group scroll-mt-20">Installing a cluster on user-provisioned infrastructure<a href="#installation-methods-ibm-power_preparing-to-install-on-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Choose an installation method for IBM Power(R) based on your network connectivity requirements.</p>
+      <ul>
+      <li><em></em><em><strong>Installing a cluster on IBM Power(R)</strong></em><em></em>: You can install OpenShift Container Platform on IBM Power(R) infrastructure that you provision.</li>
+      <li><em></em><em><strong>Installing a cluster on IBM Power(R) in a restricted network</strong></em><em></em>: You can install OpenShift Container Platform on IBM Power(R) infrastructure that you provision in a restricted or disconnected network by using an internal mirror of the installation release content. You can use this method to install a cluster that does not have an active internet connection to obtain the software components. You can also use this installation method to ensure that your clusters only use container images that satisfy your organizational controls on external content.</li>
+      </ul>
       <h2 id="additional-resources_preparing-to-install-on-ibm-power" class="group scroll-mt-20">Additional resources<a href="#additional-resources_preparing-to-install-on-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power">Installing a cluster on {"{"}{"{"} ibm_power_name {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_power/installing-restricted-networks-ibm-power#installing-restricted-networks-ibm-power">Installing a cluster on {"{"}{"{"} ibm_power_name {"}"}{"}"} in a restricted network</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_power/installing-ibm-power#installing-ibm-power">Installing a cluster on IBM Power(R)</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_power/installing-restricted-networks-ibm-power#installing-restricted-networks-ibm-power">Installing a cluster on IBM Power(R) in a restricted network</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

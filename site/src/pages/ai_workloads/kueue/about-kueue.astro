@@ -19,7 +19,7 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"about-kueue","text":"Introduction to {{ kueue_name }}"},{"depth":2,"slug":"about-kueue-personas","text":"Personas"},{"depth":2,"slug":"about-kueue-workflow","text":"Workflow overview"},{"depth":2,"slug":"additional-resources_about-kueue","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"about-kueue","text":"Introduction to Red Hat build of Kueue"},{"depth":2,"slug":"about-kueue-personas","text":"Personas"},{"depth":2,"slug":"about-kueue-workflow","text":"Workflow overview"},{"depth":2,"slug":"additional-resources_about-kueue","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/about-kueue";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Introduction to {{ kueue_name }}";
-const description = "You can use {{ kueue_name }} to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. {{ kueue_name }} optimizes…" || undefined;
+const description = "You can use Red Hat build of Kueue to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. Red Hat build of Kueue…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +42,7 @@ const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Introduction to {{ kueue_name }} {#about-kueue}\n\nYou can use {{ kueue_name }} to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. {{ kueue_name }} optimizes resource utilization by enforcing quotas and scheduling policies across your workloads.\n\n{{ kueue_name }} can determine when a job waits, is admitted to start by creating pods, or should be *preempted*, meaning that active pods for that job are deleted.\n\n> [!NOTE]\n> In the context of {{ kueue_name }}, a job can be defined as a one-time or on-demand task that runs to completion.\n\n{{ kueue_name }} is based on the Kueue open source project.\n\n{{ kueue_name }} is compatible with environments that use heterogeneous, elastic resources, where many different resource types exist and those resources are capable of dynamic scaling.\n\n{{ kueue_name }} does not replace any existing components in a Kubernetes cluster, but instead integrates with the existing Kubernetes API server, scheduler, and cluster autoscaler components.\n\n{{ kueue_name }} supports all-or-nothing semantics, where either an entire job with all of its components is admitted to the cluster, or the entire job is rejected if it does not fit on the cluster.\n\n## Personas {#about-kueue-personas}\n\nDifferent personas exist in a {{ kueue_name }} workflow.\n\nBatch administrators\n:   Batch administrators manage the cluster infrastructure and establish quotas and queues.\n\nBatch users\n:   Batch users run jobs on the cluster. Examples of batch users might be researchers, AI/ML engineers, or data scientists.\n\nServing users\n:   Serving users run jobs on the cluster. For example, to expose a trained AI/ML model for inference.\n\nPlatform developers\n:   Platform developers integrate {{ kueue_name }} with other software. They might also contribute to the Kueue open source project.\n\n## Workflow overview {#about-kueue-workflow}\n\nThe {{ kueue_name }} workflow can be described at a high level as follows:\n\n1. Batch administrators create and configure `ResourceFlavor`, `LocalQueue`, and `ClusterQueue` resources.\n2. User personas create jobs on the cluster.\n3. The Kubernetes API server validates and accepts job data.\n4. {{ kueue_name }} admits jobs based on configured options, such as order or quota. It injects affinity into the job by using resource flavors, and creates a `Workload` object that corresponds to each job.\n5. The applicable controller for the job type creates pods.\n6. The Kubernetes scheduler assigns pods to a node in the cluster.\n7. The Kubernetes cluster autoscaler provisions more nodes as required.\n\n## Additional resources {#additional-resources_about-kueue}\n\n- [Kueue (upstream documentation)](https://kueue.sigs.k8s.io/docs/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/about-kueue.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Introduction to Red Hat build of Kueue {#about-kueue}\n\nYou can use Red Hat build of Kueue to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. Red Hat build of Kueue optimizes resource utilization by enforcing quotas and scheduling policies across your workloads.\n\nRed Hat build of Kueue can determine when a job waits, is admitted to start by creating pods, or should be *preempted*, meaning that active pods for that job are deleted.\n\n> [!NOTE]\n> In the context of Red Hat build of Kueue, a job can be defined as a one-time or on-demand task that runs to completion.\n\nRed Hat build of Kueue is based on the Kueue open source project.\n\nRed Hat build of Kueue is compatible with environments that use heterogeneous, elastic resources, where many different resource types exist and those resources are capable of dynamic scaling.\n\nRed Hat build of Kueue does not replace any existing components in a Kubernetes cluster, but instead integrates with the existing Kubernetes API server, scheduler, and cluster autoscaler components.\n\nRed Hat build of Kueue supports all-or-nothing semantics, where either an entire job with all of its components is admitted to the cluster, or the entire job is rejected if it does not fit on the cluster.\n\n## Personas {#about-kueue-personas}\n\nDifferent personas exist in a Red Hat build of Kueue workflow.\n\nBatch administrators\n:   Batch administrators manage the cluster infrastructure and establish quotas and queues.\n\nBatch users\n:   Batch users run jobs on the cluster. Examples of batch users might be researchers, AI/ML engineers, or data scientists.\n\nServing users\n:   Serving users run jobs on the cluster. For example, to expose a trained AI/ML model for inference.\n\nPlatform developers\n:   Platform developers integrate Red Hat build of Kueue with other software. They might also contribute to the Kueue open source project.\n\n## Workflow overview {#about-kueue-workflow}\n\nThe Red Hat build of Kueue workflow can be described at a high level as follows:\n\n1. Batch administrators create and configure `ResourceFlavor`, `LocalQueue`, and `ClusterQueue` resources.\n2. User personas create jobs on the cluster.\n3. The Kubernetes API server validates and accepts job data.\n4. Red Hat build of Kueue admits jobs based on configured options, such as order or quota. It injects affinity into the job by using resource flavors, and creates a `Workload` object that corresponds to each job.\n5. The applicable controller for the job type creates pods.\n6. The Kubernetes scheduler assigns pods to a node in the cluster.\n7. The Kubernetes cluster autoscaler provisions more nodes as required.\n\n## Additional resources {#additional-resources_about-kueue}\n\n- [Kueue (upstream documentation)](https://kueue.sigs.k8s.io/docs/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/about-kueue.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,22 +93,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="about-kueue" class="group scroll-mt-20">Introduction to {"{"}{"{"} kueue_name {"}"}{"}"}<a href="#about-kueue" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use {"{"}{"{"} kueue_name {"}"}{"}"} to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. {"{"}{"{"} kueue_name {"}"}{"}"} optimizes resource utilization by enforcing quotas and scheduling policies across your workloads.</p>
-      <p>{"{"}{"{"} kueue_name {"}"}{"}"} can determine when a job waits, is admitted to start by creating pods, or should be <em>preempted</em>, meaning that active pods for that job are deleted.</p>
+      <h1 id="about-kueue" class="group scroll-mt-20">Introduction to Red Hat build of Kueue<a href="#about-kueue" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can use Red Hat build of Kueue to manage when jobs in your Kubernetes cluster start, get preempted, or wait for resources. Red Hat build of Kueue optimizes resource utilization by enforcing quotas and scheduling policies across your workloads.</p>
+      <p>Red Hat build of Kueue can determine when a job waits, is admitted to start by creating pods, or should be <em>preempted</em>, meaning that active pods for that job are deleted.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>In the context of {"{"}{"{"} kueue_name {"}"}{"}"}, a job can be defined as a one-time or on-demand task that runs to completion.</p>
+          <p>In the context of Red Hat build of Kueue, a job can be defined as a one-time or on-demand task that runs to completion.</p>
         </AlertDescription>
       </Alert>
-      <p>{"{"}{"{"} kueue_name {"}"}{"}"} is based on the Kueue open source project.</p>
-      <p>{"{"}{"{"} kueue_name {"}"}{"}"} is compatible with environments that use heterogeneous, elastic resources, where many different resource types exist and those resources are capable of dynamic scaling.</p>
-      <p>{"{"}{"{"} kueue_name {"}"}{"}"} does not replace any existing components in a Kubernetes cluster, but instead integrates with the existing Kubernetes API server, scheduler, and cluster autoscaler components.</p>
-      <p>{"{"}{"{"} kueue_name {"}"}{"}"} supports all-or-nothing semantics, where either an entire job with all of its components is admitted to the cluster, or the entire job is rejected if it does not fit on the cluster.</p>
+      <p>Red Hat build of Kueue is based on the Kueue open source project.</p>
+      <p>Red Hat build of Kueue is compatible with environments that use heterogeneous, elastic resources, where many different resource types exist and those resources are capable of dynamic scaling.</p>
+      <p>Red Hat build of Kueue does not replace any existing components in a Kubernetes cluster, but instead integrates with the existing Kubernetes API server, scheduler, and cluster autoscaler components.</p>
+      <p>Red Hat build of Kueue supports all-or-nothing semantics, where either an entire job with all of its components is admitted to the cluster, or the entire job is rejected if it does not fit on the cluster.</p>
       <h2 id="about-kueue-personas" class="group scroll-mt-20">Personas<a href="#about-kueue-personas" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p>Different personas exist in a {"{"}{"{"} kueue_name {"}"}{"}"} workflow.</p>
+      <p>Different personas exist in a Red Hat build of Kueue workflow.</p>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold">Batch administrators</dt>
       <dd class="ml-6 text-muted-foreground"><p>Batch administrators manage the cluster infrastructure and establish quotas and queues.</p></dd>
@@ -117,15 +116,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <dt class="font-semibold">Serving users</dt>
       <dd class="ml-6 text-muted-foreground"><p>Serving users run jobs on the cluster. For example, to expose a trained AI/ML model for inference.</p></dd>
       <dt class="font-semibold">Platform developers</dt>
-      <dd class="ml-6 text-muted-foreground"><p>Platform developers integrate {"{"}{"{"} kueue_name {"}"}{"}"} with other software. They might also contribute to the Kueue open source project.</p></dd>
+      <dd class="ml-6 text-muted-foreground"><p>Platform developers integrate Red Hat build of Kueue with other software. They might also contribute to the Kueue open source project.</p></dd>
       </dl>
       <h2 id="about-kueue-workflow" class="group scroll-mt-20">Workflow overview<a href="#about-kueue-workflow" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p>The {"{"}{"{"} kueue_name {"}"}{"}"} workflow can be described at a high level as follows:</p>
+      <p>The Red Hat build of Kueue workflow can be described at a high level as follows:</p>
       <ol>
       <li>Batch administrators create and configure <code>ResourceFlavor</code>, <code>LocalQueue</code>, and <code>ClusterQueue</code> resources.</li>
       <li>User personas create jobs on the cluster.</li>
       <li>The Kubernetes API server validates and accepts job data.</li>
-      <li>{"{"}{"{"} kueue_name {"}"}{"}"} admits jobs based on configured options, such as order or quota. It injects affinity into the job by using resource flavors, and creates a <code>Workload</code> object that corresponds to each job.</li>
+      <li>Red Hat build of Kueue admits jobs based on configured options, such as order or quota. It injects affinity into the job by using resource flavors, and creates a <code>Workload</code> object that corresponds to each job.</li>
       <li>The applicable controller for the job type creates pods.</li>
       <li>The Kubernetes scheduler assigns pods to a node in the cluster.</li>
       <li>The Kubernetes cluster autoscaler provisions more nodes as required.</li>

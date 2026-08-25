@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"oadp-storage-class-mapping-main","text":"OADP storage class mapping"}];
+const headings = [{"depth":1,"slug":"oadp-storage-class-mapping-main","text":"OADP storage class mapping"},{"depth":2,"slug":"oadp-storage-class-mapping_oadp-storage-class-mapping-main","text":"Storage class mapping"},{"depth":3,"slug":"oadp-storage-class-mapping-oadp_oadp-storage-class-mapping-main","text":"Mapping storage classes with OADP"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-advanced-topics/oadp-storage-class-mapping-main";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "OADP storage class mapping";
-const description = "Map your storage classes with {{ oadp_full }} to define rules for how different data types are stored. This helps you automate storage assignments to…" || undefined;
+const description = "Map your storage classes with OpenShift API for Data Protection to define rules for how different data types are stored. This helps you automate storage…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OADP storage class mapping {#oadp-storage-class-mapping-main}\n\nMap your storage classes with {{ oadp_full }} to define rules for how different data types are stored. This helps you automate storage assignments to optimize cost and efficiency during backup and restore operations.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-advanced-topics/oadp-storage-class-mapping-main.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OADP storage class mapping {#oadp-storage-class-mapping-main}\n\nMap your storage classes with OpenShift API for Data Protection to define rules for how different data types are stored. This helps you automate storage assignments to optimize cost and efficiency during backup and restore operations.\n\n## Storage class mapping {#oadp-storage-class-mapping_oadp-storage-class-mapping-main}\n\nDefine rules for your storage classes to automate how different data types are stored. Mapping your storage classes helps optimize your storage efficiency and lower costs based on access frequency and data importance.\n\nStorage class mapping allows you to define rules or policies specifying which storage class should be applied to different types of data. This feature automates the process of determining storage classes based on access frequency, data importance, and cost considerations. It optimizes storage efficiency and cost-effectiveness by ensuring that data is stored in the most suitable storage class for its characteristics and usage patterns.\n\nYou can use the `change-storage-class-config` field to change the storage class of your data objects, which lets you optimize costs and performance by moving data between different storage tiers, such as from standard to archival storage, based on your needs and access patterns.\n\n### Mapping storage classes with OADP {#oadp-storage-class-mapping-oadp_oadp-storage-class-mapping-main}\n\nChange the storage class of a persistent volume (PV) during a restore by configuring a storage class mapping in the Velero namespace. This helps you customize storage destinations when recovering applications with OADP.\n\nTo deploy ConfigMap with OADP, use the `change-storage-class-config` field. You must change the storage class mapping based on your cloud provider.\n\n**Procedure**\n\n1. Change the storage class mapping by running the following command:\n\n   ```terminal\n   $ cat change-storageclass.yaml\n   ```\n2. Create a config map in the Velero namespace as shown in the following example:\n\n   ```yaml {title=\"Example\"}\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: change-storage-class-config\n     namespace: openshift-adp\n     labels:\n       velero.io/plugin-config: \"\"\n       velero.io/change-storage-class: RestoreItemAction\n   data:\n     standard-csi: ssd-csi\n   ```\n3. Save your storage class mapping preferences by running the following command:\n\n   ```terminal\n   $ oc create -f change-storage-class-config\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-advanced-topics/oadp-storage-class-mapping-main.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,29 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-storage-class-mapping-main" class="group scroll-mt-20">OADP storage class mapping<a href="#oadp-storage-class-mapping-main" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Map your storage classes with {"{"}{"{"} oadp_full {"}"}{"}"} to define rules for how different data types are stored. This helps you automate storage assignments to optimize cost and efficiency during backup and restore operations.</p>
-      <p class="/modules/oadp-storage-class-mapping.md"></p>
-      <p class="/modules/oadp-storage-class-mapping-oadp.md"></p>
+      <p>Map your storage classes with OpenShift API for Data Protection to define rules for how different data types are stored. This helps you automate storage assignments to optimize cost and efficiency during backup and restore operations.</p>
+      <h2 id="oadp-storage-class-mapping_oadp-storage-class-mapping-main" class="group scroll-mt-20">Storage class mapping<a href="#oadp-storage-class-mapping_oadp-storage-class-mapping-main" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Define rules for your storage classes to automate how different data types are stored. Mapping your storage classes helps optimize your storage efficiency and lower costs based on access frequency and data importance.</p>
+      <p>Storage class mapping allows you to define rules or policies specifying which storage class should be applied to different types of data. This feature automates the process of determining storage classes based on access frequency, data importance, and cost considerations. It optimizes storage efficiency and cost-effectiveness by ensuring that data is stored in the most suitable storage class for its characteristics and usage patterns.</p>
+      <p>You can use the <code>change-storage-class-config</code> field to change the storage class of your data objects, which lets you optimize costs and performance by moving data between different storage tiers, such as from standard to archival storage, based on your needs and access patterns.</p>
+      <h3 id="oadp-storage-class-mapping-oadp_oadp-storage-class-mapping-main" class="group scroll-mt-20">Mapping storage classes with OADP<a href="#oadp-storage-class-mapping-oadp_oadp-storage-class-mapping-main" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Change the storage class of a persistent volume (PV) during a restore by configuring a storage class mapping in the Velero namespace. This helps you customize storage destinations when recovering applications with OADP.</p>
+      <p>To deploy ConfigMap with OADP, use the <code>change-storage-class-config</code> field. You must change the storage class mapping based on your cloud provider.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Change the storage class mapping by running the following command:
+      <CodeBlock code={"$ cat change-storageclass.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create a config map in the Velero namespace as shown in the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: change-storage-class-config\n  namespace: openshift-adp\n  labels:\n    velero.io/plugin-config: \"\"\n    velero.io/change-storage-class: RestoreItemAction\ndata:\n  standard-csi: ssd-csi"} lang="yaml" title="Example" />
+      </li>
+      <li>
+      Save your storage class mapping preferences by running the following command:
+      <CodeBlock code={"$ oc create -f change-storage-class-config"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

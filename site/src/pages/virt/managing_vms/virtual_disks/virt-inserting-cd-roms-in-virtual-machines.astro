@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-inserting-cd-roms-in-virtual-machines","text":"Insert a CD-ROM ISO image into a live virtual machine"}];
+const headings = [{"depth":1,"slug":"virt-inserting-cd-roms-in-virtual-machines","text":"Insert a CD-ROM ISO image into a live virtual machine"},{"depth":2,"slug":"virt-inserting-a-cd-rom-in-a-vm-by-using-the-command-line_virt-inserting-cd-roms-in-virtual-machines","text":"Inserting a CD-ROM in a live VM by using the command line"},{"depth":2,"slug":"virt-inserting-a-cd-rom-in-a-vm-by-using-the-web-console_virt-inserting-cd-roms-in-virtual-machines","text":"Inserting a CD-ROM in a live VM by using the web console"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-inserting-cd-roms-in-virtual-machines";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/virtual_disk
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Insert a CD-ROM ISO image into a live virtual machine {#virt-inserting-cd-roms-in-virtual-machines}\n\nTo attach a storage device to a virtual machine (VM) without rebooting the VM, you can configure a VM to use a virtual CD-ROM drive, and insert an ISO image in the drive.\n\nThis also makes it possible to install an operating system from a CD-ROM in the VM.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-inserting-cd-roms-in-virtual-machines.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Insert a CD-ROM ISO image into a live virtual machine {#virt-inserting-cd-roms-in-virtual-machines}\n\nTo attach a storage device to a virtual machine (VM) without rebooting the VM, you can configure a VM to use a virtual CD-ROM drive, and insert an ISO image in the drive.\n\nThis also makes it possible to install an operating system from a CD-ROM in the VM.\n\n## Inserting a CD-ROM in a live VM by using the command line {#virt-inserting-a-cd-rom-in-a-vm-by-using-the-command-line_virt-inserting-cd-roms-in-virtual-machines}\n\nTo make data on a CD-ROM storage device available to a running virtual machine (VM), create a virtual CD-ROM drive in the VM and insert the CD-ROM into the drive as an ISO image.\n\nSetting up a virtual CD-ROM drive requires rebooting the VM, but afterwards, you can insert and eject ISO images in the drive while the VM is running.\n\n**Prerequisites**\n\n- The `DeclarativeHotplugVolumes` feature gate is enabled. To ensure this, the `HyperConverged` CR must contain the `declarativeHotplugVolumes: true` line in the `spec.featureGates` configuration section:\n\n  ```yaml\n  apiVersion: hco.kubevirt.io/v1beta1\n  kind: HyperConverged\n  metadata:\n    name: kubevirt-hyperconverged\n    namespace: {{ CNVNamespace }}\n  spec:\n      featureGates:\n        declarativeHotplugVolumes: true\n  ```\n\n  > [!NOTE]\n  > The `DeclarativeHotplugVolumes` feature gate does not support hot plugging ephemeral volumes.\n- You have an ISO image of a CD-ROM available in the cluster.\n\n**Procedure**\n\n1. Run the following command to edit the configuration of the VM in which you want to insert the CD-ROM:\n\n   ```terminal\n   $ oc edit vm <vm-name> -n <namespace>\n   ```\n\n   where:\n\n   - `<vm-name>` is the name of the VM\n   - `<namespace>` is the name of the project name space that contains the VM\n2. Add a `cdrom` disk to the `spec.template.spec.domains.devices.disks` section of the VM configuration. For example:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: example-vm\n   spec:\n     runStrategy: Always\n     template:\n       spec:\n         domain:\n           devices:\n             disks:\n             - cdrom:\n                 bus: sata\n                 name: cdrom\n   ```\n3. If the VM is running, shut it down.\n4. Insert a CD-ROM volume in the `spec.template.spec.volumes` section of the VM configuration. For example:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: example-vm\n   spec:\n     template:\n       spec:\n         volumes:\n         - dataVolume:\n             name: cdrom-example\n             hotpluggable: true\n           name: cdrom\n   ```\n\n   You can insert a CD-ROM this way while the VM is running, but the dataVolume must have the `hotpluggable: true` parameter set.\n5. Optional: In the guest operating system, verify that the CD-ROM has been detected.\n6. Optional: Eject the CD-ROM volume. To do so, remove the `cdrom` volume from the `spec.template.spec.volumes` section of the VM configuration. You can do this while the VM is running.\n\n## Inserting a CD-ROM in a live VM by using the web console {#virt-inserting-a-cd-rom-in-a-vm-by-using-the-web-console_virt-inserting-cd-roms-in-virtual-machines}\n\nTo make data on a CD-ROM storage device available to a running virtual machine (VM), create a virtual CD-ROM drive in the VM and insert the CD-ROM into the drive as an ISO image.\n\nSetting up a virtual CD-ROM drive requires rebooting the VM, but you can insert and eject ISO images in the drive while the VM is running.\n\n**Prerequisites**\n\n- The `DeclarativeHotplugVolumes` feature gate is enabled. To ensure this, the `HyperConverged` CR must contain the `declarativeHotplugVolumes: true` line in the `spec.featureGates` configuration section:\n\n  ```yaml\n  apiVersion: hco.kubevirt.io/v1beta1\n  kind: HyperConverged\n  metadata:\n    name: kubevirt-hyperconverged\n    namespace: {{ CNVNamespace }}\n  spec:\n      featureGates:\n        declarativeHotplugVolumes: true\n  ```\n\n  > [!NOTE]\n  > The `DeclarativeHotplugVolumes` feature gate does not support hot plugging ephemeral volumes.\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, go to **Virtualization** → **VirtualMachines**.\n2. Click the name of the VM in which you want to insert the CD-ROM.\n3. On the VM details page, click the **Configuration** tab.\n4. Open the **Storage** pane.\n5. Click **Add**.\n\n   A drop-down menu opens.\n6. Click **CD-ROM**.\n7. In the **Name** field, add a name for the CD-ROM drive device.\n8. Select the ISO image to add to the drive as a CD-ROM volume. To do so, click the drop-down button, and select from the volumes available in the cluster.\n\n   Alternatively, you can upload a new ISO file and insert it into the CD-ROM drive after it is created. To do so:\n\n   1. Ensure that the **Upload a new ISO file to the cluster** line is checked.\n   2. Drag and drop an ISO file in the **Upload ISO** field, or click **Upload** and select the ISO image that you want to upload.\n   3. In the **Upload mode** field, select **Mount uploaded ISO as DataVolume**.\n9. Click **Add**.\n\n   The CD-ROM drive is added to the **Storage** list.\n10. If the VM is running, shut it down or restart it.\n11. To insert the ISO file attached to the CD-ROM drive as a CD-ROM volume into the VM, click the Options menu ![](kebab.png \"Options menu\") next to the CD-ROM drive, and click **Inject**. You can do this while the VM is running.\n12. Optional: In the guest operating system, verify that the CD-ROM has been detected.\n13. Optional: To eject the CD-ROM from the VM, click the Options menu ![](kebab.png \"Options menu\") next to the CD-ROM device in the web console, and select **Eject**. You can do this while the VM is running.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-inserting-cd-roms-in-virtual-machines.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,95 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-inserting-cd-roms-in-virtual-machines" class="group scroll-mt-20">Insert a CD-ROM ISO image into a live virtual machine<a href="#virt-inserting-cd-roms-in-virtual-machines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To attach a storage device to a virtual machine (VM) without rebooting the VM, you can configure a VM to use a virtual CD-ROM drive, and insert an ISO image in the drive.</p>
       <p>This also makes it possible to install an operating system from a CD-ROM in the VM.</p>
-      <p class="/modules/virt-inserting-a-cd-rom-in-a-vm-by-using-the-command-line.md"></p>
-      <p class="/modules/virt-inserting-a-cd-rom-in-a-vm-by-using-the-web-console.md"></p>
+      <h2 id="virt-inserting-a-cd-rom-in-a-vm-by-using-the-command-line_virt-inserting-cd-roms-in-virtual-machines" class="group scroll-mt-20">Inserting a CD-ROM in a live VM by using the command line<a href="#virt-inserting-a-cd-rom-in-a-vm-by-using-the-command-line_virt-inserting-cd-roms-in-virtual-machines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To make data on a CD-ROM storage device available to a running virtual machine (VM), create a virtual CD-ROM drive in the VM and insert the CD-ROM into the drive as an ISO image.</p>
+      <p>Setting up a virtual CD-ROM drive requires rebooting the VM, but afterwards, you can insert and eject ISO images in the drive while the VM is running.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>
+      The <code>DeclarativeHotplugVolumes</code> feature gate is enabled. To ensure this, the <code>HyperConverged</code> CR must contain the <code>declarativeHotplugVolumes: true</code> line in the <code>spec.featureGates</code> configuration section:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n    featureGates:\n      declarativeHotplugVolumes: true"} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>DeclarativeHotplugVolumes</code> feature gate does not support hot plugging ephemeral volumes.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>You have an ISO image of a CD-ROM available in the cluster.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run the following command to edit the configuration of the VM in which you want to insert the CD-ROM:
+      <CodeBlock code={"$ oc edit vm <vm-name> -n <namespace>"} lang="terminal" />
+      <p>where:</p>
+      <ul>
+      <li><code>&lt;vm-name&gt;</code> is the name of the VM</li>
+      <li><code>&lt;namespace&gt;</code> is the name of the project name space that contains the VM</li>
+      </ul>
+      </li>
+      <li>
+      Add a <code>cdrom</code> disk to the <code>spec.template.spec.domains.devices.disks</code> section of the VM configuration. For example:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: example-vm\nspec:\n  runStrategy: Always\n  template:\n    spec:\n      domain:\n        devices:\n          disks:\n          - cdrom:\n              bus: sata\n              name: cdrom"} lang="yaml" />
+      </li>
+      <li>If the VM is running, shut it down.</li>
+      <li>
+      Insert a CD-ROM volume in the <code>spec.template.spec.volumes</code> section of the VM configuration. For example:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: example-vm\nspec:\n  template:\n    spec:\n      volumes:\n      - dataVolume:\n          name: cdrom-example\n          hotpluggable: true\n        name: cdrom"} lang="yaml" />
+      <p>You can insert a CD-ROM this way while the VM is running, but the dataVolume must have the <code>hotpluggable: true</code> parameter set.</p>
+      </li>
+      <li>Optional: In the guest operating system, verify that the CD-ROM has been detected.</li>
+      <li>Optional: Eject the CD-ROM volume. To do so, remove the <code>cdrom</code> volume from the <code>spec.template.spec.volumes</code> section of the VM configuration. You can do this while the VM is running.</li>
+      </ol>
+      <h2 id="virt-inserting-a-cd-rom-in-a-vm-by-using-the-web-console_virt-inserting-cd-roms-in-virtual-machines" class="group scroll-mt-20">Inserting a CD-ROM in a live VM by using the web console<a href="#virt-inserting-a-cd-rom-in-a-vm-by-using-the-web-console_virt-inserting-cd-roms-in-virtual-machines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To make data on a CD-ROM storage device available to a running virtual machine (VM), create a virtual CD-ROM drive in the VM and insert the CD-ROM into the drive as an ISO image.</p>
+      <p>Setting up a virtual CD-ROM drive requires rebooting the VM, but you can insert and eject ISO images in the drive while the VM is running.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>
+      The <code>DeclarativeHotplugVolumes</code> feature gate is enabled. To ensure this, the <code>HyperConverged</code> CR must contain the <code>declarativeHotplugVolumes: true</code> line in the <code>spec.featureGates</code> configuration section:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n    featureGates:\n      declarativeHotplugVolumes: true"} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>DeclarativeHotplugVolumes</code> feature gate does not support hot plugging ephemeral volumes.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform web console, go to <strong>Virtualization</strong> → <strong>VirtualMachines</strong>.</li>
+      <li>Click the name of the VM in which you want to insert the CD-ROM.</li>
+      <li>On the VM details page, click the <strong>Configuration</strong> tab.</li>
+      <li>Open the <strong>Storage</strong> pane.</li>
+      <li>
+      Click <strong>Add</strong>.
+      <p>A drop-down menu opens.</p>
+      </li>
+      <li>Click <strong>CD-ROM</strong>.</li>
+      <li>In the <strong>Name</strong> field, add a name for the CD-ROM drive device.</li>
+      <li>
+      Select the ISO image to add to the drive as a CD-ROM volume. To do so, click the drop-down button, and select from the volumes available in the cluster.
+      <p>Alternatively, you can upload a new ISO file and insert it into the CD-ROM drive after it is created. To do so:</p>
+      <ol>
+      <li>Ensure that the <strong>Upload a new ISO file to the cluster</strong> line is checked.</li>
+      <li>Drag and drop an ISO file in the <strong>Upload ISO</strong> field, or click <strong>Upload</strong> and select the ISO image that you want to upload.</li>
+      <li>In the <strong>Upload mode</strong> field, select <strong>Mount uploaded ISO as DataVolume</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Click <strong>Add</strong>.
+      <p>The CD-ROM drive is added to the <strong>Storage</strong> list.</p>
+      </li>
+      <li>If the VM is running, shut it down or restart it.</li>
+      <li>To insert the ISO file attached to the CD-ROM drive as a CD-ROM volume into the VM, click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the CD-ROM drive, and click <strong>Inject</strong>. You can do this while the VM is running.</li>
+      <li>Optional: In the guest operating system, verify that the CD-ROM has been detected.</li>
+      <li>Optional: To eject the CD-ROM from the VM, click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the CD-ROM device in the web console, and select <strong>Eject</strong>. You can do this while the VM is running.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

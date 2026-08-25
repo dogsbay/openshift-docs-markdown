@@ -26,7 +26,7 @@ import TableHead from "@ui/table/TableHead.astro";
 import TableHeader from "@ui/table/TableHeader.astro";
 import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"cli-opm-ref","text":"opm CLI reference"}];
+const headings = [{"depth":1,"slug":"cli-opm-ref","text":"opm CLI reference"},{"depth":2,"slug":"opm-cli-ref-generate_{{ Context }}","text":"generate"},{"depth":3,"slug":"opm-cli-ref-generate-dockerfile_cli-opm-ref","text":"dockerfile"},{"depth":2,"slug":"opm-cli-ref-index_cli-opm-ref","text":"index"},{"depth":3,"slug":"opm-cli-ref-index-add_cli-opm-ref","text":"add"},{"depth":3,"slug":"opm-cli-ref-index-prune_cli-opm-ref","text":"prune"},{"depth":3,"slug":"opm-cli-ref-index-prune-stranded_cli-opm-ref","text":"prune-stranded"},{"depth":3,"slug":"opm-cli-ref-index-rm_cli-opm-ref","text":"rm"},{"depth":2,"slug":"opm-cli-ref-init_cli-opm-ref","text":"init"},{"depth":2,"slug":"opm-cli-ref-migrate_cli-opm-ref","text":"migrate"},{"depth":2,"slug":"opm-cli-ref-render_cli-opm-ref","text":"render"},{"depth":2,"slug":"opm-cli-ref-server_cli-opm-ref","text":"serve"},{"depth":2,"slug":"opm-cli-ref-validate_cli-opm-ref","text":"validate"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/opm/cli-opm-ref";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -49,7 +49,7 @@ const pageCategory = ["cli_reference","cli_reference/opm"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# opm CLI reference {#cli-opm-ref}\n\nThe `opm` command-line interface (CLI) is a tool for creating and maintaining Operator catalogs.\n\n```terminal {title=\"opm CLI syntax\"}\n$ opm <command> [<subcommand>] [<argument>] [<flags>]\n```\n\n> [!WARNING]\n> The `opm` CLI is not forward compatible. The version of the `opm` CLI used to generate catalog content must be earlier than or equal to the version used to serve the content on a cluster.\n\n**Global flags**\n\n| Flag | Description |\n| --- | --- |\n| `-skip-tls-verify` | Skip TLS certificate verification for container image registries while pulling bundles or indexes. |\n| `--use-http` | When you pull bundles, use plain HTTP for container image registries. |\n|  |  |\n\n**Additional resources**\n\n- [Operator Framework packaging format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)\n- [Managing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb)\n- [Mirroring images for a disconnected installation using the oc-mirror plugin](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/opm/cli-opm-ref.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# opm CLI reference {#cli-opm-ref}\n\nThe `opm` command-line interface (CLI) is a tool for creating and maintaining Operator catalogs.\n\n```terminal {title=\"opm CLI syntax\"}\n$ opm <command> [<subcommand>] [<argument>] [<flags>]\n```\n\n> [!WARNING]\n> The `opm` CLI is not forward compatible. The version of the `opm` CLI used to generate catalog content must be earlier than or equal to the version used to serve the content on a cluster.\n\n**Global flags**\n\n| Flag | Description |\n| --- | --- |\n| `-skip-tls-verify` | Skip TLS certificate verification for container image registries while pulling bundles or indexes. |\n| `--use-http` | When you pull bundles, use plain HTTP for container image registries. |\n\n> [!IMPORTANT]\n> The SQLite-based catalog format, including the related CLI commands, is a deprecated feature. Deprecated functionality is still included in OpenShift Container Platform and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments.\n>\n> For the most recent list of major functionality that has been deprecated or removed within OpenShift Container Platform, refer to the *Deprecated and removed features* section of the OpenShift Container Platform release notes.\n\n## generate {#opm-cli-ref-generate_{{ Context }}}\n\nGenerate various artifacts for declarative config indexes.\n\n```terminal {title=\"Command syntax\"}\n$ opm generate <subcommand> [<flags>]\n```\n\n`generate`** subcommands**\n\n| Subcommand | Description |\n| --- | --- |\n| `dockerfile` | Generate a Dockerfile for a declarative config index. |\n\n`generate`** flags**\n\n| Flags | Description |\n| --- | --- |\n| `-h`, `--help` | Help for generate. |\n\n### dockerfile {#opm-cli-ref-generate-dockerfile_cli-opm-ref}\n\nGenerate a Dockerfile for a declarative config index.\n\n> [!IMPORTANT]\n> This command creates a Dockerfile in the same directory as the `<dcRootDir>` (named `<dcDirName>.Dockerfile`) that is used to build the index. If a Dockerfile with the same name already exists, this command fails.\n>\n> When specifying extra labels, if duplicate keys exist, only the last value of each duplicate key gets added to the generated Dockerfile.\n\n```terminal {title=\"Command syntax\"}\n$ opm generate dockerfile <dcRootDir> [<flags>]\n```\n\n`generate dockerfile`** flags**\n\n| Flag | Description |\n| --- | --- |\n| `-i,` `--binary-image` (string) | Image in which to build catalog. The default value is `quay.io/operator-framework/opm:latest`. |\n| `-l`, `--extra-labels` (string) | Extra labels to include in the generated Dockerfile. Labels have the form `key=value`. |\n| `-h`, `--help` | Help for Dockerfile. |\n\n> [!NOTE]\n> To build with the official Red Hat image, use the `registry.redhat.io/openshift4/ose-operator-registry-rhel9:v{{ product_version }}` value with the `-i` flag.\n\n## index {#opm-cli-ref-index_cli-opm-ref}\n\nGenerate Operator index for SQLite database format container images from pre-existing Operator bundles.\n\n> [!IMPORTANT]\n> As of OpenShift Container Platform 4.11, the default Red Hat-provided Operator catalog releases in the file-based catalog format. The default Red Hat-provided Operator catalogs for OpenShift Container Platform 4.6 through 4.10 released in the deprecated SQLite database format.\n>\n> The `opm` subcommands, flags, and functionality related to the SQLite database format are also deprecated and will be removed in a future release. The features are still supported and must be used for catalogs that use the deprecated SQLite database format.\n>\n> Many of the `opm` subcommands and flags for working with the SQLite database format, such as `opm index prune`, do not work with the file-based catalog format.\n>\n> For more information about working with file-based catalogs, see \"Additional resources\".\n\n```terminal {title=\"Command syntax\"}\n$ opm index <subcommand> [<flags>]\n```\n\n`index`** subcommands**\n\n| Subcommand | Description |\n| --- | --- |\n| `add` | Add Operator bundles to an index. |\n| `prune` | Prune an index of all but specified packages. |\n| `prune-stranded` | Prune an index of stranded bundles, which are bundles that are not associated with a particular image. |\n| `rm` | Delete an entire Operator from an index. |\n\n### add {#opm-cli-ref-index-add_cli-opm-ref}\n\nAdd Operator bundles to an index.\n\n```terminal {title=\"Command syntax\"}\n$ opm index add [<flags>]\n```\n\n`index add`** flags**\n\n| Flag | Description |\n| --- | --- |\n| `-i`, `--binary-image` | Container image for on-image `opm` command |\n| `-u`, `--build-tool` (string) | Tool to build container images: `podman` (the default value) or `docker`. Overrides part of the `--container-tool` flag. |\n| `-b`, `--bundles` (strings) | Comma-separated list of bundles to add. |\n| `-c`, `--container-tool` (string) | Tool to interact with container images, such as for saving and building: `docker` or `podman`. |\n| `-f`, `--from-index` (string) | Previous index to add to. |\n| `--generate` | If enabled, only creates the Dockerfile and saves it to local disk. |\n| `--mode` (string) | Graph update mode that defines how channel graphs are updated: `replaces` (the default value), `semver`, or `semver-skippatch`. |\n| `-d`, `--out-dockerfile` (string) | Optional: If generating the Dockerfile, specify a file name. |\n| `--permissive` | Allow registry load errors. |\n| `-p`, `--pull-tool` (string) | Tool to pull container images: `none` (the default value), `docker`, or `podman`. Overrides part of the `--container-tool` flag. |\n| `-t`, `--tag` (string) | Custom tag for container image being built. |\n\n### prune {#opm-cli-ref-index-prune_cli-opm-ref}\n\nPrune an index of all but specified packages.\n\n```terminal {title=\"Command syntax\"}\n$ opm index prune [<flags>]\n```\n\n`index prune`** flags**\n\n| Flag | Description |\n| --- | --- |\n| `-i`, `--binary-image` | Container image for on-image `opm` command |\n| `-c`, `--container-tool` (string) | Tool to interact with container images, such as for saving and building: `docker` or `podman`. |\n| `-f`, `--from-index` (string) | Index to prune. |\n| `--generate` | If enabled, only creates the Dockerfile and saves it to local disk. |\n| `-d`, `--out-dockerfile` (string) | Optional: If generating the Dockerfile, specify a file name. |\n| `-p`, `--packages` (strings) | Comma-separated list of packages to keep. |\n| `--permissive` | Allow registry load errors. |\n| `-t`, `--tag` (string) | Custom tag for container image being built. |\n\n### prune-stranded {#opm-cli-ref-index-prune-stranded_cli-opm-ref}\n\nPrune an index of stranded bundles, which are bundles that are not associated with a particular image.\n\n```terminal {title=\"Command syntax\"}\n$ opm index prune-stranded [<flags>]\n```\n\n`index prune-stranded`** flags**\n\n| Flag | Description |\n| --- | --- |\n| `-i`, `--binary-image` | Container image for on-image `opm` command |\n| `-c`, `--container-tool` (string) | Tool to interact with container images, such as for saving and building: `docker` or `podman`. |\n| `-f`, `--from-index` (string) | Index to prune. |\n| `--generate` | If enabled, only creates the Dockerfile and saves it to local disk. |\n| `-d`, `--out-dockerfile` (string) | Optional: If generating the Dockerfile, specify a file name. |\n| `-p`, `--packages` (strings) | Comma-separated list of packages to keep. |\n| `--permissive` | Allow registry load errors. |\n| `-t`, `--tag` (string) | Custom tag for container image being built. |\n\n### rm {#opm-cli-ref-index-rm_cli-opm-ref}\n\nDelete an entire Operator from an index.\n\n```terminal {title=\"Command syntax\"}\n$ opm index rm [<flags>]\n```\n\n`index rm`** flags**\n\n| Flag | Description |\n| --- | --- |\n| `-i`, `--binary-image` | Container image for on-image `opm` command |\n| `-u`, `--build-tool` (string) | Tool to build container images: `podman` (the default value) or `docker`. Overrides part of the `--container-tool` flag. |\n| `-c`, `--container-tool` (string) | Tool to interact with container images, such as for saving and building: `docker` or `podman`. |\n| `-f`, `--from-index` (string) | Previous index to delete from. |\n| `--generate` | If enabled, only creates the Dockerfile and saves it to local disk. |\n| `-o`, `--operators` (strings) | Comma-separated list of Operators to delete. |\n| `-d`, `--out-dockerfile` (string) | Optional: If generating the Dockerfile, specify a file name. |\n| `-p`, `--packages` (strings) | Comma-separated list of packages to keep. |\n| `--permissive` | Allow registry load errors. |\n| `-p`, `--pull-tool` (string) | Tool to pull container images: `none` (the default value), `docker`, or `podman`. Overrides part of the `--container-tool` flag. |\n| `-t`, `--tag` (string) | Custom tag for container image being built. |\n\n**Additional resources**\n\n- [Operator Framework packaging format](/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format)\n- [Managing custom catalogs](/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb)\n- [Mirroring images for a disconnected installation using the oc-mirror plugin](/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected)\n\n## init {#opm-cli-ref-init_cli-opm-ref}\n\nGenerate an `olm.package` declarative config blob.\n\n```terminal {title=\"Command syntax\"}\n$ opm init <package_name> [<flags>]\n```\n\n`init`** flags**\n\n| Flag | Description |\n| --- | --- |\n| `-c`, `--default-channel` (string) | The channel that subscriptions will default to if unspecified. |\n| `-d`, `--description` (string) | Path to the Operator’s `README.md` or other documentation. |\n| `-i`, `--icon` (string) | Path to package’s icon. |\n| `-o`, `--output` (string) | Output format: `json` (the default value) or `yaml`. |\n\n## migrate {#opm-cli-ref-migrate_cli-opm-ref}\n\nMigrate a SQLite database format index image or database file to a file-based catalog.\n\n> [!IMPORTANT]\n> The SQLite-based catalog format, including the related CLI commands, is a deprecated feature. Deprecated functionality is still included in OpenShift Container Platform and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments.\n>\n> For the most recent list of major functionality that has been deprecated or removed within OpenShift Container Platform, refer to the *Deprecated and removed features* section of the OpenShift Container Platform release notes.\n\n```terminal {title=\"Command syntax\"}\n$ opm migrate <index_ref> <output_dir> [<flags>]\n```\n\n`migrate`** flags**\n\n| Flag | Description |\n| --- | --- |\n| `-o`, `--output` (string) | Output format: `json` (the default value) or `yaml`. |\n\n## render {#opm-cli-ref-render_cli-opm-ref}\n\nGenerate a declarative config blob from the provided index images, bundle images, and SQLite database files.\n\n```terminal {title=\"Command syntax\"}\n$ opm render <index_image | bundle_image | sqlite_file> [<flags>]\n```\n\n`render`** flags**\n\n| Flag | Description |\n| --- | --- |\n| `-o`, `--output` (string) | Output format: `json` (the default value) or `yaml`. |\n\n## serve {#opm-cli-ref-server_cli-opm-ref}\n\nServe declarative configs via a GRPC server.\n\n> [!NOTE]\n> The declarative config directory is loaded by the `serve` command at startup. Changes made to the declarative config after this command starts are not reflected in the served content.\n\n```terminal {title=\"Command syntax\"}\n$ opm serve <source_path> [<flags>]\n```\n\n`serve`** flags**\n\n| Flag | Description |\n| --- | --- |\n| `--cache-dir` (string) | If this flag is set, it syncs and persists the server cache directory. |\n| `--cache-enforce-integrity` | Exits with an error if the cache is not present or is invalidated. The default value is `true` when the `--cache-dir` flag is set and the `--cache-only` flag is `false`. Otherwise, the default is `false`. |\n| `--cache-only` | Syncs the serve cache and exits without serving. |\n| `--debug` | Enables debug logging. |\n| `h`, `--help` | Help for serve. |\n| `-p`, `--port` (string) | The port number for the service. The default value is `50051`. |\n| `--pprof-addr` (string) | The address of the startup profiling endpoint. The format is `Addr:Port`. |\n| `-t`, `--termination-log` (string) | The path to a container termination log file. The default value is `/dev/termination-log`. |\n\n## validate {#opm-cli-ref-validate_cli-opm-ref}\n\nValidate the declarative config JSON file(s) in a given directory.\n\n```terminal {title=\"Command syntax\"}\n$ opm validate <directory> [<flags>]\n```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/opm/cli-opm-ref.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -101,7 +101,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cli-opm-ref" class="group scroll-mt-20">opm CLI reference<a href="#cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The <code>opm</code> command-line interface (CLI) is a tool for creating and maintaining Operator catalogs.</p>
       <CodeBlock code={"$ opm <command> [<subcommand>] [<argument>] [<flags>]"} lang="terminal" title="opm CLI syntax" />
       <Alert variant="warning" class="my-4">
@@ -127,23 +126,468 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <TableCell><code>--use-http</code></TableCell>
       <TableCell>When you pull bundles, use plain HTTP for container image registries.</TableCell>
       </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The SQLite-based catalog format, including the related CLI commands, is a deprecated feature. Deprecated functionality is still included in OpenShift Container Platform and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments.</p>
+          <p>For the most recent list of major functionality that has been deprecated or removed within OpenShift Container Platform, refer to the <em>Deprecated and removed features</em> section of the OpenShift Container Platform release notes.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="opm-cli-ref-generate_{{ Context }}" class="group scroll-mt-20">generate<a href="#opm-cli-ref-generate_{{ Context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Generate various artifacts for declarative config indexes.</p>
+      <CodeBlock code={"$ opm generate <subcommand> [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>generate</code><strong> subcommands</strong></p>
+      <Table class="my-4">
+      <TableHeader>
       <TableRow>
-      <TableCell></TableCell>
-      <TableCell></TableCell>
+      <TableHead>Subcommand</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>dockerfile</code></TableCell>
+      <TableCell>Generate a Dockerfile for a declarative config index.</TableCell>
       </TableRow>
       </TableBody>
       </Table>
-      <p class="/modules/opm-cli-ref-index.md"></p>
+      <p><code>generate</code><strong> flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flags</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-h</code>, <code>--help</code></TableCell>
+      <TableCell>Help for generate.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="opm-cli-ref-generate-dockerfile_cli-opm-ref" class="group scroll-mt-20">dockerfile<a href="#opm-cli-ref-generate-dockerfile_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Generate a Dockerfile for a declarative config index.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>This command creates a Dockerfile in the same directory as the <code>&lt;dcRootDir&gt;</code> (named <code>&lt;dcDirName&gt;.Dockerfile</code>) that is used to build the index. If a Dockerfile with the same name already exists, this command fails.</p>
+          <p>When specifying extra labels, if duplicate keys exist, only the last value of each duplicate key gets added to the generated Dockerfile.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ opm generate dockerfile <dcRootDir> [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>generate dockerfile</code><strong> flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-i,</code> <code>--binary-image</code> (string)</TableCell>
+      <TableCell>Image in which to build catalog. The default value is <code>quay.io/operator-framework/opm:latest</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-l</code>, <code>--extra-labels</code> (string)</TableCell>
+      <TableCell>Extra labels to include in the generated Dockerfile. Labels have the form <code>key=value</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-h</code>, <code>--help</code></TableCell>
+      <TableCell>Help for Dockerfile.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To build with the official Red Hat image, use the <code>registry.redhat.io/openshift4/ose-operator-registry-rhel9:v{"{"}{"{"} product_version {"}"}{"}"}</code> value with the <code>-i</code> flag.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="opm-cli-ref-index_cli-opm-ref" class="group scroll-mt-20">index<a href="#opm-cli-ref-index_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Generate Operator index for SQLite database format container images from pre-existing Operator bundles.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>As of OpenShift Container Platform 4.11, the default Red Hat-provided Operator catalog releases in the file-based catalog format. The default Red Hat-provided Operator catalogs for OpenShift Container Platform 4.6 through 4.10 released in the deprecated SQLite database format.</p>
+          <p>The <code>opm</code> subcommands, flags, and functionality related to the SQLite database format are also deprecated and will be removed in a future release. The features are still supported and must be used for catalogs that use the deprecated SQLite database format.</p>
+          <p>Many of the <code>opm</code> subcommands and flags for working with the SQLite database format, such as <code>opm index prune</code>, do not work with the file-based catalog format.</p>
+          <p>For more information about working with file-based catalogs, see "Additional resources".</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ opm index <subcommand> [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>index</code><strong> subcommands</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Subcommand</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>add</code></TableCell>
+      <TableCell>Add Operator bundles to an index.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>prune</code></TableCell>
+      <TableCell>Prune an index of all but specified packages.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>prune-stranded</code></TableCell>
+      <TableCell>Prune an index of stranded bundles, which are bundles that are not associated with a particular image.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>rm</code></TableCell>
+      <TableCell>Delete an entire Operator from an index.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="opm-cli-ref-index-add_cli-opm-ref" class="group scroll-mt-20">add<a href="#opm-cli-ref-index-add_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Add Operator bundles to an index.</p>
+      <CodeBlock code={"$ opm index add [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>index add</code><strong> flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-i</code>, <code>--binary-image</code></TableCell>
+      <TableCell>Container image for on-image <code>opm</code> command</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-u</code>, <code>--build-tool</code> (string)</TableCell>
+      <TableCell>Tool to build container images: <code>podman</code> (the default value) or <code>docker</code>. Overrides part of the <code>--container-tool</code> flag.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-b</code>, <code>--bundles</code> (strings)</TableCell>
+      <TableCell>Comma-separated list of bundles to add.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-c</code>, <code>--container-tool</code> (string)</TableCell>
+      <TableCell>Tool to interact with container images, such as for saving and building: <code>docker</code> or <code>podman</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-f</code>, <code>--from-index</code> (string)</TableCell>
+      <TableCell>Previous index to add to.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--generate</code></TableCell>
+      <TableCell>If enabled, only creates the Dockerfile and saves it to local disk.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--mode</code> (string)</TableCell>
+      <TableCell>Graph update mode that defines how channel graphs are updated: <code>replaces</code> (the default value), <code>semver</code>, or <code>semver-skippatch</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-d</code>, <code>--out-dockerfile</code> (string)</TableCell>
+      <TableCell>Optional: If generating the Dockerfile, specify a file name.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--permissive</code></TableCell>
+      <TableCell>Allow registry load errors.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-p</code>, <code>--pull-tool</code> (string)</TableCell>
+      <TableCell>Tool to pull container images: <code>none</code> (the default value), <code>docker</code>, or <code>podman</code>. Overrides part of the <code>--container-tool</code> flag.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-t</code>, <code>--tag</code> (string)</TableCell>
+      <TableCell>Custom tag for container image being built.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="opm-cli-ref-index-prune_cli-opm-ref" class="group scroll-mt-20">prune<a href="#opm-cli-ref-index-prune_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Prune an index of all but specified packages.</p>
+      <CodeBlock code={"$ opm index prune [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>index prune</code><strong> flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-i</code>, <code>--binary-image</code></TableCell>
+      <TableCell>Container image for on-image <code>opm</code> command</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-c</code>, <code>--container-tool</code> (string)</TableCell>
+      <TableCell>Tool to interact with container images, such as for saving and building: <code>docker</code> or <code>podman</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-f</code>, <code>--from-index</code> (string)</TableCell>
+      <TableCell>Index to prune.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--generate</code></TableCell>
+      <TableCell>If enabled, only creates the Dockerfile and saves it to local disk.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-d</code>, <code>--out-dockerfile</code> (string)</TableCell>
+      <TableCell>Optional: If generating the Dockerfile, specify a file name.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-p</code>, <code>--packages</code> (strings)</TableCell>
+      <TableCell>Comma-separated list of packages to keep.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--permissive</code></TableCell>
+      <TableCell>Allow registry load errors.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-t</code>, <code>--tag</code> (string)</TableCell>
+      <TableCell>Custom tag for container image being built.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="opm-cli-ref-index-prune-stranded_cli-opm-ref" class="group scroll-mt-20">prune-stranded<a href="#opm-cli-ref-index-prune-stranded_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Prune an index of stranded bundles, which are bundles that are not associated with a particular image.</p>
+      <CodeBlock code={"$ opm index prune-stranded [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>index prune-stranded</code><strong> flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-i</code>, <code>--binary-image</code></TableCell>
+      <TableCell>Container image for on-image <code>opm</code> command</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-c</code>, <code>--container-tool</code> (string)</TableCell>
+      <TableCell>Tool to interact with container images, such as for saving and building: <code>docker</code> or <code>podman</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-f</code>, <code>--from-index</code> (string)</TableCell>
+      <TableCell>Index to prune.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--generate</code></TableCell>
+      <TableCell>If enabled, only creates the Dockerfile and saves it to local disk.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-d</code>, <code>--out-dockerfile</code> (string)</TableCell>
+      <TableCell>Optional: If generating the Dockerfile, specify a file name.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-p</code>, <code>--packages</code> (strings)</TableCell>
+      <TableCell>Comma-separated list of packages to keep.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--permissive</code></TableCell>
+      <TableCell>Allow registry load errors.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-t</code>, <code>--tag</code> (string)</TableCell>
+      <TableCell>Custom tag for container image being built.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="opm-cli-ref-index-rm_cli-opm-ref" class="group scroll-mt-20">rm<a href="#opm-cli-ref-index-rm_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Delete an entire Operator from an index.</p>
+      <CodeBlock code={"$ opm index rm [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>index rm</code><strong> flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-i</code>, <code>--binary-image</code></TableCell>
+      <TableCell>Container image for on-image <code>opm</code> command</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-u</code>, <code>--build-tool</code> (string)</TableCell>
+      <TableCell>Tool to build container images: <code>podman</code> (the default value) or <code>docker</code>. Overrides part of the <code>--container-tool</code> flag.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-c</code>, <code>--container-tool</code> (string)</TableCell>
+      <TableCell>Tool to interact with container images, such as for saving and building: <code>docker</code> or <code>podman</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-f</code>, <code>--from-index</code> (string)</TableCell>
+      <TableCell>Previous index to delete from.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--generate</code></TableCell>
+      <TableCell>If enabled, only creates the Dockerfile and saves it to local disk.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-o</code>, <code>--operators</code> (strings)</TableCell>
+      <TableCell>Comma-separated list of Operators to delete.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-d</code>, <code>--out-dockerfile</code> (string)</TableCell>
+      <TableCell>Optional: If generating the Dockerfile, specify a file name.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-p</code>, <code>--packages</code> (strings)</TableCell>
+      <TableCell>Comma-separated list of packages to keep.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--permissive</code></TableCell>
+      <TableCell>Allow registry load errors.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-p</code>, <code>--pull-tool</code> (string)</TableCell>
+      <TableCell>Tool to pull container images: <code>none</code> (the default value), <code>docker</code>, or <code>podman</code>. Overrides part of the <code>--container-tool</code> flag.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-t</code>, <code>--tag</code> (string)</TableCell>
+      <TableCell>Custom tag for container image being built.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/operators/understanding/olm-packaging-format#olm-file-based-catalogs_olm-packaging-format">Operator Framework packaging format</a></li>
       <li><a href="/openshift-docs-markdown/operators/admin/olm-managing-custom-catalogs#olm-managing-custom-catalogs-fb">Managing custom catalogs</a></li>
       <li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-disconnected#installing-mirroring-disconnected">Mirroring images for a disconnected installation using the oc-mirror plugin</a></li>
       </ul>
-      <p class="/modules/opm-cli-ref-migrate.md"></p>
-      <p class="/modules/opm-cli-ref-render.md"></p>
-      <p class="/modules/opm-cli-ref-serve.md"></p>
-      <p class="/modules/opm-cli-ref-validate.md"></p>
+      <h2 id="opm-cli-ref-init_cli-opm-ref" class="group scroll-mt-20">init<a href="#opm-cli-ref-init_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Generate an <code>olm.package</code> declarative config blob.</p>
+      <CodeBlock code={"$ opm init <package_name> [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>init</code><strong> flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-c</code>, <code>--default-channel</code> (string)</TableCell>
+      <TableCell>The channel that subscriptions will default to if unspecified.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-d</code>, <code>--description</code> (string)</TableCell>
+      <TableCell>Path to the Operator’s <code>README.md</code> or other documentation.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-i</code>, <code>--icon</code> (string)</TableCell>
+      <TableCell>Path to package’s icon.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-o</code>, <code>--output</code> (string)</TableCell>
+      <TableCell>Output format: <code>json</code> (the default value) or <code>yaml</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="opm-cli-ref-migrate_cli-opm-ref" class="group scroll-mt-20">migrate<a href="#opm-cli-ref-migrate_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Migrate a SQLite database format index image or database file to a file-based catalog.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The SQLite-based catalog format, including the related CLI commands, is a deprecated feature. Deprecated functionality is still included in OpenShift Container Platform and continues to be supported; however, it will be removed in a future release of this product and is not recommended for new deployments.</p>
+          <p>For the most recent list of major functionality that has been deprecated or removed within OpenShift Container Platform, refer to the <em>Deprecated and removed features</em> section of the OpenShift Container Platform release notes.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ opm migrate <index_ref> <output_dir> [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>migrate</code><strong> flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-o</code>, <code>--output</code> (string)</TableCell>
+      <TableCell>Output format: <code>json</code> (the default value) or <code>yaml</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="opm-cli-ref-render_cli-opm-ref" class="group scroll-mt-20">render<a href="#opm-cli-ref-render_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Generate a declarative config blob from the provided index images, bundle images, and SQLite database files.</p>
+      <CodeBlock code={"$ opm render <index_image | bundle_image | sqlite_file> [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>render</code><strong> flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-o</code>, <code>--output</code> (string)</TableCell>
+      <TableCell>Output format: <code>json</code> (the default value) or <code>yaml</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="opm-cli-ref-server_cli-opm-ref" class="group scroll-mt-20">serve<a href="#opm-cli-ref-server_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Serve declarative configs via a GRPC server.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The declarative config directory is loaded by the <code>serve</code> command at startup. Changes made to the declarative config after this command starts are not reflected in the served content.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ opm serve <source_path> [<flags>]"} lang="terminal" title="Command syntax" />
+      <p><code>serve</code><strong> flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>--cache-dir</code> (string)</TableCell>
+      <TableCell>If this flag is set, it syncs and persists the server cache directory.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--cache-enforce-integrity</code></TableCell>
+      <TableCell>Exits with an error if the cache is not present or is invalidated. The default value is <code>true</code> when the <code>--cache-dir</code> flag is set and the <code>--cache-only</code> flag is <code>false</code>. Otherwise, the default is <code>false</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--cache-only</code></TableCell>
+      <TableCell>Syncs the serve cache and exits without serving.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--debug</code></TableCell>
+      <TableCell>Enables debug logging.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>h</code>, <code>--help</code></TableCell>
+      <TableCell>Help for serve.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-p</code>, <code>--port</code> (string)</TableCell>
+      <TableCell>The port number for the service. The default value is <code>50051</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--pprof-addr</code> (string)</TableCell>
+      <TableCell>The address of the startup profiling endpoint. The format is <code>Addr:Port</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-t</code>, <code>--termination-log</code> (string)</TableCell>
+      <TableCell>The path to a container termination log file. The default value is <code>/dev/termination-log</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="opm-cli-ref-validate_cli-opm-ref" class="group scroll-mt-20">validate<a href="#opm-cli-ref-validate_cli-opm-ref" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Validate the declarative config JSON file(s) in a given directory.</p>
+      <CodeBlock code={"$ opm validate <directory> [<flags>]"} lang="terminal" title="Command syntax" />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

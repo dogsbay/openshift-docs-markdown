@@ -19,7 +19,7 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"ossm-about","text":"About OpenShift Service Mesh"}];
+const headings = [{"depth":1,"slug":"ossm-about","text":"About OpenShift Service Mesh"},{"depth":2,"slug":"ossm-servicemesh-overview_ossm-about","text":"Introduction to Red Hat OpenShift Service Mesh"},{"depth":2,"slug":"ossm-core-features_ossm-about","text":"Core features"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/service_mesh/v2x/ossm-about";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "About OpenShift Service Mesh";
-const description = "" || undefined;
+const description = "Red Hat OpenShift Service Mesh addresses a variety of problems in a microservice architecture by creating a centralized point of control in an…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +42,7 @@ const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About OpenShift Service Mesh {#ossm-about}\n\n> [!NOTE]\n> Because {{ SMProductName }} releases on a different cadence from OpenShift Container Platform and because the {{ SMProductName }} Operator supports deploying multiple versions of the `ServiceMeshControlPlane`, the {{ SMProductShortName }} documentation does not maintain separate documentation sets for minor versions of the product.  The current documentation set applies to the most recent version of {{ SMProductShortName }} unless version-specific limitations are called out in a particular topic or for a particular feature.\n>\n> For additional information about the {{ SMProductName }} life cycle and supported platforms, refer to the [Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift#ossm).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-about.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About OpenShift Service Mesh {#ossm-about}\n\n> [!NOTE]\n> Because Red Hat OpenShift Service Mesh releases on a different cadence from OpenShift Container Platform and because the Red Hat OpenShift Service Mesh Operator supports deploying multiple versions of the `ServiceMeshControlPlane`, the Service Mesh documentation does not maintain separate documentation sets for minor versions of the product.  The current documentation set applies to the most recent version of Service Mesh unless version-specific limitations are called out in a particular topic or for a particular feature.\n>\n> For additional information about the Red Hat OpenShift Service Mesh life cycle and supported platforms, refer to the [Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift#ossm).\n\n## Introduction to Red Hat OpenShift Service Mesh {#ossm-servicemesh-overview_ossm-about}\n\nRed Hat OpenShift Service Mesh addresses a variety of problems in a microservice architecture by creating a centralized point of control in an application. It adds a transparent layer on existing distributed applications without requiring any changes to the application code.\n\nMicroservice architectures split the work of enterprise applications into modular services, which can make scaling and maintenance easier. However, as an enterprise application built on a microservice architecture grows in size and complexity, it becomes difficult to understand and manage. Service Mesh can address those architecture problems by capturing or intercepting traffic between services and can modify, redirect, or create new requests to other services.\n\nService Mesh, which is based on the open source [Istio project](https://istio.io/), provides an easy way to create a network of deployed services that provides discovery, load balancing, service-to-service authentication, failure recovery, metrics, and monitoring. A service mesh also provides more complex operational functionality, including A/B testing, canary releases, access control, and end-to-end authentication.\n\n> [!NOTE]\n> Red Hat OpenShift Service Mesh 3 is generally available. For more information, see [Red Hat OpenShift Service Mesh 3.0](https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/).\n\n## Core features {#ossm-core-features_ossm-about}\n\nRed Hat OpenShift Service Mesh provides a number of key capabilities uniformly across a network of services:\n\n- **Traffic Management** - Control the flow of traffic and API calls between services, make calls more reliable, and make the network more robust in the face of adverse conditions.\n- **Service Identity and Security** - Provide services in the mesh with a verifiable identity and provide the ability to protect service traffic as it flows over networks of varying degrees of trustworthiness.\n- **Policy Enforcement** - Apply organizational policy to the interaction between services, ensure access policies are enforced and resources are fairly distributed among consumers. Policy changes are made by configuring the mesh, not by changing application code.\n- **Telemetry** - Gain understanding of the dependencies between services and the nature and flow of traffic between them, providing the ability to quickly identify issues.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-about.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,16 +94,31 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ossm-about" class="group scroll-mt-20">About OpenShift Service Mesh<a href="#ossm-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Because {"{"}{"{"} SMProductName {"}"}{"}"} releases on a different cadence from OpenShift Container Platform and because the {"{"}{"{"} SMProductName {"}"}{"}"} Operator supports deploying multiple versions of the <code>ServiceMeshControlPlane</code>, the {"{"}{"{"} SMProductShortName {"}"}{"}"} documentation does not maintain separate documentation sets for minor versions of the product.  The current documentation set applies to the most recent version of {"{"}{"{"} SMProductShortName {"}"}{"}"} unless version-specific limitations are called out in a particular topic or for a particular feature.</p>
-          <p>For additional information about the {"{"}{"{"} SMProductName {"}"}{"}"} life cycle and supported platforms, refer to the <a href="https://access.redhat.com/support/policy/updates/openshift#ossm">Platform Life Cycle Policy</a>.</p>
+          <p>Because Red Hat OpenShift Service Mesh releases on a different cadence from OpenShift Container Platform and because the Red Hat OpenShift Service Mesh Operator supports deploying multiple versions of the <code>ServiceMeshControlPlane</code>, the Service Mesh documentation does not maintain separate documentation sets for minor versions of the product.  The current documentation set applies to the most recent version of Service Mesh unless version-specific limitations are called out in a particular topic or for a particular feature.</p>
+          <p>For additional information about the Red Hat OpenShift Service Mesh life cycle and supported platforms, refer to the <a href="https://access.redhat.com/support/policy/updates/openshift#ossm">Platform Life Cycle Policy</a>.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/ossm-servicemesh-overview.md"></p>
-      <p class="/modules/ossm-core-features.md"></p>
+      <h2 id="ossm-servicemesh-overview_ossm-about" class="group scroll-mt-20">Introduction to Red Hat OpenShift Service Mesh<a href="#ossm-servicemesh-overview_ossm-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Red Hat OpenShift Service Mesh addresses a variety of problems in a microservice architecture by creating a centralized point of control in an application. It adds a transparent layer on existing distributed applications without requiring any changes to the application code.</p>
+      <p>Microservice architectures split the work of enterprise applications into modular services, which can make scaling and maintenance easier. However, as an enterprise application built on a microservice architecture grows in size and complexity, it becomes difficult to understand and manage. Service Mesh can address those architecture problems by capturing or intercepting traffic between services and can modify, redirect, or create new requests to other services.</p>
+      <p>Service Mesh, which is based on the open source <a href="https://istio.io/">Istio project</a>, provides an easy way to create a network of deployed services that provides discovery, load balancing, service-to-service authentication, failure recovery, metrics, and monitoring. A service mesh also provides more complex operational functionality, including A/B testing, canary releases, access control, and end-to-end authentication.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Red Hat OpenShift Service Mesh 3 is generally available. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_service_mesh/">Red Hat OpenShift Service Mesh 3.0</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="ossm-core-features_ossm-about" class="group scroll-mt-20">Core features<a href="#ossm-core-features_ossm-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Red Hat OpenShift Service Mesh provides a number of key capabilities uniformly across a network of services:</p>
+      <ul>
+      <li><strong>Traffic Management</strong> - Control the flow of traffic and API calls between services, make calls more reliable, and make the network more robust in the face of adverse conditions.</li>
+      <li><strong>Service Identity and Security</strong> - Provide services in the mesh with a verifiable identity and provide the ability to protect service traffic as it flows over networks of varying degrees of trustworthiness.</li>
+      <li><strong>Policy Enforcement</strong> - Apply organizational policy to the interaction between services, ensure access policies are enforced and resources are fairly distributed among consumers. Policy changes are made by configuring the mesh, not by changing application code.</li>
+      <li><strong>Telemetry</strong> - Gain understanding of the dependencies between services and the nature and flow of traffic between them, providing the ability to quickly identify issues.</li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

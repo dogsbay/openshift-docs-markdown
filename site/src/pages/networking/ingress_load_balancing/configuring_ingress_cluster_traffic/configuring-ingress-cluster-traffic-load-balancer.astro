@@ -15,9 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-ingress-cluster-traffic-load-balancer","text":"Configuring ingress cluster traffic using a load balancer"}];
+const headings = [{"depth":1,"slug":"configuring-ingress-cluster-traffic-load-balancer","text":"Configuring ingress cluster traffic using a load balancer"},{"depth":2,"slug":"nw-using-load-balancer-getting-traffic_configuring-ingress-cluster-traffic-load-balancer","text":"Using a load balancer to get traffic into the cluster"},{"depth":2,"slug":"nw-creating-project-and-service_configuring-ingress-cluster-traffic-load-balancer","text":"Creating a project and service"},{"depth":2,"slug":"nw-exposing-service_configuring-ingress-cluster-traffic-load-balancer","text":"Exposing the service by creating a route"},{"depth":2,"slug":"nw-create-load-balancer-service_configuring-ingress-cluster-traffic-load-balancer","text":"Creating a load balancer service"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -40,7 +43,7 @@ const pageCategory = ["networking","networking/ingress_load_balancing","networki
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring ingress cluster traffic using a load balancer {#configuring-ingress-cluster-traffic-load-balancer}\n\nOpenShift Container Platform provides methods for communicating from outside the cluster with services running in the cluster. This method uses a load balancer.\n\nBefore starting the following procedures, the administrator must complete the following prerequisite tasks:\n\n- Set up the external port to the cluster networking environment so that requests can reach the cluster.\n- Have an OpenShift Container Platform cluster with at least one control plane node, at least one compute node, and a system outside the cluster that has network access to the cluster. This procedure assumes that the external system is on the same subnet as the cluster. The additional networking required for external systems on a different subnet is out-of-scope for this topic.\n- Make sure there is at least one user with cluster admin role. To add this role to a user, run the following command:\n\n  ```terminal\n  $ oc adm policy add-cluster-role-to-user cluster-admin username\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring ingress cluster traffic using a load balancer {#configuring-ingress-cluster-traffic-load-balancer}\n\nOpenShift Container Platform provides methods for communicating from outside the cluster with services running in the cluster. This method uses a load balancer.\n\nBefore starting the following procedures, the administrator must complete the following prerequisite tasks:\n\n- Set up the external port to the cluster networking environment so that requests can reach the cluster.\n- Have an OpenShift Container Platform cluster with at least one control plane node, at least one compute node, and a system outside the cluster that has network access to the cluster. This procedure assumes that the external system is on the same subnet as the cluster. The additional networking required for external systems on a different subnet is out-of-scope for this topic.\n- Make sure there is at least one user with cluster admin role. To add this role to a user, run the following command:\n\n  ```terminal\n  $ oc adm policy add-cluster-role-to-user cluster-admin username\n  ```\n\n## Using a load balancer to get traffic into the cluster {#nw-using-load-balancer-getting-traffic_configuring-ingress-cluster-traffic-load-balancer}\n\nIf you do not need a specific external IP address, you can configure a load balancer service to allow external access to an OpenShift Container Platform cluster.\n\nA load balancer service allocates a unique IP. The load balancer has a single edge router IP, which can be a virtual IP (VIP), but is still a single machine for initial load balancing.\n\n> [!NOTE]\n> A pool gets configured at the infrastructure level and not the cluster administrator level.\n\n## Creating a project and service {#nw-creating-project-and-service_configuring-ingress-cluster-traffic-load-balancer}\n\nIf the project and service that you want to expose does not exist, create the project and then create the service.\n\nIf the project and service already exists, skip to the procedure on exposing the service to create a route.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`) and log in as a cluster administrator.\n\n**Procedure**\n\n1. Create a new project for your service by running the `oc new-project` command:\n\n   ```terminal\n   $ oc new-project <project_name>\n   ```\n2. Use the `oc new-app` command to create your service:\n\n   ```terminal\n   $ oc new-app nodejs:12~https://github.com/sclorg/nodejs-ex.git\n   ```\n3. To verify that the service was created, run the following command:\n\n   ```terminal\n   $ oc get svc -n <project_name>\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE\n   nodejs-ex   ClusterIP   172.30.197.157   <none>        8080/TCP   70s\n   ```\n\n   > [!NOTE]\n   > By default, the new service does not have an external IP address.\n\n## Exposing the service by creating a route {#nw-exposing-service_configuring-ingress-cluster-traffic-load-balancer}\n\nTo enable external access to your application that runs on OpenShift Container Platform, you can expose the service as a route by using the `oc expose` command.\n\n**Prerequisites**\n\n- You logged into OpenShift Container Platform.\n\n**Procedure**\n\n1. Log in to the project where the service you want to expose is located:\n\n   ```terminal\n   $ oc project <project_name>\n   ```\n2. Run the `oc expose service` command to expose the route:\n\n   ```terminal\n   $ oc expose service nodejs-ex\n   ```\n\n   ```terminal {title=\"Example output\"}\n   route.route.openshift.io/nodejs-ex exposed\n   ```\n3. To verify that the service is exposed, you can use a tool, such as `curl` to check that the service is accessible from outside the cluster.\n\n   1. To find the hostname of the route, enter the following command:\n\n      ```terminal\n      $ oc get route\n      ```\n\n      ```terminal {title=\"Example output\"}\n      NAME        HOST/PORT                        PATH   SERVICES    PORT       TERMINATION   WILDCARD\n      nodejs-ex   nodejs-ex-myproject.example.com         nodejs-ex   8080-tcp                 None\n      ```\n   2. To check that the host responds to a GET request, enter the following command:\n\n      ```terminal {title=\"Example curl command\"}\n      $ curl --head nodejs-ex-myproject.example.com\n      ```\n\n      ```terminal {title=\"Example output\"}\n      HTTP/1.1 200 OK\n      ...\n      ```\n\n## Creating a load balancer service {#nw-create-load-balancer-service_configuring-ingress-cluster-traffic-load-balancer}\n\nTo distribute incoming traffic efficiently and ensure high availability for your applications in OpenShift Container Platform, create a load balancer service.\n\n**Prerequisites**\n\n- Make sure that the project and service you want to expose exist.\n- Your cloud provider supports load balancers.\n\n**Procedure**\n\n1. Log in to OpenShift Container Platform.\n2. Load the project where the service you want to expose is located.\n\n   ```terminal {title=\"Example command\"}\n   $ oc project project1\n   ```\n3. Open a text file on the control plane node and paste the following text into the file. Edit the file as needed.\n\n   ```yaml {title=\"Sample load balancer configuration file\"}\n   apiVersion: v1\n   kind: Service\n   metadata:\n     name: egress-2\n   spec:\n     ports:\n     - name: db\n       port: 3306\n     loadBalancerIP:\n     loadBalancerSourceRanges:\n     - 10.0.0.0/8\n     - 192.168.0.0/16\n     type: LoadBalancer\n     selector:\n       name: mysql\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies a descriptive name for the load balancer service.\n\n   `ports.port`\n   :   Specifies the same port that the service you want to expose is listening on.\n\n   `loadBalancerSourceRanges`\n   :   Specifies a list of specific IP addresses to restrict traffic through the load balancer. The parameter is ignored if the cloud provider does not support the feature.\n\n   `type`\n   :   Specifies `Loadbalancer` as the type.\n\n   `selector.name`\n   :   Specifies the name of the service.\n\n   > [!NOTE]\n   > To restrict the traffic through the load balancer to specific IP addresses, use the `spec.endpointPublishingStrategy.loadBalancer.allowedSourceRanges` Ingress Controller parameter. Do not set the `loadBalancerSourceRanges` parameter.\n4. Save and exit the file.\n5. Run the following command to create the service:\n\n   ```terminal\n   $ oc create -f <file_name>\n   ```\n\n   For example:\n\n   ```terminal\n   $ oc create -f mysql-lb.yaml\n   ```\n6. Execute the following command to view the new service:\n\n   ```terminal\n   $ oc get svc\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME       TYPE           CLUSTER-IP      EXTERNAL-IP                             PORT(S)          AGE\n   egress-2   LoadBalancer   172.30.22.226   ad42f5d8b303045-487804948.example.com   3306:30357/TCP   15m\n   ```\n\n   The service has an external IP address automatically assigned if there is a cloud provider enabled.\n7. On the master, use a tool, such as `curl`, to make sure you can reach the service by using the public IP address:\n\n   ```terminal\n   $ curl <public_ip>:<port>\n   ```\n\n   For example:\n\n   ```terminal\n   $ curl 172.29.121.74:3306\n   ```\n\n   The examples in this section use a MySQL service, which requires a client application. If you get a string of characters with the `Got packets out of order` message, you are connecting with the service:\n\n   If you have a MySQL client, log in with the standard CLI command:\n\n   ```terminal\n   $ mysql -h 172.30.131.89 -u admin -p\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Enter password:\n   Welcome to the MariaDB monitor.  Commands end with ; or \\g.\n\n   MySQL [(none)]>\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -92,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-ingress-cluster-traffic-load-balancer" class="group scroll-mt-20">Configuring ingress cluster traffic using a load balancer<a href="#configuring-ingress-cluster-traffic-load-balancer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>OpenShift Container Platform provides methods for communicating from outside the cluster with services running in the cluster. This method uses a load balancer.</p>
       <p>Before starting the following procedures, the administrator must complete the following prerequisite tasks:</p>
       <ul>
@@ -103,9 +105,134 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <CodeBlock code={"$ oc adm policy add-cluster-role-to-user cluster-admin username"} lang="terminal" />
       </li>
       </ul>
-      <p class="/modules/nw-creating-project-and-service.md"></p>
-      <p class="/modules/nw-exposing-service.md"></p>
-      <p class="/modules/nw-create-load-balancer-service.md"></p>
+      <h2 id="nw-using-load-balancer-getting-traffic_configuring-ingress-cluster-traffic-load-balancer" class="group scroll-mt-20">Using a load balancer to get traffic into the cluster<a href="#nw-using-load-balancer-getting-traffic_configuring-ingress-cluster-traffic-load-balancer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you do not need a specific external IP address, you can configure a load balancer service to allow external access to an OpenShift Container Platform cluster.</p>
+      <p>A load balancer service allocates a unique IP. The load balancer has a single edge router IP, which can be a virtual IP (VIP), but is still a single machine for initial load balancing.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>A pool gets configured at the infrastructure level and not the cluster administrator level.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="nw-creating-project-and-service_configuring-ingress-cluster-traffic-load-balancer" class="group scroll-mt-20">Creating a project and service<a href="#nw-creating-project-and-service_configuring-ingress-cluster-traffic-load-balancer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If the project and service that you want to expose does not exist, create the project and then create the service.</p>
+      <p>If the project and service already exists, skip to the procedure on exposing the service to create a route.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Install the OpenShift CLI (<code>oc</code>) and log in as a cluster administrator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a new project for your service by running the <code>oc new-project</code> command:
+      <CodeBlock code={"$ oc new-project <project_name>"} lang="terminal" />
+      </li>
+      <li>
+      Use the <code>oc new-app</code> command to create your service:
+      <CodeBlock code={"$ oc new-app nodejs:12~https://github.com/sclorg/nodejs-ex.git"} lang="terminal" />
+      </li>
+      <li>
+      To verify that the service was created, run the following command:
+      <CodeBlock code={"$ oc get svc -n <project_name>"} lang="terminal" />
+      <CodeBlock code={"NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE\nnodejs-ex   ClusterIP   172.30.197.157   <none>        8080/TCP   70s"} lang="terminal" title="Example output" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>By default, the new service does not have an external IP address.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="nw-exposing-service_configuring-ingress-cluster-traffic-load-balancer" class="group scroll-mt-20">Exposing the service by creating a route<a href="#nw-exposing-service_configuring-ingress-cluster-traffic-load-balancer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To enable external access to your application that runs on OpenShift Container Platform, you can expose the service as a route by using the <code>oc expose</code> command.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You logged into OpenShift Container Platform.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Log in to the project where the service you want to expose is located:
+      <CodeBlock code={"$ oc project <project_name>"} lang="terminal" />
+      </li>
+      <li>
+      Run the <code>oc expose service</code> command to expose the route:
+      <CodeBlock code={"$ oc expose service nodejs-ex"} lang="terminal" />
+      <CodeBlock code={"route.route.openshift.io/nodejs-ex exposed"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To verify that the service is exposed, you can use a tool, such as <code>curl</code> to check that the service is accessible from outside the cluster.
+      <ol>
+      <li>
+      To find the hostname of the route, enter the following command:
+      <CodeBlock code={"$ oc get route"} lang="terminal" />
+      <CodeBlock code={"NAME        HOST/PORT                        PATH   SERVICES    PORT       TERMINATION   WILDCARD\nnodejs-ex   nodejs-ex-myproject.example.com         nodejs-ex   8080-tcp                 None"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To check that the host responds to a GET request, enter the following command:
+      <CodeBlock code={"$ curl --head nodejs-ex-myproject.example.com"} lang="terminal" title="Example curl command" />
+      <CodeBlock code={"HTTP/1.1 200 OK\n..."} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="nw-create-load-balancer-service_configuring-ingress-cluster-traffic-load-balancer" class="group scroll-mt-20">Creating a load balancer service<a href="#nw-create-load-balancer-service_configuring-ingress-cluster-traffic-load-balancer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To distribute incoming traffic efficiently and ensure high availability for your applications in OpenShift Container Platform, create a load balancer service.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Make sure that the project and service you want to expose exist.</li>
+      <li>Your cloud provider supports load balancers.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to OpenShift Container Platform.</li>
+      <li>
+      Load the project where the service you want to expose is located.
+      <CodeBlock code={"$ oc project project1"} lang="terminal" title="Example command" />
+      </li>
+      <li>
+      Open a text file on the control plane node and paste the following text into the file. Edit the file as needed.
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  name: egress-2\nspec:\n  ports:\n  - name: db\n    port: 3306\n  loadBalancerIP:\n  loadBalancerSourceRanges:\n  - 10.0.0.0/8\n  - 192.168.0.0/16\n  type: LoadBalancer\n  selector:\n    name: mysql"} lang="yaml" title="Sample load balancer configuration file" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a descriptive name for the load balancer service.</p></dd>
+      <dt class="font-semibold"><code>ports.port</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the same port that the service you want to expose is listening on.</p></dd>
+      <dt class="font-semibold"><code>loadBalancerSourceRanges</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a list of specific IP addresses to restrict traffic through the load balancer. The parameter is ignored if the cloud provider does not support the feature.</p></dd>
+      <dt class="font-semibold"><code>type</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies <code>Loadbalancer</code> as the type.</p></dd>
+      <dt class="font-semibold"><code>selector.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the service.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To restrict the traffic through the load balancer to specific IP addresses, use the <code>spec.endpointPublishingStrategy.loadBalancer.allowedSourceRanges</code> Ingress Controller parameter. Do not set the <code>loadBalancerSourceRanges</code> parameter.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Save and exit the file.</li>
+      <li>
+      Run the following command to create the service:
+      <CodeBlock code={"$ oc create -f <file_name>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc create -f mysql-lb.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Execute the following command to view the new service:
+      <CodeBlock code={"$ oc get svc"} lang="terminal" />
+      <CodeBlock code={"NAME       TYPE           CLUSTER-IP      EXTERNAL-IP                             PORT(S)          AGE\negress-2   LoadBalancer   172.30.22.226   ad42f5d8b303045-487804948.example.com   3306:30357/TCP   15m"} lang="terminal" title="Example output" />
+      <p>The service has an external IP address automatically assigned if there is a cloud provider enabled.</p>
+      </li>
+      <li>
+      On the master, use a tool, such as <code>curl</code>, to make sure you can reach the service by using the public IP address:
+      <CodeBlock code={"$ curl <public_ip>:<port>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ curl 172.29.121.74:3306"} lang="terminal" />
+      <p>The examples in this section use a MySQL service, which requires a client application. If you get a string of characters with the <code>Got packets out of order</code> message, you are connecting with the service:</p>
+      <p>If you have a MySQL client, log in with the standard CLI command:</p>
+      <CodeBlock code={"$ mysql -h 172.30.131.89 -u admin -p"} lang="terminal" />
+      <CodeBlock code={"Enter password:\nWelcome to the MariaDB monitor.  Commands end with ; or \\g.\n\nMySQL [(none)]>"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

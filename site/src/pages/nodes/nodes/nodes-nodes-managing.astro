@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-nodes-managing","text":"Managing nodes"},{"depth":2,"slug":"additional-resources_nodes-nodes-managing","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"nodes-nodes-managing","text":"Managing nodes"},{"depth":2,"slug":"nodes-nodes-managing-about_nodes-nodes-managing","text":"Modifying nodes"},{"depth":2,"slug":"nodes-nodes-working-master-schedulable_nodes-nodes-managing","text":"Configuring control plane nodes as schedulable"},{"depth":2,"slug":"nodes-nodes-working-setting-booleans_nodes-nodes-managing","text":"Setting SELinux booleans"},{"depth":2,"slug":"nodes-nodes-kernel-arguments_nodes-nodes-managing","text":"Adding kernel arguments to nodes"},{"depth":2,"slug":"nodes-nodes-parallel-container-pulls-about_nodes-nodes-managing","text":"About configuring parallel container image pulls"},{"depth":3,"slug":"nodes-nodes-parallel-container-pulls-configure_nodes-nodes-managing","text":"Configuring parallel container image pulls"},{"depth":2,"slug":"nodes-control-plane-osp-migrating_nodes-nodes-managing","text":"Migrating control plane nodes from one RHOSP host to another manually"},{"depth":2,"slug":"nodes-nodes-psi-enable_nodes-nodes-managing","text":"Enabling Pressure Stall Information (PSI) monitoring"},{"depth":2,"slug":"additional-resources_nodes-nodes-managing","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["nodes","nodes/nodes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing nodes {#nodes-nodes-managing}\n\nOpenShift Container Platform uses a KubeletConfig custom resource (CR) to manage the configuration of nodes. By creating an instance of a `KubeletConfig` object, a managed machine config is created to override setting on the node.\n\n> [!NOTE]\n> Logging in to remote machines for the purpose of changing their configuration is not supported.\n\n## Additional resources {#additional-resources_nodes-nodes-managing}\n\n- [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)\n- [PSI - Pressure Stall Information (Linux Kernel documentation)](https://docs.kernel.org/accounting/psi.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing nodes {#nodes-nodes-managing}\n\nOpenShift Container Platform uses a KubeletConfig custom resource (CR) to manage the configuration of nodes. By creating an instance of a `KubeletConfig` object, a managed machine config is created to override setting on the node.\n\n> [!NOTE]\n> Logging in to remote machines for the purpose of changing their configuration is not supported.\n\n## Modifying nodes {#nodes-nodes-managing-about_nodes-nodes-managing}\n\nTo make configuration changes to a cluster, or machine pool, you must create a custom resource definition (CRD), or `kubeletConfig` object. OpenShift Container Platform uses the Machine Config Controller to watch for changes introduced through the CRD to apply the changes to the cluster.\n\nMost [Kubelet Configuration options](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/) can be set by the user. However, you cannot overwrite the following options:\n\n- CgroupDriver\n- ClusterDNS\n- ClusterDomain\n- StaticPodPath\n\n> [!NOTE]\n> If a single node contains more than 50 images, pod scheduling might be imbalanced across nodes. This is because the list of images on a node is shortened to 50 by default. You can disable the image limit by editing the `KubeletConfig` object and setting the value of `nodeStatusMaxImages` to `-1`.\n\n> [!NOTE]\n> Because the fields in a `kubeletConfig` object are passed directly to the kubelet from upstream Kubernetes, the validation of those fields is handled directly by the kubelet itself. Please refer to the relevant Kubernetes documentation for the valid values for these fields. Invalid values in the `kubeletConfig` object can render cluster nodes unusable.\n\n**Procedure**\n\n1. Obtain the label associated with the static CRD, Machine Config Pool, for the type of node you want to configure. Perform one of the following steps:\n\n   1. Check current labels of the desired machine config pool.\n\n      For example:\n\n      ```terminal\n      $  oc get machineconfigpool  --show-labels\n      ```\n\n      ```terminal {title=\"Example output\"}\n      NAME      CONFIG                                             UPDATED   UPDATING   DEGRADED   LABELS\n      master    rendered-master-e05b81f5ca4db1d249a1bf32f9ec24fd   True      False      False      operator.machineconfiguration.openshift.io/required-for-upgrade=\n      worker    rendered-worker-f50e78e1bc06d8e82327763145bfcf62   True      False      False\n      ```\n   2. Add a custom label to the desired machine config pool.\n\n      For example:\n\n      ```terminal\n      $ oc label machineconfigpool worker custom-kubelet=enabled\n      ```\n2. Create a `kubeletconfig` custom resource (CR) for your configuration change, as demonstrated in the following sample configuration for a `custom-config` CR:\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: KubeletConfig\n   metadata:\n     name: custom-config\n   spec:\n     machineConfigPoolSelector:\n       matchLabels:\n         custom-kubelet: enabled\n     kubeletConfig:\n       podsPerCore: 10\n       maxPods: 250\n       systemReserved:\n         cpu: 2000m\n         memory: 1Gi\n   #...\n   ```\n\n   where:\n\n   `name`\n   :   Assign a name to CR.\n\n   `custom-kubelet`\n   :   Specify the label to apply the configuration change, this is the label you added to the machine config pool.\n\n   `kubeletConfig`\n   :   Specify the new value(s) you want to change.\n3. Create the CR object:\n\n   ```terminal\n   $ oc create -f <file-name>\n   ```\n\n   For example:\n\n   ```terminal\n   $ oc create -f master-kube-config.yaml\n   ```\n\n## Configuring control plane nodes as schedulable {#nodes-nodes-working-master-schedulable_nodes-nodes-managing}\n\nYou can configure control plane nodes to be schedulable, meaning that new pods are allowed for placement on the control plane nodes.\n\nBy default, control plane nodes are not schedulable. You can set the control plane nodes to be schedulable, but you must retain the compute nodes.\n\n> [!NOTE]\n> You can deploy OpenShift Container Platform with no compute nodes on a bare-metal cluster. In this case, the control plane nodes are marked schedulable by default.\n\nYou can allow or disallow control plane nodes to be schedulable by configuring the `mastersSchedulable` field.\n\n> [!IMPORTANT]\n> When you configure control plane nodes from the default unschedulable to schedulable, additional subscriptions are required. This is because control plane nodes then become compute nodes.\n\n**Procedure**\n\n1. Edit the `schedulers.config.openshift.io` resource.\n\n   ```terminal\n   $ oc edit schedulers.config.openshift.io cluster\n   ```\n2. Configure the `mastersSchedulable` field.\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: Scheduler\n   metadata:\n     creationTimestamp: \"2019-09-10T03:04:05Z\"\n     generation: 1\n     name: cluster\n     resourceVersion: \"433\"\n     selfLink: /apis/config.openshift.io/v1/schedulers/cluster\n     uid: a636d30a-d377-11e9-88d4-0a60097bee62\n   spec:\n     mastersSchedulable: false\n   status: {}\n   #...\n   ```\n\n   where:\n\n   `spec.mastersSchedulable`\n   :   Specifies whether the control plane nodes are schedulable. Set to `true` to allow control plane nodes to be schedulable, or `false` to disallow control plane nodes from being schedulable.\n3. Save the file to apply the changes.\n\n## Setting SELinux booleans {#nodes-nodes-working-setting-booleans_nodes-nodes-managing}\n\nOpenShift Container Platform allows you to enable and disable an SELinux boolean on a Red Hat Enterprise Linux CoreOS (RHCOS) node. The following procedure explains how to modify SELinux booleans on nodes using the Machine Config Operator (MCO). This procedure uses `container_manage_cgroup` as the example boolean. You can modify this value to whichever boolean you need.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a new YAML file with a `MachineConfig` object, displayed in the following example:\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: worker\n     name: 99-worker-setsebool\n   spec:\n     config:\n       ignition:\n         version: 3.2.0\n       systemd:\n         units:\n         - contents: |\n             [Unit]\n             Description=Set SELinux booleans\n             Before=kubelet.service\n\n             [Service]\n             Type=oneshot\n             ExecStart=/sbin/setsebool container_manage_cgroup=on\n             RemainAfterExit=true\n\n             [Install]\n             WantedBy=multi-user.target graphical.target\n           enabled: true\n           name: setsebool.service\n   #...\n   ```\n2. Create the new `MachineConfig` object by running the following command:\n\n   ```terminal\n   $ oc create -f 99-worker-setsebool.yaml\n   ```\n\n   > [!NOTE]\n   > Applying any changes to the `MachineConfig` object causes all affected nodes to gracefully reboot after the change is applied.\n\n## Adding kernel arguments to nodes {#nodes-nodes-kernel-arguments_nodes-nodes-managing}\n\nIn some special cases, you can add kernel arguments to a set of nodes in your cluster to customize the kernel behavior to meet specific needs you might have.\n\nYou should add kernel arguments with caution and a clear understanding of the implications of the arguments you set.\n\n> [!WARNING]\n> Improper use of kernel arguments can result in your systems becoming unbootable.\n\nExamples of kernel arguments you could set include:\n\n- ***nosmt***: Disables symmetric multithreading (SMT) in the kernel. Multithreading allows multiple logical threads for each CPU. You could consider `nosmt` in multi-tenant environments to reduce risks from potential cross-thread attacks. By disabling SMT, you essentially choose security over performance.\n- ***enforcing=0***: Configures Security Enhanced Linux (SELinux) to run in permissive mode. In permissive mode, the system acts as if SELinux is enforcing the loaded security policy, including labeling objects and emitting access denial entries in the logs, but it does not actually deny any operations. While not supported for production systems, permissive mode can be helpful for debugging.\n\n  > [!WARNING]\n  > Disabling SELinux on RHCOS in production is not supported. After SELinux has been disabled on a node, it must be re-provisioned before re-inclusion in a production cluster.\n\nSee [Kernel.org kernel parameters](https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt) for a list and descriptions of kernel arguments.\n\nIn the following procedure, you create a `MachineConfig` object that identifies:\n\n- A set of machines to which you want to add the kernel argument. In this case, machines with a worker role.\n- Kernel arguments that are appended to the end of the existing kernel arguments.\n- A label that indicates where in the list of machine configs the change is applied.\n\n**Prerequisites**\n\n- You have `cluster-admin` privileges.\n- Your cluster is running.\n\n**Procedure**\n\n1. List existing `MachineConfig` objects for your OpenShift Container Platform cluster to determine how to label your machine config:\n\n   ```terminal\n   $ oc get MachineConfig\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                               GENERATEDBYCONTROLLER                      IGNITIONVERSION   AGE\n   00-master                                          52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   00-worker                                          52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   01-master-container-runtime                        52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   01-master-kubelet                                  52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   01-worker-container-runtime                        52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   01-worker-kubelet                                  52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   99-master-generated-registries                     52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   99-master-ssh                                                                                 3.2.0             40m\n   99-worker-generated-registries                     52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   99-worker-ssh                                                                                 3.2.0             40m\n   rendered-master-23e785de7587df95a4b517e0647e5ab7   52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   rendered-worker-5d596d9293ca3ea80c896a1191735bb1   52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   ```\n2. Create a `MachineConfig` object file that identifies the kernel argument (for example, `05-worker-kernelarg-selinuxpermissive.yaml`)\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: worker\n     name: 05-worker-kernelarg-selinuxpermissive\n   spec:\n     kernelArguments:\n       - enforcing=0\n   ```\n\n   where:\n\n   `machineconfiguration.openshift.io/role`\n   :   Specifies a label to apply changes to specific nodes.\n\n   `name`\n   :   Specifies a name to identify where it fits among the machine configs (05) and what it does (adds a kernel argument to configure SELinux permissive mode).\n\n   `kernelArguments`\n   :   Specifies the exact kernel argument as `enforcing=0`.\n3. Create the new machine config:\n\n   ```terminal\n   $ oc create -f 05-worker-kernelarg-selinuxpermissive.yaml\n   ```\n4. Check the machine configs to see that the new one was added:\n\n   ```terminal\n   $ oc get MachineConfig\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                               GENERATEDBYCONTROLLER                      IGNITIONVERSION   AGE\n   00-master                                          52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   00-worker                                          52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   01-master-container-runtime                        52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   01-master-kubelet                                  52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   01-worker-container-runtime                        52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   01-worker-kubelet                                  52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   05-worker-kernelarg-selinuxpermissive                                                         3.5.0             105s\n   99-master-generated-registries                     52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   99-master-ssh                                                                                 3.2.0             40m\n   99-worker-generated-registries                     52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   99-worker-ssh                                                                                 3.2.0             40m\n   rendered-master-23e785de7587df95a4b517e0647e5ab7   52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   rendered-worker-5d596d9293ca3ea80c896a1191735bb1   52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n   ```\n5. Check the nodes:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                           STATUS                     ROLES    AGE   VERSION\n   ip-10-0-136-161.ec2.internal   Ready                      worker   28m   v1.35.4\n   ip-10-0-136-243.ec2.internal   Ready                      master   34m   v1.35.4\n   ip-10-0-141-105.ec2.internal   Ready,SchedulingDisabled   worker   28m   v1.35.4\n   ip-10-0-142-249.ec2.internal   Ready                      master   34m   v1.35.4\n   ip-10-0-153-11.ec2.internal    Ready                      worker   28m   v1.35.4\n   ip-10-0-153-150.ec2.internal   Ready                      master   34m   v1.35.4\n   ```\n\n   You can see that scheduling on each worker node is disabled as the change is being applied.\n6. Check that the kernel argument worked by going to one of the worker nodes and listing the kernel command-line arguments (in `/proc/cmdline` on the host):\n\n   ```terminal\n   $ oc debug node/ip-10-0-141-105.ec2.internal\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Starting pod/ip-10-0-141-105ec2internal-debug ...\n   To use host binaries, run `chroot /host`\n\n   sh-4.2# cat /host/proc/cmdline\n   BOOT_IMAGE=/ostree/rhcos-... console=tty0 console=ttyS0,115200n8\n   rootflags=defaults,prjquota rw root=UUID=fd0... ostree=/ostree/boot.0/rhcos/16...\n   coreos.oem.id=qemu coreos.oem.id=ec2 ignition.platform.id=ec2 enforcing=0\n\n   sh-4.2# exit\n   ```\n\n   You should see the `enforcing=0` argument added to the other kernel arguments.\n\n## About configuring parallel container image pulls {#nodes-nodes-parallel-container-pulls-about_nodes-nodes-managing}\n\nTo help control bandwidth issues, you can configure the number of workload images that can be pulled at the same time.\n\nBy default, the cluster pulls images in parallel, which allows multiple workloads to pull images at the same time. Pulling multiple images in parallel can improve workload start-up time because workloads can pull needed images without waiting for each other. However, pulling too many images at the same time can use excessive network bandwidth and cause latency issues throughout your cluster.\n\nThe default setting allows unlimited simultaneous image pulls. But, you can configure the maximum number of images that can be pulled in parallel. You can also force serial image pulling, which means that only one image can be pulled at a time.\n\nTo control the number of images that can be pulled simultaneously, use a kubelet configuration to set the `maxParallelImagePulls` to specify a limit. Additional image pulls above this limit are held until one of the current pulls is complete.\n\nTo force serial image pulls, use a kubelet configuration to set `serializeImagePulls` field to `true`.\n\n### Configuring parallel container image pulls {#nodes-nodes-parallel-container-pulls-configure_nodes-nodes-managing}\n\nYou can control the number of images that can be pulled by your workload simultaneously by using a kubelet configuration. You can set a maximum number of images that can be pulled or force workloads to pull images one at a time.\n\n**Prerequisites**\n\n- You have a running OpenShift Container Platform cluster.\n- You are logged in to the cluster as a user with administrative privileges.\n\n**Procedure**\n\n1. Apply a custom label to the machine config pool where you want to configure parallel pulls by running a command similar to the following.\n\n   ```terminal\n   $ oc label machineconfigpool <mcp_name> parallel-pulls=set\n   ```\n2. Create a custom resource (CR) to configure parallel image pulling.\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: KubeletConfig\n   metadata:\n     name: parallel-image-pulls\n   # ...\n   spec:\n     machineConfigPoolSelector:\n       matchLabels:\n         parallel-pulls: set\n     kubeletConfig:\n       serializeImagePulls: false\n       maxParallelImagePulls: 3\n   # ...\n   ```\n\n   where:\n\n   `serializeImagePulls`\n   :   Specifies whether parallel pulling is enabled for the nodes in the associated machine config pool. Set to `false` to enable parallel image pulls. Set to `true` to force serial image pulling. The default is `false`.\n\n   `maxParallelImagePulls`\n   :   Specifies the maximum number of images that can be pulled in parallel. Enter a number or set to `nil` to specify no limit. This field cannot be set if `SerializeImagePulls` is `true`. The default is `nil`.\n3. Create the new machine config by running a command similar to the following:\n\n   ```terminal\n   $ oc create -f <file_name>.yaml\n   ```\n\n**Verification**\n\n1. Check the machine configs to see that a new one was added by running the following command:\n\n   ```terminal\n   $ oc get MachineConfig\n   ```\n\n   ```terminal\n   NAME                                                GENERATEDBYCONTROLLER                        IGNITIONVERSION   AGE\n   00-master                                           70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             133m\n   00-worker                                           70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             133m\n   # ...\n   99-parallel-generated-kubelet                       70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             15s\n   # ...\n   rendered-parallel-c634a80f644740974ceb40c054c79e50  70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             10s\n   ```\n\n   where:\n\n   `99-parallel-generated-kubelet`\n   :   Specifies the new machine config. In this example, the machine config is for the `parallel` custom machine config pool.\n\n   `rendered-parallel-<sha_numnber>`\n   :   Specifies the new rendered machine config. In this example, the machine config is for the `parallel` custom machine config pool.\n2. Check to see that the nodes in the `parallel` machine config pool are being updated by running the following command:\n\n   ```terminal\n   $ oc get machineconfigpool\n   ```\n\n   ```terminal\n   NAME       CONFIG                                               UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\n   parallel   rendered-parallel-3904f0e69130d125b3b5ef0e981b1ce1   False     True       False      1              0                   0                     0                      65m\n   master     rendered-master-7536834c197384f3734c348c1d957c18     True      False      False      3              3                   3                     0                      140m\n   worker     rendered-worker-c634a80f644740974ceb40c054c79e50     True      False      False      2              2                   2                     0                      140m\n   ```\n3. When the nodes are updated, verify that the parallel pull maximum was configured:\n\n   1. Open an `oc debug` session to a node by running a command similar to the following:\n\n      ```terminal\n      $ oc debug node/<node_name>\n      ```\n   2. Set `/host` as the root directory within the debug shell by running the following command:\n\n      ```terminal\n      sh-5.1# chroot /host\n      ```\n   3. Examine the `kubelet.conf` file by running the following command:\n\n      ```terminal\n      sh-5.1# cat /etc/kubernetes/kubelet.conf | grep -i maxParallelImagePulls\n      ```\n\n      ```terminal\n      maxParallelImagePulls: 3\n      ```\n\n## Migrating control plane nodes from one RHOSP host to another manually {#nodes-control-plane-osp-migrating_nodes-nodes-managing}\n\nIf control plane machine sets are not enabled on your cluster, you can run a script that moves a control plane node from one Red Hat OpenStack Platform (RHOSP) node to another.\n\n> [!NOTE]\n> Control plane machine sets are not enabled on clusters that run on user-provisioned infrastructure.\n>\n> For information about control plane machine sets, see \"Managing control plane machines with control plane machine sets\".\n\n**Prerequisites**\n\n- The environment variable `OS_CLOUD` refers to a `clouds` entry that has administrative credentials in a `clouds.yaml` file.\n- The environment variable `KUBECONFIG` refers to a configuration that contains administrative OpenShift Container Platform credentials.\n\n**Procedure**\n\n- From a command line, run the following script:\n\n  ```bash\n  #!/usr/bin/env bash\n\n  set -Eeuo pipefail\n\n  if [ $# -lt 1 ]; then\n  \techo \"Usage: '$0 node_name'\"\n  \texit 64\n  fi\n\n  # Check for admin OpenStack credentials\n  openstack server list --all-projects >/dev/null || { >&2 echo \"The script needs OpenStack admin credentials. Exiting\"; exit 77; }\n\n  # Check for admin OpenShift credentials\n  oc adm top node >/dev/null || { >&2 echo \"The script needs OpenShift admin credentials. Exiting\"; exit 77; }\n\n  set -x\n\n  declare -r node_name=\"$1\"\n  declare server_id\n  server_id=\"$(openstack server list --all-projects -f value -c ID -c Name | grep \"$node_name\" | cut -d' ' -f1)\"\n  readonly server_id\n\n  # Drain the node\n  oc adm cordon \"$node_name\"\n  oc adm drain \"$node_name\" --delete-emptydir-data --ignore-daemonsets --force\n\n  # Power off the server\n  oc debug \"node/${node_name}\" -- chroot /host shutdown -h 1\n\n  # Verify the server is shut off\n  until openstack server show \"$server_id\" -f value -c status | grep -q 'SHUTOFF'; do sleep 5; done\n\n  # Migrate the node\n  openstack server migrate --wait \"$server_id\"\n\n  # Resize the VM\n  openstack server resize confirm \"$server_id\"\n\n  # Wait for the resize confirm to finish\n  until openstack server show \"$server_id\" -f value -c status | grep -q 'SHUTOFF'; do sleep 5; done\n\n  # Restart the VM\n  openstack server start \"$server_id\"\n\n  # Wait for the node to show up as Ready:\n  until oc get node \"$node_name\" | grep -q \"^${node_name}[[:space:]]\\+Ready\"; do sleep 5; done\n\n  # Uncordon the node\n  oc adm uncordon \"$node_name\"\n\n  # Wait for cluster operators to stabilize\n  until oc get co -o go-template='statuses: {{ range .items }}{{ range .status.conditions }}{{ if eq .type \"Degraded\" }}{{ if ne .status \"False\" }}DEGRADED{{ end }}{{ else if eq .type \"Progressing\"}}{{ if ne .status \"False\" }}PROGRESSING{{ end }}{{ else if eq .type \"Available\"}}{{ if ne .status \"True\" }}NOTAVAILABLE{{ end }}{{ end }}{{ end }}{{ end }}' | grep -qv '\\(DEGRADED\\|PROGRESSING\\|NOTAVAILABLE\\)'; do sleep 5; done\n  ```\n\n  If the script completes, the control plane machine is migrated to a new RHOSP node.\n\n## Enabling Pressure Stall Information (PSI) monitoring {#nodes-nodes-psi-enable_nodes-nodes-managing}\n\nYou can enable Linux Pressure Stall Information (PSI) monitoring by using a `MachineConfig` object. Enabling PSI monitoring makes PSI metrics for CPU, memory, and I/O available for your cluster. You can use the metrics to help identify disruptions caused by CPU, memory, and I/O resource issues for better scheduling and eviction decisions.\n\n> [!IMPORTANT]\n> The performance impact of enabling PSI is negligible. However, for latency-sensitive environments, you can enable PSI in a test environment to determine its impact before enabling it on production clusters. Or, you can enable the PSI on one worker node and monitor for the performance impact. Then, gradually enable the feature on more worker nodes. Enabling PSI introduces new container metrics that can increase the RSS memory usage of `prometheus-k8s` pods. On a cluster with a large number of containers, monitor the memory usage of the `prometheus-k8s` pods and adjust resource as needed.\n\n**Prerequisites**\n\n- You have obtained the label associated with the static `MachineConfigPool` CR for the type of node you want to configure.\n\n**Procedure**\n\n1. Create a YAML file similar to the following that contains the machine configuration:\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: <label>\n     name: 99-openshift-machineconfig-<label>-kargs\n   spec:\n     kernelArguments:\n       - psi=1\n   ```\n\n   where:\n\n   `metadata.labels.machineconfiguration.openshift.io/role:<label>`\n   :   Specifies the role of the nodes where you want to enable PSI.\n\n   `spec.kernelArguments.psi.1`\n   :   Specifies that Pressure Stall Information (PSI) monitoring is to be enabled.\n2. Create the `MachineConfig` object by running a command similar to the following:\n\n   ```terminal\n   $ oc create -f <file-name>.yaml\n   ```\n\n   The nodes with the specified role reboot while the changes are applied.\n\n**Verification**\n\n1. After the nodes return to the `Ready` state, start a debug session for a node by running the following command:\n\n   ```terminal\n   $ oc debug node/<node_name>\n   ```\n2. Set `/host` as the root directory within the debug shell by running the following command:\n\n   ```terminal\n   sh-5.1# chroot /host\n   ```\n3. Use any or all of the following methods to verify that PSI is enabled on the node:\n\n   - Check that PSI is enabled by running the following command:\n\n     ```terminal\n     sh-5.1# cat /proc/cmdline | grep psi=1\n     ```\n\n     ```terminal {title=\"Example output\"}\n     BOOT_IMAGE=(hd0,gpt3)/boot/ostree/rhcos-462f0c234e81f17224d7dbd4dc22d3f7046f70179e259c41a0a807e8b2f99428/vmlinuz-5.14.0-570.80.1.el9_6.x86_64 rw ostree=/ostree/boot.0/rhcos/462f0c234e81f17224d7dbd4dc22d3f7046f70179e259c41a0a807e8b2f99428/0 ignition.platform.id=gcp console=tty0 console=ttyS0,115200n8 root=UUID=d8254ef4-668e-49c5-b430-a45eefb834d7 rw rootflags=prjquota boot=UUID=22972ae8-ed08-43ff-931d-49e6d737c542 systemd.unified_cgroup_hierarchy=1 cgroup_no_v1=all psi=1\n     ```\n\n     where:\n\n     `psi=1`\n     :   Specifies that PSI is enabled on the node.\n   - Check that the PSI files are present by running the following command:\n\n     ```terminal\n     sh-5.1# ls /proc/pressure/\n     ```\n\n     ```terminal {title=\"Example output\"}\n     cpu  io  irq  memory\n     ```\n\n     where:\n\n     `cpu`, `io`, `irq`, and `memory`\n     :   Specifies the pressure files, indicating the PSI is enabled.\n   - Check the PSI metrics to show the percentage of time processes were stalled waiting for CPU resources by running the following command:\n\n     ```terminal\n     # cat /proc/pressure/cpu\n     ```\n\n     ```terminal {title=\"Example output\"}\n     some avg10=0.91 avg60=1.05 avg300=1.28 total=61523749                                                                                                                                                                                                      full avg10=0.00 avg60=0.00 avg300=0.00 total=0\n     ```\n\n     where:\n\n     `some`\n     :   Specifies the share of time in which at least some tasks are stalled while waiting for CPU.\n\n     `full`\n     :   Specifies the share of time in which all non-idle tasks are stalled while waiting for CPU.\n\n     For more information on using PSI metrics, see \"PSI - Pressure Stall Information\" in the Linux Kernel documentation.\n\n## Additional resources {#additional-resources_nodes-nodes-managing}\n\n- [Managing control plane machines with control plane machine sets](/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines)\n- [PSI - Pressure Stall Information (Linux Kernel documentation)](https://docs.kernel.org/accounting/psi.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-nodes-managing" class="group scroll-mt-20">Managing nodes<a href="#nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>OpenShift Container Platform uses a KubeletConfig custom resource (CR) to manage the configuration of nodes. By creating an instance of a <code>KubeletConfig</code> object, a managed machine config is created to override setting on the node.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
@@ -102,14 +102,368 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Logging in to remote machines for the purpose of changing their configuration is not supported.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/nodes-nodes-managing-about.md"></p>
-      <p class="/modules/nodes-nodes-working-master-schedulable.md"></p>
-      <p class="/modules/nodes-nodes-working-setting-booleans.md"></p>
-      <p class="/modules/nodes-nodes-kernel-arguments.md"></p>
-      <p class="/modules/nodes-nodes-parallel-container-pulls-about.md"></p>
-      <p class="/modules/nodes-nodes-parallel-container-pulls-configure.md"></p>
-      <p class="/modules/nodes-control-plane-osp-migrating.md"></p>
-      <p class="/modules/nodes-nodes-psi-enable.md"></p>
+      <h2 id="nodes-nodes-managing-about_nodes-nodes-managing" class="group scroll-mt-20">Modifying nodes<a href="#nodes-nodes-managing-about_nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To make configuration changes to a cluster, or machine pool, you must create a custom resource definition (CRD), or <code>kubeletConfig</code> object. OpenShift Container Platform uses the Machine Config Controller to watch for changes introduced through the CRD to apply the changes to the cluster.</p>
+      <p>Most <a href="https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/">Kubelet Configuration options</a> can be set by the user. However, you cannot overwrite the following options:</p>
+      <ul>
+      <li>CgroupDriver</li>
+      <li>ClusterDNS</li>
+      <li>ClusterDomain</li>
+      <li>StaticPodPath</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If a single node contains more than 50 images, pod scheduling might be imbalanced across nodes. This is because the list of images on a node is shortened to 50 by default. You can disable the image limit by editing the <code>KubeletConfig</code> object and setting the value of <code>nodeStatusMaxImages</code> to <code>-1</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Because the fields in a <code>kubeletConfig</code> object are passed directly to the kubelet from upstream Kubernetes, the validation of those fields is handled directly by the kubelet itself. Please refer to the relevant Kubernetes documentation for the valid values for these fields. Invalid values in the <code>kubeletConfig</code> object can render cluster nodes unusable.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Obtain the label associated with the static CRD, Machine Config Pool, for the type of node you want to configure. Perform one of the following steps:
+      <ol>
+      <li>
+      Check current labels of the desired machine config pool.
+      <p>For example:</p>
+      <CodeBlock code={"$  oc get machineconfigpool  --show-labels"} lang="terminal" />
+      <CodeBlock code={"NAME      CONFIG                                             UPDATED   UPDATING   DEGRADED   LABELS\nmaster    rendered-master-e05b81f5ca4db1d249a1bf32f9ec24fd   True      False      False      operator.machineconfiguration.openshift.io/required-for-upgrade=\nworker    rendered-worker-f50e78e1bc06d8e82327763145bfcf62   True      False      False"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Add a custom label to the desired machine config pool.
+      <p>For example:</p>
+      <CodeBlock code={"$ oc label machineconfigpool worker custom-kubelet=enabled"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a <code>kubeletconfig</code> custom resource (CR) for your configuration change, as demonstrated in the following sample configuration for a <code>custom-config</code> CR:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: KubeletConfig\nmetadata:\n  name: custom-config\nspec:\n  machineConfigPoolSelector:\n    matchLabels:\n      custom-kubelet: enabled\n  kubeletConfig:\n    podsPerCore: 10\n    maxPods: 250\n    systemReserved:\n      cpu: 2000m\n      memory: 1Gi\n#..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Assign a name to CR.</p></dd>
+      <dt class="font-semibold"><code>custom-kubelet</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specify the label to apply the configuration change, this is the label you added to the machine config pool.</p></dd>
+      <dt class="font-semibold"><code>kubeletConfig</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specify the new value(s) you want to change.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the CR object:
+      <CodeBlock code={"$ oc create -f <file-name>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc create -f master-kube-config.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="nodes-nodes-working-master-schedulable_nodes-nodes-managing" class="group scroll-mt-20">Configuring control plane nodes as schedulable<a href="#nodes-nodes-working-master-schedulable_nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure control plane nodes to be schedulable, meaning that new pods are allowed for placement on the control plane nodes.</p>
+      <p>By default, control plane nodes are not schedulable. You can set the control plane nodes to be schedulable, but you must retain the compute nodes.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can deploy OpenShift Container Platform with no compute nodes on a bare-metal cluster. In this case, the control plane nodes are marked schedulable by default.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can allow or disallow control plane nodes to be schedulable by configuring the <code>mastersSchedulable</code> field.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>When you configure control plane nodes from the default unschedulable to schedulable, additional subscriptions are required. This is because control plane nodes then become compute nodes.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>schedulers.config.openshift.io</code> resource.
+      <CodeBlock code={"$ oc edit schedulers.config.openshift.io cluster"} lang="terminal" />
+      </li>
+      <li>
+      Configure the <code>mastersSchedulable</code> field.
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: Scheduler\nmetadata:\n  creationTimestamp: \"2019-09-10T03:04:05Z\"\n  generation: 1\n  name: cluster\n  resourceVersion: \"433\"\n  selfLink: /apis/config.openshift.io/v1/schedulers/cluster\n  uid: a636d30a-d377-11e9-88d4-0a60097bee62\nspec:\n  mastersSchedulable: false\nstatus: {}\n#..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.mastersSchedulable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether the control plane nodes are schedulable. Set to <code>true</code> to allow control plane nodes to be schedulable, or <code>false</code> to disallow control plane nodes from being schedulable.</p></dd>
+      </dl>
+      </li>
+      <li>Save the file to apply the changes.</li>
+      </ol>
+      <h2 id="nodes-nodes-working-setting-booleans_nodes-nodes-managing" class="group scroll-mt-20">Setting SELinux booleans<a href="#nodes-nodes-working-setting-booleans_nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Container Platform allows you to enable and disable an SELinux boolean on a Red Hat Enterprise Linux CoreOS (RHCOS) node. The following procedure explains how to modify SELinux booleans on nodes using the Machine Config Operator (MCO). This procedure uses <code>container_manage_cgroup</code> as the example boolean. You can modify this value to whichever boolean you need.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a new YAML file with a <code>MachineConfig</code> object, displayed in the following example:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: worker\n  name: 99-worker-setsebool\nspec:\n  config:\n    ignition:\n      version: 3.2.0\n    systemd:\n      units:\n      - contents: |\n          [Unit]\n          Description=Set SELinux booleans\n          Before=kubelet.service\n\n          [Service]\n          Type=oneshot\n          ExecStart=/sbin/setsebool container_manage_cgroup=on\n          RemainAfterExit=true\n\n          [Install]\n          WantedBy=multi-user.target graphical.target\n        enabled: true\n        name: setsebool.service\n#..."} lang="yaml" />
+      </li>
+      <li>
+      Create the new <code>MachineConfig</code> object by running the following command:
+      <CodeBlock code={"$ oc create -f 99-worker-setsebool.yaml"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Applying any changes to the <code>MachineConfig</code> object causes all affected nodes to gracefully reboot after the change is applied.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="nodes-nodes-kernel-arguments_nodes-nodes-managing" class="group scroll-mt-20">Adding kernel arguments to nodes<a href="#nodes-nodes-kernel-arguments_nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In some special cases, you can add kernel arguments to a set of nodes in your cluster to customize the kernel behavior to meet specific needs you might have. </p>
+      <p>You should add kernel arguments with caution and a clear understanding of the implications of the arguments you set.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Improper use of kernel arguments can result in your systems becoming unbootable.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Examples of kernel arguments you could set include:</p>
+      <ul>
+      <li><em></em><em><strong>nosmt</strong></em><em></em>: Disables symmetric multithreading (SMT) in the kernel. Multithreading allows multiple logical threads for each CPU. You could consider <code>nosmt</code> in multi-tenant environments to reduce risks from potential cross-thread attacks. By disabling SMT, you essentially choose security over performance.</li>
+      <li>
+      <em></em><em><strong>enforcing=0</strong></em><em></em>: Configures Security Enhanced Linux (SELinux) to run in permissive mode. In permissive mode, the system acts as if SELinux is enforcing the loaded security policy, including labeling objects and emitting access denial entries in the logs, but it does not actually deny any operations. While not supported for production systems, permissive mode can be helpful for debugging.
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Disabling SELinux on RHCOS in production is not supported. After SELinux has been disabled on a node, it must be re-provisioned before re-inclusion in a production cluster.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p>See <a href="https://www.kernel.org/doc/Documentation/admin-guide/kernel-parameters.txt">Kernel.org kernel parameters</a> for a list and descriptions of kernel arguments.</p>
+      <p>In the following procedure, you create a <code>MachineConfig</code> object that identifies:</p>
+      <ul>
+      <li>A set of machines to which you want to add the kernel argument. In this case, machines with a worker role.</li>
+      <li>Kernel arguments that are appended to the end of the existing kernel arguments.</li>
+      <li>A label that indicates where in the list of machine configs the change is applied.</li>
+      </ul>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have <code>cluster-admin</code> privileges.</li>
+      <li>Your cluster is running.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      List existing <code>MachineConfig</code> objects for your OpenShift Container Platform cluster to determine how to label your machine config:
+      <CodeBlock code={"$ oc get MachineConfig"} lang="terminal" />
+      <CodeBlock code={"NAME                                               GENERATEDBYCONTROLLER                      IGNITIONVERSION   AGE\n00-master                                          52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n00-worker                                          52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n01-master-container-runtime                        52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n01-master-kubelet                                  52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n01-worker-container-runtime                        52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n01-worker-kubelet                                  52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n99-master-generated-registries                     52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n99-master-ssh                                                                                 3.2.0             40m\n99-worker-generated-registries                     52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n99-worker-ssh                                                                                 3.2.0             40m\nrendered-master-23e785de7587df95a4b517e0647e5ab7   52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\nrendered-worker-5d596d9293ca3ea80c896a1191735bb1   52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Create a <code>MachineConfig</code> object file that identifies the kernel argument (for example, <code>05-worker-kernelarg-selinuxpermissive.yaml</code>)
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: worker\n  name: 05-worker-kernelarg-selinuxpermissive\nspec:\n  kernelArguments:\n    - enforcing=0"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>machineconfiguration.openshift.io/role</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a label to apply changes to specific nodes.</p></dd>
+      <dt class="font-semibold"><code>name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name to identify where it fits among the machine configs (05) and what it does (adds a kernel argument to configure SELinux permissive mode).</p></dd>
+      <dt class="font-semibold"><code>kernelArguments</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the exact kernel argument as <code>enforcing=0</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the new machine config:
+      <CodeBlock code={"$ oc create -f 05-worker-kernelarg-selinuxpermissive.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Check the machine configs to see that the new one was added:
+      <CodeBlock code={"$ oc get MachineConfig"} lang="terminal" />
+      <CodeBlock code={"NAME                                               GENERATEDBYCONTROLLER                      IGNITIONVERSION   AGE\n00-master                                          52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n00-worker                                          52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n01-master-container-runtime                        52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n01-master-kubelet                                  52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n01-worker-container-runtime                        52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n01-worker-kubelet                                  52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n05-worker-kernelarg-selinuxpermissive                                                         3.5.0             105s\n99-master-generated-registries                     52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n99-master-ssh                                                                                 3.2.0             40m\n99-worker-generated-registries                     52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\n99-worker-ssh                                                                                 3.2.0             40m\nrendered-master-23e785de7587df95a4b517e0647e5ab7   52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m\nrendered-worker-5d596d9293ca3ea80c896a1191735bb1   52dd3ba6a9a527fc3ab42afac8d12b693534c8c9   3.5.0             33m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check the nodes:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME                           STATUS                     ROLES    AGE   VERSION\nip-10-0-136-161.ec2.internal   Ready                      worker   28m   v1.35.4\nip-10-0-136-243.ec2.internal   Ready                      master   34m   v1.35.4\nip-10-0-141-105.ec2.internal   Ready,SchedulingDisabled   worker   28m   v1.35.4\nip-10-0-142-249.ec2.internal   Ready                      master   34m   v1.35.4\nip-10-0-153-11.ec2.internal    Ready                      worker   28m   v1.35.4\nip-10-0-153-150.ec2.internal   Ready                      master   34m   v1.35.4"} lang="terminal" title="Example output" />
+      <p>You can see that scheduling on each worker node is disabled as the change is being applied.</p>
+      </li>
+      <li>
+      Check that the kernel argument worked by going to one of the worker nodes and listing the kernel command-line arguments (in <code>/proc/cmdline</code> on the host):
+      <CodeBlock code={"$ oc debug node/ip-10-0-141-105.ec2.internal"} lang="terminal" />
+      <CodeBlock code={"Starting pod/ip-10-0-141-105ec2internal-debug ...\nTo use host binaries, run `chroot /host`\n\nsh-4.2# cat /host/proc/cmdline\nBOOT_IMAGE=/ostree/rhcos-... console=tty0 console=ttyS0,115200n8\nrootflags=defaults,prjquota rw root=UUID=fd0... ostree=/ostree/boot.0/rhcos/16...\ncoreos.oem.id=qemu coreos.oem.id=ec2 ignition.platform.id=ec2 enforcing=0\n\nsh-4.2# exit"} lang="terminal" title="Example output" />
+      <p>You should see the <code>enforcing=0</code> argument added to the other kernel arguments.</p>
+      </li>
+      </ol>
+      <h2 id="nodes-nodes-parallel-container-pulls-about_nodes-nodes-managing" class="group scroll-mt-20">About configuring parallel container image pulls<a href="#nodes-nodes-parallel-container-pulls-about_nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To help control bandwidth issues, you can configure the number of workload images that can be pulled at the same time. </p>
+      <p>By default, the cluster pulls images in parallel, which allows multiple workloads to pull images at the same time. Pulling multiple images in parallel can improve workload start-up time because workloads can pull needed images without waiting for each other. However, pulling too many images at the same time can use excessive network bandwidth and cause latency issues throughout your cluster.</p>
+      <p>The default setting allows unlimited simultaneous image pulls. But, you can configure the maximum number of images that can be pulled in parallel. You can also force serial image pulling, which means that only one image can be pulled at a time.</p>
+      <p>To control the number of images that can be pulled simultaneously, use a kubelet configuration to set the <code>maxParallelImagePulls</code> to specify a limit. Additional image pulls above this limit are held until one of the current pulls is complete.</p>
+      <p>To force serial image pulls, use a kubelet configuration to set <code>serializeImagePulls</code> field to <code>true</code>.</p>
+      <h3 id="nodes-nodes-parallel-container-pulls-configure_nodes-nodes-managing" class="group scroll-mt-20">Configuring parallel container image pulls<a href="#nodes-nodes-parallel-container-pulls-configure_nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can control the number of images that can be pulled by your workload simultaneously by using a kubelet configuration. You can set a maximum number of images that can be pulled or force workloads to pull images one at a time.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a running OpenShift Container Platform cluster.</li>
+      <li>You are logged in to the cluster as a user with administrative privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Apply a custom label to the machine config pool where you want to configure parallel pulls by running a command similar to the following.
+      <CodeBlock code={"$ oc label machineconfigpool <mcp_name> parallel-pulls=set"} lang="terminal" />
+      </li>
+      <li>
+      Create a custom resource (CR) to configure parallel image pulling.
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: KubeletConfig\nmetadata:\n  name: parallel-image-pulls\n# ...\nspec:\n  machineConfigPoolSelector:\n    matchLabels:\n      parallel-pulls: set\n  kubeletConfig:\n    serializeImagePulls: false\n    maxParallelImagePulls: 3\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>serializeImagePulls</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether parallel pulling is enabled for the nodes in the associated machine config pool. Set to <code>false</code> to enable parallel image pulls. Set to <code>true</code> to force serial image pulling. The default is <code>false</code>.</p></dd>
+      <dt class="font-semibold"><code>maxParallelImagePulls</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum number of images that can be pulled in parallel. Enter a number or set to <code>nil</code> to specify no limit. This field cannot be set if <code>SerializeImagePulls</code> is <code>true</code>. The default is <code>nil</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the new machine config by running a command similar to the following:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Check the machine configs to see that a new one was added by running the following command:
+      <CodeBlock code={"$ oc get MachineConfig"} lang="terminal" />
+      <CodeBlock code={"NAME                                                GENERATEDBYCONTROLLER                        IGNITIONVERSION   AGE\n00-master                                           70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             133m\n00-worker                                           70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             133m\n# ...\n99-parallel-generated-kubelet                       70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             15s\n# ...\nrendered-parallel-c634a80f644740974ceb40c054c79e50  70025364a114fc3067b2e82ce47fdb0149630e4b     3.5.0             10s"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>99-parallel-generated-kubelet</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the new machine config. In this example, the machine config is for the <code>parallel</code> custom machine config pool.</p></dd>
+      <dt class="font-semibold"><code>rendered-parallel-&lt;sha_numnber&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the new rendered machine config. In this example, the machine config is for the <code>parallel</code> custom machine config pool.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Check to see that the nodes in the <code>parallel</code> machine config pool are being updated by running the following command:
+      <CodeBlock code={"$ oc get machineconfigpool"} lang="terminal" />
+      <CodeBlock code={"NAME       CONFIG                                               UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\nparallel   rendered-parallel-3904f0e69130d125b3b5ef0e981b1ce1   False     True       False      1              0                   0                     0                      65m\nmaster     rendered-master-7536834c197384f3734c348c1d957c18     True      False      False      3              3                   3                     0                      140m\nworker     rendered-worker-c634a80f644740974ceb40c054c79e50     True      False      False      2              2                   2                     0                      140m"} lang="terminal" />
+      </li>
+      <li>
+      When the nodes are updated, verify that the parallel pull maximum was configured:
+      <ol>
+      <li>
+      Open an <code>oc debug</code> session to a node by running a command similar to the following:
+      <CodeBlock code={"$ oc debug node/<node_name>"} lang="terminal" />
+      </li>
+      <li>
+      Set <code>/host</code> as the root directory within the debug shell by running the following command:
+      <CodeBlock code={"sh-5.1# chroot /host"} lang="terminal" />
+      </li>
+      <li>
+      Examine the <code>kubelet.conf</code> file by running the following command:
+      <CodeBlock code={"sh-5.1# cat /etc/kubernetes/kubelet.conf | grep -i maxParallelImagePulls"} lang="terminal" />
+      <CodeBlock code={"maxParallelImagePulls: 3"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="nodes-control-plane-osp-migrating_nodes-nodes-managing" class="group scroll-mt-20">Migrating control plane nodes from one RHOSP host to another manually<a href="#nodes-control-plane-osp-migrating_nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If control plane machine sets are not enabled on your cluster, you can run a script that moves a control plane node from one Red Hat OpenStack Platform (RHOSP) node to another.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Control plane machine sets are not enabled on clusters that run on user-provisioned infrastructure.</p>
+          <p>For information about control plane machine sets, see "Managing control plane machines with control plane machine sets".</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The environment variable <code>OS_CLOUD</code> refers to a <code>clouds</code> entry that has administrative credentials in a <code>clouds.yaml</code> file.</li>
+      <li>The environment variable <code>KUBECONFIG</code> refers to a configuration that contains administrative OpenShift Container Platform credentials.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      From a command line, run the following script:
+      <CodeBlock code={"#!/usr/bin/env bash\n\nset -Eeuo pipefail\n\nif [ $# -lt 1 ]; then\n\techo \"Usage: '$0 node_name'\"\n\texit 64\nfi\n\n# Check for admin OpenStack credentials\nopenstack server list --all-projects >/dev/null || { >&2 echo \"The script needs OpenStack admin credentials. Exiting\"; exit 77; }\n\n# Check for admin OpenShift credentials\noc adm top node >/dev/null || { >&2 echo \"The script needs OpenShift admin credentials. Exiting\"; exit 77; }\n\nset -x\n\ndeclare -r node_name=\"$1\"\ndeclare server_id\nserver_id=\"$(openstack server list --all-projects -f value -c ID -c Name | grep \"$node_name\" | cut -d' ' -f1)\"\nreadonly server_id\n\n# Drain the node\noc adm cordon \"$node_name\"\noc adm drain \"$node_name\" --delete-emptydir-data --ignore-daemonsets --force\n\n# Power off the server\noc debug \"node/${node_name}\" -- chroot /host shutdown -h 1\n\n# Verify the server is shut off\nuntil openstack server show \"$server_id\" -f value -c status | grep -q 'SHUTOFF'; do sleep 5; done\n\n# Migrate the node\nopenstack server migrate --wait \"$server_id\"\n\n# Resize the VM\nopenstack server resize confirm \"$server_id\"\n\n# Wait for the resize confirm to finish\nuntil openstack server show \"$server_id\" -f value -c status | grep -q 'SHUTOFF'; do sleep 5; done\n\n# Restart the VM\nopenstack server start \"$server_id\"\n\n# Wait for the node to show up as Ready:\nuntil oc get node \"$node_name\" | grep -q \"^${node_name}[[:space:]]\\+Ready\"; do sleep 5; done\n\n# Uncordon the node\noc adm uncordon \"$node_name\"\n\n# Wait for cluster operators to stabilize\nuntil oc get co -o go-template='statuses: {{ range .items }}{{ range .status.conditions }}{{ if eq .type \"Degraded\" }}{{ if ne .status \"False\" }}DEGRADED{{ end }}{{ else if eq .type \"Progressing\"}}{{ if ne .status \"False\" }}PROGRESSING{{ end }}{{ else if eq .type \"Available\"}}{{ if ne .status \"True\" }}NOTAVAILABLE{{ end }}{{ end }}{{ end }}{{ end }}' | grep -qv '\\(DEGRADED\\|PROGRESSING\\|NOTAVAILABLE\\)'; do sleep 5; done"} lang="bash" />
+      <p>If the script completes, the control plane machine is migrated to a new RHOSP node.</p>
+      </li>
+      </ul>
+      <h2 id="nodes-nodes-psi-enable_nodes-nodes-managing" class="group scroll-mt-20">Enabling Pressure Stall Information (PSI) monitoring<a href="#nodes-nodes-psi-enable_nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can enable Linux Pressure Stall Information (PSI) monitoring by using a <code>MachineConfig</code> object. Enabling PSI monitoring makes PSI metrics for CPU, memory, and I/O available for your cluster. You can use the metrics to help identify disruptions caused by CPU, memory, and I/O resource issues for better scheduling and eviction decisions.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The performance impact of enabling PSI is negligible. However, for latency-sensitive environments, you can enable PSI in a test environment to determine its impact before enabling it on production clusters. Or, you can enable the PSI on one worker node and monitor for the performance impact. Then, gradually enable the feature on more worker nodes. Enabling PSI introduces new container metrics that can increase the RSS memory usage of <code>prometheus-k8s</code> pods. On a cluster with a large number of containers, monitor the memory usage of the <code>prometheus-k8s</code> pods and adjust resource as needed.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have obtained the label associated with the static <code>MachineConfigPool</code> CR for the type of node you want to configure.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file similar to the following that contains the machine configuration:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: <label>\n  name: 99-openshift-machineconfig-<label>-kargs\nspec:\n  kernelArguments:\n    - psi=1"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.labels.machineconfiguration.openshift.io/role:&lt;label&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the role of the nodes where you want to enable PSI.</p></dd>
+      <dt class="font-semibold"><code>spec.kernelArguments.psi.1</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that Pressure Stall Information (PSI) monitoring is to be enabled.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the <code>MachineConfig</code> object by running a command similar to the following:
+      <CodeBlock code={"$ oc create -f <file-name>.yaml"} lang="terminal" />
+      <p>The nodes with the specified role reboot while the changes are applied.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      After the nodes return to the <code>Ready</code> state, start a debug session for a node by running the following command:
+      <CodeBlock code={"$ oc debug node/<node_name>"} lang="terminal" />
+      </li>
+      <li>
+      Set <code>/host</code> as the root directory within the debug shell by running the following command:
+      <CodeBlock code={"sh-5.1# chroot /host"} lang="terminal" />
+      </li>
+      <li>
+      Use any or all of the following methods to verify that PSI is enabled on the node:
+      <ul>
+      <li>
+      Check that PSI is enabled by running the following command:
+      <CodeBlock code={"sh-5.1# cat /proc/cmdline | grep psi=1"} lang="terminal" />
+      <CodeBlock code={"BOOT_IMAGE=(hd0,gpt3)/boot/ostree/rhcos-462f0c234e81f17224d7dbd4dc22d3f7046f70179e259c41a0a807e8b2f99428/vmlinuz-5.14.0-570.80.1.el9_6.x86_64 rw ostree=/ostree/boot.0/rhcos/462f0c234e81f17224d7dbd4dc22d3f7046f70179e259c41a0a807e8b2f99428/0 ignition.platform.id=gcp console=tty0 console=ttyS0,115200n8 root=UUID=d8254ef4-668e-49c5-b430-a45eefb834d7 rw rootflags=prjquota boot=UUID=22972ae8-ed08-43ff-931d-49e6d737c542 systemd.unified_cgroup_hierarchy=1 cgroup_no_v1=all psi=1"} lang="terminal" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>psi=1</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that PSI is enabled on the node.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Check that the PSI files are present by running the following command:
+      <CodeBlock code={"sh-5.1# ls /proc/pressure/"} lang="terminal" />
+      <CodeBlock code={"cpu  io  irq  memory"} lang="terminal" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>cpu</code>, <code>io</code>, <code>irq</code>, and <code>memory</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the pressure files, indicating the PSI is enabled.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Check the PSI metrics to show the percentage of time processes were stalled waiting for CPU resources by running the following command:
+      <CodeBlock code={"# cat /proc/pressure/cpu"} lang="terminal" />
+      <CodeBlock code={"some avg10=0.91 avg60=1.05 avg300=1.28 total=61523749                                                                                                                                                                                                      full avg10=0.00 avg60=0.00 avg300=0.00 total=0"} lang="terminal" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>some</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the share of time in which at least some tasks are stalled while waiting for CPU.</p></dd>
+      <dt class="font-semibold"><code>full</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the share of time in which all non-idle tasks are stalled while waiting for CPU.</p></dd>
+      </dl>
+      <p>For more information on using PSI metrics, see "PSI - Pressure Stall Information" in the Linux Kernel documentation.</p>
+      </li>
+      </ul>
+      </li>
+      </ol>
       <h2 id="additional-resources_nodes-nodes-managing" class="group scroll-mt-20">Additional resources<a href="#additional-resources_nodes-nodes-managing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/machine_management/control_plane_machine_management/cpmso-managing-machines#cpmso-managing-machines">Managing control plane machines with control plane machine sets</a></li>

@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"ai-workloads-about","text":"Overview of AI workloads on OpenShift Container Platform"}];
+const headings = [{"depth":1,"slug":"ai-workloads-about","text":"Overview of AI workloads on OpenShift Container Platform"},{"depth":2,"slug":"ai-operators_ai-workloads-about","text":"Operators for running AI workloads"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +39,7 @@ const pageCategory = null;
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overview of AI workloads on OpenShift Container Platform {#ai-workloads-about}\n\nOpenShift Container Platform provides a secure, scalable foundation for running artificial intelligence (AI) workloads across training, inference, and data science workflows.\n\n**Additional resources**\n\n- [Introduction to {{ kueue_name }}](/openshift-docs-markdown/ai_workloads/kueue/about-kueue#about-kueue)\n- [{{ lws_operator }} overview](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about)\n- [{{ js_operator }} overview](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overview of AI workloads on OpenShift Container Platform {#ai-workloads-about}\n\nOpenShift Container Platform provides a secure, scalable foundation for running artificial intelligence (AI) workloads across training, inference, and data science workflows.\n\n## Operators for running AI workloads {#ai-operators_ai-workloads-about}\n\nYou can use Operators to run artificial intelligence (AI) and machine learning (ML) workloads on OpenShift Container Platform. With Operators, you can build a customized environment that meets your specific AI/ML requirements while continuing to use OpenShift Container Platform as the core platform for your applications.\n\nOpenShift Container Platform provides several Operators that can help you run AI workloads:\n\nRed Hat build of Kueue\n:   You can use Red Hat build of Kueue to provide structured queues and prioritization so that workloads are handled fairly and efficiently. Without proper prioritization, important jobs might be delayed while less critical jobs occupy resources.\n\n    For more information, see \"Introduction to Red Hat build of Kueue\".\n\nLeader Worker Set Operator\n:   You can use the Leader Worker Set Operator to enable large-scale AI inference workloads to run reliably across nodes with synchronization between leader and worker processes. Without proper coordination, large training runs might fail or stall.\n\n    For more information, see \"Leader Worker Set Operator overview\".\n\nJobSet Operator\n:   You can use the JobSet Operator to easily manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. The JobSet Operator can help you gain fast recovery and efficient resource use through features like multi-template job support and stable networking.\n\n    For more information, see \"JobSet Operator overview\".\n\n**Additional resources**\n\n- [Introduction to Red Hat build of Kueue](/openshift-docs-markdown/ai_workloads/kueue/about-kueue#about-kueue)\n- [Leader Worker Set Operator overview](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about)\n- [JobSet Operator overview](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,15 +90,33 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="ai-workloads-about" class="group scroll-mt-20">Overview of AI workloads on OpenShift Container Platform<a href="#ai-workloads-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>OpenShift Container Platform provides a secure, scalable foundation for running artificial intelligence (AI) workloads across training, inference, and data science workflows.</p>
-      <p class="/modules/ai-operators.md"></p>
+      <h2 id="ai-operators_ai-workloads-about" class="group scroll-mt-20">Operators for running AI workloads<a href="#ai-operators_ai-workloads-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use Operators to run artificial intelligence (AI) and machine learning (ML) workloads on OpenShift Container Platform. With Operators, you can build a customized environment that meets your specific AI/ML requirements while continuing to use OpenShift Container Platform as the core platform for your applications.</p>
+      <p>OpenShift Container Platform provides several Operators that can help you run AI workloads:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Red Hat build of Kueue</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>You can use Red Hat build of Kueue to provide structured queues and prioritization so that workloads are handled fairly and efficiently. Without proper prioritization, important jobs might be delayed while less critical jobs occupy resources.</p>
+      <p>For more information, see "Introduction to Red Hat build of Kueue".</p>
+      </dd>
+      <dt class="font-semibold">Leader Worker Set Operator</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>You can use the Leader Worker Set Operator to enable large-scale AI inference workloads to run reliably across nodes with synchronization between leader and worker processes. Without proper coordination, large training runs might fail or stall.</p>
+      <p>For more information, see "Leader Worker Set Operator overview".</p>
+      </dd>
+      <dt class="font-semibold">JobSet Operator</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>You can use the JobSet Operator to easily manage and run large-scale, coordinated workloads like high-performance computing (HPC) and AI training. The JobSet Operator can help you gain fast recovery and efficient resource use through features like multi-template job support and stable networking.</p>
+      <p>For more information, see "JobSet Operator overview".</p>
+      </dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/ai_workloads/kueue/about-kueue#about-kueue">Introduction to {"{"}{"{"} kueue_name {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about">{"{"}{"{"} lws_operator {"}"}{"}"} overview</a></li>
-      <li><a href="/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about">{"{"}{"{"} js_operator {"}"}{"}"} overview</a></li>
+      <li><a href="/openshift-docs-markdown/ai_workloads/kueue/about-kueue#about-kueue">Introduction to Red Hat build of Kueue</a></li>
+      <li><a href="/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about">Leader Worker Set Operator overview</a></li>
+      <li><a href="/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about">JobSet Operator overview</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

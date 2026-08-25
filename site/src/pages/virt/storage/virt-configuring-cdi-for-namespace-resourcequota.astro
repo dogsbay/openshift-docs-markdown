@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-configuring-cdi-for-namespace-resourcequota","text":"Configuring CDI to override CPU and memory quotas"},{"depth":2,"slug":"virt-configuring-cdi-for-namespace-resourcequota_additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-configuring-cdi-for-namespace-resourcequota","text":"Configuring CDI to override CPU and memory quotas"},{"depth":2,"slug":"virt-about-cpu-and-memory-quota-namespace_virt-configuring-cdi-for-namespace-resourcequota","text":"About CPU and memory quotas in a namespace"},{"depth":2,"slug":"virt-overriding-cpu-and-memory-defaults_virt-configuring-cdi-for-namespace-resourcequota","text":"Overriding CPU and memory defaults"},{"depth":2,"slug":"virt-configuring-cdi-for-namespace-resourcequota_additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/storage/virt-configuring-cdi-for-namespace-resourcequota";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring CDI to override CPU and memory quotas {#virt-configuring-cdi-for-namespace-resourcequota}\n\nYou can configure the Containerized Data Importer (CDI) to import, upload, and clone virtual machine disks into namespaces that are subject to CPU and memory resource restrictions.\n\n## Additional resources {#virt-configuring-cdi-for-namespace-resourcequota_additional-resources}\n\n- [Resource quotas per project](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-configuring-cdi-for-namespace-resourcequota.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring CDI to override CPU and memory quotas {#virt-configuring-cdi-for-namespace-resourcequota}\n\nYou can configure the Containerized Data Importer (CDI) to import, upload, and clone virtual machine disks into namespaces that are subject to CPU and memory resource restrictions.\n\n## About CPU and memory quotas in a namespace {#virt-about-cpu-and-memory-quota-namespace_virt-configuring-cdi-for-namespace-resourcequota}\n\nA *resource quota*, defined by the `ResourceQuota` object, imposes restrictions on a namespace that limit the total amount of compute resources that can be consumed by resources within that namespace.\n\nThe `HyperConverged` custom resource (CR) defines the user configuration for the Containerized Data Importer (CDI). The CPU and memory request and limit values are set to a default value of `0`. This ensures that pods created by CDI that do not specify compute resource requirements are given the default values and are allowed to run in a namespace that is restricted with a quota.\n\n## Overriding CPU and memory defaults {#virt-overriding-cpu-and-memory-defaults_virt-configuring-cdi-for-namespace-resourcequota}\n\nModify the default settings for CPU and memory requests and limits for your use case by adding the `spec.resourceRequirements.storageWorkloads` stanza to the `HyperConverged` custom resource (CR).\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Edit the `HyperConverged` CR by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Add the `spec.resourceRequirements.storageWorkloads` stanza to the CR, setting the values based on your use case. For example:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n   spec:\n     resourceRequirements:\n       storageWorkloads:\n         limits:\n           cpu: \"500m\"\n           memory: \"2Gi\"\n         requests:\n           cpu: \"250m\"\n           memory: \"1Gi\"\n   ```\n3. Save and exit the editor to update the `HyperConverged` CR.\n\n## Additional resources {#virt-configuring-cdi-for-namespace-resourcequota_additional-resources}\n\n- [Resource quotas per project](/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-configuring-cdi-for-namespace-resourcequota.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,26 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-configuring-cdi-for-namespace-resourcequota" class="group scroll-mt-20">Configuring CDI to override CPU and memory quotas<a href="#virt-configuring-cdi-for-namespace-resourcequota" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure the Containerized Data Importer (CDI) to import, upload, and clone virtual machine disks into namespaces that are subject to CPU and memory resource restrictions.</p>
-      <p class="/modules/virt-about-cpu-and-memory-quota-namespace.md"></p>
-      <p class="/modules/virt-overriding-cpu-and-memory-defaults.md"></p>
+      <h2 id="virt-about-cpu-and-memory-quota-namespace_virt-configuring-cdi-for-namespace-resourcequota" class="group scroll-mt-20">About CPU and memory quotas in a namespace<a href="#virt-about-cpu-and-memory-quota-namespace_virt-configuring-cdi-for-namespace-resourcequota" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A <em>resource quota</em>, defined by the <code>ResourceQuota</code> object, imposes restrictions on a namespace that limit the total amount of compute resources that can be consumed by resources within that namespace.</p>
+      <p>The <code>HyperConverged</code> custom resource (CR) defines the user configuration for the Containerized Data Importer (CDI). The CPU and memory request and limit values are set to a default value of <code>0</code>. This ensures that pods created by CDI that do not specify compute resource requirements are given the default values and are allowed to run in a namespace that is restricted with a quota.</p>
+      <h2 id="virt-overriding-cpu-and-memory-defaults_virt-configuring-cdi-for-namespace-resourcequota" class="group scroll-mt-20">Overriding CPU and memory defaults<a href="#virt-overriding-cpu-and-memory-defaults_virt-configuring-cdi-for-namespace-resourcequota" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Modify the default settings for CPU and memory requests and limits for your use case by adding the <code>spec.resourceRequirements.storageWorkloads</code> stanza to the <code>HyperConverged</code> custom resource (CR).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Install the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>HyperConverged</code> CR by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Add the <code>spec.resourceRequirements.storageWorkloads</code> stanza to the CR, setting the values based on your use case. For example:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\nspec:\n  resourceRequirements:\n    storageWorkloads:\n      limits:\n        cpu: \"500m\"\n        memory: \"2Gi\"\n      requests:\n        cpu: \"250m\"\n        memory: \"1Gi\""} lang="yaml" />
+      </li>
+      <li>Save and exit the editor to update the <code>HyperConverged</code> CR.</li>
+      </ol>
       <h2 id="virt-configuring-cdi-for-namespace-resourcequota_additional-resources" class="group scroll-mt-20">Additional resources<a href="#virt-configuring-cdi-for-namespace-resourcequota_additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/applications/quotas/quotas-setting-per-project#quotas-setting-per-project">Resource quotas per project</a></li></ul>
     </article>

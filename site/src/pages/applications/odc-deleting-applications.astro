@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"odc-deleting-applications","text":"Deleting applications"}];
+const headings = [{"depth":1,"slug":"odc-deleting-applications","text":"Deleting applications"},{"depth":2,"slug":"odc-deleting-applications-using-developer-perspective_odc-deleting-applications","text":"Deleting applications using the Developer perspective"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/odc-deleting-applications";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +39,7 @@ const pageCategory = ["applications"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deleting applications {#odc-deleting-applications}\n\nYou can delete applications created in your project.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/odc-deleting-applications.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deleting applications {#odc-deleting-applications}\n\nYou can delete applications created in your project.\n\n## Deleting applications using the Developer perspective {#odc-deleting-applications-using-developer-perspective_odc-deleting-applications}\n\nYou can delete an application and all of its associated components using the **Topology** view in the **Developer** perspective:\n\n1. Click the application you want to delete to see the side panel with the resource details of the application.\n2. Click the **Actions** drop-down menu displayed on the upper right of the panel, and select **Delete Application** to see a confirmation dialog box.\n3. Enter the name of the application and click **Delete** to delete it.\n\nYou can also right-click the application you want to delete and click **Delete Application** to delete it.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/odc-deleting-applications.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +91,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="odc-deleting-applications" class="group scroll-mt-20">Deleting applications<a href="#odc-deleting-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can delete applications created in your project.</p>
-      <p class="/modules/odc-deleting-applications-using-developer-perspective.md"></p>
+      <h2 id="odc-deleting-applications-using-developer-perspective_odc-deleting-applications" class="group scroll-mt-20">Deleting applications using the Developer perspective<a href="#odc-deleting-applications-using-developer-perspective_odc-deleting-applications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can delete an application and all of its associated components using the <strong>Topology</strong> view in the <strong>Developer</strong> perspective:</p>
+      <ol>
+      <li>Click the application you want to delete to see the side panel with the resource details of the application.</li>
+      <li>Click the <strong>Actions</strong> drop-down menu displayed on the upper right of the panel, and select <strong>Delete Application</strong> to see a confirmation dialog box.</li>
+      <li>Enter the name of the application and click <strong>Delete</strong> to delete it.</li>
+      </ol>
+      <p>You can also right-click the application you want to delete and click <strong>Delete Application</strong> to delete it.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

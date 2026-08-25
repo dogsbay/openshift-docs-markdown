@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"installing-mirroring-disconnected-about","text":"About disconnected installation mirroring"}];
+const headings = [{"depth":1,"slug":"installing-mirroring-disconnected-about","text":"About disconnected installation mirroring"},{"depth":2,"slug":"installing-mirroring-disconnected-con_installing-mirroring-disconnected-about","text":"Mirror registries for installing clusters in disconnected environments"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/disconnected";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +39,7 @@ const pageCategory = null;
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About disconnected installation mirroring {#installing-mirroring-disconnected-about}\n\nAs a cluster administrator, you can use a mirror registry to ensure that your clusters only use container images that satisfy your organizational controls on external content.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/disconnected.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About disconnected installation mirroring {#installing-mirroring-disconnected-about}\n\nAs a cluster administrator, you can use a mirror registry to ensure that your clusters only use container images that satisfy your organizational controls on external content.\n\n## Mirror registries for installing clusters in disconnected environments {#installing-mirroring-disconnected-con_installing-mirroring-disconnected-about}\n\nYou must mirror required container images into a disconnected environment before you can install and provision a cluster there. To mirror those container images, you must have a mirror registry.\n\nConsider the following options for creating and using a mirror registry:\n\n- If you already have a container image registry, such as Red Hat Quay, you can use it as your mirror registry. If you do not already have a registry, you must create one.\n- After you establish your registry, you need mirroring tools. To mirror your OpenShift Container Platform image repository to the mirror registry in your disconnected environment, you can use the oc-mirror OpenShift CLI (`oc`) plugin. The oc-mirror plugin is a single tool that mirrors all required OpenShift Container Platform content and other images to your mirror registry. The oc-mirror plugin is the preferred method for mirroring.\n- Alternately, you can use the `oc adm` command to mirror just release and catalog images for OpenShift Container Platform.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/disconnected.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +91,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-mirroring-disconnected-about" class="group scroll-mt-20">About disconnected installation mirroring<a href="#installing-mirroring-disconnected-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As a cluster administrator, you can use a mirror registry to ensure that your clusters only use container images that satisfy your organizational controls on external content.</p>
-      <p class="/modules/installing-mirroring-disconnected-con.md"></p>
+      <h2 id="installing-mirroring-disconnected-con_installing-mirroring-disconnected-about" class="group scroll-mt-20">Mirror registries for installing clusters in disconnected environments<a href="#installing-mirroring-disconnected-con_installing-mirroring-disconnected-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You must mirror required container images into a disconnected environment before you can install and provision a cluster there. To mirror those container images, you must have a mirror registry.</p>
+      <p>Consider the following options for creating and using a mirror registry:</p>
+      <ul>
+      <li>If you already have a container image registry, such as Red Hat Quay, you can use it as your mirror registry. If you do not already have a registry, you must create one.</li>
+      <li>After you establish your registry, you need mirroring tools. To mirror your OpenShift Container Platform image repository to the mirror registry in your disconnected environment, you can use the oc-mirror OpenShift CLI (<code>oc</code>) plugin. The oc-mirror plugin is a single tool that mirrors all required OpenShift Container Platform content and other images to your mirror registry. The oc-mirror plugin is the preferred method for mirroring.</li>
+      <li>Alternately, you can use the <code>oc adm</code> command to mirror just release and catalog images for OpenShift Container Platform.</li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

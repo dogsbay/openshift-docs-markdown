@@ -91,7 +91,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="olm-restricted-networks" class="group scroll-mt-20">Using Operator Lifecycle Manager in disconnected environments<a href="#olm-restricted-networks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>On disconnected OpenShift Container Platform clusters, Operator Lifecycle Manager (OLM) cannot access the Red Hat-provided catalog sources hosted on remote registries by default. As a cluster administrator, you can use a workstation with full internet access to prepare local mirrors of the remote sources, and push the content to a mirror registry.</p>
       <p>The mirror registry can be located on a bastion host, which requires connectivity to both your workstation and the disconnected cluster, or a completely disconnected, or <em>airgapped</em>, host, which requires removable media to physically move the mirrored content to the disconnected environment.</p>
       <p>This guide describes the following process that is required to enable OLM in disconnected environments:</p>

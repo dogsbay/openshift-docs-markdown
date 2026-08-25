@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"about-oadp-data-mover","text":"About the {{ oadp_short }} Data Mover"},{"depth":2,"slug":"additional-resources_about-oadp-data-mover","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"about-oadp-data-mover","text":"About the {{ oadp_short }} Data Mover"},{"depth":2,"slug":"oadp-data-mover-support_about-oadp-data-mover","text":"Data Mover support"},{"depth":2,"slug":"enabling-oadp-data-mover_about-oadp-data-mover","text":"Enabling the built-in Data Mover"},{"depth":2,"slug":"built-in-data-mover-crds_about-oadp-data-mover","text":"Built-in Data Mover controller and custom resource definitions (CRDs)"},{"depth":2,"slug":"oadp-about-incremental-backup-support_about-oadp-data-mover","text":"About incremental backup support"},{"depth":2,"slug":"additional-resources_about-oadp-data-mover","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-oadp-data-mover";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "About the {{ oadp_short }} Data Mover";
-const description = "Use the {{ oadp_first }} built-in Data Mover to move Container Storage Interface (CSI) volume snapshots to remote object storage and restore stateful…" || undefined;
+const description = "Use the OpenShift API for Data Protection (OADP) built-in Data Mover to move Container Storage Interface (CSI) volume snapshots to remote object storage…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the {{ oadp_short }} Data Mover {#about-oadp-data-mover}\n\nUse the {{ oadp_first }} built-in Data Mover to move Container Storage Interface (CSI) volume snapshots to remote object storage and restore stateful applications after cluster failures. This provides disaster recovery capabilities for both containerized and virtual machine workloads.\n\nThe Data Mover uses Kopia as the uploader mechanism to read the snapshot data and write to the unified repository.\n\n{{ oadp_short }} supports CSI snapshots on the following:\n\n- {{ odf_full }}\n- Any other cloud storage provider with the Container Storage Interface (CSI) driver that supports the Kubernetes Volume Snapshot API\n\n## Additional resources {#additional-resources_about-oadp-data-mover}\n\n- [About Kopia](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia#oadp-about-kopia)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-oadp-data-mover.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the {{ oadp_short }} Data Mover {#about-oadp-data-mover}\n\nUse the OpenShift API for Data Protection (OADP) built-in Data Mover to move Container Storage Interface (CSI) volume snapshots to remote object storage and restore stateful applications after cluster failures. This provides disaster recovery capabilities for both containerized and virtual machine workloads.\n\nThe Data Mover uses Kopia as the uploader mechanism to read the snapshot data and write to the unified repository.\n\nOADP supports CSI snapshots on the following:\n\n- Red Hat OpenShift Data Foundation\n- Any other cloud storage provider with the Container Storage Interface (CSI) driver that supports the Kubernetes Volume Snapshot API\n\n## Data Mover support {#oadp-data-mover-support_about-oadp-data-mover}\n\nReview Data Mover support and compatibility across OADP versions to understand which backups can be restored. This helps you plan version upgrades and backup strategies.\n\nThe OADP built-in Data Mover, which was introduced in OADP 1.3 as a Technology Preview, is now fully supported for both containerized and virtual machine workloads.\n\nSupported\n:   The Data Mover backups taken with OADP 1.3 can be restored using OADP 1.3 and later.\n\nNot supported\n:   Backups taken with OADP 1.1 or OADP 1.2 using the Data Mover feature cannot be restored using OADP 1.3 and later.\n\nOADP 1.1 and OADP 1.2 are no longer supported. The DataMover feature in OADP 1.1 or OADP 1.2 was a Technology Preview and was never supported. DataMover backups taken with OADP 1.1 or OADP 1.2 cannot be restored on later versions of OADP.\n\n## Enabling the built-in Data Mover {#enabling-oadp-data-mover_about-oadp-data-mover}\n\nEnable the built-in Data Mover by configuring the CSI plugin and node agent in the `DataProtectionApplication` custom resource (CR). This provides volume-level backup and restore operations by using the Kopia uploader.\n\n**Procedure**\n\n- Include the CSI plugin and enable the node agent in the `DataProtectionApplication` custom resource (CR) as shown in the following example:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n    name: dpa-sample\n  spec:\n    configuration:\n      nodeAgent:\n        enable: true\n        uploaderType: kopia\n      velero:\n        defaultPlugins:\n        - openshift\n        - aws\n        - csi\n        defaultSnapshotMoveData: true\n        defaultVolumesToFSBackup:\n        featureFlags:\n        - EnableCSI\n  # ...\n  ```\n\n  where:\n\n  `enable`\n  :   Specifies the flag to enable the node agent.\n\n  `uploaderType`\n  :   Specifies the type of uploader. The possible values are `restic` or `kopia`. The built-in Data Mover uses Kopia as the default uploader mechanism regardless of the value of the `uploaderType` field.\n\n  `csi`\n  :   Specifies the CSI plugin included in the list of default plugins.\n\n  `defaultVolumesToFSBackup`\n  :   Specifies the default behavior for volumes. In OADP 1.3.1 and later, set to `true` if you use Data Mover only for volumes that opt out of `fs-backup`. Set to `false` if you use Data Mover by default for volumes.\n\n## Built-in Data Mover controller and custom resource definitions (CRDs) {#built-in-data-mover-crds_about-oadp-data-mover}\n\nReview the custom resource definitions (CRDs) that the built-in Data Mover uses to manage volume snapshot backup and restore operations. This helps you understand how Data Mover handles data upload, download, and repository management.\n\nThe built-in Data Mover feature introduces three new API objects defined as CRDs for managing backup and restore:\n\n- `DataDownload`: Represents a data download of a volume snapshot. The CSI plugin creates one `DataDownload` object per volume to be restored. The `DataDownload` CR includes information about the target volume, the specified Data Mover, the progress of the current data download, the specified backup repository, and the result of the current data download after the process is complete.\n- `DataUpload`: Represents a data upload of a volume snapshot. The CSI plugin creates one `DataUpload` object per CSI snapshot. The `DataUpload` CR includes information about the specified snapshot, the specified Data Mover, the specified backup repository, the progress of the current data upload, and the result of the current data upload after the process is complete.\n- `BackupRepository`: Represents and manages the lifecycle of the backup repositories. OADP creates a backup repository per namespace when the first CSI snapshot backup or restore for a namespace is requested.\n\n## About incremental backup support {#oadp-about-incremental-backup-support_about-oadp-data-mover}\n\nOADP supports incremental backups of `block` and `Filesystem` persistent volumes for both containerized, and OpenShift Virtualization workloads. The following table summarizes the support for File System Backup (FSB), Container Storage Interface (CSI), and CSI Data Mover:\n\n**OADP backup support matrix for containerized workloads**\n\n| Volume mode | FSB - Restic | FSB - Kopia | CSI | CSI Data Mover |\n| --- | --- | --- | --- | --- |\n| Filesystem | Backup supported, Incremental backup supported | Backup supported, Incremental backup supported | Backup supported | Backup supported, Incremental backup supported |\n| Block | Not supported | Not supported | Backup supported | Backup supported, Incremental backup supported |\n\n**OADP backup support matrix for OpenShift Virtualization workloads**\n\n| Volume mode | FSB - Restic | FSB - Kopia | CSI | CSI Data Mover |\n| --- | --- | --- | --- | --- |\n| Filesystem | Not supported | Not supported | Backup supported | Backup supported, Incremental backup supported |\n| Block | Not supported | Not supported | Backup supported | Backup supported, Incremental backup supported |\n\n> [!NOTE]\n> The CSI Data Mover backups use Kopia regardless of `uploaderType`.\n\n## Additional resources {#additional-resources_about-oadp-data-mover}\n\n- [About Kopia](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia#oadp-about-kopia)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-oadp-data-mover.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,17 +101,115 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="about-oadp-data-mover" class="group scroll-mt-20">About the {"{"}{"{"} oadp_short {"}"}{"}"} Data Mover<a href="#about-oadp-data-mover" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Use the {"{"}{"{"} oadp_first {"}"}{"}"} built-in Data Mover to move Container Storage Interface (CSI) volume snapshots to remote object storage and restore stateful applications after cluster failures. This provides disaster recovery capabilities for both containerized and virtual machine workloads.</p>
+      <p>Use the OpenShift API for Data Protection (OADP) built-in Data Mover to move Container Storage Interface (CSI) volume snapshots to remote object storage and restore stateful applications after cluster failures. This provides disaster recovery capabilities for both containerized and virtual machine workloads.</p>
       <p>The Data Mover uses Kopia as the uploader mechanism to read the snapshot data and write to the unified repository.</p>
-      <p>{"{"}{"{"} oadp_short {"}"}{"}"} supports CSI snapshots on the following:</p>
+      <p>OADP supports CSI snapshots on the following:</p>
       <ul>
-      <li>{"{"}{"{"} odf_full {"}"}{"}"}</li>
+      <li>Red Hat OpenShift Data Foundation</li>
       <li>Any other cloud storage provider with the Container Storage Interface (CSI) driver that supports the Kubernetes Volume Snapshot API</li>
       </ul>
-      <p class="/modules/oadp-enabling-built-in-data-mover.md"></p>
-      <p class="/modules/oadp-data-mover-crds.md"></p>
-      <p class="/modules/oadp-incremental-backup-support.md"></p>
+      <h2 id="oadp-data-mover-support_about-oadp-data-mover" class="group scroll-mt-20">Data Mover support<a href="#oadp-data-mover-support_about-oadp-data-mover" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review Data Mover support and compatibility across OADP versions to understand which backups can be restored. This helps you plan version upgrades and backup strategies.</p>
+      <p>The OADP built-in Data Mover, which was introduced in OADP 1.3 as a Technology Preview, is now fully supported for both containerized and virtual machine workloads.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Supported</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The Data Mover backups taken with OADP 1.3 can be restored using OADP 1.3 and later.</p></dd>
+      <dt class="font-semibold">Not supported</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Backups taken with OADP 1.1 or OADP 1.2 using the Data Mover feature cannot be restored using OADP 1.3 and later.</p></dd>
+      </dl>
+      <p>OADP 1.1 and OADP 1.2 are no longer supported. The DataMover feature in OADP 1.1 or OADP 1.2 was a Technology Preview and was never supported. DataMover backups taken with OADP 1.1 or OADP 1.2 cannot be restored on later versions of OADP.</p>
+      <h2 id="enabling-oadp-data-mover_about-oadp-data-mover" class="group scroll-mt-20">Enabling the built-in Data Mover<a href="#enabling-oadp-data-mover_about-oadp-data-mover" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enable the built-in Data Mover by configuring the CSI plugin and node agent in the <code>DataProtectionApplication</code> custom resource (CR). This provides volume-level backup and restore operations by using the Kopia uploader.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Include the CSI plugin and enable the node agent in the <code>DataProtectionApplication</code> custom resource (CR) as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: dpa-sample\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n    velero:\n      defaultPlugins:\n      - openshift\n      - aws\n      - csi\n      defaultSnapshotMoveData: true\n      defaultVolumesToFSBackup:\n      featureFlags:\n      - EnableCSI\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>enable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the flag to enable the node agent.</p></dd>
+      <dt class="font-semibold"><code>uploaderType</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the type of uploader. The possible values are <code>restic</code> or <code>kopia</code>. The built-in Data Mover uses Kopia as the default uploader mechanism regardless of the value of the <code>uploaderType</code> field.</p></dd>
+      <dt class="font-semibold"><code>csi</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the CSI plugin included in the list of default plugins.</p></dd>
+      <dt class="font-semibold"><code>defaultVolumesToFSBackup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the default behavior for volumes. In OADP 1.3.1 and later, set to <code>true</code> if you use Data Mover only for volumes that opt out of <code>fs-backup</code>. Set to <code>false</code> if you use Data Mover by default for volumes.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h2 id="built-in-data-mover-crds_about-oadp-data-mover" class="group scroll-mt-20">Built-in Data Mover controller and custom resource definitions (CRDs)<a href="#built-in-data-mover-crds_about-oadp-data-mover" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the custom resource definitions (CRDs) that the built-in Data Mover uses to manage volume snapshot backup and restore operations. This helps you understand how Data Mover handles data upload, download, and repository management.</p>
+      <p>The built-in Data Mover feature introduces three new API objects defined as CRDs for managing backup and restore:</p>
+      <ul>
+      <li><code>DataDownload</code>: Represents a data download of a volume snapshot. The CSI plugin creates one <code>DataDownload</code> object per volume to be restored. The <code>DataDownload</code> CR includes information about the target volume, the specified Data Mover, the progress of the current data download, the specified backup repository, and the result of the current data download after the process is complete.</li>
+      <li><code>DataUpload</code>: Represents a data upload of a volume snapshot. The CSI plugin creates one <code>DataUpload</code> object per CSI snapshot. The <code>DataUpload</code> CR includes information about the specified snapshot, the specified Data Mover, the specified backup repository, the progress of the current data upload, and the result of the current data upload after the process is complete.</li>
+      <li><code>BackupRepository</code>: Represents and manages the lifecycle of the backup repositories. OADP creates a backup repository per namespace when the first CSI snapshot backup or restore for a namespace is requested.</li>
+      </ul>
+      <h2 id="oadp-about-incremental-backup-support_about-oadp-data-mover" class="group scroll-mt-20">About incremental backup support<a href="#oadp-about-incremental-backup-support_about-oadp-data-mover" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OADP supports incremental backups of <code>block</code> and <code>Filesystem</code> persistent volumes for both containerized, and OpenShift Virtualization workloads. The following table summarizes the support for File System Backup (FSB), Container Storage Interface (CSI), and CSI Data Mover:</p>
+      <p><strong>OADP backup support matrix for containerized workloads</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Volume mode</TableHead>
+      <TableHead>FSB - Restic</TableHead>
+      <TableHead>FSB - Kopia</TableHead>
+      <TableHead>CSI</TableHead>
+      <TableHead>CSI Data Mover</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Filesystem</TableCell>
+      <TableCell>Backup supported, Incremental backup supported</TableCell>
+      <TableCell>Backup supported, Incremental backup supported</TableCell>
+      <TableCell>Backup supported</TableCell>
+      <TableCell>Backup supported, Incremental backup supported</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Block</TableCell>
+      <TableCell>Not supported</TableCell>
+      <TableCell>Not supported</TableCell>
+      <TableCell>Backup supported</TableCell>
+      <TableCell>Backup supported, Incremental backup supported</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>OADP backup support matrix for OpenShift Virtualization workloads</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Volume mode</TableHead>
+      <TableHead>FSB - Restic</TableHead>
+      <TableHead>FSB - Kopia</TableHead>
+      <TableHead>CSI</TableHead>
+      <TableHead>CSI Data Mover</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Filesystem</TableCell>
+      <TableCell>Not supported</TableCell>
+      <TableCell>Not supported</TableCell>
+      <TableCell>Backup supported</TableCell>
+      <TableCell>Backup supported, Incremental backup supported</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Block</TableCell>
+      <TableCell>Not supported</TableCell>
+      <TableCell>Not supported</TableCell>
+      <TableCell>Backup supported</TableCell>
+      <TableCell>Backup supported, Incremental backup supported</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The CSI Data Mover backups use Kopia regardless of <code>uploaderType</code>.</p>
+        </AlertDescription>
+      </Alert>
       <h2 id="additional-resources_about-oadp-data-mover" class="group scroll-mt-20">Additional resources<a href="#additional-resources_about-oadp-data-mover" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-about-kopia#oadp-about-kopia">About Kopia</a></li></ul>
     </article>

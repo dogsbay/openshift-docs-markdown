@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"network-observability-per-tenant-model_{{ context }}","text":"Network observability per-tenant model"},{"depth":2,"slug":"additional-resources-per-tenand-configuration_network-observability-per-tenant-configuration","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"network-observability-per-tenant-model_{{ context }}","text":"Network observability per-tenant model"},{"depth":2,"slug":"network-observability-per-tenant-hierarchical-governance-and-tenant-autonomy_network-observability-per-tenant-configuration","text":"Per-tenant hierarchical governance and tenant autonomy"},{"depth":2,"slug":"network-observability-per-tenant-flowcollector-slice-granular-flow-collection_network-observability-per-tenant-configuration","text":"FlowCollectorSlice resource for granular flow collection"},{"depth":3,"slug":"benefits-of-flowcollector-slice_network-observability-per-tenant-configuration","text":"Benefits of FlowCollectorSlice"},{"depth":3,"slug":"relationship-flowcollector-flowcollector-slice_network-observability-per-tenant-configuration","text":"Relationship between FlowCollector and FlowCollectorSlice"},{"depth":3,"slug":"collection-modes_network-observability-per-tenant-configuration","text":"Collection modes"},{"depth":3,"slug":"flowcollector-slice-status_network-observability-per-tenant-configuration","text":"FlowCollectorSlice status"},{"depth":2,"slug":"network-observability-per-tenant-flowcollector-slice-enable_network-observability-per-tenant-configuration","text":"Enable the Network Observability Operator FlowCollectorSlice"},{"depth":3,"slug":"network-observability-per-tenant-flowcollector-slice-disable_network-observability-per-tenant-configuration","text":"Disable the Network Observability Operator FlowCollectorSlice"},{"depth":2,"slug":"network-observability-per-tenant-flowcollector-slice-configure-project-administrator_network-observability-per-tenant-configuration","text":"Configure the FlowCollectorSlice as a project administrator"},{"depth":2,"slug":"flowcollectorslice-flows-netobserv-io-v1alpha1_network-observability-per-tenant-configuration","text":"FlowCollectorSlice [flows.netobserv.io/v1alpha1]"},{"depth":3,"slug":"_metadata","text":".metadata"},{"depth":3,"slug":"_spec","text":".spec"},{"depth":3,"slug":"_specsubnetlabels","text":".spec.subnetLabels"},{"depth":3,"slug":"_specsubnetlabels","text":".spec.subnetLabels[]"},{"depth":2,"slug":"additional-resources-per-tenand-configuration_network-observability-per-tenant-configuration","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/network_observability/network-observability-per-tenant-model";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["observability","observability/network_observability"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network observability per-tenant model {#network-observability-per-tenant-model_{{ context }}}\n\nUse the `FlowCollectorSlice` resource to delegate network traffic analysis management to project administrators while maintaining global cluster governance.\n\n## Additional resources {#additional-resources-per-tenand-configuration_network-observability-per-tenant-configuration}\n\n- [FlowCollector API reference](/openshift-docs-markdown/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-per-tenant-model.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network observability per-tenant model {#network-observability-per-tenant-model_{{ context }}}\n\nUse the `FlowCollectorSlice` resource to delegate network traffic analysis management to project administrators while maintaining global cluster governance.\n\n## Per-tenant hierarchical governance and tenant autonomy {#network-observability-per-tenant-hierarchical-governance-and-tenant-autonomy_network-observability-per-tenant-configuration}\n\nCluster administrators can maintain global governance while allowing project administrators to manage network traffic observability within their specific namespaces.\n\nThe Network Observability Operator uses a hierarchical configuration model to support multitenancy. This architecture is beneficial for large-scale deployments and hosted control planes environments where individual teams require self-service visibility without cluster administrator intervention.\n\nThe hierarchical model consists of the following components:\n\nGlobal governance\n:   The cluster administrator manages the global `FlowCollector` resource. This resource defines the observability infrastructure and determines if per-tenant configuration is permitted.\n\nTenant autonomy\n:   The project administrator manages the `FlowCollectorSlice` resource. This namespace-scoped custom resource (CR) allows teams to define specific observability settings for their workloads.\n\n## FlowCollectorSlice resource for granular flow collection {#network-observability-per-tenant-flowcollector-slice-granular-flow-collection_network-observability-per-tenant-configuration}\n\nThe `FlowCollectorSlice` is a custom resource definition (CRD) that enables granular, multi-tenant network flow collection. By defining logical slices based on namespaces or subnets, you can selectively collect traffic and apply custom sampling to specific workloads rather than the entire cluster.\n\nIt complements the existing `FlowCollector` custom resource by enabling granular, selective, and multi-tenant-aware flow collection, instead of a single global configuration that applies uniformly to all traffic.\n\nWhen slice-based collection is enabled, only traffic that matches at least one `FlowCollectorSlice` is collected, allowing administrators to precisely control which network flows are observed.\n\n### Benefits of FlowCollectorSlice {#benefits-of-flowcollector-slice_network-observability-per-tenant-configuration}\n\nBy default, network flow collection applies uniformly to all traffic in the cluster. This can result in excessive data volume and limited flexibility.\n\nUsing `FlowCollectorSlice` provides the following benefits:\n\n- Enables selective flow collection for specific namespaces or workloads.\n- Supports multi-tenant and environment-based observability.\n- Reduces storage and processing costs by filtering irrelevant traffic.\n- Preserves backward compatibility through opt-in configuration.\n\n### Relationship between FlowCollector and FlowCollectorSlice {#relationship-flowcollector-flowcollector-slice_network-observability-per-tenant-configuration}\n\nWhile the `FlowCollector` resource defines global flow collection behavior for the cluster, the `FlowCollectorSlice` resource defines which traffic is eligible for collection when slice-based filtering is enabled.\n\nThe `FlowCollector.spec.slicesConfig` field controls how slice definitions are applied.\n\n### Collection modes {#collection-modes_network-observability-per-tenant-configuration}\n\nSlice behavior is governed by the `FlowCollector.spec.slicesConfig.collectionMode` field. Set the field to one of the following collection modes:\n\nAlwaysCollect\n:   - Collects network flows from all cluster namespaces.\n    - Applies the subnet and sampling configurations defined in `FlowCollectorSlice` resources.\n    - Ignores the namespace selection logic in `FlowCollectorSlice` resources.\n    - Maintains the default collection behavior for backward compatibility.\n\nAllowList\n:   - Collects only traffic that matches at least one `FlowCollectorSlice` resource.\n    - An optional namespace allow list includes selected namespaces in the collection.\n\n### FlowCollectorSlice status {#flowcollector-slice-status_network-observability-per-tenant-configuration}\n\nEach `FlowCollectorSlice` resource exposes a `status` subresource that reports:\n\n- Validation results.\n- Reconciliation state.\n- Whether the slice is successfully applied.\n\nThis status allows administrators to verify that slice definitions are active and functioning as expected.\n\n## Enable the Network Observability Operator FlowCollectorSlice {#network-observability-per-tenant-flowcollector-slice-enable_network-observability-per-tenant-configuration}\n\nEnabling the `FlowCollectorSlice` feature in the `FlowCollector` resource allows cluster administrators to delegate flow collection and data enrichment management to specific namespaces.\n\nBefore project administrators can manage their own settings, a cluster administrator must enable the `FlowCollector` custom resource to watch for the `FlowCollectorSlice` custom resource.\n\n**Prerequisites**\n\n- The Network Observability Operator is installed.\n- A `FlowCollector` custom resource exists in the cluster.\n- You have `cluster-admin` privileges.\n\n**Procedure**\n\n1. Edit the `FlowCollector` custom resource by running the following command:\n\n   ```terminal\n   $ oc edit flowcollector cluster\n   ```\n2. Configure the `spec.processor.slicesConfig` field to define which namespaces are permitted to use slices:\n\n   ```yaml\n   apiVersion: flows.netobserv.io/v1beta2\n   kind: FlowCollector\n   metadata:\n     name: cluster\n   spec:\n     processor:\n       slicesConfig:\n         enable: true\n         collectionMode: AllowList\n         namespacesAllowList:\n          - /openshift-.*|netobserv.*/\n   ```\n\n   where:\n\n   `spec.processor.sliceConfig.enable`\n   :   Specifies if the `FlowCollectorSlice` feature is enabled. If not, all resources of kind `FlowCollectorSlice` are ignored.\n\n   `spec.processor.sliceConfig.collectionMode`\n   :   Specifies how the `FlowCollectorSlice` custom resources impacts the flow collection process. When set to `AlwaysCollect`, all flows are collected regardless of the presence of `FlowCollectorSlice`. When set to `AllowList`, only the flows related to namespaces where a `FlowCollectorSlice` resource is present, or configured via the global `namespacesAllowList`, are collected.\n\n   `spec.processor.sliceConfig.namespacesAllowList`\n   :   Specifies a list of namespaces for which flows are always collected, regardless of the presence of `FlowCollectorSlice` in those namespaces.\n\n   > [!NOTE]\n   > The `namespacesAllowList` field supports regular expressions, such as `/openshift-.*/` to capture multiple namespaces, or strict equality, such as `netobserv`, to match a specific namespace.\n3. Save the changes and exit the editor.\n\n**Verification**\n\n- Verify that only network flows from the `netobserv` namespace and namespaces starting with `openshift-` are displayed in the **Network Traffic** page of the web console.\n\n### Disable the Network Observability Operator FlowCollectorSlice {#network-observability-per-tenant-flowcollector-slice-disable_network-observability-per-tenant-configuration}\n\nDisable slice-based filtering in the Network Observability Operator to resume global flow collection while preserving existing `FlowCollectorSlice` resources.\n\n**Procedure**\n\n1. Edit the `FlowCollector` resource by running the following command:\n\n   ```terminal\n   $ oc edit flowcollector cluster\n   ```\n2. Set the `spec.processor.slicesConfig.collectionMode` field to `AlwaysCollect`:\n\n   ```yaml\n   apiVersion: flows.netobserv.io/v1beta2\n   kind: FlowCollector\n   metadata:\n     name: cluster\n   spec:\n     processor:\n       slicesConfig:\n         enable: true\n         collectionMode: AlwaysCollect\n         ...\n   ```\n3. Save the changes.\n\n   Flow collection resumes for all traffic, and existing `FlowCollectorSlice` resources remain available for future use.\n\n## Configure the FlowCollectorSlice as a project administrator {#network-observability-per-tenant-flowcollector-slice-configure-project-administrator_network-observability-per-tenant-configuration}\n\nProject administrators can manage flow collection and data enrichment within their own namespaces by configuring a `FlowCollectorSlice` custom resource for decentralized network traffic analysis.\n\n**Prerequisites**\n\n- The Network Observability Operator is installed.\n- You have `project-admin` permissions for the namespace.\n\n**Procedure**\n\n1. Create a YAML file named `flowCollectorSlice.yaml`:\n\n   ```yaml\n   apiVersion: flows.netobserv.io/v1alpha1\n   kind: FlowCollectorSlice\n   metadata:\n     name: flowcollectorslice-sample\n     namespace: my-app\n   spec:\n     sampling: 1\n     subnetLabels:\n       - name: EXT:Database\n         cidrs:\n           - 192.168.50.0/24\n   ```\n2. Apply the configuration by running the following command:\n\n   ```terminal\n   $ oc apply -f flowCollectorSlice.yaml\n   ```\n\n**Verification**\n\n1. In the OpenShift Container Platform console, navigate to **Observe** -> **Network Traffic**.\n2. Ensure flows to `192.168.50.0/24` subnet are observed with the `EXT:Database` label.\n\n## FlowCollectorSlice \\[flows.netobserv.io/v1alpha1\\] {#flowcollectorslice-flows-netobserv-io-v1alpha1_network-observability-per-tenant-configuration}\n\nDescription\n:   FlowCollectorSlice is the API allowing to decentralize some of the FlowCollector configuration per namespace tenant.\n\nType\n:   ```\n    `object`\n    ```\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and might reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |\n| `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers might infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |\n| `metadata` | `object` | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |\n| `spec` | `object` | FlowCollectorSliceSpec defines the desired state of FlowCollectorSlice |\n\n### .metadata {#_metadata}\n\nDescription\n:   Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata\n\nType\n:   ```\n    `object`\n    ```\n\n### .spec {#_spec}\n\nDescription\n:   FlowCollectorSliceSpec defines the desired state of FlowCollectorSlice\n\nType\n:   ```\n    `object`\n    ```\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `sampling` | `integer` | `sampling` is an optional sampling interval to apply to this slice. For example, a value of `50` means that 1 matching flow in 50 is sampled. |\n| `subnetLabels` | `array` | `subnetLabels` allows you to customize subnets and IPs labeling, such as to identify cluster external workloads or web services. External subnets must be labeled with the prefix `EXT:`, or not labeled at all, in order to work with default quick filters and some metrics examples provided.<br> Beware that the subnet labels configured in FlowCollectorSlice are not limited to the flows of the related namespace: any flow in the whole cluster can be labeled using this configuration. However, subnet labels defined in the cluster-scoped FlowCollector take precedence in case of conflicting rules. |\n\n### .spec.subnetLabels {#_specsubnetlabels}\n\nDescription\n:   `subnetLabels` allows you to customize subnets and IPs labeling, such as to identify cluster external workloads or web services. External subnets must be labeled with the prefix `EXT:`, or not labeled at all, in order to work with default quick filters and some metrics examples provided. +\n\n    Beware that the subnet labels configured in FlowCollectorSlice are not limited to the flows of the related namespace: any flow in the whole cluster can be labeled using this configuration. However, subnet labels defined in the cluster-scoped FlowCollector take precedence in case of conflicting rules.\n\nType\n:   ```\n    `array`\n    ```\n\n### .spec.subnetLabels\\[\\] {#_specsubnetlabels}\n\nDescription\n:   SubnetLabel allows to label subnets and IPs, such as to identify cluster-external workloads or web services.\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `cidrs`\n    - `name`\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `cidrs` | `array (string)` | List of CIDRs, such as `[\"1.2.3.4/32\"]`. |\n| `name` | `string` | Label name, used to flag matching flows. External subnets must be labeled with the prefix `EXT:`, or not labeled at all, in order to work with default quick filters and some metrics examples provided. + |\n\n## Additional resources {#additional-resources-per-tenand-configuration_network-observability-per-tenant-configuration}\n\n- [FlowCollector API reference](/openshift-docs-markdown/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-per-tenant-model.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +101,257 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="network-observability-per-tenant-model_{{ context }}" class="group scroll-mt-20">Network observability per-tenant model<a href="#network-observability-per-tenant-model_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Use the <code>FlowCollectorSlice</code> resource to delegate network traffic analysis management to project administrators while maintaining global cluster governance.</p>
-      <p class="/modules/network-observability-per-tenant-hierarchical-governance-and-tenant-autonomy.md"></p>
-      <p class="/modules/network-observability-per-tenant-flowcollector-slice-granular-flow-collection.md"></p>
-      <p class="/modules/network-observability-per-tenant-flowcollector-slice-enable.md"></p>
-      <p class="/modules/network-observability-per-tenant-flowcollector-slice-disable.md"></p>
-      <p class="/modules/network-observability-per-tenant-flowcollector-slice-configure-project-administrator.md"></p>
-      <p class="/modules/network-observability-per-tenant-flowcollector-slice-api-reference.md"></p>
+      <h2 id="network-observability-per-tenant-hierarchical-governance-and-tenant-autonomy_network-observability-per-tenant-configuration" class="group scroll-mt-20">Per-tenant hierarchical governance and tenant autonomy<a href="#network-observability-per-tenant-hierarchical-governance-and-tenant-autonomy_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Cluster administrators can maintain global governance while allowing project administrators to manage network traffic observability within their specific namespaces.</p>
+      <p>The Network Observability Operator uses a hierarchical configuration model to support multitenancy. This architecture is beneficial for large-scale deployments and hosted control planes environments where individual teams require self-service visibility without cluster administrator intervention.</p>
+      <p>The hierarchical model consists of the following components:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Global governance</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The cluster administrator manages the global <code>FlowCollector</code> resource. This resource defines the observability infrastructure and determines if per-tenant configuration is permitted.</p></dd>
+      <dt class="font-semibold">Tenant autonomy</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The project administrator manages the <code>FlowCollectorSlice</code> resource. This namespace-scoped custom resource (CR) allows teams to define specific observability settings for their workloads.</p></dd>
+      </dl>
+      <h2 id="network-observability-per-tenant-flowcollector-slice-granular-flow-collection_network-observability-per-tenant-configuration" class="group scroll-mt-20">FlowCollectorSlice resource for granular flow collection<a href="#network-observability-per-tenant-flowcollector-slice-granular-flow-collection_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The <code>FlowCollectorSlice</code> is a custom resource definition (CRD) that enables granular, multi-tenant network flow collection. By defining logical slices based on namespaces or subnets, you can selectively collect traffic and apply custom sampling to specific workloads rather than the entire cluster.</p>
+      <p>It complements the existing <code>FlowCollector</code> custom resource by enabling granular, selective, and multi-tenant-aware flow collection, instead of a single global configuration that applies uniformly to all traffic.</p>
+      <p>When slice-based collection is enabled, only traffic that matches at least one <code>FlowCollectorSlice</code> is collected, allowing administrators to precisely control which network flows are observed.</p>
+      <h3 id="benefits-of-flowcollector-slice_network-observability-per-tenant-configuration" class="group scroll-mt-20">Benefits of FlowCollectorSlice<a href="#benefits-of-flowcollector-slice_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>By default, network flow collection applies uniformly to all traffic in the cluster. This can result in excessive data volume and limited flexibility.</p>
+      <p>Using <code>FlowCollectorSlice</code> provides the following benefits:</p>
+      <ul>
+      <li>Enables selective flow collection for specific namespaces or workloads.</li>
+      <li>Supports multi-tenant and environment-based observability.</li>
+      <li>Reduces storage and processing costs by filtering irrelevant traffic.</li>
+      <li>Preserves backward compatibility through opt-in configuration.</li>
+      </ul>
+      <h3 id="relationship-flowcollector-flowcollector-slice_network-observability-per-tenant-configuration" class="group scroll-mt-20">Relationship between FlowCollector and FlowCollectorSlice<a href="#relationship-flowcollector-flowcollector-slice_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>While the <code>FlowCollector</code> resource defines global flow collection behavior for the cluster, the <code>FlowCollectorSlice</code> resource defines which traffic is eligible for collection when slice-based filtering is enabled.</p>
+      <p>The <code>FlowCollector.spec.slicesConfig</code> field controls how slice definitions are applied.</p>
+      <h3 id="collection-modes_network-observability-per-tenant-configuration" class="group scroll-mt-20">Collection modes<a href="#collection-modes_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Slice behavior is governed by the <code>FlowCollector.spec.slicesConfig.collectionMode</code> field. Set the field to one of the following collection modes:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">AlwaysCollect</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>Collects network flows from all cluster namespaces.</li>
+      <li>Applies the subnet and sampling configurations defined in <code>FlowCollectorSlice</code> resources.</li>
+      <li>Ignores the namespace selection logic in <code>FlowCollectorSlice</code> resources.</li>
+      <li>Maintains the default collection behavior for backward compatibility.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">AllowList</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>Collects only traffic that matches at least one <code>FlowCollectorSlice</code> resource.</li>
+      <li>An optional namespace allow list includes selected namespaces in the collection.</li>
+      </ul>
+      </dd>
+      </dl>
+      <h3 id="flowcollector-slice-status_network-observability-per-tenant-configuration" class="group scroll-mt-20">FlowCollectorSlice status<a href="#flowcollector-slice-status_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Each <code>FlowCollectorSlice</code> resource exposes a <code>status</code> subresource that reports:</p>
+      <ul>
+      <li>Validation results.</li>
+      <li>Reconciliation state.</li>
+      <li>Whether the slice is successfully applied.</li>
+      </ul>
+      <p>This status allows administrators to verify that slice definitions are active and functioning as expected.</p>
+      <h2 id="network-observability-per-tenant-flowcollector-slice-enable_network-observability-per-tenant-configuration" class="group scroll-mt-20">Enable the Network Observability Operator FlowCollectorSlice<a href="#network-observability-per-tenant-flowcollector-slice-enable_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enabling the <code>FlowCollectorSlice</code> feature in the <code>FlowCollector</code> resource allows cluster administrators to delegate flow collection and data enrichment management to specific namespaces.</p>
+      <p>Before project administrators can manage their own settings, a cluster administrator must enable the <code>FlowCollector</code> custom resource to watch for the <code>FlowCollectorSlice</code> custom resource.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The Network Observability Operator is installed.</li>
+      <li>A <code>FlowCollector</code> custom resource exists in the cluster.</li>
+      <li>You have <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>FlowCollector</code> custom resource by running the following command:
+      <CodeBlock code={"$ oc edit flowcollector cluster"} lang="terminal" />
+      </li>
+      <li>
+      Configure the <code>spec.processor.slicesConfig</code> field to define which namespaces are permitted to use slices:
+      <CodeBlock code={"apiVersion: flows.netobserv.io/v1beta2\nkind: FlowCollector\nmetadata:\n  name: cluster\nspec:\n  processor:\n    slicesConfig:\n      enable: true\n      collectionMode: AllowList\n      namespacesAllowList:\n       - /openshift-.*|netobserv.*/"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.processor.sliceConfig.enable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies if the <code>FlowCollectorSlice</code> feature is enabled. If not, all resources of kind <code>FlowCollectorSlice</code> are ignored.</p></dd>
+      <dt class="font-semibold"><code>spec.processor.sliceConfig.collectionMode</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies how the <code>FlowCollectorSlice</code> custom resources impacts the flow collection process. When set to <code>AlwaysCollect</code>, all flows are collected regardless of the presence of <code>FlowCollectorSlice</code>. When set to <code>AllowList</code>, only the flows related to namespaces where a <code>FlowCollectorSlice</code> resource is present, or configured via the global <code>namespacesAllowList</code>, are collected.</p></dd>
+      <dt class="font-semibold"><code>spec.processor.sliceConfig.namespacesAllowList</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a list of namespaces for which flows are always collected, regardless of the presence of <code>FlowCollectorSlice</code> in those namespaces.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>namespacesAllowList</code> field supports regular expressions, such as <code>/openshift-.*/</code> to capture multiple namespaces, or strict equality, such as <code>netobserv</code>, to match a specific namespace.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Save the changes and exit the editor.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>Verify that only network flows from the <code>netobserv</code> namespace and namespaces starting with <code>openshift-</code> are displayed in the <strong>Network Traffic</strong> page of the web console.</li></ul>
+      <h3 id="network-observability-per-tenant-flowcollector-slice-disable_network-observability-per-tenant-configuration" class="group scroll-mt-20">Disable the Network Observability Operator FlowCollectorSlice<a href="#network-observability-per-tenant-flowcollector-slice-disable_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Disable slice-based filtering in the Network Observability Operator to resume global flow collection while preserving existing <code>FlowCollectorSlice</code> resources.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>FlowCollector</code> resource by running the following command:
+      <CodeBlock code={"$ oc edit flowcollector cluster"} lang="terminal" />
+      </li>
+      <li>
+      Set the <code>spec.processor.slicesConfig.collectionMode</code> field to <code>AlwaysCollect</code>:
+      <CodeBlock code={"apiVersion: flows.netobserv.io/v1beta2\nkind: FlowCollector\nmetadata:\n  name: cluster\nspec:\n  processor:\n    slicesConfig:\n      enable: true\n      collectionMode: AlwaysCollect\n      ..."} lang="yaml" />
+      </li>
+      <li>
+      Save the changes.
+      <p>Flow collection resumes for all traffic, and existing <code>FlowCollectorSlice</code> resources remain available for future use.</p>
+      </li>
+      </ol>
+      <h2 id="network-observability-per-tenant-flowcollector-slice-configure-project-administrator_network-observability-per-tenant-configuration" class="group scroll-mt-20">Configure the FlowCollectorSlice as a project administrator<a href="#network-observability-per-tenant-flowcollector-slice-configure-project-administrator_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Project administrators can manage flow collection and data enrichment within their own namespaces by configuring a <code>FlowCollectorSlice</code> custom resource for decentralized network traffic analysis.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The Network Observability Operator is installed.</li>
+      <li>You have <code>project-admin</code> permissions for the namespace.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file named <code>flowCollectorSlice.yaml</code>:
+      <CodeBlock code={"apiVersion: flows.netobserv.io/v1alpha1\nkind: FlowCollectorSlice\nmetadata:\n  name: flowcollectorslice-sample\n  namespace: my-app\nspec:\n  sampling: 1\n  subnetLabels:\n    - name: EXT:Database\n      cidrs:\n        - 192.168.50.0/24"} lang="yaml" />
+      </li>
+      <li>
+      Apply the configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f flowCollectorSlice.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform console, navigate to <strong>Observe</strong> -&gt; <strong>Network Traffic</strong>.</li>
+      <li>Ensure flows to <code>192.168.50.0/24</code> subnet are observed with the <code>EXT:Database</code> label.</li>
+      </ol>
+      <h2 id="flowcollectorslice-flows-netobserv-io-v1alpha1_network-observability-per-tenant-configuration" class="group scroll-mt-20">FlowCollectorSlice [flows.netobserv.io/v1alpha1]<a href="#flowcollectorslice-flows-netobserv-io-v1alpha1_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p>FlowCollectorSlice is the API allowing to decentralize some of the FlowCollector configuration per namespace tenant.</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`object`"} lang="plaintext" /></dd>
+      </dl>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>apiVersion</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and might reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>kind</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Kind is a string value representing the REST resource this object represents. Servers might infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>metadata</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>FlowCollectorSliceSpec defines the desired state of FlowCollectorSlice</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="_metadata" class="group scroll-mt-20">.metadata<a href="#_metadata" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`object`"} lang="plaintext" /></dd>
+      </dl>
+      <h3 id="_spec" class="group scroll-mt-20">.spec<a href="#_spec" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p>FlowCollectorSliceSpec defines the desired state of FlowCollectorSlice</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`object`"} lang="plaintext" /></dd>
+      </dl>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>sampling</code></TableCell>
+      <TableCell><code>integer</code></TableCell>
+      <TableCell><code>sampling</code> is an optional sampling interval to apply to this slice. For example, a value of <code>50</code> means that 1 matching flow in 50 is sampled.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>subnetLabels</code></TableCell>
+      <TableCell><code>array</code></TableCell>
+      <TableCell><code>subnetLabels</code> allows you to customize subnets and IPs labeling, such as to identify cluster external workloads or web services. External subnets must be labeled with the prefix <code>EXT:</code>, or not labeled at all, in order to work with default quick filters and some metrics examples provided.<Fragment set:html={"<br>"} /> Beware that the subnet labels configured in FlowCollectorSlice are not limited to the flows of the related namespace: any flow in the whole cluster can be labeled using this configuration. However, subnet labels defined in the cluster-scoped FlowCollector take precedence in case of conflicting rules.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="_specsubnetlabels" class="group scroll-mt-20">.spec.subnetLabels<a href="#_specsubnetlabels" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p><code>subnetLabels</code> allows you to customize subnets and IPs labeling, such as to identify cluster external workloads or web services. External subnets must be labeled with the prefix <code>EXT:</code>, or not labeled at all, in order to work with default quick filters and some metrics examples provided. +</p>
+      <p>Beware that the subnet labels configured in FlowCollectorSlice are not limited to the flows of the related namespace: any flow in the whole cluster can be labeled using this configuration. However, subnet labels defined in the cluster-scoped FlowCollector take precedence in case of conflicting rules.</p>
+      </dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`array`"} lang="plaintext" /></dd>
+      </dl>
+      <h3 id="_specsubnetlabels" class="group scroll-mt-20">.spec.subnetLabels[]<a href="#_specsubnetlabels" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p>SubnetLabel allows to label subnets and IPs, such as to identify cluster-external workloads or web services.</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`object`"} lang="plaintext" /></dd>
+      <dt class="font-semibold">Required</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>cidrs</code></li>
+      <li><code>name</code></li>
+      </ul>
+      </dd>
+      </dl>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>cidrs</code></TableCell>
+      <TableCell><code>array (string)</code></TableCell>
+      <TableCell>List of CIDRs, such as <code>["1.2.3.4/32"]</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>name</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Label name, used to flag matching flows. External subnets must be labeled with the prefix <code>EXT:</code>, or not labeled at all, in order to work with default quick filters and some metrics examples provided. +</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
       <h2 id="additional-resources-per-tenand-configuration_network-observability-per-tenant-configuration" class="group scroll-mt-20">Additional resources<a href="#additional-resources-per-tenand-configuration_network-observability-per-tenant-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/observability/network_observability/flowcollector-api#network-observability-flowcollector-api-specifications_network_observability">FlowCollector API reference</a></li></ul>
     </article>

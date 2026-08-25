@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"verifying-gateway-infrastructure-status","text":"Verify Gateway infrastructure status"},{"depth":2,"slug":"verifying-gateway-infrastructure-status-additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"verifying-gateway-infrastructure-status","text":"Verify Gateway infrastructure status"},{"depth":2,"slug":"gatewayclass-status-conditions_verifying-gateway-infrastructure-status","text":"GatewayClass status conditions reference"},{"depth":2,"slug":"gateway-listener-status-conditions_verifying-gateway-infrastructure-status","text":"Gateway and listener status conditions reference"},{"depth":2,"slug":"querying-gateway-status-cli_verifying-gateway-infrastructure-status","text":"Query Gateway infrastructure status using the CLI"},{"depth":2,"slug":"verifying-gateway-infrastructure-status-additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/verifying-gateway-infrastructure-status";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["networking","networking/ingress_load_balancing","networki
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Verify Gateway infrastructure status {#verifying-gateway-infrastructure-status}\n\nTo ensure your gateway infrastructure is properly configured and functioning, review the `status` conditions of your `GatewayClass` and `Gateway` custom resources (CRs). Checking these conditions confirms that the controller has successfully programmed your underlying data plane without routing conflicts.\n\nTo verify that your gateway infrastructure is functioning correctly, complete the following tasks:\n\n- Understand `GatewayClass` status conditions to verify that the controller has claimed the class and that your installed API version is compatible.\n- Review `Gateway` CR and listener `status` conditions to pinpoint data plane failures, configuration errors, or negative polarity conflicts.\n- Query gateway infrastructure status using the CLI to quickly validate your deployment and retrieve assigned IP addresses.\n\n## Additional resources {#verifying-gateway-infrastructure-status-additional-resources}\n\n- [Installing a cluster on {{ gcp_short }} with customizations](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installation-gcp-provisioning-dns-records_installing-gcp-customizations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/verifying-gateway-infrastructure-status.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Verify Gateway infrastructure status {#verifying-gateway-infrastructure-status}\n\nTo ensure your gateway infrastructure is properly configured and functioning, review the `status` conditions of your `GatewayClass` and `Gateway` custom resources (CRs). Checking these conditions confirms that the controller has successfully programmed your underlying data plane without routing conflicts.\n\nTo verify that your gateway infrastructure is functioning correctly, complete the following tasks:\n\n- Understand `GatewayClass` status conditions to verify that the controller has claimed the class and that your installed API version is compatible.\n- Review `Gateway` CR and listener `status` conditions to pinpoint data plane failures, configuration errors, or negative polarity conflicts.\n- Query gateway infrastructure status using the CLI to quickly validate your deployment and retrieve assigned IP addresses.\n\n## GatewayClass status conditions reference {#gatewayclass-status-conditions_verifying-gateway-infrastructure-status}\n\nTo verify that your `GatewayClass` custom resource (CR) is valid and ready to provision gateways, review its `status` conditions. A healthy `GatewayClass` CR reports a status of `True` for core conditions like `Accepted` and `SupportedVersion`.\n\n`GatewayClass`** CR status conditions**\n\n| Condition | Status | Description and common reasons |\n| --- | --- | --- |\n| `Accepted` | `True` | The `GatewayClass` CR is valid and the controller has claimed it. |\n| `Accepted` | `False` | The configuration has errors or was rejected. Common reasons include `InvalidParameters` (referenced parameters are invalid or not found), `Pending` (the controller has not processed the resource yet), or `Unknown` (an unsupported `controllerName` was provided). |\n| `Accepted` | `Unknown` | The `GatewayClass` CR is waiting for the controller to process it. |\n| `SupportedVersion` | `True` | The installed Gateway API version is compatible with the controller. |\n| `SupportedVersion` | `False` | There is a version mismatch. A common reason is `UnsupportedVersion`, which indicates that the custom resource definition (CRD) version does not match the controller requirements. |\n| `ControllerInstalled` | `True` | The Cluster Ingress Operator successfully installed the Gateway API controller. |\n| `ControllerInstalled` | `False` | The installation failed. |\n| `ControllerInstalled` | `Unknown` | The controller has not started the installation yet. |\n| `CRDsReady` | `True` | The Istio CRDs are installed and actively managed by either the Cluster Ingress Operator or OLM. |\n| `CRDsReady` | `False` | The CRDs were installed by a third party or have mixed ownership, preventing the controller from managing them. |\n| `CRDsReady` | `Unknown` | The CRDs are not installed yet. |\n\n## Gateway and listener status conditions reference {#gateway-listener-status-conditions_verifying-gateway-infrastructure-status}\n\nTo verify that your gateway is configured in the data plane and ready to route traffic, review its gateway-level and listener-level `status` conditions. A healthy `Gateway` custom resource (CR) reports a status of `True` for its `Accepted` and `Programmed` conditions.\n\n> [!IMPORTANT]\n> The `Conflicted` listener condition uses negative polarity. This means that a status of `False` indicates a healthy state, while a status of `True` indicates an error.\n\n**Gateway-level status conditions**\n\n| Condition | Status | Description and common reasons |\n| --- | --- | --- |\n| `Accepted` | `True` | The gateway configuration is valid and working properly. |\n| `Accepted` | `False` | The configuration has errors. Common reasons include `ListenersNotValid` (one or more listeners have issues) or `InvalidParameters` (the configuration is invalid). |\n| `Accepted` | `Unknown` | The controller has not evaluated the gateway yet. |\n| `Programmed` | `True` | The infrastructure is provisioned and the gateway is configured in the data plane, such as a load balancer or proxy. |\n| `Programmed` | `False` | Programming failed or the data plane is not ready. Common reasons include `NoResources` (insufficient resources or pods unavailable), `Invalid` (cannot apply to the data plane), or `Pending`. |\n| `Programmed` | `Unknown` | Programming is currently in progress. |\n| `LoadBalancerReady` | `True` | The cloud load balancer service for the gateway is successfully provisioned. |\n| `LoadBalancerReady` | `False` | The load balancer service failed to provision or is pending. Common reasons include `ServiceNotFound`, `LoadBalancerPending`, or `SyncLoadBalancerFailed`. |\n| `DNSReady` | `True` | DNS records for all listeners are functioning correctly. |\n| `DNSReady` | `False` | One or more listeners have DNS provisioning issues. |\n\n***Listener-level status conditions***\n\n<table>\n<thead>\n<tr>\n  <th>Condition</th>\n  <th>Status</th>\n  <th>Description and common reasons</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>Accepted</code></td>\n  <td><code>True</code></td>\n  <td>The listener configuration is valid and working properly.</td>\n</tr>\n<tr>\n  <td><code>Accepted</code></td>\n  <td><code>False</code></td>\n  <td>The listener configuration has errors.</td>\n</tr>\n<tr>\n  <td><code>Programmed</code></td>\n  <td><code>True</code></td>\n  <td>The listener is successfully configured in the data plane.</td>\n</tr>\n<tr>\n  <td><code>Programmed</code></td>\n  <td><code>False</code></td>\n  <td>The listener configuration failed in the data plane.</td>\n</tr>\n<tr>\n  <td><code>ResolvedRefs</code></td>\n  <td><code>True</code></td>\n  <td>All references, such as TLS certificates, are found and valid.</td>\n</tr>\n<tr>\n  <td><code>ResolvedRefs</code></td>\n  <td><code>False</code></td>\n  <td>At least one reference is invalid. Common reasons include <code>InvalidCertificateRef</code> (a TLS certificate was not found or is invalid) or <code>RefNotPermitted</code> (a cross-namespace reference is not allowed).</td>\n</tr>\n<tr>\n  <td><code>Conflicted</code> (Negative polarity)</td>\n  <td><code>False</code></td>\n  <td>Healthy state. There are no conflicts.</td>\n</tr>\n<tr>\n  <td><code>Conflicted</code> (Negative polarity)</td>\n  <td><code>True</code></td>\n  <td>The listener conflicts with another listener. Common reasons include <code>ProtocolConflict</code> (multiple listeners on the same port with incompatible protocols) or <code>HostnameConflict</code> (overlapping hostnames).</td>\n</tr>\n<tr>\n  <td><code>DNSReady</code></td>\n  <td><code>True</code></td>\n  <td>The DNS record for this listener's hostname is successfully provisioned in all reported zones.</td>\n</tr>\n<tr>\n  <td><code>DNSReady</code></td>\n  <td><code>False</code></td>\n  <td>The DNS record failed to provision. Common reasons include <code>FailedZones</code>, <code>NoDNSZones</code>, or <code>RecordNotFound</code>.</td>\n</tr>\n<tr>\n  <td><code>DNSReady</code></td>\n  <td><code>Unknown</code></td>\n  <td>The DNS status cannot be determined or is unmanaged.<br><br><dl><dt>Note</dt><dd>Listeners without a configured hostname will not have DNS conditions added to their <code>status</code>.</dd></dl></td>\n</tr>\n</tbody>\n</table>\n\n```yaml {title=\"Example Gateway CR status output showing a DNS failure on one listener\"}\n# ...\nstatus:\n  # Gateway-level conditions (LoadBalancer and aggregate DNS status)\n  conditions:\n  - type: LoadBalancerReady\n    status: \"True\"\n    reason: LoadBalancerProvisioned\n    message: \"The LoadBalancer service is provisioned\"\n    observedGeneration: 1\n    lastTransitionTime: \"2025-01-12T10:00:00Z\"\n  - type: DNSReady\n    status: \"False\"\n    reason: SomeListenersNotReady\n    message: \"One or more listeners have DNS provisioning issues\"\n    observedGeneration: 1\n    lastTransitionTime: \"2025-01-12T10:00:00Z\"\n\n  # Listener-level conditions (DNS status per listener)\n  listeners:\n  - name: <stage_http>\n    conditions:\n    - type: DNSReady\n      status: \"True\"\n      reason: NoFailedZones\n      message: \"The record is provisioned in all reported zones.\"\n      observedGeneration: 1\n      lastTransitionTime: \"2025-01-12T10:00:00Z\"\n  - name: <prod_https>\n    conditions:\n    - type: DNSReady\n      status: \"False\"\n      reason: FailedZones\n      message: \"The record failed to provision in some zones: [<prod.example.com>]\"\n      observedGeneration: 1\n      lastTransitionTime: \"2025-01-12T10:00:00Z\"\n```\n\n> [!NOTE]\n> For Google Cloud installations, you can use a custom DNS solution. You must manually create a DNS record for any gateways in Gateway API. For more information, see \"Installing a cluster on Google Cloud with customizations\".\n\n## Query Gateway infrastructure status using the CLI {#querying-gateway-status-cli_verifying-gateway-infrastructure-status}\n\nTo quickly check the health of your gateway infrastructure, query specific `status` fields using the OpenShift Container Platform CLI. You can validate your deployment, check route attachments, and retrieve IP addresses without parsing lengthy YAML manifests.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed the OpenShift CLI (`oc`).\n- Your gateway is deployed in the `openshift-ingress` namespace.\n- Your gateway is managed by the gateway controller (`openshift.io/gateway-controller/v1`).\n\n**Procedure**\n\n- Run the relevant command for the status information you need to retrieve:\n\n  - To list all `GatewayClass` custom resources (CRs) in your cluster, run the following command:\n\n    ```terminal\n    $ oc get gatewayclass\n    ```\n  - To check if a specific `GatewayClass` CR has been accepted by the controller, run the following command:\n\n    ```terminal\n    $ oc get gatewayclass <gatewayclass_name> -o jsonpath='{.status.conditions[?(@.type==\"Accepted\")].status}'\n    ```\n\n    - `<gatewayclass_name>`: Specify the name of your gateway class.\n  - To list all `Gateway` custom resources (CRs) across all namespaces, run the following command:\n\n    ```terminal\n    $ oc get gateway -A\n    ```\n  - To check if a specific `Gateway` CR is successfully programmed in the data plane, run the following command:\n\n    ```terminal\n    $ oc get gateway <gateway_name> -n openshift-ingress -o jsonpath='{.status.conditions[?(@.type==\"Programmed\")].status}'\n    ```\n\n    - `<gateway_name>`: Specify the name of your gateway.\n  - To retrieve the IP address assigned to a specific `Gateway` CR, run the following command:\n\n    ```terminal\n    $ oc get gateway <gateway_name> -n openshift-ingress -o jsonpath='{.status.addresses[0].value}'\n    ```\n\n    - `<gateway_name>`: Specify the name of your gateway.\n  - To check the total number of routes attached to a specific `Gateway` CR, run the following command:\n\n    ```terminal\n    $ oc get gateway <gateway_name> -n openshift-ingress -o jsonpath='{.status.listeners[*].attachedRoutes}'\n    ```\n\n    - `<gateway_name>`: Specify the name of your gateway.\n  - To watch a specific `Gateway` CR for real-time status changes, run the following command:\n\n    ```terminal\n    $ oc get gateway <gateway_name> -n openshift-ingress -w\n    ```\n\n    - `<gateway_name>`: Specify the name of your gateway.\n\n## Additional resources {#verifying-gateway-infrastructure-status-additional-resources}\n\n- [Installing a cluster on Google Cloud with customizations](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installation-gcp-provisioning-dns-records_installing-gcp-customizations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_gateway_api/verifying-gateway-infrastructure-status.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,7 +101,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="verifying-gateway-infrastructure-status" class="group scroll-mt-20">Verify Gateway infrastructure status<a href="#verifying-gateway-infrastructure-status" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To ensure your gateway infrastructure is properly configured and functioning, review the <code>status</code> conditions of your <code>GatewayClass</code> and <code>Gateway</code> custom resources (CRs). Checking these conditions confirms that the controller has successfully programmed your underlying data plane without routing conflicts.</p>
       <p>To verify that your gateway infrastructure is functioning correctly, complete the following tasks:</p>
       <ul>
@@ -99,10 +108,206 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Review <code>Gateway</code> CR and listener <code>status</code> conditions to pinpoint data plane failures, configuration errors, or negative polarity conflicts.</li>
       <li>Query gateway infrastructure status using the CLI to quickly validate your deployment and retrieve assigned IP addresses.</li>
       </ul>
-      <p class="/modules/gateway-listener-status-conditions.md"></p>
-      <p class="/modules/querying-gateway-status-cli.md"></p>
+      <h2 id="gatewayclass-status-conditions_verifying-gateway-infrastructure-status" class="group scroll-mt-20">GatewayClass status conditions reference<a href="#gatewayclass-status-conditions_verifying-gateway-infrastructure-status" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To verify that your <code>GatewayClass</code> custom resource (CR) is valid and ready to provision gateways, review its <code>status</code> conditions. A healthy <code>GatewayClass</code> CR reports a status of <code>True</code> for core conditions like <code>Accepted</code> and <code>SupportedVersion</code>.</p>
+      <p><code>GatewayClass</code><strong> CR status conditions</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Condition</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead>Description and common reasons</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>Accepted</code></TableCell>
+      <TableCell><code>True</code></TableCell>
+      <TableCell>The <code>GatewayClass</code> CR is valid and the controller has claimed it.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Accepted</code></TableCell>
+      <TableCell><code>False</code></TableCell>
+      <TableCell>The configuration has errors or was rejected. Common reasons include <code>InvalidParameters</code> (referenced parameters are invalid or not found), <code>Pending</code> (the controller has not processed the resource yet), or <code>Unknown</code> (an unsupported <code>controllerName</code> was provided).</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Accepted</code></TableCell>
+      <TableCell><code>Unknown</code></TableCell>
+      <TableCell>The <code>GatewayClass</code> CR is waiting for the controller to process it.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SupportedVersion</code></TableCell>
+      <TableCell><code>True</code></TableCell>
+      <TableCell>The installed Gateway API version is compatible with the controller.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SupportedVersion</code></TableCell>
+      <TableCell><code>False</code></TableCell>
+      <TableCell>There is a version mismatch. A common reason is <code>UnsupportedVersion</code>, which indicates that the custom resource definition (CRD) version does not match the controller requirements.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ControllerInstalled</code></TableCell>
+      <TableCell><code>True</code></TableCell>
+      <TableCell>The Cluster Ingress Operator successfully installed the Gateway API controller.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ControllerInstalled</code></TableCell>
+      <TableCell><code>False</code></TableCell>
+      <TableCell>The installation failed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ControllerInstalled</code></TableCell>
+      <TableCell><code>Unknown</code></TableCell>
+      <TableCell>The controller has not started the installation yet.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>CRDsReady</code></TableCell>
+      <TableCell><code>True</code></TableCell>
+      <TableCell>The Istio CRDs are installed and actively managed by either the Cluster Ingress Operator or OLM.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>CRDsReady</code></TableCell>
+      <TableCell><code>False</code></TableCell>
+      <TableCell>The CRDs were installed by a third party or have mixed ownership, preventing the controller from managing them.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>CRDsReady</code></TableCell>
+      <TableCell><code>Unknown</code></TableCell>
+      <TableCell>The CRDs are not installed yet.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="gateway-listener-status-conditions_verifying-gateway-infrastructure-status" class="group scroll-mt-20">Gateway and listener status conditions reference<a href="#gateway-listener-status-conditions_verifying-gateway-infrastructure-status" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To verify that your gateway is configured in the data plane and ready to route traffic, review its gateway-level and listener-level <code>status</code> conditions. A healthy <code>Gateway</code> custom resource (CR) reports a status of <code>True</code> for its <code>Accepted</code> and <code>Programmed</code> conditions.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The <code>Conflicted</code> listener condition uses negative polarity. This means that a status of <code>False</code> indicates a healthy state, while a status of <code>True</code> indicates an error.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Gateway-level status conditions</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Condition</TableHead>
+      <TableHead>Status</TableHead>
+      <TableHead>Description and common reasons</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>Accepted</code></TableCell>
+      <TableCell><code>True</code></TableCell>
+      <TableCell>The gateway configuration is valid and working properly.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Accepted</code></TableCell>
+      <TableCell><code>False</code></TableCell>
+      <TableCell>The configuration has errors. Common reasons include <code>ListenersNotValid</code> (one or more listeners have issues) or <code>InvalidParameters</code> (the configuration is invalid).</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Accepted</code></TableCell>
+      <TableCell><code>Unknown</code></TableCell>
+      <TableCell>The controller has not evaluated the gateway yet.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Programmed</code></TableCell>
+      <TableCell><code>True</code></TableCell>
+      <TableCell>The infrastructure is provisioned and the gateway is configured in the data plane, such as a load balancer or proxy.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Programmed</code></TableCell>
+      <TableCell><code>False</code></TableCell>
+      <TableCell>Programming failed or the data plane is not ready. Common reasons include <code>NoResources</code> (insufficient resources or pods unavailable), <code>Invalid</code> (cannot apply to the data plane), or <code>Pending</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Programmed</code></TableCell>
+      <TableCell><code>Unknown</code></TableCell>
+      <TableCell>Programming is currently in progress.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>LoadBalancerReady</code></TableCell>
+      <TableCell><code>True</code></TableCell>
+      <TableCell>The cloud load balancer service for the gateway is successfully provisioned.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>LoadBalancerReady</code></TableCell>
+      <TableCell><code>False</code></TableCell>
+      <TableCell>The load balancer service failed to provision or is pending. Common reasons include <code>ServiceNotFound</code>, <code>LoadBalancerPending</code>, or <code>SyncLoadBalancerFailed</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DNSReady</code></TableCell>
+      <TableCell><code>True</code></TableCell>
+      <TableCell>DNS records for all listeners are functioning correctly.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>DNSReady</code></TableCell>
+      <TableCell><code>False</code></TableCell>
+      <TableCell>One or more listeners have DNS provisioning issues.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><em></em><em><strong>Listener-level status conditions</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Condition</th>\n  <th>Status</th>\n  <th>Description and common reasons</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>Accepted</code></td>\n  <td><code>True</code></td>\n  <td>The listener configuration is valid and working properly.</td>\n</tr>\n<tr>\n  <td><code>Accepted</code></td>\n  <td><code>False</code></td>\n  <td>The listener configuration has errors.</td>\n</tr>\n<tr>\n  <td><code>Programmed</code></td>\n  <td><code>True</code></td>\n  <td>The listener is successfully configured in the data plane.</td>\n</tr>\n<tr>\n  <td><code>Programmed</code></td>\n  <td><code>False</code></td>\n  <td>The listener configuration failed in the data plane.</td>\n</tr>\n<tr>\n  <td><code>ResolvedRefs</code></td>\n  <td><code>True</code></td>\n  <td>All references, such as TLS certificates, are found and valid.</td>\n</tr>\n<tr>\n  <td><code>ResolvedRefs</code></td>\n  <td><code>False</code></td>\n  <td>At least one reference is invalid. Common reasons include <code>InvalidCertificateRef</code> (a TLS certificate was not found or is invalid) or <code>RefNotPermitted</code> (a cross-namespace reference is not allowed).</td>\n</tr>\n<tr>\n  <td><code>Conflicted</code> (Negative polarity)</td>\n  <td><code>False</code></td>\n  <td>Healthy state. There are no conflicts.</td>\n</tr>\n<tr>\n  <td><code>Conflicted</code> (Negative polarity)</td>\n  <td><code>True</code></td>\n  <td>The listener conflicts with another listener. Common reasons include <code>ProtocolConflict</code> (multiple listeners on the same port with incompatible protocols) or <code>HostnameConflict</code> (overlapping hostnames).</td>\n</tr>\n<tr>\n  <td><code>DNSReady</code></td>\n  <td><code>True</code></td>\n  <td>The DNS record for this listener's hostname is successfully provisioned in all reported zones.</td>\n</tr>\n<tr>\n  <td><code>DNSReady</code></td>\n  <td><code>False</code></td>\n  <td>The DNS record failed to provision. Common reasons include <code>FailedZones</code>, <code>NoDNSZones</code>, or <code>RecordNotFound</code>.</td>\n</tr>\n<tr>\n  <td><code>DNSReady</code></td>\n  <td><code>Unknown</code></td>\n  <td>The DNS status cannot be determined or is unmanaged.<br><br><dl><dt>Note</dt><dd>Listeners without a configured hostname will not have DNS conditions added to their <code>status</code>.</dd></dl></td>\n</tr>\n</tbody>\n</table>\n"} />
+      <CodeBlock code={"# ...\nstatus:\n  # Gateway-level conditions (LoadBalancer and aggregate DNS status)\n  conditions:\n  - type: LoadBalancerReady\n    status: \"True\"\n    reason: LoadBalancerProvisioned\n    message: \"The LoadBalancer service is provisioned\"\n    observedGeneration: 1\n    lastTransitionTime: \"2025-01-12T10:00:00Z\"\n  - type: DNSReady\n    status: \"False\"\n    reason: SomeListenersNotReady\n    message: \"One or more listeners have DNS provisioning issues\"\n    observedGeneration: 1\n    lastTransitionTime: \"2025-01-12T10:00:00Z\"\n\n  # Listener-level conditions (DNS status per listener)\n  listeners:\n  - name: <stage_http>\n    conditions:\n    - type: DNSReady\n      status: \"True\"\n      reason: NoFailedZones\n      message: \"The record is provisioned in all reported zones.\"\n      observedGeneration: 1\n      lastTransitionTime: \"2025-01-12T10:00:00Z\"\n  - name: <prod_https>\n    conditions:\n    - type: DNSReady\n      status: \"False\"\n      reason: FailedZones\n      message: \"The record failed to provision in some zones: [<prod.example.com>]\"\n      observedGeneration: 1\n      lastTransitionTime: \"2025-01-12T10:00:00Z\""} lang="yaml" title="Example Gateway CR status output showing a DNS failure on one listener" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For Google Cloud installations, you can use a custom DNS solution. You must manually create a DNS record for any gateways in Gateway API. For more information, see "Installing a cluster on Google Cloud with customizations".</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="querying-gateway-status-cli_verifying-gateway-infrastructure-status" class="group scroll-mt-20">Query Gateway infrastructure status using the CLI<a href="#querying-gateway-status-cli_verifying-gateway-infrastructure-status" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To quickly check the health of your gateway infrastructure, query specific <code>status</code> fields using the OpenShift Container Platform CLI. You can validate your deployment, check route attachments, and retrieve IP addresses without parsing lengthy YAML manifests.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>Your gateway is deployed in the <code>openshift-ingress</code> namespace.</li>
+      <li>Your gateway is managed by the gateway controller (<code>openshift.io/gateway-controller/v1</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Run the relevant command for the status information you need to retrieve:
+      <ul>
+      <li>
+      To list all <code>GatewayClass</code> custom resources (CRs) in your cluster, run the following command:
+      <CodeBlock code={"$ oc get gatewayclass"} lang="terminal" />
+      </li>
+      <li>
+      To check if a specific <code>GatewayClass</code> CR has been accepted by the controller, run the following command:
+      <CodeBlock code={"$ oc get gatewayclass <gatewayclass_name> -o jsonpath='{.status.conditions[?(@.type==\"Accepted\")].status}'"} lang="terminal" />
+      <ul><li><code>&lt;gatewayclass_name&gt;</code>: Specify the name of your gateway class.</li></ul>
+      </li>
+      <li>
+      To list all <code>Gateway</code> custom resources (CRs) across all namespaces, run the following command:
+      <CodeBlock code={"$ oc get gateway -A"} lang="terminal" />
+      </li>
+      <li>
+      To check if a specific <code>Gateway</code> CR is successfully programmed in the data plane, run the following command:
+      <CodeBlock code={"$ oc get gateway <gateway_name> -n openshift-ingress -o jsonpath='{.status.conditions[?(@.type==\"Programmed\")].status}'"} lang="terminal" />
+      <ul><li><code>&lt;gateway_name&gt;</code>: Specify the name of your gateway.</li></ul>
+      </li>
+      <li>
+      To retrieve the IP address assigned to a specific <code>Gateway</code> CR, run the following command:
+      <CodeBlock code={"$ oc get gateway <gateway_name> -n openshift-ingress -o jsonpath='{.status.addresses[0].value}'"} lang="terminal" />
+      <ul><li><code>&lt;gateway_name&gt;</code>: Specify the name of your gateway.</li></ul>
+      </li>
+      <li>
+      To check the total number of routes attached to a specific <code>Gateway</code> CR, run the following command:
+      <CodeBlock code={"$ oc get gateway <gateway_name> -n openshift-ingress -o jsonpath='{.status.listeners[*].attachedRoutes}'"} lang="terminal" />
+      <ul><li><code>&lt;gateway_name&gt;</code>: Specify the name of your gateway.</li></ul>
+      </li>
+      <li>
+      To watch a specific <code>Gateway</code> CR for real-time status changes, run the following command:
+      <CodeBlock code={"$ oc get gateway <gateway_name> -n openshift-ingress -w"} lang="terminal" />
+      <ul><li><code>&lt;gateway_name&gt;</code>: Specify the name of your gateway.</li></ul>
+      </li>
+      </ul>
+      </li>
+      </ul>
       <h2 id="verifying-gateway-infrastructure-status-additional-resources" class="group scroll-mt-20">Additional resources<a href="#verifying-gateway-infrastructure-status-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <ul><li><a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installation-gcp-provisioning-dns-records_installing-gcp-customizations">Installing a cluster on {"{"}{"{"} gcp_short {"}"}{"}"} with customizations</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#installation-gcp-provisioning-dns-records_installing-gcp-customizations">Installing a cluster on Google Cloud with customizations</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

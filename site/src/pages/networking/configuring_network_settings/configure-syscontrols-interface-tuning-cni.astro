@@ -16,8 +16,9 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import BlockImage from "@ui/image/Image.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configure-syscontrols-interface-tuning-cni","text":"Configuring system controls and interface attributes using the tuning plugin"},{"depth":2,"slug":"additional-resources_nodes-setting-interface-level-network-sysctls_configure-syscontrols-interface-tuning-cni","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"configure-syscontrols-interface-tuning-cni","text":"Configuring system controls and interface attributes using the tuning plugin"},{"depth":2,"slug":"nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni","text":"Configuring system controls by using the tuning CNI"},{"depth":2,"slug":"nw-enabling-all-multi-cni_configure-syscontrols-interface-tuning-cni","text":"Enabling all-multicast mode by using the tuning CNI"},{"depth":2,"slug":"additional-resources_nodes-setting-interface-level-network-sysctls_configure-syscontrols-interface-tuning-cni","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -40,7 +41,7 @@ const pageCategory = ["networking","networking/configuring_network_settings"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring system controls and interface attributes using the tuning plugin {#configure-syscontrols-interface-tuning-cni}\n\nTo modify kernel parameters and interface attributes at runtime in OpenShift Container Platform, you can use the tuning Container Network Interface (CNI) meta plugin. The plugin operates in a chain with a main CNI plugin and allows you to change sysctls and interface attributes such as promiscuous mode, all-multicast mode, MTU, and MAC address.\n\n![CNI plugin](/openshift-docs-markdown/_assets/images/264_OpenShift_CNI_plugin_chain_0722.png)\n\n## Additional resources {#additional-resources_nodes-setting-interface-level-network-sysctls_configure-syscontrols-interface-tuning-cni}\n\n- [Using sysctls in containers](/openshift-docs-markdown/nodes/containers/nodes-containers-sysctls#nodes-containers-sysctls)\n- [SR-IOV network node configuration object](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#nw-sriov-networknodepolicy-object_configuring-sriov-device)\n- [Configuring interface-level network sysctl settings and all-multicast mode for SR-IOV networks](/openshift-docs-markdown/networking/hardware_networks/configuring-interface-sysctl-sriov-device#configuring-interface-level-sysctl-settings-sriov-device)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring system controls and interface attributes using the tuning plugin {#configure-syscontrols-interface-tuning-cni}\n\nTo modify kernel parameters and interface attributes at runtime in OpenShift Container Platform, you can use the tuning Container Network Interface (CNI) meta plugin. The plugin operates in a chain with a main CNI plugin and allows you to change sysctls and interface attributes such as promiscuous mode, all-multicast mode, MTU, and MAC address.\n\n![CNI plugin](/openshift-docs-markdown/_assets/images/264_OpenShift_CNI_plugin_chain_0722.png)\n\n## Configuring system controls by using the tuning CNI {#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni}\n\nTo configure interface-level network sysctls in OpenShift Container Platform, you can use the tuning CNI meta plugin in a network attachment definition. Configure the `net.ipv4.conf.IFNAME.accept_redirects` sysctl to enable accepting and sending ICMP-redirected packets.\n\n**Procedure**\n\n1. Create a network attachment definition, such as `tuning-example.yaml`, with the following content:\n\n   ```yaml\n   apiVersion: \"k8s.cni.cncf.io/v1\"\n   kind: NetworkAttachmentDefinition\n   metadata:\n     name: <name>\n     namespace: default\n   spec:\n     config: '{\n       \"cniVersion\": \"0.4.0\",\n       \"name\": \"<name>\",\n       \"plugins\": [{\n          \"type\": \"<main_CNI_plugin>\"\n         },\n         {\n          \"type\": \"tuning\",\n          \"sysctl\": {\n               \"net.ipv4.conf.IFNAME.accept_redirects\": \"1\"\n           }\n         }\n        ]\n   }\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the name for the additional network attachment to create. The name must be unique within the specified namespace.\n\n   `metadata.namespace`\n   :   Specifies the namespace that the object is associated with.\n\n   `spec.config.cniVersion`\n   :   Specifies the CNI specification version.\n\n   `spec.config.name`\n   :   Specifies the name for the configuration. It is recommended to match the configuration name to the name value of the network attachment definition.\n\n   `spec.config.plugins.type`\n   :   Specifies the name of the main CNI plugin to configure.\n\n   `spec.config.plugins.tuning.sysctl`\n   :   Specifies the sysctl to set. The interface name is represented by the `IFNAME` token and is replaced with the actual name of the interface at runtime.\n\n   ```yaml {title=\"Example network attachment definition\"}\n   apiVersion: \"k8s.cni.cncf.io/v1\"\n   kind: NetworkAttachmentDefinition\n   metadata:\n     name: tuningnad\n     namespace: default\n   spec:\n     config: '{\n       \"cniVersion\": \"0.4.0\",\n       \"name\": \"tuningnad\",\n       \"plugins\": [{\n         \"type\": \"bridge\"\n         },\n         {\n         \"type\": \"tuning\",\n         \"sysctl\": {\n            \"net.ipv4.conf.IFNAME.accept_redirects\": \"1\"\n           }\n       }\n     ]\n   }'\n   ```\n2. Apply the YAML by running the following command:\n\n   ```terminal\n   $ oc apply -f tuning-example.yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   networkattachmentdefinition.k8.cni.cncf.io/tuningnad created\n   ```\n3. Create a pod such as `examplepod.yaml` with the network attachment definition similar to the following:\n\n   ```yaml\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     name: tunepod\n     namespace: default\n     annotations:\n       k8s.v1.cni.cncf.io/networks: tuningnad\n   spec:\n     containers:\n     - name: podexample\n       image: centos\n       command: [\"/bin/bash\", \"-c\", \"sleep INF\"]\n       securityContext:\n         runAsUser: 2000\n         runAsGroup: 3000\n         allowPrivilegeEscalation: false\n         capabilities:\n           drop: [\"ALL\"]\n     securityContext:\n       runAsNonRoot: true\n       seccompProfile:\n         type: RuntimeDefault\n   ```\n\n   where:\n\n   `metadata.annotations.k8s.v1.cni.cncf.io/networks`\n   :   Specifies the name of the configured `NetworkAttachmentDefinition`.\n\n   `spec.containers.securityContext.runAsUser`\n   :   Specifies which user ID the container is run with.\n\n   `spec.containers.securityContext.runAsGroup`\n   :   Specifies which primary group ID the containers is run with.\n\n   `spec.containers.securityContext.allowPrivilegeEscalation`\n   :   Specifies if a pod can request to allow privilege escalation. If unspecified, it defaults to true. This boolean directly controls whether the `no_new_privs` flag gets set on the container process.\n\n   `spec.containers.securityContext.capabilities`\n   :   Specifies privileged actions without giving full root access. This policy ensures all capabilities are dropped from the pod.\n\n   `spec.securityContext.runAsNonRoot: true`\n   :   Specifies that the container will run with a user with any UID other than 0.\n\n   `spec.securityContext.seccompProfile`\n   :   Specifies the default seccomp profile for a pod or container workload.\n4. Apply the yaml by running the following command:\n\n   ```terminal\n   $ oc apply -f examplepod.yaml\n   ```\n5. Verify that the pod is created by running the following command:\n\n   ```terminal\n   $ oc get pod\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME      READY   STATUS    RESTARTS   AGE\n   tunepod   1/1     Running   0          47s\n   ```\n6. Log in to the pod by running the following command:\n\n   ```terminal\n   $ oc rsh tunepod\n   ```\n7. Verify the values of the configured sysctl flags. For example, find the value `net.ipv4.conf.net1.accept_redirects` by running the following command:\n\n   ```terminal\n   sh-4.4# sysctl net.ipv4.conf.net1.accept_redirects\n   ```\n\n   ```terminal {title=\"Expected output\"}\n   net.ipv4.conf.net1.accept_redirects = 1\n   ```\n\n## Enabling all-multicast mode by using the tuning CNI {#nw-enabling-all-multi-cni_configure-syscontrols-interface-tuning-cni}\n\nTo enable all-multicast mode on network interfaces in OpenShift Container Platform, you can use the tuning Container Network Interface (CNI) meta plugin in a network attachment definition. When enabled, the interface receives all multicast packets on the network.\n\n**Procedure**\n\n1. Create a network attachment definition, such as `tuning-example.yaml`, with the following content:\n\n   ```yaml\n   apiVersion: \"k8s.cni.cncf.io/v1\"\n   kind: NetworkAttachmentDefinition\n   metadata:\n     name: <name>\n     namespace: default\n   spec:\n     config: '{\n       \"cniVersion\": \"0.4.0\",\n       \"name\": \"<name>\",\n       \"plugins\": [{\n          \"type\": \"<main_CNI_plugin>\"\n         },\n         {\n          \"type\": \"tuning\",\n          \"allmulti\": true\n           }\n         }\n        ]\n   }\n   ```\n\n   where:\n\n   `<name>`\n   :   Specifies the name for the additional network attachment to create. The name must be unique within the specified namespace.\n\n   `default`\n   :   Specifies the namespace that the object is associated with.\n\n   `\"0.4.0\"`\n   :   Specifies the CNI specification version.\n\n   `\"<name>\"`\n   :   Specifies the name for the configuration. Match the configuration name to the name value of the network attachment definition.\n\n   `\"<main_CNI_plugin>\"`\n   :   Specifies the name of the main CNI plugin to configure.\n\n   `\"tuning\"`\n   :   Specifies the name of the CNI meta plugin.\n\n   `\"true\"`\n   :   Specifies the all-multicast mode of interface. If enabled, all multicast packets on the network will be received by the interface.\n\n   ```yaml {title=\"Example network attachment definition\"}\n   apiVersion: \"k8s.cni.cncf.io/v1\"\n   kind: NetworkAttachmentDefinition\n   metadata:\n     name: setallmulti\n     namespace: default\n   spec:\n     config: '{\n       \"cniVersion\": \"0.4.0\",\n       \"name\": \"setallmulti\",\n       \"plugins\": [\n         {\n           \"type\": \"bridge\"\n         },\n         {\n           \"type\": \"tuning\",\n           \"allmulti\": true\n         }\n       ]\n     }'\n   ```\n2. Apply the settings specified in the YAML file by running the following command:\n\n   ```terminal\n   $ oc apply -f tuning-allmulti.yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   networkattachmentdefinition.k8s.cni.cncf.io/setallmulti created\n   ```\n3. Create a pod with a network attachment definition similar to that specified in the following `examplepod.yaml` sample file:\n\n   ```yaml\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     name: allmultipod\n     namespace: default\n     annotations:\n       k8s.v1.cni.cncf.io/networks: setallmulti\n   spec:\n     containers:\n     - name: podexample\n       image: centos\n       command: [\"/bin/bash\", \"-c\", \"sleep INF\"]\n       securityContext:\n         runAsUser: 2000\n         runAsGroup: 3000\n         allowPrivilegeEscalation: false\n         capabilities:\n           drop: [\"ALL\"]\n     securityContext:\n       runAsNonRoot: true\n       seccompProfile:\n         type: RuntimeDefault\n   ```\n\n   where:\n\n   `metadata.annotations.k8s.v1.cni.cncf.io/networks`\n   :   Specifies the name of the configured `NetworkAttachmentDefinition`.\n\n   `spec.containers.securityContext.runAsUser`\n   :   Specifies which user ID the container is run with.\n\n   `spec.containers.securityContext.runAsGroup`\n   :   Specifies which primary group ID the containers is run with.\n\n   `spec.containers.securityContext.allowPrivilegeEscalation`\n   :   Specifies if a pod can request to allow privilege escalation. If unspecified, it defaults to true. This boolean directly controls whether the `no_new_privs` flag gets set on the container process.\n\n   `spec.containers.securityContext.capabilities`\n   :   Specifies privileged actions without giving full root access. This policy ensures all capabilities are dropped from the pod.\n\n   `spec.containers.securityContext.runAsNonRoot: true`\n   :   Specifies that the container will run with a user with any UID other than 0.\n\n   `spec.containers.securityContext.seccompProfile`\n   :   Specifies the default seccomp profile for a pod or container workload.\n4. Apply the settings specified in the YAML file by running the following command:\n\n   ```terminal\n   $ oc apply -f examplepod.yaml\n   ```\n5. Verify that the pod is created by running the following command:\n\n   ```terminal\n   $ oc get pod\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME          READY   STATUS    RESTARTS   AGE\n   allmultipod   1/1     Running   0          23s\n   ```\n6. Log in to the pod by running the following command:\n\n   ```terminal\n   $ oc rsh allmultipod\n   ```\n7. List all the interfaces associated with the pod by running the following command:\n\n   ```terminal\n   sh-4.4# ip link\n   ```\n\n   ```terminal {title=\"Example output\"}\n   1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000\n       link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n   2: eth0@if22: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8901 qdisc noqueue state UP mode DEFAULT group default\n       link/ether 0a:58:0a:83:00:10 brd ff:ff:ff:ff:ff:ff link-netnsid 0\n   3: net1@if24: <BROADCAST,MULTICAST,ALLMULTI,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default\n       link/ether ee:9b:66:a4:ec:1d brd ff:ff:ff:ff:ff:ff link-netnsid 0\n   ```\n\n   where:\n\n   `eth0@if22`\n   :   Specifies the primary interface.\n\n   `net1@if24`\n   :   Specifies the secondary interface configured with the network-attachment-definition that supports the all-multicast mode (ALLMULTI flag).\n\n## Additional resources {#additional-resources_nodes-setting-interface-level-network-sysctls_configure-syscontrols-interface-tuning-cni}\n\n- [Using sysctls in containers](/openshift-docs-markdown/nodes/containers/nodes-containers-sysctls#nodes-containers-sysctls)\n- [SR-IOV network node configuration object](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#nw-sriov-networknodepolicy-object_configuring-sriov-device)\n- [Configuring interface-level network sysctl settings and all-multicast mode for SR-IOV networks](/openshift-docs-markdown/networking/hardware_networks/configuring-interface-sysctl-sriov-device#configuring-interface-level-sysctl-settings-sriov-device)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/configuring_network_settings/configure-syscontrols-interface-tuning-cni.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -92,11 +93,155 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configure-syscontrols-interface-tuning-cni" class="group scroll-mt-20">Configuring system controls and interface attributes using the tuning plugin<a href="#configure-syscontrols-interface-tuning-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To modify kernel parameters and interface attributes at runtime in OpenShift Container Platform, you can use the tuning Container Network Interface (CNI) meta plugin. The plugin operates in a chain with a main CNI plugin and allows you to change sysctls and interface attributes such as promiscuous mode, all-multicast mode, MTU, and MAC address.</p>
       <BlockImage src="/openshift-docs-markdown/_assets/images/264_OpenShift_CNI_plugin_chain_0722.png" alt="CNI plugin" />
-      <p class="/modules/nw-cfg-tuning-interface-cni.md"></p>
-      <p class="/modules/nw-cfg-config-all-multi-cni.md"></p>
+      <h2 id="nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni" class="group scroll-mt-20">Configuring system controls by using the tuning CNI<a href="#nw-configuring-tuning-cni_configure-syscontrols-interface-tuning-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To configure interface-level network sysctls in OpenShift Container Platform, you can use the tuning CNI meta plugin in a network attachment definition. Configure the <code>net.ipv4.conf.IFNAME.accept_redirects</code> sysctl to enable accepting and sending ICMP-redirected packets.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a network attachment definition, such as <code>tuning-example.yaml</code>, with the following content:
+      <CodeBlock code={"apiVersion: \"k8s.cni.cncf.io/v1\"\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: <name>\n  namespace: default\nspec:\n  config: '{\n    \"cniVersion\": \"0.4.0\",\n    \"name\": \"<name>\",\n    \"plugins\": [{\n       \"type\": \"<main_CNI_plugin>\"\n      },\n      {\n       \"type\": \"tuning\",\n       \"sysctl\": {\n            \"net.ipv4.conf.IFNAME.accept_redirects\": \"1\"\n        }\n      }\n     ]\n}"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name for the additional network attachment to create. The name must be unique within the specified namespace.</p></dd>
+      <dt class="font-semibold"><code>metadata.namespace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace that the object is associated with.</p></dd>
+      <dt class="font-semibold"><code>spec.config.cniVersion</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the CNI specification version.</p></dd>
+      <dt class="font-semibold"><code>spec.config.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name for the configuration. It is recommended to match the configuration name to the name value of the network attachment definition.</p></dd>
+      <dt class="font-semibold"><code>spec.config.plugins.type</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the main CNI plugin to configure.</p></dd>
+      <dt class="font-semibold"><code>spec.config.plugins.tuning.sysctl</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the sysctl to set. The interface name is represented by the <code>IFNAME</code> token and is replaced with the actual name of the interface at runtime.</p></dd>
+      </dl>
+      <CodeBlock code={"apiVersion: \"k8s.cni.cncf.io/v1\"\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: tuningnad\n  namespace: default\nspec:\n  config: '{\n    \"cniVersion\": \"0.4.0\",\n    \"name\": \"tuningnad\",\n    \"plugins\": [{\n      \"type\": \"bridge\"\n      },\n      {\n      \"type\": \"tuning\",\n      \"sysctl\": {\n         \"net.ipv4.conf.IFNAME.accept_redirects\": \"1\"\n        }\n    }\n  ]\n}'"} lang="yaml" title="Example network attachment definition" />
+      </li>
+      <li>
+      Apply the YAML by running the following command:
+      <CodeBlock code={"$ oc apply -f tuning-example.yaml"} lang="terminal" />
+      <CodeBlock code={"networkattachmentdefinition.k8.cni.cncf.io/tuningnad created"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Create a pod such as <code>examplepod.yaml</code> with the network attachment definition similar to the following:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: tunepod\n  namespace: default\n  annotations:\n    k8s.v1.cni.cncf.io/networks: tuningnad\nspec:\n  containers:\n  - name: podexample\n    image: centos\n    command: [\"/bin/bash\", \"-c\", \"sleep INF\"]\n    securityContext:\n      runAsUser: 2000\n      runAsGroup: 3000\n      allowPrivilegeEscalation: false\n      capabilities:\n        drop: [\"ALL\"]\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.annotations.k8s.v1.cni.cncf.io/networks</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the configured <code>NetworkAttachmentDefinition</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext.runAsUser</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies which user ID the container is run with.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext.runAsGroup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies which primary group ID the containers is run with.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext.allowPrivilegeEscalation</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies if a pod can request to allow privilege escalation. If unspecified, it defaults to true. This boolean directly controls whether the <code>no_new_privs</code> flag gets set on the container process.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext.capabilities</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies privileged actions without giving full root access. This policy ensures all capabilities are dropped from the pod.</p></dd>
+      <dt class="font-semibold"><code>spec.securityContext.runAsNonRoot: true</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the container will run with a user with any UID other than 0.</p></dd>
+      <dt class="font-semibold"><code>spec.securityContext.seccompProfile</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the default seccomp profile for a pod or container workload.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the yaml by running the following command:
+      <CodeBlock code={"$ oc apply -f examplepod.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the pod is created by running the following command:
+      <CodeBlock code={"$ oc get pod"} lang="terminal" />
+      <CodeBlock code={"NAME      READY   STATUS    RESTARTS   AGE\ntunepod   1/1     Running   0          47s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Log in to the pod by running the following command:
+      <CodeBlock code={"$ oc rsh tunepod"} lang="terminal" />
+      </li>
+      <li>
+      Verify the values of the configured sysctl flags. For example, find the value <code>net.ipv4.conf.net1.accept_redirects</code> by running the following command:
+      <CodeBlock code={"sh-4.4# sysctl net.ipv4.conf.net1.accept_redirects"} lang="terminal" />
+      <CodeBlock code={"net.ipv4.conf.net1.accept_redirects = 1"} lang="terminal" title="Expected output" />
+      </li>
+      </ol>
+      <h2 id="nw-enabling-all-multi-cni_configure-syscontrols-interface-tuning-cni" class="group scroll-mt-20">Enabling all-multicast mode by using the tuning CNI<a href="#nw-enabling-all-multi-cni_configure-syscontrols-interface-tuning-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To enable all-multicast mode on network interfaces in OpenShift Container Platform, you can use the tuning Container Network Interface (CNI) meta plugin in a network attachment definition. When enabled, the interface receives all multicast packets on the network.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a network attachment definition, such as <code>tuning-example.yaml</code>, with the following content:
+      <CodeBlock code={"apiVersion: \"k8s.cni.cncf.io/v1\"\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: <name>\n  namespace: default\nspec:\n  config: '{\n    \"cniVersion\": \"0.4.0\",\n    \"name\": \"<name>\",\n    \"plugins\": [{\n       \"type\": \"<main_CNI_plugin>\"\n      },\n      {\n       \"type\": \"tuning\",\n       \"allmulti\": true\n        }\n      }\n     ]\n}"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name for the additional network attachment to create. The name must be unique within the specified namespace.</p></dd>
+      <dt class="font-semibold"><code>default</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace that the object is associated with.</p></dd>
+      <dt class="font-semibold"><code>"0.4.0"</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the CNI specification version.</p></dd>
+      <dt class="font-semibold"><code>"&lt;name&gt;"</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name for the configuration. Match the configuration name to the name value of the network attachment definition.</p></dd>
+      <dt class="font-semibold"><code>"&lt;main_CNI_plugin&gt;"</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the main CNI plugin to configure.</p></dd>
+      <dt class="font-semibold"><code>"tuning"</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the CNI meta plugin.</p></dd>
+      <dt class="font-semibold"><code>"true"</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the all-multicast mode of interface. If enabled, all multicast packets on the network will be received by the interface.</p></dd>
+      </dl>
+      <CodeBlock code={"apiVersion: \"k8s.cni.cncf.io/v1\"\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: setallmulti\n  namespace: default\nspec:\n  config: '{\n    \"cniVersion\": \"0.4.0\",\n    \"name\": \"setallmulti\",\n    \"plugins\": [\n      {\n        \"type\": \"bridge\"\n      },\n      {\n        \"type\": \"tuning\",\n        \"allmulti\": true\n      }\n    ]\n  }'"} lang="yaml" title="Example network attachment definition" />
+      </li>
+      <li>
+      Apply the settings specified in the YAML file by running the following command:
+      <CodeBlock code={"$ oc apply -f tuning-allmulti.yaml"} lang="terminal" />
+      <CodeBlock code={"networkattachmentdefinition.k8s.cni.cncf.io/setallmulti created"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Create a pod with a network attachment definition similar to that specified in the following <code>examplepod.yaml</code> sample file:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: allmultipod\n  namespace: default\n  annotations:\n    k8s.v1.cni.cncf.io/networks: setallmulti\nspec:\n  containers:\n  - name: podexample\n    image: centos\n    command: [\"/bin/bash\", \"-c\", \"sleep INF\"]\n    securityContext:\n      runAsUser: 2000\n      runAsGroup: 3000\n      allowPrivilegeEscalation: false\n      capabilities:\n        drop: [\"ALL\"]\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.annotations.k8s.v1.cni.cncf.io/networks</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the configured <code>NetworkAttachmentDefinition</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext.runAsUser</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies which user ID the container is run with.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext.runAsGroup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies which primary group ID the containers is run with.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext.allowPrivilegeEscalation</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies if a pod can request to allow privilege escalation. If unspecified, it defaults to true. This boolean directly controls whether the <code>no_new_privs</code> flag gets set on the container process.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext.capabilities</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies privileged actions without giving full root access. This policy ensures all capabilities are dropped from the pod.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext.runAsNonRoot: true</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the container will run with a user with any UID other than 0.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.securityContext.seccompProfile</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the default seccomp profile for a pod or container workload.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the settings specified in the YAML file by running the following command:
+      <CodeBlock code={"$ oc apply -f examplepod.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the pod is created by running the following command:
+      <CodeBlock code={"$ oc get pod"} lang="terminal" />
+      <CodeBlock code={"NAME          READY   STATUS    RESTARTS   AGE\nallmultipod   1/1     Running   0          23s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Log in to the pod by running the following command:
+      <CodeBlock code={"$ oc rsh allmultipod"} lang="terminal" />
+      </li>
+      <li>
+      List all the interfaces associated with the pod by running the following command:
+      <CodeBlock code={"sh-4.4# ip link"} lang="terminal" />
+      <CodeBlock code={"1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n2: eth0@if22: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 8901 qdisc noqueue state UP mode DEFAULT group default\n    link/ether 0a:58:0a:83:00:10 brd ff:ff:ff:ff:ff:ff link-netnsid 0\n3: net1@if24: <BROADCAST,MULTICAST,ALLMULTI,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default\n    link/ether ee:9b:66:a4:ec:1d brd ff:ff:ff:ff:ff:ff link-netnsid 0"} lang="terminal" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>eth0@if22</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the primary interface.</p></dd>
+      <dt class="font-semibold"><code>net1@if24</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the secondary interface configured with the network-attachment-definition that supports the all-multicast mode (ALLMULTI flag).</p></dd>
+      </dl>
+      </li>
+      </ol>
       <h2 id="additional-resources_nodes-setting-interface-level-network-sysctls_configure-syscontrols-interface-tuning-cni" class="group scroll-mt-20">Additional resources<a href="#additional-resources_nodes-setting-interface-level-network-sysctls_configure-syscontrols-interface-tuning-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/nodes/containers/nodes-containers-sysctls#nodes-containers-sysctls">Using sysctls in containers</a></li>

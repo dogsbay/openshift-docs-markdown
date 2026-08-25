@@ -1,18 +1,780 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Using the CLI tools | OpenShift Container Platform</title><meta name="description" content="You can manage {{ VirtProductName }} resources by using the virtctl command-line tool. Virtual machine (VM) commands can also be used to manage virtual…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Using the CLI tools"><meta property="og:description" content="You can manage {{ VirtProductName }} resources by using the virtctl command-line tool. Virtual machine (VM) commands can also be used to manage virtual…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Using the CLI tools"><meta name="twitter:description" content="You can manage {{ VirtProductName }} resources by using the virtctl command-line tool. Virtual machine (VM) commands can also be used to manage virtual…"><script>
+<!DOCTYPE html><html lang="en" data-astro-cid-vg5xjwtk><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Using the CLI tools | OpenShift Container Platform</title><meta name="description" content="You can manage OpenShift Virtualization resources by using the virtctl command-line tool. Virtual machine (VM) commands can also be used to manage virtual…"><link rel="icon" href="/openshift-docs-markdown/favicon.ico"><link rel="canonical" href="https://dogsbay.github.io/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools/"><link rel="alternate" type="text/markdown" href="/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools.md"><link rel="alternate" type="text/plain" title="llms.txt" href="/openshift-docs-markdown/llms.txt"><link rel="describedby" type="text/plain" href="/openshift-docs-markdown/llms.txt"><meta property="og:type" content="article"><meta property="og:title" content="Using the CLI tools"><meta property="og:description" content="You can manage OpenShift Virtualization resources by using the virtctl command-line tool. Virtual machine (VM) commands can also be used to manage virtual…"><meta property="og:site_name" content="OpenShift Container Platform"><meta property="og:url" content="https://dogsbay.github.io/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools/"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Using the CLI tools"><meta name="twitter:description" content="You can manage OpenShift Virtualization resources by using the virtctl command-line tool. Virtual machine (VM) commands can also be used to manage virtual…"><script>
       if (localStorage.getItem("theme") === "dark") {
         document.documentElement.classList.add("dark");
       }
-    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BTNukzuO.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Using the CLI tools</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Using the CLI tools {#virt-using-the-cli-tools}
+    </script><link rel="stylesheet" href="/openshift-docs-markdown/_astro/RightRailStack.BrFMoueR.css"></head><body class="bg-background text-foreground antialiased" data-astro-cid-vg5xjwtk><div class="group/sidebar-wrapper flex min-h-svh w-full has-[[data-variant=inset]]:bg-sidebar" data-component="sidebar-provider" style="--sidebar-width: 16rem; --sidebar-width-icon: 3rem;" data-astro-cid-vg5xjwtk="true"><div data-component="sidebar" data-collapsible="icon" data-side="left" data-variant="sidebar" data-default-open="true"><div class="group peer text-sidebar-foreground max-md:hidden" data-sidebar-desktop data-state="expanded" data-collapsible="" data-variant="sidebar" data-side="left"><div class="relative w-[var(--sidebar-width)] bg-transparent transition-[width] duration-200 ease-linear group-data-[collapsible=offcanvas]:w-0 group-data-[side=right]:rotate-180 group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)]"></div><div class="fixed inset-y-0 z-10 h-svh w-[var(--sidebar-width)] transition-[left,right,width] duration-200 ease-linear max-md:hidden md:flex group-data-[collapsible=icon]:w-[var(--sidebar-width-icon)] group-data-[side=left]:border-r  data-[side=left]:left-0 data-[side=left]:group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)] " data-side="left" data-astro-cid-vg5xjwtk="true"><div class="flex size-full flex-col bg-sidebar " data-sidebar="sidebar-inner"><div class="flex flex-col gap-2 p-2" data-sidebar="header" data-astro-cid-vg5xjwtk="true"><ul class="flex w-full min-w-0 flex-col gap-0" data-sidebar="menu" data-astro-cid-vg5xjwtk="true"><li class="group/menu-item relative" data-sidebar="menu-item" data-astro-cid-vg5xjwtk="true"><a class="peer/menu-button group/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left outline-none ring-sidebar-ring transition-[width,height,padding] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground focus-visible:ring-2 active:bg-sidebar-accent active:text-sidebar-accent-foreground disabled:pointer-events-none disabled:opacity-50 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active]:bg-sidebar-accent data-[active]:font-medium data-[active]:text-sidebar-accent-foreground [&amp;>span:last-child]:truncate [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 group-data-[collapsible=icon]:!size-8 h-12 text-sm group-data-[collapsible=icon]:!p-0" href="/openshift-docs-markdown" data-sidebar="menu-button" data-size="lg" data-astro-cid-vg5xjwtk="true"><div class="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground" data-astro-cid-vg5xjwtk><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></div><div class="grid flex-1 text-left text-sm leading-tight" data-astro-cid-vg5xjwtk><span class="truncate font-semibold" data-astro-cid-vg5xjwtk>OpenShift Container Platform</span><span class="truncate text-xs text-sidebar-foreground/70" data-astro-cid-vg5xjwtk>Documentation</span></div></a></li></ul></div><div class="mx-2 w-auto bg-sidebar-border h-px shrink-0" role="separator" data-astro-cid-vg5xjwtk="true"></div><div class="flex min-h-0 flex-1 flex-col gap-0 overflow-auto group-data-[collapsible=icon]:overflow-hidden [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" data-sidebar="content" data-astro-cid-vg5xjwtk="true"><div class="relative flex w-full min-w-0 flex-col p-2" data-sidebar="group" data-astro-cid-vg5xjwtk="true"><div class="w-full text-sm" data-sidebar="group-content" data-astro-cid-vg5xjwtk="true"><div id="docs-nav-root" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-current-path="/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools" data-base-path="/openshift-docs-markdown" data-version data-locale aria-busy="true" aria-label="Documentation navigation"><ul class="flex min-w-0 flex-col" data-sidebar="nav-tree" data-level="0"><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 50%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 67%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 84%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 66%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 83%;"></div></div></li><li><div class="flex h-8 w-full items-center gap-2 rounded-md px-2" aria-hidden="true"><div class="h-2 w-2 rounded-full bg-sidebar-foreground/10"></div><div class="h-2 rounded bg-sidebar-foreground/10" style="width: 65%;"></div></div></li></ul><noscript><p class="px-2 py-1.5 text-sm text-sidebar-foreground/70">JavaScript is required to render the sidebar. Use the<a href="/openshift-docs-markdown/sitemap.xml" class="underline">sitemap</a>to browse all pages.</p></noscript></div><script type="module" src="/openshift-docs-markdown/_astro/DocsNavClient.astro_astro_type_script_index_0_lang.Ia5x0gzz.js"></script></div></div></div><button class="absolute inset-y-0 z-20 hidden w-4 -translate-x-1/2 transition-all ease-linear after:absolute after:inset-y-0 after:left-1/2 after:w-[2px] hover:after:bg-sidebar-border group-data-[side=left]:-right-4 group-data-[side=right]:left-0 sm:flex group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full hover:group-data-[collapsible=offcanvas]:bg-sidebar" data-part="rail" aria-label="Toggle Sidebar" tabindex="-1" title="Toggle Sidebar" type="button" data-astro-cid-vg5xjwtk="true"></button></div></div></div><div class="fixed inset-0 z-50 bg-black/80" data-sidebar-mobile-backdrop hidden></div><div class="fixed inset-y-0 z-50 flex h-svh w-[18rem] flex-col bg-sidebar p-0 text-sidebar-foreground left-0" data-sidebar-mobile data-state="closed" hidden></div></div><div class="relative flex w-full flex-1 flex-col bg-background md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2" data-astro-cid-vg5xjwtk="true"><header class="sticky top-0 z-40 flex h-12 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60" data-astro-cid-vg5xjwtk><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-sm hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring -ml-1" data-part="sidebar-trigger" type="button" data-astro-cid-vg5xjwtk="true"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path></svg><span class="sr-only">Toggle Sidebar</span></button><div class="shrink-0 bg-border w-[1px] self-stretch mr-2 h-4" role="separator" aria-orientation="vertical" data-orientation="vertical" data-astro-cid-vg5xjwtk="true"></div><span class="text-sm text-muted-foreground" data-page-title data-astro-cid-vg5xjwtk>Using the CLI tools</span><div class="ml-auto flex items-center gap-2" data-astro-cid-vg5xjwtk><div class="flex items-center" data-component="page-actions" data-pagefind-ignore><div class="relative inline-block" data-component="dropdown-menu"><button class="justify-center inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="trigger" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="Copy or open page actions"><span>Copy or open</span><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="z-50 overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md min-w-[12rem]" data-part="content" data-side="bottom" data-align="end" role="menu" hidden><button type="button" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="copy-markdown" data-copy-text="# Using the CLI tools {#virt-using-the-cli-tools}
 
-You can manage {{ VirtProductName }} resources by using the `virtctl` command-line tool. Virtual machine (VM) commands can also be used to manage virtual machine instances (VMIs) unless otherwise specified.
+You can manage OpenShift Virtualization resources by using the `virtctl` command-line tool. Virtual machine (VM) commands can also be used to manage virtual machine instances (VMIs) unless otherwise specified.
 
 > [!NOTE]
 > You can access and change VM disk images by using the `libguestfs` command-line tool. You deploy `libguestfs` by using the `virtctl libguestfs` command.
 
-{% include &quot;./modules/virt-installing-virtctl-binary.md&quot; %} {% include &quot;./modules/virt-virtctl-information-commands.md&quot; %} {% include &quot;./modules/virt-vm-information-commands.md&quot; %} {% include &quot;./modules/virt-vm-manifest-creation-commands.md&quot; %} {% include &quot;./modules/virt-vm-management-commands.md&quot; %} {% include &quot;./modules/virt-vm-connection-commands.md&quot; %} {% include &quot;./modules/virt-vm-export-commands.md&quot; %} {% include &quot;./modules/virt-hot-plug-and-hot-unplug-commands.md&quot; %} {% include &quot;./modules/virt-image-upload-commands.md&quot; %}
+## Installing the virtctl binary on RHEL 9 or later, Linux, Windows, or macOS {#virt-installing-virtctl-binary_virt-using-the-cli-tools}
+
+You can download the `virtctl` binary by using the OpenShift Container Platform web console and then install it on Red Hat Enterprise Linux (RHEL) 9 or later, Linux, Windows, or macOS.
+
+**Procedure**
+
+1. Navigate to the **Virtualization** page in the web console.
+2. Click the **Question Mark (?)** icon in the top right corner of screen.
+3. Select **Command Line Tools** from the menu.
+4. Locate the **virtctl - KubeVirt command line interface** section of the page.
+5. Click the **Download virtctl** link to download the `virtctl` binary for your operating system.
+6. Install `virtctl`:
+
+   - For RHEL and other Linux operating systems:
+
+     1. Decompress the archive file:
+
+        ```terminal
+        $ tar -xvf <virtctl-version-distribution.arch>.tar.gz
+        ```
+     2. Run the following command to make the `virtctl` binary executable:
+
+        ```terminal
+        $ chmod +x <path/virtctl-file-name>
+        ```
+     3. Move the `virtctl` binary to a directory in your `PATH` environment variable.
+
+        You can check your path by running the following command:
+
+        ```terminal
+        $ echo $PATH
+        ```
+     4. Set the `KUBECONFIG` environment variable:
+
+        ```terminal
+        $ export KUBECONFIG=/home/<user>/clusters/current/auth/kubeconfig
+        ```
+   - For Windows:
+
+     1. Decompress the archive file.
+     2. Navigate the extracted folder hierarchy and double-click the `virtctl` executable file to install the client.
+     3. Move the `virtctl` binary to a directory in your `PATH` environment variable.
+
+        You can check your path by running the following command:
+
+        ```terminal
+        C:\> path
+        ```
+   - For macOS:
+
+     1. Decompress the archive file.
+     2. Move the `virtctl` binary to a directory in your `PATH` environment variable.
+
+        You can check your path by running the following command:
+
+        ```terminal
+        echo $PATH
+        ```
+
+## virtctl information commands {#virtctl-information-commands_virt-using-the-cli-tools}
+
+You can use the following `virtctl` information commands to view information about the `virtctl` client.
+
+***Information commands***
+
+<table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl version</code></td>
+  <td>View the <code>virtctl</code> client and server versions.</td>
+</tr>
+<tr>
+  <td><code>virtctl help</code></td>
+  <td>View a list of <code>virtctl</code> commands.</td>
+</tr>
+<tr>
+  <td>`virtctl <command> -h\</td>
+  <td>--help`</td>
+</tr>
+<tr>
+  <td>View a list of options for a specific command.</td>
+  <td><code>virtctl options</code></td>
+</tr>
+<tr>
+  <td>View a list of global command options for any <code>virtctl</code> command.</td>
+</tr>
+</tbody>
+</table>
+
+## VM information commands {#vm-information-commands_virt-using-the-cli-tools}
+
+You can use `virtctl` to view information about virtual machines (VMs) and virtual machine instances (VMIs).
+
+***VM information commands***
+
+<table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl fslist <vm_name></code></td>
+  <td>View the file systems available on a guest machine.</td>
+</tr>
+<tr>
+  <td><code>virtctl guestosinfo <vm_name></code></td>
+  <td>View information about the operating systems on a guest machine.</td>
+</tr>
+<tr>
+  <td><code>virtctl userlist <vm_name></code></td>
+  <td>View the logged-in users on a guest machine.</td>
+</tr>
+</tbody>
+</table>
+
+## VM manifest creation commands {#vm-manifest-creation-commands_virt-using-the-cli-tools}
+
+You can use the following `virtctl create` commands to create manifests for virtual machines, instance types, and preferences.
+
+***VM manifest creation commands***
+
+<table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl create vm</code></td>
+  <td>Create a <code>VirtualMachine</code> (VM) manifest.</td>
+</tr>
+<tr>
+  <td><code>virtctl create vm --name <vm_name></code></td>
+  <td>Create a VM manifest, specifying a name for the VM.</td>
+</tr>
+<tr>
+  <td>`virtctl create vm --user <user_name> --ssh-key\</td>
+  <td>password-file=<value>`</td>
+</tr>
+<tr>
+  <td>Create a VM manifest with a cloud-init configuration to create the selected user and either add an SSH public key from the supplied string, or a password from a file.</td>
+  <td><code>virtctl create vm --access-cred type:password,src:<secret></code></td>
+</tr>
+<tr>
+  <td>Create a VM manifest with a user and password combination injected from the selected secret.</td>
+  <td><code>virtctl create vm --access-cred type:ssh,src:<secret>,user:<user_name></code></td>
+</tr>
+<tr>
+  <td>Create a VM manifest with an SSH public key injected from the selected secret.</td>
+  <td><code>virtctl create vm --volume-sysprep src:<config_map></code></td>
+</tr>
+<tr>
+  <td>Create a VM manifest, specifying a config map to use as the sysprep volume. The config map must contain a valid answer file named <code>unattend.xml</code> or <code>autounattend.xml</code>.</td>
+  <td><code>virtctl create vm --instancetype <instancetype_name></code></td>
+</tr>
+<tr>
+  <td>Create a VM manifest that uses an existing cluster-wide instance type.</td>
+  <td><code>virtctl create vm --instancetype=virtualmachineinstancetype/<instancetype_name></code></td>
+</tr>
+<tr>
+  <td>Create a VM manifest that uses an existing namespaced instance type.</td>
+  <td><code>virtctl create instancetype --cpu <cpu_value> --memory <memory_value> --name <instancetype_name></code></td>
+</tr>
+<tr>
+  <td>Create a manifest for a cluster-wide instance type.</td>
+  <td><code>virtctl create instancetype --cpu <cpu_value> --memory <memory_value> --name <instancetype_name> --namespace <namespace_value></code></td>
+</tr>
+<tr>
+  <td>Create a manifest for a namespaced instance type.</td>
+  <td><code>virtctl create preference --name <preference_name></code></td>
+</tr>
+<tr>
+  <td>Create a manifest for a cluster-wide VM preference, specifying a name for the preference.</td>
+  <td><code>virtctl create preference --namespace <namespace_value></code></td>
+</tr>
+<tr>
+  <td>Create a manifest for a namespaced VM preference.</td>
+</tr>
+</tbody>
+</table>
+
+## VM management commands {#vm-management-commands_virt-using-the-cli-tools}
+
+You can use the following `virtctl` commands to manage and migrate virtual machines (VMs) and VM instances (VMIs).
+
+***VM management commands***
+
+<table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl start <vm_name></code></td>
+  <td>Start a VM.</td>
+</tr>
+<tr>
+  <td><code>virtctl start --paused <vm_name></code></td>
+  <td>Start a VM in a paused state. This option enables you to interrupt the boot process from the VNC console.</td>
+</tr>
+<tr>
+  <td><code>virtctl stop <vm_name></code></td>
+  <td>Stop a VM.</td>
+</tr>
+<tr>
+  <td><code>virtctl stop <vm_name> --grace-period 0 --force</code></td>
+  <td>Force stop a VM. This option might cause data inconsistency or data loss.</td>
+</tr>
+<tr>
+  <td><code>virtctl pause vm <vm_name></code></td>
+  <td>Pause a VM. The machine state is kept in memory.</td>
+</tr>
+<tr>
+  <td><code>virtctl unpause vm <vm_name></code></td>
+  <td>Unpause a VM.</td>
+</tr>
+<tr>
+  <td><code>virtctl migrate <vm_name></code></td>
+  <td>Migrate a VM.</td>
+</tr>
+<tr>
+  <td><code>virtctl migrate-cancel <vm_name></code></td>
+  <td>Cancel a VM migration.</td>
+</tr>
+<tr>
+  <td><code>virtctl restart <vm_name></code></td>
+  <td>Restart a VM.</td>
+</tr>
+</tbody>
+</table>
+
+## VM connection commands {#vm-connection-commands_virt-using-the-cli-tools}
+
+You use can use the following `virtctl` commands to expose ports and connect to virtual machines (VMs) and VM instances (VMIs).
+
+***VM connection commands***
+
+<table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl console <vm_name></code></td>
+  <td>Connect to the serial console of a VM.</td>
+</tr>
+<tr>
+  <td>`virtctl expose vm <vm_name> --name <service_name> --type <ClusterIP\</td>
+  <td>NodePort\</td>
+</tr>
+<tr>
+  <td>LoadBalancer> --port <port>`</td>
+  <td>Create a service that forwards a designated port of a VM and expose the service on the specified port of the node.<br><br>Example: <code>virtctl expose vm rhel9_vm --name rhel9-ssh --type NodePort --port 22</code></td>
+</tr>
+<tr>
+  <td><code>virtctl scp -i <ssh_key> <file_name> <user_name>@vm/<vm_name></code></td>
+  <td>Copy a file from your machine to a VM. This command uses the private key of an SSH key pair. The VM must be configured with the public key.</td>
+</tr>
+<tr>
+  <td><code>virtctl scp -i <ssh_key> <user_name@vm/<vm_name>:<file_name> .</code></td>
+  <td>Copy a file from a VM to your machine. This command uses the private key of an SSH key pair. The VM must be configured with the public key.</td>
+</tr>
+<tr>
+  <td><code>virtctl ssh -i <ssh_key> <user_name>@vm/<vm_name></code></td>
+  <td>Open an SSH connection with a VM. This command uses the private key of an SSH key pair. The VM must be configured with the public key.</td>
+</tr>
+<tr>
+  <td><code>virtctl vnc <vm_name></code></td>
+  <td>Connect to the VNC console of a VM.<br><br>You must have <code>virt-viewer</code> installed.</td>
+</tr>
+<tr>
+  <td><code>virtctl vnc --proxy-only=true <vm_name></code></td>
+  <td>Display the port number and connect manually to a VM by using any viewer through the VNC connection.</td>
+</tr>
+<tr>
+  <td><code>virtctl vnc --port=<port-number> <vm_name></code></td>
+  <td>Specify a port number to run the proxy on the specified port, if that port is available.<br><br>If a port number is not specified, the proxy runs on a random port.</td>
+</tr>
+</tbody>
+</table>
+
+## VM export commands {#vm-export-commands_virt-using-the-cli-tools}
+
+Use `virtctl vmexport` commands to create, download, or delete a volume exported from a VM, VM snapshot, or persistent volume claim (PVC). Certain manifests also contain a header secret, which grants access to the endpoint to import a disk image in a format that OpenShift Virtualization can use.
+
+***VM export commands***
+
+<table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>`virtctl vmexport create <vmexport_name> --vm\</td>
+  <td>snapshot\</td>
+</tr>
+<tr>
+  <td>pvc=<object_name>`</td>
+  <td>Create a <code>VirtualMachineExport</code> custom resource (CR) to export a volume from a VM, VM snapshot, or PVC.<br><br><ul><li><code>--vm</code>: Exports the PVCs of a VM.</li><li><code>--snapshot</code>: Exports the PVCs contained in a <code>VirtualMachineSnapshot</code> CR.</li><li><code>--pvc</code>: Exports a PVC.</li><li>Optional: <code>--ttl=1h</code> specifies the time to live. The default duration is 2 hours.</li></ul></td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport delete <vmexport_name></code></td>
+  <td>Delete a <code>VirtualMachineExport</code> CR manually.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download <vmexport_name> --output=<output_file> --volume=<volume_name></code></td>
+  <td>Download the volume defined in a <code>VirtualMachineExport</code> CR.<br><br><ul><li><code>--output</code> specifies the file format. Example: <code>disk.img.gz</code>.</li><li><code>--volume</code> specifies the volume to download. This flag is optional if only one volume is available.</li></ul>Optional:<br><br><ul><li><code>--keep-vme</code> retains the <code>VirtualMachineExport</code> CR after download. The default behavior is to delete the <code>VirtualMachineExport</code> CR after download.</li><li><code>--insecure</code> enables an insecure HTTP connection.</li></ul></td>
+</tr>
+<tr>
+  <td>`virtctl vmexport download <vmexport_name> --vm\</td>
+  <td>snapshot\</td>
+</tr>
+<tr>
+  <td>pvc=<object_name> --output=<output_file> --volume=<volume_name>`</td>
+  <td>Create a <code>VirtualMachineExport</code> CR and then download the volume defined in the CR.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest</code></td>
+  <td>Retrieve the manifest for an existing export. The manifest does not include the header secret.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest --vm=example</code></td>
+  <td>Create a VM export for a VM example, and retrieve the manifest. The manifest does not include the header secret.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest --snap=example</code></td>
+  <td>Create a VM export for a VM snapshot example, and retrieve the manifest. The manifest does not include the header secret.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest --include-secret</code></td>
+  <td>Retrieve the manifest for an existing export. The manifest includes the header secret.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest --manifest-output-format=json</code></td>
+  <td>Retrieve the manifest for an existing export in json format. The manifest does not include the header secret.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest --include-secret --output=manifest.yaml</code></td>
+  <td>Retrieve the manifest for an existing export. The manifest includes the header secret and writes it to the file specified.</td>
+</tr>
+</tbody>
+</table>
+
+## Hot plug and hot unplug  commands {#hot-plug-and-hot-unplug-commands_virt-using-the-cli-tools}
+
+You can use the following `virtctl` commands to add or remove resources from running virtual machines (VMs) and VM instances (VMIs).
+
+***Hot plug and hot unplug commands***
+
+<table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl addvolume <vm_name> --volume-name=<datavolume_or_PVC> [--persist] [--serial=<label>]</code></td>
+  <td>Hot plug a data volume or persistent volume claim (PVC).<br><br>Optional:<br><br><ul><li><code>--persist</code> mounts the virtual disk permanently on a VM. <strong>This flag does not apply to VMIs.</strong></li><li><code>--serial=<label></code> adds a label to the VM. If you do not specify a label, the default label is the data volume or PVC name.</li></ul></td>
+</tr>
+<tr>
+  <td><code>virtctl removevolume <vm_name> --volume-name=<virtual_disk></code></td>
+  <td>Hot unplug a virtual disk.</td>
+</tr>
+</tbody>
+</table>
+
+## Image upload commands {#image-upload-commands_virt-using-the-cli-tools}
+
+You can use the following `virtctl image-upload` commands to upload a VM image to a data volume.
+
+***Image upload commands***
+
+<table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl image-upload dv <datavolume_name> --image-path=</path/to/image> --no-create</code></td>
+  <td>Upload a VM image to a data volume that already exists.</td>
+</tr>
+<tr>
+  <td><code>virtctl image-upload dv <datavolume_name> --size=<datavolume_size> --image-path=</path/to/image></code></td>
+  <td>Upload a VM image to a new data volume of a specified requested size.</td>
+</tr>
+<tr>
+  <td><code>virtctl image-upload dv <datavolume_name> --datasource --size=<datavolume_size> --image-path=</path/to/image></code></td>
+  <td>Upload a VM image to a new data volume and create an associated <code>DataSource</code> object for it.</td>
+</tr>
+</tbody>
+</table>
+
+## Deploying libguestfs by using virtctl {#virt-deploying-libguestfs-with-virtctl_virt-using-the-cli-tools}
+
+You can use the `virtctl guestfs` command to deploy an interactive container with `libguestfs-tools` and a persistent volume claim (PVC) attached to it.
+
+**Procedure**
+
+- To deploy a container with `libguestfs-tools`, mount the PVC, and attach a shell to it, run the following command:
+
+  ```terminal
+  $ virtctl guestfs -n <namespace> <pvc_name>
+  ```
+
+  > [!IMPORTANT]
+  > The `<pvc_name>` argument is required. If you do not include it, an error message appears.
+
+## Libguestfs and virtctl guestfs commands {#virt-about-libguestfs-tools-virtctl-guestfs_virt-using-the-cli-tools}
+
+`Libguestfs` tools help you access and modify virtual machine (VM) disk images. You can use `libguestfs` tools to view and edit files in a guest, clone and build virtual machines, and format and resize disks.
+
+You can also use the `virtctl guestfs` command and its sub-commands to modify, inspect, and debug VM disks on a PVC. To see a complete list of possible sub-commands, enter `virt-` on the command line and press the Tab key. For example:
+
+| Command | Description |
+| --- | --- |
+| `virt-edit -a /dev/vda /etc/motd` | Edit a file interactively in your terminal. |
+| `virt-customize -a /dev/vda --ssh-inject root:string:<public key example>` | Inject an ssh key into the guest and create a login. |
+| `virt-df -a /dev/vda -h` | See how much disk space is used by a VM. |
+| `virt-customize -a /dev/vda --run-command 'rpm -qa > /rpm-list'` | See the full list of all RPMs installed on a guest by creating an output file containing the full list. |
+| `virt-cat -a /dev/vda /rpm-list` | Display the output file list of all RPMs created using the `virt-customize -a /dev/vda --run-command 'rpm -qa > /rpm-list'` command in your terminal. |
+| `virt-sysprep -a /dev/vda` | Seal a virtual machine disk image to be used as a template. |
+
+By default, `virtctl guestfs` creates a session with everything needed to manage a VM disk. However, the command also supports several flag options if you want to customize the behavior:
+
+| Flag Option | Description |
+| --- | --- |
+| `--h` or `--help` | Provides help for `guestfs`. |
+| `-n <namespace>` option with a `<pvc_name>` argument | To use a PVC from a specific namespace. If you do not use the `-n <namespace>` option, your current project is used. To change projects, use `oc project <namespace>`. If you do not include a `<pvc_name>` argument, an error message appears. |
+| `--image string` | Lists the `libguestfs-tools` container image. You can configure the container to use a custom image by using the `--image` option. |
+| `--kvm` | Indicates that `kvm` is used by the `libguestfs-tools` container. By default, `virtctl guestfs` sets up `kvm` for the interactive container, which greatly speeds up the `libguest-tools` execution because it uses QEMU. If a cluster does not have any `kvm` supporting nodes, you must disable `kvm` by setting the option `--kvm=false`. If not set, the `libguestfs-tools` pod remains pending because it cannot be scheduled on any node. |
+| `--pull-policy string` | Shows the pull policy for the `libguestfs` image. You can also overwrite the image’s pull policy by setting the `pull-policy` option. |
+
+The command also checks if a PVC is in use by another pod, in which case an error message appears. However, once the `libguestfs-tools` process starts, the setup cannot avoid a new pod using the same PVC. You must verify that there are no active `virtctl guestfs` pods before starting the VM that accesses the same PVC.
+
+> [!NOTE]
+> The `virtctl guestfs` command accepts only a single PVC attached to the interactive pod.
 
 ## Additional resources {#_additional_resources}
 
 - [Red Hat Ansible Automation Hub](https://console.redhat.com/ansible/automation-hub)
 - [`libguestfs`](https://libguestfs.org)
-"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Fgetting_started%2Fvirt-using-the-cli-tools.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Fgetting_started%2Fvirt-using-the-cli-tools.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Fgetting_started%2Fvirt-using-the-cli-tools.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Fgetting_started%2Fvirt-using-the-cli-tools.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:virt" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:virt/getting_started" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><article class="docs-prose"><h1 id="virt-using-the-cli-tools" class="group scroll-mt-20">Using the CLI tools<a href="#virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p class="/_attributes/common-attributes.md"></p><p>You can manage {{ VirtProductName }} resources by using the <code>virtctl</code> command-line tool. Virtual machine (VM) commands can also be used to manage virtual machine instances (VMIs) unless otherwise specified.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>You can access and change VM disk images by using the <code>libguestfs</code> command-line tool. You deploy <code>libguestfs</code> by using the <code>virtctl libguestfs</code> command.</p></div></div><p class="/modules/virt-about-libguestfs-tools-virtctl-guestfs.md /modules/virt-deploying-libguestfs-with-virtctl.md">{% include "./modules/virt-installing-virtctl-binary.md" %} {% include "./modules/virt-virtctl-information-commands.md" %} {% include "./modules/virt-vm-information-commands.md" %} {% include "./modules/virt-vm-manifest-creation-commands.md" %} {% include "./modules/virt-vm-management-commands.md" %} {% include "./modules/virt-vm-connection-commands.md" %} {% include "./modules/virt-vm-export-commands.md" %} {% include "./modules/virt-hot-plug-and-hot-unplug-commands.md" %} {% include "./modules/virt-image-upload-commands.md" %} </p><h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><ul><li><a href="https://console.redhat.com/ansible/automation-hub">Red Hat Ansible Automation Hub</a></li><li><a href="https://libguestfs.org"><code>libguestfs</code></a></li></ul></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/virt/getting_started/virt-getting-started" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Getting started with OpenShift Virtualization</div></div></a><a href="/openshift-docs-markdown/virt/install/preparing-cluster-for-virt" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Preparing your cluster</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>
+"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg><span data-copy-label>Copy markdown</span></button><a href="https://dogsbay.github.io/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-action="open-markdown"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7"></path><path d="M10 14L21 3"></path><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path></svg><span>Open markdown</span></a><div class="-mx-1 my-1 h-px bg-muted" role="separator"></div><a href="https://claude.ai/new?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Fgetting_started%2Fvirt-using-the-cli-tools.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="claude" target="_blank" rel="noopener noreferrer" aria-label="Open in Claude — opens in new tab"><span>Open in Claude</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://chatgpt.com/?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Fgetting_started%2Fvirt-using-the-cli-tools.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="chatgpt" target="_blank" rel="noopener noreferrer" aria-label="Open in ChatGPT — opens in new tab"><span>Open in ChatGPT</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://www.perplexity.ai/search?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Fgetting_started%2Fvirt-using-the-cli-tools.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="perplexity" target="_blank" rel="noopener noreferrer" aria-label="Open in Perplexity — opens in new tab"><span>Open in Perplexity</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a><a href="https://gemini.google.com/app?q=Read%20this%20docs%20page%3A%20https%3A%2F%2Fdogsbay.github.io%2Fopenshift-docs-markdown%2Fvirt%2Fgetting_started%2Fvirt-using-the-cli-tools.md" class="relative flex w-full cursor-pointer select-none items-center gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground outline-none focus:bg-accent focus:text-accent-foreground hover:bg-accent hover:text-accent-foreground no-underline" data-part="item" role="menuitem" data-provider="gemini" target="_blank" rel="noopener noreferrer" aria-label="Open in Gemini — opens in new tab"><span>Open in Gemini</span><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-auto opacity-60" aria-hidden="true"><path d="M7 17L17 7"></path><polyline points="7 7 17 7 17 17"></polyline></svg></a></div></div></div><script type="module" src="/openshift-docs-markdown/_astro/PageActions.astro_astro_type_script_index_0_lang.CVy3d9SA.js"></script><dialog data-search-dialog data-pagefind-url="/openshift-docs-markdown/pagefind/" data-nav-url="/openshift-docs-markdown/_dogsbay/nav.json" data-taxonomy-display class="fixed left-1/2 top-[10vh] z-50 w-[calc(100vw-2rem)] max-w-4xl -translate-x-1/2 rounded-xl border border-border bg-popover p-0 text-popover-foreground shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm"><form method="dialog" class="flex flex-col"><div class="flex items-center gap-2 border-b border-border px-4"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4 shrink-0 text-muted-foreground" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><input type="search" data-search-input placeholder="Search docs..." autocomplete="off" spellcheck="false" class="flex h-12 w-full rounded-md bg-transparent text-sm outline-none placeholder:text-muted-foreground" aria-label="Search documentation"><kbd class="rounded border border-border px-1.5 py-0.5 font-mono text-xs text-muted-foreground">Esc</kbd></div><div data-search-body class="flex max-h-[60vh]"><aside data-search-facets class="hidden w-56 shrink-0 overflow-y-auto border-r border-border p-3 text-sm" aria-label="Filter results"></aside><div data-search-results class="flex-1 overflow-y-auto p-2 text-sm" aria-live="polite"><div data-search-empty class="px-3 py-8 text-center text-muted-foreground">Start typing to search...</div></div></div></form></dialog><button type="button" data-search-trigger class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" aria-label="Open search"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg><span class="hidden sm:inline">Search</span><kbd class="hidden rounded border border-border px-1.5 py-0.5 font-mono text-[10px] sm:inline">⌘K</kbd></button><script type="module" src="/openshift-docs-markdown/_astro/SearchDialog.astro_astro_type_script_index_0_lang.DMuy_a6u.js"></script><button class="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-background text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-component="theme-toggle" type="button" aria-label="Toggle dark mode" data-astro-cid-vg5xjwtk="true"><svg class="dark:hidden h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.72 9.72 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"></path></svg><svg class="hidden dark:block h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"></path></svg></button><script type="module">function e(){document.querySelectorAll(`[data-component='theme-toggle']`).forEach(e=>{e.addEventListener(`click`,()=>{let e=document.documentElement.classList.toggle(`dark`);localStorage.setItem(`theme`,e?`dark`:`light`)})})}e(),document.addEventListener(`astro:after-swap`,e);</script></div></header><div class="flex min-w-0" data-astro-cid-vg5xjwtk><main class="min-w-0 flex-1 px-6 py-8 lg:px-12" data-pagefind-body data-astro-cid-vg5xjwtk><div hidden data-pagefind-filter="category:virt" data-astro-cid-vg5xjwtk></div><div hidden data-pagefind-filter="category:virt/getting_started" data-astro-cid-vg5xjwtk></div><div class="mx-auto max-w-3xl" data-astro-cid-vg5xjwtk><details class="dba-toc-top not-prose mb-6 rounded-md border" data-toc-top data-astro-cid-vg5xjwtk><summary class="cursor-pointer list-none px-3 py-2 text-sm font-medium text-muted-foreground" data-astro-cid-vg5xjwtk>On this page</summary><div class="border-t px-3 py-2" data-astro-cid-vg5xjwtk><nav class="text-sm" aria-label="Table of contents"><ul class="mt-2 space-y-1"><li><a href="#virt-installing-virtctl-binary_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="virt-installing-virtctl-binary_virt-using-the-cli-tools">Installing the virtctl binary on RHEL 9 or later, Linux, Windows, or macOS</a></li><li><a href="#virtctl-information-commands_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="virtctl-information-commands_virt-using-the-cli-tools">virtctl information commands</a></li><li><a href="#vm-information-commands_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="vm-information-commands_virt-using-the-cli-tools">VM information commands</a></li><li><a href="#vm-manifest-creation-commands_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="vm-manifest-creation-commands_virt-using-the-cli-tools">VM manifest creation commands</a></li><li><a href="#vm-management-commands_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="vm-management-commands_virt-using-the-cli-tools">VM management commands</a></li><li><a href="#vm-connection-commands_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="vm-connection-commands_virt-using-the-cli-tools">VM connection commands</a></li><li><a href="#vm-export-commands_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="vm-export-commands_virt-using-the-cli-tools">VM export commands</a></li><li><a href="#hot-plug-and-hot-unplug-commands_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="hot-plug-and-hot-unplug-commands_virt-using-the-cli-tools">Hot plug and hot unplug  commands</a></li><li><a href="#image-upload-commands_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="image-upload-commands_virt-using-the-cli-tools">Image upload commands</a></li><li><a href="#virt-deploying-libguestfs-with-virtctl_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="virt-deploying-libguestfs-with-virtctl_virt-using-the-cli-tools">Deploying libguestfs by using virtctl</a></li><li><a href="#virt-about-libguestfs-tools-virtctl-guestfs_virt-using-the-cli-tools" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="virt-about-libguestfs-tools-virtctl-guestfs_virt-using-the-cli-tools">Libguestfs and virtctl guestfs commands</a></li><li><a href="#_additional_resources" class="block py-0.5 text-muted-foreground transition-colors hover:text-foreground" style="padding-left: 0rem" data-toc-link="_additional_resources">Additional resources</a></li></ul></nav></div></details><article class="docs-prose"><h1 id="virt-using-the-cli-tools" class="group scroll-mt-20">Using the CLI tools<a href="#virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1><p>You can manage OpenShift Virtualization resources by using the <code>virtctl</code> command-line tool. Virtual machine (VM) commands can also be used to manage virtual machine instances (VMIs) unless otherwise specified.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>You can access and change VM disk images by using the <code>libguestfs</code> command-line tool. You deploy <code>libguestfs</code> by using the <code>virtctl libguestfs</code> command.</p></div></div><h2 id="virt-installing-virtctl-binary_virt-using-the-cli-tools" class="group scroll-mt-20">Installing the virtctl binary on RHEL 9 or later, Linux, Windows, or macOS<a href="#virt-installing-virtctl-binary_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can download the <code>virtctl</code> binary by using the OpenShift Container Platform web console and then install it on Red Hat Enterprise Linux (RHEL) 9 or later, Linux, Windows, or macOS.</p><p><strong>Procedure</strong></p><ol><li>Navigate to the <strong>Virtualization</strong> page in the web console.</li><li>Click the <strong>Question Mark (?)</strong> icon in the top right corner of screen.</li><li>Select <strong>Command Line Tools</strong> from the menu.</li><li>Locate the <strong>virtctl - KubeVirt command line interface</strong> section of the page.</li><li>Click the <strong>Download virtctl</strong> link to download the <code>virtctl</code> binary for your operating system.</li><li>Install <code>virtctl</code>:<ul><li>For RHEL and other Linux operating systems:<ol><li>Decompress the archive file:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ tar -xvf <virtctl-version-distribution.arch>.tar.gz" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> tar</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -xvf</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> &#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">virtctl-version-distribution.arc</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">h</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">.tar.gz</span></span></code></pre></div></div><script type="module">function e(){document.querySelectorAll(`[data-component='code-block'] [data-part='copy']`).forEach(e=>{e.__copyBound||(e.__copyBound=!0,e.addEventListener(`click`,async()=>{let t=e.getAttribute(`data-copy-text`)||``;try{await navigator.clipboard.writeText(t);let n=e.querySelector(`[data-copy-icon]`),r=e.querySelector(`[data-check-icon]`);n&&r&&(n.classList.add(`hidden`),r.classList.remove(`hidden`),setTimeout(()=>{n.classList.remove(`hidden`),r.classList.add(`hidden`)},2e3))}catch{}}))})}e(),document.addEventListener(`astro:after-swap`,e);</script></li><li>Run the following command to make the <code>virtctl</code> binary executable:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ chmod +x <path/virtctl-file-name>" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> chmod</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> +x</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> &#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">path/virtctl-file-nam</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">e</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span></span></code></pre></div></div></li><li>Move the <code>virtctl</code> binary to a directory in your <code>PATH</code> environment variable.<p>You can check your path by running the following command:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ echo $PATH" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> echo</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3"> $PATH</span></span></code></pre></div></div></li><li>Set the <code>KUBECONFIG</code> environment variable:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ export KUBECONFIG=/home/<user>/clusters/current/auth/kubeconfig" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> export</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> KUBECONFIG=/home/</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">&#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">use</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">r</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">/clusters/current/auth/kubeconfig</span></span></code></pre></div></div></li></ol></li><li>For Windows:<ol><li>Decompress the archive file.</li><li>Navigate the extracted folder hierarchy and double-click the <code>virtctl</code> executable file to install the client.</li><li>Move the <code>virtctl</code> binary to a directory in your <code>PATH</code> environment variable.<p>You can check your path by running the following command:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="C:\> path" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">C:\</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">> </span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">path</span></span></code></pre></div></div></li></ol></li><li>For macOS:<ol><li>Decompress the archive file.</li><li>Move the <code>virtctl</code> binary to a directory in your <code>PATH</code> environment variable.<p>You can check your path by running the following command:</p><div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="echo $PATH" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF">echo</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3"> $PATH</span></span></code></pre></div></div></li></ol></li></ul></li></ol><h2 id="virtctl-information-commands_virt-using-the-cli-tools" class="group scroll-mt-20">virtctl information commands<a href="#virtctl-information-commands_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can use the following <code>virtctl</code> information commands to view information about the <code>virtctl</code> client.</p><p><em></em><em><strong>Information commands</strong></em><em></em></p><table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl version</code></td>
+  <td>View the <code>virtctl</code> client and server versions.</td>
+</tr>
+<tr>
+  <td><code>virtctl help</code></td>
+  <td>View a list of <code>virtctl</code> commands.</td>
+</tr>
+<tr>
+  <td>`virtctl <command> -h\</td>
+  <td>--help`</td>
+</tr>
+<tr>
+  <td>View a list of options for a specific command.</td>
+  <td><code>virtctl options</code></td>
+</tr>
+<tr>
+  <td>View a list of global command options for any <code>virtctl</code> command.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vm-information-commands_virt-using-the-cli-tools" class="group scroll-mt-20">VM information commands<a href="#vm-information-commands_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can use <code>virtctl</code> to view information about virtual machines (VMs) and virtual machine instances (VMIs).</p><p><em></em><em><strong>VM information commands</strong></em><em></em></p><table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl fslist <vm_name></code></td>
+  <td>View the file systems available on a guest machine.</td>
+</tr>
+<tr>
+  <td><code>virtctl guestosinfo <vm_name></code></td>
+  <td>View information about the operating systems on a guest machine.</td>
+</tr>
+<tr>
+  <td><code>virtctl userlist <vm_name></code></td>
+  <td>View the logged-in users on a guest machine.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vm-manifest-creation-commands_virt-using-the-cli-tools" class="group scroll-mt-20">VM manifest creation commands<a href="#vm-manifest-creation-commands_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can use the following <code>virtctl create</code> commands to create manifests for virtual machines, instance types, and preferences.</p><p><em></em><em><strong>VM manifest creation commands</strong></em><em></em></p><table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl create vm</code></td>
+  <td>Create a <code>VirtualMachine</code> (VM) manifest.</td>
+</tr>
+<tr>
+  <td><code>virtctl create vm --name <vm_name></code></td>
+  <td>Create a VM manifest, specifying a name for the VM.</td>
+</tr>
+<tr>
+  <td>`virtctl create vm --user <user_name> --ssh-key\</td>
+  <td>password-file=<value>`</td>
+</tr>
+<tr>
+  <td>Create a VM manifest with a cloud-init configuration to create the selected user and either add an SSH public key from the supplied string, or a password from a file.</td>
+  <td><code>virtctl create vm --access-cred type:password,src:<secret></code></td>
+</tr>
+<tr>
+  <td>Create a VM manifest with a user and password combination injected from the selected secret.</td>
+  <td><code>virtctl create vm --access-cred type:ssh,src:<secret>,user:<user_name></code></td>
+</tr>
+<tr>
+  <td>Create a VM manifest with an SSH public key injected from the selected secret.</td>
+  <td><code>virtctl create vm --volume-sysprep src:<config_map></code></td>
+</tr>
+<tr>
+  <td>Create a VM manifest, specifying a config map to use as the sysprep volume. The config map must contain a valid answer file named <code>unattend.xml</code> or <code>autounattend.xml</code>.</td>
+  <td><code>virtctl create vm --instancetype <instancetype_name></code></td>
+</tr>
+<tr>
+  <td>Create a VM manifest that uses an existing cluster-wide instance type.</td>
+  <td><code>virtctl create vm --instancetype=virtualmachineinstancetype/<instancetype_name></code></td>
+</tr>
+<tr>
+  <td>Create a VM manifest that uses an existing namespaced instance type.</td>
+  <td><code>virtctl create instancetype --cpu <cpu_value> --memory <memory_value> --name <instancetype_name></code></td>
+</tr>
+<tr>
+  <td>Create a manifest for a cluster-wide instance type.</td>
+  <td><code>virtctl create instancetype --cpu <cpu_value> --memory <memory_value> --name <instancetype_name> --namespace <namespace_value></code></td>
+</tr>
+<tr>
+  <td>Create a manifest for a namespaced instance type.</td>
+  <td><code>virtctl create preference --name <preference_name></code></td>
+</tr>
+<tr>
+  <td>Create a manifest for a cluster-wide VM preference, specifying a name for the preference.</td>
+  <td><code>virtctl create preference --namespace <namespace_value></code></td>
+</tr>
+<tr>
+  <td>Create a manifest for a namespaced VM preference.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vm-management-commands_virt-using-the-cli-tools" class="group scroll-mt-20">VM management commands<a href="#vm-management-commands_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can use the following <code>virtctl</code> commands to manage and migrate virtual machines (VMs) and VM instances (VMIs).</p><p><em></em><em><strong>VM management commands</strong></em><em></em></p><table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl start <vm_name></code></td>
+  <td>Start a VM.</td>
+</tr>
+<tr>
+  <td><code>virtctl start --paused <vm_name></code></td>
+  <td>Start a VM in a paused state. This option enables you to interrupt the boot process from the VNC console.</td>
+</tr>
+<tr>
+  <td><code>virtctl stop <vm_name></code></td>
+  <td>Stop a VM.</td>
+</tr>
+<tr>
+  <td><code>virtctl stop <vm_name> --grace-period 0 --force</code></td>
+  <td>Force stop a VM. This option might cause data inconsistency or data loss.</td>
+</tr>
+<tr>
+  <td><code>virtctl pause vm <vm_name></code></td>
+  <td>Pause a VM. The machine state is kept in memory.</td>
+</tr>
+<tr>
+  <td><code>virtctl unpause vm <vm_name></code></td>
+  <td>Unpause a VM.</td>
+</tr>
+<tr>
+  <td><code>virtctl migrate <vm_name></code></td>
+  <td>Migrate a VM.</td>
+</tr>
+<tr>
+  <td><code>virtctl migrate-cancel <vm_name></code></td>
+  <td>Cancel a VM migration.</td>
+</tr>
+<tr>
+  <td><code>virtctl restart <vm_name></code></td>
+  <td>Restart a VM.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vm-connection-commands_virt-using-the-cli-tools" class="group scroll-mt-20">VM connection commands<a href="#vm-connection-commands_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You use can use the following <code>virtctl</code> commands to expose ports and connect to virtual machines (VMs) and VM instances (VMIs).</p><p><em></em><em><strong>VM connection commands</strong></em><em></em></p><table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl console <vm_name></code></td>
+  <td>Connect to the serial console of a VM.</td>
+</tr>
+<tr>
+  <td>`virtctl expose vm <vm_name> --name <service_name> --type <ClusterIP\</td>
+  <td>NodePort\</td>
+</tr>
+<tr>
+  <td>LoadBalancer> --port <port>`</td>
+  <td>Create a service that forwards a designated port of a VM and expose the service on the specified port of the node.<br><br>Example: <code>virtctl expose vm rhel9_vm --name rhel9-ssh --type NodePort --port 22</code></td>
+</tr>
+<tr>
+  <td><code>virtctl scp -i <ssh_key> <file_name> <user_name>@vm/<vm_name></code></td>
+  <td>Copy a file from your machine to a VM. This command uses the private key of an SSH key pair. The VM must be configured with the public key.</td>
+</tr>
+<tr>
+  <td><code>virtctl scp -i <ssh_key> <user_name@vm/<vm_name>:<file_name> .</code></td>
+  <td>Copy a file from a VM to your machine. This command uses the private key of an SSH key pair. The VM must be configured with the public key.</td>
+</tr>
+<tr>
+  <td><code>virtctl ssh -i <ssh_key> <user_name>@vm/<vm_name></code></td>
+  <td>Open an SSH connection with a VM. This command uses the private key of an SSH key pair. The VM must be configured with the public key.</td>
+</tr>
+<tr>
+  <td><code>virtctl vnc <vm_name></code></td>
+  <td>Connect to the VNC console of a VM.<br><br>You must have <code>virt-viewer</code> installed.</td>
+</tr>
+<tr>
+  <td><code>virtctl vnc --proxy-only=true <vm_name></code></td>
+  <td>Display the port number and connect manually to a VM by using any viewer through the VNC connection.</td>
+</tr>
+<tr>
+  <td><code>virtctl vnc --port=<port-number> <vm_name></code></td>
+  <td>Specify a port number to run the proxy on the specified port, if that port is available.<br><br>If a port number is not specified, the proxy runs on a random port.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="vm-export-commands_virt-using-the-cli-tools" class="group scroll-mt-20">VM export commands<a href="#vm-export-commands_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">Use <code>virtctl vmexport</code> commands to create, download, or delete a volume exported from a VM, VM snapshot, or persistent volume claim (PVC). Certain manifests also contain a header secret, which grants access to the endpoint to import a disk image in a format that OpenShift Virtualization can use.</p><p><em></em><em><strong>VM export commands</strong></em><em></em></p><table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>`virtctl vmexport create <vmexport_name> --vm\</td>
+  <td>snapshot\</td>
+</tr>
+<tr>
+  <td>pvc=<object_name>`</td>
+  <td>Create a <code>VirtualMachineExport</code> custom resource (CR) to export a volume from a VM, VM snapshot, or PVC.<br><br><ul><li><code>--vm</code>: Exports the PVCs of a VM.</li><li><code>--snapshot</code>: Exports the PVCs contained in a <code>VirtualMachineSnapshot</code> CR.</li><li><code>--pvc</code>: Exports a PVC.</li><li>Optional: <code>--ttl=1h</code> specifies the time to live. The default duration is 2 hours.</li></ul></td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport delete <vmexport_name></code></td>
+  <td>Delete a <code>VirtualMachineExport</code> CR manually.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download <vmexport_name> --output=<output_file> --volume=<volume_name></code></td>
+  <td>Download the volume defined in a <code>VirtualMachineExport</code> CR.<br><br><ul><li><code>--output</code> specifies the file format. Example: <code>disk.img.gz</code>.</li><li><code>--volume</code> specifies the volume to download. This flag is optional if only one volume is available.</li></ul>Optional:<br><br><ul><li><code>--keep-vme</code> retains the <code>VirtualMachineExport</code> CR after download. The default behavior is to delete the <code>VirtualMachineExport</code> CR after download.</li><li><code>--insecure</code> enables an insecure HTTP connection.</li></ul></td>
+</tr>
+<tr>
+  <td>`virtctl vmexport download <vmexport_name> --vm\</td>
+  <td>snapshot\</td>
+</tr>
+<tr>
+  <td>pvc=<object_name> --output=<output_file> --volume=<volume_name>`</td>
+  <td>Create a <code>VirtualMachineExport</code> CR and then download the volume defined in the CR.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest</code></td>
+  <td>Retrieve the manifest for an existing export. The manifest does not include the header secret.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest --vm=example</code></td>
+  <td>Create a VM export for a VM example, and retrieve the manifest. The manifest does not include the header secret.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest --snap=example</code></td>
+  <td>Create a VM export for a VM snapshot example, and retrieve the manifest. The manifest does not include the header secret.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest --include-secret</code></td>
+  <td>Retrieve the manifest for an existing export. The manifest includes the header secret.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest --manifest-output-format=json</code></td>
+  <td>Retrieve the manifest for an existing export in json format. The manifest does not include the header secret.</td>
+</tr>
+<tr>
+  <td><code>virtctl vmexport download export --manifest --include-secret --output=manifest.yaml</code></td>
+  <td>Retrieve the manifest for an existing export. The manifest includes the header secret and writes it to the file specified.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="hot-plug-and-hot-unplug-commands_virt-using-the-cli-tools" class="group scroll-mt-20">Hot plug and hot unplug  commands<a href="#hot-plug-and-hot-unplug-commands_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can use the following <code>virtctl</code> commands to add or remove resources from running virtual machines (VMs) and VM instances (VMIs).</p><p><em></em><em><strong>Hot plug and hot unplug commands</strong></em><em></em></p><table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl addvolume <vm_name> --volume-name=<datavolume_or_PVC> [--persist] [--serial=<label>]</code></td>
+  <td>Hot plug a data volume or persistent volume claim (PVC).<br><br>Optional:<br><br><ul><li><code>--persist</code> mounts the virtual disk permanently on a VM. <strong>This flag does not apply to VMIs.</strong></li><li><code>--serial=<label></code> adds a label to the VM. If you do not specify a label, the default label is the data volume or PVC name.</li></ul></td>
+</tr>
+<tr>
+  <td><code>virtctl removevolume <vm_name> --volume-name=<virtual_disk></code></td>
+  <td>Hot unplug a virtual disk.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="image-upload-commands_virt-using-the-cli-tools" class="group scroll-mt-20">Image upload commands<a href="#image-upload-commands_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can use the following <code>virtctl image-upload</code> commands to upload a VM image to a data volume.</p><p><em></em><em><strong>Image upload commands</strong></em><em></em></p><table>
+<thead>
+<tr>
+  <th>Command</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>virtctl image-upload dv <datavolume_name> --image-path=</path/to/image> --no-create</code></td>
+  <td>Upload a VM image to a data volume that already exists.</td>
+</tr>
+<tr>
+  <td><code>virtctl image-upload dv <datavolume_name> --size=<datavolume_size> --image-path=</path/to/image></code></td>
+  <td>Upload a VM image to a new data volume of a specified requested size.</td>
+</tr>
+<tr>
+  <td><code>virtctl image-upload dv <datavolume_name> --datasource --size=<datavolume_size> --image-path=</path/to/image></code></td>
+  <td>Upload a VM image to a new data volume and create an associated <code>DataSource</code> object for it.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="virt-deploying-libguestfs-with-virtctl_virt-using-the-cli-tools" class="group scroll-mt-20">Deploying libguestfs by using virtctl<a href="#virt-deploying-libguestfs-with-virtctl_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract">You can use the <code>virtctl guestfs</code> command to deploy an interactive container with <code>libguestfs-tools</code> and a persistent volume claim (PVC) attached to it.</p><p><strong>Procedure</strong></p><ul><li>To deploy a container with <code>libguestfs-tools</code>, mount the PVC, and attach a shell to it, run the following command:<div class="group relative overflow-hidden rounded-lg border bg-code-bg text-sm" data-component="code-block"><div class="flex items-center justify-between border-b border-code-fg/10 bg-code-fg/5 px-4 py-2 text-xs text-code-fg/70"><span class="select-none">terminal</span><button class="inline-flex h-7 w-7 items-center justify-center rounded-md text-code-fg/50 transition-colors hover:bg-code-fg/10 hover:text-code-fg/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-part="copy" data-copy-text="$ virtctl guestfs -n <namespace> <pvc_name>" type="button" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-copy-icon aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-check-icon class="hidden" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg></button></div><div class="relative overflow-x-auto [&amp;_pre]:!m-0 [&amp;_pre]:!rounded-none [&amp;_pre]:!border-0 [&amp;_pre]:px-4 [&amp;_pre]:py-3"><pre class="astro-code astro-code-themes github-light-default github-dark-default" style="--shiki-light:#1f2328;--shiki-dark:#e6edf3;--shiki-light-bg:#ffffff;--shiki-dark-bg:#0d1117; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="--shiki-light:#953800;--shiki-dark:#FFA657">$</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> virtctl</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF"> guestfs</span><span style="--shiki-light:#0550AE;--shiki-dark:#79C0FF"> -n</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> &#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">namespac</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">e</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72"> &#x3C;</span><span style="--shiki-light:#0A3069;--shiki-dark:#A5D6FF">pvc_nam</span><span style="--shiki-light:#1F2328;--shiki-dark:#E6EDF3">e</span><span style="--shiki-light:#CF222E;--shiki-dark:#FF7B72">></span></span></code></pre></div></div><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-info/50 bg-info/5 text-foreground [&amp;>svg]:text-info my-4" data-variant="info" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M13 9h-2V7h2m0 10h-2v-6h2m-1-9A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Important</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The <code>&lt;pvc_name&gt;</code> argument is required. If you do not include it, an error message appears.</p></div></div></li></ul><h2 id="virt-about-libguestfs-tools-virtctl-guestfs_virt-using-the-cli-tools" class="group scroll-mt-20">Libguestfs and virtctl guestfs commands<a href="#virt-about-libguestfs-tools-virtctl-guestfs_virt-using-the-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><p class="_abstract"><code>Libguestfs</code> tools help you access and modify virtual machine (VM) disk images. You can use <code>libguestfs</code> tools to view and edit files in a guest, clone and build virtual machines, and format and resize disks.</p><p>You can also use the <code>virtctl guestfs</code> command and its sub-commands to modify, inspect, and debug VM disks on a PVC. To see a complete list of possible sub-commands, enter <code>virt-</code> on the command line and press the Tab key. For example:</p><div class="relative w-full overflow-x-auto"><table class="w-full caption-bottom text-sm my-4"><thead class="[&amp;_tr]:border-b"><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><th class="px-2 py-2 text-left align-bottom font-semibold text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Command</th><th class="px-2 py-2 text-left align-bottom font-semibold text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Description</th></tr></thead><tbody class="[&amp;_tr:last-child]:border-0"><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>virt-edit -a /dev/vda /etc/motd</code></td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">Edit a file interactively in your terminal.</td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>virt-customize -a /dev/vda --ssh-inject root:string:&lt;public key example&gt;</code></td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">Inject an ssh key into the guest and create a login.</td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>virt-df -a /dev/vda -h</code></td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">See how much disk space is used by a VM.</td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>virt-customize -a /dev/vda --run-command 'rpm -qa &gt; /rpm-list'</code></td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">See the full list of all RPMs installed on a guest by creating an output file containing the full list.</td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>virt-cat -a /dev/vda /rpm-list</code></td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">Display the output file list of all RPMs created using the <code>virt-customize -a /dev/vda --run-command 'rpm -qa &gt; /rpm-list'</code> command in your terminal.</td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>virt-sysprep -a /dev/vda</code></td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">Seal a virtual machine disk image to be used as a template.</td></tr></tbody></table></div><p>By default, <code>virtctl guestfs</code> creates a session with everything needed to manage a VM disk. However, the command also supports several flag options if you want to customize the behavior:</p><div class="relative w-full overflow-x-auto"><table class="w-full caption-bottom text-sm my-4"><thead class="[&amp;_tr]:border-b"><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><th class="px-2 py-2 text-left align-bottom font-semibold text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Flag Option</th><th class="px-2 py-2 text-left align-bottom font-semibold text-muted-foreground [&amp;:has([role=checkbox])]:pr-0">Description</th></tr></thead><tbody class="[&amp;_tr:last-child]:border-0"><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>--h</code> or <code>--help</code></td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">Provides help for <code>guestfs</code>.</td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>-n &lt;namespace&gt;</code> option with a <code>&lt;pvc_name&gt;</code> argument</td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">To use a PVC from a specific namespace. If you do not use the <code>-n &lt;namespace&gt;</code> option, your current project is used. To change projects, use <code>oc project &lt;namespace&gt;</code>. If you do not include a <code>&lt;pvc_name&gt;</code> argument, an error message appears.</td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>--image string</code></td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">Lists the <code>libguestfs-tools</code> container image. You can configure the container to use a custom image by using the <code>--image</code> option.</td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>--kvm</code></td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">Indicates that <code>kvm</code> is used by the <code>libguestfs-tools</code> container. By default, <code>virtctl guestfs</code> sets up <code>kvm</code> for the interactive container, which greatly speeds up the <code>libguest-tools</code> execution because it uses QEMU. If a cluster does not have any <code>kvm</code> supporting nodes, you must disable <code>kvm</code> by setting the option <code>--kvm=false</code>. If not set, the <code>libguestfs-tools</code> pod remains pending because it cannot be scheduled on any node.</td></tr><tr class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0"><code>--pull-policy string</code></td><td class="p-2 align-top [&amp;:has([role=checkbox])]:pr-0">Shows the pull policy for the <code>libguestfs</code> image. You can also overwrite the image’s pull policy by setting the <code>pull-policy</code> option.</td></tr></tbody></table></div><p>The command also checks if a PVC is in use by another pod, in which case an error message appears. However, once the <code>libguestfs-tools</code> process starts, the setup cannot avoid a new pod using the same PVC. You must verify that there are no active <code>virtctl guestfs</code> pods before starting the VM that accesses the same PVC.</p><div class="relative w-full rounded-lg border p-4 [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:size-4 [&amp;>svg~div]:pl-7 border-note/50 bg-note/5 text-foreground [&amp;>svg]:text-note my-4" data-variant="note" role="note"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2m3.1 5.07c.14 0 .28.05.4.16l1.27 1.27c.23.22.23.57 0 .78l-1 1-2.05-2.05 1-1c.1-.11.24-.16.38-.16m-1.97 1.74 2.06 2.06-6.06 6.06H7.07v-2.06z"/></svg><div class="mb-1 text-sm font-semibold leading-none tracking-tight" data-part="title">Note</div><div class="text-sm [&amp;_p]:leading-relaxed"><p>The <code>virtctl guestfs</code> command accepts only a single PVC attached to the interactive pod.</p></div></div><h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2><ul><li><a href="https://console.redhat.com/ansible/automation-hub">Red Hat Ansible Automation Hub</a></li><li><a href="https://libguestfs.org"><code>libguestfs</code></a></li></ul></article><footer class="mt-12 border-t pt-6"><nav class="flex items-center justify-between gap-4" aria-label="Page navigation"><a href="/openshift-docs-markdown/virt/getting_started/virt-getting-started" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="prev"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg><div class="text-left"><div class="text-xs text-muted-foreground">Previous</div><div>Getting started with OpenShift Virtualization</div></div></a><a href="/openshift-docs-markdown/virt/install/preparing-cluster-for-virt" class="inline-flex items-center gap-2 rounded-md border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent" rel="next"><div class="text-right"><div class="text-xs text-muted-foreground">Next</div><div>Preparing your cluster</div></div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></a></nav><div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t pt-4 text-xs text-muted-foreground"><span></span><a href="/openshift-docs-markdown/llms.txt" class="hover:text-foreground" data-llms-link aria-label="View this site as llms.txt for LLMs">View as llms.txt</a></div></footer></div></main><aside class="dba-right-rail sticky top-12 hidden h-[calc(100vh-3rem)] w-80 shrink-0 overflow-y-auto border-l p-4 lg:block xl:w-96" data-right-rail data-astro-cid-vg5xjwtk></aside></div></div></div></body></html><script type="module" src="/openshift-docs-markdown/_astro/DocsLayout.astro_astro_type_script_index_0_lang.BNhrzmBU.js"></script>

@@ -2,5 +2,5 @@
 
 ## Release notes
 
-- [OpenShift Container Platform 4.22 release notes](https://dogsbay.github.io/openshift-docs-markdown/release_notes/ocp-4-22-release-notes.md)
-- [Additional release notes](https://dogsbay.github.io/openshift-docs-markdown/release_notes/addtl-release-notes.md): {% include "./_attributes/common-attributes.md" %}
+- [OpenShift Container Platform 4.22 release notes](https://dogsbay.github.io/openshift-docs-markdown/release_notes/ocp-4-22-release-notes.md): OpenShift Container Platform (RHEA-2026:0449) is now available. Before working with this release, familiarize yourself with the new features, changes, and…
+- [Additional release notes](https://dogsbay.github.io/openshift-docs-markdown/release_notes/addtl-release-notes.md): Release notes for additional related components and products not included in the core OpenShift Container Platform 4.22 release notes are available in the…

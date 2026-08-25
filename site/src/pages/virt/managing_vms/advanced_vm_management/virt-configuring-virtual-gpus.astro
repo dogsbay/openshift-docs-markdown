@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-configuring-virtual-gpus","text":"Configuring virtual GPUs"},{"depth":2,"slug":"additional-resources_virt-configuring-virtual-gpus","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-configuring-virtual-gpus","text":"Configuring virtual GPUs"},{"depth":2,"slug":"virt-about-using-virtual-gpus_virt-configuring-virtual-gpus","text":"About using virtual GPUs with OpenShift Virtualization"},{"depth":3,"slug":"virt-adding-kernel-arguments-enable-IOMMU_virt-configuring-virtual-gpus","text":"Adding kernel arguments to enable the IOMMU driver"},{"depth":2,"slug":"using-nvidia-gpu_virt-configuring-virtual-gpus","text":"Using the NVIDIA GPU Operator"},{"depth":2,"slug":"virt-label-nodes-with-mig-backed-profile_virt-configuring-virtual-gpus","text":"Labeling nodes with a MIG-backed vGPU profile"},{"depth":2,"slug":"virt-creating-exposing-mediated-devices_virt-configuring-virtual-gpus","text":"Creating and exposing mediated devices"},{"depth":2,"slug":"virt-removing-mediated-device-from-cluster-cli_virt-configuring-virtual-gpus","text":"Removing mediated devices from the cluster"},{"depth":2,"slug":"virt-assigning-mdev-vm-cli_virt-configuring-virtual-gpus","text":"Assigning a vGPU to a VM by using the CLI"},{"depth":2,"slug":"virt-assigning-vgpu-vm-web_virt-configuring-virtual-gpus","text":"Assigning a vGPU to a VM by using the web console"},{"depth":2,"slug":"additional-resources_virt-configuring-virtual-gpus","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-virtual-gpus";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring virtual GPUs";
-const description = "Use the NVIDIA GPU operator to create virtual GPUs (vGPUs) and assign them to virtual machines (VMs) in {{ VirtProductName }}." || undefined;
+const description = "Use the NVIDIA GPU operator to create virtual GPUs (vGPUs) and assign them to virtual machines (VMs) in OpenShift Virtualization." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/advanced_vm_
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring virtual GPUs {#virt-configuring-virtual-gpus}\n\nUse the NVIDIA GPU operator to create virtual GPUs (vGPUs) and assign them to virtual machines (VMs) in {{ VirtProductName }}.\n\n## Additional resources {#additional-resources_virt-configuring-virtual-gpus}\n\n- [Enabling Intel VT-X and AMD-V Virtualization Hardware Extensions in BIOS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-troubleshooting-enabling_intel_vt_x_and_amd_v_virtualization_hardware_extensions_in_bios)\n- [MIG Support in OpenShift Container Platform](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/mig-ocp.html#)\n- [Configuring PCI passthrough](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-pci-passthrough#virt-configuring-pci-passthrough)\n- [Obtaining Support from NVIDIA](https://access.redhat.com/solutions/5174941)\n- [MIG User Guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/supported-mig-profiles.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-virtual-gpus.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring virtual GPUs {#virt-configuring-virtual-gpus}\n\nUse the NVIDIA GPU operator to create virtual GPUs (vGPUs) and assign them to virtual machines (VMs) in OpenShift Virtualization.\n\n## About using virtual GPUs with OpenShift Virtualization {#virt-about-using-virtual-gpus_virt-configuring-virtual-gpus}\n\nYou can create vGPUs for your virtual machines (VMs) using supported GPU cards. Refer to your hardware vendor’s documentation for functionality and support details.\n\nYou can use the NVIDIA GPU Operator to manage vGPUs for your virtual machines (VMs) on the cluster nodes. You must add these devices to the `HyperConverged` custom resource (CR) so that OpenShift Virtualization can discover and make them available to virtual machines.\n\nA mediated device is a physical device that is divided into one or more virtual devices. vGPUs are a type of mediated device (mdev) where the performance of the physical GPU is divided among the virtual devices. You can assign mediated devices to one or more virtual machines (VMs), but the number of guests must be compatible with your GPU. Some GPUs do not support multiple guests.\n\n### Adding kernel arguments to enable the IOMMU driver {#virt-adding-kernel-arguments-enable-IOMMU_virt-configuring-virtual-gpus}\n\nYou must enable the Input-Output Memory Management Unit (IOMMU) driver before you can configure mediated devices. To enable the IOMMU driver in the kernel, create the `MachineConfig` object and add the kernel arguments.\n\n**Prerequisites**\n\n- You have cluster administrator permissions.\n- Your CPU hardware is Intel or AMD.\n\n  > [!NOTE]\n  > Enabling IOMMU is not required on `s390x` architecture.\n- You enabled Intel Virtualization Technology for Directed I/O extensions or AMD IOMMU in the BIOS.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a `MachineConfig` object that identifies the kernel argument. The following example shows a kernel argument for an Intel CPU.\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: worker\n     name: 100-worker-iommu\n   spec:\n     config:\n       ignition:\n         version: 3.2.0\n     kernelArguments:\n         - intel_iommu=on\n   # ...\n   ```\n\n   - `metadata.labels.machineconfiguration.openshift.io/role` specifies that the new kernel argument is applied only to worker nodes.\n   - `metadata.name` specifies the ranking of this kernel argument (100) among the machine configs and its purpose. If you have an AMD CPU, specify the kernel argument as `amd_iommu=on`.\n   - `spec.kernelArguments` specifies the kernel argument as `intel_iommu` for an Intel CPU.\n2. Create the new `MachineConfig` object:\n\n   ```terminal\n   $ oc create -f 100-worker-kernel-arg-iommu.yaml\n   ```\n\n**Verification**\n\n1. Verify that the new `MachineConfig` object was added by entering the following command and observing the output:\n\n   ```terminal\n   $ oc get MachineConfig\n   ```\n\n   Example output:\n\n   ```terminal\n   NAME                                       IGNITIONVERSION                    AGE\n   00-master                                   3.5.0                             164m\n   00-worker                                   3.5.0                             164m\n   01-master-container-runtime                 3.5.0                             164m\n   01-master-kubelet                           3.5.0                             164m\n   01-worker-container-runtime                 3.5.0                             164m\n   01-worker-kubelet                           3.5.0                             164m\n   100-master-chrony-configuration             3.5.0                             169m\n   100-master-set-core-user-password           3.5.0                             169m\n   100-worker-chrony-configuration             3.5.0                             169m\n   100-worker-iommu                            3.5.0                             14s\n   ```\n2. Verify that IOMMU is enabled at the operating system (OS) level by entering the following command:\n\n   ```terminal\n   $ dmesg | grep -i iommu\n   ```\n\n   - If IOMMU is enabled, output is displayed as shown in the following example:\n\n     Example output:\n\n     ```terminal\n     Intel: [ 0.000000] DMAR: Intel(R) IOMMU Driver\n     AMD: [ 0.000000] AMD-Vi: IOMMU Initialized\n     ```\n\n## Using the NVIDIA GPU Operator {#using-nvidia-gpu_virt-configuring-virtual-gpus}\n\nYou can use the NVIDIA GPU Operator to provision worker nodes for running GPU-accelerated virtual machines (VMs) in OpenShift Virtualization.\n\nThe NVIDIA GPU Operator manages NVIDIA GPU resources in an OpenShift Container Platform cluster and automates tasks when preparing nodes for GPU workloads. The NVIDIA GPU Operator can also facilitate provisioning complex artificial intelligence and machine learning (AI/ML) workloads.\n\n> [!NOTE]\n> You can get support for the NVIDIA GPU Operator through NVIDIA. For more information, see \"Obtaining Support from NVIDIA\" in the Red Hat Knowledgebase.\n\n**Procedure**\n\n1. Configure your `ClusterPolicy` manifest. Your `ClusterPolicy` manifest must match the provided example:\n\n   ```yaml\n   apiVersion: nvidia.com/v1\n   kind: ClusterPolicy\n   metadata:\n     name: gpu-cluster-policy\n   spec:\n     daemonsets:\n       updateStrategy: RollingUpdate\n     dcgm:\n       enabled: true\n     dcgmExporter: {}\n     devicePlugin: {}\n     driver:\n       enabled: false\n       kernelModuleType: auto\n     gfd: {}\n     mig:\n       strategy: single\n     migManager:\n       enabled: true\n     nodeStatusExporter:\n       enabled: true\n     operator:\n       defaultRuntime: crio\n       initContainer: {}\n       runtimeClass: nvidia\n       use_ocp_driver_toolkit: true\n     sandboxDevicePlugin:\n       enabled: true\n     sandboxWorkloads:\n       defaultWorkload: vm-vgpu\n       enabled: true\n     toolkit:\n       enabled: true\n       installDir: /usr/local/nvidia\n     validator:\n       plugin:\n         env:\n         - name: WITH_WORKLOAD\n           value: \"true\"\n     vfioManager:\n       enabled: true\n     vgpuDeviceManager:\n       config:\n         default: default\n         name: vgpu-devices-config\n       enabled: true\n     vgpuManager:\n       enabled: true\n       image: <vgpu_image_name>\n       repository: <vgpu_container_registry>\n       version: <nvidia_vgpu_manager_version>\n   ```\n\n   where:\n\n   `<vgpu_image_name>`\n   :   Specifies the vGPU image name.\n\n   `<vgpu_container_registry>`\n   :   Specifies the vGPU container registry value.\n\n   `<nvidia_vgpu_manager_version>`\n   :   Specifies the version of the vGPU driver you have downloaded from the NVIDIA website and used to build the image.\n2. Use the NVIDIA GPU Operator to configure mediated devices. For more information see [NVIDIA GPU Operator with OpenShift Virtualization](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/openshift-virtualization.html).\n\n## Labeling nodes with a MIG-backed vGPU profile {#virt-label-nodes-with-mig-backed-profile_virt-configuring-virtual-gpus}\n\nIf you have GPUs that support NVIDIA Multi-Instance GPU (MIG), you can select a MIG-backed vGPU instance instead of time-sliced vGPU instances. When you use MIG, you give a partition of dedicated hardware to selected VMs.\n\n**Prerequisites**\n\n- You have configured vGPU support.\n- You have the NVIDIA GPU Operator version 25.10 or higher.\n- You are using the NVIDIA AI Enterprise (AIE) vGPU Manager image.\n\n**Procedure**\n\n- Label the node with the name of the MIG-backed vGPU profile:\n\n  ```terminal\n  $ oc label node <node> --overwrite nvidia.com/vgpu.config=<profile>\n  ```\n\n  - Replace `<node>` with the fully qualified domain name (FQDN) of your compute node.\n  - Replace `<profile>` with a supported MIG profile.\n\n    Example command:\n\n    ```terminal\n    $ oc label node worker_1 --overwrite nvidia.com/vgpu.config=A30-1-6C\n    ```\n\n## Creating and exposing mediated devices {#virt-creating-exposing-mediated-devices_virt-configuring-virtual-gpus}\n\nAs an administrator, you can create mediated devices and expose them to the cluster by editing the `HyperConverged` custom resource (CR). Before you edit the CR, explore a worker node to find the configuration values that are specific to your hardware devices.\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n- You enabled the Input-Output Memory Management Unit (IOMMU) driver.\n- If your hardware vendor provides drivers, you installed them on the nodes where you want to create mediated devices.\n\n  - If you use NVIDIA cards, you [installed the NVIDIA GRID driver](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/openshift-virtualization.html).\n\n**Procedure**\n\n1. Identify the name selector and resource name values for the mediated devices by exploring a worker node:\n\n   1. Start a debugging session with the worker node by using the `oc debug` command. For example:\n\n      ```terminal\n      $ oc debug node/node-11.redhat.com\n      ```\n   2. Change the root directory of the shell process to the file system of the host node by running the following command:\n\n      ```terminal\n      # chroot /host\n      ```\n   3. Navigate to the `mdev_bus` directory and view its contents. Each subdirectory name is a PCI address of a physical GPU. For example:\n\n      ```terminal\n      # cd sys/class/mdev_bus && ls\n      ```\n\n      Example output:\n\n      ```terminal\n      0000:4b:00.4\n      ```\n   4. Go to the directory for your physical device and list the supported mediated device types as defined by the hardware vendor. For example:\n\n      ```terminal\n      # cd 0000:4b:00.4 && ls mdev_supported_types\n      ```\n\n      Example output:\n\n      ```terminal\n      nvidia-742  nvidia-744\tnvidia-746  nvidia-748\tnvidia-750  nvidia-752\n      nvidia-743  nvidia-745\tnvidia-747  nvidia-749\tnvidia-751  nvidia-753\n      ```\n   5. Select the mediated device type that you want to use and identify its name selector value by viewing the contents of its `name` file. For example:\n\n      ```terminal\n      # cat nvidia-745/name\n      ```\n\n      Example output:\n\n      ```terminal\n      NVIDIA A2-2Q\n      ```\n2. Open the `HyperConverged` CR in your default editor by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n3. Create and expose the mediated devices by updating the configuration:\n\n   1. Expose the mediated devices to the cluster by adding the `mdevNameSelector` and `resourceName` values to the `spec.permittedHostDevices.mediatedDevices` stanza. The `resourceName` value is based on the `mdevNameSelector` value, but you use underscores instead of spaces.\n\n      Example `HyperConverged` CR:\n\n      ```yaml\n      apiVersion: hco.kubevirt.io/v1beta1\n      kind: HyperConverged\n      metadata:\n        name: kubevirt-hyperconverged\n        namespace: {{ CNVNamespace }}\n      spec:\n        permittedHostDevices:\n          mediatedDevices:\n          - mdevNameSelector: NVIDIA A2-2Q\n            resourceName: nvidia.com/NVIDIA_A2-2Q\n            externalResourceProvider: true\n          - mdevNameSelector: NVIDIA A2-4Q\n            resourceName: nvidia.com/NVIDIA_A2-4Q\n            externalResourceProvider: true\n      # ...\n      ```\n\n      where:\n\n      `mdevNameSelector`\n      :   Specifies the mediated devices that map to this value on the host.\n\n`resourceName`\n:   Specifies the matching resource name that is allocated on the node.\n\n`externalResourceProvider`\n:   Specifies that the device is handled by an external provider, such as the NVIDIA GPU Operator.\n\n1. Save your changes and exit the editor.\n\n**Verification**\n\n- Confirm that the virtual GPU is attached to the node by running the following command:\n\n  ```terminal\n  $ oc get node <node_name> -o json \\\n    | jq '.status.allocatable \\\n    | with_entries(select(.key | startswith(\"nvidia.com/\"))) \\\n    | with_entries(select(.value != \"0\"))'\n  ```\n\n## Removing mediated devices from the cluster {#virt-removing-mediated-device-from-cluster-cli_virt-configuring-virtual-gpus}\n\nAs a cluster administrator you can remove mediated devices from the cluster so that you can reallocate GPU hardware. To remove a mediated device from the cluster, delete the information for that device from the `HyperConverged` CR.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Edit the `HyperConverged` CR in your default editor by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Remove the device information from the `spec.permittedHostDevices` stanza of the `HyperConverged` CR. For example:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n     namespace: {{ CNVNamespace }}\n   spec:\n     permittedHostDevices:\n       mediatedDevices:\n       - mdevNameSelector: GRID T4-2Q\n         resourceName: nvidia.com/GRID_T4-2Q\n         externalResourceProvider: true\n   ```\n\n   - To remove the `GRID T4-2Q` device, delete the `mdevNameSelector` field and its corresponding `resourceName` field.\n3. Save your changes and exit the editor.\n\n## Assigning a vGPU to a VM by using the CLI {#virt-assigning-mdev-vm-cli_virt-configuring-virtual-gpus}\n\nAssign mediated devices such as virtual GPUs (vGPUs) to virtual machines (VMs).\n\n**Prerequisites**\n\n- The mediated device is configured in the `HyperConverged` custom resource.\n- The virtual machine (VM) is stopped.\n\n**Procedure**\n\n- Assign the mediated device to a VM by editing the `spec.domain.devices.gpus` stanza of the `VirtualMachine` manifest.\n\n  Example virtual machine manifest:\n\n  ```yaml\n  apiVersion: kubevirt.io/v1\n  kind: VirtualMachine\n  spec:\n    domain:\n      devices:\n        gpus:\n        - deviceName: nvidia.com/TU104GL_Tesla_T4\n          name: gpu1\n        - deviceName: nvidia.com/GRID_T4-2Q\n          name: gpu2\n  ```\n\n  - `spec.template.spec.domain.devices.gpus.deviceName` specifies the resource name associated with the mediated device.\n  - `spec.template.spec.domain.devices.gpus.name` specifies a name to identify the device on the VM.\n\n**Verification**\n\n- To verify that the device is available from the virtual machine, run the following command, substituting `<device_name>` with the `deviceName` value from the `VirtualMachine` manifest:\n\n  ```terminal\n  $ lspci -nnk | grep <device_name>\n  ```\n\n## Assigning a vGPU to a VM by using the web console {#virt-assigning-vgpu-vm-web_virt-configuring-virtual-gpus}\n\nYou can assign virtual GPUs to virtual machines by using the OpenShift Container Platform web console.\n\n> [!NOTE]\n> You can add hardware devices to virtual machines created from customized templates or a YAML file. You cannot add devices to pre-supplied boot source templates for specific operating systems.\n\n**Prerequisites**\n\n- The vGPU is configured as a mediated device in your cluster.\n\n  - To view the devices that are connected to your cluster, click **Compute** -> **Hardware Devices** from the side menu.\n- The VM is stopped.\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, click **Virtualization** -> **VirtualMachines** from the side menu.\n2. Select the VM that you want to assign the device to.\n3. On the **Details** tab, click **GPU devices**.\n4. Click **Add GPU device**.\n5. Enter an identifying value in the **Name** field.\n6. From the **Device name** list, select the device that you want to add to the VM.\n7. Click **Save**.\n\n**Verification**\n\n- To confirm that the devices were added to the VM, click the **YAML** tab and review the `VirtualMachine` configuration. Mediated devices are added to the `spec.domain.devices` stanza.\n\n## Additional resources {#additional-resources_virt-configuring-virtual-gpus}\n\n- [Enabling Intel VT-X and AMD-V Virtualization Hardware Extensions in BIOS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-troubleshooting-enabling_intel_vt_x_and_amd_v_virtualization_hardware_extensions_in_bios)\n- [MIG Support in OpenShift Container Platform](https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/mig-ocp.html#)\n- [Configuring PCI passthrough](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-pci-passthrough#virt-configuring-pci-passthrough)\n- [Obtaining Support from NVIDIA](https://access.redhat.com/solutions/5174941)\n- [MIG User Guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/supported-mig-profiles.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-virtual-gpus.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,17 +94,263 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-configuring-virtual-gpus" class="group scroll-mt-20">Configuring virtual GPUs<a href="#virt-configuring-virtual-gpus" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Use the NVIDIA GPU operator to create virtual GPUs (vGPUs) and assign them to virtual machines (VMs) in {"{"}{"{"} VirtProductName {"}"}{"}"}.</p>
-      <p class="/modules/virt-about-using-virtual-gpus.md"></p>
-      <p class="/modules/virt-adding-kernel-arguments-enable-iommu.md"></p>
-      <p class="/modules/about-using-gpu-operator.md"></p>
-      <p class="/modules/virt-label-nodes-with-mig-backed-profile.md"></p>
-      <p class="/modules/virt-creating-and-exposing-mediated-devices.md"></p>
-      <p class="/modules/virt-removing-mediated-device-from-cluster-cli.md"></p>
-      <p class="/modules/virt-assigning-vgpu-vm-cli.md"></p>
-      <p class="/modules/virt-assigning-vgpu-vm-web.md"></p>
+      <p>Use the NVIDIA GPU operator to create virtual GPUs (vGPUs) and assign them to virtual machines (VMs) in OpenShift Virtualization.</p>
+      <h2 id="virt-about-using-virtual-gpus_virt-configuring-virtual-gpus" class="group scroll-mt-20">About using virtual GPUs with OpenShift Virtualization<a href="#virt-about-using-virtual-gpus_virt-configuring-virtual-gpus" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create vGPUs for your virtual machines (VMs) using supported GPU cards. Refer to your hardware vendor’s documentation for functionality and support details.</p>
+      <p>You can use the NVIDIA GPU Operator to manage vGPUs for your virtual machines (VMs) on the cluster nodes. You must add these devices to the <code>HyperConverged</code> custom resource (CR) so that OpenShift Virtualization can discover and make them available to virtual machines.</p>
+      <p>A mediated device is a physical device that is divided into one or more virtual devices. vGPUs are a type of mediated device (mdev) where the performance of the physical GPU is divided among the virtual devices. You can assign mediated devices to one or more virtual machines (VMs), but the number of guests must be compatible with your GPU. Some GPUs do not support multiple guests.</p>
+      <h3 id="virt-adding-kernel-arguments-enable-IOMMU_virt-configuring-virtual-gpus" class="group scroll-mt-20">Adding kernel arguments to enable the IOMMU driver<a href="#virt-adding-kernel-arguments-enable-IOMMU_virt-configuring-virtual-gpus" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You must enable the Input-Output Memory Management Unit (IOMMU) driver before you can configure mediated devices. To enable the IOMMU driver in the kernel, create the <code>MachineConfig</code> object and add the kernel arguments.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have cluster administrator permissions.</li>
+      <li>
+      Your CPU hardware is Intel or AMD.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Enabling IOMMU is not required on <code>s390x</code> architecture.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>You enabled Intel Virtualization Technology for Directed I/O extensions or AMD IOMMU in the BIOS.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>MachineConfig</code> object that identifies the kernel argument. The following example shows a kernel argument for an Intel CPU.
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: worker\n  name: 100-worker-iommu\nspec:\n  config:\n    ignition:\n      version: 3.2.0\n  kernelArguments:\n      - intel_iommu=on\n# ..."} lang="yaml" />
+      <ul>
+      <li><code>metadata.labels.machineconfiguration.openshift.io/role</code> specifies that the new kernel argument is applied only to worker nodes.</li>
+      <li><code>metadata.name</code> specifies the ranking of this kernel argument (100) among the machine configs and its purpose. If you have an AMD CPU, specify the kernel argument as <code>amd_iommu=on</code>.</li>
+      <li><code>spec.kernelArguments</code> specifies the kernel argument as <code>intel_iommu</code> for an Intel CPU.</li>
+      </ul>
+      </li>
+      <li>
+      Create the new <code>MachineConfig</code> object:
+      <CodeBlock code={"$ oc create -f 100-worker-kernel-arg-iommu.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the new <code>MachineConfig</code> object was added by entering the following command and observing the output:
+      <CodeBlock code={"$ oc get MachineConfig"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"NAME                                       IGNITIONVERSION                    AGE\n00-master                                   3.5.0                             164m\n00-worker                                   3.5.0                             164m\n01-master-container-runtime                 3.5.0                             164m\n01-master-kubelet                           3.5.0                             164m\n01-worker-container-runtime                 3.5.0                             164m\n01-worker-kubelet                           3.5.0                             164m\n100-master-chrony-configuration             3.5.0                             169m\n100-master-set-core-user-password           3.5.0                             169m\n100-worker-chrony-configuration             3.5.0                             169m\n100-worker-iommu                            3.5.0                             14s"} lang="terminal" />
+      </li>
+      <li>
+      Verify that IOMMU is enabled at the operating system (OS) level by entering the following command:
+      <CodeBlock code={"$ dmesg | grep -i iommu"} lang="terminal" />
+      <ul>
+      <li>
+      If IOMMU is enabled, output is displayed as shown in the following example:
+      <p>Example output:</p>
+      <CodeBlock code={"Intel: [ 0.000000] DMAR: Intel(R) IOMMU Driver\nAMD: [ 0.000000] AMD-Vi: IOMMU Initialized"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <h2 id="using-nvidia-gpu_virt-configuring-virtual-gpus" class="group scroll-mt-20">Using the NVIDIA GPU Operator<a href="#using-nvidia-gpu_virt-configuring-virtual-gpus" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the NVIDIA GPU Operator to provision worker nodes for running GPU-accelerated virtual machines (VMs) in OpenShift Virtualization.</p>
+      <p>The NVIDIA GPU Operator manages NVIDIA GPU resources in an OpenShift Container Platform cluster and automates tasks when preparing nodes for GPU workloads. The NVIDIA GPU Operator can also facilitate provisioning complex artificial intelligence and machine learning (AI/ML) workloads.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can get support for the NVIDIA GPU Operator through NVIDIA. For more information, see "Obtaining Support from NVIDIA" in the Red Hat Knowledgebase.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Configure your <code>ClusterPolicy</code> manifest. Your <code>ClusterPolicy</code> manifest must match the provided example:
+      <CodeBlock code={"apiVersion: nvidia.com/v1\nkind: ClusterPolicy\nmetadata:\n  name: gpu-cluster-policy\nspec:\n  daemonsets:\n    updateStrategy: RollingUpdate\n  dcgm:\n    enabled: true\n  dcgmExporter: {}\n  devicePlugin: {}\n  driver:\n    enabled: false\n    kernelModuleType: auto\n  gfd: {}\n  mig:\n    strategy: single\n  migManager:\n    enabled: true\n  nodeStatusExporter:\n    enabled: true\n  operator:\n    defaultRuntime: crio\n    initContainer: {}\n    runtimeClass: nvidia\n    use_ocp_driver_toolkit: true\n  sandboxDevicePlugin:\n    enabled: true\n  sandboxWorkloads:\n    defaultWorkload: vm-vgpu\n    enabled: true\n  toolkit:\n    enabled: true\n    installDir: /usr/local/nvidia\n  validator:\n    plugin:\n      env:\n      - name: WITH_WORKLOAD\n        value: \"true\"\n  vfioManager:\n    enabled: true\n  vgpuDeviceManager:\n    config:\n      default: default\n      name: vgpu-devices-config\n    enabled: true\n  vgpuManager:\n    enabled: true\n    image: <vgpu_image_name>\n    repository: <vgpu_container_registry>\n    version: <nvidia_vgpu_manager_version>"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;vgpu_image_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the vGPU image name.</p></dd>
+      <dt class="font-semibold"><code>&lt;vgpu_container_registry&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the vGPU container registry value.</p></dd>
+      <dt class="font-semibold"><code>&lt;nvidia_vgpu_manager_version&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the version of the vGPU driver you have downloaded from the NVIDIA website and used to build the image.</p></dd>
+      </dl>
+      </li>
+      <li>Use the NVIDIA GPU Operator to configure mediated devices. For more information see <a href="https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/openshift-virtualization.html">NVIDIA GPU Operator with OpenShift Virtualization</a>.</li>
+      </ol>
+      <h2 id="virt-label-nodes-with-mig-backed-profile_virt-configuring-virtual-gpus" class="group scroll-mt-20">Labeling nodes with a MIG-backed vGPU profile<a href="#virt-label-nodes-with-mig-backed-profile_virt-configuring-virtual-gpus" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you have GPUs that support NVIDIA Multi-Instance GPU (MIG), you can select a MIG-backed vGPU instance instead of time-sliced vGPU instances. When you use MIG, you give a partition of dedicated hardware to selected VMs.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have configured vGPU support.</li>
+      <li>You have the NVIDIA GPU Operator version 25.10 or higher.</li>
+      <li>You are using the NVIDIA AI Enterprise (AIE) vGPU Manager image.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Label the node with the name of the MIG-backed vGPU profile:
+      <CodeBlock code={"$ oc label node <node> --overwrite nvidia.com/vgpu.config=<profile>"} lang="terminal" />
+      <ul>
+      <li>Replace <code>&lt;node&gt;</code> with the fully qualified domain name (FQDN) of your compute node.</li>
+      <li>
+      Replace <code>&lt;profile&gt;</code> with a supported MIG profile.
+      <p>Example command:</p>
+      <CodeBlock code={"$ oc label node worker_1 --overwrite nvidia.com/vgpu.config=A30-1-6C"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="virt-creating-exposing-mediated-devices_virt-configuring-virtual-gpus" class="group scroll-mt-20">Creating and exposing mediated devices<a href="#virt-creating-exposing-mediated-devices_virt-configuring-virtual-gpus" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">As an administrator, you can create mediated devices and expose them to the cluster by editing the <code>HyperConverged</code> custom resource (CR). Before you edit the CR, explore a worker node to find the configuration values that are specific to your hardware devices.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You enabled the Input-Output Memory Management Unit (IOMMU) driver.</li>
+      <li>
+      If your hardware vendor provides drivers, you installed them on the nodes where you want to create mediated devices.
+      <ul><li>If you use NVIDIA cards, you <a href="https://docs.nvidia.com/datacenter/cloud-native/openshift/latest/openshift-virtualization.html">installed the NVIDIA GRID driver</a>.</li></ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Identify the name selector and resource name values for the mediated devices by exploring a worker node:
+      <ol>
+      <li>
+      Start a debugging session with the worker node by using the <code>oc debug</code> command. For example:
+      <CodeBlock code={"$ oc debug node/node-11.redhat.com"} lang="terminal" />
+      </li>
+      <li>
+      Change the root directory of the shell process to the file system of the host node by running the following command:
+      <CodeBlock code={"# chroot /host"} lang="terminal" />
+      </li>
+      <li>
+      Navigate to the <code>mdev_bus</code> directory and view its contents. Each subdirectory name is a PCI address of a physical GPU. For example:
+      <CodeBlock code={"# cd sys/class/mdev_bus && ls"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"0000:4b:00.4"} lang="terminal" />
+      </li>
+      <li>
+      Go to the directory for your physical device and list the supported mediated device types as defined by the hardware vendor. For example:
+      <CodeBlock code={"# cd 0000:4b:00.4 && ls mdev_supported_types"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"nvidia-742  nvidia-744\tnvidia-746  nvidia-748\tnvidia-750  nvidia-752\nnvidia-743  nvidia-745\tnvidia-747  nvidia-749\tnvidia-751  nvidia-753"} lang="terminal" />
+      </li>
+      <li>
+      Select the mediated device type that you want to use and identify its name selector value by viewing the contents of its <code>name</code> file. For example:
+      <CodeBlock code={"# cat nvidia-745/name"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"NVIDIA A2-2Q"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Open the <code>HyperConverged</code> CR in your default editor by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Create and expose the mediated devices by updating the configuration:
+      <ol>
+      <li>
+      Expose the mediated devices to the cluster by adding the <code>mdevNameSelector</code> and <code>resourceName</code> values to the <code>spec.permittedHostDevices.mediatedDevices</code> stanza. The <code>resourceName</code> value is based on the <code>mdevNameSelector</code> value, but you use underscores instead of spaces.
+      <p>Example <code>HyperConverged</code> CR:</p>
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  permittedHostDevices:\n    mediatedDevices:\n    - mdevNameSelector: NVIDIA A2-2Q\n      resourceName: nvidia.com/NVIDIA_A2-2Q\n      externalResourceProvider: true\n    - mdevNameSelector: NVIDIA A2-4Q\n      resourceName: nvidia.com/NVIDIA_A2-4Q\n      externalResourceProvider: true\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>mdevNameSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the mediated devices that map to this value on the host.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>resourceName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the matching resource name that is allocated on the node.</p></dd>
+      <dt class="font-semibold"><code>externalResourceProvider</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the device is handled by an external provider, such as the NVIDIA GPU Operator.</p></dd>
+      </dl>
+      <ol><li>Save your changes and exit the editor.</li></ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Confirm that the virtual GPU is attached to the node by running the following command:
+      <CodeBlock code={"$ oc get node <node_name> -o json \\\n  | jq '.status.allocatable \\\n  | with_entries(select(.key | startswith(\"nvidia.com/\"))) \\\n  | with_entries(select(.value != \"0\"))'"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="virt-removing-mediated-device-from-cluster-cli_virt-configuring-virtual-gpus" class="group scroll-mt-20">Removing mediated devices from the cluster<a href="#virt-removing-mediated-device-from-cluster-cli_virt-configuring-virtual-gpus" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">As a cluster administrator you can remove mediated devices from the cluster so that you can reallocate GPU hardware. To remove a mediated device from the cluster, delete the information for that device from the <code>HyperConverged</code> CR.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>HyperConverged</code> CR in your default editor by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Remove the device information from the <code>spec.permittedHostDevices</code> stanza of the <code>HyperConverged</code> CR. For example:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  permittedHostDevices:\n    mediatedDevices:\n    - mdevNameSelector: GRID T4-2Q\n      resourceName: nvidia.com/GRID_T4-2Q\n      externalResourceProvider: true"} lang="yaml" />
+      <ul><li>To remove the <code>GRID T4-2Q</code> device, delete the <code>mdevNameSelector</code> field and its corresponding <code>resourceName</code> field.</li></ul>
+      </li>
+      <li>Save your changes and exit the editor.</li>
+      </ol>
+      <h2 id="virt-assigning-mdev-vm-cli_virt-configuring-virtual-gpus" class="group scroll-mt-20">Assigning a vGPU to a VM by using the CLI<a href="#virt-assigning-mdev-vm-cli_virt-configuring-virtual-gpus" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Assign mediated devices such as virtual GPUs (vGPUs) to virtual machines (VMs).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The mediated device is configured in the <code>HyperConverged</code> custom resource.</li>
+      <li>The virtual machine (VM) is stopped.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Assign the mediated device to a VM by editing the <code>spec.domain.devices.gpus</code> stanza of the <code>VirtualMachine</code> manifest.
+      <p>Example virtual machine manifest:</p>
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nspec:\n  domain:\n    devices:\n      gpus:\n      - deviceName: nvidia.com/TU104GL_Tesla_T4\n        name: gpu1\n      - deviceName: nvidia.com/GRID_T4-2Q\n        name: gpu2"} lang="yaml" />
+      <ul>
+      <li><code>spec.template.spec.domain.devices.gpus.deviceName</code> specifies the resource name associated with the mediated device.</li>
+      <li><code>spec.template.spec.domain.devices.gpus.name</code> specifies a name to identify the device on the VM.</li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that the device is available from the virtual machine, run the following command, substituting <code>&lt;device_name&gt;</code> with the <code>deviceName</code> value from the <code>VirtualMachine</code> manifest:
+      <CodeBlock code={"$ lspci -nnk | grep <device_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="virt-assigning-vgpu-vm-web_virt-configuring-virtual-gpus" class="group scroll-mt-20">Assigning a vGPU to a VM by using the web console<a href="#virt-assigning-vgpu-vm-web_virt-configuring-virtual-gpus" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can assign virtual GPUs to virtual machines by using the OpenShift Container Platform web console.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can add hardware devices to virtual machines created from customized templates or a YAML file. You cannot add devices to pre-supplied boot source templates for specific operating systems.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>
+      The vGPU is configured as a mediated device in your cluster.
+      <ul><li>To view the devices that are connected to your cluster, click <strong>Compute</strong> -&gt; <strong>Hardware Devices</strong> from the side menu.</li></ul>
+      </li>
+      <li>The VM is stopped.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform web console, click <strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> from the side menu.</li>
+      <li>Select the VM that you want to assign the device to.</li>
+      <li>On the <strong>Details</strong> tab, click <strong>GPU devices</strong>.</li>
+      <li>Click <strong>Add GPU device</strong>.</li>
+      <li>Enter an identifying value in the <strong>Name</strong> field.</li>
+      <li>From the <strong>Device name</strong> list, select the device that you want to add to the VM.</li>
+      <li>Click <strong>Save</strong>.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>To confirm that the devices were added to the VM, click the <strong>YAML</strong> tab and review the <code>VirtualMachine</code> configuration. Mediated devices are added to the <code>spec.domain.devices</code> stanza.</li></ul>
       <h2 id="additional-resources_virt-configuring-virtual-gpus" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-configuring-virtual-gpus" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/sect-troubleshooting-enabling_intel_vt_x_and_amd_v_virtualization_hardware_extensions_in_bios">Enabling Intel VT-X and AMD-V Virtualization Hardware Extensions in BIOS</a></li>

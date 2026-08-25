@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"overview-of-authentication-authorization","text":"Overview of authentication and authorization"}];
+const headings = [{"depth":1,"slug":"overview-of-authentication-authorization","text":"Overview of authentication and authorization"},{"depth":2,"slug":"openshift-auth-common-terms_overview-of-authentication-authorization","text":"Glossary of common terms for OpenShift Container Platform authentication and authorization"},{"depth":2,"slug":"authentication-overview_overview-of-authentication-authorization","text":"About authentication in OpenShift Container Platform"},{"depth":2,"slug":"authorization-overview_overview-of-authentication-authorization","text":"About authorization in OpenShift Container Platform"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/authentication";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +42,7 @@ const pageCategory = null;
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overview of authentication and authorization {#overview-of-authentication-authorization}\n\nLearn about authentication and authorization in OpenShift Container Platform, and how you can control access to your cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overview of authentication and authorization {#overview-of-authentication-authorization}\n\nLearn about authentication and authorization in OpenShift Container Platform, and how you can control access to your cluster.\n\n## Glossary of common terms for OpenShift Container Platform authentication and authorization {#openshift-auth-common-terms_overview-of-authentication-authorization}\n\nThis glossary defines common terms that are used in OpenShift Container Platform authentication and authorization.\n\nauthentication\n:   An authentication determines access to an OpenShift Container Platform cluster and ensures only authenticated users access the OpenShift Container Platform cluster.\n\nauthorization\n:   Authorization determines whether the identified user has permissions to perform the requested action.\n\nbearer token\n:   Bearer token is used to authenticate to API with the header `Authorization: Bearer <token>`.\n\nCloud Credential Operator\n:   The Cloud Credential Operator (CCO) manages cloud provider credentials as custom resource definitions (CRDs).\n\nconfig map\n:   A config map provides a way to inject configuration data into the pods. You can reference the data stored in a config map in a volume of type `ConfigMap`. Applications running in a pod can use this data.\n\ncontainers\n:   Lightweight and executable images that consist of software and all its dependencies. Because containers virtualize the operating system, you can run containers in a data center, public or private cloud, or your local host.\n\nCustom Resource (CR)\n:   A CR is an extension of the Kubernetes API.\n\ngroup\n:   A group is a set of users. A group is useful for granting permissions to multiple users one time.\n\nHTPasswd\n:   HTPasswd updates the files that store usernames and password for authentication of HTTP users.\n\nKeystone\n:   Keystone is an Red Hat OpenStack Platform (RHOSP) project that provides identity, token, catalog, and policy services.\n\nLightweight directory access protocol (LDAP)\n:   LDAP is a protocol that queries user information.\n\nmanual mode\n:   In manual mode, a user manages cloud credentials instead of the Cloud Credential Operator (CCO).\n\nmint mode\n:   In mint mode, the Cloud Credential Operator (CCO) uses the provided administrator-level cloud credential to create new credentials for components in the cluster with only the specific permissions that are required.\n\n    > [!NOTE]\n    > Mint mode is the default and the preferred setting for the CCO to use on the platforms for which it is supported.\n\nnamespace\n:   A namespace isolates specific system resources that are visible to all processes. Inside a namespace, only processes that are members of that namespace can see those resources.\n\nnode\n:   A node is a worker machine in the OpenShift Container Platform cluster. A node is either a virtual machine (VM) or a physical machine.\n\nOAuth client\n:   OAuth client is used to get a bearer token.\n\nOAuth server\n:   The OpenShift Container Platform control plane includes a built-in OAuth server that determines the user’s identity from the configured identity provider and creates an access token.\n\nOpenID Connect\n:   The OpenID Connect is a protocol to authenticate the users to use single sign-on (SSO) to access sites that use OpenID Providers.\n\npassthrough mode\n:   In passthrough mode, the Cloud Credential Operator (CCO) passes the provided cloud credential to the components that request cloud credentials.\n\npod\n:   A pod is the smallest logical unit in Kubernetes. A pod consists of one or more containers to run in a worker node.\n\nregular users\n:   Users that are created automatically in the cluster upon first login or via the API.\n\nrequest header\n:   A request header is an HTTP header that is used to provide information about HTTP request context, so that the server can track the response of the request.\n\nrole-based access control (RBAC)\n:   A key security control to ensure that cluster users and workloads have access to only the resources required to execute their roles.\n\nservice accounts\n:   Service accounts are used by the cluster components or applications.\n\nsystem users\n:   Users that are created automatically when the cluster is installed.\n\nusers\n:   Users is an entity that can make requests to API.\n\n## About authentication in OpenShift Container Platform {#authentication-overview_overview-of-authentication-authorization}\n\nTo control access to an OpenShift Container Platform cluster, a cluster administrator\n\ncan configure [user authentication](/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication) and ensure only approved users access the cluster.\n\nTo interact with an OpenShift Container Platform cluster, users must first authenticate to the OpenShift Container Platform API in some way. You can authenticate by providing an [OAuth access token or an X.509 client certificate](/openshift-docs-markdown/authentication/understanding-authentication#rbac-api-authentication_understanding-authentication) in your requests to the OpenShift Container Platform API.\n\n> [!NOTE]\n> If you do not present a valid access token or certificate, your request is unauthenticated and you receive an HTTP 401 error.\n\nAn administrator can configure authentication through the following tasks:\n\n- Configuring an identity provider: You can define any [supported identity provider in OpenShift Container Platform](/openshift-docs-markdown/authentication/understanding-identity-provider#supported-identity-providers_understanding-identity-provider) and add it to your cluster.\n- [Configuring the internal OAuth server](/openshift-docs-markdown/authentication/configuring-internal-oauth#configuring-internal-oauth): The OpenShift Container Platform control plane includes a built-in OAuth server that determines the user’s identity from the configured identity provider and creates an access token. You can configure the token duration and inactivity timeout, and customize the internal OAuth server URL.\n\n  > [!NOTE]\n  > Users can [view and manage OAuth tokens owned by them](/openshift-docs-markdown/authentication/managing-oauth-access-tokens#managing-oauth-access-tokens).\n- Registering an OAuth client: OpenShift Container Platform includes several [default OAuth clients](/openshift-docs-markdown/authentication/configuring-oauth-clients#oauth-default-clients_configuring-oauth-clients). You can [register and configure additional OAuth clients](/openshift-docs-markdown/authentication/configuring-oauth-clients#oauth-register-additional-client_configuring-oauth-clients).\n\n  > [!NOTE]\n  > When users send a request for an OAuth token, they must specify either a default or custom OAuth client that receives and uses the token.\n- Managing cloud provider credentials using the [Cloud Credentials Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator): Cluster components use cloud provider credentials to get permissions required to perform cluster-related tasks.\n- Impersonating a system admin user: You can grant cluster administrator permissions to a user by [impersonating a system admin user](/openshift-docs-markdown/authentication/impersonating-system-admin#impersonating-system-admin).\n\n## About authorization in OpenShift Container Platform {#authorization-overview_overview-of-authentication-authorization}\n\nAuthorization involves determining whether the identified user has permissions to perform the requested action.\n\nAdministrators can define permissions and assign them to users using the [RBAC objects, such as rules, roles, and bindings](/openshift-docs-markdown/authentication/using-rbac#authorization-overview_using-rbac). To understand how authorization works in OpenShift Container Platform, see [Evaluating authorization](/openshift-docs-markdown/authentication/using-rbac#evaluating-authorization_using-rbac).\n\nYou can also control access to an OpenShift Container Platform cluster through [projects and namespaces](/openshift-docs-markdown/authentication/using-rbac#rbac-projects-namespaces_using-rbac).\n\nAlong with controlling user access to a cluster, you can also control the actions a pod can perform and the resources it can access using [security context constraints (SCCs)](/openshift-docs-markdown/authentication/managing-security-context-constraints#managing-pod-security-policies).\n\nYou can manage authorization for OpenShift Container Platform through the following tasks:\n\n- Viewing [local](/openshift-docs-markdown/authentication/using-rbac#viewing-local-roles_using-rbac) and [cluster](/openshift-docs-markdown/authentication/using-rbac#viewing-cluster-roles_using-rbac) roles and bindings.\n- Creating a [local role](/openshift-docs-markdown/authentication/using-rbac#creating-local-role_using-rbac) and assigning it to a user or group.\n- Creating a cluster role and assigning it to a user or group: OpenShift Container Platform includes a set of [default cluster roles](/openshift-docs-markdown/authentication/using-rbac#default-roles_using-rbac). You can create additional [cluster roles](/openshift-docs-markdown/authentication/using-rbac#creating-cluster-role_using-rbac) and [add them to a user or group](/openshift-docs-markdown/authentication/using-rbac#adding-roles_using-rbac).\n- Creating a cluster-admin user: By default, your cluster has only one cluster administrator called `kubeadmin`. You can [create another cluster administrator](/openshift-docs-markdown/authentication/using-rbac#creating-cluster-admin_using-rbac). Before creating a cluster administrator, ensure that you have configured an identity provider.\n\n  > [!NOTE]\n  > After creating the cluster admin user, [delete the existing kubeadmin user](/openshift-docs-markdown/authentication/remove-kubeadmin#removing-kubeadmin_removing-kubeadmin) to improve cluster security.\n- Creating service accounts: [Service accounts](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#service-accounts-overview_understanding-service-accounts) provide a flexible way to control API access without sharing a regular user’s credentials. A user can [create and use a service account in applications](/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#service-accounts-managing_understanding-service-accounts) and also as [an OAuth client](/openshift-docs-markdown/authentication/using-service-accounts-as-oauth-client#using-service-accounts-as-oauth-client).\n- [Scoping tokens](/openshift-docs-markdown/authentication/tokens-scoping#tokens-scoping): A scoped token is a token that identifies as a specific user who can perform only specific operations. You can create scoped tokens to delegate some of your permissions to another user or a service account.\n- Syncing LDAP groups: You can manage user groups in one place by [syncing the groups stored in an LDAP server](/openshift-docs-markdown/authentication/ldap-syncing#ldap-syncing) with the OpenShift Container Platform user groups.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +94,128 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="overview-of-authentication-authorization" class="group scroll-mt-20">Overview of authentication and authorization<a href="#overview-of-authentication-authorization" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Learn about authentication and authorization in OpenShift Container Platform, and how you can control access to your cluster.</p>
-      <p class="/modules/authentication-authorization-common-terms.md"></p>
-      <p class="/modules/authentication-overview.md"></p>
-      <p class="/modules/authorization-overview.md"></p>
+      <h2 id="openshift-auth-common-terms_overview-of-authentication-authorization" class="group scroll-mt-20">Glossary of common terms for OpenShift Container Platform authentication and authorization<a href="#openshift-auth-common-terms_overview-of-authentication-authorization" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">This glossary defines common terms that are used in OpenShift Container Platform authentication and authorization.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">authentication</dt>
+      <dd class="ml-6 text-muted-foreground"><p>An authentication determines access to an OpenShift Container Platform cluster and ensures only authenticated users access the OpenShift Container Platform cluster.</p></dd>
+      <dt class="font-semibold">authorization</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Authorization determines whether the identified user has permissions to perform the requested action.</p></dd>
+      <dt class="font-semibold">bearer token</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Bearer token is used to authenticate to API with the header <code>Authorization: Bearer &lt;token&gt;</code>.</p></dd>
+      <dt class="font-semibold">Cloud Credential Operator</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The Cloud Credential Operator (CCO) manages cloud provider credentials as custom resource definitions (CRDs).</p></dd>
+      <dt class="font-semibold">config map</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A config map provides a way to inject configuration data into the pods. You can reference the data stored in a config map in a volume of type <code>ConfigMap</code>. Applications running in a pod can use this data.</p></dd>
+      <dt class="font-semibold">containers</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Lightweight and executable images that consist of software and all its dependencies. Because containers virtualize the operating system, you can run containers in a data center, public or private cloud, or your local host.</p></dd>
+      <dt class="font-semibold">Custom Resource (CR)</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A CR is an extension of the Kubernetes API.</p></dd>
+      <dt class="font-semibold">group</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A group is a set of users. A group is useful for granting permissions to multiple users one time.</p></dd>
+      <dt class="font-semibold">HTPasswd</dt>
+      <dd class="ml-6 text-muted-foreground"><p>HTPasswd updates the files that store usernames and password for authentication of HTTP users.</p></dd>
+      <dt class="font-semibold">Keystone</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Keystone is an Red Hat OpenStack Platform (RHOSP) project that provides identity, token, catalog, and policy services.</p></dd>
+      <dt class="font-semibold">Lightweight directory access protocol (LDAP)</dt>
+      <dd class="ml-6 text-muted-foreground"><p>LDAP is a protocol that queries user information.</p></dd>
+      <dt class="font-semibold">manual mode</dt>
+      <dd class="ml-6 text-muted-foreground"><p>In manual mode, a user manages cloud credentials instead of the Cloud Credential Operator (CCO).</p></dd>
+      <dt class="font-semibold">mint mode</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>In mint mode, the Cloud Credential Operator (CCO) uses the provided administrator-level cloud credential to create new credentials for components in the cluster with only the specific permissions that are required.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Mint mode is the default and the preferred setting for the CCO to use on the platforms for which it is supported.</p>
+        </AlertDescription>
+      </Alert>
+      </dd>
+      <dt class="font-semibold">namespace</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A namespace isolates specific system resources that are visible to all processes. Inside a namespace, only processes that are members of that namespace can see those resources.</p></dd>
+      <dt class="font-semibold">node</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A node is a worker machine in the OpenShift Container Platform cluster. A node is either a virtual machine (VM) or a physical machine.</p></dd>
+      <dt class="font-semibold">OAuth client</dt>
+      <dd class="ml-6 text-muted-foreground"><p>OAuth client is used to get a bearer token.</p></dd>
+      <dt class="font-semibold">OAuth server</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The OpenShift Container Platform control plane includes a built-in OAuth server that determines the user’s identity from the configured identity provider and creates an access token.</p></dd>
+      <dt class="font-semibold">OpenID Connect</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The OpenID Connect is a protocol to authenticate the users to use single sign-on (SSO) to access sites that use OpenID Providers.</p></dd>
+      <dt class="font-semibold">passthrough mode</dt>
+      <dd class="ml-6 text-muted-foreground"><p>In passthrough mode, the Cloud Credential Operator (CCO) passes the provided cloud credential to the components that request cloud credentials.</p></dd>
+      <dt class="font-semibold">pod</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A pod is the smallest logical unit in Kubernetes. A pod consists of one or more containers to run in a worker node.</p></dd>
+      <dt class="font-semibold">regular users</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Users that are created automatically in the cluster upon first login or via the API.</p></dd>
+      <dt class="font-semibold">request header</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A request header is an HTTP header that is used to provide information about HTTP request context, so that the server can track the response of the request.</p></dd>
+      <dt class="font-semibold">role-based access control (RBAC)</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A key security control to ensure that cluster users and workloads have access to only the resources required to execute their roles.</p></dd>
+      <dt class="font-semibold">service accounts</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Service accounts are used by the cluster components or applications.</p></dd>
+      <dt class="font-semibold">system users</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Users that are created automatically when the cluster is installed.</p></dd>
+      <dt class="font-semibold">users</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Users is an entity that can make requests to API.</p></dd>
+      </dl>
+      <h2 id="authentication-overview_overview-of-authentication-authorization" class="group scroll-mt-20">About authentication in OpenShift Container Platform<a href="#authentication-overview_overview-of-authentication-authorization" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>To control access to an OpenShift Container Platform cluster, a cluster administrator</p>
+      <p class="_abstract">can configure <a href="/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication">user authentication</a> and ensure only approved users access the cluster.</p>
+      <p>To interact with an OpenShift Container Platform cluster, users must first authenticate to the OpenShift Container Platform API in some way. You can authenticate by providing an <a href="/openshift-docs-markdown/authentication/understanding-authentication#rbac-api-authentication_understanding-authentication">OAuth access token or an X.509 client certificate</a> in your requests to the OpenShift Container Platform API.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you do not present a valid access token or certificate, your request is unauthenticated and you receive an HTTP 401 error.</p>
+        </AlertDescription>
+      </Alert>
+      <p>An administrator can configure authentication through the following tasks:</p>
+      <ul>
+      <li>Configuring an identity provider: You can define any <a href="/openshift-docs-markdown/authentication/understanding-identity-provider#supported-identity-providers_understanding-identity-provider">supported identity provider in OpenShift Container Platform</a> and add it to your cluster.</li>
+      <li>
+      <a href="/openshift-docs-markdown/authentication/configuring-internal-oauth#configuring-internal-oauth">Configuring the internal OAuth server</a>: The OpenShift Container Platform control plane includes a built-in OAuth server that determines the user’s identity from the configured identity provider and creates an access token. You can configure the token duration and inactivity timeout, and customize the internal OAuth server URL.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Users can <a href="/openshift-docs-markdown/authentication/managing-oauth-access-tokens#managing-oauth-access-tokens">view and manage OAuth tokens owned by them</a>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Registering an OAuth client: OpenShift Container Platform includes several <a href="/openshift-docs-markdown/authentication/configuring-oauth-clients#oauth-default-clients_configuring-oauth-clients">default OAuth clients</a>. You can <a href="/openshift-docs-markdown/authentication/configuring-oauth-clients#oauth-register-additional-client_configuring-oauth-clients">register and configure additional OAuth clients</a>.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When users send a request for an OAuth token, they must specify either a default or custom OAuth client that receives and uses the token.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Managing cloud provider credentials using the <a href="/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator">Cloud Credentials Operator</a>: Cluster components use cloud provider credentials to get permissions required to perform cluster-related tasks.</li>
+      <li>Impersonating a system admin user: You can grant cluster administrator permissions to a user by <a href="/openshift-docs-markdown/authentication/impersonating-system-admin#impersonating-system-admin">impersonating a system admin user</a>.</li>
+      </ul>
+      <h2 id="authorization-overview_overview-of-authentication-authorization" class="group scroll-mt-20">About authorization in OpenShift Container Platform<a href="#authorization-overview_overview-of-authentication-authorization" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Authorization involves determining whether the identified user has permissions to perform the requested action.</p>
+      <p>Administrators can define permissions and assign them to users using the <a href="/openshift-docs-markdown/authentication/using-rbac#authorization-overview_using-rbac">RBAC objects, such as rules, roles, and bindings</a>. To understand how authorization works in OpenShift Container Platform, see <a href="/openshift-docs-markdown/authentication/using-rbac#evaluating-authorization_using-rbac">Evaluating authorization</a>.</p>
+      <p>You can also control access to an OpenShift Container Platform cluster through <a href="/openshift-docs-markdown/authentication/using-rbac#rbac-projects-namespaces_using-rbac">projects and namespaces</a>.</p>
+      <p>Along with controlling user access to a cluster, you can also control the actions a pod can perform and the resources it can access using <a href="/openshift-docs-markdown/authentication/managing-security-context-constraints#managing-pod-security-policies">security context constraints (SCCs)</a>.</p>
+      <p>You can manage authorization for OpenShift Container Platform through the following tasks:</p>
+      <ul>
+      <li>Viewing <a href="/openshift-docs-markdown/authentication/using-rbac#viewing-local-roles_using-rbac">local</a> and <a href="/openshift-docs-markdown/authentication/using-rbac#viewing-cluster-roles_using-rbac">cluster</a> roles and bindings.</li>
+      <li>Creating a <a href="/openshift-docs-markdown/authentication/using-rbac#creating-local-role_using-rbac">local role</a> and assigning it to a user or group.</li>
+      <li>Creating a cluster role and assigning it to a user or group: OpenShift Container Platform includes a set of <a href="/openshift-docs-markdown/authentication/using-rbac#default-roles_using-rbac">default cluster roles</a>. You can create additional <a href="/openshift-docs-markdown/authentication/using-rbac#creating-cluster-role_using-rbac">cluster roles</a> and <a href="/openshift-docs-markdown/authentication/using-rbac#adding-roles_using-rbac">add them to a user or group</a>.</li>
+      <li>
+      Creating a cluster-admin user: By default, your cluster has only one cluster administrator called <code>kubeadmin</code>. You can <a href="/openshift-docs-markdown/authentication/using-rbac#creating-cluster-admin_using-rbac">create another cluster administrator</a>. Before creating a cluster administrator, ensure that you have configured an identity provider.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>After creating the cluster admin user, <a href="/openshift-docs-markdown/authentication/remove-kubeadmin#removing-kubeadmin_removing-kubeadmin">delete the existing kubeadmin user</a> to improve cluster security.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Creating service accounts: <a href="/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#service-accounts-overview_understanding-service-accounts">Service accounts</a> provide a flexible way to control API access without sharing a regular user’s credentials. A user can <a href="/openshift-docs-markdown/authentication/understanding-and-creating-service-accounts#service-accounts-managing_understanding-service-accounts">create and use a service account in applications</a> and also as <a href="/openshift-docs-markdown/authentication/using-service-accounts-as-oauth-client#using-service-accounts-as-oauth-client">an OAuth client</a>.</li>
+      <li><a href="/openshift-docs-markdown/authentication/tokens-scoping#tokens-scoping">Scoping tokens</a>: A scoped token is a token that identifies as a specific user who can perform only specific operations. You can create scoped tokens to delegate some of your permissions to another user or a service account.</li>
+      <li>Syncing LDAP groups: You can manage user groups in one place by <a href="/openshift-docs-markdown/authentication/ldap-syncing#ldap-syncing">syncing the groups stored in an LDAP server</a> with the OpenShift Container Platform user groups.</li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

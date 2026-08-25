@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"crd-upgrade-safety","text":"Custom resource definition (CRD) upgrade safety"}];
+const headings = [{"depth":1,"slug":"crd-upgrade-safety","text":"Custom resource definition (CRD) upgrade safety"},{"depth":2,"slug":"prohibited-crd-upgrades_crd-upgrade-safety","text":"Prohibited CRD upgrade changes"},{"depth":2,"slug":"allowed-crd-changes_crd-upgrade-safety","text":"Allowed CRD upgrade changes"},{"depth":2,"slug":"disabling-crd-preflight_crd-upgrade-safety","text":"Disabling the CRD upgrade safety preflight check"},{"depth":2,"slug":"examples-unsafe_crd-upgrade-safety","text":"Examples of unsafe CRD changes"},{"depth":3,"slug":"scope-change_crd-upgrade-safety","text":"Scope change"},{"depth":3,"slug":"stored-version-removal_crd-upgrade-safety","text":"Removal of a stored version"},{"depth":3,"slug":"removal-existing-field_crd-upgrade-safety","text":"Removal of an existing field"},{"depth":3,"slug":"addition-required-field_crd-upgrade-safety","text":"Addition of a required field"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/extensions/ce/crd-upgrade-safety";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Custom resource definition (CRD) upgrade safety";
-const description = "When you update a custom resource definition (CRD) provided by a cluster extension, {{ olmv1_first }} runs a CRD upgrade safety preflight check to ensure…" || undefined;
+const description = "When you update a custom resource definition (CRD) provided by a cluster extension, Operator Lifecycle Manager (OLM) v1 runs a CRD upgrade safety…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["extensions","extensions/ce"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Custom resource definition (CRD) upgrade safety {#crd-upgrade-safety}\n\nWhen you update a custom resource definition (CRD) provided by a cluster extension, {{ olmv1_first }} runs a CRD upgrade safety preflight check to ensure compatibility with earlier versions.\n\nThe CRD update must pass the validation checks before the change is allowed to progress on a cluster.\n\n**Additional resources**\n\n- [Updating a cluster extension](/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-updating-an-operator_managing-ce)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/ce/crd-upgrade-safety.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Custom resource definition (CRD) upgrade safety {#crd-upgrade-safety}\n\nWhen you update a custom resource definition (CRD) provided by a cluster extension, Operator Lifecycle Manager (OLM) v1 runs a CRD upgrade safety preflight check to ensure compatibility with earlier versions.\n\nThe CRD update must pass the validation checks before the change is allowed to progress on a cluster.\n\n**Additional resources**\n\n- [Updating a cluster extension](/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-updating-an-operator_managing-ce)\n\n## Prohibited CRD upgrade changes {#prohibited-crd-upgrades_crd-upgrade-safety}\n\nTo avoid making a modification that does not validate, review the custom resource definiton (CRD) changes that are blocked by the upgrade safety preflight check.\n\nThe CRD upgrade safety preflight check blocks an upgrade if it detects any of the following changes to an existing CRD:\n\n- Adding a new required field to an existing version\n- Removing an existing field from an existing version\n- Changing an existing field type in an existing version\n- Adding a default value to a field that did not previously have one\n- Changing the default value of an existing field\n- Removing the default value of an existing field\n- Adding enum restrictions to a field that did not previously have them\n- Removing existing enum values from an existing field\n- Increasing the minimum value of an existing field in an existing version\n- Decreasing the maximum value of an existing field in an existing version\n- Adding minimum or maximum constraints to a field that did not previously have them\n\n> [!NOTE]\n> Rules for minimum and maximum values apply to the `minimum`, `minLength`, `minProperties`, `minItems`, `maximum`, `maxLength`, `maxProperties`, and `maxItems` constraints.\n\nThe preflight check also blocks an upgrade for the following structural changes, which are handled by the Kubernetes API server:\n\n- Changing the CRD scope between `Cluster` and `Namespace`\n- Removing an existing stored version of the CRD\n\nIf the CRD upgrade safety preflight check detects any prohibited change, it logs an error for each violation.\n\n> [!TIP]\n> If a CRD change is neither explicitly allowed nor categorized as a known prohibited change, the preflight check blocks the upgrade and logs an \"unknown change\" error.\n\n## Allowed CRD upgrade changes {#allowed-crd-changes_crd-upgrade-safety}\n\nReference which custom resource definition (CRD) changes are compatible with earlier versions to avoid unexpected halts during the upgrade safety preflight check.\n\nThe following CRD changes are compatible with earlier versions and pass the upgrade safety preflight check:\n\n- Adding new values to an existing enum field\n- Changing an existing required field to optional in an existing version\n- Decreasing the minimum value of an existing field in an existing version\n- Increasing the maximum value of an existing field in an existing version\n- Adding a new version of the CRD without modifying existing versions\n\n## Disabling the CRD upgrade safety preflight check {#disabling-crd-preflight_crd-upgrade-safety}\n\nYou can disable the custom resource definition (CRD) upgrade safety preflight check. In the `ClusterExtension` object that provides the CRD, set the `install.preflight.crdUpgradeSafety.enforcement` field with the value of `None`.\n\n> [!WARNING]\n> Disabling the CRD upgrade safety preflight check could break backwards compatibility with stored versions of the CRD and cause other unintended consequences on the cluster.\n\nYou cannot disable individual field validators. If you disable the CRD upgrade safety preflight check, you disable all field validators.\n\n> [!NOTE]\n> If you disable the CRD upgrade safety preflight check in Operator Lifecycle Manager (OLM) v1, the Kubernetes API server still prevents the following operations:\n>\n> - Changing scope from `Cluster` to `Namespace` or from `Namespace` to `Cluster`\n> - Removing an existing stored version of the CRD\n\n**Prerequisites**\n\n- You have a cluster extension installed.\n\n**Procedure**\n\n1. Edit the `ClusterExtension` object of the CRD:\n\n   ```terminal\n   $ oc edit clusterextension <clusterextension_name>\n   ```\n2. Set the `install.preflight.crdUpgradeSafety.enforcement` field to `None`:\n\n   ```yaml {title=\"Example ClusterExtension object\"}\n   apiVersion: olm.operatorframework.io/v1\n   kind: ClusterExtension\n   metadata:\n     name: clusterextension-sample\n   spec:\n     namespace: default\n     serviceAccount:\n       name: sa-example\n     source:\n       sourceType: \"Catalog\"\n       catalog:\n         packageName: argocd-operator\n         version: 0.6.0\n     install:\n       preflight:\n         crdUpgradeSafety:\n           enforcement: None\n   ```\n\n## Examples of unsafe CRD changes {#examples-unsafe_crd-upgrade-safety}\n\nReview the example unsafe custom resource definition (CRD) changes to recognize modifications that trigger the CRD upgrade safety preflight check.\n\nThe following examples use this baseline `CustomResourceDefinition` object:\n\n```yaml {title=\"Example CRD object\"}\napiVersion: apiextensions.k8s.io/v1\nkind: CustomResourceDefinition\nmetadata:\n  annotations:\n    controller-gen.kubebuilder.io/version: v0.13.0\n  name: example.test.example.com\nspec:\n  group: test.example.com\n  names:\n    kind: Sample\n    listKind: SampleList\n    plural: samples\n    singular: sample\n  scope: Namespaced\n  versions:\n  - name: v1alpha1\n    schema:\n      openAPIV3Schema:\n        properties:\n          apiVersion:\n            type: string\n          kind:\n            type: string\n          metadata:\n            type: object\n          spec:\n            type: object\n          status:\n            type: object\n          pollInterval:\n            type: string\n        type: object\n    served: true\n    storage: true\n    subresources:\n      status: {}\n```\n\n### Scope change {#scope-change_crd-upgrade-safety}\n\nThe following example changes the `spec.scope` field from `Namespaced` to `Cluster`:\n\n```yaml {title=\"Example scope change in a CRD\"}\nspec:\n  group: test.example.com\n  names:\n    kind: Sample\n    listKind: SampleList\n    plural: samples\n    singular: sample\n  scope: Cluster\n  versions:\n  - name: v1alpha1\n```\n\n```text {title=\"Example error output\"}\nvalidating upgrade for CRD \"test.example.com\" failed: CustomResourceDefinition test.example.com failed upgrade safety validation. \"NoScopeChange\" validation failed: scope changed from \"Namespaced\" to \"Cluster\"\n```\n\n### Removal of a stored version {#stored-version-removal_crd-upgrade-safety}\n\nThe following example removes the existing stored version, `v1alpha1`:\n\n```yaml {title=\"Example removal of a stored version in a CRD\"}\nversions:\n- name: v1alpha2\n  schema:\n    openAPIV3Schema:\n      properties:\n        apiVersion:\n          type: string\n        kind:\n          type: string\n        metadata:\n          type: object\n        spec:\n          type: object\n        status:\n          type: object\n        pollInterval:\n          type: string\n      type: object\n```\n\n```text {title=\"Example error output\"}\nvalidating upgrade for CRD \"test.example.com\" failed: CustomResourceDefinition test.example.com failed upgrade safety validation. \"NoStoredVersionRemoved\" validation failed: stored version \"v1alpha1\" removed\n```\n\n### Removal of an existing field {#removal-existing-field_crd-upgrade-safety}\n\nThe following example removes the `pollInterval` property field from the `v1alpha1` schema:\n\n```yaml {title=\"Example removal of an existing field in a CRD\"}\nversions:\n- name: v1alpha1\n  schema:\n    openAPIV3Schema:\n      properties:\n        apiVersion:\n          type: string\n        kind:\n          type: string\n        metadata:\n          type: object\n        spec:\n          type: object\n        status:\n          type: object\n      type: object\n```\n\n```text {title=\"Example error output\"}\nvalidating upgrade for CRD \"test.example.com\" failed: CustomResourceDefinition test.example.com failed upgrade safety validation. \"NoExistingFieldRemoved\" validation failed: crd/test.example.com version/v1alpha1 field/^.spec.pollInterval may not be removed\n```\n\n### Addition of a required field {#addition-required-field_crd-upgrade-safety}\n\nThe following example changes the `pollInterval` property to a required field:\n\n```yaml {title=\"Example addition of a required field in a CRD\"}\nversions:\n- name: v1alpha2\n  schema:\n    openAPIV3Schema:\n      properties:\n        apiVersion:\n          type: string\n        kind:\n          type: string\n        metadata:\n          type: object\n        spec:\n          type: object\n        status:\n          type: object\n        pollInterval:\n          type: string\n      type: object\n      required:\n      - pollInterval\n```\n\n```text {title=\"Example error output\"}\nvalidating upgrade for CRD \"test.example.com\" failed: CustomResourceDefinition test.example.com failed upgrade safety validation. \"ChangeValidator\" validation failed: version \"v1alpha1\", field \"^\": new required fields added: [pollInterval]\n```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/ce/crd-upgrade-safety.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,106 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="crd-upgrade-safety" class="group scroll-mt-20">Custom resource definition (CRD) upgrade safety<a href="#crd-upgrade-safety" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>When you update a custom resource definition (CRD) provided by a cluster extension, {"{"}{"{"} olmv1_first {"}"}{"}"} runs a CRD upgrade safety preflight check to ensure compatibility with earlier versions.</p>
+      <p>When you update a custom resource definition (CRD) provided by a cluster extension, Operator Lifecycle Manager (OLM) v1 runs a CRD upgrade safety preflight check to ensure compatibility with earlier versions.</p>
       <p>The CRD update must pass the validation checks before the change is allowed to progress on a cluster.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/extensions/ce/managing-ce#olmv1-updating-an-operator_managing-ce">Updating a cluster extension</a></li></ul>
-      <p class="/modules/allowed-crd-upgrades.md"></p>
-      <p class="/modules/disabling-crd-preflight.md"></p>
-      <p class="/modules/examples-unsafe-crd-upgrades.md"></p>
+      <h2 id="prohibited-crd-upgrades_crd-upgrade-safety" class="group scroll-mt-20">Prohibited CRD upgrade changes<a href="#prohibited-crd-upgrades_crd-upgrade-safety" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To avoid making a modification that does not validate, review the custom resource definiton (CRD) changes that are blocked by the upgrade safety preflight check.</p>
+      <p>The CRD upgrade safety preflight check blocks an upgrade if it detects any of the following changes to an existing CRD:</p>
+      <ul>
+      <li>Adding a new required field to an existing version</li>
+      <li>Removing an existing field from an existing version</li>
+      <li>Changing an existing field type in an existing version</li>
+      <li>Adding a default value to a field that did not previously have one</li>
+      <li>Changing the default value of an existing field</li>
+      <li>Removing the default value of an existing field</li>
+      <li>Adding enum restrictions to a field that did not previously have them</li>
+      <li>Removing existing enum values from an existing field</li>
+      <li>Increasing the minimum value of an existing field in an existing version</li>
+      <li>Decreasing the maximum value of an existing field in an existing version</li>
+      <li>Adding minimum or maximum constraints to a field that did not previously have them</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Rules for minimum and maximum values apply to the <code>minimum</code>, <code>minLength</code>, <code>minProperties</code>, <code>minItems</code>, <code>maximum</code>, <code>maxLength</code>, <code>maxProperties</code>, and <code>maxItems</code> constraints.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The preflight check also blocks an upgrade for the following structural changes, which are handled by the Kubernetes API server:</p>
+      <ul>
+      <li>Changing the CRD scope between <code>Cluster</code> and <code>Namespace</code></li>
+      <li>Removing an existing stored version of the CRD</li>
+      </ul>
+      <p>If the CRD upgrade safety preflight check detects any prohibited change, it logs an error for each violation.</p>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>If a CRD change is neither explicitly allowed nor categorized as a known prohibited change, the preflight check blocks the upgrade and logs an "unknown change" error.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="allowed-crd-changes_crd-upgrade-safety" class="group scroll-mt-20">Allowed CRD upgrade changes<a href="#allowed-crd-changes_crd-upgrade-safety" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Reference which custom resource definition (CRD) changes are compatible with earlier versions to avoid unexpected halts during the upgrade safety preflight check.</p>
+      <p>The following CRD changes are compatible with earlier versions and pass the upgrade safety preflight check:</p>
+      <ul>
+      <li>Adding new values to an existing enum field</li>
+      <li>Changing an existing required field to optional in an existing version</li>
+      <li>Decreasing the minimum value of an existing field in an existing version</li>
+      <li>Increasing the maximum value of an existing field in an existing version</li>
+      <li>Adding a new version of the CRD without modifying existing versions</li>
+      </ul>
+      <h2 id="disabling-crd-preflight_crd-upgrade-safety" class="group scroll-mt-20">Disabling the CRD upgrade safety preflight check<a href="#disabling-crd-preflight_crd-upgrade-safety" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can disable the custom resource definition (CRD) upgrade safety preflight check. In the <code>ClusterExtension</code> object that provides the CRD, set the <code>install.preflight.crdUpgradeSafety.enforcement</code> field with the value of <code>None</code>.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Disabling the CRD upgrade safety preflight check could break backwards compatibility with stored versions of the CRD and cause other unintended consequences on the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You cannot disable individual field validators. If you disable the CRD upgrade safety preflight check, you disable all field validators.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you disable the CRD upgrade safety preflight check in Operator Lifecycle Manager (OLM) v1, the Kubernetes API server still prevents the following operations:</p>
+          <ul>
+          <li>Changing scope from <code>Cluster</code> to <code>Namespace</code> or from <code>Namespace</code> to <code>Cluster</code></li>
+          <li>Removing an existing stored version of the CRD</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have a cluster extension installed.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>ClusterExtension</code> object of the CRD:
+      <CodeBlock code={"$ oc edit clusterextension <clusterextension_name>"} lang="terminal" />
+      </li>
+      <li>
+      Set the <code>install.preflight.crdUpgradeSafety.enforcement</code> field to <code>None</code>:
+      <CodeBlock code={"apiVersion: olm.operatorframework.io/v1\nkind: ClusterExtension\nmetadata:\n  name: clusterextension-sample\nspec:\n  namespace: default\n  serviceAccount:\n    name: sa-example\n  source:\n    sourceType: \"Catalog\"\n    catalog:\n      packageName: argocd-operator\n      version: 0.6.0\n  install:\n    preflight:\n      crdUpgradeSafety:\n        enforcement: None"} lang="yaml" title="Example ClusterExtension object" />
+      </li>
+      </ol>
+      <h2 id="examples-unsafe_crd-upgrade-safety" class="group scroll-mt-20">Examples of unsafe CRD changes<a href="#examples-unsafe_crd-upgrade-safety" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the example unsafe custom resource definition (CRD) changes to recognize modifications that trigger the CRD upgrade safety preflight check.</p>
+      <p>The following examples use this baseline <code>CustomResourceDefinition</code> object:</p>
+      <CodeBlock code={"apiVersion: apiextensions.k8s.io/v1\nkind: CustomResourceDefinition\nmetadata:\n  annotations:\n    controller-gen.kubebuilder.io/version: v0.13.0\n  name: example.test.example.com\nspec:\n  group: test.example.com\n  names:\n    kind: Sample\n    listKind: SampleList\n    plural: samples\n    singular: sample\n  scope: Namespaced\n  versions:\n  - name: v1alpha1\n    schema:\n      openAPIV3Schema:\n        properties:\n          apiVersion:\n            type: string\n          kind:\n            type: string\n          metadata:\n            type: object\n          spec:\n            type: object\n          status:\n            type: object\n          pollInterval:\n            type: string\n        type: object\n    served: true\n    storage: true\n    subresources:\n      status: {}"} lang="yaml" title="Example CRD object" />
+      <h3 id="scope-change_crd-upgrade-safety" class="group scroll-mt-20">Scope change<a href="#scope-change_crd-upgrade-safety" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example changes the <code>spec.scope</code> field from <code>Namespaced</code> to <code>Cluster</code>:</p>
+      <CodeBlock code={"spec:\n  group: test.example.com\n  names:\n    kind: Sample\n    listKind: SampleList\n    plural: samples\n    singular: sample\n  scope: Cluster\n  versions:\n  - name: v1alpha1"} lang="yaml" title="Example scope change in a CRD" />
+      <CodeBlock code={"validating upgrade for CRD \"test.example.com\" failed: CustomResourceDefinition test.example.com failed upgrade safety validation. \"NoScopeChange\" validation failed: scope changed from \"Namespaced\" to \"Cluster\""} lang="text" title="Example error output" />
+      <h3 id="stored-version-removal_crd-upgrade-safety" class="group scroll-mt-20">Removal of a stored version<a href="#stored-version-removal_crd-upgrade-safety" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example removes the existing stored version, <code>v1alpha1</code>:</p>
+      <CodeBlock code={"versions:\n- name: v1alpha2\n  schema:\n    openAPIV3Schema:\n      properties:\n        apiVersion:\n          type: string\n        kind:\n          type: string\n        metadata:\n          type: object\n        spec:\n          type: object\n        status:\n          type: object\n        pollInterval:\n          type: string\n      type: object"} lang="yaml" title="Example removal of a stored version in a CRD" />
+      <CodeBlock code={"validating upgrade for CRD \"test.example.com\" failed: CustomResourceDefinition test.example.com failed upgrade safety validation. \"NoStoredVersionRemoved\" validation failed: stored version \"v1alpha1\" removed"} lang="text" title="Example error output" />
+      <h3 id="removal-existing-field_crd-upgrade-safety" class="group scroll-mt-20">Removal of an existing field<a href="#removal-existing-field_crd-upgrade-safety" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example removes the <code>pollInterval</code> property field from the <code>v1alpha1</code> schema:</p>
+      <CodeBlock code={"versions:\n- name: v1alpha1\n  schema:\n    openAPIV3Schema:\n      properties:\n        apiVersion:\n          type: string\n        kind:\n          type: string\n        metadata:\n          type: object\n        spec:\n          type: object\n        status:\n          type: object\n      type: object"} lang="yaml" title="Example removal of an existing field in a CRD" />
+      <CodeBlock code={"validating upgrade for CRD \"test.example.com\" failed: CustomResourceDefinition test.example.com failed upgrade safety validation. \"NoExistingFieldRemoved\" validation failed: crd/test.example.com version/v1alpha1 field/^.spec.pollInterval may not be removed"} lang="text" title="Example error output" />
+      <h3 id="addition-required-field_crd-upgrade-safety" class="group scroll-mt-20">Addition of a required field<a href="#addition-required-field_crd-upgrade-safety" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example changes the <code>pollInterval</code> property to a required field:</p>
+      <CodeBlock code={"versions:\n- name: v1alpha2\n  schema:\n    openAPIV3Schema:\n      properties:\n        apiVersion:\n          type: string\n        kind:\n          type: string\n        metadata:\n          type: object\n        spec:\n          type: object\n        status:\n          type: object\n        pollInterval:\n          type: string\n      type: object\n      required:\n      - pollInterval"} lang="yaml" title="Example addition of a required field in a CRD" />
+      <CodeBlock code={"validating upgrade for CRD \"test.example.com\" failed: CustomResourceDefinition test.example.com failed upgrade safety validation. \"ChangeValidator\" validation failed: version \"v1alpha1\", field \"^\": new required fields added: [pollInterval]"} lang="text" title="Example error output" />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

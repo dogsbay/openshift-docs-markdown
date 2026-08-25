@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"remote-health-reporting","text":"Remote health reporting"}];
+const headings = [{"depth":1,"slug":"remote-health-reporting","text":"Remote health reporting"},{"depth":2,"slug":"enabling-remote-health-reporting_remote-health-reporting","text":"Enabling remote health reporting"},{"depth":2,"slug":"insights-operator-new-pull-secret-enable_remote-health-reporting","text":"Changing your global cluster pull secret to enable remote health reporting"},{"depth":2,"slug":"telemetry-consequences-of-disabling-telemetry_remote-health-reporting","text":"Consequences of disabling remote health reporting"},{"depth":2,"slug":"insights-operator-new-pull-secret_remote-health-reporting","text":"Disabling remote health reporting"},{"depth":2,"slug":"insights-operator-register-disconnected-cluster_remote-health-reporting","text":"Registering your disconnected cluster"},{"depth":2,"slug":"images-update-global-pull-secret_remote-health-reporting","text":"Updating the global cluster pull secret"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["support","support/remote_health_monitoring"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Remote health reporting {#remote-health-reporting}\n\nYou can *opt in*, enable, or *opt out*, disable, reporting health and usage data for your cluster.\n\n**Additional resources**\n\n- [How does the subscriptions service show my subscription data?(Getting Started with the Subscription Service)](https://access.redhat.com/documentation/en-us/subscription_central/2023/html/getting_started_with_the_subscriptions_service/con-how-does-subscriptionwatch-show-data_assembly-viewing-understanding-subscriptionwatch-data-ctxt)\n\n**Additional resources**\n\n- [Transferring cluster ownership](https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#transferring-cluster-ownership_downloading-and-updating-pull-secrets)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Remote health reporting {#remote-health-reporting}\n\nYou can *opt in*, enable, or *opt out*, disable, reporting health and usage data for your cluster.\n\n## Enabling remote health reporting {#enabling-remote-health-reporting_remote-health-reporting}\n\nIf you or your organization have disabled remote health reporting, you can enable this feature again. You can see that remote health reporting is disabled from the message `Insights not available` in the **Status** tile on the OpenShift Container Platform web console **Overview** page.\n\nTo enable remote health reporting, you must change the global cluster pull secret with a new authorization token. Enabling remote health reporting enables both Insights Operator and Telemetry.\n\n## Changing your global cluster pull secret to enable remote health reporting {#insights-operator-new-pull-secret-enable_remote-health-reporting}\n\nYou can change your existing global cluster pull secret to enable remote health reporting. If you have disabled remote health monitoring, you must download a new pull secret with your `console.openshift.com` access token from Red Hat OpenShift Cluster Manager.\n\n**Prerequisites**\n\n- Access to the cluster as a user with the `cluster-admin` role.\n- Access to OpenShift Cluster Manager.\n\n**Procedure**\n\n1. Go to the [Downloads](https://console.redhat.com/openshift/downloads) page on the Red Hat Hybrid Cloud Console.\n2. From **Tokens** -> **Pull secret**, click the **Download** button.\n\n   The `pull-secret` file contains your `cloud.openshift.com` access token in JSON format:\n\n   ```json\n   {\n     \"auths\": {\n       \"cloud.openshift.com\": {\n         \"auth\": \"_<your_token>_\",\n         \"email\": \"_<email_address>_\"\n       }\n     }\n   }\n   ```\n3. Download the global cluster pull secret to your local file system.\n\n   ```terminal\n   $ oc get secret/pull-secret -n openshift-config \\\n     --template='{{index .data \".dockerconfigjson\" | base64decode}}' \\\n     > pull-secret\n   ```\n4. Make a backup copy of your pull secret.\n\n   ```terminal\n   $ cp pull-secret pull-secret-backup\n   ```\n5. Open the `pull-secret` file in a text editor.\n6. Append the `cloud.openshift.com` JSON entry from the `pull-secret` file that you downloaded earlier into the `auths` file.\n7. Save the file.\n8. Update the secret in your cluster by running the following command:\n\n   ```terminal\n   $ oc set data secret/pull-secret -n openshift-config \\\n     --from-file=.dockerconfigjson=pull-secret\n   ```\n\n   You might need to wait several minutes for the secret to update and your cluster to begin reporting.\n\n**Verification**\n\n1. For a verification check from the OpenShift Container Platform web console, complete the following steps:\n\n   1. Go to the **Overview** page on the OpenShift Container Platform web console.\n   2. View the **Red Hat Lightspeed** section in the **Status** tile that reports the number of issues found.\n2. For a verification check from the OpenShift CLI (`oc`), enter the following command and then check that the value of the `status` parameter states `false`:\n\n   ```terminal\n   $ oc get co insights -o jsonpath='{.status.conditions[?(@.type==\"Disabled\")]}'\n   ```\n\n## Consequences of disabling remote health reporting {#telemetry-consequences-of-disabling-telemetry_remote-health-reporting}\n\nYou can disable reporting usage information, but understand potential consequences before doing so.\n\nBefore you disable remote health reporting, read the following benefits of a connected cluster:\n\n- Red Hat can react more quickly to problems and better support our customers.\n- Red Hat can better understand how product upgrades impact clusters.\n- Connected clusters help to simplify the subscription and entitlement process.\n- Connected clusters enable the OpenShift Cluster Manager service to offer an overview of your clusters and their subscription status.\n\n> [!NOTE]\n> Consider leaving health and usage reporting enabled for pre-production, test, and production clusters. This means that Red Hat can participate in qualifying OpenShift Container Platform in your environments and react more rapidly to product issues.\n\nThe following lists some consequences of disabling remote health reporting on a connected cluster:\n\n- Red Hat cannot view the success of product upgrades or the health of your clusters without an open support case.\n- Red Hat cannot use configuration data to better triage customer support cases and identify which configurations our customers find important.\n- The OpenShift Cluster Manager cannot show data about your clusters, which includes health and usage information.\n- You must manually enter your subscription information in the `console.redhat.com` web console without the benefit of automatic usage reporting.\n\nIn restricted networks, Telemetry and Red Hat Lightspeed data still gets gathered through the appropriate configuration of your proxy.\n\n## Disabling remote health reporting {#insights-operator-new-pull-secret_remote-health-reporting}\n\nYou can change your existing global cluster pull secret to disable remote health reporting. This configuration disables both Telemetry and the Insights Operator.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Download the global cluster pull secret to your local file system:\n\n   ```terminal\n   $ oc extract secret/pull-secret -n openshift-config --to=.\n   ```\n2. In a text editor, edit the `.dockerconfigjson` file that you downloaded by removing the `cloud.openshift.com` JSON entry:\n\n   ```json\n   \"cloud.openshift.com\":{\"auth\":\"<hash>\",\"email\":\"<email_address>\"}\n   ```\n3. Save the file.\n4. Update the secret in your cluster. For more information, see \"Updating the global cluster pull secret\".\n\n   You might need to wait several minutes for the secret to update in your cluster.\n\n## Registering your disconnected cluster {#insights-operator-register-disconnected-cluster_remote-health-reporting}\n\nRegister your disconnected OpenShift Container Platform cluster on the Red Hat Hybrid Cloud Console so that your cluster does not get impacted by disabling remote health reporting. For more information, see \"Consequences of disabling remote health reporting\".\n\n> [!IMPORTANT]\n> By registering your disconnected cluster, you can continue to report your subscription usage to Red Hat. Red Hat can then return accurate usage and capacity trends associated with your subscription, so that you can use the returned information to better organize subscription allocations across all of your resources.\n\n**Prerequisites**\n\n- You logged in to the OpenShift Container Platform web console as the `cluster-admin` role.\n- You can log in to the Red Hat Hybrid Cloud Console.\n\n**Procedure**\n\n1. Go to the [**Register disconnected cluster**](https://console.redhat.com/openshift/register) web page on the Red Hat Hybrid Cloud Console.\n2. Optional: To access the **Register disconnected cluster** web page from the home page of the Red Hat Hybrid Cloud Console, go to the **Cluster List** navigation menu item and then select the **Register cluster** button.\n3. Enter your cluster’s details in the provided fields on the **Register disconnected cluster** page.\n4. From the **Subscription settings** section of the page, select the subscription settings that apply to your Red Hat subscription offering.\n5. To register your disconnected cluster, select the **Register cluster** button.\n\n**Additional resources**\n\n- [How does the subscriptions service show my subscription data?(Getting Started with the Subscription Service)](https://access.redhat.com/documentation/en-us/subscription_central/2023/html/getting_started_with_the_subscriptions_service/con-how-does-subscriptionwatch-show-data_assembly-viewing-understanding-subscriptionwatch-data-ctxt)\n\n## Updating the global cluster pull secret {#images-update-global-pull-secret_remote-health-reporting}\n\nTo add new registries or update authentication for your OpenShift Container Platform cluster, you can update the global pull secret by appending new credentials to the *additional-pull-secret*. To do this, you can use the `oc set data secret/additional-pull-secret -n kube-system` command. Hypershift manages the new credential propagation among the HostedCluster nodes.\n\nUse this procedure when you need a separate registry to store images than the registry used during installation.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Optional: To append a new pull secret to the existing pull secret:\n\n   1. Download the pull secret by entering the following command:\n\n      ```terminal\n      $ oc get secret/pull-secret -n openshift-config --template='{{index .data \".dockerconfigjson\" | base64decode}}' > <pull_secret_location>\n      ```\n\n      where:\n\n      `<pull_secret_location>`\n      :   Specifies the path to the pull secret file.\n   2. Add the new pull secret by entering the following command:\n\n      ```terminal\n      $ oc registry login --registry=\"<registry>\" \\\n      --auth-basic=\"<username>:<password>\" \\\n      --to=<pull_secret_location>\n      ```\n\n      where:\n\n      `<registry>`\n      :   Specifies the new registry. You can include many repositories within the same registry, for example: `--registry=\"<registry/my-namespace/my-repository>`.\n\n      `<username>:<password>`\n      :   Specifies the credentials of the new registry.\n\n      `<pull_secret_location>`\n      :   Specifies the path to the pull secret file.\n2. Update the global pull secret for your cluster by entering the following command. Note that this update rolls out to all nodes, which can take some time depending on the size of your cluster.\n\n   ```terminal\n   $ oc set data secret/pull-secret -n openshift-config \\\n     --from-file=.dockerconfigjson=<pull_secret_location>\n   ```\n\n   where:\n\n   `<pull_secret_location>`\n   :   Specifies the path to the new pull secret file.\n\n   This merges your additional pull secret with the original HostedCluster pull secret, making it available to all nodes in the cluster.\n3. Optional: Modify the additional pull secret added by entering the following command:\n\n   ```terminal\n   $ oc edit secret additional-pull-secret -n kube-system\n   ```\n\n   The secret must contain a valid DockerConfigJSON format.\n\n   ```yaml {title=\"Example pull secret\"}\n   apiVersion: v1\n   kind: Secret\n   metadata:\n     name: additional-pull-secret\n     namespace: kube-system\n   type: kubernetes.io/dockerconfigjson\n   data:\n     .dockerconfigjson: <base64-encoded-docker-config-json>\n   ```\n\n   This results in the following states of the each pull secret:\n\n   - **Original**: immutable\n   - **Additional**: mutable\n   - **Global**: final state of both the original and additional pull secrets\n4. Optional: Delete the additional pull secret added by entering the following command:\n\n   ```terminal\n   $ oc delete secret additional-pull-secret -n kube-system\n   ```\n\n   This triggers the automatic cleanup process across your nodes.\n\n**Additional resources**\n\n- [Transferring cluster ownership](https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#transferring-cluster-ownership_downloading-and-updating-pull-secrets)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,15 +95,184 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="remote-health-reporting" class="group scroll-mt-20">Remote health reporting<a href="#remote-health-reporting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can <em>opt in</em>, enable, or <em>opt out</em>, disable, reporting health and usage data for your cluster.</p>
-      <p class="/modules/enabling-remote-health-reporting.md"></p>
-      <p class="/modules/insights-operator-new-pull-secret-enable.md"></p>
-      <p class="/modules/telemetry-consequences-of-disabling-telemetry.md"></p>
-      <p class="/modules/insights-operator-new-pull-secret-disabled.md"></p>
-      <p class="/modules/insights-operator-register-disconnected-cluster.md"></p>
+      <h2 id="enabling-remote-health-reporting_remote-health-reporting" class="group scroll-mt-20">Enabling remote health reporting<a href="#enabling-remote-health-reporting_remote-health-reporting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you or your organization have disabled remote health reporting, you can enable this feature again. You can see that remote health reporting is disabled from the message <code>Insights not available</code> in the <strong>Status</strong> tile on the OpenShift Container Platform web console <strong>Overview</strong> page.</p>
+      <p>To enable remote health reporting, you must change the global cluster pull secret with a new authorization token. Enabling remote health reporting enables both Insights Operator and Telemetry.</p>
+      <h2 id="insights-operator-new-pull-secret-enable_remote-health-reporting" class="group scroll-mt-20">Changing your global cluster pull secret to enable remote health reporting<a href="#insights-operator-new-pull-secret-enable_remote-health-reporting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can change your existing global cluster pull secret to enable remote health reporting. If you have disabled remote health monitoring, you must download a new pull secret with your <code>console.openshift.com</code> access token from Red Hat OpenShift Cluster Manager.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>Access to OpenShift Cluster Manager.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to the <a href="https://console.redhat.com/openshift/downloads">Downloads</a> page on the Red Hat Hybrid Cloud Console.</li>
+      <li>
+      From <strong>Tokens</strong> -&gt; <strong>Pull secret</strong>, click the <strong>Download</strong> button.
+      <p>The <code>pull-secret</code> file contains your <code>cloud.openshift.com</code> access token in JSON format:</p>
+      <CodeBlock code={"{\n  \"auths\": {\n    \"cloud.openshift.com\": {\n      \"auth\": \"_<your_token>_\",\n      \"email\": \"_<email_address>_\"\n    }\n  }\n}"} lang="json" />
+      </li>
+      <li>
+      Download the global cluster pull secret to your local file system.
+      <CodeBlock code={"$ oc get secret/pull-secret -n openshift-config \\\n  --template='{{index .data \".dockerconfigjson\" | base64decode}}' \\\n  > pull-secret"} lang="terminal" />
+      </li>
+      <li>
+      Make a backup copy of your pull secret.
+      <CodeBlock code={"$ cp pull-secret pull-secret-backup"} lang="terminal" />
+      </li>
+      <li>Open the <code>pull-secret</code> file in a text editor.</li>
+      <li>Append the <code>cloud.openshift.com</code> JSON entry from the <code>pull-secret</code> file that you downloaded earlier into the <code>auths</code> file.</li>
+      <li>Save the file.</li>
+      <li>
+      Update the secret in your cluster by running the following command:
+      <CodeBlock code={"$ oc set data secret/pull-secret -n openshift-config \\\n  --from-file=.dockerconfigjson=pull-secret"} lang="terminal" />
+      <p>You might need to wait several minutes for the secret to update and your cluster to begin reporting.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      For a verification check from the OpenShift Container Platform web console, complete the following steps:
+      <ol>
+      <li>Go to the <strong>Overview</strong> page on the OpenShift Container Platform web console.</li>
+      <li>View the <strong>Red Hat Lightspeed</strong> section in the <strong>Status</strong> tile that reports the number of issues found.</li>
+      </ol>
+      </li>
+      <li>
+      For a verification check from the OpenShift CLI (<code>oc</code>), enter the following command and then check that the value of the <code>status</code> parameter states <code>false</code>:
+      <CodeBlock code={"$ oc get co insights -o jsonpath='{.status.conditions[?(@.type==\"Disabled\")]}'"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="telemetry-consequences-of-disabling-telemetry_remote-health-reporting" class="group scroll-mt-20">Consequences of disabling remote health reporting<a href="#telemetry-consequences-of-disabling-telemetry_remote-health-reporting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can disable reporting usage information, but understand potential consequences before doing so.</p>
+      <p>Before you disable remote health reporting, read the following benefits of a connected cluster:</p>
+      <ul>
+      <li>Red Hat can react more quickly to problems and better support our customers.</li>
+      <li>Red Hat can better understand how product upgrades impact clusters.</li>
+      <li>Connected clusters help to simplify the subscription and entitlement process.</li>
+      <li>Connected clusters enable the OpenShift Cluster Manager service to offer an overview of your clusters and their subscription status.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Consider leaving health and usage reporting enabled for pre-production, test, and production clusters. This means that Red Hat can participate in qualifying OpenShift Container Platform in your environments and react more rapidly to product issues.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following lists some consequences of disabling remote health reporting on a connected cluster:</p>
+      <ul>
+      <li>Red Hat cannot view the success of product upgrades or the health of your clusters without an open support case.</li>
+      <li>Red Hat cannot use configuration data to better triage customer support cases and identify which configurations our customers find important.</li>
+      <li>The OpenShift Cluster Manager cannot show data about your clusters, which includes health and usage information.</li>
+      <li>You must manually enter your subscription information in the <code>console.redhat.com</code> web console without the benefit of automatic usage reporting.</li>
+      </ul>
+      <p>In restricted networks, Telemetry and Red Hat Lightspeed data still gets gathered through the appropriate configuration of your proxy.</p>
+      <h2 id="insights-operator-new-pull-secret_remote-health-reporting" class="group scroll-mt-20">Disabling remote health reporting<a href="#insights-operator-new-pull-secret_remote-health-reporting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can change your existing global cluster pull secret to disable remote health reporting. This configuration disables both Telemetry and the Insights Operator.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Download the global cluster pull secret to your local file system:
+      <CodeBlock code={"$ oc extract secret/pull-secret -n openshift-config --to=."} lang="terminal" />
+      </li>
+      <li>
+      In a text editor, edit the <code>.dockerconfigjson</code> file that you downloaded by removing the <code>cloud.openshift.com</code> JSON entry:
+      <CodeBlock code={"\"cloud.openshift.com\":{\"auth\":\"<hash>\",\"email\":\"<email_address>\"}"} lang="json" />
+      </li>
+      <li>Save the file.</li>
+      <li>
+      Update the secret in your cluster. For more information, see "Updating the global cluster pull secret".
+      <p>You might need to wait several minutes for the secret to update in your cluster.</p>
+      </li>
+      </ol>
+      <h2 id="insights-operator-register-disconnected-cluster_remote-health-reporting" class="group scroll-mt-20">Registering your disconnected cluster<a href="#insights-operator-register-disconnected-cluster_remote-health-reporting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Register your disconnected OpenShift Container Platform cluster on the Red Hat Hybrid Cloud Console so that your cluster does not get impacted by disabling remote health reporting. For more information, see "Consequences of disabling remote health reporting".</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>By registering your disconnected cluster, you can continue to report your subscription usage to Red Hat. Red Hat can then return accurate usage and capacity trends associated with your subscription, so that you can use the returned information to better organize subscription allocations across all of your resources.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You logged in to the OpenShift Container Platform web console as the <code>cluster-admin</code> role.</li>
+      <li>You can log in to the Red Hat Hybrid Cloud Console.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to the <a href="https://console.redhat.com/openshift/register"><strong>Register disconnected cluster</strong></a> web page on the Red Hat Hybrid Cloud Console.</li>
+      <li>Optional: To access the <strong>Register disconnected cluster</strong> web page from the home page of the Red Hat Hybrid Cloud Console, go to the <strong>Cluster List</strong> navigation menu item and then select the <strong>Register cluster</strong> button.</li>
+      <li>Enter your cluster’s details in the provided fields on the <strong>Register disconnected cluster</strong> page.</li>
+      <li>From the <strong>Subscription settings</strong> section of the page, select the subscription settings that apply to your Red Hat subscription offering.</li>
+      <li>To register your disconnected cluster, select the <strong>Register cluster</strong> button.</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://access.redhat.com/documentation/en-us/subscription_central/2023/html/getting_started_with_the_subscriptions_service/con-how-does-subscriptionwatch-show-data_assembly-viewing-understanding-subscriptionwatch-data-ctxt">How does the subscriptions service show my subscription data?(Getting Started with the Subscription Service)</a></li></ul>
+      <h2 id="images-update-global-pull-secret_remote-health-reporting" class="group scroll-mt-20">Updating the global cluster pull secret<a href="#images-update-global-pull-secret_remote-health-reporting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To add new registries or update authentication for your OpenShift Container Platform cluster, you can update the global pull secret by appending new credentials to the <em>additional-pull-secret</em>. To do this, you can use the <code>oc set data secret/additional-pull-secret -n kube-system</code> command. Hypershift manages the new credential propagation among the HostedCluster nodes.</p>
+      <p>Use this procedure when you need a separate registry to store images than the registry used during installation.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Optional: To append a new pull secret to the existing pull secret:
+      <ol>
+      <li>
+      Download the pull secret by entering the following command:
+      <CodeBlock code={"$ oc get secret/pull-secret -n openshift-config --template='{{index .data \".dockerconfigjson\" | base64decode}}' > <pull_secret_location>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;pull_secret_location&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the pull secret file.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Add the new pull secret by entering the following command:
+      <CodeBlock code={"$ oc registry login --registry=\"<registry>\" \\\n--auth-basic=\"<username>:<password>\" \\\n--to=<pull_secret_location>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;registry&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the new registry. You can include many repositories within the same registry, for example: <code>--registry="&lt;registry/my-namespace/my-repository&gt;</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;username&gt;:&lt;password&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the credentials of the new registry.</p></dd>
+      <dt class="font-semibold"><code>&lt;pull_secret_location&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the pull secret file.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Update the global pull secret for your cluster by entering the following command. Note that this update rolls out to all nodes, which can take some time depending on the size of your cluster.
+      <CodeBlock code={"$ oc set data secret/pull-secret -n openshift-config \\\n  --from-file=.dockerconfigjson=<pull_secret_location>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;pull_secret_location&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the new pull secret file.</p></dd>
+      </dl>
+      <p>This merges your additional pull secret with the original HostedCluster pull secret, making it available to all nodes in the cluster.</p>
+      </li>
+      <li>
+      Optional: Modify the additional pull secret added by entering the following command:
+      <CodeBlock code={"$ oc edit secret additional-pull-secret -n kube-system"} lang="terminal" />
+      <p>The secret must contain a valid DockerConfigJSON format.</p>
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n  name: additional-pull-secret\n  namespace: kube-system\ntype: kubernetes.io/dockerconfigjson\ndata:\n  .dockerconfigjson: <base64-encoded-docker-config-json>"} lang="yaml" title="Example pull secret" />
+      <p>This results in the following states of the each pull secret:</p>
+      <ul>
+      <li><strong>Original</strong>: immutable</li>
+      <li><strong>Additional</strong>: mutable</li>
+      <li><strong>Global</strong>: final state of both the original and additional pull secrets</li>
+      </ul>
+      </li>
+      <li>
+      Optional: Delete the additional pull secret added by entering the following command:
+      <CodeBlock code={"$ oc delete secret additional-pull-secret -n kube-system"} lang="terminal" />
+      <p>This triggers the automatic cleanup process across your nodes.</p>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/openshift_cluster_manager/1-latest/html-single/managing_clusters/index#transferring-cluster-ownership_downloading-and-updating-pull-secrets">Transferring cluster ownership</a></li></ul>
     </article>

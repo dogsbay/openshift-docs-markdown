@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"using-cohorts","text":"Using cohorts"}];
+const headings = [{"depth":1,"slug":"using-cohorts","text":"Using cohorts"},{"depth":2,"slug":"clusterqueue-configuring-cohorts-reference_using-cohorts","text":"Cohort configuration within a cluster queue spec"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/using-cohorts";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using cohorts {#using-cohorts}\n\nYou can use cohorts to group cluster queues and determine which cluster queues can share borrowable resources with each other.\n\nBorrowable resources are defined as the unused nominal quota of all the cluster queues in a cohort.\n\nBy using cohorts, you can optimize resource utilization, prevent under-utilization, and enable fair sharing configurations. In addition, you can simplify resource management and allocation between teams, because you can group cluster queues for related workloads or for each team. You can also use cohorts to set resource quotas at a group level to define the limits for resources that a group of cluster queues can consume.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/using-cohorts.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using cohorts {#using-cohorts}\n\nYou can use cohorts to group cluster queues and determine which cluster queues can share borrowable resources with each other.\n\nBorrowable resources are defined as the unused nominal quota of all the cluster queues in a cohort.\n\nBy using cohorts, you can optimize resource utilization, prevent under-utilization, and enable fair sharing configurations. In addition, you can simplify resource management and allocation between teams, because you can group cluster queues for related workloads or for each team. You can also use cohorts to set resource quotas at a group level to define the limits for resources that a group of cluster queues can consume.\n\n## Cohort configuration within a cluster queue spec {#clusterqueue-configuring-cohorts-reference_using-cohorts}\n\nYou can add a cluster queue to a cohort by specifying the cohort name in the `.spec.cohortName` field of the `ClusterQueue` object.\n\nThe following example shows a `ClusterQueue` object with a cohort configured:\n\n```yaml\napiVersion: kueue.x-k8s.io/v1beta2\nkind: ClusterQueue\nmetadata:\n  name: cluster-queue\nspec:\n# ...\n  cohortName: example-cohort\n# ...\n```\n\nAll cluster queues that have a matching `spec.cohortName` are part of the same cohort.\n\nIf the `spec.cohortName` field is omitted, the cluster queue does not belong to any cohort and cannot access borrowable resources.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/using-cohorts.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,12 +91,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="using-cohorts" class="group scroll-mt-20">Using cohorts<a href="#using-cohorts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You can use cohorts to group cluster queues and determine which cluster queues can share borrowable resources with each other.</p>
       <p>Borrowable resources are defined as the unused nominal quota of all the cluster queues in a cohort.</p>
       <p>By using cohorts, you can optimize resource utilization, prevent under-utilization, and enable fair sharing configurations. In addition, you can simplify resource management and allocation between teams, because you can group cluster queues for related workloads or for each team. You can also use cohorts to set resource quotas at a group level to define the limits for resources that a group of cluster queues can consume.</p>
-      <p class="/modules/kueue-clusterqueue-configuring-cohorts-reference.md"></p>
+      <h2 id="clusterqueue-configuring-cohorts-reference_using-cohorts" class="group scroll-mt-20">Cohort configuration within a cluster queue spec<a href="#clusterqueue-configuring-cohorts-reference_using-cohorts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add a cluster queue to a cohort by specifying the cohort name in the <code>.spec.cohortName</code> field of the <code>ClusterQueue</code> object.</p>
+      <p>The following example shows a <code>ClusterQueue</code> object with a cohort configured:</p>
+      <CodeBlock code={"apiVersion: kueue.x-k8s.io/v1beta2\nkind: ClusterQueue\nmetadata:\n  name: cluster-queue\nspec:\n# ...\n  cohortName: example-cohort\n# ..."} lang="yaml" />
+      <p>All cluster queues that have a matching <code>spec.cohortName</code> are part of the same cohort.</p>
+      <p>If the <code>spec.cohortName</code> field is omitted, the cluster queue does not belong to any cohort and cannot access borrowable resources.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

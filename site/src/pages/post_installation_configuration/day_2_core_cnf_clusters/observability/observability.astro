@@ -15,8 +15,19 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"observability","text":"Observability in OpenShift Container Platform clusters"}];
+const headings = [{"depth":1,"slug":"observability","text":"Observability in OpenShift Container Platform clusters"},{"depth":2,"slug":"observability-monitoring-stack_observability","text":"Monitoring stack components"},{"depth":2,"slug":"observability-key-performance-metrics_observability","text":"Key performance metrics"},{"depth":3,"slug":"example-queries-promql_observability","text":"Example queries in PromQL"},{"depth":3,"slug":"recommendations-for-storage-of-metrics_observability","text":"Recommendations for storage of metrics"},{"depth":2,"slug":"observability-monitoring-the-edge_observability","text":"Monitoring at the far edge network"},{"depth":2,"slug":"observability-alerting_observability","text":"Alerting"},{"depth":3,"slug":"viewing-default-alerts_observability","text":"Viewing default alerts"},{"depth":3,"slug":"alert-notifications","text":"Alert notifications"},{"depth":2,"slug":"observability-workload-monitoring_observability","text":"Workload monitoring"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/observability/observability";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +50,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Observability in OpenShift Container Platform clusters {#observability}\n\nOpenShift Container Platform generates a large amount of data, such as performance metrics and logs from both the platform and the workloads running on it. As an administrator, you can use various tools to collect and analyze all the data available. What follows is an outline of best practices for system engineers, architects, and administrators configuring the observability stack.\n\nUnless explicitly stated, the material in this document refers to both Edge and Core deployments.\n\n**Additional resources**\n\n- [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)\n- [Core platform monitoring first steps](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/getting_started/core-platform-monitoring-first-steps)\n\n**Additional resources**\n\n- [Accessing metrics as an administrator](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator)\n- [Persistent storage using local volumes](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-install_persistent-storage-local)\n\n**Additional resources**\n\n- [Managing alerts](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/index)\n\n**Additional resources**\n\n- \\[ServiceMonitor[monitoring.coreos.com/v1](/openshift-docs-markdown/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1)\\]\n- [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)\n- [Managing alerting rules for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/managing-alerts-as-a-developer#managing-alerting-rules-for-user-defined-projects-uwm_managing-alerts-as-a-developer)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/observability/observability.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Observability in OpenShift Container Platform clusters {#observability}\n\nOpenShift Container Platform generates a large amount of data, such as performance metrics and logs from both the platform and the workloads running on it. As an administrator, you can use various tools to collect and analyze all the data available. What follows is an outline of best practices for system engineers, architects, and administrators configuring the observability stack.\n\nUnless explicitly stated, the material in this document refers to both Edge and Core deployments.\n\n## Monitoring stack components {#observability-monitoring-stack_observability}\n\nThe monitoring stack in OpenShift Container Platform consists of several integrated components that collect, analyze, store, and alert on metrics.\n\nThe monitoring stack uses the following components:\n\n- Prometheus collects and analyzes metrics from OpenShift Container Platform components and from workloads, if configured to do so.\n- Alertmanager is a component of Prometheus that handles routing, grouping, and silencing of alerts.\n- Thanos handles long term storage of metrics.\n\n**Figure 1. OpenShift Container Platform monitoring architecture**\n\n![OpenShift Container Platform monitoring architecture](/openshift-docs-markdown/_assets/images/monitoring-architecture.png)\n\n> [!NOTE]\n> For single-node OpenShift clusters, disable Alertmanager and Thanos because the clusters sends all metrics to the hub cluster for analysis and retention.\n\n**Additional resources**\n\n- [About OpenShift Container Platform monitoring](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring)\n- [Core platform monitoring first steps](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/getting_started/core-platform-monitoring-first-steps)\n\n## Key performance metrics {#observability-key-performance-metrics_observability}\n\nDepending on your system, you can have hundreds of available measurements.\n\nConsider the following key metrics:\n\n- `etcd` response times\n- API response times\n- Pod restarts and scheduling\n- Resource usage\n- OVN health\n- Overall cluster operator health\n\nIf a metric is important, set up an alert for it.\n\n> [!NOTE]\n> You can check the available metrics by running the following command:\n>\n> ```terminal\n> $ oc -n openshift-monitoring exec -c prometheus prometheus-k8s-0 -- curl -qsk http://localhost:9090/api/v1/metadata | jq '.data\n> ```\n\n### Example queries in PromQL {#example-queries-promql_observability}\n\nUsing the OpenShift Container Platform console, you can explore the following queries in the metrics query browser.\n\n> [!NOTE]\n> The URL for the console is https://<OpenShift Console FQDN>/monitoring/query-browser. You can get the Openshift Console FQDN by running the following command:\n>\n> ```terminal\n> $ oc get routes -n openshift-console console -o jsonpath='{.status.ingress[0].host}'\n> ```\n\n**Node memory & CPU usage**\n\n| Metric | Query |\n| --- | --- |\n| CPU % requests by node | `sum by (node) (sum_over_time(kube_pod_container_resource_requests{resource=\"cpu\"}[60m]))/sum by (node) (sum_over_time(kube_node_status_allocatable{resource=\"cpu\"}[60m])) *100` |\n| Overall cluster CPU % utilization | `sum by (managed_cluster) (sum_over_time(kube_pod_container_resource_requests{resource=\"memory\"}[60m]))/sum by (managed_cluster) (sum_over_time(kube_node_status_allocatable{resource=\"cpu\"}[60m])) *100` |\n| Memory % requests by node | `sum by (node) (sum_over_time(kube_pod_container_resource_requests{resource=\"memory\"}[60m]))/sum by (node) (sum_over_time(kube_node_status_allocatable{resource=\"memory\"}[60m])) *100` |\n| Overall cluster memory % utilization | `(1-(sum by (managed_cluster)(avg_over_time((node_memory_MemAvailable_bytes[60m])) ))/sum by (managed_cluster)(avg_over_time(kube_node_status_allocatable{resource=\"memory\"}[60m])))*100` |\n\n**API latency by verb**\n\n| Metric | Query |\n| --- | --- |\n| `GET` | \\`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~\"kube-apiserver\\\\ |\n| openshift-apiserver\", verb=\"GET\"}\\[60m\\])))\\` | `PATCH` |\n| \\`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=\"kube-apiserver\\\\ | openshift-apiserver\", verb=\"PATCH\"}\\[60m\\])))\\` |\n| `POST` | \\`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=\"kube-apiserver\\\\ |\n| openshift-apiserver\", verb=\"POST\"}\\[60m\\])))\\` | `LIST` |\n| \\`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=\"kube-apiserver\\\\ | openshift-apiserver\", verb=\"LIST\"}\\[60m\\])))\\` |\n| `PUT` | \\`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=\"kube-apiserver\\\\ |\n| openshift-apiserver\", verb=\"PUT\"}\\[60m\\])))\\` | `DELETE` |\n| \\`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=\"kube-apiserver\\\\ | openshift-apiserver\", verb=\"DELETE\"}\\[60m\\])))\\` |\n| Combined | \\`histogram_quantile(0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{apiserver=~\"(openshift-apiserver\\\\ |\n\n`etcd`\n\n| Metric | Query |\n| --- | --- |\n| `fsync` 99th percentile latency (per instance) | `histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket[2m]))` |\n| `fsync` 99th percentile latency (per cluster) | `sum by (managed_cluster) ( histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket[60m])))` |\n| Leader elections | `sum(rate(etcd_server_leader_changes_seen_total[1440m]))` |\n| Network latency | `histogram_quantile(0.99, rate(etcd_network_peer_round_trip_time_seconds_bucket[5m]))` |\n\n**Operator health**\n\n| Metric | Query |\n| --- | --- |\n| Degraded operators | `sum by (managed_cluster, name) (avg_over_time(cluster_operator_conditions{condition=\"Degraded\", name!=\"version\"}[60m]))` |\n| Total degraded operators per cluster | `sum by (managed_cluster) (avg_over_time(cluster_operator_conditions{condition=\"Degraded\", name!=\"version\"}[60m] ))` |\n\n### Recommendations for storage of metrics {#recommendations-for-storage-of-metrics_observability}\n\nBy default, Prometheus does not back up saved metrics with persistent storage. If you restart the Prometheus pods, all metrics data are lost. You must configure the monitoring stack to use the back-end storage that is available on the platform. To meet the high IO demands of Prometheus, use local storage.\n\nFor smaller clusters, you can use the Local Storage Operator for persistent storage for Prometheus. Red Hat OpenShift Data Foundation (ODF), which deploys a ceph cluster for block, file, and object storage, is suitable for larger clusters.\n\nTo keep system resource requirements low on a single-node OpenShift cluster, do not provision back-end storage for the monitoring stack. Such clusters forward all metrics to the hub cluster where you can provision a third party monitoring platform.\n\n**Additional resources**\n\n- [Accessing metrics as an administrator](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator)\n- [Persistent storage using local volumes](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-install_persistent-storage-local)\n\n## Monitoring at the far edge network {#observability-monitoring-the-edge_observability}\n\nOpenShift Container Platform clusters at the edge must keep the footprint of the platform components to a minimum. The following procedure is an example of how to configure a single-node OpenShift or a node at the far edge network with a small monitoring footprint.\n\n**Prerequisites**\n\n- For environments that use Red Hat Advanced Cluster Management (RHACM), you have enabled the Observability service.\n- The hub cluster is running Red Hat OpenShift Data Foundation (ODF).\n\n**Procedure**\n\n1. Create a `ConfigMap` CR, and save it as `monitoringConfigMap.yaml`, as in the following example:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n    name: cluster-monitoring-config\n    namespace: openshift-monitoring\n    data:\n    config.yaml: |\n      alertmanagerMain:\n        enabled: false\n      telemeterClient:\n        enabled: false\n      prometheusK8s:\n         retention: 24h\n   ```\n2. Apply the `ConfigMap` CR by running the following command on the single-node OpenShift cluster:\n\n   ```terminal\n   $ oc apply -f monitoringConfigMap.yaml\n   ```\n3. Create a `Namespace` CR, and save it as `monitoringNamespace.yaml`, as in the following example:\n\n   ```yaml\n   apiVersion: v1\n   kind: Namespace\n   metadata:\n     name: open-cluster-management-observability\n   ```\n4. Apply the `Namespace` CR by running the following command on the hub cluster :\n\n   ```terminal\n   $ oc apply -f monitoringNamespace.yaml\n   ```\n5. Create an `ObjectBucketClaim` CR, and save it as `monitoringObjectBucketClaim.yaml`, as in the following example:\n\n   ```yaml\n   apiVersion: objectbucket.io/v1alpha1\n   kind: ObjectBucketClaim\n   metadata:\n     name: multi-cloud-observability\n     namespace: open-cluster-management-observability\n   spec:\n     storageClassName: openshift-storage.noobaa.io\n     generateBucketName: acm-multi\n   ```\n6. Apply the `ObjectBucketClaim` CR by running the following command on the hub cluster:\n\n   ```terminal\n   $ oc apply -f monitoringObjectBucketClaim.yaml\n   ```\n7. Create a `Secret` CR, and save it as `monitoringSecret.yaml`, as in the following example:\n\n   ```yaml\n   apiVersion: v1\n   kind: Secret\n   metadata:\n     name: multiclusterhub-operator-pull-secret\n     namespace: open-cluster-management-observability\n   stringData:\n     .dockerconfigjson: 'PULL_SECRET'\n   ```\n8. Apply the `Secret` CR by running the following command in the hub cluster:\n\n   ```terminal\n   $ oc apply -f monitoringSecret.yaml\n   ```\n9. Get the keys for the NooBaa service and the back-end bucket name from the hub cluster by running the following commands:\n\n   ```terminal\n   $ NOOBAA_ACCESS_KEY=$(oc get secret noobaa-admin -n openshift-storage -o json | jq -r '.data.AWS_ACCESS_KEY_ID|@base64d')\n   ```\n\n   ```terminal\n   $ NOOBAA_SECRET_KEY=$(oc get secret noobaa-admin -n openshift-storage -o json | jq -r '.data.AWS_SECRET_ACCESS_KEY|@base64d')\n   ```\n\n   ```terminal\n   $ OBJECT_BUCKET=$(oc get objectbucketclaim -n open-cluster-management-observability multi-cloud-observability -o json | jq -r .spec.bucketName)\n   ```\n10. Create a `Secret` CR for bucket storage and save it as `monitoringBucketSecret.yaml`, as in the following example:\n\n    ```yaml\n    apiVersion: v1\n    kind: Secret\n    metadata:\n      name: thanos-object-storage\n      namespace: open-cluster-management-observability\n    type: Opaque\n    stringData:\n      thanos.yaml: |\n        type: s3\n        config:\n          bucket: ${OBJECT_BUCKET}\n          endpoint: s3.openshift-storage.svc\n          insecure: true\n          access_key: ${NOOBAA_ACCESS_KEY}\n          secret_key: ${NOOBAA_SECRET_KEY}\n    ```\n11. Apply the `Secret` CR by running the following command on the hub cluster:\n\n    ```terminal\n    $ oc apply -f monitoringBucketSecret.yaml\n    ```\n12. Create the `MultiClusterObservability` CR and save it as `monitoringMultiClusterObservability.yaml`, as in the following example:\n\n    ```yaml\n    apiVersion: observability.open-cluster-management.io/v1beta2\n    kind: MultiClusterObservability\n    metadata:\n      name: observability\n    spec:\n      advanced:\n        retentionConfig:\n          blockDuration: 2h\n          deleteDelay: 48h\n          retentionInLocal: 24h\n          retentionResolutionRaw: 3d\n      enableDownsampling: false\n      observabilityAddonSpec:\n        enableMetrics: true\n        interval: 300\n      storageConfig:\n        alertmanagerStorageSize: 10Gi\n        compactStorageSize: 100Gi\n        metricObjectStorage:\n          key: thanos.yaml\n          name: thanos-object-storage\n        receiveStorageSize: 25Gi\n        ruleStorageSize: 10Gi\n        storeStorageSize: 25Gi\n    ```\n13. Apply the `MultiClusterObservability` CR by running the following command on the hub cluster:\n\n    ```terminal\n    $ oc apply -f monitoringMultiClusterObservability.yaml\n    ```\n\n**Verification**\n\n1. Check the routes and pods in the namespace to validate that the services have deployed on the hub cluster by running the following command:\n\n   ```terminal\n   $ oc get routes,pods -n open-cluster-management-observability\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                         HOST/PORT                                                                                        PATH      SERVICES                          PORT          TERMINATION          WILDCARD\n   route.route.openshift.io/alertmanager        alertmanager-open-cluster-management-observability.cloud.example.com        /api/v2   alertmanager                      oauth-proxy   reencrypt/Redirect   None\n   route.route.openshift.io/grafana             grafana-open-cluster-management-observability.cloud.example.com                       grafana                           oauth-proxy   reencrypt/Redirect   None\n   route.route.openshift.io/observatorium-api   observatorium-api-open-cluster-management-observability.cloud.example.com             observability-observatorium-api   public        passthrough/None     None\n   route.route.openshift.io/rbac-query-proxy    rbac-query-proxy-open-cluster-management-observability.cloud.example.com              rbac-query-proxy                  https         reencrypt/Redirect   None\n\n   NAME                                                           READY   STATUS    RESTARTS   AGE\n   pod/observability-alertmanager-0                               3/3     Running   0          1d\n   pod/observability-alertmanager-1                               3/3     Running   0          1d\n   pod/observability-alertmanager-2                               3/3     Running   0          1d\n   pod/observability-grafana-685b47bb47-dq4cw                     3/3     Running   0          1d\n   <...snip…>\n   pod/observability-thanos-store-shard-0-0                       1/1     Running   0          1d\n   pod/observability-thanos-store-shard-1-0                       1/1     Running   0          1d\n   pod/observability-thanos-store-shard-2-0                       1/1     Running   0          1d\n   ```\n\n   > [!NOTE]\n   > A dashboard is accessible at the grafana route listed. You can use this to view metrics across all managed clusters.\n\nFor more information on observability in Red Hat Advanced Cluster Management, see [Observability](https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.12/html/observability/index).\n\n## Alerting {#observability-alerting_observability}\n\nOpenShift Container Platform includes a large number of alert rules, which can change from release to release.\n\n### Viewing default alerts {#viewing-default-alerts_observability}\n\nTo review all of the alert rules in a cluster, run the following command:\n\n```terminal\n$ oc get cm -n openshift-monitoring prometheus-k8s-rulefiles-0 -o yaml\n```\n\nRules can include a description and provide a link to additional information and mitigation steps. For example, see the rule for `etcdHighFsyncDurations`:\n\n```terminal\n      - alert: etcdHighFsyncDurations\n        annotations:\n          description: 'etcd cluster \"{{ $labels.job }}\": 99th percentile fsync durations\n            are {{ $value }}s on etcd instance {{ $labels.instance }}.'\n          runbook_url: https://github.com/openshift/runbooks/blob/master/alerts/cluster-etcd-operator/etcdHighFsyncDurations.md\n          summary: etcd cluster 99th percentile fsync durations are too high.\n        expr: |\n          histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket{job=~\".*etcd.*\"}[5m]))\n          > 1\n        for: 10m\n        labels:\n          severity: critical\n```\n\n### Alert notifications {#alert-notifications}\n\nYou can view alerts in the OpenShift Container Platform console. However, an administrator must configure an external receiver to forward the alerts to. OpenShift Container Platform supports the following receiver types:\n\nPagerDuty\n:   A third-party incident response platform.\n\nWebhook\n:   An arbitrary API endpoint that receives an alert through a `POST` request and can take any necessary action.\n\nEmail\n:   Sends an email to a designated address.\n\nSlack\n:   Sends a notification to either a Slack channel or an individual user.\n\n**Additional resources**\n\n- [Managing alerts](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/index)\n\n## Workload monitoring {#observability-workload-monitoring_observability}\n\nBy default, OpenShift Container Platform does not collect metrics for application workloads. You can configure a cluster to collect workload metrics and create alerts for user workloads.\n\n**Prerequisites**\n\n- You have defined endpoints to gather workload metrics on the cluster.\n\n**Procedure**\n\n1. Create a `ConfigMap` CR and save it as `monitoringConfigMap.yaml`, as in the following example:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: cluster-monitoring-config\n     namespace: openshift-monitoring\n   data:\n     config.yaml: |\n       enableUserWorkload: true\n   ```\n\n   Set `enableUserWorkload` to `true` to enable workload monitoring.\n2. Apply the `ConfigMap` CR by running the following command:\n\n   ```terminal\n   $ oc apply -f monitoringConfigMap.yaml\n   ```\n3. Create a `ServiceMonitor` CR, and save it as `monitoringServiceMonitor.yaml`, as in the following example:\n\n   ```yaml\n   apiVersion: monitoring.coreos.com/v1\n   kind: ServiceMonitor\n   metadata:\n     labels:\n       app: ui\n     name: myapp\n     namespace: myns\n   spec:\n     endpoints:\n     - interval: 30s\n       port: ui-http\n       scheme: http\n       path: /healthz\n     selector:\n       matchLabels:\n         app: ui\n   ```\n\n   - `endpoints` specifies the workload metrics endpoints to scrape.\n   - `path` specifies a custom scrape path. Prometheus scrapes the `/metrics` path by default.\n4. Apply the `ServiceMonitor` CR by running the following command:\n\n   ```terminal\n   $ oc apply -f monitoringServiceMonitor.yaml\n   ```\n\n   The vendor of the application must decide whether to expose the endpoint for scraping, with metrics that they deem relevant.\n5. To enable alerts for user workloads, verify that the `cluster-monitoring-config` ConfigMap has `enableUserWorkload: true` set. If you completed step 1, this is already configured.\n6. Create a YAML file for alerting rules and save it as `monitoringAlertRule.yaml`, as in the following example:\n\n   ```yaml\n   apiVersion: monitoring.coreos.com/v1\n   kind: PrometheusRule\n   metadata:\n     name: myapp-alert\n     namespace: myns\n   spec:\n     groups:\n     - name: example\n       rules:\n       - alert: InternalErrorsAlert\n         expr: flask_http_request_total{status=\"500\"} > 0\n   # ...\n   ```\n7. Apply the alert rule by running the following command:\n\n   ```terminal\n   $ oc apply -f monitoringAlertRule.yaml\n   ```\n\n**Additional resources**\n\n- \\[ServiceMonitor[monitoring.coreos.com/v1](/openshift-docs-markdown/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1)\\]\n- [Enabling monitoring for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/configuring_user_workload_monitoring/preparing-to-configure-the-monitoring-stack-uwm#enabling-monitoring-for-user-defined-projects-uwm_preparing-to-configure-the-monitoring-stack-uwm)\n- [Managing alerting rules for user-defined projects](https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/managing-alerts-as-a-developer#managing-alerting-rules-for-user-defined-projects-uwm_managing-alerts-as-a-developer)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/observability/observability.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,23 +102,328 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="observability" class="group scroll-mt-20">Observability in OpenShift Container Platform clusters<a href="#observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>OpenShift Container Platform generates a large amount of data, such as performance metrics and logs from both the platform and the workloads running on it. As an administrator, you can use various tools to collect and analyze all the data available. What follows is an outline of best practices for system engineers, architects, and administrators configuring the observability stack.</p>
       <p>Unless explicitly stated, the material in this document refers to both Edge and Core deployments.</p>
-      <p class="/modules/observability-monitoring-stack.md"></p>
+      <h2 id="observability-monitoring-stack_observability" class="group scroll-mt-20">Monitoring stack components<a href="#observability-monitoring-stack_observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The monitoring stack in OpenShift Container Platform consists of several integrated components that collect, analyze, store, and alert on metrics.</p>
+      <p>The monitoring stack uses the following components:</p>
+      <ul>
+      <li>Prometheus collects and analyzes metrics from OpenShift Container Platform components and from workloads, if configured to do so.</li>
+      <li>Alertmanager is a component of Prometheus that handles routing, grouping, and silencing of alerts.</li>
+      <li>Thanos handles long term storage of metrics.</li>
+      </ul>
+      <p><strong>Figure 1. OpenShift Container Platform monitoring architecture</strong></p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/monitoring-architecture.png" alt="OpenShift Container Platform monitoring architecture" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For single-node OpenShift clusters, disable Alertmanager and Thanos because the clusters sends all metrics to the hub cluster for analysis and retention.</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring">About OpenShift Container Platform monitoring</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/getting_started/core-platform-monitoring-first-steps">Core platform monitoring first steps</a></li>
       </ul>
+      <h2 id="observability-key-performance-metrics_observability" class="group scroll-mt-20">Key performance metrics<a href="#observability-key-performance-metrics_observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Depending on your system, you can have hundreds of available measurements.</p>
+      <p>Consider the following key metrics:</p>
+      <ul>
+      <li><code>etcd</code> response times</li>
+      <li>API response times</li>
+      <li>Pod restarts and scheduling</li>
+      <li>Resource usage</li>
+      <li>OVN health</li>
+      <li>Overall cluster operator health</li>
+      </ul>
+      <p>If a metric is important, set up an alert for it.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can check the available metrics by running the following command:</p>
+          <CodeBlock code={"$ oc -n openshift-monitoring exec -c prometheus prometheus-k8s-0 -- curl -qsk http://localhost:9090/api/v1/metadata | jq '.data"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      <h3 id="example-queries-promql_observability" class="group scroll-mt-20">Example queries in PromQL<a href="#example-queries-promql_observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Using the OpenShift Container Platform console, you can explore the following queries in the metrics query browser.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The URL for the console is https://&lt;OpenShift Console FQDN&gt;/monitoring/query-browser. You can get the Openshift Console FQDN by running the following command:</p>
+          <CodeBlock code={"$ oc get routes -n openshift-console console -o jsonpath='{.status.ingress[0].host}'"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      <p><strong>Node memory &amp; CPU usage</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Metric</TableHead>
+      <TableHead>Query</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>CPU % requests by node</TableCell>
+      <TableCell><code>sum by (node) (sum_over_time(kube_pod_container_resource_requests{"{"}resource="cpu"{"}"}[60m]))/sum by (node) (sum_over_time(kube_node_status_allocatable{"{"}resource="cpu"{"}"}[60m])) *100</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Overall cluster CPU % utilization</TableCell>
+      <TableCell><code>sum by (managed_cluster) (sum_over_time(kube_pod_container_resource_requests{"{"}resource="memory"{"}"}[60m]))/sum by (managed_cluster) (sum_over_time(kube_node_status_allocatable{"{"}resource="cpu"{"}"}[60m])) *100</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Memory % requests by node</TableCell>
+      <TableCell><code>sum by (node) (sum_over_time(kube_pod_container_resource_requests{"{"}resource="memory"{"}"}[60m]))/sum by (node) (sum_over_time(kube_node_status_allocatable{"{"}resource="memory"{"}"}[60m])) *100</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Overall cluster memory % utilization</TableCell>
+      <TableCell><code>(1-(sum by (managed_cluster)(avg_over_time((node_memory_MemAvailable_bytes[60m])) ))/sum by (managed_cluster)(avg_over_time(kube_node_status_allocatable{"{"}resource="memory"{"}"}[60m])))*100</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>API latency by verb</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Metric</TableHead>
+      <TableHead>Query</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>GET</code></TableCell>
+      <TableCell>`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{"{"}apiserver=~"kube-apiserver\</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>openshift-apiserver", verb="GET"{"}"}[60m])))`</TableCell>
+      <TableCell><code>PATCH</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{"{"}apiserver="kube-apiserver\</TableCell>
+      <TableCell>openshift-apiserver", verb="PATCH"{"}"}[60m])))`</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>POST</code></TableCell>
+      <TableCell>`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{"{"}apiserver="kube-apiserver\</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>openshift-apiserver", verb="POST"{"}"}[60m])))`</TableCell>
+      <TableCell><code>LIST</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{"{"}apiserver="kube-apiserver\</TableCell>
+      <TableCell>openshift-apiserver", verb="LIST"{"}"}[60m])))`</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>PUT</code></TableCell>
+      <TableCell>`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{"{"}apiserver="kube-apiserver\</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>openshift-apiserver", verb="PUT"{"}"}[60m])))`</TableCell>
+      <TableCell><code>DELETE</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>`histogram_quantile (0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{"{"}apiserver="kube-apiserver\</TableCell>
+      <TableCell>openshift-apiserver", verb="DELETE"{"}"}[60m])))`</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Combined</TableCell>
+      <TableCell>`histogram_quantile(0.99, sum by (le,managed_cluster) (sum_over_time(apiserver_request_duration_seconds_bucket{"{"}apiserver=~"(openshift-apiserver\</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><code>etcd</code></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Metric</TableHead>
+      <TableHead>Query</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>fsync</code> 99th percentile latency (per instance)</TableCell>
+      <TableCell><code>histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket[2m]))</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>fsync</code> 99th percentile latency (per cluster)</TableCell>
+      <TableCell><code>sum by (managed_cluster) ( histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket[60m])))</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Leader elections</TableCell>
+      <TableCell><code>sum(rate(etcd_server_leader_changes_seen_total[1440m]))</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Network latency</TableCell>
+      <TableCell><code>histogram_quantile(0.99, rate(etcd_network_peer_round_trip_time_seconds_bucket[5m]))</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>Operator health</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Metric</TableHead>
+      <TableHead>Query</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Degraded operators</TableCell>
+      <TableCell><code>sum by (managed_cluster, name) (avg_over_time(cluster_operator_conditions{"{"}condition="Degraded", name!="version"{"}"}[60m]))</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Total degraded operators per cluster</TableCell>
+      <TableCell><code>sum by (managed_cluster) (avg_over_time(cluster_operator_conditions{"{"}condition="Degraded", name!="version"{"}"}[60m] ))</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="recommendations-for-storage-of-metrics_observability" class="group scroll-mt-20">Recommendations for storage of metrics<a href="#recommendations-for-storage-of-metrics_observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>By default, Prometheus does not back up saved metrics with persistent storage. If you restart the Prometheus pods, all metrics data are lost. You must configure the monitoring stack to use the back-end storage that is available on the platform. To meet the high IO demands of Prometheus, use local storage.</p>
+      <p>For smaller clusters, you can use the Local Storage Operator for persistent storage for Prometheus. Red Hat OpenShift Data Foundation (ODF), which deploys a ceph cluster for block, file, and object storage, is suitable for larger clusters.</p>
+      <p>To keep system resource requirements low on a single-node OpenShift cluster, do not provision back-end storage for the monitoring stack. Such clusters forward all metrics to the hub cluster where you can provision a third party monitoring platform.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/accessing_metrics/accessing-metrics-as-an-administrator">Accessing metrics as an administrator</a></li>
       <li><a href="/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#local-storage-install_persistent-storage-local">Persistent storage using local volumes</a></li>
       </ul>
-      <p class="/modules/observability-alerting.md"></p>
+      <h2 id="observability-monitoring-the-edge_observability" class="group scroll-mt-20">Monitoring at the far edge network<a href="#observability-monitoring-the-edge_observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Container Platform clusters at the edge must keep the footprint of the platform components to a minimum. The following procedure is an example of how to configure a single-node OpenShift or a node at the far edge network with a small monitoring footprint.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>For environments that use Red Hat Advanced Cluster Management (RHACM), you have enabled the Observability service.</li>
+      <li>The hub cluster is running Red Hat OpenShift Data Foundation (ODF).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>ConfigMap</code> CR, and save it as <code>monitoringConfigMap.yaml</code>, as in the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n name: cluster-monitoring-config\n namespace: openshift-monitoring\n data:\n config.yaml: |\n   alertmanagerMain:\n     enabled: false\n   telemeterClient:\n     enabled: false\n   prometheusK8s:\n      retention: 24h"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>ConfigMap</code> CR by running the following command on the single-node OpenShift cluster:
+      <CodeBlock code={"$ oc apply -f monitoringConfigMap.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create a <code>Namespace</code> CR, and save it as <code>monitoringNamespace.yaml</code>, as in the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: Namespace\nmetadata:\n  name: open-cluster-management-observability"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>Namespace</code> CR by running the following command on the hub cluster :
+      <CodeBlock code={"$ oc apply -f monitoringNamespace.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create an <code>ObjectBucketClaim</code> CR, and save it as <code>monitoringObjectBucketClaim.yaml</code>, as in the following example:
+      <CodeBlock code={"apiVersion: objectbucket.io/v1alpha1\nkind: ObjectBucketClaim\nmetadata:\n  name: multi-cloud-observability\n  namespace: open-cluster-management-observability\nspec:\n  storageClassName: openshift-storage.noobaa.io\n  generateBucketName: acm-multi"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>ObjectBucketClaim</code> CR by running the following command on the hub cluster:
+      <CodeBlock code={"$ oc apply -f monitoringObjectBucketClaim.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create a <code>Secret</code> CR, and save it as <code>monitoringSecret.yaml</code>, as in the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n  name: multiclusterhub-operator-pull-secret\n  namespace: open-cluster-management-observability\nstringData:\n  .dockerconfigjson: 'PULL_SECRET'"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>Secret</code> CR by running the following command in the hub cluster:
+      <CodeBlock code={"$ oc apply -f monitoringSecret.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Get the keys for the NooBaa service and the back-end bucket name from the hub cluster by running the following commands:
+      <CodeBlock code={"$ NOOBAA_ACCESS_KEY=$(oc get secret noobaa-admin -n openshift-storage -o json | jq -r '.data.AWS_ACCESS_KEY_ID|@base64d')"} lang="terminal" />
+      <CodeBlock code={"$ NOOBAA_SECRET_KEY=$(oc get secret noobaa-admin -n openshift-storage -o json | jq -r '.data.AWS_SECRET_ACCESS_KEY|@base64d')"} lang="terminal" />
+      <CodeBlock code={"$ OBJECT_BUCKET=$(oc get objectbucketclaim -n open-cluster-management-observability multi-cloud-observability -o json | jq -r .spec.bucketName)"} lang="terminal" />
+      </li>
+      <li>
+      Create a <code>Secret</code> CR for bucket storage and save it as <code>monitoringBucketSecret.yaml</code>, as in the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n  name: thanos-object-storage\n  namespace: open-cluster-management-observability\ntype: Opaque\nstringData:\n  thanos.yaml: |\n    type: s3\n    config:\n      bucket: ${OBJECT_BUCKET}\n      endpoint: s3.openshift-storage.svc\n      insecure: true\n      access_key: ${NOOBAA_ACCESS_KEY}\n      secret_key: ${NOOBAA_SECRET_KEY}"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>Secret</code> CR by running the following command on the hub cluster:
+      <CodeBlock code={"$ oc apply -f monitoringBucketSecret.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create the <code>MultiClusterObservability</code> CR and save it as <code>monitoringMultiClusterObservability.yaml</code>, as in the following example:
+      <CodeBlock code={"apiVersion: observability.open-cluster-management.io/v1beta2\nkind: MultiClusterObservability\nmetadata:\n  name: observability\nspec:\n  advanced:\n    retentionConfig:\n      blockDuration: 2h\n      deleteDelay: 48h\n      retentionInLocal: 24h\n      retentionResolutionRaw: 3d\n  enableDownsampling: false\n  observabilityAddonSpec:\n    enableMetrics: true\n    interval: 300\n  storageConfig:\n    alertmanagerStorageSize: 10Gi\n    compactStorageSize: 100Gi\n    metricObjectStorage:\n      key: thanos.yaml\n      name: thanos-object-storage\n    receiveStorageSize: 25Gi\n    ruleStorageSize: 10Gi\n    storeStorageSize: 25Gi"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>MultiClusterObservability</code> CR by running the following command on the hub cluster:
+      <CodeBlock code={"$ oc apply -f monitoringMultiClusterObservability.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Check the routes and pods in the namespace to validate that the services have deployed on the hub cluster by running the following command:
+      <CodeBlock code={"$ oc get routes,pods -n open-cluster-management-observability"} lang="terminal" />
+      <CodeBlock code={"NAME                                         HOST/PORT                                                                                        PATH      SERVICES                          PORT          TERMINATION          WILDCARD\nroute.route.openshift.io/alertmanager        alertmanager-open-cluster-management-observability.cloud.example.com        /api/v2   alertmanager                      oauth-proxy   reencrypt/Redirect   None\nroute.route.openshift.io/grafana             grafana-open-cluster-management-observability.cloud.example.com                       grafana                           oauth-proxy   reencrypt/Redirect   None\nroute.route.openshift.io/observatorium-api   observatorium-api-open-cluster-management-observability.cloud.example.com             observability-observatorium-api   public        passthrough/None     None\nroute.route.openshift.io/rbac-query-proxy    rbac-query-proxy-open-cluster-management-observability.cloud.example.com              rbac-query-proxy                  https         reencrypt/Redirect   None\n\nNAME                                                           READY   STATUS    RESTARTS   AGE\npod/observability-alertmanager-0                               3/3     Running   0          1d\npod/observability-alertmanager-1                               3/3     Running   0          1d\npod/observability-alertmanager-2                               3/3     Running   0          1d\npod/observability-grafana-685b47bb47-dq4cw                     3/3     Running   0          1d\n<...snip…>\npod/observability-thanos-store-shard-0-0                       1/1     Running   0          1d\npod/observability-thanos-store-shard-1-0                       1/1     Running   0          1d\npod/observability-thanos-store-shard-2-0                       1/1     Running   0          1d\n"} lang="terminal" title="Example output" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>A dashboard is accessible at the grafana route listed. You can use this to view metrics across all managed clusters.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <p>For more information on observability in Red Hat Advanced Cluster Management, see <a href="https://docs.redhat.com/en/documentation/red_hat_advanced_cluster_management_for_kubernetes/2.12/html/observability/index">Observability</a>.</p>
+      <h2 id="observability-alerting_observability" class="group scroll-mt-20">Alerting<a href="#observability-alerting_observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Container Platform includes a large number of alert rules, which can change from release to release. </p>
+      <h3 id="viewing-default-alerts_observability" class="group scroll-mt-20">Viewing default alerts<a href="#viewing-default-alerts_observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>To review all of the alert rules in a cluster, run the following command:</p>
+      <CodeBlock code={"$ oc get cm -n openshift-monitoring prometheus-k8s-rulefiles-0 -o yaml"} lang="terminal" />
+      <p>Rules can include a description and provide a link to additional information and mitigation steps. For example, see the rule for <code>etcdHighFsyncDurations</code>:</p>
+      <CodeBlock code={"      - alert: etcdHighFsyncDurations\n        annotations:\n          description: 'etcd cluster \"{{ $labels.job }}\": 99th percentile fsync durations\n            are {{ $value }}s on etcd instance {{ $labels.instance }}.'\n          runbook_url: https://github.com/openshift/runbooks/blob/master/alerts/cluster-etcd-operator/etcdHighFsyncDurations.md\n          summary: etcd cluster 99th percentile fsync durations are too high.\n        expr: |\n          histogram_quantile(0.99, rate(etcd_disk_wal_fsync_duration_seconds_bucket{job=~\".*etcd.*\"}[5m]))\n          > 1\n        for: 10m\n        labels:\n          severity: critical"} lang="terminal" />
+      <h3 id="alert-notifications" class="group scroll-mt-20">Alert notifications<a href="#alert-notifications" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can view alerts in the OpenShift Container Platform console. However, an administrator must configure an external receiver to forward the alerts to. OpenShift Container Platform supports the following receiver types:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">PagerDuty</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A third-party incident response platform.</p></dd>
+      <dt class="font-semibold">Webhook</dt>
+      <dd class="ml-6 text-muted-foreground"><p>An arbitrary API endpoint that receives an alert through a <code>POST</code> request and can take any necessary action.</p></dd>
+      <dt class="font-semibold">Email</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Sends an email to a designated address.</p></dd>
+      <dt class="font-semibold">Slack</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Sends a notification to either a Slack channel or an individual user.</p></dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/managing_alerts/index">Managing alerts</a></li></ul>
+      <h2 id="observability-workload-monitoring_observability" class="group scroll-mt-20">Workload monitoring<a href="#observability-workload-monitoring_observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By default, OpenShift Container Platform does not collect metrics for application workloads. You can configure a cluster to collect workload metrics and create alerts for user workloads.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have defined endpoints to gather workload metrics on the cluster.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>ConfigMap</code> CR and save it as <code>monitoringConfigMap.yaml</code>, as in the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: cluster-monitoring-config\n  namespace: openshift-monitoring\ndata:\n  config.yaml: |\n    enableUserWorkload: true"} lang="yaml" />
+      <p>Set <code>enableUserWorkload</code> to <code>true</code> to enable workload monitoring.</p>
+      </li>
+      <li>
+      Apply the <code>ConfigMap</code> CR by running the following command:
+      <CodeBlock code={"$ oc apply -f monitoringConfigMap.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create a <code>ServiceMonitor</code> CR, and save it as <code>monitoringServiceMonitor.yaml</code>, as in the following example:
+      <CodeBlock code={"apiVersion: monitoring.coreos.com/v1\nkind: ServiceMonitor\nmetadata:\n  labels:\n    app: ui\n  name: myapp\n  namespace: myns\nspec:\n  endpoints:\n  - interval: 30s\n    port: ui-http\n    scheme: http\n    path: /healthz\n  selector:\n    matchLabels:\n      app: ui"} lang="yaml" />
+      <ul>
+      <li><code>endpoints</code> specifies the workload metrics endpoints to scrape.</li>
+      <li><code>path</code> specifies a custom scrape path. Prometheus scrapes the <code>/metrics</code> path by default.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the <code>ServiceMonitor</code> CR by running the following command:
+      <CodeBlock code={"$ oc apply -f monitoringServiceMonitor.yaml"} lang="terminal" />
+      <p>The vendor of the application must decide whether to expose the endpoint for scraping, with metrics that they deem relevant.</p>
+      </li>
+      <li>To enable alerts for user workloads, verify that the <code>cluster-monitoring-config</code> ConfigMap has <code>enableUserWorkload: true</code> set. If you completed step 1, this is already configured.</li>
+      <li>
+      Create a YAML file for alerting rules and save it as <code>monitoringAlertRule.yaml</code>, as in the following example:
+      <CodeBlock code={"apiVersion: monitoring.coreos.com/v1\nkind: PrometheusRule\nmetadata:\n  name: myapp-alert\n  namespace: myns\nspec:\n  groups:\n  - name: example\n    rules:\n    - alert: InternalErrorsAlert\n      expr: flask_http_request_total{status=\"500\"} > 0\n# ..."} lang="yaml" />
+      </li>
+      <li>
+      Apply the alert rule by running the following command:
+      <CodeBlock code={"$ oc apply -f monitoringAlertRule.yaml"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li>[ServiceMonitor<a href="/openshift-docs-markdown/rest_api/monitoring_apis/servicemonitor-monitoring-coreos-com-v1#servicemonitor-monitoring-coreos-com-v1">monitoring.coreos.com/v1</a>]</li>

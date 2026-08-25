@@ -15,8 +15,17 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"virt-support-overview","text":"Support overview"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-support-overview","text":"Support overview"},{"depth":2,"slug":"virt-support-opening-case_virt-support-overview","text":"Opening a support case"},{"depth":3,"slug":"virt-support-collect-data_virt-support-overview","text":"Collecting data for Red Hat Support"},{"depth":3,"slug":"virt-support-submit-support-case_virt-support-overview","text":"Submitting a support case"},{"depth":2,"slug":"virt-creating-jira-issue_virt-support-overview","text":"Creating a Jira issue"},{"depth":2,"slug":"about-self-service-tsr_virt-support-overview","text":"Self-service Technical Supportability Review"},{"depth":3,"slug":"when-to-use-self-service-tsr_virt-support-overview","text":"When to use the self-service TSR tool"},{"depth":3,"slug":"how-to-access-tsr_virt-support-overview","text":"How to access the TSR"},{"depth":2,"slug":"virt-feedback-on-openshift-virtualization_virt-support-overview","text":"Provide feedback on OpenShift Virtualization documentation"},{"depth":2,"slug":"virt-support-web-console-monitoring_virt-support-overview","text":"Web console monitoring"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/support/virt-support-overview";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +35,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Support overview";
-const description = "Accelerate the resolution of cluster and virtual machine (VM) issues by using the integrated diagnostic tools and support provided by {{ VirtProductName…" || undefined;
+const description = "Accelerate the resolution of cluster and virtual machine (VM) issues by using the integrated diagnostic tools and support provided by OpenShift…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +48,7 @@ const pageCategory = ["virt","virt/support"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Support overview {#virt-support-overview}\n\nAccelerate the resolution of cluster and virtual machine (VM) issues by using the integrated diagnostic tools and support provided by {{ VirtProductName }}.\n\nTo gather debugging information, configure Prometheus and Alertmanager and collect `must-gather` data for OpenShift Container Platform and {{ VirtProductName }}.\n\n## Additional resources {#_additional_resources}\n\n- [Submitting a support case](/openshift-docs-markdown/support/getting-support#support-submitting-a-case_getting-support)\n- [Collecting data about your environment](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-collecting-data-about-your-environment_virt-collecting-virt-data)\n- [Using the `must-gather` tool for {{ VirtProductName }}](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)\n- [Red Hat Issue Router](https://access.redhat.com/labs/rhir/?product=cnv)\n- [Red Hat Jira account](https://redhat.atlassian.net/jira)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/support/virt-support-overview.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Support overview {#virt-support-overview}\n\nAccelerate the resolution of cluster and virtual machine (VM) issues by using the integrated diagnostic tools and support provided by OpenShift Virtualization.\n\nTo gather debugging information, configure Prometheus and Alertmanager and collect `must-gather` data for OpenShift Container Platform and OpenShift Virtualization.\n\n## Opening a support case {#virt-support-opening-case_virt-support-overview}\n\nOpen a support case with Red Hat Support when you encounter an issue that requires immediate assistance.\n\n### Collecting data for Red Hat Support {#virt-support-collect-data_virt-support-overview}\n\nGather information about the issue affecting your environment to submit with your support case. This aids Red Hat Support in effectively diagnosing your issue.\n\nGather troubleshooting information by using the following tools:\n\n- Configure Prometheus and Alertmanager.\n- Configure and use the `must-gather` tool.\n- Collect `must-gather` data and memory dumps from VMs.\n- Collect `must-gather` data for OpenShift Container Platform and OpenShift Virtualization\n\n### Submitting a support case {#virt-support-submit-support-case_virt-support-overview}\n\nSubmit a support case to resolve a cluster issue that is affecting the ability of OpenShift Virtualization to function properly in your environment.\n\nYou can submit a support case to Red Hat Support by using the Customer Support page. Include data that you collected about your issue with your support request.\n\n## Creating a Jira issue {#virt-creating-jira-issue_virt-support-overview}\n\nTo report a bug, use the Red Hat Issue Router (RHIR), which is available in the Customer Portal Labs.\n\n**Procedure**\n\n1. Access the RHIR.\n2. In the list of all OpenShift Virtualization components, find the component for which you want to report an issue.\n3. Click the **Report a bug** link of the component.\n4. On the **Create issue** page, fill out the form:\n\n   1. Complete the **Summary** and **Description** fields. In the **Description** field, include a detailed description of the issue.\n   2. Submit any collected troubleshooting information:\n\n      1. Add any textual troubleshooting information, such as command outputs, in the **Description** field.\n      2. Add troubleshooting files using the **Attachment** field.\n5. Click **Create** at the bottom of the page.\n6. Review the details of the bug you created.\n\n## Self-service Technical Supportability Review {#about-self-service-tsr_virt-support-overview}\n\nYou can use the self-service Technical Supportability Review (TSR) on the Red Hat Customer Portal to validate your cluster configuration against Red Hat common practices.\n\n> [!NOTE]\n> The `must-gather` tool collects diagnostic information about your cluster, including resource definitions, service logs, and configuration data. For more information, see \"Gathering data about your cluster\" in the OpenShift Container Platform documentation.\n\nThe self-service TSR uses AI to evaluate your cluster’s `must-gather` data and provides a prioritized executive summary of recommendations. This serves as a starting point to help you identify and resolve potential issues before they impact your environment.\n\nThe TSR performs hundreds of checks across the OpenShift Container Platform platform, including OpenShift Virtualization. Coverage is continually expanding.\n\n### When to use the self-service TSR tool {#when-to-use-self-service-tsr_virt-support-overview}\n\nIntegrating the self-service TSR into your regular operational workflow can be helpful in the following scenarios:\n\nRoutine benchmarking\n:   Use the TSR quarterly to benchmark cluster health and plan for routine maintenance activities.\n\nPre-flight checks\n:   Validate your cluster configuration before major structural changes, including upgrades, migrations, and expansions.\n\nCritical event preparation\n:   Confirm cluster stability ahead of high-traffic business events, such as seasonal peaks, or operational milestones, such as year-end shutdowns, business continuity drills, and compliance audits.\n\n### How to access the TSR {#how-to-access-tsr_virt-support-overview}\n\nTo run a self-service review, upload your cluster’s `must-gather` data to the **Analyze** tab in the **Support** section of the Red Hat Customer Portal. For a direct link, see \"Technical Supportability Review with AI tool\" in the Additional resources section. The **Analyze** feature generates a prioritized executive summary that identifies your cluster’s top risks and recommends corrective actions. Review the recommendations and implement the suggested corrective actions to address the identified risks.\n\nThe self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.\n\n- [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze)\n- [Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform](https://access.redhat.com/solutions/7141255)\n\n## Provide feedback on OpenShift Virtualization documentation {#virt-feedback-on-openshift-virtualization_virt-support-overview}\n\nTo report an error or request an enhancement in the documentation, log in to your Red Hat Jira account and submit an issue. If you do not have a Red Hat Jira account, you are prompted to create an account.\n\n**Procedure**\n\n1. Create a [Jira issue](https://redhat.atlassian.net/secure/CreateIssueDetails!init.jspa?priority=1003&summary=%5BDoc%5D&pid=10270&issuetype=10016&components=13563) and in the **Component** field, select **CNV Documentation**.\n2. Enter a brief description of the issue in the **Summary**.\n3. Provide a detailed description of the issue or requested enhancement in the **Description**. Include a URL to where the issue occurs in the documentation.\n4. Click **Create**.\n\n## Web console monitoring {#virt-support-web-console-monitoring_virt-support-overview}\n\nMonitor cluster and virtual machine (VM) health with the OpenShift Container Platform web console.\n\nThe OpenShift Container Platform web console displays resource usage, alerts, events, and trends for your cluster and for OpenShift Virtualization components and resources.\n\n**Web console pages for monitoring and troubleshooting**\n\n| Page | Description |\n| --- | --- |\n| **Virtualization** -> **VirtualMachines** -> **Overview** page | Cluster details, status, alerts, inventory, and resource usage |\n| **Virtualization** -> **VirtualMachines** -> **Overview** -> **Overview** tab | OpenShift Virtualization resources, usage, alerts, and status |\n| **Virtualization** -> **Migrations** page | Progress of live migrations |\n| **Virtualization** -> **VirtualMachines** -> **Virtual machines** tab | CPU, memory, and storage usage summary |\n| **Virtualization** -> **VirtualMachines** -> **Virtual machines** -> **VirtualMachine details** -> **Metrics** tab | VM resource usage, storage, network, and migration |\n| **Virtualization** -> **VirtualMachines** -> **Virtual machines** -> **VirtualMachine details** -> **Events** tab | List of VM events |\n| **Virtualization** -> **VirtualMachines** -> **Virtual machines** -> **VirtualMachine details** -> **Diagnostics** tab | VM status conditions and volume snapshot status |\n\n## Additional resources {#_additional_resources}\n\n- [Submitting a support case](/openshift-docs-markdown/support/getting-support#support-submitting-a-case_getting-support)\n- [Collecting data about your environment](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-collecting-data-about-your-environment_virt-collecting-virt-data)\n- [Using the `must-gather` tool for OpenShift Virtualization](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)\n- [Red Hat Issue Router](https://access.redhat.com/labs/rhir/?product=cnv)\n- [Red Hat Jira account](https://redhat.atlassian.net/jira)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/support/virt-support-overview.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +84,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,22 +99,132 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-support-overview" class="group scroll-mt-20">Support overview<a href="#virt-support-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Accelerate the resolution of cluster and virtual machine (VM) issues by using the integrated diagnostic tools and support provided by {"{"}{"{"} VirtProductName {"}"}{"}"}.</p>
-      <p>To gather debugging information, configure Prometheus and Alertmanager and collect <code>must-gather</code> data for OpenShift Container Platform and {"{"}{"{"} VirtProductName {"}"}{"}"}.</p>
-      <p class="/modules/virt-support-opening-case.md"></p>
-      <p class="/modules/virt-support-collect-data.md"></p>
-      <p class="/modules/virt-support-submit-support-case.md"></p>
-      <p class="/modules/virt-support-create-jira-issue.md"></p>
-      <p class="/modules/about-self-service-tsr.md"></p>
-      <p class="/modules/virt-feedback-on-openshift-virtualization.md"></p>
-      <p class="/modules/virt-support-web-console-monitoring.md"></p>
+      <p>Accelerate the resolution of cluster and virtual machine (VM) issues by using the integrated diagnostic tools and support provided by OpenShift Virtualization.</p>
+      <p>To gather debugging information, configure Prometheus and Alertmanager and collect <code>must-gather</code> data for OpenShift Container Platform and OpenShift Virtualization.</p>
+      <h2 id="virt-support-opening-case_virt-support-overview" class="group scroll-mt-20">Opening a support case<a href="#virt-support-opening-case_virt-support-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Open a support case with Red Hat Support when you encounter an issue that requires immediate assistance.</p>
+      <h3 id="virt-support-collect-data_virt-support-overview" class="group scroll-mt-20">Collecting data for Red Hat Support<a href="#virt-support-collect-data_virt-support-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Gather information about the issue affecting your environment to submit with your support case. This aids Red Hat Support in effectively diagnosing your issue.</p>
+      <p>Gather troubleshooting information by using the following tools:</p>
+      <ul>
+      <li>Configure Prometheus and Alertmanager.</li>
+      <li>Configure and use the <code>must-gather</code> tool.</li>
+      <li>Collect <code>must-gather</code> data and memory dumps from VMs.</li>
+      <li>Collect <code>must-gather</code> data for OpenShift Container Platform and OpenShift Virtualization</li>
+      </ul>
+      <h3 id="virt-support-submit-support-case_virt-support-overview" class="group scroll-mt-20">Submitting a support case<a href="#virt-support-submit-support-case_virt-support-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Submit a support case to resolve a cluster issue that is affecting the ability of OpenShift Virtualization to function properly in your environment. </p>
+      <p>You can submit a support case to Red Hat Support by using the Customer Support page. Include data that you collected about your issue with your support request.</p>
+      <h2 id="virt-creating-jira-issue_virt-support-overview" class="group scroll-mt-20">Creating a Jira issue<a href="#virt-creating-jira-issue_virt-support-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To report a bug, use the Red Hat Issue Router (RHIR), which is available in the Customer Portal Labs.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Access the RHIR.</li>
+      <li>In the list of all OpenShift Virtualization components, find the component for which you want to report an issue.</li>
+      <li>Click the <strong>Report a bug</strong> link of the component.</li>
+      <li>
+      On the <strong>Create issue</strong> page, fill out the form:
+      <ol>
+      <li>Complete the <strong>Summary</strong> and <strong>Description</strong> fields. In the <strong>Description</strong> field, include a detailed description of the issue.</li>
+      <li>
+      Submit any collected troubleshooting information:
+      <ol>
+      <li>Add any textual troubleshooting information, such as command outputs, in the <strong>Description</strong> field.</li>
+      <li>Add troubleshooting files using the <strong>Attachment</strong> field.</li>
+      </ol>
+      </li>
+      </ol>
+      </li>
+      <li>Click <strong>Create</strong> at the bottom of the page.</li>
+      <li>Review the details of the bug you created.</li>
+      </ol>
+      <h2 id="about-self-service-tsr_virt-support-overview" class="group scroll-mt-20">Self-service Technical Supportability Review<a href="#about-self-service-tsr_virt-support-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the self-service Technical Supportability Review (TSR) on the Red Hat Customer Portal to validate your cluster configuration against Red Hat common practices.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>must-gather</code> tool collects diagnostic information about your cluster, including resource definitions, service logs, and configuration data. For more information, see "Gathering data about your cluster" in the OpenShift Container Platform documentation.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The self-service TSR uses AI to evaluate your cluster’s <code>must-gather</code> data and provides a prioritized executive summary of recommendations. This serves as a starting point to help you identify and resolve potential issues before they impact your environment.</p>
+      <p>The TSR performs hundreds of checks across the OpenShift Container Platform platform, including OpenShift Virtualization. Coverage is continually expanding.</p>
+      <h3 id="when-to-use-self-service-tsr_virt-support-overview" class="group scroll-mt-20">When to use the self-service TSR tool<a href="#when-to-use-self-service-tsr_virt-support-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Integrating the self-service TSR into your regular operational workflow can be helpful in the following scenarios:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Routine benchmarking</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Use the TSR quarterly to benchmark cluster health and plan for routine maintenance activities.</p></dd>
+      <dt class="font-semibold">Pre-flight checks</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Validate your cluster configuration before major structural changes, including upgrades, migrations, and expansions.</p></dd>
+      <dt class="font-semibold">Critical event preparation</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Confirm cluster stability ahead of high-traffic business events, such as seasonal peaks, or operational milestones, such as year-end shutdowns, business continuity drills, and compliance audits.</p></dd>
+      </dl>
+      <h3 id="how-to-access-tsr_virt-support-overview" class="group scroll-mt-20">How to access the TSR<a href="#how-to-access-tsr_virt-support-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>To run a self-service review, upload your cluster’s <code>must-gather</code> data to the <strong>Analyze</strong> tab in the <strong>Support</strong> section of the Red Hat Customer Portal. For a direct link, see "Technical Supportability Review with AI tool" in the Additional resources section. The <strong>Analyze</strong> feature generates a prioritized executive summary that identifies your cluster’s top risks and recommends corrective actions. Review the recommendations and implement the suggested corrective actions to address the identified risks.</p>
+      <p>The self-service TSR provides a solid baseline for cluster health. If you need additional guidance or a more comprehensive review, contact your Red Hat account team to arrange an assisted review through a Technical Account Manager (TAM) or Red Hat consultant. An assisted review includes human analysis, deeper coverage, and access to checks that are updated more frequently than the self-service version.</p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul>
+      <li><a href="https://access.redhat.com/support/cases/#/analyze">Technical Supportability Review with AI tool</a></li>
+      <li><a href="https://access.redhat.com/solutions/7141255">Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform</a></li>
+      </ul>
+      </section>
+      <h2 id="virt-feedback-on-openshift-virtualization_virt-support-overview" class="group scroll-mt-20">Provide feedback on OpenShift Virtualization documentation<a href="#virt-feedback-on-openshift-virtualization_virt-support-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To report an error or request an enhancement in the documentation, log in to your Red Hat Jira account and submit an issue. If you do not have a Red Hat Jira account, you are prompted to create an account.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create a <a href="https://redhat.atlassian.net/secure/CreateIssueDetails!init.jspa?priority=1003&amp;summary=%5BDoc%5D&amp;pid=10270&amp;issuetype=10016&amp;components=13563">Jira issue</a> and in the <strong>Component</strong> field, select <strong>CNV Documentation</strong>.</li>
+      <li>Enter a brief description of the issue in the <strong>Summary</strong>.</li>
+      <li>Provide a detailed description of the issue or requested enhancement in the <strong>Description</strong>. Include a URL to where the issue occurs in the documentation.</li>
+      <li>Click <strong>Create</strong>.</li>
+      </ol>
+      <h2 id="virt-support-web-console-monitoring_virt-support-overview" class="group scroll-mt-20">Web console monitoring<a href="#virt-support-web-console-monitoring_virt-support-overview" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Monitor cluster and virtual machine (VM) health with the OpenShift Container Platform web console.</p>
+      <p>The OpenShift Container Platform web console displays resource usage, alerts, events, and trends for your cluster and for OpenShift Virtualization components and resources.</p>
+      <p><strong>Web console pages for monitoring and troubleshooting</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Page</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> -&gt; <strong>Overview</strong> page</TableCell>
+      <TableCell>Cluster details, status, alerts, inventory, and resource usage</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> -&gt; <strong>Overview</strong> -&gt; <strong>Overview</strong> tab</TableCell>
+      <TableCell>OpenShift Virtualization resources, usage, alerts, and status</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><strong>Virtualization</strong> -&gt; <strong>Migrations</strong> page</TableCell>
+      <TableCell>Progress of live migrations</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> -&gt; <strong>Virtual machines</strong> tab</TableCell>
+      <TableCell>CPU, memory, and storage usage summary</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> -&gt; <strong>Virtual machines</strong> -&gt; <strong>VirtualMachine details</strong> -&gt; <strong>Metrics</strong> tab</TableCell>
+      <TableCell>VM resource usage, storage, network, and migration</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> -&gt; <strong>Virtual machines</strong> -&gt; <strong>VirtualMachine details</strong> -&gt; <strong>Events</strong> tab</TableCell>
+      <TableCell>List of VM events</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> -&gt; <strong>Virtual machines</strong> -&gt; <strong>VirtualMachine details</strong> -&gt; <strong>Diagnostics</strong> tab</TableCell>
+      <TableCell>VM status conditions and volume snapshot status</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/support/getting-support#support-submitting-a-case_getting-support">Submitting a support case</a></li>
       <li><a href="/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-collecting-data-about-your-environment_virt-collecting-virt-data">Collecting data about your environment</a></li>
-      <li><a href="/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data">Using the <code>must-gather</code> tool for {"{"}{"{"} VirtProductName {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data">Using the <code>must-gather</code> tool for OpenShift Virtualization</a></li>
       <li><a href="https://access.redhat.com/labs/rhir/?product=cnv">Red Hat Issue Router</a></li>
       <li><a href="https://redhat.atlassian.net/jira">Red Hat Jira account</a></li>
       </ul>

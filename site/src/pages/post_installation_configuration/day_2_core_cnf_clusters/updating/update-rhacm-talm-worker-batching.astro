@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"core-cluster-upgrades-worker-batching","text":"Prepare worker node pools before a cluster update with {{ cgu_operator }}"},{"depth":2,"slug":"additional-resources_core-cluster-upgrades-worker-batching","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"core-cluster-upgrades-worker-batching","text":"Prepare worker node pools before a cluster update with {{ cgu_operator }}"},{"depth":2,"slug":"core-cluster-upgrade-worker-batching-mcp_core-cluster-upgrades-worker-batching","text":"Configuring worker node batching by using machine config pools"},{"depth":2,"slug":"core-cluster-upgrade-worker-batching-pdb_core-cluster-upgrades-worker-batching","text":"Configuring worker node batching by using pod disruption budgets"},{"depth":2,"slug":"additional-resources_core-cluster-upgrades-worker-batching","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-worker-batching";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Prepare worker node pools before a cluster update with {{ cgu_operator }} {#core-cluster-upgrades-worker-batching}\n\nYou can configure worker node batching to control how many worker nodes update simultaneously and how workloads tolerate disruption during cluster updates by using `MachineConfigPool` and `PodDisruptionBudget` resources.\n\n## Additional resources {#additional-resources_core-cluster-upgrades-worker-batching}\n\n- [Configuring application pods before updating your OpenShift Container Platform cluster](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-cnf-update-prep)\n- [Kubernetes PodDisruptionBudget documentation](https://kubernetes.io/docs/tasks/run-application/configure-pdb/)\n- [Pod Topology Spread Constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-worker-batching.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Prepare worker node pools before a cluster update with {{ cgu_operator }} {#core-cluster-upgrades-worker-batching}\n\nYou can configure worker node batching to control how many worker nodes update simultaneously and how workloads tolerate disruption during cluster updates by using `MachineConfigPool` and `PodDisruptionBudget` resources.\n\n## Configuring worker node batching by using machine config pools {#core-cluster-upgrade-worker-batching-mcp_core-cluster-upgrades-worker-batching}\n\nYou can configure the `MachineConfigPool` resource to control how many worker nodes update simultaneously during a cluster update. Adjusting the `maxUnavailable` setting balances update speed against workload availability.\n\n**Prerequisites**\n\n- You have access to the target cluster with cluster-admin privileges.\n- The `oc` CLI tool is installed and configured.\n\n**Procedure**\n\n1. Check the current `maxUnavailable` setting for the worker `MachineConfigPool` resource by running the following command:\n\n   ```terminal\n   $ oc get mcp worker -o jsonpath='{.spec.maxUnavailable}'\n   ```\n2. Set the required `maxUnavailable` value in the worker `MachineConfigPool` resource by running the following command:\n\n   ```terminal\n   $ oc patch mcp worker --type merge -p '{\"spec\":{\"maxUnavailable\":\"<max_unavailable>\"}}'\n   ```\n\n   where `<max_unavailable>` is one of the following values:\n\n   - An integer, for example `1`, to specify the exact number of nodes that can be unavailable during the update.\n   - A percentage, for example `\"50%\"`, to specify the proportion of nodes that can be unavailable.\n\n   > [!NOTE]\n   > The default `maxUnavailable` value is 1 worker node or 33% of worker nodes, whichever is smaller. Setting a higher value accelerates updates but increases the number of nodes unavailable at any given time. Consult your application teams to find the appropriate value for your workloads.\n3. Verify the updated setting by running the following command:\n\n   ```terminal\n   $ oc get mcp worker -o yaml\n   ```\n\n**Verification**\n\n- Verify the `MachineConfigPool` resource reflects the updated `maxUnavailable` value by running the following command:\n\n  ```terminal\n  $ oc get mcp worker -o jsonpath='{.spec.maxUnavailable}'\n  ```\n\n## Configuring worker node batching by using pod disruption budgets {#core-cluster-upgrade-worker-batching-pdb_core-cluster-upgrades-worker-batching}\n\nYou can configure `PodDisruptionBudget` resources to control how your workloads tolerate node draining during cluster updates. Pod disruption budgets ensure that a minimum number of pod replicas remain available during worker node updates.\n\n**Prerequisites**\n\n- You have access to the target cluster with cluster-admin privileges.\n- The `oc` CLI tool is installed and configured.\n- You have identified critical workloads that run with replicas.\n\n**Procedure**\n\n1. Create a `PodDisruptionBudget` resource for each critical workload:\n\n   ```yaml\n   apiVersion: policy/v1\n   kind: PodDisruptionBudget\n   metadata:\n     name: <pdb_name>\n     namespace: <namespace>\n   spec:\n     maxUnavailable: 1\n     selector:\n       matchLabels:\n         app: <app_label>\n   ```\n\n   where:\n\n   - `<pdb_name>`: Specifies a name for the `PodDisruptionBudget` resource, for example `cnf-workload-pdb`.\n   - `<namespace>`: Specifies the namespace where the workload runs, for example `cnf-workload`.\n   - `maxUnavailable`: Specifies the maximum number of pods that can be unavailable during a disruption. Set this value to at least `1` to allow node draining to proceed.\n   - `<app_label>`: Specifies the label selector that matches the pods for this workload.\n2. Apply the `PodDisruptionBudget` resource by running the following command:\n\n   ```terminal\n   $ oc apply -f <pdb_filename>.yaml\n   ```\n3. Verify that the pod disruption budget allows at least one disruption by running the following command:\n\n   ```terminal\n   $ oc get pdb <pdb_name> -n <namespace>\n   ```\n\n   The following example shows the output:\n\n   ```terminal\n   NAME               MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE\n   cnf-workload-pdb   N/A             1                 1                     30s\n   ```\n\n   > [!IMPORTANT]\n   > Ensure the `ALLOWED DISRUPTIONS` column shows a value greater than 0. If this value is 0, the pod disruption budget blocks node draining and updates stall. Do not set `minAvailable` to 100% of replicas, as this prevents any disruption.\n4. Repeat steps 1-3 for all critical workloads in your cluster.\n5. Verify all pod disruption budgets across the cluster by running the following command:\n\n   ```terminal\n   $ oc get pdb -A\n   ```\n\n**Verification**\n\n- Verify that no pod disruption budgets are blocking disruptions by running the following command:\n\n  ```terminal\n  $ oc get pdb -A -o jsonpath='{range .items[?(@.status.disruptionsAllowed==0)]}{.metadata.namespace}{\"\\t\"}{.metadata.name}{\"\\n\"}{end}'\n  ```\n\n  This command must produce no output. If the output lists any pod disruption budgets, adjust their configuration before updating.\n\n## Additional resources {#additional-resources_core-cluster-upgrades-worker-batching}\n\n- [Configuring application pods before updating your OpenShift Container Platform cluster](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-cnf-update-prep)\n- [Kubernetes PodDisruptionBudget documentation](https://kubernetes.io/docs/tasks/run-application/configure-pdb/)\n- [Pod Topology Spread Constraints](https://kubernetes.io/docs/concepts/scheduling-eviction/topology-spread-constraints/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-worker-batching.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,98 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="core-cluster-upgrades-worker-batching" class="group scroll-mt-20">Prepare worker node pools before a cluster update with {"{"}{"{"} cgu_operator {"}"}{"}"}<a href="#core-cluster-upgrades-worker-batching" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure worker node batching to control how many worker nodes update simultaneously and how workloads tolerate disruption during cluster updates by using <code>MachineConfigPool</code> and <code>PodDisruptionBudget</code> resources.</p>
-      <p class="/modules/core-cluster-upgrade-worker-batching-mcp.md"></p>
-      <p class="/modules/core-cluster-upgrade-worker-batching-pdb.md"></p>
+      <h2 id="core-cluster-upgrade-worker-batching-mcp_core-cluster-upgrades-worker-batching" class="group scroll-mt-20">Configuring worker node batching by using machine config pools<a href="#core-cluster-upgrade-worker-batching-mcp_core-cluster-upgrades-worker-batching" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure the <code>MachineConfigPool</code> resource to control how many worker nodes update simultaneously during a cluster update. Adjusting the <code>maxUnavailable</code> setting balances update speed against workload availability.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the target cluster with cluster-admin privileges.</li>
+      <li>The <code>oc</code> CLI tool is installed and configured.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check the current <code>maxUnavailable</code> setting for the worker <code>MachineConfigPool</code> resource by running the following command:
+      <CodeBlock code={"$ oc get mcp worker -o jsonpath='{.spec.maxUnavailable}'"} lang="terminal" />
+      </li>
+      <li>
+      Set the required <code>maxUnavailable</code> value in the worker <code>MachineConfigPool</code> resource by running the following command:
+      <CodeBlock code={"$ oc patch mcp worker --type merge -p '{\"spec\":{\"maxUnavailable\":\"<max_unavailable>\"}}'"} lang="terminal" />
+      <p>where <code>&lt;max_unavailable&gt;</code> is one of the following values:</p>
+      <ul>
+      <li>An integer, for example <code>1</code>, to specify the exact number of nodes that can be unavailable during the update.</li>
+      <li>A percentage, for example <code>"50%"</code>, to specify the proportion of nodes that can be unavailable.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The default <code>maxUnavailable</code> value is 1 worker node or 33% of worker nodes, whichever is smaller. Setting a higher value accelerates updates but increases the number of nodes unavailable at any given time. Consult your application teams to find the appropriate value for your workloads.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Verify the updated setting by running the following command:
+      <CodeBlock code={"$ oc get mcp worker -o yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify the <code>MachineConfigPool</code> resource reflects the updated <code>maxUnavailable</code> value by running the following command:
+      <CodeBlock code={"$ oc get mcp worker -o jsonpath='{.spec.maxUnavailable}'"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="core-cluster-upgrade-worker-batching-pdb_core-cluster-upgrades-worker-batching" class="group scroll-mt-20">Configuring worker node batching by using pod disruption budgets<a href="#core-cluster-upgrade-worker-batching-pdb_core-cluster-upgrades-worker-batching" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure <code>PodDisruptionBudget</code> resources to control how your workloads tolerate node draining during cluster updates. Pod disruption budgets ensure that a minimum number of pod replicas remain available during worker node updates.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the target cluster with cluster-admin privileges.</li>
+      <li>The <code>oc</code> CLI tool is installed and configured.</li>
+      <li>You have identified critical workloads that run with replicas.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>PodDisruptionBudget</code> resource for each critical workload:
+      <CodeBlock code={"apiVersion: policy/v1\nkind: PodDisruptionBudget\nmetadata:\n  name: <pdb_name>\n  namespace: <namespace>\nspec:\n  maxUnavailable: 1\n  selector:\n    matchLabels:\n      app: <app_label>"} lang="yaml" />
+      <p>where:</p>
+      <ul>
+      <li><code>&lt;pdb_name&gt;</code>: Specifies a name for the <code>PodDisruptionBudget</code> resource, for example <code>cnf-workload-pdb</code>.</li>
+      <li><code>&lt;namespace&gt;</code>: Specifies the namespace where the workload runs, for example <code>cnf-workload</code>.</li>
+      <li><code>maxUnavailable</code>: Specifies the maximum number of pods that can be unavailable during a disruption. Set this value to at least <code>1</code> to allow node draining to proceed.</li>
+      <li><code>&lt;app_label&gt;</code>: Specifies the label selector that matches the pods for this workload.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the <code>PodDisruptionBudget</code> resource by running the following command:
+      <CodeBlock code={"$ oc apply -f <pdb_filename>.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the pod disruption budget allows at least one disruption by running the following command:
+      <CodeBlock code={"$ oc get pdb <pdb_name> -n <namespace>"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"NAME               MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE\ncnf-workload-pdb   N/A             1                 1                     30s"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Ensure the <code>ALLOWED DISRUPTIONS</code> column shows a value greater than 0. If this value is 0, the pod disruption budget blocks node draining and updates stall. Do not set <code>minAvailable</code> to 100% of replicas, as this prevents any disruption.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Repeat steps 1-3 for all critical workloads in your cluster.</li>
+      <li>
+      Verify all pod disruption budgets across the cluster by running the following command:
+      <CodeBlock code={"$ oc get pdb -A"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that no pod disruption budgets are blocking disruptions by running the following command:
+      <CodeBlock code={"$ oc get pdb -A -o jsonpath='{range .items[?(@.status.disruptionsAllowed==0)]}{.metadata.namespace}{\"\\t\"}{.metadata.name}{\"\\n\"}{end}'"} lang="terminal" />
+      <p>This command must produce no output. If the output lists any pod disruption budgets, adjust their configuration before updating.</p>
+      </li>
+      </ul>
       <h2 id="additional-resources_core-cluster-upgrades-worker-batching" class="group scroll-mt-20">Additional resources<a href="#additional-resources_core-cluster-upgrades-worker-batching" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-cnf-update-prep#update-cnf-update-prep">Configuring application pods before updating your OpenShift Container Platform cluster</a></li>

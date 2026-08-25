@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"config-maps","text":"Using config maps with applications"}];
+const headings = [{"depth":1,"slug":"config-maps","text":"Using config maps with applications"},{"depth":2,"slug":"nodes-pods-configmap-overview_config-maps","text":"Understanding config maps"},{"depth":3,"slug":"nodes-pods-configmap-overview-restrictions","text":"Config map restrictions"},{"depth":3,"slug":"nodes-pods-configmaps-use-case-consuming-in-env-vars_config-maps","text":"Populating environment variables in containers by using config maps"},{"depth":3,"slug":"nodes-pods-configmaps-use-case-setting-command-line-arguments_config-maps","text":"Setting command-line arguments for container commands with config maps"},{"depth":3,"slug":"nodes-pods-configmaps-use-case-consuming-in-volumes_config-maps","text":"Injecting content into a volume by using config maps"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/config-maps";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["applications"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using config maps with applications {#config-maps}\n\nBy using a config map, you can decouple configuration artifacts from image content to keep containerized applications portable.\n\nThe following sections define config maps, explain how to create and use them, and describe use cases for consuming `ConfigMap` objects in pods.\n\n**Additional resources**\n\n- [Creating and using config maps](/openshift-docs-markdown/nodes/pods/nodes-pods-configmaps)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/config-maps.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using config maps with applications {#config-maps}\n\nBy using a config map, you can decouple configuration artifacts from image content to keep containerized applications portable.\n\nThe following sections define config maps, explain how to create and use them, and describe use cases for consuming `ConfigMap` objects in pods.\n\n## Understanding config maps {#nodes-pods-configmap-overview_config-maps}\n\nYou can review the following sections to learn how to use config maps to make configuration values available to your pods separately from application code.\n\nMany applications require configuration by using some combination of configuration files, command-line arguments, and environment variables. In OpenShift Container Platform, these configuration artifacts are decoupled from image content to keep containerized applications portable.\n\nThe `ConfigMap` object provides mechanisms to inject containers with configuration data while keeping containers agnostic of OpenShift Container Platform. A config map can be used to store fine-grained information like individual properties or coarse-grained information like entire configuration files or JSON blobs.\n\nThe `ConfigMap` object holds key-value pairs of configuration data that can be consumed in pods or used to store configuration data for system components such as controllers. For example:\n\n```yaml {title=\"ConfigMap Object Definition\"}\nkind: ConfigMap\napiVersion: v1\nmetadata:\n  creationTimestamp: 2016-02-18T19:14:38Z\n  name: example-config\n  namespace: my-namespace\ndata:\n  example.property.1: hello\n  example.property.2: world\n  example.property.file: |-\n    property.1=value-1\n    property.2=value-2\n    property.3=value-3\nbinaryData:\n  bar: L3Jvb3QvMTAw\n```\n\nwhere:\n\n`data`\n:   Specifies the configuration data.\n\n`binaryData.bar`\n:   Specifies a file that contains non-UTF8 data, for example, a binary Java keystore file. Enter the file data in Base 64.\n\n> [!NOTE]\n> You can use the `binaryData` field when you create a config map from a binary file, such as an image.\n\nConfiguration data can be consumed in pods in a variety of ways. A config map can be used to:\n\n- Populate environment variable values in containers\n- Set command-line arguments in a container\n- Populate configuration files in a volume\n\nUsers and system components can store configuration data in a config map.\n\nA config map is similar to a secret, but designed to more conveniently support working with strings that do not contain sensitive information.\n\n### Config map restrictions {#nodes-pods-configmap-overview-restrictions}\n\n**A config map must be created before its contents can be consumed in pods.**\n\nControllers can be written to tolerate missing configuration data. Consult individual components configured by using config maps on a case-by-case basis.\n\n`ConfigMap`** objects reside in a project.**\n\nThey can only be referenced by pods in the same project.\n\n**The Kubelet only supports the use of a config map for pods it gets from the API server.**\n\nThis includes any pods created by using the CLI, or indirectly from a replication controller. It does not include pods created by using the OpenShift Container Platform node’s `--manifest-url` flag, its `--config` flag, or its REST API because these are not common ways to create pods.\n\n**Additional resources**\n\n- [Creating and using config maps](/openshift-docs-markdown/nodes/pods/nodes-pods-configmaps)\n\n### Populating environment variables in containers by using config maps {#nodes-pods-configmaps-use-case-consuming-in-env-vars_config-maps}\n\nYou can use config maps to populate individual environment variables in containers or to populate environment variables in containers from all keys that form valid environment variable names.\n\nThe following example `ConfigMap` custom resource (CR) contains two environment variables:\n\n```yaml\napiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: special-config\n  namespace: default\ndata:\n  special.how: very\n  special.type: charm\n```\n\nwhere:\n\n`metadata.name`\n:   Specifies the name of the config map.\n\n`metadata.namespace`\n:   Specifies the project in which the config map resides. Config maps can only be referenced by pods in the same project.\n\n`data`\n:   Specifies the environment variables to inject.\n\nThe following example `ConfigMap` (CR) contains one environment variable:\n\n```yaml\napiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: env-config\n  namespace: default\ndata:\n  log_level: INFO\n```\n\nwhere:\n\n`metadata.name`\n:   Specifies the name of the config map.\n\n`metadata.namespace`\n:   Specifies the project in which the config map resides. Config maps can only be referenced by pods in the same project.\n\n`data`\n:   Specifies the environment variables to inject.\n\n**Procedure**\n\n- You can consume the keys of this `ConfigMap` in a pod using `configMapKeyRef` sections.\n\n  ```yaml {title=\"Sample Pod specification configured to inject specific environment variables\"}\n  apiVersion: v1\n  kind: Pod\n  metadata:\n    name: dapi-test-pod\n  spec:\n    securityContext:\n      runAsNonRoot: true\n      seccompProfile:\n        type: RuntimeDefault\n    containers:\n      - name: test-container\n        image: gcr.io/google_containers/busybox\n        command: [ \"/bin/sh\", \"-c\", \"env\" ]\n        env:\n          - name: SPECIAL_LEVEL_KEY\n            valueFrom:\n              configMapKeyRef:\n                name: special-config\n                key: special.how\n          - name: SPECIAL_TYPE_KEY\n            valueFrom:\n              configMapKeyRef:\n                name: special-config\n                key: special.type\n                optional: true\n        envFrom:\n          - configMapRef:\n              name: env-config\n        securityContext:\n          allowPrivilegeEscalation: false\n          capabilities:\n            drop: [ALL]\n    restartPolicy: Never\n  ```\n\n  where:\n\n  `spec.containers.env`\n  :   Specifies the environment variables to pull from a config map.\n\n  `spec.containers.env.name`\n  :   Specifies the name of a pod environment variable that you are injecting a key’s value into.\n\n  `spec.containers.env.valueFrom.configMapKeyRef.name`\n  :   Specifies the name of the config map to pull specific environment variables from.\n\n  `spec.containers.env.valueFrom.configMapKeyRef.key`\n  :   Specifies the environment variable to pull from the config map.\n\n  `spec.containers.env.valueFrom.configMapKeyRef.optional`\n  :   Specifies that the environment variable is optional. As optional, the pod will be started even if the specified config map and keys do not exist.\n\n  `spec.containers.envFrom.configMapRef`\n  :   Specifies the name of the config map to pull all environment variables from.\n\n  When this pod is run, the pod logs will include the following output:\n\n  ```\n  SPECIAL_LEVEL_KEY=very\n  log_level=INFO\n  ```\n\n  > [!NOTE]\n  > `SPECIAL_TYPE_KEY=charm` is not listed in the example output because `optional: true` is set.\n\n### Setting command-line arguments for container commands with config maps {#nodes-pods-configmaps-use-case-setting-command-line-arguments_config-maps}\n\nYou can use config maps to set the value of the commands or arguments in a container by using the Kubernetes substitution syntax `$(VAR_NAME)`.\n\nAs an example, consider the following config map:\n\n```yaml\napiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: special-config\n  namespace: default\ndata:\n  special.how: very\n  special.type: charm\n```\n\n**Procedure**\n\n- To inject values into a command in a container, you must consume the keys you want to use as environment variables. Then you can refer to them in a container’s command using the `$(VAR_NAME)` syntax.\n\n  ```yaml {title=\"Sample pod specification configured to inject specific environment variables\"}\n  apiVersion: v1\n  kind: Pod\n  metadata:\n    name: dapi-test-pod\n  spec:\n    securityContext:\n      runAsNonRoot: true\n      seccompProfile:\n        type: RuntimeDefault\n    containers:\n      - name: test-container\n        image: gcr.io/google_containers/busybox\n        command: [ \"/bin/sh\", \"-c\", \"echo $(SPECIAL_LEVEL_KEY) $(SPECIAL_TYPE_KEY)\" ]\n        env:\n          - name: SPECIAL_LEVEL_KEY\n            valueFrom:\n              configMapKeyRef:\n                name: special-config\n                key: special.how\n          - name: SPECIAL_TYPE_KEY\n            valueFrom:\n              configMapKeyRef:\n                name: special-config\n                key: special.type\n        securityContext:\n          allowPrivilegeEscalation: false\n          capabilities:\n            drop: [ALL]\n    restartPolicy: Never\n  ```\n\n  where:\n\n  `spec.containers.command`\n  :   Specifies values to inject into a command in a container by using the keys you want to use as environment variables.\n\n  When this pod is run, the output from the echo command run in the test-container container is as follows:\n\n  ```\n  very charm\n  ```\n\n### Injecting content into a volume by using config maps {#nodes-pods-configmaps-use-case-consuming-in-volumes_config-maps}\n\nYou can use config maps to inject content into a volume.\n\nThe following example `ConfigMap` custom resource (CR) contains two environment variables:\n\n```yaml\napiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: special-config\n  namespace: default\ndata:\n  special.how: very\n  special.type: charm\n```\n\nThe following procedure describes options for injecting content into a volume by using config maps.\n\n**Procedure**\n\n- The most basic way to inject content into a volume by using a config map is to populate the volume with files where the key is the file name and the content of the file is the value of the key:\n\n  ```yaml\n  apiVersion: v1\n  kind: Pod\n  metadata:\n    name: dapi-test-pod\n  spec:\n    securityContext:\n      runAsNonRoot: true\n      seccompProfile:\n        type: RuntimeDefault\n    containers:\n      - name: test-container\n        image: gcr.io/google_containers/busybox\n        command: [ \"/bin/sh\", \"-c\", \"cat\", \"/etc/config/special.how\" ]\n        volumeMounts:\n        - name: config-volume\n          mountPath: /etc/config\n        securityContext:\n          allowPrivilegeEscalation: false\n          capabilities:\n            drop: [ALL]\n    volumes:\n      - name: config-volume\n        configMap:\n          name: special-config\n    restartPolicy: Never\n  ```\n\n  where:\n\n  `spec.volumes.configMap.name`\n  :   Specifies a file containing key. When this pod is run, the output of the cat command will be:\n\n  ```\n  very\n  ```\n- You can also control the paths within the volume where config map keys are projected:\n\n  ```yaml\n  apiVersion: v1\n  kind: Pod\n  metadata:\n    name: dapi-test-pod\n  spec:\n    securityContext:\n      runAsNonRoot: true\n      seccompProfile:\n        type: RuntimeDefault\n    containers:\n      - name: test-container\n        image: gcr.io/google_containers/busybox\n        command: [ \"/bin/sh\", \"-c\", \"cat\", \"/etc/config/path/to/special-key\" ]\n        volumeMounts:\n        - name: config-volume\n          mountPath: /etc/config\n        securityContext:\n          allowPrivilegeEscalation: false\n          capabilities:\n            drop: [ALL]\n    volumes:\n      - name: config-volume\n        configMap:\n          name: special-config\n          items:\n          - key: special.how\n            path: path/to/special-key\n    restartPolicy: Never\n  ```\n\n  where:\n\n  `spec.volumes.configMap.items.path`\n  :   Specifies the path to config map key.\n\n  When this pod is run, the output of the cat command is `very`.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/config-maps.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,144 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="config-maps" class="group scroll-mt-20">Using config maps with applications<a href="#config-maps" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>By using a config map, you can decouple configuration artifacts from image content to keep containerized applications portable.</p>
       <p>The following sections define config maps, explain how to create and use them, and describe use cases for consuming <code>ConfigMap</code> objects in pods.</p>
-      <p class="/modules/nodes-pods-configmap-overview.md"></p>
+      <h2 id="nodes-pods-configmap-overview_config-maps" class="group scroll-mt-20">Understanding config maps<a href="#nodes-pods-configmap-overview_config-maps" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can review the following sections to learn how to use config maps to make configuration values available to your pods separately from application code.</p>
+      <p>Many applications require configuration by using some combination of configuration files, command-line arguments, and environment variables. In OpenShift Container Platform, these configuration artifacts are decoupled from image content to keep containerized applications portable.</p>
+      <p>The <code>ConfigMap</code> object provides mechanisms to inject containers with configuration data while keeping containers agnostic of OpenShift Container Platform. A config map can be used to store fine-grained information like individual properties or coarse-grained information like entire configuration files or JSON blobs.</p>
+      <p>The <code>ConfigMap</code> object holds key-value pairs of configuration data that can be consumed in pods or used to store configuration data for system components such as controllers. For example:</p>
+      <CodeBlock code={"kind: ConfigMap\napiVersion: v1\nmetadata:\n  creationTimestamp: 2016-02-18T19:14:38Z\n  name: example-config\n  namespace: my-namespace\ndata:\n  example.property.1: hello\n  example.property.2: world\n  example.property.file: |-\n    property.1=value-1\n    property.2=value-2\n    property.3=value-3\nbinaryData:\n  bar: L3Jvb3QvMTAw"} lang="yaml" title="ConfigMap Object Definition" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>data</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the configuration data.</p></dd>
+      <dt class="font-semibold"><code>binaryData.bar</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a file that contains non-UTF8 data, for example, a binary Java keystore file. Enter the file data in Base 64.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can use the <code>binaryData</code> field when you create a config map from a binary file, such as an image.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Configuration data can be consumed in pods in a variety of ways. A config map can be used to:</p>
+      <ul>
+      <li>Populate environment variable values in containers</li>
+      <li>Set command-line arguments in a container</li>
+      <li>Populate configuration files in a volume</li>
+      </ul>
+      <p>Users and system components can store configuration data in a config map.</p>
+      <p>A config map is similar to a secret, but designed to more conveniently support working with strings that do not contain sensitive information.</p>
+      <h3 id="nodes-pods-configmap-overview-restrictions" class="group scroll-mt-20">Config map restrictions<a href="#nodes-pods-configmap-overview-restrictions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p><strong>A config map must be created before its contents can be consumed in pods.</strong></p>
+      <p>Controllers can be written to tolerate missing configuration data. Consult individual components configured by using config maps on a case-by-case basis.</p>
+      <p><code>ConfigMap</code><strong> objects reside in a project.</strong></p>
+      <p>They can only be referenced by pods in the same project.</p>
+      <p><strong>The Kubelet only supports the use of a config map for pods it gets from the API server.</strong></p>
+      <p>This includes any pods created by using the CLI, or indirectly from a replication controller. It does not include pods created by using the OpenShift Container Platform node’s <code>--manifest-url</code> flag, its <code>--config</code> flag, or its REST API because these are not common ways to create pods.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/nodes/pods/nodes-pods-configmaps">Creating and using config maps</a></li></ul>
-      <p class="/modules/nodes-pods-configmaps-use-case-setting-command-line-arguments.md"></p>
-      <p class="/modules/nodes-pods-configmaps-use-case-consuming-in-volumes.md"></p>
+      <h3 id="nodes-pods-configmaps-use-case-consuming-in-env-vars_config-maps" class="group scroll-mt-20">Populating environment variables in containers by using config maps<a href="#nodes-pods-configmaps-use-case-consuming-in-env-vars_config-maps" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can use config maps to populate individual environment variables in containers or to populate environment variables in containers from all keys that form valid environment variable names.</p>
+      <p>The following example <code>ConfigMap</code> custom resource (CR) contains two environment variables:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: special-config\n  namespace: default\ndata:\n  special.how: very\n  special.type: charm"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the config map.</p></dd>
+      <dt class="font-semibold"><code>metadata.namespace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the project in which the config map resides. Config maps can only be referenced by pods in the same project.</p></dd>
+      <dt class="font-semibold"><code>data</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the environment variables to inject.</p></dd>
+      </dl>
+      <p>The following example <code>ConfigMap</code> (CR) contains one environment variable:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: env-config\n  namespace: default\ndata:\n  log_level: INFO"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the config map.</p></dd>
+      <dt class="font-semibold"><code>metadata.namespace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the project in which the config map resides. Config maps can only be referenced by pods in the same project.</p></dd>
+      <dt class="font-semibold"><code>data</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the environment variables to inject.</p></dd>
+      </dl>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      You can consume the keys of this <code>ConfigMap</code> in a pod using <code>configMapKeyRef</code> sections.
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: dapi-test-pod\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n    - name: test-container\n      image: gcr.io/google_containers/busybox\n      command: [ \"/bin/sh\", \"-c\", \"env\" ]\n      env:\n        - name: SPECIAL_LEVEL_KEY\n          valueFrom:\n            configMapKeyRef:\n              name: special-config\n              key: special.how\n        - name: SPECIAL_TYPE_KEY\n          valueFrom:\n            configMapKeyRef:\n              name: special-config\n              key: special.type\n              optional: true\n      envFrom:\n        - configMapRef:\n            name: env-config\n      securityContext:\n        allowPrivilegeEscalation: false\n        capabilities:\n          drop: [ALL]\n  restartPolicy: Never"} lang="yaml" title="Sample Pod specification configured to inject specific environment variables" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.containers.env</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the environment variables to pull from a config map.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.env.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of a pod environment variable that you are injecting a key’s value into.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.env.valueFrom.configMapKeyRef.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the config map to pull specific environment variables from.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.env.valueFrom.configMapKeyRef.key</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the environment variable to pull from the config map.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.env.valueFrom.configMapKeyRef.optional</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the environment variable is optional. As optional, the pod will be started even if the specified config map and keys do not exist.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.envFrom.configMapRef</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the config map to pull all environment variables from.</p></dd>
+      </dl>
+      <p>When this pod is run, the pod logs will include the following output:</p>
+      <CodeBlock code={"SPECIAL_LEVEL_KEY=very\nlog_level=INFO"} lang="plaintext" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p><code>SPECIAL_TYPE_KEY=charm</code> is not listed in the example output because <code>optional: true</code> is set.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h3 id="nodes-pods-configmaps-use-case-setting-command-line-arguments_config-maps" class="group scroll-mt-20">Setting command-line arguments for container commands with config maps<a href="#nodes-pods-configmaps-use-case-setting-command-line-arguments_config-maps" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can use config maps to set the value of the commands or arguments in a container by using the Kubernetes substitution syntax <code>$(VAR_NAME)</code>.</p>
+      <p>As an example, consider the following config map:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: special-config\n  namespace: default\ndata:\n  special.how: very\n  special.type: charm"} lang="yaml" />
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To inject values into a command in a container, you must consume the keys you want to use as environment variables. Then you can refer to them in a container’s command using the <code>$(VAR_NAME)</code> syntax.
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: dapi-test-pod\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n    - name: test-container\n      image: gcr.io/google_containers/busybox\n      command: [ \"/bin/sh\", \"-c\", \"echo $(SPECIAL_LEVEL_KEY) $(SPECIAL_TYPE_KEY)\" ]\n      env:\n        - name: SPECIAL_LEVEL_KEY\n          valueFrom:\n            configMapKeyRef:\n              name: special-config\n              key: special.how\n        - name: SPECIAL_TYPE_KEY\n          valueFrom:\n            configMapKeyRef:\n              name: special-config\n              key: special.type\n      securityContext:\n        allowPrivilegeEscalation: false\n        capabilities:\n          drop: [ALL]\n  restartPolicy: Never"} lang="yaml" title="Sample pod specification configured to inject specific environment variables" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.containers.command</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies values to inject into a command in a container by using the keys you want to use as environment variables.</p></dd>
+      </dl>
+      <p>When this pod is run, the output from the echo command run in the test-container container is as follows:</p>
+      <CodeBlock code={"very charm"} lang="plaintext" />
+      </li>
+      </ul>
+      <h3 id="nodes-pods-configmaps-use-case-consuming-in-volumes_config-maps" class="group scroll-mt-20">Injecting content into a volume by using config maps<a href="#nodes-pods-configmaps-use-case-consuming-in-volumes_config-maps" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can use config maps to inject content into a volume.</p>
+      <p>The following example <code>ConfigMap</code> custom resource (CR) contains two environment variables:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: special-config\n  namespace: default\ndata:\n  special.how: very\n  special.type: charm"} lang="yaml" />
+      <p>The following procedure describes options for injecting content into a volume by using config maps.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      The most basic way to inject content into a volume by using a config map is to populate the volume with files where the key is the file name and the content of the file is the value of the key:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: dapi-test-pod\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n    - name: test-container\n      image: gcr.io/google_containers/busybox\n      command: [ \"/bin/sh\", \"-c\", \"cat\", \"/etc/config/special.how\" ]\n      volumeMounts:\n      - name: config-volume\n        mountPath: /etc/config\n      securityContext:\n        allowPrivilegeEscalation: false\n        capabilities:\n          drop: [ALL]\n  volumes:\n    - name: config-volume\n      configMap:\n        name: special-config\n  restartPolicy: Never"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.volumes.configMap.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a file containing key. When this pod is run, the output of the cat command will be:</p></dd>
+      </dl>
+      <CodeBlock code={"very"} lang="plaintext" />
+      </li>
+      <li>
+      You can also control the paths within the volume where config map keys are projected:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: dapi-test-pod\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n    - name: test-container\n      image: gcr.io/google_containers/busybox\n      command: [ \"/bin/sh\", \"-c\", \"cat\", \"/etc/config/path/to/special-key\" ]\n      volumeMounts:\n      - name: config-volume\n        mountPath: /etc/config\n      securityContext:\n        allowPrivilegeEscalation: false\n        capabilities:\n          drop: [ALL]\n  volumes:\n    - name: config-volume\n      configMap:\n        name: special-config\n        items:\n        - key: special.how\n          path: path/to/special-key\n  restartPolicy: Never"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.volumes.configMap.items.path</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to config map key.</p></dd>
+      </dl>
+      <p>When this pod is run, the output of the cat command is <code>very</code>.</p>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

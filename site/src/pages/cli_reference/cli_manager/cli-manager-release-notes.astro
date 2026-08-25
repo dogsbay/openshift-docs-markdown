@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"cli-manager-release-notes","text":"{{ cli_manager }} release notes"}];
+const headings = [{"depth":1,"slug":"cli-manager-release-notes","text":"CLI Manager Operator release notes"},{"depth":2,"slug":"cli-manager-rn-0-2-0_cli-manager-release-notes","text":"CLI Manager Operator 0.2.0 (Technology Preview)"},{"depth":3,"slug":"cli-manager-0-2-0-new-features-and-enhancements_cli-manager-release-notes","text":"New features and enhancements"},{"depth":2,"slug":"cli-manager-rn-0-1-1_cli-manager-release-notes","text":"CLI Manager Operator 0.1.1 (Technology Preview)"},{"depth":3,"slug":"cli-manager-0-1-1-new-features-and-enhancements_cli-manager-release-notes","text":"New features and enhancements"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-release-notes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ cli_manager }} release notes";
-const description = "Track the development of the {{ cli_manager }} for OpenShift Container Platform, which enables you to install CLI plugins in both connected and…" || undefined;
+const description = "Track the development of the CLI Manager Operator for OpenShift Container Platform, which enables you to install CLI plugins in both connected and…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +42,7 @@ const pageCategory = ["cli_reference","cli_reference/cli_manager"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ cli_manager }} release notes {#cli-manager-release-notes}\n\nTrack the development of the {{ cli_manager }} for OpenShift Container Platform, which enables you to install CLI plugins in both connected and disconnected environments.\n\n**Additional resources**\n\n- [About the {{ cli_manager }}](/openshift-docs-markdown/cli_reference/cli_manager/index#cli-manager-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-release-notes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# CLI Manager Operator release notes {#cli-manager-release-notes}\n\nTrack the development of the CLI Manager Operator for OpenShift Container Platform, which enables you to install CLI plugins in both connected and disconnected environments.\n\n> [!IMPORTANT]\n> Using the CLI Manager Operator to install and manage plugins for the OpenShift CLI is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## CLI Manager Operator 0.2.0 (Technology Preview) {#cli-manager-rn-0-2-0_cli-manager-release-notes}\n\nReview the features, enhancements, and advisory for the Technology Preview release of CLI Manager Operator 0.2.0.\n\nIssued: 9 December 2025\n\nThe following advisory is available for the CLI Manager Operator 0.2.0:\n\n- [RHBA-2025:22803](https://access.redhat.com/errata/RHBA-2025:22803)\n\n### New features and enhancements {#cli-manager-0-2-0-new-features-and-enhancements_cli-manager-release-notes}\n\n- This release of the CLI Manager Operator updates the Kubernetes version to 1.34.\n- The `readOnlyRootFilesystem` flag is set to `true` for additional hardening of OpenShift Container Platform pods.\n\n## CLI Manager Operator 0.1.1 (Technology Preview) {#cli-manager-rn-0-1-1_cli-manager-release-notes}\n\nReview the features, enhancements, and advisory for the Technology Preview release of CLI Manager Operator 0.1.1.\n\nIssued: 12 March 2025\n\nThe following advisory is available for the CLI Manager Operator 0.1.1:\n\n- [RHEA-2025:2680](https://access.redhat.com/errata/RHEA-2025:2680)\n\n### New features and enhancements {#cli-manager-0-1-1-new-features-and-enhancements_cli-manager-release-notes}\n\nThis release of the CLI Manager updates the Kubernetes version to 1.32.\n\n**Additional resources**\n\n- [About the CLI Manager Operator](/openshift-docs-markdown/cli_reference/cli_manager/index#cli-manager-overview)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/cli_manager/cli-manager-release-notes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,13 +93,34 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="cli-manager-release-notes" class="group scroll-mt-20">{"{"}{"{"} cli_manager {"}"}{"}"} release notes<a href="#cli-manager-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/snippets/technology-preview.md">Track the development of the {"{"}{"{"} cli_manager {"}"}{"}"} for OpenShift Container Platform, which enables you to install CLI plugins in both connected and disconnected environments.</p>
-      <p class="/modules/cli-manager-rn-0-2-0.md"></p>
-      <p class="/modules/cli-manager-rn-0-1-1.md"></p>
+      <h1 id="cli-manager-release-notes" class="group scroll-mt-20">CLI Manager Operator release notes<a href="#cli-manager-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Track the development of the CLI Manager Operator for OpenShift Container Platform, which enables you to install CLI plugins in both connected and disconnected environments.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Using the CLI Manager Operator to install and manage plugins for the OpenShift CLI is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="cli-manager-rn-0-2-0_cli-manager-release-notes" class="group scroll-mt-20">CLI Manager Operator 0.2.0 (Technology Preview)<a href="#cli-manager-rn-0-2-0_cli-manager-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the features, enhancements, and advisory for the Technology Preview release of CLI Manager Operator 0.2.0.</p>
+      <p>Issued: 9 December 2025</p>
+      <p>The following advisory is available for the CLI Manager Operator 0.2.0:</p>
+      <ul><li><a href="https://access.redhat.com/errata/RHBA-2025:22803">RHBA-2025:22803</a></li></ul>
+      <h3 id="cli-manager-0-2-0-new-features-and-enhancements_cli-manager-release-notes" class="group scroll-mt-20">New features and enhancements<a href="#cli-manager-0-2-0-new-features-and-enhancements_cli-manager-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul>
+      <li>This release of the CLI Manager Operator updates the Kubernetes version to 1.34.</li>
+      <li>The <code>readOnlyRootFilesystem</code> flag is set to <code>true</code> for additional hardening of OpenShift Container Platform pods.</li>
+      </ul>
+      <h2 id="cli-manager-rn-0-1-1_cli-manager-release-notes" class="group scroll-mt-20">CLI Manager Operator 0.1.1 (Technology Preview)<a href="#cli-manager-rn-0-1-1_cli-manager-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the features, enhancements, and advisory for the Technology Preview release of CLI Manager Operator 0.1.1.</p>
+      <p>Issued: 12 March 2025</p>
+      <p>The following advisory is available for the CLI Manager Operator 0.1.1:</p>
+      <ul><li><a href="https://access.redhat.com/errata/RHEA-2025:2680">RHEA-2025:2680</a></li></ul>
+      <h3 id="cli-manager-0-1-1-new-features-and-enhancements_cli-manager-release-notes" class="group scroll-mt-20">New features and enhancements<a href="#cli-manager-0-1-1-new-features-and-enhancements_cli-manager-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>This release of the CLI Manager updates the Kubernetes version to 1.32.</p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/openshift-docs-markdown/cli_reference/cli_manager/index#cli-manager-overview">About the {"{"}{"{"} cli_manager {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/cli_reference/cli_manager/index#cli-manager-overview">About the CLI Manager Operator</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

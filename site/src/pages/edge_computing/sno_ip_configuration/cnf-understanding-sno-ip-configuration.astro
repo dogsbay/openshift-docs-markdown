@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import BlockImage from "@ui/image/Image.astro";
 
-const headings = [{"depth":1,"slug":"cnf-understanding-sno-ip-configuration","text":"Understand {{ sno }} network reconfiguration"}];
+const headings = [{"depth":1,"slug":"cnf-understanding-sno-ip-configuration","text":"Understand {{ sno }} network reconfiguration"},{"depth":2,"slug":"cnf-sno-ip-configuration-use-cases_understanding-sno-ip-configuration","text":"Use cases for single-node OpenShift network reconfiguration"},{"depth":2,"slug":"cnf-sno-ip-configuration-overview_understanding-sno-ip-configuration","text":"Workflow for single-node OpenShift network reconfiguration"},{"depth":2,"slug":"cnf-sno-ip-configuration-supported-changes_understanding-sno-ip-configuration","text":"Supported network property changes"},{"depth":2,"slug":"cnf-sno-ip-configuration-requirements_understanding-sno-ip-configuration","text":"Requirements and limitations for network reconfiguration"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/edge_computing/sno_ip_configuration/cnf-understanding-sno-ip-configuration";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Understand {{ sno }} network reconfiguration";
-const description = "Use the {{ lcao }} to change the network configuration of a {{ sno }} cluster without performing a full redeployment. This is critical for many edge…" || undefined;
+const description = "Use the Lifecycle Agent to change the network configuration of a single-node OpenShift cluster without performing a full redeployment. This is critical…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["edge_computing","edge_computing/sno_ip_configuration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understand {{ sno }} network reconfiguration {#cnf-understanding-sno-ip-configuration}\n\nUse the {{ lcao }} to change the network configuration of a {{ sno }} cluster without performing a full redeployment. This is critical for many edge computing use cases such as disaster recovery and network rehoming.\n\n**Additional resources**\n\n- [Installing the {{ lcao }} using the CLI](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-install-operators#cnf-image-based-upgrade-installing-lifecycle-agent-using-cli_install-operators)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/sno_ip_configuration/cnf-understanding-sno-ip-configuration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understand {{ sno }} network reconfiguration {#cnf-understanding-sno-ip-configuration}\n\nUse the Lifecycle Agent to change the network configuration of a single-node OpenShift cluster without performing a full redeployment. This is critical for many edge computing use cases such as disaster recovery and network rehoming.\n\n## Use cases for single-node OpenShift network reconfiguration {#cnf-sno-ip-configuration-use-cases_understanding-sno-ip-configuration}\n\nAt the network far edge, changing a single-node OpenShift cluster’s core networking is an essential operation in many scenarios. For example, during disaster recovery, mobile deployments, or network migrations, you might need to change node IP addresses, gateways, DNS servers, or VLAN settings. However, these operations are high-risk because a misconfiguration can make the cluster unreachable and require a full redeployment.\n\nThe Lifecycle Agent uses the `IPConfig` custom resource (CR) to provide a declarative, stage-driven workflow that performs these changes safely and without a full cluster redeployment.\n\nThe following use cases highlight key scenarios for single-node OpenShift network reconfiguration:\n\nDisaster recovery\n:   After a site outage or major connectivity change, a single-node OpenShift cluster might need to move to a different uplink network. For example, you can reconfigure a cluster to use an IPv4 satellite connection as a backup if a primary 5G IPv6 network goes down.\n\nTemporary and mobile deployments\n:   Mobile infrastructure, such as cell-on-wheels units or new cell sites, often relies on temporary network connections. You can reconfigure these clusters as they move between uplink networks.\n\nIoT network transitions\n:   IoT gateway clusters at remote sites can be reconfigured when the underlying network infrastructure changes, such as switching ISPs or migrating to new IP address ranges across a facility.\n\nNetwork consolidation and equipment upgrades\n:   During network consolidation or infrastructure upgrades, you can migrate single-node OpenShift clusters to a new L2 or L3 environment with a deterministic, reversible process and minimal downtime.\n\n## Workflow for single-node OpenShift network reconfiguration {#cnf-sno-ip-configuration-overview_understanding-sno-ip-configuration}\n\nThe Lifecycle Agent uses a stage-driven workflow controlled through the `spec.stage` field in the `IPConfig` CR. The workflow consists of three stages.\n\n**Figure 1. single-node OpenShift network reconfiguration stages**\n\n![single-node OpenShift network reconfiguration stages](/openshift-docs-markdown/_assets/images/../images/600_telco_network_sno_reconfig.png)\n\nIdle stage\n:   The initial and final stage. In this stage, the Lifecycle Agent runs health checks, performs cleanup operations, and prepares the cluster for configuration changes. Transitioning to Idle after a successful configuration is the finalization point that removes rollback capability.\n\nConfig stage\n:   Executes the network reconfiguration in two phases. The pre-pivot phase prepares a new stateroot, which is a bootable system state that has the updated network configuration, and reboots into it. The post-pivot phase applies the network changes, regenerates certificates, and waits for cluster stabilization.\n\nRollback stage\n:   Reboots into the earlier stateroot. You can trigger a rollback manually or configure automatic rollback on failure.\n\n    The network reconfiguration flow preserves the currently booted stateroot as a rollback target while preparing the new configuration in a new stateroot. This approach means the original configuration remains available for rollback until you finalize the change, only one reboot is required for the IP change, and the rollback process is fast because the earlier stateroot is already prepared.\n\n## Supported network property changes {#cnf-sno-ip-configuration-supported-changes_understanding-sno-ip-configuration}\n\nThe `IPConfig` CR supports the following network property changes:\n\n- IPv4 and IPv6 address changes for single-stack or dual-stack clusters\n- Machine network CIDR changes\n- Default gateway changes\n- DNS server list updates\n- Optional VLAN ID changes on the `br-ex` uplink path\n- Optional DNS response filtering changes on dual-stack clusters to filter IPv4 or IPv6\n\n## Requirements and limitations for network reconfiguration {#cnf-sno-ip-configuration-requirements_understanding-sno-ip-configuration}\n\nNetwork reconfiguration by using the `IPConfig` CR has the following requirements:\n\n- The cluster must be a single-node OpenShift cluster.\n- The Lifecycle Agent must be installed.\n- A baseline dnsmasq `MachineConfig` resource must exist, which is automatically installed by any single-node OpenShift installed directly or indirectly by the Assisted Installer, including Agent-based Installer (ABI), multicluster engine (MCE), and Red Hat Advanced Cluster Management (RHACM).\n- All cluster operators must be available before starting a network reconfiguration.\n\nNetwork reconfiguration by using the `IPConfig` CR has the following limitations:\n\n- For dual-stack clusters, exactly one IPv4 address and one IPv6 address are supported per node.\n- Only one NIC is supported. No bonding or link aggregation.\n- You can configure a maximum of one VLAN ID on the `br-ex` uplink path.\n- You must configure static networking on the host network. DHCP is not supported.\n- You cannot add a VLAN to a cluster that does not already have VLAN configuration.\n- Changing gateway or machine network without changing the address is not supported.\n- Changing DNS servers without changing at least one IP address is not supported.\n- You cannot set `spec.ipv4` on an IPv6-only cluster or `spec.ipv6` on an IPv4-only cluster.\n- The resulting routing table must not have routes that overlap or conflict with the default route through the configured gateways.\n- The cluster must not have a proxy network configuration.\n- You cannot perform an image-based upgrade and a network reconfiguration at the same time.\n\n**Additional resources**\n\n- [Installing the Lifecycle Agent using the CLI](/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-install-operators#cnf-image-based-upgrade-installing-lifecycle-agent-using-cli_install-operators)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/sno_ip_configuration/cnf-understanding-sno-ip-configuration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +92,70 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cnf-understanding-sno-ip-configuration" class="group scroll-mt-20">Understand {"{"}{"{"} sno {"}"}{"}"} network reconfiguration<a href="#cnf-understanding-sno-ip-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Use the {"{"}{"{"} lcao {"}"}{"}"} to change the network configuration of a {"{"}{"{"} sno {"}"}{"}"} cluster without performing a full redeployment. This is critical for many edge computing use cases such as disaster recovery and network rehoming.</p>
-      <p class="/modules/cnf-sno-ip-configuration-use-cases.md"></p>
-      <p class="/modules/cnf-sno-ip-configuration-overview.md"></p>
-      <p class="/modules/cnf-sno-ip-configuration-supported-changes.md"></p>
-      <p class="/modules/cnf-sno-ip-configuration-requirements.md"></p>
+      <p>Use the Lifecycle Agent to change the network configuration of a single-node OpenShift cluster without performing a full redeployment. This is critical for many edge computing use cases such as disaster recovery and network rehoming.</p>
+      <h2 id="cnf-sno-ip-configuration-use-cases_understanding-sno-ip-configuration" class="group scroll-mt-20">Use cases for single-node OpenShift network reconfiguration<a href="#cnf-sno-ip-configuration-use-cases_understanding-sno-ip-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">At the network far edge, changing a single-node OpenShift cluster’s core networking is an essential operation in many scenarios. For example, during disaster recovery, mobile deployments, or network migrations, you might need to change node IP addresses, gateways, DNS servers, or VLAN settings. However, these operations are high-risk because a misconfiguration can make the cluster unreachable and require a full redeployment.</p>
+      <p>The Lifecycle Agent uses the <code>IPConfig</code> custom resource (CR) to provide a declarative, stage-driven workflow that performs these changes safely and without a full cluster redeployment.</p>
+      <p>The following use cases highlight key scenarios for single-node OpenShift network reconfiguration:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Disaster recovery</dt>
+      <dd class="ml-6 text-muted-foreground"><p>After a site outage or major connectivity change, a single-node OpenShift cluster might need to move to a different uplink network. For example, you can reconfigure a cluster to use an IPv4 satellite connection as a backup if a primary 5G IPv6 network goes down.</p></dd>
+      <dt class="font-semibold">Temporary and mobile deployments</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Mobile infrastructure, such as cell-on-wheels units or new cell sites, often relies on temporary network connections. You can reconfigure these clusters as they move between uplink networks.</p></dd>
+      <dt class="font-semibold">IoT network transitions</dt>
+      <dd class="ml-6 text-muted-foreground"><p>IoT gateway clusters at remote sites can be reconfigured when the underlying network infrastructure changes, such as switching ISPs or migrating to new IP address ranges across a facility.</p></dd>
+      <dt class="font-semibold">Network consolidation and equipment upgrades</dt>
+      <dd class="ml-6 text-muted-foreground"><p>During network consolidation or infrastructure upgrades, you can migrate single-node OpenShift clusters to a new L2 or L3 environment with a deterministic, reversible process and minimal downtime.</p></dd>
+      </dl>
+      <h2 id="cnf-sno-ip-configuration-overview_understanding-sno-ip-configuration" class="group scroll-mt-20">Workflow for single-node OpenShift network reconfiguration<a href="#cnf-sno-ip-configuration-overview_understanding-sno-ip-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Lifecycle Agent uses a stage-driven workflow controlled through the <code>spec.stage</code> field in the <code>IPConfig</code> CR. The workflow consists of three stages.</p>
+      <p><strong>Figure 1. single-node OpenShift network reconfiguration stages</strong></p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/../images/600_telco_network_sno_reconfig.png" alt="single-node OpenShift network reconfiguration stages" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Idle stage</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The initial and final stage. In this stage, the Lifecycle Agent runs health checks, performs cleanup operations, and prepares the cluster for configuration changes. Transitioning to Idle after a successful configuration is the finalization point that removes rollback capability.</p></dd>
+      <dt class="font-semibold">Config stage</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Executes the network reconfiguration in two phases. The pre-pivot phase prepares a new stateroot, which is a bootable system state that has the updated network configuration, and reboots into it. The post-pivot phase applies the network changes, regenerates certificates, and waits for cluster stabilization.</p></dd>
+      <dt class="font-semibold">Rollback stage</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Reboots into the earlier stateroot. You can trigger a rollback manually or configure automatic rollback on failure.</p>
+      <p>The network reconfiguration flow preserves the currently booted stateroot as a rollback target while preparing the new configuration in a new stateroot. This approach means the original configuration remains available for rollback until you finalize the change, only one reboot is required for the IP change, and the rollback process is fast because the earlier stateroot is already prepared.</p>
+      </dd>
+      </dl>
+      <h2 id="cnf-sno-ip-configuration-supported-changes_understanding-sno-ip-configuration" class="group scroll-mt-20">Supported network property changes<a href="#cnf-sno-ip-configuration-supported-changes_understanding-sno-ip-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The <code>IPConfig</code> CR supports the following network property changes:</p>
+      <ul>
+      <li>IPv4 and IPv6 address changes for single-stack or dual-stack clusters</li>
+      <li>Machine network CIDR changes</li>
+      <li>Default gateway changes</li>
+      <li>DNS server list updates</li>
+      <li>Optional VLAN ID changes on the <code>br-ex</code> uplink path</li>
+      <li>Optional DNS response filtering changes on dual-stack clusters to filter IPv4 or IPv6</li>
+      </ul>
+      <h2 id="cnf-sno-ip-configuration-requirements_understanding-sno-ip-configuration" class="group scroll-mt-20">Requirements and limitations for network reconfiguration<a href="#cnf-sno-ip-configuration-requirements_understanding-sno-ip-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Network reconfiguration by using the <code>IPConfig</code> CR has the following requirements:</p>
+      <ul>
+      <li>The cluster must be a single-node OpenShift cluster.</li>
+      <li>The Lifecycle Agent must be installed.</li>
+      <li>A baseline dnsmasq <code>MachineConfig</code> resource must exist, which is automatically installed by any single-node OpenShift installed directly or indirectly by the Assisted Installer, including Agent-based Installer (ABI), multicluster engine (MCE), and Red Hat Advanced Cluster Management (RHACM).</li>
+      <li>All cluster operators must be available before starting a network reconfiguration.</li>
+      </ul>
+      <p>Network reconfiguration by using the <code>IPConfig</code> CR has the following limitations:</p>
+      <ul>
+      <li>For dual-stack clusters, exactly one IPv4 address and one IPv6 address are supported per node.</li>
+      <li>Only one NIC is supported. No bonding or link aggregation.</li>
+      <li>You can configure a maximum of one VLAN ID on the <code>br-ex</code> uplink path.</li>
+      <li>You must configure static networking on the host network. DHCP is not supported.</li>
+      <li>You cannot add a VLAN to a cluster that does not already have VLAN configuration.</li>
+      <li>Changing gateway or machine network without changing the address is not supported.</li>
+      <li>Changing DNS servers without changing at least one IP address is not supported.</li>
+      <li>You cannot set <code>spec.ipv4</code> on an IPv6-only cluster or <code>spec.ipv6</code> on an IPv4-only cluster.</li>
+      <li>The resulting routing table must not have routes that overlap or conflict with the default route through the configured gateways.</li>
+      <li>The cluster must not have a proxy network configuration.</li>
+      <li>You cannot perform an image-based upgrade and a network reconfiguration at the same time.</li>
+      </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-install-operators#cnf-image-based-upgrade-installing-lifecycle-agent-using-cli_install-operators">Installing the {"{"}{"{"} lcao {"}"}{"}"} using the CLI</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/edge_computing/image_based_upgrade/preparing_for_image_based_upgrade/cnf-image-based-upgrade-install-operators#cnf-image-based-upgrade-installing-lifecycle-agent-using-cli_install-operators">Installing the Lifecycle Agent using the CLI</a></li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

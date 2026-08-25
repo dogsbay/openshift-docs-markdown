@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"persistent-storage-csi-vol-populators","text":"Volume populators"}];
+const headings = [{"depth":1,"slug":"persistent-storage-csi-vol-populators","text":"Volume populators"},{"depth":2,"slug":"persistent-storage-csi-vol-populator_persistent-storage-csi-vol-populators","text":"Volume populators overview"},{"depth":2,"slug":"persistent-storage-csi-vol-populator-procedure-top-level_persistent-storage-csi-vol-populators","text":"Volume populators creation"},{"depth":3,"slug":"persistent-storage-csi-vol-populator-procedure-admin_persistent-storage-csi-vol-populators","text":"Creating CRDs for volume populators"},{"depth":3,"slug":"persistent-storage-csi-vol-populator-procedure_persistent-storage-csi-vol-populators","text":"Creating prepopulated volumes using volume populators"},{"depth":2,"slug":"persistent-storage-csi-vol-populator-uninstall_persistent-storage-csi-vol-populators","text":"Uninstalling volume populators"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vol-populators";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["storage","storage/container_storage_interface"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Volume populators {#persistent-storage-csi-vol-populators}\n\nVolume populators enable the automatic pre-loading of data into a volume during dynamic provisioning, instead of provisioning an empty volume.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vol-populators.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Volume populators {#persistent-storage-csi-vol-populators}\n\nVolume populators enable the automatic pre-loading of data into a volume during dynamic provisioning, instead of provisioning an empty volume.\n\n## Volume populators overview {#persistent-storage-csi-vol-populator_persistent-storage-csi-vol-populators}\n\nWith volume populators, using the `dataSourceRef` field, you can prepopulate volumes from a Custom Resource Definition (CRD) instead of only persistent volume claims (PVCs) and snapshots.\n\nIn OpenShift Container Platform versions 4.12 through 4.19, the `dataSource` field in a PVC spec provides volume populator capability. However, it is limited to using only PVCs and snapshots as the data source for populating volumes.\n\nStarting with OpenShift Container Platform version 4.20, the `dataSourceRef` field is used instead. With the `dataSourceRef` field, you can use any appropriate custom resource (CR) as the data source to prepopulate a new volume.\n\n> [!NOTE]\n> Volume populator functionality using the `dataSource` field is likely to be deprecated in future versions. If you have created any volume populators using this field, consider re-creating your volume populators to use the `dataSourceRef` field to avoid future issues.\n\nVolume population is enabled by default and OpenShift Container Platform includes the installed `volume-data-source-validator` controller. However, OpenShift Container Platform does not ship with any volume populators.\n\n## Volume populators creation {#persistent-storage-csi-vol-populator-procedure-top-level_persistent-storage-csi-vol-populators}\n\nTo implement custom volume prepopulation behavior, create a volume populator by defining a custom resource definition (CRD) and then using it to create prepopulated volumes.\n\n### Creating CRDs for volume populators {#persistent-storage-csi-vol-populator-procedure-admin_persistent-storage-csi-vol-populators}\n\nTo enable custom volume prepopulation, create a Custom Resource Definition (CRD) that defines a data source that users can instantiate to populate persistent volume claims (PVCs).\n\nThe following procedure explains how to create an example \"hello, world\" CRD for a volume populator.\n\nUsers can then create instances of this CRD to populate PVCs.\n\n**Prerequisites**\n\n- Access to the OpenShift Container Platform web console.\n- Access to the cluster with cluster-admin privileges.\n\n**Procedure**\n\n1. Create a namespace for the logical grouping and operation of the populator, and related resources, using the following example YAML file:\n\n   ```yaml {title=\"Example namespace YAML file\"}\n   apiVersion: v1\n   kind: Namespace\n   metadata:\n     name: hello\n   ```\n2. Create a CRD for your data source using the following example YAML file:\n\n   ```yaml {title=\"Example CRD YAML file\"}\n   apiVersion: apiextensions.k8s.io/v1\n   kind: CustomResourceDefinition\n   metadata:\n     name: hellos.hello.example.com\n   spec:\n     group: hello.example.com\n     names:\n       kind: Hello\n       listKind: HelloList\n       plural: hellos\n       singular: hello\n     scope: Namespaced\n     versions:\n     - name: v1alpha1\n       schema:\n         openAPIV3Schema:\n           description: Hello is a specification for a Hello resource\n           properties:\n             apiVersion:\n               description: 'APIVersion defines the versioned schema of this representation\n                 of an object. Servers should convert recognized schemas to the latest\n                 internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'\n               type: string\n             kind:\n               description: 'Kind is a string value representing the REST resource this\n                 object represents. Servers may infer this from the endpoint the client\n                 submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'\n               type: string\n             spec:\n               description: HelloSpec is the spec for a Hello resource\n               properties:\n                 fileContents:\n                   type: string\n                 fileName:\n                   type: string\n               required:\n               - fileContents\n               - fileName\n               type: object\n           required:\n           - spec\n           type: object\n       served: true\n       storage: true\n   ```\n3. Deploy the controller by creating a `ServiceAccount`, `ClusterRole`, `ClusterRoleBindering`, and `Deployment` to run the logic that implements the population:\n\n   1. Create a service account for the populator using the following example YAML file:\n\n      ```yaml {title=\"Example service account YAML file\"}\n      apiVersion: v1\n      kind: ServiceAccount\n      metadata:\n        name: hello-account\n        namespace: hello\n      ```\n\n      Where `metadata.namespace` references the namespace that you created earlier.\n   2. Create a cluster role for the populator using the following example YAML file:\n\n      ```yaml {title=\"Example cluster role YAML file\"}\n      kind: ClusterRole\n      apiVersion: rbac.authorization.k8s.io/v1\n      metadata:\n        name: hello-role\n      rules:\n        - apiGroups: [hello.example.com]\n          resources: [hellos]\n          verbs: [get, list, watch]\n      ```\n   3. Create a cluster role binding using the following example YAML file:\n\n      ```yaml {title=\"Example cluster role binding YAML file\"}\n      kind: ClusterRoleBinding\n      apiVersion: rbac.authorization.k8s.io/v1\n      metadata:\n        name: hello-binding\n      subjects:\n        - kind: ServiceAccount\n          name: hello-account\n          namespace: hello\n      roleRef:\n        kind: ClusterRole\n        name: hello-role\n        apiGroup: rbac.authorization.k8s.io\n      ```\n\n      - `metadata.name`: Specifies the role binding name.\n      - `subjects.name`: References the name of the service account that you created earlier.\n      - `subjects.namespace`: References the name of the namespace for the service account that you created earlier.\n      - `roleRef.name`: References the cluster role you created earlier.\n   4. Create a Deployment for the populator using the following example YAML file:\n\n      ```yaml {title=\"Example deployment YAML file\"}\n      kind: Deployment\n      apiVersion: apps/v1\n      metadata:\n        name: hello-populator\n        namespace: hello\n      spec:\n        selector:\n          matchLabels:\n            app: hello\n        template:\n          metadata:\n            labels:\n              app: hello\n          spec:\n            serviceAccount: hello-account\n            containers:\n              - name: hello\n                image: registry.k8s.io/sig-storage/hello-populator:v1.0.1\n                imagePullPolicy: IfNotPresent\n                args:\n                  - --mode=controller\n                  - --image-name=registry.k8s.io/sig-storage/hello-populator:v1.0.1\n                  - --http-endpoint=:8080\n                ports:\n                  - containerPort: 8080\n                    name: http-endpoint\n                    protocol: TCP\n      ```\n\n      - `metadata.namespace`: References the namespace that you created earlier.\n      - `spec.template.spec.serviceAccount`: References the service account that you created earlier.\n4. Create a volume populator to register the `kind:Hello` resource as a valid data source for the volume using the following example YAML file:\n\n   ```yaml {title=\"Example volume populator YAML file\"}\n   kind: VolumePopulator\n   apiVersion: populator.storage.k8s.io/v1beta1\n   metadata:\n     name: hello-populator\n   sourceKind:\n     group: hello.example.com\n     kind: Hello\n   ```\n\n   The `metadata.name` field specifies the Volume populator name.\n\n   PVCs that use an unregistered populator generate an event: \"The datasource for this PVC does not match any registered VolumePopulator\", indicating that the PVC might not be provisioned because you are using an unknown (unregistered) populator.\n\n**Next steps**\n\n- You can now create CR instances of this CRD to populate PVCs\n\n  For more information, see \"Creating prepopulated volumes using volume populators\".\n\n### Creating prepopulated volumes using volume populators {#persistent-storage-csi-vol-populator-procedure_persistent-storage-csi-vol-populators}\n\nTo create volumes that are automatically filled with data when provisioned, define a Custom Resource Definition (CRD) as a data source and reference it when creating the persistent volume claim (PVC).\n\nThe following procedure explains how to create a prepopulated PVC using the example `hellos.hello.example.com` CRD created previously.\n\nIn this example, rather than using an actual data source, you are creating a file called \"example.txt\" that contains the string \"Hello, world!\" in the root directory of the volume. For a real-world implementation, you need to create your own volume populator.\n\n**Prerequisites**\n\n- You are logged in to a running OpenShift Container Platform cluster.\n- There is an existing CRD for volume populators.\n- OpenShift Container Platform does not ship with any volume populators. You **must** create your own volume populator.\n\n**Procedure**\n\n1. Create a Custom Resource (CR) instance of the `Hello` CRD with the text \"Hello, World!\" passed in as `fileContents` parameter by running the following command:\n\n   ```terminal\n   $ oc apply -f  - <<EOF\n   apiVersion: hello.example.com/v1alpha1\n   kind: Hello\n   metadata:\n     name: example-hello\n   spec:\n     fileName: example.txt\n     fileContents: Hello, world!\n   EOF\n   ```\n2. Create a PVC that references the Hello CR similar to the following example file:\n\n   ```yaml {title=\"Example PVC YAML file\"}\n   apiVersion: v1\n   kind: PersistentVolumeClaim\n   metadata:\n     name: example-pvc\n   spec:\n     accessModes:\n     - ReadWriteOnce\n     resources:\n       requests:\n         storage: 10Mi\n     dataSourceRef:\n       apiGroup: hello.example.com\n       kind: Hello\n       name: example-hello\n     volumeMode: Filesystem\n   ```\n\n   - `spec.dataSourceRef`: Specifies the data source for the PVC.\n   - `spec.dataSourceRef.name`: Specifies the name of the CR that you are using as the data source. In this example, it is 'example-hello'.\n\n**Verification**\n\n1. After a few minutes, ensure that the PVC is created and in the `Bound` status by running the following command:\n\n   ```terminal\n   $ oc get pvc example-pvc -n hello\n   ```\n\n   In this example, the name of the PVC is `example-pvc`.\n\n   ```terminal {title=\"Example output\"}\n   NAME          STATUS    VOLUME        CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE\n   example-pvc   Bound     my-pv         10Mi       ReadWriteOnce  gp3-csi        <unset>                 14s\n   ```\n2. Create a job that reads from the PVC to verify that the data source information was applied using the following example file:\n\n   ```yaml {title=\"Example job YAML file\"}\n   apiVersion: batch/v1\n   kind: Job\n   metadata:\n     name: example-job\n   spec:\n     template:\n       spec:\n         containers:\n           - name: example-container\n             image: busybox:latest\n             command:\n               - cat\n               - /mnt/example.txt\n             volumeMounts:\n               - name: vol\n                 mountPath: /mnt\n         restartPolicy: Never\n         volumes:\n           - name: vol\n             persistentVolumeClaim:\n               claimName: example-pvc\n   ```\n\n   - `spec.template.spec.containers.command`: Specifies the location and name of the file with the \"Hello, world!\" text. In this example, the location is \"/mnt/example.txt\".\n   - `spec.template.spec.volumes.persistentVolumeClaim`: Specifies the name of the PVC you created in Step 2. In this example, it is `example-pvc`.\n3. Start the job by running the following command:\n\n   ```terminal\n   $ oc run example-job --image=busybox --command -- sleep 30 --restart=OnFailure\n   ```\n\n   ```terminal {title=\"Example output\"}\n   pod/example-job created\n   ```\n4. Wait for the job, and all of its dependencies, to finish by running the following command:\n\n   ```terminal\n   $ oc wait --for=condition=Complete pod/example-job\n   ```\n5. Verify the contents collected by the job by running the following command:\n\n   ```terminal\n   $ oc logs job/example-job\n   ```\n\n   ```terminal {title=\"Example expected output\"}\n   Hello, world!\n   ```\n\n## Uninstalling volume populators {#persistent-storage-csi-vol-populator-uninstall_persistent-storage-csi-vol-populators}\n\nTo remove custom volume prepopulation functionality, delete all volume populator resources in reverse order of creation.\n\n**Prerequisites**\n\n- Access to the OpenShift Container Platform web console.\n- Access to the cluster with cluster-admin privileges.\n\n**Procedure**\n\n- To uninstall volume populators, delete in reverse order all objects installed in the following procedures:\n\n  1. \"Creating prepopulated volumes using volume populators\".\n  2. \"Creating CRDs for volume populators\".\n\n     Be sure to remove the `VolumePopulator` instance.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-vol-populators.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +95,161 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="persistent-storage-csi-vol-populators" class="group scroll-mt-20">Volume populators<a href="#persistent-storage-csi-vol-populators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Volume populators enable the automatic pre-loading of data into a volume during dynamic provisioning, instead of provisioning an empty volume.</p>
-      <p class="/modules/persistent-storage-csi-vol-populator.md"></p>
-      <p class="/modules/persistent-storage-csi-vol-populator-procedure-top-level.md"></p>
-      <p class="/modules/persistent-storage-csi-vol-populator-procedure-admin.md"></p>
-      <p class="/modules/persistent-storage-csi-vol-populator-procedure.md"></p>
-      <p class="/modules/persistent-storage-csi-vol-populator-uninstall.md"></p>
+      <h2 id="persistent-storage-csi-vol-populator_persistent-storage-csi-vol-populators" class="group scroll-mt-20">Volume populators overview<a href="#persistent-storage-csi-vol-populator_persistent-storage-csi-vol-populators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">With volume populators, using the <code>dataSourceRef</code> field, you can prepopulate volumes from a Custom Resource Definition (CRD) instead of only persistent volume claims (PVCs) and snapshots.</p>
+      <p>In OpenShift Container Platform versions 4.12 through 4.19, the <code>dataSource</code> field in a PVC spec provides volume populator capability. However, it is limited to using only PVCs and snapshots as the data source for populating volumes.</p>
+      <p>Starting with OpenShift Container Platform version 4.20, the <code>dataSourceRef</code> field is used instead. With the <code>dataSourceRef</code> field, you can use any appropriate custom resource (CR) as the data source to prepopulate a new volume.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Volume populator functionality using the <code>dataSource</code> field is likely to be deprecated in future versions. If you have created any volume populators using this field, consider re-creating your volume populators to use the <code>dataSourceRef</code> field to avoid future issues.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Volume population is enabled by default and OpenShift Container Platform includes the installed <code>volume-data-source-validator</code> controller. However, OpenShift Container Platform does not ship with any volume populators.</p>
+      <h2 id="persistent-storage-csi-vol-populator-procedure-top-level_persistent-storage-csi-vol-populators" class="group scroll-mt-20">Volume populators creation<a href="#persistent-storage-csi-vol-populator-procedure-top-level_persistent-storage-csi-vol-populators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>To implement custom volume prepopulation behavior, create a volume populator by defining a custom resource definition (CRD) and then using it to create prepopulated volumes.</p>
+      <h3 id="persistent-storage-csi-vol-populator-procedure-admin_persistent-storage-csi-vol-populators" class="group scroll-mt-20">Creating CRDs for volume populators<a href="#persistent-storage-csi-vol-populator-procedure-admin_persistent-storage-csi-vol-populators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To enable custom volume prepopulation, create a Custom Resource Definition (CRD) that defines a data source that users can instantiate to populate persistent volume claims (PVCs).</p>
+      <p>The following procedure explains how to create an example "hello, world" CRD for a volume populator.</p>
+      <p>Users can then create instances of this CRD to populate PVCs.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to the OpenShift Container Platform web console.</li>
+      <li>Access to the cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a namespace for the logical grouping and operation of the populator, and related resources, using the following example YAML file:
+      <CodeBlock code={"apiVersion: v1\nkind: Namespace\nmetadata:\n  name: hello"} lang="yaml" title="Example namespace YAML file" />
+      </li>
+      <li>
+      Create a CRD for your data source using the following example YAML file:
+      <CodeBlock code={"apiVersion: apiextensions.k8s.io/v1\nkind: CustomResourceDefinition\nmetadata:\n  name: hellos.hello.example.com\nspec:\n  group: hello.example.com\n  names:\n    kind: Hello\n    listKind: HelloList\n    plural: hellos\n    singular: hello\n  scope: Namespaced\n  versions:\n  - name: v1alpha1\n    schema:\n      openAPIV3Schema:\n        description: Hello is a specification for a Hello resource\n        properties:\n          apiVersion:\n            description: 'APIVersion defines the versioned schema of this representation\n              of an object. Servers should convert recognized schemas to the latest\n              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'\n            type: string\n          kind:\n            description: 'Kind is a string value representing the REST resource this\n              object represents. Servers may infer this from the endpoint the client\n              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'\n            type: string\n          spec:\n            description: HelloSpec is the spec for a Hello resource\n            properties:\n              fileContents:\n                type: string\n              fileName:\n                type: string\n            required:\n            - fileContents\n            - fileName\n            type: object\n        required:\n        - spec\n        type: object\n    served: true\n    storage: true"} lang="yaml" title="Example CRD YAML file" />
+      </li>
+      <li>
+      Deploy the controller by creating a <code>ServiceAccount</code>, <code>ClusterRole</code>, <code>ClusterRoleBindering</code>, and <code>Deployment</code> to run the logic that implements the population:
+      <ol>
+      <li>
+      Create a service account for the populator using the following example YAML file:
+      <CodeBlock code={"apiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: hello-account\n  namespace: hello"} lang="yaml" title="Example service account YAML file" />
+      <p>Where <code>metadata.namespace</code> references the namespace that you created earlier.</p>
+      </li>
+      <li>
+      Create a cluster role for the populator using the following example YAML file:
+      <CodeBlock code={"kind: ClusterRole\napiVersion: rbac.authorization.k8s.io/v1\nmetadata:\n  name: hello-role\nrules:\n  - apiGroups: [hello.example.com]\n    resources: [hellos]\n    verbs: [get, list, watch]"} lang="yaml" title="Example cluster role YAML file" />
+      </li>
+      <li>
+      Create a cluster role binding using the following example YAML file:
+      <CodeBlock code={"kind: ClusterRoleBinding\napiVersion: rbac.authorization.k8s.io/v1\nmetadata:\n  name: hello-binding\nsubjects:\n  - kind: ServiceAccount\n    name: hello-account\n    namespace: hello\nroleRef:\n  kind: ClusterRole\n  name: hello-role\n  apiGroup: rbac.authorization.k8s.io"} lang="yaml" title="Example cluster role binding YAML file" />
+      <ul>
+      <li><code>metadata.name</code>: Specifies the role binding name.</li>
+      <li><code>subjects.name</code>: References the name of the service account that you created earlier.</li>
+      <li><code>subjects.namespace</code>: References the name of the namespace for the service account that you created earlier.</li>
+      <li><code>roleRef.name</code>: References the cluster role you created earlier.</li>
+      </ul>
+      </li>
+      <li>
+      Create a Deployment for the populator using the following example YAML file:
+      <CodeBlock code={"kind: Deployment\napiVersion: apps/v1\nmetadata:\n  name: hello-populator\n  namespace: hello\nspec:\n  selector:\n    matchLabels:\n      app: hello\n  template:\n    metadata:\n      labels:\n        app: hello\n    spec:\n      serviceAccount: hello-account\n      containers:\n        - name: hello\n          image: registry.k8s.io/sig-storage/hello-populator:v1.0.1\n          imagePullPolicy: IfNotPresent\n          args:\n            - --mode=controller\n            - --image-name=registry.k8s.io/sig-storage/hello-populator:v1.0.1\n            - --http-endpoint=:8080\n          ports:\n            - containerPort: 8080\n              name: http-endpoint\n              protocol: TCP"} lang="yaml" title="Example deployment YAML file" />
+      <ul>
+      <li><code>metadata.namespace</code>: References the namespace that you created earlier.</li>
+      <li><code>spec.template.spec.serviceAccount</code>: References the service account that you created earlier.</li>
+      </ul>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a volume populator to register the <code>kind:Hello</code> resource as a valid data source for the volume using the following example YAML file:
+      <CodeBlock code={"kind: VolumePopulator\napiVersion: populator.storage.k8s.io/v1beta1\nmetadata:\n  name: hello-populator\nsourceKind:\n  group: hello.example.com\n  kind: Hello"} lang="yaml" title="Example volume populator YAML file" />
+      <p>The <code>metadata.name</code> field specifies the Volume populator name.</p>
+      <p>PVCs that use an unregistered populator generate an event: "The datasource for this PVC does not match any registered VolumePopulator", indicating that the PVC might not be provisioned because you are using an unknown (unregistered) populator.</p>
+      </li>
+      </ol>
+      <p><strong>Next steps</strong></p>
+      <ul>
+      <li>
+      You can now create CR instances of this CRD to populate PVCs
+      <p>For more information, see "Creating prepopulated volumes using volume populators".</p>
+      </li>
+      </ul>
+      <h3 id="persistent-storage-csi-vol-populator-procedure_persistent-storage-csi-vol-populators" class="group scroll-mt-20">Creating prepopulated volumes using volume populators<a href="#persistent-storage-csi-vol-populator-procedure_persistent-storage-csi-vol-populators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To create volumes that are automatically filled with data when provisioned, define a Custom Resource Definition (CRD) as a data source and reference it when creating the persistent volume claim (PVC).</p>
+      <p>The following procedure explains how to create a prepopulated PVC using the example <code>hellos.hello.example.com</code> CRD created previously.</p>
+      <p>In this example, rather than using an actual data source, you are creating a file called "example.txt" that contains the string "Hello, world!" in the root directory of the volume. For a real-world implementation, you need to create your own volume populator.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to a running OpenShift Container Platform cluster.</li>
+      <li>There is an existing CRD for volume populators.</li>
+      <li>OpenShift Container Platform does not ship with any volume populators. You <strong>must</strong> create your own volume populator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a Custom Resource (CR) instance of the <code>Hello</code> CRD with the text "Hello, World!" passed in as <code>fileContents</code> parameter by running the following command:
+      <CodeBlock code={"$ oc apply -f  - <<EOF\napiVersion: hello.example.com/v1alpha1\nkind: Hello\nmetadata:\n  name: example-hello\nspec:\n  fileName: example.txt\n  fileContents: Hello, world!\nEOF"} lang="terminal" />
+      </li>
+      <li>
+      Create a PVC that references the Hello CR similar to the following example file:
+      <CodeBlock code={"apiVersion: v1\nkind: PersistentVolumeClaim\nmetadata:\n  name: example-pvc\nspec:\n  accessModes:\n  - ReadWriteOnce\n  resources:\n    requests:\n      storage: 10Mi\n  dataSourceRef:\n    apiGroup: hello.example.com\n    kind: Hello\n    name: example-hello\n  volumeMode: Filesystem"} lang="yaml" title="Example PVC YAML file" />
+      <ul>
+      <li><code>spec.dataSourceRef</code>: Specifies the data source for the PVC.</li>
+      <li><code>spec.dataSourceRef.name</code>: Specifies the name of the CR that you are using as the data source. In this example, it is 'example-hello'.</li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      After a few minutes, ensure that the PVC is created and in the <code>Bound</code> status by running the following command:
+      <CodeBlock code={"$ oc get pvc example-pvc -n hello"} lang="terminal" />
+      <p>In this example, the name of the PVC is <code>example-pvc</code>.</p>
+      <CodeBlock code={"NAME          STATUS    VOLUME        CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE\nexample-pvc   Bound     my-pv         10Mi       ReadWriteOnce  gp3-csi        <unset>                 14s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Create a job that reads from the PVC to verify that the data source information was applied using the following example file:
+      <CodeBlock code={"apiVersion: batch/v1\nkind: Job\nmetadata:\n  name: example-job\nspec:\n  template:\n    spec:\n      containers:\n        - name: example-container\n          image: busybox:latest\n          command:\n            - cat\n            - /mnt/example.txt\n          volumeMounts:\n            - name: vol\n              mountPath: /mnt\n      restartPolicy: Never\n      volumes:\n        - name: vol\n          persistentVolumeClaim:\n            claimName: example-pvc"} lang="yaml" title="Example job YAML file" />
+      <ul>
+      <li><code>spec.template.spec.containers.command</code>: Specifies the location and name of the file with the "Hello, world!" text. In this example, the location is "/mnt/example.txt".</li>
+      <li><code>spec.template.spec.volumes.persistentVolumeClaim</code>: Specifies the name of the PVC you created in Step 2. In this example, it is <code>example-pvc</code>.</li>
+      </ul>
+      </li>
+      <li>
+      Start the job by running the following command:
+      <CodeBlock code={"$ oc run example-job --image=busybox --command -- sleep 30 --restart=OnFailure"} lang="terminal" />
+      <CodeBlock code={"pod/example-job created"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Wait for the job, and all of its dependencies, to finish by running the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Complete pod/example-job"} lang="terminal" />
+      </li>
+      <li>
+      Verify the contents collected by the job by running the following command:
+      <CodeBlock code={"$ oc logs job/example-job"} lang="terminal" />
+      <CodeBlock code={"Hello, world!"} lang="terminal" title="Example expected output" />
+      </li>
+      </ol>
+      <h2 id="persistent-storage-csi-vol-populator-uninstall_persistent-storage-csi-vol-populators" class="group scroll-mt-20">Uninstalling volume populators<a href="#persistent-storage-csi-vol-populator-uninstall_persistent-storage-csi-vol-populators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To remove custom volume prepopulation functionality, delete all volume populator resources in reverse order of creation.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to the OpenShift Container Platform web console.</li>
+      <li>Access to the cluster with cluster-admin privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To uninstall volume populators, delete in reverse order all objects installed in the following procedures:
+      <ol>
+      <li>"Creating prepopulated volumes using volume populators".</li>
+      <li>
+      "Creating CRDs for volume populators".
+      <p>Be sure to remove the <code>VolumePopulator</code> instance.</p>
+      </li>
+      </ol>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

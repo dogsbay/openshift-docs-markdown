@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"ossm-troubleshooting","text":"Troubleshooting your service mesh"},{"depth":2,"slug":"_troubleshooting_operator_installation","text":"Troubleshooting Operator installation"},{"depth":2,"slug":"_troubleshooting_the_control_plane","text":"Troubleshooting the control plane"},{"depth":2,"slug":"_troubleshooting_the_data_plane","text":"Troubleshooting the data plane"}];
+const headings = [{"depth":1,"slug":"ossm-troubleshooting","text":"Troubleshooting your service mesh"},{"depth":2,"slug":"ossm-versions_troubleshooting-ossm","text":"Understanding Service Mesh versions"},{"depth":2,"slug":"_troubleshooting_operator_installation","text":"Troubleshooting Operator installation"},{"depth":3,"slug":"ossm-validating-operators_troubleshooting-ossm","text":"Validating Operator installation"},{"depth":3,"slug":"ossm-troubleshooting-operators_troubleshooting-ossm","text":"Troubleshooting service mesh Operators"},{"depth":4,"slug":"_viewing_operator_pod_logs","text":"Viewing Operator pod logs"},{"depth":2,"slug":"_troubleshooting_the_control_plane","text":"Troubleshooting the control plane"},{"depth":3,"slug":"ossm-validating-smcp_troubleshooting-ossm","text":"Validating the Service Mesh control plane installation"},{"depth":4,"slug":"ossm-accessing-kiali-console_troubleshooting-ossm","text":"Accessing the Kiali console"},{"depth":4,"slug":"ossm-accessing-jaeger-console_troubleshooting-ossm","text":"Accessing the Jaeger console"},{"depth":3,"slug":"ossm-troubleshooting-smcp_troubleshooting-ossm","text":"Troubleshooting the Service Mesh control plane"},{"depth":2,"slug":"_troubleshooting_the_data_plane","text":"Troubleshooting the data plane"},{"depth":3,"slug":"ossm-troubleshooting-injection_troubleshooting-ossm","text":"Troubleshooting sidecar injection"},{"depth":4,"slug":"_troubleshooting_istio_sidecar_injection","text":"Troubleshooting Istio sidecar injection"},{"depth":4,"slug":"_troubleshooting_jaeger_agent_sidecar_injection","text":"Troubleshooting Jaeger agent sidecar injection"},{"depth":3,"slug":"ossm-troubleshooting-proxy_troubleshooting-ossm","text":"Troubleshooting Envoy proxy"},{"depth":4,"slug":"_enabling_envoy_access_logs","text":"Enabling Envoy access logs"},{"depth":2,"slug":"support_troubleshooting-ossm","text":"Get support"},{"depth":3,"slug":"support-knowledgebase-about_troubleshooting-ossm","text":"About the Red Hat Knowledgebase"},{"depth":3,"slug":"support-knowledgebase-search_troubleshooting-ossm","text":"Search the Red Hat Knowledgebase"},{"depth":3,"slug":"ossm-about-collecting-ossm-data_troubleshooting-ossm","text":"About collecting service mesh data"},{"depth":3,"slug":"support-submitting-a-case_troubleshooting-ossm","text":"Submitting a support case"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/service_mesh/v2x/ossm-troubleshooting-istio";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Troubleshooting your service mesh";
-const description = "This section describes how to identify and resolve common problems in {{ SMProductName }}. Use the following sections to help troubleshoot and debug…" || undefined;
+const description = "This section describes how to identify and resolve common problems in Red Hat OpenShift Service Mesh. Use the following sections to help troubleshoot and…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting your service mesh {#ossm-troubleshooting}\n\nThis section describes how to identify and resolve common problems in {{ SMProductName }}. Use the following sections to help troubleshoot and debug problems when deploying {{ SMProductName }} on OpenShift Container Platform.\n\n## Troubleshooting Operator installation {#_troubleshooting_operator_installation}\n\nIn addition to the information in this section, be sure to review the following topics:\n\n- [What are Operators?](/openshift-docs-markdown/operators/understanding/olm-what-operators-are)\n- [Operator Lifecycle Management concepts](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm).\n- [OpenShift Operator troubleshooting section](/openshift-docs-markdown/support/troubleshooting/troubleshooting-operator-issues).\n- [OpenShift installation troubleshooting section](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations).\n\n## Troubleshooting the control plane {#_troubleshooting_the_control_plane}\n\nThe Service Mesh *control plane* is composed of Istiod, which consolidates several previous control plane components (Citadel, Galley, Pilot) into a single binary. Deploying the `ServiceMeshControlPlane` also creates the other components that make up {{ SMProductName }} as described in the [architecture](/openshift-docs-markdown/service_mesh/v2x/ossm-architecture#ossm-architecture_ossm-architecture) topic.\n\n## Troubleshooting the data plane {#_troubleshooting_the_data_plane}\n\nThe *data plane* is a set of intelligent proxies that intercept and control all inbound and outbound network communications between services in the service mesh.\n\n{{ SMProductName }} relies on a proxy sidecar within the application’s pod to provide service mesh capabilities to the application.\n\nFor more information about sidecar injection, see [Enabling automatic injection](/openshift-docs-markdown/service_mesh/v2x/prepare-to-deploy-applications-ossm#ossm-automatic-sidecar-injection_deploying-applications-ossm)\n\nFor more information about troubleshooting pod issues, see [Investigating pod issues](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues)\n\nFor prompt support, supply diagnostic information for both OpenShift Container Platform and {{ SMProductName }}.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-troubleshooting-istio.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshooting your service mesh {#ossm-troubleshooting}\n\nThis section describes how to identify and resolve common problems in Red Hat OpenShift Service Mesh. Use the following sections to help troubleshoot and debug problems when deploying Red Hat OpenShift Service Mesh on OpenShift Container Platform.\n\n## Understanding Service Mesh versions {#ossm-versions_troubleshooting-ossm}\n\nIn order to understand what version of Red Hat OpenShift Service Mesh you have deployed on your system, you need to understand how each of the component versions is managed.\n\n- **Operator** version - The most current Operator version is 2.6.11. The Operator version number only indicates the version of the currently installed Operator. Because the Red Hat OpenShift Service Mesh Operator supports multiple versions of the Service Mesh control plane, the version of the Operator does not determine the version of your deployed `ServiceMeshControlPlane` resources.\n\n  > [!IMPORTANT]\n  > Upgrading to the latest Operator version automatically applies patch updates, but does not automatically upgrade your Service Mesh control plane to the latest minor version.\n- **ServiceMeshControlPlane** version - The `ServiceMeshControlPlane` version determines what version of Red Hat OpenShift Service Mesh you are using. The value of the `spec.version` field in the `ServiceMeshControlPlane` resource controls the architecture and configuration settings that are used to install and deploy Red Hat OpenShift Service Mesh. When you create the Service Mesh control plane you can set the version in one of two ways:\n\n  - To configure in the Form View, select the version from the **Control Plane Version** menu.\n  - To configure in the YAML View, set the value for `spec.version` in the YAML file.\n\nOperator Lifecycle Manager (OLM) does not manage Service Mesh control plane upgrades, so the version number for your Operator and `ServiceMeshControlPlane` (SMCP) may not match, unless you have manually upgraded your SMCP.\n\n## Troubleshooting Operator installation {#_troubleshooting_operator_installation}\n\nIn addition to the information in this section, be sure to review the following topics:\n\n- [What are Operators?](/openshift-docs-markdown/operators/understanding/olm-what-operators-are)\n- [Operator Lifecycle Management concepts](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm).\n- [OpenShift Operator troubleshooting section](/openshift-docs-markdown/support/troubleshooting/troubleshooting-operator-issues).\n- [OpenShift installation troubleshooting section](/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations).\n\n### Validating Operator installation {#ossm-validating-operators_troubleshooting-ossm}\n\nWhen you install the Red Hat OpenShift Service Mesh Operators, OpenShift automatically creates the following objects as part of a successful Operator installation:\n\n- config maps\n- custom resource definitions\n- deployments\n- pods\n- replica sets\n- roles\n- role bindings\n- secrets\n- service accounts\n- services\n\n**From the OpenShift Container Platform console**\n\nYou can verify that the Operator pods are available and running by using the OpenShift Container Platform console.\n\n1. Navigate to **Workloads** -> **Pods**.\n2. Select the `openshift-operators` namespace.\n3. Verify that the following pods exist and have a status of `running`:\n\n   - `istio-operator`\n   - `jaeger-operator`\n   - `kiali-operator`\n4. Select the `openshift-operators-redhat` namespace.\n5. Verify that the `elasticsearch-operator` pod exists and has a status of `running`.\n\n**From the command line**\n\n1. Verify the Operator pods are available and running in the `openshift-operators` namespace with the following command:\n\n   ```terminal\n   $ oc get pods -n openshift-operators\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                               READY   STATUS    RESTARTS   AGE\n   istio-operator-bb49787db-zgr87     1/1     Running   0          15s\n   jaeger-operator-7d5c4f57d8-9xphf   1/1     Running   0          2m42s\n   kiali-operator-f9c8d84f4-7xh2v     1/1     Running   0          64s\n   ```\n2. Verify the Elasticsearch operator with the following command:\n\n   ```terminal\n   $ oc get pods -n openshift-operators-redhat\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                      READY   STATUS    RESTARTS   AGE\n   elasticsearch-operator-d4f59b968-796vq     1/1     Running   0          15s\n   ```\n\n### Troubleshooting service mesh Operators {#ossm-troubleshooting-operators_troubleshooting-ossm}\n\nIf you experience Operator issues:\n\n- Verify your Operator subscription status.\n- Verify that you did not install a community version of the Operator, instead of the supported Red Hat version.\n- Verify that you have the `cluster-admin` role to install Red Hat OpenShift Service Mesh.\n- Check for any errors in the Operator pod logs if the issue is related to installation of Operators.\n\n> [!NOTE]\n> You can install Operators only through the OpenShift console, the software catalog is not accessible from the command line.\n\n#### Viewing Operator pod logs {#_viewing_operator_pod_logs}\n\nYou can view Operator logs by using the `oc logs` command. Red Hat may request logs to help resolve support cases.\n\n**Procedure**\n\n- To view Operator pod logs, enter the command:\n\n  ```terminal\n  $ oc logs -n openshift-operators <podName>\n  ```\n\n  For example,\n\n  ```terminal\n  $ oc logs -n openshift-operators istio-operator-bb49787db-zgr87\n  ```\n\n## Troubleshooting the control plane {#_troubleshooting_the_control_plane}\n\nThe Service Mesh *control plane* is composed of Istiod, which consolidates several previous control plane components (Citadel, Galley, Pilot) into a single binary. Deploying the `ServiceMeshControlPlane` also creates the other components that make up Red Hat OpenShift Service Mesh as described in the [architecture](/openshift-docs-markdown/service_mesh/v2x/ossm-architecture#ossm-architecture_ossm-architecture) topic.\n\n### Validating the Service Mesh control plane installation {#ossm-validating-smcp_troubleshooting-ossm}\n\nWhen you create the Service Mesh control plane, the Service Mesh Operator uses the parameters that you have specified in the `ServiceMeshControlPlane` resource file to do the following:\n\n- Creates the Istio components and deploys the following pods:\n\n  - `istiod`\n  - `istio-ingressgateway`\n  - `istio-egressgateway`\n  - `grafana`\n  - `prometheus`\n- Calls the Kiali Operator to create Kaili deployment based on configuration in either the SMCP or the Kiali custom resource.\n\n  > [!NOTE]\n  > You view the Kiali components under the Kiali Operator, not the Service Mesh Operator.\n- Calls the Red Hat OpenShift Distributed Tracing Platform (Jaeger) Operator to create Distributed Tracing Platform (Jaeger) components based on configuration in either the SMCP or the Jaeger custom resource.\n\n  > [!NOTE]\n  > You view the Jaeger components under the Red Hat OpenShift Distributed Tracing Platform (Jaeger) Operator and the Elasticsearch components under the Red Hat Elasticsearch Operator, not the Service Mesh Operator.\n\n  **From the OpenShift Container Platform console**\n\nYou can verify the Service Mesh control plane installation in the OpenShift Container Platform web console.\n\n1. Navigate to **Ecosystem** -> **Installed Operators**.\n2. Select the `istio-system` namespace.\n3. Select the Red Hat OpenShift Service Mesh Operator.\n\n   1. Click the **Istio Service Mesh Control Plane** tab.\n   2. Click the name of your control plane, for example `basic`.\n   3. To view the resources created by the deployment, click the **Resources** tab. You can use the filter to narrow your view, for example, to check that all the **Pods** have a status of `running`.\n   4. If the SMCP status indicates any problems, check the `status:` output in the YAML file for more information.\n4. Navigate back to **Ecosystem** -> **Installed Operators**.\n5. Select the OpenShift Elasticsearch Operator.\n\n   1. Click the **Elasticsearch** tab.\n   2. Click the name of the deployment, for example `elasticsearch`.\n   3. To view the resources created by the deployment, click the **Resources** tab. .\n   4. If the `Status` column any problems, check the `status:` output on the **YAML** tab for more information.\n6. Navigate back to **Ecosystem** -> **Installed Operators**.\n7. Select the Red Hat OpenShift Distributed Tracing Platform (Jaeger) Operator.\n\n   1. Click the **Jaeger** tab.\n   2. Click the name of your deployment, for example `jaeger`.\n   3. To view the resources created by the deployment, click the **Resources** tab.\n   4. If the `Status` column indicates any problems, check the `status:` output on the **YAML** tab for more information.\n8. Navigate to **Ecosystem** -> **Installed Operators**.\n9. Select the Kiali Operator.\n\n   1. Click the **Istio Service Mesh Control Plane** tab.\n   2. Click the name of your deployment, for example `kiali`.\n   3. To view the resources created by the deployment, click the **Resources** tab.\n   4. If the `Status` column any problems, check the `status:` output on the **YAML** tab for more information.\n\n**From the command line**\n\n1. Run the following command to see if the Service Mesh control plane pods are available and running, where `istio-system` is the namespace where you installed the SMCP.\n\n   ```terminal\n   $ oc get pods -n istio-system\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                   READY   STATUS    RESTARTS   AGE\n   grafana-6776785cfc-6fz7t               2/2     Running   0          102s\n   istio-egressgateway-5f49dd99-l9ppq     1/1     Running   0          103s\n   istio-ingressgateway-6dc885c48-jjd8r   1/1     Running   0          103s\n   istiod-basic-6c9cc55998-wg4zq          1/1     Running   0          2m14s\n   jaeger-6865d5d8bf-zrfss                2/2     Running   0          100s\n   kiali-579799fbb7-8mwc8                 1/1     Running   0          46s\n   prometheus-5c579dfb-6qhjk              2/2     Running   0          115s\n   ```\n2. Check the status of the Service Mesh control plane deployment by using the following command. Replace `istio-system` with the namespace where you deployed the SMCP.\n\n   ```terminal\n   $ oc get smcp -n istio-system\n   ```\n\n   The installation has finished successfully when the STATUS column is `ComponentsReady`.\n\n   ```terminal {title=\"Example output\"}\n   NAME    READY   STATUS            PROFILES      VERSION   AGE\n   basic   10/10   ComponentsReady   [\"default\"]   2.1.3     4m2s\n   ```\n\n   If you have modified and redeployed your Service Mesh control plane, the status should read `UpdateSuccessful`.\n\n   ```terminal {title=\"Example output\"}\n   NAME            READY     STATUS             TEMPLATE   VERSION   AGE\n   basic-install   10/10     UpdateSuccessful   default     v1.1     3d16h\n   ```\n3. If the SMCP status indicates anything other than `ComponentsReady` check the `status:` output in the SCMP resource for more information.\n\n   ```terminal\n   $ oc describe smcp <smcp-name> -n <controlplane-namespace>\n   ```\n\n   ```terminal {title=\"Example output\"}\n   $ oc describe smcp basic -n istio-system\n   ```\n4. Check the status of the Jaeger deployment with the following command, where `istio-system` is the namespace where you deployed the SMCP.\n\n   ```terminal\n   $ oc get jaeger -n istio-system\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME     STATUS    VERSION   STRATEGY   STORAGE   AGE\n   jaeger   Running   1.30.0    allinone   memory    15m\n   ```\n5. Check the status of the Kiali deployment with the following command, where `istio-system` is the namespace where you deployed the SMCP.\n\n   ```terminal\n   $ oc get kiali -n istio-system\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME    AGE\n   kiali   15m\n   ```\n\n#### Accessing the Kiali console {#ossm-accessing-kiali-console_troubleshooting-ossm}\n\nYou can view your application’s topology, health, and metrics in the Kiali console. If your service is experiencing problems, the Kiali console lets you view the data flow through your service. You can view insights about the mesh components at different levels, including abstract applications, services, and workloads. Kiali also provides an interactive graph view of your namespace in real time.\n\nTo access the Kiali console you must have Red Hat OpenShift Service Mesh installed, Kiali installed and configured.\n\nThe installation process creates a route to access the Kiali console.\n\nIf you know the URL for the Kiali console, you can access it directly.  If you do not know the URL, use the following directions.\n\n**Procedure for administrators**\n\n1. Log in to the OpenShift Container Platform web console with an administrator role.\n2. Click **Home** -> **Projects**.\n3. On the **Projects** page, if necessary, use the filter to find the name of your project.\n4. Click the name of your project, for example, `bookinfo`.\n5. On the **Project details** page, in the **Launcher** section, click the **Kiali** link.\n6. Log in to the Kiali console with the same user name and password that you use to access the OpenShift Container Platform console.\n\n   When you first log in to the Kiali Console, you see the **Overview** page which displays all the namespaces in your service mesh that you have permission to view.\n\n   If you are validating the console installation and namespaces have not yet been added to the mesh, there might not be any data to display other than `istio-system`.\n\n**Procedure for developers**\n\n1. Log in to the OpenShift Container Platform web console with a developer role.\n2. Click **Project**.\n3. On the **Project Details** page, if necessary, use the filter to find the name of your project.\n4. Click the name of your project, for example, `bookinfo`.\n5. On the **Project** page, in the **Launcher** section, click the **Kiali** link.\n6. Click **Log In With OpenShift**.\n\n#### Accessing the Jaeger console {#ossm-accessing-jaeger-console_troubleshooting-ossm}\n\nTo access the Jaeger console you must have Red Hat OpenShift Service Mesh installed, Red Hat OpenShift Distributed Tracing Platform (Jaeger) installed and configured.\n\nThe installation process creates a route to access the Jaeger console.\n\nIf you know the URL for the Jaeger console, you can access it directly.  If you do not know the URL, use the following directions.\n\n> [!IMPORTANT]\n> Starting with Red Hat OpenShift Service Mesh 2.5, Red Hat OpenShift Distributed Tracing Platform (Jaeger) and OpenShift Elasticsearch Operator have been deprecated and will be removed in a future release. Red Hat will provide bug fixes and support for this feature during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. As an alternative to Red Hat OpenShift Distributed Tracing Platform (Jaeger), you can use Red Hat OpenShift Distributed Tracing Platform instead.\n\n**Procedure from OpenShift console**\n\n1. Log in to the OpenShift Container Platform web console as a user with cluster-admin rights. If you use Red Hat OpenShift Dedicated, you must have an account with the `dedicated-admin` role.\n2. Navigate to **Networking** -> **Routes**.\n3. On the **Routes** page, select the Service Mesh control plane project, for example `istio-system`, from the **Namespace** menu.\n\n   The **Location** column displays the linked address for each route.\n4. If necessary, use the filter to find the `jaeger` route.  Click the route **Location** to launch the console.\n5. Click **Log In With OpenShift**.\n\n**Procedure from Kiali console**\n\n1. Launch the Kiali console.\n2. Click **Distributed Tracing** in the left navigation pane.\n3. Click **Log In With OpenShift**.\n\n**Procedure from the CLI**\n\n1. Log in to the OpenShift Container Platform CLI as a user with the `cluster-admin` role. If you use Red Hat OpenShift Dedicated, you must have an account with the `dedicated-admin` role.\n\n   ```terminal\n   $ oc login --username=<NAMEOFUSER> https://<HOSTNAME>:6443\n   ```\n2. To query for details of the route using the command line, enter the following command. In this example, `istio-system` is the Service Mesh control plane namespace.\n\n   ```terminal\n   $ oc get route -n istio-system jaeger -o jsonpath='{.spec.host}'\n   ```\n3. Launch a browser and navigate to `https://<JAEGER_URL>`, where `<JAEGER_URL>` is the route that you discovered in the previous step.\n4. Log in using the same user name and password that you use to access the {{ Product_title }} console.\n5. If you have added services to the service mesh and have generated traces, you can use the filters and **Find Traces** button to search your trace data.\n\n   If you are validating the console installation, there is no trace data to display.\n\n### Troubleshooting the Service Mesh control plane {#ossm-troubleshooting-smcp_troubleshooting-ossm}\n\nIf you are experiencing issues while deploying the Service Mesh control plane,\n\n- Ensure that the `ServiceMeshControlPlane` resource is installed in a project that is separate from your services and Operators. This documentation uses the `istio-system` project as an example, but you can deploy your control plane in any project as long as it is separate from the project that contains your Operators and services.\n- Ensure that the `ServiceMeshControlPlane` and `Jaeger` custom resources are deployed in the same project. For example, use the `istio-system` project for both.\n\n## Troubleshooting the data plane {#_troubleshooting_the_data_plane}\n\nThe *data plane* is a set of intelligent proxies that intercept and control all inbound and outbound network communications between services in the service mesh.\n\nRed Hat OpenShift Service Mesh relies on a proxy sidecar within the application’s pod to provide service mesh capabilities to the application.\n\n### Troubleshooting sidecar injection {#ossm-troubleshooting-injection_troubleshooting-ossm}\n\nRed Hat OpenShift Service Mesh does not automatically inject proxy sidecars to pods. You must opt in to sidecar injection.\n\n#### Troubleshooting Istio sidecar injection {#_troubleshooting_istio_sidecar_injection}\n\nCheck to see if automatic injection is enabled in the Deployment for your application. If automatic injection for the Envoy proxy is enabled, there should be a `sidecar.istio.io/inject:\"true\"` annotation in the `Deployment` resource under `spec.template.metadata.annotations`.\n\n#### Troubleshooting Jaeger agent sidecar injection {#_troubleshooting_jaeger_agent_sidecar_injection}\n\nCheck to see if automatic injection is enabled in the Deployment for your application. If automatic injection for the Jaeger agent is enabled, there should be a `sidecar.jaegertracing.io/inject:\"true\"` annotation in the `Deployment` resource.\n\nFor more information about sidecar injection, see [Enabling automatic injection](/openshift-docs-markdown/service_mesh/v2x/prepare-to-deploy-applications-ossm#ossm-automatic-sidecar-injection_deploying-applications-ossm)\n\n### Troubleshooting Envoy proxy {#ossm-troubleshooting-proxy_troubleshooting-ossm}\n\nThe Envoy proxy intercepts all inbound and outbound traffic for all services in the service mesh. Envoy also collects and reports telemetry on the service mesh. Envoy is deployed as a sidecar to the relevant service in the same pod.\n\n#### Enabling Envoy access logs {#_enabling_envoy_access_logs}\n\nEnvoy access logs are useful in diagnosing traffic failures and flows, and help with end-to-end traffic flow analysis.\n\nTo enable access logging for all istio-proxy containers, edit the `ServiceMeshControlPlane` (SMCP) object to add a file name for the logging output.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform CLI as a user with the cluster-admin role. Enter the following command. Then, enter your username and password when prompted.\n\n   ```terminal\n   $ oc login --username=<NAMEOFUSER> https://<HOSTNAME>:6443\n   ```\n2. Change to the project where you installed the Service Mesh control plane, for example `istio-system`.\n\n   ```terminal\n   $ oc project istio-system\n   ```\n3. Edit the `ServiceMeshControlPlane` file.\n\n   ```terminal\n   $ oc edit smcp <smcp_name>\n   ```\n4. As show in the following example, use `name` to specify the file name for the proxy log. If you do not specify a value for `name`, no log entries will be written.\n\n   ```yaml\n   apiVersion: maistra.io/v2\n   kind: ServiceMeshControlPlane\n   metadata:\n     name: basic\n     namespace: istio-system\n   spec:\n     proxy:\n       accessLogging:\n         file:\n           name: /dev/stdout     #file name\n   ```\n\nFor more information about troubleshooting pod issues, see [Investigating pod issues](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues)\n\n## Get support {#support_troubleshooting-ossm}\n\nRed Hat offers several support channels to help you troubleshoot issues and get the most from OpenShift Container Platform.\n\nFrom the Red Hat Customer Portal, you can:\n\n- Search or browse through the Red Hat Knowledgebase of articles and solutions about Red Hat products.\n- Submit a support case to Red Hat Support.\n- Access other product documentation.\n\nTo identify issues with your cluster, you can use Red Hat Lightspeed in [OpenShift Cluster Manager](https://console.redhat.com/openshift). Red Hat Lightspeed provides details about issues and, if available, information about how to solve a problem.\n\nTo suggest improvements or report errors, give specific details such as the section name and OpenShift Container Platform version.\n\n### About the Red Hat Knowledgebase {#support-knowledgebase-about_troubleshooting-ossm}\n\nThe Red Hat Knowledgebase helps you get the most from Red Hat products and technologies.\n\nIt includes articles, product documentation, and videos that outline best practices for installing, configuring, and using Red Hat products. You can also search for solutions to known issues. Each solution has a root cause description and steps to fix the problem.\n\n- [Red Hat Knowledgebase](https://access.redhat.com/knowledgebase)\n\n### Search the Red Hat Knowledgebase {#support-knowledgebase-search_troubleshooting-ossm}\n\nSearch the Red Hat Knowledgebase to find solutions to known issues and resolve problems quickly without opening a support case.\n\n**Prerequisites**\n\n- You have a Red Hat Customer Portal account.\n\n**Procedure**\n\n1. Log in to the [Red Hat Customer Portal](http://access.redhat.com).\n2. Click **Search**.\n3. In the search field, input keywords and strings relating to the problem, including:\n\n   - OpenShift Container Platform components (such as **etcd**)\n   - Related procedure (such as **installation**)\n   - Warnings, error messages, and other outputs related to explicit failures\n4. Click the **Enter** key.\n5. Optional: Select the **OpenShift Container Platform** product filter.\n6. Optional: Select the **Documentation** content type filter.\n\n### About collecting service mesh data {#ossm-about-collecting-ossm-data_troubleshooting-ossm}\n\nYou can use the `oc adm must-gather` CLI command to collect information about your cluster, including features and objects associated with Red Hat OpenShift Service Mesh.\n\n**Prerequisites**\n\n- Access to the cluster as a user with the `cluster-admin` role.\n- The OpenShift Container Platform CLI (`oc`) installed.\n\n**Procedure**\n\n1. To collect Red Hat OpenShift Service Mesh data with `must-gather`, you must specify the Red Hat OpenShift Service Mesh image.\n\n   ```terminal\n   $ oc adm must-gather --image=registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:{{ MaistraVersion }}\n   ```\n2. To collect Red Hat OpenShift Service Mesh data for a specific Service Mesh control plane namespace with `must-gather`, you must specify the Red Hat OpenShift Service Mesh image and namespace. In this example, after `gather,` replace `<namespace>` with your Service Mesh control plane namespace, such as `istio-system`.\n\n   ```terminal\n   $ oc adm must-gather --image=registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:{{ MaistraVersion }} gather <namespace>\n   ```\n\n   This creates a local directory that contains the following items:\n\n   - The Istio Operator namespace and its child objects\n   - All control plane namespaces and their children objects\n   - All namespaces and their children objects that belong to any service mesh\n   - All Istio custom resource definitions (CRD)\n   - All Istio CRD objects, such as VirtualServices, in a given namespace\n   - All Istio webhooks\n\nFor prompt support, supply diagnostic information for both OpenShift Container Platform and Red Hat OpenShift Service Mesh.\n\n### Submitting a support case {#support-submitting-a-case_troubleshooting-ossm}\n\nIf you cannot resolve an OpenShift Container Platform issue by using the Red Hat Knowledgebase, submit a support case to get direct help from Red Hat Support.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed the OpenShift CLI (`oc`).\n- You have a Red Hat Customer Portal account.\n- You have a Red Hat Standard or Premium subscription.\n\n**Procedure**\n\n1. Log in to [the **Customer Support** page](https://access.redhat.com/support/cases/#/case/list) of the Red Hat Customer Portal.\n2. Click **Get support**.\n3. On the **Cases** tab of the **Customer Support** page:\n\n   1. Optional: Change the pre-filled account and owner details if needed.\n   2. Select the appropriate category for your issue, such as **Bug or Defect**, and click **Continue**.\n4. Enter the following information:\n\n   1. In the **Summary** field, enter a concise but descriptive problem summary and further details about the symptoms that you experience and your expectations.\n   2. Select **OpenShift Container Platform** from the **Product** drop-down menu.\n   3. Select **4.22** from the **Version** drop-down.\n5. Review the list of suggested Red Hat Knowledgebase solutions for a potential match against the problem that you are reporting. If the suggested articles do not address the issue, click **Continue**.\n6. Review the updated list of suggested Red Hat Knowledgebase solutions for a potential match against the problem that you are reporting. The list updates as you give more information during the case creation process. If the suggested articles do not address the issue, click **Continue**.\n7. Ensure that the account information presented is as expected, and if not, change it as needed.\n8. Check that the autofilled OpenShift Container Platform Cluster ID is correct. If it is not, manually obtain your cluster ID.\n\n   - To manually obtain your cluster ID using the OpenShift Container Platform web console:\n\n     1. Navigate to **Home** -> **Overview**.\n     2. Find the value in the **Cluster ID** field of the **Details** section.\n   - Or, open a new support case from the OpenShift Container Platform web console, which automatically fills in your cluster ID.\n\n     1. From the toolbar, navigate to **(?) Help** -> **Open Support Case**.\n     2. The **Cluster ID** value automatically fills in.\n   - To obtain your cluster ID using the OpenShift CLI (`oc`), run the following command:\n\n     ```terminal\n     $ oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{\"\\n\"}'\n     ```\n9. Complete the following questions where prompted and then click **Continue**:\n\n   - What are you experiencing? What are you expecting to happen?\n   - Define the value or impact to you or the business.\n   - Where are you experiencing this behavior? What environment?\n   - When does this behavior occur? Frequency? Repeatedly? At certain times?\n10. Upload relevant diagnostic data files and click **Continue**. Red Hat recommends including data gathered by using the `oc adm must-gather` command as a starting point, plus any issue-specific data that the command does not collect.\n11. Input relevant case management details and click **Continue**.\n12. Preview the case details and click **Submit**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-troubleshooting-istio.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,28 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ossm-troubleshooting" class="group scroll-mt-20">Troubleshooting your service mesh<a href="#ossm-troubleshooting" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>This section describes how to identify and resolve common problems in {"{"}{"{"} SMProductName {"}"}{"}"}. Use the following sections to help troubleshoot and debug problems when deploying {"{"}{"{"} SMProductName {"}"}{"}"} on OpenShift Container Platform.</p>
-      <p class="/modules/ossm-understanding-versions.md"></p>
+      <p>This section describes how to identify and resolve common problems in Red Hat OpenShift Service Mesh. Use the following sections to help troubleshoot and debug problems when deploying Red Hat OpenShift Service Mesh on OpenShift Container Platform.</p>
+      <h2 id="ossm-versions_troubleshooting-ossm" class="group scroll-mt-20">Understanding Service Mesh versions<a href="#ossm-versions_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>In order to understand what version of Red Hat OpenShift Service Mesh you have deployed on your system, you need to understand how each of the component versions is managed.</p>
+      <ul>
+      <li>
+      <strong>Operator</strong> version - The most current Operator version is 2.6.11. The Operator version number only indicates the version of the currently installed Operator. Because the Red Hat OpenShift Service Mesh Operator supports multiple versions of the Service Mesh control plane, the version of the Operator does not determine the version of your deployed <code>ServiceMeshControlPlane</code> resources.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Upgrading to the latest Operator version automatically applies patch updates, but does not automatically upgrade your Service Mesh control plane to the latest minor version.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      <strong>ServiceMeshControlPlane</strong> version - The <code>ServiceMeshControlPlane</code> version determines what version of Red Hat OpenShift Service Mesh you are using. The value of the <code>spec.version</code> field in the <code>ServiceMeshControlPlane</code> resource controls the architecture and configuration settings that are used to install and deploy Red Hat OpenShift Service Mesh. When you create the Service Mesh control plane you can set the version in one of two ways:
+      <ul>
+      <li>To configure in the Form View, select the version from the <strong>Control Plane Version</strong> menu.</li>
+      <li>To configure in the YAML View, set the value for <code>spec.version</code> in the YAML file.</li>
+      </ul>
+      </li>
+      </ul>
+      <p>Operator Lifecycle Manager (OLM) does not manage Service Mesh control plane upgrades, so the version number for your Operator and <code>ServiceMeshControlPlane</code> (SMCP) may not match, unless you have manually upgraded your SMCP.</p>
       <h2 id="_troubleshooting_operator_installation" class="group scroll-mt-20">Troubleshooting Operator installation<a href="#_troubleshooting_operator_installation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>In addition to the information in this section, be sure to review the following topics:</p>
       <ul>
@@ -102,26 +125,428 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/support/troubleshooting/troubleshooting-operator-issues">OpenShift Operator troubleshooting section</a>.</li>
       <li><a href="/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations">OpenShift installation troubleshooting section</a>.</li>
       </ul>
-      <p class="/modules/ossm-troubleshooting-operators.md"></p>
+      <h3 id="ossm-validating-operators_troubleshooting-ossm" class="group scroll-mt-20">Validating Operator installation<a href="#ossm-validating-operators_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>When you install the Red Hat OpenShift Service Mesh Operators, OpenShift automatically creates the following objects as part of a successful Operator installation:</p>
+      <ul>
+      <li>config maps</li>
+      <li>custom resource definitions</li>
+      <li>deployments</li>
+      <li>pods</li>
+      <li>replica sets</li>
+      <li>roles</li>
+      <li>role bindings</li>
+      <li>secrets</li>
+      <li>service accounts</li>
+      <li>services</li>
+      </ul>
+      <p><strong>From the OpenShift Container Platform console</strong></p>
+      <p>You can verify that the Operator pods are available and running by using the OpenShift Container Platform console.</p>
+      <ol>
+      <li>Navigate to <strong>Workloads</strong> -&gt; <strong>Pods</strong>.</li>
+      <li>Select the <code>openshift-operators</code> namespace.</li>
+      <li>
+      Verify that the following pods exist and have a status of <code>running</code>:
+      <ul>
+      <li><code>istio-operator</code></li>
+      <li><code>jaeger-operator</code></li>
+      <li><code>kiali-operator</code></li>
+      </ul>
+      </li>
+      <li>Select the <code>openshift-operators-redhat</code> namespace.</li>
+      <li>Verify that the <code>elasticsearch-operator</code> pod exists and has a status of <code>running</code>.</li>
+      </ol>
+      <p><strong>From the command line</strong></p>
+      <ol>
+      <li>
+      Verify the Operator pods are available and running in the <code>openshift-operators</code> namespace with the following command:
+      <CodeBlock code={"$ oc get pods -n openshift-operators"} lang="terminal" />
+      <CodeBlock code={"NAME                               READY   STATUS    RESTARTS   AGE\nistio-operator-bb49787db-zgr87     1/1     Running   0          15s\njaeger-operator-7d5c4f57d8-9xphf   1/1     Running   0          2m42s\nkiali-operator-f9c8d84f4-7xh2v     1/1     Running   0          64s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Verify the Elasticsearch operator with the following command:
+      <CodeBlock code={"$ oc get pods -n openshift-operators-redhat"} lang="terminal" />
+      <CodeBlock code={"NAME                                      READY   STATUS    RESTARTS   AGE\nelasticsearch-operator-d4f59b968-796vq     1/1     Running   0          15s"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h3 id="ossm-troubleshooting-operators_troubleshooting-ossm" class="group scroll-mt-20">Troubleshooting service mesh Operators<a href="#ossm-troubleshooting-operators_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>If you experience Operator issues:</p>
+      <ul>
+      <li>Verify your Operator subscription status.</li>
+      <li>Verify that you did not install a community version of the Operator, instead of the supported Red Hat version.</li>
+      <li>Verify that you have the <code>cluster-admin</code> role to install Red Hat OpenShift Service Mesh.</li>
+      <li>Check for any errors in the Operator pod logs if the issue is related to installation of Operators.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can install Operators only through the OpenShift console, the software catalog is not accessible from the command line.</p>
+        </AlertDescription>
+      </Alert>
+      <h4 id="_viewing_operator_pod_logs" class="group scroll-mt-20">Viewing Operator pod logs<a href="#_viewing_operator_pod_logs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>You can view Operator logs by using the <code>oc logs</code> command. Red Hat may request logs to help resolve support cases.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To view Operator pod logs, enter the command:
+      <CodeBlock code={"$ oc logs -n openshift-operators <podName>"} lang="terminal" />
+      <p>For example,</p>
+      <CodeBlock code={"$ oc logs -n openshift-operators istio-operator-bb49787db-zgr87"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="_troubleshooting_the_control_plane" class="group scroll-mt-20">Troubleshooting the control plane<a href="#_troubleshooting_the_control_plane" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p>The Service Mesh <em>control plane</em> is composed of Istiod, which consolidates several previous control plane components (Citadel, Galley, Pilot) into a single binary. Deploying the <code>ServiceMeshControlPlane</code> also creates the other components that make up {"{"}{"{"} SMProductName {"}"}{"}"} as described in the <a href="/openshift-docs-markdown/service_mesh/v2x/ossm-architecture#ossm-architecture_ossm-architecture">architecture</a> topic.</p>
-      <p class="/modules/ossm-validating-smcp.md"></p>
-      <p class="/modules/ossm-kiali-accessing-console.md"></p>
-      <p class="/modules/ossm-jaeger-accessing-console.md"></p>
-      <p class="/modules/ossm-troubleshooting-smcp.md"></p>
+      <p>The Service Mesh <em>control plane</em> is composed of Istiod, which consolidates several previous control plane components (Citadel, Galley, Pilot) into a single binary. Deploying the <code>ServiceMeshControlPlane</code> also creates the other components that make up Red Hat OpenShift Service Mesh as described in the <a href="/openshift-docs-markdown/service_mesh/v2x/ossm-architecture#ossm-architecture_ossm-architecture">architecture</a> topic.</p>
+      <h3 id="ossm-validating-smcp_troubleshooting-ossm" class="group scroll-mt-20">Validating the Service Mesh control plane installation<a href="#ossm-validating-smcp_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>When you create the Service Mesh control plane, the Service Mesh Operator uses the parameters that you have specified in the <code>ServiceMeshControlPlane</code> resource file to do the following:</p>
+      <ul>
+      <li>
+      Creates the Istio components and deploys the following pods:
+      <ul>
+      <li><code>istiod</code></li>
+      <li><code>istio-ingressgateway</code></li>
+      <li><code>istio-egressgateway</code></li>
+      <li><code>grafana</code></li>
+      <li><code>prometheus</code></li>
+      </ul>
+      </li>
+      <li>
+      Calls the Kiali Operator to create Kaili deployment based on configuration in either the SMCP or the Kiali custom resource.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You view the Kiali components under the Kiali Operator, not the Service Mesh Operator.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Calls the Red Hat OpenShift Distributed Tracing Platform (Jaeger) Operator to create Distributed Tracing Platform (Jaeger) components based on configuration in either the SMCP or the Jaeger custom resource.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You view the Jaeger components under the Red Hat OpenShift Distributed Tracing Platform (Jaeger) Operator and the Elasticsearch components under the Red Hat Elasticsearch Operator, not the Service Mesh Operator.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>From the OpenShift Container Platform console</strong></p>
+      </li>
+      </ul>
+      <p>You can verify the Service Mesh control plane installation in the OpenShift Container Platform web console.</p>
+      <ol>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Select the <code>istio-system</code> namespace.</li>
+      <li>
+      Select the Red Hat OpenShift Service Mesh Operator.
+      <ol>
+      <li>Click the <strong>Istio Service Mesh Control Plane</strong> tab.</li>
+      <li>Click the name of your control plane, for example <code>basic</code>.</li>
+      <li>To view the resources created by the deployment, click the <strong>Resources</strong> tab. You can use the filter to narrow your view, for example, to check that all the <strong>Pods</strong> have a status of <code>running</code>.</li>
+      <li>If the SMCP status indicates any problems, check the <code>status:</code> output in the YAML file for more information.</li>
+      </ol>
+      </li>
+      <li>Navigate back to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>
+      Select the OpenShift Elasticsearch Operator.
+      <ol>
+      <li>Click the <strong>Elasticsearch</strong> tab.</li>
+      <li>Click the name of the deployment, for example <code>elasticsearch</code>.</li>
+      <li>To view the resources created by the deployment, click the <strong>Resources</strong> tab. .</li>
+      <li>If the <code>Status</code> column any problems, check the <code>status:</code> output on the <strong>YAML</strong> tab for more information.</li>
+      </ol>
+      </li>
+      <li>Navigate back to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>
+      Select the Red Hat OpenShift Distributed Tracing Platform (Jaeger) Operator.
+      <ol>
+      <li>Click the <strong>Jaeger</strong> tab.</li>
+      <li>Click the name of your deployment, for example <code>jaeger</code>.</li>
+      <li>To view the resources created by the deployment, click the <strong>Resources</strong> tab.</li>
+      <li>If the <code>Status</code> column indicates any problems, check the <code>status:</code> output on the <strong>YAML</strong> tab for more information.</li>
+      </ol>
+      </li>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>
+      Select the Kiali Operator.
+      <ol>
+      <li>Click the <strong>Istio Service Mesh Control Plane</strong> tab.</li>
+      <li>Click the name of your deployment, for example <code>kiali</code>.</li>
+      <li>To view the resources created by the deployment, click the <strong>Resources</strong> tab.</li>
+      <li>If the <code>Status</code> column any problems, check the <code>status:</code> output on the <strong>YAML</strong> tab for more information.</li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>From the command line</strong></p>
+      <ol>
+      <li>
+      Run the following command to see if the Service Mesh control plane pods are available and running, where <code>istio-system</code> is the namespace where you installed the SMCP.
+      <CodeBlock code={"$ oc get pods -n istio-system"} lang="terminal" />
+      <CodeBlock code={"NAME                                   READY   STATUS    RESTARTS   AGE\ngrafana-6776785cfc-6fz7t               2/2     Running   0          102s\nistio-egressgateway-5f49dd99-l9ppq     1/1     Running   0          103s\nistio-ingressgateway-6dc885c48-jjd8r   1/1     Running   0          103s\nistiod-basic-6c9cc55998-wg4zq          1/1     Running   0          2m14s\njaeger-6865d5d8bf-zrfss                2/2     Running   0          100s\nkiali-579799fbb7-8mwc8                 1/1     Running   0          46s\nprometheus-5c579dfb-6qhjk              2/2     Running   0          115s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check the status of the Service Mesh control plane deployment by using the following command. Replace <code>istio-system</code> with the namespace where you deployed the SMCP.
+      <CodeBlock code={"$ oc get smcp -n istio-system"} lang="terminal" />
+      <p>The installation has finished successfully when the STATUS column is <code>ComponentsReady</code>.</p>
+      <CodeBlock code={"NAME    READY   STATUS            PROFILES      VERSION   AGE\nbasic   10/10   ComponentsReady   [\"default\"]   2.1.3     4m2s"} lang="terminal" title="Example output" />
+      <p>If you have modified and redeployed your Service Mesh control plane, the status should read <code>UpdateSuccessful</code>.</p>
+      <CodeBlock code={"NAME            READY     STATUS             TEMPLATE   VERSION   AGE\nbasic-install   10/10     UpdateSuccessful   default     v1.1     3d16h"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      If the SMCP status indicates anything other than <code>ComponentsReady</code> check the <code>status:</code> output in the SCMP resource for more information.
+      <CodeBlock code={"$ oc describe smcp <smcp-name> -n <controlplane-namespace>"} lang="terminal" />
+      <CodeBlock code={"$ oc describe smcp basic -n istio-system"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check the status of the Jaeger deployment with the following command, where <code>istio-system</code> is the namespace where you deployed the SMCP.
+      <CodeBlock code={"$ oc get jaeger -n istio-system"} lang="terminal" />
+      <CodeBlock code={"NAME     STATUS    VERSION   STRATEGY   STORAGE   AGE\njaeger   Running   1.30.0    allinone   memory    15m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check the status of the Kiali deployment with the following command, where <code>istio-system</code> is the namespace where you deployed the SMCP.
+      <CodeBlock code={"$ oc get kiali -n istio-system"} lang="terminal" />
+      <CodeBlock code={"NAME    AGE\nkiali   15m"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h4 id="ossm-accessing-kiali-console_troubleshooting-ossm" class="group scroll-mt-20">Accessing the Kiali console<a href="#ossm-accessing-kiali-console_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>You can view your application’s topology, health, and metrics in the Kiali console. If your service is experiencing problems, the Kiali console lets you view the data flow through your service. You can view insights about the mesh components at different levels, including abstract applications, services, and workloads. Kiali also provides an interactive graph view of your namespace in real time.</p>
+      <p>To access the Kiali console you must have Red Hat OpenShift Service Mesh installed, Kiali installed and configured.</p>
+      <p>The installation process creates a route to access the Kiali console.</p>
+      <p>If you know the URL for the Kiali console, you can access it directly.  If you do not know the URL, use the following directions.</p>
+      <p><strong>Procedure for administrators</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console with an administrator role.</li>
+      <li>Click <strong>Home</strong> -&gt; <strong>Projects</strong>.</li>
+      <li>On the <strong>Projects</strong> page, if necessary, use the filter to find the name of your project.</li>
+      <li>Click the name of your project, for example, <code>bookinfo</code>.</li>
+      <li>On the <strong>Project details</strong> page, in the <strong>Launcher</strong> section, click the <strong>Kiali</strong> link.</li>
+      <li>
+      Log in to the Kiali console with the same user name and password that you use to access the OpenShift Container Platform console.
+      <p>When you first log in to the Kiali Console, you see the <strong>Overview</strong> page which displays all the namespaces in your service mesh that you have permission to view.</p>
+      <p>If you are validating the console installation and namespaces have not yet been added to the mesh, there might not be any data to display other than <code>istio-system</code>.</p>
+      </li>
+      </ol>
+      <p><strong>Procedure for developers</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console with a developer role.</li>
+      <li>Click <strong>Project</strong>.</li>
+      <li>On the <strong>Project Details</strong> page, if necessary, use the filter to find the name of your project.</li>
+      <li>Click the name of your project, for example, <code>bookinfo</code>.</li>
+      <li>On the <strong>Project</strong> page, in the <strong>Launcher</strong> section, click the <strong>Kiali</strong> link.</li>
+      <li>Click <strong>Log In With OpenShift</strong>.</li>
+      </ol>
+      <h4 id="ossm-accessing-jaeger-console_troubleshooting-ossm" class="group scroll-mt-20">Accessing the Jaeger console<a href="#ossm-accessing-jaeger-console_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>To access the Jaeger console you must have Red Hat OpenShift Service Mesh installed, Red Hat OpenShift Distributed Tracing Platform (Jaeger) installed and configured.</p>
+      <p>The installation process creates a route to access the Jaeger console.</p>
+      <p>If you know the URL for the Jaeger console, you can access it directly.  If you do not know the URL, use the following directions.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Starting with Red Hat OpenShift Service Mesh 2.5, Red Hat OpenShift Distributed Tracing Platform (Jaeger) and OpenShift Elasticsearch Operator have been deprecated and will be removed in a future release. Red Hat will provide bug fixes and support for this feature during the current release lifecycle, but this feature will no longer receive enhancements and will be removed. As an alternative to Red Hat OpenShift Distributed Tracing Platform (Jaeger), you can use Red Hat OpenShift Distributed Tracing Platform instead.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure from OpenShift console</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console as a user with cluster-admin rights. If you use Red Hat OpenShift Dedicated, you must have an account with the <code>dedicated-admin</code> role.</li>
+      <li>Navigate to <strong>Networking</strong> -&gt; <strong>Routes</strong>.</li>
+      <li>
+      On the <strong>Routes</strong> page, select the Service Mesh control plane project, for example <code>istio-system</code>, from the <strong>Namespace</strong> menu.
+      <p>The <strong>Location</strong> column displays the linked address for each route.</p>
+      </li>
+      <li>If necessary, use the filter to find the <code>jaeger</code> route.  Click the route <strong>Location</strong> to launch the console.</li>
+      <li>Click <strong>Log In With OpenShift</strong>.</li>
+      </ol>
+      <p><strong>Procedure from Kiali console</strong></p>
+      <ol>
+      <li>Launch the Kiali console.</li>
+      <li>Click <strong>Distributed Tracing</strong> in the left navigation pane.</li>
+      <li>Click <strong>Log In With OpenShift</strong>.</li>
+      </ol>
+      <p><strong>Procedure from the CLI</strong></p>
+      <ol>
+      <li>
+      Log in to the OpenShift Container Platform CLI as a user with the <code>cluster-admin</code> role. If you use Red Hat OpenShift Dedicated, you must have an account with the <code>dedicated-admin</code> role.
+      <CodeBlock code={"$ oc login --username=<NAMEOFUSER> https://<HOSTNAME>:6443"} lang="terminal" />
+      </li>
+      <li>
+      To query for details of the route using the command line, enter the following command. In this example, <code>istio-system</code> is the Service Mesh control plane namespace.
+      <CodeBlock code={"$ oc get route -n istio-system jaeger -o jsonpath='{.spec.host}'"} lang="terminal" />
+      </li>
+      <li>Launch a browser and navigate to <code>https://&lt;JAEGER_URL&gt;</code>, where <code>&lt;JAEGER_URL&gt;</code> is the route that you discovered in the previous step.</li>
+      <li>Log in using the same user name and password that you use to access the {"{"}{"{"} Product_title {"}"}{"}"} console.</li>
+      <li>
+      If you have added services to the service mesh and have generated traces, you can use the filters and <strong>Find Traces</strong> button to search your trace data.
+      <p>If you are validating the console installation, there is no trace data to display.</p>
+      </li>
+      </ol>
+      <h3 id="ossm-troubleshooting-smcp_troubleshooting-ossm" class="group scroll-mt-20">Troubleshooting the Service Mesh control plane<a href="#ossm-troubleshooting-smcp_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>If you are experiencing issues while deploying the Service Mesh control plane,</p>
+      <ul>
+      <li>Ensure that the <code>ServiceMeshControlPlane</code> resource is installed in a project that is separate from your services and Operators. This documentation uses the <code>istio-system</code> project as an example, but you can deploy your control plane in any project as long as it is separate from the project that contains your Operators and services.</li>
+      <li>Ensure that the <code>ServiceMeshControlPlane</code> and <code>Jaeger</code> custom resources are deployed in the same project. For example, use the <code>istio-system</code> project for both.</li>
+      </ul>
       <h2 id="_troubleshooting_the_data_plane" class="group scroll-mt-20">Troubleshooting the data plane<a href="#_troubleshooting_the_data_plane" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>The <em>data plane</em> is a set of intelligent proxies that intercept and control all inbound and outbound network communications between services in the service mesh.</p>
-      <p>{"{"}{"{"} SMProductName {"}"}{"}"} relies on a proxy sidecar within the application’s pod to provide service mesh capabilities to the application.</p>
-      <p class="/modules/ossm-troubleshooting-injection.md"></p>
+      <p>Red Hat OpenShift Service Mesh relies on a proxy sidecar within the application’s pod to provide service mesh capabilities to the application.</p>
+      <h3 id="ossm-troubleshooting-injection_troubleshooting-ossm" class="group scroll-mt-20">Troubleshooting sidecar injection<a href="#ossm-troubleshooting-injection_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Red Hat OpenShift Service Mesh does not automatically inject proxy sidecars to pods. You must opt in to sidecar injection.</p>
+      <h4 id="_troubleshooting_istio_sidecar_injection" class="group scroll-mt-20">Troubleshooting Istio sidecar injection<a href="#_troubleshooting_istio_sidecar_injection" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Check to see if automatic injection is enabled in the Deployment for your application. If automatic injection for the Envoy proxy is enabled, there should be a <code>sidecar.istio.io/inject:"true"</code> annotation in the <code>Deployment</code> resource under <code>spec.template.metadata.annotations</code>.</p>
+      <h4 id="_troubleshooting_jaeger_agent_sidecar_injection" class="group scroll-mt-20">Troubleshooting Jaeger agent sidecar injection<a href="#_troubleshooting_jaeger_agent_sidecar_injection" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Check to see if automatic injection is enabled in the Deployment for your application. If automatic injection for the Jaeger agent is enabled, there should be a <code>sidecar.jaegertracing.io/inject:"true"</code> annotation in the <code>Deployment</code> resource.</p>
       <p>For more information about sidecar injection, see <a href="/openshift-docs-markdown/service_mesh/v2x/prepare-to-deploy-applications-ossm#ossm-automatic-sidecar-injection_deploying-applications-ossm">Enabling automatic injection</a></p>
-      <p class="/modules/ossm-troubleshooting-proxy.md"></p>
+      <h3 id="ossm-troubleshooting-proxy_troubleshooting-ossm" class="group scroll-mt-20">Troubleshooting Envoy proxy<a href="#ossm-troubleshooting-proxy_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The Envoy proxy intercepts all inbound and outbound traffic for all services in the service mesh. Envoy also collects and reports telemetry on the service mesh. Envoy is deployed as a sidecar to the relevant service in the same pod.</p>
+      <h4 id="_enabling_envoy_access_logs" class="group scroll-mt-20">Enabling Envoy access logs<a href="#_enabling_envoy_access_logs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>Envoy access logs are useful in diagnosing traffic failures and flows, and help with end-to-end traffic flow analysis.</p>
+      <p>To enable access logging for all istio-proxy containers, edit the <code>ServiceMeshControlPlane</code> (SMCP) object to add a file name for the logging output.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Log in to the OpenShift Container Platform CLI as a user with the cluster-admin role. Enter the following command. Then, enter your username and password when prompted.
+      <CodeBlock code={"$ oc login --username=<NAMEOFUSER> https://<HOSTNAME>:6443"} lang="terminal" />
+      </li>
+      <li>
+      Change to the project where you installed the Service Mesh control plane, for example <code>istio-system</code>.
+      <CodeBlock code={"$ oc project istio-system"} lang="terminal" />
+      </li>
+      <li>
+      Edit the <code>ServiceMeshControlPlane</code> file.
+      <CodeBlock code={"$ oc edit smcp <smcp_name>"} lang="terminal" />
+      </li>
+      <li>
+      As show in the following example, use <code>name</code> to specify the file name for the proxy log. If you do not specify a value for <code>name</code>, no log entries will be written.
+      <CodeBlock code={"apiVersion: maistra.io/v2\nkind: ServiceMeshControlPlane\nmetadata:\n  name: basic\n  namespace: istio-system\nspec:\n  proxy:\n    accessLogging:\n      file:\n        name: /dev/stdout     #file name"} lang="yaml" />
+      </li>
+      </ol>
       <p>For more information about troubleshooting pod issues, see <a href="/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues">Investigating pod issues</a></p>
-      <p class="/modules/support.md"></p>
-      <p class="/modules/support-knowledgebase-about.md"></p>
-      <p class="/modules/support-knowledgebase-search.md"></p>
-      <p class="/modules/ossm-about-collecting-ossm-data.md"></p>
-      <p>For prompt support, supply diagnostic information for both OpenShift Container Platform and {"{"}{"{"} SMProductName {"}"}{"}"}.</p>
-      <p class="/modules/support-submitting-a-case.md"></p>
+      <h2 id="support_troubleshooting-ossm" class="group scroll-mt-20">Get support<a href="#support_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Red Hat offers several support channels to help you troubleshoot issues and get the most from OpenShift Container Platform.</p>
+      <p>From the Red Hat Customer Portal, you can:</p>
+      <ul>
+      <li>Search or browse through the Red Hat Knowledgebase of articles and solutions about Red Hat products.</li>
+      <li>Submit a support case to Red Hat Support.</li>
+      <li>Access other product documentation.</li>
+      </ul>
+      <p>To identify issues with your cluster, you can use Red Hat Lightspeed in <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>. Red Hat Lightspeed provides details about issues and, if available, information about how to solve a problem.</p>
+      <p>To suggest improvements or report errors, give specific details such as the section name and OpenShift Container Platform version.</p>
+      <h3 id="support-knowledgebase-about_troubleshooting-ossm" class="group scroll-mt-20">About the Red Hat Knowledgebase<a href="#support-knowledgebase-about_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The Red Hat Knowledgebase helps you get the most from Red Hat products and technologies.</p>
+      <p>It includes articles, product documentation, and videos that outline best practices for installing, configuring, and using Red Hat products. You can also search for solutions to known issues. Each solution has a root cause description and steps to fix the problem.</p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://access.redhat.com/knowledgebase">Red Hat Knowledgebase</a></li></ul>
+      </section>
+      <h3 id="support-knowledgebase-search_troubleshooting-ossm" class="group scroll-mt-20">Search the Red Hat Knowledgebase<a href="#support-knowledgebase-search_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Search the Red Hat Knowledgebase to find solutions to known issues and resolve problems quickly without opening a support case.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have a Red Hat Customer Portal account.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the <a href="http://access.redhat.com">Red Hat Customer Portal</a>.</li>
+      <li>Click <strong>Search</strong>.</li>
+      <li>
+      In the search field, input keywords and strings relating to the problem, including:
+      <ul>
+      <li>OpenShift Container Platform components (such as <strong>etcd</strong>)</li>
+      <li>Related procedure (such as <strong>installation</strong>)</li>
+      <li>Warnings, error messages, and other outputs related to explicit failures</li>
+      </ul>
+      </li>
+      <li>Click the <strong>Enter</strong> key.</li>
+      <li>Optional: Select the <strong>OpenShift Container Platform</strong> product filter.</li>
+      <li>Optional: Select the <strong>Documentation</strong> content type filter.</li>
+      </ol>
+      <h3 id="ossm-about-collecting-ossm-data_troubleshooting-ossm" class="group scroll-mt-20">About collecting service mesh data<a href="#ossm-about-collecting-ossm-data_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can use the <code>oc adm must-gather</code> CLI command to collect information about your cluster, including features and objects associated with Red Hat OpenShift Service Mesh.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>The OpenShift Container Platform CLI (<code>oc</code>) installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To collect Red Hat OpenShift Service Mesh data with <code>must-gather</code>, you must specify the Red Hat OpenShift Service Mesh image.
+      <CodeBlock code={"$ oc adm must-gather --image=registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:{{ MaistraVersion }}"} lang="terminal" />
+      </li>
+      <li>
+      To collect Red Hat OpenShift Service Mesh data for a specific Service Mesh control plane namespace with <code>must-gather</code>, you must specify the Red Hat OpenShift Service Mesh image and namespace. In this example, after <code>gather,</code> replace <code>&lt;namespace&gt;</code> with your Service Mesh control plane namespace, such as <code>istio-system</code>.
+      <CodeBlock code={"$ oc adm must-gather --image=registry.redhat.io/openshift-service-mesh/istio-must-gather-rhel8:{{ MaistraVersion }} gather <namespace>"} lang="terminal" />
+      <p>This creates a local directory that contains the following items:</p>
+      <ul>
+      <li>The Istio Operator namespace and its child objects</li>
+      <li>All control plane namespaces and their children objects</li>
+      <li>All namespaces and their children objects that belong to any service mesh</li>
+      <li>All Istio custom resource definitions (CRD)</li>
+      <li>All Istio CRD objects, such as VirtualServices, in a given namespace</li>
+      <li>All Istio webhooks</li>
+      </ul>
+      </li>
+      </ol>
+      <p>For prompt support, supply diagnostic information for both OpenShift Container Platform and Red Hat OpenShift Service Mesh.</p>
+      <h3 id="support-submitting-a-case_troubleshooting-ossm" class="group scroll-mt-20">Submitting a support case<a href="#support-submitting-a-case_troubleshooting-ossm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">If you cannot resolve an OpenShift Container Platform issue by using the Red Hat Knowledgebase, submit a support case to get direct help from Red Hat Support.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have a Red Hat Customer Portal account.</li>
+      <li>You have a Red Hat Standard or Premium subscription.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to <a href="https://access.redhat.com/support/cases/#/case/list">the <strong>Customer Support</strong> page</a> of the Red Hat Customer Portal.</li>
+      <li>Click <strong>Get support</strong>.</li>
+      <li>
+      On the <strong>Cases</strong> tab of the <strong>Customer Support</strong> page:
+      <ol>
+      <li>Optional: Change the pre-filled account and owner details if needed.</li>
+      <li>Select the appropriate category for your issue, such as <strong>Bug or Defect</strong>, and click <strong>Continue</strong>.</li>
+      </ol>
+      </li>
+      <li>
+      Enter the following information:
+      <ol>
+      <li>In the <strong>Summary</strong> field, enter a concise but descriptive problem summary and further details about the symptoms that you experience and your expectations.</li>
+      <li>Select <strong>OpenShift Container Platform</strong> from the <strong>Product</strong> drop-down menu.</li>
+      <li>Select <strong>4.22</strong> from the <strong>Version</strong> drop-down.</li>
+      </ol>
+      </li>
+      <li>Review the list of suggested Red Hat Knowledgebase solutions for a potential match against the problem that you are reporting. If the suggested articles do not address the issue, click <strong>Continue</strong>.</li>
+      <li>Review the updated list of suggested Red Hat Knowledgebase solutions for a potential match against the problem that you are reporting. The list updates as you give more information during the case creation process. If the suggested articles do not address the issue, click <strong>Continue</strong>.</li>
+      <li>Ensure that the account information presented is as expected, and if not, change it as needed.</li>
+      <li>
+      Check that the autofilled OpenShift Container Platform Cluster ID is correct. If it is not, manually obtain your cluster ID.
+      <ul>
+      <li>
+      To manually obtain your cluster ID using the OpenShift Container Platform web console:
+      <ol>
+      <li>Navigate to <strong>Home</strong> -&gt; <strong>Overview</strong>.</li>
+      <li>Find the value in the <strong>Cluster ID</strong> field of the <strong>Details</strong> section.</li>
+      </ol>
+      </li>
+      <li>
+      Or, open a new support case from the OpenShift Container Platform web console, which automatically fills in your cluster ID.
+      <ol>
+      <li>From the toolbar, navigate to <strong>(?) Help</strong> -&gt; <strong>Open Support Case</strong>.</li>
+      <li>The <strong>Cluster ID</strong> value automatically fills in.</li>
+      </ol>
+      </li>
+      <li>
+      To obtain your cluster ID using the OpenShift CLI (<code>oc</code>), run the following command:
+      <CodeBlock code={"$ oc get clusterversion -o jsonpath='{.items[].spec.clusterID}{\"\\n\"}'"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Complete the following questions where prompted and then click <strong>Continue</strong>:
+      <ul>
+      <li>What are you experiencing? What are you expecting to happen?</li>
+      <li>Define the value or impact to you or the business.</li>
+      <li>Where are you experiencing this behavior? What environment?</li>
+      <li>When does this behavior occur? Frequency? Repeatedly? At certain times?</li>
+      </ul>
+      </li>
+      <li>Upload relevant diagnostic data files and click <strong>Continue</strong>. Red Hat recommends including data gathered by using the <code>oc adm must-gather</code> command as a starting point, plus any issue-specific data that the command does not collect.</li>
+      <li>Input relevant case management details and click <strong>Continue</strong>.</li>
+      <li>Preview the case details and click <strong>Submit</strong>.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

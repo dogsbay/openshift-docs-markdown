@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"using-imagestreams-with-kube-resources","text":"Using image streams with Kubernetes resources"}];
+const headings = [{"depth":1,"slug":"using-imagestreams-with-kube-resources","text":"Using image streams with Kubernetes resources"},{"depth":2,"slug":"images-managing-images-enabling-imagestreams-kube_using-imagestreams-with-kube-resources","text":"Enabling image streams with Kubernetes resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/openshift_images/using-imagestreams-with-kube-resources";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["openshift_images"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using image streams with Kubernetes resources {#using-imagestreams-with-kube-resources}\n\nTo use image streams with both OpenShift Container Platform native resources and standard Kubernetes resources, reference them in your resource definitions. Image streams work with resources such as `Build`, `DeploymentConfigs`, `Job`, `ReplicationController`, `ReplicaSet`, and `Deployment` resources.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/using-imagestreams-with-kube-resources.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using image streams with Kubernetes resources {#using-imagestreams-with-kube-resources}\n\nTo use image streams with both OpenShift Container Platform native resources and standard Kubernetes resources, reference them in your resource definitions. Image streams work with resources such as `Build`, `DeploymentConfigs`, `Job`, `ReplicationController`, `ReplicaSet`, and `Deployment` resources.\n\n## Enabling image streams with Kubernetes resources {#images-managing-images-enabling-imagestreams-kube_using-imagestreams-with-kube-resources}\n\nWhen using Kubernetes resources, you must reference image streams located within the same project by specifying a single segment value, such as `ruby:2.5`, which identifies the image stream name and its tag. This ensures the resource correctly targets the local image stream within its scope.\n\n> [!IMPORTANT]\n> Do not run workloads in or share access to default projects. Default projects are reserved for running core cluster components.\n>\n> The following default projects are considered highly privileged: `default`, `kube-public`, `kube-system`, `openshift`, `openshift-infra`, `openshift-node`, and other system-created projects that have the `openshift.io/run-level` label set to `0` or `1`. Functionality that relies on admission plugins, such as pod security admission, security context constraints, cluster resource quotas, and image reference resolution, does not work in highly privileged projects.\n\nThere are two ways to enable image streams with Kubernetes resources:\n\n- Enabling image stream resolution on a specific resource. This allows only this resource to use the image stream name in the image field.\n- Enabling image stream resolution on an image stream. This allows all resources pointing to this image stream to use it in the image field.\n\nYou can use `oc set image-lookup` to enable image stream resolution on a specific resource or image stream resolution on an image stream.\n\n**Procedure**\n\n1. To allow all resources to reference the image stream named `mysql`, enter the following command:\n\n   ```terminal\n   $ oc set image-lookup mysql\n   ```\n\n   This sets the `Imagestream.spec.lookupPolicy.local` field to true.\n\n   ```yaml {title=\"Imagestream with image lookup enabled\"}\n   apiVersion: image.openshift.io/v1\n   kind: ImageStream\n   metadata:\n     annotations:\n       openshift.io/display-name: mysql\n     name: mysql\n     namespace: myproject\n   spec:\n     lookupPolicy:\n       local: true\n   ```\n\n   When enabled, the behavior is enabled for all tags within the image stream.\n2. Then you can query the image streams and see if the option is set:\n\n   ```terminal\n   $ oc set image-lookup imagestream --list\n   ```\n3. Optional: You can enable image lookup on a specific resource.\n\n   To allow the Kubernetes deployment named `mysql` to use image streams, run the following command:\n\n   ```terminal\n   $ oc set image-lookup deploy/mysql\n   ```\n\n   This sets the `alpha.image.policy.openshift.io/resolve-names` annotation on the deployment.\n\n   ```yaml {title=\"Deployment with image lookup enabled\"}\n   apiVersion: apps/v1\n   kind: Deployment\n   metadata:\n     name: mysql\n     namespace: myproject\n   spec:\n     replicas: 1\n     template:\n       metadata:\n         annotations:\n           alpha.image.policy.openshift.io/resolve-names: '*'\n       spec:\n         containers:\n         - image: mysql:latest\n           imagePullPolicy: Always\n           name: mysql\n   ```\n4. Optional: To disable image lookup, pass `--enabled=false`:\n\n   ```terminal\n   $ oc set image-lookup deploy/mysql --enabled=false\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/using-imagestreams-with-kube-resources.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,47 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="using-imagestreams-with-kube-resources" class="group scroll-mt-20">Using image streams with Kubernetes resources<a href="#using-imagestreams-with-kube-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To use image streams with both OpenShift Container Platform native resources and standard Kubernetes resources, reference them in your resource definitions. Image streams work with resources such as <code>Build</code>, <code>DeploymentConfigs</code>, <code>Job</code>, <code>ReplicationController</code>, <code>ReplicaSet</code>, and <code>Deployment</code> resources.</p>
-      <p class="/modules/images-managing-images-enabling-imagestreams-kube.md"></p>
+      <h2 id="images-managing-images-enabling-imagestreams-kube_using-imagestreams-with-kube-resources" class="group scroll-mt-20">Enabling image streams with Kubernetes resources<a href="#images-managing-images-enabling-imagestreams-kube_using-imagestreams-with-kube-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When using Kubernetes resources, you must reference image streams located within the same project by specifying a single segment value, such as <code>ruby:2.5</code>, which identifies the image stream name and its tag. This ensures the resource correctly targets the local image stream within its scope.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not run workloads in or share access to default projects. Default projects are reserved for running core cluster components.</p>
+          <p>The following default projects are considered highly privileged: <code>default</code>, <code>kube-public</code>, <code>kube-system</code>, <code>openshift</code>, <code>openshift-infra</code>, <code>openshift-node</code>, and other system-created projects that have the <code>openshift.io/run-level</code> label set to <code>0</code> or <code>1</code>. Functionality that relies on admission plugins, such as pod security admission, security context constraints, cluster resource quotas, and image reference resolution, does not work in highly privileged projects.</p>
+        </AlertDescription>
+      </Alert>
+      <p>There are two ways to enable image streams with Kubernetes resources:</p>
+      <ul>
+      <li>Enabling image stream resolution on a specific resource. This allows only this resource to use the image stream name in the image field.</li>
+      <li>Enabling image stream resolution on an image stream. This allows all resources pointing to this image stream to use it in the image field.</li>
+      </ul>
+      <p>You can use <code>oc set image-lookup</code> to enable image stream resolution on a specific resource or image stream resolution on an image stream.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To allow all resources to reference the image stream named <code>mysql</code>, enter the following command:
+      <CodeBlock code={"$ oc set image-lookup mysql"} lang="terminal" />
+      <p>This sets the <code>Imagestream.spec.lookupPolicy.local</code> field to true.</p>
+      <CodeBlock code={"apiVersion: image.openshift.io/v1\nkind: ImageStream\nmetadata:\n  annotations:\n    openshift.io/display-name: mysql\n  name: mysql\n  namespace: myproject\nspec:\n  lookupPolicy:\n    local: true"} lang="yaml" title="Imagestream with image lookup enabled" />
+      <p>When enabled, the behavior is enabled for all tags within the image stream.</p>
+      </li>
+      <li>
+      Then you can query the image streams and see if the option is set:
+      <CodeBlock code={"$ oc set image-lookup imagestream --list"} lang="terminal" />
+      </li>
+      <li>
+      Optional: You can enable image lookup on a specific resource.
+      <p>To allow the Kubernetes deployment named <code>mysql</code> to use image streams, run the following command:</p>
+      <CodeBlock code={"$ oc set image-lookup deploy/mysql"} lang="terminal" />
+      <p>This sets the <code>alpha.image.policy.openshift.io/resolve-names</code> annotation on the deployment.</p>
+      <CodeBlock code={"apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: mysql\n  namespace: myproject\nspec:\n  replicas: 1\n  template:\n    metadata:\n      annotations:\n        alpha.image.policy.openshift.io/resolve-names: '*'\n    spec:\n      containers:\n      - image: mysql:latest\n        imagePullPolicy: Always\n        name: mysql"} lang="yaml" title="Deployment with image lookup enabled" />
+      </li>
+      <li>
+      Optional: To disable image lookup, pass <code>--enabled=false</code>:
+      <CodeBlock code={"$ oc set image-lookup deploy/mysql --enabled=false"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

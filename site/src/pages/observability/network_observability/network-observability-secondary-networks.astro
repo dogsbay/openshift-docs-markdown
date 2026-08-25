@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"network-observability-secondary-networks","text":"Secondary networks"},{"depth":2,"slug":"network-observability-secondary-network-prerequisites_network-observability-secondary-networks","text":"Prerequisites"}];
+const headings = [{"depth":1,"slug":"network-observability-secondary-networks","text":"Secondary networks"},{"depth":2,"slug":"network-observability-secondary-network-prerequisites_network-observability-secondary-networks","text":"Prerequisites"},{"depth":2,"slug":"network-observability-SR-IOV-config_network-observability-secondary-networks","text":"Configuring monitoring for SR-IOV interface traffic"},{"depth":2,"slug":"network-observability-virtualization-config_network-observability-secondary-networks","text":"Configuring virtual machine (VM) secondary network interfaces for Network Observability"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/network_observability/network-observability-secondary-networks";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["observability","observability/network_observability"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Secondary networks {#network-observability-secondary-networks}\n\nYou can configure the Network Observability Operator to collect and enrich network flow data from secondary networks, such as `SR-IOV` and `OVN-Kubernetes`.\n\n## Prerequisites {#network-observability-secondary-network-prerequisites_network-observability-secondary-networks}\n\n- Access to an OpenShift Container Platform cluster with an additional network interface, such as a secondary interface or an L2 network.\n\n**Additional resources**\n\n- [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#cnf-creating-an-additional-sriov-network-with-vrf-plug-in_configuring-sriov-device)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-secondary-networks.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Secondary networks {#network-observability-secondary-networks}\n\nYou can configure the Network Observability Operator to collect and enrich network flow data from secondary networks, such as `SR-IOV` and `OVN-Kubernetes`.\n\n## Prerequisites {#network-observability-secondary-network-prerequisites_network-observability-secondary-networks}\n\n- Access to an OpenShift Container Platform cluster with an additional network interface, such as a secondary interface or an L2 network.\n\n## Configuring monitoring for SR-IOV interface traffic {#network-observability-SR-IOV-config_network-observability-secondary-networks}\n\nConfigure the `FlowCollector` resource to monitor traffic on Single Root I/O Virtualization (SR-IOV) device by setting the `spec.agent.ebpf.privileged` field to `true`, which enables the eBPF agent to monitor other network namespaces.\n\nThe eBPF agent monitors other network namespaces in addition to the host network namespaces, which are monitored by default. When a pod with a virtual functions (VF) interface is created, a new network namespace is created. With `SRIOVNetwork` policy `IPAM` configurations specified, the VF interface is migrated from the host network namespace to the pod network namespace.\n\n**Prerequisites**\n\n- Access to an OpenShift Container Platform cluster with a SR-IOV device.\n- The `SRIOVNetwork` custom resource (CR) `spec.ipam` configuration must be set with an IP address from the range that the interface lists or from other plugins.\n\n**Procedure**\n\n1. In the web console, navigate to **Ecosystem** -> **Installed Operators**.\n2. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.\n3. Select **cluster** and then select the **YAML** tab.\n4. Configure the `FlowCollector` custom resource. A sample configuration is as follows:\n\n   ```yaml {title=\"Configure FlowCollector for SR-IOV monitoring\"}\n   apiVersion: flows.netobserv.io/v1beta2\n   kind: FlowCollector\n   metadata:\n     name: cluster\n   spec:\n     namespace: netobserv\n     deploymentModel: Service\n     agent:\n       type: eBPF\n       ebpf:\n         privileged: true\n   ```\n\n   - The `spec.agent.ebpf.privileged` field value must be set to `true` to enable SR-IOV monitoring.\n\n**Additional resources**\n\n- [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#cnf-creating-an-additional-sriov-network-with-vrf-plug-in_configuring-sriov-device)\n\n## Configuring virtual machine (VM) secondary network interfaces for Network Observability {#network-observability-virtualization-config_network-observability-secondary-networks}\n\nConfigure the `FlowCollector` to monitor VM secondary network traffic by setting the eBPF agent to `privileged` mode and defining the indexing for secondary networks, enabling the capture and enrichment of flows from OpenShift Virtualization.\n\nNetwork flows coming from VMs that are connected to the default internal pod network are automatically captured by network observability.\n\n**Procedure**\n\n1. Get information about the virtual machine launcher pod by running the following command. This information is used in Step 5:\n\n   ```terminal\n   $ oc get pod virt-launcher-<vm_name>-<suffix> -n <namespace> -o yaml\n   ```\n\n   ```yaml\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     annotations:\n       k8s.v1.cni.cncf.io/network-status: |-\n         [{\n           \"name\": \"ovn-kubernetes\",\n           \"interface\": \"eth0\",\n           \"ips\": [\n             \"10.129.2.39\"\n           ],\n           \"mac\": \"0a:58:0a:81:02:27\",\n           \"default\": true,\n           \"dns\": {}\n         },\n         {\n           \"name\": \"my-vms/l2-network\",\n           \"interface\": \"podc0f69e19ba2\",\n           \"ips\": [\n             \"10.10.10.15\"\n           ],\n           \"mac\": \"02:fb:f8:00:00:12\",\n           \"dns\": {}\n         }]\n     name: virt-launcher-fedora-aqua-fowl-13-zr2x9\n     namespace: my-vms\n   spec:\n   #  ...\n   status:\n   #  ...\n   ```\n\n   where:\n\n   `name`\n   :   Specifies the name of the secondary network.\n\n   `interface`\n   :   Specifies the network interface of the secondary network.\n\n   `ips`\n   :   Specifies the list of IP addresses used by the secondary network.\n\n   `mac`\n   :   Specifies the MAC address used for the secondary network.\n2. In the web console, navigate to **Ecosystem** -> **Installed Operators**.\n3. Under the **Provided APIs** heading for the **NetObserv Operator**, select **Flow Collector**.\n4. Select **cluster** and then select the **YAML** tab.\n5. Configure `FlowCollector` based on the information you found from the additional network investigation:\n\n   ```yaml\n   apiVersion: flows.netobserv.io/v1beta2\n   kind: FlowCollector\n   metadata:\n     name: cluster\n   spec:\n     agent:\n       ebpf:\n         privileged: true\n     processor:\n       advanced:\n         secondaryNetworks:\n         - index:\n           - MAC\n           name: my-vms/l2-network\n   # ...\n   ```\n\n   where:\n\n   `spec.agent.ebpf.privileged`\n   :   Specifies that the eBPF agent runs in `privileged` mode, which is required to collect flows from secondary network interfaces on virtual machine launcher pods.\n\n   `spec.processor.advanced.secondaryNetworks.index`\n   :   Specifies the fields to use for indexing the virtual machine launcher pods. It is recommended to use the `MAC` address as the indexing field to get network flows enrichment for secondary interfaces. If you have overlapping MAC addresses between pods, then additional indexing fields, such as `IP` and `Interface`, can be added to ensure accurate enrichment.\n\n   `MAC`\n   :   Specifies the MAC address as an indexing field value. Add `MAC` to the `index` field list if your additional network information includes a MAC address.\n\n   `spec.processor.advanced.secondaryNetworks.name`\n   :   Specifies the name of the secondary network as found in the `k8s.v1.cni.cncf.io/network-status` annotation of the virtual machine launcher pod. The format is typically `<namespace>/<network_attachment_definition_name>`.\n\n**Verification**\n\n1. Observe VM traffic:\n\n   1. Navigate to the **Network Traffic** page.\n   2. Filter by **Source** IP using your virtual machine IP found in `k8s.v1.cni.cncf.io/network-status` annotation.\n   3. View both **Source** and **Destination** fields, which should be enriched, and identify the VM launcher pods and the VM instance as owners.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/network-observability-secondary-networks.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +92,81 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="network-observability-secondary-networks" class="group scroll-mt-20">Secondary networks<a href="#network-observability-secondary-networks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure the Network Observability Operator to collect and enrich network flow data from secondary networks, such as <code>SR-IOV</code> and <code>OVN-Kubernetes</code>.</p>
       <h2 id="network-observability-secondary-network-prerequisites_network-observability-secondary-networks" class="group scroll-mt-20">Prerequisites<a href="#network-observability-secondary-network-prerequisites_network-observability-secondary-networks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li>Access to an OpenShift Container Platform cluster with an additional network interface, such as a secondary interface or an L2 network.</li></ul>
+      <h2 id="network-observability-SR-IOV-config_network-observability-secondary-networks" class="group scroll-mt-20">Configuring monitoring for SR-IOV interface traffic<a href="#network-observability-SR-IOV-config_network-observability-secondary-networks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>FlowCollector</code> resource to monitor traffic on Single Root I/O Virtualization (SR-IOV) device by setting the <code>spec.agent.ebpf.privileged</code> field to <code>true</code>, which enables the eBPF agent to monitor other network namespaces.</p>
+      <p>The eBPF agent monitors other network namespaces in addition to the host network namespaces, which are monitored by default. When a pod with a virtual functions (VF) interface is created, a new network namespace is created. With <code>SRIOVNetwork</code> policy <code>IPAM</code> configurations specified, the VF interface is migrated from the host network namespace to the pod network namespace.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to an OpenShift Container Platform cluster with a SR-IOV device.</li>
+      <li>The <code>SRIOVNetwork</code> custom resource (CR) <code>spec.ipam</code> configuration must be set with an IP address from the range that the interface lists or from other plugins.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the web console, navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Under the <strong>Provided APIs</strong> heading for the <strong>NetObserv Operator</strong>, select <strong>Flow Collector</strong>.</li>
+      <li>Select <strong>cluster</strong> and then select the <strong>YAML</strong> tab.</li>
+      <li>
+      Configure the <code>FlowCollector</code> custom resource. A sample configuration is as follows:
+      <CodeBlock code={"apiVersion: flows.netobserv.io/v1beta2\nkind: FlowCollector\nmetadata:\n  name: cluster\nspec:\n  namespace: netobserv\n  deploymentModel: Service\n  agent:\n    type: eBPF\n    ebpf:\n      privileged: true"} lang="yaml" title="Configure FlowCollector for SR-IOV monitoring" />
+      <ul><li>The <code>spec.agent.ebpf.privileged</code> field value must be set to <code>true</code> to enable SR-IOV monitoring.</li></ul>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#cnf-creating-an-additional-sriov-network-with-vrf-plug-in_configuring-sriov-device">Configuring an SR-IOV network device</a></li></ul>
+      <h2 id="network-observability-virtualization-config_network-observability-secondary-networks" class="group scroll-mt-20">Configuring virtual machine (VM) secondary network interfaces for Network Observability<a href="#network-observability-virtualization-config_network-observability-secondary-networks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>FlowCollector</code> to monitor VM secondary network traffic by setting the eBPF agent to <code>privileged</code> mode and defining the indexing for secondary networks, enabling the capture and enrichment of flows from OpenShift Virtualization.</p>
+      <p>Network flows coming from VMs that are connected to the default internal pod network are automatically captured by network observability.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Get information about the virtual machine launcher pod by running the following command. This information is used in Step 5:
+      <CodeBlock code={"$ oc get pod virt-launcher-<vm_name>-<suffix> -n <namespace> -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  annotations:\n    k8s.v1.cni.cncf.io/network-status: |-\n      [{\n        \"name\": \"ovn-kubernetes\",\n        \"interface\": \"eth0\",\n        \"ips\": [\n          \"10.129.2.39\"\n        ],\n        \"mac\": \"0a:58:0a:81:02:27\",\n        \"default\": true,\n        \"dns\": {}\n      },\n      {\n        \"name\": \"my-vms/l2-network\",\n        \"interface\": \"podc0f69e19ba2\",\n        \"ips\": [\n          \"10.10.10.15\"\n        ],\n        \"mac\": \"02:fb:f8:00:00:12\",\n        \"dns\": {}\n      }]\n  name: virt-launcher-fedora-aqua-fowl-13-zr2x9\n  namespace: my-vms\nspec:\n#  ...\nstatus:\n#  ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the secondary network.</p></dd>
+      <dt class="font-semibold"><code>interface</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the network interface of the secondary network.</p></dd>
+      <dt class="font-semibold"><code>ips</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the list of IP addresses used by the secondary network.</p></dd>
+      <dt class="font-semibold"><code>mac</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the MAC address used for the secondary network.</p></dd>
+      </dl>
+      </li>
+      <li>In the web console, navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Under the <strong>Provided APIs</strong> heading for the <strong>NetObserv Operator</strong>, select <strong>Flow Collector</strong>.</li>
+      <li>Select <strong>cluster</strong> and then select the <strong>YAML</strong> tab.</li>
+      <li>
+      Configure <code>FlowCollector</code> based on the information you found from the additional network investigation:
+      <CodeBlock code={"apiVersion: flows.netobserv.io/v1beta2\nkind: FlowCollector\nmetadata:\n  name: cluster\nspec:\n  agent:\n    ebpf:\n      privileged: true\n  processor:\n    advanced:\n      secondaryNetworks:\n      - index:\n        - MAC\n        name: my-vms/l2-network\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.agent.ebpf.privileged</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the eBPF agent runs in <code>privileged</code> mode, which is required to collect flows from secondary network interfaces on virtual machine launcher pods.</p></dd>
+      <dt class="font-semibold"><code>spec.processor.advanced.secondaryNetworks.index</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the fields to use for indexing the virtual machine launcher pods. It is recommended to use the <code>MAC</code> address as the indexing field to get network flows enrichment for secondary interfaces. If you have overlapping MAC addresses between pods, then additional indexing fields, such as <code>IP</code> and <code>Interface</code>, can be added to ensure accurate enrichment.</p></dd>
+      <dt class="font-semibold"><code>MAC</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the MAC address as an indexing field value. Add <code>MAC</code> to the <code>index</code> field list if your additional network information includes a MAC address.</p></dd>
+      <dt class="font-semibold"><code>spec.processor.advanced.secondaryNetworks.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the secondary network as found in the <code>k8s.v1.cni.cncf.io/network-status</code> annotation of the virtual machine launcher pod. The format is typically <code>&lt;namespace&gt;/&lt;network_attachment_definition_name&gt;</code>.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Observe VM traffic:
+      <ol>
+      <li>Navigate to the <strong>Network Traffic</strong> page.</li>
+      <li>Filter by <strong>Source</strong> IP using your virtual machine IP found in <code>k8s.v1.cni.cncf.io/network-status</code> annotation.</li>
+      <li>View both <strong>Source</strong> and <strong>Destination</strong> fields, which should be enriched, and identify the VM launcher pods and the VM instance as owners.</li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

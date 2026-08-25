@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"insights-operator-simple-access","text":"Simple Content Access entitlements with Insights Operator"}];
+const headings = [{"depth":1,"slug":"insights-operator-simple-access","text":"Simple Content Access entitlements with Insights Operator"},{"depth":2,"slug":"insights-operator-sca-entitlement-synchronization_remote-health-reporting-from-restricted-network","text":"Simple Content Access entitlement synchronization"},{"depth":2,"slug":"insights-operator-architecture-based-entitlement-secrets_remote-health-reporting-from-restricted-network","text":"Architecture-specific entitlement secrets"},{"depth":2,"slug":"insights-operator-verify-manage-entitlement-secrets_remote-health-reporting-from-restricted-network","text":"Verify and manage entitlement secrets"},{"depth":2,"slug":"insights-operator-configuring-sca_remote-health-reporting-from-restricted-network","text":"Configuring simple content access import interval"},{"depth":3,"slug":"insights-operator-disabling-sca_remote-health-reporting-from-restricted-network","text":"Disabling simple content access import"},{"depth":3,"slug":"insights-operator-enabling-sca_remote-health-reporting-from-restricted-network","text":"Enabling a previously disabled simple content access import"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/support/remote_health_monitoring/insights-operator-simple-access";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Simple Content Access entitlements with Insights Operator";
-const description = "{{ insights_operator }} automates the import of Simple Content Access (SCA) entitlement certificates every 8 hours. These Red Hat Subscription Management…" || undefined;
+const description = "Insights Operator automates the import of Simple Content Access (SCA) entitlement certificates every 8 hours. These Red Hat Subscription Management (RHSM)…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["support","support/remote_health_monitoring"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Simple Content Access entitlements with Insights Operator {#insights-operator-simple-access}\n\n{{ insights_operator }} automates the import of Simple Content Access (SCA) entitlement certificates every 8 hours. These Red Hat Subscription Management (RHSM) certificates allow the cluster to authenticate with the Red Hat Content Delivery Network (CDN) to access subscription-governed content.\n\nSCA supports multi-architecture clusters by generating architecture-specific secrets, such as `amd64` or `arm64`, in the `openshift-config-managed` namespace to ensure compatibility across all worker node types.\n\n**Additional resources**\n\n- [About simple content access](https://access.redhat.com/documentation/en-us/subscription_central/2021/html-single/getting_started_with_simple_content_access/index#assembly-about-simplecontent)\n- [Using Red Hat subscriptions in builds](/openshift-docs-markdown/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/insights-operator-simple-access.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Simple Content Access entitlements with Insights Operator {#insights-operator-simple-access}\n\nInsights Operator automates the import of Simple Content Access (SCA) entitlement certificates every 8 hours. These Red Hat Subscription Management (RHSM) certificates allow the cluster to authenticate with the Red Hat Content Delivery Network (CDN) to access subscription-governed content.\n\nSCA supports multi-architecture clusters by generating architecture-specific secrets, such as `amd64` or `arm64`, in the `openshift-config-managed` namespace to ensure compatibility across all worker node types.\n\n**Additional resources**\n\n- [About simple content access](https://access.redhat.com/documentation/en-us/subscription_central/2021/html-single/getting_started_with_simple_content_access/index#assembly-about-simplecontent)\n- [Using Red Hat subscriptions in builds](/openshift-docs-markdown/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds)\n\n## Simple Content Access entitlement synchronization {#insights-operator-sca-entitlement-synchronization_remote-health-reporting-from-restricted-network}\n\nSimple Content Access (SCA) simplifies subscription management by removing the requirement to manually attach entitlement keys to individual nodes. Insights Operator facilitates this by automatically retrieving and storing certificates as secrets within the `openshift-config-managed` namespace. These certificates allow the cluster to authenticate with Red Hat content repositories for operations such as entitled builds.\n\nEntitlement secrets refresh automatically every 8 hours. While older configurations used a support secret in the `openshift-config` namespace, Insights Operator now prioritizes the `insights-config` `ConfigMap` in the `openshift-insights` namespace if both exist.\n\n> [!NOTE]\n> Simple content access must be enabled in Red Hat Subscription Management for the importing to function.\n\n## Architecture-specific entitlement secrets {#insights-operator-architecture-based-entitlement-secrets_remote-health-reporting-from-restricted-network}\n\nThe certificates generated by the Insights Operator are based on the worker node architectures that are detected within the cluster. The two types of supported clusters include single-architecture clusters and multi-architecture clusters.\n\n***Single-architecture clusters:*** When all worker nodes use the same architecture, a single secret named `etc-pki-entitlement` is created.\n\n***Multi-architecture clusters:*** When worker nodes use different architectures, such as a mix of `x86_64` and `aarch64`, a secret is created for each architecture present. These secrets use architecture-specific suffixes, such as `etc-pki-entitlement-amd64` or `etc-pki-entitlement-arm64`.\n\n## Verify and manage entitlement secrets {#insights-operator-verify-manage-entitlement-secrets_remote-health-reporting-from-restricted-network}\n\nTo verify the imported entitlement secrets, list architecture-specific secrets and change the import behavior with the {{ insights_Operator }} configuration.\n\n**Prerequisites**\n\n- You have cluster-admin permissions for the OpenShift Container Platform cluster.\n- You have set Simple Content Access (SCA) to **Enabled** in the Red Hat Hybrid Cloud Console or your Red Hat Satellite instance.\n- You have registered the cluster with Red Hat OpenShift Cluster Manager and have an active connection to the internet or a proxy to reach Red Hat services.\n- You have confirmed that the `insights-config` `ConfigMap` exists in the `openshift-insights` namespace.\n\n**Procedure**\n\n- To list the secrets in the `openshift-config-managed` namespace, run the following command in a terminal:\n\n  ```terminal\n  $ oc get secrets -n openshift-config-managed | grep etc-pki-entitlement\n  ```\n\n**Verification**\n\n- Verify that the secrets match the cluster architecture (for example, `-amd64` or `-arm64`) by checking the output of the list command to ensure the relevant secrets are present. The output shows secrets that include the name of the cluster’s architecture, and look similar to the following:\n\n  ```terminal\n  etc-pki-entitlement                 Opaque                    2      28h\n  etc-pki-entitlement-amd64           Opaque                    2      88s\n  etc-pki-entitlement-arm64           Opaque                    2      88s\n  ```\n\n## Configuring simple content access import interval {#insights-operator-configuring-sca_remote-health-reporting-from-restricted-network}\n\nYou can configure how often the Insights Operator imports the simple content access (sca) entitlements by using the `insights-config` `ConfigMap` object in the `openshift-insights` namespace. The entitlement import normally occurs every eight hours, but you can shorten this sca interval if you update your simple content access configuration in the `insights-config` `ConfigMap` object.\n\nThis procedure describes how to update the import interval to two hours (2h). You can specify hours (h) or hours and minutes, for example: 2h30m.\n\n**Prerequisites**\n\n- Remote health reporting is enabled, which is the default.\n- You are logged in to the OpenShift Container Platform web console as a user with the `cluster-admin` role.\n- The **insights-config** `ConfigMap` object exists in the `openshift-insights` namespace.\n\n**Procedure**\n\n1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.\n2. Click on the **insights-config** `ConfigMap` object to open it.\n3. Click **Actions** and select **Edit ConfigMap**.\n4. Click the **YAML view** radio button.\n5. Set the `sca` attribute in the file to `interval: 2h` to import content every two hours.\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   # ...\n   data:\n     config.yaml: |\n       sca:\n         interval: 2h\n   # ...\n   ```\n6. Click **Save**. The **insights-config** config-map details page opens.\n7. Verify that the value of the `config.yaml` `sca` attribute is set to `interval: 2h`.\n\n### Disabling simple content access import {#insights-operator-disabling-sca_remote-health-reporting-from-restricted-network}\n\nYou can disable the importing of simple content access entitlements by using the `insights-config` `ConfigMap` object in the `openshift-insights` namespace.\n\n**Prerequisites**\n\n- Remote health reporting is enabled, which is the default.\n- You are logged in to the OpenShift Container Platform web console as `cluster-admin`.\n- The `insights-config` `ConfigMap` object exists in the `openshift-insights` namespace.\n\n**Procedure**\n\n1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.\n2. Click the **insights-config** `ConfigMap` object to open it.\n3. Click **Actions** and select **Edit ConfigMap**.\n4. Click **YAML view**.\n5. In the file, set the `sca` attribute to `disabled: true`.\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   # ...\n   data:\n     config.yaml: |\n       sca:\n         disabled: true\n   # ...\n   ```\n6. Click **Save**. The **insights-config** config-map details page opens.\n7. Verify that the value of the `config.yaml` `sca` attribute is set to `disabled: true`.\n\n### Enabling a previously disabled simple content access import {#insights-operator-enabling-sca_remote-health-reporting-from-restricted-network}\n\nIf the importing of simple content access entitlements is disabled, the Insights Operator does not import simple content access entitlements. You can change this behavior.\n\n**Prerequisites**\n\n- Remote health reporting is enabled, which is the default.\n- You have logged in to the OpenShift Container Platform web console as a user with the `cluster-admin` role.\n- The `insights-config` `ConfigMap` object exists in the `openshift-insights` namespace.\n\n**Procedure**\n\n1. Go to **Workloads** -> **ConfigMaps** and select **Project: openshift-insights**.\n2. Click on the **insights-config** `ConfigMap` object to open it.\n3. Click **Actions** and select **Edit ConfigMap**.\n4. Click the **YAML view** radio button.\n5. In the file, set the `sca` attribute to `disabled: false`.\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   # ...\n   data:\n     config.yaml: |\n       sca:\n         disabled: false\n   # ...\n   ```\n6. Click **Save**. The **insights-config** config-map details page opens.\n7. Verify that the value of the `config.yaml` `sca` attribute is set to `disabled: false`.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/insights-operator-simple-access.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,19 +95,113 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="insights-operator-simple-access" class="group scroll-mt-20">Simple Content Access entitlements with Insights Operator<a href="#insights-operator-simple-access" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>{"{"}{"{"} insights_operator {"}"}{"}"} automates the import of Simple Content Access (SCA) entitlement certificates every 8 hours. These Red Hat Subscription Management (RHSM) certificates allow the cluster to authenticate with the Red Hat Content Delivery Network (CDN) to access subscription-governed content.</p>
+      <p>Insights Operator automates the import of Simple Content Access (SCA) entitlement certificates every 8 hours. These Red Hat Subscription Management (RHSM) certificates allow the cluster to authenticate with the Red Hat Content Delivery Network (CDN) to access subscription-governed content.</p>
       <p>SCA supports multi-architecture clusters by generating architecture-specific secrets, such as <code>amd64</code> or <code>arm64</code>, in the <code>openshift-config-managed</code> namespace to ensure compatibility across all worker node types.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://access.redhat.com/documentation/en-us/subscription_central/2021/html-single/getting_started_with_simple_content_access/index#assembly-about-simplecontent">About simple content access</a></li>
       <li><a href="/openshift-docs-markdown/cicd/builds/running-entitled-builds#builds-running-entitled-builds-with-sharedsecret-objects_running-entitled-builds">Using Red Hat subscriptions in builds</a></li>
       </ul>
-      <p class="/modules/insights-operator-sca-architecture-based-entitlement-secrets.md"></p>
-      <p class="/modules/insights-operator-sca-verify-entitlement-secrets.md"></p>
-      <p class="/modules/insights-operator-configuring-sca.md"></p>
-      <p class="/modules/insights-operator-disabling-sca.md"></p>
-      <p class="/modules/insights-operator-enabling-sca.md"></p>
+      <h2 id="insights-operator-sca-entitlement-synchronization_remote-health-reporting-from-restricted-network" class="group scroll-mt-20">Simple Content Access entitlement synchronization<a href="#insights-operator-sca-entitlement-synchronization_remote-health-reporting-from-restricted-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Simple Content Access (SCA) simplifies subscription management by removing the requirement to manually attach entitlement keys to individual nodes. Insights Operator facilitates this by automatically retrieving and storing certificates as secrets within the <code>openshift-config-managed</code> namespace. These certificates allow the cluster to authenticate with Red Hat content repositories for operations such as entitled builds.</p>
+      <p>Entitlement secrets refresh automatically every 8 hours. While older configurations used a support secret in the <code>openshift-config</code> namespace, Insights Operator now prioritizes the <code>insights-config</code> <code>ConfigMap</code> in the <code>openshift-insights</code> namespace if both exist.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Simple content access must be enabled in Red Hat Subscription Management for the importing to function.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="insights-operator-architecture-based-entitlement-secrets_remote-health-reporting-from-restricted-network" class="group scroll-mt-20">Architecture-specific entitlement secrets<a href="#insights-operator-architecture-based-entitlement-secrets_remote-health-reporting-from-restricted-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The certificates generated by the Insights Operator are based on the worker node architectures that are detected within the cluster. The two types of supported clusters include single-architecture clusters and multi-architecture clusters.</p>
+      <p><em></em><em><strong>Single-architecture clusters:</strong></em><em></em> When all worker nodes use the same architecture, a single secret named <code>etc-pki-entitlement</code> is created.</p>
+      <p><em></em><em><strong>Multi-architecture clusters:</strong></em><em></em> When worker nodes use different architectures, such as a mix of <code>x86_64</code> and <code>aarch64</code>, a secret is created for each architecture present. These secrets use architecture-specific suffixes, such as <code>etc-pki-entitlement-amd64</code> or <code>etc-pki-entitlement-arm64</code>.</p>
+      <h2 id="insights-operator-verify-manage-entitlement-secrets_remote-health-reporting-from-restricted-network" class="group scroll-mt-20">Verify and manage entitlement secrets<a href="#insights-operator-verify-manage-entitlement-secrets_remote-health-reporting-from-restricted-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To verify the imported entitlement secrets, list architecture-specific secrets and change the import behavior with the {"{"}{"{"} insights_Operator {"}"}{"}"} configuration.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have cluster-admin permissions for the OpenShift Container Platform cluster.</li>
+      <li>You have set Simple Content Access (SCA) to <strong>Enabled</strong> in the Red Hat Hybrid Cloud Console or your Red Hat Satellite instance.</li>
+      <li>You have registered the cluster with Red Hat OpenShift Cluster Manager and have an active connection to the internet or a proxy to reach Red Hat services.</li>
+      <li>You have confirmed that the <code>insights-config</code> <code>ConfigMap</code> exists in the <code>openshift-insights</code> namespace.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To list the secrets in the <code>openshift-config-managed</code> namespace, run the following command in a terminal:
+      <CodeBlock code={"$ oc get secrets -n openshift-config-managed | grep etc-pki-entitlement"} lang="terminal" />
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the secrets match the cluster architecture (for example, <code>-amd64</code> or <code>-arm64</code>) by checking the output of the list command to ensure the relevant secrets are present. The output shows secrets that include the name of the cluster’s architecture, and look similar to the following:
+      <CodeBlock code={"etc-pki-entitlement                 Opaque                    2      28h\netc-pki-entitlement-amd64           Opaque                    2      88s\netc-pki-entitlement-arm64           Opaque                    2      88s"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="insights-operator-configuring-sca_remote-health-reporting-from-restricted-network" class="group scroll-mt-20">Configuring simple content access import interval<a href="#insights-operator-configuring-sca_remote-health-reporting-from-restricted-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure how often the Insights Operator imports the simple content access (sca) entitlements by using the <code>insights-config</code> <code>ConfigMap</code> object in the <code>openshift-insights</code> namespace. The entitlement import normally occurs every eight hours, but you can shorten this sca interval if you update your simple content access configuration in the <code>insights-config</code> <code>ConfigMap</code> object.</p>
+      <p>This procedure describes how to update the import interval to two hours (2h). You can specify hours (h) or hours and minutes, for example: 2h30m.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Remote health reporting is enabled, which is the default.</li>
+      <li>You are logged in to the OpenShift Container Platform web console as a user with the <code>cluster-admin</code> role.</li>
+      <li>The <strong>insights-config</strong> <code>ConfigMap</code> object exists in the <code>openshift-insights</code> namespace.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to <strong>Workloads</strong> -&gt; <strong>ConfigMaps</strong> and select <strong>Project: openshift-insights</strong>.</li>
+      <li>Click on the <strong>insights-config</strong> <code>ConfigMap</code> object to open it.</li>
+      <li>Click <strong>Actions</strong> and select <strong>Edit ConfigMap</strong>.</li>
+      <li>Click the <strong>YAML view</strong> radio button.</li>
+      <li>
+      Set the <code>sca</code> attribute in the file to <code>interval: 2h</code> to import content every two hours.
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\n# ...\ndata:\n  config.yaml: |\n    sca:\n      interval: 2h\n# ..."} lang="yaml" />
+      </li>
+      <li>Click <strong>Save</strong>. The <strong>insights-config</strong> config-map details page opens.</li>
+      <li>Verify that the value of the <code>config.yaml</code> <code>sca</code> attribute is set to <code>interval: 2h</code>.</li>
+      </ol>
+      <h3 id="insights-operator-disabling-sca_remote-health-reporting-from-restricted-network" class="group scroll-mt-20">Disabling simple content access import<a href="#insights-operator-disabling-sca_remote-health-reporting-from-restricted-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can disable the importing of simple content access entitlements by using the <code>insights-config</code> <code>ConfigMap</code> object in the <code>openshift-insights</code> namespace.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Remote health reporting is enabled, which is the default.</li>
+      <li>You are logged in to the OpenShift Container Platform web console as <code>cluster-admin</code>.</li>
+      <li>The <code>insights-config</code> <code>ConfigMap</code> object exists in the <code>openshift-insights</code> namespace.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to <strong>Workloads</strong> -&gt; <strong>ConfigMaps</strong> and select <strong>Project: openshift-insights</strong>.</li>
+      <li>Click the <strong>insights-config</strong> <code>ConfigMap</code> object to open it.</li>
+      <li>Click <strong>Actions</strong> and select <strong>Edit ConfigMap</strong>.</li>
+      <li>Click <strong>YAML view</strong>.</li>
+      <li>
+      In the file, set the <code>sca</code> attribute to <code>disabled: true</code>.
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\n# ...\ndata:\n  config.yaml: |\n    sca:\n      disabled: true\n# ..."} lang="yaml" />
+      </li>
+      <li>Click <strong>Save</strong>. The <strong>insights-config</strong> config-map details page opens.</li>
+      <li>Verify that the value of the <code>config.yaml</code> <code>sca</code> attribute is set to <code>disabled: true</code>.</li>
+      </ol>
+      <h3 id="insights-operator-enabling-sca_remote-health-reporting-from-restricted-network" class="group scroll-mt-20">Enabling a previously disabled simple content access import<a href="#insights-operator-enabling-sca_remote-health-reporting-from-restricted-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">If the importing of simple content access entitlements is disabled, the Insights Operator does not import simple content access entitlements. You can change this behavior.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Remote health reporting is enabled, which is the default.</li>
+      <li>You have logged in to the OpenShift Container Platform web console as a user with the <code>cluster-admin</code> role.</li>
+      <li>The <code>insights-config</code> <code>ConfigMap</code> object exists in the <code>openshift-insights</code> namespace.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to <strong>Workloads</strong> -&gt; <strong>ConfigMaps</strong> and select <strong>Project: openshift-insights</strong>.</li>
+      <li>Click on the <strong>insights-config</strong> <code>ConfigMap</code> object to open it.</li>
+      <li>Click <strong>Actions</strong> and select <strong>Edit ConfigMap</strong>.</li>
+      <li>Click the <strong>YAML view</strong> radio button.</li>
+      <li>
+      In the file, set the <code>sca</code> attribute to <code>disabled: false</code>.
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\n# ...\ndata:\n  config.yaml: |\n    sca:\n      disabled: false\n# ..."} lang="yaml" />
+      </li>
+      <li>Click <strong>Save</strong>. The <strong>insights-config</strong> config-map details page opens.</li>
+      <li>Verify that the value of the <code>config.yaml</code> <code>sca</code> attribute is set to <code>disabled: false</code>.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

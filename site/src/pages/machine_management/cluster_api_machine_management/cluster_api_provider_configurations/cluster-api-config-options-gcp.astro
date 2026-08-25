@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"cluster-api-config-options-gcp","text":"Cluster API configuration options for {{ gcp_full }}"},{"depth":2,"slug":"cluster-api-sample-yaml-gcp_cluster-api-config-options-gcp","text":"Sample YAML for configuring {{ gcp_full }} clusters"}];
+const headings = [{"depth":1,"slug":"cluster-api-config-options-gcp","text":"Cluster API configuration options for Google Cloud"},{"depth":2,"slug":"cluster-api-sample-yaml-gcp_cluster-api-config-options-gcp","text":"Sample YAML for configuring Google Cloud clusters"},{"depth":3,"slug":"capi-yaml-machine-template-gcp_cluster-api-config-options-gcp","text":"Sample YAML for a Cluster API machine template resource on Google Cloud"},{"depth":3,"slug":"capi-yaml-machine-set-gcp_cluster-api-config-options-gcp","text":"Sample YAML for a Cluster API compute machine set resource on Google Cloud"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-gcp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Cluster API configuration options for {{ gcp_full }}";
-const description = "You can change the configuration of your {{ gcp_first }} Cluster API machines by updating values in the Cluster API custom resource manifests." || undefined;
+const description = "You can change the configuration of your Google Cloud Cluster API machines by updating values in the Cluster API custom resource manifests." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["machine_management","machine_management/cluster_api_machi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster API configuration options for {{ gcp_full }} {#cluster-api-config-options-gcp}\n\nYou can change the configuration of your {{ gcp_first }} Cluster API machines by updating values in the Cluster API custom resource manifests.\n\n## Sample YAML for configuring {{ gcp_full }} clusters {#cluster-api-sample-yaml-gcp_cluster-api-config-options-gcp}\n\nThe following example YAML files show configurations for a {{ gcp_full }} cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-gcp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster API configuration options for Google Cloud {#cluster-api-config-options-gcp}\n\nYou can change the configuration of your Google Cloud Cluster API machines by updating values in the Cluster API custom resource manifests.\n\n> [!IMPORTANT]\n> Managing machines with the Cluster API is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Sample YAML for configuring Google Cloud clusters {#cluster-api-sample-yaml-gcp_cluster-api-config-options-gcp}\n\nThe following example YAML files show configurations for a Google Cloud cluster.\n\n### Sample YAML for a Cluster API machine template resource on Google Cloud {#capi-yaml-machine-template-gcp_cluster-api-config-options-gcp}\n\nThe machine template resource is provider-specific and defines the basic properties of the machines that a compute machine set creates. The compute machine set references this template when creating machines.\n\n```yaml\napiVersion: infrastructure.cluster.x-k8s.io/v1beta1\nkind: GCPMachineTemplate\nmetadata:\n  name: <template_name>\n  namespace: openshift-cluster-api\nspec:\n  template:\n    spec:\n      rootDeviceType: pd-ssd\n      rootDeviceSize: 128\n      instanceType: n1-standard-4\n      image: projects/rhcos-cloud/global/images/rhcos-411-85-202203181601-0-gcp-x86-64\n      subnet: <cluster_name>-worker-subnet\n      serviceAccounts:\n        email: <service_account_email_address>\n        scopes:\n          - https://www.googleapis.com/auth/cloud-platform\n      additionalLabels:\n        kubernetes-io-cluster-<cluster_name>: owned\n      additionalNetworkTags:\n        - <cluster_name>-worker\n      ipForwarding: Disabled\n```\n\nwhere:\n\n`kind`\n:   Specifies the machine template kind. This value must match the value for your platform.\n\n`metadata.name`\n:   Specifies a name for the machine template.\n\n`spec.template.spec`\n:   Specifies the details for your environment. The values here are examples.\n\n### Sample YAML for a Cluster API compute machine set resource on Google Cloud {#capi-yaml-machine-set-gcp_cluster-api-config-options-gcp}\n\nThe compute machine set resource defines additional properties of the machines that it creates. The compute machine set also references the cluster resource and machine template when creating machines.\n\n```yaml\napiVersion: cluster.x-k8s.io/v1beta1\nkind: MachineSet\nmetadata:\n  name: <machine_set_name>\n  namespace: openshift-cluster-api\n  labels:\n    cluster.x-k8s.io/cluster-name: <cluster_name>\nspec:\n  clusterName: <cluster_name>\n  replicas: 1\n  selector:\n    matchLabels:\n      test: example\n      cluster.x-k8s.io/cluster-name: <cluster_name>\n      cluster.x-k8s.io/set-name: <machine_set_name>\n  template:\n    metadata:\n      labels:\n        test: example\n        cluster.x-k8s.io/cluster-name: <cluster_name>\n        cluster.x-k8s.io/set-name: <machine_set_name>\n        node-role.kubernetes.io/<role>: \"\"\n    spec:\n      bootstrap:\n         dataSecretName: worker-user-data\n      clusterName: <cluster_name>\n      infrastructureRef:\n        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\n        kind: GCPMachineTemplate\n        name: <template_name>\n      failureDomain: <failure_domain>\n```\n\nwhere:\n\n`metadata.name`\n:   Specifies a name for the compute machine set. The cluster ID, machine role, and region form a typical pattern for this value in the following format: `<cluster_name>-<role>-<region>`.\n\n`metadata.labels.cluster.x-k8s.io/cluster-name`\n:   Specifies the cluster ID as the name of the cluster.\n\n`spec.clusterName`\n:   Specifies the cluster ID as the name of the cluster.\n\n`spec.template.spec.infrastructureRef.kind`\n:   Specifies the machine template kind. This value must match the value for your platform.\n\n`spec.template.spec.infrastructureRef.name`\n:   Specifies the machine template name.\n\n`spec.template.spec.failureDomain`\n:   Specifies the failure domain within the Google Cloud region.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-gcp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,13 +94,47 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="cluster-api-config-options-gcp" class="group scroll-mt-20">Cluster API configuration options for {"{"}{"{"} gcp_full {"}"}{"}"}<a href="#cluster-api-config-options-gcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/snippets/technology-preview.md">You can change the configuration of your {"{"}{"{"} gcp_first {"}"}{"}"} Cluster API machines by updating values in the Cluster API custom resource manifests.</p>
-      <h2 id="cluster-api-sample-yaml-gcp_cluster-api-config-options-gcp" class="group scroll-mt-20">Sample YAML for configuring {"{"}{"{"} gcp_full {"}"}{"}"} clusters<a href="#cluster-api-sample-yaml-gcp_cluster-api-config-options-gcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p>The following example YAML files show configurations for a {"{"}{"{"} gcp_full {"}"}{"}"} cluster.</p>
-      <p class="/modules/capi-yaml-machine-template-gcp.md"></p>
-      <p class="/modules/capi-yaml-machine-set-gcp.md"></p>
+      <h1 id="cluster-api-config-options-gcp" class="group scroll-mt-20">Cluster API configuration options for Google Cloud<a href="#cluster-api-config-options-gcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can change the configuration of your Google Cloud Cluster API machines by updating values in the Cluster API custom resource manifests.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Managing machines with the Cluster API is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="cluster-api-sample-yaml-gcp_cluster-api-config-options-gcp" class="group scroll-mt-20">Sample YAML for configuring Google Cloud clusters<a href="#cluster-api-sample-yaml-gcp_cluster-api-config-options-gcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The following example YAML files show configurations for a Google Cloud cluster.</p>
+      <h3 id="capi-yaml-machine-template-gcp_cluster-api-config-options-gcp" class="group scroll-mt-20">Sample YAML for a Cluster API machine template resource on Google Cloud<a href="#capi-yaml-machine-template-gcp_cluster-api-config-options-gcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The machine template resource is provider-specific and defines the basic properties of the machines that a compute machine set creates. The compute machine set references this template when creating machines.</p>
+      <CodeBlock code={"apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\nkind: GCPMachineTemplate\nmetadata:\n  name: <template_name>\n  namespace: openshift-cluster-api\nspec:\n  template:\n    spec:\n      rootDeviceType: pd-ssd\n      rootDeviceSize: 128\n      instanceType: n1-standard-4\n      image: projects/rhcos-cloud/global/images/rhcos-411-85-202203181601-0-gcp-x86-64\n      subnet: <cluster_name>-worker-subnet\n      serviceAccounts:\n        email: <service_account_email_address>\n        scopes:\n          - https://www.googleapis.com/auth/cloud-platform\n      additionalLabels:\n        kubernetes-io-cluster-<cluster_name>: owned\n      additionalNetworkTags:\n        - <cluster_name>-worker\n      ipForwarding: Disabled"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>kind</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the machine template kind. This value must match the value for your platform.</p></dd>
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the machine template.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the details for your environment. The values here are examples.</p></dd>
+      </dl>
+      <h3 id="capi-yaml-machine-set-gcp_cluster-api-config-options-gcp" class="group scroll-mt-20">Sample YAML for a Cluster API compute machine set resource on Google Cloud<a href="#capi-yaml-machine-set-gcp_cluster-api-config-options-gcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The compute machine set resource defines additional properties of the machines that it creates. The compute machine set also references the cluster resource and machine template when creating machines.</p>
+      <CodeBlock code={"apiVersion: cluster.x-k8s.io/v1beta1\nkind: MachineSet\nmetadata:\n  name: <machine_set_name>\n  namespace: openshift-cluster-api\n  labels:\n    cluster.x-k8s.io/cluster-name: <cluster_name>\nspec:\n  clusterName: <cluster_name>\n  replicas: 1\n  selector:\n    matchLabels:\n      test: example\n      cluster.x-k8s.io/cluster-name: <cluster_name>\n      cluster.x-k8s.io/set-name: <machine_set_name>\n  template:\n    metadata:\n      labels:\n        test: example\n        cluster.x-k8s.io/cluster-name: <cluster_name>\n        cluster.x-k8s.io/set-name: <machine_set_name>\n        node-role.kubernetes.io/<role>: \"\"\n    spec:\n      bootstrap:\n         dataSecretName: worker-user-data\n      clusterName: <cluster_name>\n      infrastructureRef:\n        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\n        kind: GCPMachineTemplate\n        name: <template_name>\n      failureDomain: <failure_domain>"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the compute machine set. The cluster ID, machine role, and region form a typical pattern for this value in the following format: <code>&lt;cluster_name&gt;-&lt;role&gt;-&lt;region&gt;</code>.</p></dd>
+      <dt class="font-semibold"><code>metadata.labels.cluster.x-k8s.io/cluster-name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the cluster ID as the name of the cluster.</p></dd>
+      <dt class="font-semibold"><code>spec.clusterName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the cluster ID as the name of the cluster.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.infrastructureRef.kind</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the machine template kind. This value must match the value for your platform.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.infrastructureRef.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the machine template name.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.failureDomain</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the failure domain within the Google Cloud region.</p></dd>
+      </dl>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

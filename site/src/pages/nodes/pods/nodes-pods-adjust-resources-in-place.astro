@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-pods-adjust-resources-in-place","text":"Adjust pod resource levels without pod disruption"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"nodes-pods-adjust-resources-in-place","text":"Adjust pod resource levels without pod disruption"},{"depth":2,"slug":"nodes-pods-adjust-resources-in-place-about_nodes-pods-adjust-resources-in-place","text":"About in-place pod resizing"},{"depth":2,"slug":"nodes-pods-adjust-resources-in-place-configuring_nodes-pods-adjust-resources-in-place","text":"Configuring in-place pod resizing"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/pods/nodes-pods-adjust-resources-in-place";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/pods"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Adjust pod resource levels without pod disruption {#nodes-pods-adjust-resources-in-place}\n\nYou can change the CPU or memory resource requests and limits assigned to a container without re-creating or restarting the pod by using *in-place pod resizing*.\n\n## Additional resources {#_additional_resources}\n\n- [Understanding resource requests and limits](/openshift-docs-markdown/nodes/pods/nodes-pods-using#nodes-pods-understanding-requests-limits_nodes-pods-using-ssy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/nodes-pods-adjust-resources-in-place.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Adjust pod resource levels without pod disruption {#nodes-pods-adjust-resources-in-place}\n\nYou can change the CPU or memory resource requests and limits assigned to a container without re-creating or restarting the pod by using *in-place pod resizing*.\n\n## About in-place pod resizing {#nodes-pods-adjust-resources-in-place-about_nodes-pods-adjust-resources-in-place}\n\nYou can use in-place pod resizing to change the CPU and memory resources for containers within a running pod without suffering the downtime or state loss associated with a pod restart.\n\nThe standard methods for changing pod CPU and memory resources cause the pod to be re-created, potentially causing disruption. You can use in-place pod resizing to scale pod resources up or down without application disruption.\n\nWhen using in-place pod resizing to change CPU or memory resources, you can control whether a pod is restarted by configuring a resize policy in the pod specification. The following example resize policy requires a pod restart upon changing the memory resources, but prevents a restart for CPU resource changes.\n\n```yaml {title=\"Example resource policy\"}\napiVersion: v1\nkind: Pod\nmetadata:\n  name: resize-demo\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n  - name: pause\n# ...\n    resizePolicy:\n    - resourceName: cpu\n      restartPolicy: NotRequired\n    - resourceName: memory\n      restartPolicy: RestartContainer\n```\n\nwhere:\n\n`spec.containers.resizePolicy`\n:   Specifies a resize policy.\n\n> [!NOTE]\n> Memory limits cannot be decreased unless the resize policy for `memory` is `RestartContainer`.\n\nYou cannot add or modify a resize policy to an existing pod, but you can add or edit the policy in the pod’s owner object, such as a deployment, if the pod has an owner object.\n\nUsing in-place pod resizing requires that you use the `--subresource resize` flag when editing a pod in the OpenShift CLI (`oc`), as shown in the following examples:\n\n```terminal {title=\"Example commands\"}\n$ oc edit pod <pod_name>  --subresource resize\n```\n\n```terminal\n$ oc apply -f <file_name>.yaml --subresource resize\n```\n\n```terminal\n$ oc patch pod <pod_name> --subresource resize --patch \\\n  '{\"spec\":{\"containers\":[{\"name\":\"pause\", \"resources\":{\"requests\":{\"cpu\":\"800m\"}, \"limits\":{\"cpu\":\"800m\"}}}]}}'\n```\n\nBecause you need to use the `--subresource resize` flag with a resize policy, you cannot edit the pod resources in the OpenShift Container Platform web console.\n\nIf the resize policy is `NotRequired` and you change the request or limits, the pod is not restarted.\n\n```terminal\n$ oc get pods\n```\n\n```terminal {title=\"Example output\"}\nNAME                          READY   STATUS    RESTARTS     AGE\nresize-pod                    1/1     Running   0            5s\n```\n\nIf the resize policy is `RestartContainer` and you change the request or limits, the pod is restarted.\n\n```terminal\n$ oc get pods\n```\n\n```terminal {title=\"Example output\"}\nNAME                         READY   STATUS    RESTARTS    AGE\nresize-pod                   1/1     Running   1 (5s ago)  5s\n```\n\nAfter making the resource changes, the pod status conditions indicate the state of a resize request by using the following messages:\n\n- `PodResizeInProgress`: The kubelet is able to allocate the requested resources and the change is being applied.\n- `PodResizePending`: The kubelet cannot immediately make the change for one of the following reasons:\n\n  - `Infeasible`: The requested resize cannot be executed on the current node. For example, requesting more resources than the node has available would result in an `Infeasible` condition.\n  - `Deferred`: The requested resize is currently not possible, but might become possible at a later time. For example, if another pod is removed from the node, the requested resources might become available. The kubelet retries the resize when conditions on the node change.\n- `Error`: The kubelet is experiencing an error during the resource allocation and reports the reason for the error in the message field.\n\n```yaml {title=\"Example status for an infeasible change\"}\napiVersion: v1\nkind: Pod\nmetadata:\n  name: resize-demo\n# ...\nstatus:\n  conditions:\n  - lastProbeTime: \"2025-09-03T15:00:50Z\"\n    lastTransitionTime: \"2025-09-03T15:00:50Z\"\n    message: 'Node didn''t have enough capacity: cpu, requested: 1000000, capacity:\n      3500'\n    reason: Infeasible\n    status: \"True\"\n    type: PodResizePending\n```\n\nNote the following limitations:\n\n- In-place pod resizing is not supported for non-restartable init containers and ephemeral containers.\n- In-place pod resizing is not allowed if the changes violate other pod mutability constraints, such as the pod QoS class.\n- Pods managed by a static `cpuManagerPolicy` or `memoryManagerPolicy` parameter cannot be resized with in-place pod resizing.\n- Pods utilizing swap memory must use the `RestartContainer` policy for memory requests with in-place pod resizing.\n\n## Configuring in-place pod resizing {#nodes-pods-adjust-resources-in-place-configuring_nodes-pods-adjust-resources-in-place}\n\nYou can use in-place pod resizing to scale pod resources up or down without application disruption by adding a resize policy to a pod specification.\n\nYou cannot add or modify a resize policy in an existing pod, but you can add or edit the policy in the pod’s owner object, such as a deployment, if the pod has an owner object.\n\n**Procedure**\n\n1. Create a pod spec with a resize policy or add a resize policy to the owner object of an existing pod:\n\n   1. Create a YAML file similar to the following example:\n\n      ```yaml\n      apiVersion: v1\n      kind: Pod\n      metadata:\n        name: resize-pod\n      spec:\n      # ...\n        containers:\n        - name: pause\n          resizePolicy:\n          - resourceName: cpu\n            restartPolicy: NotRequired\n          - resourceName: memory\n            restartPolicy: RestartContainer\n      # ...\n      ```\n\n      where:\n\n      `spec.containers.resizePolicy`\n      :   Specifies a resize policy. For CPU and/or memory resources specify one of the following values:\n\n   - `NotRequired`: Apply any resource changes without restarting the pod. This is the default when using a resize policy.\n   - `RestartContainer`: Apply any resource changes and restart the pod.\n\n   1. Create the object by running a command similar to the following:\n\n      ```terminal\n      $ oc create -f <file_name>.yaml\n      ```\n\n**Verification**\n\n- Check that the resize policy is applied by modifying the CPU or memory requests or limits by running a command similar to the following. You must include the `--subresource resize` flag. If the pod has a owner object, such as a deployment, you must edit the owner object.\n\n  ```terminal\n  $ oc edit pod <pod_name>  --subresource resize\n  ```\n\n  If the policy is applied, the pod responds as expected.\n\n  ```terminal\n  $ oc get pods\n  ```\n\n  If the resize policy is `NotRequired`, the pod is not restarted.\n\n  ```terminal {title=\"Example output\"}\n  NAME                          READY   STATUS    RESTARTS     AGE\n  resize-pod                    1/1     Running   0            5s\n  ```\n\n  If the resize policy is `RestartContainer`, the pod is restarted.\n\n  ```terminal {title=\"Example output\"}\n  NAME                         READY   STATUS    RESTARTS    AGE\n  resize-pod                   1/1     Running   1 (5s ago)  5s\n  ```\n\n## Additional resources {#_additional_resources}\n\n- [Understanding resource requests and limits](/openshift-docs-markdown/nodes/pods/nodes-pods-using#nodes-pods-understanding-requests-limits_nodes-pods-using-ssy)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/nodes-pods-adjust-resources-in-place.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,98 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-pods-adjust-resources-in-place" class="group scroll-mt-20">Adjust pod resource levels without pod disruption<a href="#nodes-pods-adjust-resources-in-place" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can change the CPU or memory resource requests and limits assigned to a container without re-creating or restarting the pod by using <em>in-place pod resizing</em>.</p>
-      <p class="/modules/nodes-pods-adjust-resources-in-place-about.md"></p>
-      <p class="/modules/nodes-pods-adjust-resources-in-place-configuring.md"></p>
+      <h2 id="nodes-pods-adjust-resources-in-place-about_nodes-pods-adjust-resources-in-place" class="group scroll-mt-20">About in-place pod resizing<a href="#nodes-pods-adjust-resources-in-place-about_nodes-pods-adjust-resources-in-place" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use in-place pod resizing to change the CPU and memory resources for containers within a running pod without suffering the downtime or state loss associated with a pod restart.</p>
+      <p>The standard methods for changing pod CPU and memory resources cause the pod to be re-created, potentially causing disruption. You can use in-place pod resizing to scale pod resources up or down without application disruption.</p>
+      <p>When using in-place pod resizing to change CPU or memory resources, you can control whether a pod is restarted by configuring a resize policy in the pod specification. The following example resize policy requires a pod restart upon changing the memory resources, but prevents a restart for CPU resource changes.</p>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: resize-demo\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n  - name: pause\n# ...\n    resizePolicy:\n    - resourceName: cpu\n      restartPolicy: NotRequired\n    - resourceName: memory\n      restartPolicy: RestartContainer"} lang="yaml" title="Example resource policy" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.containers.resizePolicy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a resize policy.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Memory limits cannot be decreased unless the resize policy for <code>memory</code> is <code>RestartContainer</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You cannot add or modify a resize policy to an existing pod, but you can add or edit the policy in the pod’s owner object, such as a deployment, if the pod has an owner object.</p>
+      <p>Using in-place pod resizing requires that you use the <code>--subresource resize</code> flag when editing a pod in the OpenShift CLI (<code>oc</code>), as shown in the following examples:</p>
+      <CodeBlock code={"$ oc edit pod <pod_name>  --subresource resize"} lang="terminal" title="Example commands" />
+      <CodeBlock code={"$ oc apply -f <file_name>.yaml --subresource resize"} lang="terminal" />
+      <CodeBlock code={"$ oc patch pod <pod_name> --subresource resize --patch \\\n  '{\"spec\":{\"containers\":[{\"name\":\"pause\", \"resources\":{\"requests\":{\"cpu\":\"800m\"}, \"limits\":{\"cpu\":\"800m\"}}}]}}'"} lang="terminal" />
+      <p>Because you need to use the <code>--subresource resize</code> flag with a resize policy, you cannot edit the pod resources in the OpenShift Container Platform web console.</p>
+      <p>If the resize policy is <code>NotRequired</code> and you change the request or limits, the pod is not restarted.</p>
+      <CodeBlock code={"$ oc get pods"} lang="terminal" />
+      <CodeBlock code={"NAME                          READY   STATUS    RESTARTS     AGE\nresize-pod                    1/1     Running   0            5s"} lang="terminal" title="Example output" />
+      <p>If the resize policy is <code>RestartContainer</code> and you change the request or limits, the pod is restarted.</p>
+      <CodeBlock code={"$ oc get pods"} lang="terminal" />
+      <CodeBlock code={"NAME                         READY   STATUS    RESTARTS    AGE\nresize-pod                   1/1     Running   1 (5s ago)  5s"} lang="terminal" title="Example output" />
+      <p>After making the resource changes, the pod status conditions indicate the state of a resize request by using the following messages:</p>
+      <ul>
+      <li><code>PodResizeInProgress</code>: The kubelet is able to allocate the requested resources and the change is being applied.</li>
+      <li>
+      <code>PodResizePending</code>: The kubelet cannot immediately make the change for one of the following reasons:
+      <ul>
+      <li><code>Infeasible</code>: The requested resize cannot be executed on the current node. For example, requesting more resources than the node has available would result in an <code>Infeasible</code> condition.</li>
+      <li><code>Deferred</code>: The requested resize is currently not possible, but might become possible at a later time. For example, if another pod is removed from the node, the requested resources might become available. The kubelet retries the resize when conditions on the node change.</li>
+      </ul>
+      </li>
+      <li><code>Error</code>: The kubelet is experiencing an error during the resource allocation and reports the reason for the error in the message field.</li>
+      </ul>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: resize-demo\n# ...\nstatus:\n  conditions:\n  - lastProbeTime: \"2025-09-03T15:00:50Z\"\n    lastTransitionTime: \"2025-09-03T15:00:50Z\"\n    message: 'Node didn''t have enough capacity: cpu, requested: 1000000, capacity:\n      3500'\n    reason: Infeasible\n    status: \"True\"\n    type: PodResizePending"} lang="yaml" title="Example status for an infeasible change" />
+      <p>Note the following limitations:</p>
+      <ul>
+      <li>In-place pod resizing is not supported for non-restartable init containers and ephemeral containers.</li>
+      <li>In-place pod resizing is not allowed if the changes violate other pod mutability constraints, such as the pod QoS class.</li>
+      <li>Pods managed by a static <code>cpuManagerPolicy</code> or <code>memoryManagerPolicy</code> parameter cannot be resized with in-place pod resizing.</li>
+      <li>Pods utilizing swap memory must use the <code>RestartContainer</code> policy for memory requests with in-place pod resizing.</li>
+      </ul>
+      <h2 id="nodes-pods-adjust-resources-in-place-configuring_nodes-pods-adjust-resources-in-place" class="group scroll-mt-20">Configuring in-place pod resizing<a href="#nodes-pods-adjust-resources-in-place-configuring_nodes-pods-adjust-resources-in-place" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use in-place pod resizing to scale pod resources up or down without application disruption by adding a resize policy to a pod specification. </p>
+      <p>You cannot add or modify a resize policy in an existing pod, but you can add or edit the policy in the pod’s owner object, such as a deployment, if the pod has an owner object.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a pod spec with a resize policy or add a resize policy to the owner object of an existing pod:
+      <ol>
+      <li>
+      Create a YAML file similar to the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: resize-pod\nspec:\n# ...\n  containers:\n  - name: pause\n    resizePolicy:\n    - resourceName: cpu\n      restartPolicy: NotRequired\n    - resourceName: memory\n      restartPolicy: RestartContainer\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.containers.resizePolicy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a resize policy. For CPU and/or memory resources specify one of the following values:</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <ul>
+      <li><code>NotRequired</code>: Apply any resource changes without restarting the pod. This is the default when using a resize policy.</li>
+      <li><code>RestartContainer</code>: Apply any resource changes and restart the pod.</li>
+      </ul>
+      <ol>
+      <li>
+      Create the object by running a command similar to the following:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Check that the resize policy is applied by modifying the CPU or memory requests or limits by running a command similar to the following. You must include the <code>--subresource resize</code> flag. If the pod has a owner object, such as a deployment, you must edit the owner object.
+      <CodeBlock code={"$ oc edit pod <pod_name>  --subresource resize"} lang="terminal" />
+      <p>If the policy is applied, the pod responds as expected.</p>
+      <CodeBlock code={"$ oc get pods"} lang="terminal" />
+      <p>If the resize policy is <code>NotRequired</code>, the pod is not restarted.</p>
+      <CodeBlock code={"NAME                          READY   STATUS    RESTARTS     AGE\nresize-pod                    1/1     Running   0            5s"} lang="terminal" title="Example output" />
+      <p>If the resize policy is <code>RestartContainer</code>, the pod is restarted.</p>
+      <CodeBlock code={"NAME                         READY   STATUS    RESTARTS    AGE\nresize-pod                   1/1     Running   1 (5s ago)  5s"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/nodes/pods/nodes-pods-using#nodes-pods-understanding-requests-limits_nodes-pods-using-ssy">Understanding resource requests and limits</a></li></ul>
     </article>

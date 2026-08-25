@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
 
-const headings = [{"depth":1,"slug":"virt-storage-with-csi-paradigm","text":"Understanding virtual machine storage with the CSI paradigm"}];
+const headings = [{"depth":1,"slug":"virt-storage-with-csi-paradigm","text":"Understanding virtual machine storage with the CSI paradigm"},{"depth":2,"slug":"virt-storage-vp-csi-overview_virt-storage-with-csi-paradigm","text":"Virtual machine CSI storage overview"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/storage/virt-storage-with-csi-paradigm";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Understanding virtual machine storage with the CSI paradigm";
-const description = "Virtual machines (VMs) in {{ VirtProductName }} use PersistentVolume (PV) and PersistentVolumeClaim (PVC) paradigms to manage storage. This ensures…" || undefined;
+const description = "Virtual machines (VMs) in OpenShift Virtualization use PersistentVolume (PV) and PersistentVolumeClaim (PVC) paradigms to manage storage. This ensures…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding virtual machine storage with the CSI paradigm {#virt-storage-with-csi-paradigm}\n\nVirtual machines (VMs) in {{ VirtProductName }} use PersistentVolume (PV) and PersistentVolumeClaim (PVC) paradigms to manage storage. This ensures seamless integration with the Container Storage Interface (CSI).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-storage-with-csi-paradigm.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding virtual machine storage with the CSI paradigm {#virt-storage-with-csi-paradigm}\n\nVirtual machines (VMs) in OpenShift Virtualization use PersistentVolume (PV) and PersistentVolumeClaim (PVC) paradigms to manage storage. This ensures seamless integration with the Container Storage Interface (CSI).\n\n## Virtual machine CSI storage overview {#virt-storage-vp-csi-overview_virt-storage-with-csi-paradigm}\n\nOpenShift Virtualization integrates with the Container Storage Interface (CSI) to manage virtual machine (VM) storage.\n\nStorage classes define storage capabilities such as performance tiers and types. PersistentVolumeClaims (PVCs) request storage resources, which bind to PersistentVolumes (PVs). CSI drivers connect Kubernetes to vendor storage backends, including iSCSI, NFS, and Fibre Channel.\n\n> [!IMPORTANT]\n> A VM can start even if its PVC is already mounted by another pod. This behavior follows Kubernetes PVC access semantics and can lead to data corruption if multiple writers access the same volume.\n\n![title=\"Virtual machine disks and the CSI paradigm\"](/openshift-docs-markdown/_assets/images/virt-storage-csi-paradigm.png)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-storage-with-csi-paradigm.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,17 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-storage-with-csi-paradigm" class="group scroll-mt-20">Understanding virtual machine storage with the CSI paradigm<a href="#virt-storage-with-csi-paradigm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Virtual machines (VMs) in {"{"}{"{"} VirtProductName {"}"}{"}"} use PersistentVolume (PV) and PersistentVolumeClaim (PVC) paradigms to manage storage. This ensures seamless integration with the Container Storage Interface (CSI).</p>
-      <p class="/modules/virt-storage-pv-csi-overview.md"></p>
+      <p>Virtual machines (VMs) in OpenShift Virtualization use PersistentVolume (PV) and PersistentVolumeClaim (PVC) paradigms to manage storage. This ensures seamless integration with the Container Storage Interface (CSI).</p>
+      <h2 id="virt-storage-vp-csi-overview_virt-storage-with-csi-paradigm" class="group scroll-mt-20">Virtual machine CSI storage overview<a href="#virt-storage-vp-csi-overview_virt-storage-with-csi-paradigm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Virtualization integrates with the Container Storage Interface (CSI) to manage virtual machine (VM) storage.</p>
+      <p>Storage classes define storage capabilities such as performance tiers and types. PersistentVolumeClaims (PVCs) request storage resources, which bind to PersistentVolumes (PVs). CSI drivers connect Kubernetes to vendor storage backends, including iSCSI, NFS, and Fibre Channel.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>A VM can start even if its PVC is already mounted by another pod. This behavior follows Kubernetes PVC access semantics and can lead to data corruption if multiple writers access the same volume.</p>
+        </AlertDescription>
+      </Alert>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/virt-storage-csi-paradigm.png" alt="title=&quot;Virtual machine disks and the CSI paradigm&quot;" />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

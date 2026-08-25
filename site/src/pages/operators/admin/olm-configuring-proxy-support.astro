@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"olm-configuring-proxy-support","text":"Configuring proxy support in Operator Lifecycle Manager"},{"depth":2,"slug":"additional-resources_olm-configuring-proxy-support","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"olm-configuring-proxy-support","text":"Configuring proxy support in Operator Lifecycle Manager"},{"depth":2,"slug":"olm-overriding-proxy-settings_olm-configuring-proxy-support","text":"Overriding proxy settings of an Operator"},{"depth":2,"slug":"olm-inject-custom-ca_olm-configuring-proxy-support","text":"Injecting a custom CA certificate"},{"depth":2,"slug":"additional-resources_olm-configuring-proxy-support","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["operators","operators/admin"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring proxy support in Operator Lifecycle Manager {#olm-configuring-proxy-support}\n\nIf a global proxy is configured on your OpenShift Container Platform cluster, Operator Lifecycle Manager (OLM) automatically configures Operators that it manages with the cluster-wide proxy. However, you can also configure installed Operators to override the global proxy or inject a custom CA certificate.\n\n**Additional resources**\n\n- [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)\n- [Configuring a custom PKI (custom CA certificate)](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)\n\n## Additional resources {#additional-resources_olm-configuring-proxy-support}\n\n- [Proxy certificates](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)\n- [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)\n- [Updating the CA bundle](/openshift-docs-markdown/security/certificates/updating-ca-bundle#updating-ca-bundle)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring proxy support in Operator Lifecycle Manager {#olm-configuring-proxy-support}\n\nIf a global proxy is configured on your OpenShift Container Platform cluster, Operator Lifecycle Manager (OLM) automatically configures Operators that it manages with the cluster-wide proxy. However, you can also configure installed Operators to override the global proxy or inject a custom CA certificate.\n\n**Additional resources**\n\n- [Configuring the cluster-wide proxy](/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy)\n- [Configuring a custom PKI (custom CA certificate)](/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki)\n\n## Overriding proxy settings of an Operator {#olm-overriding-proxy-settings_olm-configuring-proxy-support}\n\nIf a cluster-wide egress proxy is configured, Operators running with Operator Lifecycle Manager (OLM) inherit the cluster-wide proxy settings on their deployments. Cluster administrators\n\ncan also override these proxy settings by configuring the subscription of an Operator.\n\n> [!IMPORTANT]\n> Operators must handle setting environment variables for proxy settings in the pods for any managed Operands.\n\n**Prerequisites**\n\n- Access to an OpenShift Container Platform cluster using an account with `cluster-admin` permissions.\n\n**Procedure**\n\n1. Navigate in the web console to the **Ecosystem → Software Catalog** page.\n2. Select the Operator and click **Install**.\n3. On the **Install Operator** page, modify the `Subscription` object to include one or more of the following environment variables in the `spec` section:\n\n   - `HTTP_PROXY`\n   - `HTTPS_PROXY`\n   - `NO_PROXY`\n\n   For example:\n\n   ```yaml {title=\"Subscription object with proxy setting overrides\"}\n   apiVersion: operators.coreos.com/v1alpha1\n   kind: Subscription\n   metadata:\n     name: etcd-config-test\n     namespace: openshift-operators\n   spec:\n     config:\n       env:\n       - name: HTTP_PROXY\n         value: test_http\n       - name: HTTPS_PROXY\n         value: test_https\n       - name: NO_PROXY\n         value: test\n     channel: clusterwide-alpha\n     installPlanApproval: Automatic\n     name: etcd\n     source: community-operators\n     sourceNamespace: openshift-marketplace\n     startingCSV: etcdoperator.v0.9.4-clusterwide\n   ```\n\n   > [!NOTE]\n   > These environment variables can also be unset using an empty value to remove any previously set cluster-wide or custom proxy settings.\n\n   OLM handles these environment variables as a unit; if at least one of them is set, all three are considered overridden and the cluster-wide defaults are not used for the deployments of the subscribed Operator.\n4. Click **Install** to make the Operator available to the selected namespaces.\n5. After the CSV for the Operator appears in the relevant namespace, you can verify that custom proxy environment variables are set in the deployment. For example, using the CLI:\n\n   ```terminal\n   $ oc get deployment -n openshift-operators \\\n       etcd-operator -o yaml \\\n       | grep -i \"PROXY\" -A 2\n   ```\n\n   ```terminal {title=\"Example output\"}\n           - name: HTTP_PROXY\n             value: test_http\n           - name: HTTPS_PROXY\n             value: test_https\n           - name: NO_PROXY\n             value: test\n           image: quay.io/coreos/etcd-operator@sha256:66a37fd61a06a43969854ee6d3e21088a98b93838e284a6086b13917f96b0d9c\n   ...\n   ```\n\n## Injecting a custom CA certificate {#olm-inject-custom-ca_olm-configuring-proxy-support}\n\nWhen a cluster administrator\n\nadds a custom CA certificate to a cluster using a config map, the Cluster Network Operator merges the user-provided certificates and system CA certificates into a single bundle. You can inject this merged bundle into your Operator running on Operator Lifecycle Manager (OLM), which is useful if you have a man-in-the-middle HTTPS proxy.\n\n**Prerequisites**\n\n- Access to an OpenShift Container Platform cluster using an account with `cluster-admin` permissions.\n- Custom CA certificate added to the cluster using a config map.\n- Desired Operator installed and running on OLM.\n\n**Procedure**\n\n1. Create an empty config map in the namespace where the subscription for your Operator exists and include the following label:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: trusted-ca (1)\n     labels:\n       config.openshift.io/inject-trusted-cabundle: \"true\" (2)\n   ```\n\n   1. Name of the config map.\n   2. Requests the Cluster Network Operator to inject the merged bundle.\n\n      After creating this config map, it is immediately populated with the certificate contents of the merged bundle.\n2. Update the `Subscription` object to include a `spec.config` section that mounts the `trusted-ca` config map as a volume to each container within a pod that requires a custom CA:\n\n   ```yaml\n   apiVersion: operators.coreos.com/v1alpha1\n   kind: Subscription\n   metadata:\n     name: my-operator\n   spec:\n     package: etcd\n     channel: alpha\n     config: (1)\n       selector:\n         matchLabels:\n           <labels_for_pods> (2)\n       volumes: (3)\n       - name: trusted-ca\n         configMap:\n           name: trusted-ca\n           items:\n             - key: ca-bundle.crt (4)\n               path: tls-ca-bundle.pem (5)\n       volumeMounts: (6)\n       - name: trusted-ca\n         mountPath: /etc/pki/ca-trust/extracted/pem\n         readOnly: true\n   ```\n\n   1. Add a `config` section if it does not exist.\n   2. Specify labels to match pods that are owned by the Operator.\n   3. Create a `trusted-ca` volume.\n   4. `ca-bundle.crt` is required as the config map key.\n   5. `tls-ca-bundle.pem` is required as the config map path.\n   6. Create a `trusted-ca` volume mount.\n\n      > [!NOTE]\n      > Deployments of an Operator can fail to validate the authority and display a `x509 certificate signed by unknown authority` error. This error can occur even after injecting a custom CA when using the subscription of an Operator. In this case, you can set the `mountPath` as `/etc/ssl/certs` for trusted-ca by using the subscription of an Operator.\n\n## Additional resources {#additional-resources_olm-configuring-proxy-support}\n\n- [Proxy certificates](/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-certificates)\n- [Replacing the default ingress certificate](/openshift-docs-markdown/security/certificates/replacing-default-ingress-certificate#replacing-default-ingress)\n- [Updating the CA bundle](/openshift-docs-markdown/security/certificates/updating-ca-bundle#updating-ca-bundle)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,94 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="olm-configuring-proxy-support" class="group scroll-mt-20">Configuring proxy support in Operator Lifecycle Manager<a href="#olm-configuring-proxy-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>If a global proxy is configured on your OpenShift Container Platform cluster, Operator Lifecycle Manager (OLM) automatically configures Operators that it manages with the cluster-wide proxy. However, you can also configure installed Operators to override the global proxy or inject a custom CA certificate.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/networking/configuring_network_settings/enable-cluster-wide-proxy#enable-cluster-wide-proxy">Configuring the cluster-wide proxy</a></li>
       <li><a href="/openshift-docs-markdown/networking/configuring_network_settings/configuring-a-custom-pki#configuring-a-custom-pki">Configuring a custom PKI (custom CA certificate)</a></li>
       </ul>
-      <p class="/modules/olm-injecting-custom-ca.md"></p>
+      <h2 id="olm-overriding-proxy-settings_olm-configuring-proxy-support" class="group scroll-mt-20">Overriding proxy settings of an Operator<a href="#olm-overriding-proxy-settings_olm-configuring-proxy-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>If a cluster-wide egress proxy is configured, Operators running with Operator Lifecycle Manager (OLM) inherit the cluster-wide proxy settings on their deployments. Cluster administrators</p>
+      <p class="_abstract">can also override these proxy settings by configuring the subscription of an Operator.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Operators must handle setting environment variables for proxy settings in the pods for any managed Operands.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Access to an OpenShift Container Platform cluster using an account with <code>cluster-admin</code> permissions.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate in the web console to the <strong>Ecosystem → Software Catalog</strong> page.</li>
+      <li>Select the Operator and click <strong>Install</strong>.</li>
+      <li>
+      On the <strong>Install Operator</strong> page, modify the <code>Subscription</code> object to include one or more of the following environment variables in the <code>spec</code> section:
+      <ul>
+      <li><code>HTTP_PROXY</code></li>
+      <li><code>HTTPS_PROXY</code></li>
+      <li><code>NO_PROXY</code></li>
+      </ul>
+      <p>For example:</p>
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: etcd-config-test\n  namespace: openshift-operators\nspec:\n  config:\n    env:\n    - name: HTTP_PROXY\n      value: test_http\n    - name: HTTPS_PROXY\n      value: test_https\n    - name: NO_PROXY\n      value: test\n  channel: clusterwide-alpha\n  installPlanApproval: Automatic\n  name: etcd\n  source: community-operators\n  sourceNamespace: openshift-marketplace\n  startingCSV: etcdoperator.v0.9.4-clusterwide"} lang="yaml" title="Subscription object with proxy setting overrides" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>These environment variables can also be unset using an empty value to remove any previously set cluster-wide or custom proxy settings.</p>
+        </AlertDescription>
+      </Alert>
+      <p>OLM handles these environment variables as a unit; if at least one of them is set, all three are considered overridden and the cluster-wide defaults are not used for the deployments of the subscribed Operator.</p>
+      </li>
+      <li>Click <strong>Install</strong> to make the Operator available to the selected namespaces.</li>
+      <li>
+      After the CSV for the Operator appears in the relevant namespace, you can verify that custom proxy environment variables are set in the deployment. For example, using the CLI:
+      <CodeBlock code={"$ oc get deployment -n openshift-operators \\\n    etcd-operator -o yaml \\\n    | grep -i \"PROXY\" -A 2"} lang="terminal" />
+      <CodeBlock code={"        - name: HTTP_PROXY\n          value: test_http\n        - name: HTTPS_PROXY\n          value: test_https\n        - name: NO_PROXY\n          value: test\n        image: quay.io/coreos/etcd-operator@sha256:66a37fd61a06a43969854ee6d3e21088a98b93838e284a6086b13917f96b0d9c\n..."} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="olm-inject-custom-ca_olm-configuring-proxy-support" class="group scroll-mt-20">Injecting a custom CA certificate<a href="#olm-inject-custom-ca_olm-configuring-proxy-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>When a cluster administrator</p>
+      <p class="_abstract">adds a custom CA certificate to a cluster using a config map, the Cluster Network Operator merges the user-provided certificates and system CA certificates into a single bundle. You can inject this merged bundle into your Operator running on Operator Lifecycle Manager (OLM), which is useful if you have a man-in-the-middle HTTPS proxy.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to an OpenShift Container Platform cluster using an account with <code>cluster-admin</code> permissions.</li>
+      <li>Custom CA certificate added to the cluster using a config map.</li>
+      <li>Desired Operator installed and running on OLM.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an empty config map in the namespace where the subscription for your Operator exists and include the following label:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: trusted-ca (1)\n  labels:\n    config.openshift.io/inject-trusted-cabundle: \"true\" (2)"} lang="yaml" />
+      <ol>
+      <li>Name of the config map.</li>
+      <li>
+      Requests the Cluster Network Operator to inject the merged bundle.
+      <p>After creating this config map, it is immediately populated with the certificate contents of the merged bundle.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Update the <code>Subscription</code> object to include a <code>spec.config</code> section that mounts the <code>trusted-ca</code> config map as a volume to each container within a pod that requires a custom CA:
+      <CodeBlock code={"apiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: my-operator\nspec:\n  package: etcd\n  channel: alpha\n  config: (1)\n    selector:\n      matchLabels:\n        <labels_for_pods> (2)\n    volumes: (3)\n    - name: trusted-ca\n      configMap:\n        name: trusted-ca\n        items:\n          - key: ca-bundle.crt (4)\n            path: tls-ca-bundle.pem (5)\n    volumeMounts: (6)\n    - name: trusted-ca\n      mountPath: /etc/pki/ca-trust/extracted/pem\n      readOnly: true"} lang="yaml" />
+      <ol>
+      <li>Add a <code>config</code> section if it does not exist.</li>
+      <li>Specify labels to match pods that are owned by the Operator.</li>
+      <li>Create a <code>trusted-ca</code> volume.</li>
+      <li><code>ca-bundle.crt</code> is required as the config map key.</li>
+      <li><code>tls-ca-bundle.pem</code> is required as the config map path.</li>
+      <li>
+      Create a <code>trusted-ca</code> volume mount.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Deployments of an Operator can fail to validate the authority and display a <code>x509 certificate signed by unknown authority</code> error. This error can occur even after injecting a custom CA when using the subscription of an Operator. In this case, you can set the <code>mountPath</code> as <code>/etc/ssl/certs</code> for trusted-ca by using the subscription of an Operator.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      </ol>
       <h2 id="additional-resources_olm-configuring-proxy-support" class="group scroll-mt-20">Additional resources<a href="#additional-resources_olm-configuring-proxy-support" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/security/certificate_types_descriptions/proxy-certificates#proxy-certificates">Proxy certificates</a></li>

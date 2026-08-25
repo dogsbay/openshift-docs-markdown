@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"core-cluster-upgrades-health-checks","text":"Perform health checks before a cluster update with {{ cgu_operator }}"},{"depth":2,"slug":"additional-resources_core-cluster-upgrades-health-checks","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"core-cluster-upgrades-health-checks","text":"Perform health checks before a cluster update with {{ cgu_operator }}"},{"depth":2,"slug":"core-cluster-upgrade-health-check_core-cluster-upgrades-health-checks","text":"Performing health checks before cluster updates"},{"depth":2,"slug":"additional-resources_core-cluster-upgrades-health-checks","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Perform health checks before a cluster update with {{ cgu_operator }} {#core-cluster-upgrades-health-checks}\n\nRunning pre-update health checks reduces the risk of update failures and identifies problems early. If any checks fail, resolve the issues before proceeding with the cluster update.\n\n## Additional resources {#additional-resources_core-cluster-upgrades-health-checks}\n\n- [Checking the cluster health](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-before-the-update#update-checking-cluster-health_update-before-the-update)\n- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Perform health checks before a cluster update with {{ cgu_operator }} {#core-cluster-upgrades-health-checks}\n\nRunning pre-update health checks reduces the risk of update failures and identifies problems early. If any checks fail, resolve the issues before proceeding with the cluster update.\n\n## Performing health checks before cluster updates {#core-cluster-upgrade-health-check_core-cluster-upgrades-health-checks}\n\nYou can perform comprehensive health checks before updating clusters to ensure cluster components are ready for the update. These checks validate cluster Operators, etcd health, storage systems, network connectivity, and custom resources specific to your deployment.\n\nComplete these health checks before starting any cluster update to minimize the risk of update failures.\n\n**Prerequisites**\n\n- You have access to target clusters with cluster-admin privileges.\n- The `oc` CLI tool is installed and configured for the target cluster.\n\n**Procedure**\n\n1. Verify control plane node readiness by running the following command:\n\n   ```terminal\n   $ oc get nodes -l node-role.kubernetes.io/master=\n   ```\n\n   The following example shows the output:\n\n   ```terminal\n   NAME                   STATUS   ROLES                  AGE   VERSION\n   master-0.example.com   Ready    control-plane,master   30d   v1.33.0\n   master-1.example.com   Ready    control-plane,master   30d   v1.33.0\n   master-2.example.com   Ready    control-plane,master   30d   v1.33.0\n   ```\n\n   All control plane nodes must show `Ready` status with no `SchedulingDisabled` notation. If any nodes show `NotReady` or `SchedulingDisabled`, investigate and resolve before updating.\n2. Verify worker node readiness by running the following command:\n\n   ```terminal\n   $ oc get nodes -l node-role.kubernetes.io/worker=\n   ```\n\n   All worker nodes must show `Ready` status. If any nodes show `NotReady` or `SchedulingDisabled`, investigate and resolve before updating.\n3. Check cluster Operator status by running the following command:\n\n   ```terminal\n   $ oc get co\n   ```\n\n   The following example shows the output:\n\n   ```terminal\n   NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE\n   authentication                             4.20.0    True        False         False      30d\n   cloud-controller-manager                   4.20.0    True        False         False      30d\n   cluster-autoscaler                         4.20.0    True        False         False      30d\n   ```\n\n   All cluster Operators must show the following:\n\n   - `AVAILABLE`: `True`\n   - `PROGRESSING`: `False`\n   - `DEGRADED`: `False`\n\n   If any Operator is degraded or progressing, resolve the issue before proceeding.\n4. Verify etcd cluster health by running the following command:\n\n   ```terminal\n   $ oc get etcd -o=jsonpath='{range .items[0].status.conditions[?(@.type==\"EtcdMembersAvailable\")]}{.message}{\"\\n\"}{end}'\n   ```\n\n   The following example shows the output:\n\n   ```terminal\n   3 members are available\n   ```\n\n   All etcd members must be available. If the output indicates unhealthy members, investigate etcd pod logs before updating.\n5. Check your backup storage location for an etcd backup created within the past 24 hours.\n\n   If no recent backup exists, create an etcd backup before proceeding. For more information, see \"Backing up etcd\" in the \"Additional resources\" section.\n6. Verify machine config pool status by running the following command:\n\n   ```terminal\n   $ oc get mcp\n   ```\n\n   The following example shows the output:\n\n   ```terminal\n   NAME     CONFIG                                             UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\n   master   rendered-master-abc123                             True      False      False      3              3                   3                     0                      30d\n   worker   rendered-worker-def456                             True      False      False      3              3                   3                     0                      30d\n   ```\n\n   All machine config pools must show the following:\n\n   - `UPDATED`: `True`\n   - `UPDATING`: `False`\n   - `DEGRADED`: `False`\n   - `MACHINECOUNT` must equal `READYMACHINECOUNT` and `UPDATEDMACHINECOUNT`\n7. Verify persistent volume health by running the following command:\n\n   ```terminal\n   $ oc get pv\n   ```\n\n   All persistent volumes must show `Bound` or `Available` status. Persistent volumes must not show `Failed` status.\n8. Verify that a default storage class exists by running the following command:\n\n   ```terminal\n   $ oc get storageclass\n   ```\n\n   At least one storage class must be marked as `(default)`.\n9. If your cluster uses SR-IOV, verify network node policies by running the following command:\n\n   ```terminal\n   $ oc get sriovnetworknodepolicy -n openshift-sriov-network-operator\n   ```\n\n   All SR-IOV network node policies must show `Succeeded` or `InProgress` state.\n10. Verify OLM Operator health by running the following command:\n\n    ```terminal\n    $ oc get csv -A\n    ```\n\n    All `ClusterServiceVersions` must show `Succeeded` phase. If any Operators show `Failed` or `Installing` phase, investigate before updating.\n11. Verify that no pods are in an unexpected state by running the following command:\n\n    ```terminal\n    $ oc get pod -A | grep -E -i -v 'complete|running'\n    ```\n\n    The command must produce no output. If any pods are listed, review their status before updating.\n12. Verify that pod disruption budgets (PDBs) are configured for all critical cloud-native network function (CNF) workloads by running the following command:\n\n    ```terminal\n    $ oc get pdb -A\n    ```\n\n    The following example shows the output:\n\n    ```terminal\n    NAME                    MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE\n    cnf-workload-pdb        2               N/A               1                     30d\n    ```\n\n    PDBs must allow at least one disruption. Setting `minAvailable` to 100% of replicas blocks node drains during updates.\n13. Check `PerformanceProfile` status by running the following command:\n\n    ```terminal\n    $ oc get performanceprofile\n    ```\n\n    The following example shows the output:\n\n    ```terminal\n    NAME               AGE\n    core-performance   30d\n    ```\n14. Verify the `PerformanceProfile` shows `Applied` status by running the following command:\n\n    ```terminal\n    $ oc get performanceprofile core-performance -o jsonpath='{.status.conditions[?(@.type==\"Applied\")].status}'\n    ```\n\n    The output must be `True`.\n15. Verify API server responsiveness by running the following command:\n\n    ```terminal\n    $ oc version\n    ```\n\n    The command should complete within a few seconds. If the API server is slow to respond, investigate before updating.\n16. Verify certificate validity by running the following command:\n\n    ```terminal\n    $ oc -n openshift-kube-apiserver-operator get secret kube-apiserver-to-kubelet-signer -o jsonpath='{.metadata.annotations.auth\\.openshift\\.io/certificate-not-after}'\n    ```\n\n    Certificates that expire within 30 days must be renewed before updating. If `cert-manager` is installed in the cluster, you can also run `oc get certificates -A` to check additional managed certificates.\n17. Check CPU and memory utilization on nodes by running the following command:\n\n    ```terminal\n    $ oc adm top nodes\n    ```\n\n    The following example shows the output:\n\n    ```terminal\n    NAME                   CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%\n    master-0.example.com   500m         25%    8Gi             50%\n    worker-0.example.com   1000m        50%    16Gi            60%\n    ```\n\n    Nodes should have sufficient headroom for rolling updates. CPU usage should be below 80%, and memory usage should be below 85%.\n\n**Troubleshooting**\n\n- If cluster Operators are degraded, check Operator logs by running the following command:\n\n  ```terminal\n  $ oc logs -n openshift-<operator_namespace> <operator_pod_name>\n  ```\n- If etcd members are unhealthy, investigate etcd pod logs by running the following command:\n\n  ```terminal\n  $ oc logs -n openshift-etcd <etcd_pod_name>\n  ```\n- If PDBs block updates, review PDB configuration to ensure they allow sufficient disruptions.\n- If nodes show `NotReady` status, check the node conditions by running the following command:\n\n  ```terminal\n  $ oc describe node <node_name> | grep -A 10 Conditions\n  ```\n\n  Check kubelet logs by running the following command:\n\n  ```terminal\n  $ oc debug node/<node_name> -- chroot /host journalctl -u kubelet\n  ```\n\n  Common causes for `NotReady` nodes include disk pressure, memory pressure, and network connectivity issues.\n\n## Additional resources {#additional-resources_core-cluster-upgrades-health-checks}\n\n- [Checking the cluster health](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-before-the-update#update-checking-cluster-health_update-before-the-update)\n- [Backing up etcd](/openshift-docs-markdown/backup_and_restore/control_plane_backup_and_restore/backing-up-etcd#backup-etcd)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-rhacm-talm-health-checks.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,146 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="core-cluster-upgrades-health-checks" class="group scroll-mt-20">Perform health checks before a cluster update with {"{"}{"{"} cgu_operator {"}"}{"}"}<a href="#core-cluster-upgrades-health-checks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Running pre-update health checks reduces the risk of update failures and identifies problems early. If any checks fail, resolve the issues before proceeding with the cluster update.</p>
-      <p class="/modules/core-cluster-upgrade-health-check.md"></p>
+      <h2 id="core-cluster-upgrade-health-check_core-cluster-upgrades-health-checks" class="group scroll-mt-20">Performing health checks before cluster updates<a href="#core-cluster-upgrade-health-check_core-cluster-upgrades-health-checks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can perform comprehensive health checks before updating clusters to ensure cluster components are ready for the update. These checks validate cluster Operators, etcd health, storage systems, network connectivity, and custom resources specific to your deployment.</p>
+      <p>Complete these health checks before starting any cluster update to minimize the risk of update failures.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to target clusters with cluster-admin privileges.</li>
+      <li>The <code>oc</code> CLI tool is installed and configured for the target cluster.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Verify control plane node readiness by running the following command:
+      <CodeBlock code={"$ oc get nodes -l node-role.kubernetes.io/master="} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"NAME                   STATUS   ROLES                  AGE   VERSION\nmaster-0.example.com   Ready    control-plane,master   30d   v1.33.0\nmaster-1.example.com   Ready    control-plane,master   30d   v1.33.0\nmaster-2.example.com   Ready    control-plane,master   30d   v1.33.0"} lang="terminal" />
+      <p>All control plane nodes must show <code>Ready</code> status with no <code>SchedulingDisabled</code> notation. If any nodes show <code>NotReady</code> or <code>SchedulingDisabled</code>, investigate and resolve before updating.</p>
+      </li>
+      <li>
+      Verify worker node readiness by running the following command:
+      <CodeBlock code={"$ oc get nodes -l node-role.kubernetes.io/worker="} lang="terminal" />
+      <p>All worker nodes must show <code>Ready</code> status. If any nodes show <code>NotReady</code> or <code>SchedulingDisabled</code>, investigate and resolve before updating.</p>
+      </li>
+      <li>
+      Check cluster Operator status by running the following command:
+      <CodeBlock code={"$ oc get co"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"NAME                                       VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE\nauthentication                             4.20.0    True        False         False      30d\ncloud-controller-manager                   4.20.0    True        False         False      30d\ncluster-autoscaler                         4.20.0    True        False         False      30d"} lang="terminal" />
+      <p>All cluster Operators must show the following:</p>
+      <ul>
+      <li><code>AVAILABLE</code>: <code>True</code></li>
+      <li><code>PROGRESSING</code>: <code>False</code></li>
+      <li><code>DEGRADED</code>: <code>False</code></li>
+      </ul>
+      <p>If any Operator is degraded or progressing, resolve the issue before proceeding.</p>
+      </li>
+      <li>
+      Verify etcd cluster health by running the following command:
+      <CodeBlock code={"$ oc get etcd -o=jsonpath='{range .items[0].status.conditions[?(@.type==\"EtcdMembersAvailable\")]}{.message}{\"\\n\"}{end}'"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"3 members are available"} lang="terminal" />
+      <p>All etcd members must be available. If the output indicates unhealthy members, investigate etcd pod logs before updating.</p>
+      </li>
+      <li>
+      Check your backup storage location for an etcd backup created within the past 24 hours.
+      <p>If no recent backup exists, create an etcd backup before proceeding. For more information, see "Backing up etcd" in the "Additional resources" section.</p>
+      </li>
+      <li>
+      Verify machine config pool status by running the following command:
+      <CodeBlock code={"$ oc get mcp"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"NAME     CONFIG                                             UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\nmaster   rendered-master-abc123                             True      False      False      3              3                   3                     0                      30d\nworker   rendered-worker-def456                             True      False      False      3              3                   3                     0                      30d"} lang="terminal" />
+      <p>All machine config pools must show the following:</p>
+      <ul>
+      <li><code>UPDATED</code>: <code>True</code></li>
+      <li><code>UPDATING</code>: <code>False</code></li>
+      <li><code>DEGRADED</code>: <code>False</code></li>
+      <li><code>MACHINECOUNT</code> must equal <code>READYMACHINECOUNT</code> and <code>UPDATEDMACHINECOUNT</code></li>
+      </ul>
+      </li>
+      <li>
+      Verify persistent volume health by running the following command:
+      <CodeBlock code={"$ oc get pv"} lang="terminal" />
+      <p>All persistent volumes must show <code>Bound</code> or <code>Available</code> status. Persistent volumes must not show <code>Failed</code> status.</p>
+      </li>
+      <li>
+      Verify that a default storage class exists by running the following command:
+      <CodeBlock code={"$ oc get storageclass"} lang="terminal" />
+      <p>At least one storage class must be marked as <code>(default)</code>.</p>
+      </li>
+      <li>
+      If your cluster uses SR-IOV, verify network node policies by running the following command:
+      <CodeBlock code={"$ oc get sriovnetworknodepolicy -n openshift-sriov-network-operator"} lang="terminal" />
+      <p>All SR-IOV network node policies must show <code>Succeeded</code> or <code>InProgress</code> state.</p>
+      </li>
+      <li>
+      Verify OLM Operator health by running the following command:
+      <CodeBlock code={"$ oc get csv -A"} lang="terminal" />
+      <p>All <code>ClusterServiceVersions</code> must show <code>Succeeded</code> phase. If any Operators show <code>Failed</code> or <code>Installing</code> phase, investigate before updating.</p>
+      </li>
+      <li>
+      Verify that no pods are in an unexpected state by running the following command:
+      <CodeBlock code={"$ oc get pod -A | grep -E -i -v 'complete|running'"} lang="terminal" />
+      <p>The command must produce no output. If any pods are listed, review their status before updating.</p>
+      </li>
+      <li>
+      Verify that pod disruption budgets (PDBs) are configured for all critical cloud-native network function (CNF) workloads by running the following command:
+      <CodeBlock code={"$ oc get pdb -A"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"NAME                    MIN AVAILABLE   MAX UNAVAILABLE   ALLOWED DISRUPTIONS   AGE\ncnf-workload-pdb        2               N/A               1                     30d"} lang="terminal" />
+      <p>PDBs must allow at least one disruption. Setting <code>minAvailable</code> to 100% of replicas blocks node drains during updates.</p>
+      </li>
+      <li>
+      Check <code>PerformanceProfile</code> status by running the following command:
+      <CodeBlock code={"$ oc get performanceprofile"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"NAME               AGE\ncore-performance   30d"} lang="terminal" />
+      </li>
+      <li>
+      Verify the <code>PerformanceProfile</code> shows <code>Applied</code> status by running the following command:
+      <CodeBlock code={"$ oc get performanceprofile core-performance -o jsonpath='{.status.conditions[?(@.type==\"Applied\")].status}'"} lang="terminal" />
+      <p>The output must be <code>True</code>.</p>
+      </li>
+      <li>
+      Verify API server responsiveness by running the following command:
+      <CodeBlock code={"$ oc version"} lang="terminal" />
+      <p>The command should complete within a few seconds. If the API server is slow to respond, investigate before updating.</p>
+      </li>
+      <li>
+      Verify certificate validity by running the following command:
+      <CodeBlock code={"$ oc -n openshift-kube-apiserver-operator get secret kube-apiserver-to-kubelet-signer -o jsonpath='{.metadata.annotations.auth\\.openshift\\.io/certificate-not-after}'"} lang="terminal" />
+      <p>Certificates that expire within 30 days must be renewed before updating. If <code>cert-manager</code> is installed in the cluster, you can also run <code>oc get certificates -A</code> to check additional managed certificates.</p>
+      </li>
+      <li>
+      Check CPU and memory utilization on nodes by running the following command:
+      <CodeBlock code={"$ oc adm top nodes"} lang="terminal" />
+      <p>The following example shows the output:</p>
+      <CodeBlock code={"NAME                   CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%\nmaster-0.example.com   500m         25%    8Gi             50%\nworker-0.example.com   1000m        50%    16Gi            60%"} lang="terminal" />
+      <p>Nodes should have sufficient headroom for rolling updates. CPU usage should be below 80%, and memory usage should be below 85%.</p>
+      </li>
+      </ol>
+      <p><strong>Troubleshooting</strong></p>
+      <ul>
+      <li>
+      If cluster Operators are degraded, check Operator logs by running the following command:
+      <CodeBlock code={"$ oc logs -n openshift-<operator_namespace> <operator_pod_name>"} lang="terminal" />
+      </li>
+      <li>
+      If etcd members are unhealthy, investigate etcd pod logs by running the following command:
+      <CodeBlock code={"$ oc logs -n openshift-etcd <etcd_pod_name>"} lang="terminal" />
+      </li>
+      <li>If PDBs block updates, review PDB configuration to ensure they allow sufficient disruptions.</li>
+      <li>
+      If nodes show <code>NotReady</code> status, check the node conditions by running the following command:
+      <CodeBlock code={"$ oc describe node <node_name> | grep -A 10 Conditions"} lang="terminal" />
+      <p>Check kubelet logs by running the following command:</p>
+      <CodeBlock code={"$ oc debug node/<node_name> -- chroot /host journalctl -u kubelet"} lang="terminal" />
+      <p>Common causes for <code>NotReady</code> nodes include disk pressure, memory pressure, and network connectivity issues.</p>
+      </li>
+      </ul>
       <h2 id="additional-resources_core-cluster-upgrades-health-checks" class="group scroll-mt-20">Additional resources<a href="#additional-resources_core-cluster-upgrades-health-checks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/updating/update-before-the-update#update-checking-cluster-health_update-before-the-update">Checking the cluster health</a></li>

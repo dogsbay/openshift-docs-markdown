@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"troubleshooting-security","text":"Security"}];
+const headings = [{"depth":1,"slug":"troubleshooting-security","text":"Security"},{"depth":2,"slug":"troubleshooting-security-authentication_troubleshooting-security","text":"Authentication"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-security";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Security {#troubleshooting-security}\n\nImplementing a robust cluster security profile is important for building resilient environments.\n\n**Additional resources**\n\n- [Supported identity providers](/openshift-docs-markdown/authentication/understanding-identity-provider#supported-identity-providers_understanding-identity-provider)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-security.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Security {#troubleshooting-security}\n\nImplementing a robust cluster security profile is important for building resilient environments.\n\n## Authentication {#troubleshooting-security-authentication_troubleshooting-security}\n\nDetermine which identity providers are in your cluster. For more information about supported identity providers, see \"Supported identity providers\" in *Authentication and authorization*.\n\nAfter you know which providers are configured, you can inspect the `openshift-authentication` namespace to determine if there are potential issues.\n\n**Procedure**\n\n1. Check the events in the `openshift-authentication` namespace by running the following command:\n\n   ```terminal\n   $ oc get events -n openshift-authentication --sort-by='.metadata.creationTimestamp'\n   ```\n2. Check the pods in the `openshift-authentication` namespace by running the following command:\n\n   ```terminal\n   $ oc get pod -n openshift-authentication\n   ```\n3. Optional: If you need more information, check the logs of one of the running pods by running the following command:\n\n   ```terminal\n   $ oc logs -n openshift-authentication <pod_name>\n   ```\n\n**Additional resources**\n\n- [Supported identity providers](/openshift-docs-markdown/authentication/understanding-identity-provider#supported-identity-providers_understanding-identity-provider)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-security.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +92,25 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="troubleshooting-security" class="group scroll-mt-20">Security<a href="#troubleshooting-security" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Implementing a robust cluster security profile is important for building resilient environments.</p>
-      <p class="/modules/troubleshooting-security-authentication.md"></p>
+      <h2 id="troubleshooting-security-authentication_troubleshooting-security" class="group scroll-mt-20">Authentication<a href="#troubleshooting-security-authentication_troubleshooting-security" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Determine which identity providers are in your cluster. For more information about supported identity providers, see "Supported identity providers" in <em>Authentication and authorization</em>.</p>
+      <p>After you know which providers are configured, you can inspect the <code>openshift-authentication</code> namespace to determine if there are potential issues.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check the events in the <code>openshift-authentication</code> namespace by running the following command:
+      <CodeBlock code={"$ oc get events -n openshift-authentication --sort-by='.metadata.creationTimestamp'"} lang="terminal" />
+      </li>
+      <li>
+      Check the pods in the <code>openshift-authentication</code> namespace by running the following command:
+      <CodeBlock code={"$ oc get pod -n openshift-authentication "} lang="terminal" />
+      </li>
+      <li>
+      Optional: If you need more information, check the logs of one of the running pods by running the following command:
+      <CodeBlock code={"$ oc logs -n openshift-authentication <pod_name>"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/authentication/understanding-identity-provider#supported-identity-providers_understanding-identity-provider">Supported identity providers</a></li></ul>
     </article>

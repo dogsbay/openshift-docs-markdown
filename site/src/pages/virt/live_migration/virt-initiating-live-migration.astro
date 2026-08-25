@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-initiating-live-migration","text":"Initiating and canceling live migration"},{"depth":2,"slug":"additional-resources_virt-initiating-live-migration","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-initiating-live-migration","text":"Initiating and canceling live migration"},{"depth":2,"slug":"virt-initiating-vm-migration-web_virt-initiating-live-migration","text":"Initiating live migration by using the web console"},{"depth":2,"slug":"virt-initiating-vm-migration-cli_virt-initiating-live-migration","text":"Initiating live migration by using the CLI"},{"depth":2,"slug":"virt-canceling-vm-migration-web_virt-initiating-live-migration","text":"Canceling live migration by using the web console"},{"depth":2,"slug":"virt-canceling-vm-migration-cli_virt-initiating-live-migration","text":"Canceling live migration by using the CLI"},{"depth":2,"slug":"additional-resources_virt-initiating-live-migration","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/live_migration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Initiating and canceling live migration {#virt-initiating-live-migration}\n\nTo move a running virtual machine (VM) to a different node without interrupting the workload, you can initiate a live migration. You can also cancel an ongoing migration to keep the VM on its original node.\n\nYou can initiate the live migration of a virtual machine (VM) to another node by using the OpenShift Container Platform web console or the command line.\n\nYou can cancel a live migration by using the web console or the command line. The VM remains on its original node.\n\n> [!TIP]\n> You can also initiate and cancel live migration by using the `virtctl migrate <vm_name>` and `virtctl migrate-cancel <vm_name>` commands.\n\n## Additional resources {#additional-resources_virt-initiating-live-migration}\n\n- [About live migration permissions](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)\n- [Initiating live migration by using the web console](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-web_virt-initiating-live-migration)\n- [Initiating live migration by using the CLI](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-cli_virt-initiating-live-migration)\n- [Canceling live migration by using the web console](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-web_virt-initiating-live-migration)\n- [Canceling live migration by using the CLI](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-cli_virt-initiating-live-migration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Initiating and canceling live migration {#virt-initiating-live-migration}\n\nTo move a running virtual machine (VM) to a different node without interrupting the workload, you can initiate a live migration. You can also cancel an ongoing migration to keep the VM on its original node.\n\nYou can initiate the live migration of a virtual machine (VM) to another node by using the OpenShift Container Platform web console or the command line.\n\nYou can cancel a live migration by using the web console or the command line. The VM remains on its original node.\n\n> [!TIP]\n> You can also initiate and cancel live migration by using the `virtctl migrate <vm_name>` and `virtctl migrate-cancel <vm_name>` commands.\n\n## Initiating live migration by using the web console {#virt-initiating-vm-migration-web_virt-initiating-live-migration}\n\nYou can live migrate a running virtual machine (VM) to a different node in the cluster by using the OpenShift Container Platform web console.\n\n> [!NOTE]\n> The **Migrate** action is visible to all users but only cluster administrators can initiate a live migration.\n\n**Prerequisites**\n\n- You have the `kubevirt.io:migrate` RBAC role or you are a cluster administrator.\n- The VM is able to be migrated.\n- If the VM is configured with a host model CPU, the cluster has an available node that supports the CPU model.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.\n2. Take either of the following steps:\n\n   - Click the Options menu ![](kebab.png \"Options menu\") beside the VM you want to migrate, hover over the **Migrate** option, and select **Compute**.\n   - Open the **VM details** page of the VM you want to migrate, click the **Actions** menu, hover over the **Migrate** option, and select **Compute**.\n3. In the **Migrate Virtual Machine to a different Node** dialog box, select either **Automatically Selected Node** or **Specific Node**.\n\n   1. If you selected the **Specific Node** option, choose a node from the list.\n4. Click **Migrate Virtual Machine**.\n\n## Initiating live migration by using the CLI {#virt-initiating-vm-migration-cli_virt-initiating-live-migration}\n\nYou can initiate the live migration of a running virtual machine (VM) by using the command line to create a `VirtualMachineInstanceMigration` object for the VM.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have the `kubevirt.io:migrate` RBAC role or you are a cluster administrator.\n\n**Procedure**\n\n1. Create a `VirtualMachineInstanceMigration` manifest for the VM that you want to migrate:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachineInstanceMigration\n   metadata:\n     name: <migration_name>\n   spec:\n     vmiName: <vm_name>\n   ```\n2. Create the object by running the following command:\n\n   ```terminal\n   $ oc create -f <migration_name>.yaml\n   ```\n\n   The `VirtualMachineInstanceMigration` object triggers a live migration of the VM. This object exists in the cluster only while the virtual machine instance is running, unless manually deleted.\n\n**Verification**\n\n- Obtain the VM status by running the following command:\n\n  ```terminal\n  $ oc describe vmi <vm_name> -n <namespace>\n  ```\n\n  Example output:\n\n  ```yaml\n  # ...\n  Status:\n    Conditions:\n      Last Probe Time:       <nil>\n      Last Transition Time:  <nil>\n      Status:                True\n      Type:                  LiveMigratable\n    Migration Method:  LiveMigration\n    Migration State:\n      Completed:                    true\n      End Timestamp:                2018-12-24T06:19:42Z\n      Migration UID:                d78c8962-0743-11e9-a540-fa163e0c69f1\n      Source Node:                  node2.example.com\n      Start Timestamp:              2018-12-24T06:19:35Z\n      Target Node:                  node1.example.com\n      Target Node Address:          10.9.0.18:43891\n      Target Node Domain Detected:  true\n  ```\n\n## Canceling live migration by using the web console {#virt-canceling-vm-migration-web_virt-initiating-live-migration}\n\nYou can cancel the live migration of a virtual machine (VM) by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You have the `kubevirt.io:migrate` RBAC role or you are a cluster administrator.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.\n2. Select **Cancel Migration** on the Options menu ![](kebab.png \"Options menu\") beside a VM.\n\n## Canceling live migration by using the CLI {#virt-canceling-vm-migration-cli_virt-initiating-live-migration}\n\nCancel the live migration of a virtual machine by deleting the `VirtualMachineInstanceMigration` object associated with the migration.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have the `kubevirt.io:migrate` RBAC role or you are a cluster administrator.\n\n**Procedure**\n\n- Delete the `VirtualMachineInstanceMigration` object that triggered the live migration, `migration-job` in this example:\n\n  ```terminal\n  $ oc delete vmim migration-job\n  ```\n\n## Additional resources {#additional-resources_virt-initiating-live-migration}\n\n- [About live migration permissions](/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration)\n- [Initiating live migration by using the web console](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-web_virt-initiating-live-migration)\n- [Initiating live migration by using the CLI](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-initiating-vm-migration-cli_virt-initiating-live-migration)\n- [Canceling live migration by using the web console](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-web_virt-initiating-live-migration)\n- [Canceling live migration by using the CLI](/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration#virt-canceling-vm-migration-cli_virt-initiating-live-migration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/live_migration/virt-initiating-live-migration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-initiating-live-migration" class="group scroll-mt-20">Initiating and canceling live migration<a href="#virt-initiating-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To move a running virtual machine (VM) to a different node without interrupting the workload, you can initiate a live migration. You can also cancel an ongoing migration to keep the VM on its original node.</p>
       <p>You can initiate the live migration of a virtual machine (VM) to another node by using the OpenShift Container Platform web console or the command line.</p>
       <p>You can cancel a live migration by using the web console or the command line. The VM remains on its original node.</p>
@@ -104,10 +104,87 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>You can also initiate and cancel live migration by using the <code>virtctl migrate &lt;vm_name&gt;</code> and <code>virtctl migrate-cancel &lt;vm_name&gt;</code> commands.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/virt-initiating-vm-migration-web.md"></p>
-      <p class="/modules/virt-initiating-vm-migration-cli.md"></p>
-      <p class="/modules/virt-canceling-vm-migration-web.md"></p>
-      <p class="/modules/virt-canceling-vm-migration-cli.md"></p>
+      <h2 id="virt-initiating-vm-migration-web_virt-initiating-live-migration" class="group scroll-mt-20">Initiating live migration by using the web console<a href="#virt-initiating-vm-migration-web_virt-initiating-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can live migrate a running virtual machine (VM) to a different node in the cluster by using the OpenShift Container Platform web console.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <strong>Migrate</strong> action is visible to all users but only cluster administrators can initiate a live migration.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have the <code>kubevirt.io:migrate</code> RBAC role or you are a cluster administrator.</li>
+      <li>The VM is able to be migrated.</li>
+      <li>If the VM is configured with a host model CPU, the cluster has an available node that supports the CPU model.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> in the web console.</li>
+      <li>
+      Take either of the following steps:
+      <ul>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> beside the VM you want to migrate, hover over the <strong>Migrate</strong> option, and select <strong>Compute</strong>.</li>
+      <li>Open the <strong>VM details</strong> page of the VM you want to migrate, click the <strong>Actions</strong> menu, hover over the <strong>Migrate</strong> option, and select <strong>Compute</strong>.</li>
+      </ul>
+      </li>
+      <li>
+      In the <strong>Migrate Virtual Machine to a different Node</strong> dialog box, select either <strong>Automatically Selected Node</strong> or <strong>Specific Node</strong>.
+      <ol><li>If you selected the <strong>Specific Node</strong> option, choose a node from the list.</li></ol>
+      </li>
+      <li>Click <strong>Migrate Virtual Machine</strong>.</li>
+      </ol>
+      <h2 id="virt-initiating-vm-migration-cli_virt-initiating-live-migration" class="group scroll-mt-20">Initiating live migration by using the CLI<a href="#virt-initiating-vm-migration-cli_virt-initiating-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can initiate the live migration of a running virtual machine (VM) by using the command line to create a <code>VirtualMachineInstanceMigration</code> object for the VM.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have the <code>kubevirt.io:migrate</code> RBAC role or you are a cluster administrator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>VirtualMachineInstanceMigration</code> manifest for the VM that you want to migrate:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachineInstanceMigration\nmetadata:\n  name: <migration_name>\nspec:\n  vmiName: <vm_name>"} lang="yaml" />
+      </li>
+      <li>
+      Create the object by running the following command:
+      <CodeBlock code={"$ oc create -f <migration_name>.yaml"} lang="terminal" />
+      <p>The <code>VirtualMachineInstanceMigration</code> object triggers a live migration of the VM. This object exists in the cluster only while the virtual machine instance is running, unless manually deleted.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Obtain the VM status by running the following command:
+      <CodeBlock code={"$ oc describe vmi <vm_name> -n <namespace>"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"# ...\nStatus:\n  Conditions:\n    Last Probe Time:       <nil>\n    Last Transition Time:  <nil>\n    Status:                True\n    Type:                  LiveMigratable\n  Migration Method:  LiveMigration\n  Migration State:\n    Completed:                    true\n    End Timestamp:                2018-12-24T06:19:42Z\n    Migration UID:                d78c8962-0743-11e9-a540-fa163e0c69f1\n    Source Node:                  node2.example.com\n    Start Timestamp:              2018-12-24T06:19:35Z\n    Target Node:                  node1.example.com\n    Target Node Address:          10.9.0.18:43891\n    Target Node Domain Detected:  true"} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="virt-canceling-vm-migration-web_virt-initiating-live-migration" class="group scroll-mt-20">Canceling live migration by using the web console<a href="#virt-canceling-vm-migration-web_virt-initiating-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can cancel the live migration of a virtual machine (VM) by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have the <code>kubevirt.io:migrate</code> RBAC role or you are a cluster administrator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> in the web console.</li>
+      <li>Select <strong>Cancel Migration</strong> on the Options menu <img src="kebab.png" alt="" loading="lazy" /> beside a VM.</li>
+      </ol>
+      <h2 id="virt-canceling-vm-migration-cli_virt-initiating-live-migration" class="group scroll-mt-20">Canceling live migration by using the CLI<a href="#virt-canceling-vm-migration-cli_virt-initiating-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Cancel the live migration of a virtual machine by deleting the <code>VirtualMachineInstanceMigration</code> object associated with the migration.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have the <code>kubevirt.io:migrate</code> RBAC role or you are a cluster administrator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Delete the <code>VirtualMachineInstanceMigration</code> object that triggered the live migration, <code>migration-job</code> in this example:
+      <CodeBlock code={"$ oc delete vmim migration-job"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="additional-resources_virt-initiating-live-migration" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-initiating-live-migration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/virt/live_migration/virt-about-live-migration#virt-about-live-migration-permissions_virt-about-live-migration">About live migration permissions</a></li>

@@ -18,8 +18,15 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"nodes-sno-worker-nodes","text":"Adding worker nodes to {{ sno }} clusters"}];
+const headings = [{"depth":1,"slug":"nodes-sno-worker-nodes","text":"Adding worker nodes to {{ sno }} clusters"},{"depth":2,"slug":"ai-sno-requirements-for-installing-worker-nodes_add-workers","text":"Requirements for installing single-node OpenShift worker nodes"},{"depth":2,"slug":"sno-adding-worker-nodes-to-sno-clusters_add-workers","text":"Adding worker nodes using the Assisted Installer and OpenShift Cluster Manager"},{"depth":2,"slug":"ai-adding-worker-nodes-using-the-assisted-installer-api_add-workers","text":"Adding worker nodes using the Assisted Installer API"},{"depth":3,"slug":"ai-authenticating-against-ai-rest-api_add-workers","text":"Authenticating against the Assisted Installer REST API"},{"depth":3,"slug":"ai-adding-worker-nodes-to-cluster_add-workers","text":"Adding worker nodes using the Assisted Installer REST API"},{"depth":2,"slug":"sno-adding-worker-nodes-to-single-node-clusters-manually_add-workers","text":"Adding worker nodes to single-node OpenShift clusters manually"},{"depth":2,"slug":"installation-approve-csrs_add-workers","text":"Approving the certificate signing requests for your machines"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Adding worker nodes to {{ sno }} clusters";
-const description = "You can add worker nodes to {{ sno }} clusters in case you need additional capacity in your cluster." || undefined;
+const description = "You can add worker nodes to single-node OpenShift clusters in case you need additional capacity in your cluster." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +49,7 @@ const pageCategory = ["nodes","nodes/nodes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Adding worker nodes to {{ sno }} clusters {#nodes-sno-worker-nodes}\n\nYou can add worker nodes to {{ sno }} clusters in case you need additional capacity in your cluster.\n\nSingle-node clusters reduce the host prerequisites for deployment to a single host. This is useful for deployments in constrained environments or at the network edge. However, sometimes you need to add additional capacity to your cluster, for example, in telecommunications and network edge scenarios. In these scenarios, you can add worker nodes to the single-node cluster.\n\n> [!NOTE]\n> Unlike multi-node clusters, by default all ingress traffic is routed to the single control-plane node, even after adding additional worker nodes.\n\nThere are several ways that you can add worker nodes to a single-node cluster. You can add worker nodes to a cluster manually, using [{{ cluster_manager_first }}](https://console.redhat.com/openshift/assisted-installer/clusters), or by using the Assisted Installer REST API directly.\n\n> [!IMPORTANT]\n> Adding worker nodes does not expand the cluster control plane, and it does not provide high availability to your cluster. For {{ sno }} clusters, high availability is handled by failing over to another site. When adding worker nodes to {{ sno }} clusters, a tested maximum of two worker nodes is recommended. Exceeding the recommended number of worker nodes might result in lower overall performance, including cluster failure.\n\n> [!NOTE]\n> To add worker nodes, you must have access to the {{ cluster_manager }}. This method is not supported when using the Agent-based installer to install a cluster in a disconnected environment.\n\n<a name=\"additional-resources_add-workers\"></a>**Additional resources**\n\n- [Minimum resource requirements for cluster installation](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-minimum-resource-requirements_installing-restricted-networks-bare-metal)\n- [Recommended practices for scaling the cluster](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_cluster-scaling)\n- [Creating a bootable ISO image on a USB drive](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#installing-with-usb-media_install-sno-installing-sno-with-the-assisted-installer)\n- [Booting from an ISO image served over HTTP using the Redfish API](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#install-booting-from-an-iso-over-http-redfish_install-sno-installing-sno-with-the-assisted-installer)\n- [Deleting nodes from a cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-deleting_nodes-nodes-working)\n- [User-provisioned DNS requirements](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#installation-dns-user-infra_installing-bare-metal-network-customizations)\n- [Approving the certificate signing requests for your machines](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#installation-approve-csrs_add-workers)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Adding worker nodes to {{ sno }} clusters {#nodes-sno-worker-nodes}\n\nYou can add worker nodes to single-node OpenShift clusters in case you need additional capacity in your cluster.\n\nSingle-node clusters reduce the host prerequisites for deployment to a single host. This is useful for deployments in constrained environments or at the network edge. However, sometimes you need to add additional capacity to your cluster, for example, in telecommunications and network edge scenarios. In these scenarios, you can add worker nodes to the single-node cluster.\n\n> [!NOTE]\n> Unlike multi-node clusters, by default all ingress traffic is routed to the single control-plane node, even after adding additional worker nodes.\n\nThere are several ways that you can add worker nodes to a single-node cluster. You can add worker nodes to a cluster manually, using [Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/assisted-installer/clusters), or by using the Assisted Installer REST API directly.\n\n> [!IMPORTANT]\n> Adding worker nodes does not expand the cluster control plane, and it does not provide high availability to your cluster. For single-node OpenShift clusters, high availability is handled by failing over to another site. When adding worker nodes to single-node OpenShift clusters, a tested maximum of two worker nodes is recommended. Exceeding the recommended number of worker nodes might result in lower overall performance, including cluster failure.\n\n> [!NOTE]\n> To add worker nodes, you must have access to the OpenShift Cluster Manager. This method is not supported when using the Agent-based installer to install a cluster in a disconnected environment.\n\n## Requirements for installing single-node OpenShift worker nodes {#ai-sno-requirements-for-installing-worker-nodes_add-workers}\n\nYou can review the following information to understand the requirements that you must meet before you install a single-node OpenShift worker node.\n\nTo install a single-node OpenShift worker node, you must address the following requirements:\n\n- **Administration host:** You must have a computer to prepare the ISO and to monitor the installation.\n- **Production-grade server:** Installing single-node OpenShift worker nodes requires a server with sufficient resources to run OpenShift Container Platform services and a production workload. **Minimum resource requirements**\n\n  | Profile | vCPU | Memory | Storage |\n  | --- | --- | --- | --- |\n  | Minimum | 2 vCPU cores | 8GB of RAM | 100GB |\n\n  > [!NOTE]\n  > One vCPU is equivalent to one physical core when simultaneous multithreading (SMT), or hyperthreading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio:\n  >\n  > (threads per core × cores) × sockets = vCPUs\n\n  The server must have a Baseboard Management Controller (BMC) when booting with virtual media.\n- **Networking:** The worker node server must have access to the internet or access to a local registry if it is not connected to a routable network. The worker node server must have a DHCP reservation or a static IP address and be able to access the single-node OpenShift cluster Kubernetes API, ingress route, and cluster node domain names. You must configure the DNS to resolve the IP address to each of the following fully qualified domain names (FQDN) for the single-node OpenShift cluster: **Required DNS records**\n\n  | Usage | FQDN | Description |\n  | --- | --- | --- |\n  | Kubernetes API | `api.<cluster_name>.<base_domain>` | Add a DNS A/AAAA or CNAME record. This record must be resolvable by clients external to the cluster. |\n  | Internal API | `api-int.<cluster_name>.<base_domain>` | Add a DNS A/AAAA or CNAME record when creating the ISO manually. This record must be resolvable by nodes within the cluster. |\n  | Ingress route | `*.apps.<cluster_name>.<base_domain>` | Add a wildcard DNS A/AAAA or CNAME record that targets the node. This record must be resolvable by clients external to the cluster. |\n\n  Without persistent IP addresses, communications between the `apiserver` and `etcd` might fail.\n\n## Adding worker nodes using the Assisted Installer and OpenShift Cluster Manager {#sno-adding-worker-nodes-to-sno-clusters_add-workers}\n\nYou can add worker nodes to single-node OpenShift clusters that were created on the [OpenShift Cluster Manager](https://console.redhat.com/openshift) by using the [Assisted Installer](https://console.redhat.com/openshift/assisted-installer/clusters/~new). This method provides and alternative to using command-line commands.\n\n> [!IMPORTANT]\n> Adding worker nodes to single-node OpenShift clusters is only supported for clusters running OpenShift Container Platform version 4.11 and up.\n\n**Prerequisites**\n\n- Have access to a single-node OpenShift cluster installed using [Assisted Installer](https://console.redhat.com/openshift/assisted-installer/clusters/~new).\n- Install the OpenShift CLI (`oc`).\n- Log in as a user with `cluster-admin` privileges.\n- Ensure that all the required DNS records exist for the cluster that you are adding the worker node to.\n\n**Procedure**\n\n1. Log in to the [OpenShift Cluster Manager](https://console.redhat.com/openshift) and click the single-node cluster that you want to add a worker node to.\n2. Click **Add hosts**, and download the discovery ISO for the new worker node, adding SSH public key and configuring cluster-wide proxy settings as required.\n3. Boot the target host using the discovery ISO, and wait for the host to be discovered in the console. After the host is discovered, start the installation.\n4. As the installation proceeds, the installation generates pending certificate signing requests (CSRs) for the worker node. When prompted, approve the pending CSRs to complete the installation.\n\n   When the worker node is sucessfully installed, it is listed as a worker node in the cluster web console.\n\n   > [!IMPORTANT]\n   > New worker nodes are encrypted using the same method as the original cluster.\n\n## Adding worker nodes using the Assisted Installer API {#ai-adding-worker-nodes-using-the-assisted-installer-api_add-workers}\n\nYou can add worker nodes to clusters by writing command-line commands against the Assisted Installer REST API. This method provides an alternative to using the web console.\n\nBefore you add worker nodes, you must log in to [OpenShift Cluster Manager](https://console.redhat.com/openshift/token/show) and authenticate against the API. After you authenticate, you can use the Assisted Installer REST API to add the nodes.\n\n### Authenticating against the Assisted Installer REST API {#ai-authenticating-against-ai-rest-api_add-workers}\n\nBefore you can use the Assisted Installer REST API, you must authenticate against the API using a JSON web token (JWT) that you generate.\n\n**Prerequisites**\n\n- Log in to [OpenShift Cluster Manager](https://console.redhat.com/openshift/assisted-installer/clusters) as a user with cluster creation privileges.\n- Install `jq`.\n\n**Procedure**\n\n1. Log in to [OpenShift Cluster Manager](https://console.redhat.com/openshift/token/show) and copy your API token.\n2. Set the `$OFFLINE_TOKEN` variable using the copied API token by running the following command:\n\n   ```terminal\n   $ export OFFLINE_TOKEN=<copied_api_token>\n   ```\n3. Set the `$JWT_TOKEN` variable using the previously set `$OFFLINE_TOKEN` variable:\n\n   ```terminal\n   $ export JWT_TOKEN=$(\n     curl \\\n     --silent \\\n     --header \"Accept: application/json\" \\\n     --header \"Content-Type: application/x-www-form-urlencoded\" \\\n     --data-urlencode \"grant_type=refresh_token\" \\\n     --data-urlencode \"client_id=cloud-services\" \\\n     --data-urlencode \"refresh_token=${OFFLINE_TOKEN}\" \\\n     \"https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token\" \\\n     | jq --raw-output \".access_token\"\n   )\n   ```\n\n   > [!NOTE]\n   > The JWT token is valid for 15 minutes only.\n\n**Verification**\n\n- Optional: Check that you can access the API by running the following command:\n\n  ```terminal\n  $ curl -s https://api.openshift.com/api/assisted-install/v2/component-versions -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq\n  ```\n\n  ```yaml {title=\"Example output\"}\n  {\n      \"release_tag\": \"v2.5.1\",\n      \"versions\":\n      {\n          \"assisted-installer\": \"registry.redhat.io/rhai-tech-preview/assisted-installer-rhel8:v1.0.0-175\",\n          \"assisted-installer-controller\": \"registry.redhat.io/rhai-tech-preview/assisted-installer-reporter-rhel8:v1.0.0-223\",\n          \"assisted-installer-service\": \"quay.io/app-sre/assisted-service:ac87f93\",\n          \"discovery-agent\": \"registry.redhat.io/rhai-tech-preview/assisted-installer-agent-rhel8:v1.0.0-156\"\n      }\n  }\n  ```\n\n### Adding worker nodes using the Assisted Installer REST API {#ai-adding-worker-nodes-to-cluster_add-workers}\n\nYou can add worker nodes to clusters by writing command-line commands against the Assisted Installer REST API. This method provides an alternative to using the web console.\n\n**Prerequisites**\n\n- Install the OpenShift Cluster Manager CLI (`ocm`).\n- Log in to [OpenShift Cluster Manager](https://console.redhat.com/openshift) as a user with cluster creation privileges.\n- Install `jq`.\n- Ensure that all the required DNS records exist for the cluster that you are adding the worker node to.\n\n**Procedure**\n\n1. Authenticate against the Assisted Installer REST API and generate a JSON web token (JWT) for your session. The generated JWT token is valid for 15 minutes only.\n2. Set the `$API_URL` variable by running the following command:\n\n   ```terminal\n   $ export API_URL=<api_url>\n   ```\n\n   Replace `<api_url>` with the Assisted Installer API URL, for example, `https://api.openshift.com`\n3. Import the single-node OpenShift cluster by running the following commands:\n\n   1. Set the `$OPENSHIFT_CLUSTER_ID` variable. Log in to the cluster and run the following command:\n\n      ```terminal\n      $ export OPENSHIFT_CLUSTER_ID=$(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}')\n      ```\n   2. Set the `$CLUSTER_REQUEST` variable that is used to import the cluster:\n\n      ```terminal\n      $ export CLUSTER_REQUEST=$(jq --null-input --arg openshift_cluster_id \"$OPENSHIFT_CLUSTER_ID\" '{\n        \"api_vip_dnsname\": \"<api_vip>\",\n        \"openshift_cluster_id\": $openshift_cluster_id,\n        \"name\": \"<openshift_cluster_name>\"\n      }')\n      ```\n\n      where:\n\n      `<api_vip>`\n      :   Specifies the hostname for the cluster’s API server. This can be the DNS domain for the API server or the IP address of the single node which the worker node can reach. For example, `api.compute-1.example.com`.\n\n      `<openshift_cluster_name>`\n      :   Specifies the plain text name for the cluster. The cluster name should match the cluster name that was set during the Day 1 cluster installation.\n   3. Import the cluster and set the `$CLUSTER_ID` variable. Run the following command:\n\n      ```terminal\n      $ CLUSTER_ID=$(curl \"$API_URL/api/assisted-install/v2/clusters/import\" -H \"Authorization: Bearer ${JWT_TOKEN}\" -H 'accept: application/json' -H 'Content-Type: application/json' \\\n        -d \"$CLUSTER_REQUEST\" | tee /dev/stderr | jq -r '.id')\n      ```\n4. Generate the `InfraEnv` resource for the cluster and set the `$INFRA_ENV_ID` variable by running the following commands:\n\n   1. Download the [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).\n   2. Set the `$INFRA_ENV_REQUEST` variable:\n\n      ```terminal\n      export INFRA_ENV_REQUEST=$(jq --null-input \\\n          --slurpfile pull_secret <path_to_pull_secret_file> \\//\n          --arg ssh_pub_key \"$(cat <path_to_ssh_pub_key>)\" \\//\n          --arg cluster_id \"$CLUSTER_ID\" '{\n        \"name\": \"<infraenv_name>\",\n        \"pull_secret\": $pull_secret[0] | tojson,\n        \"cluster_id\": $cluster_id,\n        \"ssh_authorized_key\": $ssh_pub_key,\n        \"image_type\": \"<iso_image_type>\"\n      }')\n      ```\n\n      where:\n\n      `<path_to_pull_secret_file>`\n      :   Specifies the path to the local file containing the downloaded [pull secret from Red Hat OpenShift Cluster Manager](https://console.redhat.com/openshift/install/pull-secret).\n\n      `<path_to_ssh_pub_key>`\n      :   Specifies the path to the public SSH key required to access the host. If you do not set this value, you cannot access the host while in discovery mode.\n\n      `<infraenv_name>`\n      :   Specifies the plain text name for the `InfraEnv` resource.\n\n      `<iso_image_type>`\n      :   Specifies the ISO image type, either `full-iso` or `minimal-iso`.\n   3. Post the `$INFRA_ENV_REQUEST` to the [/v2/infra-envs](https://api.openshift.com/?urls.primaryName=assisted-service%20service#/installer/RegisterInfraEnv) API and set the `$INFRA_ENV_ID` variable:\n\n      ```terminal\n      $ INFRA_ENV_ID=$(curl \"$API_URL/api/assisted-install/v2/infra-envs\" -H \"Authorization: Bearer ${JWT_TOKEN}\" -H 'accept: application/json' -H 'Content-Type: application/json' -d \"$INFRA_ENV_REQUEST\" | tee /dev/stderr | jq -r '.id')\n      ```\n5. Get the URL of the discovery ISO for the cluster worker node by running the following command:\n\n   ```terminal\n   $ curl -s \"$API_URL/api/assisted-install/v2/infra-envs/$INFRA_ENV_ID\" -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq -r '.download_url'\n   ```\n\n   ```terminal {title=\"Example output\"}\n   https://api.openshift.com/api/assisted-images/images/41b91e72-c33e-42ee-b80f-b5c5bbf6431a?arch=x86_64&image_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTYwMjYzNzEsInN1YiI6IjQxYjkxZTcyLWMzM2UtNDJlZS1iODBmLWI1YzViYmY2NDMxYSJ9.1EX_VGaMNejMhrAvVRBS7PDPIQtbOOc8LtG8OukE1a4&type=minimal-iso&version=$VERSION\n   ```\n6. Download the ISO:\n\n   ```terminal\n   $ curl -L -s '<iso_url>' --output rhcos-live-minimal.iso\n   ```\n\n   Replace `<iso_url>` with the URL for the ISO from the previous step.\n7. Boot the new worker host from the downloaded `rhcos-live-minimal.iso`.\n8. Get the list of hosts in the cluster that are *not* installed. Keep running the following command until the new host shows up:\n\n   ```terminal\n   $ curl -s \"$API_URL/api/assisted-install/v2/clusters/$CLUSTER_ID\" -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq -r '.hosts[] | select(.status != \"installed\").id'\n   ```\n\n   ```terminal {title=\"Example output\"}\n   2294ba03-c264-4f11-ac08-2f1bb2f8c296\n   ```\n9. Set the `$HOST_ID` variable for the new worker node, for example:\n\n   ```terminal\n   $ HOST_ID=<host_id>\n   ```\n\n   Replace `<host_id>` with the host ID from the previous step.\n10. Check that the host is ready to install by running the following command:\n\n    > [!NOTE]\n    > Ensure that you copy the entire command including the complete `jq` expression.\n\n    ```terminal\n    $ curl -s $API_URL/api/assisted-install/v2/clusters/$CLUSTER_ID -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq '\n    def host_name($host):\n        if (.suggested_hostname // \"\") == \"\" then\n            if (.inventory // \"\") == \"\" then\n                \"Unknown hostname, please wait\"\n            else\n                .inventory | fromjson | .hostname\n            end\n        else\n            .suggested_hostname\n        end;\n\n    def is_notable($validation):\n        [\"failure\", \"pending\", \"error\"] | any(. == $validation.status);\n\n    def notable_validations($validations_info):\n        [\n            $validations_info // \"{}\"\n            | fromjson\n            | to_entries[].value[]\n            | select(is_notable(.))\n        ];\n\n    {\n        \"Hosts validations\": {\n            \"Hosts\": [\n                .hosts[]\n                | select(.status != \"installed\")\n                | {\n                    \"id\": .id,\n                    \"name\": host_name(.),\n                    \"status\": .status,\n                    \"notable_validations\": notable_validations(.validations_info)\n                }\n            ]\n        },\n        \"Cluster validations info\": {\n            \"notable_validations\": notable_validations(.validations_info)\n        }\n    }\n    ' -r\n    ```\n\n    ```terminal {title=\"Example output\"}\n    {\n      \"Hosts validations\": {\n        \"Hosts\": [\n          {\n            \"id\": \"97ec378c-3568-460c-bc22-df54534ff08f\",\n            \"name\": \"localhost.localdomain\",\n            \"status\": \"insufficient\",\n            \"notable_validations\": [\n              {\n                \"id\": \"ntp-synced\",\n                \"status\": \"failure\",\n                \"message\": \"Host couldn't synchronize with any NTP server\"\n              },\n              {\n                \"id\": \"api-domain-name-resolved-correctly\",\n                \"status\": \"error\",\n                \"message\": \"Parse error for domain name resolutions result\"\n              },\n              {\n                \"id\": \"api-int-domain-name-resolved-correctly\",\n                \"status\": \"error\",\n                \"message\": \"Parse error for domain name resolutions result\"\n              },\n              {\n                \"id\": \"apps-domain-name-resolved-correctly\",\n                \"status\": \"error\",\n                \"message\": \"Parse error for domain name resolutions result\"\n              }\n            ]\n          }\n        ]\n      },\n      \"Cluster validations info\": {\n        \"notable_validations\": []\n      }\n    }\n    ```\n11. When the previous command shows that the host is ready, start the installation using the [/v2/infra-envs/{{ infra_env_id }}/hosts/{{ host_id }}/actions/install](https://api.openshift.com/?urls.primaryName=assisted-service%20service#/installer/v2InstallHost) API by running the following command:\n\n    ```terminal\n    $ curl -X POST -s \"$API_URL/api/assisted-install/v2/infra-envs/$INFRA_ENV_ID/hosts/$HOST_ID/actions/install\"  -H \"Authorization: Bearer ${JWT_TOKEN}\"\n    ```\n12. As the installation proceeds, the installation generates pending certificate signing requests (CSRs) for the worker node.\n\n    > [!IMPORTANT]\n    > You must approve the CSRs to complete the installation.\n\n    Keep running the following API call to monitor the cluster installation:\n\n    ```terminal\n    $ curl -s \"$API_URL/api/assisted-install/v2/clusters/$CLUSTER_ID\" -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq '{\n        \"Cluster day-2 hosts\":\n            [\n                .hosts[]\n                | select(.status != \"installed\")\n                | {id, requested_hostname, status, status_info, progress, status_updated_at, updated_at, infra_env_id, cluster_id, created_at}\n            ]\n    }'\n    ```\n\n    ```terminal {title=\"Example output\"}\n    {\n      \"Cluster day-2 hosts\": [\n        {\n          \"id\": \"a1c52dde-3432-4f59-b2ae-0a530c851480\",\n          \"requested_hostname\": \"control-plane-1\",\n          \"status\": \"added-to-existing-cluster\",\n          \"status_info\": \"Host has rebooted and no further updates will be posted. Please check console for progress and to possibly approve pending CSRs\",\n          \"progress\": {\n            \"current_stage\": \"Done\",\n            \"installation_percentage\": 100,\n            \"stage_started_at\": \"2022-07-08T10:56:20.476Z\",\n            \"stage_updated_at\": \"2022-07-08T10:56:20.476Z\"\n          },\n          \"status_updated_at\": \"2022-07-08T10:56:20.476Z\",\n          \"updated_at\": \"2022-07-08T10:57:15.306369Z\",\n          \"infra_env_id\": \"b74ec0c3-d5b5-4717-a866-5b6854791bd3\",\n          \"cluster_id\": \"8f721322-419d-4eed-aa5b-61b50ea586ae\",\n          \"created_at\": \"2022-07-06T22:54:57.161614Z\"\n        }\n      ]\n    }\n    ```\n13. Optional: Run the following command to see all the events for the cluster:\n\n    ```terminal\n    $ curl -s \"$API_URL/api/assisted-install/v2/events?cluster_id=$CLUSTER_ID\" -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq -c '.[] | {severity, message, event_time, host_id}'\n    ```\n\n    ```terminal {title=\"Example output\"}\n    {\"severity\":\"info\",\"message\":\"Host compute-0: updated status from insufficient to known (Host is ready to be installed)\",\"event_time\":\"2022-07-08T11:21:46.346Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n    {\"severity\":\"info\",\"message\":\"Host compute-0: updated status from known to installing (Installation is in progress)\",\"event_time\":\"2022-07-08T11:28:28.647Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n    {\"severity\":\"info\",\"message\":\"Host compute-0: updated status from installing to installing-in-progress (Starting installation)\",\"event_time\":\"2022-07-08T11:28:52.068Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n    {\"severity\":\"info\",\"message\":\"Uploaded logs for host compute-0 cluster 8f721322-419d-4eed-aa5b-61b50ea586ae\",\"event_time\":\"2022-07-08T11:29:47.802Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n    {\"severity\":\"info\",\"message\":\"Host compute-0: updated status from installing-in-progress to added-to-existing-cluster (Host has rebooted and no further updates will be posted. Please check console for progress and to possibly approve pending CSRs)\",\"event_time\":\"2022-07-08T11:29:48.259Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n    {\"severity\":\"info\",\"message\":\"Host: compute-0, reached installation stage Rebooting\",\"event_time\":\"2022-07-08T11:29:48.261Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n    ```\n14. Log in to the cluster and approve the pending CSRs to complete the installation.\n\n**Verification**\n\n- Check that the new worker node was successfully added to the cluster with a status of `Ready`:\n\n  ```terminal\n  $ oc get nodes\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                           STATUS   ROLES           AGE   VERSION\n  control-plane-1.example.com    Ready    master,worker   56m   v1.35.4\n  compute-1.example.com          Ready    worker          11m   v1.35.4\n  ```\n\n## Adding worker nodes to single-node OpenShift clusters manually {#sno-adding-worker-nodes-to-single-node-clusters-manually_add-workers}\n\nYou can add a worker node to a single-node OpenShift cluster manually by booting the worker node from Red Hat Enterprise Linux CoreOS (RHCOS) ISO and by using the cluster `worker.ign` file to join the new worker node to the cluster.\n\n**Prerequisites**\n\n- Install a single-node OpenShift cluster on bare metal.\n- Install the OpenShift CLI (`oc`).\n- Log in as a user with `cluster-admin` privileges.\n- Ensure that all the required DNS records exist for the cluster that you are adding the worker node to.\n\n**Procedure**\n\n1. Set the OpenShift Container Platform version:\n\n   ```terminal\n   $ OCP_VERSION=<ocp_version>\n   ```\n\n   Replace `<ocp_version>` with the current version, for example, `latest-{{ product_version }}`\n2. Set the host architecture:\n\n   ```terminal\n   $ ARCH=<architecture>\n   ```\n\n   Replace `<architecture>` with the target host architecture, for example, `aarch64` or `x86_64`.\n3. Get the `worker.ign` data from the running single-node cluster by running the following command:\n\n   ```terminal\n   $ oc extract -n openshift-machine-api secret/worker-user-data-managed --keys=userData --to=- > worker.ign\n   ```\n4. Host the `worker.ign` file on a web server accessible from your network.\n5. Download the OpenShift Container Platform installer and make it available for use by running the following commands:\n\n   ```terminal\n   $ curl -k https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_VERSION/openshift-install-linux.tar.gz > openshift-install-linux.tar.gz\n   ```\n\n   ```terminal\n   $ tar zxvf openshift-install-linux.tar.gz\n   ```\n\n   ```terminal\n   $ chmod +x openshift-install\n   ```\n6. Retrieve the RHCOS ISO URL:\n\n   ```terminal\n   $ ISO_URL=$(./openshift-install coreos print-stream-json | grep location | grep $ARCH | grep iso | cut -d\\\" -f4)\n   ```\n7. Download the RHCOS ISO:\n\n   ```terminal\n   $ curl -L $ISO_URL -o rhcos-live.iso\n   ```\n8. Use the RHCOS ISO and the hosted `worker.ign` file to install the worker node:\n\n   1. Boot the target host with the RHCOS ISO and your preferred method of installation.\n   2. When the target host has booted from the RHCOS ISO, open a console on the target host.\n   3. If your local network does not have DHCP enabled, you need to create an ignition file with the new hostname and configure the worker node static IP address before running the RHCOS installation. Perform the following steps:\n\n      1. Configure the worker host network connection with a static IP. Run the following command on the target host console:\n\n         ```terminal\n         $ nmcli con mod <network_interface> ipv4.method manual /\n         ipv4.addresses <static_ip> ipv4.gateway <network_gateway> ipv4.dns <dns_server> /\n         802-3-ethernet.mtu 9000\n         ```\n\n         where:\n\n         `<static_ip>`\n         :   Specifies the host static IP address and CIDR, for example, `10.1.101.50/24`.\n\n         `<network_gateway>`\n         :   Specifies the network gateway, for example, `10.1.101.1`.\n      2. Activate the modified network interface:\n\n         ```terminal\n         $ nmcli con up <network_interface>\n         ```\n      3. Create a new ignition file `new-worker.ign` that includes a reference to the original `worker.ign` and an additional instruction that the `coreos-installer` program uses to populate the `/etc/hostname` file on the new worker host. For example:\n\n         ```json\n         {\n           \"ignition\":{\n             \"version\":\"3.2.0\",\n             \"config\":{\n               \"merge\":[\n                 {\n                   \"source\":\"<hosted_worker_ign_file>\"\n                 }\n               ]\n             }\n           },\n           \"storage\":{\n             \"files\":[\n               {\n                 \"path\":\"/etc/hostname\",\n                 \"contents\":{\n                   \"source\":\"data:,<new_fqdn>\"\n                 },\n                 \"mode\":420,\n                 \"overwrite\":true,\n                 \"path\":\"/etc/hostname\"\n               }\n             ]\n           }\n         }\n         ```\n\n         where:\n\n         `<hosted_worker_ign_file>`\n         :   Specifies the locally accessible URL for the original `worker.ign` file. For example, `http://webserver.example.com/worker.ign`.\n\n         `<new_fqdn>`\n         :   Specifies the new FQDN that you set for the worker node. For example, `new-worker.example.com`.\n      4. Host the `new-worker.ign` file on a web server accessible from your network.\n      5. Run the following `coreos-installer` command, passing in the `ignition-url` and hard disk details:\n\n         ```terminal\n         $ sudo coreos-installer install --copy-network /\n         --ignition-url=<new_worker_ign_file> <hard_disk> --insecure-ignition\n         ```\n\n         where:\n\n         `<new_worker_ign_file>`\n         :   Specifies the locally accessible URL for the hosted `new-worker.ign` file, for example, `http://webserver.example.com/new-worker.ign`.\n\n         `<hard_disk>`\n         :   Specifies the hard disk where you install RHCOS, for example, `/dev/sda`.\n   4. For networks that have DHCP enabled, you do not need to set a static IP. Run the following `coreos-installer` command from the target host console to install the system:\n\n      ```terminal\n      $ coreos-installer install --ignition-url=<hosted_worker_ign_file> <hard_disk>\n      ```\n   5. To manually enable DHCP, apply the following `NMStateConfig` CR to the single-node OpenShift cluster:\n\n      ```yaml\n      apiVersion: agent-install.openshift.io/v1\n      kind: NMStateConfig\n      metadata:\n        name: nmstateconfig-dhcp\n        namespace: example-sno\n        labels:\n          nmstate_config_cluster_name: <nmstate_config_cluster_label>\n      spec:\n        config:\n          interfaces:\n            - name: eth0\n              type: ethernet\n              state: up\n              ipv4:\n                enabled: true\n                dhcp: true\n              ipv6:\n                enabled: false\n        interfaces:\n          - name: \"eth0\"\n            macAddress: \"AA:BB:CC:DD:EE:11\"\n      ```\n\n      > [!IMPORTANT]\n      > The `NMStateConfig` CR is required for successful deployment of worker nodes with static IP addresses and for adding a worker node with a dynamic IP address if the single-node OpenShift was deployed with a static IP address. The cluster network DHCP does not automatically set these network settings for the new worker node.\n9. As the installation proceeds, the installation generates pending certificate signing requests (CSRs) for the worker node. When prompted, approve the pending CSRs to complete the installation.\n10. When the installation is complete, reboot the host. The host joins the cluster as a new worker node.\n\n**Verification**\n\n- Check that the new worker node was successfully added to the cluster with a status of `Ready`:\n\n  ```terminal\n  $ oc get nodes\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                           STATUS   ROLES           AGE   VERSION\n  control-plane-1.example.com    Ready    master,worker   56m   v1.35.4\n  compute-1.example.com          Ready    worker          11m   v1.35.4\n  ```\n\n## Approving the certificate signing requests for your machines {#installation-approve-csrs_add-workers}\n\nTo allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.\n\n**Prerequisites**\n\n- You added machines to your cluster.\n\n**Procedure**\n\n1. Confirm that the cluster recognizes the machines:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME      STATUS    ROLES   AGE  VERSION\n   master-0  Ready     master  63m  v1.35.4\n   master-1  Ready     master  63m  v1.35.4\n   master-2  Ready     master  64m  v1.35.4\n   ```\n\n   The output lists all of the machines that you created.\n\n   > [!NOTE]\n   > The preceding output might not include the compute nodes until you approve some CSRs.\n2. Review the pending CSRs and ensure that you see the client requests with the `Pending` or `Approved` status for each machine that you added to the cluster:\n\n   ```terminal\n   $ oc get csr\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME        AGE     REQUESTOR                                                                   CONDITION\n   csr-8b2br   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending\n   csr-8vnps   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending\n   ...\n   ```\n\n   In this example, two machines are joining the cluster. You might see more approved CSRs in the list.\n3. If the CSRs were not approved, after all of the pending CSRs for the machines you added are in `Pending` status, approve the CSRs for your cluster machines:\n\n   > [!NOTE]\n   > You must approve your CSRs within an hour of adding the machines to the cluster. If you do not approve them within an hour, the certificates rotate, and more than two certificates are present for each node. You must approve all of these certificates. After you approve the client CSR, the kubelet creates a secondary CSR for the serving certificate, which requires manual approval. The `machine-approver` then automatically approves later serving certificate renewal requests if the kubelet requests a new certificate with the same parameters.\n\n   > [!NOTE]\n   > For clusters running on platforms that are not machine API enabled, such as bare metal and other user-provisioned infrastructure, you must implement a method of automatically approving the kubelet serving certificate requests (CSRs). If you do not approve a request, the `oc exec`, `oc rsh`, and `oc logs` commands cannot succeed, because the API server requires a serving certificate when it connects to the kubelet. Any operation that contacts the kubelet endpoint requires this certificate approval to be in place. The method must watch for new CSRs, confirm that the `node-bootstrapper` service account in the `system:node` or `system:admin` groups submitted the CSR, and confirm the identity of the node.\n\n   - To approve them individually, run the following command for each valid CSR:\n\n     ```terminal\n     $ oc adm certificate approve <csr_name>\n     ```\n\n     where:\n\n     `<csr_name>`\n     :   Specifies the name of a CSR from the list of current CSRs. \\*   To approve all pending CSRs, run the following command:\n\n     ```terminal\n     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{\"\\n\"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve\n     ```\n\n     > [!NOTE]\n     > Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.\n4. After you approve your client requests, review the server requests for each machine that you added to the cluster:\n\n   ```terminal\n   $ oc get csr\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME        AGE     REQUESTOR                                                                   CONDITION\n   csr-bfd72   5m26s   system:node:ip-10-0-50-126.us-east-2.compute.internal                       Pending\n   csr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal                       Pending\n   ...\n   ```\n5. If the remaining CSRs are not approved, and are in the `Pending` status, approve the CSRs for your cluster machines:\n\n   - To approve them individually, run the following command for each valid CSR:\n\n     ```terminal\n     $ oc adm certificate approve <csr_name>\n     ```\n\n     where:\n\n     `<csr_name>`\n     :   Specifies the name of a CSR from the list of current CSRs. \\*   To approve all pending CSRs, run the following command:\n\n     ```terminal\n     $ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{\"\\n\"}}{{end}}{{end}}' | xargs oc adm certificate approve\n     ```\n6. After you approve all client and server CSRs, the machines have the `Ready` status. Verify this by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME      STATUS    ROLES   AGE  VERSION\n   master-0  Ready     master  73m  v1.35.4\n   master-1  Ready     master  73m  v1.35.4\n   master-2  Ready     master  74m  v1.35.4\n   worker-0  Ready     worker  11m  v1.35.4\n   worker-1  Ready     worker  11m  v1.35.4\n   ```\n\n   > [!NOTE]\n   > You might need to wait a few minutes after approval of the server CSRs for the machines to change to the `Ready` status.\n\n<a name=\"additional-resources_add-workers\"></a>**Additional resources**\n\n- [Minimum resource requirements for cluster installation](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-minimum-resource-requirements_installing-restricted-networks-bare-metal)\n- [Recommended practices for scaling the cluster](/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-control-plane-practices#recommended-scale-practices_cluster-scaling)\n- [Creating a bootable ISO image on a USB drive](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#installing-with-usb-media_install-sno-installing-sno-with-the-assisted-installer)\n- [Booting from an ISO image served over HTTP using the Redfish API](/openshift-docs-markdown/installing/installing_sno/install-sno-installing-sno#install-booting-from-an-iso-over-http-redfish_install-sno-installing-sno-with-the-assisted-installer)\n- [Deleting nodes from a cluster](/openshift-docs-markdown/nodes/nodes/nodes-nodes-working#nodes-nodes-working-deleting_nodes-nodes-working)\n- [User-provisioned DNS requirements](/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-bare-metal-network-customizations#installation-dns-user-infra_installing-bare-metal-network-customizations)\n- [Approving the certificate signing requests for your machines](/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes#installation-approve-csrs_add-workers)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-sno-worker-nodes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,8 +101,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-sno-worker-nodes" class="group scroll-mt-20">Adding worker nodes to {"{"}{"{"} sno {"}"}{"}"} clusters<a href="#nodes-sno-worker-nodes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can add worker nodes to {"{"}{"{"} sno {"}"}{"}"} clusters in case you need additional capacity in your cluster.</p>
+      <p>You can add worker nodes to single-node OpenShift clusters in case you need additional capacity in your cluster.</p>
       <p>Single-node clusters reduce the host prerequisites for deployment to a single host. This is useful for deployments in constrained environments or at the network edge. However, sometimes you need to add additional capacity to your cluster, for example, in telecommunications and network edge scenarios. In these scenarios, you can add worker nodes to the single-node cluster.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
@@ -103,26 +109,484 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Unlike multi-node clusters, by default all ingress traffic is routed to the single control-plane node, even after adding additional worker nodes.</p>
         </AlertDescription>
       </Alert>
-      <p>There are several ways that you can add worker nodes to a single-node cluster. You can add worker nodes to a cluster manually, using <a href="https://console.redhat.com/openshift/assisted-installer/clusters">{"{"}{"{"} cluster_manager_first {"}"}{"}"}</a>, or by using the Assisted Installer REST API directly.</p>
+      <p>There are several ways that you can add worker nodes to a single-node cluster. You can add worker nodes to a cluster manually, using <a href="https://console.redhat.com/openshift/assisted-installer/clusters">Red Hat OpenShift Cluster Manager</a>, or by using the Assisted Installer REST API directly.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
-          <p>Adding worker nodes does not expand the cluster control plane, and it does not provide high availability to your cluster. For {"{"}{"{"} sno {"}"}{"}"} clusters, high availability is handled by failing over to another site. When adding worker nodes to {"{"}{"{"} sno {"}"}{"}"} clusters, a tested maximum of two worker nodes is recommended. Exceeding the recommended number of worker nodes might result in lower overall performance, including cluster failure.</p>
+          <p>Adding worker nodes does not expand the cluster control plane, and it does not provide high availability to your cluster. For single-node OpenShift clusters, high availability is handled by failing over to another site. When adding worker nodes to single-node OpenShift clusters, a tested maximum of two worker nodes is recommended. Exceeding the recommended number of worker nodes might result in lower overall performance, including cluster failure.</p>
         </AlertDescription>
       </Alert>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>To add worker nodes, you must have access to the {"{"}{"{"} cluster_manager {"}"}{"}"}. This method is not supported when using the Agent-based installer to install a cluster in a disconnected environment.</p>
+          <p>To add worker nodes, you must have access to the OpenShift Cluster Manager. This method is not supported when using the Agent-based installer to install a cluster in a disconnected environment.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/ai-sno-requirements-for-installing-worker-nodes.md"></p>
-      <p class="/modules/sno-adding-worker-nodes-to-sno-clusters.md"></p>
-      <p class="/modules/ai-adding-worker-nodes-using-the-assisted-installer-api.md"></p>
-      <p class="/modules/ai-authenticating-against-ai-rest-api.md"></p>
-      <p class="/modules/ai-adding-worker-nodes-to-cluster.md"></p>
-      <p class="/modules/sno-adding-worker-nodes-to-sno-clusters-manually.md"></p>
-      <p class="/modules/installation-approve-csrs.md"></p>
+      <h2 id="ai-sno-requirements-for-installing-worker-nodes_add-workers" class="group scroll-mt-20">Requirements for installing single-node OpenShift worker nodes<a href="#ai-sno-requirements-for-installing-worker-nodes_add-workers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can review the following information to understand the requirements that you must meet before you install a single-node OpenShift worker node.</p>
+      <p>To install a single-node OpenShift worker node, you must address the following requirements:</p>
+      <ul>
+      <li><strong>Administration host:</strong> You must have a computer to prepare the ISO and to monitor the installation.</li>
+      <li>
+      <strong>Production-grade server:</strong> Installing single-node OpenShift worker nodes requires a server with sufficient resources to run OpenShift Container Platform services and a production workload. <strong>Minimum resource requirements</strong>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Profile</TableHead>
+      <TableHead>vCPU</TableHead>
+      <TableHead>Memory</TableHead>
+      <TableHead>Storage</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Minimum</TableCell>
+      <TableCell>2 vCPU cores</TableCell>
+      <TableCell>8GB of RAM</TableCell>
+      <TableCell>100GB</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>One vCPU is equivalent to one physical core when simultaneous multithreading (SMT), or hyperthreading, is not enabled. When enabled, use the following formula to calculate the corresponding ratio:</p>
+          <p>(threads per core × cores) × sockets = vCPUs</p>
+        </AlertDescription>
+      </Alert>
+      <p>The server must have a Baseboard Management Controller (BMC) when booting with virtual media.</p>
+      </li>
+      <li>
+      <strong>Networking:</strong> The worker node server must have access to the internet or access to a local registry if it is not connected to a routable network. The worker node server must have a DHCP reservation or a static IP address and be able to access the single-node OpenShift cluster Kubernetes API, ingress route, and cluster node domain names. You must configure the DNS to resolve the IP address to each of the following fully qualified domain names (FQDN) for the single-node OpenShift cluster: <strong>Required DNS records</strong>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Usage</TableHead>
+      <TableHead>FQDN</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Kubernetes API</TableCell>
+      <TableCell><code>api.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell>Add a DNS A/AAAA or CNAME record. This record must be resolvable by clients external to the cluster.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Internal API</TableCell>
+      <TableCell><code>api-int.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell>Add a DNS A/AAAA or CNAME record when creating the ISO manually. This record must be resolvable by nodes within the cluster.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Ingress route</TableCell>
+      <TableCell><code>*.apps.&lt;cluster_name&gt;.&lt;base_domain&gt;</code></TableCell>
+      <TableCell>Add a wildcard DNS A/AAAA or CNAME record that targets the node. This record must be resolvable by clients external to the cluster.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>Without persistent IP addresses, communications between the <code>apiserver</code> and <code>etcd</code> might fail.</p>
+      </li>
+      </ul>
+      <h2 id="sno-adding-worker-nodes-to-sno-clusters_add-workers" class="group scroll-mt-20">Adding worker nodes using the Assisted Installer and OpenShift Cluster Manager<a href="#sno-adding-worker-nodes-to-sno-clusters_add-workers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add worker nodes to single-node OpenShift clusters that were created on the <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> by using the <a href="https://console.redhat.com/openshift/assisted-installer/clusters/~new">Assisted Installer</a>. This method provides and alternative to using command-line commands.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Adding worker nodes to single-node OpenShift clusters is only supported for clusters running OpenShift Container Platform version 4.11 and up.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Have access to a single-node OpenShift cluster installed using <a href="https://console.redhat.com/openshift/assisted-installer/clusters/~new">Assisted Installer</a>.</li>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Log in as a user with <code>cluster-admin</code> privileges.</li>
+      <li>Ensure that all the required DNS records exist for the cluster that you are adding the worker node to.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> and click the single-node cluster that you want to add a worker node to.</li>
+      <li>Click <strong>Add hosts</strong>, and download the discovery ISO for the new worker node, adding SSH public key and configuring cluster-wide proxy settings as required.</li>
+      <li>Boot the target host using the discovery ISO, and wait for the host to be discovered in the console. After the host is discovered, start the installation.</li>
+      <li>
+      As the installation proceeds, the installation generates pending certificate signing requests (CSRs) for the worker node. When prompted, approve the pending CSRs to complete the installation.
+      <p>When the worker node is sucessfully installed, it is listed as a worker node in the cluster web console.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>New worker nodes are encrypted using the same method as the original cluster.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="ai-adding-worker-nodes-using-the-assisted-installer-api_add-workers" class="group scroll-mt-20">Adding worker nodes using the Assisted Installer API<a href="#ai-adding-worker-nodes-using-the-assisted-installer-api_add-workers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add worker nodes to clusters by writing command-line commands against the Assisted Installer REST API. This method provides an alternative to using the web console.</p>
+      <p>Before you add worker nodes, you must log in to <a href="https://console.redhat.com/openshift/token/show">OpenShift Cluster Manager</a> and authenticate against the API. After you authenticate, you can use the Assisted Installer REST API to add the nodes.</p>
+      <h3 id="ai-authenticating-against-ai-rest-api_add-workers" class="group scroll-mt-20">Authenticating against the Assisted Installer REST API<a href="#ai-authenticating-against-ai-rest-api_add-workers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Before you can use the Assisted Installer REST API, you must authenticate against the API using a JSON web token (JWT) that you generate.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Log in to <a href="https://console.redhat.com/openshift/assisted-installer/clusters">OpenShift Cluster Manager</a> as a user with cluster creation privileges.</li>
+      <li>Install <code>jq</code>.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to <a href="https://console.redhat.com/openshift/token/show">OpenShift Cluster Manager</a> and copy your API token.</li>
+      <li>
+      Set the <code>$OFFLINE_TOKEN</code> variable using the copied API token by running the following command:
+      <CodeBlock code={"$ export OFFLINE_TOKEN=<copied_api_token>"} lang="terminal" />
+      </li>
+      <li>
+      Set the <code>$JWT_TOKEN</code> variable using the previously set <code>$OFFLINE_TOKEN</code> variable:
+      <CodeBlock code={"$ export JWT_TOKEN=$(\n  curl \\\n  --silent \\\n  --header \"Accept: application/json\" \\\n  --header \"Content-Type: application/x-www-form-urlencoded\" \\\n  --data-urlencode \"grant_type=refresh_token\" \\\n  --data-urlencode \"client_id=cloud-services\" \\\n  --data-urlencode \"refresh_token=${OFFLINE_TOKEN}\" \\\n  \"https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token\" \\\n  | jq --raw-output \".access_token\"\n)"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The JWT token is valid for 15 minutes only.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Optional: Check that you can access the API by running the following command:
+      <CodeBlock code={"$ curl -s https://api.openshift.com/api/assisted-install/v2/component-versions -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq"} lang="terminal" />
+      <CodeBlock code={"{\n    \"release_tag\": \"v2.5.1\",\n    \"versions\":\n    {\n        \"assisted-installer\": \"registry.redhat.io/rhai-tech-preview/assisted-installer-rhel8:v1.0.0-175\",\n        \"assisted-installer-controller\": \"registry.redhat.io/rhai-tech-preview/assisted-installer-reporter-rhel8:v1.0.0-223\",\n        \"assisted-installer-service\": \"quay.io/app-sre/assisted-service:ac87f93\",\n        \"discovery-agent\": \"registry.redhat.io/rhai-tech-preview/assisted-installer-agent-rhel8:v1.0.0-156\"\n    }\n}"} lang="yaml" title="Example output" />
+      </li>
+      </ul>
+      <h3 id="ai-adding-worker-nodes-to-cluster_add-workers" class="group scroll-mt-20">Adding worker nodes using the Assisted Installer REST API<a href="#ai-adding-worker-nodes-to-cluster_add-workers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can add worker nodes to clusters by writing command-line commands against the Assisted Installer REST API. This method provides an alternative to using the web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install the OpenShift Cluster Manager CLI (<code>ocm</code>).</li>
+      <li>Log in to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> as a user with cluster creation privileges.</li>
+      <li>Install <code>jq</code>.</li>
+      <li>Ensure that all the required DNS records exist for the cluster that you are adding the worker node to.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Authenticate against the Assisted Installer REST API and generate a JSON web token (JWT) for your session. The generated JWT token is valid for 15 minutes only.</li>
+      <li>
+      Set the <code>$API_URL</code> variable by running the following command:
+      <CodeBlock code={"$ export API_URL=<api_url>"} lang="terminal" />
+      <p>Replace <code>&lt;api_url&gt;</code> with the Assisted Installer API URL, for example, <code>https://api.openshift.com</code></p>
+      </li>
+      <li>
+      Import the single-node OpenShift cluster by running the following commands:
+      <ol>
+      <li>
+      Set the <code>$OPENSHIFT_CLUSTER_ID</code> variable. Log in to the cluster and run the following command:
+      <CodeBlock code={"$ export OPENSHIFT_CLUSTER_ID=$(oc get clusterversion -o jsonpath='{.items[].spec.clusterID}')"} lang="terminal" />
+      </li>
+      <li>
+      Set the <code>$CLUSTER_REQUEST</code> variable that is used to import the cluster:
+      <CodeBlock code={"$ export CLUSTER_REQUEST=$(jq --null-input --arg openshift_cluster_id \"$OPENSHIFT_CLUSTER_ID\" '{\n  \"api_vip_dnsname\": \"<api_vip>\",\n  \"openshift_cluster_id\": $openshift_cluster_id,\n  \"name\": \"<openshift_cluster_name>\"\n}')"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;api_vip&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hostname for the cluster’s API server. This can be the DNS domain for the API server or the IP address of the single node which the worker node can reach. For example, <code>api.compute-1.example.com</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;openshift_cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the plain text name for the cluster. The cluster name should match the cluster name that was set during the Day 1 cluster installation.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Import the cluster and set the <code>$CLUSTER_ID</code> variable. Run the following command:
+      <CodeBlock code={"$ CLUSTER_ID=$(curl \"$API_URL/api/assisted-install/v2/clusters/import\" -H \"Authorization: Bearer ${JWT_TOKEN}\" -H 'accept: application/json' -H 'Content-Type: application/json' \\\n  -d \"$CLUSTER_REQUEST\" | tee /dev/stderr | jq -r '.id')"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Generate the <code>InfraEnv</code> resource for the cluster and set the <code>$INFRA_ENV_ID</code> variable by running the following commands:
+      <ol>
+      <li>Download the <a href="https://console.redhat.com/openshift/install/pull-secret">pull secret from Red Hat OpenShift Cluster Manager</a>.</li>
+      <li>
+      Set the <code>$INFRA_ENV_REQUEST</code> variable:
+      <CodeBlock code={"export INFRA_ENV_REQUEST=$(jq --null-input \\\n    --slurpfile pull_secret <path_to_pull_secret_file> \\//\n    --arg ssh_pub_key \"$(cat <path_to_ssh_pub_key>)\" \\//\n    --arg cluster_id \"$CLUSTER_ID\" '{\n  \"name\": \"<infraenv_name>\",\n  \"pull_secret\": $pull_secret[0] | tojson,\n  \"cluster_id\": $cluster_id,\n  \"ssh_authorized_key\": $ssh_pub_key,\n  \"image_type\": \"<iso_image_type>\"\n}')"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;path_to_pull_secret_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the local file containing the downloaded <a href="https://console.redhat.com/openshift/install/pull-secret">pull secret from Red Hat OpenShift Cluster Manager</a>.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_ssh_pub_key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the public SSH key required to access the host. If you do not set this value, you cannot access the host while in discovery mode.</p></dd>
+      <dt class="font-semibold"><code>&lt;infraenv_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the plain text name for the <code>InfraEnv</code> resource.</p></dd>
+      <dt class="font-semibold"><code>&lt;iso_image_type&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the ISO image type, either <code>full-iso</code> or <code>minimal-iso</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Post the <code>$INFRA_ENV_REQUEST</code> to the <a href="https://api.openshift.com/?urls.primaryName=assisted-service%20service#/installer/RegisterInfraEnv">/v2/infra-envs</a> API and set the <code>$INFRA_ENV_ID</code> variable:
+      <CodeBlock code={"$ INFRA_ENV_ID=$(curl \"$API_URL/api/assisted-install/v2/infra-envs\" -H \"Authorization: Bearer ${JWT_TOKEN}\" -H 'accept: application/json' -H 'Content-Type: application/json' -d \"$INFRA_ENV_REQUEST\" | tee /dev/stderr | jq -r '.id')"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Get the URL of the discovery ISO for the cluster worker node by running the following command:
+      <CodeBlock code={"$ curl -s \"$API_URL/api/assisted-install/v2/infra-envs/$INFRA_ENV_ID\" -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq -r '.download_url'"} lang="terminal" />
+      <CodeBlock code={"https://api.openshift.com/api/assisted-images/images/41b91e72-c33e-42ee-b80f-b5c5bbf6431a?arch=x86_64&image_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2NTYwMjYzNzEsInN1YiI6IjQxYjkxZTcyLWMzM2UtNDJlZS1iODBmLWI1YzViYmY2NDMxYSJ9.1EX_VGaMNejMhrAvVRBS7PDPIQtbOOc8LtG8OukE1a4&type=minimal-iso&version=$VERSION"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Download the ISO:
+      <CodeBlock code={"$ curl -L -s '<iso_url>' --output rhcos-live-minimal.iso"} lang="terminal" />
+      <p>Replace <code>&lt;iso_url&gt;</code> with the URL for the ISO from the previous step.</p>
+      </li>
+      <li>Boot the new worker host from the downloaded <code>rhcos-live-minimal.iso</code>.</li>
+      <li>
+      Get the list of hosts in the cluster that are <em>not</em> installed. Keep running the following command until the new host shows up:
+      <CodeBlock code={"$ curl -s \"$API_URL/api/assisted-install/v2/clusters/$CLUSTER_ID\" -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq -r '.hosts[] | select(.status != \"installed\").id'"} lang="terminal" />
+      <CodeBlock code={"2294ba03-c264-4f11-ac08-2f1bb2f8c296"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Set the <code>$HOST_ID</code> variable for the new worker node, for example:
+      <CodeBlock code={"$ HOST_ID=<host_id>"} lang="terminal" />
+      <p>Replace <code>&lt;host_id&gt;</code> with the host ID from the previous step.</p>
+      </li>
+      <li>
+      Check that the host is ready to install by running the following command:
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Ensure that you copy the entire command including the complete <code>jq</code> expression.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ curl -s $API_URL/api/assisted-install/v2/clusters/$CLUSTER_ID -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq '\ndef host_name($host):\n    if (.suggested_hostname // \"\") == \"\" then\n        if (.inventory // \"\") == \"\" then\n            \"Unknown hostname, please wait\"\n        else\n            .inventory | fromjson | .hostname\n        end\n    else\n        .suggested_hostname\n    end;\n\ndef is_notable($validation):\n    [\"failure\", \"pending\", \"error\"] | any(. == $validation.status);\n\ndef notable_validations($validations_info):\n    [\n        $validations_info // \"{}\"\n        | fromjson\n        | to_entries[].value[]\n        | select(is_notable(.))\n    ];\n\n{\n    \"Hosts validations\": {\n        \"Hosts\": [\n            .hosts[]\n            | select(.status != \"installed\")\n            | {\n                \"id\": .id,\n                \"name\": host_name(.),\n                \"status\": .status,\n                \"notable_validations\": notable_validations(.validations_info)\n            }\n        ]\n    },\n    \"Cluster validations info\": {\n        \"notable_validations\": notable_validations(.validations_info)\n    }\n}\n' -r"} lang="terminal" />
+      <CodeBlock code={"{\n  \"Hosts validations\": {\n    \"Hosts\": [\n      {\n        \"id\": \"97ec378c-3568-460c-bc22-df54534ff08f\",\n        \"name\": \"localhost.localdomain\",\n        \"status\": \"insufficient\",\n        \"notable_validations\": [\n          {\n            \"id\": \"ntp-synced\",\n            \"status\": \"failure\",\n            \"message\": \"Host couldn't synchronize with any NTP server\"\n          },\n          {\n            \"id\": \"api-domain-name-resolved-correctly\",\n            \"status\": \"error\",\n            \"message\": \"Parse error for domain name resolutions result\"\n          },\n          {\n            \"id\": \"api-int-domain-name-resolved-correctly\",\n            \"status\": \"error\",\n            \"message\": \"Parse error for domain name resolutions result\"\n          },\n          {\n            \"id\": \"apps-domain-name-resolved-correctly\",\n            \"status\": \"error\",\n            \"message\": \"Parse error for domain name resolutions result\"\n          }\n        ]\n      }\n    ]\n  },\n  \"Cluster validations info\": {\n    \"notable_validations\": []\n  }\n}"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      When the previous command shows that the host is ready, start the installation using the <a href="https://api.openshift.com/?urls.primaryName=assisted-service%20service#/installer/v2InstallHost">/v2/infra-envs/{"{"}{"{"} infra_env_id {"}"}{"}"}/hosts/{"{"}{"{"} host_id {"}"}{"}"}/actions/install</a> API by running the following command:
+      <CodeBlock code={"$ curl -X POST -s \"$API_URL/api/assisted-install/v2/infra-envs/$INFRA_ENV_ID/hosts/$HOST_ID/actions/install\"  -H \"Authorization: Bearer ${JWT_TOKEN}\""} lang="terminal" />
+      </li>
+      <li>
+      As the installation proceeds, the installation generates pending certificate signing requests (CSRs) for the worker node.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You must approve the CSRs to complete the installation.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Keep running the following API call to monitor the cluster installation:</p>
+      <CodeBlock code={"$ curl -s \"$API_URL/api/assisted-install/v2/clusters/$CLUSTER_ID\" -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq '{\n    \"Cluster day-2 hosts\":\n        [\n            .hosts[]\n            | select(.status != \"installed\")\n            | {id, requested_hostname, status, status_info, progress, status_updated_at, updated_at, infra_env_id, cluster_id, created_at}\n        ]\n}'"} lang="terminal" />
+      <CodeBlock code={"{\n  \"Cluster day-2 hosts\": [\n    {\n      \"id\": \"a1c52dde-3432-4f59-b2ae-0a530c851480\",\n      \"requested_hostname\": \"control-plane-1\",\n      \"status\": \"added-to-existing-cluster\",\n      \"status_info\": \"Host has rebooted and no further updates will be posted. Please check console for progress and to possibly approve pending CSRs\",\n      \"progress\": {\n        \"current_stage\": \"Done\",\n        \"installation_percentage\": 100,\n        \"stage_started_at\": \"2022-07-08T10:56:20.476Z\",\n        \"stage_updated_at\": \"2022-07-08T10:56:20.476Z\"\n      },\n      \"status_updated_at\": \"2022-07-08T10:56:20.476Z\",\n      \"updated_at\": \"2022-07-08T10:57:15.306369Z\",\n      \"infra_env_id\": \"b74ec0c3-d5b5-4717-a866-5b6854791bd3\",\n      \"cluster_id\": \"8f721322-419d-4eed-aa5b-61b50ea586ae\",\n      \"created_at\": \"2022-07-06T22:54:57.161614Z\"\n    }\n  ]\n}"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Optional: Run the following command to see all the events for the cluster:
+      <CodeBlock code={"$ curl -s \"$API_URL/api/assisted-install/v2/events?cluster_id=$CLUSTER_ID\" -H \"Authorization: Bearer ${JWT_TOKEN}\" | jq -c '.[] | {severity, message, event_time, host_id}'"} lang="terminal" />
+      <CodeBlock code={"{\"severity\":\"info\",\"message\":\"Host compute-0: updated status from insufficient to known (Host is ready to be installed)\",\"event_time\":\"2022-07-08T11:21:46.346Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n{\"severity\":\"info\",\"message\":\"Host compute-0: updated status from known to installing (Installation is in progress)\",\"event_time\":\"2022-07-08T11:28:28.647Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n{\"severity\":\"info\",\"message\":\"Host compute-0: updated status from installing to installing-in-progress (Starting installation)\",\"event_time\":\"2022-07-08T11:28:52.068Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n{\"severity\":\"info\",\"message\":\"Uploaded logs for host compute-0 cluster 8f721322-419d-4eed-aa5b-61b50ea586ae\",\"event_time\":\"2022-07-08T11:29:47.802Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n{\"severity\":\"info\",\"message\":\"Host compute-0: updated status from installing-in-progress to added-to-existing-cluster (Host has rebooted and no further updates will be posted. Please check console for progress and to possibly approve pending CSRs)\",\"event_time\":\"2022-07-08T11:29:48.259Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}\n{\"severity\":\"info\",\"message\":\"Host: compute-0, reached installation stage Rebooting\",\"event_time\":\"2022-07-08T11:29:48.261Z\",\"host_id\":\"9d7b3b44-1125-4ad0-9b14-76550087b445\"}"} lang="terminal" title="Example output" />
+      </li>
+      <li>Log in to the cluster and approve the pending CSRs to complete the installation.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Check that the new worker node was successfully added to the cluster with a status of <code>Ready</code>:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME                           STATUS   ROLES           AGE   VERSION\ncontrol-plane-1.example.com    Ready    master,worker   56m   v1.35.4\ncompute-1.example.com          Ready    worker          11m   v1.35.4"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="sno-adding-worker-nodes-to-single-node-clusters-manually_add-workers" class="group scroll-mt-20">Adding worker nodes to single-node OpenShift clusters manually<a href="#sno-adding-worker-nodes-to-single-node-clusters-manually_add-workers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add a worker node to a single-node OpenShift cluster manually by booting the worker node from Red Hat Enterprise Linux CoreOS (RHCOS) ISO and by using the cluster <code>worker.ign</code> file to join the new worker node to the cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install a single-node OpenShift cluster on bare metal.</li>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Log in as a user with <code>cluster-admin</code> privileges.</li>
+      <li>Ensure that all the required DNS records exist for the cluster that you are adding the worker node to.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set the OpenShift Container Platform version:
+      <CodeBlock code={"$ OCP_VERSION=<ocp_version>"} lang="terminal" />
+      <p>Replace <code>&lt;ocp_version&gt;</code> with the current version, for example, <code>latest-{"{"}{"{"} product_version {"}"}{"}"}</code></p>
+      </li>
+      <li>
+      Set the host architecture:
+      <CodeBlock code={"$ ARCH=<architecture>"} lang="terminal" />
+      <p>Replace <code>&lt;architecture&gt;</code> with the target host architecture, for example, <code>aarch64</code> or <code>x86_64</code>.</p>
+      </li>
+      <li>
+      Get the <code>worker.ign</code> data from the running single-node cluster by running the following command:
+      <CodeBlock code={"$ oc extract -n openshift-machine-api secret/worker-user-data-managed --keys=userData --to=- > worker.ign"} lang="terminal" />
+      </li>
+      <li>Host the <code>worker.ign</code> file on a web server accessible from your network.</li>
+      <li>
+      Download the OpenShift Container Platform installer and make it available for use by running the following commands:
+      <CodeBlock code={"$ curl -k https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$OCP_VERSION/openshift-install-linux.tar.gz > openshift-install-linux.tar.gz"} lang="terminal" />
+      <CodeBlock code={"$ tar zxvf openshift-install-linux.tar.gz"} lang="terminal" />
+      <CodeBlock code={"$ chmod +x openshift-install"} lang="terminal" />
+      </li>
+      <li>
+      Retrieve the RHCOS ISO URL:
+      <CodeBlock code={"$ ISO_URL=$(./openshift-install coreos print-stream-json | grep location | grep $ARCH | grep iso | cut -d\\\" -f4)"} lang="terminal" />
+      </li>
+      <li>
+      Download the RHCOS ISO:
+      <CodeBlock code={"$ curl -L $ISO_URL -o rhcos-live.iso"} lang="terminal" />
+      </li>
+      <li>
+      Use the RHCOS ISO and the hosted <code>worker.ign</code> file to install the worker node:
+      <ol>
+      <li>Boot the target host with the RHCOS ISO and your preferred method of installation.</li>
+      <li>When the target host has booted from the RHCOS ISO, open a console on the target host.</li>
+      <li>
+      If your local network does not have DHCP enabled, you need to create an ignition file with the new hostname and configure the worker node static IP address before running the RHCOS installation. Perform the following steps:
+      <ol>
+      <li>
+      Configure the worker host network connection with a static IP. Run the following command on the target host console:
+      <CodeBlock code={"$ nmcli con mod <network_interface> ipv4.method manual /\nipv4.addresses <static_ip> ipv4.gateway <network_gateway> ipv4.dns <dns_server> /\n802-3-ethernet.mtu 9000"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;static_ip&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the host static IP address and CIDR, for example, <code>10.1.101.50/24</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;network_gateway&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the network gateway, for example, <code>10.1.101.1</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Activate the modified network interface:
+      <CodeBlock code={"$ nmcli con up <network_interface>"} lang="terminal" />
+      </li>
+      <li>
+      Create a new ignition file <code>new-worker.ign</code> that includes a reference to the original <code>worker.ign</code> and an additional instruction that the <code>coreos-installer</code> program uses to populate the <code>/etc/hostname</code> file on the new worker host. For example:
+      <CodeBlock code={"{\n  \"ignition\":{\n    \"version\":\"3.2.0\",\n    \"config\":{\n      \"merge\":[\n        {\n          \"source\":\"<hosted_worker_ign_file>\"\n        }\n      ]\n    }\n  },\n  \"storage\":{\n    \"files\":[\n      {\n        \"path\":\"/etc/hostname\",\n        \"contents\":{\n          \"source\":\"data:,<new_fqdn>\"\n        },\n        \"mode\":420,\n        \"overwrite\":true,\n        \"path\":\"/etc/hostname\"\n      }\n    ]\n  }\n}"} lang="json" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;hosted_worker_ign_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the locally accessible URL for the original <code>worker.ign</code> file. For example, <code>http://webserver.example.com/worker.ign</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;new_fqdn&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the new FQDN that you set for the worker node. For example, <code>new-worker.example.com</code>.</p></dd>
+      </dl>
+      </li>
+      <li>Host the <code>new-worker.ign</code> file on a web server accessible from your network.</li>
+      <li>
+      Run the following <code>coreos-installer</code> command, passing in the <code>ignition-url</code> and hard disk details:
+      <CodeBlock code={"$ sudo coreos-installer install --copy-network /\n--ignition-url=<new_worker_ign_file> <hard_disk> --insecure-ignition"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;new_worker_ign_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the locally accessible URL for the hosted <code>new-worker.ign</code> file, for example, <code>http://webserver.example.com/new-worker.ign</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;hard_disk&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the hard disk where you install RHCOS, for example, <code>/dev/sda</code>.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      <li>
+      For networks that have DHCP enabled, you do not need to set a static IP. Run the following <code>coreos-installer</code> command from the target host console to install the system:
+      <CodeBlock code={"$ coreos-installer install --ignition-url=<hosted_worker_ign_file> <hard_disk>"} lang="terminal" />
+      </li>
+      <li>
+      To manually enable DHCP, apply the following <code>NMStateConfig</code> CR to the single-node OpenShift cluster:
+      <CodeBlock code={"apiVersion: agent-install.openshift.io/v1\nkind: NMStateConfig\nmetadata:\n  name: nmstateconfig-dhcp\n  namespace: example-sno\n  labels:\n    nmstate_config_cluster_name: <nmstate_config_cluster_label>\nspec:\n  config:\n    interfaces:\n      - name: eth0\n        type: ethernet\n        state: up\n        ipv4:\n          enabled: true\n          dhcp: true\n        ipv6:\n          enabled: false\n  interfaces:\n    - name: \"eth0\"\n      macAddress: \"AA:BB:CC:DD:EE:11\""} lang="yaml" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The <code>NMStateConfig</code> CR is required for successful deployment of worker nodes with static IP addresses and for adding a worker node with a dynamic IP address if the single-node OpenShift was deployed with a static IP address. The cluster network DHCP does not automatically set these network settings for the new worker node.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      <li>As the installation proceeds, the installation generates pending certificate signing requests (CSRs) for the worker node. When prompted, approve the pending CSRs to complete the installation.</li>
+      <li>When the installation is complete, reboot the host. The host joins the cluster as a new worker node.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Check that the new worker node was successfully added to the cluster with a status of <code>Ready</code>:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME                           STATUS   ROLES           AGE   VERSION\ncontrol-plane-1.example.com    Ready    master,worker   56m   v1.35.4\ncompute-1.example.com          Ready    worker          11m   v1.35.4"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="installation-approve-csrs_add-workers" class="group scroll-mt-20">Approving the certificate signing requests for your machines<a href="#installation-approve-csrs_add-workers" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To allow newly added machines to join your OpenShift Container Platform cluster, confirm that the cluster approves pending certificate signing requests (CSRs), or approve them yourself. Approve client requests first, then server requests.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You added machines to your cluster.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Confirm that the cluster recognizes the machines:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME      STATUS    ROLES   AGE  VERSION\nmaster-0  Ready     master  63m  v1.35.4\nmaster-1  Ready     master  63m  v1.35.4\nmaster-2  Ready     master  64m  v1.35.4"} lang="terminal" title="Example output" />
+      <p>The output lists all of the machines that you created.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The preceding output might not include the compute nodes until you approve some CSRs.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Review the pending CSRs and ensure that you see the client requests with the <code>Pending</code> or <code>Approved</code> status for each machine that you added to the cluster:
+      <CodeBlock code={"$ oc get csr"} lang="terminal" />
+      <CodeBlock code={"NAME        AGE     REQUESTOR                                                                   CONDITION\ncsr-8b2br   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending\ncsr-8vnps   15m     system:serviceaccount:openshift-machine-config-operator:node-bootstrapper   Pending\n..."} lang="terminal" title="Example output" />
+      <p>In this example, two machines are joining the cluster. You might see more approved CSRs in the list.</p>
+      </li>
+      <li>
+      If the CSRs were not approved, after all of the pending CSRs for the machines you added are in <code>Pending</code> status, approve the CSRs for your cluster machines:
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You must approve your CSRs within an hour of adding the machines to the cluster. If you do not approve them within an hour, the certificates rotate, and more than two certificates are present for each node. You must approve all of these certificates. After you approve the client CSR, the kubelet creates a secondary CSR for the serving certificate, which requires manual approval. The <code>machine-approver</code> then automatically approves later serving certificate renewal requests if the kubelet requests a new certificate with the same parameters.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For clusters running on platforms that are not machine API enabled, such as bare metal and other user-provisioned infrastructure, you must implement a method of automatically approving the kubelet serving certificate requests (CSRs). If you do not approve a request, the <code>oc exec</code>, <code>oc rsh</code>, and <code>oc logs</code> commands cannot succeed, because the API server requires a serving certificate when it connects to the kubelet. Any operation that contacts the kubelet endpoint requires this certificate approval to be in place. The method must watch for new CSRs, confirm that the <code>node-bootstrapper</code> service account in the <code>system:node</code> or <code>system:admin</code> groups submitted the CSR, and confirm the identity of the node.</p>
+        </AlertDescription>
+      </Alert>
+      <ul>
+      <li>
+      To approve them individually, run the following command for each valid CSR:
+      <CodeBlock code={"$ oc adm certificate approve <csr_name>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;csr_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of a CSR from the list of current CSRs. *   To approve all pending CSRs, run the following command:</p></dd>
+      </dl>
+      <CodeBlock code={"$ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{\"\\n\"}}{{end}}{{end}}' | xargs --no-run-if-empty oc adm certificate approve"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Some Operators might not become available until you approve some CSRs. Each node submits two CSRs, so you might need to run the command to approve CSRs many times.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      <li>
+      After you approve your client requests, review the server requests for each machine that you added to the cluster:
+      <CodeBlock code={"$ oc get csr"} lang="terminal" />
+      <CodeBlock code={"NAME        AGE     REQUESTOR                                                                   CONDITION\ncsr-bfd72   5m26s   system:node:ip-10-0-50-126.us-east-2.compute.internal                       Pending\ncsr-c57lv   5m26s   system:node:ip-10-0-95-157.us-east-2.compute.internal                       Pending\n..."} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      If the remaining CSRs are not approved, and are in the <code>Pending</code> status, approve the CSRs for your cluster machines:
+      <ul>
+      <li>
+      To approve them individually, run the following command for each valid CSR:
+      <CodeBlock code={"$ oc adm certificate approve <csr_name>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;csr_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of a CSR from the list of current CSRs. *   To approve all pending CSRs, run the following command:</p></dd>
+      </dl>
+      <CodeBlock code={"$ oc get csr -o go-template='{{range .items}}{{if not .status}}{{.metadata.name}}{{\"\\n\"}}{{end}}{{end}}' | xargs oc adm certificate approve"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      After you approve all client and server CSRs, the machines have the <code>Ready</code> status. Verify this by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME      STATUS    ROLES   AGE  VERSION\nmaster-0  Ready     master  73m  v1.35.4\nmaster-1  Ready     master  73m  v1.35.4\nmaster-2  Ready     master  74m  v1.35.4\nworker-0  Ready     worker  11m  v1.35.4\nworker-1  Ready     worker  11m  v1.35.4"} lang="terminal" title="Example output" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You might need to wait a few minutes after approval of the server CSRs for the machines to change to the <code>Ready</code> status.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
       <p><Fragment set:html={"<a name=\"additional-resources_add-workers\">"} /><Fragment set:html={"</a>"} /><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installation-minimum-resource-requirements_installing-restricted-networks-bare-metal">Minimum resource requirements for cluster installation</a></li>

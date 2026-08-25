@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"cnf-configuring-sno-ip-configuration","text":"Perform {{ sno }} network reconfiguration"}];
+const headings = [{"depth":1,"slug":"cnf-configuring-sno-ip-configuration","text":"Perform {{ sno }} network reconfiguration"},{"depth":2,"slug":"cnf-changing-sno-ip-configuration_configuring-sno-ip-configuration","text":"Perform a single-node OpenShift network reconfiguration"},{"depth":2,"slug":"cnf-rollback-sno-ip-configuration_configuring-sno-ip-configuration","text":"Roll back a network reconfiguration"},{"depth":2,"slug":"cnf-automatic-rollback-sno-ip-configuration_configuring-sno-ip-configuration","text":"Automatic rollback mechanisms for network reconfiguration"},{"depth":2,"slug":"cnf-ipconfig-cr-reference_configuring-sno-ip-configuration","text":"IPConfig reference specifications"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/edge_computing/sno_ip_configuration/cnf-configuring-sno-ip-configuration";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Perform {{ sno }} network reconfiguration";
-const description = "You can perform a network reconfiguration on a {{ sno }} cluster by editing the IPConfig custom resource (CR) and transitioning through the configuration…" || undefined;
+const description = "You can perform a network reconfiguration on a single-node OpenShift cluster by editing the IPConfig custom resource (CR) and transitioning through the…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["edge_computing","edge_computing/sno_ip_configuration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Perform {{ sno }} network reconfiguration {#cnf-configuring-sno-ip-configuration}\n\nYou can perform a network reconfiguration on a {{ sno }} cluster by editing the `IPConfig` custom resource (CR) and transitioning through the configuration stages.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/sno_ip_configuration/cnf-configuring-sno-ip-configuration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Perform {{ sno }} network reconfiguration {#cnf-configuring-sno-ip-configuration}\n\nYou can perform a network reconfiguration on a single-node OpenShift cluster by editing the `IPConfig` custom resource (CR) and transitioning through the configuration stages.\n\n## Perform a single-node OpenShift network reconfiguration {#cnf-changing-sno-ip-configuration_configuring-sno-ip-configuration}\n\nYou can change the network configuration of a single-node OpenShift cluster by editing the `IPConfig` custom resource (CR) and transitioning through the configuration stages.\n\n**Prerequisites**\n\n- You have a single-node OpenShift cluster.\n- You have installed the Lifecycle Agent.\n- You have the new network configuration details, including IP addresses, gateways, and DNS servers.\n- You have cluster administrator privileges.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Verify that the `IPConfig` CR exists and check its current state by running the following command:\n\n   ```terminal\n   $ oc get ipc ipconfig -o yaml\n   ```\n\n   If the CR does not exist, verify that you installed the Lifecycle Agent.\n2. Verify that the `spec.stage` field is set to `Idle`, the `Idle` status condition is set to `true`, and review the current network configuration in the `status` fields.\n\n   > [!NOTE]\n   > You can only modify spec fields when the CR is in the `Idle` stage.\n3. Edit the `IPConfig` CR to specify the new network configuration by running the following command:\n\n   ```terminal\n   $ oc edit ipc ipconfig\n   ```\n4. Update the spec fields with your new network configuration. The following example shows a dual-stack configuration with VLAN and DNS settings:\n\n   ```yaml\n   apiVersion: lca.openshift.io/v1\n   kind: IPConfig\n   metadata:\n     name: ipconfig\n   spec:\n     stage: Idle\n     ipv4:\n       address: 192.0.2.10\n       machineNetwork: 192.0.2.0/24\n       gateway: 192.0.2.1\n     ipv6:\n       address: 2001:db8::10\n       machineNetwork: 2001:db8::/64\n       gateway: 2001:db8::1\n     dnsServers:\n     - 192.0.2.53\n     - 2001:4860:4860::8888\n     vlanID: 100\n     dnsFilterOutFamily: none\n     autoRollbackOnFailure:\n       initMonitorTimeoutSeconds: 1800\n   ```\n\n   where:\n\n   `spec.stage`\n   :   Set this field to `Config` when you are ready to apply the new network settings.\n\n   `spec.ipv4.address`\n   :   Specifies the target IPv4 address. Must be within the machine network CIDR.\n\n   `spec.ipv4.machineNetwork`\n   :   Specifies the target machine network CIDR.\n\n   `spec.ipv4.gateway`\n   :   Specifies the target default gateway.\n\n   `spec.dnsServers`\n   :   Specifies an ordered list of DNS servers. The first server in the list is used as the primary DNS server. Use a maximum of two servers.\n\n   `spec.vlanID`\n   :   Specifies an optional VLAN ID. Only specify if the cluster already has VLAN configuration.\n\n   `spec.dnsFilterOutFamily`\n   :   Specifies optional DNS filtering for dual-stack clusters. Set to `ipv4` or `ipv6` to filter out A or AAAA records respectively.\n\n   `spec.autoRollbackOnFailure.initMonitorTimeoutSeconds`\n   :   Specifies the timeout in seconds for automatic rollback if the configuration does not complete. The default value is 1800 seconds, or 30 minutes.\n5. After saving the configuration, change the stage to `Config` to start the network reconfiguration by running the following command:\n\n   ```terminal\n   $ oc patch ipc ipconfig --type merge -p '{\"spec\":{\"stage\":\"Config\"}}'\n   ```\n\n   > [!NOTE]\n   > After triggering the network reconfiguration, update your external DNS servers to resolve the cluster’s new API and ingress endpoints.\n6. Monitor the progress of the configuration by running the following command:\n\n   ```terminal\n   $ oc get ipc ipconfig -o yaml\n   ```\n\n   Watch for the following progression:\n\n   - The controller sets the `ConfigInProgress` condition\n   - The pre-pivot phase runs and triggers a reboot\n   - After reboot, the post-pivot phase applies the network changes\n   - The controller waits for cluster stabilization\n   - The `ConfigCompleted` condition is set when successful\n7. After the configuration completes successfully, verify that the `status.validNextStages` field includes `Idle` and `Rollback`.\n8. Verify the new network configuration by running the following command:\n\n   ```terminal\n   $ oc get nodes -o wide\n   ```\n9. Verify cluster health by running the following command:\n\n   ```terminal\n   $ oc get clusteroperators\n   ```\n10. When you are satisfied with the new configuration, finalize the change by setting the stage to `Idle`. Run the following command:\n\n    ```terminal\n    $ oc patch ipc ipconfig --type merge -p '{\"spec\":{\"stage\":\"Idle\"}}'\n    ```\n\n    > [!IMPORTANT]\n    > After you finalize the configuration by transitioning to `Idle`, you cannot roll back to the previous network configuration. The old stateroot is removed during `Idle` state cleanup.\n\n## Roll back a network reconfiguration {#cnf-rollback-sno-ip-configuration_configuring-sno-ip-configuration}\n\nIf you see issues after a network reconfiguration, you can roll back to an earlier network configuration. The rollback reboots the node into an earlier stateroot with the original network settings.\n\n**Prerequisites**\n\n- You have completed a network reconfiguration that has not been finalized.\n- The `status.validNextStages` field in the `IPConfig` customer resource (CR) includes `Rollback`.\n- You have cluster administrator privileges.\n\n**Procedure**\n\n1. Verify that rollback stage is available by checking the `IPConfig` CR. Run the following command:\n\n   ```terminal\n   $ oc get ipc ipconfig -o jsonpath='{.status.validNextStages}'\n   ```\n\n   Verify that the output includes `Rollback`.\n2. Check the rollback availability expiration timestamp by running the following command:\n\n   ```terminal\n   $ oc get ipc ipconfig -o jsonpath='{.status.rollbackAvailabilityExpiration}'\n   ```\n\n   > [!NOTE]\n   > Plan your rollback before this timestamp. After this timestamp, rolling back requires manual recovery because of expired control plane or kubelet certificates in the rollback stateroot.\n3. Trigger the rollback by setting the stage to `Rollback` by running the following command:\n\n   ```terminal\n   $ oc patch ipc ipconfig --type merge -p '{\"spec\":{\"stage\":\"Rollback\"}}'\n   ```\n\n   The Lifecycle Agent reboots the node into the earlier stateroot.\n4. After the node reboots, monitor the rollback progress by running the following command:\n\n   ```terminal\n   $ oc get ipc ipconfig -o yaml\n   ```\n\n   Wait for the `RollbackCompleted` condition to be set.\n5. Verify the node is using the original network configuration by running the following command:\n\n   ```terminal\n   $ oc get nodes -o wide\n   ```\n6. Finalize the rollback by setting the stage to `Idle` by running the following command:\n\n   ```terminal\n   $ oc patch ipc ipconfig --type merge -p '{\"spec\":{\"stage\":\"Idle\"}}'\n   ```\n\n## Automatic rollback mechanisms for network reconfiguration {#cnf-automatic-rollback-sno-ip-configuration_configuring-sno-ip-configuration}\n\nNetwork reconfiguration includes many automatic rollback safety mechanisms that help protect your cluster from failed configuration changes.\n\nAutomatic rollback on post-pivot failure\n:   If network configuration or certificate regeneration fails after the reboot, the system automatically triggers a rollback to the earlier stateroot.\n\nInit-monitor timeout rollback\n:   If the network reconfiguration does not complete within the configured timeout, the system automatically triggers a rollback. The default timeout is 1800 seconds, 30 minutes. You can configure this timeout by using the `spec.autoRollbackOnFailure.initMonitorTimeoutSeconds` field in the `IPConfig` CR. Setting the value to `0` uses the default timeout.\n\n## IPConfig reference specifications {#cnf-ipconfig-cr-reference_configuring-sno-ip-configuration}\n\nThe `IPConfig` custom resource (CR) is a cluster-scoped CR that controls the IP configuration workflow for single-node OpenShift clusters using the Lifecycle Agent.\n\n> [!NOTE]\n> The CR name must be `ipconfig`.\n\n**IPConfig spec fields**\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `spec.stage` | String | Controls the current stage of the IP configuration workflow. Valid values are `Idle`, `Config`, and `Rollback`. You can only change the stage to a value listed in `status.validNextStages`. |\n| `spec.ipv4.address` | String | The IPv4 node address without CIDR notation, for example `192.0.2.10`. Required if the `ipv4` object is present. Omit the entire `ipv4` object for IPv6-only clusters. |\n| `spec.ipv4.machineNetwork` | String | The machine network CIDR, for example `192.0.2.0/24`. The address must be within this CIDR. |\n| `spec.ipv4.gateway` | String | The IPv4 default gateway address, used to create the default route for IPv4 traffic. Must be within the machine network CIDR. |\n| `spec.ipv6.address` | String | The IPv6 node address without CIDR notation, for example `2001:db8::10`. Required if the `ipv6` object is present. Omit the entire `ipv6` object for IPv4-only clusters. |\n| `spec.ipv6.machineNetwork` | String | The IPv6 machine network CIDR, for example `2001:db8::/64`. The address must be within this CIDR. |\n| `spec.ipv6.gateway` | String | The IPv6 default gateway, used to create the default route for IPv6 traffic. You can use link-local gateways. |\n| `spec.dnsServers` | Array of strings | Ordered list of DNS server IP addresses. The first server in the list is used as the primary DNS server. Must match cluster IP families. Maximum of 2 servers. |\n| `spec.vlanID` | Integer | The VLAN ID to configure. Valid values are 1-4094. You can only set this field if the cluster already has VLAN configuration. |\n| `spec.dnsFilterOutFamily` | String | DNS response filtering for dual-stack clusters only. Set to `ipv4` to filter out A records, `ipv6` to filter out AAAA records, or `none` to disable filtering. You can only configure this field to `ipv4` or `ipv6` when the cluster uses a dual-stack configuration. |\n| `spec.autoRollbackOnFailure.initMonitorTimeoutSeconds` | Integer | Timeout in seconds for the init-monitor watchdog. Set to `0` or leave unset to use the default of 1800 seconds. |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/sno_ip_configuration/cnf-configuring-sno-ip-configuration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +101,229 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cnf-configuring-sno-ip-configuration" class="group scroll-mt-20">Perform {"{"}{"{"} sno {"}"}{"}"} network reconfiguration<a href="#cnf-configuring-sno-ip-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can perform a network reconfiguration on a {"{"}{"{"} sno {"}"}{"}"} cluster by editing the <code>IPConfig</code> custom resource (CR) and transitioning through the configuration stages.</p>
-      <p class="/modules/cnf-changing-sno-ip-configuration.md"></p>
-      <p class="/modules/cnf-rollback-sno-ip-configuration.md"></p>
-      <p class="/modules/cnf-automatic-rollback-sno-ip-configuration.md"></p>
-      <p class="/modules/cnf-ipconfig-cr-reference.md"></p>
+      <p>You can perform a network reconfiguration on a single-node OpenShift cluster by editing the <code>IPConfig</code> custom resource (CR) and transitioning through the configuration stages.</p>
+      <h2 id="cnf-changing-sno-ip-configuration_configuring-sno-ip-configuration" class="group scroll-mt-20">Perform a single-node OpenShift network reconfiguration<a href="#cnf-changing-sno-ip-configuration_configuring-sno-ip-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can change the network configuration of a single-node OpenShift cluster by editing the <code>IPConfig</code> custom resource (CR) and transitioning through the configuration stages.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a single-node OpenShift cluster.</li>
+      <li>You have installed the Lifecycle Agent.</li>
+      <li>You have the new network configuration details, including IP addresses, gateways, and DNS servers.</li>
+      <li>You have cluster administrator privileges.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Verify that the <code>IPConfig</code> CR exists and check its current state by running the following command:
+      <CodeBlock code={"$ oc get ipc ipconfig -o yaml"} lang="terminal" />
+      <p>If the CR does not exist, verify that you installed the Lifecycle Agent.</p>
+      </li>
+      <li>
+      Verify that the <code>spec.stage</code> field is set to <code>Idle</code>, the <code>Idle</code> status condition is set to <code>true</code>, and review the current network configuration in the <code>status</code> fields.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can only modify spec fields when the CR is in the <code>Idle</code> stage.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Edit the <code>IPConfig</code> CR to specify the new network configuration by running the following command:
+      <CodeBlock code={"$ oc edit ipc ipconfig"} lang="terminal" />
+      </li>
+      <li>
+      Update the spec fields with your new network configuration. The following example shows a dual-stack configuration with VLAN and DNS settings:
+      <CodeBlock code={"apiVersion: lca.openshift.io/v1\nkind: IPConfig\nmetadata:\n  name: ipconfig\nspec:\n  stage: Idle\n  ipv4:\n    address: 192.0.2.10\n    machineNetwork: 192.0.2.0/24\n    gateway: 192.0.2.1\n  ipv6:\n    address: 2001:db8::10\n    machineNetwork: 2001:db8::/64\n    gateway: 2001:db8::1\n  dnsServers:\n  - 192.0.2.53\n  - 2001:4860:4860::8888\n  vlanID: 100\n  dnsFilterOutFamily: none\n  autoRollbackOnFailure:\n    initMonitorTimeoutSeconds: 1800"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.stage</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Set this field to <code>Config</code> when you are ready to apply the new network settings.</p></dd>
+      <dt class="font-semibold"><code>spec.ipv4.address</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the target IPv4 address. Must be within the machine network CIDR.</p></dd>
+      <dt class="font-semibold"><code>spec.ipv4.machineNetwork</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the target machine network CIDR.</p></dd>
+      <dt class="font-semibold"><code>spec.ipv4.gateway</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the target default gateway.</p></dd>
+      <dt class="font-semibold"><code>spec.dnsServers</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies an ordered list of DNS servers. The first server in the list is used as the primary DNS server. Use a maximum of two servers.</p></dd>
+      <dt class="font-semibold"><code>spec.vlanID</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies an optional VLAN ID. Only specify if the cluster already has VLAN configuration.</p></dd>
+      <dt class="font-semibold"><code>spec.dnsFilterOutFamily</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies optional DNS filtering for dual-stack clusters. Set to <code>ipv4</code> or <code>ipv6</code> to filter out A or AAAA records respectively.</p></dd>
+      <dt class="font-semibold"><code>spec.autoRollbackOnFailure.initMonitorTimeoutSeconds</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the timeout in seconds for automatic rollback if the configuration does not complete. The default value is 1800 seconds, or 30 minutes.</p></dd>
+      </dl>
+      </li>
+      <li>
+      After saving the configuration, change the stage to <code>Config</code> to start the network reconfiguration by running the following command:
+      <CodeBlock code={"$ oc patch ipc ipconfig --type merge -p '{\"spec\":{\"stage\":\"Config\"}}'"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>After triggering the network reconfiguration, update your external DNS servers to resolve the cluster’s new API and ingress endpoints.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Monitor the progress of the configuration by running the following command:
+      <CodeBlock code={"$ oc get ipc ipconfig -o yaml"} lang="terminal" />
+      <p>Watch for the following progression:</p>
+      <ul>
+      <li>The controller sets the <code>ConfigInProgress</code> condition</li>
+      <li>The pre-pivot phase runs and triggers a reboot</li>
+      <li>After reboot, the post-pivot phase applies the network changes</li>
+      <li>The controller waits for cluster stabilization</li>
+      <li>The <code>ConfigCompleted</code> condition is set when successful</li>
+      </ul>
+      </li>
+      <li>After the configuration completes successfully, verify that the <code>status.validNextStages</code> field includes <code>Idle</code> and <code>Rollback</code>.</li>
+      <li>
+      Verify the new network configuration by running the following command:
+      <CodeBlock code={"$ oc get nodes -o wide"} lang="terminal" />
+      </li>
+      <li>
+      Verify cluster health by running the following command:
+      <CodeBlock code={"$ oc get clusteroperators"} lang="terminal" />
+      </li>
+      <li>
+      When you are satisfied with the new configuration, finalize the change by setting the stage to <code>Idle</code>. Run the following command:
+      <CodeBlock code={"$ oc patch ipc ipconfig --type merge -p '{\"spec\":{\"stage\":\"Idle\"}}'"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>After you finalize the configuration by transitioning to <code>Idle</code>, you cannot roll back to the previous network configuration. The old stateroot is removed during <code>Idle</code> state cleanup.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="cnf-rollback-sno-ip-configuration_configuring-sno-ip-configuration" class="group scroll-mt-20">Roll back a network reconfiguration<a href="#cnf-rollback-sno-ip-configuration_configuring-sno-ip-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you see issues after a network reconfiguration, you can roll back to an earlier network configuration. The rollback reboots the node into an earlier stateroot with the original network settings.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have completed a network reconfiguration that has not been finalized.</li>
+      <li>The <code>status.validNextStages</code> field in the <code>IPConfig</code> customer resource (CR) includes <code>Rollback</code>.</li>
+      <li>You have cluster administrator privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Verify that rollback stage is available by checking the <code>IPConfig</code> CR. Run the following command:
+      <CodeBlock code={"$ oc get ipc ipconfig -o jsonpath='{.status.validNextStages}'"} lang="terminal" />
+      <p>Verify that the output includes <code>Rollback</code>.</p>
+      </li>
+      <li>
+      Check the rollback availability expiration timestamp by running the following command:
+      <CodeBlock code={"$ oc get ipc ipconfig -o jsonpath='{.status.rollbackAvailabilityExpiration}'"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Plan your rollback before this timestamp. After this timestamp, rolling back requires manual recovery because of expired control plane or kubelet certificates in the rollback stateroot.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Trigger the rollback by setting the stage to <code>Rollback</code> by running the following command:
+      <CodeBlock code={"$ oc patch ipc ipconfig --type merge -p '{\"spec\":{\"stage\":\"Rollback\"}}'"} lang="terminal" />
+      <p>The Lifecycle Agent reboots the node into the earlier stateroot.</p>
+      </li>
+      <li>
+      After the node reboots, monitor the rollback progress by running the following command:
+      <CodeBlock code={"$ oc get ipc ipconfig -o yaml"} lang="terminal" />
+      <p>Wait for the <code>RollbackCompleted</code> condition to be set.</p>
+      </li>
+      <li>
+      Verify the node is using the original network configuration by running the following command:
+      <CodeBlock code={"$ oc get nodes -o wide"} lang="terminal" />
+      </li>
+      <li>
+      Finalize the rollback by setting the stage to <code>Idle</code> by running the following command:
+      <CodeBlock code={"$ oc patch ipc ipconfig --type merge -p '{\"spec\":{\"stage\":\"Idle\"}}'"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="cnf-automatic-rollback-sno-ip-configuration_configuring-sno-ip-configuration" class="group scroll-mt-20">Automatic rollback mechanisms for network reconfiguration<a href="#cnf-automatic-rollback-sno-ip-configuration_configuring-sno-ip-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Network reconfiguration includes many automatic rollback safety mechanisms that help protect your cluster from failed configuration changes.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Automatic rollback on post-pivot failure</dt>
+      <dd class="ml-6 text-muted-foreground"><p>If network configuration or certificate regeneration fails after the reboot, the system automatically triggers a rollback to the earlier stateroot.</p></dd>
+      <dt class="font-semibold">Init-monitor timeout rollback</dt>
+      <dd class="ml-6 text-muted-foreground"><p>If the network reconfiguration does not complete within the configured timeout, the system automatically triggers a rollback. The default timeout is 1800 seconds, 30 minutes. You can configure this timeout by using the <code>spec.autoRollbackOnFailure.initMonitorTimeoutSeconds</code> field in the <code>IPConfig</code> CR. Setting the value to <code>0</code> uses the default timeout.</p></dd>
+      </dl>
+      <h2 id="cnf-ipconfig-cr-reference_configuring-sno-ip-configuration" class="group scroll-mt-20">IPConfig reference specifications<a href="#cnf-ipconfig-cr-reference_configuring-sno-ip-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The <code>IPConfig</code> custom resource (CR) is a cluster-scoped CR that controls the IP configuration workflow for single-node OpenShift clusters using the Lifecycle Agent. </p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The CR name must be <code>ipconfig</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>IPConfig spec fields</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>spec.stage</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>Controls the current stage of the IP configuration workflow. Valid values are <code>Idle</code>, <code>Config</code>, and <code>Rollback</code>. You can only change the stage to a value listed in <code>status.validNextStages</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.ipv4.address</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>The IPv4 node address without CIDR notation, for example <code>192.0.2.10</code>. Required if the <code>ipv4</code> object is present. Omit the entire <code>ipv4</code> object for IPv6-only clusters.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.ipv4.machineNetwork</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>The machine network CIDR, for example <code>192.0.2.0/24</code>. The address must be within this CIDR.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.ipv4.gateway</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>The IPv4 default gateway address, used to create the default route for IPv4 traffic. Must be within the machine network CIDR.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.ipv6.address</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>The IPv6 node address without CIDR notation, for example <code>2001:db8::10</code>. Required if the <code>ipv6</code> object is present. Omit the entire <code>ipv6</code> object for IPv4-only clusters.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.ipv6.machineNetwork</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>The IPv6 machine network CIDR, for example <code>2001:db8::/64</code>. The address must be within this CIDR.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.ipv6.gateway</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>The IPv6 default gateway, used to create the default route for IPv6 traffic. You can use link-local gateways.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.dnsServers</code></TableCell>
+      <TableCell>Array of strings</TableCell>
+      <TableCell>Ordered list of DNS server IP addresses. The first server in the list is used as the primary DNS server. Must match cluster IP families. Maximum of 2 servers.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.vlanID</code></TableCell>
+      <TableCell>Integer</TableCell>
+      <TableCell>The VLAN ID to configure. Valid values are 1-4094. You can only set this field if the cluster already has VLAN configuration.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.dnsFilterOutFamily</code></TableCell>
+      <TableCell>String</TableCell>
+      <TableCell>DNS response filtering for dual-stack clusters only. Set to <code>ipv4</code> to filter out A records, <code>ipv6</code> to filter out AAAA records, or <code>none</code> to disable filtering. You can only configure this field to <code>ipv4</code> or <code>ipv6</code> when the cluster uses a dual-stack configuration.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec.autoRollbackOnFailure.initMonitorTimeoutSeconds</code></TableCell>
+      <TableCell>Integer</TableCell>
+      <TableCell>Timeout in seconds for the init-monitor watchdog. Set to <code>0</code> or leave unset to use the default of 1800 seconds.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

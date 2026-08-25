@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nw-ovn-kubernetes-disabling-multicast","text":"Disabling multicast for a project"}];
+const headings = [{"depth":1,"slug":"nw-ovn-kubernetes-disabling-multicast","text":"Disabling multicast for a project"},{"depth":2,"slug":"nw-disabling-multicast_ovn-kubernetes-disabling-multicast","text":"Disabling multicast between pods"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/disabling-multicast";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["networking","networking/ovn_kubernetes_network_provider"]
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling multicast for a project {#nw-ovn-kubernetes-disabling-multicast}\n\nIn OpenShift Container Platform with OVN-Kubernetes, you can disable IP multicast on a per-project basis so pods no longer receive multicast traffic.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/disabling-multicast.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling multicast for a project {#nw-ovn-kubernetes-disabling-multicast}\n\nIn OpenShift Container Platform with OVN-Kubernetes, you can disable IP multicast on a per-project basis so pods no longer receive multicast traffic.\n\n## Disabling multicast between pods {#nw-disabling-multicast_ovn-kubernetes-disabling-multicast}\n\nTo disable multicast between pods in a project, you can remove the `k8s.ovn.org/multicast-enabled` annotation from the namespace by using the `oc annotate` command or a namespace manifest.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n- You must log in to the cluster with a user that has the `cluster-admin` role.\n\n**Procedure**\n\n- Disable multicast by running the following command:\n\n  ```terminal\n  $ oc annotate {{ namespace }} <namespace> \\\n      {{ annotation }}\n  ```\n\n  For `<namespace>`, specify the namespace for the project you want to disable multicast for.\n\n  > [!TIP]\n  > You can alternatively apply the following YAML to delete the annotation:\n  >\n  > ```yaml\n  > apiVersion: v1\n  > kind: Namespace\n  > metadata:\n  >   name: <namespace>\n  >   annotations:\n  >     k8s.ovn.org/multicast-enabled: null\n  > ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/disabling-multicast.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,29 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nw-ovn-kubernetes-disabling-multicast" class="group scroll-mt-20">Disabling multicast for a project<a href="#nw-ovn-kubernetes-disabling-multicast" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>In OpenShift Container Platform with OVN-Kubernetes, you can disable IP multicast on a per-project basis so pods no longer receive multicast traffic.</p>
-      <p class="/modules/nw-disabling-multicast.md"></p>
+      <h2 id="nw-disabling-multicast_ovn-kubernetes-disabling-multicast" class="group scroll-mt-20">Disabling multicast between pods<a href="#nw-disabling-multicast_ovn-kubernetes-disabling-multicast" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To disable multicast between pods in a project, you can remove the <code>k8s.ovn.org/multicast-enabled</code> annotation from the namespace by using the <code>oc annotate</code> command or a namespace manifest.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>You must log in to the cluster with a user that has the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Disable multicast by running the following command:
+      <CodeBlock code={"$ oc annotate {{ namespace }} <namespace> \\\n    {{ annotation }}"} lang="terminal" />
+      <p>For <code>&lt;namespace&gt;</code>, specify the namespace for the project you want to disable multicast for.</p>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can alternatively apply the following YAML to delete the annotation:</p>
+          <CodeBlock code={"apiVersion: v1\nkind: Namespace\nmetadata:\n  name: <namespace>\n  annotations:\n    k8s.ovn.org/multicast-enabled: null"} lang="yaml" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

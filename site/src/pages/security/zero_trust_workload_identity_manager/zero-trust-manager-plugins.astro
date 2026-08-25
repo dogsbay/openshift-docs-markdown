@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"zero-trust-manager-plugins","text":"SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager"}];
+const headings = [{"depth":1,"slug":"zero-trust-manager-plugins","text":"SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager"},{"depth":2,"slug":"zero-trust-manager-plugins-cert-manager-about_zero-trust-manager-plugins","text":"About the cert-manager upstream authority plugin"},{"depth":3,"slug":"cert-manager-plugin-workflow_zero-trust-manager-plugins","text":"How the cert-manager plugin works"},{"depth":3,"slug":"cert-manager-plugin-requirements_zero-trust-manager-plugins","text":"Requirements"},{"depth":2,"slug":"zero-trust-manager-preparing-plugin-use_zero-trust-manager-plugins","text":"Preparing cert-manager for SPIRE Server"},{"depth":2,"slug":"zero-trust-manager-config-cert-manager_zero-trust-manager-plugins","text":"Configuring the cert-manager upstream authority plugin"},{"depth":2,"slug":"zero-trust-manager-cert-manager-plugin-ref_zero-trust-manager-plugins","text":"cert-manager upstream authority plugin reference"},{"depth":3,"slug":"cert-manager-plugin-spireserver-cr-reference_zero-trust-manager-plugins","text":"SpireServer CR fields"},{"depth":2,"slug":"zero-trust-manager-cert-troubleshooting_zero-trust-manager-plugins","text":"Troubleshooting the cert-manager Operator for Red Hat OpenShift upstream authority plugin"},{"depth":3,"slug":"zero-trust-manager-cert-quick-reference_zero-trust-manager-plugins","text":"Quick reference"},{"depth":3,"slug":"cert-manager-plugin-permission-issuer_zero-trust-manager-plugins","text":"Permission and issuer errors"},{"depth":3,"slug":"cert-manager-plugin-certificaterequest_zero-trust-manager-plugins","text":"SPIRE Server errors"},{"depth":2,"slug":"zero-trust-manager-about-vault-plugin_zero-trust-manager-plugins","text":"About the SPIRE Vault UpstreamAuthority plugin"},{"depth":3,"slug":"spire-vault-authentication-methods_zero-trust-manager-plugins","text":"Supported authentication method"},{"depth":3,"slug":"spire-vault-requirements_zero-trust-manager-plugins","text":"Prerequisites and requirements"},{"depth":2,"slug":"zero-trust-manager-spire-vault-config_zero-trust-manager-plugins","text":"Configuring the SPIRE Vault UpstreamAuthority plugin"},{"depth":2,"slug":"zero-trust-manager-spire-vault-plugin-ref_zero-trust-manager-plugins","text":"SPIRE Vault UpstreamAuthority plugin reference"},{"depth":3,"slug":"spire-vault-spireserver-cr-reference_zero-trust-manager-plugins","text":"SpireServer CR fields"},{"depth":3,"slug":"spire-vault-policy-reference_zero-trust-manager-plugins","text":"Required Vault policy"},{"depth":2,"slug":"zero-trust-manager-spire-vault-troubleshooting_zero-trust-manager-plugins","text":"Troubleshooting SPIRE Vault UpstreamAuthority plugin"},{"depth":3,"slug":"zero-trust-manager-vault-quick-reference_zero-trust-manager-plugins","text":"Quick reference"},{"depth":3,"slug":"spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins","text":"Connection and TLS errors"},{"depth":3,"slug":"spire-vault-troubleshooting-authentication_zero-trust-manager-plugins","text":"Authentication and signing errors"},{"depth":3,"slug":"spire-vault-troubleshooting-ttl_zero-trust-manager-plugins","text":"TTL mismatch errors"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-plugins";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager";
-const description = "To integrate {{ spire_full }} (SPIRE) with your existing certificate management infrastructure and keep {{ spiffe_full }} (SPIFFE) identity standards…" || undefined;
+const description = "To integrate SPIFFE Runtime Environment (SPIRE) with your existing certificate management infrastructure and keep Secure Production Identity Framework for…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["security","security/zero_trust_workload_identity_manager"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager {#zero-trust-manager-plugins}\n\nTo integrate {{ spire_full }} (SPIRE) with your existing certificate management infrastructure and keep {{ spiffe_full }} (SPIFFE) identity standards, configure SPIRE Server with UpstreamAuthority plugins. These plugins obtain intermediate signing certificates from external certificate authorities.\n\nYou can configure SPIRE Server to use one of the following UpstreamAuthority plugins:\n\n**cert-manager UpstreamAuthority plugin**\n:   Integrates SPIRE with {{ cert_manager_operator }} running in Kubernetes or OpenShift Container Platform clusters. The {{ cert_manager_operator }} instance can use various issuer types to provide signing certificates for SPIRE intermediate CAs.\n\n**Vault UpstreamAuthority plugin**\n:   Integrates SPIRE with the HashiCorp Vault Public Key Infrastructure (PKI) secrets engine. This plugin supports many Vault authentication methods and enables SPIRE to use Vault’s security features for certificate management.\n\nChoose the plugin that matches your certificate management infrastructure. You can configure only one UpstreamAuthority plugin at a time. The `SpireServer` CR rejects configurations that specify both `certManager` and `vault` simultaneously.\n\n**Additional resources**\n\n- [cert-manager Operator for Red Hat OpenShift](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-plugins.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager {#zero-trust-manager-plugins}\n\nTo integrate SPIFFE Runtime Environment (SPIRE) with your existing certificate management infrastructure and keep Secure Production Identity Framework for Everyone (SPIFFE) (SPIFFE) identity standards, configure SPIRE Server with UpstreamAuthority plugins. These plugins obtain intermediate signing certificates from external certificate authorities.\n\nYou can configure SPIRE Server to use one of the following UpstreamAuthority plugins:\n\n**cert-manager UpstreamAuthority plugin**\n:   Integrates SPIRE with cert-manager Operator for Red Hat OpenShift running in Kubernetes or OpenShift Container Platform clusters. The cert-manager Operator for Red Hat OpenShift instance can use various issuer types to provide signing certificates for SPIRE intermediate CAs.\n\n**Vault UpstreamAuthority plugin**\n:   Integrates SPIRE with the HashiCorp Vault Public Key Infrastructure (PKI) secrets engine. This plugin supports many Vault authentication methods and enables SPIRE to use Vault’s security features for certificate management.\n\nChoose the plugin that matches your certificate management infrastructure. You can configure only one UpstreamAuthority plugin at a time. The `SpireServer` CR rejects configurations that specify both `certManager` and `vault` simultaneously.\n\n## About the cert-manager upstream authority plugin {#zero-trust-manager-plugins-cert-manager-about_zero-trust-manager-plugins}\n\nThe cert-manager Operator for Red Hat OpenShift upstream authority plugin connects SPIRE Server to cert-manager Operator for Red Hat OpenShift for automated intermediate certificate provisioning.\n\nWhen you configure this plugin, SPIRE Server creates a `CertificateRequest` resource in the cluster. The configured Issuer or ClusterIssuer signs the request and the certificate. The SPIRE Server then uses the signed intermediate certificate to issue workload identities.\n\n### How the cert-manager plugin works {#cert-manager-plugin-workflow_zero-trust-manager-plugins}\n\n1. SPIRE Server generates a certificate signing request for an intermediate signing certificate.\n2. The plugin creates a `CertificateRequest` in the configured namespace.\n3. The `CertificateRequest` references the configured Issuer or ClusterIssuer.\n4. cert-manager Operator for Red Hat OpenShift signs the request.\n5. SPIRE Server retrieves the signed certificate and CA bundle from the `CertificateRequest`.\n\n### Requirements {#cert-manager-plugin-requirements_zero-trust-manager-plugins}\n\ncert-manager Operator for Red Hat OpenShift\n:   cert-manager Operator for Red Hat OpenShift must be installed and running in the cluster.\n\nIssuer\n:   You must configure an `Issuer` or `ClusterIssuer` that can sign intermediate CA certificates.\n\nPermissions\n:   On OpenShift Container Platform, Zero Trust Workload Identity Manager grants the SPIRE Server `ServiceAccount` permission to manage `CertificateRequest` resources when `spec.upstreamAuthority.certManager` is configured. Prepare the Issuer and namespace before you configure the `SpireServer` CR.\n\nSupported issuers\n:   The `Issuer` must support signing certificate requests for intermediate CAs.\n\n## Preparing cert-manager for SPIRE Server {#zero-trust-manager-preparing-plugin-use_zero-trust-manager-plugins}\n\nInstall cert-manager Operator for Red Hat OpenShift and create an `Issuer` or `ClusterIssuer` that can sign SPIRE intermediate certificates. After you complete this procedure, configure `spec.upstreamAuthority.certManager` on the `SpireServer` CR.\n\n**Prerequisites**\n\n- You are logged in to the cluster with the `cluster-admin` role.\n- You have installed Zero Trust Workload Identity Manager or plan to install it after cert-manager Operator for Red Hat OpenShift is ready.\n\n**Procedure**\n\n1. Create a self-signed bootstrap `ClusterIssuer`:\n\n   1. Save the following manifest as `selfsigned-bootstrap.yaml`:\n\n      ```yaml\n      apiVersion: cert-manager.io/v1\n      kind: ClusterIssuer\n      metadata:\n        name: selfsigned-bootstrap\n      spec:\n        selfSigned: {}\n      ```\n   2. Apply the `ClusterIssuer` by running the following command:\n\n      ```terminal\n      $ oc apply -f selfsigned-bootstrap.yaml\n      ```\n2. Use the bootstrap `ClusterIssuer` to issue a root CA certificate into a Secret:\n\n   1. Save the following manifest as `spire-root-ca.yaml`:\n\n      ```yaml\n      apiVersion: cert-manager.io/v1\n      kind: Certificate\n      metadata:\n        name: spire-root-ca\n        namespace: cert-manager\n      spec:\n        isCA: true\n        secretName: spire-root-ca-secret\n        issuerRef:\n          name: selfsigned-bootstrap\n          kind: ClusterIssuer\n        commonName: \"SPIRE Root CA\"\n        duration: 87600h\n      ```\n   2. Apply the `Certificate` by running the following command:\n\n      ```terminal\n      $ oc apply -f spire-root-ca.yaml\n      ```\n3. Create a CA `Issuer` that references the root CA Secret:\n\n   1. Save the following manifest as `spire-ca-issuer.yaml`:\n\n      ```yaml\n      apiVersion: cert-manager.io/v1\n      kind: Issuer\n      metadata:\n        name: spire-ca\n        namespace: cert-manager\n      spec:\n        ca:\n          secretName: spire-root-ca-secret\n      ```\n   2. Apply the `Issuer` by running the following command:\n\n      ```terminal\n      $ oc apply -f spire-ca-issuer.yaml\n      ```\n\n**Verification**\n\n- Confirm that the bootstrap `ClusterIssuer`, root CA `Certificate`, and signing `Issuer` are ready by running the following commands:\n\n  ```terminal\n  $ oc get clusterissuer selfsigned-bootstrap\n  ```\n\n  ```terminal\n  $ oc get certificate spire-root-ca -n cert-manager\n  ```\n\n  ```terminal\n  $ oc get issuer spire-ca -n cert-manager\n  ```\n\n**Additional resources**\n\n- [cert-manager Operator for Red Hat OpenShift](https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift)\n\n## Configuring the cert-manager upstream authority plugin {#zero-trust-manager-config-cert-manager_zero-trust-manager-plugins}\n\nConfigure SPIRE Server to obtain intermediate signing certificates from cert-manager Operator for Red Hat OpenShift by setting `spec.upstreamAuthority.certManager` on the `SpireServer` custom resource. Zero Trust Workload Identity Manager generates SPIRE Server configuration and reconciles the SPIRE Server \\`StatefulSet.\n\n**Prerequisites**\n\n- You have installed Zero Trust Workload Identity Manager and deployed a `SpireServer` CR.\n- You have completed preparing cert-manager Operator for Red Hat OpenShift for SPIRE Server use, including creating an `Issuer` or `ClusterIssuer`.\n\n**Procedure**\n\n1. Export the current `SpireServer` CR to a file by running the following command:\n\n   ```terminal\n   $ oc get spireserver cluster -o yaml > SpireServer-cert-manager.yaml\n   ```\n2. In the `SpireServer-cert-manager.yaml`, add the `upstreamAuthority` section under `spec:`:\n\n   ```yaml\n   apiVersion: operator.openshift.io/v1alpha1\n   kind: SpireServer\n   metadata:\n     name: cluster\n   spec:\n     logLevel: \"info\"\n     logFormat: \"text\"\n     jwtIssuer: \"https://oidc-discovery.apps.cluster.example.com\"\n     caValidity: \"24h\"\n     defaultX509Validity: \"1h\"\n     defaultJWTValidity: \"5m\"\n     jwtKeyType: \"rsa-2048\"\n     caSubject:\n       country: \"US\"\n       organization: \"Example Corporation\"\n       commonName: \"SPIRE Server CA\"\n     persistence:\n       size: \"5Gi\"\n       accessMode: \"ReadWriteOnce\"\n       storageClass: \"gp3-csi\"\n     datastore:\n       databaseType: \"sqlite3\"\n       connectionString: \"/run/spire/data/datastore.sqlite3\"\n       tlsSecretName: \"\"\n       maxOpenConns: 100\n       maxIdleConns: 10\n       connMaxLifetime: 0\n       disableMigration: \"false\"\n     upstreamAuthority:\n       certManager:\n         namespace: cert-manager\n         issuerName: spire-ca\n         issuerKind: Issuer\n         issuerGroup: cert-manager.io\n   ```\n\n   where:\n\n   `spec.upstreamAuthority.certManager.namespace`\n   :   Specifies the namespace where SPIRE Server creates `CertificateRequest` resources. For a namespace-scoped `Issuer`, this must match the `Issuer` namespace. For a `ClusterIssuer`, any namespace is valid.\n\n   `spec.upstreamAuthority.certManager.issuerName`\n   :   Specifies the name of the `Issuer` or `ClusterIssuer`.\n\n   `spec.upstreamAuthority.certManager.issuerKind`\n   :   Specifies the `Issuer` or `ClusterIssuer`. The default is `Issuer`.\n\n   `spec.upstreamAuthority.certManager.issuerGroup`\n   :   Specifies the API group of the issuer. The default is `cert-manager.io`.\n\n   > [!NOTE]\n   > On OpenShift Container Platform, SPIRE Server uses its in-cluster `ServiceAccount`. Zero Trust Workload Identity Manager grants `CertificateRequest` permissions when `spec.upstreamAuthority.certManager` is configured.\n3. Apply the updated CR by running the following command:\n\n   ```terminal\n   $ oc apply -f SpireServer-cert-manager.yaml\n   ```\n4. Wait for Zero Trust Workload Identity Manager to reconcile the SPIRE Server by running the following command:\n\n   ```terminal\n   $ oc rollout status statefulset/spire-server -n zero-trust-workload-identity-manager\n   ```\n\n**Verification**\n\n1. Verify that SPIRE Server is healthy and that logs show the `UpstreamAuthority` plugin loaded by running the following commands:\n\n   ```terminal\n   $ oc exec -n zero-trust-workload-identity-manager statefulset/spire-server -c spire-server -- \\\n       /opt/spire/bin/spire-server healthcheck\n   ```\n\n   ```terminal\n   $ oc logs statefulset/spire-server -n zero-trust-workload-identity-manager -c spire-server --tail=50\n   ```\n2. Confirm that a cert-manager-signed intermediate certificate is present by running the following command:\n\n   ```terminal\n   $ oc exec -n zero-trust-workload-identity-manager statefulset/spire-server -c spire-server -- \\\n       /opt/spire/bin/spire-server bundle show\n   ```\n\n## cert-manager upstream authority plugin reference {#zero-trust-manager-cert-manager-plugin-ref_zero-trust-manager-plugins}\n\nThis reference describes `spec.upstreamAuthority.certManager` fields on the `SpireServer` custom resource and how Zero Trust Workload Identity Manager uses them to request intermediate certificates from cert-manager Operator for Red Hat OpenShift. Use it when you configure or troubleshoot the cert-manager Operator for Red Hat OpenShift UpstreamAuthority plugin and need field descriptions or defaults.\n\n### SpireServer CR fields {#cert-manager-plugin-spireserver-cr-reference_zero-trust-manager-plugins}\n\nConfigure cert-manager Operator for Red Hat OpenShift upstream authority under `spec.upstreamAuthority.certManager`. Zero Trust Workload Identity Manager generates the SPIRE Server configuration from these fields.\n\n| Field | Description |\n| --- | --- |\n| `namespace` | Required. Namespace where SPIRE Server creates `CertificateRequest` resources. |\n| `issuerName` | Required. Name of the Issuer or ClusterIssuer. |\n| `issuerKind` | Optional. `Issuer` or `ClusterIssuer`. The default is `Issuer`. |\n| `issuerGroup` | Optional. API group of the issuer. The default is `cert-manager.io`. |\n\n> [!NOTE]\n> On OpenShift Container Platform, SPIRE Server uses its in-cluster `ServiceAccount`. Zero Trust Workload Identity Manager grants permissions to create, get, list, and delete `CertificateRequest` resources when `spec.upstreamAuthority.certManager` is configured.\n\n## Troubleshooting the cert-manager Operator for Red Hat OpenShift upstream authority plugin {#zero-trust-manager-cert-troubleshooting_zero-trust-manager-plugins}\n\nResolve the most common cert-manager Operator for Red Hat OpenShift upstream authority failures on OpenShift Container Platform.\n\n### Quick reference {#zero-trust-manager-cert-quick-reference_zero-trust-manager-plugins}\n\n| Symptom or error | Likely cause | Section |\n| --- | --- | --- |\n| `certificaterequests... is forbidden` | Missing permissions or wrong `namespace` | [#!cert-manager-plugin-permission-issuer_zero-trust-manager-plugins](#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins) |\n| `issuer ... not found` | Wrong `issuerName`, `issuerKind`, or issuer namespace | [#!cert-manager-plugin-permission-issuer_zero-trust-manager-plugins](#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins) |\n| Issuer not `READY` | Issuer misconfiguration | [#!cert-manager-plugin-permission-issuer_zero-trust-manager-plugins](#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins) |\n| `CertificateRequest` not approved or denied | Approval policy or approver configuration | [#!cert-manager-plugin-certificaterequest_zero-trust-manager-plugins](#cert-manager-plugin-certificaterequest_zero-trust-manager-plugins) |\n| UpstreamAuthority fails to load in SPIRE Server logs | Invalid or incomplete `spec.upstreamAuthority.certManager` | [#!cert-manager-plugin-certificaterequest_zero-trust-manager-plugins](#cert-manager-plugin-certificaterequest_zero-trust-manager-plugins) |\n\n### Permission and issuer errors {#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins}\n\n**Permission errors**\n\n- Confirm `spec.upstreamAuthority.certManager.namespace` matches the namespace where SPIRE Server creates `CertificateRequest` resources.\n- After you configure `spec.upstreamAuthority.certManager`, verify that Zero Trust Workload Identity Manager updated the SPIRE Server role-based access control (RBAC) and the SPIRE Server pod restarted.\n\n**Issuer errors**\n\n- Verify `issuerName` and `issuerKind` on the `SpireServer` CR match an existing Issuer or ClusterIssuer.\n- For a namespace-scoped `Issuer`, the Issuer must exist in the namespace referenced by `CertificateRequest` resources or in the namespace where the issuer is defined, depending on your issuer configuration.\n- Check that the Issuer reports `READY=True`:\n\n  ```terminal\n  $ oc get issuer,clusterissuer -A\n  $ oc describe issuer spire-ca -n cert-manager\n  ```\n\n### SPIRE Server errors {#cert-manager-plugin-certificaterequest_zero-trust-manager-plugins}\n\n**SPIRE Server errors**\n\n- Confirm that `namespace`, `issuerName`, and `issuerKind` are set under `spec.upstreamAuthority.certManager`.\n- Review SPIRE Server logs by running the following command:\n\n```terminal\n$ oc logs statefulset/spire-server -n zero-trust-workload-identity-manager -c spire-server --tail=100\n```\n\n## About the SPIRE Vault UpstreamAuthority plugin {#zero-trust-manager-about-vault-plugin_zero-trust-manager-plugins}\n\nThe Vault UpstreamAuthority plugin connects SPIRE Server to the HashiCorp Vault PKI secrets engine for automated intermediate CA certificate signing. Use this plugin when you centralize PKI in Vault and want SPIRE to obtain intermediate signing certificates through Vault policies and authentication method.\n\nThe SPIRE Vault UpstreamAuthority plugin provides the following features:\n\n- Integration with HashiCorp Vault PKI secrets engine as an upstream certificate authority\n- Support for `Kubernetes auth` Vault authentication methods\n- Automatic signing of SPIRE intermediate CA certificates\n- Vault Enterprise namespace support\n- Secure certificate management using Vault’s security features\n\n> [!IMPORTANT]\n> The Vault UpstreamAuthority plugin does not support the `PublishJWTKey` remote procedure call (RPC) and is not appropriate for use in nested SPIRE topologies where JSON Web Token SPIFFE Verifiable Identity Document (SVID) (JWT-SVIDs) are used.\n\n### Supported authentication method {#spire-vault-authentication-methods_zero-trust-manager-plugins}\n\nThe Vault UpstreamAuthority plugin supports only the following authentication methods for connecting to Vault:\n\nKubernetes authentication\n:   Uses Kubernetes service account tokens to authenticate to Vault.\n\n### Prerequisites and requirements {#spire-vault-requirements_zero-trust-manager-plugins}\n\nBefore configuring the Vault UpstreamAuthority plugin, ensure the following requirements are met:\n\nVault PKI secrets engine\n:   A running HashiCorp Vault instance with the PKI secrets engine enabled at a configured mount point (default: `pki`). The PKI secrets engine must have a root CA certificate configured for signing intermediate certificates.\n\nVault policy\n:   A Vault policy that grants the `update` capability for the `pki/root/sign-intermediate` endpoint, attached to the credentials SPIRE Server uses.\n\nAuthentication credentials\n:   Valid credentials for one of the supported authentication methods, associated with the Vault signing policy.\n\nTTL configuration\n:   SPIRE Server `ca_ttl` must not exceed the Vault PKI secrets engine maximum lease TTL.\n\nNetwork connectivity\n:   SPIRE Server must reach the Vault server over the network and trust the Vault TLS certificate when TLS is enabled.\n\nKubernetes RBAC (when using Kubernetes authentication)\n:   A `ServiceAccount` for SPIRE Server bound to the Vault Kubernetes auth role. The SPIRE Server `ServiceAccount` requires no additional RBAC. However, the Vault `ServiceAccount` must have `system:auth-delegator` permissions to validate projected tokens via the Kubernetes `TokenReview` API.\n\n## Configuring the SPIRE Vault UpstreamAuthority plugin {#zero-trust-manager-spire-vault-config_zero-trust-manager-plugins}\n\nConfigure SPIRE Server to obtain intermediate signing certificates from HashiCorp Vault by setting `spec.upstreamAuthority.vault` on the `SpireServer` custom resource (CR). Zero Trust Workload Identity Manager generates the SPIRE Server configuration, mounts Vault credentials into the SPIRE Server pod, and reconciles the SPIRE Server `StatefulSet`.\n\nOn OpenShift Container Platform, the `SpireServer` CR supports Vault authentication only through the Kubernetes auth method. Zero Trust Workload Identity Manager mounts a projected SPIRE Server `ServiceAccount` token and, when configured, a Vault CA certificate Secret at fixed paths inside the pod.\n\n**Prerequisites**\n\n- You have installed Zero Trust Workload Identity Manager and deployed a `SpireServer` CR.\n- You have a running HashiCorp Vault instance with the PKI secrets engine enabled at your mount point (default: `pki`) and a root CA configured to sign intermediate certificates.\n- You have a Vault policy that grants the `update` capability on `<pki_mount>/root/sign-intermediate`.\n- You have configured the Vault Kubernetes authentication method and created a Vault role bound to the SPIRE Server `ServiceAccount`. For example, `spire-server` in the `zero-trust-workload-identity-manager` namespace.\n- The value of `spec.caValidity` on the `SpireServer` CR is less than or equal to the maximum lease Time to Live (TTL) configured on the Vault PKI secrets engine.\n- If Vault uses a private or custom TLS certificate authority, you have a PEM-encoded CA certificate available to store in a Kubernetes `Secret`.\n\n**Procedure**\n\n1. Export the current `SpireServer` CR to a file by running the following command:\n\n   ```terminal\n   $ oc get spireserver cluster -o yaml > SpireServer-vault.yaml\n   ```\n2. In `SpireServer-vault.yaml`, add the `upstreamAuthority` section from the following example under `spec:`:\n\n   ```yaml\n   apiVersion: operator.openshift.io/v1alpha1\n   kind: SpireServer\n   metadata:\n     name: cluster\n   spec:\n     logLevel: \"info\"\n     logFormat: \"text\"\n     jwtIssuer: \"https://oidc-discovery.apps.cluster.example.com\"\n     caValidity: \"24h\"\n     defaultX509Validity: \"1h\"\n     defaultJWTValidity: \"5m\"\n     jwtKeyType: \"rsa-2048\"\n     caSubject:\n       country: \"US\"\n       organization: \"Example Corporation\"\n       commonName: \"SPIRE Server CA\"\n     persistence:\n       size: \"5Gi\"\n       accessMode: \"ReadWriteOnce\"\n       storageClass: \"gp3-csi\"\n     datastore:\n       databaseType: \"sqlite3\"\n       connectionString: \"/run/spire/data/datastore.sqlite3\"\n       tlsSecretName: \"\"\n       maxOpenConns: 100\n       maxIdleConns: 10\n       connMaxLifetime: 0\n       disableMigration: \"false\"\n     upstreamAuthority:\n       vault:\n         vaultAddr: \"https://vault.example.com:8200\"\n         pkiMountPoint: \"pki\"\n         caCertSecretRef:\n           name: vault-ca-cert\n           key: ca.crt\n         k8sAuth:\n           k8sAuthMountPoint: \"kubernetes\"\n           k8sAuthRoleName: \"spire-server\"\n           audience: \"vault\"\n         vaultNamespace: \"vault-namespace\" # optional\n   ```\n\n   > [!NOTE]\n   > For in-cluster Vault over HTTP, set `vaultAddr` to the in-cluster service URL, such as `http://vault.vault.svc:8200`, and omit `caCertSecretRef`.\n   >\n   > Include `caCertSecretRef` only when Vault TLS is signed by a custom CA. Omit it when Vault uses a public CA.\n\n   where:\n\n   `spec.caValidity`\n   :   Specifies the SPIRE Server CA validity. Must be less than or equal to the Vault PKI `max_lease_ttl`. Zero Trust Workload Identity Manager maps this value to SPIRE `ca_ttl`.\n\n   `spec.upstreamAuthority.vault.vaultAddr`\n   :   Specifies the URL of the Vault server.\n\n   `spec.upstreamAuthority.vault.pkiMountPoint`\n   :   Specifies the Vault PKI secrets engine mount path. Default: `pki`.\n\n   `spec.upstreamAuthority.vault.caCertSecretRef`\n   :   Optional. Specifies the `Secret` reference when Vault TLS is signed by a custom CA. Zero Trust Workload Identity Manager mounts the Secret at `/run/spire/upstream-ca/ca.crt`.\n\n   `spec.upstreamAuthority.vault.k8sAuth.k8sAuthRoleName`\n   :   Specifies the Vault Kubernetes auth role name.\n\n   `spec.upstreamAuthority.vault.k8sAuth.k8sAuthMountPoint`\n   :   Specifies the Vault Kubernetes auth mount path. The default is `kubernetes`.\n\n   `spec.upstreamAuthority.vault.k8sAuth.audience`\n   :   Specifies the projected `ServiceAccount` token audience. This must match the Vault role. The default is `vault`.\n\n   `spec.upstreamAuthority.vault.vaultNamespace`\n   :   Optional. Specifies the Vault namespace name.\n3. Apply the updated CR by running the following command:\n\n   ```terminal\n   $ oc apply -f SpireServer-vault.yaml\n   ```\n4. Wait for Zero Trust Workload Identity Manager to reconcile the SPIRE Server by running the following command:\n\n   ```terminal\n   $ oc rollout status statefulset/spire-server -n zero-trust-workload-identity-manager\n   ```\n\n**Verification**\n\n1. Verify that SPIRE Server is healthy and that logs show the UpstreamAuthority plugin loaded by running the following commands:\n\n   ```terminal\n   $ oc exec -n zero-trust-workload-identity-manager statefulset/spire-server -c spire-server -- \\\n       /opt/spire/bin/spire-server healthcheck\n   $ oc logs statefulset/spire-server -n zero-trust-workload-identity-manager -c spire-server --tail=50\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Server is healthy.\n   time=\"2026-04-07T10:15:30Z\" level=info msg=\"Upstream authority loaded\" subsystem_name=ca\n   time=\"2026-04-07T10:15:31Z\" level=info msg=\"Server CA activated\" certificate_fingerprint=\"ABC123...\"\n   ```\n2. Confirm that a Vault-signed intermediate certificate is present by running the following command:\n\n   ```terminal\n   $ oc exec -n zero-trust-workload-identity-manager statefulset/spire-server -c spire-server -- \\\n       /opt/spire/bin/spire-server bundle show\n   ```\n\n## SPIRE Vault UpstreamAuthority plugin reference {#zero-trust-manager-spire-vault-plugin-ref_zero-trust-manager-plugins}\n\nReference for `spec.upstreamAuthority.vault` on the `SpireServer` CR and the Vault signing policy SPIRE Server requires.\n\n### SpireServer CR fields {#spire-vault-spireserver-cr-reference_zero-trust-manager-plugins}\n\nConfigure Vault upstream authority under `spec.upstreamAuthority.vault`. Zero Trust Workload Identity Manager generates SPIRE Server configuration from these fields.\n\n| Field | Description |\n| --- | --- |\n| `vaultAddr` | Required. Vault server URL. Use HTTPS for external endpoints; HTTP is permitted for in-cluster services. |\n| `pkiMountPoint` | PKI secrets engine mount path. Default: `pki`. |\n| `caCertSecretRef` | Optional Secret reference in the `zero-trust-workload-identity-manager` namespace. Use when Vault TLS is signed by a custom CA. Zero Trust Workload Identity Manager mounts the key at `/run/spire/upstream-ca/ca.crt`. |\n| `insecureSkipVerify` | Optional. Accepts any Vault server certificate when `true`. Default: `false`. Do not enable `insecureSkipVerify` in production. This setting disables TLS certificate verification and exposes the connection to man-in-the-middle attacks. Troubleshooting only. |\n| `vaultNamespace` | Optional. Vault Enterprise namespace. |\n| `k8sAuth.k8sAuthMountPoint` | Vault Kubernetes auth mount path. Default: `kubernetes`. |\n| `k8sAuth.k8sAuthRoleName` | Required. Vault role bound to the `spire-server` ServiceAccount. |\n| `k8sAuth.audience` | Token audience for the projected ServiceAccount token. Default: `vault`. Must match the `bound_audiences` configured on the Vault role. |\n\n> [!NOTE]\n> On OpenShift Container Platform, the `SpireServer` CR supports Vault Kubernetes authentication only. Zero Trust Workload Identity Manager mounts a projected `ServiceAccount` token at `/var/run/secrets/tokens/vault`.\n>\n> Ensure that `spec.caValidity` does not exceed the Vault PKI `max_lease_ttl`.\n\n### Required Vault policy {#spire-vault-policy-reference_zero-trust-manager-plugins}\n\nThe Vault Kubernetes auth role must include a policy with `update` on the intermediate signing path:\n\n```text\npath \"pki/root/sign-intermediate\" {\n  capabilities = [\"update\"]\n}\n```\n\nReplace `pki` with your PKI mount point when different.\n\n## Troubleshooting SPIRE Vault UpstreamAuthority plugin {#zero-trust-manager-spire-vault-troubleshooting_zero-trust-manager-plugins}\n\nResolve the most common SPIRE Vault upstream authority failures on OpenShift Container Platform.\n\n### Quick reference {#zero-trust-manager-vault-quick-reference_zero-trust-manager-plugins}\n\n| Symptom or error | Likely cause | Section |\n| --- | --- | --- |\n| Connection refused, timeout, or unreachable Vault | Wrong `vaultAddr` or network path from the SPIRE Server pod | [#!spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins](#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins) |\n| `x509: certificate signed by unknown authority` | Missing or invalid `caCertSecretRef` Secret | [#!spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins](#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins) |\n| Vault `403` or Kubernetes auth failure | Vault role, ServiceAccount binding, or signing policy misconfiguration | [#!spire-vault-troubleshooting-authentication_zero-trust-manager-plugins](#spire-vault-troubleshooting-authentication_zero-trust-manager-plugins) |\n| `requested TTL ... exceeds max_lease_ttl` | `caValidity` exceeds the Vault PKI limit | [#!spire-vault-troubleshooting-ttl_zero-trust-manager-plugins](#spire-vault-troubleshooting-ttl_zero-trust-manager-plugins) |\n\n### Connection and TLS errors {#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins}\n\n**Connection failures**\n\n- Verify `spec.upstreamAuthority.vault.vaultAddr` on the `SpireServer` CR.\n- Confirm the SPIRE Server pod can reach Vault from the `zero-trust-workload-identity-manager` namespace.\n- For in-cluster Vault, use the Kubernetes service URL, such as `http://vault.vault.svc:8200`.\n\n**TLS failures**\n\n- When Vault uses a custom CA, set `caCertSecretRef` to a Secret in the `zero-trust-workload-identity-manager` namespace with a PEM-encoded CA certificate.\n- Confirm the `Secret` name and key match `caCertSecretRef`.\n- Omit `caCertSecretRef` only for a public CA or in-cluster HTTP.\n- Do not use `insecureSkipVerify: true` in production.\n\n### Authentication and signing errors {#spire-vault-troubleshooting-authentication_zero-trust-manager-plugins}\n\nSPIRE Server uses Vault Kubernetes authentication with the `spire-server` ServiceAccount.\n\nCheck the following:\n\n- `k8sAuth.k8sAuthRoleName` on the `SpireServer` CR matches the Vault Kubernetes auth role.\n- The Vault role binds to ServiceAccount `spire-server` in namespace `zero-trust-workload-identity-manager`.\n- The role policy grants `update` on `<pki_mount>/root/sign-intermediate`.\n- `pkiMountPoint` matches the PKI secrets engine mount in Vault.\n- `k8sAuth.audience` matches the Vault role when you changed the default from `vault`.\n\nReview SPIRE Server logs:\n\n```terminal\n$ oc logs statefulset/spire-server -n zero-trust-workload-identity-manager -c spire-server --tail=100\n```\n\n### TTL mismatch errors {#spire-vault-troubleshooting-ttl_zero-trust-manager-plugins}\n\n`spec.caValidity` on the `SpireServer` CR must be less than or equal to the Vault PKI `max_lease_ttl`.\n\n- Reduce `caValidity` on the `SpireServer` CR, or increase the Vault PKI limit with `vault secrets tune -max-lease-ttl=...`.\n\nFor Vault Enterprise namespace errors, set `spec.upstreamAuthority.vault.vaultNamespace` to the correct namespace path.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/zero_trust_workload_identity_manager/zero-trust-manager-plugins.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,26 +101,477 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="zero-trust-manager-plugins" class="group scroll-mt-20">SPIRE UpstreamAuthority plugins for Zero Trust Workload Identity Manager<a href="#zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>To integrate {"{"}{"{"} spire_full {"}"}{"}"} (SPIRE) with your existing certificate management infrastructure and keep {"{"}{"{"} spiffe_full {"}"}{"}"} (SPIFFE) identity standards, configure SPIRE Server with UpstreamAuthority plugins. These plugins obtain intermediate signing certificates from external certificate authorities.</p>
+      <p>To integrate SPIFFE Runtime Environment (SPIRE) with your existing certificate management infrastructure and keep Secure Production Identity Framework for Everyone (SPIFFE) (SPIFFE) identity standards, configure SPIRE Server with UpstreamAuthority plugins. These plugins obtain intermediate signing certificates from external certificate authorities.</p>
       <p>You can configure SPIRE Server to use one of the following UpstreamAuthority plugins:</p>
       <dl class="my-4 space-y-2">
       <dt class="font-semibold"><strong>cert-manager UpstreamAuthority plugin</strong></dt>
-      <dd class="ml-6 text-muted-foreground"><p>Integrates SPIRE with {"{"}{"{"} cert_manager_operator {"}"}{"}"} running in Kubernetes or OpenShift Container Platform clusters. The {"{"}{"{"} cert_manager_operator {"}"}{"}"} instance can use various issuer types to provide signing certificates for SPIRE intermediate CAs.</p></dd>
+      <dd class="ml-6 text-muted-foreground"><p>Integrates SPIRE with cert-manager Operator for Red Hat OpenShift running in Kubernetes or OpenShift Container Platform clusters. The cert-manager Operator for Red Hat OpenShift instance can use various issuer types to provide signing certificates for SPIRE intermediate CAs.</p></dd>
       <dt class="font-semibold"><strong>Vault UpstreamAuthority plugin</strong></dt>
       <dd class="ml-6 text-muted-foreground"><p>Integrates SPIRE with the HashiCorp Vault Public Key Infrastructure (PKI) secrets engine. This plugin supports many Vault authentication methods and enables SPIRE to use Vault’s security features for certificate management.</p></dd>
       </dl>
       <p>Choose the plugin that matches your certificate management infrastructure. You can configure only one UpstreamAuthority plugin at a time. The <code>SpireServer</code> CR rejects configurations that specify both <code>certManager</code> and <code>vault</code> simultaneously.</p>
-      <p class="/modules/zero-trust-manager-plugins-cert-manager-about.md"></p>
-      <p class="/modules/zero-trust-manager-preparing-plugin-use.md"></p>
+      <h2 id="zero-trust-manager-plugins-cert-manager-about_zero-trust-manager-plugins" class="group scroll-mt-20">About the cert-manager upstream authority plugin<a href="#zero-trust-manager-plugins-cert-manager-about_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The cert-manager Operator for Red Hat OpenShift upstream authority plugin connects SPIRE Server to cert-manager Operator for Red Hat OpenShift for automated intermediate certificate provisioning.</p>
+      <p>When you configure this plugin, SPIRE Server creates a <code>CertificateRequest</code> resource in the cluster. The configured Issuer or ClusterIssuer signs the request and the certificate. The SPIRE Server then uses the signed intermediate certificate to issue workload identities.</p>
+      <h3 id="cert-manager-plugin-workflow_zero-trust-manager-plugins" class="group scroll-mt-20">How the cert-manager plugin works<a href="#cert-manager-plugin-workflow_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ol>
+      <li>SPIRE Server generates a certificate signing request for an intermediate signing certificate.</li>
+      <li>The plugin creates a <code>CertificateRequest</code> in the configured namespace.</li>
+      <li>The <code>CertificateRequest</code> references the configured Issuer or ClusterIssuer.</li>
+      <li>cert-manager Operator for Red Hat OpenShift signs the request.</li>
+      <li>SPIRE Server retrieves the signed certificate and CA bundle from the <code>CertificateRequest</code>.</li>
+      </ol>
+      <h3 id="cert-manager-plugin-requirements_zero-trust-manager-plugins" class="group scroll-mt-20">Requirements<a href="#cert-manager-plugin-requirements_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">cert-manager Operator for Red Hat OpenShift</dt>
+      <dd class="ml-6 text-muted-foreground"><p>cert-manager Operator for Red Hat OpenShift must be installed and running in the cluster.</p></dd>
+      <dt class="font-semibold">Issuer</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You must configure an <code>Issuer</code> or <code>ClusterIssuer</code> that can sign intermediate CA certificates.</p></dd>
+      <dt class="font-semibold">Permissions</dt>
+      <dd class="ml-6 text-muted-foreground"><p>On OpenShift Container Platform, Zero Trust Workload Identity Manager grants the SPIRE Server <code>ServiceAccount</code> permission to manage <code>CertificateRequest</code> resources when <code>spec.upstreamAuthority.certManager</code> is configured. Prepare the Issuer and namespace before you configure the <code>SpireServer</code> CR.</p></dd>
+      <dt class="font-semibold">Supported issuers</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The <code>Issuer</code> must support signing certificate requests for intermediate CAs.</p></dd>
+      </dl>
+      <h2 id="zero-trust-manager-preparing-plugin-use_zero-trust-manager-plugins" class="group scroll-mt-20">Preparing cert-manager for SPIRE Server<a href="#zero-trust-manager-preparing-plugin-use_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Install cert-manager Operator for Red Hat OpenShift and create an <code>Issuer</code> or <code>ClusterIssuer</code> that can sign SPIRE intermediate certificates. After you complete this procedure, configure <code>spec.upstreamAuthority.certManager</code> on the <code>SpireServer</code> CR.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to the cluster with the <code>cluster-admin</code> role.</li>
+      <li>You have installed Zero Trust Workload Identity Manager or plan to install it after cert-manager Operator for Red Hat OpenShift is ready.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a self-signed bootstrap <code>ClusterIssuer</code>:
+      <ol>
+      <li>
+      Save the following manifest as <code>selfsigned-bootstrap.yaml</code>:
+      <CodeBlock code={"apiVersion: cert-manager.io/v1\nkind: ClusterIssuer\nmetadata:\n  name: selfsigned-bootstrap\nspec:\n  selfSigned: {}"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>ClusterIssuer</code> by running the following command:
+      <CodeBlock code={"$ oc apply -f selfsigned-bootstrap.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Use the bootstrap <code>ClusterIssuer</code> to issue a root CA certificate into a Secret:
+      <ol>
+      <li>
+      Save the following manifest as <code>spire-root-ca.yaml</code>:
+      <CodeBlock code={"apiVersion: cert-manager.io/v1\nkind: Certificate\nmetadata:\n  name: spire-root-ca\n  namespace: cert-manager\nspec:\n  isCA: true\n  secretName: spire-root-ca-secret\n  issuerRef:\n    name: selfsigned-bootstrap\n    kind: ClusterIssuer\n  commonName: \"SPIRE Root CA\"\n  duration: 87600h"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>Certificate</code> by running the following command:
+      <CodeBlock code={"$ oc apply -f spire-root-ca.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a CA <code>Issuer</code> that references the root CA Secret:
+      <ol>
+      <li>
+      Save the following manifest as <code>spire-ca-issuer.yaml</code>:
+      <CodeBlock code={"apiVersion: cert-manager.io/v1\nkind: Issuer\nmetadata:\n  name: spire-ca\n  namespace: cert-manager\nspec:\n  ca:\n    secretName: spire-root-ca-secret"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>Issuer</code> by running the following command:
+      <CodeBlock code={"$ oc apply -f spire-ca-issuer.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Confirm that the bootstrap <code>ClusterIssuer</code>, root CA <code>Certificate</code>, and signing <code>Issuer</code> are ready by running the following commands:
+      <CodeBlock code={"$ oc get clusterissuer selfsigned-bootstrap"} lang="terminal" />
+      <CodeBlock code={"$ oc get certificate spire-root-ca -n cert-manager"} lang="terminal" />
+      <CodeBlock code={"$ oc get issuer spire-ca -n cert-manager"} lang="terminal" />
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/security_and_compliance/cert-manager-operator-for-red-hat-openshift">cert-manager Operator for Red Hat OpenShift</a></li></ul>
-      <p class="/modules/zero-trust-manager-cert-manager-plugin-ref.md"></p>
-      <p class="/modules/zero-trust-manager-cert-troubleshooting.md"></p>
-      <p class="/modules/zero-trust-manager-about-vault-plugin.md"></p>
-      <p class="/modules/zero-trust-manager-spire-vault-config.md"></p>
-      <p class="/modules/zero-trust-manager-spire-vault-plugin-ref.md"></p>
-      <p class="/modules/zero-trust-manager-spire-vault-troubleshooting.md"></p>
+      <h2 id="zero-trust-manager-config-cert-manager_zero-trust-manager-plugins" class="group scroll-mt-20">Configuring the cert-manager upstream authority plugin<a href="#zero-trust-manager-config-cert-manager_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure SPIRE Server to obtain intermediate signing certificates from cert-manager Operator for Red Hat OpenShift by setting <code>spec.upstreamAuthority.certManager</code> on the <code>SpireServer</code> custom resource. Zero Trust Workload Identity Manager generates SPIRE Server configuration and reconciles the SPIRE Server `StatefulSet.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed Zero Trust Workload Identity Manager and deployed a <code>SpireServer</code> CR.</li>
+      <li>You have completed preparing cert-manager Operator for Red Hat OpenShift for SPIRE Server use, including creating an <code>Issuer</code> or <code>ClusterIssuer</code>.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Export the current <code>SpireServer</code> CR to a file by running the following command:
+      <CodeBlock code={"$ oc get spireserver cluster -o yaml > SpireServer-cert-manager.yaml"} lang="terminal" />
+      </li>
+      <li>
+      In the <code>SpireServer-cert-manager.yaml</code>, add the <code>upstreamAuthority</code> section under <code>spec:</code>:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: SpireServer\nmetadata:\n  name: cluster\nspec:\n  logLevel: \"info\"\n  logFormat: \"text\"\n  jwtIssuer: \"https://oidc-discovery.apps.cluster.example.com\"\n  caValidity: \"24h\"\n  defaultX509Validity: \"1h\"\n  defaultJWTValidity: \"5m\"\n  jwtKeyType: \"rsa-2048\"\n  caSubject:\n    country: \"US\"\n    organization: \"Example Corporation\"\n    commonName: \"SPIRE Server CA\"\n  persistence:\n    size: \"5Gi\"\n    accessMode: \"ReadWriteOnce\"\n    storageClass: \"gp3-csi\"\n  datastore:\n    databaseType: \"sqlite3\"\n    connectionString: \"/run/spire/data/datastore.sqlite3\"\n    tlsSecretName: \"\"\n    maxOpenConns: 100\n    maxIdleConns: 10\n    connMaxLifetime: 0\n    disableMigration: \"false\"\n  upstreamAuthority:\n    certManager:\n      namespace: cert-manager\n      issuerName: spire-ca\n      issuerKind: Issuer\n      issuerGroup: cert-manager.io"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.upstreamAuthority.certManager.namespace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace where SPIRE Server creates <code>CertificateRequest</code> resources. For a namespace-scoped <code>Issuer</code>, this must match the <code>Issuer</code> namespace. For a <code>ClusterIssuer</code>, any namespace is valid.</p></dd>
+      <dt class="font-semibold"><code>spec.upstreamAuthority.certManager.issuerName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>Issuer</code> or <code>ClusterIssuer</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.upstreamAuthority.certManager.issuerKind</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>Issuer</code> or <code>ClusterIssuer</code>. The default is <code>Issuer</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.upstreamAuthority.certManager.issuerGroup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the API group of the issuer. The default is <code>cert-manager.io</code>.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>On OpenShift Container Platform, SPIRE Server uses its in-cluster <code>ServiceAccount</code>. Zero Trust Workload Identity Manager grants <code>CertificateRequest</code> permissions when <code>spec.upstreamAuthority.certManager</code> is configured.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Apply the updated CR by running the following command:
+      <CodeBlock code={"$ oc apply -f SpireServer-cert-manager.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Wait for Zero Trust Workload Identity Manager to reconcile the SPIRE Server by running the following command:
+      <CodeBlock code={"$ oc rollout status statefulset/spire-server -n zero-trust-workload-identity-manager"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that SPIRE Server is healthy and that logs show the <code>UpstreamAuthority</code> plugin loaded by running the following commands:
+      <CodeBlock code={"$ oc exec -n zero-trust-workload-identity-manager statefulset/spire-server -c spire-server -- \\\n    /opt/spire/bin/spire-server healthcheck"} lang="terminal" />
+      <CodeBlock code={"$ oc logs statefulset/spire-server -n zero-trust-workload-identity-manager -c spire-server --tail=50"} lang="terminal" />
+      </li>
+      <li>
+      Confirm that a cert-manager-signed intermediate certificate is present by running the following command:
+      <CodeBlock code={"$ oc exec -n zero-trust-workload-identity-manager statefulset/spire-server -c spire-server -- \\\n    /opt/spire/bin/spire-server bundle show"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="zero-trust-manager-cert-manager-plugin-ref_zero-trust-manager-plugins" class="group scroll-mt-20">cert-manager upstream authority plugin reference<a href="#zero-trust-manager-cert-manager-plugin-ref_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">This reference describes <code>spec.upstreamAuthority.certManager</code> fields on the <code>SpireServer</code> custom resource and how Zero Trust Workload Identity Manager uses them to request intermediate certificates from cert-manager Operator for Red Hat OpenShift. Use it when you configure or troubleshoot the cert-manager Operator for Red Hat OpenShift UpstreamAuthority plugin and need field descriptions or defaults.</p>
+      <h3 id="cert-manager-plugin-spireserver-cr-reference_zero-trust-manager-plugins" class="group scroll-mt-20">SpireServer CR fields<a href="#cert-manager-plugin-spireserver-cr-reference_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Configure cert-manager Operator for Red Hat OpenShift upstream authority under <code>spec.upstreamAuthority.certManager</code>. Zero Trust Workload Identity Manager generates the SPIRE Server configuration from these fields.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>namespace</code></TableCell>
+      <TableCell>Required. Namespace where SPIRE Server creates <code>CertificateRequest</code> resources.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>issuerName</code></TableCell>
+      <TableCell>Required. Name of the Issuer or ClusterIssuer.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>issuerKind</code></TableCell>
+      <TableCell>Optional. <code>Issuer</code> or <code>ClusterIssuer</code>. The default is <code>Issuer</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>issuerGroup</code></TableCell>
+      <TableCell>Optional. API group of the issuer. The default is <code>cert-manager.io</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>On OpenShift Container Platform, SPIRE Server uses its in-cluster <code>ServiceAccount</code>. Zero Trust Workload Identity Manager grants permissions to create, get, list, and delete <code>CertificateRequest</code> resources when <code>spec.upstreamAuthority.certManager</code> is configured.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="zero-trust-manager-cert-troubleshooting_zero-trust-manager-plugins" class="group scroll-mt-20">Troubleshooting the cert-manager Operator for Red Hat OpenShift upstream authority plugin<a href="#zero-trust-manager-cert-troubleshooting_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Resolve the most common cert-manager Operator for Red Hat OpenShift upstream authority failures on OpenShift Container Platform.</p>
+      <h3 id="zero-trust-manager-cert-quick-reference_zero-trust-manager-plugins" class="group scroll-mt-20">Quick reference<a href="#zero-trust-manager-cert-quick-reference_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Symptom or error</TableHead>
+      <TableHead>Likely cause</TableHead>
+      <TableHead>Section</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>certificaterequests... is forbidden</code></TableCell>
+      <TableCell>Missing permissions or wrong <code>namespace</code></TableCell>
+      <TableCell><a href="#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins">#!cert-manager-plugin-permission-issuer_zero-trust-manager-plugins</a></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>issuer ... not found</code></TableCell>
+      <TableCell>Wrong <code>issuerName</code>, <code>issuerKind</code>, or issuer namespace</TableCell>
+      <TableCell><a href="#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins">#!cert-manager-plugin-permission-issuer_zero-trust-manager-plugins</a></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Issuer not <code>READY</code></TableCell>
+      <TableCell>Issuer misconfiguration</TableCell>
+      <TableCell><a href="#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins">#!cert-manager-plugin-permission-issuer_zero-trust-manager-plugins</a></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>CertificateRequest</code> not approved or denied</TableCell>
+      <TableCell>Approval policy or approver configuration</TableCell>
+      <TableCell><a href="#cert-manager-plugin-certificaterequest_zero-trust-manager-plugins">#!cert-manager-plugin-certificaterequest_zero-trust-manager-plugins</a></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>UpstreamAuthority fails to load in SPIRE Server logs</TableCell>
+      <TableCell>Invalid or incomplete <code>spec.upstreamAuthority.certManager</code></TableCell>
+      <TableCell><a href="#cert-manager-plugin-certificaterequest_zero-trust-manager-plugins">#!cert-manager-plugin-certificaterequest_zero-trust-manager-plugins</a></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="cert-manager-plugin-permission-issuer_zero-trust-manager-plugins" class="group scroll-mt-20">Permission and issuer errors<a href="#cert-manager-plugin-permission-issuer_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p><strong>Permission errors</strong></p>
+      <ul>
+      <li>Confirm <code>spec.upstreamAuthority.certManager.namespace</code> matches the namespace where SPIRE Server creates <code>CertificateRequest</code> resources.</li>
+      <li>After you configure <code>spec.upstreamAuthority.certManager</code>, verify that Zero Trust Workload Identity Manager updated the SPIRE Server role-based access control (RBAC) and the SPIRE Server pod restarted.</li>
+      </ul>
+      <p><strong>Issuer errors</strong></p>
+      <ul>
+      <li>Verify <code>issuerName</code> and <code>issuerKind</code> on the <code>SpireServer</code> CR match an existing Issuer or ClusterIssuer.</li>
+      <li>For a namespace-scoped <code>Issuer</code>, the Issuer must exist in the namespace referenced by <code>CertificateRequest</code> resources or in the namespace where the issuer is defined, depending on your issuer configuration.</li>
+      <li>
+      Check that the Issuer reports <code>READY=True</code>:
+      <CodeBlock code={"$ oc get issuer,clusterissuer -A\n$ oc describe issuer spire-ca -n cert-manager"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="cert-manager-plugin-certificaterequest_zero-trust-manager-plugins" class="group scroll-mt-20">SPIRE Server errors<a href="#cert-manager-plugin-certificaterequest_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p><strong>SPIRE Server errors</strong></p>
+      <ul>
+      <li>Confirm that <code>namespace</code>, <code>issuerName</code>, and <code>issuerKind</code> are set under <code>spec.upstreamAuthority.certManager</code>.</li>
+      <li>Review SPIRE Server logs by running the following command:</li>
+      </ul>
+      <CodeBlock code={"$ oc logs statefulset/spire-server -n zero-trust-workload-identity-manager -c spire-server --tail=100"} lang="terminal" />
+      <h2 id="zero-trust-manager-about-vault-plugin_zero-trust-manager-plugins" class="group scroll-mt-20">About the SPIRE Vault UpstreamAuthority plugin<a href="#zero-trust-manager-about-vault-plugin_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Vault UpstreamAuthority plugin connects SPIRE Server to the HashiCorp Vault PKI secrets engine for automated intermediate CA certificate signing. Use this plugin when you centralize PKI in Vault and want SPIRE to obtain intermediate signing certificates through Vault policies and authentication method.</p>
+      <p>The SPIRE Vault UpstreamAuthority plugin provides the following features:</p>
+      <ul>
+      <li>Integration with HashiCorp Vault PKI secrets engine as an upstream certificate authority</li>
+      <li>Support for <code>Kubernetes auth</code> Vault authentication methods</li>
+      <li>Automatic signing of SPIRE intermediate CA certificates</li>
+      <li>Vault Enterprise namespace support</li>
+      <li>Secure certificate management using Vault’s security features</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The Vault UpstreamAuthority plugin does not support the <code>PublishJWTKey</code> remote procedure call (RPC) and is not appropriate for use in nested SPIRE topologies where JSON Web Token SPIFFE Verifiable Identity Document (SVID) (JWT-SVIDs) are used.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="spire-vault-authentication-methods_zero-trust-manager-plugins" class="group scroll-mt-20">Supported authentication method<a href="#spire-vault-authentication-methods_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The Vault UpstreamAuthority plugin supports only the following authentication methods for connecting to Vault:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Kubernetes authentication</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Uses Kubernetes service account tokens to authenticate to Vault.</p></dd>
+      </dl>
+      <h3 id="spire-vault-requirements_zero-trust-manager-plugins" class="group scroll-mt-20">Prerequisites and requirements<a href="#spire-vault-requirements_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Before configuring the Vault UpstreamAuthority plugin, ensure the following requirements are met:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Vault PKI secrets engine</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A running HashiCorp Vault instance with the PKI secrets engine enabled at a configured mount point (default: <code>pki</code>). The PKI secrets engine must have a root CA certificate configured for signing intermediate certificates.</p></dd>
+      <dt class="font-semibold">Vault policy</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A Vault policy that grants the <code>update</code> capability for the <code>pki/root/sign-intermediate</code> endpoint, attached to the credentials SPIRE Server uses.</p></dd>
+      <dt class="font-semibold">Authentication credentials</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Valid credentials for one of the supported authentication methods, associated with the Vault signing policy.</p></dd>
+      <dt class="font-semibold">TTL configuration</dt>
+      <dd class="ml-6 text-muted-foreground"><p>SPIRE Server <code>ca_ttl</code> must not exceed the Vault PKI secrets engine maximum lease TTL.</p></dd>
+      <dt class="font-semibold">Network connectivity</dt>
+      <dd class="ml-6 text-muted-foreground"><p>SPIRE Server must reach the Vault server over the network and trust the Vault TLS certificate when TLS is enabled.</p></dd>
+      <dt class="font-semibold">Kubernetes RBAC (when using Kubernetes authentication)</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A <code>ServiceAccount</code> for SPIRE Server bound to the Vault Kubernetes auth role. The SPIRE Server <code>ServiceAccount</code> requires no additional RBAC. However, the Vault <code>ServiceAccount</code> must have <code>system:auth-delegator</code> permissions to validate projected tokens via the Kubernetes <code>TokenReview</code> API.</p></dd>
+      </dl>
+      <h2 id="zero-trust-manager-spire-vault-config_zero-trust-manager-plugins" class="group scroll-mt-20">Configuring the SPIRE Vault UpstreamAuthority plugin<a href="#zero-trust-manager-spire-vault-config_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure SPIRE Server to obtain intermediate signing certificates from HashiCorp Vault by setting <code>spec.upstreamAuthority.vault</code> on the <code>SpireServer</code> custom resource (CR). Zero Trust Workload Identity Manager generates the SPIRE Server configuration, mounts Vault credentials into the SPIRE Server pod, and reconciles the SPIRE Server <code>StatefulSet</code>.</p>
+      <p>On OpenShift Container Platform, the <code>SpireServer</code> CR supports Vault authentication only through the Kubernetes auth method. Zero Trust Workload Identity Manager mounts a projected SPIRE Server <code>ServiceAccount</code> token and, when configured, a Vault CA certificate Secret at fixed paths inside the pod.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed Zero Trust Workload Identity Manager and deployed a <code>SpireServer</code> CR.</li>
+      <li>You have a running HashiCorp Vault instance with the PKI secrets engine enabled at your mount point (default: <code>pki</code>) and a root CA configured to sign intermediate certificates.</li>
+      <li>You have a Vault policy that grants the <code>update</code> capability on <code>&lt;pki_mount&gt;/root/sign-intermediate</code>.</li>
+      <li>You have configured the Vault Kubernetes authentication method and created a Vault role bound to the SPIRE Server <code>ServiceAccount</code>. For example, <code>spire-server</code> in the <code>zero-trust-workload-identity-manager</code> namespace.</li>
+      <li>The value of <code>spec.caValidity</code> on the <code>SpireServer</code> CR is less than or equal to the maximum lease Time to Live (TTL) configured on the Vault PKI secrets engine.</li>
+      <li>If Vault uses a private or custom TLS certificate authority, you have a PEM-encoded CA certificate available to store in a Kubernetes <code>Secret</code>.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Export the current <code>SpireServer</code> CR to a file by running the following command:
+      <CodeBlock code={"$ oc get spireserver cluster -o yaml > SpireServer-vault.yaml"} lang="terminal" />
+      </li>
+      <li>
+      In <code>SpireServer-vault.yaml</code>, add the <code>upstreamAuthority</code> section from the following example under <code>spec:</code>:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1alpha1\nkind: SpireServer\nmetadata:\n  name: cluster\nspec:\n  logLevel: \"info\"\n  logFormat: \"text\"\n  jwtIssuer: \"https://oidc-discovery.apps.cluster.example.com\"\n  caValidity: \"24h\"\n  defaultX509Validity: \"1h\"\n  defaultJWTValidity: \"5m\"\n  jwtKeyType: \"rsa-2048\"\n  caSubject:\n    country: \"US\"\n    organization: \"Example Corporation\"\n    commonName: \"SPIRE Server CA\"\n  persistence:\n    size: \"5Gi\"\n    accessMode: \"ReadWriteOnce\"\n    storageClass: \"gp3-csi\"\n  datastore:\n    databaseType: \"sqlite3\"\n    connectionString: \"/run/spire/data/datastore.sqlite3\"\n    tlsSecretName: \"\"\n    maxOpenConns: 100\n    maxIdleConns: 10\n    connMaxLifetime: 0\n    disableMigration: \"false\"\n  upstreamAuthority:\n    vault:\n      vaultAddr: \"https://vault.example.com:8200\"\n      pkiMountPoint: \"pki\"\n      caCertSecretRef:\n        name: vault-ca-cert\n        key: ca.crt\n      k8sAuth:\n        k8sAuthMountPoint: \"kubernetes\"\n        k8sAuthRoleName: \"spire-server\"\n        audience: \"vault\"\n      vaultNamespace: \"vault-namespace\" # optional"} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For in-cluster Vault over HTTP, set <code>vaultAddr</code> to the in-cluster service URL, such as <code>http://vault.vault.svc:8200</code>, and omit <code>caCertSecretRef</code>.</p>
+          <p>Include <code>caCertSecretRef</code> only when Vault TLS is signed by a custom CA. Omit it when Vault uses a public CA.</p>
+        </AlertDescription>
+      </Alert>
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.caValidity</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the SPIRE Server CA validity. Must be less than or equal to the Vault PKI <code>max_lease_ttl</code>. Zero Trust Workload Identity Manager maps this value to SPIRE <code>ca_ttl</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.upstreamAuthority.vault.vaultAddr</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the URL of the Vault server.</p></dd>
+      <dt class="font-semibold"><code>spec.upstreamAuthority.vault.pkiMountPoint</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Vault PKI secrets engine mount path. Default: <code>pki</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.upstreamAuthority.vault.caCertSecretRef</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional. Specifies the <code>Secret</code> reference when Vault TLS is signed by a custom CA. Zero Trust Workload Identity Manager mounts the Secret at <code>/run/spire/upstream-ca/ca.crt</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.upstreamAuthority.vault.k8sAuth.k8sAuthRoleName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Vault Kubernetes auth role name.</p></dd>
+      <dt class="font-semibold"><code>spec.upstreamAuthority.vault.k8sAuth.k8sAuthMountPoint</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Vault Kubernetes auth mount path. The default is <code>kubernetes</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.upstreamAuthority.vault.k8sAuth.audience</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the projected <code>ServiceAccount</code> token audience. This must match the Vault role. The default is <code>vault</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.upstreamAuthority.vault.vaultNamespace</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional. Specifies the Vault namespace name.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the updated CR by running the following command:
+      <CodeBlock code={"$ oc apply -f SpireServer-vault.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Wait for Zero Trust Workload Identity Manager to reconcile the SPIRE Server by running the following command:
+      <CodeBlock code={"$ oc rollout status statefulset/spire-server -n zero-trust-workload-identity-manager"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that SPIRE Server is healthy and that logs show the UpstreamAuthority plugin loaded by running the following commands:
+      <CodeBlock code={"$ oc exec -n zero-trust-workload-identity-manager statefulset/spire-server -c spire-server -- \\\n    /opt/spire/bin/spire-server healthcheck\n$ oc logs statefulset/spire-server -n zero-trust-workload-identity-manager -c spire-server --tail=50"} lang="terminal" />
+      <CodeBlock code={"Server is healthy.\ntime=\"2026-04-07T10:15:30Z\" level=info msg=\"Upstream authority loaded\" subsystem_name=ca\ntime=\"2026-04-07T10:15:31Z\" level=info msg=\"Server CA activated\" certificate_fingerprint=\"ABC123...\""} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Confirm that a Vault-signed intermediate certificate is present by running the following command:
+      <CodeBlock code={"$ oc exec -n zero-trust-workload-identity-manager statefulset/spire-server -c spire-server -- \\\n    /opt/spire/bin/spire-server bundle show"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="zero-trust-manager-spire-vault-plugin-ref_zero-trust-manager-plugins" class="group scroll-mt-20">SPIRE Vault UpstreamAuthority plugin reference<a href="#zero-trust-manager-spire-vault-plugin-ref_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Reference for <code>spec.upstreamAuthority.vault</code> on the <code>SpireServer</code> CR and the Vault signing policy SPIRE Server requires.</p>
+      <h3 id="spire-vault-spireserver-cr-reference_zero-trust-manager-plugins" class="group scroll-mt-20">SpireServer CR fields<a href="#spire-vault-spireserver-cr-reference_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Configure Vault upstream authority under <code>spec.upstreamAuthority.vault</code>. Zero Trust Workload Identity Manager generates SPIRE Server configuration from these fields.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>vaultAddr</code></TableCell>
+      <TableCell>Required. Vault server URL. Use HTTPS for external endpoints; HTTP is permitted for in-cluster services.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>pkiMountPoint</code></TableCell>
+      <TableCell>PKI secrets engine mount path. Default: <code>pki</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>caCertSecretRef</code></TableCell>
+      <TableCell>Optional Secret reference in the <code>zero-trust-workload-identity-manager</code> namespace. Use when Vault TLS is signed by a custom CA. Zero Trust Workload Identity Manager mounts the key at <code>/run/spire/upstream-ca/ca.crt</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>insecureSkipVerify</code></TableCell>
+      <TableCell>Optional. Accepts any Vault server certificate when <code>true</code>. Default: <code>false</code>. Do not enable <code>insecureSkipVerify</code> in production. This setting disables TLS certificate verification and exposes the connection to man-in-the-middle attacks. Troubleshooting only.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>vaultNamespace</code></TableCell>
+      <TableCell>Optional. Vault Enterprise namespace.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>k8sAuth.k8sAuthMountPoint</code></TableCell>
+      <TableCell>Vault Kubernetes auth mount path. Default: <code>kubernetes</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>k8sAuth.k8sAuthRoleName</code></TableCell>
+      <TableCell>Required. Vault role bound to the <code>spire-server</code> ServiceAccount.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>k8sAuth.audience</code></TableCell>
+      <TableCell>Token audience for the projected ServiceAccount token. Default: <code>vault</code>. Must match the <code>bound_audiences</code> configured on the Vault role.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>On OpenShift Container Platform, the <code>SpireServer</code> CR supports Vault Kubernetes authentication only. Zero Trust Workload Identity Manager mounts a projected <code>ServiceAccount</code> token at <code>/var/run/secrets/tokens/vault</code>.</p>
+          <p>Ensure that <code>spec.caValidity</code> does not exceed the Vault PKI <code>max_lease_ttl</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="spire-vault-policy-reference_zero-trust-manager-plugins" class="group scroll-mt-20">Required Vault policy<a href="#spire-vault-policy-reference_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The Vault Kubernetes auth role must include a policy with <code>update</code> on the intermediate signing path:</p>
+      <CodeBlock code={"path \"pki/root/sign-intermediate\" {\n  capabilities = [\"update\"]\n}"} lang="text" />
+      <p>Replace <code>pki</code> with your PKI mount point when different.</p>
+      <h2 id="zero-trust-manager-spire-vault-troubleshooting_zero-trust-manager-plugins" class="group scroll-mt-20">Troubleshooting SPIRE Vault UpstreamAuthority plugin<a href="#zero-trust-manager-spire-vault-troubleshooting_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Resolve the most common SPIRE Vault upstream authority failures on OpenShift Container Platform.</p>
+      <h3 id="zero-trust-manager-vault-quick-reference_zero-trust-manager-plugins" class="group scroll-mt-20">Quick reference<a href="#zero-trust-manager-vault-quick-reference_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Symptom or error</TableHead>
+      <TableHead>Likely cause</TableHead>
+      <TableHead>Section</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Connection refused, timeout, or unreachable Vault</TableCell>
+      <TableCell>Wrong <code>vaultAddr</code> or network path from the SPIRE Server pod</TableCell>
+      <TableCell><a href="#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins">#!spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins</a></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>x509: certificate signed by unknown authority</code></TableCell>
+      <TableCell>Missing or invalid <code>caCertSecretRef</code> Secret</TableCell>
+      <TableCell><a href="#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins">#!spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins</a></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Vault <code>403</code> or Kubernetes auth failure</TableCell>
+      <TableCell>Vault role, ServiceAccount binding, or signing policy misconfiguration</TableCell>
+      <TableCell><a href="#spire-vault-troubleshooting-authentication_zero-trust-manager-plugins">#!spire-vault-troubleshooting-authentication_zero-trust-manager-plugins</a></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>requested TTL ... exceeds max_lease_ttl</code></TableCell>
+      <TableCell><code>caValidity</code> exceeds the Vault PKI limit</TableCell>
+      <TableCell><a href="#spire-vault-troubleshooting-ttl_zero-trust-manager-plugins">#!spire-vault-troubleshooting-ttl_zero-trust-manager-plugins</a></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins" class="group scroll-mt-20">Connection and TLS errors<a href="#spire-vault-troubleshooting-connection-tls_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p><strong>Connection failures</strong></p>
+      <ul>
+      <li>Verify <code>spec.upstreamAuthority.vault.vaultAddr</code> on the <code>SpireServer</code> CR.</li>
+      <li>Confirm the SPIRE Server pod can reach Vault from the <code>zero-trust-workload-identity-manager</code> namespace.</li>
+      <li>For in-cluster Vault, use the Kubernetes service URL, such as <code>http://vault.vault.svc:8200</code>.</li>
+      </ul>
+      <p><strong>TLS failures</strong></p>
+      <ul>
+      <li>When Vault uses a custom CA, set <code>caCertSecretRef</code> to a Secret in the <code>zero-trust-workload-identity-manager</code> namespace with a PEM-encoded CA certificate.</li>
+      <li>Confirm the <code>Secret</code> name and key match <code>caCertSecretRef</code>.</li>
+      <li>Omit <code>caCertSecretRef</code> only for a public CA or in-cluster HTTP.</li>
+      <li>Do not use <code>insecureSkipVerify: true</code> in production.</li>
+      </ul>
+      <h3 id="spire-vault-troubleshooting-authentication_zero-trust-manager-plugins" class="group scroll-mt-20">Authentication and signing errors<a href="#spire-vault-troubleshooting-authentication_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>SPIRE Server uses Vault Kubernetes authentication with the <code>spire-server</code> ServiceAccount.</p>
+      <p>Check the following:</p>
+      <ul>
+      <li><code>k8sAuth.k8sAuthRoleName</code> on the <code>SpireServer</code> CR matches the Vault Kubernetes auth role.</li>
+      <li>The Vault role binds to ServiceAccount <code>spire-server</code> in namespace <code>zero-trust-workload-identity-manager</code>.</li>
+      <li>The role policy grants <code>update</code> on <code>&lt;pki_mount&gt;/root/sign-intermediate</code>.</li>
+      <li><code>pkiMountPoint</code> matches the PKI secrets engine mount in Vault.</li>
+      <li><code>k8sAuth.audience</code> matches the Vault role when you changed the default from <code>vault</code>.</li>
+      </ul>
+      <p>Review SPIRE Server logs:</p>
+      <CodeBlock code={"$ oc logs statefulset/spire-server -n zero-trust-workload-identity-manager -c spire-server --tail=100"} lang="terminal" />
+      <h3 id="spire-vault-troubleshooting-ttl_zero-trust-manager-plugins" class="group scroll-mt-20">TTL mismatch errors<a href="#spire-vault-troubleshooting-ttl_zero-trust-manager-plugins" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p><code>spec.caValidity</code> on the <code>SpireServer</code> CR must be less than or equal to the Vault PKI <code>max_lease_ttl</code>.</p>
+      <ul><li>Reduce <code>caValidity</code> on the <code>SpireServer</code> CR, or increase the Vault PKI limit with <code>vault secrets tune -max-lease-ttl=...</code>.</li></ul>
+      <p>For Vault Enterprise namespace errors, set <code>spec.upstreamAuthority.vault.vaultNamespace</code> to the correct namespace path.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

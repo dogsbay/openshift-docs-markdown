@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-cluster-limit-ranges","text":"Restrict resource consumption with limit ranges"}];
+const headings = [{"depth":1,"slug":"nodes-cluster-limit-ranges","text":"Restrict resource consumption with limit ranges"},{"depth":2,"slug":"nodes-cluster-limit-ranges-about_nodes-cluster-limit-ranges","text":"About limit ranges"},{"depth":2,"slug":"nodes-cluster-limit-ranges-limits_nodes-cluster-limit-ranges","text":"About component limits"},{"depth":2,"slug":"nodes-cluster-limit-creating_nodes-cluster-limit-ranges","text":"Creating a Limit Range"},{"depth":2,"slug":"nodes-cluster-limit-viewing_nodes-cluster-limit-ranges","text":"Viewing a limit"},{"depth":2,"slug":"nodes-cluster-limit-ranges-deleting_nodes-cluster-limit-ranges","text":"Deleting a Limit Range"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/clusters/nodes-cluster-limit-ranges";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/clusters"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Restrict resource consumption with limit ranges {#nodes-cluster-limit-ranges}\n\nYou can use limit ranges to restrict resource consumption for specific objects in a project.\n\nBy default, containers run with unbounded compute resources on an OpenShift Container Platform cluster.\n\nYou can configure resource consumption for the following objects:\n\n- pods and containers: You can set minimum and maximum requirements for CPU and memory for pods and their containers.\n- Image streams: You can set limits on the number of images and tags in an `ImageStream` object.\n- Images: You can limit the size of images that can be pushed to an internal registry.\n- Persistent volume claims (PVC): You can restrict the size of the PVCs that can be requested.\n\nIf a pod does not meet the constraints imposed by the limit range, the pod cannot be created in the namespace.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/clusters/nodes-cluster-limit-ranges.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Restrict resource consumption with limit ranges {#nodes-cluster-limit-ranges}\n\nYou can use limit ranges to restrict resource consumption for specific objects in a project.\n\nBy default, containers run with unbounded compute resources on an OpenShift Container Platform cluster.\n\nYou can configure resource consumption for the following objects:\n\n- pods and containers: You can set minimum and maximum requirements for CPU and memory for pods and their containers.\n- Image streams: You can set limits on the number of images and tags in an `ImageStream` object.\n- Images: You can limit the size of images that can be pushed to an internal registry.\n- Persistent volume claims (PVC): You can restrict the size of the PVCs that can be requested.\n\nIf a pod does not meet the constraints imposed by the limit range, the pod cannot be created in the namespace.\n\n## About limit ranges {#nodes-cluster-limit-ranges-about_nodes-cluster-limit-ranges}\n\nYou can set specific resource limits for a pod, container, image, image stream, or persistent volume claim (PVC) in a specific project by defining a `LimitRange` object. A limit range allows you to restrict resource consumption in that project.\n\nAll requests to create and modify resources are evaluated against each `LimitRange` object in the project. If the resource violates any of the enumerated constraints, the resource is rejected.\n\nThe following shows a limit range object for all components: pod, container, image, image stream, or PVC. You can configure limits for any or all of these components in the same object. You create a different limit range object for each project where you want to control resources.\n\n```yaml {title=\"Sample limit range object for a container\"}\napiVersion: \"v1\"\nkind: \"LimitRange\"\nmetadata:\n  name: \"resource-limits\"\nspec:\n  limits:\n    - type: \"Container\"\n      max:\n        cpu: \"2\"\n        memory: \"1Gi\"\n      min:\n        cpu: \"100m\"\n        memory: \"4Mi\"\n      default:\n        cpu: \"300m\"\n        memory: \"200Mi\"\n      defaultRequest:\n        cpu: \"200m\"\n        memory: \"100Mi\"\n      maxLimitRequestRatio:\n        cpu: \"10\"\n```\n\n## About component limits {#nodes-cluster-limit-ranges-limits_nodes-cluster-limit-ranges}\n\nReview the following examples to learn the limit range parameters for each component for when you create or edit a `LimitRange` object.\n\nThe examples are broken out for clarity. You can create a single `LimitRange` object for any or all components as necessary.\n\nContainer limits\n:   A limit range allows you to specify the minimum and maximum CPU and memory that each container in a pod can request for a specific project. If a container is created in the project, the container CPU and memory requests in the `Pod` spec must comply with the values set in the `LimitRange` object. If not, the pod does not get created. The following requirements must hold true:\n\n    - The container CPU or memory request and limit must be greater than or equal to the `min` resource constraint for containers that are specified in the `LimitRange` object.\n    - The container CPU or memory request and limit must be less than or equal to the `max` resource constraint for containers that are specified in the `LimitRange` object.\n\n    If the `LimitRange` object defines a `max` CPU, you do not need to define a CPU `request` value in the `Pod` spec. But you must specify a CPU `limit` value that satisfies the maximum CPU constraint specified in the limit range. The following requirements must hold true:\n\n    - The ratio of the container limits to requests must be less than or equal to the `maxLimitRequestRatio` value for containers that is specified in the `LimitRange` object.\n\n    If the `LimitRange` object defines a `maxLimitRequestRatio` constraint, any new containers must have both a `request` and a `limit` value. OpenShift Container Platform calculates the limit-to-request ratio by dividing the `limit` by the `request`. This value should be a non-negative integer greater than 1.\n\n    For example, if a container has `cpu: 500` in the `limit` value, and `cpu: 100` in the `request` value, the limit-to-request ratio for `cpu` is `5`. This ratio must be less than or equal to the `maxLimitRequestRatio`.\n\n    If the `Pod` spec does not specify a container resource memory or limit, the `default` or `defaultRequest` CPU and memory values for containers specified in the limit range object are assigned to the container.\n\n```yaml {title=\"Container LimitRange object definition\"}\napiVersion: \"v1\"\nkind: \"LimitRange\"\nmetadata:\n  name: \"resource-limits\"\nspec:\n  limits:\n    - type: \"Container\"\n      max:\n        cpu: \"2\"\n        memory: \"1Gi\"\n      min:\n        cpu: \"100m\"\n        memory: \"4Mi\"\n      default:\n        cpu: \"300m\"\n        memory: \"200Mi\"\n      defaultRequest:\n        cpu: \"200m\"\n        memory: \"100Mi\"\n      maxLimitRequestRatio:\n        cpu: \"10\"\n```\n\nwhere:\n\n`metadata.name`\n:   Specifies the name of the limit range object.\n\n`spec.limit.max.cpu`\n:   Specifies the maximum amount of CPU that a single container in a pod can request.\n\n`spec.limit.max.memory`\n:   Specifies the maximum amount of memory that a single container in a pod can request.\n\n`spec.limit.min.cpu`\n:   Specifies the minimum amount of CPU that a single container in a pod can request.\n\n`spec.limit.min.memory`\n:   Specifies the minimum amount of memory that a single container in a pod can request.\n\n`spec.limit.default.cpu`\n:   Specifies the default amount of CPU that a container can use if not specified in the `Pod` spec.\n\n`spec.limit.default.memory`\n:   Specifies the default amount of memory that a container can use if not specified in the `Pod` spec.\n\n`spec.limit.defaultRequest.cpu`\n:   Specifies the default amount of CPU that a container can request if not specified in the `Pod` spec.\n\n`spec.limit.defaultRequest.memory`\n:   Specifies the default amount of memory that a container can request if not specified in the `Pod` spec.\n\n`spec.limit.maxLimitRequestRatio.cpu`\n:   Specifies the maximum limit-to-request ratio for a container.\n\nPod limits\n:   A limit range allows you to specify the minimum and maximum CPU and memory limits for all containers across a pod in a given project. To create a container in the project, the container CPU and memory requests in the `Pod` spec must comply with the values set in the `LimitRange` object. If not, the pod does not get created.\n\n    If the `Pod` spec does not specify a container resource memory or limit, the `default` or `defaultRequest` CPU and memory values for containers specified in the limit range object are assigned to the container.\n\n    Across all containers in a pod, the following requirements must hold true:\n\n    - The container CPU or memory request and limit must be greater than or equal to the `min` resource constraints for pods that are specified in the `LimitRange` object.\n    - The container CPU or memory request and limit must be less than or equal to the `max` resource constraints for pods that are specified in the `LimitRange` object.\n    - The ratio of the container limits to requests must be less than or equal to the `maxLimitRequestRatio` constraint specified in the `LimitRange` object.\n\n```yaml {title=\"Pod LimitRange object definition\"}\napiVersion: \"v1\"\nkind: \"LimitRange\"\nmetadata:\n  name: \"resource-limits\"\nspec:\n  limits:\n    - type: \"Pod\"\n      max:\n        cpu: \"2\"\n        memory: \"1Gi\"\n      min:\n        cpu: \"200m\"\n        memory: \"6Mi\"\n      maxLimitRequestRatio:\n        cpu: \"10\"\n```\n\nwhere:\n\n`metadata.name`\n:   Specifies the name of the limit range object.\n\n`spec.limit.max.cpu`\n:   Specifies the maximum amount of CPU that a pod can request across all containers.\n\n`spec.limit.max.memory`\n:   Specifies the maximum amount of memory that a pod can request across all containers.\n\n`spec.limit.min.cpu`\n:   Specifies the minimum amount of CPU that a pod can request across all containers.\n\n`spec.limit.min.memory`\n:   Specifies the minimum amount of memory that a pod can request across all containers.\n\n`spec.limit.maxLimitRequestRatio.cpu`\n:   Specifies the maximum limit-to-request ratio for a container.\n\nImage limits\n:   A limit range allows you to specify the maximum size of an image that can be pushed to an OpenShift image registry.\n\n    When pushing images to an OpenShift image registry, the following requirement must hold true:\n\n    - The size of the image must be less than or equal to the `max` size for images that is specified in the `LimitRange` object.\n\n    ```yaml {title=\"Image LimitRange object definition\"}\n    apiVersion: \"v1\"\n    kind: \"LimitRange\"\n    metadata:\n      name: \"resource-limits\"\n    spec:\n      limits:\n        - type: openshift.io/Image\n          max:\n            storage: 1Gi\n    ```\n\n    where:\n\n`metadata.name`\n:   Specifies the name of the limit range object.\n\n`spec.limit.max.storage`\n:   Specifies the maximum size of an image that can be pushed to an OpenShift image registry.\n\n    > [!NOTE]\n    > To prevent blobs that exceed the limit from being uploaded to the registry, the registry must be configured to enforce quotas.\n\n    > [!WARNING]\n    > The image size is not always available in the manifest of an uploaded image. This is especially the case for images built with Docker 1.10 or higher and pushed to a v2 registry. If such an image is pulled with an older Docker daemon, the image manifest is converted by the registry to schema v1 lacking all the size information. No storage limit set on images prevent it from being uploaded.\n    >\n    > [The issue is being addressed.](https://github.com/openshift/origin/issues/7706)\n\nImage stream limits\n:   A limit range allows you to specify limits for image streams.\n\n    For each image stream, the following requirements must hold true:\n\n    - The count of unique references derived from `imagestream.spec.tags` must be less than or equal to the `openshift.io/image-tags` constraint in the `LimitRange` object.\n    - The count of unique image identities recorded in `imagestream.status.tags` must be less than or equal to the `openshift.io/images` constraint in the `LimitRange` object.\n\n    > [!IMPORTANT]\n    > The names `openshift.io/image-tags` and `openshift.io/images` do not mean a maximum number of tag names versus a maximum number of images per tag. The first limit applies to tag definitions and their references in the `ImageStream` `spec.tags` resource. The second applies to distinct resolved images (typically by digest) recorded in the `ImageStream` `status.tags` resource. Creating or updating tags, including by pushing to the OpenShift image registry, can be rejected if it would exceed either limit.\n\n    ```yaml {title=\"Imagestream LimitRange object definition\"}\n    apiVersion: \"v1\"\n    kind: \"LimitRange\"\n    metadata:\n      name: \"resource-limits\"\n    spec:\n      limits:\n        - type: openshift.io/ImageStream\n          max:\n            openshift.io/image-tags: 20\n            openshift.io/images: 30\n    ```\n\n    where\n\n`metadata.name`\n:   Specifies the name of the `LimitRange` object.\n\n`spec.limit.max.openshift.io/image-tags`\n:   Specifies the maximum number of unique references counted from tag definitions in `imagestream.spec.tags`.\n\n`spec.limit.max.openshift.io/images`\n:   Specifies the maximum number of unique image identities (image names equal to the digest) recorded in `imagestream.status.tags`.\n\n    The `openshift.io/image-tags` limit counts unique references from entries in `imagestream.spec.tags`. A reference can be an `ImageStreamTag`, `ImageStreamImage`, or `DockerImage`. You can add tag definitions with `oc tag` or `oc import-image`. Internal and external references are treated the same, and each unique reference in the spec is counted once. If an update would raise the count above the limit, the request is rejected, including when the update is caused by a push to the OpenShift image registry.\n\n    The `openshift.io/images` limit counts unique image identities in `imagestream.status.tags` and limits how many distinct images an image stream can hold in status. Internal and external references are not distinguished.\n\nPersistent volume claim limits\n:   A limit range allows you to restrict the storage requested in a persistent volume claim (PVC).\n\n    Across all persistent volume claims in a project, the following requirements must hold true:\n\n    - The resource request in a persistent volume claim (PVC) must be greater than or equal the `min` constraint for PVCs that is specified in the `LimitRange` object.\n    - The resource request in a persistent volume claim (PVC) must be less than or equal the `max` constraint for PVCs that is specified in the `LimitRange` object.\n\n    ```yaml {title=\"PVC LimitRange object definition\"}\n    apiVersion: \"v1\"\n    kind: \"LimitRange\"\n    metadata:\n      name: \"resource-limits\"\n    spec:\n      limits:\n        - type: \"PersistentVolumeClaim\"\n          min:\n            storage: \"2Gi\"\n          max:\n            storage: \"50Gi\"\n    ```\n\n    where:\n\n`metadata.name`\n:   Specifies the name of the `LimitRange` object.\n\n`spec.limit.min.storage`\n:   Specifies the minimum amount of storage that can be requested in a persistent volume claim.\n\n`spec.limit.max.storage`\n:   Specifies the maximum amount of storage that can be requested in a persistent volume claim.\n\n## Creating a Limit Range {#nodes-cluster-limit-creating_nodes-cluster-limit-ranges}\n\nYou can define `LimitRange` objects to set specific resource limits for a pod, container, image, image stream, or persistent volume claim (PVC) in a specific project. A limit range allows you to restrict resource consumption in that project.\n\n**Procedure**\n\n1. Create a `LimitRange` object with your required specifications:\n\n   ```yaml\n   apiVersion: \"v1\"\n   kind: \"LimitRange\"\n   metadata:\n     name: \"resource-limits\"\n   spec:\n     limits:\n       - type: \"Pod\"\n         max:\n           cpu: \"2\"\n           memory: \"1Gi\"\n         min:\n           cpu: \"200m\"\n           memory: \"6Mi\"\n       - type: \"Container\"\n         max:\n           cpu: \"2\"\n           memory: \"1Gi\"\n         min:\n           cpu: \"100m\"\n           memory: \"4Mi\"\n         default:\n           cpu: \"300m\"\n           memory: \"200Mi\"\n         defaultRequest:\n           cpu: \"200m\"\n           memory: \"100Mi\"\n         maxLimitRequestRatio:\n           cpu: \"10\"\n       - type: openshift.io/Image\n         max:\n           storage: 1Gi\n       - type: openshift.io/ImageStream\n         max:\n           openshift.io/image-tags: 20\n           openshift.io/images: 30\n       - type: \"PersistentVolumeClaim\"\n         min:\n           storage: \"2Gi\"\n         max:\n           storage: \"50Gi\"\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies a name for the `LimitRange` object.\n\n   `spec.limit.type.Pod`\n   :   Specifies limits for a pod, specify the minimum and maximum CPU and memory requests as needed.\n\n   `spec.limit.type.Container`\n   :   Specifies limits for a container, specify the minimum and maximum CPU and memory requests as needed.\n\n   `spec.limit.type.default`\n   :   For a container, specifies the default amount of CPU or memory that a container can use, if not specified in the `Pod` spec. This parameter is optional.\n\n   `spec.limit.type.defaultRequest`\n   :   For a container, specifies the default amount of CPU or memory that a container can request, if not specified in the `Pod` spec. This parameter is optional.\n\n   `spec.limit.type.maxLimitRequestRatio`\n   :   For a container, specifies the maximum limit-to-request ratio that can be specified in the `Pod` spec. This parameter is optional.\n\n   `spec.limit.type.openshift.io/Image`\n   :   Specifies limits for an image object. Set the maximum size of an image that can be pushed to an OpenShift image registry.\n\n   `spec.limit.type.openshift.io/ImageStream`\n   :   Specifies limits for an image stream: `openshift.io/image-tags` caps unique references from `spec.tags`, and `openshift.io/images` caps unique images recorded in `status.tags`.\n\n   `spec.limit.type.openshift.io/PersistentVolueClaim`\n   :   Specifies limits for a persistent volume claim. Set the minimum and maximum amount of storage that can be requested.\n2. Create the object:\n\n   ```terminal\n   $ oc create -f <limit_range_file> -n <project>\n   ```\n\n   where:\n\n   `<limit_range_file>`\n   :   Specifies the name of the YAML file you created.\n\n   `<project>`\n   :   Specifies the project where you want the limits to apply.\n\n## Viewing a limit {#nodes-cluster-limit-viewing_nodes-cluster-limit-ranges}\n\nYou can view the limits defined in a project by navigating in the web console to the project’s **Quota** page. This allows you to see details about each of the limit ranges in a project.\n\nYou can also use the CLI to view limit range details:\n\n**Procedure**\n\n1. Get the list of `LimitRange` objects defined in the project. For example, for a project called **demoproject**:\n\n   ```terminal\n   $ oc get limits -n demoproject\n   ```\n\n   ```terminal\n   NAME              CREATED AT\n   resource-limits   2020-07-15T17:14:23Z\n   ```\n2. Describe the `LimitRange` object you are interested in, for example the `resource-limits` limit range:\n\n```terminal\n$ oc describe limits resource-limits -n demoproject\n```\n\n```terminal\nName:                           resource-limits\nNamespace:                      demoproject\nType                            Resource                Min     Max     Default Request Default Limit   Max Limit/Request Ratio\n----                            --------                ---     ---     --------------- -------------   -----------------------\nPod                             cpu                     200m    2       -               -               -\nPod                             memory                  6Mi     1Gi     -               -               -\nContainer                       cpu                     100m    2       200m            300m            10\nContainer                       memory                  4Mi     1Gi     100Mi           200Mi           -\nopenshift.io/Image              storage                 -       1Gi     -               -               -\nopenshift.io/ImageStream        openshift.io/image      -       12      -               -               -\nopenshift.io/ImageStream        openshift.io/image-tags -       10      -               -               -\nPersistentVolumeClaim           storage                 -       50Gi    -               -               -\n```\n\n## Deleting a Limit Range {#nodes-cluster-limit-ranges-deleting_nodes-cluster-limit-ranges}\n\nYou can remove any active `LimitRange` object so that it no longer enforces the limits in a project.\n\n**Procedure**\n\n- Run the following command:\n\n  ```terminal\n  $ oc delete limits <limit_name>\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/clusters/nodes-cluster-limit-ranges.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-cluster-limit-ranges" class="group scroll-mt-20">Restrict resource consumption with limit ranges<a href="#nodes-cluster-limit-ranges" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can use limit ranges to restrict resource consumption for specific objects in a project.</p>
       <p>By default, containers run with unbounded compute resources on an OpenShift Container Platform cluster.</p>
       <p>You can configure resource consumption for the following objects:</p>
@@ -102,11 +105,215 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Persistent volume claims (PVC): You can restrict the size of the PVCs that can be requested.</li>
       </ul>
       <p>If a pod does not meet the constraints imposed by the limit range, the pod cannot be created in the namespace.</p>
-      <p class="/modules/nodes-cluster-limit-ranges-about.md"></p>
-      <p class="/modules/nodes-cluster-limit-ranges-limits.md"></p>
-      <p class="/modules/nodes-cluster-limit-ranges-creating.md"></p>
-      <p class="/modules/nodes-cluster-limit-ranges-viewing.md"></p>
-      <p class="/modules/nodes-cluster-limit-ranges-deleting.md"></p>
+      <h2 id="nodes-cluster-limit-ranges-about_nodes-cluster-limit-ranges" class="group scroll-mt-20">About limit ranges<a href="#nodes-cluster-limit-ranges-about_nodes-cluster-limit-ranges" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can set specific resource limits for a pod, container, image, image stream, or persistent volume claim (PVC) in a specific project by defining a <code>LimitRange</code> object. A limit range allows you to restrict resource consumption in that project. </p>
+      <p>All requests to create and modify resources are evaluated against each <code>LimitRange</code> object in the project. If the resource violates any of the enumerated constraints, the resource is rejected.</p>
+      <p>The following shows a limit range object for all components: pod, container, image, image stream, or PVC. You can configure limits for any or all of these components in the same object. You create a different limit range object for each project where you want to control resources.</p>
+      <CodeBlock code={"apiVersion: \"v1\"\nkind: \"LimitRange\"\nmetadata:\n  name: \"resource-limits\"\nspec:\n  limits:\n    - type: \"Container\"\n      max:\n        cpu: \"2\"\n        memory: \"1Gi\"\n      min:\n        cpu: \"100m\"\n        memory: \"4Mi\"\n      default:\n        cpu: \"300m\"\n        memory: \"200Mi\"\n      defaultRequest:\n        cpu: \"200m\"\n        memory: \"100Mi\"\n      maxLimitRequestRatio:\n        cpu: \"10\""} lang="yaml" title="Sample limit range object for a container" />
+      <h2 id="nodes-cluster-limit-ranges-limits_nodes-cluster-limit-ranges" class="group scroll-mt-20">About component limits<a href="#nodes-cluster-limit-ranges-limits_nodes-cluster-limit-ranges" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the following examples to learn the limit range parameters for each component for when you create or edit a <code>LimitRange</code> object. </p>
+      <p>The examples are broken out for clarity. You can create a single <code>LimitRange</code> object for any or all components as necessary.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Container limits</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A limit range allows you to specify the minimum and maximum CPU and memory that each container in a pod can request for a specific project. If a container is created in the project, the container CPU and memory requests in the <code>Pod</code> spec must comply with the values set in the <code>LimitRange</code> object. If not, the pod does not get created. The following requirements must hold true:</p>
+      <ul>
+      <li>The container CPU or memory request and limit must be greater than or equal to the <code>min</code> resource constraint for containers that are specified in the <code>LimitRange</code> object.</li>
+      <li>The container CPU or memory request and limit must be less than or equal to the <code>max</code> resource constraint for containers that are specified in the <code>LimitRange</code> object.</li>
+      </ul>
+      <p>If the <code>LimitRange</code> object defines a <code>max</code> CPU, you do not need to define a CPU <code>request</code> value in the <code>Pod</code> spec. But you must specify a CPU <code>limit</code> value that satisfies the maximum CPU constraint specified in the limit range. The following requirements must hold true:</p>
+      <ul><li>The ratio of the container limits to requests must be less than or equal to the <code>maxLimitRequestRatio</code> value for containers that is specified in the <code>LimitRange</code> object.</li></ul>
+      <p>If the <code>LimitRange</code> object defines a <code>maxLimitRequestRatio</code> constraint, any new containers must have both a <code>request</code> and a <code>limit</code> value. OpenShift Container Platform calculates the limit-to-request ratio by dividing the <code>limit</code> by the <code>request</code>. This value should be a non-negative integer greater than 1.</p>
+      <p>For example, if a container has <code>cpu: 500</code> in the <code>limit</code> value, and <code>cpu: 100</code> in the <code>request</code> value, the limit-to-request ratio for <code>cpu</code> is <code>5</code>. This ratio must be less than or equal to the <code>maxLimitRequestRatio</code>.</p>
+      <p>If the <code>Pod</code> spec does not specify a container resource memory or limit, the <code>default</code> or <code>defaultRequest</code> CPU and memory values for containers specified in the limit range object are assigned to the container.</p>
+      </dd>
+      </dl>
+      <CodeBlock code={"apiVersion: \"v1\"\nkind: \"LimitRange\"\nmetadata:\n  name: \"resource-limits\"\nspec:\n  limits:\n    - type: \"Container\"\n      max:\n        cpu: \"2\"\n        memory: \"1Gi\"\n      min:\n        cpu: \"100m\"\n        memory: \"4Mi\"\n      default:\n        cpu: \"300m\"\n        memory: \"200Mi\"\n      defaultRequest:\n        cpu: \"200m\"\n        memory: \"100Mi\"\n      maxLimitRequestRatio:\n        cpu: \"10\""} lang="yaml" title="Container LimitRange object definition" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the limit range object.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.max.cpu</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum amount of CPU that a single container in a pod can request.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.max.memory</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum amount of memory that a single container in a pod can request.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.min.cpu</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the minimum amount of CPU that a single container in a pod can request.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.min.memory</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the minimum amount of memory that a single container in a pod can request.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.default.cpu</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the default amount of CPU that a container can use if not specified in the <code>Pod</code> spec.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.default.memory</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the default amount of memory that a container can use if not specified in the <code>Pod</code> spec.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.defaultRequest.cpu</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the default amount of CPU that a container can request if not specified in the <code>Pod</code> spec.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.defaultRequest.memory</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the default amount of memory that a container can request if not specified in the <code>Pod</code> spec.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.maxLimitRequestRatio.cpu</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum limit-to-request ratio for a container.</p></dd>
+      <dt class="font-semibold">Pod limits</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A limit range allows you to specify the minimum and maximum CPU and memory limits for all containers across a pod in a given project. To create a container in the project, the container CPU and memory requests in the <code>Pod</code> spec must comply with the values set in the <code>LimitRange</code> object. If not, the pod does not get created.</p>
+      <p>If the <code>Pod</code> spec does not specify a container resource memory or limit, the <code>default</code> or <code>defaultRequest</code> CPU and memory values for containers specified in the limit range object are assigned to the container.</p>
+      <p>Across all containers in a pod, the following requirements must hold true:</p>
+      <ul>
+      <li>The container CPU or memory request and limit must be greater than or equal to the <code>min</code> resource constraints for pods that are specified in the <code>LimitRange</code> object.</li>
+      <li>The container CPU or memory request and limit must be less than or equal to the <code>max</code> resource constraints for pods that are specified in the <code>LimitRange</code> object.</li>
+      <li>The ratio of the container limits to requests must be less than or equal to the <code>maxLimitRequestRatio</code> constraint specified in the <code>LimitRange</code> object.</li>
+      </ul>
+      </dd>
+      </dl>
+      <CodeBlock code={"apiVersion: \"v1\"\nkind: \"LimitRange\"\nmetadata:\n  name: \"resource-limits\"\nspec:\n  limits:\n    - type: \"Pod\"\n      max:\n        cpu: \"2\"\n        memory: \"1Gi\"\n      min:\n        cpu: \"200m\"\n        memory: \"6Mi\"\n      maxLimitRequestRatio:\n        cpu: \"10\""} lang="yaml" title="Pod LimitRange object definition" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the limit range object.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.max.cpu</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum amount of CPU that a pod can request across all containers.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.max.memory</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum amount of memory that a pod can request across all containers.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.min.cpu</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the minimum amount of CPU that a pod can request across all containers.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.min.memory</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the minimum amount of memory that a pod can request across all containers.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.maxLimitRequestRatio.cpu</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum limit-to-request ratio for a container.</p></dd>
+      <dt class="font-semibold">Image limits</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A limit range allows you to specify the maximum size of an image that can be pushed to an OpenShift image registry.</p>
+      <p>When pushing images to an OpenShift image registry, the following requirement must hold true:</p>
+      <ul><li>The size of the image must be less than or equal to the <code>max</code> size for images that is specified in the <code>LimitRange</code> object.</li></ul>
+      <CodeBlock code={"apiVersion: \"v1\"\nkind: \"LimitRange\"\nmetadata:\n  name: \"resource-limits\"\nspec:\n  limits:\n    - type: openshift.io/Image\n      max:\n        storage: 1Gi"} lang="yaml" title="Image LimitRange object definition" />
+      <p>where:</p>
+      </dd>
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the limit range object.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.max.storage</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the maximum size of an image that can be pushed to an OpenShift image registry.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To prevent blobs that exceed the limit from being uploaded to the registry, the registry must be configured to enforce quotas.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>The image size is not always available in the manifest of an uploaded image. This is especially the case for images built with Docker 1.10 or higher and pushed to a v2 registry. If such an image is pulled with an older Docker daemon, the image manifest is converted by the registry to schema v1 lacking all the size information. No storage limit set on images prevent it from being uploaded.</p>
+          <p><a href="https://github.com/openshift/origin/issues/7706">The issue is being addressed.</a></p>
+        </AlertDescription>
+      </Alert>
+      </dd>
+      <dt class="font-semibold">Image stream limits</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A limit range allows you to specify limits for image streams.</p>
+      <p>For each image stream, the following requirements must hold true:</p>
+      <ul>
+      <li>The count of unique references derived from <code>imagestream.spec.tags</code> must be less than or equal to the <code>openshift.io/image-tags</code> constraint in the <code>LimitRange</code> object.</li>
+      <li>The count of unique image identities recorded in <code>imagestream.status.tags</code> must be less than or equal to the <code>openshift.io/images</code> constraint in the <code>LimitRange</code> object.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The names <code>openshift.io/image-tags</code> and <code>openshift.io/images</code> do not mean a maximum number of tag names versus a maximum number of images per tag. The first limit applies to tag definitions and their references in the <code>ImageStream</code> <code>spec.tags</code> resource. The second applies to distinct resolved images (typically by digest) recorded in the <code>ImageStream</code> <code>status.tags</code> resource. Creating or updating tags, including by pushing to the OpenShift image registry, can be rejected if it would exceed either limit.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: \"v1\"\nkind: \"LimitRange\"\nmetadata:\n  name: \"resource-limits\"\nspec:\n  limits:\n    - type: openshift.io/ImageStream\n      max:\n        openshift.io/image-tags: 20\n        openshift.io/images: 30"} lang="yaml" title="Imagestream LimitRange object definition" />
+      <p>where</p>
+      </dd>
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>LimitRange</code> object.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.max.openshift.io/image-tags</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum number of unique references counted from tag definitions in <code>imagestream.spec.tags</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.max.openshift.io/images</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the maximum number of unique image identities (image names equal to the digest) recorded in <code>imagestream.status.tags</code>.</p>
+      <p>The <code>openshift.io/image-tags</code> limit counts unique references from entries in <code>imagestream.spec.tags</code>. A reference can be an <code>ImageStreamTag</code>, <code>ImageStreamImage</code>, or <code>DockerImage</code>. You can add tag definitions with <code>oc tag</code> or <code>oc import-image</code>. Internal and external references are treated the same, and each unique reference in the spec is counted once. If an update would raise the count above the limit, the request is rejected, including when the update is caused by a push to the OpenShift image registry.</p>
+      <p>The <code>openshift.io/images</code> limit counts unique image identities in <code>imagestream.status.tags</code> and limits how many distinct images an image stream can hold in status. Internal and external references are not distinguished.</p>
+      </dd>
+      <dt class="font-semibold">Persistent volume claim limits</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A limit range allows you to restrict the storage requested in a persistent volume claim (PVC).</p>
+      <p>Across all persistent volume claims in a project, the following requirements must hold true:</p>
+      <ul>
+      <li>The resource request in a persistent volume claim (PVC) must be greater than or equal the <code>min</code> constraint for PVCs that is specified in the <code>LimitRange</code> object.</li>
+      <li>The resource request in a persistent volume claim (PVC) must be less than or equal the <code>max</code> constraint for PVCs that is specified in the <code>LimitRange</code> object.</li>
+      </ul>
+      <CodeBlock code={"apiVersion: \"v1\"\nkind: \"LimitRange\"\nmetadata:\n  name: \"resource-limits\"\nspec:\n  limits:\n    - type: \"PersistentVolumeClaim\"\n      min:\n        storage: \"2Gi\"\n      max:\n        storage: \"50Gi\""} lang="yaml" title="PVC LimitRange object definition" />
+      <p>where:</p>
+      </dd>
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>LimitRange</code> object.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.min.storage</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the minimum amount of storage that can be requested in a persistent volume claim.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.max.storage</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the maximum amount of storage that can be requested in a persistent volume claim.</p></dd>
+      </dl>
+      <h2 id="nodes-cluster-limit-creating_nodes-cluster-limit-ranges" class="group scroll-mt-20">Creating a Limit Range<a href="#nodes-cluster-limit-creating_nodes-cluster-limit-ranges" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can define <code>LimitRange</code> objects to set specific resource limits for a pod, container, image, image stream, or persistent volume claim (PVC) in a specific project. A limit range allows you to restrict resource consumption in that project. </p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>LimitRange</code> object with your required specifications:
+      <CodeBlock code={"apiVersion: \"v1\"\nkind: \"LimitRange\"\nmetadata:\n  name: \"resource-limits\"\nspec:\n  limits:\n    - type: \"Pod\"\n      max:\n        cpu: \"2\"\n        memory: \"1Gi\"\n      min:\n        cpu: \"200m\"\n        memory: \"6Mi\"\n    - type: \"Container\"\n      max:\n        cpu: \"2\"\n        memory: \"1Gi\"\n      min:\n        cpu: \"100m\"\n        memory: \"4Mi\"\n      default:\n        cpu: \"300m\"\n        memory: \"200Mi\"\n      defaultRequest:\n        cpu: \"200m\"\n        memory: \"100Mi\"\n      maxLimitRequestRatio:\n        cpu: \"10\"\n    - type: openshift.io/Image\n      max:\n        storage: 1Gi\n    - type: openshift.io/ImageStream\n      max:\n        openshift.io/image-tags: 20\n        openshift.io/images: 30\n    - type: \"PersistentVolumeClaim\"\n      min:\n        storage: \"2Gi\"\n      max:\n        storage: \"50Gi\""} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the <code>LimitRange</code> object.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.type.Pod</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies limits for a pod, specify the minimum and maximum CPU and memory requests as needed.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.type.Container</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies limits for a container, specify the minimum and maximum CPU and memory requests as needed.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.type.default</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>For a container, specifies the default amount of CPU or memory that a container can use, if not specified in the <code>Pod</code> spec. This parameter is optional.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.type.defaultRequest</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>For a container, specifies the default amount of CPU or memory that a container can request, if not specified in the <code>Pod</code> spec. This parameter is optional.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.type.maxLimitRequestRatio</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>For a container, specifies the maximum limit-to-request ratio that can be specified in the <code>Pod</code> spec. This parameter is optional.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.type.openshift.io/Image</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies limits for an image object. Set the maximum size of an image that can be pushed to an OpenShift image registry.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.type.openshift.io/ImageStream</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies limits for an image stream: <code>openshift.io/image-tags</code> caps unique references from <code>spec.tags</code>, and <code>openshift.io/images</code> caps unique images recorded in <code>status.tags</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.limit.type.openshift.io/PersistentVolueClaim</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies limits for a persistent volume claim. Set the minimum and maximum amount of storage that can be requested.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the object:
+      <CodeBlock code={"$ oc create -f <limit_range_file> -n <project>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;limit_range_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the YAML file you created.</p></dd>
+      <dt class="font-semibold"><code>&lt;project&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the project where you want the limits to apply.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <h2 id="nodes-cluster-limit-viewing_nodes-cluster-limit-ranges" class="group scroll-mt-20">Viewing a limit<a href="#nodes-cluster-limit-viewing_nodes-cluster-limit-ranges" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can view the limits defined in a project by navigating in the web console to the project’s <strong>Quota</strong> page. This allows you to see details about each of the limit ranges in a project. </p>
+      <p>You can also use the CLI to view limit range details:</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Get the list of <code>LimitRange</code> objects defined in the project. For example, for a project called <strong>demoproject</strong>:
+      <CodeBlock code={"$ oc get limits -n demoproject"} lang="terminal" />
+      <CodeBlock code={"NAME              CREATED AT\nresource-limits   2020-07-15T17:14:23Z"} lang="terminal" />
+      </li>
+      <li>Describe the <code>LimitRange</code> object you are interested in, for example the <code>resource-limits</code> limit range:</li>
+      </ol>
+      <CodeBlock code={"$ oc describe limits resource-limits -n demoproject"} lang="terminal" />
+      <CodeBlock code={"Name:                           resource-limits\nNamespace:                      demoproject\nType                            Resource                Min     Max     Default Request Default Limit   Max Limit/Request Ratio\n----                            --------                ---     ---     --------------- -------------   -----------------------\nPod                             cpu                     200m    2       -               -               -\nPod                             memory                  6Mi     1Gi     -               -               -\nContainer                       cpu                     100m    2       200m            300m            10\nContainer                       memory                  4Mi     1Gi     100Mi           200Mi           -\nopenshift.io/Image              storage                 -       1Gi     -               -               -\nopenshift.io/ImageStream        openshift.io/image      -       12      -               -               -\nopenshift.io/ImageStream        openshift.io/image-tags -       10      -               -               -\nPersistentVolumeClaim           storage                 -       50Gi    -               -               -"} lang="terminal" />
+      <h2 id="nodes-cluster-limit-ranges-deleting_nodes-cluster-limit-ranges" class="group scroll-mt-20">Deleting a Limit Range<a href="#nodes-cluster-limit-ranges-deleting_nodes-cluster-limit-ranges" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can remove any active <code>LimitRange</code> object so that it no longer enforces the limits in a project.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Run the following command:
+      <CodeBlock code={"$ oc delete limits <limit_name>"} lang="terminal" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -2,25 +2,25 @@
 
 ## CI/CD
 
-- [About CI/CD](https://dogsbay.github.io/openshift-docs-markdown/cicd/overview.md)
-- [Overview of Builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds_using_shipwright/overview-openshift-builds.md)
-- [Understanding image builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/understanding-image-builds.md)
-- [Understanding build configurations](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/understanding-buildconfigs.md)
-- [Creating build inputs](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/creating-build-inputs.md)
-- [Managing build output](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/managing-build-output.md)
-- [Using build strategies](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/build-strategies.md)
-- [Custom image builds with Buildah](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/custom-builds-buildah.md)
-- [Performing and configuring basic builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/basic-build-operations.md)
-- [Triggering and modifying builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/triggering-builds-build-hooks.md)
-- [Performing advanced builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/advanced-build-operations.md)
-- [Using Red Hat subscriptions in builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/running-entitled-builds.md)
-- [Securing builds by strategy](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/securing-builds-by-strategy.md)
-- [Build configuration resources](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/build-configuration.md)
-- [Troubleshooting builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/troubleshooting-builds.md)
-- [Setting up additional trusted certificate authorities for builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/setting-up-trusted-ca.md)
-- [About OpenShift Pipelines](https://dogsbay.github.io/openshift-docs-markdown/cicd/pipelines/about-pipelines.md)
-- [About OpenShift GitOps](https://dogsbay.github.io/openshift-docs-markdown/cicd/gitops/about-redhat-openshift-gitops.md)
-- [Configuring Jenkins images](https://dogsbay.github.io/openshift-docs-markdown/cicd/jenkins/images-other-jenkins.md)
-- [Jenkins agent](https://dogsbay.github.io/openshift-docs-markdown/cicd/jenkins/images-other-jenkins-agent.md)
-- [Migrating from Jenkins to OpenShift Pipelines](https://dogsbay.github.io/openshift-docs-markdown/cicd/jenkins/migrating-from-jenkins-to-openshift-pipelines.md)
-- [Important changes to OpenShift Jenkins images](https://dogsbay.github.io/openshift-docs-markdown/cicd/jenkins/important-changes-to-openshift-jenkins-images.md)
+- [About CI/CD](https://dogsbay.github.io/openshift-docs-markdown/cicd/overview.md): OpenShift Container Platform is an enterprise-ready Kubernetes platform for developers, which enables organizations to automate the application delivery…
+- [Overview of Builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds_using_shipwright/overview-openshift-builds.md): Builds is an extensible build framework based on the Shipwright project, which you can use to build container images on your OpenShift Container Platform…
+- [Understanding image builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/understanding-image-builds.md): A build is the process of transforming input parameters into a resulting object. Most often, the process is used to transform input parameters or source code…
+- [Understanding build configurations](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/understanding-buildconfigs.md): The following sections define the concept of a build, build configuration, and outline the primary build strategies available.
+- [Creating build inputs](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/creating-build-inputs.md): Use the following sections for an overview of build inputs, instructions on how to use inputs to provide source content for builds to operate on, and how to…
+- [Managing build output](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/managing-build-output.md): Use the following sections for an overview of and instructions for managing build output.
+- [Using build strategies](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/build-strategies.md): The following sections define the primary supported build strategies, and how to use them.
+- [Custom image builds with Buildah](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/custom-builds-buildah.md): With OpenShift Container Platform 4.22, a docker socket will not be present on the host nodes. This means the mount docker socket option of a custom build is…
+- [Performing and configuring basic builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/basic-build-operations.md): The following sections provide instructions for basic build operations, including starting and canceling builds, editing BuildConfigs, deleting BuildConfigs,…
+- [Triggering and modifying builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/triggering-builds-build-hooks.md): The following sections outline how to trigger builds and modify builds using build hooks.
+- [Performing advanced builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/advanced-build-operations.md): You can set build resources and maximum duration, assign builds to nodes, chain builds, prune builds, and configure build run policies.
+- [Using Red Hat subscriptions in builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/running-entitled-builds.md): Use the following sections to install Red Hat subscription content within OpenShift Container Platform builds.
+- [Securing builds by strategy](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/securing-builds-by-strategy.md): Builds in OpenShift Container Platform are run in privileged containers. Depending on the build strategy used, if you have privileges, you can run builds to…
+- [Build configuration resources](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/build-configuration.md): Use the following procedure to configure build settings.
+- [Troubleshooting builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/troubleshooting-builds.md): Use the following to troubleshoot build issues.
+- [Setting up additional trusted certificate authorities for builds](https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/setting-up-trusted-ca.md): Use the following sections to set up additional certificate authorities (CA) to be trusted by builds when pulling images from an image registry.
+- [About OpenShift Pipelines](https://dogsbay.github.io/openshift-docs-markdown/cicd/pipelines/about-pipelines.md): Red Hat OpenShift Pipelines is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. It uses Tekton…
+- [About OpenShift GitOps](https://dogsbay.github.io/openshift-docs-markdown/cicd/gitops/about-redhat-openshift-gitops.md): Red Hat OpenShift GitOps is an Operator that uses Argo CD as the declarative GitOps engine. It enables GitOps workflows across multicluster OpenShift and…
+- [Configuring Jenkins images](https://dogsbay.github.io/openshift-docs-markdown/cicd/jenkins/images-other-jenkins.md): OpenShift Container Platform provides a container image for running Jenkins. This image provides a Jenkins server instance, which can be used to set up a basic…
+- [Jenkins agent](https://dogsbay.github.io/openshift-docs-markdown/cicd/jenkins/images-other-jenkins-agent.md): OpenShift Container Platform provides a base image for use as a Jenkins agent.
+- [Migrating from Jenkins to OpenShift Pipelines](https://dogsbay.github.io/openshift-docs-markdown/cicd/jenkins/migrating-from-jenkins-to-openshift-pipelines.md): You can migrate your CI/CD workflows from Jenkins to Red Hat OpenShift Pipelines, a cloud-native CI/CD experience based on the Tekton project.
+- [Important changes to OpenShift Jenkins images](https://dogsbay.github.io/openshift-docs-markdown/cicd/jenkins/important-changes-to-openshift-jenkins-images.md): OpenShift Container Platform 4.11 moves the OpenShift Jenkins and OpenShift Agent Base images to the ocp-tools-4 repository at registry.redhat.io. It also…

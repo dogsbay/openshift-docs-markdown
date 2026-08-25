@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"persistent-storage-csi-ibm-cloud-vpc-block_{{ context }}","text":"{{ ibm_cloud_name }} VPC Block CSI Driver Operator"}];
+const headings = [{"depth":1,"slug":"persistent-storage-csi-ibm-cloud-vpc-block_{{ context }}","text":"{{ ibm_cloud_name }} VPC Block CSI Driver Operator"},{"depth":2,"slug":"persistent-storage-csi-ibm-vpc-block-overview_persistent-storage-csi-ibm-cloud-vpc-block","text":"Overview of IBM Cloud(R) VPC Block CSI Driver Operator"},{"depth":2,"slug":"csi-about_persistent-storage-csi-ibm-cloud-vpc-block","text":"About CSI"},{"depth":2,"slug":"byok_persistent-storage-csi-ibm-cloud-vpc-block","text":"User-managed encryption"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-ibm-cloud-vpc-block";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ ibm_cloud_name }} VPC Block CSI Driver Operator";
-const description = "You can provision and manage {{ ibm_cloud_name }} Virtual Private Cloud (VPC) Block Storage in OpenShift Container Platform using the {{ ibm_cloud_name }}…" || undefined;
+const description = "You can provision and manage IBM Cloud(R) Virtual Private Cloud (VPC) Block Storage in OpenShift Container Platform using the IBM Cloud(R) VPC Block…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +42,7 @@ const pageCategory = ["storage","storage/container_storage_interface"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ ibm_cloud_name }} VPC Block CSI Driver Operator {#persistent-storage-csi-ibm-cloud-vpc-block_{{ context }}}\n\nYou can provision and manage {{ ibm_cloud_name }} Virtual Private Cloud (VPC) Block Storage in OpenShift Container Platform using the {{ ibm_cloud_name }} VPC Block Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.\n\n**Additional resources**\n\n- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)\n- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)\n- [Managing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)\n\n**Additional resources**\n\n- [User-managed encryption for {{ ibm_cloud_title }}](/openshift-docs-markdown/installing/installing_ibm_cloud/user-managed-encryption-ibm-cloud#user-managed-encryption-ibm-cloud)\n- [Preparing to install on {{ ibm_cloud_title }}](/openshift-docs-markdown/installing/installing_ibm_cloud/preparing-to-install-on-ibm-cloud#prerequisites_preparing-to-install-on-ibm-cloud)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-ibm-cloud-vpc-block.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ ibm_cloud_name }} VPC Block CSI Driver Operator {#persistent-storage-csi-ibm-cloud-vpc-block_{{ context }}}\n\nYou can provision and manage IBM Cloud(R) Virtual Private Cloud (VPC) Block Storage in OpenShift Container Platform using the IBM Cloud(R) VPC Block Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.\n\n## Overview of IBM Cloud(R) VPC Block CSI Driver Operator {#persistent-storage-csi-ibm-vpc-block-overview_persistent-storage-csi-ibm-cloud-vpc-block}\n\nYou can dynamically provision block storage volumes on IBM Cloud(R) Virtual Private Cloud (VPC) infrastructure by using the Container Storage Interface (CSI) driver, which supports multiple IOPS tiers to match your workload performance requirements.\n\nFamiliarity with persistent storage and configuring CSI volumes is recommended when working with a CSI Operator and driver. For more information, see \"Understanding persistent storage\" and \"Configuring CSI volumes\".\n\nTo create CSI-provisioned PVs that mount to IBM Cloud(R) VPC Block storage assets, OpenShift Container Platform installs the IBM Cloud(R) VPC Block CSI Driver Operator and the IBM Cloud(R) VPC Block CSI driver by default in the `openshift-cluster-csi-drivers` namespace.\n\nIBM Cloud(R) VPC Block CSI Driver Operator\n:   The IBM Cloud(R) VPC Block CSI Driver Operator provides three storage classes named `ibmc-vpc-block-10iops-tier` (default), `ibmc-vpc-block-5iops-tier`, and `ibmc-vpc-block-custom` for different tiers that you can use to create persistent volume claims (PVCs). The IBM Cloud(R) VPC Block CSI Driver Operator supports dynamic volume provisioning by allowing storage volumes to be created on-demand, eliminating the need for cluster administrators to pre-provision storage. You can disable this default storage class if necessary (see \"Managing the default storage class\").\n\nIBM Cloud(R) VPC Block CSI driver\n:   The IBM Cloud(R) VPC Block CSI driver enables you to create and mount IBM Cloud(R) VPC Block PVs.\n\n**Additional resources**\n\n- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)\n- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)\n- [Managing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)\n\n## About CSI {#csi-about_persistent-storage-csi-ibm-cloud-vpc-block}\n\nThe Container Storage Interface (CSI) enables storage vendors to deliver plugins through a standard interface without modifying Kubernetes core code, replacing traditional embedded storage drivers.\n\nCSI Operators give OpenShift Container Platform users storage options, such as volume snapshots, that are not possible with in-tree volume plugins.\n\n## User-managed encryption {#byok_persistent-storage-csi-ibm-cloud-vpc-block}\n\nThe user-managed encryption feature allows you to provide keys during installation that encrypt OpenShift Container Platform node root volumes, and enables all managed storage classes to use these keys to encrypt provisioned storage volumes.\n\nYou must specify the custom key in the `platform.<cloud_type>.defaultMachinePlatform` field in the install-config YAML file.\n\nThis features supports the following storage types:\n\n- Amazon Web Services (AWS) Elastic Block storage (EBS)\n\n  > [!NOTE]\n  > If there is no encrypted key defined in the storage class, only set `encrypted: \"true\"` in the storage class. The AWS EBS CSI driver uses the AWS managed alias/aws/ebs, which is created by Amazon EBS automatically in each region by default to encrypt provisioned storage volumes. In addition, the managed storage classes all have the `encrypted: \"true\"` setting.\n\n  For information about installing AWS EBS with user-managed encryption, see \"Optional AWS configuration parameters\".\n- Microsoft Azure Disk storage\n\n  > [!NOTE]\n  > If the OS (root) disk is encrypted, and there is no encrypted key defined in the storage class, Azure Disk CSI driver uses the OS disk encryption key by default to encrypt provisioned storage volumes.\n\n  For information about installing Azure Disk with user-managed encryption, see \"Preparing an Azure Disk Encryption Set\".\n- Google Cloud Platform (GCP) persistent disk (PD) storage\n\n  For information about installing GCP PD with user-managed encryption, see \"Additional Google Cloud configuration parameters\".\n- IBM Cloud(R) Virtual Private Cloud (VPC) Block storage\n\n  For information about installing with IBM Cloud with user-managed encryption, see \"User-managed encryption for IBM Cloud\" and \"Installing on IBM Cloud\".\n\n**Additional resources**\n\n- [User-managed encryption for IBM Cloud](/openshift-docs-markdown/installing/installing_ibm_cloud/user-managed-encryption-ibm-cloud#user-managed-encryption-ibm-cloud)\n- [Preparing to install on IBM Cloud](/openshift-docs-markdown/installing/installing_ibm_cloud/preparing-to-install-on-ibm-cloud#prerequisites_preparing-to-install-on-ibm-cloud)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-ibm-cloud-vpc-block.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,20 +94,64 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="persistent-storage-csi-ibm-cloud-vpc-block_{{ context }}" class="group scroll-mt-20">{"{"}{"{"} ibm_cloud_name {"}"}{"}"} VPC Block CSI Driver Operator<a href="#persistent-storage-csi-ibm-cloud-vpc-block_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can provision and manage {"{"}{"{"} ibm_cloud_name {"}"}{"}"} Virtual Private Cloud (VPC) Block Storage in OpenShift Container Platform using the {"{"}{"{"} ibm_cloud_name {"}"}{"}"} VPC Block Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.</p>
-      <p class="/modules/persistent-storage-csi-ibm-vpc-block-overview.md"></p>
+      <p>You can provision and manage IBM Cloud(R) Virtual Private Cloud (VPC) Block Storage in OpenShift Container Platform using the IBM Cloud(R) VPC Block Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.</p>
+      <h2 id="persistent-storage-csi-ibm-vpc-block-overview_persistent-storage-csi-ibm-cloud-vpc-block" class="group scroll-mt-20">Overview of IBM Cloud(R) VPC Block CSI Driver Operator<a href="#persistent-storage-csi-ibm-vpc-block-overview_persistent-storage-csi-ibm-cloud-vpc-block" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can dynamically provision block storage volumes on IBM Cloud(R) Virtual Private Cloud (VPC) infrastructure by using the Container Storage Interface (CSI) driver, which supports multiple IOPS tiers to match your workload performance requirements.</p>
+      <p>Familiarity with persistent storage and configuring CSI volumes is recommended when working with a CSI Operator and driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".</p>
+      <p>To create CSI-provisioned PVs that mount to IBM Cloud(R) VPC Block storage assets, OpenShift Container Platform installs the IBM Cloud(R) VPC Block CSI Driver Operator and the IBM Cloud(R) VPC Block CSI driver by default in the <code>openshift-cluster-csi-drivers</code> namespace.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">IBM Cloud(R) VPC Block CSI Driver Operator</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The IBM Cloud(R) VPC Block CSI Driver Operator provides three storage classes named <code>ibmc-vpc-block-10iops-tier</code> (default), <code>ibmc-vpc-block-5iops-tier</code>, and <code>ibmc-vpc-block-custom</code> for different tiers that you can use to create persistent volume claims (PVCs). The IBM Cloud(R) VPC Block CSI Driver Operator supports dynamic volume provisioning by allowing storage volumes to be created on-demand, eliminating the need for cluster administrators to pre-provision storage. You can disable this default storage class if necessary (see "Managing the default storage class").</p></dd>
+      <dt class="font-semibold">IBM Cloud(R) VPC Block CSI driver</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The IBM Cloud(R) VPC Block CSI driver enables you to create and mount IBM Cloud(R) VPC Block PVs.</p></dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage">Understanding persistent storage</a></li>
       <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi">Configuring CSI volumes</a></li>
       <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage">Managing the default storage class</a></li>
       </ul>
-      <p class="/modules/persistent-storage-byok.md"></p>
+      <h2 id="csi-about_persistent-storage-csi-ibm-cloud-vpc-block" class="group scroll-mt-20">About CSI<a href="#csi-about_persistent-storage-csi-ibm-cloud-vpc-block" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Container Storage Interface (CSI) enables storage vendors to deliver plugins through a standard interface without modifying Kubernetes core code, replacing traditional embedded storage drivers.</p>
+      <p>CSI Operators give OpenShift Container Platform users storage options, such as volume snapshots, that are not possible with in-tree volume plugins.</p>
+      <h2 id="byok_persistent-storage-csi-ibm-cloud-vpc-block" class="group scroll-mt-20">User-managed encryption<a href="#byok_persistent-storage-csi-ibm-cloud-vpc-block" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The user-managed encryption feature allows you to provide keys during installation that encrypt OpenShift Container Platform node root volumes, and enables all managed storage classes to use these keys to encrypt provisioned storage volumes. </p>
+      <p>You must specify the custom key in the <code>platform.&lt;cloud_type&gt;.defaultMachinePlatform</code> field in the install-config YAML file.</p>
+      <p>This features supports the following storage types:</p>
+      <ul>
+      <li>
+      Amazon Web Services (AWS) Elastic Block storage (EBS)
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If there is no encrypted key defined in the storage class, only set <code>encrypted: "true"</code> in the storage class. The AWS EBS CSI driver uses the AWS managed alias/aws/ebs, which is created by Amazon EBS automatically in each region by default to encrypt provisioned storage volumes. In addition, the managed storage classes all have the <code>encrypted: "true"</code> setting.</p>
+        </AlertDescription>
+      </Alert>
+      <p>For information about installing AWS EBS with user-managed encryption, see "Optional AWS configuration parameters".</p>
+      </li>
+      <li>
+      Microsoft Azure Disk storage
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If the OS (root) disk is encrypted, and there is no encrypted key defined in the storage class, Azure Disk CSI driver uses the OS disk encryption key by default to encrypt provisioned storage volumes.</p>
+        </AlertDescription>
+      </Alert>
+      <p>For information about installing Azure Disk with user-managed encryption, see "Preparing an Azure Disk Encryption Set".</p>
+      </li>
+      <li>
+      Google Cloud Platform (GCP) persistent disk (PD) storage
+      <p>For information about installing GCP PD with user-managed encryption, see "Additional Google Cloud configuration parameters".</p>
+      </li>
+      <li>
+      IBM Cloud(R) Virtual Private Cloud (VPC) Block storage
+      <p>For information about installing with IBM Cloud with user-managed encryption, see "User-managed encryption for IBM Cloud" and "Installing on IBM Cloud".</p>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/user-managed-encryption-ibm-cloud#user-managed-encryption-ibm-cloud">User-managed encryption for {"{"}{"{"} ibm_cloud_title {"}"}{"}"}</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/preparing-to-install-on-ibm-cloud#prerequisites_preparing-to-install-on-ibm-cloud">Preparing to install on {"{"}{"{"} ibm_cloud_title {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/user-managed-encryption-ibm-cloud#user-managed-encryption-ibm-cloud">User-managed encryption for IBM Cloud</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/preparing-to-install-on-ibm-cloud#prerequisites_preparing-to-install-on-ibm-cloud">Preparing to install on IBM Cloud</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

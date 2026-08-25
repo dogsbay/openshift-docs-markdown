@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-scheduler-profiles","text":"Scheduling pods using a scheduler profile"}];
+const headings = [{"depth":1,"slug":"nodes-scheduler-profiles","text":"Scheduling pods using a scheduler profile"},{"depth":2,"slug":"nodes-scheduler-profiles-about_nodes-scheduler-profiles","text":"About scheduler profiles"},{"depth":2,"slug":"nodes-scheduler-profiles-configuring_nodes-scheduler-profiles","text":"Configuring a scheduler profile"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-profiles";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/scheduling"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Scheduling pods using a scheduler profile {#nodes-scheduler-profiles}\n\nYou can use a scheduling profile to configure how the scheduler spreads pods across nodes to enforce low or high node utilization.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-profiles.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Scheduling pods using a scheduler profile {#nodes-scheduler-profiles}\n\nYou can use a scheduling profile to configure how the scheduler spreads pods across nodes to enforce low or high node utilization.\n\n## About scheduler profiles {#nodes-scheduler-profiles-about_nodes-scheduler-profiles}\n\nYou can use scheduler profiles to determine how the cluster distributes pods across nodes based on node resource utilization.\n\nThe following scheduler profiles are available:\n\n`LowNodeUtilization`\n:   This profile attempts to spread pods evenly across nodes to get low resource usage per node. This profile provides the default scheduler behavior.\n\n`HighNodeUtilization`\n:   This profile attempts to place as many pods as possible on to as few nodes as possible. This minimizes node count and has high resource usage per node.\n\n> [!NOTE]\n> Switching to the `HighNodeUtilization` scheduler profile will result in all pods of a `ReplicaSet` object being scheduled on the same node. This will add an increased risk for pod failure if the node fails.\n\n`NoScoring`\n:   This is a low-latency profile that strives for the quickest scheduling cycle by disabling all score plugins. This might sacrifice better scheduling decisions for faster ones.\n\n## Configuring a scheduler profile {#nodes-scheduler-profiles-configuring_nodes-scheduler-profiles}\n\nTo customize how the cluster distributes pods across your nodes based on resource use, you can configure a specific scheduler profile.\n\n**Prerequisites**\n\n- Access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Edit the `Scheduler` object:\n\n   ```terminal\n   $ oc edit scheduler cluster\n   ```\n2. Specify the profile to use in the `spec.profile` field:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: Scheduler\n   metadata:\n     name: cluster\n   #...\n   spec:\n     mastersSchedulable: false\n     profile: HighNodeUtilization\n   #...\n   ```\n\n   Set `spec.profile` to `LowNodeUtilization`, `HighNodeUtilization`, or `NoScoring`.\n3. Save the file to apply the changes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-profiles.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,43 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-scheduler-profiles" class="group scroll-mt-20">Scheduling pods using a scheduler profile<a href="#nodes-scheduler-profiles" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can use a scheduling profile to configure how the scheduler spreads pods across nodes to enforce low or high node utilization.</p>
-      <p class="/modules/nodes-scheduler-profiles-about.md"></p>
-      <p class="/modules/nodes-scheduler-profiles-configuring.md"></p>
+      <h2 id="nodes-scheduler-profiles-about_nodes-scheduler-profiles" class="group scroll-mt-20">About scheduler profiles<a href="#nodes-scheduler-profiles-about_nodes-scheduler-profiles" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use scheduler profiles to determine how the cluster distributes pods across nodes based on node resource utilization.</p>
+      <p>The following scheduler profiles are available:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>LowNodeUtilization</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>This profile attempts to spread pods evenly across nodes to get low resource usage per node. This profile provides the default scheduler behavior.</p></dd>
+      <dt class="font-semibold"><code>HighNodeUtilization</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>This profile attempts to place as many pods as possible on to as few nodes as possible. This minimizes node count and has high resource usage per node.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Switching to the <code>HighNodeUtilization</code> scheduler profile will result in all pods of a <code>ReplicaSet</code> object being scheduled on the same node. This will add an increased risk for pod failure if the node fails.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>NoScoring</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>This is a low-latency profile that strives for the quickest scheduling cycle by disabling all score plugins. This might sacrifice better scheduling decisions for faster ones.</p></dd>
+      </dl>
+      <h2 id="nodes-scheduler-profiles-configuring_nodes-scheduler-profiles" class="group scroll-mt-20">Configuring a scheduler profile<a href="#nodes-scheduler-profiles-configuring_nodes-scheduler-profiles" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To customize how the cluster distributes pods across your nodes based on resource use, you can configure a specific scheduler profile.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Access to the cluster as a user with the <code>cluster-admin</code> role.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>Scheduler</code> object:
+      <CodeBlock code={"$ oc edit scheduler cluster"} lang="terminal" />
+      </li>
+      <li>
+      Specify the profile to use in the <code>spec.profile</code> field:
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: Scheduler\nmetadata:\n  name: cluster\n#...\nspec:\n  mastersSchedulable: false\n  profile: HighNodeUtilization\n#..."} lang="yaml" />
+      <p>Set <code>spec.profile</code> to <code>LowNodeUtilization</code>, <code>HighNodeUtilization</code>, or <code>NoScoring</code>.</p>
+      </li>
+      <li>Save the file to apply the changes.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

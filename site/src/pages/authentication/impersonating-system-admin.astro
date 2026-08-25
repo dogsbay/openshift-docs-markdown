@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"impersonating-system-admin","text":"Impersonating the system:admin user"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"impersonating-system-admin","text":"Impersonating the system:admin user"},{"depth":2,"slug":"authentication-api-impersonation_impersonating-system-admin","text":"API impersonation"},{"depth":2,"slug":"impersonation-system-admin-user_impersonating-system-admin","text":"Impersonating the system:admin user"},{"depth":2,"slug":"impersonation-system-admin-group_impersonating-system-admin","text":"Impersonating the system:admin group"},{"depth":2,"slug":"impersonating-user-multiple-group-memberships-web-console","text":"Impersonating a user with multiple group memberships in the web console"},{"depth":2,"slug":"starting-impersonation-users-groups-pages","text":"Starting impersonation from the Users or Groups pages"},{"depth":2,"slug":"stopping-impersonation","text":"Stopping impersonation"},{"depth":2,"slug":"unauthenticated-users-cluster-role-bindings_impersonating-system-admin","text":"Adding unauthenticated groups to cluster roles"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/authentication/impersonating-system-admin";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["authentication"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Impersonating the system:admin user {#impersonating-system-admin}\n\nYou can configure API requests to impersonate users or groups to test permissions and troubleshoot access issues in OpenShift Container Platform.\n\n## Additional resources {#_additional_resources}\n\n- [User impersonation (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/impersonating-system-admin.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Impersonating the system:admin user {#impersonating-system-admin}\n\nYou can configure API requests to impersonate users or groups to test permissions and troubleshoot access issues in OpenShift Container Platform.\n\n## API impersonation {#authentication-api-impersonation_impersonating-system-admin}\n\nYou can configure API requests in OpenShift Container Platform to act as another user. Impersonation allows you to perform actions on behalf of another account without switching credentials.\n\n## Impersonating the system:admin user {#impersonation-system-admin-user_impersonating-system-admin}\n\nYou can use the OpenShift web console to impersonate a user and select multiple group memberships at the same time to reproduce that user’s effective permissions.\n\n**Procedure**\n\n- To grant a user permission to impersonate `system:admin`, run the following command:\n\n  ```terminal\n  $ oc create clusterrolebinding <any_valid_name> --clusterrole=sudoer --user=<username>\n  ```\n\n  > [!TIP]\n  > You can alternatively apply the following YAML to grant permission to impersonate `system:admin`:\n  >\n  > ```yaml\n  > apiVersion: rbac.authorization.k8s.io/v1\n  > kind: ClusterRoleBinding\n  > metadata:\n  >   name: <any_valid_name>\n  > roleRef:\n  >   apiGroup: rbac.authorization.k8s.io\n  >   kind: ClusterRole\n  >   name: sudoer\n  > subjects:\n  > - apiGroup: rbac.authorization.k8s.io\n  >   kind: User\n  >   name: <username>\n  > ```\n\n## Impersonating the system:admin group {#impersonation-system-admin-group_impersonating-system-admin}\n\nTo impersonate a user who has cluster administration privileges through group membership, you must specify both the user and the associated groups in the impersonation command.\n\n**Procedure**\n\n- To grant a user permission to impersonate a `system:admin` by impersonating the associated cluster administration groups, run the following command:\n\n  ```terminal\n  $ oc create clusterrolebinding <any_valid_name> --clusterrole=sudoer --as=<user> \\\n  --as-group=<group1> --as-group=<group2>\n  ```\n\n## Impersonating a user with multiple group memberships in the web console {#impersonating-user-multiple-group-memberships-web-console}\n\nYou can start user impersonation from multiple locations in the OpenShift Container Platform Console. Depending on where you start, you can impersonate a single user, a single group, or a user with one or more group memberships.\n\n**Prerequisites**\n\n- You must be logged in to the OpenShift Container Platform web console as a user with permission to impersonate other users.\n- The user or group that you want to impersonate must already exist.\n\n> [!NOTE]\n> The impersonated user can belong to zero or more groups.\n\n**Procedure**\n\n1. From the ***Overview*** page in the OpenShift Container Platform console, click your user name and select ***Impersonate User***.\n2. In the ***Username*** field in the ***Impersonate*** dialog, enter the name of the user you want to impersonate.\n3. Optional: In the ***Groups*** field, choose one or more groups that are associated with the user.\n\n   The dialog displays a warning message explaining that impersonation applies the effective permissions of the specified user and any selected groups.\n4. Click ***Impersonate*** to impersonate your selected user, groups, or both.\n\n> [!NOTE]\n> Selecting one group uses the existing single-group impersonation behavior. Selecting no groups uses regular single-user impersonation.\n\n## Starting impersonation from the Users or Groups pages {#starting-impersonation-users-groups-pages}\n\nYou can start impersonation for users or groups from the ***Users*** or ***Groups*** pages in the OpenShift Container Platform Console.\n\n**Procedure**\n\n1. From the ***Overview*** page in the OpenShift Container Platform console, click ***User Management*** → ***Users***.\n2. Open the menu for the user you want to impersonate and select ***Impersonate User***.\n3. Optional: To impersonate a group, click ***User Management*** → ***Groups***\\*, click the menu for that group, and select **Impersonate Group**\\*.\n\n## Stopping impersonation {#stopping-impersonation}\n\nYou can stop impersonating a user or group at any time from the OpenShift Container Platform Console.\n\n**Procedure**\n\n1. On any page in the OpenShift Container Platform console, click ***Stop impersonating*** at the top of the page.\n2. Alternatively, click your user name and select ***Stop impersonating***.\n\n## Adding unauthenticated groups to cluster roles {#unauthenticated-users-cluster-role-bindings_impersonating-system-admin}\n\nGrant unauthenticated users access to specific cluster roles to enable features that require cluster access without authentication, such as external webhooks or automated token management.\n\nYou can add unauthenticated users to the following cluster roles:\n\n- `system:scope-impersonation`\n- `system:webhook`\n- `system:oauth-token-deleter`\n- `self-access-reviewer`\n\n> [!IMPORTANT]\n> Always verify compliance with your organization’s security standards when modifying unauthenticated access.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a YAML file named `add-<cluster_role>-unauth.yaml` and add the following content:\n\n   ```yaml\n   apiVersion: rbac.authorization.k8s.io/v1\n   kind: ClusterRoleBinding\n   metadata:\n    annotations:\n      rbac.authorization.kubernetes.io/autoupdate: \"true\"\n    name: <cluster_role>access-unauthenticated\n   roleRef:\n    apiGroup: rbac.authorization.k8s.io\n    kind: ClusterRole\n    name: <cluster_role>\n   subjects:\n    - apiGroup: rbac.authorization.k8s.io\n      kind: Group\n      name: system:unauthenticated\n   ```\n2. Apply the configuration by running the following command:\n\n   ```terminal\n   $ oc apply -f add-<cluster_role>.yaml\n   ```\n\n## Additional resources {#_additional_resources}\n\n- [User impersonation (Kubernetes documentation)](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/impersonating-system-admin.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,15 +95,109 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="impersonating-system-admin" class="group scroll-mt-20">Impersonating the system:admin user<a href="#impersonating-system-admin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure API requests to impersonate users or groups to test permissions and troubleshoot access issues in OpenShift Container Platform.</p>
-      <p class="/modules/authentication-api-impersonation.md"></p>
-      <p class="/modules/impersonation-system-admin-user.md"></p>
-      <p class="/modules/impersonation-system-admin-group.md"></p>
-      <p class="/modules/impersonation-multiple-groups-web-console.md"></p>
-      <p class="/modules/starting-impersonation-users-groups-pages.md"></p>
-      <p class="/modules/stopping-impersonation.md"></p>
-      <p class="/modules/unauthenticated-users-cluster-role-binding.md"></p>
+      <h2 id="authentication-api-impersonation_impersonating-system-admin" class="group scroll-mt-20">API impersonation<a href="#authentication-api-impersonation_impersonating-system-admin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can configure API requests in OpenShift Container Platform to act as another user. Impersonation allows you to perform actions on behalf of another account without switching credentials.</p>
+      <h2 id="impersonation-system-admin-user_impersonating-system-admin" class="group scroll-mt-20">Impersonating the system:admin user<a href="#impersonation-system-admin-user_impersonating-system-admin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can use the OpenShift web console to impersonate a user and select multiple group memberships at the same time to reproduce that user’s effective permissions.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To grant a user permission to impersonate <code>system:admin</code>, run the following command:
+      <CodeBlock code={"$ oc create clusterrolebinding <any_valid_name> --clusterrole=sudoer --user=<username>"} lang="terminal" />
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can alternatively apply the following YAML to grant permission to impersonate <code>system:admin</code>:</p>
+          <CodeBlock code={"apiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRoleBinding\nmetadata:\n  name: <any_valid_name>\nroleRef:\n  apiGroup: rbac.authorization.k8s.io\n  kind: ClusterRole\n  name: sudoer\nsubjects:\n- apiGroup: rbac.authorization.k8s.io\n  kind: User\n  name: <username>"} lang="yaml" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h2 id="impersonation-system-admin-group_impersonating-system-admin" class="group scroll-mt-20">Impersonating the system:admin group<a href="#impersonation-system-admin-group_impersonating-system-admin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To impersonate a user who has cluster administration privileges through group membership, you must specify both the user and the associated groups in the impersonation command.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To grant a user permission to impersonate a <code>system:admin</code> by impersonating the associated cluster administration groups, run the following command:
+      <CodeBlock code={"$ oc create clusterrolebinding <any_valid_name> --clusterrole=sudoer --as=<user> \\\n--as-group=<group1> --as-group=<group2>"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="impersonating-user-multiple-group-memberships-web-console" class="group scroll-mt-20">Impersonating a user with multiple group memberships in the web console<a href="#impersonating-user-multiple-group-memberships-web-console" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can start user impersonation from multiple locations in the OpenShift Container Platform Console. Depending on where you start, you can impersonate a single user, a single group, or a user with one or more group memberships.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must be logged in to the OpenShift Container Platform web console as a user with permission to impersonate other users.</li>
+      <li>The user or group that you want to impersonate must already exist.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The impersonated user can belong to zero or more groups.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>From the <em></em><em><strong>Overview</strong></em><em></em> page in the OpenShift Container Platform console, click your user name and select <em></em><em><strong>Impersonate User</strong></em><em></em>.</li>
+      <li>In the <em></em><em><strong>Username</strong></em><em></em> field in the <em></em><em><strong>Impersonate</strong></em><em></em> dialog, enter the name of the user you want to impersonate.</li>
+      <li>
+      Optional: In the <em></em><em><strong>Groups</strong></em><em></em> field, choose one or more groups that are associated with the user.
+      <p>The dialog displays a warning message explaining that impersonation applies the effective permissions of the specified user and any selected groups.</p>
+      </li>
+      <li>Click <em></em><em><strong>Impersonate</strong></em><em></em> to impersonate your selected user, groups, or both.</li>
+      </ol>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Selecting one group uses the existing single-group impersonation behavior. Selecting no groups uses regular single-user impersonation.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="starting-impersonation-users-groups-pages" class="group scroll-mt-20">Starting impersonation from the Users or Groups pages<a href="#starting-impersonation-users-groups-pages" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can start impersonation for users or groups from the <em></em><em><strong>Users</strong></em><em></em> or <em></em><em><strong>Groups</strong></em><em></em> pages in the OpenShift Container Platform Console.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>From the <em></em><em><strong>Overview</strong></em><em></em> page in the OpenShift Container Platform console, click <em></em><em><strong>User Management</strong></em><em></em> → <em></em><em><strong>Users</strong></em><em></em>.</li>
+      <li>Open the menu for the user you want to impersonate and select <em></em><em><strong>Impersonate User</strong></em><em></em>.</li>
+      <li>Optional: To impersonate a group, click <em></em><em><strong>User Management</strong></em><em></em> → <em></em><em><strong>Groups</strong></em><em></em>*, click the menu for that group, and select <strong>Impersonate Group</strong>*.</li>
+      </ol>
+      <h2 id="stopping-impersonation" class="group scroll-mt-20">Stopping impersonation<a href="#stopping-impersonation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can stop impersonating a user or group at any time from the OpenShift Container Platform Console.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>On any page in the OpenShift Container Platform console, click <em></em><em><strong>Stop impersonating</strong></em><em></em> at the top of the page.</li>
+      <li>Alternatively, click your user name and select <em></em><em><strong>Stop impersonating</strong></em><em></em>.</li>
+      </ol>
+      <h2 id="unauthenticated-users-cluster-role-bindings_impersonating-system-admin" class="group scroll-mt-20">Adding unauthenticated groups to cluster roles<a href="#unauthenticated-users-cluster-role-bindings_impersonating-system-admin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Grant unauthenticated users access to specific cluster roles to enable features that require cluster access without authentication, such as external webhooks or automated token management.</p>
+      <p>You can add unauthenticated users to the following cluster roles:</p>
+      <ul>
+      <li><code>system:scope-impersonation</code></li>
+      <li><code>system:webhook</code></li>
+      <li><code>system:oauth-token-deleter</code></li>
+      <li><code>self-access-reviewer</code></li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Always verify compliance with your organization’s security standards when modifying unauthenticated access.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file named <code>add-&lt;cluster_role&gt;-unauth.yaml</code> and add the following content:
+      <CodeBlock code={"apiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRoleBinding\nmetadata:\n annotations:\n   rbac.authorization.kubernetes.io/autoupdate: \"true\"\n name: <cluster_role>access-unauthenticated\nroleRef:\n apiGroup: rbac.authorization.k8s.io\n kind: ClusterRole\n name: <cluster_role>\nsubjects:\n - apiGroup: rbac.authorization.k8s.io\n   kind: Group\n   name: system:unauthenticated"} lang="yaml" />
+      </li>
+      <li>
+      Apply the configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f add-<cluster_role>.yaml"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation">User impersonation (Kubernetes documentation)</a></li></ul>
     </article>

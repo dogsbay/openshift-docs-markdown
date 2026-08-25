@@ -19,7 +19,7 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"spo-understanding","text":"Understanding the Security Profiles Operator"}];
+const headings = [{"depth":1,"slug":"spo-understanding","text":"Understanding the Security Profiles Operator"},{"depth":2,"slug":"spo-about_spo-understanding","text":"About security profiles"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/security_profiles_operator/spo-understanding";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +42,7 @@ const pageCategory = ["security","security/security_profiles_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding the Security Profiles Operator {#spo-understanding}\n\nOpenShift Container Platform administrators can use the Security Profiles Operator to define increased security measures in clusters.\n\n> [!IMPORTANT]\n> The Security Profiles Operator supports only Red Hat Enterprise Linux CoreOS (RHCOS) worker nodes. Red Hat Enterprise Linux (RHEL) nodes are not supported.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/security_profiles_operator/spo-understanding.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding the Security Profiles Operator {#spo-understanding}\n\nOpenShift Container Platform administrators can use the Security Profiles Operator to define increased security measures in clusters.\n\n> [!IMPORTANT]\n> The Security Profiles Operator supports only Red Hat Enterprise Linux CoreOS (RHCOS) worker nodes. Red Hat Enterprise Linux (RHEL) nodes are not supported.\n\n## About security profiles {#spo-about_spo-understanding}\n\nSecurity profiles limit what containers can do on a node, so you can reduce the attack surface of workloads in your cluster.\n\nSeccomp security profiles list the syscalls a process can make. Permissions are broader than SELinux, enabling users to restrict operations system-wide, such as `write`.\n\nSELinux security profiles provide a label-based system that restricts the access and usage of processes, applications, or files in a system. All files in an environment have labels that define permissions. SELinux profiles can define access within a given structure, such as directories.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/security_profiles_operator/spo-understanding.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +94,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="spo-understanding" class="group scroll-mt-20">Understanding the Security Profiles Operator<a href="#spo-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>OpenShift Container Platform administrators can use the Security Profiles Operator to define increased security measures in clusters.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
@@ -102,7 +101,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>The Security Profiles Operator supports only Red Hat Enterprise Linux CoreOS (RHCOS) worker nodes. Red Hat Enterprise Linux (RHEL) nodes are not supported.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/spo-about.md"></p>
+      <h2 id="spo-about_spo-understanding" class="group scroll-mt-20">About security profiles<a href="#spo-about_spo-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Security profiles limit what containers can do on a node, so you can reduce the attack surface of workloads in your cluster.</p>
+      <p>Seccomp security profiles list the syscalls a process can make. Permissions are broader than SELinux, enabling users to restrict operations system-wide, such as <code>write</code>.</p>
+      <p>SELinux security profiles provide a label-based system that restricts the access and usage of processes, applications, or files in a system. All files in an environment have labels that define permissions. SELinux profiles can define access within a given structure, such as directories.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

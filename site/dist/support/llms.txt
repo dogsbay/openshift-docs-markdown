@@ -2,27 +2,27 @@
 
 ## Support
 
-- [Support overview](https://dogsbay.github.io/openshift-docs-markdown/support.md)
-- [Managing your cluster resources](https://dogsbay.github.io/openshift-docs-markdown/support/managing-cluster-resources.md)
-- [Getting support](https://dogsbay.github.io/openshift-docs-markdown/support/getting-support.md)
-- [About remote health monitoring](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring.md)
-- [Showing data collected by remote health monitoring](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring.md)
-- [Remote health reporting](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting.md)
-- [Using Insights to identify issues with your cluster](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster.md)
-- [Using the Insights Operator](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator.md)
-- [Using remote health reporting in a disconnected environment](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting-from-restricted-network.md)
-- [Importing simple content access entitlements with Insights Operator](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/insights-operator-simple-access.md)
-- [Gathering data about your cluster](https://dogsbay.github.io/openshift-docs-markdown/support/gathering-cluster-data.md)
-- [Summarizing cluster specifications](https://dogsbay.github.io/openshift-docs-markdown/support/summarizing-cluster-specifications.md)
-- [Troubleshooting installations](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations.md)
-- [Verifying node health](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/verifying-node-health.md)
-- [Troubleshooting CRI-O container runtime issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-crio-issues.md)
-- [Troubleshooting operating system issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-operating-system-issues.md)
-- [Troubleshooting network issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-network-issues.md)
-- [Troubleshooting Operator issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-operator-issues.md)
-- [Investigating pod issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues.md)
-- [Troubleshooting the Source-to-Image process](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-s2i.md)
-- [Troubleshooting storage issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-storage-issues.md)
-- [Troubleshooting Windows container workload issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-windows-container-workload-issues.md)
-- [Investigating monitoring issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/investigating-monitoring-issues.md)
-- [Diagnosing OpenShift CLI (oc) issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/diagnosing-oc-issues.md)
+- [Support overview](https://dogsbay.github.io/openshift-docs-markdown/support.md): You can identify and resolve OpenShift Container Platform cluster issues by using diagnostic tools, support procedures, and remote health monitoring.
+- [Managing your cluster resources](https://dogsbay.github.io/openshift-docs-markdown/support/managing-cluster-resources.md): To keep consistent behavior across your OpenShift Container Platform cluster, set global configuration options that Operators apply to all nodes.
+- [Getting support](https://dogsbay.github.io/openshift-docs-markdown/support/getting-support.md): To resolve issues with your OpenShift Container Platform cluster, you can search the Red Hat Knowledgebase, submit a support case, and use remote health…
+- [About remote health monitoring](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring.md): OpenShift Container Platform collects telemetry and configuration data about your cluster and reports it to Red Hat by using the Telemeter Client and the…
+- [Showing data collected by remote health monitoring](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/showing-data-collected-by-remote-health-monitoring.md): As an administrator, you can review the metrics collected by Telemetry and the Insights Operator.
+- [Remote health reporting](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting.md): You can opt in, enable, or opt out, disable, reporting health and usage data for your cluster.
+- [Using Insights to identify issues with your cluster](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/using-insights-to-identify-issues-with-your-cluster.md): Red Hat Lightspeed repeatedly analyzes the data Insights Operator sends, which includes workload recommendations from Deployment Validation Operator (DVO).…
+- [Using the Insights Operator](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/using-insights-operator.md): The Insights Operator periodically gathers configuration and component failure status and, by default, reports that data every two hours to Red Hat. This…
+- [Using remote health reporting in a disconnected environment](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/remote-health-reporting-from-restricted-network.md): You can manually gather and upload Insights Operator archives to diagnose issues from a restricted network.
+- [Importing simple content access entitlements with Insights Operator](https://dogsbay.github.io/openshift-docs-markdown/support/remote_health_monitoring/insights-operator-simple-access.md): Insights Operator automates the import of Simple Content Access (SCA) entitlement certificates every 8 hours. These Red Hat Subscription Management (RHSM)…
+- [Gathering data about your cluster](https://dogsbay.github.io/openshift-docs-markdown/support/gathering-cluster-data.md): You can gather debugging information about your OpenShift Container Platform cluster to provide to Red Hat Support when opening a support case.
+- [Summarizing cluster specifications](https://dogsbay.github.io/openshift-docs-markdown/support/summarizing-cluster-specifications.md): To verify the version, update history, and component status of your OpenShift Container Platform cluster, query the clusterversion resource.
+- [Troubleshooting installations](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-installations.md): Use the following sections to troubleshoot OpenShift Container Platform installation issues.
+- [Verifying node health](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/verifying-node-health.md): You can verify and troubleshoot node-related issues by reviewing the status, resource usage, and configuration of a node.
+- [Troubleshooting CRI-O container runtime issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-crio-issues.md): Use the following sections to troubleshoot CRI-O container runtime issues.
+- [Troubleshooting operating system issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-operating-system-issues.md): OpenShift Container Platform runs on RHCOS. You can follow these procedures to troubleshoot problems related to the operating system.
+- [Troubleshooting network issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-network-issues.md): Use the following sections to troubleshoot network issues.
+- [Troubleshooting Operator issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-operator-issues.md): A cluster administrator can do the following to resolve Operator issues: verify Operator subscription status, check Operator pod health, and gather Operator…
+- [Investigating pod issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues.md): OpenShift Container Platform leverages the Kubernetes concept of a pod, which is one or more containers deployed together on one host. A pod is the smallest…
+- [Troubleshooting the Source-to-Image process](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-s2i.md): A cluster administrator can observe the S2I stages to determine where in the S2I process a failure occurred and gather diagnostic data to resolve…
+- [Troubleshooting storage issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-storage-issues.md): A multi-attach storage error occurs when the mounting volume on a new node is not possible because the failed node cannot unmount the attached volume. A…
+- [Troubleshooting Windows container workload issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/troubleshooting-windows-container-workload-issues.md): Use the following sections to troubleshoot Windows container workload issues.
+- [Investigating monitoring issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/investigating-monitoring-issues.md): OpenShift Container Platform includes a preconfigured, preinstalled, and self-updating monitoring stack that provides monitoring for core platform components.…
+- [Diagnosing OpenShift CLI (oc) issues](https://dogsbay.github.io/openshift-docs-markdown/support/troubleshooting/diagnosing-oc-issues.md): You can investigate OpenShift CLI (oc) issues by increasing the log level to get more detailed diagnostic information.

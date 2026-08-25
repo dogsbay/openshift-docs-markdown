@@ -4,7 +4,7 @@ title: Getting support
 
 # Getting support {#getting-support}
 
-If you experience difficulty with a procedure described in this documentation, or with {{ kueue_name }} in general, visit the Red Hat Customer Portal.
+If you experience difficulty with a procedure described in this documentation, or with Red Hat build of Kueue in general, visit the Red Hat Customer Portal.
 
 From the Customer Portal, you can:
 
@@ -15,6 +15,39 @@ From the Customer Portal, you can:
 ## About the Red Hat Knowledgebase {#getting-support-rh-kb}
 
 The Red Hat Knowledgebase provides rich content aimed at helping you make the most of Red Hat’s products and technologies. The Red Hat Knowledgebase consists of articles, product documentation, and videos outlining best practices on installing, configuring, and using Red Hat products. In addition, you can search for solutions to known issues, each providing concise root cause descriptions and remedial steps.
+
+## Collecting data for Red Hat Support {#gathering-cluster-data_getting-support}
+
+You can use the `oc adm must-gather` CLI command to collect the information about your Red Hat build of Kueue instance that is most likely needed for debugging issues.
+
+Information collected includes:
+
+- Red Hat build of Kueue custom resources, such as workloads, cluster queues, local queues, resource flavors, admission checks, and their corresponding cluster resource definitions (CRDs)
+- Services
+- Endpoints
+- Webhook configurations
+- Logs from the `openshift-kueue-operator` namespace and `kueue-controller-manager` pods
+
+Collected data is written into a new directory named `must-gather/` in the current working directory by default.
+
+**Prerequisites**
+
+- The Red Hat build of Kueue Operator is installed on your cluster.
+- You have installed the OpenShift CLI (`oc`).
+
+**Procedure**
+
+1. Navigate to the directory where you want to store the `must-gather` data.
+2. Collect `must-gather` data by running the following command:
+
+   ```terminal
+   $ oc adm must-gather \
+     --image=registry.redhat.io/kueue/kueue-must-gather-rhel9:<version>
+   ```
+
+   Where `<version>` is your current version of Red Hat build of Kueue.
+3. Create a compressed file from the `must-gather` directory that was just created in your working directory. Make sure you provide the date and cluster ID for the unique `must-gather` data. For more information about how to find the cluster ID, see "How to find the cluster-id or name on OpenShift cluster".
+4. Attach the compressed file to your support case on the **Customer Support** page of the Red Hat Customer Portal.
 
 ## Additional resources {#getting-support-additional-resources}
 

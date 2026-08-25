@@ -15,8 +15,15 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"rh-catalogs","text":"Red Hat-provided catalogs"}];
+const headings = [{"depth":1,"slug":"rh-catalogs","text":"Red Hat-provided catalogs"},{"depth":2,"slug":"olm-rh-catalogs_rh-catalogs","text":"About Red Hat-provided Operator catalogs"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/extensions/catalogs/rh-catalogs";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +46,7 @@ const pageCategory = ["extensions","extensions/catalogs"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Red Hat-provided catalogs {#rh-catalogs}\n\nRed Hat provides several Operator catalogs that are included with OpenShift Container Platform by default.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/catalogs/rh-catalogs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Red Hat-provided catalogs {#rh-catalogs}\n\nRed Hat provides several Operator catalogs that are included with OpenShift Container Platform by default.\n\n## About Red Hat-provided Operator catalogs {#olm-rh-catalogs_rh-catalogs}\n\nThe Red Hat-provided catalog sources are installed by default in the `{{ global_ns }}` namespace, which makes the catalogs available cluster-wide in all namespaces.\n\nThe following Operator catalogs are distributed by Red Hat:\n\n| Catalog | Index image | Description |\n| --- | --- | --- |\n| `redhat-operators` | `registry.redhat.io/redhat/redhat-operator-index:{{ tag }}` | Red Hat products packaged and shipped by Red Hat. Supported by Red Hat. |\n| `certified-operators` | `registry.redhat.io/redhat/certified-operator-index:{{ tag }}` | Products from leading independent software vendors (ISVs). Red Hat partners with ISVs to package and ship. Supported by the ISV. |\n| `community-operators` | `registry.redhat.io/redhat/community-operator-index:{{ tag }}` | Software maintained by relevant representatives in the community Operators GitHub repository. No official support. |\n\nDuring a cluster upgrade, the index image tag for the default Red Hat-provided catalog sources are updated automatically by the Cluster Version Operator (CVO) so that Operator Lifecycle Manager (OLM) pulls the updated version of the catalog. For example, during an upgrade from OpenShift Container Platform 4.8 to 4.9, the `spec.image` field in the `CatalogSource` object for the `redhat-operators` catalog is updated from:\n\n```text\nregistry.redhat.io/redhat/redhat-operator-index:v4.8\n```\n\nto:\n\n```text\nregistry.redhat.io/redhat/redhat-operator-index:v4.9\n```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/catalogs/rh-catalogs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +82,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +97,41 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="rh-catalogs" class="group scroll-mt-20">Red Hat-provided catalogs<a href="#rh-catalogs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>Red Hat provides several Operator catalogs that are included with OpenShift Container Platform by default.</p>
-      <p class="/modules/olm-rh-catalogs.md"></p>
+      <h2 id="olm-rh-catalogs_rh-catalogs" class="group scroll-mt-20">About Red Hat-provided Operator catalogs<a href="#olm-rh-catalogs_rh-catalogs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Red Hat-provided catalog sources are installed by default in the <code>{"{"}{"{"} global_ns {"}"}{"}"}</code> namespace, which makes the catalogs available cluster-wide in all namespaces.</p>
+      <p>The following Operator catalogs are distributed by Red Hat:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Catalog</TableHead>
+      <TableHead>Index image</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>redhat-operators</code></TableCell>
+      <TableCell><code>registry.redhat.io/redhat/redhat-operator-index:{"{"}{"{"} tag {"}"}{"}"}</code></TableCell>
+      <TableCell>Red Hat products packaged and shipped by Red Hat. Supported by Red Hat.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>certified-operators</code></TableCell>
+      <TableCell><code>registry.redhat.io/redhat/certified-operator-index:{"{"}{"{"} tag {"}"}{"}"}</code></TableCell>
+      <TableCell>Products from leading independent software vendors (ISVs). Red Hat partners with ISVs to package and ship. Supported by the ISV.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>community-operators</code></TableCell>
+      <TableCell><code>registry.redhat.io/redhat/community-operator-index:{"{"}{"{"} tag {"}"}{"}"}</code></TableCell>
+      <TableCell>Software maintained by relevant representatives in the community Operators GitHub repository. No official support.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>During a cluster upgrade, the index image tag for the default Red Hat-provided catalog sources are updated automatically by the Cluster Version Operator (CVO) so that Operator Lifecycle Manager (OLM) pulls the updated version of the catalog. For example, during an upgrade from OpenShift Container Platform 4.8 to 4.9, the <code>spec.image</code> field in the <code>CatalogSource</code> object for the <code>redhat-operators</code> catalog is updated from:</p>
+      <CodeBlock code={"registry.redhat.io/redhat/redhat-operator-index:v4.8"} lang="text" />
+      <p>to:</p>
+      <CodeBlock code={"registry.redhat.io/redhat/redhat-operator-index:v4.9"} lang="text" />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"removing-kubeadmin","text":"Removing the kubeadmin user"}];
+const headings = [{"depth":1,"slug":"removing-kubeadmin","text":"Removing the kubeadmin user"},{"depth":2,"slug":"understanding-kubeadmin_removing-kubeadmin","text":"The kubeadmin user"},{"depth":2,"slug":"removing-kubeadmin_removing-kubeadmin","text":"Removing the kubeadmin user"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/authentication/remove-kubeadmin";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["authentication"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Removing the kubeadmin user {#removing-kubeadmin}\n\nAfter installation, OpenShift Container Platform creates a cluster administrator user called `kubeadmin` with the `cluster-admin` role. To improve cluster security, you can remove this user after configuring an identity provider and creating a new `cluster-admin` user.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/remove-kubeadmin.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Removing the kubeadmin user {#removing-kubeadmin}\n\nAfter installation, OpenShift Container Platform creates a cluster administrator user called `kubeadmin` with the `cluster-admin` role. To improve cluster security, you can remove this user after configuring an identity provider and creating a new `cluster-admin` user.\n\n## The kubeadmin user {#understanding-kubeadmin_removing-kubeadmin}\n\nOpenShift Container Platform creates a cluster administrator, `kubeadmin`, after the installation process completes. This user has the `cluster-admin` role automatically applied and is treated as the root user for the cluster.\n\nThe password is dynamically generated and unique to your OpenShift Container Platform environment. After the installation completes, the password is provided in the installation program’s output. For example:\n\n```terminal\nINFO Install complete!\nINFO Run 'export KUBECONFIG=<your working directory>/auth/kubeconfig' to manage the cluster with 'oc', the OpenShift CLI.\nINFO The cluster is ready when 'oc login -u kubeadmin -p <provided>' succeeds (wait a few minutes).\nINFO Access the OpenShift web-console here: https://console-openshift-console.apps.demo1.openshift4-beta-abcorp.com\nINFO Login to the console with user: kubeadmin, password: <provided>\n```\n\n## Removing the kubeadmin user {#removing-kubeadmin_removing-kubeadmin}\n\nAfter you define an identity provider and create a new `cluster-admin` user, you can remove the `kubeadmin` to improve cluster security.\n\n> [!WARNING]\n> If you follow this procedure before another user is a `cluster-admin`, then OpenShift Container Platform must be reinstalled. It is not possible to undo this command.\n\n**Prerequisites**\n\n- You must have configured at least one identity provider.\n- You must have added the `cluster-admin` role to a user.\n- You must be logged in as an administrator.\n\n**Procedure**\n\n- Remove the `kubeadmin` secrets:\n\n  ```terminal\n  $ oc delete secrets kubeadmin -n kube-system\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/remove-kubeadmin.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,32 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="removing-kubeadmin" class="group scroll-mt-20">Removing the kubeadmin user<a href="#removing-kubeadmin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>After installation, OpenShift Container Platform creates a cluster administrator user called <code>kubeadmin</code> with the <code>cluster-admin</code> role. To improve cluster security, you can remove this user after configuring an identity provider and creating a new <code>cluster-admin</code> user.</p>
-      <p class="/modules/authentication-kubeadmin.md"></p>
-      <p class="/modules/authentication-remove-kubeadmin.md"></p>
+      <h2 id="understanding-kubeadmin_removing-kubeadmin" class="group scroll-mt-20">The kubeadmin user<a href="#understanding-kubeadmin_removing-kubeadmin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Container Platform creates a cluster administrator, <code>kubeadmin</code>, after the installation process completes. This user has the <code>cluster-admin</code> role automatically applied and is treated as the root user for the cluster.</p>
+      <p>The password is dynamically generated and unique to your OpenShift Container Platform environment. After the installation completes, the password is provided in the installation program’s output. For example:</p>
+      <CodeBlock code={"INFO Install complete!\nINFO Run 'export KUBECONFIG=<your working directory>/auth/kubeconfig' to manage the cluster with 'oc', the OpenShift CLI.\nINFO The cluster is ready when 'oc login -u kubeadmin -p <provided>' succeeds (wait a few minutes).\nINFO Access the OpenShift web-console here: https://console-openshift-console.apps.demo1.openshift4-beta-abcorp.com\nINFO Login to the console with user: kubeadmin, password: <provided>"} lang="terminal" />
+      <h2 id="removing-kubeadmin_removing-kubeadmin" class="group scroll-mt-20">Removing the kubeadmin user<a href="#removing-kubeadmin_removing-kubeadmin" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you define an identity provider and create a new <code>cluster-admin</code> user, you can remove the <code>kubeadmin</code> to improve cluster security.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>If you follow this procedure before another user is a <code>cluster-admin</code>, then OpenShift Container Platform must be reinstalled. It is not possible to undo this command.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have configured at least one identity provider.</li>
+      <li>You must have added the <code>cluster-admin</code> role to a user.</li>
+      <li>You must be logged in as an administrator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Remove the <code>kubeadmin</code> secrets:
+      <CodeBlock code={"$ oc delete secrets kubeadmin -n kube-system"} lang="terminal" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

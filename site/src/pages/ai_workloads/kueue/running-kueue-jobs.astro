@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"running-kueue-jobs","text":"Running jobs with quota limits"}];
+const headings = [{"depth":1,"slug":"running-kueue-jobs","text":"Running jobs with quota limits"},{"depth":2,"slug":"identifying-local-queues_running-kueue-jobs","text":"Identifying available local queues"},{"depth":2,"slug":"defining-running-jobs_running-kueue-jobs","text":"Defining a job to run with Red Hat build of Kueue"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/running-kueue-jobs";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Running jobs with quota limits";
-const description = "You can run Kubernetes jobs with {{ kueue_name }} enabled to manage resource allocation within defined quota limits. Running jobs with quota limits…" || undefined;
+const description = "You can run Kubernetes jobs with Red Hat build of Kueue enabled to manage resource allocation within defined quota limits. Running jobs with quota limits…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Running jobs with quota limits {#running-kueue-jobs}\n\nYou can run Kubernetes jobs with {{ kueue_name }} enabled to manage resource allocation within defined quota limits. Running jobs with quota limits provides predictable resource availability, cluster stability, and optimized performance.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/running-kueue-jobs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Running jobs with quota limits {#running-kueue-jobs}\n\nYou can run Kubernetes jobs with Red Hat build of Kueue enabled to manage resource allocation within defined quota limits. Running jobs with quota limits provides predictable resource availability, cluster stability, and optimized performance.\n\n## Identifying available local queues {#identifying-local-queues_running-kueue-jobs}\n\nBefore you can submit a job to a queue, you must find the name of the local queue.\n\n**Prerequisites**\n\n- A cluster administrator has installed and configured Red Hat build of Kueue on your OpenShift Container Platform cluster.\n- A cluster administrator has assigned you the `kueue-batch-user-role` cluster role.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Run the following command to list available local queues in your namespace:\n\n  ```terminal\n  $ oc -n <namespace> get localqueues\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME         CLUSTERQUEUE    PENDING WORKLOADS\n  user-queue   cluster-queue   3\n  ```\n\n## Defining a job to run with Red Hat build of Kueue {#defining-running-jobs_running-kueue-jobs}\n\nWhen you are defining a job to run with Red Hat build of Kueue, ensure that it meets the required criteria.\n\nThe job must:\n\n- Specify the local queue to submit the job to, by using the `kueue.x-k8s.io/queue-name` label.\n- Include the resource requests for each job pod.\n\nRed Hat build of Kueue suspends the job, and then starts it when resources are available. Red Hat build of Kueue creates a corresponding workload, represented as a `Workload` object with a name that matches the job.\n\n**Prerequisites**\n\n- A cluster administrator has installed and configured Red Hat build of Kueue on your OpenShift Container Platform cluster.\n- A cluster administrator has assigned you the `kueue-batch-user-role` cluster role.\n- You have installed the OpenShift CLI (`oc`).\n- You have identified the name of the local queue that you want to submit jobs to.\n\n**Procedure**\n\n1. Create a `Job` object.\n\n   ```yaml {title=\"Example job\"}\n   apiVersion: batch/v1\n   kind: Job\n   metadata:\n     generateName: sample-job-\n     namespace: my-namespace\n     labels:\n       kueue.x-k8s.io/queue-name: user-queue\n   spec:\n     parallelism: 3\n     completions: 3\n     template:\n       spec:\n         containers:\n         - name: dummy-job\n           image: registry.k8s.io/e2e-test-images/agnhost:2.53\n           args: [\"entrypoint-tester\", \"hello\", \"world\"]\n           resources:\n             requests:\n               cpu: 1\n               memory: \"200Mi\"\n         restartPolicy: Never\n   ```\n\n   where:\n\n   `kind`\n   :   Defines the resource type as a `Job` object, which represents a batch computation task.\n\n   `metadata.generateName`\n   :   Provides a prefix for generating a unique name for the job.\n\n   `metadata.labels.kueue.x-k8s.io/queue-name`\n   :   Identifies the queue to send the job to.\n\n   `spec.template.spec.containers[].resources`\n   :   Defines the resource requests for each pod.\n2. Run the job by running the following command:\n\n   ```terminal\n   $ oc create -f <filename>.yaml\n   ```\n\n**Verification**\n\n- Verify that pods are running for the job you have created, by running the following command and observing the output:\n\n  ```terminal\n  $ oc get job <job-name>\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME               STATUS      COMPLETIONS   DURATION   AGE\n  sample-job-sk42x   Suspended   0/1                      2m12s\n  ```\n- Verify that a workload has been created in your namespace for the job, by running the following command and observing the output:\n\n  ```terminal\n  $ oc -n <namespace> get workloads\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                         QUEUE          RESERVED IN   ADMITTED   FINISHED   AGE\n  job-sample-job-sk42x-77c03   user-queue                                         3m8s\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/running-kueue-jobs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +91,74 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="running-kueue-jobs" class="group scroll-mt-20">Running jobs with quota limits<a href="#running-kueue-jobs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can run Kubernetes jobs with {"{"}{"{"} kueue_name {"}"}{"}"} enabled to manage resource allocation within defined quota limits. Running jobs with quota limits provides predictable resource availability, cluster stability, and optimized performance.</p>
-      <p class="/modules/kueue-identifying-local-queues.md"></p>
-      <p class="/modules/kueue-defining-running-jobs.md"></p>
+      <p>You can run Kubernetes jobs with Red Hat build of Kueue enabled to manage resource allocation within defined quota limits. Running jobs with quota limits provides predictable resource availability, cluster stability, and optimized performance.</p>
+      <h2 id="identifying-local-queues_running-kueue-jobs" class="group scroll-mt-20">Identifying available local queues<a href="#identifying-local-queues_running-kueue-jobs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you can submit a job to a queue, you must find the name of the local queue.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>A cluster administrator has installed and configured Red Hat build of Kueue on your OpenShift Container Platform cluster.</li>
+      <li>A cluster administrator has assigned you the <code>kueue-batch-user-role</code> cluster role.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Run the following command to list available local queues in your namespace:
+      <CodeBlock code={"$ oc -n <namespace> get localqueues"} lang="terminal" />
+      <CodeBlock code={"NAME         CLUSTERQUEUE    PENDING WORKLOADS\nuser-queue   cluster-queue   3"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="defining-running-jobs_running-kueue-jobs" class="group scroll-mt-20">Defining a job to run with Red Hat build of Kueue<a href="#defining-running-jobs_running-kueue-jobs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When you are defining a job to run with Red Hat build of Kueue, ensure that it meets the required criteria.</p>
+      <p>The job must:</p>
+      <ul>
+      <li>Specify the local queue to submit the job to, by using the <code>kueue.x-k8s.io/queue-name</code> label.</li>
+      <li>Include the resource requests for each job pod.</li>
+      </ul>
+      <p>Red Hat build of Kueue suspends the job, and then starts it when resources are available. Red Hat build of Kueue creates a corresponding workload, represented as a <code>Workload</code> object with a name that matches the job.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>A cluster administrator has installed and configured Red Hat build of Kueue on your OpenShift Container Platform cluster.</li>
+      <li>A cluster administrator has assigned you the <code>kueue-batch-user-role</code> cluster role.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have identified the name of the local queue that you want to submit jobs to.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>Job</code> object.
+      <CodeBlock code={"apiVersion: batch/v1\nkind: Job\nmetadata:\n  generateName: sample-job-\n  namespace: my-namespace\n  labels:\n    kueue.x-k8s.io/queue-name: user-queue\nspec:\n  parallelism: 3\n  completions: 3\n  template:\n    spec:\n      containers:\n      - name: dummy-job\n        image: registry.k8s.io/e2e-test-images/agnhost:2.53\n        args: [\"entrypoint-tester\", \"hello\", \"world\"]\n        resources:\n          requests:\n            cpu: 1\n            memory: \"200Mi\"\n      restartPolicy: Never"} lang="yaml" title="Example job" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>kind</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Defines the resource type as a <code>Job</code> object, which represents a batch computation task.</p></dd>
+      <dt class="font-semibold"><code>metadata.generateName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Provides a prefix for generating a unique name for the job.</p></dd>
+      <dt class="font-semibold"><code>metadata.labels.kueue.x-k8s.io/queue-name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Identifies the queue to send the job to.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.containers[].resources</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Defines the resource requests for each pod.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Run the job by running the following command:
+      <CodeBlock code={"$ oc create -f <filename>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that pods are running for the job you have created, by running the following command and observing the output:
+      <CodeBlock code={"$ oc get job <job-name>"} lang="terminal" />
+      <CodeBlock code={"NAME               STATUS      COMPLETIONS   DURATION   AGE\nsample-job-sk42x   Suspended   0/1                      2m12s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Verify that a workload has been created in your namespace for the job, by running the following command and observing the output:
+      <CodeBlock code={"$ oc -n <namespace> get workloads"} lang="terminal" />
+      <CodeBlock code={"NAME                         QUEUE          RESERVED IN   ADMITTED   FINISHED   AGE\njob-sample-job-sk42x-77c03   user-queue                                         3m8s"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

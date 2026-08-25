@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"recommended-infrastructure-practices","text":"Recommended infrastructure practices"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"recommended-infrastructure-practices","text":"Recommended infrastructure practices"},{"depth":2,"slug":"infrastructure-node-sizing_recommended-infrastructure-practices","text":"Infrastructure node sizing"},{"depth":2,"slug":"scaling-cluster-monitoring-operator_recommended-infrastructure-practices","text":"Scaling the Cluster Monitoring Operator"},{"depth":3,"slug":"prometheus-database-storage-requirements_recommended-infrastructure-practices","text":"Prometheus database storage requirements"},{"depth":3,"slug":"configuring-cluster-monitoring_recommended-infrastructure-practices","text":"Configuring cluster monitoring"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-infrastructure-practices";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["scalability_and_performance","scalability_and_performance
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Recommended infrastructure practices {#recommended-infrastructure-practices}\n\nThis topic provides recommended performance and scalability practices for infrastructure in OpenShift Container Platform.\n\n## Additional resources {#_additional_resources}\n\n- [Infrastructure Nodes in OpenShift 4](https://access.redhat.com/solutions/5034771)\n- [OpenShift Container Platform cluster maximums](/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)\n- [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-infrastructure-practices.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Recommended infrastructure practices {#recommended-infrastructure-practices}\n\nThis topic provides recommended performance and scalability practices for infrastructure in OpenShift Container Platform.\n\n## Infrastructure node sizing {#infrastructure-node-sizing_recommended-infrastructure-practices}\n\n*Infrastructure nodes* are nodes that are labeled to run pieces of the OpenShift Container Platform environment. The infrastructure node resource requirements depend on the cluster age, nodes, and objects in the cluster, as these factors can lead to an increase in the number of metrics or time series in Prometheus. The following infrastructure node size recommendations are based on the results observed in cluster-density testing detailed in the **Control plane node sizing** section, where the monitoring stack and the default ingress-controller were moved to these nodes.\n\n| Number of worker nodes | Cluster density, or number of namespaces | CPU cores | Memory (GB) |\n| --- | --- | --- | --- |\n| 27 | 500 | 4 | 24 |\n| 120 | 1000 | 8 | 48 |\n| 252 | 4000 | 16 | 128 |\n| 501 | 4000 | 32 | 128 |\n\nIn general, three infrastructure nodes are recommended per cluster.\n\n> [!IMPORTANT]\n> These sizing recommendations should be used as a guideline. Prometheus is a highly memory intensive application; the resource usage depends on various factors including the number of nodes, objects, the Prometheus metrics scraping interval, metrics or time series, and the age of the cluster. In addition, the router resource usage can also be affected by the number of routes and the amount/type of inbound requests.\n>\n> These recommendations apply only to infrastructure nodes hosting Monitoring, Ingress and Registry infrastructure components installed during cluster creation.\n\n> [!NOTE]\n> In OpenShift Container Platform 4.22, half of a CPU core (500 millicore) is now reserved by the system by default compared to OpenShift Container Platform 3.11 and previous versions. This influences the stated sizing recommendations.\n\n## Scaling the Cluster Monitoring Operator {#scaling-cluster-monitoring-operator_recommended-infrastructure-practices}\n\nOpenShift Container Platform exposes metrics that the Cluster Monitoring Operator (CMO) collects and stores in the Prometheus-based monitoring stack. As an administrator, you can view dashboards for system resources, containers, and components metrics in the OpenShift Container Platform web console by navigating to **Observe** -> **Dashboards**.\n\n### Prometheus database storage requirements {#prometheus-database-storage-requirements_recommended-infrastructure-practices}\n\nRed Hat performed various tests for different scale sizes.\n\n> [!NOTE]\n> - The following Prometheus storage requirements are not prescriptive and should be used as a reference. Higher resource consumption might be observed in your cluster depending on workload activity and resource density, including the number of pods, containers, routes, or other resources exposing metrics collected by Prometheus.\n> - You can configure the size-based data retention policy to suit your storage requirements.\n\n**Prometheus Database storage requirements based on number of nodes/pods in the cluster**\n\n| Number of nodes | Number of pods (2 containers per pod) | Prometheus storage growth per day | Prometheus storage growth per 15 days | Network (per tsdb chunk) |\n| --- | --- | --- | --- | --- |\n| 50 | 1800 | 6.3 GB | 94 GB | 16 MB |\n| 100 | 3600 | 13 GB | 195 GB | 26 MB |\n| 150 | 5400 | 19 GB | 283 GB | 36 MB |\n| 200 | 7200 | 25 GB | 375 GB | 46 MB |\n\nApproximately 20 percent of the expected size was added as overhead to ensure that the storage requirements do not exceed the calculated value.\n\nThe above calculation is for the default OpenShift Container Platform Cluster Monitoring Operator.\n\n> [!NOTE]\n> CPU utilization has minor impact. The ratio is approximately 1 core out of 40 per 50 nodes and 1800 pods.\n\n**Recommendations for OpenShift Container Platform**\n\n- Use at least two infrastructure (infra) nodes.\n- Use at least three **openshift-container-storage** nodes with non-volatile memory express (SSD or NVMe) drives.\n\n### Configuring cluster monitoring {#configuring-cluster-monitoring_recommended-infrastructure-practices}\n\nYou can increase the storage capacity for the Prometheus component in the cluster monitoring stack.\n\n**Procedure**\n\n1. To increase the storage capacity for Prometheus, create a YAML configuration file, `cluster-monitoring-config.yaml`, as in the following example:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   data:\n     config.yaml: |\n       prometheusK8s:\n         retention: <prometheus_retention_period>\n         nodeSelector:\n           node-role.kubernetes.io/infra: \"\"\n         volumeClaimTemplate:\n           spec:\n             storageClassName: <storage_class>\n             resources:\n               requests:\n                 storage: <prometheus_storage_size>\n       alertmanagerMain:\n         nodeSelector:\n           node-role.kubernetes.io/infra: \"\"\n         volumeClaimTemplate:\n           spec:\n             storageClassName: <storage_class>\n             resources:\n               requests:\n                 storage: <alertmanager_storage_size>\n   metadata:\n     name: cluster-monitoring-config\n     namespace: openshift-monitoring\n   ```\n\n   - `<prometheus_retention_period>` specifies the Prometheus retention period. The default value is `15d`. Units are measured in time using one of these suffixes: s, m, h, d.\n   - `<storage_class>` specifies the storage class for your cluster.\n   - `<prometheus_storage_size>` specifies the Prometheus storage size. A typical value is `2000Gi`. Storage values can be a plain integer or a fixed-point integer using one of these suffixes: E, P, T, G, M, K. You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki.\n   - `<alertmanager_storage_size>` specifies the Alertmanager storage size. A typical value is `20Gi`. Storage values can be a plain integer or a fixed-point integer using one of these suffixes: E, P, T, G, M, K. You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki.\n2. Add values for the retention period, storage class, and storage sizes.\n3. Save the file.\n4. Apply the changes by running:\n\n   ```terminal\n   $ oc create -f cluster-monitoring-config.yaml\n   ```\n\n## Additional resources {#_additional_resources}\n\n- [Infrastructure Nodes in OpenShift 4](https://access.redhat.com/solutions/5034771)\n- [OpenShift Container Platform cluster maximums](/openshift-docs-markdown/scalability_and_performance/planning-your-environment-according-to-object-maximums#planning-your-environment-according-to-object-maximums)\n- [Creating infrastructure machine sets](/openshift-docs-markdown/machine_management/creating-infrastructure-machinesets#creating-infrastructure-machinesets)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/recommended-performance-scale-practices/recommended-infrastructure-practices.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +101,148 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="recommended-infrastructure-practices" class="group scroll-mt-20">Recommended infrastructure practices<a href="#recommended-infrastructure-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>This topic provides recommended performance and scalability practices for infrastructure in OpenShift Container Platform.</p>
-      <p class="/modules/infrastructure-node-sizing.md"></p>
-      <p class="/modules/scaling-cluster-monitoring-operator.md"></p>
-      <p class="/modules/prometheus-database-storage-requirements.md"></p>
-      <p class="/modules/configuring-cluster-monitoring.md"></p>
+      <h2 id="infrastructure-node-sizing_recommended-infrastructure-practices" class="group scroll-mt-20">Infrastructure node sizing<a href="#infrastructure-node-sizing_recommended-infrastructure-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract"><em>Infrastructure nodes</em> are nodes that are labeled to run pieces of the OpenShift Container Platform environment. The infrastructure node resource requirements depend on the cluster age, nodes, and objects in the cluster, as these factors can lead to an increase in the number of metrics or time series in Prometheus. The following infrastructure node size recommendations are based on the results observed in cluster-density testing detailed in the <strong>Control plane node sizing</strong> section, where the monitoring stack and the default ingress-controller were moved to these nodes.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Number of worker nodes</TableHead>
+      <TableHead>Cluster density, or number of namespaces</TableHead>
+      <TableHead>CPU cores</TableHead>
+      <TableHead>Memory (GB)</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>27</TableCell>
+      <TableCell>500</TableCell>
+      <TableCell>4</TableCell>
+      <TableCell>24</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>120</TableCell>
+      <TableCell>1000</TableCell>
+      <TableCell>8</TableCell>
+      <TableCell>48</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>252</TableCell>
+      <TableCell>4000</TableCell>
+      <TableCell>16</TableCell>
+      <TableCell>128</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>501</TableCell>
+      <TableCell>4000</TableCell>
+      <TableCell>32</TableCell>
+      <TableCell>128</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>In general, three infrastructure nodes are recommended per cluster.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>These sizing recommendations should be used as a guideline. Prometheus is a highly memory intensive application; the resource usage depends on various factors including the number of nodes, objects, the Prometheus metrics scraping interval, metrics or time series, and the age of the cluster. In addition, the router resource usage can also be affected by the number of routes and the amount/type of inbound requests.</p>
+          <p>These recommendations apply only to infrastructure nodes hosting Monitoring, Ingress and Registry infrastructure components installed during cluster creation.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>In OpenShift Container Platform 4.22, half of a CPU core (500 millicore) is now reserved by the system by default compared to OpenShift Container Platform 3.11 and previous versions. This influences the stated sizing recommendations.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="scaling-cluster-monitoring-operator_recommended-infrastructure-practices" class="group scroll-mt-20">Scaling the Cluster Monitoring Operator<a href="#scaling-cluster-monitoring-operator_recommended-infrastructure-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>OpenShift Container Platform exposes metrics that the Cluster Monitoring Operator (CMO) collects and stores in the Prometheus-based monitoring stack. As an administrator, you can view dashboards for system resources, containers, and components metrics in the OpenShift Container Platform web console by navigating to <strong>Observe</strong> -&gt; <strong>Dashboards</strong>.</p>
+      <h3 id="prometheus-database-storage-requirements_recommended-infrastructure-practices" class="group scroll-mt-20">Prometheus database storage requirements<a href="#prometheus-database-storage-requirements_recommended-infrastructure-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Red Hat performed various tests for different scale sizes.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>The following Prometheus storage requirements are not prescriptive and should be used as a reference. Higher resource consumption might be observed in your cluster depending on workload activity and resource density, including the number of pods, containers, routes, or other resources exposing metrics collected by Prometheus.</li>
+          <li>You can configure the size-based data retention policy to suit your storage requirements.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prometheus Database storage requirements based on number of nodes/pods in the cluster</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Number of nodes</TableHead>
+      <TableHead>Number of pods (2 containers per pod)</TableHead>
+      <TableHead>Prometheus storage growth per day</TableHead>
+      <TableHead>Prometheus storage growth per 15 days</TableHead>
+      <TableHead>Network (per tsdb chunk)</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>50</TableCell>
+      <TableCell>1800</TableCell>
+      <TableCell>6.3 GB</TableCell>
+      <TableCell>94 GB</TableCell>
+      <TableCell>16 MB</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>100</TableCell>
+      <TableCell>3600</TableCell>
+      <TableCell>13 GB</TableCell>
+      <TableCell>195 GB</TableCell>
+      <TableCell>26 MB</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>150</TableCell>
+      <TableCell>5400</TableCell>
+      <TableCell>19 GB</TableCell>
+      <TableCell>283 GB</TableCell>
+      <TableCell>36 MB</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>200</TableCell>
+      <TableCell>7200</TableCell>
+      <TableCell>25 GB</TableCell>
+      <TableCell>375 GB</TableCell>
+      <TableCell>46 MB</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>Approximately 20 percent of the expected size was added as overhead to ensure that the storage requirements do not exceed the calculated value.</p>
+      <p>The above calculation is for the default OpenShift Container Platform Cluster Monitoring Operator.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>CPU utilization has minor impact. The ratio is approximately 1 core out of 40 per 50 nodes and 1800 pods.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Recommendations for OpenShift Container Platform</strong></p>
+      <ul>
+      <li>Use at least two infrastructure (infra) nodes.</li>
+      <li>Use at least three <strong>openshift-container-storage</strong> nodes with non-volatile memory express (SSD or NVMe) drives.</li>
+      </ul>
+      <h3 id="configuring-cluster-monitoring_recommended-infrastructure-practices" class="group scroll-mt-20">Configuring cluster monitoring<a href="#configuring-cluster-monitoring_recommended-infrastructure-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can increase the storage capacity for the Prometheus component in the cluster monitoring stack.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To increase the storage capacity for Prometheus, create a YAML configuration file, <code>cluster-monitoring-config.yaml</code>, as in the following example:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\ndata:\n  config.yaml: |\n    prometheusK8s:\n      retention: <prometheus_retention_period>\n      nodeSelector:\n        node-role.kubernetes.io/infra: \"\"\n      volumeClaimTemplate:\n        spec:\n          storageClassName: <storage_class>\n          resources:\n            requests:\n              storage: <prometheus_storage_size>\n    alertmanagerMain:\n      nodeSelector:\n        node-role.kubernetes.io/infra: \"\"\n      volumeClaimTemplate:\n        spec:\n          storageClassName: <storage_class>\n          resources:\n            requests:\n              storage: <alertmanager_storage_size>\nmetadata:\n  name: cluster-monitoring-config\n  namespace: openshift-monitoring"} lang="yaml" />
+      <ul>
+      <li><code>&lt;prometheus_retention_period&gt;</code> specifies the Prometheus retention period. The default value is <code>15d</code>. Units are measured in time using one of these suffixes: s, m, h, d.</li>
+      <li><code>&lt;storage_class&gt;</code> specifies the storage class for your cluster.</li>
+      <li><code>&lt;prometheus_storage_size&gt;</code> specifies the Prometheus storage size. A typical value is <code>2000Gi</code>. Storage values can be a plain integer or a fixed-point integer using one of these suffixes: E, P, T, G, M, K. You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki.</li>
+      <li><code>&lt;alertmanager_storage_size&gt;</code> specifies the Alertmanager storage size. A typical value is <code>20Gi</code>. Storage values can be a plain integer or a fixed-point integer using one of these suffixes: E, P, T, G, M, K. You can also use the power-of-two equivalents: Ei, Pi, Ti, Gi, Mi, Ki.</li>
+      </ul>
+      </li>
+      <li>Add values for the retention period, storage class, and storage sizes.</li>
+      <li>Save the file.</li>
+      <li>
+      Apply the changes by running:
+      <CodeBlock code={"$ oc create -f cluster-monitoring-config.yaml"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://access.redhat.com/solutions/5034771">Infrastructure Nodes in OpenShift 4</a></li>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-using-huge-pages-with-vms","text":"Using huge pages with virtual machines"}];
+const headings = [{"depth":1,"slug":"virt-using-huge-pages-with-vms","text":"Using huge pages with virtual machines"},{"depth":2,"slug":"what-huge-pages-do_virt-using-huge-pages-with-vms","text":"What huge pages do"},{"depth":2,"slug":"virt-configuring-huge-pages-for-vms_virt-using-huge-pages-with-vms","text":"Configuring huge pages for virtual machines"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-using-huge-pages-with-vms";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/advanced_vm_
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using huge pages with virtual machines {#virt-using-huge-pages-with-vms}\n\nYou can use huge pages as backing memory for virtual machines in your cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-using-huge-pages-with-vms.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using huge pages with virtual machines {#virt-using-huge-pages-with-vms}\n\nYou can use huge pages as backing memory for virtual machines in your cluster.\n\n## What huge pages do {#what-huge-pages-do_virt-using-huge-pages-with-vms}\n\nTo optimize memory mapping efficiency, understand the function of huge pages. Unlike standard 4Ki blocks, huge pages are larger memory segments that reduce the tracking load on the translation lookaside buffer (TLB) hardware cache.\n\nMemory is managed in blocks known as pages. On most systems, a page is 4Ki; 1Mi of memory is equal to 256 pages; 1Gi of memory is 256,000 pages, and so on. CPUs have a built-in memory management unit that manages a list of these pages in hardware. The translation lookaside buffer (TLB) is a small hardware cache of virtual-to-physical page mappings. If the virtual address passed in a hardware instruction can be found in the TLB, the mapping can be determined quickly. If not, a TLB miss occurs, and the system falls back to slower, software-based address translation, resulting in performance issues. Since the size of the TLB is fixed, the only way to reduce the chance of a TLB miss is to increase the page size.\n\nA huge page is a memory page that is larger than 4Ki. On x86_64 architectures, there are two common huge page sizes: 2Mi and 1Gi. Sizes vary on other architectures. To use huge pages, code must be written so that applications are aware of them. Transparent huge pages (THP) attempt to automate the management of huge pages without application knowledge, but they have limitations. In particular, they are limited to 2Mi page sizes. THP can lead to performance degradation on nodes with high memory utilization or fragmentation because of defragmenting efforts of THP, which can lock memory pages. For this reason, some applications might be designed to or recommend usage of pre-allocated huge pages instead of THP.\n\nIn OpenShift Virtualization, virtual machines can be configured to consume pre-allocated huge pages.\n\n## Configuring huge pages for virtual machines {#virt-configuring-huge-pages-for-vms_virt-using-huge-pages-with-vms}\n\nYou can configure virtual machines to use pre-allocated huge pages by including the `memory.hugepages.pageSize` and `resources.requests.memory` parameters in your virtual machine configuration.\n\nThe memory request must be divisible by the page size. For example, you cannot request `500Mi` memory with a page size of `1Gi`.\n\n> [!NOTE]\n> The memory layouts of the host and the guest OS are unrelated. Huge pages requested in the virtual machine manifest apply to QEMU. Huge pages inside the guest can only be configured based on the amount of available memory of the virtual machine instance.\n\nIf you edit a running virtual machine, the virtual machine must be rebooted for the changes to take effect.\n\n**Prerequisites**\n\n- Nodes must have pre-allocated huge pages configured.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. In your virtual machine configuration, add the `resources.requests.memory` and `memory.hugepages.pageSize` parameters to the `spec.domain`. The following configuration snippet is for a virtual machine that requests a total of `4Gi` memory with a page size of `1Gi`:\n\n```yaml\nkind: VirtualMachine\n# ...\nspec:\n  domain:\n    resources:\n      requests:\n        memory: \"4Gi\"\n    memory:\n      hugepages:\n        pageSize: \"1Gi\"\n# ...\n```\n\n- `memory` defines the total amount of memory requested for the virtual machine. This value must be divisible by the page size.\n- `pageSize` defines the size of each huge page. Valid values for x86_64 architecture are `1Gi` and `2Mi`. The page size must be smaller than the requested memory.\n\n  1. Apply the virtual machine configuration:\n\n     ```terminal\n     $ oc apply -f <virtual_machine>.yaml\n     ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-using-huge-pages-with-vms.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,42 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-using-huge-pages-with-vms" class="group scroll-mt-20">Using huge pages with virtual machines<a href="#virt-using-huge-pages-with-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can use huge pages as backing memory for virtual machines in your cluster.</p>
-      <p class="/modules/what-huge-pages-do.md"></p>
-      <p class="/modules/virt-configuring-huge-pages-for-vms.md"></p>
+      <h2 id="what-huge-pages-do_virt-using-huge-pages-with-vms" class="group scroll-mt-20">What huge pages do<a href="#what-huge-pages-do_virt-using-huge-pages-with-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To optimize memory mapping efficiency, understand the function of huge pages. Unlike standard 4Ki blocks, huge pages are larger memory segments that reduce the tracking load on the translation lookaside buffer (TLB) hardware cache.</p>
+      <p>Memory is managed in blocks known as pages. On most systems, a page is 4Ki; 1Mi of memory is equal to 256 pages; 1Gi of memory is 256,000 pages, and so on. CPUs have a built-in memory management unit that manages a list of these pages in hardware. The translation lookaside buffer (TLB) is a small hardware cache of virtual-to-physical page mappings. If the virtual address passed in a hardware instruction can be found in the TLB, the mapping can be determined quickly. If not, a TLB miss occurs, and the system falls back to slower, software-based address translation, resulting in performance issues. Since the size of the TLB is fixed, the only way to reduce the chance of a TLB miss is to increase the page size.</p>
+      <p>A huge page is a memory page that is larger than 4Ki. On x86_64 architectures, there are two common huge page sizes: 2Mi and 1Gi. Sizes vary on other architectures. To use huge pages, code must be written so that applications are aware of them. Transparent huge pages (THP) attempt to automate the management of huge pages without application knowledge, but they have limitations. In particular, they are limited to 2Mi page sizes. THP can lead to performance degradation on nodes with high memory utilization or fragmentation because of defragmenting efforts of THP, which can lock memory pages. For this reason, some applications might be designed to or recommend usage of pre-allocated huge pages instead of THP.</p>
+      <p>In OpenShift Virtualization, virtual machines can be configured to consume pre-allocated huge pages.</p>
+      <h2 id="virt-configuring-huge-pages-for-vms_virt-using-huge-pages-with-vms" class="group scroll-mt-20">Configuring huge pages for virtual machines<a href="#virt-configuring-huge-pages-for-vms_virt-using-huge-pages-with-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure virtual machines to use pre-allocated huge pages by including the <code>memory.hugepages.pageSize</code> and <code>resources.requests.memory</code> parameters in your virtual machine configuration.</p>
+      <p>The memory request must be divisible by the page size. For example, you cannot request <code>500Mi</code> memory with a page size of <code>1Gi</code>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The memory layouts of the host and the guest OS are unrelated. Huge pages requested in the virtual machine manifest apply to QEMU. Huge pages inside the guest can only be configured based on the amount of available memory of the virtual machine instance.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If you edit a running virtual machine, the virtual machine must be rebooted for the changes to take effect.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Nodes must have pre-allocated huge pages configured.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol><li>In your virtual machine configuration, add the <code>resources.requests.memory</code> and <code>memory.hugepages.pageSize</code> parameters to the <code>spec.domain</code>. The following configuration snippet is for a virtual machine that requests a total of <code>4Gi</code> memory with a page size of <code>1Gi</code>:</li></ol>
+      <CodeBlock code={"kind: VirtualMachine\n# ...\nspec:\n  domain:\n    resources:\n      requests:\n        memory: \"4Gi\"\n    memory:\n      hugepages:\n        pageSize: \"1Gi\"\n# ..."} lang="yaml" />
+      <ul>
+      <li><code>memory</code> defines the total amount of memory requested for the virtual machine. This value must be divisible by the page size.</li>
+      <li>
+      <code>pageSize</code> defines the size of each huge page. Valid values for x86_64 architecture are <code>1Gi</code> and <code>2Mi</code>. The page size must be smaller than the requested memory.
+      <ol>
+      <li>
+      Apply the virtual machine configuration:
+      <CodeBlock code={"$ oc apply -f <virtual_machine>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

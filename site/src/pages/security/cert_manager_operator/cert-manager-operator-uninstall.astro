@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"cert-manager-operator-uninstall","text":"Uninstalling the {{ cert_manager_operator }}"}];
+const headings = [{"depth":1,"slug":"cert-manager-operator-uninstall","text":"Uninstalling the {{ cert_manager_operator }}"},{"depth":2,"slug":"cert-manager-uninstall-console_cert-manager-operator-uninstall","text":"Uninstalling the cert-manager Operator for Red Hat OpenShift"},{"depth":2,"slug":"cert-manager-remove-resources-console_cert-manager-operator-uninstall","text":"Removing cert-manager Operator for Red Hat OpenShift resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-uninstall";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Uninstalling the {{ cert_manager_operator }}";
-const description = "You can remove the {{ cert_manager_operator }} from OpenShift Container Platform by uninstalling the Operator and removing its related resources." || undefined;
+const description = "You can remove the cert-manager Operator for Red Hat OpenShift from OpenShift Container Platform by uninstalling the Operator and removing its related…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["security","security/cert_manager_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the {{ cert_manager_operator }} {#cert-manager-operator-uninstall}\n\nYou can remove the {{ cert_manager_operator }} from OpenShift Container Platform by uninstalling the Operator and removing its related resources.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-uninstall.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling the {{ cert_manager_operator }} {#cert-manager-operator-uninstall}\n\nYou can remove the cert-manager Operator for Red Hat OpenShift from OpenShift Container Platform by uninstalling the Operator and removing its related resources.\n\n## Uninstalling the cert-manager Operator for Red Hat OpenShift {#cert-manager-uninstall-console_cert-manager-operator-uninstall}\n\nYou can uninstall the cert-manager Operator for Red Hat OpenShift by using the web console.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n- The cert-manager Operator for Red Hat OpenShift is installed.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Uninstall the cert-manager Operator for Red Hat OpenShift Operator.\n\n   1. Navigate to **Ecosystem** -> **Installed Operators**.\n   2. Click the Options menu ![](kebab.png \"Options menu\") next to the **cert-manager Operator for Red Hat OpenShift** entry and click **Uninstall Operator**.\n   3. In the confirmation dialog, click **Uninstall**.\n\n## Removing cert-manager Operator for Red Hat OpenShift resources {#cert-manager-remove-resources-console_cert-manager-operator-uninstall}\n\nAfter you uninstall the cert-manager Operator for Red Hat OpenShift, you can delete its associated resources from your cluster.\n\n**Prerequisites**\n\n- You have access to the cluster with `cluster-admin` privileges.\n- You have access to the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console.\n2. Remove the deployments of the cert-manager components, such as `cert-manager`, `cainjector`, and `webhook`, present in the `cert-manager` namespace.\n\n   1. Click the **Project** drop-down menu to see a list of all available projects, and select the **cert-manager** project.\n   2. Navigate to **Workloads** -> **Deployments**.\n   3. Select the deployment that you want to delete.\n   4. Click the **Actions** drop-down menu, and select **Delete Deployment** to see a confirmation dialog box.\n   5. Click **Delete** to delete the deployment.\n   6. Alternatively, delete deployments of the cert-manager components such as `cert-manager`, `cainjector` and `webhook` present in the `cert-manager` namespace by using the command-line interface (CLI).\n\n      ```terminal\n      $ oc delete deployment -n cert-manager -l app.kubernetes.io/instance=cert-manager\n      ```\n3. Optional: Remove the custom resource definitions (CRDs) that were installed by the cert-manager Operator for Red Hat OpenShift:\n\n   1. Remove the finalizers from the `CertManager` custom resource (CR) by running the following command:\n\n      ```terminal\n      $ oc patch certmanagers.operator cluster --type=merge -p='{\"metadata\":{\"finalizers\":null}}'\n      ```\n   2. Navigate to **Administration** -> **CustomResourceDefinitions**.\n   3. Enter `certmanager` in the **Name** field to filter the CRDs.\n   4. Click the Options menu ![](kebab.png \"Options menu\") next to each of the following CRDs, and select **Delete Custom Resource Definition**:\n\n      - `Certificate`\n      - `CertificateRequest`\n      - `CertManager` (`operator.openshift.io`)\n      - `Challenge`\n      - `ClusterIssuer`\n      - `Issuer`\n      - `Order`\n4. Optional: Remove the `cert-manager-operator` namespace.\n\n   1. Navigate to **Administration** -> **Namespaces**.\n   2. Click the Options menu ![](kebab.png \"Options menu\") next to the **cert-manager-operator** and select **Delete Namespace**.\n   3. In the confirmation dialog, enter `cert-manager-operator` in the field and click **Delete**.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/cert_manager_operator/cert-manager-operator-uninstall.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,83 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cert-manager-operator-uninstall" class="group scroll-mt-20">Uninstalling the {"{"}{"{"} cert_manager_operator {"}"}{"}"}<a href="#cert-manager-operator-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can remove the {"{"}{"{"} cert_manager_operator {"}"}{"}"} from OpenShift Container Platform by uninstalling the Operator and removing its related resources.</p>
-      <p class="/modules/cert-manager-uninstall-console.md"></p>
-      <p class="/modules/cert-manager-remove-resources-console.md"></p>
+      <p>You can remove the cert-manager Operator for Red Hat OpenShift from OpenShift Container Platform by uninstalling the Operator and removing its related resources.</p>
+      <h2 id="cert-manager-uninstall-console_cert-manager-operator-uninstall" class="group scroll-mt-20">Uninstalling the cert-manager Operator for Red Hat OpenShift<a href="#cert-manager-uninstall-console_cert-manager-operator-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can uninstall the cert-manager Operator for Red Hat OpenShift by using the web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      <li>The cert-manager Operator for Red Hat OpenShift is installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>
+      Uninstall the cert-manager Operator for Red Hat OpenShift Operator.
+      <ol>
+      <li>Navigate to <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong>.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>cert-manager Operator for Red Hat OpenShift</strong> entry and click <strong>Uninstall Operator</strong>.</li>
+      <li>In the confirmation dialog, click <strong>Uninstall</strong>.</li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="cert-manager-remove-resources-console_cert-manager-operator-uninstall" class="group scroll-mt-20">Removing cert-manager Operator for Red Hat OpenShift resources<a href="#cert-manager-remove-resources-console_cert-manager-operator-uninstall" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you uninstall the cert-manager Operator for Red Hat OpenShift, you can delete its associated resources from your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with <code>cluster-admin</code> privileges.</li>
+      <li>You have access to the OpenShift Container Platform web console.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console.</li>
+      <li>
+      Remove the deployments of the cert-manager components, such as <code>cert-manager</code>, <code>cainjector</code>, and <code>webhook</code>, present in the <code>cert-manager</code> namespace.
+      <ol>
+      <li>Click the <strong>Project</strong> drop-down menu to see a list of all available projects, and select the <strong>cert-manager</strong> project.</li>
+      <li>Navigate to <strong>Workloads</strong> -&gt; <strong>Deployments</strong>.</li>
+      <li>Select the deployment that you want to delete.</li>
+      <li>Click the <strong>Actions</strong> drop-down menu, and select <strong>Delete Deployment</strong> to see a confirmation dialog box.</li>
+      <li>Click <strong>Delete</strong> to delete the deployment.</li>
+      <li>
+      Alternatively, delete deployments of the cert-manager components such as <code>cert-manager</code>, <code>cainjector</code> and <code>webhook</code> present in the <code>cert-manager</code> namespace by using the command-line interface (CLI).
+      <CodeBlock code={"$ oc delete deployment -n cert-manager -l app.kubernetes.io/instance=cert-manager"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Optional: Remove the custom resource definitions (CRDs) that were installed by the cert-manager Operator for Red Hat OpenShift:
+      <ol>
+      <li>
+      Remove the finalizers from the <code>CertManager</code> custom resource (CR) by running the following command:
+      <CodeBlock code={"$ oc patch certmanagers.operator cluster --type=merge -p='{\"metadata\":{\"finalizers\":null}}'"} lang="terminal" />
+      </li>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>CustomResourceDefinitions</strong>.</li>
+      <li>Enter <code>certmanager</code> in the <strong>Name</strong> field to filter the CRDs.</li>
+      <li>
+      Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to each of the following CRDs, and select <strong>Delete Custom Resource Definition</strong>:
+      <ul>
+      <li><code>Certificate</code></li>
+      <li><code>CertificateRequest</code></li>
+      <li><code>CertManager</code> (<code>operator.openshift.io</code>)</li>
+      <li><code>Challenge</code></li>
+      <li><code>ClusterIssuer</code></li>
+      <li><code>Issuer</code></li>
+      <li><code>Order</code></li>
+      </ul>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Optional: Remove the <code>cert-manager-operator</code> namespace.
+      <ol>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>Namespaces</strong>.</li>
+      <li>Click the Options menu <img src="kebab.png" alt="" loading="lazy" /> next to the <strong>cert-manager-operator</strong> and select <strong>Delete Namespace</strong>.</li>
+      <li>In the confirmation dialog, enter <code>cert-manager-operator</code> in the field and click <strong>Delete</strong>.</li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

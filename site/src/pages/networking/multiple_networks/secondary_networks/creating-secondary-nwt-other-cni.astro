@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"creating-secondary-networks-other-cni","text":"Creating secondary networks with other CNI plugins"}];
+const headings = [{"depth":1,"slug":"creating-secondary-networks-other-cni","text":"Creating secondary networks with other CNI plugins"},{"depth":2,"slug":"nw-multus-bridge-object_configuring-additional-network-cni","text":"Configuration for a bridge secondary network"},{"depth":3,"slug":"nw-multus-bridge-config-example_configuring-additional-network-cni","text":"Bridge CNI plugin configuration example"},{"depth":2,"slug":"nw-multus-bond-cni-object_configuring-additional-network-cni","text":"Configuration for a Bond CNI secondary network"},{"depth":3,"slug":"nw-multus-bond-cni-config-example_configuring-additional-network-cni","text":"Bond CNI plugin configuration example"},{"depth":2,"slug":"nw-multus-host-device-object_configuring-additional-network-cni","text":"Configuration for a host device secondary network"},{"depth":3,"slug":"nw-multus-hostdev-config-example_configuring-additional-network-cni","text":"host-device configuration example"},{"depth":2,"slug":"nw-multus-dummy-device-object_configuring-additional-network-cni","text":"Configuration for a dummy device additional network"},{"depth":3,"slug":"nw-multus-dummy-device-config-example_configuring-additional-network-cni","text":"dummy configuration example"},{"depth":2,"slug":"nw-multus-vlan-object_configuring-additional-network-cni","text":"Configuration for a VLAN secondary network"},{"depth":3,"slug":"nw-multus-vlan-config-example_configuring-additional-network-cni","text":"VLAN configuration example"},{"depth":2,"slug":"nw-multus-ipvlan-object_configuring-additional-network-cni","text":"Configuration for an IPVLAN secondary network"},{"depth":3,"slug":"nw-multus-ipvlan-config-example_configuring-additional-network-cni","text":"IPVLAN CNI plugin configuration example"},{"depth":2,"slug":"nw-multus-macvlan-object_configuring-additional-network-cni","text":"Configuration for a MACVLAN secondary network"},{"depth":3,"slug":"nw-multus-macvlan-config-example_configuring-additional-network-cni","text":"MACVLAN CNI plugin configuration example"},{"depth":2,"slug":"nw-multus-tap-object_configuring-additional-network-cni","text":"Configuration for a TAP secondary network"},{"depth":3,"slug":"nw-multus-tap-config-example_configuring-additional-network-cni","text":"Tap configuration example"},{"depth":2,"slug":"nw-multus-tap-setting-boolean.adoc_configuring-additional-network-cni","text":"Setting SELinux boolean for the TAP CNI plugin"},{"depth":2,"slug":"nw-route-override-cni_configuring-additional-network-cni","text":"Configuring routes using the route-override plugin on a secondary network"},{"depth":3,"slug":"nw-route-override-config-example_configuring-additional-network-cni","text":"Route-override plugin configuration example"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["networking","networking/multiple_networks","networking/mu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating secondary networks with other CNI plugins {#creating-secondary-networks-other-cni}\n\nThe specific configuration fields for secondary networks are described in the following sections.\n\n**Additional resources**\n\n- [Configuring a bond interface from two SR-IOV interfaces](/openshift-docs-markdown/networking/hardware_networks/using-pod-level-bonding#nw-sriov-cfg-bond-interface-with-virtual-functions_using-pod-level-bonding)\n\n**Additional resources**\n\n- [Setting SELinux booleans](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-working-setting-booleans_nodes-nodes-managing)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating secondary networks with other CNI plugins {#creating-secondary-networks-other-cni}\n\nThe specific configuration fields for secondary networks are described in the following sections.\n\n## Configuration for a bridge secondary network {#nw-multus-bridge-object_configuring-additional-network-cni}\n\nThe Bridge CNI plugin JSON configuration object describes the configuration parameters for the Bridge CNI plugin.\n\nThe following table details the configuration parameters:\n\n<table>\n<thead>\n<tr>\n  <th>Field</th>\n  <th>Type</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>cniVersion</code></td>\n  <td><code>string</code></td>\n  <td>The CNI specification version. A minimum version of <code>0.3.1</code> is required.</td>\n</tr>\n<tr>\n  <td><code>name</code></td>\n  <td><code>string</code></td>\n  <td>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</td>\n</tr>\n<tr>\n\n</tr>\n<tr>\n  <td><code>type</code></td>\n  <td><code>string</code></td>\n  <td>The name of the CNI plugin to configure: <code>bridge</code>.</td>\n</tr>\n<tr>\n  <td><code>ipam</code></td>\n  <td><code>object</code></td>\n  <td>The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition.</td>\n</tr>\n<tr>\n  <td><code>bridge</code></td>\n  <td><code>string</code></td>\n  <td>Optional: Specify the name of the virtual bridge to use. If the bridge interface does not exist on the host, the bridge interface gets created. The default value is <code>cni0</code>.</td>\n</tr>\n<tr>\n  <td><code>ipMasq</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to enable IP masquerading for traffic that leaves the virtual network. The source IP address for all traffic is rewritten to the bridge's IP address. If the bridge does not have an IP address, this setting has no effect. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>disableContainerInterface</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Controls the container interface (<code>veth</code> peer inside the <code>netns</code> container). When set to <code>true</code>, the container interface link-state is set to <code>down</code>, you cannot use the IPAM CNI plugin. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>isGateway</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to assign an IP address to the bridge. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>isDefaultGateway</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to configure the bridge as the default gateway for the virtual network. The assigned IP address of the bridge is used as the default route. If <code>isDefaultGateway</code> is set to <code>true</code>, <code>isGateway</code> is also set to <code>true</code> automatically. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>forceAddress</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to allow assignment of a previously assigned IP address to the virtual bridge. When set to <code>false</code>, if an IPv4 address or an IPv6 address from overlapping subsets is assigned to the virtual bridge, an error occurs. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>hairpinMode</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to allow the virtual bridge to send an Ethernet frame back through the virtual port it was received on. This mode is also known as <em>reflective relay</em>. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>promiscMode</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to enable promiscuous mode on the bridge. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>vlan</code></td>\n  <td><code>integer</code></td>\n  <td>Optional: Specify a virtual LAN (VLAN) tag as an integer value. By default, no VLAN tag is assigned.</td>\n</tr>\n<tr>\n  <td><code>preserveDefaultVlan</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Indicates whether the default VLAN must be preserved on the <code>veth</code> end connected to the bridge. Defaults to <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>portIsolation</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: If <code>true</code>, prevents containers on the same bridge from communicating with each other. A container can still reach non-isolated ports. For example, a bridge interface that allows access to the host or an optional uplink that allows access outside the host. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>vlanTrunk</code></td>\n  <td><code>list</code></td>\n  <td>Optional: Assign a VLAN trunk tag. The default value is <code>none</code>.</td>\n</tr>\n<tr>\n  <td><code>mtu</code></td>\n  <td><code>integer</code></td>\n  <td>Optional: Set the maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel.</td>\n</tr>\n<tr>\n  <td><code>enabledad</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Enables duplicate address detection for the container side <code>veth</code>. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>macspoofchk</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Enables mac spoof check, limiting the traffic originating from the container to the mac address of the interface. The default value is <code>false</code>.</td>\n</tr>\n</tbody>\n</table>\n\n> [!NOTE]\n> The VLAN parameter configures the VLAN tag on the host end of the `veth` and also enables the `vlan_filtering` feature on the bridge interface.\n\n> [!NOTE]\n> To configure an uplink for an L2 network, you must allow the VLAN on the uplink interface by using the following command:\n>\n> ```terminal\n> $  bridge vlan add vid VLAN_ID dev DEV\n> ```\n\n### Bridge CNI plugin configuration example {#nw-multus-bridge-config-example_configuring-additional-network-cni}\n\nThe following example configures a secondary network named `bridge-net`:\n\n```json\n{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"bridge-net\",\n  \"type\": \"bridge\",\n  \"isGateway\": true,\n  \"vlan\": 2,\n  \"ipam\": {\n    \"type\": \"dhcp\"\n    }\n}\n```\n\n## Configuration for a Bond CNI secondary network {#nw-multus-bond-cni-object_configuring-additional-network-cni}\n\nThe Bond Container Network Interface (Bond CNI) enables the aggregation of multiple network interfaces into a single logical bonded interface within a container, which enhanches network redundancy and fault tolerance. Only SR-IOV Virtual Functions (VFs) are supported for bonding with this plugin.\n\nThe following table describes the configuration parameters for the Bond CNI plugin:\n\n**Bond CNI plugin JSON configuration object**\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `name` | `string` | The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations. |\n| `cniVersion` | `string` | The CNI specification version. A minimum version of `0.3.1` is required. |\n| `type` | `string` | Specifies the name of the CNI plugin to configure: `bond`. |\n| `miimon` | `string` | Specifies the address resolution protocol (ARP) link monitoring frequency in milliseconds. This parameter defines how often the bond interface sends ARP requests to check the availability of its aggregated interfaces. |\n| `mtu` | `integer` | Optional: Specifies the maximum transmission unit (MTU) of the bond. The default is `1500`. |\n| `failOverMac` | `integer` | Optional: Specifies the `failOverMac` setting for the bond. Default is `0`. |\n| `mode` | `string` | Specifies the bonding policy. |\n| `xmitHashPolicy` | `string` | Specifies the transmit hash policy for load balancing across the aggregated interfaces. This parameter defaults to `layer2` and supports the following values: `layer2`, `layer2+3` and `layer3+4`. |\n| `linksInContainer` | `boolean` | Optional: Specifies whether the network interfaces intended for bonding are expected to be created and available directly within the network namespace of the container when the bond starts. If `false` which is the default, the CNI plugin looks for these interfaces on the host system first before attempting to form the bond. |\n| `links` | `object` | Specifies the interfaces to be bonded. |\n| `ipam` | `object` | The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition. |\n\n> [!IMPORTANT]\n> xmitHashPolicy is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n### Bond CNI plugin configuration example {#nw-multus-bond-cni-config-example_configuring-additional-network-cni}\n\nThe following example configures a secondary network named `bond-net1`:\n\n```json\n{\n \"type\": \"bond\",\n \"cniVersion\": \"0.3.1\",\n \"name\": \"bond-net1\",\n \"mode\": \"active-backup\",\n \"failOverMac\": 1,\n \"linksInContainer\": true,\n \"miimon\": \"100\",\n \"mtu\": 1500,\n \"links\": [\n       {\"name\": \"net1\"},\n       {\"name\": \"net2\"}\n   ],\n  \"ipam\": {\n        \"type\": \"host-local\",\n        \"subnet\": \"10.56.217.0/24\",\n        \"routes\": [{\n        \"dst\": \"0.0.0.0/0\"\n        }],\n        \"gateway\": \"10.56.217.1\"\n    }\n}\n```\n\nThe following example configures a secondary network named `bond-tlb-net` with the `xmitHashPolicy` feature enabled:\n\n```json\n{\n \"type\": \"bond\",\n \"cniVersion\": \"0.3.1\",\n \"name\": \"bond-tlb-net\",\n \"mode\": \"tlb\",\n \"xmitHashPolicy\": \"layer2+3\",\n \"failOverMac\": 0,\n \"linksInContainer\": true,\n \"miimon\": \"100\",\n \"mtu\": 1500,\n \"links\": [\n       {\"name\": \"net1\"},\n       {\"name\": \"net2\"}\n   ],\n  \"ipam\": {\n        \"type\": \"host-local\",\n        \"subnet\": \"10.57.218.0/24\",\n        \"routes\": [{\n        \"dst\": \"0.0.0.0/0\"\n        }],\n        \"gateway\": \"10.57.218.1\"\n    }\n}\n```\n\n- `xmitHashPolicy`: This parameter dictates how outgoing network traffic is distributed across the `net1` and `net2` active member interfaces within the bond. The hashing algorithm combines layer 2 information, specifically source and destination MAC addresses, with layer 3 information, which includes source and destination IP addresses.\n\n**Additional resources**\n\n- [Configuring a bond interface from two SR-IOV interfaces](/openshift-docs-markdown/networking/hardware_networks/using-pod-level-bonding#nw-sriov-cfg-bond-interface-with-virtual-functions_using-pod-level-bonding)\n\n## Configuration for a host device secondary network {#nw-multus-host-device-object_configuring-additional-network-cni}\n\nThe host device CNI plugin JSON configuration object describes the configuration parameters for the host-device CNI plugin.\n\n> [!NOTE]\n> Specify your network device by setting only one of the following parameters: `device`,`hwaddr`, `kernelpath`, or `pciBusID`.\n\nThe following table details the configuration parameters:\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `cniVersion` | `string` | The CNI specification version. A minimum version of `0.3.1` is required. |\n| `name` | `string` | The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations. |\n| `type` | `string` | The name of the CNI plugin to configure: `host-device`. |\n| `device` | `string` | Optional: The name of the device, such as `eth0`. |\n| `hwaddr` | `string` | Optional: The device hardware MAC address. |\n| `kernelpath` | `string` | Optional: The Linux kernel device path, such as `/sys/devices/pci0000:00/0000:00:1f.6`. |\n| `pciBusID` | `string` | Optional: The PCI address of the network device, such as `0000:00:1f.6`. |\n\n### host-device configuration example {#nw-multus-hostdev-config-example_configuring-additional-network-cni}\n\nThe following example configures a secondary network named `hostdev-net`:\n\n```json\n{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"hostdev-net\",\n  \"type\": \"host-device\",\n  \"device\": \"eth1\"\n}\n```\n\n## Configuration for a dummy device additional network {#nw-multus-dummy-device-object_configuring-additional-network-cni}\n\nThe dummy CNI plugin functions like a loopback device. The plugin is a virtual interface, and you can use the plugin to route the packets to a designated IP address. Unlike a loopback device, the IP address is arbitrary and is not restricted to the `127.0.0.0/8` address range.\n\nThe dummy device CNI plugin JSON configuration object describes the configuration parameters for the dummy CNI plugin. The following table details these parameters:\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `cniVersion` | `string` | The CNI specification version. A minimum version of `0.3.1` is required. |\n| `name` | `string` | The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations. |\n| `type` | `string` | The name of the CNI plugin that you want to configure. The required value is `dummy`. |\n| `ipam` | `object` | The configuration object for the IPAM CNI plugin. The plugin manages the IP address assignment for the attachment definition. |\n\n### dummy configuration example {#nw-multus-dummy-device-config-example_configuring-additional-network-cni}\n\nThe following example configures an additional network named `hostdev-net`:\n\n```json\n{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"dummy-net\",\n  \"type\": \"dummy\",\n  \"ipam\": {\n      \"type\": \"host-local\",\n      \"subnet\": \"10.1.1.0/24\"\n  }\n}\n```\n\n## Configuration for a VLAN secondary network {#nw-multus-vlan-object_configuring-additional-network-cni}\n\nThe VLAN CNI plugin JSON configuration object describes the configuration parameters for the VLAN, `vlan`, CNI plugin. The following table details these parameters:\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `cniVersion` | `string` | The CNI specification version. A minimum version of `0.3.1` is required. |\n| `name` | `string` | The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations. |\n| `type` | `string` | The name of the CNI plugin to configure: `vlan`. |\n| `master` | `string` | The Ethernet interface to associate with the network attachment. If a `master` is not specified, the interface for the default network route is used. |\n| `vlanId` | `integer` | Set the ID of the `vlan`. |\n| `ipam` | `object` | The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition. |\n| `mtu` | `integer` | Optional: Set the maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel. |\n| `dns` | `integer` | Optional: DNS information to return. For example, a priority-ordered list of DNS nameservers. |\n| `linkInContainer` | `boolean` | Optional: Specifies whether the `master` interface is in the container network namespace or the main network namespace. Set the value to `true` to request the use of a container namespace `master` interface. |\n\n> [!IMPORTANT]\n> A `NetworkAttachmentDefinition` custom resource definition (CRD) with a `vlan` configuration can be used only on a single pod in a node because the CNI plugin cannot create multiple `vlan` subinterfaces with the same `vlanId` on the same `master` interface.\n\n### VLAN configuration example {#nw-multus-vlan-config-example_configuring-additional-network-cni}\n\nThe following example demonstrates a `vlan` configuration with a secondary network that is named `vlan-net`:\n\n```json\n{\n  \"name\": \"vlan-net\",\n  \"cniVersion\": \"0.3.1\",\n  \"type\": \"vlan\",\n  \"master\": \"eth0\",\n  \"mtu\": 1500,\n  \"vlanId\": 5,\n  \"linkInContainer\": false,\n  \"ipam\": {\n      \"type\": \"host-local\",\n      \"subnet\": \"10.1.1.0/24\"\n  },\n  \"dns\": {\n      \"nameservers\": [ \"10.1.1.1\", \"8.8.8.8\" ]\n  }\n}\n```\n\n- `ipam.type.host-local`: Allocates IPv4 and IPv6 IP addresses from a specified set of address ranges. IPAM plugin stores the IP addresses locally on the host filesystem so that the addresses remain unique to the host.\n\n## Configuration for an IPVLAN secondary network {#nw-multus-ipvlan-object_configuring-additional-network-cni}\n\nThe IPVLAN CNI plugin JSON configuration object describes the configuration parameters for the IPVLAN, `ipvlan`, CNI plugin. The following table details these parameters:\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `cniVersion` | `string` | The CNI specification version. A minimum version of `0.3.1` is required. |\n| `name` | `string` | The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations. |\n| `type` | `string` | The name of the CNI plugin to configure: `ipvlan`. |\n| `ipam` | `object` | The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition. This is required unless the plugin is chained. |\n| `mode` | `string` | Optional: The operating mode for the virtual network. The value must be `l2`, `l3`, or `l3s`. The default value is `l2`. |\n| `master` | `string` | Optional: The Ethernet interface to associate with the network attachment. If a `master` is not specified, the interface for the default network route is used. |\n| `mtu` | `integer` | Optional: Set the maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel. |\n| `linkInContainer` | `boolean` | Optional: Specifies whether the `master` interface is in the container network namespace or the main network namespace. Set the value to `true` to request the use of a container namespace `master` interface. |\n\n> [!IMPORTANT]\n> - The `ipvlan` object does not allow virtual interfaces to communicate with the `master` interface. Therefore the container is not able to reach the host by using the `ipvlan` interface. Be sure that the container joins a network that provides connectivity to the host, such as a network supporting the Precision Time Protocol (`PTP`).\n> - A single `master` interface cannot simultaneously be configured to use both `macvlan` and `ipvlan`.\n> - For IP allocation schemes that cannot be interface agnostic, the `ipvlan` plugin can be chained with an earlier plugin that handles this logic. If the `master` is omitted, then the previous result must contain a single interface name for the `ipvlan` plugin to enslave. If `ipam` is omitted, then the previous result is used to configure the `ipvlan` interface.\n\n### IPVLAN CNI plugin configuration example {#nw-multus-ipvlan-config-example_configuring-additional-network-cni}\n\nThe following example configures a secondary network named `ipvlan-net`:\n\n```json\n{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"ipvlan-net\",\n  \"type\": \"ipvlan\",\n  \"master\": \"eth1\",\n  \"linkInContainer\": false,\n  \"mode\": \"l3\",\n  \"ipam\": {\n    \"type\": \"static\",\n    \"addresses\": [\n       {\n         \"address\": \"192.168.10.10/24\"\n       }\n    ]\n  }\n}\n```\n\n## Configuration for a MACVLAN secondary network {#nw-multus-macvlan-object_configuring-additional-network-cni}\n\nThe MACVLAN CNI plugin JSON configuration object describes the configuration parameters for the MAC Virtual LAN (MACVLAN) Container Network Interface (CNI) plugin. The following table describes these parameters:\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `cniVersion` | `string` | The CNI specification version. A minimum version of `0.3.1` is required. |\n| `name` | `string` | The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations. |\n| `type` | `string` | The name of the CNI plugin to configure: `macvlan`. |\n| `ipam` | `object` | The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition. |\n| `mode` | `string` | Optional: Configures traffic visibility on the virtual network. Must be either `bridge`, `passthru`, `private`, or `vepa`. If a value is not provided, the default value is `bridge`. |\n| `master` | `string` | Optional: The host network interface to associate with the newly created macvlan interface. If a value is not specified, then the default route interface is used. |\n| `mtu` | `integer` | Optional: The maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel. |\n| `linkInContainer` | `boolean` | Optional: Specifies whether the `master` interface is in the container network namespace or the main network namespace. Set the value to `true` to request the use of a container namespace `master` interface. |\n\n> [!NOTE]\n> If you specify the `master` key for the plugin configuration, use a different physical network interface than the one that is associated with your primary network plugin to avoid possible conflicts.\n\n### MACVLAN CNI plugin configuration example {#nw-multus-macvlan-config-example_configuring-additional-network-cni}\n\nThe following example configures a secondary network named `macvlan-net`:\n\n```json\n{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"macvlan-net\",\n  \"type\": \"macvlan\",\n  \"master\": \"eth1\",\n  \"linkInContainer\": false,\n  \"mode\": \"bridge\",\n  \"ipam\": {\n    \"type\": \"dhcp\"\n    }\n}\n```\n\n## Configuration for a TAP secondary network {#nw-multus-tap-object_configuring-additional-network-cni}\n\nThe TAP CNI plugin JSON configuration object describes the configuration parameters for the TAP CNI plugin.\n\nThe following table describes these  configuration parameters:\n\n<table>\n<thead>\n<tr>\n  <th>Field</th>\n  <th>Type</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>cniVersion</code></td>\n  <td><code>string</code></td>\n  <td>The CNI specification version. A minimum version of <code>0.3.1</code> is required.</td>\n</tr>\n<tr>\n  <td><code>name</code></td>\n  <td><code>string</code></td>\n  <td>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</td>\n</tr>\n<tr>\n  <td><code>type</code></td>\n  <td><code>string</code></td>\n  <td>The name of the CNI plugin to configure: <code>tap</code>.</td>\n</tr>\n<tr>\n  <td><code>mac</code></td>\n  <td><code>string</code></td>\n  <td>Optional: Request the specified MAC address for the interface.</td>\n</tr>\n<tr>\n  <td><code>mtu</code></td>\n  <td><code>integer</code></td>\n  <td>Optional: Set the maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel.</td>\n</tr>\n<tr>\n  <td><code>selinuxcontext</code></td>\n  <td><code>string</code></td>\n  <td>Optional: The SELinux context to associate with the tap device.<br><br><dl><dt>Note</dt><dd>The value <code>system_u:system_r:container_t:s0</code> is required for OpenShift Container Platform.</dd></dl></td>\n</tr>\n<tr>\n  <td><code>multiQueue</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to enable multi-queue.</td>\n</tr>\n<tr>\n  <td><code>owner</code></td>\n  <td><code>integer</code></td>\n  <td>Optional: The user owning the tap device.</td>\n</tr>\n<tr>\n  <td><code>group</code></td>\n  <td><code>integer</code></td>\n  <td>Optional: The group owning the tap device.</td>\n</tr>\n<tr>\n  <td><code>bridge</code></td>\n  <td><code>string</code></td>\n  <td>Optional: Set the tap device as a port of an already existing bridge.</td>\n</tr>\n</tbody>\n</table>\n\n### Tap configuration example {#nw-multus-tap-config-example_configuring-additional-network-cni}\n\nThe following example configures a secondary network named `mynet`:\n\n```json\n{\n \"name\": \"mynet\",\n \"cniVersion\": \"0.3.1\",\n \"type\": \"tap\",\n \"mac\": \"00:11:22:33:44:55\",\n \"mtu\": 1500,\n \"selinuxcontext\": \"system_u:system_r:container_t:s0\",\n \"multiQueue\": true,\n \"owner\": 0,\n \"group\": 0\n \"bridge\": \"br1\"\n}\n```\n\n## Setting SELinux boolean for the TAP CNI plugin {#nw-multus-tap-setting-boolean.adoc_configuring-additional-network-cni}\n\nTo create the tap device with the `container_t` SELinux context, enable the `container_use_devices` boolean on the host by using the Machine Config Operator (MCO).\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a new YAML file with the following details:\n\n   ```yaml {title=\"Example setsebool-container-use-devices.yaml\"}\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: worker\n     name: 99-worker-setsebool\n   spec:\n     config:\n       ignition:\n         version: 3.2.0\n       systemd:\n         units:\n         - enabled: true\n           name: setsebool.service\n           contents: |\n             [Unit]\n             Description=Set SELinux boolean for the TAP CNI plugin\n             Before=kubelet.service\n\n             [Service]\n             Type=oneshot\n             ExecStart=/usr/sbin/setsebool container_use_devices=on\n             RemainAfterExit=true\n\n             [Install]\n             WantedBy=multi-user.target graphical.target\n   ```\n2. Create the new `MachineConfig` object by running the following command:\n\n   ```terminal\n   $ oc apply -f setsebool-container-use-devices.yaml\n   ```\n\n   > [!NOTE]\n   > Applying any changes to the `MachineConfig` object causes all affected nodes to gracefully reboot after the change is applied. The MCO might take some time to apply the update.\n\n**Verification**\n\n- Verify that the change is applied by running the following command:\n\n  ```terminal\n  $ oc get machineconfigpools\n  ```\n\n  ```terminal\n  NAME        CONFIG                                                UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\n  master      rendered-master-e5e0c8e8be9194e7c5a882e047379cfa      True      False      False      3              3                   3                     0                      7d2h\n  worker      rendered-worker-d6c9ca107fba6cd76cdcbfcedcafa0f2      True      False      False      3              3                   3                     0                      7d\n  ```\n\n  > [!NOTE]\n  > All nodes should be in the `Updated` and `Ready` state.\n\n## Configuring routes using the route-override plugin on a secondary network {#nw-route-override-cni_configuring-additional-network-cni}\n\nThe Route override CNI plugin JSON configuration object describes the configuration parameters for the `route-override` CNI plugin. The following table details these parameters:\n\n| Field | Type | Description |\n| --- | --- | --- |\n| `type` | `string` | The name of the CNI plugin to configure: `route-override`. |\n| `flushroutes` | `boolean` | Optional: Set to `true` to flush any existing routes. |\n| `flushgateway` | `boolean` | Optional: Set to `true` to flush the default route namely the gateway route. |\n| `delroutes` | `object` | Optional: Specify the list of routes to delete from the container namespace. |\n| `addroutes` | `object` | Optional: Specify the list of routes to add to the container namespace. Each route is a dictionary with `dst` and optional `gw` fields. If `gw` is omitted, the plugin uses the default gateway value. |\n| `skipcheck` | `boolean` | Optional: Set this to `true` to skip the check command. By default, CNI plugins verify the network setup during the container lifecycle. When modifying routes dynamically with `route-override`, skipping this check ensures the final configuration reflects the updated routes. |\n\n### Route-override plugin configuration example {#nw-route-override-config-example_configuring-additional-network-cni}\n\nThe `route-override` CNI is a type of CNI that is designed to be used when chained with a parent CNI. The CNI type does not operate independently, but relies on the parent CNI to first create the network interface and assign IP addresses before the CNI type can modify the routing rules.\n\nThe following example configures a secondary network named `mymacvlan`. The parent CNI creates a network interface attached to `eth1` and assigns an IP address in the `192.168.1.0/24` range by using `host-local` IPAM. The `route-override` CNI is then chained to the parent CNI and modifies the routing rules by flushing existing routes, deleting the route to `192.168.0.0/24`, and adding a new route for `192.168.0.0/24` with a custom gateway.\n\n```json\n{\n    \"cniVersion\": \"0.3.0\",\n    \"name\": \"mymacvlan\",\n    \"plugins\": [\n        {\n            \"type\": \"macvlan\",\n            \"master\": \"eth1\",\n            \"mode\": \"bridge\",\n            \"ipam\": {\n                \"type\": \"host-local\",\n                \"subnet\": \"192.168.1.0/24\"\n            }\n        },\n        {\n            \"type\": \"route-override\",\n            \"flushroutes\": true,\n            \"delroutes\": [\n                {\n                    \"dst\": \"192.168.0.0/24\"\n                }\n            ],\n            \"addroutes\": [\n                {\n                    \"dst\": \"192.168.0.0/24\",\n                    \"gw\": \"10.1.254.254\"\n                }\n            ]\n        }\n    ]\n}\n```\n\nwhere:\n\n`\"type\": \"macvlan\"`\n:   The parent CNI creates a network interface attached to `eth1`.\n\n`\"type\": \"route-override\"`\n:   The chained `route-override` CNI modifies the routing rules.\n\n**Additional resources**\n\n- [Setting SELinux booleans](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-working-setting-booleans_nodes-nodes-managing)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/multiple_networks/secondary_networks/creating-secondary-nwt-other-cni.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,19 +101,500 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-secondary-networks-other-cni" class="group scroll-mt-20">Creating secondary networks with other CNI plugins<a href="#creating-secondary-networks-other-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The specific configuration fields for secondary networks are described in the following sections.</p>
-      <p class="/modules/nw-multus-bridge-object.md"></p>
-      <p class="/modules/nw-multus-bond-cni-object.md"></p>
+      <h2 id="nw-multus-bridge-object_configuring-additional-network-cni" class="group scroll-mt-20">Configuration for a bridge secondary network<a href="#nw-multus-bridge-object_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Bridge CNI plugin JSON configuration object describes the configuration parameters for the Bridge CNI plugin.</p>
+      <p>The following table details the configuration parameters:</p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Field</th>\n  <th>Type</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>cniVersion</code></td>\n  <td><code>string</code></td>\n  <td>The CNI specification version. A minimum version of <code>0.3.1</code> is required.</td>\n</tr>\n<tr>\n  <td><code>name</code></td>\n  <td><code>string</code></td>\n  <td>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</td>\n</tr>\n<tr>\n"} />
+      <Fragment set:html={"</tr>\n<tr>\n  <td><code>type</code></td>\n  <td><code>string</code></td>\n  <td>The name of the CNI plugin to configure: <code>bridge</code>.</td>\n</tr>\n<tr>\n  <td><code>ipam</code></td>\n  <td><code>object</code></td>\n  <td>The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition.</td>\n</tr>\n<tr>\n  <td><code>bridge</code></td>\n  <td><code>string</code></td>\n  <td>Optional: Specify the name of the virtual bridge to use. If the bridge interface does not exist on the host, the bridge interface gets created. The default value is <code>cni0</code>.</td>\n</tr>\n<tr>\n  <td><code>ipMasq</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to enable IP masquerading for traffic that leaves the virtual network. The source IP address for all traffic is rewritten to the bridge's IP address. If the bridge does not have an IP address, this setting has no effect. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>disableContainerInterface</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Controls the container interface (<code>veth</code> peer inside the <code>netns</code> container). When set to <code>true</code>, the container interface link-state is set to <code>down</code>, you cannot use the IPAM CNI plugin. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>isGateway</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to assign an IP address to the bridge. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>isDefaultGateway</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to configure the bridge as the default gateway for the virtual network. The assigned IP address of the bridge is used as the default route. If <code>isDefaultGateway</code> is set to <code>true</code>, <code>isGateway</code> is also set to <code>true</code> automatically. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>forceAddress</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to allow assignment of a previously assigned IP address to the virtual bridge. When set to <code>false</code>, if an IPv4 address or an IPv6 address from overlapping subsets is assigned to the virtual bridge, an error occurs. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>hairpinMode</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to allow the virtual bridge to send an Ethernet frame back through the virtual port it was received on. This mode is also known as <em>reflective relay</em>. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>promiscMode</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to enable promiscuous mode on the bridge. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>vlan</code></td>\n  <td><code>integer</code></td>\n  <td>Optional: Specify a virtual LAN (VLAN) tag as an integer value. By default, no VLAN tag is assigned.</td>\n</tr>\n<tr>\n  <td><code>preserveDefaultVlan</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Indicates whether the default VLAN must be preserved on the <code>veth</code> end connected to the bridge. Defaults to <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>portIsolation</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: If <code>true</code>, prevents containers on the same bridge from communicating with each other. A container can still reach non-isolated ports. For example, a bridge interface that allows access to the host or an optional uplink that allows access outside the host. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>vlanTrunk</code></td>\n  <td><code>list</code></td>\n  <td>Optional: Assign a VLAN trunk tag. The default value is <code>none</code>.</td>\n</tr>\n<tr>\n  <td><code>mtu</code></td>\n  <td><code>integer</code></td>\n  <td>Optional: Set the maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel.</td>\n</tr>\n<tr>\n  <td><code>enabledad</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Enables duplicate address detection for the container side <code>veth</code>. The default value is <code>false</code>.</td>\n</tr>\n<tr>\n  <td><code>macspoofchk</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Enables mac spoof check, limiting the traffic originating from the container to the mac address of the interface. The default value is <code>false</code>.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The VLAN parameter configures the VLAN tag on the host end of the <code>veth</code> and also enables the <code>vlan_filtering</code> feature on the bridge interface.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To configure an uplink for an L2 network, you must allow the VLAN on the uplink interface by using the following command:</p>
+          <CodeBlock code={"$  bridge vlan add vid VLAN_ID dev DEV"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      <h3 id="nw-multus-bridge-config-example_configuring-additional-network-cni" class="group scroll-mt-20">Bridge CNI plugin configuration example<a href="#nw-multus-bridge-config-example_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example configures a secondary network named <code>bridge-net</code>:</p>
+      <CodeBlock code={"{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"bridge-net\",\n  \"type\": \"bridge\",\n  \"isGateway\": true,\n  \"vlan\": 2,\n  \"ipam\": {\n    \"type\": \"dhcp\"\n    }\n}"} lang="json" />
+      <h2 id="nw-multus-bond-cni-object_configuring-additional-network-cni" class="group scroll-mt-20">Configuration for a Bond CNI secondary network<a href="#nw-multus-bond-cni-object_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Bond Container Network Interface (Bond CNI) enables the aggregation of multiple network interfaces into a single logical bonded interface within a container, which enhanches network redundancy and fault tolerance. Only SR-IOV Virtual Functions (VFs) are supported for bonding with this plugin.</p>
+      <p>The following table describes the configuration parameters for the Bond CNI plugin:</p>
+      <p><strong>Bond CNI plugin JSON configuration object</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>name</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>cniVersion</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The CNI specification version. A minimum version of <code>0.3.1</code> is required.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>type</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Specifies the name of the CNI plugin to configure: <code>bond</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>miimon</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Specifies the address resolution protocol (ARP) link monitoring frequency in milliseconds. This parameter defines how often the bond interface sends ARP requests to check the availability of its aggregated interfaces.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mtu</code></TableCell>
+      <TableCell><code>integer</code></TableCell>
+      <TableCell>Optional: Specifies the maximum transmission unit (MTU) of the bond. The default is <code>1500</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>failOverMac</code></TableCell>
+      <TableCell><code>integer</code></TableCell>
+      <TableCell>Optional: Specifies the <code>failOverMac</code> setting for the bond. Default is <code>0</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mode</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Specifies the bonding policy.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>xmitHashPolicy</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Specifies the transmit hash policy for load balancing across the aggregated interfaces. This parameter defaults to <code>layer2</code> and supports the following values: <code>layer2</code>, <code>layer2+3</code> and <code>layer3+4</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>linksInContainer</code></TableCell>
+      <TableCell><code>boolean</code></TableCell>
+      <TableCell>Optional: Specifies whether the network interfaces intended for bonding are expected to be created and available directly within the network namespace of the container when the bond starts. If <code>false</code> which is the default, the CNI plugin looks for these interfaces on the host system first before attempting to form the bond.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>links</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>Specifies the interfaces to be bonded.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ipam</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>xmitHashPolicy is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="nw-multus-bond-cni-config-example_configuring-additional-network-cni" class="group scroll-mt-20">Bond CNI plugin configuration example<a href="#nw-multus-bond-cni-config-example_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example configures a secondary network named <code>bond-net1</code>:</p>
+      <CodeBlock code={"{\n \"type\": \"bond\",\n \"cniVersion\": \"0.3.1\",\n \"name\": \"bond-net1\",\n \"mode\": \"active-backup\",\n \"failOverMac\": 1,\n \"linksInContainer\": true,\n \"miimon\": \"100\",\n \"mtu\": 1500,\n \"links\": [\n       {\"name\": \"net1\"},\n       {\"name\": \"net2\"}\n   ],\n  \"ipam\": {\n        \"type\": \"host-local\",\n        \"subnet\": \"10.56.217.0/24\",\n        \"routes\": [{\n        \"dst\": \"0.0.0.0/0\"\n        }],\n        \"gateway\": \"10.56.217.1\"\n    }\n}"} lang="json" />
+      <p>The following example configures a secondary network named <code>bond-tlb-net</code> with the <code>xmitHashPolicy</code> feature enabled:</p>
+      <CodeBlock code={"{\n \"type\": \"bond\",\n \"cniVersion\": \"0.3.1\",\n \"name\": \"bond-tlb-net\",\n \"mode\": \"tlb\",\n \"xmitHashPolicy\": \"layer2+3\",\n \"failOverMac\": 0,\n \"linksInContainer\": true,\n \"miimon\": \"100\",\n \"mtu\": 1500,\n \"links\": [\n       {\"name\": \"net1\"},\n       {\"name\": \"net2\"}\n   ],\n  \"ipam\": {\n        \"type\": \"host-local\",\n        \"subnet\": \"10.57.218.0/24\",\n        \"routes\": [{\n        \"dst\": \"0.0.0.0/0\"\n        }],\n        \"gateway\": \"10.57.218.1\"\n    }\n}"} lang="json" />
+      <ul><li><code>xmitHashPolicy</code>: This parameter dictates how outgoing network traffic is distributed across the <code>net1</code> and <code>net2</code> active member interfaces within the bond. The hashing algorithm combines layer 2 information, specifically source and destination MAC addresses, with layer 3 information, which includes source and destination IP addresses.</li></ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/networking/hardware_networks/using-pod-level-bonding#nw-sriov-cfg-bond-interface-with-virtual-functions_using-pod-level-bonding">Configuring a bond interface from two SR-IOV interfaces</a></li></ul>
-      <p class="/modules/nw-multus-dummy-device-object.md"></p>
-      <p class="/modules/nw-multus-vlan-object.md"></p>
-      <p class="/modules/nw-multus-ipvlan-object.md"></p>
-      <p class="/modules/nw-multus-macvlan-object.md"></p>
-      <p class="/modules/nw-multus-tap-object.md"></p>
-      <p class="/modules/nw-multus-tap-setting-boolean.md"></p>
-      <p class="/modules/nw-route-override-cni.md"></p>
+      <h2 id="nw-multus-host-device-object_configuring-additional-network-cni" class="group scroll-mt-20">Configuration for a host device secondary network<a href="#nw-multus-host-device-object_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The host device CNI plugin JSON configuration object describes the configuration parameters for the host-device CNI plugin.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Specify your network device by setting only one of the following parameters: <code>device</code>,<code>hwaddr</code>, <code>kernelpath</code>, or <code>pciBusID</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following table details the configuration parameters:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>cniVersion</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The CNI specification version. A minimum version of <code>0.3.1</code> is required.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>name</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>type</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The name of the CNI plugin to configure: <code>host-device</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>device</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Optional: The name of the device, such as <code>eth0</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>hwaddr</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Optional: The device hardware MAC address.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>kernelpath</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Optional: The Linux kernel device path, such as <code>/sys/devices/pci0000:00/0000:00:1f.6</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>pciBusID</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Optional: The PCI address of the network device, such as <code>0000:00:1f.6</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="nw-multus-hostdev-config-example_configuring-additional-network-cni" class="group scroll-mt-20">host-device configuration example<a href="#nw-multus-hostdev-config-example_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example configures a secondary network named <code>hostdev-net</code>:</p>
+      <CodeBlock code={"{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"hostdev-net\",\n  \"type\": \"host-device\",\n  \"device\": \"eth1\"\n}"} lang="json" />
+      <h2 id="nw-multus-dummy-device-object_configuring-additional-network-cni" class="group scroll-mt-20">Configuration for a dummy device additional network<a href="#nw-multus-dummy-device-object_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The dummy CNI plugin functions like a loopback device. The plugin is a virtual interface, and you can use the plugin to route the packets to a designated IP address. Unlike a loopback device, the IP address is arbitrary and is not restricted to the <code>127.0.0.0/8</code> address range.</p>
+      <p>The dummy device CNI plugin JSON configuration object describes the configuration parameters for the dummy CNI plugin. The following table details these parameters:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>cniVersion</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The CNI specification version. A minimum version of <code>0.3.1</code> is required.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>name</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>type</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The name of the CNI plugin that you want to configure. The required value is <code>dummy</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ipam</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>The configuration object for the IPAM CNI plugin. The plugin manages the IP address assignment for the attachment definition.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="nw-multus-dummy-device-config-example_configuring-additional-network-cni" class="group scroll-mt-20">dummy configuration example<a href="#nw-multus-dummy-device-config-example_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example configures an additional network named <code>hostdev-net</code>:</p>
+      <CodeBlock code={"{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"dummy-net\",\n  \"type\": \"dummy\",\n  \"ipam\": {\n      \"type\": \"host-local\",\n      \"subnet\": \"10.1.1.0/24\"\n  }\n}"} lang="json" />
+      <h2 id="nw-multus-vlan-object_configuring-additional-network-cni" class="group scroll-mt-20">Configuration for a VLAN secondary network<a href="#nw-multus-vlan-object_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The VLAN CNI plugin JSON configuration object describes the configuration parameters for the VLAN, <code>vlan</code>, CNI plugin. The following table details these parameters:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>cniVersion</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The CNI specification version. A minimum version of <code>0.3.1</code> is required.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>name</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>type</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The name of the CNI plugin to configure: <code>vlan</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>master</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The Ethernet interface to associate with the network attachment. If a <code>master</code> is not specified, the interface for the default network route is used.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>vlanId</code></TableCell>
+      <TableCell><code>integer</code></TableCell>
+      <TableCell>Set the ID of the <code>vlan</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ipam</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mtu</code></TableCell>
+      <TableCell><code>integer</code></TableCell>
+      <TableCell>Optional: Set the maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>dns</code></TableCell>
+      <TableCell><code>integer</code></TableCell>
+      <TableCell>Optional: DNS information to return. For example, a priority-ordered list of DNS nameservers.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>linkInContainer</code></TableCell>
+      <TableCell><code>boolean</code></TableCell>
+      <TableCell>Optional: Specifies whether the <code>master</code> interface is in the container network namespace or the main network namespace. Set the value to <code>true</code> to request the use of a container namespace <code>master</code> interface.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>A <code>NetworkAttachmentDefinition</code> custom resource definition (CRD) with a <code>vlan</code> configuration can be used only on a single pod in a node because the CNI plugin cannot create multiple <code>vlan</code> subinterfaces with the same <code>vlanId</code> on the same <code>master</code> interface.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="nw-multus-vlan-config-example_configuring-additional-network-cni" class="group scroll-mt-20">VLAN configuration example<a href="#nw-multus-vlan-config-example_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example demonstrates a <code>vlan</code> configuration with a secondary network that is named <code>vlan-net</code>:</p>
+      <CodeBlock code={"{\n  \"name\": \"vlan-net\",\n  \"cniVersion\": \"0.3.1\",\n  \"type\": \"vlan\",\n  \"master\": \"eth0\",\n  \"mtu\": 1500,\n  \"vlanId\": 5,\n  \"linkInContainer\": false,\n  \"ipam\": {\n      \"type\": \"host-local\",\n      \"subnet\": \"10.1.1.0/24\"\n  },\n  \"dns\": {\n      \"nameservers\": [ \"10.1.1.1\", \"8.8.8.8\" ]\n  }\n}"} lang="json" />
+      <ul><li><code>ipam.type.host-local</code>: Allocates IPv4 and IPv6 IP addresses from a specified set of address ranges. IPAM plugin stores the IP addresses locally on the host filesystem so that the addresses remain unique to the host.</li></ul>
+      <h2 id="nw-multus-ipvlan-object_configuring-additional-network-cni" class="group scroll-mt-20">Configuration for an IPVLAN secondary network<a href="#nw-multus-ipvlan-object_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The IPVLAN CNI plugin JSON configuration object describes the configuration parameters for the IPVLAN, <code>ipvlan</code>, CNI plugin. The following table details these parameters:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>cniVersion</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The CNI specification version. A minimum version of <code>0.3.1</code> is required.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>name</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>type</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The name of the CNI plugin to configure: <code>ipvlan</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ipam</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition. This is required unless the plugin is chained.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mode</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Optional: The operating mode for the virtual network. The value must be <code>l2</code>, <code>l3</code>, or <code>l3s</code>. The default value is <code>l2</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>master</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Optional: The Ethernet interface to associate with the network attachment. If a <code>master</code> is not specified, the interface for the default network route is used.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mtu</code></TableCell>
+      <TableCell><code>integer</code></TableCell>
+      <TableCell>Optional: Set the maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>linkInContainer</code></TableCell>
+      <TableCell><code>boolean</code></TableCell>
+      <TableCell>Optional: Specifies whether the <code>master</code> interface is in the container network namespace or the main network namespace. Set the value to <code>true</code> to request the use of a container namespace <code>master</code> interface.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <ul>
+          <li>The <code>ipvlan</code> object does not allow virtual interfaces to communicate with the <code>master</code> interface. Therefore the container is not able to reach the host by using the <code>ipvlan</code> interface. Be sure that the container joins a network that provides connectivity to the host, such as a network supporting the Precision Time Protocol (<code>PTP</code>).</li>
+          <li>A single <code>master</code> interface cannot simultaneously be configured to use both <code>macvlan</code> and <code>ipvlan</code>.</li>
+          <li>For IP allocation schemes that cannot be interface agnostic, the <code>ipvlan</code> plugin can be chained with an earlier plugin that handles this logic. If the <code>master</code> is omitted, then the previous result must contain a single interface name for the <code>ipvlan</code> plugin to enslave. If <code>ipam</code> is omitted, then the previous result is used to configure the <code>ipvlan</code> interface.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <h3 id="nw-multus-ipvlan-config-example_configuring-additional-network-cni" class="group scroll-mt-20">IPVLAN CNI plugin configuration example<a href="#nw-multus-ipvlan-config-example_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example configures a secondary network named <code>ipvlan-net</code>:</p>
+      <CodeBlock code={"{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"ipvlan-net\",\n  \"type\": \"ipvlan\",\n  \"master\": \"eth1\",\n  \"linkInContainer\": false,\n  \"mode\": \"l3\",\n  \"ipam\": {\n    \"type\": \"static\",\n    \"addresses\": [\n       {\n         \"address\": \"192.168.10.10/24\"\n       }\n    ]\n  }\n}"} lang="json" />
+      <h2 id="nw-multus-macvlan-object_configuring-additional-network-cni" class="group scroll-mt-20">Configuration for a MACVLAN secondary network<a href="#nw-multus-macvlan-object_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The MACVLAN CNI plugin JSON configuration object describes the configuration parameters for the MAC Virtual LAN (MACVLAN) Container Network Interface (CNI) plugin. The following table describes these parameters:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>cniVersion</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The CNI specification version. A minimum version of <code>0.3.1</code> is required.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>name</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>type</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The name of the CNI plugin to configure: <code>macvlan</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ipam</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>The configuration object for the IPAM CNI plugin. The plugin manages IP address assignment for the attachment definition.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mode</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Optional: Configures traffic visibility on the virtual network. Must be either <code>bridge</code>, <code>passthru</code>, <code>private</code>, or <code>vepa</code>. If a value is not provided, the default value is <code>bridge</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>master</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Optional: The host network interface to associate with the newly created macvlan interface. If a value is not specified, then the default route interface is used.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>mtu</code></TableCell>
+      <TableCell><code>integer</code></TableCell>
+      <TableCell>Optional: The maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>linkInContainer</code></TableCell>
+      <TableCell><code>boolean</code></TableCell>
+      <TableCell>Optional: Specifies whether the <code>master</code> interface is in the container network namespace or the main network namespace. Set the value to <code>true</code> to request the use of a container namespace <code>master</code> interface.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you specify the <code>master</code> key for the plugin configuration, use a different physical network interface than the one that is associated with your primary network plugin to avoid possible conflicts.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="nw-multus-macvlan-config-example_configuring-additional-network-cni" class="group scroll-mt-20">MACVLAN CNI plugin configuration example<a href="#nw-multus-macvlan-config-example_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example configures a secondary network named <code>macvlan-net</code>:</p>
+      <CodeBlock code={"{\n  \"cniVersion\": \"0.3.1\",\n  \"name\": \"macvlan-net\",\n  \"type\": \"macvlan\",\n  \"master\": \"eth1\",\n  \"linkInContainer\": false,\n  \"mode\": \"bridge\",\n  \"ipam\": {\n    \"type\": \"dhcp\"\n    }\n}"} lang="json" />
+      <h2 id="nw-multus-tap-object_configuring-additional-network-cni" class="group scroll-mt-20">Configuration for a TAP secondary network<a href="#nw-multus-tap-object_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The TAP CNI plugin JSON configuration object describes the configuration parameters for the TAP CNI plugin. </p>
+      <p>The following table describes these  configuration parameters:</p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Field</th>\n  <th>Type</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>cniVersion</code></td>\n  <td><code>string</code></td>\n  <td>The CNI specification version. A minimum version of <code>0.3.1</code> is required.</td>\n</tr>\n<tr>\n  <td><code>name</code></td>\n  <td><code>string</code></td>\n  <td>The mandatory, unique identifier assigned to this CNI network attachment definition. It is used by the container runtime to select the correct network configuration and serves as the key for persistent resource state management, such as IP address allocations.</td>\n</tr>\n<tr>\n  <td><code>type</code></td>\n  <td><code>string</code></td>\n  <td>The name of the CNI plugin to configure: <code>tap</code>.</td>\n</tr>\n<tr>\n  <td><code>mac</code></td>\n  <td><code>string</code></td>\n  <td>Optional: Request the specified MAC address for the interface.</td>\n</tr>\n<tr>\n  <td><code>mtu</code></td>\n  <td><code>integer</code></td>\n  <td>Optional: Set the maximum transmission unit (MTU) to the specified value. The default value is automatically set by the kernel.</td>\n</tr>\n<tr>\n  <td><code>selinuxcontext</code></td>\n  <td><code>string</code></td>\n  <td>Optional: The SELinux context to associate with the tap device.<br><br><dl><dt>Note</dt><dd>The value <code>system_u:system_r:container_t:s0</code> is required for OpenShift Container Platform.</dd></dl></td>\n</tr>\n<tr>\n  <td><code>multiQueue</code></td>\n  <td><code>boolean</code></td>\n  <td>Optional: Set to <code>true</code> to enable multi-queue.</td>\n</tr>\n<tr>\n  <td><code>owner</code></td>\n  <td><code>integer</code></td>\n  <td>Optional: The user owning the tap device.</td>\n</tr>\n<tr>\n  <td><code>group</code></td>\n  <td><code>integer</code></td>\n  <td>Optional: The group owning the tap device.</td>\n</tr>\n<tr>\n  <td><code>bridge</code></td>\n  <td><code>string</code></td>\n  <td>Optional: Set the tap device as a port of an already existing bridge.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <h3 id="nw-multus-tap-config-example_configuring-additional-network-cni" class="group scroll-mt-20">Tap configuration example<a href="#nw-multus-tap-config-example_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following example configures a secondary network named <code>mynet</code>:</p>
+      <CodeBlock code={"{\n \"name\": \"mynet\",\n \"cniVersion\": \"0.3.1\",\n \"type\": \"tap\",\n \"mac\": \"00:11:22:33:44:55\",\n \"mtu\": 1500,\n \"selinuxcontext\": \"system_u:system_r:container_t:s0\",\n \"multiQueue\": true,\n \"owner\": 0,\n \"group\": 0\n \"bridge\": \"br1\"\n}"} lang="json" />
+      <h2 id="nw-multus-tap-setting-boolean.adoc_configuring-additional-network-cni" class="group scroll-mt-20">Setting SELinux boolean for the TAP CNI plugin<a href="#nw-multus-tap-setting-boolean.adoc_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To create the tap device with the <code>container_t</code> SELinux context, enable the <code>container_use_devices</code> boolean on the host by using the Machine Config Operator (MCO).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a new YAML file with the following details:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: worker\n  name: 99-worker-setsebool\nspec:\n  config:\n    ignition:\n      version: 3.2.0\n    systemd:\n      units:\n      - enabled: true\n        name: setsebool.service\n        contents: |\n          [Unit]\n          Description=Set SELinux boolean for the TAP CNI plugin\n          Before=kubelet.service\n\n          [Service]\n          Type=oneshot\n          ExecStart=/usr/sbin/setsebool container_use_devices=on\n          RemainAfterExit=true\n\n          [Install]\n          WantedBy=multi-user.target graphical.target"} lang="yaml" title="Example setsebool-container-use-devices.yaml" />
+      </li>
+      <li>
+      Create the new <code>MachineConfig</code> object by running the following command:
+      <CodeBlock code={"$ oc apply -f setsebool-container-use-devices.yaml"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Applying any changes to the <code>MachineConfig</code> object causes all affected nodes to gracefully reboot after the change is applied. The MCO might take some time to apply the update.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the change is applied by running the following command:
+      <CodeBlock code={"$ oc get machineconfigpools"} lang="terminal" />
+      <CodeBlock code={"NAME        CONFIG                                                UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\nmaster      rendered-master-e5e0c8e8be9194e7c5a882e047379cfa      True      False      False      3              3                   3                     0                      7d2h\nworker      rendered-worker-d6c9ca107fba6cd76cdcbfcedcafa0f2      True      False      False      3              3                   3                     0                      7d"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>All nodes should be in the <code>Updated</code> and <code>Ready</code> state.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h2 id="nw-route-override-cni_configuring-additional-network-cni" class="group scroll-mt-20">Configuring routes using the route-override plugin on a secondary network<a href="#nw-route-override-cni_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Route override CNI plugin JSON configuration object describes the configuration parameters for the <code>route-override</code> CNI plugin. The following table details these parameters:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Field</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>type</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The name of the CNI plugin to configure: <code>route-override</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>flushroutes</code></TableCell>
+      <TableCell><code>boolean</code></TableCell>
+      <TableCell>Optional: Set to <code>true</code> to flush any existing routes.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>flushgateway</code></TableCell>
+      <TableCell><code>boolean</code></TableCell>
+      <TableCell>Optional: Set to <code>true</code> to flush the default route namely the gateway route.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>delroutes</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>Optional: Specify the list of routes to delete from the container namespace.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>addroutes</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>Optional: Specify the list of routes to add to the container namespace. Each route is a dictionary with <code>dst</code> and optional <code>gw</code> fields. If <code>gw</code> is omitted, the plugin uses the default gateway value.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>skipcheck</code></TableCell>
+      <TableCell><code>boolean</code></TableCell>
+      <TableCell>Optional: Set this to <code>true</code> to skip the check command. By default, CNI plugins verify the network setup during the container lifecycle. When modifying routes dynamically with <code>route-override</code>, skipping this check ensures the final configuration reflects the updated routes.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="nw-route-override-config-example_configuring-additional-network-cni" class="group scroll-mt-20">Route-override plugin configuration example<a href="#nw-route-override-config-example_configuring-additional-network-cni" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The <code>route-override</code> CNI is a type of CNI that is designed to be used when chained with a parent CNI. The CNI type does not operate independently, but relies on the parent CNI to first create the network interface and assign IP addresses before the CNI type can modify the routing rules.</p>
+      <p>The following example configures a secondary network named <code>mymacvlan</code>. The parent CNI creates a network interface attached to <code>eth1</code> and assigns an IP address in the <code>192.168.1.0/24</code> range by using <code>host-local</code> IPAM. The <code>route-override</code> CNI is then chained to the parent CNI and modifies the routing rules by flushing existing routes, deleting the route to <code>192.168.0.0/24</code>, and adding a new route for <code>192.168.0.0/24</code> with a custom gateway.</p>
+      <CodeBlock code={"{\n    \"cniVersion\": \"0.3.0\",\n    \"name\": \"mymacvlan\",\n    \"plugins\": [\n        {\n            \"type\": \"macvlan\",     \n            \"master\": \"eth1\",\n            \"mode\": \"bridge\",\n            \"ipam\": {\n                \"type\": \"host-local\",\n                \"subnet\": \"192.168.1.0/24\"\n            }\n        },\n        {\n            \"type\": \"route-override\", \n            \"flushroutes\": true,\n            \"delroutes\": [\n                {\n                    \"dst\": \"192.168.0.0/24\"\n                }\n            ],\n            \"addroutes\": [\n                {\n                    \"dst\": \"192.168.0.0/24\",\n                    \"gw\": \"10.1.254.254\"\n                }\n            ]\n        }\n    ]\n}"} lang="json" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>"type": "macvlan"</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The parent CNI creates a network interface attached to <code>eth1</code>.</p></dd>
+      <dt class="font-semibold"><code>"type": "route-override"</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The chained <code>route-override</code> CNI modifies the routing rules.</p></dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-working-setting-booleans_nodes-nodes-managing">Setting SELinux booleans</a></li></ul>
     </article>

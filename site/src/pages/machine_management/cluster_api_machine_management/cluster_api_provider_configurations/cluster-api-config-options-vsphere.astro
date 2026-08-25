@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"cluster-api-config-options-vsphere","text":"Cluster API configuration options for VMware vSphere"},{"depth":2,"slug":"cluster-api-sample-yaml-vsphere_cluster-api-config-options-vsphere","text":"Sample YAML for configuring {{ vmw_full }} clusters"}];
+const headings = [{"depth":1,"slug":"cluster-api-config-options-vsphere","text":"Cluster API configuration options for VMware vSphere"},{"depth":2,"slug":"cluster-api-sample-yaml-vsphere_cluster-api-config-options-vsphere","text":"Sample YAML for configuring VMware vSphere clusters"},{"depth":3,"slug":"capi-yaml-machine-template-vsphere_cluster-api-config-options-vsphere","text":"Sample YAML for a Cluster API machine template resource on VMware vSphere"},{"depth":3,"slug":"capi-yaml-machine-set-vsphere_cluster-api-config-options-vsphere","text":"Sample YAML for a Cluster API compute machine set resource on VMware vSphere"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-vsphere";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Cluster API configuration options for VMware vSphere";
-const description = "You can change the configuration of your {{ vmw_first }} Cluster API machines by updating values in the Cluster API custom resource manifests." || undefined;
+const description = "You can change the configuration of your VMware vSphere Cluster API machines by updating values in the Cluster API custom resource manifests." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["machine_management","machine_management/cluster_api_machi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster API configuration options for VMware vSphere {#cluster-api-config-options-vsphere}\n\nYou can change the configuration of your {{ vmw_first }} Cluster API machines by updating values in the Cluster API custom resource manifests.\n\n## Sample YAML for configuring {{ vmw_full }} clusters {#cluster-api-sample-yaml-vsphere_cluster-api-config-options-vsphere}\n\nThe following example YAML files show configurations for a {{ vmw_full }} cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-vsphere.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster API configuration options for VMware vSphere {#cluster-api-config-options-vsphere}\n\nYou can change the configuration of your VMware vSphere Cluster API machines by updating values in the Cluster API custom resource manifests.\n\n> [!IMPORTANT]\n> Managing machines with the Cluster API is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Sample YAML for configuring VMware vSphere clusters {#cluster-api-sample-yaml-vsphere_cluster-api-config-options-vsphere}\n\nThe following example YAML files show configurations for a VMware vSphere cluster.\n\n### Sample YAML for a Cluster API machine template resource on VMware vSphere {#capi-yaml-machine-template-vsphere_cluster-api-config-options-vsphere}\n\nThe machine template resource is provider-specific and defines the basic properties of the machines that a compute machine set creates. The compute machine set references this template when creating machines.\n\n```yaml\napiVersion: infrastructure.cluster.x-k8s.io/v1beta1\nkind: VSphereMachineTemplate\nmetadata:\n  name: <template_name>\n  namespace: openshift-cluster-api\nspec:\n  template:\n    spec:\n      template: <vm_template_name>\n      server: <vcenter_server_ip>\n      diskGiB: 128\n      cloneMode: linkedClone\n      datacenter: <vcenter_data_center_name>\n      datastore: <vcenter_datastore_name>\n      folder: <vcenter_vm_folder_path>\n      resourcePool: <vsphere_resource_pool>\n      numCPUs: 4\n      memoryMiB: 16384\n      network:\n        devices:\n        - dhcp4: true\n          networkName: \"<vm_network_name>\"\n```\n\nwhere:\n\n`kind`\n:   Specifies the machine template kind. This value must match the value for your platform.\n\n`metadata.name`\n:   Specifies a name for the machine template.\n\n`spec.template.spec`\n:   Specifies the details for your environment. The values here are examples.\n\n`spec.template.spec.template`\n:   Specifies the vSphere VM template to use, such as `user-5ddjd-rhcos`.\n\n`spec.template.spec.server`\n:   Specifies the vCenter server IP or fully qualified domain name.\n\n`spec.template.spec.cloneMode`\n:   Specifies the type of VM clone to use. The following values are valid:\n\n    - `fullClone`\n    - `linkedClone`\n\n    When using the `linkedClone` type, the disk size matches the clone source instead of using the `diskGiB` value. For more information, see the vSphere documentation about VM clone types.\n\n`spec.template.spec.datacenter`\n:   Specifies the vCenter data center to deploy the compute machine set on.\n\n`spec.template.spec.datastore`\n:   Specifies the vCenter datastore to deploy the compute machine set on.\n\n`spec.template.spec.folder`\n:   Specifies the path to the vSphere VM folder in vCenter, such as `/dc1/vm/user-inst-5ddjd`.\n\n`spec.template.spec.resourcePool`\n:   Specifies the vSphere resource pool for your VMs.\n\n`spec.template.spec.network.devices.networkName`\n:   Specifies the vSphere VM network to deploy the compute machine set to. This VM network must be where other compute machines reside in the cluster.\n\n### Sample YAML for a Cluster API compute machine set resource on VMware vSphere {#capi-yaml-machine-set-vsphere_cluster-api-config-options-vsphere}\n\nThe compute machine set resource defines additional properties of the machines that the resource creates. The compute machine set also references the cluster resource and machine template when creating machines.\n\n```yaml\napiVersion: cluster.x-k8s.io/v1beta1\nkind: MachineSet\nmetadata:\n  name: <machine_set_name>\n  namespace: openshift-cluster-api\n  labels:\n    cluster.x-k8s.io/cluster-name: <cluster_name>\nspec:\n  clusterName: <cluster_name>\n  replicas: 1\n  selector:\n    matchLabels:\n      test: example\n      cluster.x-k8s.io/cluster-name: <cluster_name>\n      cluster.x-k8s.io/set-name: <machine_set_name>\n  template:\n    metadata:\n      labels:\n        test: example\n        cluster.x-k8s.io/cluster-name: <cluster_name>\n        cluster.x-k8s.io/set-name: <machine_set_name>\n        node-role.kubernetes.io/<role>: \"\"\n    spec:\n      bootstrap:\n         dataSecretName: worker-user-data\n      clusterName: <cluster_name>\n      infrastructureRef:\n        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\n        kind: VSphereMachineTemplate\n        name: <template_name>\n      failureDomain:\n        - name: <failure_domain_name>\n          region: <region_a>\n          zone: <zone_a>\n          server: <vcenter_server_name>\n          topology:\n            datacenter: <region_a_data_center>\n            computeCluster: \"</region_a_data_center/host/zone_a_cluster>\"\n            resourcePool: \"</region_a_data_center/host/zone_a_cluster/Resources/resource_pool>\"\n            datastore: \"</region_a_data_center/datastore/datastore_a>\"\n            networks:\n            - port-group\n```\n\nwhere:\n\n`metadata.name`\n:   Specifies a name for the compute machine set. The cluster ID, machine role, and region form a typical pattern for this value in the following format: `<cluster_name>-<role>-<region>`.\n\n`metadata.labels.cluster.x-k8s.io/cluster-name`\n:   Specifies the cluster ID as the name of the cluster.\n\n`spec.clusterName`\n:   Specifies the cluster ID as the name of the cluster.\n\n`spec.template.spec.infrastructureRef.kind`\n:   Specifies the machine template kind. This value must match the value for your platform.\n\n`spec.template.spec.infrastructureRef.name`\n:   Specifies the machine template name.\n\n`spec.template.spec.failureDomain`\n:   Specifies the failure domain configuration details.\n\n> [!NOTE]\n> Using multiple regions and zones on a vSphere cluster that uses the Cluster API is not a validated configuration.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-vsphere.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,75 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cluster-api-config-options-vsphere" class="group scroll-mt-20">Cluster API configuration options for VMware vSphere<a href="#cluster-api-config-options-vsphere" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/snippets/technology-preview.md">You can change the configuration of your {"{"}{"{"} vmw_first {"}"}{"}"} Cluster API machines by updating values in the Cluster API custom resource manifests.</p>
-      <h2 id="cluster-api-sample-yaml-vsphere_cluster-api-config-options-vsphere" class="group scroll-mt-20">Sample YAML for configuring {"{"}{"{"} vmw_full {"}"}{"}"} clusters<a href="#cluster-api-sample-yaml-vsphere_cluster-api-config-options-vsphere" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p>The following example YAML files show configurations for a {"{"}{"{"} vmw_full {"}"}{"}"} cluster.</p>
-      <p class="/modules/capi-yaml-machine-template-vsphere.md"></p>
-      <p class="/modules/capi-yaml-machine-set-vsphere.md"></p>
+      <p>You can change the configuration of your VMware vSphere Cluster API machines by updating values in the Cluster API custom resource manifests.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Managing machines with the Cluster API is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="cluster-api-sample-yaml-vsphere_cluster-api-config-options-vsphere" class="group scroll-mt-20">Sample YAML for configuring VMware vSphere clusters<a href="#cluster-api-sample-yaml-vsphere_cluster-api-config-options-vsphere" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The following example YAML files show configurations for a VMware vSphere cluster.</p>
+      <h3 id="capi-yaml-machine-template-vsphere_cluster-api-config-options-vsphere" class="group scroll-mt-20">Sample YAML for a Cluster API machine template resource on VMware vSphere<a href="#capi-yaml-machine-template-vsphere_cluster-api-config-options-vsphere" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The machine template resource is provider-specific and defines the basic properties of the machines that a compute machine set creates. The compute machine set references this template when creating machines.</p>
+      <CodeBlock code={"apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\nkind: VSphereMachineTemplate\nmetadata:\n  name: <template_name>\n  namespace: openshift-cluster-api\nspec:\n  template:\n    spec:\n      template: <vm_template_name>\n      server: <vcenter_server_ip>\n      diskGiB: 128\n      cloneMode: linkedClone\n      datacenter: <vcenter_data_center_name>\n      datastore: <vcenter_datastore_name>\n      folder: <vcenter_vm_folder_path>\n      resourcePool: <vsphere_resource_pool>\n      numCPUs: 4\n      memoryMiB: 16384\n      network:\n        devices:\n        - dhcp4: true\n          networkName: \"<vm_network_name>\""} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>kind</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the machine template kind. This value must match the value for your platform.</p></dd>
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the machine template.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the details for your environment. The values here are examples.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.template</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the vSphere VM template to use, such as <code>user-5ddjd-rhcos</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.server</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the vCenter server IP or fully qualified domain name.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.cloneMode</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the type of VM clone to use. The following values are valid:</p>
+      <ul>
+      <li><code>fullClone</code></li>
+      <li><code>linkedClone</code></li>
+      </ul>
+      <p>When using the <code>linkedClone</code> type, the disk size matches the clone source instead of using the <code>diskGiB</code> value. For more information, see the vSphere documentation about VM clone types.</p>
+      </dd>
+      <dt class="font-semibold"><code>spec.template.spec.datacenter</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the vCenter data center to deploy the compute machine set on.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.datastore</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the vCenter datastore to deploy the compute machine set on.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.folder</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the vSphere VM folder in vCenter, such as <code>/dc1/vm/user-inst-5ddjd</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.resourcePool</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the vSphere resource pool for your VMs.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.network.devices.networkName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the vSphere VM network to deploy the compute machine set to. This VM network must be where other compute machines reside in the cluster.</p></dd>
+      </dl>
+      <h3 id="capi-yaml-machine-set-vsphere_cluster-api-config-options-vsphere" class="group scroll-mt-20">Sample YAML for a Cluster API compute machine set resource on VMware vSphere<a href="#capi-yaml-machine-set-vsphere_cluster-api-config-options-vsphere" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The compute machine set resource defines additional properties of the machines that the resource creates. The compute machine set also references the cluster resource and machine template when creating machines.</p>
+      <CodeBlock code={"apiVersion: cluster.x-k8s.io/v1beta1\nkind: MachineSet\nmetadata:\n  name: <machine_set_name>\n  namespace: openshift-cluster-api\n  labels:\n    cluster.x-k8s.io/cluster-name: <cluster_name>\nspec:\n  clusterName: <cluster_name>\n  replicas: 1\n  selector:\n    matchLabels:\n      test: example\n      cluster.x-k8s.io/cluster-name: <cluster_name>\n      cluster.x-k8s.io/set-name: <machine_set_name>\n  template:\n    metadata:\n      labels:\n        test: example\n        cluster.x-k8s.io/cluster-name: <cluster_name>\n        cluster.x-k8s.io/set-name: <machine_set_name>\n        node-role.kubernetes.io/<role>: \"\"\n    spec:\n      bootstrap:\n         dataSecretName: worker-user-data\n      clusterName: <cluster_name>\n      infrastructureRef:\n        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\n        kind: VSphereMachineTemplate\n        name: <template_name>\n      failureDomain:\n        - name: <failure_domain_name>\n          region: <region_a>\n          zone: <zone_a>\n          server: <vcenter_server_name>\n          topology:\n            datacenter: <region_a_data_center>\n            computeCluster: \"</region_a_data_center/host/zone_a_cluster>\"\n            resourcePool: \"</region_a_data_center/host/zone_a_cluster/Resources/resource_pool>\"\n            datastore: \"</region_a_data_center/datastore/datastore_a>\"\n            networks:\n            - port-group"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the compute machine set. The cluster ID, machine role, and region form a typical pattern for this value in the following format: <code>&lt;cluster_name&gt;-&lt;role&gt;-&lt;region&gt;</code>.</p></dd>
+      <dt class="font-semibold"><code>metadata.labels.cluster.x-k8s.io/cluster-name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the cluster ID as the name of the cluster.</p></dd>
+      <dt class="font-semibold"><code>spec.clusterName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the cluster ID as the name of the cluster.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.infrastructureRef.kind</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the machine template kind. This value must match the value for your platform.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.infrastructureRef.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the machine template name.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.failureDomain</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the failure domain configuration details.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Using multiple regions and zones on a vSphere cluster that uses the Cluster API is not a validated configuration.</p>
+        </AlertDescription>
+      </Alert>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

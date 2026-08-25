@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"cluster-api-about","text":"About the Cluster API"}];
+const headings = [{"depth":1,"slug":"cluster-api-about","text":"About the Cluster API"},{"depth":2,"slug":"cluster-api-overview_cluster-api-about","text":"Cluster API overview"},{"depth":3,"slug":"cluster-api-benefits_cluster-api-about","text":"Cluster API benefits"},{"depth":3,"slug":"capi-tech-preview-limitations_cluster-api-about","text":"Cluster API limitations"},{"depth":3,"slug":"capi-arch-operator_cluster-api-about","text":"The Cluster CAPI Operator"},{"depth":3,"slug":"capi-arch-resources_cluster-api-about","text":"Cluster API primary resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-about";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +42,7 @@ const pageCategory = ["machine_management","machine_management/cluster_api_machi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the Cluster API {#cluster-api-about}\n\nYou can use the Cluster API to create and manage compute machine sets and compute machines in your OpenShift Container Platform cluster.\n\nThe Cluster API is an upstream project that is integrated into OpenShift Container Platform as a Technology Preview for {{ aws_first }}, {{ gcp_first }}, {{ azure_first }}, {{ rh_openstack_first }}, {{ vmw_first }}, and bare-metal platforms.\n\n**Additional resources**\n\n- [Kubernetes Cluster API (Kubernetes documentation)](https://cluster-api.sigs.k8s.io/)\n\n**Additional resources**\n\n- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling-features)\n- [Getting started with the Cluster API](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-getting-started#cluster-api-getting-started)\n- [Referencing the intended objects when using the CLI](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-cli-reference-intended-objects_cluster-api-troubleshooting)\n\n**Additional resources**\n\n- [{{ cluster_capi_operator }}](/openshift-docs-markdown/operators/operator-reference#cluster-capi-operator_operator-reference)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-about.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About the Cluster API {#cluster-api-about}\n\nYou can use the Cluster API to create and manage compute machine sets and compute machines in your OpenShift Container Platform cluster.\n\n> [!IMPORTANT]\n> Managing machines with the Cluster API is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\nThe Cluster API is an upstream project that is integrated into OpenShift Container Platform as a Technology Preview for Amazon Web Services (AWS), Google Cloud, Microsoft Azure, Red Hat OpenStack Platform (RHOSP), VMware vSphere, and bare-metal platforms.\n\n**Additional resources**\n\n- [Kubernetes Cluster API (Kubernetes documentation)](https://cluster-api.sigs.k8s.io/)\n\n## Cluster API overview {#cluster-api-overview_cluster-api-about}\n\nYou can use the Cluster API to create and manage compute machine sets and compute machines in your OpenShift Container Platform cluster. You can use the Cluster API alongside or instead of managing machines with the Machine API.\n\nFor OpenShift Container Platform 4.22 clusters, you can use the Cluster API to perform node host provisioning management actions after the cluster installation finishes. This system enables an elastic, dynamic provisioning method on top of public or private cloud infrastructure.\n\nWith the Cluster API Technology Preview, you can create compute machines and compute machine sets on OpenShift Container Platform clusters for supported providers. You can also explore the features that are enabled by this implementation that might not be available with the Machine API.\n\n### Cluster API benefits {#cluster-api-benefits_cluster-api-about}\n\nWith the Cluster API, you can use Kubernetes tools for infrastructure management to perform advanced machine management and scaling.\n\nBy using the Cluster API, OpenShift Container Platform users and developers can gain the following advantages:\n\n- The option to use upstream community Cluster API infrastructure providers that might not be supported by the Machine API.\n- The opportunity to collaborate with third parties who maintain machine controllers for infrastructure providers.\n- The ability to use the same set of Kubernetes tools for infrastructure management in OpenShift Container Platform.\n- The ability to create compute machine sets by using the Cluster API that support features that are not available with the Machine API.\n\n### Cluster API limitations {#capi-tech-preview-limitations_cluster-api-about}\n\nUsing the Cluster API to manage machines is a Technology Preview feature and has specific limitations.\n\nThese limitiations are listed as follows:\n\n- To use this feature, you must enable the `TechPreviewNoUpgrade` feature set.\n\n  > [!IMPORTANT]\n  > Enabling this feature set cannot be undone and prevents minor version updates.\n- Only Amazon Web Services (AWS), Google Cloud, Microsoft Azure, Red Hat OpenStack Platform (RHOSP), VMware vSphere, and bare-metal clusters can use the Cluster API.\n- You must manually create some of the primary resources that the Cluster API requires. For more information, see \"Getting started with the Cluster API\".\n- You cannot use the Cluster API to manage control plane machines.\n- Migration of existing compute machine sets created by the Machine API to Cluster API compute machine sets is not supported.\n- Full feature parity with the Machine API is not available.\n- For clusters that use the Cluster API, OpenShift CLI (`oc`) commands prioritize Cluster API objects over Machine API objects. This behavior impacts any `oc` command that acts upon any object that is represented in both the Cluster API and the Machine API.\n\n  For more information and a workaround for this issue, see \"Referencing the intended objects when using the CLI\" in the troubleshooting content.\n\n**Additional resources**\n\n- [Enabling features using feature gates](/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling-features)\n- [Getting started with the Cluster API](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-getting-started#cluster-api-getting-started)\n- [Referencing the intended objects when using the CLI](/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-cli-reference-intended-objects_cluster-api-troubleshooting)\n\n### The Cluster CAPI Operator {#capi-arch-operator_cluster-api-about}\n\nThe OpenShift Container Platform integration of the upstream Cluster API is implemented and managed by the Cluster CAPI Operator.\n\nThe Cluster CAPI Operator and its operands are provisioned in the `openshift-cluster-api` namespace, in contrast to the Machine API, which uses the `openshift-machine-api` namespace.\n\nThe Cluster CAPI Operator is an OpenShift Container Platform Operator that maintains the lifecycle of Cluster API resources. This Operator is responsible for all administrative tasks related to deploying the Cluster API project within an OpenShift Container Platform cluster.\n\nIf a cluster is configured correctly to allow the use of the Cluster API, the Cluster CAPI Operator installs the Cluster API components on the cluster. For more information, see the \"Cluster CAPI Operator\" entry in the *Cluster Operators reference* content.\n\n**Additional resources**\n\n- [Cluster CAPI Operator](/openshift-docs-markdown/operators/operator-reference#cluster-capi-operator_operator-reference)\n\n### Cluster API primary resources {#capi-arch-resources_cluster-api-about}\n\nThe Cluster API consists of the following primary resources. For the Technology Preview of this feature, you must create some of these resources manually in the `openshift-cluster-api` namespace.\n\nCluster\n:   A fundamental unit that represents a cluster that is managed by the Cluster API.\n\nInfrastructure cluster\n:   A provider-specific resource that defines properties that all of the compute machine sets in the cluster share, such as the region and subnets.\n\nMachine template\n:   A provider-specific template that defines the properties of the machines that a compute machine set creates.\n\nMachine set\n:   A group of machines.\n\n    Compute machine sets are to machines as replica sets are to pods. To add machines or scale them down, change the `replicas` field on the compute machine set custom resource to meet your compute needs.\n\n    With the Cluster API, a compute machine set references a `Cluster` object and a provider-specific machine template.\n\nMachine\n:   A fundamental unit that describes the host for a node.\n\n    The Cluster API creates machines based on the configuration in the machine template.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-about.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,21 +94,87 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cluster-api-about" class="group scroll-mt-20">About the Cluster API<a href="#cluster-api-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/snippets/technology-preview.md">You can use the Cluster API to create and manage compute machine sets and compute machines in your OpenShift Container Platform cluster.</p>
-      <p>The Cluster API is an upstream project that is integrated into OpenShift Container Platform as a Technology Preview for {"{"}{"{"} aws_first {"}"}{"}"}, {"{"}{"{"} gcp_first {"}"}{"}"}, {"{"}{"{"} azure_first {"}"}{"}"}, {"{"}{"{"} rh_openstack_first {"}"}{"}"}, {"{"}{"{"} vmw_first {"}"}{"}"}, and bare-metal platforms.</p>
+      <p>You can use the Cluster API to create and manage compute machine sets and compute machines in your OpenShift Container Platform cluster.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Managing machines with the Cluster API is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The Cluster API is an upstream project that is integrated into OpenShift Container Platform as a Technology Preview for Amazon Web Services (AWS), Google Cloud, Microsoft Azure, Red Hat OpenStack Platform (RHOSP), VMware vSphere, and bare-metal platforms.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://cluster-api.sigs.k8s.io/">Kubernetes Cluster API (Kubernetes documentation)</a></li></ul>
-      <p class="/modules/capi-benefits.md"></p>
-      <p class="/modules/capi-limitations.md"></p>
+      <h2 id="cluster-api-overview_cluster-api-about" class="group scroll-mt-20">Cluster API overview<a href="#cluster-api-overview_cluster-api-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the Cluster API to create and manage compute machine sets and compute machines in your OpenShift Container Platform cluster. You can use the Cluster API alongside or instead of managing machines with the Machine API.</p>
+      <p>For OpenShift Container Platform 4.22 clusters, you can use the Cluster API to perform node host provisioning management actions after the cluster installation finishes. This system enables an elastic, dynamic provisioning method on top of public or private cloud infrastructure.</p>
+      <p>With the Cluster API Technology Preview, you can create compute machines and compute machine sets on OpenShift Container Platform clusters for supported providers. You can also explore the features that are enabled by this implementation that might not be available with the Machine API.</p>
+      <h3 id="cluster-api-benefits_cluster-api-about" class="group scroll-mt-20">Cluster API benefits<a href="#cluster-api-benefits_cluster-api-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">With the Cluster API, you can use Kubernetes tools for infrastructure management to perform advanced machine management and scaling.</p>
+      <p>By using the Cluster API, OpenShift Container Platform users and developers can gain the following advantages:</p>
+      <ul>
+      <li>The option to use upstream community Cluster API infrastructure providers that might not be supported by the Machine API.</li>
+      <li>The opportunity to collaborate with third parties who maintain machine controllers for infrastructure providers.</li>
+      <li>The ability to use the same set of Kubernetes tools for infrastructure management in OpenShift Container Platform.</li>
+      <li>The ability to create compute machine sets by using the Cluster API that support features that are not available with the Machine API.</li>
+      </ul>
+      <h3 id="capi-tech-preview-limitations_cluster-api-about" class="group scroll-mt-20">Cluster API limitations<a href="#capi-tech-preview-limitations_cluster-api-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Using the Cluster API to manage machines is a Technology Preview feature and has specific limitations.</p>
+      <p>These limitiations are listed as follows:</p>
+      <ul>
+      <li>
+      To use this feature, you must enable the <code>TechPreviewNoUpgrade</code> feature set.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Enabling this feature set cannot be undone and prevents minor version updates.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Only Amazon Web Services (AWS), Google Cloud, Microsoft Azure, Red Hat OpenStack Platform (RHOSP), VMware vSphere, and bare-metal clusters can use the Cluster API.</li>
+      <li>You must manually create some of the primary resources that the Cluster API requires. For more information, see "Getting started with the Cluster API".</li>
+      <li>You cannot use the Cluster API to manage control plane machines.</li>
+      <li>Migration of existing compute machine sets created by the Machine API to Cluster API compute machine sets is not supported.</li>
+      <li>Full feature parity with the Machine API is not available.</li>
+      <li>
+      For clusters that use the Cluster API, OpenShift CLI (<code>oc</code>) commands prioritize Cluster API objects over Machine API objects. This behavior impacts any <code>oc</code> command that acts upon any object that is represented in both the Cluster API and the Machine API.
+      <p>For more information and a workaround for this issue, see "Referencing the intended objects when using the CLI" in the troubleshooting content.</p>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/nodes/clusters/nodes-cluster-enabling-features#nodes-cluster-enabling-features-about_nodes-cluster-enabling-features">Enabling features using feature gates</a></li>
       <li><a href="/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-getting-started#cluster-api-getting-started">Getting started with the Cluster API</a></li>
       <li><a href="/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster-api-troubleshooting#ts-capi-cli-reference-intended-objects_cluster-api-troubleshooting">Referencing the intended objects when using the CLI</a></li>
       </ul>
+      <h3 id="capi-arch-operator_cluster-api-about" class="group scroll-mt-20">The Cluster CAPI Operator<a href="#capi-arch-operator_cluster-api-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The OpenShift Container Platform integration of the upstream Cluster API is implemented and managed by the Cluster CAPI Operator.</p>
+      <p>The Cluster CAPI Operator and its operands are provisioned in the <code>openshift-cluster-api</code> namespace, in contrast to the Machine API, which uses the <code>openshift-machine-api</code> namespace.</p>
+      <p>The Cluster CAPI Operator is an OpenShift Container Platform Operator that maintains the lifecycle of Cluster API resources. This Operator is responsible for all administrative tasks related to deploying the Cluster API project within an OpenShift Container Platform cluster.</p>
+      <p>If a cluster is configured correctly to allow the use of the Cluster API, the Cluster CAPI Operator installs the Cluster API components on the cluster. For more information, see the "Cluster CAPI Operator" entry in the <em>Cluster Operators reference</em> content.</p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/openshift-docs-markdown/operators/operator-reference#cluster-capi-operator_operator-reference">{"{"}{"{"} cluster_capi_operator {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/operators/operator-reference#cluster-capi-operator_operator-reference">Cluster CAPI Operator</a></li></ul>
+      <h3 id="capi-arch-resources_cluster-api-about" class="group scroll-mt-20">Cluster API primary resources<a href="#capi-arch-resources_cluster-api-about" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The Cluster API consists of the following primary resources. For the Technology Preview of this feature, you must create some of these resources manually in the <code>openshift-cluster-api</code> namespace.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Cluster</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A fundamental unit that represents a cluster that is managed by the Cluster API.</p></dd>
+      <dt class="font-semibold">Infrastructure cluster</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A provider-specific resource that defines properties that all of the compute machine sets in the cluster share, such as the region and subnets.</p></dd>
+      <dt class="font-semibold">Machine template</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A provider-specific template that defines the properties of the machines that a compute machine set creates.</p></dd>
+      <dt class="font-semibold">Machine set</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A group of machines.</p>
+      <p>Compute machine sets are to machines as replica sets are to pods. To add machines or scale them down, change the <code>replicas</code> field on the compute machine set custom resource to meet your compute needs.</p>
+      <p>With the Cluster API, a compute machine set references a <code>Cluster</code> object and a provider-specific machine template.</p>
+      </dd>
+      <dt class="font-semibold">Machine</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>A fundamental unit that describes the host for a node.</p>
+      <p>The Cluster API creates machines based on the configuration in the machine template.</p>
+      </dd>
+      </dl>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

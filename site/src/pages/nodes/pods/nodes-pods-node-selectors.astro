@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-pods-node-selectors","text":"Placing pods on specific nodes using node selectors"}];
+const headings = [{"depth":1,"slug":"nodes-pods-node-selectors","text":"Placing pods on specific nodes using node selectors"},{"depth":2,"slug":"nodes-scheduler-node-selectors-pod_nodes-pods-node-selectors","text":"Using node selectors to control pod placement"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/pods/nodes-pods-node-selectors";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/pods"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Placing pods on specific nodes using node selectors {#nodes-pods-node-selectors}\n\nFor a pod to be eligible to run on a specific node, you can include a *node selector* in the pod spec that has the indicated key-value pairs as the label on that node.\n\nA *node selector* specifies a map of key-value pairs. The rules are defined using custom labels on nodes and selectors specified in pods.\n\nIf you are using node affinity and node selectors in the same pod configuration, see the important considerations below.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/nodes-pods-node-selectors.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Placing pods on specific nodes using node selectors {#nodes-pods-node-selectors}\n\nFor a pod to be eligible to run on a specific node, you can include a *node selector* in the pod spec that has the indicated key-value pairs as the label on that node.\n\nA *node selector* specifies a map of key-value pairs. The rules are defined using custom labels on nodes and selectors specified in pods.\n\nIf you are using node affinity and node selectors in the same pod configuration, see the important considerations below.\n\n## Using node selectors to control pod placement {#nodes-scheduler-node-selectors-pod_nodes-pods-node-selectors}\n\nYou can use node selectors on pods and labels on nodes to control where the pod is scheduled. With node selectors, OpenShift Container Platform schedules the pods on nodes that contain matching labels.\n\nYou add labels to a node, a compute machine set, or a machine config. Adding the label to the compute machine set ensures that if the node or machine goes down, new nodes have the label. Labels added to a node or machine config do not persist if the node or machine goes down.\n\nTo add node selectors to an existing pod, add a node selector to the controlling object for that pod, such as a `ReplicaSet` object, `DaemonSet` object, `StatefulSet` object, `Deployment` object, or `DeploymentConfig` object. Any existing pods under that controlling object are recreated on a node with a matching label. If you are creating a new pod, you can add the node selector directly to the pod spec. If the pod does not have a controlling object, you must delete the pod, edit the pod spec, and recreate the pod.\n\n> [!NOTE]\n> You cannot add a node selector directly to an existing scheduled pod.\n\n**Prerequisites**\n\nTo add a node selector to existing pods, determine the controlling object for that pod. For example, the `router-default-66d5cf9464-m2g75` pod is controlled by the `router-default-66d5cf9464` replica set:\n\n```terminal\n$ oc describe pod router-default-66d5cf9464-7pwkc\n```\n\nThe output appears similar to the following example:\n\n```terminal\nkind: Pod\napiVersion: v1\nmetadata:\n# ...\nName:               router-default-66d5cf9464-7pwkc\nNamespace:          openshift-ingress\n# ...\nControlled By:      ReplicaSet/router-default-66d5cf9464\n# ...\n```\n\nThe web console lists the controlling object under `ownerReferences` in the pod YAML:\n\n```terminal\napiVersion: v1\nkind: Pod\nmetadata:\n  name: router-default-66d5cf9464-7pwkc\n# ...\n  ownerReferences:\n    - apiVersion: apps/v1\n      kind: ReplicaSet\n      name: router-default-66d5cf9464\n      uid: d81dd094-da26-11e9-a48a-128e7edf0312\n      controller: true\n      blockOwnerDeletion: true\n# ...\n```\n\n**Procedure**\n\n1. Add labels to a node by using a compute machine set or editing the node directly:\n\n   - Use a `MachineSet` object to add labels to nodes managed by the compute machine set when a node is created:\n\n     1. Run the following command to add labels to a `MachineSet` object:\n\n        ```terminal\n        $ oc patch MachineSet <name> --type='json' -p='[{\"op\":\"add\",\"path\":\"/spec/template/spec/metadata/labels\", \"value\":{\"<key>\"=\"<value>\",\"<key>\"=\"<value>\"}}]'  -n openshift-machine-api\n        ```\n\n        For example:\n\n        ```terminal\n        $ oc patch MachineSet abc612-msrtw-worker-us-east-1c  --type='json' -p='[{\"op\":\"add\",\"path\":\"/spec/template/spec/metadata/labels\", \"value\":{\"type\":\"user-node\",\"region\":\"east\"}}]'  -n openshift-machine-api\n        ```\n\n        > [!TIP]\n        > You can alternatively apply the following YAML to add labels to a compute machine set:\n        >\n        > ```yaml\n        > apiVersion: machine.openshift.io/v1beta1\n        > kind: MachineSet\n        > metadata:\n        >   name: xf2bd-infra-us-east-2a\n        >   namespace: openshift-machine-api\n        > spec:\n        >   template:\n        >     spec:\n        >       metadata:\n        >         labels:\n        >           region: \"east\"\n        >           type: \"user-node\"\n        > # ...\n        > ```\n     2. Verify that the labels are added to the `MachineSet` object by using the `oc edit` command:\n\n        For example:\n\n        ```terminal\n        $ oc edit MachineSet abc612-msrtw-worker-us-east-1c -n openshift-machine-api\n        ```\n\n        The output appears similar to the following example:\n\n        ```yaml\n        apiVersion: machine.openshift.io/v1beta1\n        kind: MachineSet\n\n        # ...\n\n        spec:\n        # ...\n          template:\n            metadata:\n        # ...\n            spec:\n              metadata:\n                labels:\n                  region: east\n                  type: user-node\n        # ...\n        ```\n   - Add labels directly to a node:\n\n     1. Edit the `Node` object for the node:\n\n        ```terminal\n        $ oc label nodes <name> <key>=<value>\n        ```\n\n        For example, to label a node:\n\n        ```terminal\n        $ oc label nodes ip-10-0-142-25.ec2.internal type=user-node region=east\n        ```\n\n        > [!TIP]\n        > You can alternatively apply the following YAML to add labels to a node:\n        >\n        > ```yaml\n        > kind: Node\n        > apiVersion: v1\n        > metadata:\n        >   name: hello-node-6fbccf8d9\n        >   labels:\n        >     type: \"user-node\"\n        >     region: \"east\"\n        > # ...\n        > ```\n     2. Verify that the labels are added to the node:\n\n        ```terminal\n        $ oc get nodes -l type=user-node,region=east\n        ```\n\n        ```terminal {title=\"Example output\"}\n        NAME                          STATUS   ROLES    AGE   VERSION\n        ip-10-0-142-25.ec2.internal   Ready    worker   17m   v1.35.4\n        ```\n2. Add the matching node selector to a pod:\n\n   - To add a node selector to existing and future pods, add a node selector to the controlling object for the pods:\n\n     ```yaml {title=\"Example ReplicaSet object with labels\"}\n     kind: ReplicaSet\n     apiVersion: apps/v1\n     metadata:\n       name: hello-node-6fbccf8d9\n     # ...\n     spec:\n     # ...\n       template:\n         metadata:\n           creationTimestamp: null\n           labels:\n             ingresscontroller.operator.openshift.io/deployment-ingresscontroller: default\n             pod-template-hash: 66d5cf9464\n         spec:\n           nodeSelector:\n             kubernetes.io/os: linux\n             node-role.kubernetes.io/worker: ''\n             type: user-node\n     # ...\n     ```\n\n     where:\n\n     `spec.template.spec.nodeSelector`\n     :   Specifies the node selectors .\n   - To add a node selector to a specific, new pod, add the selector to the `Pod` object directly:\n\n     ```yaml {title=\"Example Pod object with a node selector\"}\n     apiVersion: v1\n     kind: Pod\n     metadata:\n       name: hello-node-6fbccf8d9\n     # ...\n     spec:\n       nodeSelector:\n         region: east\n         type: user-node\n     # ...\n     ```\n\n     > [!NOTE]\n     > You cannot add a node selector directly to an existing scheduled pod.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/nodes-pods-node-selectors.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,106 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-pods-node-selectors" class="group scroll-mt-20">Placing pods on specific nodes using node selectors<a href="#nodes-pods-node-selectors" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>For a pod to be eligible to run on a specific node, you can include a <em>node selector</em> in the pod spec that has the indicated key-value pairs as the label on that node.</p>
       <p>A <em>node selector</em> specifies a map of key-value pairs. The rules are defined using custom labels on nodes and selectors specified in pods.</p>
       <p>If you are using node affinity and node selectors in the same pod configuration, see the important considerations below.</p>
-      <p class="/modules/nodes-scheduler-node-selectors-pod.md"></p>
+      <h2 id="nodes-scheduler-node-selectors-pod_nodes-pods-node-selectors" class="group scroll-mt-20">Using node selectors to control pod placement<a href="#nodes-scheduler-node-selectors-pod_nodes-pods-node-selectors" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use node selectors on pods and labels on nodes to control where the pod is scheduled. With node selectors, OpenShift Container Platform schedules the pods on nodes that contain matching labels.</p>
+      <p>You add labels to a node, a compute machine set, or a machine config. Adding the label to the compute machine set ensures that if the node or machine goes down, new nodes have the label. Labels added to a node or machine config do not persist if the node or machine goes down.</p>
+      <p>To add node selectors to an existing pod, add a node selector to the controlling object for that pod, such as a <code>ReplicaSet</code> object, <code>DaemonSet</code> object, <code>StatefulSet</code> object, <code>Deployment</code> object, or <code>DeploymentConfig</code> object. Any existing pods under that controlling object are recreated on a node with a matching label. If you are creating a new pod, you can add the node selector directly to the pod spec. If the pod does not have a controlling object, you must delete the pod, edit the pod spec, and recreate the pod.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You cannot add a node selector directly to an existing scheduled pod.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <p>To add a node selector to existing pods, determine the controlling object for that pod. For example, the <code>router-default-66d5cf9464-m2g75</code> pod is controlled by the <code>router-default-66d5cf9464</code> replica set:</p>
+      <CodeBlock code={"$ oc describe pod router-default-66d5cf9464-7pwkc"} lang="terminal" />
+      <p>The output appears similar to the following example:</p>
+      <CodeBlock code={"kind: Pod\napiVersion: v1\nmetadata:\n# ...\nName:               router-default-66d5cf9464-7pwkc\nNamespace:          openshift-ingress\n# ...\nControlled By:      ReplicaSet/router-default-66d5cf9464\n# ..."} lang="terminal" />
+      <p>The web console lists the controlling object under <code>ownerReferences</code> in the pod YAML:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: router-default-66d5cf9464-7pwkc\n# ...\n  ownerReferences:\n    - apiVersion: apps/v1\n      kind: ReplicaSet\n      name: router-default-66d5cf9464\n      uid: d81dd094-da26-11e9-a48a-128e7edf0312\n      controller: true\n      blockOwnerDeletion: true\n# ..."} lang="terminal" />
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add labels to a node by using a compute machine set or editing the node directly:
+      <ul>
+      <li>
+      Use a <code>MachineSet</code> object to add labels to nodes managed by the compute machine set when a node is created:
+      <ol>
+      <li>
+      Run the following command to add labels to a <code>MachineSet</code> object:
+      <CodeBlock code={"$ oc patch MachineSet <name> --type='json' -p='[{\"op\":\"add\",\"path\":\"/spec/template/spec/metadata/labels\", \"value\":{\"<key>\"=\"<value>\",\"<key>\"=\"<value>\"}}]'  -n openshift-machine-api"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc patch MachineSet abc612-msrtw-worker-us-east-1c  --type='json' -p='[{\"op\":\"add\",\"path\":\"/spec/template/spec/metadata/labels\", \"value\":{\"type\":\"user-node\",\"region\":\"east\"}}]'  -n openshift-machine-api"} lang="terminal" />
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can alternatively apply the following YAML to add labels to a compute machine set:</p>
+          <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: MachineSet\nmetadata:\n  name: xf2bd-infra-us-east-2a\n  namespace: openshift-machine-api\nspec:\n  template:\n    spec:\n      metadata:\n        labels:\n          region: \"east\"\n          type: \"user-node\"\n# ..."} lang="yaml" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Verify that the labels are added to the <code>MachineSet</code> object by using the <code>oc edit</code> command:
+      <p>For example:</p>
+      <CodeBlock code={"$ oc edit MachineSet abc612-msrtw-worker-us-east-1c -n openshift-machine-api"} lang="terminal" />
+      <p>The output appears similar to the following example:</p>
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: MachineSet\n\n# ...\n\nspec:\n# ...\n  template:\n    metadata:\n# ...\n    spec:\n      metadata:\n        labels:\n          region: east\n          type: user-node\n# ..."} lang="yaml" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Add labels directly to a node:
+      <ol>
+      <li>
+      Edit the <code>Node</code> object for the node:
+      <CodeBlock code={"$ oc label nodes <name> <key>=<value>"} lang="terminal" />
+      <p>For example, to label a node:</p>
+      <CodeBlock code={"$ oc label nodes ip-10-0-142-25.ec2.internal type=user-node region=east"} lang="terminal" />
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can alternatively apply the following YAML to add labels to a node:</p>
+          <CodeBlock code={"kind: Node\napiVersion: v1\nmetadata:\n  name: hello-node-6fbccf8d9\n  labels:\n    type: \"user-node\"\n    region: \"east\"\n# ..."} lang="yaml" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Verify that the labels are added to the node:
+      <CodeBlock code={"$ oc get nodes -l type=user-node,region=east"} lang="terminal" />
+      <CodeBlock code={"NAME                          STATUS   ROLES    AGE   VERSION\nip-10-0-142-25.ec2.internal   Ready    worker   17m   v1.35.4"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      <li>
+      Add the matching node selector to a pod:
+      <ul>
+      <li>
+      To add a node selector to existing and future pods, add a node selector to the controlling object for the pods:
+      <CodeBlock code={"kind: ReplicaSet\napiVersion: apps/v1\nmetadata:\n  name: hello-node-6fbccf8d9\n# ...\nspec:\n# ...\n  template:\n    metadata:\n      creationTimestamp: null\n      labels:\n        ingresscontroller.operator.openshift.io/deployment-ingresscontroller: default\n        pod-template-hash: 66d5cf9464\n    spec:\n      nodeSelector:\n        kubernetes.io/os: linux\n        node-role.kubernetes.io/worker: ''\n        type: user-node\n# ..."} lang="yaml" title="Example ReplicaSet object with labels" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.template.spec.nodeSelector</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node selectors .</p></dd>
+      </dl>
+      </li>
+      <li>
+      To add a node selector to a specific, new pod, add the selector to the <code>Pod</code> object directly:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: hello-node-6fbccf8d9\n# ...\nspec:\n  nodeSelector:\n    region: east\n    type: user-node\n# ..."} lang="yaml" title="Example Pod object with a node selector" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You cannot add a node selector directly to an existing scheduled pod.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-alibaba-assisted-installer","text":"Installing a cluster on Alibaba Cloud by using the Assisted Installer"}];
+const headings = [{"depth":1,"slug":"installing-alibaba-assisted-installer","text":"Installing a cluster on Alibaba Cloud by using the Assisted Installer"},{"depth":2,"slug":"alibaba-ai-installing_installing-alibaba-assisted-installer","text":"Process outline for creating a cluster with the Assisted Installer"},{"depth":2,"slug":"alibaba-ai-converting-image-to-qcow2_installing-alibaba-assisted-installer","text":"Converting the discovery image to QCOW2 format"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_alibaba/installing-alibaba-assisted-installer";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Installing a cluster on Alibaba Cloud by using the Assisted Installer";
-const description = "You can install an OpenShift Container Platform cluster on {{ alibaba }} using the {{ ai_full }}." || undefined;
+const description = "You can install an OpenShift Container Platform cluster on Alibaba Cloud using the Assisted Installer." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_alibaba"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on Alibaba Cloud by using the Assisted Installer {#installing-alibaba-assisted-installer}\n\nYou can install an OpenShift Container Platform cluster on {{ alibaba }} using the {{ ai_full }}.\n\n{{ alibaba }} provides a broad range of cloud computing and data storage services to online businesses and global enterprises.\n\n**Additional resources**\n\n- [Installing OpenShift Container Platform with the {{ ai_full }}](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_alibaba/installing-alibaba-assisted-installer.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a cluster on Alibaba Cloud by using the Assisted Installer {#installing-alibaba-assisted-installer}\n\nYou can install an OpenShift Container Platform cluster on Alibaba Cloud using the Assisted Installer.\n\nAlibaba Cloud provides a broad range of cloud computing and data storage services to online businesses and global enterprises.\n\n> [!IMPORTANT]\n> Installing Alibaba Cloud with Assisted Installer is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Process outline for creating a cluster with the Assisted Installer {#alibaba-ai-installing_installing-alibaba-assisted-installer}\n\nYou can install an OpenShift Container Platform cluster on Alibaba Cloud by using both the Assisted Installer and the Alibaba Cloud consoles.\n\nThe main steps of the installation process are as follows:\n\n1. Create the cluster with the Assisted Installer and download the generated image.\n2. Convert the image to `QCOW2` format. For more information, see the following section.\n3. Upload the image to the Object Storage Service bucket in Alibaba Cloud.\n4. Import the image to the Elastic Compute Service in Alibaba Cloud.\n5. Provision the Alibaba Cloud resources:\n\n   1. In the Virtual Private Cloud (VPC) console, set the networking configurations.\n   2. In the Alibaba Cloud DNS console, define the Domain Name System.\n   3. In the Elastic Compute Service (ECS) console, provision the compute instances.\n6. Complete host discovery in the Assisted Installer.\n7. Complete the network configurations in Alibaba Cloud.\n8. Complete the cluster configuration and installation in the Assisted Installer.\n\n**Additional resources**\n\n- [Installing OpenShift Container Platform with the Assisted Installer](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025)\n\n## Converting the discovery image to QCOW2 format {#alibaba-ai-converting-image-to-qcow2_installing-alibaba-assisted-installer}\n\nConvert the generated ISO to `QCOW2` format before importing it into Alibaba Cloud.\n\n**Prerequisites**\n\n- You have created a cluster and downloaded the discovery image in the Assisted Installer.\n- You have access to a Linux machine that is outside the cluster, such as your desktop machine.\n\n**Procedure**\n\n1. Open the command-line interface on the Linux machine.\n2. Verify that the system has virtualization flags enabled by running the following command:\n\n   ```terminal\n   $ grep -e lm -e svm -e vmx /proc/cpuinfo\n   ```\n3. Install the `qemu-img` package on a RHEL or Fedora machine by running the following command:\n\n   ```terminal\n   $ sudo dnf install -y qemu-img\n   ```\n\n   > [!NOTE]\n   > If your system uses the `APT` package manager, install the package using the name `qemu-utils` instead.\n4. Convert the image to `QCOW2` by running the following command:\n\n   ```terminal\n   $ qemu-img convert -O qcow2 ${CLUSTER_NAME}.iso ${CLUSTER_NAME}.qcow2\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_alibaba/installing-alibaba-assisted-installer.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,66 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-alibaba-assisted-installer" class="group scroll-mt-20">Installing a cluster on Alibaba Cloud by using the Assisted Installer<a href="#installing-alibaba-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can install an OpenShift Container Platform cluster on {"{"}{"{"} alibaba {"}"}{"}"} using the {"{"}{"{"} ai_full {"}"}{"}"}.</p>
-      <p class="/snippets/technology-preview.md">{"{"}{"{"} alibaba {"}"}{"}"} provides a broad range of cloud computing and data storage services to online businesses and global enterprises.</p>
-      <p class="/modules/alibaba-ai-installing.md"></p>
+      <p>You can install an OpenShift Container Platform cluster on Alibaba Cloud using the Assisted Installer.</p>
+      <p>Alibaba Cloud provides a broad range of cloud computing and data storage services to online businesses and global enterprises.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Installing Alibaba Cloud with Assisted Installer is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="alibaba-ai-installing_installing-alibaba-assisted-installer" class="group scroll-mt-20">Process outline for creating a cluster with the Assisted Installer<a href="#alibaba-ai-installing_installing-alibaba-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can install an OpenShift Container Platform cluster on Alibaba Cloud by using both the Assisted Installer and the Alibaba Cloud consoles.</p>
+      <p>The main steps of the installation process are as follows:</p>
+      <ol>
+      <li>Create the cluster with the Assisted Installer and download the generated image.</li>
+      <li>Convert the image to <code>QCOW2</code> format. For more information, see the following section.</li>
+      <li>Upload the image to the Object Storage Service bucket in Alibaba Cloud.</li>
+      <li>Import the image to the Elastic Compute Service in Alibaba Cloud.</li>
+      <li>
+      Provision the Alibaba Cloud resources:
+      <ol>
+      <li>In the Virtual Private Cloud (VPC) console, set the networking configurations.</li>
+      <li>In the Alibaba Cloud DNS console, define the Domain Name System.</li>
+      <li>In the Elastic Compute Service (ECS) console, provision the compute instances.</li>
+      </ol>
+      </li>
+      <li>Complete host discovery in the Assisted Installer.</li>
+      <li>Complete the network configurations in Alibaba Cloud.</li>
+      <li>Complete the cluster configuration and installation in the Assisted Installer.</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025">Installing OpenShift Container Platform with the {"{"}{"{"} ai_full {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2025">Installing OpenShift Container Platform with the Assisted Installer</a></li></ul>
+      <h2 id="alibaba-ai-converting-image-to-qcow2_installing-alibaba-assisted-installer" class="group scroll-mt-20">Converting the discovery image to QCOW2 format<a href="#alibaba-ai-converting-image-to-qcow2_installing-alibaba-assisted-installer" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Convert the generated ISO to <code>QCOW2</code> format before importing it into Alibaba Cloud.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have created a cluster and downloaded the discovery image in the Assisted Installer.</li>
+      <li>You have access to a Linux machine that is outside the cluster, such as your desktop machine.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Open the command-line interface on the Linux machine.</li>
+      <li>
+      Verify that the system has virtualization flags enabled by running the following command:
+      <CodeBlock code={"$ grep -e lm -e svm -e vmx /proc/cpuinfo"} lang="terminal" />
+      </li>
+      <li>
+      Install the <code>qemu-img</code> package on a RHEL or Fedora machine by running the following command:
+      <CodeBlock code={"$ sudo dnf install -y qemu-img"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If your system uses the <code>APT</code> package manager, install the package using the name <code>qemu-utils</code> instead.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Convert the image to <code>QCOW2</code> by running the following command:
+      <CodeBlock code={"$ qemu-img convert -O qcow2 ${CLUSTER_NAME}.iso ${CLUSTER_NAME}.qcow2"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

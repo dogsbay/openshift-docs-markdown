@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-configuring-local-storage-with-hpp","text":"Configuring local storage by using the hostpath provisioner"}];
+const headings = [{"depth":1,"slug":"virt-configuring-local-storage-with-hpp","text":"Configuring local storage by using the hostpath provisioner"},{"depth":2,"slug":"virt-creating-hpp-basic-storage-pool_virt-configuring-local-storage-with-hpp","text":"Creating a hostpath provisioner with a basic storage pool"},{"depth":3,"slug":"virt-about-creating-storage-classes_virt-configuring-local-storage-with-hpp","text":"About creating storage classes"},{"depth":3,"slug":"virt-creating-storage-class-csi-driver_virt-configuring-local-storage-with-hpp","text":"Creating a storage class for the CSI driver with the storagePools stanza"},{"depth":2,"slug":"virt-about-storage-pools-pvc-templates_virt-configuring-local-storage-with-hpp","text":"About storage pools created with PVC templates"},{"depth":3,"slug":"virt-creating-storage-pool-pvc-template_virt-configuring-local-storage-with-hpp","text":"Creating a storage pool with a PVC template"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/storage/virt-configuring-local-storage-with-hpp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring local storage by using the hostpath provisioner {#virt-configuring-local-storage-with-hpp}\n\nYou can configure local storage for virtual machines by using the hostpath provisioner (HPP).\n\nWhen you install the {{ VirtProductName }} Operator, the Hostpath Provisioner Operator is automatically installed. HPP is a local storage provisioner designed for {{ VirtProductName }} that is created by the Hostpath Provisioner Operator. To use HPP, you create an HPP custom resource (CR) with a basic storage pool.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-configuring-local-storage-with-hpp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring local storage by using the hostpath provisioner {#virt-configuring-local-storage-with-hpp}\n\nYou can configure local storage for virtual machines by using the hostpath provisioner (HPP).\n\nWhen you install the OpenShift Virtualization Operator, the Hostpath Provisioner Operator is automatically installed. HPP is a local storage provisioner designed for OpenShift Virtualization that is created by the Hostpath Provisioner Operator. To use HPP, you create an HPP custom resource (CR) with a basic storage pool.\n\n## Creating a hostpath provisioner with a basic storage pool {#virt-creating-hpp-basic-storage-pool_virt-configuring-local-storage-with-hpp}\n\nYou configure a hostpath provisioner (HPP) with a basic storage pool by creating an HPP custom resource (CR) with a `storagePools` stanza. The storage pool specifies the name and path used by the CSI driver.\n\n> [!IMPORTANT]\n> Do not create storage pools in the same partition as the operating system. Otherwise, the operating system partition might become filled to capacity, which will impact performance or cause the node to become unstable or unusable.\n\n**Prerequisites**\n\n- The directories specified in `spec.storagePools.path` must have read/write access.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create an `hpp_cr.yaml` file with a `storagePools` stanza as in the following example:\n\n   ```yaml\n   apiVersion: hostpathprovisioner.kubevirt.io/v1beta1\n   kind: HostPathProvisioner\n   metadata:\n     name: hostpath-provisioner\n   spec:\n     imagePullPolicy: IfNotPresent\n     storagePools:\n     - name: any_name\n       path: \"/var/myvolumes\"\n     workload:\n       nodeSelector:\n         kubernetes.io/os: linux\n   ```\n\n   - `spec.storagePools.name` defines the name to identify the source to use. It must be the same as the `storagePools` name in the `StorageClass.yaml`.\n   - `spec.storagePools.path` defines the storage pool directories under this node path. Ensure that the path `/var/myvolumes` value specifies a directory that exists on each worker node.\n2. Save the file and exit.\n3. Create the HPP by running the following command:\n\n   ```terminal\n   $ oc create -f hpp_cr.yaml\n   ```\n\n### About creating storage classes {#virt-about-creating-storage-classes_virt-configuring-local-storage-with-hpp}\n\nWhen you create a storage class, you set parameters that affect the dynamic provisioning of persistent volumes (PVs) that belong to that storage class. You cannot update a `StorageClass` object’s parameters after you create it.\n\nTo use the hostpath provisioner (HPP) you must create an associated storage class for the CSI driver with the `storagePools` stanza.\n\n> [!NOTE]\n> Virtual machines use data volumes that are based on local PVs. Local PVs are bound to specific nodes. While the disk image is prepared for consumption by the virtual machine, it is possible that the virtual machine cannot be scheduled to the node where the local storage PV was previously pinned.\n>\n> To solve this problem, use the Kubernetes pod scheduler to bind the persistent volume claim (PVC) to a PV on the correct node. By using the `StorageClass` value with `volumeBindingMode` parameter set to `WaitForFirstConsumer`, the binding and provisioning of the PV is delayed until a pod is created using the PVC.\n\n### Creating a storage class for the CSI driver with the storagePools stanza {#virt-creating-storage-class-csi-driver_virt-configuring-local-storage-with-hpp}\n\nTo use the hostpath provisioner (HPP) you must create an associated storage class for the Container Storage Interface (CSI) driver.\n\nWhen you create a storage class, you set parameters that affect the dynamic provisioning of persistent volumes (PVs) that belong to that storage class. You cannot update a `StorageClass` object’s parameters after you create it.\n\n**Procedure**\n\n1. Create a `storageclass_csi.yaml` file to define the storage class:\n\n   ```yaml\n   apiVersion: storage.k8s.io/v1\n   kind: StorageClass\n   metadata:\n     name: hostpath-csi\n   provisioner: kubevirt.io.hostpath-provisioner\n   reclaimPolicy: Delete\n   volumeBindingMode: WaitForFirstConsumer\n   parameters:\n     storagePool: my-storage-pool\n   ```\n\n   - `reclaimPolicy` defines whether the underlying storage is deleted or retained when a user deletes a PVC. The two possible `reclaimPolicy` values are `Delete` and `Retain`. If you do not specify a value, the default value is `Delete`.\n   - `volumeBindingMode` defines the timing of PV creation. In this example, the `WaitForFirstConsumer` configuration delays PV creation until the scheduler assigns a pod to a specific node.\n\n     > [!NOTE]\n     > Virtual machines use data volumes based on local PVs, which reside on specific nodes. When the system prepares a disk image for the virtual machine, the scheduler might not place the virtual machine on the node where it pinned the local storage PV.\n\n\n   To solve this problem, use the Kubernetes pod scheduler to bind the persistent volume claim (PVC) to a PV on the correct node. Setting the `volumeBindingMode` parameter of the `StorageClass` to `WaitForFirstConsumer` delays PV binding and provisioning until you create a pod that uses the PVC.\n\n   ```\n   :::\n   ```\n\n   - `parameters.storagePool` defines the name of the storage pool defined in the HPP custom resource (CR).\n2. Save the file and exit.\n3. Create the `StorageClass` object by running the following command:\n\n   ```terminal\n   $ oc create -f storageclass_csi.yaml\n   ```\n\n## About storage pools created with PVC templates {#virt-about-storage-pools-pvc-templates_virt-configuring-local-storage-with-hpp}\n\nIf you have a single, large persistent volume (PV), you can create a storage pool by defining a PVC template in the hostpath provisioner (HPP) custom resource (CR).\n\nA storage pool created with a PVC template can contain multiple HPP volumes. Splitting a PV into smaller volumes provides greater flexibility for data allocation.\n\nThe PVC template is based on the `spec` stanza of the `PersistentVolumeClaim` object:\n\n```yaml\napiVersion: v1\nkind: PersistentVolumeClaim\nmetadata:\n  name: iso-pvc\nspec:\n  volumeMode: Block\n  storageClassName: my-storage-class\n  accessModes:\n  - ReadWriteOnce\n  resources:\n    requests:\n      storage: 5Gi\n```\n\nThe `spec.volumeMode` value is only required for block volume mode PVs.\n\nYou define a storage pool by using a `pvcTemplate` specification in the HPP CR. The Operator creates a PVC from the `pvcTemplate` specification for each node containing the HPP CSI driver. The PVC created from the PVC template consumes the single large PV, allowing the HPP to create smaller dynamic volumes.\n\nYou can combine basic storage pools with storage pools created from PVC templates.\n\n### Creating a storage pool with a PVC template {#virt-creating-storage-pool-pvc-template_virt-configuring-local-storage-with-hpp}\n\nYou can create a storage pool for multiple hostpath provisioner (HPP) volumes by specifying a persistent volume claim (PVC) template in the HPP custom resource (CR).\n\n> [!IMPORTANT]\n> Do not create storage pools in the same partition as the operating system. Otherwise, the operating system partition might become filled to capacity, which will impact performance or cause the node to become unstable or unusable.\n\n**Prerequisites**\n\n- The directories specified in `spec.storagePools.path` must have read/write access.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create an `hpp_pvc_template_pool.yaml` file for the HPP CR that specifies a PVC template in the `storagePools` stanza according to the following example:\n\n   ```yaml\n   apiVersion: hostpathprovisioner.kubevirt.io/v1beta1\n   kind: HostPathProvisioner\n   metadata:\n     name: hostpath-provisioner\n   spec:\n     imagePullPolicy: IfNotPresent\n     storagePools:\n     - name: my-storage-pool\n       path: \"/var/myvolumes\"\n       pvcTemplate:\n         volumeMode: Block\n         storageClassName: my-storage-class\n         accessModes:\n         - ReadWriteOnce\n         resources:\n           requests:\n             storage: 5Gi\n     workload:\n       nodeSelector:\n         kubernetes.io/os: linux\n   ```\n\n   - `spec.storagePools` defines an array that can contain both basic and PVC template storage pools.\n   - `spec.storagePools.path` defines the storage pool directories under this node path.\n   - `spec.storagePools.pvcTemplate.volumeMode` is an optional parameter, which can be either `Block` or `Filesystem` if it matches the provisioned volume format. If no value is specified, the default is `Filesystem`. If the `volumeMode` is `Block`, the mounting pod creates an XFS file system on the block volume before mounting it.\n   - `spec.storagePools.pvcTemplate.storageClassName` specifies if the `storageClassName` parameter is omitted, the default storage class is used to create PVCs. If you omit `storageClassName`, ensure that the HPP storage class is not the default storage class.\n   - `spec.storagePools.pvcTemplate.resources.requests.storage` defines the storage request for statically or dynamically provisioned storage. Ensure the requested storage size is appropriate for the volume you want to virtually divide or the PVC cannot be bound to the large PV. If the storage class uses dynamically provisioned storage, pick an allocation size that matches the size of a typical request.\n2. Save the file and exit.\n3. Create the HPP with a storage pool by running the following command:\n\n   ```terminal\n   $ oc create -f hpp_pvc_template_pool.yaml\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-configuring-local-storage-with-hpp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,117 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-configuring-local-storage-with-hpp" class="group scroll-mt-20">Configuring local storage by using the hostpath provisioner<a href="#virt-configuring-local-storage-with-hpp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure local storage for virtual machines by using the hostpath provisioner (HPP).</p>
-      <p>When you install the {"{"}{"{"} VirtProductName {"}"}{"}"} Operator, the Hostpath Provisioner Operator is automatically installed. HPP is a local storage provisioner designed for {"{"}{"{"} VirtProductName {"}"}{"}"} that is created by the Hostpath Provisioner Operator. To use HPP, you create an HPP custom resource (CR) with a basic storage pool.</p>
-      <p class="/modules/virt-creating-hpp-basic-storage-pool.md"></p>
-      <p class="/modules/virt-about-creating-storage-classes.md"></p>
-      <p class="/modules/virt-creating-storage-class-csi-driver.md"></p>
-      <p class="/modules/virt-about-storage-pools-pvc-templates.md"></p>
-      <p class="/modules/virt-creating-storage-pool-pvc-template.md"></p>
+      <p>When you install the OpenShift Virtualization Operator, the Hostpath Provisioner Operator is automatically installed. HPP is a local storage provisioner designed for OpenShift Virtualization that is created by the Hostpath Provisioner Operator. To use HPP, you create an HPP custom resource (CR) with a basic storage pool.</p>
+      <h2 id="virt-creating-hpp-basic-storage-pool_virt-configuring-local-storage-with-hpp" class="group scroll-mt-20">Creating a hostpath provisioner with a basic storage pool<a href="#virt-creating-hpp-basic-storage-pool_virt-configuring-local-storage-with-hpp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You configure a hostpath provisioner (HPP) with a basic storage pool by creating an HPP custom resource (CR) with a <code>storagePools</code> stanza. The storage pool specifies the name and path used by the CSI driver.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not create storage pools in the same partition as the operating system. Otherwise, the operating system partition might become filled to capacity, which will impact performance or cause the node to become unstable or unusable.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The directories specified in <code>spec.storagePools.path</code> must have read/write access.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an <code>hpp_cr.yaml</code> file with a <code>storagePools</code> stanza as in the following example:
+      <CodeBlock code={"apiVersion: hostpathprovisioner.kubevirt.io/v1beta1\nkind: HostPathProvisioner\nmetadata:\n  name: hostpath-provisioner\nspec:\n  imagePullPolicy: IfNotPresent\n  storagePools:\n  - name: any_name\n    path: \"/var/myvolumes\"\n  workload:\n    nodeSelector:\n      kubernetes.io/os: linux"} lang="yaml" />
+      <ul>
+      <li><code>spec.storagePools.name</code> defines the name to identify the source to use. It must be the same as the <code>storagePools</code> name in the <code>StorageClass.yaml</code>.</li>
+      <li><code>spec.storagePools.path</code> defines the storage pool directories under this node path. Ensure that the path <code>/var/myvolumes</code> value specifies a directory that exists on each worker node.</li>
+      </ul>
+      </li>
+      <li>Save the file and exit.</li>
+      <li>
+      Create the HPP by running the following command:
+      <CodeBlock code={"$ oc create -f hpp_cr.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <h3 id="virt-about-creating-storage-classes_virt-configuring-local-storage-with-hpp" class="group scroll-mt-20">About creating storage classes<a href="#virt-about-creating-storage-classes_virt-configuring-local-storage-with-hpp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When you create a storage class, you set parameters that affect the dynamic provisioning of persistent volumes (PVs) that belong to that storage class. You cannot update a <code>StorageClass</code> object’s parameters after you create it.</p>
+      <p>To use the hostpath provisioner (HPP) you must create an associated storage class for the CSI driver with the <code>storagePools</code> stanza.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Virtual machines use data volumes that are based on local PVs. Local PVs are bound to specific nodes. While the disk image is prepared for consumption by the virtual machine, it is possible that the virtual machine cannot be scheduled to the node where the local storage PV was previously pinned.</p>
+          <p>To solve this problem, use the Kubernetes pod scheduler to bind the persistent volume claim (PVC) to a PV on the correct node. By using the <code>StorageClass</code> value with <code>volumeBindingMode</code> parameter set to <code>WaitForFirstConsumer</code>, the binding and provisioning of the PV is delayed until a pod is created using the PVC.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="virt-creating-storage-class-csi-driver_virt-configuring-local-storage-with-hpp" class="group scroll-mt-20">Creating a storage class for the CSI driver with the storagePools stanza<a href="#virt-creating-storage-class-csi-driver_virt-configuring-local-storage-with-hpp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To use the hostpath provisioner (HPP) you must create an associated storage class for the Container Storage Interface (CSI) driver.</p>
+      <p>When you create a storage class, you set parameters that affect the dynamic provisioning of persistent volumes (PVs) that belong to that storage class. You cannot update a <code>StorageClass</code> object’s parameters after you create it.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>storageclass_csi.yaml</code> file to define the storage class:
+      <CodeBlock code={"apiVersion: storage.k8s.io/v1\nkind: StorageClass\nmetadata:\n  name: hostpath-csi\nprovisioner: kubevirt.io.hostpath-provisioner\nreclaimPolicy: Delete\nvolumeBindingMode: WaitForFirstConsumer\nparameters:\n  storagePool: my-storage-pool"} lang="yaml" />
+      <ul>
+      <li><code>reclaimPolicy</code> defines whether the underlying storage is deleted or retained when a user deletes a PVC. The two possible <code>reclaimPolicy</code> values are <code>Delete</code> and <code>Retain</code>. If you do not specify a value, the default value is <code>Delete</code>.</li>
+      <li>
+      <code>volumeBindingMode</code> defines the timing of PV creation. In this example, the <code>WaitForFirstConsumer</code> configuration delays PV creation until the scheduler assigns a pod to a specific node.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Virtual machines use data volumes based on local PVs, which reside on specific nodes. When the system prepares a disk image for the virtual machine, the scheduler might not place the virtual machine on the node where it pinned the local storage PV.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p><br />To solve this problem, use the Kubernetes pod scheduler to bind the persistent volume claim (PVC) to a PV on the correct node. Setting the <code>volumeBindingMode</code> parameter of the <code>StorageClass</code> to <code>WaitForFirstConsumer</code> delays PV binding and provisioning until you create a pod that uses the PVC.</p>
+      <CodeBlock code={":::"} lang="plaintext" />
+      <ul><li><code>parameters.storagePool</code> defines the name of the storage pool defined in the HPP custom resource (CR).</li></ul>
+      </li>
+      <li>Save the file and exit.</li>
+      <li>
+      Create the <code>StorageClass</code> object by running the following command:
+      <CodeBlock code={"$ oc create -f storageclass_csi.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-about-storage-pools-pvc-templates_virt-configuring-local-storage-with-hpp" class="group scroll-mt-20">About storage pools created with PVC templates<a href="#virt-about-storage-pools-pvc-templates_virt-configuring-local-storage-with-hpp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you have a single, large persistent volume (PV), you can create a storage pool by defining a PVC template in the hostpath provisioner (HPP) custom resource (CR).</p>
+      <p>A storage pool created with a PVC template can contain multiple HPP volumes. Splitting a PV into smaller volumes provides greater flexibility for data allocation.</p>
+      <p>The PVC template is based on the <code>spec</code> stanza of the <code>PersistentVolumeClaim</code> object:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: PersistentVolumeClaim\nmetadata:\n  name: iso-pvc\nspec:\n  volumeMode: Block\n  storageClassName: my-storage-class\n  accessModes:\n  - ReadWriteOnce\n  resources:\n    requests:\n      storage: 5Gi"} lang="yaml" />
+      <p>The <code>spec.volumeMode</code> value is only required for block volume mode PVs.</p>
+      <p>You define a storage pool by using a <code>pvcTemplate</code> specification in the HPP CR. The Operator creates a PVC from the <code>pvcTemplate</code> specification for each node containing the HPP CSI driver. The PVC created from the PVC template consumes the single large PV, allowing the HPP to create smaller dynamic volumes.</p>
+      <p>You can combine basic storage pools with storage pools created from PVC templates.</p>
+      <h3 id="virt-creating-storage-pool-pvc-template_virt-configuring-local-storage-with-hpp" class="group scroll-mt-20">Creating a storage pool with a PVC template<a href="#virt-creating-storage-pool-pvc-template_virt-configuring-local-storage-with-hpp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can create a storage pool for multiple hostpath provisioner (HPP) volumes by specifying a persistent volume claim (PVC) template in the HPP custom resource (CR).</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not create storage pools in the same partition as the operating system. Otherwise, the operating system partition might become filled to capacity, which will impact performance or cause the node to become unstable or unusable.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The directories specified in <code>spec.storagePools.path</code> must have read/write access.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an <code>hpp_pvc_template_pool.yaml</code> file for the HPP CR that specifies a PVC template in the <code>storagePools</code> stanza according to the following example:
+      <CodeBlock code={"apiVersion: hostpathprovisioner.kubevirt.io/v1beta1\nkind: HostPathProvisioner\nmetadata:\n  name: hostpath-provisioner\nspec:\n  imagePullPolicy: IfNotPresent\n  storagePools:\n  - name: my-storage-pool\n    path: \"/var/myvolumes\"\n    pvcTemplate:\n      volumeMode: Block\n      storageClassName: my-storage-class\n      accessModes:\n      - ReadWriteOnce\n      resources:\n        requests:\n          storage: 5Gi\n  workload:\n    nodeSelector:\n      kubernetes.io/os: linux"} lang="yaml" />
+      <ul>
+      <li><code>spec.storagePools</code> defines an array that can contain both basic and PVC template storage pools.</li>
+      <li><code>spec.storagePools.path</code> defines the storage pool directories under this node path.</li>
+      <li><code>spec.storagePools.pvcTemplate.volumeMode</code> is an optional parameter, which can be either <code>Block</code> or <code>Filesystem</code> if it matches the provisioned volume format. If no value is specified, the default is <code>Filesystem</code>. If the <code>volumeMode</code> is <code>Block</code>, the mounting pod creates an XFS file system on the block volume before mounting it.</li>
+      <li><code>spec.storagePools.pvcTemplate.storageClassName</code> specifies if the <code>storageClassName</code> parameter is omitted, the default storage class is used to create PVCs. If you omit <code>storageClassName</code>, ensure that the HPP storage class is not the default storage class.</li>
+      <li><code>spec.storagePools.pvcTemplate.resources.requests.storage</code> defines the storage request for statically or dynamically provisioned storage. Ensure the requested storage size is appropriate for the volume you want to virtually divide or the PVC cannot be bound to the large PV. If the storage class uses dynamically provisioned storage, pick an allocation size that matches the size of a typical request.</li>
+      </ul>
+      </li>
+      <li>Save the file and exit.</li>
+      <li>
+      Create the HPP with a storage pool by running the following command:
+      <CodeBlock code={"$ oc create -f hpp_pvc_template_pool.yaml"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

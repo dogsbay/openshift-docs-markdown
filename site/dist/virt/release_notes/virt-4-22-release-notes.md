@@ -2,18 +2,18 @@
 title: "{{ VirtProductName }} release notes"
 ---
 
-# {{ VirtProductName }} release notes {#virt-4-22-release-notes}
+# OpenShift Virtualization release notes {#virt-4-22-release-notes}
 
-These release notes describe new features and enhancements, Technology Preview features, deprecated and removed features, fixed issues, and known issues for {{ VirtProductName }} {{ VirtVersion }}.
+These release notes describe new features and enhancements, Technology Preview features, deprecated and removed features, fixed issues, and known issues for OpenShift Virtualization 4.22.
 
 ## Supported guest operating systems {#virt-guest-os_virt-4-22-release-notes}
 
-To view the supported guest operating systems for {{ VirtProductName }}, see [Certified Guest Operating Systems in Red Hat OpenStack Platform, Red Hat Virtualization, OpenShift Virtualization and Red Hat Enterprise Linux with KVM](https://access.redhat.com/articles/973163#ocpvirt).
+To view the supported guest operating systems for OpenShift Virtualization, see [Certified Guest Operating Systems in Red Hat OpenStack Platform, Red Hat Virtualization, OpenShift Virtualization and Red Hat Enterprise Linux with KVM](https://access.redhat.com/articles/973163#ocpvirt).
 
 ## New features and enhancements {#virt-4-22-new_virt-4-22-release-notes}
 
-Extended Upgrade Support enables 36-month lifecycle for {{ VirtProductName }} clusters
-:   {{ VirtProductName }} now supports a 36-month cluster lifecycle policy with optional Extended Upgrade Support (EUS) add-ons. With EUS, you can remain on the same release for up to 36 months, enabling stable production environments for mission-critical applications.
+Extended Upgrade Support enables 36-month lifecycle for OpenShift Virtualization clusters
+:   OpenShift Virtualization now supports a 36-month cluster lifecycle policy with optional Extended Upgrade Support (EUS) add-ons. With EUS, you can remain on the same release for up to 36 months, enabling stable production environments for mission-critical applications.
 
     For more information about EUS add-on subscriptions, see [OpenShift Container Platform Life Cycle Policy](https://access.redhat.com/support/policy/updates/openshift).
 
@@ -29,15 +29,15 @@ Configure PSRP, WINRM, or SSH to manage Windows-detected hosts in OpenShift Virt
 
     [CNV-73306](https://redhat.atlassian.net/browse/CNV-73306)
 
-Configuring PCI passthrough for the {{ ibm_name }} Spyre Accelerator for VMs on {{ ibm_z_name }} and {{ ibm_linuxone_name }} is generally available
-:   You can attach the {{ ibm_name }} Spyre Accelerator to VMs using PCI passthrough on {{ ibm_name }} z17 and {{ ibm_linuxone_name }} Emperor 5 or later. The {{ ibm_name }} Spyre Accelerator enhances AI inferencing capabilities on {{ ibm_z_name }} and {{ ibm_linuxone_name }} systems.
+Configuring PCI passthrough for the IBM(R) Spyre Accelerator for VMs on IBM Z(R) and IBM(R) LinuxONE is generally available
+:   You can attach the IBM(R) Spyre Accelerator to VMs using PCI passthrough on IBM(R) z17 and IBM(R) LinuxONE Emperor 5 or later. The IBM(R) Spyre Accelerator enhances AI inferencing capabilities on IBM Z(R) and IBM(R) LinuxONE systems.
 
     For more information, see [Configuring PCI passthrough](/openshift-docs-markdown/virt/managing_vms/advanced_vm_management/virt-configuring-pci-passthrough#virt-configuring-pci-passthrough).
 
     [CNV-83214](https://redhat.atlassian.net/browse/CNV-83214)
 
 Support for IPv6 single-stack clusters is generally available
-:   With this release, support for IPv6 single-stack clusters is Generally Available (GA). {{ VirtProductName }} supports single-stack IPv6 clusters for VMs that are connected to an OVN-Kubernetes localnet network, Linux bridge Container Network Interface (CNI) plugin, and Single Root I/O Virtualization (SR-IOV) network devices.
+:   With this release, support for IPv6 single-stack clusters is Generally Available (GA). OpenShift Virtualization supports single-stack IPv6 clusters for VMs that are connected to an OVN-Kubernetes localnet network, Linux bridge Container Network Interface (CNI) plugin, and Single Root I/O Virtualization (SR-IOV) network devices.
 
     [CNV-28924](https://redhat.atlassian.net/browse/CNV-28924)
 
@@ -52,12 +52,12 @@ Define physical networks from an existing node network configuration policy
     [CNV-72621](https://redhat.atlassian.net/browse/CNV-72621)
 
 Insert and eject CD-ROMs in a live VM
-:   {{ VirtProductName }} support for declarative hot plug of CD-ROM storage devices in live virtual machines (VMs) is generally available. You can insert and eject CD-ROM storage in running VMs by enabling the `DeclarativeHotplugVolumes` feature gate in the `HyperConverged` custom resource (CR) without restarting the VM.
+:   OpenShift Virtualization support for declarative hot plug of CD-ROM storage devices in live virtual machines (VMs) is generally available. You can insert and eject CD-ROM storage in running VMs by enabling the `DeclarativeHotplugVolumes` feature gate in the `HyperConverged` custom resource (CR) without restarting the VM.
 
     [CNV-68916](https://redhat.atlassian.net/browse/CNV-68916)
 
 Option to automatically clean up source PVCs after storage migration
-:   Virtual machine (VM) owners can now automatically clean up source persistent volume claims (PVCs) after a storage migration, reducing manual cleanup tasks. By default, {{ VirtProductName }} retains the source PVCs so you can manually clean them up. You can deselect the option to keep source PVCs in the user interface to enable automatic cleanup after the migration completes.
+:   Virtual machine (VM) owners can now automatically clean up source persistent volume claims (PVCs) after a storage migration, reducing manual cleanup tasks. By default, OpenShift Virtualization retains the source PVCs so you can manually clean them up. You can deselect the option to keep source PVCs in the user interface to enable automatic cleanup after the migration completes.
 
     [CNV-73509](https://redhat.atlassian.net/browse/CNV-73509)
 
@@ -67,7 +67,7 @@ Configure predictable PVC and DV names when cloning VMs
     [CNV-76230](https://redhat.atlassian.net/browse/CNV-76230)
 
 Keep original PVC names when restoring a virtual machine from a VM snapshot
-:   Virtual machine (VM) owners who restore a VM from a snapshot can retain the original names of persistent volume claims (PVCs). You can use the **In place Volume Restore Policy** section of the **Restore Snapshot** dialog in the web console to preserve the PVC names. This sets the `spec.volumeRestorePolicy` field on the `VirtualMachineRestore` resource. If users opt not to keep the original PVC name, {{ VirtProductName }} assigns a randomized PVC name.
+:   Virtual machine (VM) owners who restore a VM from a snapshot can retain the original names of persistent volume claims (PVCs). You can use the **In place Volume Restore Policy** section of the **Restore Snapshot** dialog in the web console to preserve the PVC names. This sets the `spec.volumeRestorePolicy` field on the `VirtualMachineRestore` resource. If users opt not to keep the original PVC name, OpenShift Virtualization assigns a randomized PVC name.
 
     [CNV-71612](https://redhat.atlassian.net/browse/CNV-71612)
 
@@ -82,7 +82,7 @@ Configure AAQ to track resource utilization for VMs and mixed workloads
     [CNV-61720](https://redhat.atlassian.net/browse/CNV-61720)
 
 Configure a run strategy for virtual machines in the web console
-:   Virtual machine (VM) owners can configure and edit a run strategy that models how the VMs behave after a shutdown, restart, or a failure. You can choose a run strategy from `Rerun on failure`, `Always`, `Halted`, and `Manual` in the **Scheduling** tab of the {{ VirtProductName }} user interface. You can edit the run strategy across all VM creation flows and the details view for a streamlined experience when customizing VMs.
+:   Virtual machine (VM) owners can configure and edit a run strategy that models how the VMs behave after a shutdown, restart, or a failure. You can choose a run strategy from `Rerun on failure`, `Always`, `Halted`, and `Manual` in the **Scheduling** tab of the OpenShift Virtualization user interface. You can edit the run strategy across all VM creation flows and the details view for a streamlined experience when customizing VMs.
 
     [CNV-82452](https://redhat.atlassian.net/browse/CNV-82452)
 
@@ -107,7 +107,7 @@ Add an internal certificate authority or a self-signed certificate for virtual m
     [CNV-79324](https://redhat.atlassian.net/browse/CNV-79324)
 
 Recording rule names updated to conform to Prometheus best practices
-:   Recording rule names have been updated to follow the naming convention `<level>:<metric>:<operations>`. This aligns with the Prometheus best practices on naming rules, and helps users to distinguish between recording rules and metrics. For information about which rule names have changed, see the Knowledgebase article [Updates to {{ VirtProductName }} {{ VirtVersion }} recording rules naming](https://access.redhat.com/articles/7144047).
+:   Recording rule names have been updated to follow the naming convention `<level>:<metric>:<operations>`. This aligns with the Prometheus best practices on naming rules, and helps users to distinguish between recording rules and metrics. For information about which rule names have changed, see the Knowledgebase article [Updates to OpenShift Virtualization 4.22 recording rules naming](https://access.redhat.com/articles/7144047).
 
     [CNV-89006](https://redhat.atlassian.net/browse/CNV-89006)
 
@@ -133,7 +133,7 @@ Recording rules deprecated
 
 ## Removed features {#virt-4-22-removed_virt-4-22-release-notes}
 
-Removed features are no longer supported in {{ VirtProductName }}.
+Removed features are no longer supported in OpenShift Virtualization.
 
 Predefined latency checkup feature removed
 :   In previous versions, cluster and project administrators could use a predefined latency checkup to verify network connectivity and measure latency between two virtual machines (VMs) that are attached to a secondary network interface. With this release, the predefined latency checkup feature is removed. [CNV-77646](https://issues.redhat.com/browse/CNV-77646)
@@ -148,7 +148,7 @@ Some features in this release are currently in Technology Preview. These experim
 [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview)
 
 KubeVirt Redfish for VM management through the Redfish API (Technology Preview)
-:   KubeVirt Redfish exposes {{ VirtProductName }} virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview. For more information, see [Install KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
+:   KubeVirt Redfish exposes OpenShift Virtualization virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview. For more information, see [Install KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
 
 Golden image support for heterogeneous clusters (Technology Preview)
 :   Golden image support is available for heterogeneous clusters, which enables you to create and use golden images for virtual machines in environments with differing node configurations. This capability is a Technology Preview feature. [CNV-62357](https://issues.redhat.com/browse/CNV-62357)
@@ -160,13 +160,13 @@ Convert an existing VM to a template from the user interface (Technology Preview
 :   Virtual machine (VM) owners can create, filter, and delete a user-generated template. You can create a template from an existing VM in the same project as the running VM or a different project from the OpenShift Virtualization user interface. To make sure that the data is consistent, stop the VM before you create a template. This capability is a Technology Preview feature. [CNV-81577](https://redhat.atlassian.net/browse/CNV-81577)
 
 Create virtual machines from in-cluster native templates (Technology Preview)
-:   Virtual machine (VM) owners can create VMs from the {{ VirtProductName }} cluster native template custom resource. The VM template tracks a golden image that is updated periodically, reducing errors and ensuring uniformity in the virtualized environment. You can host the template in all namespaces that you can control. [CNV-73392](https://redhat.atlassian.net/browse/CNV-73392)
+:   Virtual machine (VM) owners can create VMs from the OpenShift Virtualization cluster native template custom resource. The VM template tracks a golden image that is updated periodically, reducing errors and ensuring uniformity in the virtualized environment. You can host the template in all namespaces that you can control. [CNV-73392](https://redhat.atlassian.net/browse/CNV-73392)
 
-Dual stream support for {{ VirtProductName }} clusters (Technology Preview)
-:   You can provision {{ VirtProductName }} clusters that run Red Hat Enterprise Linux CoreOS (RHCOS) version 9.8 and version 10.2 in OpenShift Container Platform 4.22. RHCOS 9.8 is the default operating system. VM live migration between RHCOS 9.x and RHCOS 10.x worker nodes is supported in OpenShift Container Platform 4.22. [CNV-49964](https://redhat.atlassian.net/browse/CNV-49964)
+Dual stream support for OpenShift Virtualization clusters (Technology Preview)
+:   You can provision OpenShift Virtualization clusters that run Red Hat Enterprise Linux CoreOS (RHCOS) version 9.8 and version 10.2 in OpenShift Container Platform 4.22. RHCOS 9.8 is the default operating system. VM live migration between RHCOS 9.x and RHCOS 10.x worker nodes is supported in OpenShift Container Platform 4.22. [CNV-49964](https://redhat.atlassian.net/browse/CNV-49964)
 
 KubeVirt Redfish for VM management through the Redfish API (Technology Preview)
-:   KubeVirt Redfish exposes {{ VirtProductName }} virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview. For more information, see [Install KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
+:   KubeVirt Redfish exposes OpenShift Virtualization virtual machines through the standard Redfish API. Using KubeVirt Redfish, administrators can manage VM power states, boot configuration, and virtual media attachments. This feature is available as a Technology Preview. For more information, see [Install KubeVirt Redfish](/openshift-docs-markdown/virt/post_installation_configuration/virt-kubevirt-redfish#proc_virt-installing-kubevirt-redfish_virt-kubevirt-redfish).
 
 ## Fixed issues {#virt-4-22-bug-fixes_virt-4-22-release-notes}
 
@@ -190,24 +190,35 @@ VMs using the cnv-bridge CNI fail to live migrate after updates from 4.12
 VMs might lose ingress connectivity after live migration over an EVPN-enabled network
 :   When you live migrate a VM across OpenShift Container Platform clusters that leverage a Border Gateway Protocol Ethernet Virtual Private Network (BGP EVPN)-enabled user-defined network, the VM might lose ingress connectivity. [OCPBUGS-86503](https://redhat.atlassian.net/browse/OCPBUGS-86503)
 
-{{ SMProductName }} 3.1.1 and Istio 1.25 and later are incompatible with {{ VirtProductName }}
-:   {{ SMProductName }} 3.1.1 and Istio versions 1.25 and later are incompatible with {{ VirtProductName }} {{ VirtVersion }} because the `traffic.sidecar.istio.io/kubevirtInterfaces` annotation is deprecated. As a consequence, service mesh integration with {{ VirtProductName }} can fail when you use these versions. To work around this problem, when you install {{ SMProductShortName }} for integration with {{ VirtProductName }}, select {{ SMProductName }} version 3.0.4 and Istio 1.24.4 instead of the default versions that are displayed in the web console. [OSSM-10883](https://issues.redhat.com/browse/OSSM-10883)
+Red Hat OpenShift Service Mesh 3.1.1 and Istio 1.25 and later are incompatible with OpenShift Virtualization
+:   Red Hat OpenShift Service Mesh 3.1.1 and Istio versions 1.25 and later are incompatible with OpenShift Virtualization 4.22 because the `traffic.sidecar.istio.io/kubevirtInterfaces` annotation is deprecated. As a consequence, service mesh integration with OpenShift Virtualization can fail when you use these versions. To work around this problem, when you install Service Mesh for integration with OpenShift Virtualization, select Red Hat OpenShift Service Mesh version 3.0.4 and Istio 1.24.4 instead of the default versions that are displayed in the web console. [OSSM-10883](https://issues.redhat.com/browse/OSSM-10883)
 
-Node labels remain after uninstalling {{ VirtProductName }}
-:   Uninstalling {{ VirtProductName }} does not remove the `feature.node.kubevirt.io` node labels that {{ VirtProductName }} creates. As a consequence, nodes can still appear as if they are configured for virtualization workloads. <a name="virt-4-22-ki-nodes_virt-4-22-release-notes"></a>
+Node labels remain after uninstalling OpenShift Virtualization
+:   Uninstalling OpenShift Virtualization does not remove the `feature.node.kubevirt.io` node labels that OpenShift Virtualization creates. As a consequence, nodes can still appear as if they are configured for virtualization workloads. <a name="virt-4-22-ki-nodes_virt-4-22-release-notes"></a>
 
-    To work around this problem, manually remove the `feature.node.kubevirt.io` labels from affected nodes after you uninstall {{ VirtProductName }}. [CNV-38543](https://issues.redhat.com/browse/CNV-38543)
+    To work around this problem, manually remove the `feature.node.kubevirt.io` labels from affected nodes after you uninstall OpenShift Virtualization. [CNV-38543](https://issues.redhat.com/browse/CNV-38543)
 
 Live migration fails when VM names exceed 47 characters
 :   Live migration fails if a virtual machine name exceeds 47 characters. As a consequence, you cannot live migrate VMs with longer names. <a name="virt-4-22-ki-virtualization_virt-4-22-release-notes"></a>
 
     To work around this problem, use VM names that are 47 characters or fewer when you create VMs that you plan to live migrate. [CNV-61066](https://issues.redhat.com/browse/CNV-61066)
 
-Upgrading to {{ VirtProductName }} 4.22 when using wasp-agent
-:   If you are upgrading {{ VirtProductName }} from version 4.20 to 4.22 and using `wasp-agent` to increase VM workload density, you must perform the following steps after you begin the upgrade: . Wait for the Machine Configuration Pool (MCP) to complete updating the control-plane nodes. . Edit the `KubeletConfig` file to remove the `failSwapOn: false` key-value pair. . Wait for the MCP to finish updating the worker nodes.
+Upgrading to OpenShift Virtualization 4.22 when using wasp-agent
+:   If you are upgrading OpenShift Virtualization from version 4.20 to 4.22 and using `wasp-agent` to increase VM workload density, you must perform the following steps after you begin the upgrade: . Wait for the Machine Configuration Pool (MCP) to complete updating the control-plane nodes. . Edit the `KubeletConfig` file to remove the `failSwapOn: false` key-value pair. . Wait for the MCP to finish updating the worker nodes.
 
 ```
 [CNV-89504](https://redhat.atlassian.net/browse/CNV-89504)
 ```
 
 ## Maintenance releases {#virt-maintenance-releases_virt-4-22-release-notes}
+
+### OpenShift Virtualization 4.22.2 updates {#virt-zstream-4-22-2_virt-4-22-release-notes}
+
+OpenShift Virtualization 4.22.2 is now available with updates to packages and images that fix several bugs and add enhancements.
+
+#### New features and enhancements {#virt-4-22-2-new_virt-4-22-release-notes}
+
+Self-service Technical Supportability Review
+:   You can use the self-service Technical Supportability Review (TSR) on the Red Hat Customer Portal to validate your cluster configuration against Red Hat common practices. The self-service TSR uses AI to evaluate your cluster’s `must-gather` data and provides a prioritized executive summary that identifies your cluster’s top risks and recommends corrective actions. The TSR performs hundreds of checks across the OpenShift Container Platform platform, including OpenShift Virtualization, and coverage is continually expanding.
+
+    For more information, see [Technical Supportability Review with AI tool](https://access.redhat.com/support/cases/#/analyze) and [Red Hat Technical Supportability Review with AI: Proactive AI-Driven Cluster Assessments for OpenShift Container Platform](https://access.redhat.com/solutions/7141255).

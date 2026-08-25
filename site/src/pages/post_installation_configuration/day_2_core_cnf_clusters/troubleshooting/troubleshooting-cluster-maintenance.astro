@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"troubleshooting-cluster-maintenance","text":"Cluster maintenance"}];
+const headings = [{"depth":1,"slug":"troubleshooting-cluster-maintenance","text":"Cluster maintenance"},{"depth":2,"slug":"troubleshooting-clusters-check-cluster-operators_troubleshooting-cluster-maintenance","text":"Checking cluster Operators"},{"depth":2,"slug":"troubleshooting-clusters-check-for-failed-pods_troubleshooting-cluster-maintenance","text":"Watching for failed pods"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-cluster-maintenance";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster maintenance {#troubleshooting-cluster-maintenance}\n\nWhen deploying OpenShift Container Platform on bare-metal infrastructure, you must pay more attention to certain configurations which can have a significant impact on cluster stability. You can troubleshoot more effectively by completing these tasks:\n\n- Monitor for failed or failing hardware components\n- Periodically check the status of the cluster Operators\n\n> [!NOTE]\n> For hardware monitoring, contact your hardware vendor to find the appropriate logging tool for your specific hardware.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-cluster-maintenance.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster maintenance {#troubleshooting-cluster-maintenance}\n\nWhen deploying OpenShift Container Platform on bare-metal infrastructure, you must pay more attention to certain configurations which can have a significant impact on cluster stability. You can troubleshoot more effectively by completing these tasks:\n\n- Monitor for failed or failing hardware components\n- Periodically check the status of the cluster Operators\n\n> [!NOTE]\n> For hardware monitoring, contact your hardware vendor to find the appropriate logging tool for your specific hardware.\n\n## Checking cluster Operators {#troubleshooting-clusters-check-cluster-operators_troubleshooting-cluster-maintenance}\n\nPeriodically check the status of your cluster Operators to find issues early.\n\n**Procedure**\n\n- Check the status of the cluster Operators by running the following command:\n\n  ```terminal\n  $ oc get co\n  ```\n\n## Watching for failed pods {#troubleshooting-clusters-check-for-failed-pods_troubleshooting-cluster-maintenance}\n\nTo reduce troubleshooting time, regularly monitor for failed pods in your cluster.\n\n**Procedure**\n\n- To watch for failed pods, run the following command:\n\n  ```terminal\n  $ oc get po -A | grep -Eiv 'complete|running'\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/troubleshooting/troubleshooting-cluster-maintenance.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="troubleshooting-cluster-maintenance" class="group scroll-mt-20">Cluster maintenance<a href="#troubleshooting-cluster-maintenance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>When deploying OpenShift Container Platform on bare-metal infrastructure, you must pay more attention to certain configurations which can have a significant impact on cluster stability. You can troubleshoot more effectively by completing these tasks:</p>
       <ul>
       <li>Monitor for failed or failing hardware components</li>
@@ -106,7 +106,24 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>For hardware monitoring, contact your hardware vendor to find the appropriate logging tool for your specific hardware.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/troubleshooting-clusters-check-for-failed-pods.md /modules/troubleshooting-clusters-check-cluster-operators.md"></p>
+      <h2 id="troubleshooting-clusters-check-cluster-operators_troubleshooting-cluster-maintenance" class="group scroll-mt-20">Checking cluster Operators<a href="#troubleshooting-clusters-check-cluster-operators_troubleshooting-cluster-maintenance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Periodically check the status of your cluster Operators to find issues early.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Check the status of the cluster Operators by running the following command:
+      <CodeBlock code={"$ oc get co"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="troubleshooting-clusters-check-for-failed-pods_troubleshooting-cluster-maintenance" class="group scroll-mt-20">Watching for failed pods<a href="#troubleshooting-clusters-check-for-failed-pods_troubleshooting-cluster-maintenance" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To reduce troubleshooting time, regularly monitor for failed pods in your cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To watch for failed pods, run the following command:
+      <CodeBlock code={"$ oc get po -A | grep -Eiv 'complete|running'"} lang="terminal" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

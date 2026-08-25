@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-pods-viewing","text":"Viewing pods"},{"depth":2,"slug":"additional-resources_nodes-pods-viewing","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"nodes-pods-viewing","text":"Viewing pods"},{"depth":2,"slug":"nodes-pods-viewing-project_nodes-pods-viewing","text":"Viewing pods in a project"},{"depth":2,"slug":"troubleshooting-general-describe-pod_nodes-pods-viewing","text":"Describing a pod"},{"depth":2,"slug":"nodes-pods-viewing-usage_nodes-pods-viewing","text":"Viewing pod usage statistics"},{"depth":2,"slug":"viewing-resource-logs-cli-console_nodes-pods-viewing","text":"Viewing resource logs"},{"depth":3,"slug":"viewing-resource-logs-console_nodes-pods-viewing","text":"Viewing resource logs by using the web console"},{"depth":3,"slug":"viewing-resource-logs-cli_nodes-pods-viewing","text":"Viewing resource logs by using the CLI"},{"depth":2,"slug":"additional-resources_nodes-pods-viewing","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/pods/nodes-pods-viewing";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/pods"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing pods {#nodes-pods-viewing}\n\nAs an administrator, you can view cluster pods, check their health, and evaluate the overall health of the cluster. You can also view a list of pods associated with a specific project or view usage statistics about pods. Regularly viewing pods can help you detect problems early, track resource usage, and ensure cluster stability.\n\n## Additional resources {#additional-resources_nodes-pods-viewing}\n\n- [oc describe](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-describe)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/nodes-pods-viewing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Viewing pods {#nodes-pods-viewing}\n\nAs an administrator, you can view cluster pods, check their health, and evaluate the overall health of the cluster. You can also view a list of pods associated with a specific project or view usage statistics about pods. Regularly viewing pods can help you detect problems early, track resource usage, and ensure cluster stability.\n\n## Viewing pods in a project {#nodes-pods-viewing-project_nodes-pods-viewing}\n\nYou can display pod usage statistics, such as CPU, memory, and storage consumption, to monitor container runtime environments and ensure efficient resource use.\n\n**Procedure**\n\n1. Change to the project by entering the following command:\n\n   ```terminal\n   $ oc project <project_name>\n   ```\n2. Obtain a list of pods by entering the following command:\n\n   ```terminal\n   $ oc get pods\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                       READY   STATUS    RESTARTS   AGE\n   console-698d866b78-bnshf   1/1     Running   2          165m\n   console-698d866b78-m87pm   1/1     Running   2          165m\n   ```\n3. Optional: Add the `-o wide` flags to view the pod IP address and the node where the pod is located. For example:\n\n   ```terminal\n   $ oc get pods -o wide\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                       READY   STATUS    RESTARTS   AGE    IP            NODE                           NOMINATED NODE\n   console-698d866b78-bnshf   1/1     Running   2          166m   10.128.0.24   ip-10-0-152-71.ec2.internal    <none>\n   console-698d866b78-m87pm   1/1     Running   2          166m   10.129.0.23   ip-10-0-173-237.ec2.internal   <none>\n   ```\n\n## Describing a pod {#troubleshooting-general-describe-pod_nodes-pods-viewing}\n\nTo troubleshoot pod issues and view detailed information about a pod in OpenShift Container Platform, you can describe a pod using the `oc describe pod` command. The **Events** section in the output provides detailed information about the pod and the containers inside of it.\n\n**Procedure**\n\n- Describe a pod by running the following command:\n\n  ```terminal\n  $ oc describe pod -n <namespace> busybox-1\n  ```\n\n  ```terminal {title=\"Example output\"}\n  Name:             busybox-1\n  Namespace:        busy\n  Priority:         0\n  Service Account:  default\n  Node:             worker-3/192.168.0.0\n  Start Time:       Mon, 27 Nov 2023 14:41:25 -0500\n  Labels:           app=busybox\n                    pod-template-hash=<hash>\n  Annotations:      k8s.ovn.org/pod-networks:\n  …\n  Events:\n    Type    Reason   Age                   From     Message\n    ----    ------   ----                  ----     -------\n    Normal  Pulled   41m (x170 over 7d1h)  kubelet  Container image \"quay.io/quay/busybox:latest\" already present on machine\n    Normal  Created  41m (x170 over 7d1h)  kubelet  Created container busybox\n    Normal  Started  41m (x170 over 7d1h)  kubelet  Started container busybox\n  ```\n\n## Viewing pod usage statistics {#nodes-pods-viewing-usage_nodes-pods-viewing}\n\nYou can display usage statistics about pods, including CPU, memory, and storage consumption. By monitoring pod usage levels you can help ensure efficient resource use.\n\n**Prerequisites**\n\n- You must have `cluster-reader` permission to view the usage statistics.\n- Metrics must be installed to view the usage statistics.\n\n**Procedure**\n\n1. View the usage statistics by entering the following command:\n\n   ```terminal\n   $ oc adm top pods -n <namespace>\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                         CPU(cores)   MEMORY(bytes)\n   console-7f58c69899-q8c8k     0m           22Mi\n   console-7f58c69899-xhbgg     0m           25Mi\n   downloads-594fcccf94-bcxk8   3m           18Mi\n   downloads-594fcccf94-kv4p6   2m           15Mi\n   ```\n2. Optional: Add the `--selector=''` label to view usage statistics for pods with labels. Note that you must choose the label query to filter on, such as `=`, `==`, or `!=`. For example:\n\n   ```terminal\n   $ oc adm top pod --selector='<pod_name>'\n   ```\n\n## Viewing resource logs {#viewing-resource-logs-cli-console_nodes-pods-viewing}\n\nYou can view logs for resources in the OpenShift CLI (`oc`) or web console. By viewing logs for resources, you can troubleshoot issues and monitor resource behavior.\n\nLogs display from the end (or tail) by default.\n\n### Viewing resource logs by using the web console {#viewing-resource-logs-console_nodes-pods-viewing}\n\nYou can view resource logs by using the OpenShift Container Platform web console. By viewing logs for resources, you can troubleshoot issues and monitor resource behavior.\n\n**Procedure**\n\n1. In the OpenShift Container Platform console, navigate to **Workloads** -> **Pods** or navigate to the pod through the resource you want to investigate.\n\n   > [!NOTE]\n   > Some resources, such as builds, do not have pods to query directly. In such instances, you can locate the **Logs** link on the **Details** page for the resource.\n2. Select a project from the drop-down menu.\n3. Click the name of the pod you want to investigate.\n4. Click **Logs**.\n\n### Viewing resource logs by using the CLI {#viewing-resource-logs-cli_nodes-pods-viewing}\n\nYou can view resource logs by using the command-line interface (CLI). By viewing logs for resources, you can troubleshoot issues and monitor resource behavior.\n\n**Prerequisites**\n\n- Access to the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- View the log for a specific pod by entering the following command:\n\n  ```terminal\n  $ oc logs -f <pod_name> -c <container_name>\n  ```\n\n  where:\n\n  `-f`\n  :   Optional: Specifies that the output follows what is being written into the logs.\n\n  `<pod_name>`\n  :   Specifies the name of the pod.\n\n  `<container_name>`\n  :   Optional: Specifies the name of a container. When a pod has more than one container, you must specify the container name.\n\n  For example:\n\n  ```terminal\n  $ oc logs -f ruby-57f7f4855b-znl92 -c ruby\n  ```\n- View the log for a specific resource by entering the following command:\n\n  ```terminal\n  $ oc logs <object_type>/<resource_name>\n  ```\n\n  For example:\n\n  ```terminal\n  $ oc logs deployment/ruby\n  ```\n\n## Additional resources {#additional-resources_nodes-pods-viewing}\n\n- [oc describe](/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-describe)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/pods/nodes-pods-viewing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,103 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-pods-viewing" class="group scroll-mt-20">Viewing pods<a href="#nodes-pods-viewing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As an administrator, you can view cluster pods, check their health, and evaluate the overall health of the cluster. You can also view a list of pods associated with a specific project or view usage statistics about pods. Regularly viewing pods can help you detect problems early, track resource usage, and ensure cluster stability.</p>
-      <p class="/modules/nodes-pods-viewing-project.md"></p>
-      <p class="/modules/troubleshooting-general-describe-pod.md"></p>
-      <p class="/modules/nodes-pods-viewing-usage.md"></p>
-      <p class="/modules/viewing-resource-logs-cli-console.md"></p>
-      <p class="/modules/viewing-resource-logs-console.md"></p>
-      <p class="/modules/viewing-resource-logs-cli.md"></p>
+      <h2 id="nodes-pods-viewing-project_nodes-pods-viewing" class="group scroll-mt-20">Viewing pods in a project<a href="#nodes-pods-viewing-project_nodes-pods-viewing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can display pod usage statistics, such as CPU, memory, and storage consumption, to monitor container runtime environments and ensure efficient resource use.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Change to the project by entering the following command:
+      <CodeBlock code={"$ oc project <project_name>"} lang="terminal" />
+      </li>
+      <li>
+      Obtain a list of pods by entering the following command:
+      <CodeBlock code={"$ oc get pods"} lang="terminal" />
+      <CodeBlock code={"NAME                       READY   STATUS    RESTARTS   AGE\nconsole-698d866b78-bnshf   1/1     Running   2          165m\nconsole-698d866b78-m87pm   1/1     Running   2          165m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Optional: Add the <code>-o wide</code> flags to view the pod IP address and the node where the pod is located. For example:
+      <CodeBlock code={"$ oc get pods -o wide"} lang="terminal" />
+      <CodeBlock code={"NAME                       READY   STATUS    RESTARTS   AGE    IP            NODE                           NOMINATED NODE\nconsole-698d866b78-bnshf   1/1     Running   2          166m   10.128.0.24   ip-10-0-152-71.ec2.internal    <none>\nconsole-698d866b78-m87pm   1/1     Running   2          166m   10.129.0.23   ip-10-0-173-237.ec2.internal   <none>"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="troubleshooting-general-describe-pod_nodes-pods-viewing" class="group scroll-mt-20">Describing a pod<a href="#troubleshooting-general-describe-pod_nodes-pods-viewing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To troubleshoot pod issues and view detailed information about a pod in OpenShift Container Platform, you can describe a pod using the <code>oc describe pod</code> command. The <strong>Events</strong> section in the output provides detailed information about the pod and the containers inside of it.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Describe a pod by running the following command:
+      <CodeBlock code={"$ oc describe pod -n <namespace> busybox-1"} lang="terminal" />
+      <CodeBlock code={"Name:             busybox-1\nNamespace:        busy\nPriority:         0\nService Account:  default\nNode:             worker-3/192.168.0.0\nStart Time:       Mon, 27 Nov 2023 14:41:25 -0500\nLabels:           app=busybox\n                  pod-template-hash=<hash>\nAnnotations:      k8s.ovn.org/pod-networks:\n…\nEvents:\n  Type    Reason   Age                   From     Message\n  ----    ------   ----                  ----     -------\n  Normal  Pulled   41m (x170 over 7d1h)  kubelet  Container image \"quay.io/quay/busybox:latest\" already present on machine\n  Normal  Created  41m (x170 over 7d1h)  kubelet  Created container busybox\n  Normal  Started  41m (x170 over 7d1h)  kubelet  Started container busybox"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="nodes-pods-viewing-usage_nodes-pods-viewing" class="group scroll-mt-20">Viewing pod usage statistics<a href="#nodes-pods-viewing-usage_nodes-pods-viewing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can display usage statistics about pods, including CPU, memory, and storage consumption. By monitoring pod usage levels you can help ensure efficient resource use.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have <code>cluster-reader</code> permission to view the usage statistics.</li>
+      <li>Metrics must be installed to view the usage statistics.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      View the usage statistics by entering the following command:
+      <CodeBlock code={"$ oc adm top pods -n <namespace>"} lang="terminal" />
+      <CodeBlock code={"NAME                         CPU(cores)   MEMORY(bytes)\nconsole-7f58c69899-q8c8k     0m           22Mi\nconsole-7f58c69899-xhbgg     0m           25Mi\ndownloads-594fcccf94-bcxk8   3m           18Mi\ndownloads-594fcccf94-kv4p6   2m           15Mi"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Optional: Add the <code>--selector=''</code> label to view usage statistics for pods with labels. Note that you must choose the label query to filter on, such as <code>=</code>, <code>==</code>, or <code>!=</code>. For example:
+      <CodeBlock code={"$ oc adm top pod --selector='<pod_name>'"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="viewing-resource-logs-cli-console_nodes-pods-viewing" class="group scroll-mt-20">Viewing resource logs<a href="#viewing-resource-logs-cli-console_nodes-pods-viewing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can view logs for resources in the OpenShift CLI (<code>oc</code>) or web console. By viewing logs for resources, you can troubleshoot issues and monitor resource behavior.</p>
+      <p>Logs display from the end (or tail) by default.</p>
+      <h3 id="viewing-resource-logs-console_nodes-pods-viewing" class="group scroll-mt-20">Viewing resource logs by using the web console<a href="#viewing-resource-logs-console_nodes-pods-viewing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can view resource logs by using the OpenShift Container Platform web console. By viewing logs for resources, you can troubleshoot issues and monitor resource behavior.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      In the OpenShift Container Platform console, navigate to <strong>Workloads</strong> -&gt; <strong>Pods</strong> or navigate to the pod through the resource you want to investigate.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Some resources, such as builds, do not have pods to query directly. In such instances, you can locate the <strong>Logs</strong> link on the <strong>Details</strong> page for the resource.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Select a project from the drop-down menu.</li>
+      <li>Click the name of the pod you want to investigate.</li>
+      <li>Click <strong>Logs</strong>.</li>
+      </ol>
+      <h3 id="viewing-resource-logs-cli_nodes-pods-viewing" class="group scroll-mt-20">Viewing resource logs by using the CLI<a href="#viewing-resource-logs-cli_nodes-pods-viewing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can view resource logs by using the command-line interface (CLI). By viewing logs for resources, you can troubleshoot issues and monitor resource behavior.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Access to the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      View the log for a specific pod by entering the following command:
+      <CodeBlock code={"$ oc logs -f <pod_name> -c <container_name>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>-f</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies that the output follows what is being written into the logs.</p></dd>
+      <dt class="font-semibold"><code>&lt;pod_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the pod.</p></dd>
+      <dt class="font-semibold"><code>&lt;container_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the name of a container. When a pod has more than one container, you must specify the container name.</p></dd>
+      </dl>
+      <p>For example:</p>
+      <CodeBlock code={"$ oc logs -f ruby-57f7f4855b-znl92 -c ruby"} lang="terminal" />
+      </li>
+      <li>
+      View the log for a specific resource by entering the following command:
+      <CodeBlock code={"$ oc logs <object_type>/<resource_name>"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc logs deployment/ruby"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="additional-resources_nodes-pods-viewing" class="group scroll-mt-20">Additional resources<a href="#additional-resources_nodes-pods-viewing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/cli_reference/openshift_cli/developer-cli-commands#oc-describe">oc describe</a></li></ul>
     </article>

@@ -2,7 +2,7 @@
 // Source: lightspeed/about/ols-openshift-lightspeed-overview.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: \"{{ ols }} overview\"\n---\n\n# {{ ols }} overview {#ols-openshift-lightspeed-overview}\n\n{{ ols_official }} provides intelligent, natural language processing capabilities designed to make Red Hat cloud-native application platforms easier to use for beginners and more efficient for experienced professionals.\n\n> [!NOTE]\n> Because {{ ols }} releases on a different cadence from OpenShift Container Platform, the {{ ols }} documentation is available as a separate documentation set at [About {{ ols_official }}](https://docs.redhat.com/en/documentation/red_hat_openshift_lightspeed/1.0/html/about/index).\n";
+const body = "---\ntitle: \"{{ ols }} overview\"\n---\n\n# OpenShift Lightspeed overview {#ols-openshift-lightspeed-overview}\n\nRed Hat OpenShift Lightspeed provides intelligent, natural language processing capabilities designed to make Red Hat cloud-native application platforms easier to use for beginners and more efficient for experienced professionals.\n\n> [!NOTE]\n> Because OpenShift Lightspeed releases on a different cadence from OpenShift Container Platform, the OpenShift Lightspeed documentation is available as a separate documentation set at [About Red Hat OpenShift Lightspeed](https://docs.redhat.com/en/documentation/red_hat_openshift_lightspeed/1.0/html/about/index).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

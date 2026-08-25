@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-destroy-ibmz","text":"Destroying a hosted cluster on {{ ibm_z_title }}"}];
+const headings = [{"depth":1,"slug":"hcp-destroy-ibmz","text":"Destroying a hosted cluster on IBM Z"},{"depth":2,"slug":"destroy-hc-ibmz-cli_hcp-destroy-ibmz","text":"Destroying a hosted cluster on x86 bare metal with IBM Z compute nodes"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-ibmz";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-destroy
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Destroying a hosted cluster on {{ ibm_z_title }} {#hcp-destroy-ibmz}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-ibmz.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Destroying a hosted cluster on IBM Z {#hcp-destroy-ibmz}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n\n## Destroying a hosted cluster on x86 bare metal with IBM Z compute nodes {#destroy-hc-ibmz-cli_hcp-destroy-ibmz}\n\nTo destroy a hosted cluster and its managed cluster on `x86` bare metal with IBM Z(R) compute nodes, you can use the command-line interface (CLI).\n\n**Procedure**\n\n1. Scale the `NodePool` object to `0` nodes by running the following command:\n\n   ```terminal\n   $ oc -n <hosted_cluster_namespace> scale nodepool <nodepool_name> \\\n     --replicas 0\n   ```\n\n   After the `NodePool` object is scaled to `0`, the compute nodes are detached from the hosted cluster. In OpenShift Container Platform version 4.17, this function is applicable only for IBM Z with KVM. For z/VM and LPAR, you must delete the compute nodes manually.\n\n   If you want to re-attach compute nodes to the cluster, you can scale up the `NodePool` object with the number of compute nodes that you want. For z/VM and LPAR to reuse the agents, you must re-create them by using the `Discovery` image.\n\n   > [!IMPORTANT]\n   > If the compute nodes are not detached from the hosted cluster or are stuck in the `Notready` state, delete the compute nodes manually by running the following command:\n   >\n   > ```terminal\n   > $ oc --kubeconfig <hosted_cluster_name>.kubeconfig delete \\\n   >   node <compute_node_name>\n   > ```\n\n   If you are using an OSA network device in Processor Resource/Systems Manager (PR/SM) mode, auto scaling is not supported. You must delete the old agent manually and scale up the node pool because the new agent joins during the scale down process.\n2. Verify the status of the compute nodes by entering the following command:\n\n   ```terminal\n   $ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes\n   ```\n\n   After the compute nodes are detached from the hosted cluster, the status of the agents is changed to `auto-assign`.\n3. Delete the agents from the cluster by running the following command:\n\n   ```terminal\n   $ oc -n <hosted_control_plane_namespace> delete agent <agent_name>\n   ```\n\n   > [!NOTE]\n   > You can delete the virtual machines that you created as agents after you delete the agents from the cluster.\n4. Destroy the hosted cluster by running the following command:\n\n   ```terminal\n   $ hcp destroy cluster agent --name <hosted_cluster_name> \\\n     --namespace <hosted_cluster_namespace>\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-ibmz.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +94,46 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-destroy-ibmz" class="group scroll-mt-20">Destroying a hosted cluster on {"{"}{"{"} ibm_z_title {"}"}{"}"}<a href="#hcp-destroy-ibmz" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <h1 id="hcp-destroy-ibmz" class="group scroll-mt-20">Destroying a hosted cluster on IBM Z<a href="#hcp-destroy-ibmz" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.</p>
-      <p class="/modules/destroy-hc-ibm-z-cli.md"></p>
+      <h2 id="destroy-hc-ibmz-cli_hcp-destroy-ibmz" class="group scroll-mt-20">Destroying a hosted cluster on x86 bare metal with IBM Z compute nodes<a href="#destroy-hc-ibmz-cli_hcp-destroy-ibmz" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To destroy a hosted cluster and its managed cluster on <code>x86</code> bare metal with IBM Z(R) compute nodes, you can use the command-line interface (CLI).</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Scale the <code>NodePool</code> object to <code>0</code> nodes by running the following command:
+      <CodeBlock code={"$ oc -n <hosted_cluster_namespace> scale nodepool <nodepool_name> \\\n  --replicas 0"} lang="terminal" />
+      <p>After the <code>NodePool</code> object is scaled to <code>0</code>, the compute nodes are detached from the hosted cluster. In OpenShift Container Platform version 4.17, this function is applicable only for IBM Z with KVM. For z/VM and LPAR, you must delete the compute nodes manually.</p>
+      <p>If you want to re-attach compute nodes to the cluster, you can scale up the <code>NodePool</code> object with the number of compute nodes that you want. For z/VM and LPAR to reuse the agents, you must re-create them by using the <code>Discovery</code> image.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If the compute nodes are not detached from the hosted cluster or are stuck in the <code>Notready</code> state, delete the compute nodes manually by running the following command:</p>
+          <CodeBlock code={"$ oc --kubeconfig <hosted_cluster_name>.kubeconfig delete \\\n  node <compute_node_name>"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      <p>If you are using an OSA network device in Processor Resource/Systems Manager (PR/SM) mode, auto scaling is not supported. You must delete the old agent manually and scale up the node pool because the new agent joins during the scale down process.</p>
+      </li>
+      <li>
+      Verify the status of the compute nodes by entering the following command:
+      <CodeBlock code={"$ oc --kubeconfig <hosted_cluster_name>.kubeconfig get nodes"} lang="terminal" />
+      <p>After the compute nodes are detached from the hosted cluster, the status of the agents is changed to <code>auto-assign</code>.</p>
+      </li>
+      <li>
+      Delete the agents from the cluster by running the following command:
+      <CodeBlock code={"$ oc -n <hosted_control_plane_namespace> delete agent <agent_name>"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can delete the virtual machines that you created as agents after you delete the agents from the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Destroy the hosted cluster by running the following command:
+      <CodeBlock code={"$ hcp destroy cluster agent --name <hosted_cluster_name> \\\n  --namespace <hosted_cluster_namespace>"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -4,7 +4,7 @@ title: Enabling parallel backup processing
 
 # Enabling parallel backup processing {#oadp-enabling-parallel-backup-processing_{{ context }}}
 
-By default, {{ oadp_full }} processes only one backup in the `InProgress` phase at a time. Configure the `DataProtectionApplication` (DPA) custom resource (CR) to run several backups simultaneously to prevent smaller backups from being queued behind larger operations.
+By default, OpenShift API for Data Protection processes only one backup in the `InProgress` phase at a time. Configure the `DataProtectionApplication` (DPA) custom resource (CR) to run several backups simultaneously to prevent smaller backups from being queued behind larger operations.
 
 **Prerequisites**
 
@@ -30,7 +30,7 @@ By default, {{ oadp_full }} processes only one backup in the `InProgress` phase 
            - csi
    ```
 
-   Replace `<integer_limit>` with the maximum number of backups you want {{ oadp_short }} to process simultaneously. The default value is `1`. Backups that target overlapping namespaces are automatically serialized.
+   Replace `<integer_limit>` with the maximum number of backups you want OADP to process simultaneously. The default value is `1`. Backups that target overlapping namespaces are automatically serialized.
 
 **Verification**
 

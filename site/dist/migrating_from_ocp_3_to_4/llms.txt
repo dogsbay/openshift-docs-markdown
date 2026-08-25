@@ -2,7 +2,7 @@
 
 ## Migrating from version 3 to 4
 
-- [Migrating from version 3 to 4 overview](https://dogsbay.github.io/openshift-docs-markdown/migrating_from_ocp_3_to_4.md)
-- [About migrating from OpenShift Container Platform 3 to 4](https://dogsbay.github.io/openshift-docs-markdown/migrating_from_ocp_3_to_4/about-migrating-from-3-to-4.md)
-- [Differences between OpenShift Container Platform 3 and 4](https://dogsbay.github.io/openshift-docs-markdown/migrating_from_ocp_3_to_4/planning-migration-3-4.md)
-- [Network considerations](https://dogsbay.github.io/openshift-docs-markdown/migrating_from_ocp_3_to_4/planning-considerations-3-4.md)
+- [Migrating from version 3 to 4 overview](https://dogsbay.github.io/openshift-docs-markdown/migrating_from_ocp_3_to_4.md): OpenShift Container Platform 4 clusters are different from OpenShift Container Platform 3 clusters. OpenShift Container Platform 4 clusters contain new…
+- [About migrating from OpenShift Container Platform 3 to 4](https://dogsbay.github.io/openshift-docs-markdown/migrating_from_ocp_3_to_4/about-migrating-from-3-to-4.md): OpenShift Container Platform 4 contains new technologies and functionality that result in a cluster that is self-managing, flexible, and automated. OpenShift…
+- [Differences between OpenShift Container Platform 3 and 4](https://dogsbay.github.io/openshift-docs-markdown/migrating_from_ocp_3_to_4/planning-migration-3-4.md): OpenShift Container Platform 4.22 introduces architectural changes and enhancements/ The procedures that you used to manage your OpenShift Container Platform 3…
+- [Network considerations](https://dogsbay.github.io/openshift-docs-markdown/migrating_from_ocp_3_to_4/planning-considerations-3-4.md): Review the strategies for redirecting your application network traffic after migration.

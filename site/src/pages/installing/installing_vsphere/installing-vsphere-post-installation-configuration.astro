@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-vsphere-post-installation-configuration","text":"Configuring the vSphere connection settings after an installation"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"installing-vsphere-post-installation-configuration","text":"Configuring the vSphere connection settings after an installation"},{"depth":2,"slug":"configuring-vSphere-connection-settings_installing-vsphere-post-installation-configuration","text":"Configuring the vSphere connection settings"},{"depth":2,"slug":"configuring-vSphere-monitoring-configuration-completion_installing-vsphere-post-installation-configuration","text":"Verifying the configuration"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_vsphere/installing-vsphere-post-installation-configuration";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_vsphere"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the vSphere connection settings after an installation {#installing-vsphere-post-installation-configuration}\n\nAfter installing an OpenShift Container Platform cluster on vSphere with the platform integration feature enabled, you might need to update the vSphere connection settings manually, depending on the installation method.\n\nFor installations using the Assisted Installer, you must update the connection settings. This is because the Assisted Installer adds default connection settings to the **vSphere connection configuration** wizard as placeholders during the installation.\n\nFor installer-provisioned or user-provisioned infrastructure installations, you should have entered valid connection settings during the installation. You can use the **vSphere connection configuration** wizard at any time to validate or modify the connection settings, but this is not mandatory for completing the installation.\n\n## Additional resources {#_additional_resources}\n\n- [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_vsphere/installing-vsphere-post-installation-configuration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the vSphere connection settings after an installation {#installing-vsphere-post-installation-configuration}\n\nAfter installing an OpenShift Container Platform cluster on vSphere with the platform integration feature enabled, you might need to update the vSphere connection settings manually, depending on the installation method.\n\nFor installations using the Assisted Installer, you must update the connection settings. This is because the Assisted Installer adds default connection settings to the **vSphere connection configuration** wizard as placeholders during the installation.\n\nFor installer-provisioned or user-provisioned infrastructure installations, you should have entered valid connection settings during the installation. You can use the **vSphere connection configuration** wizard at any time to validate or modify the connection settings, but this is not mandatory for completing the installation.\n\n## Configuring the vSphere connection settings {#configuring-vSphere-connection-settings_installing-vsphere-post-installation-configuration}\n\nModify the following vSphere configuration settings as required:\n\n- vCenter address\n- vCenter cluster\n- vCenter username\n- vCenter password\n- vCenter address\n- vSphere data center\n- vSphere datastore\n- Virtual machine folder\n\n**Prerequisites**\n\n- The Assisted Installer has finished installing the cluster successfully.\n- The cluster is connected to `https://console.redhat.com`.\n\n**Procedure**\n\n1. In the Administrator perspective, navigate to **Home -> Overview**.\n2. Under **Status**, click **vSphere connection** to open the **vSphere connection configuration** wizard.\n3. In the **vCenter** field, enter the network address of the vSphere vCenter server. This can be either a domain name or an IP address. It appears in the vSphere web client URL; for example `https://[your_vCenter_address]/ui`.\n4. In the **vCenter cluster** field, enter the name of the vSphere vCenter cluster where OpenShift Container Platform is installed.\n\n   > [!IMPORTANT]\n   > This step is mandatory if you installed OpenShift Container Platform 4.13 or later.\n5. In the **Username** field, enter your vSphere vCenter username.\n6. In the **Password** field, enter your vSphere vCenter password.\n\n   > [!WARNING]\n   > The system stores the username and password in the `vsphere-creds` secret in the `kube-system` namespace of the cluster. An incorrect vCenter username or password makes the cluster nodes unschedulable.\n7. In the **Datacenter** field, enter the name of the vSphere data center that contains the virtual machines used to host the cluster; for example, `SDDC-Datacenter`.\n8. In the **Default data store** field, enter the path and name of the vSphere data store that stores the persistent data volumes; for example, `/SDDC-Datacenter/datastore/datastorename`.\n\n   > [!WARNING]\n   > Updating the vSphere data center or default data store after the configuration has been saved detaches any active vSphere `PersistentVolumes`.\n9. In the **Virtual Machine Folder** field, enter the data center folder that contains the virtual machine of the cluster; for example, `/SDDC-Datacenter/vm/ci-ln-hjg4vg2-c61657-t2gzr`. For the OpenShift Container Platform installation to succeed, all virtual machines comprising the cluster must be located in a single data center folder.\n10. Click **Save Configuration**. This updates the `cloud-provider-config` ConfigMap resource in the `openshift-config` namespace, and starts the configuration process.\n11. Reopen the **vSphere connection configuration** wizard and expand the **Monitored operators** panel. Check that the status of the operators is either **Progressing** or **Healthy**.\n\n## Verifying the configuration {#configuring-vSphere-monitoring-configuration-completion_installing-vsphere-post-installation-configuration}\n\nThe connection configuration process updates operator statuses and control plane nodes. It takes approximately an hour to complete. During the configuration process, the nodes reboot. Previously bound `PersistentVolumeClaims` objects might become disconnected.\n\n**Prerequisites**\n\n- You have saved the configuration settings in the **vSphere connection configuration** wizard.\n\n**Procedure**\n\n1. Check that the configuration process completed successfully:\n\n   1. In the OpenShift Container Platform Administrator perspective, navigate to **Home -> Overview**.\n   2. Under **Status** click **Operators**. Wait for all operator statuses to change from  **Progressing** to **All succeeded**.  A **Failed** status indicates that the configuration failed.\n   3. Under **Status**, click **Control Plane**. Wait for the response rate of all Control Pane components to return to 100%. A **Failed** control plane component indicates that the configuration failed.\n\n   A failure indicates that at least one of the connection settings is incorrect. Change the settings in the **vSphere connection configuration** wizard and save the configuration again.\n2. Check that you are able to bind `PersistentVolumeClaims` objects by performing the following steps:\n\n   1. Create a `StorageClass` object using the following YAML:\n\n      ```yaml\n      kind: StorageClass\n      apiVersion: storage.k8s.io/v1\n      metadata:\n       name: vsphere-sc\n      provisioner: kubernetes.io/vsphere-volume\n      parameters:\n       datastore: YOURVCENTERDATASTORE\n       diskformat: thin\n      reclaimPolicy: Delete\n      volumeBindingMode: Immediate\n      ```\n   2. Create a `PersistentVolumeClaims` object using the following YAML:\n\n      ```yaml\n      kind: PersistentVolumeClaim\n      apiVersion: v1\n      metadata:\n       name: test-pvc\n       namespace: openshift-config\n       annotations:\n         volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/vsphere-volume\n       finalizers:\n         - kubernetes.io/pvc-protection\n      spec:\n       accessModes:\n         - ReadWriteOnce\n       resources:\n         requests:\n          storage: 10Gi\n       storageClassName: vsphere-sc\n       volumeMode: Filesystem\n      ```\n\n      If you are unable to create a `PersistentVolumeClaims` object, you can troubleshoot by navigating to **Storage** -> **PersistentVolumeClaims** in the **Administrator** perspective of the OpenShift Container Platform web console.\n\n## Additional resources {#_additional_resources}\n\n- [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_vsphere/installing-vsphere-post-installation-configuration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,94 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="installing-vsphere-post-installation-configuration" class="group scroll-mt-20">Configuring the vSphere connection settings after an installation<a href="#installing-vsphere-post-installation-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>After installing an OpenShift Container Platform cluster on vSphere with the platform integration feature enabled, you might need to update the vSphere connection settings manually, depending on the installation method.</p>
       <p>For installations using the Assisted Installer, you must update the connection settings. This is because the Assisted Installer adds default connection settings to the <strong>vSphere connection configuration</strong> wizard as placeholders during the installation.</p>
       <p>For installer-provisioned or user-provisioned infrastructure installations, you should have entered valid connection settings during the installation. You can use the <strong>vSphere connection configuration</strong> wizard at any time to validate or modify the connection settings, but this is not mandatory for completing the installation.</p>
-      <p class="/modules/configuring-vsphere-connection-settings.md"></p>
-      <p class="/modules/configuring-vsphere-verifying-configuration.md"></p>
+      <h2 id="configuring-vSphere-connection-settings_installing-vsphere-post-installation-configuration" class="group scroll-mt-20">Configuring the vSphere connection settings<a href="#configuring-vSphere-connection-settings_installing-vsphere-post-installation-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Modify the following vSphere configuration settings as required:</p>
+      <ul>
+      <li>vCenter address</li>
+      <li>vCenter cluster</li>
+      <li>vCenter username</li>
+      <li>vCenter password</li>
+      <li>vCenter address</li>
+      <li>vSphere data center</li>
+      <li>vSphere datastore</li>
+      <li>Virtual machine folder</li>
+      </ul>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The Assisted Installer has finished installing the cluster successfully.</li>
+      <li>The cluster is connected to <code>https://console.redhat.com</code>.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the Administrator perspective, navigate to <strong>Home -&gt; Overview</strong>.</li>
+      <li>Under <strong>Status</strong>, click <strong>vSphere connection</strong> to open the <strong>vSphere connection configuration</strong> wizard.</li>
+      <li>In the <strong>vCenter</strong> field, enter the network address of the vSphere vCenter server. This can be either a domain name or an IP address. It appears in the vSphere web client URL; for example <code>https://[your_vCenter_address]/ui</code>.</li>
+      <li>
+      In the <strong>vCenter cluster</strong> field, enter the name of the vSphere vCenter cluster where OpenShift Container Platform is installed.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>This step is mandatory if you installed OpenShift Container Platform 4.13 or later.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>In the <strong>Username</strong> field, enter your vSphere vCenter username.</li>
+      <li>
+      In the <strong>Password</strong> field, enter your vSphere vCenter password.
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>The system stores the username and password in the <code>vsphere-creds</code> secret in the <code>kube-system</code> namespace of the cluster. An incorrect vCenter username or password makes the cluster nodes unschedulable.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>In the <strong>Datacenter</strong> field, enter the name of the vSphere data center that contains the virtual machines used to host the cluster; for example, <code>SDDC-Datacenter</code>.</li>
+      <li>
+      In the <strong>Default data store</strong> field, enter the path and name of the vSphere data store that stores the persistent data volumes; for example, <code>/SDDC-Datacenter/datastore/datastorename</code>.
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Updating the vSphere data center or default data store after the configuration has been saved detaches any active vSphere <code>PersistentVolumes</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>In the <strong>Virtual Machine Folder</strong> field, enter the data center folder that contains the virtual machine of the cluster; for example, <code>/SDDC-Datacenter/vm/ci-ln-hjg4vg2-c61657-t2gzr</code>. For the OpenShift Container Platform installation to succeed, all virtual machines comprising the cluster must be located in a single data center folder.</li>
+      <li>Click <strong>Save Configuration</strong>. This updates the <code>cloud-provider-config</code> ConfigMap resource in the <code>openshift-config</code> namespace, and starts the configuration process.</li>
+      <li>Reopen the <strong>vSphere connection configuration</strong> wizard and expand the <strong>Monitored operators</strong> panel. Check that the status of the operators is either <strong>Progressing</strong> or <strong>Healthy</strong>.</li>
+      </ol>
+      <h2 id="configuring-vSphere-monitoring-configuration-completion_installing-vsphere-post-installation-configuration" class="group scroll-mt-20">Verifying the configuration<a href="#configuring-vSphere-monitoring-configuration-completion_installing-vsphere-post-installation-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The connection configuration process updates operator statuses and control plane nodes. It takes approximately an hour to complete. During the configuration process, the nodes reboot. Previously bound <code>PersistentVolumeClaims</code> objects might become disconnected.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have saved the configuration settings in the <strong>vSphere connection configuration</strong> wizard.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check that the configuration process completed successfully:
+      <ol>
+      <li>In the OpenShift Container Platform Administrator perspective, navigate to <strong>Home -&gt; Overview</strong>.</li>
+      <li>Under <strong>Status</strong> click <strong>Operators</strong>. Wait for all operator statuses to change from  <strong>Progressing</strong> to <strong>All succeeded</strong>.  A <strong>Failed</strong> status indicates that the configuration failed.</li>
+      <li>Under <strong>Status</strong>, click <strong>Control Plane</strong>. Wait for the response rate of all Control Pane components to return to 100%. A <strong>Failed</strong> control plane component indicates that the configuration failed.</li>
+      </ol>
+      <p>A failure indicates that at least one of the connection settings is incorrect. Change the settings in the <strong>vSphere connection configuration</strong> wizard and save the configuration again.</p>
+      </li>
+      <li>
+      Check that you are able to bind <code>PersistentVolumeClaims</code> objects by performing the following steps:
+      <ol>
+      <li>
+      Create a <code>StorageClass</code> object using the following YAML:
+      <CodeBlock code={"kind: StorageClass\napiVersion: storage.k8s.io/v1\nmetadata:\n name: vsphere-sc\nprovisioner: kubernetes.io/vsphere-volume\nparameters:\n datastore: YOURVCENTERDATASTORE\n diskformat: thin\nreclaimPolicy: Delete\nvolumeBindingMode: Immediate"} lang="yaml" />
+      </li>
+      <li>
+      Create a <code>PersistentVolumeClaims</code> object using the following YAML:
+      <CodeBlock code={"kind: PersistentVolumeClaim\napiVersion: v1\nmetadata:\n name: test-pvc\n namespace: openshift-config\n annotations:\n   volume.beta.kubernetes.io/storage-provisioner: kubernetes.io/vsphere-volume\n finalizers:\n   - kubernetes.io/pvc-protection\nspec:\n accessModes:\n   - ReadWriteOnce\n resources:\n   requests:\n    storage: 10Gi\n storageClassName: vsphere-sc\n volumeMode: Filesystem"} lang="yaml" />
+      <p>If you are unable to create a <code>PersistentVolumeClaims</code> object, you can troubleshoot by navigating to <strong>Storage</strong> -&gt; <strong>PersistentVolumeClaims</strong> in the <strong>Administrator</strong> perspective of the OpenShift Container Platform web console.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning">Dynamic provisioning</a></li></ul>
     </article>

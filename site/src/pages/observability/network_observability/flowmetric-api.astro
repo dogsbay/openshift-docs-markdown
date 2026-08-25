@@ -15,8 +15,15 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"flowmetric-api","text":"FlowMetric configuration parameters"}];
+const headings = [{"depth":1,"slug":"flowmetric-api","text":"FlowMetric configuration parameters"},{"depth":2,"slug":"flowmetric-flows-netobserv-io-v1alpha1","text":"FlowMetric [flows.netobserv.io/v1alpha1]"},{"depth":3,"slug":"_metadata","text":".metadata"},{"depth":3,"slug":"_spec","text":".spec"},{"depth":3,"slug":"_speccharts","text":".spec.charts"},{"depth":3,"slug":"_speccharts","text":".spec.charts[]"},{"depth":3,"slug":"_specchartsqueries","text":".spec.charts[].queries"},{"depth":3,"slug":"_specchartsqueries","text":".spec.charts[].queries[]"},{"depth":3,"slug":"_specfilters","text":".spec.filters"},{"depth":3,"slug":"_specfilters","text":".spec.filters[]"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/network_observability/flowmetric-api";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +46,7 @@ const pageCategory = ["observability","observability/network_observability"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# FlowMetric configuration parameters {#flowmetric-api}\n\nThe `FlowMetric` API is used to generate custom observability metrics from collected network flow logs.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/flowmetric-api.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# FlowMetric configuration parameters {#flowmetric-api}\n\nThe `FlowMetric` API is used to generate custom observability metrics from collected network flow logs.\n\n## FlowMetric \\[flows.netobserv.io/v1alpha1\\] {#flowmetric-flows-netobserv-io-v1alpha1}\n\nDescription\n:   FlowMetric is the API allowing to create custom metrics from the collected flow logs.\n\nType\n:   ```\n    `object`\n    ```\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `apiVersion` | `string` | APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and might reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources |\n| `kind` | `string` | Kind is a string value representing the REST resource this object represents. Servers might infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds |\n| `metadata` | `object` | Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata |\n| `spec` | `object` | FlowMetricSpec defines the desired state of FlowMetric The provided API allows you to customize these metrics according to your needs.<br> When adding new metrics or modifying existing labels, you must carefully monitor the memory usage of Prometheus workloads as this could potentially have a high impact. Cf https://rhobs-handbook.netlify.app/products/openshiftmonitoring/telemetry.md/#what-is-the-cardinality-of-a-metric<br> To check the cardinality of all Network Observability metrics, run as `promql`: `count({__name__=~\"netobserv.*\"}) by (__name__)`. |\n\n### .metadata {#_metadata}\n\nDescription\n:   Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata\n\nType\n:   ```\n    `object`\n    ```\n\n### .spec {#_spec}\n\nDescription\n:   FlowMetricSpec defines the desired state of FlowMetric The provided API allows you to customize these metrics according to your needs. +\n\n    When adding new metrics or modifying existing labels, you must carefully monitor the memory usage of Prometheus workloads as this could potentially have a high impact. Cf https://rhobs-handbook.netlify.app/products/openshiftmonitoring/telemetry.md/#what-is-the-cardinality-of-a-metric +\n\n    To check the cardinality of all Network Observability metrics, run as `promql`: `count({__name__=~\"netobserv.*\"}) by (__name__)`.\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `type`\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `buckets` | `array (string)` | A list of buckets to use when `type` is \"Histogram\". The list must be parsable as floats. When not set, Prometheus default buckets are used. |\n| `charts` | `array` | Charts configuration, for the OpenShift Container Platform Console in the administrator view, Dashboards menu. |\n| `direction` | `string` | Filter for ingress, egress or any direction flows. When set to `Ingress`, it is equivalent to adding the regular expression filter on `FlowDirection`: \\`0\\\\ |\n| 2`. When set to `Egress`, it is equivalent to adding the regular expression filter on `FlowDirection`: `1\\\\ | 2\\`. | `divider` |\n| `string` | When nonzero, scale factor (divider) of the value. Metric value = Flow value / Divider. | `filters` |\n| `array` | `filters` is a list of fields and values used to restrict which flows are taken into account. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference. | `flatten` |\n| `array (string)` | `flatten` is a list of array-type fields that must be flattened, such as Interfaces or NetworkEvents. Flattened fields generate one metric per item in that field. For instance, when flattening `Interfaces` on a bytes counter, a flow having Interfaces \\[br-ex, ens5\\] increases one counter for `br-ex` and another for `ens5`. | `help` |\n| `string` | Help text of the metric, as it appears in Prometheus. | `labels` |\n| `array (string)` | `labels` is a list of fields that should be used as Prometheus labels, also known as dimensions (for example: `SrcK8S_Namespace`). From choosing labels results the level of granularity of this metric, and the available aggregations at query time. It must be done carefully as it impacts the metric cardinality (cf https://rhobs-handbook.netlify.app/products/openshiftmonitoring/telemetry.md/#what-is-the-cardinality-of-a-metric). In general, avoid setting very high cardinality labels such as IP or MAC addresses. \"SrcK8S_OwnerName\" or \"DstK8S_OwnerName\" should be preferred over \"SrcK8S_Name\" or \"DstK8S_Name\" as much as possible. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference. | `metricName` |\n| `string` | Name of the metric. In Prometheus, it is automatically prefixed with \"netobserv\\_\". Leave empty to generate the name based on the `FlowMetric` resource name. | `remap` |\n| `object (string)` | Set the `remap` property to use different names for the generated metric labels than the flow fields. Use the origin flow fields as keys, and the desired label names as values. | `type` |\n| `string` | Metric type: \"Counter\", \"Histogram\" or \"Gauge\". Use \"Counter\" for any value that increases over time and on which you can compute a rate, such as Bytes or Packets. Use \"Histogram\" for any value that must be sampled independently, such as latencies. Use \"Gauge\" for other values that don’t necessitate accuracy over time (gauges are sampled only every N seconds when Prometheus fetches the metric). | `valueField` |\n\n### .spec.charts {#_speccharts}\n\nDescription\n:   Charts configuration, for the OpenShift Container Platform Console in the administrator view, Dashboards menu.\n\nType\n:   ```\n    `array`\n    ```\n\n### .spec.charts\\[\\] {#_speccharts}\n\nDescription\n:   Configures charts / dashboard generation associated to a metric\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `dashboardName`\n    - `queries`\n    - `title`\n    - `type`\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `dashboardName` | `string` | Name of the containing dashboard. If this name does not refer to an existing dashboard, a new dashboard is created. |\n| `queries` | `array` | List of queries to be displayed on this chart. If `type` is `SingleStat` and multiple queries are provided, this chart is automatically expanded in several panels (one per query). |\n| `sectionName` | `string` | Name of the containing dashboard section. If this name does not refer to an existing section, a new section is created. If `sectionName` is omitted or empty, the chart is placed in the global top section. |\n| `title` | `string` | Title of the chart. |\n| `type` | `string` | Type of the chart. |\n| `unit` | `string` | Unit of this chart. Only a few units are currently supported. Leave empty to use generic number. |\n\n### .spec.charts\\[\\].queries {#_specchartsqueries}\n\nDescription\n:   List of queries to be displayed on this chart. If `type` is `SingleStat` and multiple queries are provided, this chart is automatically expanded in several panels (one per query).\n\nType\n:   ```\n    `array`\n    ```\n\n### .spec.charts\\[\\].queries\\[\\] {#_specchartsqueries}\n\nDescription\n:   Configures PromQL queries\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `legend`\n    - `promQL`\n    - `top`\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `legend` | `string` | The query legend that applies to each timeseries represented in this chart. When multiple timeseries are displayed, you should set a legend that distinguishes each of them. It can be done with the following format: `{{ Label }}`. For example, if the `promQL` groups timeseries per label such as: `sum(rate($METRIC[2m])) by (Label1, Label2)`, you might write as the legend: `Label1={{ Label1 }}, Label2={{ Label2 }}`. |\n| `promQL` | `string` | The `promQL` query to be run against Prometheus. If the chart `type` is `SingleStat`, this query should only return a single timeseries. For other types, a top 7 is displayed. You can use `$METRIC` to refer to the metric defined in this resource. For example: `sum(rate($METRIC[2m]))`. To learn more about `promQL`, refer to the Prometheus documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/ |\n| `top` | `integer` | Top N series to display per timestamp. Does not apply to `SingleStat` chart type. |\n\n### .spec.filters {#_specfilters}\n\nDescription\n:   `filters` is a list of fields and values used to restrict which flows are taken into account. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference.\n\nType\n:   ```\n    `array`\n    ```\n\n### .spec.filters\\[\\] {#_specfilters}\n\nDescription\n\nType\n:   ```\n    `object`\n    ```\n\nRequired\n:   - `field`\n    - `matchType`\n\n| Property | Type | Description |\n| --- | --- | --- |\n| `field` | `string` | Name of the field to filter on (for example: `SrcK8S_Namespace`). |\n| `matchType` | `string` | Type of matching to apply |\n| `value` | `string` | Value to filter on. When `matchType` is `Equal` or `NotEqual`, you can use field injection with `$(SomeField)` to refer to any other field of the flow. |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/network_observability/flowmetric-api.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +98,294 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="flowmetric-api" class="group scroll-mt-20">FlowMetric configuration parameters<a href="#flowmetric-api" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The <code>FlowMetric</code> API is used to generate custom observability metrics from collected network flow logs.</p>
-      <p class="/modules/network-observability-flowmetric-api-specifications.md"></p>
+      <h2 id="flowmetric-flows-netobserv-io-v1alpha1" class="group scroll-mt-20">FlowMetric [flows.netobserv.io/v1alpha1]<a href="#flowmetric-flows-netobserv-io-v1alpha1" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p>FlowMetric is the API allowing to create custom metrics from the collected flow logs.</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`object`"} lang="plaintext" /></dd>
+      </dl>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>apiVersion</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and might reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>kind</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Kind is a string value representing the REST resource this object represents. Servers might infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>metadata</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>spec</code></TableCell>
+      <TableCell><code>object</code></TableCell>
+      <TableCell>FlowMetricSpec defines the desired state of FlowMetric The provided API allows you to customize these metrics according to your needs.<Fragment set:html={"<br>"} /> When adding new metrics or modifying existing labels, you must carefully monitor the memory usage of Prometheus workloads as this could potentially have a high impact. Cf https://rhobs-handbook.netlify.app/products/openshiftmonitoring/telemetry.md/#what-is-the-cardinality-of-a-metric<Fragment set:html={"<br>"} /> To check the cardinality of all Network Observability metrics, run as <code>promql</code>: <code>count({"{"}__name__=~"netobserv.*"{"}"}) by (__name__)</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="_metadata" class="group scroll-mt-20">.metadata<a href="#_metadata" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Standard object’s metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`object`"} lang="plaintext" /></dd>
+      </dl>
+      <h3 id="_spec" class="group scroll-mt-20">.spec<a href="#_spec" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>FlowMetricSpec defines the desired state of FlowMetric The provided API allows you to customize these metrics according to your needs. +</p>
+      <p>When adding new metrics or modifying existing labels, you must carefully monitor the memory usage of Prometheus workloads as this could potentially have a high impact. Cf https://rhobs-handbook.netlify.app/products/openshiftmonitoring/telemetry.md/#what-is-the-cardinality-of-a-metric +</p>
+      <p>To check the cardinality of all Network Observability metrics, run as <code>promql</code>: <code>count({"{"}__name__=~"netobserv.*"{"}"}) by (__name__)</code>.</p>
+      </dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`object`"} lang="plaintext" /></dd>
+      <dt class="font-semibold">Required</dt>
+      <dd class="ml-6 text-muted-foreground"><ul><li><code>type</code></li></ul></dd>
+      </dl>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>buckets</code></TableCell>
+      <TableCell><code>array (string)</code></TableCell>
+      <TableCell>A list of buckets to use when <code>type</code> is "Histogram". The list must be parsable as floats. When not set, Prometheus default buckets are used.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>charts</code></TableCell>
+      <TableCell><code>array</code></TableCell>
+      <TableCell>Charts configuration, for the OpenShift Container Platform Console in the administrator view, Dashboards menu.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>direction</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Filter for ingress, egress or any direction flows. When set to <code>Ingress</code>, it is equivalent to adding the regular expression filter on <code>FlowDirection</code>: `0\</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>2<code>. When set to </code>Egress<code>, it is equivalent to adding the regular expression filter on </code>FlowDirection<code>: </code>1\</TableCell>
+      <TableCell>2`.</TableCell>
+      <TableCell><code>divider</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>When nonzero, scale factor (divider) of the value. Metric value = Flow value / Divider.</TableCell>
+      <TableCell><code>filters</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>array</code></TableCell>
+      <TableCell><code>filters</code> is a list of fields and values used to restrict which flows are taken into account. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference.</TableCell>
+      <TableCell><code>flatten</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>array (string)</code></TableCell>
+      <TableCell><code>flatten</code> is a list of array-type fields that must be flattened, such as Interfaces or NetworkEvents. Flattened fields generate one metric per item in that field. For instance, when flattening <code>Interfaces</code> on a bytes counter, a flow having Interfaces [br-ex, ens5] increases one counter for <code>br-ex</code> and another for <code>ens5</code>.</TableCell>
+      <TableCell><code>help</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Help text of the metric, as it appears in Prometheus.</TableCell>
+      <TableCell><code>labels</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>array (string)</code></TableCell>
+      <TableCell><code>labels</code> is a list of fields that should be used as Prometheus labels, also known as dimensions (for example: <code>SrcK8S_Namespace</code>). From choosing labels results the level of granularity of this metric, and the available aggregations at query time. It must be done carefully as it impacts the metric cardinality (cf https://rhobs-handbook.netlify.app/products/openshiftmonitoring/telemetry.md/#what-is-the-cardinality-of-a-metric). In general, avoid setting very high cardinality labels such as IP or MAC addresses. "SrcK8S_OwnerName" or "DstK8S_OwnerName" should be preferred over "SrcK8S_Name" or "DstK8S_Name" as much as possible. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference.</TableCell>
+      <TableCell><code>metricName</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Name of the metric. In Prometheus, it is automatically prefixed with "netobserv_". Leave empty to generate the name based on the <code>FlowMetric</code> resource name.</TableCell>
+      <TableCell><code>remap</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>object (string)</code></TableCell>
+      <TableCell>Set the <code>remap</code> property to use different names for the generated metric labels than the flow fields. Use the origin flow fields as keys, and the desired label names as values.</TableCell>
+      <TableCell><code>type</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Metric type: "Counter", "Histogram" or "Gauge". Use "Counter" for any value that increases over time and on which you can compute a rate, such as Bytes or Packets. Use "Histogram" for any value that must be sampled independently, such as latencies. Use "Gauge" for other values that don’t necessitate accuracy over time (gauges are sampled only every N seconds when Prometheus fetches the metric).</TableCell>
+      <TableCell><code>valueField</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="_speccharts" class="group scroll-mt-20">.spec.charts<a href="#_speccharts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Charts configuration, for the OpenShift Container Platform Console in the administrator view, Dashboards menu.</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`array`"} lang="plaintext" /></dd>
+      </dl>
+      <h3 id="_speccharts" class="group scroll-mt-20">.spec.charts[]<a href="#_speccharts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Configures charts / dashboard generation associated to a metric</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`object`"} lang="plaintext" /></dd>
+      <dt class="font-semibold">Required</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>dashboardName</code></li>
+      <li><code>queries</code></li>
+      <li><code>title</code></li>
+      <li><code>type</code></li>
+      </ul>
+      </dd>
+      </dl>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>dashboardName</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Name of the containing dashboard. If this name does not refer to an existing dashboard, a new dashboard is created.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>queries</code></TableCell>
+      <TableCell><code>array</code></TableCell>
+      <TableCell>List of queries to be displayed on this chart. If <code>type</code> is <code>SingleStat</code> and multiple queries are provided, this chart is automatically expanded in several panels (one per query).</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>sectionName</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Name of the containing dashboard section. If this name does not refer to an existing section, a new section is created. If <code>sectionName</code> is omitted or empty, the chart is placed in the global top section.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>title</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Title of the chart.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>type</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Type of the chart.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>unit</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Unit of this chart. Only a few units are currently supported. Leave empty to use generic number.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="_specchartsqueries" class="group scroll-mt-20">.spec.charts[].queries<a href="#_specchartsqueries" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p>List of queries to be displayed on this chart. If <code>type</code> is <code>SingleStat</code> and multiple queries are provided, this chart is automatically expanded in several panels (one per query).</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`array`"} lang="plaintext" /></dd>
+      </dl>
+      <h3 id="_specchartsqueries" class="group scroll-mt-20">.spec.charts[].queries[]<a href="#_specchartsqueries" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Configures PromQL queries</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`object`"} lang="plaintext" /></dd>
+      <dt class="font-semibold">Required</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>legend</code></li>
+      <li><code>promQL</code></li>
+      <li><code>top</code></li>
+      </ul>
+      </dd>
+      </dl>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>legend</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The query legend that applies to each timeseries represented in this chart. When multiple timeseries are displayed, you should set a legend that distinguishes each of them. It can be done with the following format: <code>{"{"}{"{"} Label {"}"}{"}"}</code>. For example, if the <code>promQL</code> groups timeseries per label such as: <code>sum(rate($METRIC[2m])) by (Label1, Label2)</code>, you might write as the legend: <code>Label1={"{"}{"{"} Label1 {"}"}{"}"}, Label2={"{"}{"{"} Label2 {"}"}{"}"}</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>promQL</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>The <code>promQL</code> query to be run against Prometheus. If the chart <code>type</code> is <code>SingleStat</code>, this query should only return a single timeseries. For other types, a top 7 is displayed. You can use <code>$METRIC</code> to refer to the metric defined in this resource. For example: <code>sum(rate($METRIC[2m]))</code>. To learn more about <code>promQL</code>, refer to the Prometheus documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>top</code></TableCell>
+      <TableCell><code>integer</code></TableCell>
+      <TableCell>Top N series to display per timestamp. Does not apply to <code>SingleStat</code> chart type.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h3 id="_specfilters" class="group scroll-mt-20">.spec.filters<a href="#_specfilters" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Description</dt>
+      <dd class="ml-6 text-muted-foreground"><p><code>filters</code> is a list of fields and values used to restrict which flows are taken into account. Refer to the documentation for the list of available fields: https://docs.redhat.com/en/documentation/openshift_container_platform/latest/html/network_observability/json-flows-format-reference.</p></dd>
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`array`"} lang="plaintext" /></dd>
+      </dl>
+      <h3 id="_specfilters" class="group scroll-mt-20">.spec.filters[]<a href="#_specfilters" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Description</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Type</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"`object`"} lang="plaintext" /></dd>
+      <dt class="font-semibold">Required</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>field</code></li>
+      <li><code>matchType</code></li>
+      </ul>
+      </dd>
+      </dl>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Property</TableHead>
+      <TableHead>Type</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>field</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Name of the field to filter on (for example: <code>SrcK8S_Namespace</code>).</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>matchType</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Type of matching to apply</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>value</code></TableCell>
+      <TableCell><code>string</code></TableCell>
+      <TableCell>Value to filter on. When <code>matchType</code> is <code>Equal</code> or <code>NotEqual</code>, you can use field injection with <code>$(SomeField)</code> to refer to any other field of the flow.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

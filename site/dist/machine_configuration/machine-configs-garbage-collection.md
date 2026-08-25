@@ -16,3 +16,101 @@ Use the `list` subcommand to display all the rendered machine configs in the clu
 
 > [!NOTE]
 > The `oc adm prune renderedmachineconfigs` command deletes only rendered machine configs that are not in use. If a rendered machine configs are in use by a machine config pool, the rendered machine config is not deleted. In this case, the command output specifies the reason that the rendered machine config was not deleted.
+
+## Viewing rendered machine configs {#machineconfig-garbage-collect-viewing_machine-configs-garbage-collection}
+
+You can view a list of rendered machine configs by using the `oc adm prune renderedmachineconfigs` command with the `list` subcommand to determine which objects you can remove.
+
+For example, the command in the following procedure would list all rendered machine configs for the `worker` machine config pool.
+
+**Procedure**
+
+- Optional: List the rendered machine configs by using the following command:
+
+  ```terminal
+  $ oc adm prune renderedmachineconfigs list --in-use=false --pool-name=worker
+  ```
+
+  where:
+
+  list
+  :   Displays a list of rendered machine configs in your cluster.
+
+  `--in-use`
+  :   Optional: Specifies whether to display only the used machine configs or all machine configs from the specified pool. If `true`, the output lists the rendered machine configs that are being used by a machine config pool. If `false`, the output lists all rendered machine configs in the cluster. The default value is `false`.
+
+  `--pool-name`
+  :   Optional: Specifies the machine config pool from which to display the machine configs.
+
+  ```terminal {title="Example output"}
+  worker
+
+  rendered-worker-f38bf61ced3c920cf5a29a200ed43243 -- 2025-01-21 13:45:01 +0000 UTC (Currently in use: false)
+  rendered-worker-fc94397dc7c43808c7014683c208956e-- 2025-01-30 17:20:53 +0000 UTC (Currently in use: false)
+  rendered-worker-708c652868f7597eaa1e2622edc366ef -- 2025-01-31 18:01:16 +0000 UTC (Currently in use: true)
+  ```
+- List the rendered machine configs that you can remove automatically by running the following command. Any rendered machine config marked with the `as it’s currently in use` message in the command output cannot be removed.
+
+  ```terminal
+  $ oc adm prune renderedmachineconfigs --pool-name=worker
+  ```
+
+  The command runs in dry-run mode, and no machine configs are removed. where:
+
+  `--pool-name`
+  :   Optional: Displays the machine configs in the specified machine config pool.
+
+  ```terminal {title="Example output"}
+  Dry run enabled - no modifications will be made. Add --confirm to remove rendered machine configs.
+  dry-run deleting rendered MachineConfig rendered-worker-f38bf61ced3c920cf5a29a200ed43243
+  dry-run deleting MachineConfig rendered-worker-fc94397dc7c43808c7014683c208956e
+  Skip dry-run deleting rendered MachineConfig rendered-worker-708c652868f7597eaa1e2622edc366ef as it's currently in use
+  ```
+
+## Removing unused rendered machine configs {#machineconfig-garbage-collect-removing_machine-configs-garbage-collection}
+
+You can remove unused rendered machine configs by using the `oc adm prune renderedmachineconfigs` command with the `--confirm` command, reducing disk space and performance issues.
+
+If any rendered machine config is not deleted, the command output indicates which was not deleted and lists the reason for skipping the deletion.
+
+**Procedure**
+
+1. Optional: List the rendered machine configs that you can remove automatically by running the following command. Any rendered machine config marked with the `as it’s currently in use` message in the command output cannot be removed.
+
+   ```terminal
+   $ oc adm prune renderedmachineconfigs --pool-name=worker
+   ```
+
+   ```terminal {title="Example output"}
+   Dry run enabled - no modifications will be made. Add --confirm to remove rendered machine configs.
+   dry-run deleting rendered MachineConfig rendered-worker-f38bf61ced3c920cf5a29a200ed43243
+   dry-run deleting MachineConfig rendered-worker-fc94397dc7c43808c7014683c208956e
+   Skip dry-run deleting rendered MachineConfig rendered-worker-708c652868f7597eaa1e2622edc366ef as it's currently in use
+   ```
+
+   where:
+
+   pool-name
+   :   Optional: Specifies the machine config pool where you want to delete the machine configs from.
+2. Remove the unused rendered machine configs by running the following command. The command in the following procedure would delete the two oldest unused rendered machine configs in the `worker` machine config pool.
+
+   ```terminal
+   $ oc adm prune renderedmachineconfigs --pool-name=worker --count=2 --confirm
+   ```
+
+   where:
+
+   `--count`
+   :   Optional: Specifies the maximum number of unused rendered machine configs you want to delete, starting with the oldest.
+
+   `--confirm`
+   :   Indicates that pruning should occur, instead of performing a dry-run.
+
+   `--pool-name`
+   :   Optional: Specifies the machine config pool from which you want to delete the machine. If not specified, all the pools are evaluated.
+
+   ```terminal {title="Example output"}
+   deleting rendered MachineConfig rendered-worker-f38bf61ced3c920cf5a29a200ed43243
+   deleting rendered MachineConfig rendered-worker-fc94397dc7c43808c7014683c208956e
+   Skip deleting rendered MachineConfig rendered-worker-708c652868f7597eaa1e2622edc366ef as it's currently in use
+   ```

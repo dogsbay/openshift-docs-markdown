@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-using-secondary-networks-ssh","text":"Use a secondary network for SSH access"},{"depth":2,"slug":"prerequisites_virt-using-secondary-networks-ssh","text":"Prerequisites"}];
+const headings = [{"depth":1,"slug":"virt-using-secondary-networks-ssh","text":"Use a secondary network for SSH access"},{"depth":2,"slug":"prerequisites_virt-using-secondary-networks-ssh","text":"Prerequisites"},{"depth":2,"slug":"virt-vm-creating-nic-web_virt-using-secondary-networks-ssh","text":"Configuring a VM network interface by using the web console"},{"depth":2,"slug":"virt-connecting-secondary-network-ssh_virt-using-secondary-networks-ssh","text":"Connecting to a VM attached to a secondary network by using SSH"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-secondary-networks-ssh";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/ssh"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Use a secondary network for SSH access {#virt-using-secondary-networks-ssh}\n\nYou can configure a secondary network, attach a virtual machine (VM) to the secondary network interface, and connect to the DHCP-allocated IP address by using SSH.\n\n> [!IMPORTANT]\n> Secondary networks provide excellent performance because the traffic is not handled by the cluster network stack. However, the VMs are exposed directly to the secondary network and are not protected by firewalls. If a VM is compromised, an intruder could gain access to the secondary network. You must configure appropriate security within the operating system of the VM if you use this method.\n\nFor additional information about networking options, see the Multus and SR-IOV documentation in the \"{{ VirtProductName }} Tuning & Scaling Guide\".\n\n> [!NOTE]\n> You can also access a VM attached to a secondary network interface by using the cluster FQDN.\n\n## Prerequisites {#prerequisites_virt-using-secondary-networks-ssh}\n\n- You configured a secondary network such as Linux bridge or SR-IOV.\n- You created a network attachment definition for a Linux bridge network or the SR-IOV Network Operator created a network attachment definition when you created an `SriovNetwork` object.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-secondary-networks-ssh.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Use a secondary network for SSH access {#virt-using-secondary-networks-ssh}\n\nYou can configure a secondary network, attach a virtual machine (VM) to the secondary network interface, and connect to the DHCP-allocated IP address by using SSH.\n\n> [!IMPORTANT]\n> Secondary networks provide excellent performance because the traffic is not handled by the cluster network stack. However, the VMs are exposed directly to the secondary network and are not protected by firewalls. If a VM is compromised, an intruder could gain access to the secondary network. You must configure appropriate security within the operating system of the VM if you use this method.\n\nFor additional information about networking options, see the Multus and SR-IOV documentation in the \"OpenShift Virtualization Tuning & Scaling Guide\".\n\n> [!NOTE]\n> You can also access a VM attached to a secondary network interface by using the cluster FQDN.\n\n## Prerequisites {#prerequisites_virt-using-secondary-networks-ssh}\n\n- You configured a secondary network such as Linux bridge or SR-IOV.\n- You created a network attachment definition for a Linux bridge network or the SR-IOV Network Operator created a network attachment definition when you created an `SriovNetwork` object.\n\n## Configuring a VM network interface by using the web console {#virt-vm-creating-nic-web_virt-using-secondary-networks-ssh}\n\nYou can configure a network interface for a virtual machine (VM) by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You created a network attachment definition for the network.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **VirtualMachines**.\n2. Click a VM to view the **VirtualMachine details** page.\n3. On the **Configuration** tab, click the **Network interfaces** tab.\n4. Click **Add network interface**.\n5. Enter the interface name and select the network attachment definition from the **Network** list.\n6. Click **Save**.\n7. Restart or live migrate the VM to apply the changes.\n\n## Connecting to a VM attached to a secondary network by using SSH {#virt-connecting-secondary-network-ssh_virt-using-secondary-networks-ssh}\n\nYou can connect to a virtual machine (VM) attached to a secondary network by using SSH.\n\n**Prerequisites**\n\n- You attached a VM to a secondary network with a DHCP server.\n- You have an SSH client installed.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Obtain the IP address of the VM by running the following command:\n\n   ```terminal\n   $ oc describe vm <vm_name> -n <namespace>\n   ```\n\n   Example output:\n\n   ```terminal\n   # ...\n   Interfaces:\n     Interface Name:  eth0\n     Ip Address:      10.244.0.37/24\n     Ip Addresses:\n       10.244.0.37/24\n       fe80::858:aff:fef4:25/64\n     Mac:             0a:58:0a:f4:00:25\n     Name:            default\n   # ...\n   ```\n2. Connect to the VM by running the following command:\n\n   ```terminal\n   $ ssh <user_name>@<ip_address> -i <ssh_key>\n   ```\n\n   Example command:\n\n   ```terminal\n   $ ssh cloud-user@10.244.0.37 -i ~/.ssh/id_rsa_cloud-user\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-secondary-networks-ssh.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,7 +94,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-using-secondary-networks-ssh" class="group scroll-mt-20">Use a secondary network for SSH access<a href="#virt-using-secondary-networks-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You can configure a secondary network, attach a virtual machine (VM) to the secondary network interface, and connect to the DHCP-allocated IP address by using SSH.</p>
       <Alert variant="info" class="my-4">
@@ -102,7 +102,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Secondary networks provide excellent performance because the traffic is not handled by the cluster network stack. However, the VMs are exposed directly to the secondary network and are not protected by firewalls. If a VM is compromised, an intruder could gain access to the secondary network. You must configure appropriate security within the operating system of the VM if you use this method.</p>
         </AlertDescription>
       </Alert>
-      <p>For additional information about networking options, see the Multus and SR-IOV documentation in the "{"{"}{"{"} VirtProductName {"}"}{"}"} Tuning &amp; Scaling Guide".</p>
+      <p>For additional information about networking options, see the Multus and SR-IOV documentation in the "OpenShift Virtualization Tuning &amp; Scaling Guide".</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
@@ -114,7 +114,43 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>You configured a secondary network such as Linux bridge or SR-IOV.</li>
       <li>You created a network attachment definition for a Linux bridge network or the SR-IOV Network Operator created a network attachment definition when you created an <code>SriovNetwork</code> object.</li>
       </ul>
-      <p class="/modules/virt-connecting-secondary-network-ssh.md"></p>
+      <h2 id="virt-vm-creating-nic-web_virt-using-secondary-networks-ssh" class="group scroll-mt-20">Configuring a VM network interface by using the web console<a href="#virt-vm-creating-nic-web_virt-using-secondary-networks-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure a network interface for a virtual machine (VM) by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You created a network attachment definition for the network.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong>.</li>
+      <li>Click a VM to view the <strong>VirtualMachine details</strong> page.</li>
+      <li>On the <strong>Configuration</strong> tab, click the <strong>Network interfaces</strong> tab.</li>
+      <li>Click <strong>Add network interface</strong>.</li>
+      <li>Enter the interface name and select the network attachment definition from the <strong>Network</strong> list.</li>
+      <li>Click <strong>Save</strong>.</li>
+      <li>Restart or live migrate the VM to apply the changes.</li>
+      </ol>
+      <h2 id="virt-connecting-secondary-network-ssh_virt-using-secondary-networks-ssh" class="group scroll-mt-20">Connecting to a VM attached to a secondary network by using SSH<a href="#virt-connecting-secondary-network-ssh_virt-using-secondary-networks-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can connect to a virtual machine (VM) attached to a secondary network by using SSH.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You attached a VM to a secondary network with a DHCP server.</li>
+      <li>You have an SSH client installed.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Obtain the IP address of the VM by running the following command:
+      <CodeBlock code={"$ oc describe vm <vm_name> -n <namespace>"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"# ...\nInterfaces:\n  Interface Name:  eth0\n  Ip Address:      10.244.0.37/24\n  Ip Addresses:\n    10.244.0.37/24\n    fe80::858:aff:fef4:25/64\n  Mac:             0a:58:0a:f4:00:25\n  Name:            default\n# ..."} lang="terminal" />
+      </li>
+      <li>
+      Connect to the VM by running the following command:
+      <CodeBlock code={"$ ssh <user_name>@<ip_address> -i <ssh_key>"} lang="terminal" />
+      <p>Example command:</p>
+      <CodeBlock code={"$ ssh cloud-user@10.244.0.37 -i ~/.ssh/id_rsa_cloud-user"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

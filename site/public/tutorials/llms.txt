@@ -2,7 +2,7 @@
 
 ## Tutorials
 
-- [Tutorials overview](https://dogsbay.github.io/openshift-docs-markdown/tutorials.md)
-- [Deploying an application by using the web console](https://dogsbay.github.io/openshift-docs-markdown/tutorials/dev-app-web-console.md)
-- [Deploying an application by using the CLI](https://dogsbay.github.io/openshift-docs-markdown/tutorials/dev-app-cli.md)
-- [Additional hands-on learning](https://dogsbay.github.io/openshift-docs-markdown/tutorials/additional-tutorials.md)
+- [Tutorials overview](https://dogsbay.github.io/openshift-docs-markdown/tutorials.md): To learn how to use OpenShift Container Platform, review the tutorials and other learning resources that are available.
+- [Deploying an application by using the web console](https://dogsbay.github.io/openshift-docs-markdown/tutorials/dev-app-web-console.md): To learn how to stand up an application on OpenShift Container Platform by using the web console, follow the provided tutorial. In this tutorial, you will…
+- [Deploying an application by using the CLI](https://dogsbay.github.io/openshift-docs-markdown/tutorials/dev-app-cli.md): To learn how to stand up an application on OpenShift Container Platform by using the OpenShift CLI (oc), follow the provided tutorial. In this tutorial, you…
+- [Additional hands-on learning](https://dogsbay.github.io/openshift-docs-markdown/tutorials/additional-tutorials.md): Explore additional learning resources provided by Red Hat for administrators and developers to gain hands-on experience with OpenShift Container Platform.

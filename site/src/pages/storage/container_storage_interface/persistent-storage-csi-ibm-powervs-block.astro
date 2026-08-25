@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"persistent-storage-csi-ibm-powervs-block","text":"{{ ibm_power_server_title }} Block CSI Driver Operator"}];
+const headings = [{"depth":1,"slug":"persistent-storage-csi-ibm-powervs-block","text":"{{ ibm_power_server_title }} Block CSI Driver Operator"},{"depth":2,"slug":"persistent-storage-csi-ibm-powervs-block-intro_persistent-storage-csi-ibm-powervs-block","text":"Introduction to IBM Power(R) Virtual Server Block CSI Driver Operator"},{"depth":2,"slug":"persistent-storage-csi-ibm-powervs-block-overview_persistent-storage-csi-ibm-powervs-block","text":"IBM Power(R) Virtual Server Block CSI Driver Operator overview"},{"depth":2,"slug":"csi-about_persistent-storage-csi-ibm-powervs-block","text":"About CSI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-ibm-powervs-block";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ ibm_power_server_title }} Block CSI Driver Operator";
-const description = "You can provision and manage {{ ibm_power_server_name }} Block storage in OpenShift Container Platform by using the Container Storage Interface (CSI)…" || undefined;
+const description = "You can provision and manage IBM Power(R) Virtual Server Block storage in OpenShift Container Platform by using the Container Storage Interface (CSI)…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["storage","storage/container_storage_interface"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ ibm_power_server_title }} Block CSI Driver Operator {#persistent-storage-csi-ibm-powervs-block}\n\nYou can provision and manage {{ ibm_power_server_name }} Block storage in OpenShift Container Platform by using the Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.\n\n <a name=\"persistent-storage-csi-ibm-powervs-block-overview_persistent-storage-csi-ibm-powervs-block\"></a>**Additional resources**\n\n- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)\n- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-ibm-powervs-block.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ ibm_power_server_title }} Block CSI Driver Operator {#persistent-storage-csi-ibm-powervs-block}\n\nYou can provision and manage IBM Power(R) Virtual Server Block storage in OpenShift Container Platform by using the Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.\n\n## Introduction to IBM Power(R) Virtual Server Block CSI Driver Operator  {#persistent-storage-csi-ibm-powervs-block-intro_persistent-storage-csi-ibm-powervs-block}\n\nThe IBM Power(R) Virtual Server Block CSI Driver is installed through the IBM Power(R) Virtual Server Block CSI Driver Operator and the operator is based on `library-go`.\n\nThe OpenShift Container Platform `library-go` framework is a collection of functions that allows users to build OpenShift operators easily. Most of the functionality of a CSI Driver Operator is already available there. The IBM Power(R) Virtual Server Block CSI Driver Operator is installed by the Cluster Storage Operator. The Cluster Storage Operator installs the IBM Power(R) Virtual Server Block CSI Driver Operator if the platform type is Power Virtual Servers.\n\n## IBM Power(R) Virtual Server Block CSI Driver Operator overview {#persistent-storage-csi-ibm-powervs-block-overview_persistent-storage-csi-ibm-powervs-block}\n\nOpenShift Container Platform can provision persistent volumes (PVs) by using the Container Storage Interface (CSI) driver for IBM Power(R) Virtual Server Block Storage.\n\nFamiliarity with persistent storage and configuring CSI volumes is helpful when working with a CSI Operator and driver. For more information, see \"Understanding persistent storage\" and \"Configuring CSI volumes\".\n\nTo create CSI-provisioned PVs that mount to IBM Power(R) Virtual Server Block storage assets, OpenShift Container Platform installs the IBM Power(R) Virtual Server Block CSI Driver Operator and the IBM Power(R) Virtual Server Block CSI driver by default in the `openshift-cluster-csi-drivers` namespace.\n\n- The *IBM Power(R) Virtual Server Block CSI Driver Operator* provides two storage classes named `ibm-powervs-tier1` (default), and `ibm-powervs-tier3` for different tiers that you can use to create persistent volume claims (PVCs). The IBM Power(R) Virtual Server Block CSI Driver Operator supports dynamic volume provisioning by allowing storage volumes to be created on-demand, eliminating the need for cluster administrators to pre-provision storage.\n- With the *IBM Power(R) Virtual Server Block CSI driver* you can create and mount IBM Power(R) Virtual Server Block PVs. <a name=\"persistent-storage-csi-ibm-powervs-block-overview_persistent-storage-csi-ibm-powervs-block\"></a>**Additional resources**\n- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)\n- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)\n\n## About CSI {#csi-about_persistent-storage-csi-ibm-powervs-block}\n\nThe Container Storage Interface (CSI) enables storage vendors to deliver plugins through a standard interface without modifying Kubernetes core code, replacing traditional embedded storage drivers.\n\nCSI Operators give OpenShift Container Platform users storage options, such as volume snapshots, that are not possible with in-tree volume plugins.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-ibm-powervs-block.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,16 +90,24 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/attributes-openshift-dedicated.md"></p>
       <h1 id="persistent-storage-csi-ibm-powervs-block" class="group scroll-mt-20">{"{"}{"{"} ibm_power_server_title {"}"}{"}"} Block CSI Driver Operator<a href="#persistent-storage-csi-ibm-powervs-block" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can provision and manage {"{"}{"{"} ibm_power_server_name {"}"}{"}"} Block storage in OpenShift Container Platform by using the Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.</p>
-      <p class="/modules/persistent-storage-csi-ibm-powervs-block-intro.md"></p>
-      <p class="/modules/persistent-storage-csi-ibm-powervs-block-overview.md"> <Fragment set:html={"<a name=\"persistent-storage-csi-ibm-powervs-block-overview_persistent-storage-csi-ibm-powervs-block\">"} /><Fragment set:html={"</a>"} /><strong>Additional resources</strong></p>
+      <p>You can provision and manage IBM Power(R) Virtual Server Block storage in OpenShift Container Platform by using the Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning.</p>
+      <h2 id="persistent-storage-csi-ibm-powervs-block-intro_persistent-storage-csi-ibm-powervs-block" class="group scroll-mt-20">Introduction to IBM Power(R) Virtual Server Block CSI Driver Operator <a href="#persistent-storage-csi-ibm-powervs-block-intro_persistent-storage-csi-ibm-powervs-block" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The IBM Power(R) Virtual Server Block CSI Driver is installed through the IBM Power(R) Virtual Server Block CSI Driver Operator and the operator is based on <code>library-go</code>. </p>
+      <p>The OpenShift Container Platform <code>library-go</code> framework is a collection of functions that allows users to build OpenShift operators easily. Most of the functionality of a CSI Driver Operator is already available there. The IBM Power(R) Virtual Server Block CSI Driver Operator is installed by the Cluster Storage Operator. The Cluster Storage Operator installs the IBM Power(R) Virtual Server Block CSI Driver Operator if the platform type is Power Virtual Servers.</p>
+      <h2 id="persistent-storage-csi-ibm-powervs-block-overview_persistent-storage-csi-ibm-powervs-block" class="group scroll-mt-20">IBM Power(R) Virtual Server Block CSI Driver Operator overview<a href="#persistent-storage-csi-ibm-powervs-block-overview_persistent-storage-csi-ibm-powervs-block" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Container Platform can provision persistent volumes (PVs) by using the Container Storage Interface (CSI) driver for IBM Power(R) Virtual Server Block Storage.</p>
+      <p>Familiarity with persistent storage and configuring CSI volumes is helpful when working with a CSI Operator and driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".</p>
+      <p>To create CSI-provisioned PVs that mount to IBM Power(R) Virtual Server Block storage assets, OpenShift Container Platform installs the IBM Power(R) Virtual Server Block CSI Driver Operator and the IBM Power(R) Virtual Server Block CSI driver by default in the <code>openshift-cluster-csi-drivers</code> namespace.</p>
       <ul>
+      <li>The <em>IBM Power(R) Virtual Server Block CSI Driver Operator</em> provides two storage classes named <code>ibm-powervs-tier1</code> (default), and <code>ibm-powervs-tier3</code> for different tiers that you can use to create persistent volume claims (PVCs). The IBM Power(R) Virtual Server Block CSI Driver Operator supports dynamic volume provisioning by allowing storage volumes to be created on-demand, eliminating the need for cluster administrators to pre-provision storage.</li>
+      <li>With the <em>IBM Power(R) Virtual Server Block CSI driver</em> you can create and mount IBM Power(R) Virtual Server Block PVs. <Fragment set:html={"<a name=\"persistent-storage-csi-ibm-powervs-block-overview_persistent-storage-csi-ibm-powervs-block\">"} /><Fragment set:html={"</a>"} /><strong>Additional resources</strong></li>
       <li><a href="/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage">Understanding persistent storage</a></li>
       <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi">Configuring CSI volumes</a></li>
       </ul>
+      <h2 id="csi-about_persistent-storage-csi-ibm-powervs-block" class="group scroll-mt-20">About CSI<a href="#csi-about_persistent-storage-csi-ibm-powervs-block" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Container Storage Interface (CSI) enables storage vendors to deliver plugins through a standard interface without modifying Kubernetes core code, replacing traditional embedded storage drivers.</p>
+      <p>CSI Operators give OpenShift Container Platform users storage options, such as volume snapshots, that are not possible with in-tree volume plugins.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"oadp-self-service-cluster-admin-use-cases","text":"{{ oadp_short }} Self-Service cluster admin use cases"}];
+const headings = [{"depth":1,"slug":"oadp-self-service-cluster-admin-use-cases","text":"{{ oadp_short }} Self-Service cluster admin use cases"},{"depth":2,"slug":"oadp-self-service-admin-enable-disable_oadp-self-service-cluster-admin-use-cases","text":"Enabling and disabling OADP Self-Service"},{"depth":2,"slug":"oadp-self-service-enabling-nabsl-approval_oadp-self-service-cluster-admin-use-cases","text":"Enabling NonAdminBackupStorageLocation administrator approval workflow"},{"depth":2,"slug":"oadp-self-service-approving-nabsl_oadp-self-service-cluster-admin-use-cases","text":"Approving a NonAdminBackupStorageLocation request"},{"depth":2,"slug":"oadp-self-service-rejecting-nabsl_oadp-self-service-cluster-admin-use-cases","text":"Rejecting a NonAdminBackupStorageLocation request"},{"depth":2,"slug":"oadp-self-service-admin-spec-enforcement_oadp-self-service-cluster-admin-use-cases","text":"OADP Self-Service administrator DPA spec enforcement"},{"depth":2,"slug":"oadp-self-service-admin-spec-enforce-nabsl_oadp-self-service-cluster-admin-use-cases","text":"Self-Service administrator spec enforcement for NABSL"},{"depth":2,"slug":"oadp-self-service-admin-spec-enforce-nab_oadp-self-service-cluster-admin-use-cases","text":"Self-Service administrator spec enforcement for NAB"},{"depth":2,"slug":"oadp-self-service-admin-spec-enforce-nar_oadp-self-service-cluster-admin-use-cases","text":"Self-Service administrator spec enforcement for NAR"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-self-service/oadp-self-service-cluster-admin-use-cases";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ oadp_short }} Self-Service cluster admin use cases";
-const description = "Configure and manage {{ oadp_short }} Self-Service by enabling the feature, reviewing backup storage location requests, and enforcing policy templates…" || undefined;
+const description = "Configure and manage OADP Self-Service by enabling the feature, reviewing backup storage location requests, and enforcing policy templates. This helps you…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ oadp_short }} Self-Service cluster admin use cases {#oadp-self-service-cluster-admin-use-cases}\n\nConfigure and manage {{ oadp_short }} Self-Service by enabling the feature, reviewing backup storage location requests, and enforcing policy templates. This helps you provide Self-Service backup capabilities while maintaining administrative control.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-self-service/oadp-self-service-cluster-admin-use-cases.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ oadp_short }} Self-Service cluster admin use cases {#oadp-self-service-cluster-admin-use-cases}\n\nConfigure and manage OADP Self-Service by enabling the feature, reviewing backup storage location requests, and enforcing policy templates. This helps you provide Self-Service backup capabilities while maintaining administrative control.\n\n## Enabling and disabling OADP Self-Service {#oadp-self-service-admin-enable-disable_oadp-self-service-cluster-admin-use-cases}\n\nEnable or disable the OADP Self-Service feature to allow namespace administrators to manage their own backup and restore operations without cluster admin privileges. This helps you delegate backup responsibilities while maintaining administrative control.\n\n> [!NOTE]\n> You can install only one instance of the `NonAdminController` (NAC) CR in the cluster. If you install multiple instances of the NAC CR, you get the following error:\n>\n> ```terminal\n> message: only a single instance of Non-Admin Controller can be installed across the entire cluster. Non-Admin controller is already configured and installed in openshift-adp namespace.\n> ```\n\n**Prerequisites**\n\n- You are logged in to the cluster with the `cluster-admin` role.\n- You have installed the OADP Operator.\n- You have configured the DPA.\n\n**Procedure**\n\n- To enable OADP Self-Service, edit the DPA CR to configure the `nonAdmin.enable` section. See the following example configuration:\n\n  ```yaml {title=\"Example DataProtectionApplication CR\"}\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n    name: oadp-backup\n    namespace: openshift-adp\n  spec:\n    configuration:\n      nodeAgent:\n        enable: true\n        uploaderType: kopia\n      velero:\n        defaultPlugins:\n          - aws\n          - openshift\n          - csi\n        defaultSnapshotMoveData: true\n    nonAdmin:\n      enable: true\n    backupLocations:\n      - velero:\n          config:\n            profile: \"default\"\n            region: noobaa\n            s3Url: https://s3.openshift-storage.svc\n            s3ForcePathStyle: \"true\"\n            insecureSkipTLSVerify: \"true\"\n          provider: aws\n          default: true\n          credential:\n            key: cloud\n            name:  <cloud_credentials>\n          objectStorage:\n            bucket: <bucket_name>\n            prefix: oadp\n  ```\n\n  where:\n\n  `nonAdmin`\n  :   Specifies the section in the `spec` section of the DPA to enable or disable the Self-Service feature.\n\n  `enable`\n  :   Specifies whether to enable the Self-Service feature. Set to `true` to enable the feature. Set to `false` to disable the feature.\n\n**Verification**\n\n- To verify that the `NonAdminController` (NAC) pod is running in the OADP namespace, run the following command:\n\n  ```terminal\n  $ oc get pod -n openshift-adp -l control-plane=non-admin-controller\n  ```\n\n  ```terminal {title=\"Example output\"}\n  NAME                                  READY   STATUS    RESTARTS   AGE\n  non-admin-controller-5d....f5-p..9p   1/1     Running   0          99m\n  ```\n\n## Enabling NonAdminBackupStorageLocation administrator approval workflow {#oadp-self-service-enabling-nabsl-approval_oadp-self-service-cluster-admin-use-cases}\n\nEnable the administrator approval workflow for `NonAdminBackupStorageLocation` custom resource to review backup storage location requests from namespace administrators before they are applied. This helps you maintain control over backup storage configurations.\n\n**Prerequisites**\n\n- You are logged in to the cluster with the `cluster-admin` role.\n- You have installed the OADP Operator.\n- You have enabled OADP Self-Service in the `DataProtectionApplication` CR.\n\n**Procedure**\n\n- To enable the NABSL administrator approval workflow, edit the DPA CR by using the following example configuration:\n\n  ```yaml {title=\"Example DataProtectionApplication CR\"}\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n    name: oadp-backup\n    namespace: openshift-adp\n  spec:\n    configuration:\n      nodeAgent:\n        enable: true\n        uploaderType: kopia\n      velero:\n        defaultPlugins:\n          - aws\n          - openshift\n          - csi\n        noDefaultBackupLocation: true\n    nonAdmin:\n      enable: true\n      requireApprovalForBSL: true\n  ```\n\n  where:\n\n  `noDefaultBackupLocation`\n  :   Specifies that there is no default backup storage location configured in the DPA CR. Set to `true` to enable the namespace admin user to create a NABSL CR and send the CR request for approval.\n\n  `requireApprovalForBSL`\n  :   Specifies whether the NABSL administrator approval workflow is enabled. Set to `true` to enable the approval workflow.\n\n## Approving a NonAdminBackupStorageLocation request {#oadp-self-service-approving-nabsl_oadp-self-service-cluster-admin-use-cases}\n\nApprove `NonAdminBackupStorageLocation` (NABSL) custom resource requests from namespace administrators to grant access to their specified backup storage locations. This enables self-service backup and restore operations for namespace resources.\n\n**Prerequisites**\n\n- You are logged in to the cluster with the `cluster-admin` role.\n- You have installed the OADP Operator.\n- You have enabled OADP Self-Service in the `DataProtectionApplication` (DPA) CR.\n- You have enabled the NABSL CR approval workflow in the DPA.\n\n**Procedure**\n\n1. To see the NABSL CR requests that are in queue for administrator approval, run the following command:\n\n   ```terminal\n   $ oc -n openshift-adp get NonAdminBackupStorageLocationRequests\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                          REQUEST-PHASE   REQUEST-NAMESPACE     REQUEST-NAME               AGE\n   non-admin-bsl-test-.....175   Approved        non-admin-bsl-test    incorrect-bucket-nabsl    4m57s\n   non-admin-bsl-test-.....196   Approved        non-admin-bsl-test    perfect-nabsl             5m26s\n   non-admin-bsl-test-s....e1a   Rejected        non-admin-bsl-test    suspicious-sample         2m56s\n   non-admin-bsl-test-.....5e0   Pending         non-admin-bsl-test    waitingapproval-nabsl     4m20s\n   ```\n2. To approve the NABSL CR request, set the `approvalDecision` field to `approve` by running the following command:\n\n   ```terminal\n   $ oc patch nabslrequest <nabsl_name> -n openshift-adp --type=merge -p '{\"spec\": {\"approvalDecision\": \"approve\"}}'\n   ```\n\n   Replace `<nabsl_name>` with the name of the `NonAdminBackupStorageLocationRequest` CR.\n\n**Verification**\n\n- Verify that the Velero backup storage location is created and the phase is `Available` by running the following command:\n\n  ```terminal\n  $ oc get velero.io.backupstoragelocation\n  ```\n\n```terminal {title=\"Example output\"}\nNAME                         PHASE       LAST VALIDATED   AGE   DEFAULT\ntest-nac-test-bsl-cd...930   Available   62s              62s\n```\n\n## Rejecting a NonAdminBackupStorageLocation request {#oadp-self-service-rejecting-nabsl_oadp-self-service-cluster-admin-use-cases}\n\nReject `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) requests from namespace administrators to deny access to backup storage locations that do not meet requirements. This helps you maintain security and compliance standards.\n\n**Prerequisites**\n\n- You are logged in to the cluster with the `cluster-admin` role.\n- You have installed the OADP Operator.\n- You have enabled OADP Self-Service in the `DataProtectionApplication` (DPA) CR.\n- You have enabled the NABSL CR approval workflow in the DPA.\n\n**Procedure**\n\n1. To see the NABSL CR requests that are in queue for administrator approval, run the following command:\n\n   ```terminal\n   $ oc -n openshift-adp get NonAdminBackupStorageLocationRequests\n   ```\n\n```terminal {title=\"Example output\"}\n$ oc get nabslrequest\nNAME                          REQUEST-PHASE   REQUEST-NAMESPACE     REQUEST-NAME               AGE\nnon-admin-bsl-test-.....175   Approved        non-admin-bsl-test    incorrect-bucket-nabsl    4m57s\nnon-admin-bsl-test-.....196   Approved        non-admin-bsl-test    perfect-nabsl             5m26s\nnon-admin-bsl-test-s....e1a   Rejected        non-admin-bsl-test    suspicious-sample         2m56s\nnon-admin-bsl-test-.....5e0   Pending         non-admin-bsl-test    waitingapproval-nabsl     4m20s\n```\n\n1. To reject the NABSL CR request, set the `approvalDecision` field to `reject` by running the following command:\n\n   ```terminal\n   $ oc patch nabslrequest <nabsl_name> -n openshift-adp --type=merge -p '{\"spec\": {\"approvalDecision\": \"reject\"}}'\n   ```\n\n   Replace `<nabsl_name>` with the name of the `NonAdminBackupStorageLocationRequest` CR.\n\n## OADP Self-Service administrator DPA spec enforcement {#oadp-self-service-admin-spec-enforcement_oadp-self-service-cluster-admin-use-cases}\n\nEnforce policy templates in the `DataProtectionApplication` (DPA) custom resource (CR) to control `NonAdminBackup`, `NonAdminRestore`, and `NonAdminBackupStorageLocation` custom resources created by namespace administrators. This helps you maintain compliance standards.\n\nThe cluster administrator can enforce a company, or a compliance policy by using the following fields in the `DataProtectionApplication` (DPA) CR:\n\n`enforceBSLSpec`\n:   To enforce a policy on the `NonAdminBackupStorageLocation` CR.\n\n`enforceBackupSpec`\n:   To enforce a policy on the `NonAdminBackup` CR.\n\n`enforceRestoreSpec`\n:   To enforce a policy on the `NonAdminRestore` CR.\n\nBy using the enforceable fields, administrators can ensure that the NABSL, NAB, and NAR CRs created by a namespace admin user, comply with the administrator defined policy.\n\n## Self-Service administrator spec enforcement for NABSL {#oadp-self-service-admin-spec-enforce-nabsl_oadp-self-service-cluster-admin-use-cases}\n\nEnforce specific fields in `NonAdminBackupStorageLocation` (NABSL) custom resource (CR) to control storage bucket, credentials, configuration, access mode, and validation settings used by namespace administrators. This helps you maintain organizational policies.\n\nYou can enforce the following fields for a NABSL:\n\n- `objectStorage`\n- `credential`\n- `config`\n- `accessMode`\n- `validationFrequency`\n\nFor example, if you want to enforce a namespace admin user to use a specific storage bucket, you can set up the `DataProtectionApplication` (DPA) CR as following:\n\n```yaml {title=\"Example DataProtectionApplication CR\"}\napiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\n...\nspec:\n  nonAdmin:\n    enable: true\n    enforceBSLSpec:\n      config:\n        checksumAlgorithm: \"\"\n        profile: default\n        region: us-west-2\n      objectStorage:\n        bucket: my-company-bucket\n        prefix: velero\n      provider: aws\n```\n\nwhere:\n\n`enforceBSLSpec`\n:   Specifies the section to enforce policies for the `NonAdminBackupStorageLocation` CR.\n\n`config`\n:   Specifies the configuration to enforce for the NABSL. In this example, it enforces the use of an AWS S3 bucket in the `us-west-2` region.\n\n`objectStorage`\n:   Specifies the object storage settings to use a company bucket named `my-company-bucket`.\n\nWhen a namespace admin user creates a NABSL, they must follow the template set up in the DPA. Otherwise, the `status.phase` field on the NABSL CR is set to `BackingOff` and the NABSL fails to create.\n\n## Self-Service administrator spec enforcement for NAB {#oadp-self-service-admin-spec-enforce-nab_oadp-self-service-cluster-admin-use-cases}\n\nEnforce specific fields in `NonAdminBackup` (NAB) custom resource (CR) to control timeout settings, resource policies, label selectors, snapshot configurations, and time-to-live values used by namespace administrators. This helps you maintain backup standards.\n\nYou can enforce the following fields for a NAB CR:\n\n- `csiSnapshotTimeout`\n- `itemOperationTimeout`\n- `resourcePolicy`\n- `includedResources`\n- `excludedResources`\n- `orderedResources`\n- `includeClusterResources`\n- `excludedClusterScopedResources`\n- `excludedNamespaceScopedResources`\n- `includedNamespaceScopedResources`\n- `labelSelector`\n- `orLabelSelectors`\n- `snapshotVolumes`\n- `ttl`\n- `snapshotMoveData`\n- `uploaderConfig.parallelFilesUpload`\n\nIf you want to enforce a `ttl` value and a Data Mover backup for a namespace admin user, you can set up the `DataProtectionApplication` (DPA) CR as shown in the following example:\n\n```yaml {title=\"Example DataProtectionApplication CR\"}\napiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\n...\nspec:\n  nonAdmin:\n    enable: true\n    enforceBackupSpec:\n      snapshotMoveData: true\n      ttl: 158h0m0s\n```\n\nwhere:\n\n`enforceBackupSpec`\n:   Specifies the section to enforce policies for the `NonAdminBackup` CR.\n\n`snapshotMoveData`\n:   Specifies whether to enforce Data Mover. Set to `true` to enforce Data Mover backups.\n\n`ttl`\n:   Specifies the time-to-live value to enforce for backups. In this example, it is set to `158h0m0s`.\n\nWhen a namespace admin user creates a NAB CR, they must follow the template set up in the DPA. Otherwise, the `status.phase` field on the NAB CR is set to `BackingOff` and the NAB CR fails to create.\n\n## Self-Service administrator spec enforcement for NAR {#oadp-self-service-admin-spec-enforce-nar_oadp-self-service-cluster-admin-use-cases}\n\nEnforce specific fields in `NonAdminRestore` (NAR) custom resource (CR) to control timeout settings, resource policies, label selectors, persistent volume restoration, and node port configurations used by namespace administrators. This helps you maintain restore standards.\n\nYou can enforce the following fields for a NAR CR:\n\n- `itemOperationTimeout`\n- `uploaderConfig`\n- `includedResources`\n- `excludedResources`\n- `restoreStatus`\n- `includeClusterResources`\n- `labelSelector`\n- `orLabelSelectors`\n- `restorePVs`\n- `preserveNodePorts`\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-self-service/oadp-self-service-cluster-admin-use-cases.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,16 +95,202 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-self-service-cluster-admin-use-cases" class="group scroll-mt-20">{"{"}{"{"} oadp_short {"}"}{"}"} Self-Service cluster admin use cases<a href="#oadp-self-service-cluster-admin-use-cases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Configure and manage {"{"}{"{"} oadp_short {"}"}{"}"} Self-Service by enabling the feature, reviewing backup storage location requests, and enforcing policy templates. This helps you provide Self-Service backup capabilities while maintaining administrative control.</p>
-      <p class="/modules/oadp-self-service-admin-enable-disable.md"></p>
-      <p class="/modules/oadp-self-service-enabling-nabsl-approval.md"></p>
-      <p class="/modules/oadp-self-service-approving-nabsl.md"></p>
-      <p class="/modules/oadp-self-service-rejecting-nabsl.md"></p>
-      <p class="/modules/oadp-self-service-admin-spec-enforcement.md"></p>
-      <p class="/modules/oadp-self-service-admin-spec-enforce-nabsl.md"></p>
-      <p class="/modules/oadp-self-service-admin-spec-enforce-nab.md"></p>
-      <p class="/modules/oadp-self-service-admin-spec-enforce-nar.md"></p>
+      <p>Configure and manage OADP Self-Service by enabling the feature, reviewing backup storage location requests, and enforcing policy templates. This helps you provide Self-Service backup capabilities while maintaining administrative control.</p>
+      <h2 id="oadp-self-service-admin-enable-disable_oadp-self-service-cluster-admin-use-cases" class="group scroll-mt-20">Enabling and disabling OADP Self-Service<a href="#oadp-self-service-admin-enable-disable_oadp-self-service-cluster-admin-use-cases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enable or disable the OADP Self-Service feature to allow namespace administrators to manage their own backup and restore operations without cluster admin privileges. This helps you delegate backup responsibilities while maintaining administrative control.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can install only one instance of the <code>NonAdminController</code> (NAC) CR in the cluster. If you install multiple instances of the NAC CR, you get the following error:</p>
+          <CodeBlock code={"message: only a single instance of Non-Admin Controller can be installed across the entire cluster. Non-Admin controller is already configured and installed in openshift-adp namespace."} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to the cluster with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have configured the DPA.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To enable OADP Self-Service, edit the DPA CR to configure the <code>nonAdmin.enable</code> section. See the following example configuration:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: oadp-backup\n  namespace: openshift-adp\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n    velero:\n      defaultPlugins:\n        - aws\n        - openshift\n        - csi\n      defaultSnapshotMoveData: true\n  nonAdmin:\n    enable: true\n  backupLocations:\n    - velero:\n        config:\n          profile: \"default\"\n          region: noobaa\n          s3Url: https://s3.openshift-storage.svc \n          s3ForcePathStyle: \"true\"\n          insecureSkipTLSVerify: \"true\"\n        provider: aws\n        default: true\n        credential:\n          key: cloud\n          name:  <cloud_credentials>\n        objectStorage:\n          bucket: <bucket_name> \n          prefix: oadp  "} lang="yaml" title="Example DataProtectionApplication CR" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>nonAdmin</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the section in the <code>spec</code> section of the DPA to enable or disable the Self-Service feature.</p></dd>
+      <dt class="font-semibold"><code>enable</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether to enable the Self-Service feature. Set to <code>true</code> to enable the feature. Set to <code>false</code> to disable the feature.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that the <code>NonAdminController</code> (NAC) pod is running in the OADP namespace, run the following command:
+      <CodeBlock code={"$ oc get pod -n openshift-adp -l control-plane=non-admin-controller"} lang="terminal" />
+      <CodeBlock code={"NAME                                  READY   STATUS    RESTARTS   AGE\nnon-admin-controller-5d....f5-p..9p   1/1     Running   0          99m"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="oadp-self-service-enabling-nabsl-approval_oadp-self-service-cluster-admin-use-cases" class="group scroll-mt-20">Enabling NonAdminBackupStorageLocation administrator approval workflow<a href="#oadp-self-service-enabling-nabsl-approval_oadp-self-service-cluster-admin-use-cases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enable the administrator approval workflow for <code>NonAdminBackupStorageLocation</code> custom resource to review backup storage location requests from namespace administrators before they are applied. This helps you maintain control over backup storage configurations.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to the cluster with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have enabled OADP Self-Service in the <code>DataProtectionApplication</code> CR.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To enable the NABSL administrator approval workflow, edit the DPA CR by using the following example configuration:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: oadp-backup\n  namespace: openshift-adp\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: kopia\n    velero:\n      defaultPlugins:\n        - aws\n        - openshift\n        - csi\n      noDefaultBackupLocation: true\n  nonAdmin:\n    enable: true\n    requireApprovalForBSL: true "} lang="yaml" title="Example DataProtectionApplication CR" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>noDefaultBackupLocation</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that there is no default backup storage location configured in the DPA CR. Set to <code>true</code> to enable the namespace admin user to create a NABSL CR and send the CR request for approval.</p></dd>
+      <dt class="font-semibold"><code>requireApprovalForBSL</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether the NABSL administrator approval workflow is enabled. Set to <code>true</code> to enable the approval workflow.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h2 id="oadp-self-service-approving-nabsl_oadp-self-service-cluster-admin-use-cases" class="group scroll-mt-20">Approving a NonAdminBackupStorageLocation request<a href="#oadp-self-service-approving-nabsl_oadp-self-service-cluster-admin-use-cases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Approve <code>NonAdminBackupStorageLocation</code> (NABSL) custom resource requests from namespace administrators to grant access to their specified backup storage locations. This enables self-service backup and restore operations for namespace resources.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to the cluster with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have enabled OADP Self-Service in the <code>DataProtectionApplication</code> (DPA) CR.</li>
+      <li>You have enabled the NABSL CR approval workflow in the DPA.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To see the NABSL CR requests that are in queue for administrator approval, run the following command:
+      <CodeBlock code={"$ oc -n openshift-adp get NonAdminBackupStorageLocationRequests"} lang="terminal" />
+      <CodeBlock code={"NAME                          REQUEST-PHASE   REQUEST-NAMESPACE     REQUEST-NAME               AGE\nnon-admin-bsl-test-.....175   Approved        non-admin-bsl-test    incorrect-bucket-nabsl    4m57s\nnon-admin-bsl-test-.....196   Approved        non-admin-bsl-test    perfect-nabsl             5m26s\nnon-admin-bsl-test-s....e1a   Rejected        non-admin-bsl-test    suspicious-sample         2m56s\nnon-admin-bsl-test-.....5e0   Pending         non-admin-bsl-test    waitingapproval-nabsl     4m20s"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To approve the NABSL CR request, set the <code>approvalDecision</code> field to <code>approve</code> by running the following command:
+      <CodeBlock code={"$ oc patch nabslrequest <nabsl_name> -n openshift-adp --type=merge -p '{\"spec\": {\"approvalDecision\": \"approve\"}}'"} lang="terminal" />
+      <p>Replace <code>&lt;nabsl_name&gt;</code> with the name of the <code>NonAdminBackupStorageLocationRequest</code> CR.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the Velero backup storage location is created and the phase is <code>Available</code> by running the following command:
+      <CodeBlock code={"$ oc get velero.io.backupstoragelocation"} lang="terminal" />
+      </li>
+      </ul>
+      <CodeBlock code={"NAME                         PHASE       LAST VALIDATED   AGE   DEFAULT\ntest-nac-test-bsl-cd...930   Available   62s              62s   "} lang="terminal" title="Example output" />
+      <h2 id="oadp-self-service-rejecting-nabsl_oadp-self-service-cluster-admin-use-cases" class="group scroll-mt-20">Rejecting a NonAdminBackupStorageLocation request<a href="#oadp-self-service-rejecting-nabsl_oadp-self-service-cluster-admin-use-cases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Reject <code>NonAdminBackupStorageLocation</code> (NABSL) custom resource (CR) requests from namespace administrators to deny access to backup storage locations that do not meet requirements. This helps you maintain security and compliance standards.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to the cluster with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have enabled OADP Self-Service in the <code>DataProtectionApplication</code> (DPA) CR.</li>
+      <li>You have enabled the NABSL CR approval workflow in the DPA.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To see the NABSL CR requests that are in queue for administrator approval, run the following command:
+      <CodeBlock code={"$ oc -n openshift-adp get NonAdminBackupStorageLocationRequests"} lang="terminal" />
+      </li>
+      </ol>
+      <CodeBlock code={"$ oc get nabslrequest\nNAME                          REQUEST-PHASE   REQUEST-NAMESPACE     REQUEST-NAME               AGE\nnon-admin-bsl-test-.....175   Approved        non-admin-bsl-test    incorrect-bucket-nabsl    4m57s\nnon-admin-bsl-test-.....196   Approved        non-admin-bsl-test    perfect-nabsl             5m26s\nnon-admin-bsl-test-s....e1a   Rejected        non-admin-bsl-test    suspicious-sample         2m56s\nnon-admin-bsl-test-.....5e0   Pending         non-admin-bsl-test    waitingapproval-nabsl     4m20s"} lang="terminal" title="Example output" />
+      <ol>
+      <li>
+      To reject the NABSL CR request, set the <code>approvalDecision</code> field to <code>reject</code> by running the following command:
+      <CodeBlock code={"$ oc patch nabslrequest <nabsl_name> -n openshift-adp --type=merge -p '{\"spec\": {\"approvalDecision\": \"reject\"}}'"} lang="terminal" />
+      <p>Replace <code>&lt;nabsl_name&gt;</code> with the name of the <code>NonAdminBackupStorageLocationRequest</code> CR.</p>
+      </li>
+      </ol>
+      <h2 id="oadp-self-service-admin-spec-enforcement_oadp-self-service-cluster-admin-use-cases" class="group scroll-mt-20">OADP Self-Service administrator DPA spec enforcement<a href="#oadp-self-service-admin-spec-enforcement_oadp-self-service-cluster-admin-use-cases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enforce policy templates in the <code>DataProtectionApplication</code> (DPA) custom resource (CR) to control <code>NonAdminBackup</code>, <code>NonAdminRestore</code>, and <code>NonAdminBackupStorageLocation</code> custom resources created by namespace administrators. This helps you maintain compliance standards. </p>
+      <p>The cluster administrator can enforce a company, or a compliance policy by using the following fields in the <code>DataProtectionApplication</code> (DPA) CR:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>enforceBSLSpec</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>To enforce a policy on the <code>NonAdminBackupStorageLocation</code> CR.</p></dd>
+      <dt class="font-semibold"><code>enforceBackupSpec</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>To enforce a policy on the <code>NonAdminBackup</code> CR.</p></dd>
+      <dt class="font-semibold"><code>enforceRestoreSpec</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>To enforce a policy on the <code>NonAdminRestore</code> CR.</p></dd>
+      </dl>
+      <p>By using the enforceable fields, administrators can ensure that the NABSL, NAB, and NAR CRs created by a namespace admin user, comply with the administrator defined policy.</p>
+      <h2 id="oadp-self-service-admin-spec-enforce-nabsl_oadp-self-service-cluster-admin-use-cases" class="group scroll-mt-20">Self-Service administrator spec enforcement for NABSL<a href="#oadp-self-service-admin-spec-enforce-nabsl_oadp-self-service-cluster-admin-use-cases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enforce specific fields in <code>NonAdminBackupStorageLocation</code> (NABSL) custom resource (CR) to control storage bucket, credentials, configuration, access mode, and validation settings used by namespace administrators. This helps you maintain organizational policies.</p>
+      <p>You can enforce the following fields for a NABSL:</p>
+      <ul>
+      <li><code>objectStorage</code></li>
+      <li><code>credential</code></li>
+      <li><code>config</code></li>
+      <li><code>accessMode</code></li>
+      <li><code>validationFrequency</code></li>
+      </ul>
+      <p>For example, if you want to enforce a namespace admin user to use a specific storage bucket, you can set up the <code>DataProtectionApplication</code> (DPA) CR as following:</p>
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\n...\nspec:\n  nonAdmin:\n    enable: true\n    enforceBSLSpec:\n      config:\n        checksumAlgorithm: \"\"\n        profile: default\n        region: us-west-2\n      objectStorage:\n        bucket: my-company-bucket\n        prefix: velero\n      provider: aws  "} lang="yaml" title="Example DataProtectionApplication CR" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>enforceBSLSpec</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the section to enforce policies for the <code>NonAdminBackupStorageLocation</code> CR.</p></dd>
+      <dt class="font-semibold"><code>config</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the configuration to enforce for the NABSL. In this example, it enforces the use of an AWS S3 bucket in the <code>us-west-2</code> region.</p></dd>
+      <dt class="font-semibold"><code>objectStorage</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the object storage settings to use a company bucket named <code>my-company-bucket</code>.</p></dd>
+      </dl>
+      <p>When a namespace admin user creates a NABSL, they must follow the template set up in the DPA. Otherwise, the <code>status.phase</code> field on the NABSL CR is set to <code>BackingOff</code> and the NABSL fails to create.</p>
+      <h2 id="oadp-self-service-admin-spec-enforce-nab_oadp-self-service-cluster-admin-use-cases" class="group scroll-mt-20">Self-Service administrator spec enforcement for NAB<a href="#oadp-self-service-admin-spec-enforce-nab_oadp-self-service-cluster-admin-use-cases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enforce specific fields in <code>NonAdminBackup</code> (NAB) custom resource (CR) to control timeout settings, resource policies, label selectors, snapshot configurations, and time-to-live values used by namespace administrators. This helps you maintain backup standards.</p>
+      <p>You can enforce the following fields for a NAB CR:</p>
+      <ul>
+      <li><code>csiSnapshotTimeout</code></li>
+      <li><code>itemOperationTimeout</code></li>
+      <li><code>resourcePolicy</code></li>
+      <li><code>includedResources</code></li>
+      <li><code>excludedResources</code></li>
+      <li><code>orderedResources</code></li>
+      <li><code>includeClusterResources</code></li>
+      <li><code>excludedClusterScopedResources</code></li>
+      <li><code>excludedNamespaceScopedResources</code></li>
+      <li><code>includedNamespaceScopedResources</code></li>
+      <li><code>labelSelector</code></li>
+      <li><code>orLabelSelectors</code></li>
+      <li><code>snapshotVolumes</code></li>
+      <li><code>ttl</code></li>
+      <li><code>snapshotMoveData</code></li>
+      <li><code>uploaderConfig.parallelFilesUpload</code></li>
+      </ul>
+      <p>If you want to enforce a <code>ttl</code> value and a Data Mover backup for a namespace admin user, you can set up the <code>DataProtectionApplication</code> (DPA) CR as shown in the following example:</p>
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\n...\nspec:\n  nonAdmin:\n    enable: true\n    enforceBackupSpec:\n      snapshotMoveData: true\n      ttl: 158h0m0s"} lang="yaml" title="Example DataProtectionApplication CR" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>enforceBackupSpec</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the section to enforce policies for the <code>NonAdminBackup</code> CR.</p></dd>
+      <dt class="font-semibold"><code>snapshotMoveData</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies whether to enforce Data Mover. Set to <code>true</code> to enforce Data Mover backups.</p></dd>
+      <dt class="font-semibold"><code>ttl</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the time-to-live value to enforce for backups. In this example, it is set to <code>158h0m0s</code>.</p></dd>
+      </dl>
+      <p>When a namespace admin user creates a NAB CR, they must follow the template set up in the DPA. Otherwise, the <code>status.phase</code> field on the NAB CR is set to <code>BackingOff</code> and the NAB CR fails to create.</p>
+      <h2 id="oadp-self-service-admin-spec-enforce-nar_oadp-self-service-cluster-admin-use-cases" class="group scroll-mt-20">Self-Service administrator spec enforcement for NAR<a href="#oadp-self-service-admin-spec-enforce-nar_oadp-self-service-cluster-admin-use-cases" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Enforce specific fields in <code>NonAdminRestore</code> (NAR) custom resource (CR) to control timeout settings, resource policies, label selectors, persistent volume restoration, and node port configurations used by namespace administrators. This helps you maintain restore standards.</p>
+      <p>You can enforce the following fields for a NAR CR:</p>
+      <ul>
+      <li><code>itemOperationTimeout</code></li>
+      <li><code>uploaderConfig</code></li>
+      <li><code>includedResources</code></li>
+      <li><code>excludedResources</code></li>
+      <li><code>restoreStatus</code></li>
+      <li><code>includeClusterResources</code></li>
+      <li><code>labelSelector</code></li>
+      <li><code>orLabelSelectors</code></li>
+      <li><code>restorePVs</code></li>
+      <li><code>preserveNodePorts</code></li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

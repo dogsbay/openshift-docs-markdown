@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-ibm-cloud-restricted-postinstallation-configuration","text":"Postinstallation configuration for a disconnected {{ ibm_cloud_title }} cluster"},{"depth":2,"slug":"additional-resources_installing-ibm-cloud-restricted-postinstallation","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"installing-ibm-cloud-restricted-postinstallation-configuration","text":"Postinstallation configuration for a disconnected IBM Cloud cluster"},{"depth":2,"slug":"olm-restricted-networks-operatorhub_installing-ibm-cloud-restricted-postinstallation-configuration","text":"Disabling the default software catalog sources"},{"depth":2,"slug":"oc-mirror-updating-cluster-manifests_installing-ibm-cloud-restricted-postinstallation-configuration","text":"Installing the policy resources into the cluster"},{"depth":2,"slug":"cluster-telemetry_installing-ibm-cloud-restricted-postinstallation-configuration","text":"Telemetry access for OpenShift Container Platform"},{"depth":2,"slug":"additional-resources_installing-ibm-cloud-restricted-postinstallation","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-restricted-postinstallation-configuration";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Postinstallation configuration for a disconnected {{ ibm_cloud_title }} cluster";
-const description = "After you install a cluster on {{ ibm_cloud_name }} in a disconnected environment, you must complete the postinstallation configuration steps to prepare…" || undefined;
+const description = "After you install a cluster on IBM Cloud(R) in a disconnected environment, you must complete the postinstallation configuration steps to prepare the…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_ibm_cloud"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation configuration for a disconnected {{ ibm_cloud_title }} cluster {#installing-ibm-cloud-restricted-postinstallation-configuration}\n\nAfter you install a cluster on {{ ibm_cloud_name }} in a disconnected environment, you must complete the postinstallation configuration steps to prepare the cluster for use.\n\n## Additional resources {#additional-resources_installing-ibm-cloud-restricted-postinstallation}\n\n- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-restricted-postinstallation-configuration.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation configuration for a disconnected IBM Cloud cluster {#installing-ibm-cloud-restricted-postinstallation-configuration}\n\nAfter you install a cluster on IBM Cloud(R) in a disconnected environment, you must complete the postinstallation configuration steps to prepare the cluster for use.\n\n## Disabling the default software catalog sources {#olm-restricted-networks-operatorhub_installing-ibm-cloud-restricted-postinstallation-configuration}\n\nTo use only trusted or locally available Operator catalogs, disable the default software catalog sources that OpenShift Container Platform configures during installation. In a restricted network environment, you must disable the default catalogs as a cluster administrator.\n\n**Procedure**\n\n- Disable the sources for the default catalogs by adding `disableAllDefaultSources: true` to the `OperatorHub` object:\n\n  ```terminal\n  $ oc patch OperatorHub cluster --type json \\\n      -p '[{\"op\": \"add\", \"path\": \"/spec/disableAllDefaultSources\", \"value\": true}]'\n  ```\n\n  > [!TIP]\n  > Or, you can use the web console to manage catalog sources. From the **Administration** -> **Cluster Settings** -> **Configuration** -> **OperatorHub** page, click the **Sources** tab, where you can create, update, delete, disable, and enable individual sources.\n\n## Installing the policy resources into the cluster {#oc-mirror-updating-cluster-manifests_installing-ibm-cloud-restricted-postinstallation-configuration}\n\nMirroring the OpenShift Container Platform content using the oc-mirror OpenShift CLI (oc) plugin creates resources, which include `catalogSource-certified-operator-index.yaml` and `imageContentSourcePolicy.yaml`.\n\n- The `ImageContentSourcePolicy` resource associates the mirror registry with the source registry and redirects image pull requests from the online registries to the mirror registry.\n- The `CatalogSource` resource is used by Operator Lifecycle Manager (OLM) Classic to retrieve information about the available Operators in the mirror registry, which lets users discover and install Operators.\n\n  > [!NOTE]\n  > OLM v1 uses the `ClusterCatalog` resource to retrieve information about the available cluster extensions in the mirror registry.\n  >\n  > The oc-mirror plugin v1 does not generate `ClusterCatalog` resources automatically; you must manually create them. The oc-mirror plugin v2 does, however, generate `ClusterCatalog` resources automatically.\n  >\n  > For more information on creating and applying `ClusterCatalog` resources, see \"Adding a catalog to a cluster\" in \"Extensions\".\n\nAfter you install the cluster, you must install these resources into the cluster.\n\n**Prerequisites**\n\n- You have mirrored the image set to the registry mirror in the disconnected environment.\n- You have access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Log in to the OpenShift CLI as a user with the `cluster-admin` role.\n2. Apply the YAML files from the results directory to the cluster:\n\n   ```terminal\n   $ oc apply -f ./oc-mirror-workspace/results-<id>/\n   ```\n\n**Verification**\n\n1. Verify that the `ImageContentSourcePolicy` resources were successfully installed:\n\n   ```terminal\n   $ oc get imagecontentsourcepolicy\n   ```\n2. Verify that the `CatalogSource` resources were successfully installed:\n\n   ```terminal\n   $ oc get catalogsource --all-namespaces\n   ```\n\n## Telemetry access for OpenShift Container Platform {#cluster-telemetry_installing-ibm-cloud-restricted-postinstallation-configuration}\n\nTo provide metrics about cluster health and the success of updates, the Telemetry service requires internet access. When connected, this service runs automatically by default and registers your cluster to [OpenShift Cluster Manager](https://console.redhat.com/openshift).\n\nAfter you confirm that your [OpenShift Cluster Manager](https://console.redhat.com/openshift) inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see \"Data Gathered and Used by Red Hat’s subscription services\" in the *Additional resources* section.\n\n## Additional resources {#additional-resources_installing-ibm-cloud-restricted-postinstallation}\n\n- [Customize your cluster](/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations)\n- [About remote health monitoring](/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-restricted-postinstallation-configuration.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,12 +94,68 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="installing-ibm-cloud-restricted-postinstallation-configuration" class="group scroll-mt-20">Postinstallation configuration for a disconnected {"{"}{"{"} ibm_cloud_title {"}"}{"}"} cluster<a href="#installing-ibm-cloud-restricted-postinstallation-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>After you install a cluster on {"{"}{"{"} ibm_cloud_name {"}"}{"}"} in a disconnected environment, you must complete the postinstallation configuration steps to prepare the cluster for use.</p>
-      <p class="/modules/olm-restricted-networks-configuring-operatorhub.md"></p>
-      <p class="/modules/oc-mirror-updating-restricted-cluster-manifests.md"></p>
-      <p class="/modules/cluster-telemetry.md"></p>
+      <h1 id="installing-ibm-cloud-restricted-postinstallation-configuration" class="group scroll-mt-20">Postinstallation configuration for a disconnected IBM Cloud cluster<a href="#installing-ibm-cloud-restricted-postinstallation-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>After you install a cluster on IBM Cloud(R) in a disconnected environment, you must complete the postinstallation configuration steps to prepare the cluster for use.</p>
+      <h2 id="olm-restricted-networks-operatorhub_installing-ibm-cloud-restricted-postinstallation-configuration" class="group scroll-mt-20">Disabling the default software catalog sources<a href="#olm-restricted-networks-operatorhub_installing-ibm-cloud-restricted-postinstallation-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>To use only trusted or locally available Operator catalogs, disable the default software catalog sources that OpenShift Container Platform configures during installation. In a restricted network environment, you must disable the default catalogs as a cluster administrator.</p>
+      <p class="_abstract"></p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Disable the sources for the default catalogs by adding <code>disableAllDefaultSources: true</code> to the <code>OperatorHub</code> object:
+      <CodeBlock code={"$ oc patch OperatorHub cluster --type json \\\n    -p '[{\"op\": \"add\", \"path\": \"/spec/disableAllDefaultSources\", \"value\": true}]'"} lang="terminal" />
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>Or, you can use the web console to manage catalog sources. From the <strong>Administration</strong> -&gt; <strong>Cluster Settings</strong> -&gt; <strong>Configuration</strong> -&gt; <strong>OperatorHub</strong> page, click the <strong>Sources</strong> tab, where you can create, update, delete, disable, and enable individual sources.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h2 id="oc-mirror-updating-cluster-manifests_installing-ibm-cloud-restricted-postinstallation-configuration" class="group scroll-mt-20">Installing the policy resources into the cluster<a href="#oc-mirror-updating-cluster-manifests_installing-ibm-cloud-restricted-postinstallation-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Mirroring the OpenShift Container Platform content using the oc-mirror OpenShift CLI (oc) plugin creates resources, which include <code>catalogSource-certified-operator-index.yaml</code> and <code>imageContentSourcePolicy.yaml</code>.</p>
+      <ul>
+      <li>The <code>ImageContentSourcePolicy</code> resource associates the mirror registry with the source registry and redirects image pull requests from the online registries to the mirror registry.</li>
+      <li>
+      The <code>CatalogSource</code> resource is used by Operator Lifecycle Manager (OLM) Classic to retrieve information about the available Operators in the mirror registry, which lets users discover and install Operators.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>OLM v1 uses the <code>ClusterCatalog</code> resource to retrieve information about the available cluster extensions in the mirror registry.</p>
+          <p>The oc-mirror plugin v1 does not generate <code>ClusterCatalog</code> resources automatically; you must manually create them. The oc-mirror plugin v2 does, however, generate <code>ClusterCatalog</code> resources automatically.</p>
+          <p>For more information on creating and applying <code>ClusterCatalog</code> resources, see "Adding a catalog to a cluster" in "Extensions".</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p>After you install the cluster, you must install these resources into the cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have mirrored the image set to the registry mirror in the disconnected environment.</li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift CLI as a user with the <code>cluster-admin</code> role.</li>
+      <li>
+      Apply the YAML files from the results directory to the cluster:
+      <CodeBlock code={"$ oc apply -f ./oc-mirror-workspace/results-<id>/"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the <code>ImageContentSourcePolicy</code> resources were successfully installed:
+      <CodeBlock code={"$ oc get imagecontentsourcepolicy"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the <code>CatalogSource</code> resources were successfully installed:
+      <CodeBlock code={"$ oc get catalogsource --all-namespaces"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="cluster-telemetry_installing-ibm-cloud-restricted-postinstallation-configuration" class="group scroll-mt-20">Telemetry access for OpenShift Container Platform<a href="#cluster-telemetry_installing-ibm-cloud-restricted-postinstallation-configuration" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To provide metrics about cluster health and the success of updates, the Telemetry service requires internet access. When connected, this service runs automatically by default and registers your cluster to <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a>.</p>
+      <p>After you confirm that your <a href="https://console.redhat.com/openshift">OpenShift Cluster Manager</a> inventory is correct, either maintained automatically by Telemetry or manually by using OpenShift Cluster Manager,use subscription watch to track your OpenShift Container Platform subscriptions at the account or multi-cluster level. For more information about subscription watch, see "Data Gathered and Used by Red Hat’s subscription services" in the <em>Additional resources</em> section.</p>
       <h2 id="additional-resources_installing-ibm-cloud-restricted-postinstallation" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-ibm-cloud-restricted-postinstallation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/cluster-tasks#available_cluster_customizations">Customize your cluster</a></li>

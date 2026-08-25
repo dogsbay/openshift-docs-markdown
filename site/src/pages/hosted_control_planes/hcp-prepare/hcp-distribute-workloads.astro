@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-distribute-workloads","text":"Distributing hosted cluster workloads"}];
+const headings = [{"depth":1,"slug":"hcp-distribute-workloads","text":"Distributing hosted cluster workloads"},{"depth":2,"slug":"hcp-node-labeling_hcp-distribute-workloads","text":"Node labeling for hosted control planes"},{"depth":2,"slug":"hcp-labels-taints_hcp-distribute-workloads","text":"Labeling management cluster nodes"},{"depth":2,"slug":"hcp-priority-classes_hcp-distribute-workloads","text":"Priority classes"},{"depth":2,"slug":"hcp-virt-taints-tolerations_hcp-distribute-workloads","text":"Custom taints and tolerations"},{"depth":2,"slug":"hcp-isolation_hcp-distribute-workloads","text":"Control plane isolation"},{"depth":3,"slug":"hcp-cp-pod-isolation_hcp-distribute-workloads","text":"Control plane pod isolation"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Distributing hosted cluster workloads";
-const description = "In {{ hcp }} for OpenShift Container Platform, cluster management is separate from cluster workload. As you prepare your deployment, ensure you know how…" || undefined;
+const description = "In hosted control planes for OpenShift Container Platform, cluster management is separate from cluster workload. As you prepare your deployment, ensure…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-prepare
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Distributing hosted cluster workloads {#hcp-distribute-workloads}\n\nIn {{ hcp }} for OpenShift Container Platform, cluster management is separate from cluster workload. As you prepare your deployment, ensure you know how you want to distribute your hosted cluster workloads.\n\n> [!IMPORTANT]\n> Do not use the management cluster for your workload. Workloads must not run on nodes where control planes run.\n\n**Additional resources**\n\n- [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)\n- [Network isolation for hosted clusters](/openshift-docs-markdown/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Distributing hosted cluster workloads {#hcp-distribute-workloads}\n\nIn hosted control planes for OpenShift Container Platform, cluster management is separate from cluster workload. As you prepare your deployment, ensure you know how you want to distribute your hosted cluster workloads.\n\n> [!IMPORTANT]\n> Do not use the management cluster for your workload. Workloads must not run on nodes where control planes run.\n\n## Node labeling for hosted control planes {#hcp-node-labeling_hcp-distribute-workloads}\n\nBefore you get started with hosted control planes, you must properly label nodes so that the pods of hosted clusters can be scheduled into infrastructure nodes.\n\nNode labeling is also important for the following reasons:\n\n- To ensure high availability and proper workload deployment. For example, to avoid having the control plane workload count toward your OpenShift Container Platform subscription, you can set the `node-role.kubernetes.io/infra` label.\n- To ensure that control plane workloads are separate from other workloads in the management cluster.\n- To ensure that control plane workloads are configured at the correct multi-tenancy distribution level for your deployment. The distribution levels are as follows:\n\n  - Everything shared: Control planes for hosted clusters can run on any node that is designated for control planes.\n  - Nothing shared: Every control plane has its own dedicated nodes.\n\nFor more information about dedicating a node to a single hosted cluster, see \"Labeling management cluster nodes\".\n\n**Additional resources**\n\n- [Labeling management cluster nodes](/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads)\n- [Network isolation for hosted clusters](/openshift-docs-markdown/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking)\n\n## Labeling management cluster nodes {#hcp-labels-taints_hcp-distribute-workloads}\n\nProper node labeling is a prerequisite to deploying hosted control planes.\n\nAs a management cluster administrator, you use the following labels and taints in management cluster nodes to schedule a control plane workload:\n\n- `hypershift.openshift.io/control-plane: true`: Use this label and taint to dedicate a node to running hosted control plane workloads. By setting a value of `true`, you avoid sharing the control plane nodes with other components, for example, the infrastructure components of the management cluster or any other mistakenly deployed workload.\n- `hypershift.openshift.io/cluster: ${HostedControlPlane Namespace}`: Use this label and taint when you want to dedicate a node to a single hosted cluster.\n\nApply the following labels on the nodes that host control-plane pods:\n\n- `node-role.kubernetes.io/infra`: Use this label to avoid having the control-plane workload count toward your subscription.\n- `topology.kubernetes.io/zone`: Use this label on the management cluster nodes to deploy highly available clusters across failure domains. The zone might be a location, rack name, or the hostname of the node where the zone is set. For example, a management cluster has the following nodes: `worker-1a`, `worker-1b`, `worker-2a`, and `worker-2b`. The `worker-1a` and `worker-1b` nodes are in `rack1`, and the `worker-2a` and worker-2b nodes are in `rack2`. To use each rack as an availability zone, enter the following commands:\n\n  ```terminal\n  $ oc label node/worker-1a node/worker-1b topology.kubernetes.io/zone=rack1\n  ```\n\n  ```terminal\n  $ oc label node/worker-2a node/worker-2b topology.kubernetes.io/zone=rack2\n  ```\n\nPods for a hosted cluster have tolerations, and the scheduler uses affinity rules to schedule them. Pods tolerate taints for `control-plane` and the `cluster` for the pods. The scheduler prioritizes the scheduling of pods into nodes that are labeled with `hypershift.openshift.io/control-plane` and `hypershift.openshift.io/cluster: ${HostedControlPlane Namespace}`.\n\nFor the `ControllerAvailabilityPolicy` option, use `HighlyAvailable`, which is the default value that the hosted control planes command-line interface, `hcp`, deploys. When you use that option, you can schedule pods for each deployment within a hosted cluster across different failure domains by setting `topology.kubernetes.io/zone` as the topology key. Scheduling pods for a deployment within a hosted cluster across different failure domains is available only for highly available control planes.\n\n**Procedure**\n\n- To enable a hosted cluster to require its pods to be scheduled into infrastructure nodes, set the `HostedCluster.spec.nodeSelector` specification, as shown in the following example:\n\n  ```yaml\n    spec:\n      nodeSelector:\n        node-role.kubernetes.io/infra: \"\"\n  ```\n\n  This way, hosted control planes for each hosted cluster are eligible infrastructure node workloads, and you do not need to entitle the underlying OpenShift Container Platform nodes.\n\n## Priority classes {#hcp-priority-classes_hcp-distribute-workloads}\n\nFour built-in priority classes influence the priority and preemption of the hosted cluster pods.\n\nYou can create the pods in the management cluster in the following order from highest to lowest:\n\n- `hypershift-operator`: HyperShift Operator pods.\n- `hypershift-etcd`: Pods for etcd.\n- `hypershift-api-critical`: Pods that are required for API calls and resource admission to succeed. These pods include pods such as `kube-apiserver`, aggregated API servers, and web hooks.\n- `hypershift-control-plane`: Pods in the control plane that are not API-critical but still need elevated priority, such as the cluster version Operator.\n\n## Custom taints and tolerations {#hcp-virt-taints-tolerations_hcp-distribute-workloads}\n\nBy default, pods for a hosted cluster tolerate the `control-plane` and `cluster` taints. However, you can also use custom taints on nodes so that hosted clusters can tolerate those taints on a per-hosted-cluster basis by setting the `HostedCluster.spec.tolerations` specification.\n\n> [!IMPORTANT]\n> Passing tolerations for a hosted cluster is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n```yaml {title=\"Example configuration\"}\n  spec:\n    tolerations:\n    - effect: NoSchedule\n      key: kubernetes.io/custom\n      operator: Exists\n```\n\nYou can also set tolerations on the hosted cluster while you create a cluster by using the `--tolerations` hcp CLI argument.\n\n```terminal {title=\"Example CLI argument\"}\n--toleration=\"key=kubernetes.io/custom,operator=Exists,effect=NoSchedule\"\n```\n\nFor fine granular control of hosted cluster pod placement on a per-hosted-cluster basis, use custom tolerations with `nodeSelectors`. You can co-locate groups of hosted clusters and isolate them from other hosted clusters. You can also place hosted clusters in infra and control plane nodes.\n\nTolerations on the hosted cluster spread only to the pods of the control plane. To configure other pods that run on the management cluster and infrastructure-related pods, such as the pods to run virtual machines, you need to use a different process.\n\n## Control plane isolation {#hcp-isolation_hcp-distribute-workloads}\n\nYou can configure hosted control planes to isolate network traffic or control plane pods.\n\nEach hosted control plane is assigned to run in a dedicated Kubernetes namespace. By default, the Kubernetes namespace denies all network traffic.\n\nThe following network traffic is allowed through the network policy that is enforced by the Kubernetes Container Network Interface (CNI):\n\n- Ingress pod-to-pod communication in the same namespace (intra-tenant)\n- Ingress on port 6443 to the hosted `kube-apiserver` pod for the tenant\n- Metric scraping from the management cluster Kubernetes namespace with the `network.openshift.io/policy-group: monitoring` label is allowed for monitoring\n\n### Control plane pod isolation {#hcp-cp-pod-isolation_hcp-distribute-workloads}\n\nIn addition to network policies, each hosted control plane pod is run with the `restricted` security context constraint. This policy denies access to all host features and requires pods to be run with a unique identifier (UID) and with SELinux context that is allocated uniquely to each namespace that hosts a customer control plane.\n\nThe policy ensures the following constraints:\n\n- Pods cannot run as privileged.\n- Pods cannot mount host directory volumes.\n- Pods must run as a user in a pre-allocated range of UIDs.\n- Pods must run with a pre-allocated Multi-Category Security (MCS) label.\n- Pods cannot access the host network namespace.\n- Pods cannot expose host network ports.\n- Pods cannot access the host PID namespace.\n- By default, pods drop the following Linux capabilities: `KILL`, `MKNOD`, `SETUID`, and `SETGID`.\n\nThe management components, such as `kubelet` and `crio`, on each management cluster worker node are protected by an SELinux label that is not accessible to the SELinux context for pods that support hosted control planes.\n\nThe following SELinux labels are used for key processes and sockets:\n\n`kubelet`\n:   `system_u:system_r:unconfined_service_t:s0`\n\n`crio`\n:   `system_u:system_r:container_runtime_t:s0`\n\n`crio.sock`\n:   `system_u:object_r:container_var_run_t:s0`\n\n`<example user container processes>`\n:   `system_u:system_r:container_t:s0:c14,c24`\n\nTo achieve physical or virtual machine (VM) isolation, you need to use a \"shared-nothing\" approach, where each control plane has its own dedicated node. Nodes for a specific hosted cluster are tainted and labeled with a specific `hypershift.openshift.io/hosted-cluster` value. Security involves the use of a network policy and physical network access control lists (ACLs) across hosted clusters.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,23 +95,117 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hcp-distribute-workloads" class="group scroll-mt-20">Distributing hosted cluster workloads<a href="#hcp-distribute-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>In {"{"}{"{"} hcp {"}"}{"}"} for OpenShift Container Platform, cluster management is separate from cluster workload. As you prepare your deployment, ensure you know how you want to distribute your hosted cluster workloads.</p>
+      <p>In hosted control planes for OpenShift Container Platform, cluster management is separate from cluster workload. As you prepare your deployment, ensure you know how you want to distribute your hosted cluster workloads.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
           <p>Do not use the management cluster for your workload. Workloads must not run on nodes where control planes run.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/hcp-node-labeling.md"></p>
+      <h2 id="hcp-node-labeling_hcp-distribute-workloads" class="group scroll-mt-20">Node labeling for hosted control planes<a href="#hcp-node-labeling_hcp-distribute-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you get started with hosted control planes, you must properly label nodes so that the pods of hosted clusters can be scheduled into infrastructure nodes. </p>
+      <p>Node labeling is also important for the following reasons:</p>
+      <ul>
+      <li>To ensure high availability and proper workload deployment. For example, to avoid having the control plane workload count toward your OpenShift Container Platform subscription, you can set the <code>node-role.kubernetes.io/infra</code> label.</li>
+      <li>To ensure that control plane workloads are separate from other workloads in the management cluster.</li>
+      <li>
+      To ensure that control plane workloads are configured at the correct multi-tenancy distribution level for your deployment. The distribution levels are as follows:
+      <ul>
+      <li>Everything shared: Control planes for hosted clusters can run on any node that is designated for control planes.</li>
+      <li>Nothing shared: Every control plane has its own dedicated nodes.</li>
+      </ul>
+      </li>
+      </ul>
+      <p>For more information about dedicating a node to a single hosted cluster, see "Labeling management cluster nodes".</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-labels-taints_hcp-distribute-workloads">Labeling management cluster nodes</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-networking#hcp-isolation-overview_hcp-networking">Network isolation for hosted clusters</a></li>
       </ul>
-      <p class="/modules/hcp-priority-classes.md"></p>
-      <p class="/modules/hcp-virt-taints-tolerations.md"></p>
-      <p class="/modules/hcp-isolation.md"></p>
+      <h2 id="hcp-labels-taints_hcp-distribute-workloads" class="group scroll-mt-20">Labeling management cluster nodes<a href="#hcp-labels-taints_hcp-distribute-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Proper node labeling is a prerequisite to deploying hosted control planes.</p>
+      <p>As a management cluster administrator, you use the following labels and taints in management cluster nodes to schedule a control plane workload:</p>
+      <ul>
+      <li><code>hypershift.openshift.io/control-plane: true</code>: Use this label and taint to dedicate a node to running hosted control plane workloads. By setting a value of <code>true</code>, you avoid sharing the control plane nodes with other components, for example, the infrastructure components of the management cluster or any other mistakenly deployed workload.</li>
+      <li><code>hypershift.openshift.io/cluster: ${"{"}HostedControlPlane Namespace{"}"}</code>: Use this label and taint when you want to dedicate a node to a single hosted cluster.</li>
+      </ul>
+      <p>Apply the following labels on the nodes that host control-plane pods:</p>
+      <ul>
+      <li><code>node-role.kubernetes.io/infra</code>: Use this label to avoid having the control-plane workload count toward your subscription.</li>
+      <li>
+      <code>topology.kubernetes.io/zone</code>: Use this label on the management cluster nodes to deploy highly available clusters across failure domains. The zone might be a location, rack name, or the hostname of the node where the zone is set. For example, a management cluster has the following nodes: <code>worker-1a</code>, <code>worker-1b</code>, <code>worker-2a</code>, and <code>worker-2b</code>. The <code>worker-1a</code> and <code>worker-1b</code> nodes are in <code>rack1</code>, and the <code>worker-2a</code> and worker-2b nodes are in <code>rack2</code>. To use each rack as an availability zone, enter the following commands:
+      <CodeBlock code={"$ oc label node/worker-1a node/worker-1b topology.kubernetes.io/zone=rack1"} lang="terminal" />
+      <CodeBlock code={"$ oc label node/worker-2a node/worker-2b topology.kubernetes.io/zone=rack2"} lang="terminal" />
+      </li>
+      </ul>
+      <p>Pods for a hosted cluster have tolerations, and the scheduler uses affinity rules to schedule them. Pods tolerate taints for <code>control-plane</code> and the <code>cluster</code> for the pods. The scheduler prioritizes the scheduling of pods into nodes that are labeled with <code>hypershift.openshift.io/control-plane</code> and <code>hypershift.openshift.io/cluster: ${"{"}HostedControlPlane Namespace{"}"}</code>.</p>
+      <p>For the <code>ControllerAvailabilityPolicy</code> option, use <code>HighlyAvailable</code>, which is the default value that the hosted control planes command-line interface, <code>hcp</code>, deploys. When you use that option, you can schedule pods for each deployment within a hosted cluster across different failure domains by setting <code>topology.kubernetes.io/zone</code> as the topology key. Scheduling pods for a deployment within a hosted cluster across different failure domains is available only for highly available control planes.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To enable a hosted cluster to require its pods to be scheduled into infrastructure nodes, set the <code>HostedCluster.spec.nodeSelector</code> specification, as shown in the following example:
+      <CodeBlock code={"  spec:\n    nodeSelector:\n      node-role.kubernetes.io/infra: \"\""} lang="yaml" />
+      <p>This way, hosted control planes for each hosted cluster are eligible infrastructure node workloads, and you do not need to entitle the underlying OpenShift Container Platform nodes.</p>
+      </li>
+      </ul>
+      <h2 id="hcp-priority-classes_hcp-distribute-workloads" class="group scroll-mt-20">Priority classes<a href="#hcp-priority-classes_hcp-distribute-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Four built-in priority classes influence the priority and preemption of the hosted cluster pods. </p>
+      <p>You can create the pods in the management cluster in the following order from highest to lowest:</p>
+      <ul>
+      <li><code>hypershift-operator</code>: HyperShift Operator pods.</li>
+      <li><code>hypershift-etcd</code>: Pods for etcd.</li>
+      <li><code>hypershift-api-critical</code>: Pods that are required for API calls and resource admission to succeed. These pods include pods such as <code>kube-apiserver</code>, aggregated API servers, and web hooks.</li>
+      <li><code>hypershift-control-plane</code>: Pods in the control plane that are not API-critical but still need elevated priority, such as the cluster version Operator.</li>
+      </ul>
+      <h2 id="hcp-virt-taints-tolerations_hcp-distribute-workloads" class="group scroll-mt-20">Custom taints and tolerations<a href="#hcp-virt-taints-tolerations_hcp-distribute-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By default, pods for a hosted cluster tolerate the <code>control-plane</code> and <code>cluster</code> taints. However, you can also use custom taints on nodes so that hosted clusters can tolerate those taints on a per-hosted-cluster basis by setting the <code>HostedCluster.spec.tolerations</code> specification.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Passing tolerations for a hosted cluster is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"  spec:\n    tolerations:\n    - effect: NoSchedule\n      key: kubernetes.io/custom\n      operator: Exists"} lang="yaml" title="Example configuration" />
+      <p>You can also set tolerations on the hosted cluster while you create a cluster by using the <code>--tolerations</code> hcp CLI argument.</p>
+      <CodeBlock code={"--toleration=\"key=kubernetes.io/custom,operator=Exists,effect=NoSchedule\""} lang="terminal" title="Example CLI argument" />
+      <p>For fine granular control of hosted cluster pod placement on a per-hosted-cluster basis, use custom tolerations with <code>nodeSelectors</code>. You can co-locate groups of hosted clusters and isolate them from other hosted clusters. You can also place hosted clusters in infra and control plane nodes.</p>
+      <p>Tolerations on the hosted cluster spread only to the pods of the control plane. To configure other pods that run on the management cluster and infrastructure-related pods, such as the pods to run virtual machines, you need to use a different process.</p>
+      <h2 id="hcp-isolation_hcp-distribute-workloads" class="group scroll-mt-20">Control plane isolation<a href="#hcp-isolation_hcp-distribute-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure hosted control planes to isolate network traffic or control plane pods.</p>
+      <p>Each hosted control plane is assigned to run in a dedicated Kubernetes namespace. By default, the Kubernetes namespace denies all network traffic.</p>
+      <p>The following network traffic is allowed through the network policy that is enforced by the Kubernetes Container Network Interface (CNI):</p>
+      <ul>
+      <li>Ingress pod-to-pod communication in the same namespace (intra-tenant)</li>
+      <li>Ingress on port 6443 to the hosted <code>kube-apiserver</code> pod for the tenant</li>
+      <li>Metric scraping from the management cluster Kubernetes namespace with the <code>network.openshift.io/policy-group: monitoring</code> label is allowed for monitoring</li>
+      </ul>
+      <h3 id="hcp-cp-pod-isolation_hcp-distribute-workloads" class="group scroll-mt-20">Control plane pod isolation<a href="#hcp-cp-pod-isolation_hcp-distribute-workloads" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>In addition to network policies, each hosted control plane pod is run with the <code>restricted</code> security context constraint. This policy denies access to all host features and requires pods to be run with a unique identifier (UID) and with SELinux context that is allocated uniquely to each namespace that hosts a customer control plane.</p>
+      <p>The policy ensures the following constraints:</p>
+      <ul>
+      <li>Pods cannot run as privileged.</li>
+      <li>Pods cannot mount host directory volumes.</li>
+      <li>Pods must run as a user in a pre-allocated range of UIDs.</li>
+      <li>Pods must run with a pre-allocated Multi-Category Security (MCS) label.</li>
+      <li>Pods cannot access the host network namespace.</li>
+      <li>Pods cannot expose host network ports.</li>
+      <li>Pods cannot access the host PID namespace.</li>
+      <li>By default, pods drop the following Linux capabilities: <code>KILL</code>, <code>MKNOD</code>, <code>SETUID</code>, and <code>SETGID</code>.</li>
+      </ul>
+      <p>The management components, such as <code>kubelet</code> and <code>crio</code>, on each management cluster worker node are protected by an SELinux label that is not accessible to the SELinux context for pods that support hosted control planes.</p>
+      <p>The following SELinux labels are used for key processes and sockets:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>kubelet</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p><code>system_u:system_r:unconfined_service_t:s0</code></p></dd>
+      <dt class="font-semibold"><code>crio</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p><code>system_u:system_r:container_runtime_t:s0</code></p></dd>
+      <dt class="font-semibold"><code>crio.sock</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p><code>system_u:object_r:container_var_run_t:s0</code></p></dd>
+      <dt class="font-semibold"><code>&lt;example user container processes&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p><code>system_u:system_r:container_t:s0:c14,c24</code></p></dd>
+      </dl>
+      <p>To achieve physical or virtual machine (VM) isolation, you need to use a "shared-nothing" approach, where each control plane has its own dedicated node. Nodes for a specific hosted cluster are tainted and labeled with a specific <code>hypershift.openshift.io/hosted-cluster</code> value. Security involves the use of a network policy and physical network access control lists (ACLs) across hosted clusters.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

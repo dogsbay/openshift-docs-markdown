@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"lws-release-notes","text":"{{ lws_operator }} release notes"}];
+const headings = [{"depth":1,"slug":"lws-release-notes","text":"Leader Worker Set Operator release notes"},{"depth":2,"slug":"lws-rn-1.0.0_lws-release-notes","text":"Release notes for Leader Worker Set Operator 1.0.0"},{"depth":3,"slug":"lws-rn-1.0.0-new-features_lws-release-notes","text":"New features and enhancements"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-release-notes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ lws_operator }} release notes";
-const description = "Review the {{ lws_operator }} release notes to track its development and learn what is new and changed with each release." || undefined;
+const description = "Review the Leader Worker Set Operator release notes to track its development and learn what is new and changed with each release." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["ai_workloads","ai_workloads/leader_worker_set"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ lws_operator }} release notes {#lws-release-notes}\n\nReview the {{ lws_operator }} release notes to track its development and learn what is new and changed with each release.\n\nYou can use the {{ lws_operator }} to manage distributed inference workloads and process large-scale inference requests efficiently.\n\nThese release notes track the development of the {{ lws_operator }}.\n\nFor more information, see [About the {{ lws_operator }}](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-release-notes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Leader Worker Set Operator release notes {#lws-release-notes}\n\nReview the Leader Worker Set Operator release notes to track its development and learn what is new and changed with each release.\n\nYou can use the Leader Worker Set Operator to manage distributed inference workloads and process large-scale inference requests efficiently.\n\nThese release notes track the development of the Leader Worker Set Operator.\n\nFor more information, see [About the Leader Worker Set Operator](/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about).\n\n## Release notes for Leader Worker Set Operator 1.0.0 {#lws-rn-1.0.0_lws-release-notes}\n\nReview the release notes for Leader Worker Set Operator 1.0.0 to learn what is new and updated with this release.\n\nIssued: 18 September 2025\n\nThe following advisories are available for the Leader Worker Set Operator 1.0.0:\n\n- [RHBA-2025:13974](https://access.redhat.com/errata/RHBA-2025:13974)\n- [RHBA-2025:13574](https://access.redhat.com/errata/RHBA-2025:13574)\n\n### New features and enhancements {#lws-rn-1.0.0-new-features_lws-release-notes}\n\n- This is the initial release of the Leader Worker Set Operator.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/leader_worker_set/lws-release-notes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,13 +90,21 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="lws-release-notes" class="group scroll-mt-20">{"{"}{"{"} lws_operator {"}"}{"}"} release notes<a href="#lws-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Review the {"{"}{"{"} lws_operator {"}"}{"}"} release notes to track its development and learn what is new and changed with each release.</p>
-      <p>You can use the {"{"}{"{"} lws_operator {"}"}{"}"} to manage distributed inference workloads and process large-scale inference requests efficiently.</p>
-      <p>These release notes track the development of the {"{"}{"{"} lws_operator {"}"}{"}"}.</p>
-      <p>For more information, see <a href="/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about">About the {"{"}{"{"} lws_operator {"}"}{"}"}</a>.</p>
-      <p class="/modules/lws-rn-1.0.0.md"></p>
+      <h1 id="lws-release-notes" class="group scroll-mt-20">Leader Worker Set Operator release notes<a href="#lws-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Review the Leader Worker Set Operator release notes to track its development and learn what is new and changed with each release.</p>
+      <p>You can use the Leader Worker Set Operator to manage distributed inference workloads and process large-scale inference requests efficiently.</p>
+      <p>These release notes track the development of the Leader Worker Set Operator.</p>
+      <p>For more information, see <a href="/openshift-docs-markdown/ai_workloads/leader_worker_set/index#lws-about_lws-about">About the Leader Worker Set Operator</a>.</p>
+      <h2 id="lws-rn-1.0.0_lws-release-notes" class="group scroll-mt-20">Release notes for Leader Worker Set Operator 1.0.0<a href="#lws-rn-1.0.0_lws-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the release notes for Leader Worker Set Operator 1.0.0 to learn what is new and updated with this release.</p>
+      <p>Issued: 18 September 2025</p>
+      <p>The following advisories are available for the Leader Worker Set Operator 1.0.0:</p>
+      <ul>
+      <li><a href="https://access.redhat.com/errata/RHBA-2025:13974">RHBA-2025:13974</a></li>
+      <li><a href="https://access.redhat.com/errata/RHBA-2025:13574">RHBA-2025:13574</a></li>
+      </ul>
+      <h3 id="lws-rn-1.0.0-new-features_lws-release-notes" class="group scroll-mt-20">New features and enhancements<a href="#lws-rn-1.0.0-new-features_lws-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul><li>This is the initial release of the Leader Worker Set Operator.</li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

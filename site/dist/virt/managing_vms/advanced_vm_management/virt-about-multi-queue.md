@@ -15,3 +15,21 @@ By default, the `queueCount` value, which is derived from the domain XML, is det
 
 - Message signaled interrupt (MSI) vectors are still consumed if `virtio-net` multi-queue is enabled in the host but not enabled in the guest operating system by the administrator.
 - Each `virtio-net` queue consumes 64 KiB of kernel memory for the `vhost` driver.
+
+## Enabling multi-queue functionality {#virt-enabling-multi-queue_virt-about-multi-queue}
+
+You can enable multi-queue functionality for interfaces configured with a VirtIO model.
+
+**Procedure**
+
+1. Set the `networkInterfaceMultiqueue` value to `true` in the `VirtualMachine` manifest file of your VM to enable multi-queue functionality:
+
+   ```yaml
+   apiVersion: kubevirt.io/v1
+   kind: VM
+   spec:
+     domain:
+       devices:
+         networkInterfaceMultiqueue: true
+   ```
+2. Save the `VirtualMachine` manifest file to apply your changes.

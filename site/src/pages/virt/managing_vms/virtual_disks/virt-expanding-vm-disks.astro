@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-expanding-vm-disks","text":"Expand virtual machine disks"},{"depth":2,"slug":"additional-resources_virt-expanding-vm-disks","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-expanding-vm-disks","text":"Expand virtual machine disks"},{"depth":2,"slug":"virt-expanding-vm-disk-pvc-web-console_virt-expanding-vm-disks","text":"Expand a VM disk PVC by using the web console"},{"depth":2,"slug":"virt-expanding-vm-disk-pvc-cli_virt-expanding-vm-disks","text":"Expanding a VM disk PVC by using the CLI"},{"depth":2,"slug":"virt-expanding-storage-with-data-volumes_virt-expanding-vm-disks","text":"Expanding available virtual storage by adding blank data volumes"},{"depth":2,"slug":"additional-resources_virt-expanding-vm-disks","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-expanding-vm-disks";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/virtual_disk
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Expand virtual machine disks {#virt-expanding-vm-disks}\n\nExpand the  persistent volume claim (PVC) of your virtual machine disk to accomodate growing data requirements. If your storage provider does not support volume expansion, you can expand the available virtual storage of a VM by adding blank data volumes.\n\nYou cannot reduce the size of a VM disk.\n\n## Additional resources {#additional-resources_virt-expanding-vm-disks}\n\n- [Extending a basic volume in Windows](https://docs.microsoft.com/en-us/windows-server/storage/disk-management/extend-a-basic-volume)\n- [Extending an existing file system partition without destroying data in Red Hat Enterprise Linux](https://access.redhat.com/solutions/29095)\n- [Extending a logical volume and its file system online in Red Hat Enterprise Linux](https://access.redhat.com/solutions/24770)\n- [Configuring preallocation mode for data volumes](/openshift-docs-markdown/virt/storage/virt-using-preallocation-for-datavolumes#virt-using-preallocation-for-datavolumes)\n- [Managing data volume annotations](/openshift-docs-markdown/virt/storage/virt-managing-data-volume-annotations#virt-managing-data-volume-annotations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-expanding-vm-disks.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Expand virtual machine disks {#virt-expanding-vm-disks}\n\nExpand the  persistent volume claim (PVC) of your virtual machine disk to accomodate growing data requirements. If your storage provider does not support volume expansion, you can expand the available virtual storage of a VM by adding blank data volumes.\n\nYou cannot reduce the size of a VM disk.\n\n## Expand a VM disk PVC by using the web console {#virt-expanding-vm-disk-pvc-web-console_virt-expanding-vm-disks}\n\nYou can increase the size of a virtual machine (VM) disk by expanding the persistent volume claim (PVC) of the disk. To specify the increased PVC volume, you can use the **VirtualMachines** page in the web console, with the VM running.\n\n> [!NOTE]\n> If the PVC uses the file system volume mode, the disk image file expands to the available size while reserving some space for file system overhead.\n\n**Procedure**\n\n1. In the **Administrator** or **Virtualization** perspective, open the **VirtualMachines** page.\n2. Select the running VM to open its **Details** page.\n3. Select the **Configuration** tab and click **Storage**.\n4. Click the options menu ![](kebab.png \"Options menu\") next to the disk you want to expand. Select the **Edit** option.\n\n   The **Edit disk** dialog opens.\n5. In the **PersistentVolumeClaim size** field, enter the desired size.\n\n   > [!NOTE]\n   > You can enter any value greater than the current one. However, if the new value exceeds the available size, an error is displayed.\n6. Click **Save**.\n\n## Expanding a VM disk PVC by using the CLI {#virt-expanding-vm-disk-pvc-cli_virt-expanding-vm-disks}\n\nYou can increase the size of a virtual machine (VM) disk by expanding the persistent volume claim (PVC) of the disk. To specify the increased PVC volume, you can edit the `PersistentVolumeClaim` manifest by using the OpenShift CLI (`oc`).\n\n> [!NOTE]\n> If the PVC uses the file system volume mode, the disk image file expands to the available size while reserving some space for file system overhead.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Edit the `PersistentVolumeClaim` manifest of the VM disk that you want to expand:\n\n   ```terminal\n   $ oc edit pvc <pvc_name>\n   ```\n2. Update the disk size:\n\n   ```yaml\n   apiVersion: v1\n   kind: PersistentVolumeClaim\n   metadata:\n      name: vm-disk-expand\n   spec:\n     accessModes:\n   ```\n\n{%- if openshift_dedicated %} - ReadWriteOnce {% endif %} {% if not openshift_dedicated %} - ReadWriteMany {%- endif %} resources: requests: storage: 3Gi # ... \\`\\`\\` \\*   `spec.resources.requests.storage` specifies the new disk size.\n\n## Expanding available virtual storage by adding blank data volumes {#virt-expanding-storage-with-data-volumes_virt-expanding-vm-disks}\n\nYou can expand the available storage of a virtual machine (VM) by adding blank data volumes.\n\n**Prerequisites**\n\n- You must have at least one persistent volume.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a `DataVolume` manifest as shown in the following example:\n\n   ```yaml\n   apiVersion: cdi.kubevirt.io/v1beta1\n   kind: DataVolume\n   metadata:\n     name: blank-image-datavolume\n   spec:\n     source:\n       blank: {}\n     storage:\n       resources:\n         requests:\n           storage: <2Gi>\n     storageClassName: \"<storage_class>\"\n   ```\n\n   - `spec.storage.resources.requests.storage` specifies the amount of available space requested for the data volume.\n   - `spec.storageClassName` is an optional field that specifies a storage class. If you do not specify a storage class, the default storage class is used.\n2. Create the data volume by running the following command:\n\n   ```terminal\n   $ oc create -f <blank-image-datavolume>.yaml\n   ```\n\n## Additional resources {#additional-resources_virt-expanding-vm-disks}\n\n- [Extending a basic volume in Windows](https://docs.microsoft.com/en-us/windows-server/storage/disk-management/extend-a-basic-volume)\n- [Extending an existing file system partition without destroying data in Red Hat Enterprise Linux](https://access.redhat.com/solutions/29095)\n- [Extending a logical volume and its file system online in Red Hat Enterprise Linux](https://access.redhat.com/solutions/24770)\n- [Configuring preallocation mode for data volumes](/openshift-docs-markdown/virt/storage/virt-using-preallocation-for-datavolumes#virt-using-preallocation-for-datavolumes)\n- [Managing data volume annotations](/openshift-docs-markdown/virt/storage/virt-managing-data-volume-annotations#virt-managing-data-volume-annotations)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virtual_disks/virt-expanding-vm-disks.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,13 +94,81 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-expanding-vm-disks" class="group scroll-mt-20">Expand virtual machine disks<a href="#virt-expanding-vm-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>Expand the  persistent volume claim (PVC) of your virtual machine disk to accomodate growing data requirements. If your storage provider does not support volume expansion, you can expand the available virtual storage of a VM by adding blank data volumes.</p>
       <p>You cannot reduce the size of a VM disk.</p>
-      <p class="/modules/virt-expanding-vm-disk-pvc-web-console.md"></p>
-      <p class="/modules/virt-expanding-vm-disk-pvc-cli.md"></p>
-      <p class="/modules/virt-expanding-storage-with-data-volumes.md"></p>
+      <h2 id="virt-expanding-vm-disk-pvc-web-console_virt-expanding-vm-disks" class="group scroll-mt-20">Expand a VM disk PVC by using the web console<a href="#virt-expanding-vm-disk-pvc-web-console_virt-expanding-vm-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can increase the size of a virtual machine (VM) disk by expanding the persistent volume claim (PVC) of the disk. To specify the increased PVC volume, you can use the <strong>VirtualMachines</strong> page in the web console, with the VM running.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If the PVC uses the file system volume mode, the disk image file expands to the available size while reserving some space for file system overhead.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the <strong>Administrator</strong> or <strong>Virtualization</strong> perspective, open the <strong>VirtualMachines</strong> page.</li>
+      <li>Select the running VM to open its <strong>Details</strong> page.</li>
+      <li>Select the <strong>Configuration</strong> tab and click <strong>Storage</strong>.</li>
+      <li>
+      Click the options menu <img src="kebab.png" alt="" loading="lazy" /> next to the disk you want to expand. Select the <strong>Edit</strong> option.
+      <p>The <strong>Edit disk</strong> dialog opens.</p>
+      </li>
+      <li>
+      In the <strong>PersistentVolumeClaim size</strong> field, enter the desired size.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can enter any value greater than the current one. However, if the new value exceeds the available size, an error is displayed.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Click <strong>Save</strong>.</li>
+      </ol>
+      <h2 id="virt-expanding-vm-disk-pvc-cli_virt-expanding-vm-disks" class="group scroll-mt-20">Expanding a VM disk PVC by using the CLI<a href="#virt-expanding-vm-disk-pvc-cli_virt-expanding-vm-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can increase the size of a virtual machine (VM) disk by expanding the persistent volume claim (PVC) of the disk. To specify the increased PVC volume, you can edit the <code>PersistentVolumeClaim</code> manifest by using the OpenShift CLI (<code>oc</code>).</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If the PVC uses the file system volume mode, the disk image file expands to the available size while reserving some space for file system overhead.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>PersistentVolumeClaim</code> manifest of the VM disk that you want to expand:
+      <CodeBlock code={"$ oc edit pvc <pvc_name>"} lang="terminal" />
+      </li>
+      <li>
+      Update the disk size:
+      <CodeBlock code={"apiVersion: v1\nkind: PersistentVolumeClaim\nmetadata:\n   name: vm-disk-expand\nspec:\n  accessModes:"} lang="yaml" />
+      </li>
+      </ol>
+      <p>{"{"}%- if openshift_dedicated %{"}"} - ReadWriteOnce {"{"}% endif %{"}"} {"{"}% if not openshift_dedicated %{"}"} - ReadWriteMany {"{"}%- endif %{"}"} resources: requests: storage: 3Gi # ... ``` *   <code>spec.resources.requests.storage</code> specifies the new disk size.</p>
+      <h2 id="virt-expanding-storage-with-data-volumes_virt-expanding-vm-disks" class="group scroll-mt-20">Expanding available virtual storage by adding blank data volumes<a href="#virt-expanding-storage-with-data-volumes_virt-expanding-vm-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can expand the available storage of a virtual machine (VM) by adding blank data volumes.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You must have at least one persistent volume.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>DataVolume</code> manifest as shown in the following example:
+      <CodeBlock code={"apiVersion: cdi.kubevirt.io/v1beta1\nkind: DataVolume\nmetadata:\n  name: blank-image-datavolume\nspec:\n  source:\n    blank: {}\n  storage:\n    resources:\n      requests:\n        storage: <2Gi>\n  storageClassName: \"<storage_class>\""} lang="yaml" />
+      <ul>
+      <li><code>spec.storage.resources.requests.storage</code> specifies the amount of available space requested for the data volume.</li>
+      <li><code>spec.storageClassName</code> is an optional field that specifies a storage class. If you do not specify a storage class, the default storage class is used.</li>
+      </ul>
+      </li>
+      <li>
+      Create the data volume by running the following command:
+      <CodeBlock code={"$ oc create -f <blank-image-datavolume>.yaml"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="additional-resources_virt-expanding-vm-disks" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-expanding-vm-disks" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://docs.microsoft.com/en-us/windows-server/storage/disk-management/extend-a-basic-volume">Extending a basic volume in Windows</a></li>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"creating-multi-arch-compute-nodes-aws","text":"Creating a cluster with multi-architecture compute machines on AWS"},{"depth":2,"slug":"additional-resources_creating-multi-arch-compute-nodes-aws","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"creating-multi-arch-compute-nodes-aws","text":"Creating a cluster with multi-architecture compute machines on AWS"},{"depth":2,"slug":"multi-architecture-modify-machine-set-aws_creating-multi-arch-compute-nodes-aws","text":"Adding a multi-architecture compute machine set to your AWS cluster"},{"depth":2,"slug":"additional-resources_creating-multi-arch-compute-nodes-aws","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Creating a cluster with multi-architecture compute machines on AWS";
-const description = "To deploy a cluster on {{ aws_first }} with multi-architecture compute machines, you must first create a single-architecture installer-provisioned cluster…" || undefined;
+const description = "To deploy a cluster on Amazon Web Services (AWS) with multi-architecture compute machines, you must first create a single-architecture…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a cluster with multi-architecture compute machines on AWS {#creating-multi-arch-compute-nodes-aws}\n\nTo deploy a cluster on {{ aws_first }} with multi-architecture compute machines, you must first create a single-architecture installer-provisioned cluster that uses the multi-architecture installer binary.\n\nYou can also migrate your current cluster with single-architecture compute machines to a cluster with multi-architecture compute machines. After creating a multi-architecture cluster, you can add nodes with different architectures to the cluster.\n\n## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-aws}\n\n- [Installing a cluster on AWS with customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n- [Tested instance types for AWS 64-bit ARM](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-aws-arm-tested-machine-types_installing-aws-customizations)\n- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-aws.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating a cluster with multi-architecture compute machines on AWS {#creating-multi-arch-compute-nodes-aws}\n\nTo deploy a cluster on Amazon Web Services (AWS) with multi-architecture compute machines, you must first create a single-architecture installer-provisioned cluster that uses the multi-architecture installer binary.\n\nYou can also migrate your current cluster with single-architecture compute machines to a cluster with multi-architecture compute machines. After creating a multi-architecture cluster, you can add nodes with different architectures to the cluster.\n\n## Adding a multi-architecture compute machine set to your AWS cluster {#multi-architecture-modify-machine-set-aws_creating-multi-arch-compute-nodes-aws}\n\nAfter creating a multi-architecture cluster, you can add nodes with different architectures.\n\nYou can add multi-architecture compute machines to a multi-architecture cluster in the following ways:\n\n- Adding 64-bit x86 compute machines to a cluster that uses 64-bit ARM control plane machines and already includes 64-bit ARM compute machines. In this case, 64-bit x86 is considered the secondary architecture.\n- Adding 64-bit ARM compute machines to a cluster that uses 64-bit x86 control plane machines and already includes 64-bit x86 compute machines. In this case, 64-bit ARM is considered the secondary architecture.\n\n> [!NOTE]\n> Before adding a secondary architecture node to your cluster, it is recommended to install the Multiarch Tuning Operator, and deploy a `ClusterPodPlacementConfig` custom resource. For more information, see \"Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator\".\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n- You used the installation program to create a 64-bit ARM or 64-bit x86 single-architecture cluster with the multi-architecture installer binary.\n\n**Procedure**\n\n1. Log in to the OpenShift CLI (`oc`).\n2. Create a YAML file and add the configuration to create a compute machine set to control the 64-bit ARM or 64-bit x86 compute nodes in your cluster.\n\n   ```yaml {title=\"Example MachineSet object for an AWS 64-bit ARM or x86 compute node\"}\n   apiVersion: machine.openshift.io/v1beta1\n   kind: MachineSet\n   metadata:\n     labels:\n       machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n     name: <infrastructure_id>-aws-machine-set-0\n     namespace: openshift-machine-api\n   spec:\n     replicas: 1\n     selector:\n       matchLabels:\n         machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n         machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>\n     template:\n       metadata:\n         labels:\n           machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n           machine.openshift.io/cluster-api-machine-role: <role>\n           machine.openshift.io/cluster-api-machine-type: <role>\n           machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>\n       spec:\n         metadata:\n           labels:\n             node-role.kubernetes.io/<role>: \"\"\n         providerSpec:\n           value:\n             ami:\n               id: ami-02a574449d4f4d280\n             apiVersion: awsproviderconfig.openshift.io/v1beta1\n             blockDevices:\n               - ebs:\n                   iops: 0\n                   volumeSize: 120\n                   volumeType: gp2\n             credentialsSecret:\n               name: aws-cloud-credentials\n             deviceIndex: 0\n             iamInstanceProfile:\n               id: <infrastructure_id>-worker-profile\n             instanceType: m6g.xlarge\n             kind: AWSMachineProviderConfig\n             placement:\n               availabilityZone: us-east-1a\n               region: <region>\n             securityGroups:\n               - filters:\n                   - name: tag:Name\n                     values:\n                       - <infrastructure_id>-node\n             subnet:\n               filters:\n                 - name: tag:Name\n                   values:\n                     - <infrastructure_id>-subnet-private-<zone>\n             tags:\n               - name: kubernetes.io/cluster/<infrastructure_id>\n                 value: owned\n               - name: <custom_tag_name>\n                 value: <custom_tag_value>\n             userDataSecret:\n               name: worker-user-data\n   ```\n\n   where:\n\n   `<infrastructure_id>`\n   :   Specifies the infrastructure ID that is based on the cluster ID that you set when you provisioned the cluster. If you have the OpenShift CLI (`oc`) installed, you can obtain the infrastructure ID by running the following command:\n\n   ```terminal\n   $ oc get -o jsonpath=\"{.status.infrastructureName}{'\\n'}\" infrastructure cluster\n   ```\n\n   `<role>-<zone>`\n   :   Specifies the infrastructure ID, role node label, and zone.\n\n   `<role>`\n   :   Specifies the role node label to add.\n\n   `ami.id`\n   :   Specifies a Red Hat Enterprise Linux CoreOS (RHCOS) Amazon Machine Image (AMI) for your AWS region for the nodes. The RHCOS AMI must be compatible with the machine architecture.\n\n   ```terminal\n   $ oc get configmap/coreos-bootimages \\\n   \t  -n openshift-machine-config-operator \\\n   \t  -o jsonpath='{.data.stream}' | jq \\\n   \t  -r '.architectures.<arch>.images.aws.regions.\"<region>\".image'\n   ```\n\n   `instanceType`\n   :   Specifies a machine type that aligns with the CPU architecture of the chosen AMI. For more information, see \"Tested instance types for AWS 64-bit ARM\".\n\n   `availabilityZone`\n   :   Specifies the zone. For example, `us-east-1a`. Ensure that the zone you select has machines with the required architecture.\n\n   `region`\n   :   Specifies the region. For example, `us-east-1`. Ensure that the zone you select has machines with the required architecture.\n3. Create the compute machine set by running the following command:\n\n   ```terminal\n   $ oc create -f <file_name>\n   ```\n\n   - Replace `<file_name>` with the name of the YAML file with compute machine set configuration. For example: `aws-arm64-machine-set-0.yaml`, or `aws-amd64-machine-set-0.yaml`.\n\n**Verification**\n\n1. Verify that the new machines are running by running the following command:\n\n   ```terminal\n   $ oc get machineset -n openshift-machine-api\n   ```\n\n   The output must include the machine set that you created.\n\n   ```terminal {title=\"Example output\"}\n   NAME                                                DESIRED  CURRENT  READY  AVAILABLE  AGE\n   <infrastructure_id>-aws-machine-set-0                   2        2      2          2  10m\n   ```\n2. You can check if the nodes are ready and schedulable by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n## Additional resources {#additional-resources_creating-multi-arch-compute-nodes-aws}\n\n- [Installing a cluster on AWS with customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)\n- [Migrating to a cluster with multi-architecture compute machines](/openshift-docs-markdown/updating/updating_a_cluster/migrating-to-multi-payload#migrating-to-multi-payload)\n- [Tested instance types for AWS 64-bit ARM](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installation-aws-arm-tested-machine-types_installing-aws-customizations)\n- [Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator](/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/multiarch-tuning-operator#multiarch-tuning-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/configuring-multi-arch-compute-machines/creating-multi-arch-compute-nodes-aws.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,75 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-multi-arch-compute-nodes-aws" class="group scroll-mt-20">Creating a cluster with multi-architecture compute machines on AWS<a href="#creating-multi-arch-compute-nodes-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>To deploy a cluster on {"{"}{"{"} aws_first {"}"}{"}"} with multi-architecture compute machines, you must first create a single-architecture installer-provisioned cluster that uses the multi-architecture installer binary.</p>
+      <p>To deploy a cluster on Amazon Web Services (AWS) with multi-architecture compute machines, you must first create a single-architecture installer-provisioned cluster that uses the multi-architecture installer binary.</p>
       <p>You can also migrate your current cluster with single-architecture compute machines to a cluster with multi-architecture compute machines. After creating a multi-architecture cluster, you can add nodes with different architectures to the cluster.</p>
-      <p class="/modules/multi-architecture-modify-machine-set-aws.md"></p>
+      <h2 id="multi-architecture-modify-machine-set-aws_creating-multi-arch-compute-nodes-aws" class="group scroll-mt-20">Adding a multi-architecture compute machine set to your AWS cluster<a href="#multi-architecture-modify-machine-set-aws_creating-multi-arch-compute-nodes-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After creating a multi-architecture cluster, you can add nodes with different architectures. </p>
+      <p>You can add multi-architecture compute machines to a multi-architecture cluster in the following ways:</p>
+      <ul>
+      <li>Adding 64-bit x86 compute machines to a cluster that uses 64-bit ARM control plane machines and already includes 64-bit ARM compute machines. In this case, 64-bit x86 is considered the secondary architecture.</li>
+      <li>Adding 64-bit ARM compute machines to a cluster that uses 64-bit x86 control plane machines and already includes 64-bit x86 compute machines. In this case, 64-bit ARM is considered the secondary architecture.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Before adding a secondary architecture node to your cluster, it is recommended to install the Multiarch Tuning Operator, and deploy a <code>ClusterPodPlacementConfig</code> custom resource. For more information, see "Managing workloads on multi-architecture clusters by using the Multiarch Tuning Operator".</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You used the installation program to create a 64-bit ARM or 64-bit x86 single-architecture cluster with the multi-architecture installer binary.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift CLI (<code>oc</code>).</li>
+      <li>
+      Create a YAML file and add the configuration to create a compute machine set to control the 64-bit ARM or 64-bit x86 compute nodes in your cluster.
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: MachineSet\nmetadata:\n  labels:\n    machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n  name: <infrastructure_id>-aws-machine-set-0\n  namespace: openshift-machine-api\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n      machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>\n  template:\n    metadata:\n      labels:\n        machine.openshift.io/cluster-api-cluster: <infrastructure_id>\n        machine.openshift.io/cluster-api-machine-role: <role>\n        machine.openshift.io/cluster-api-machine-type: <role>\n        machine.openshift.io/cluster-api-machineset: <infrastructure_id>-<role>-<zone>\n    spec:\n      metadata:\n        labels:\n          node-role.kubernetes.io/<role>: \"\"\n      providerSpec:\n        value:\n          ami:\n            id: ami-02a574449d4f4d280\n          apiVersion: awsproviderconfig.openshift.io/v1beta1\n          blockDevices:\n            - ebs:\n                iops: 0\n                volumeSize: 120\n                volumeType: gp2\n          credentialsSecret:\n            name: aws-cloud-credentials\n          deviceIndex: 0\n          iamInstanceProfile:\n            id: <infrastructure_id>-worker-profile\n          instanceType: m6g.xlarge\n          kind: AWSMachineProviderConfig\n          placement:\n            availabilityZone: us-east-1a\n            region: <region>\n          securityGroups:\n            - filters:\n                - name: tag:Name\n                  values:\n                    - <infrastructure_id>-node\n          subnet:\n            filters:\n              - name: tag:Name\n                values:\n                  - <infrastructure_id>-subnet-private-<zone>\n          tags:\n            - name: kubernetes.io/cluster/<infrastructure_id>\n              value: owned\n            - name: <custom_tag_name>\n              value: <custom_tag_value>\n          userDataSecret:\n            name: worker-user-data"} lang="yaml" title="Example MachineSet object for an AWS 64-bit ARM or x86 compute node" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;infrastructure_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the infrastructure ID that is based on the cluster ID that you set when you provisioned the cluster. If you have the OpenShift CLI (<code>oc</code>) installed, you can obtain the infrastructure ID by running the following command:</p></dd>
+      </dl>
+      <CodeBlock code={"$ oc get -o jsonpath=\"{.status.infrastructureName}{'\\n'}\" infrastructure cluster"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;role&gt;-&lt;zone&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the infrastructure ID, role node label, and zone.</p></dd>
+      <dt class="font-semibold"><code>&lt;role&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the role node label to add.</p></dd>
+      <dt class="font-semibold"><code>ami.id</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a Red Hat Enterprise Linux CoreOS (RHCOS) Amazon Machine Image (AMI) for your AWS region for the nodes. The RHCOS AMI must be compatible with the machine architecture.</p></dd>
+      </dl>
+      <CodeBlock code={"$ oc get configmap/coreos-bootimages \\\n\t  -n openshift-machine-config-operator \\\n\t  -o jsonpath='{.data.stream}' | jq \\\n\t  -r '.architectures.<arch>.images.aws.regions.\"<region>\".image'"} lang="terminal" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>instanceType</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a machine type that aligns with the CPU architecture of the chosen AMI. For more information, see "Tested instance types for AWS 64-bit ARM".</p></dd>
+      <dt class="font-semibold"><code>availabilityZone</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the zone. For example, <code>us-east-1a</code>. Ensure that the zone you select has machines with the required architecture.</p></dd>
+      <dt class="font-semibold"><code>region</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the region. For example, <code>us-east-1</code>. Ensure that the zone you select has machines with the required architecture.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the compute machine set by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>"} lang="terminal" />
+      <ul><li>Replace <code>&lt;file_name&gt;</code> with the name of the YAML file with compute machine set configuration. For example: <code>aws-arm64-machine-set-0.yaml</code>, or <code>aws-amd64-machine-set-0.yaml</code>.</li></ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the new machines are running by running the following command:
+      <CodeBlock code={"$ oc get machineset -n openshift-machine-api"} lang="terminal" />
+      <p>The output must include the machine set that you created.</p>
+      <CodeBlock code={"NAME                                                DESIRED  CURRENT  READY  AVAILABLE  AGE\n<infrastructure_id>-aws-machine-set-0                   2        2      2          2  10m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      You can check if the nodes are ready and schedulable by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      </li>
+      </ol>
       <h2 id="additional-resources_creating-multi-arch-compute-nodes-aws" class="group scroll-mt-20">Additional resources<a href="#additional-resources_creating-multi-arch-compute-nodes-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations">Installing a cluster on AWS with customizations</a></li>

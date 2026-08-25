@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-cluster-resource-levels","text":"Estimating the number of pods your OpenShift Container Platform nodes can hold"},{"depth":2,"slug":"nodes-cluster-resource-levels_additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"nodes-cluster-resource-levels","text":"Estimating the number of pods your OpenShift Container Platform nodes can hold"},{"depth":2,"slug":"nodes-cluster-resource-levels-about_nodes-cluster-resource-levels","text":"Understanding the OpenShift Cluster Capacity Tool"},{"depth":2,"slug":"nodes-cluster-resource-levels-command_nodes-cluster-resource-levels","text":"Running the OpenShift Cluster Capacity Tool on the command line"},{"depth":2,"slug":"nodes-cluster-resource-levels-job_nodes-cluster-resource-levels","text":"Running the OpenShift Cluster Capacity Tool as a job inside a pod"},{"depth":2,"slug":"nodes-cluster-resource-levels_additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-levels";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/clusters"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Estimating the number of pods your OpenShift Container Platform nodes can hold {#nodes-cluster-resource-levels}\n\nAs a cluster administrator, you can use the OpenShift Cluster Capacity Tool to view the number of pods that can be scheduled in your cluster. This allows you to increase the current resources before they become exhausted and to ensure any future pods can be scheduled. This capacity comes from an individual node host in a cluster, and includes CPU, memory, disk space, and others.\n\n## Additional resources {#nodes-cluster-resource-levels_additional-resources}\n\n- [OpenShift Cluster Capacity Tool](https://catalog.redhat.com/software/containers/openshift4/ose-cluster-capacity/5cca0324d70cc57c44ae8eb6?container-tabs=overview)\n- [cluster-capacity repository](https://github.com/openshift/cluster-capacity)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-levels.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Estimating the number of pods your OpenShift Container Platform nodes can hold {#nodes-cluster-resource-levels}\n\nAs a cluster administrator, you can use the OpenShift Cluster Capacity Tool to view the number of pods that can be scheduled in your cluster. This allows you to increase the current resources before they become exhausted and to ensure any future pods can be scheduled. This capacity comes from an individual node host in a cluster, and includes CPU, memory, disk space, and others.\n\n## Understanding the OpenShift Cluster Capacity Tool {#nodes-cluster-resource-levels-about_nodes-cluster-resource-levels}\n\nReview the following information to learn how to use the OpenShift Cluster Capacity Tool to simulate a sequence of scheduling decisions that determine how many instances of an input pod can be scheduled on the cluster before the cluster is exhausted of resources.\n\n> [!NOTE]\n> The remaining allocatable capacity is a rough estimation, because it does not count all of the resources being distributed among nodes. It analyzes only the remaining resources and estimates the available capacity that is still consumable in terms of the number of instances of a pod with given requirements that can be scheduled in a cluster.\n>\n> Also, pods might only have scheduling support on particular sets of nodes based on its selection and affinity criteria. As a result, the estimation of which remaining pods a cluster can schedule can be difficult.\n\nYou can run the OpenShift Cluster Capacity Tool as a stand-alone utility from the command line, or as a job in a pod inside an OpenShift Container Platform cluster. Running the tool as job inside of a pod enables you to run it multiple times without intervention.\n\n## Running the OpenShift Cluster Capacity Tool on the command line {#nodes-cluster-resource-levels-command_nodes-cluster-resource-levels}\n\nYou can run the OpenShift Cluster Capacity Tool from the command line to estimate the number of pods that can be scheduled onto your cluster.\n\nYou create a sample pod spec file, which the tool uses for estimating resource usage. The pod spec specifies its resource requirements as `limits` or `requests`. The cluster capacity tool takes the pod’s resource requirements into account for its estimation analysis.\n\n**Prerequisites**\n\n1. Run the OpenShift Cluster Capacity Tool, which is available as a container image from the Red Hat Ecosystem Catalog.\n2. Create a sample pod spec file:\n\n   1. Create a YAML file similar to the following:\n\n      ```yaml\n      apiVersion: v1\n      kind: Pod\n      metadata:\n        name: small-pod\n        labels:\n          app: guestbook\n          tier: frontend\n      spec:\n        securityContext:\n          runAsNonRoot: true\n          seccompProfile:\n            type: RuntimeDefault\n        containers:\n        - name: php-redis\n          image: gcr.io/google-samples/gb-frontend:v4\n          imagePullPolicy: Always\n          resources:\n            limits:\n              cpu: 150m\n              memory: 100Mi\n            requests:\n              cpu: 150m\n              memory: 100Mi\n          securityContext:\n            allowPrivilegeEscalation: false\n            capabilities:\n              drop: [ALL]\n      ```\n   2. Create the cluster role:\n\n      ```terminal\n      $ oc create -f <file_name>.yaml\n      ```\n\n      For example:\n\n      ```terminal\n      $ oc create -f pod-spec.yaml\n      ```\n\n**Procedure**\n\n1. From the terminal, log in to the Red Hat Registry:\n\n   ```terminal\n   $ podman login registry.redhat.io\n   ```\n2. Pull the cluster capacity tool image:\n\n   ```terminal\n   $ podman pull registry.redhat.io/openshift4/ose-cluster-capacity\n   ```\n3. Run the cluster capacity tool:\n\n   ```terminal\n   $ podman run -v $HOME/.kube:/kube:Z -v $(pwd):/cc:Z  ose-cluster-capacity \\\n   /bin/cluster-capacity --kubeconfig /kube/config --<pod_spec>.yaml /cc/<pod_spec>.yaml \\\n   --verbose\n   ```\n\n   where:\n\n   <pod_spec>.yaml\n   :   Specifies the pod spec to use.\n\n   verbose\n   :   Outputs a detailed description of how many pods can be scheduled on each node in the cluster.\n\n   ```terminal {title=\"Example output\"}\n   small-pod pod requirements:\n   \t- CPU: 150m\n   \t- Memory: 100Mi\n\n   The cluster can schedule 88 instance(s) of the pod small-pod.\n\n   Termination reason: Unschedulable: 0/5 nodes are available: 2 Insufficient cpu,\n   3 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't\n   tolerate.\n\n   Pod distribution among nodes:\n   small-pod\n   \t- 192.168.124.214: 45 instance(s)\n   \t- 192.168.124.120: 43 instance(s)\n   ```\n\n   In the above example, the number of estimated pods that can be scheduled onto the cluster is 88.\n\n## Running the OpenShift Cluster Capacity Tool as a job inside a pod {#nodes-cluster-resource-levels-job_nodes-cluster-resource-levels}\n\nYou can run the OpenShift Cluster Capacity Tool as a job inside of a pod by using a `ConfigMap` object. This allows you to run the tool multiple times without needing user intervention.\n\n**Prerequisites**\n\n- Download and install the OpenShift Cluster Capacity Tool from the `cluster-capacity` repository.\n\n**Procedure**\n\n1. Create the cluster role:\n\n   1. Create a YAML file similar to the following:\n\n      ```yaml\n      kind: ClusterRole\n      apiVersion: rbac.authorization.k8s.io/v1\n      metadata:\n        name: cluster-capacity-role\n      rules:\n      - apiGroups: [\"\"]\n        resources: [\"pods\", \"nodes\", \"persistentvolumeclaims\", \"persistentvolumes\", \"services\", \"replicationcontrollers\"]\n        verbs: [\"get\", \"watch\", \"list\"]\n      - apiGroups: [\"apps\"]\n        resources: [\"replicasets\", \"statefulsets\"]\n        verbs: [\"get\", \"watch\", \"list\"]\n      - apiGroups: [\"policy\"]\n        resources: [\"poddisruptionbudgets\"]\n        verbs: [\"get\", \"watch\", \"list\"]\n      - apiGroups: [\"storage.k8s.io\"]\n        resources: [\"storageclasses\"]\n        verbs: [\"get\", \"watch\", \"list\"]\n      ```\n   2. Create the cluster role by running the following command:\n\n      ```terminal\n      $ oc create -f <file_name>.yaml\n      ```\n\n      For example:\n\n      ```terminal\n      $ oc create sa cluster-capacity-sa\n      ```\n2. Create the service account:\n\n   ```terminal\n   $ oc create sa cluster-capacity-sa -n default\n   ```\n3. Add the role to the service account:\n\n   ```terminal\n   $ oc adm policy add-cluster-role-to-user cluster-capacity-role \\\n       system:serviceaccount:<namespace>:cluster-capacity-sa\n   ```\n\n   where:\n\n   `<namespace>`\n   :   Specifies the namespace where the pod is located.\n4. Define and create the pod spec:\n\n   1. Create a YAML file similar to the following:\n\n      ```yaml\n      apiVersion: v1\n      kind: Pod\n      metadata:\n        name: small-pod\n        labels:\n          app: guestbook\n          tier: frontend\n      spec:\n        securityContext:\n          runAsNonRoot: true\n          seccompProfile:\n            type: RuntimeDefault\n        containers:\n        - name: php-redis\n          image: gcr.io/google-samples/gb-frontend:v4\n          imagePullPolicy: Always\n          resources:\n            limits:\n              cpu: 150m\n              memory: 100Mi\n            requests:\n              cpu: 150m\n              memory: 100Mi\n          securityContext:\n            allowPrivilegeEscalation: false\n            capabilities:\n              drop: [ALL]\n      ```\n   2. Create the pod by running the following command:\n\n      ```terminal\n      $ oc create -f <file_name>.yaml\n      ```\n\n      For example:\n\n      ```terminal\n      $ oc create -f pod.yaml\n      ```\n5. Created a config map object by running the following command:\n\n   ```terminal\n   $ oc create configmap cluster-capacity-configmap \\\n       --from-file=pod.yaml=pod.yaml\n   ```\n\n   The cluster capacity analysis is mounted in a volume using a config map object named `cluster-capacity-configmap` to mount the input pod spec file `pod.yaml` into a volume `test-volume` at the path `/test-pod`.\n6. Create the job using the below example of a job specification file:\n\n   1. Create a YAML file similar to the following:\n\n      ```yaml\n      apiVersion: batch/v1\n      kind: Job\n      metadata:\n        name: cluster-capacity-job\n      spec:\n        parallelism: 1\n        completions: 1\n        template:\n          metadata:\n            name: cluster-capacity-pod\n          spec:\n              containers:\n              - name: cluster-capacity\n                image: openshift/origin-cluster-capacity\n                imagePullPolicy: \"Always\"\n                volumeMounts:\n                - mountPath: /test-pod\n                  name: test-volume\n                env:\n                - name: CC_INCLUSTER\n                  value: \"true\"\n                command:\n                - \"/bin/sh\"\n                - \"-ec\"\n                - |\n                  /bin/cluster-capacity --podspec=/test-pod/pod.yaml --verbose\n              restartPolicy: \"Never\"\n              serviceAccountName: cluster-capacity-sa\n              volumes:\n              - name: test-volume\n                configMap:\n                  name: cluster-capacity-configmap\n      ```\n\n      where:\n\n      `spec.template.spec.containers.env`\n      :   Specifies a required environment variable that indicates the Cluster Capacity Tool is running inside a cluster as a pod. The `pod.yaml` key of the `ConfigMap` object is the same as the `Pod` spec file name, though it is not required. By doing this, the input pod spec file can be accessed inside the pod as `/test-pod/pod.yaml`.\n   2. Run the cluster capacity image as a job in a pod by running the following command:\n\n      ```terminal\n      $ oc create -f cluster-capacity-job.yaml\n      ```\n\n**Verification**\n\n1. Check the job logs to find the number of pods that can be scheduled in the cluster:\n\n   ```terminal\n   $ oc logs jobs/cluster-capacity-job\n   ```\n\n   ```terminal {title=\"Example output\"}\n   small-pod pod requirements:\n           - CPU: 150m\n           - Memory: 100Mi\n\n   The cluster can schedule 52 instance(s) of the pod small-pod.\n\n   Termination reason: Unschedulable: No nodes are available that match all of the\n   following predicates:: Insufficient cpu (2).\n\n   Pod distribution among nodes:\n   small-pod\n           - 192.168.124.214: 26 instance(s)\n           - 192.168.124.120: 26 instance(s)\n   ```\n\n## Additional resources {#nodes-cluster-resource-levels_additional-resources}\n\n- [OpenShift Cluster Capacity Tool](https://catalog.redhat.com/software/containers/openshift4/ose-cluster-capacity/5cca0324d70cc57c44ae8eb6?container-tabs=overview)\n- [cluster-capacity repository](https://github.com/openshift/cluster-capacity)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/clusters/nodes-cluster-resource-levels.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,144 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-cluster-resource-levels" class="group scroll-mt-20">Estimating the number of pods your OpenShift Container Platform nodes can hold<a href="#nodes-cluster-resource-levels" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As a cluster administrator, you can use the OpenShift Cluster Capacity Tool to view the number of pods that can be scheduled in your cluster. This allows you to increase the current resources before they become exhausted and to ensure any future pods can be scheduled. This capacity comes from an individual node host in a cluster, and includes CPU, memory, disk space, and others.</p>
-      <p class="/modules/nodes-cluster-resource-levels-about.md"></p>
-      <p class="/modules/nodes-cluster-resource-levels-command.md"></p>
-      <p class="/modules/nodes-cluster-resource-levels-job.md"></p>
+      <h2 id="nodes-cluster-resource-levels-about_nodes-cluster-resource-levels" class="group scroll-mt-20">Understanding the OpenShift Cluster Capacity Tool<a href="#nodes-cluster-resource-levels-about_nodes-cluster-resource-levels" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the following information to learn how to use the OpenShift Cluster Capacity Tool to simulate a sequence of scheduling decisions that determine how many instances of an input pod can be scheduled on the cluster before the cluster is exhausted of resources.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The remaining allocatable capacity is a rough estimation, because it does not count all of the resources being distributed among nodes. It analyzes only the remaining resources and estimates the available capacity that is still consumable in terms of the number of instances of a pod with given requirements that can be scheduled in a cluster.</p>
+          <p>Also, pods might only have scheduling support on particular sets of nodes based on its selection and affinity criteria. As a result, the estimation of which remaining pods a cluster can schedule can be difficult.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can run the OpenShift Cluster Capacity Tool as a stand-alone utility from the command line, or as a job in a pod inside an OpenShift Container Platform cluster. Running the tool as job inside of a pod enables you to run it multiple times without intervention.</p>
+      <h2 id="nodes-cluster-resource-levels-command_nodes-cluster-resource-levels" class="group scroll-mt-20">Running the OpenShift Cluster Capacity Tool on the command line<a href="#nodes-cluster-resource-levels-command_nodes-cluster-resource-levels" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can run the OpenShift Cluster Capacity Tool from the command line to estimate the number of pods that can be scheduled onto your cluster.</p>
+      <p>You create a sample pod spec file, which the tool uses for estimating resource usage. The pod spec specifies its resource requirements as <code>limits</code> or <code>requests</code>. The cluster capacity tool takes the pod’s resource requirements into account for its estimation analysis.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ol>
+      <li>Run the OpenShift Cluster Capacity Tool, which is available as a container image from the Red Hat Ecosystem Catalog.</li>
+      <li>
+      Create a sample pod spec file:
+      <ol>
+      <li>
+      Create a YAML file similar to the following:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: small-pod\n  labels:\n    app: guestbook\n    tier: frontend\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n  - name: php-redis\n    image: gcr.io/google-samples/gb-frontend:v4\n    imagePullPolicy: Always\n    resources:\n      limits:\n        cpu: 150m\n        memory: 100Mi\n      requests:\n        cpu: 150m\n        memory: 100Mi\n    securityContext:\n      allowPrivilegeEscalation: false\n      capabilities:\n        drop: [ALL]"} lang="yaml" />
+      </li>
+      <li>
+      Create the cluster role:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc create -f pod-spec.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      From the terminal, log in to the Red Hat Registry:
+      <CodeBlock code={"$ podman login registry.redhat.io"} lang="terminal" />
+      </li>
+      <li>
+      Pull the cluster capacity tool image:
+      <CodeBlock code={"$ podman pull registry.redhat.io/openshift4/ose-cluster-capacity"} lang="terminal" />
+      </li>
+      <li>
+      Run the cluster capacity tool:
+      <CodeBlock code={"$ podman run -v $HOME/.kube:/kube:Z -v $(pwd):/cc:Z  ose-cluster-capacity \\\n/bin/cluster-capacity --kubeconfig /kube/config --<pod_spec>.yaml /cc/<pod_spec>.yaml \\\n--verbose"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">&lt;pod_spec&gt;.yaml</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the pod spec to use.</p></dd>
+      <dt class="font-semibold">verbose</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Outputs a detailed description of how many pods can be scheduled on each node in the cluster.</p></dd>
+      </dl>
+      <CodeBlock code={"small-pod pod requirements:\n\t- CPU: 150m\n\t- Memory: 100Mi\n\nThe cluster can schedule 88 instance(s) of the pod small-pod.\n\nTermination reason: Unschedulable: 0/5 nodes are available: 2 Insufficient cpu,\n3 node(s) had taint {node-role.kubernetes.io/master: }, that the pod didn't\ntolerate.\n\nPod distribution among nodes:\nsmall-pod\n\t- 192.168.124.214: 45 instance(s)\n\t- 192.168.124.120: 43 instance(s)"} lang="terminal" title="Example output" />
+      <p>In the above example, the number of estimated pods that can be scheduled onto the cluster is 88.</p>
+      </li>
+      </ol>
+      <h2 id="nodes-cluster-resource-levels-job_nodes-cluster-resource-levels" class="group scroll-mt-20">Running the OpenShift Cluster Capacity Tool as a job inside a pod<a href="#nodes-cluster-resource-levels-job_nodes-cluster-resource-levels" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can run the OpenShift Cluster Capacity Tool as a job inside of a pod by using a <code>ConfigMap</code> object. This allows you to run the tool multiple times without needing user intervention.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Download and install the OpenShift Cluster Capacity Tool from the <code>cluster-capacity</code> repository.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the cluster role:
+      <ol>
+      <li>
+      Create a YAML file similar to the following:
+      <CodeBlock code={"kind: ClusterRole\napiVersion: rbac.authorization.k8s.io/v1\nmetadata:\n  name: cluster-capacity-role\nrules:\n- apiGroups: [\"\"]\n  resources: [\"pods\", \"nodes\", \"persistentvolumeclaims\", \"persistentvolumes\", \"services\", \"replicationcontrollers\"]\n  verbs: [\"get\", \"watch\", \"list\"]\n- apiGroups: [\"apps\"]\n  resources: [\"replicasets\", \"statefulsets\"]\n  verbs: [\"get\", \"watch\", \"list\"]\n- apiGroups: [\"policy\"]\n  resources: [\"poddisruptionbudgets\"]\n  verbs: [\"get\", \"watch\", \"list\"]\n- apiGroups: [\"storage.k8s.io\"]\n  resources: [\"storageclasses\"]\n  verbs: [\"get\", \"watch\", \"list\"]"} lang="yaml" />
+      </li>
+      <li>
+      Create the cluster role by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc create sa cluster-capacity-sa"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the service account:
+      <CodeBlock code={"$ oc create sa cluster-capacity-sa -n default"} lang="terminal" />
+      </li>
+      <li>
+      Add the role to the service account:
+      <CodeBlock code={"$ oc adm policy add-cluster-role-to-user cluster-capacity-role \\\n    system:serviceaccount:<namespace>:cluster-capacity-sa"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace where the pod is located.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Define and create the pod spec:
+      <ol>
+      <li>
+      Create a YAML file similar to the following:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: small-pod\n  labels:\n    app: guestbook\n    tier: frontend\nspec:\n  securityContext:\n    runAsNonRoot: true\n    seccompProfile:\n      type: RuntimeDefault\n  containers:\n  - name: php-redis\n    image: gcr.io/google-samples/gb-frontend:v4\n    imagePullPolicy: Always\n    resources:\n      limits:\n        cpu: 150m\n        memory: 100Mi\n      requests:\n        cpu: 150m\n        memory: 100Mi\n    securityContext:\n      allowPrivilegeEscalation: false\n      capabilities:\n        drop: [ALL]"} lang="yaml" />
+      </li>
+      <li>
+      Create the pod by running the following command:
+      <CodeBlock code={"$ oc create -f <file_name>.yaml"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc create -f pod.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Created a config map object by running the following command:
+      <CodeBlock code={"$ oc create configmap cluster-capacity-configmap \\\n    --from-file=pod.yaml=pod.yaml"} lang="terminal" />
+      <p>The cluster capacity analysis is mounted in a volume using a config map object named <code>cluster-capacity-configmap</code> to mount the input pod spec file <code>pod.yaml</code> into a volume <code>test-volume</code> at the path <code>/test-pod</code>.</p>
+      </li>
+      <li>
+      Create the job using the below example of a job specification file:
+      <ol>
+      <li>
+      Create a YAML file similar to the following:
+      <CodeBlock code={"apiVersion: batch/v1\nkind: Job\nmetadata:\n  name: cluster-capacity-job\nspec:\n  parallelism: 1\n  completions: 1\n  template:\n    metadata:\n      name: cluster-capacity-pod\n    spec:\n        containers:\n        - name: cluster-capacity\n          image: openshift/origin-cluster-capacity\n          imagePullPolicy: \"Always\"\n          volumeMounts:\n          - mountPath: /test-pod\n            name: test-volume\n          env:\n          - name: CC_INCLUSTER\n            value: \"true\"\n          command:\n          - \"/bin/sh\"\n          - \"-ec\"\n          - |\n            /bin/cluster-capacity --podspec=/test-pod/pod.yaml --verbose\n        restartPolicy: \"Never\"\n        serviceAccountName: cluster-capacity-sa\n        volumes:\n        - name: test-volume\n          configMap:\n            name: cluster-capacity-configmap"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.template.spec.containers.env</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a required environment variable that indicates the Cluster Capacity Tool is running inside a cluster as a pod. The <code>pod.yaml</code> key of the <code>ConfigMap</code> object is the same as the <code>Pod</code> spec file name, though it is not required. By doing this, the input pod spec file can be accessed inside the pod as <code>/test-pod/pod.yaml</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Run the cluster capacity image as a job in a pod by running the following command:
+      <CodeBlock code={"$ oc create -f cluster-capacity-job.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Check the job logs to find the number of pods that can be scheduled in the cluster:
+      <CodeBlock code={"$ oc logs jobs/cluster-capacity-job"} lang="terminal" />
+      <CodeBlock code={"small-pod pod requirements:\n        - CPU: 150m\n        - Memory: 100Mi\n\nThe cluster can schedule 52 instance(s) of the pod small-pod.\n\nTermination reason: Unschedulable: No nodes are available that match all of the\nfollowing predicates:: Insufficient cpu (2).\n\nPod distribution among nodes:\nsmall-pod\n        - 192.168.124.214: 26 instance(s)\n        - 192.168.124.120: 26 instance(s)"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
       <h2 id="nodes-cluster-resource-levels_additional-resources" class="group scroll-mt-20">Additional resources<a href="#nodes-cluster-resource-levels_additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://catalog.redhat.com/software/containers/openshift4/ose-cluster-capacity/5cca0324d70cc57c44ae8eb6?container-tabs=overview">OpenShift Cluster Capacity Tool</a></li>

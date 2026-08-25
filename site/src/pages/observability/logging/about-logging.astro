@@ -29,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "About Logging";
-const description = "As a cluster administrator, you can deploy {{ logging }} on your OpenShift Container Platform cluster, and use it to collect and aggregate node system…" || undefined;
+const description = "As a cluster administrator, you can deploy logging on your OpenShift Container Platform cluster, and use it to collect and aggregate node system audit…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +42,7 @@ const pageCategory = ["observability","observability/logging"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About Logging {#about-logging}\n\nAs a cluster administrator, you can deploy {{ logging }} on your OpenShift Container Platform cluster, and use it to collect and aggregate node system audit logs, application container logs, and infrastructure logs.\n\nYou can use {{ logging }} to perform the following tasks:\n\n- Forward logs to your chosen log outputs, including on-cluster, Red Hat managed log storage.\n- Visualize your log data in the OpenShift Container Platform web console.\n\n> [!NOTE]\n> Because {{ logging }} releases on a different cadence from OpenShift Container Platform, the {{ logging }} documentation is available as a separate documentation set at [Red Hat OpenShift {{ logging_uc }}](https://docs.redhat.com/en/documentation/red_hat_openshift_logging/).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/logging/about-logging.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About Logging {#about-logging}\n\nAs a cluster administrator, you can deploy logging on your OpenShift Container Platform cluster, and use it to collect and aggregate node system audit logs, application container logs, and infrastructure logs.\n\nYou can use logging to perform the following tasks:\n\n- Forward logs to your chosen log outputs, including on-cluster, Red Hat managed log storage.\n- Visualize your log data in the OpenShift Container Platform web console.\n\n> [!NOTE]\n> Because logging releases on a different cadence from OpenShift Container Platform, the logging documentation is available as a separate documentation set at [Red Hat OpenShift Logging](https://docs.redhat.com/en/documentation/red_hat_openshift_logging/).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/logging/about-logging.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,10 +93,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
       <h1 id="about-logging" class="group scroll-mt-20">About Logging<a href="#about-logging" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>As a cluster administrator, you can deploy {"{"}{"{"} logging {"}"}{"}"} on your OpenShift Container Platform cluster, and use it to collect and aggregate node system audit logs, application container logs, and infrastructure logs.</p>
-      <p>You can use {"{"}{"{"} logging {"}"}{"}"} to perform the following tasks:</p>
+      <p>As a cluster administrator, you can deploy logging on your OpenShift Container Platform cluster, and use it to collect and aggregate node system audit logs, application container logs, and infrastructure logs.</p>
+      <p>You can use logging to perform the following tasks:</p>
       <ul>
       <li>Forward logs to your chosen log outputs, including on-cluster, Red Hat managed log storage.</li>
       <li>Visualize your log data in the OpenShift Container Platform web console.</li>
@@ -104,7 +103,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Because {"{"}{"{"} logging {"}"}{"}"} releases on a different cadence from OpenShift Container Platform, the {"{"}{"{"} logging {"}"}{"}"} documentation is available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_logging/">Red Hat OpenShift {"{"}{"{"} logging_uc {"}"}{"}"}</a>.</p>
+          <p>Because logging releases on a different cadence from OpenShift Container Platform, the logging documentation is available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_logging/">Red Hat OpenShift Logging</a>.</p>
         </AlertDescription>
       </Alert>
     </article>

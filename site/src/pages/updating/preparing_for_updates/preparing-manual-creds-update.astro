@@ -15,8 +15,19 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"preparing-manual-creds-update","text":"Preparing to update a cluster with manually maintained credentials"}];
+const headings = [{"depth":1,"slug":"preparing-manual-creds-update","text":"Preparing to update a cluster with manually maintained credentials"},{"depth":2,"slug":"about-manually-maintained-credentials-upgrade_preparing-manual-creds-update","text":"Update requirements for clusters with manually maintained credentials"},{"depth":3,"slug":"cco-platform-options_preparing-manual-creds-update","text":"Cloud credential configuration options and update requirements by platform type"},{"depth":3,"slug":"cco-determine-mode-gui_preparing-manual-creds-update","text":"Determining the Cloud Credential Operator mode by using the web console"},{"depth":3,"slug":"cco-determine-mode-cli_preparing-manual-creds-update","text":"Determining the Cloud Credential Operator mode by using the CLI"},{"depth":3,"slug":"cco-determine-mode-next_preparing-manual-creds-update","text":"Determining the next steps in the update"},{"depth":2,"slug":"cco-ccoctl-upgrading-extracting_preparing-manual-creds-update","text":"Extracting and preparing credentials request resources"},{"depth":2,"slug":"_configuring_the_cloud_credential_operator_utility_for_a_cluster_update","text":"Configuring the Cloud Credential Operator utility for a cluster update"},{"depth":2,"slug":"cco-ccoctl-upgrading_preparing-manual-creds-update","text":"Updating cloud provider resources with the Cloud Credential Operator utility"},{"depth":2,"slug":"manually-maintained-credentials-upgrade_preparing-manual-creds-update","text":"Manually updating cloud provider resources"},{"depth":2,"slug":"cco-manual-upgrade-annotation_preparing-manual-creds-update","text":"Indicating that the cluster is ready to upgrade"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +50,7 @@ const pageCategory = ["updating","updating/preparing_for_updates"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing to update a cluster with manually maintained credentials {#preparing-manual-creds-update}\n\nBefore you update a cluster that uses manually maintained credentials, accommodate any new or changed cloud provider credentials in the target release. This preparation ensures the Cloud Credential Operator (CCO) does not block the upgrade.\n\nThe CCO `Upgradeable` status for a cluster with manually maintained credentials is `False` by default.\n\n- For minor releases, for example, from 4.12 to 4.13, this status prevents you from updating until you have addressed any updated permissions and annotated the `CloudCredential` resource to indicate that the permissions are updated as needed for the next version. This annotation changes the `Upgradeable` status to `True`.\n- For z-stream releases, for example, from 4.13.0 to 4.13.1, no permissions are added or changed, so the update is not blocked.\n\n**Additional resources**\n\n- [Determining the Cloud Credential Operator mode by using the web console](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-determine-mode-gui_preparing-manual-creds-update)\n- [Determining the Cloud Credential Operator mode by using the CLI](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-determine-mode-cli_preparing-manual-creds-update)\n- [Extracting and preparing credentials request resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)\n- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)\n\n**Additional resources**\n\n- [Extracting and preparing credentials request resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)\n\n**Additional resources**\n\n- [Extracting and preparing credentials request resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)\n\n**Additional resources**\n\n- [Configuring the Cloud Credential Operator utility for a cluster update](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-configuring_preparing-manual-creds-update)\n- [Manually updating cloud provider resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#manually-maintained-credentials-upgrade_preparing-manual-creds-update)\n\n**Additional resources**\n\n- [Indicating that the cluster is ready to upgrade](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-manual-upgrade-annotation_preparing-manual-creds-update)\n\n**Additional resources**\n\n- [Manually creating long-term credentials for AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)\n- [Manually creating long-term credentials for Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)\n- [Manually creating long-term credentials for Azure Stack Hub](/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#manually-create-iam_installing-azure-stack-hub-default)\n- [Manually creating long-term credentials for {{ gcp_short }}](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations)\n- [Indicating that the cluster is ready to upgrade](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-manual-upgrade-annotation_preparing-manual-creds-update)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Preparing to update a cluster with manually maintained credentials {#preparing-manual-creds-update}\n\nBefore you update a cluster that uses manually maintained credentials, accommodate any new or changed cloud provider credentials in the target release. This preparation ensures the Cloud Credential Operator (CCO) does not block the upgrade.\n\nThe CCO `Upgradeable` status for a cluster with manually maintained credentials is `False` by default.\n\n- For minor releases, for example, from 4.12 to 4.13, this status prevents you from updating until you have addressed any updated permissions and annotated the `CloudCredential` resource to indicate that the permissions are updated as needed for the next version. This annotation changes the `Upgradeable` status to `True`.\n- For z-stream releases, for example, from 4.13.0 to 4.13.1, no permissions are added or changed, so the update is not blocked.\n\n## Update requirements for clusters with manually maintained credentials {#about-manually-maintained-credentials-upgrade_preparing-manual-creds-update}\n\nBefore you update a cluster that uses manually maintained credentials with the Cloud Credential Operator (CCO), you must update the cloud provider resources for the new release.\n\nIf the cloud credential management for your cluster was configured using the CCO utility (`ccoctl`), use the `ccoctl` utility to update the resources. Clusters that were configured to use manual mode without the `ccoctl` utility require manual updates for the resources.\n\nAfter updating the cloud provider resources, you must update the `upgradeable-to` annotation for the cluster to indicate that it is ready to update.\n\n> [!NOTE]\n> The process to update the cloud provider resources and the `upgradeable-to` annotation can only be completed by using command-line tools.\n\n### Cloud credential configuration options and update requirements by platform type {#cco-platform-options_preparing-manual-creds-update}\n\nSome platforms only support using the CCO in one mode. For clusters that are installed on those platforms, the platform type determines the credentials update requirements.\n\nFor platforms that support using the CCO in multiple modes, you must determine which mode the cluster is configured to use and take the required actions for that configuration.\n\n**Figure 1. Credentials update requirements by platform type**\n\n![Decision tree showing the possible update paths for your cluster depending on the configured CCO credentials mode.](/openshift-docs-markdown/_assets/images/334_OpenShift_cluster_updating_and_CCO_workflows_0523_4.11_B_AliCloud_patch.png)\n\nRed Hat OpenStack Platform (RHOSP) and VMware vSphere\n:   These platforms do not support using the CCO in manual mode. Clusters on these platforms handle changes in cloud provider resources automatically and do not require an update to the `upgradeable-to` annotation.\n\n    Administrators of clusters on these platforms should skip the manually maintained credentials section of the update process.\n\nIBM Cloud and Nutanix\n:   Clusters installed on these platforms are configured using the `ccoctl` utility.\n\n    Administrators of clusters on these platforms must take the following actions:\n\n    1. Extract and prepare the `CredentialsRequest` custom resources (CRs) for the new release.\n    2. Configure the `ccoctl` utility for the new release and use it to update the cloud provider resources.\n    3. Indicate that the cluster is ready to update with the `upgradeable-to` annotation.\n\nMicrosoft Azure Stack Hub\n:   These clusters use manual mode with long-term credentials and do not use the `ccoctl` utility. Administrators of clusters on these platforms must take the following actions: . Extract and prepare the `CredentialsRequest` custom resources (CRs) for the new release. . Manually update the cloud provider resources for the new release. . Indicate that the cluster is ready to update with the `upgradeable-to` annotation.\n\nAmazon Web Services (AWS), global Microsoft Azure, and Google Cloud\n:   Clusters installed on these platforms support multiple CCO modes. The required update process depends on the mode that the cluster is configured to use. If you are not sure what mode the CCO is configured to use on your cluster, you can use the web console or the CLI to determine this information.\n\n**Additional resources**\n\n- [Determining the Cloud Credential Operator mode by using the web console](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-determine-mode-gui_preparing-manual-creds-update)\n- [Determining the Cloud Credential Operator mode by using the CLI](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-determine-mode-cli_preparing-manual-creds-update)\n- [Extracting and preparing credentials request resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)\n- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator)\n\n### Determining the Cloud Credential Operator mode by using the web console {#cco-determine-mode-gui_preparing-manual-creds-update}\n\nYou can determine what mode the Cloud Credential Operator (CCO) is configured to use by using the web console.\n\nBefore you perform upgrades or troubleshoot, ensure you understand your cluster’s credential management configuration.\n\n> [!NOTE]\n> Only Amazon Web Services (AWS), global Microsoft Azure, and Google Cloud clusters support multiple CCO modes.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform account with cluster administrator permissions.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console as a user with the `cluster-admin` role.\n2. Navigate to **Administration** -> **Cluster Settings**.\n3. On the **Cluster Settings** page, select the **Configuration** tab.\n4. Under **Configuration resource**, select **CloudCredential**.\n5. On the **CloudCredential details** page, select the **YAML** tab.\n6. In the YAML block, check the value of `spec.credentialsMode`. The following values are possible, though not all are supported on all platforms:\n\n   - ’'\\`: The CCO is operating in the default mode. In this configuration, the CCO operates in mint or passthrough mode, depending on the credentials provided during installation.\n   - `Mint`: The CCO is operating in mint mode.\n   - `Passthrough`: The CCO is operating in passthrough mode.\n   - `Manual`: The CCO is operating in manual mode.\n\n   > [!IMPORTANT]\n   > To determine the specific configuration of an AWS, Google Cloud, or global Microsoft Azure cluster that has a `spec.credentialsMode` of ’'`, `Mint`, or `Manual\\`, you must investigate further.\n   >\n   > AWS and Google Cloud clusters support using mint mode with the root secret deleted. If the cluster is specifically configured to use mint mode or uses mint mode by default, you must determine if the root secret is present on the cluster before updating.\n   >\n   > An AWS, Google Cloud, or global Microsoft Azure cluster that uses manual mode might be configured to create and manage cloud credentials from outside of the cluster with AWS STS, Google Cloud Workload Identity, or Microsoft Entra Workload ID. You can determine whether your cluster uses this strategy by examining the cluster `Authentication` object.\n7. AWS or Google Cloud clusters that use mint mode only: To determine whether the cluster is operating without the root secret, navigate to **Workloads** -> **Secrets** and look for the root secret for your cloud provider.\n\n   > [!NOTE]\n   > Ensure that the **Project** dropdown is set to **All Projects**.\n\n   | Platform | Secret name |\n   | --- | --- |\n   | AWS | `aws-creds` |\n   | Google Cloud | `gcp-credentials` |\n\n   - If you see one of these values, your cluster is using mint or passthrough mode with the root secret present.\n   - If you do not see these values, your cluster is using the CCO in mint mode with the root secret removed.\n8. AWS, Google Cloud, or global Microsoft Azure clusters that use manual mode only: To determine whether the cluster is configured to create and manage cloud credentials from outside of the cluster, you must check the cluster `Authentication` object YAML values.\n\n   1. Navigate to **Administration** -> **Cluster Settings**.\n   2. On the **Cluster Settings** page, select the **Configuration** tab.\n   3. Under **Configuration resource**, select **Authentication**.\n   4. On the **Authentication details** page, select the **YAML** tab.\n   5. In the YAML block, check the value of the `.spec.serviceAccountIssuer` parameter.\n\n      - A value that contains a URL that is associated with your cloud provider indicates that the CCO is using manual mode with short-term credentials for components. These clusters are configured using the `ccoctl` utility to create and manage cloud credentials from outside of the cluster.\n      - An empty value (’'`) indicates that the cluster is using the CCO in manual mode but was not configured using the `ccoctl\\` utility.\n\n**Additional resources**\n\n- [Extracting and preparing credentials request resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)\n\n### Determining the Cloud Credential Operator mode by using the CLI {#cco-determine-mode-cli_preparing-manual-creds-update}\n\nYou can determine what mode the Cloud Credential Operator (CCO) is configured to use by using the CLI.\n\nBefore you perform upgrades or troubleshoot, ensure you understand your cluster’s credential management configuration.\n\n> [!NOTE]\n> Only Amazon Web Services (AWS), global Microsoft Azure, and Google Cloud clusters support multiple CCO modes.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform account with cluster administrator permissions.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Log in to `oc` on the cluster as a user with the `cluster-admin` role.\n2. To determine the mode that the CCO is configured to use, enter the following command:\n\n   ```terminal\n   $ oc get cloudcredentials cluster \\\n     -o=jsonpath={.spec.credentialsMode}\n   ```\n\n   The following output values are possible, though not all are supported on all platforms:\n\n   - ’'\\`: The CCO is operating in the default mode. In this configuration, the CCO operates in mint or passthrough mode, depending on the credentials provided during installation.\n   - `Mint`: The CCO is operating in mint mode.\n   - `Passthrough`: The CCO is operating in passthrough mode.\n   - `Manual`: The CCO is operating in manual mode.\n\n   > [!IMPORTANT]\n   > To determine the specific configuration of an AWS, Google Cloud, or global Microsoft Azure cluster that has a `spec.credentialsMode` of ’'`, `Mint`, or `Manual\\`, you must investigate further.\n   >\n   > AWS and Google Cloud clusters support using mint mode with the root secret deleted. If the cluster is specifically configured to use mint mode or uses mint mode by default, you must determine if the root secret is present on the cluster before updating.\n   >\n   > An AWS, Google Cloud, or global Microsoft Azure cluster that uses manual mode might be configured to create and manage cloud credentials from outside of the cluster with AWS STS, Google Cloud Workload Identity, or Microsoft Entra Workload ID. You can determine whether your cluster uses this strategy by examining the cluster `Authentication` object.\n3. AWS or Google Cloud clusters that use mint mode only: To determine whether the cluster is operating without the root secret, run the following command:\n\n   ```terminal\n   $ oc get secret <secret_name> \\\n     -n=kube-system\n   ```\n\n   where `<secret_name>` is `aws-creds` for AWS or `gcp-credentials` for Google Cloud.\n\n   If the root secret is present, the output of this command returns information about the secret. An error indicates that the root secret is not present on the cluster.\n4. AWS, Google Cloud, or global Microsoft Azure clusters that use manual mode only: To determine whether the cluster is configured to create and manage cloud credentials from outside of the cluster, run the following command:\n\n   ```terminal\n   $ oc get authentication cluster \\\n     -o jsonpath \\\n     --template='{ .spec.serviceAccountIssuer }'\n   ```\n\n   This command displays the value of the `.spec.serviceAccountIssuer` parameter in the cluster `Authentication` object.\n\n   - An output of a URL that is associated with your cloud provider indicates that the CCO is using manual mode with short-term credentials for components. These clusters are configured using the `ccoctl` utility to create and manage cloud credentials from outside of the cluster.\n   - An empty output indicates that the cluster is using the CCO in manual mode but was not configured using the `ccoctl` utility.\n\n### Determining the next steps in the update {#cco-determine-mode-next_preparing-manual-creds-update}\n\nAfter you determine the Cloud Credential Operator mode, it is important to understand how to proceed with the update.\n\n**Procedure**\n\n- If you are updating a cluster that has the CCO operating in mint or passthrough mode and the root secret is present, you do not need to update any cloud provider resources and can continue to the next part of the update process.\n- If your cluster is using the CCO in mint mode with the root secret removed, you must reinstate the credential secret with the administrator-level credential before continuing to the next part of the update process.\n- If your cluster was configured using the CCO utility (`ccoctl`), you must take the following actions:\n\n  1. Extract and prepare the `CredentialsRequest` custom resources (CRs) for the new release.\n  2. Configure the `ccoctl` utility for the new release and use it to update the cloud provider resources.\n  3. Update the `upgradeable-to` annotation to indicate that the cluster is ready to update.\n- If your cluster is using the CCO in manual mode but was not configured using the `ccoctl` utility, you must take the following actions:\n\n  1. Extract and prepare the `CredentialsRequest` custom resources (CRs) for the new release.\n  2. Manually update the cloud provider resources for the new release.\n  3. Update the `upgradeable-to` annotation to indicate that the cluster is ready to update.\n\n**Additional resources**\n\n- [Extracting and preparing credentials request resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update)\n\n## Extracting and preparing credentials request resources {#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update}\n\nBefore updating a cluster that uses the Cloud Credential Operator (CCO) in manual mode, you must extract and prepare the `CredentialsRequest` custom resources (CRs) for the new release.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`) that matches the version for your updated version.\n- Log in to the cluster as user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Obtain the pull spec for the update that you want to apply by running the following command:\n\n   ```terminal\n   $ oc adm upgrade\n   ```\n\n   The output of this command includes pull specs for the available updates similar to the following:\n\n   ```text {title=\"Partial example output\"}\n   ...\n   Recommended updates:\n\n   VERSION IMAGE\n   4.22.0  quay.io/openshift-release-dev/ocp-release@sha256:6a899c54dda6b844bb12a247e324a0f6cde367e880b73ba110c056df6d018032\n   ...\n   ```\n2. Set a `$RELEASE_IMAGE` variable with the release image that you want to use by running the following command:\n\n   ```terminal\n   $ RELEASE_IMAGE=<update_pull_spec>\n   ```\n\n   where `<update_pull_spec>` is the pull spec for the release image that you want to use. For example:\n\n   ```text\n   quay.io/openshift-release-dev/ocp-release@sha256:6a899c54dda6b844bb12a247e324a0f6cde367e880b73ba110c056df6d018032\n   ```\n3. Extract the list of `CredentialsRequest` custom resources (CRs) from the OpenShift Container Platform release image by running the following command:\n\n   ```terminal\n   $ oc adm release extract \\\n     --from=$RELEASE_IMAGE \\\n     --credentials-requests \\\n     --included \\\n     --to=<path_to_directory_for_credentials_requests>\n   ```\n\n   where:\n\n   `--included`\n   :   Includes only the manifests that your specific cluster configuration requires for the target release.\n\n`<path_to_directory_for_credentials_requests>`\n:   Specifies the path to the directory where you want to store the `CredentialsRequest` objects. If the specified directory does not exist, this command creates it. This command creates a YAML file for each `CredentialsRequest` object.\n\n1. For each `CredentialsRequest` CR in the release image, ensure that a namespace that matches the text in the `spec.secretRef.namespace` field exists in the cluster. This field is where the generated secrets that hold the credentials configuration are stored.\n\n   ```yaml {title=\"Sample AWS CredentialsRequest object\"}\n   apiVersion: cloudcredential.openshift.io/v1\n   kind: CredentialsRequest\n   metadata:\n     name: cloud-credential-operator-iam-ro\n     namespace: openshift-cloud-credential-operator\n   spec:\n     providerSpec:\n       apiVersion: cloudcredential.openshift.io/v1\n       kind: AWSProviderSpec\n       statementEntries:\n       - effect: Allow\n         action:\n         - iam:GetUser\n         - iam:GetUserPolicy\n         - iam:ListAccessKeys\n         resource: \"*\"\n     secretRef:\n       name: cloud-credential-operator-iam-ro-creds\n       namespace: openshift-cloud-credential-operator\n   ```\n\n   where:\n\n   `openshift-cloud-credential-operator`\n   :   Indicates the namespace which must exist to hold the generated secret. The `CredentialsRequest` CRs for other platforms have a similar format with different platform-specific values.\n2. For any `CredentialsRequest` CR for which the cluster does not already have a namespace with the name specified in `spec.secretRef.namespace`, create the namespace by running the following command:\n\n   ```terminal\n   $ oc create namespace <component_namespace>\n   ```\n\n**Next steps**\n\n- If the cloud credential management for your cluster was configured using the CCO utility (`ccoctl`), configure the `ccoctl` utility for a cluster update and use it to update your cloud provider resources.\n- If your cluster was not configured with the `ccoctl` utility, manually update your cloud provider resources.\n\n**Additional resources**\n\n- [Configuring the Cloud Credential Operator utility for a cluster update](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-configuring_preparing-manual-creds-update)\n- [Manually updating cloud provider resources](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#manually-maintained-credentials-upgrade_preparing-manual-creds-update)\n\n## Configuring the Cloud Credential Operator utility for a cluster update {#_configuring_the_cloud_credential_operator_utility_for_a_cluster_update}\n\n{.\\_abstract} To upgrade a cluster that uses the Cloud Credential Operator (CCO) in manual mode to create and manage cloud credentials from outside of the cluster, extract and prepare the CCO utility (`ccoctl`) binary.\n\n> [!NOTE]\n> The `ccoctl` utility is a Linux binary that must run in a Linux environment.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform account with cluster administrator access.\n- You have installed the OpenShift CLI (`oc`).\n- Your cluster was configured using the `ccoctl` utility to create and manage cloud credentials from outside of the cluster.\n- You have extracted the `CredentialsRequest` custom resources (CRs) from the OpenShift Container Platform release image and ensured that a namespace that matches the text in the `spec.secretRef.namespace` field exists in the cluster.\n\n**Procedure**\n\n1. Set a variable for the OpenShift Container Platform release image by running the following command:\n\n   ```\n   $ RELEASE_IMAGE=$(oc get clusterversion -o jsonpath={..desired.image})\n   ```\n2. Obtain the CCO container image from the OpenShift Container Platform release image by running the following command:\n\n   ```terminal\n   $ CCO_IMAGE=$(oc adm release info --image-for='cloud-credential-operator' $RELEASE_IMAGE -a ~/.pull-secret)\n   ```\n\n   > [!NOTE]\n   > Ensure that the architecture of the `$RELEASE_IMAGE` matches the architecture of the environment in which you will use the `ccoctl` tool.\n3. Extract the `ccoctl` binary from the CCO container image within the OpenShift Container Platform release image by running the following command:\n\n   ```terminal\n   $ oc image extract $CCO_IMAGE \\\n     --file=\"/usr/bin/ccoctl.<rhel_version>\" \\\n     -a ~/.pull-secret\n   ```\n\n   For `<rhel_version>`, specify the value that corresponds to the version of Red Hat Enterprise Linux (RHEL) that the host uses. If no value is specified, `ccoctl.rhel8` is used by default. The following values are valid:\n\n   - `rhel8`: Specify this value for hosts that use RHEL 8.\n   - `rhel9`: Specify this value for hosts that use RHEL 9.\n\n     > [!NOTE]\n     > The `ccoctl` binary is created in the directory from where you executed the command and not in `/usr/bin/`. You must rename the directory or move the `ccoctl.<rhel_version>` binary to `ccoctl`.\n4. Change the permissions to make `ccoctl` executable by running the following command:\n\n   ```terminal\n   $ chmod 775 ccoctl\n   ```\n\n**Verification**\n\n- To verify that `ccoctl` is ready to use, display the help file. Use a relative file name when you run the command, for example:\n\n  ```terminal\n  $ ./ccoctl\n  ```\n\n  ```terminal {title=\"Example output\"}\n  OpenShift credentials provisioning tool\n\n  Usage:\n    ccoctl [command]\n\n  Available Commands:\n    aws          Manage credentials objects for AWS cloud\n    azure        Manage credentials objects for Azure\n    gcp          Manage credentials objects for Google cloud\n    help         Help about any command\n    ibmcloud     Manage credentials objects for IBM Cloud\n    nutanix      Manage credentials objects for Nutanix\n\n  Flags:\n    -h, --help   help for ccoctl\n\n  Use \"ccoctl [command] --help\" for more information about a command.\n  ```\n\n## Updating cloud provider resources with the Cloud Credential Operator utility {#cco-ccoctl-upgrading_preparing-manual-creds-update}\n\nUpdate the cloud provider resources for your OpenShift Container Platform cluster by using the CCO utility (`ccoctl`). The process for upgrading these resources is similar to creating the resources during installation.\n\n> [!NOTE]\n> On AWS clusters, some `ccoctl` commands make AWS API calls to create or modify AWS resources. You can use the `--dry-run` flag to avoid making API calls. Using this flag creates JSON files on the local file system instead. You can review and modify the JSON files and then apply them with the AWS CLI tool using the `--cli-input-json` parameters.\n\n**Prerequisites**\n\n- You have extracted the `CredentialsRequest` custom resources (CRs) from the OpenShift Container Platform release image and ensured that a namespace that matches the text in the `spec.secretRef.namespace` field exists in the cluster.\n- You have extracted and configured the `ccoctl` binary from the release image.\n\n**Procedure**\n\n1. Create the output directory if it does not already exist by running the following command:\n\n   ```terminal\n   $ mkdir -p <path_to_ccoctl_output_dir>\n   ```\n2. Extract the bound service account signing key from the cluster and save it to the output directory by running the following command:\n\n   ```terminal\n   $ oc get secret bound-service-account-signing-key \\\n     -n openshift-kube-apiserver \\\n     -ojsonpath='{ .data.service-account\\.pub }' | base64 \\\n     -d > <path_to_ccoctl_output_dir>/serviceaccount-signer.public\n   ```\n3. Use the `ccoctl` tool to process all `CredentialsRequest` objects by running the command for your cloud provider. The following commands process `CredentialsRequest` objects:\n\n   ```terminal {title=\"Amazon Web Services (AWS)\"}\n   $ ccoctl aws create-all \\\n     --name=<name> \\\n     --region=<aws_region> \\\n     --credentials-requests-dir=<path_to_credentials_requests_directory> \\\n     --output-dir=<path_to_ccoctl_output_dir> \\\n     --public-key-file= \\\n     <path_to_ccoctl_output_dir>/serviceaccount-signer.public \\\n     --create-private-s3-bucket \\\n     --permissions-boundary-arn=<policy_arn>\n   ```\n\n   where:\n\n   `<name>`\n   :   Specifies the name used to tag any cloud resources that are created for tracking.\n\n   `<aws_region>`\n   :   Specifies the AWS region in which cloud resources will be created.\n\n   `<path_to_credentials_requests_directory>`\n   :   Specifies the directory containing the files for the component `CredentialsRequest` objects.\n\n   `<path_to_ccoctl_output_dir>`\n   :   Specifies the path to the output directory. For `--public-key-file`, this directory contains the `serviceaccount-signer.public` file that you extracted from the cluster.\n\n   `<policy_arn>`\n   :   Optional: Specifies the Amazon Resource Name (ARN) of the AWS IAM policy to use as the permissions boundary for the IAM roles created by the `ccoctl` utility.\n\n   > [!NOTE]\n   > By default, the `ccoctl` utility stores the OpenID Connect (OIDC) configuration files in a public S3 bucket and uses the S3 URL as the public OIDC endpoint. To store the OIDC configuration in a private S3 bucket that is accessed by the IAM identity provider through a public CloudFront distribution URL instead, use the `--create-private-s3-bucket` parameter. This is an optional parameter.\n\n   > [!NOTE]\n   > To create the AWS resources individually, use the \"Creating AWS resources individually\" procedure in the \"Installing a cluster on AWS with customizations\" content. This option might be useful if you need to review the JSON files that the `ccoctl` tool creates before modifying AWS resources, or if the process the `ccoctl` tool uses to create AWS resources automatically does not meet the requirements of your organization.\n\n   ```terminal {title=\"Google Cloud\"}\n   $ ccoctl gcp create-all \\\n     --name=<name> \\\n     --region=<gcp_region> \\\n     --project=<gcp_project_id> \\\n     --credentials-requests-dir=<path_to_credentials_requests_directory> \\\n     --output-dir=<path_to_ccoctl_output_dir> \\\n     --public-key-file=<path_to_ccoctl_output_dir>/serviceaccount-signer.public \\\n     --key-storage-method=<key_storage_method>\n   ```\n\n   where:\n\n   `<name>`\n   :   Specifies the user-defined name for all created Google Cloud resources used for tracking.\n\n   `<gcp_region>`\n   :   Specifies the Google Cloud region in which cloud resources will be created.\n\n   `<gcp_project_id>`\n   :   Specifies the Google Cloud project ID in which cloud resources will be created.\n\n   `<path_to_credentials_requests_directory>`\n   :   Specifies the directory containing the files of `CredentialsRequest` manifests to create Google Cloud service accounts.\n\n   `<path_to_ccoctl_output_dir>`\n   :   Specifies the path to the output directory. For `--public-key-file`, this directory contains the `serviceaccount-signer.public` file that you extracted from the cluster.\n\n   `<key_storage_method>`\n   :   Optional: Specifies the method for storing OIDC JWK files. Accepted values are `public-bucket` and `pool-jwk-file`. The default value `public-bucket` creates a public GCS bucket to host the OIDC configuration and JWK files. The `pool-jwk-file` value attaches the JWK directly to the workload identity pool provider without creating a public bucket.\n\n   > [!NOTE]\n   > If your cluster was previously configured with the `public-bucket` method and you switch to `pool-jwk-file`, the existing GCS bucket is no longer used. You can delete the old `<name>-oidc` bucket from your Google Cloud project to avoid retaining an unnecessary public resource.\n\n   ```terminal {title=\"IBM Cloud\"}\n   $ ccoctl ibmcloud create-service-id \\\n     --credentials-requests-dir=<path_to_credential_requests_directory> \\\n     --name=<cluster_name> \\\n     --output-dir=<installation_directory> \\\n     --resource-group-name=<resource_group_name>\n   ```\n\n   where:\n\n   `<path_to_credential_requests_directory>`\n   :   Specifies the directory containing the files for the component `CredentialsRequest` objects.\n\n   `<cluster_name>`\n   :   Specifies the name of the OpenShift Container Platform cluster.\n\n   `<installation_directory>`\n   :   Optional: Specifies the directory in which you want the `ccoctl` utility to create objects. By default, the utility creates objects in the directory in which the commands are run.\n\n   `<resource_group_name>`\n   :   Optional: Specifies the name of the resource group used for scoping the access policies.\n\n   ```terminal {title=\"Microsoft Azure\"}\n   $ ccoctl azure create-managed-identities \\\n     --name <azure_infra_name> \\\n     --output-dir=<path_to_ccoctl_output_dir> \\\n     --region <azure_region> \\\n     --subscription-id <azure_subscription_id> \\\n     --credentials-requests-dir <path_to_directory_for_credentials_requests> \\\n     --issuer-url \"${OIDC_ISSUER_URL}\" \\\n     --dnszone-resource-group-name <azure_dns_zone_resourcegroup_name> \\\n     --installation-resource-group-name \"${AZURE_INSTALL_RG}\" \\\n     --preserve-existing-roles\n   ```\n\n   where:\n\n   `<azure_infra_name>`\n   :   Specifies the value of the `name` parameter used to create an Azure resource group. To use an existing Azure resource group instead of creating a new one, specify the `--oidc-resource-group-name` argument with the existing group name as its value.\n\n   `<path_to_ccoctl_output_dir>`\n   :   Specifies the path to the output directory.\n\n   `<azure_region>`\n   :   Specifies the region of the existing cluster.\n\n   `<azure_subscription_id>`\n   :   Specifies the subscription ID of the existing cluster.\n\n   `<path_to_directory_for_credentials_requests>`\n   :   Specifies the directory containing the files for the component `CredentialsRequest` objects.\n\n   `\"${{ OIDC_ISSUER_URL }}\"`\n   :   Specifies the OIDC issuer URL from the existing cluster. You can obtain this value by running the following command:\n\n       ```terminal\n       $ oc get authentication cluster \\\n         -o jsonpath \\\n         --template='{ .spec.serviceAccountIssuer }'\n       ```\n\n   `<azure_dns_zone_resourcegroup_name>`\n   :   Specifies the name of the resource group that contains the DNS zone.\n\n   `\"${{ AZURE_INSTALL_RG }}\"`\n   :   Specifies the Azure resource group name. You can obtain this value by running the following command:\n\n       ```terminal\n       $ oc get infrastructure cluster \\\n         -o jsonpath \\\n         --template '{ .status.platformStatus.azure.resourceGroupName }'\n       ```\n\n       > [!NOTE]\n       > Specifying the flag `ccoctl.azure.create-managed-identities.preserve-existing-roles` ensures that any custom role assignments you define on managed identities are not removed during OpenShift Container Platform updates. This flag is optional.\n\n   ```terminal {title=\"Nutanix\"}\n   $ ccoctl nutanix create-shared-secrets \\\n     --credentials-requests-dir=<path_to_credentials_requests_directory> \\\n     --output-dir=<ccoctl_output_dir> \\\n     --credentials-source-filepath=<path_to_credentials_file>\n   ```\n\n   where:\n\n   `<path_to_credentials_requests_directory>`\n   :   Specifies the path to the directory that contains the files for the component `CredentialsRequests` objects.\n\n   `<ccoctl_output_dir>`\n   :   Optional: Specifies the directory in which you want the `ccoctl` utility to create objects. By default, the utility creates objects in the directory in which the commands are run.\n\n   `<path_to_credentials_file>`\n   :   Optional: Specifies the directory that contains the credentials data YAML file. By default, `ccoctl` expects this file to be in `<home_directory>/.nutanix/credentials`.\n\n   For each `CredentialsRequest` object, `ccoctl` creates the required provider resources and a permissions policy as defined in each `CredentialsRequest` object from the OpenShift Container Platform release image.\n4. Apply the secrets to your cluster by running the following command:\n\n   ```terminal\n   $ ls <path_to_ccoctl_output_dir>/manifests/*-credentials.yaml | xargs -I{} oc apply -f {}\n   ```\n\n**Verification**\n\nYou can verify that the required provider resources and permissions policies are created by querying the cloud provider. For more information, refer to your cloud provider documentation on listing roles or service accounts.\n\n**Next steps**\n\n- Update the `upgradeable-to` annotation to indicate that the cluster is ready to upgrade.\n\n**Additional resources**\n\n- [Indicating that the cluster is ready to upgrade](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-manual-upgrade-annotation_preparing-manual-creds-update)\n\n## Manually updating cloud provider resources {#manually-maintained-credentials-upgrade_preparing-manual-creds-update}\n\nMeet the requirements of the target release by manually updating cloud provider credentials. Update these credentials by creating secrets for new components and by adjusting the permissions for existing components.\n\nBefore you upgrade a cluster with manually maintained credentials, you must create secrets for any new credentials for the release image that you are upgrading to. You must also review the required permissions for existing credentials and accommodate any new permissions requirements in the new release for those components.\n\n**Prerequisites**\n\n- You have extracted the `CredentialsRequest` custom resources (CRs) from the OpenShift Container Platform release image and ensured that a namespace that matches the text in the `spec.secretRef.namespace` field exists in the cluster.\n\n**Procedure**\n\n1. Create YAML files with secrets for any `CredentialsRequest` custom resources that the new release image adds. The secrets must be stored using the namespace and secret name defined in the `spec.secretRef` for each `CredentialsRequest` object.\n\n   ```yaml {title=\"Sample AWS CredentialsRequest object with secrets\"}\n   apiVersion: cloudcredential.openshift.io/v1\n   kind: CredentialsRequest\n   metadata:\n     name: <component_credentials_request>\n     namespace: openshift-cloud-credential-operator\n     ...\n   spec:\n     providerSpec:\n       apiVersion: cloudcredential.openshift.io/v1\n       kind: AWSProviderSpec\n       statementEntries:\n       - effect: Allow\n         action:\n         - s3:CreateBucket\n         - s3:DeleteBucket\n         resource: \"*\"\n         ...\n     secretRef:\n       name: <component_secret>\n       namespace: <component_namespace>\n     ...\n   ```\n\n   ```yaml {title=\"Sample AWS Secret object\"}\n   apiVersion: v1\n   kind: Secret\n   metadata:\n     name: <component_secret>\n     namespace: <component_namespace>\n   data:\n     aws_access_key_id: <base64_encoded_aws_access_key_id>\n     aws_secret_access_key: <base64_encoded_aws_secret_access_key>\n   ```\n\n   > [!NOTE]\n   > Global Azure and Azure Stack Hub use the same `CredentialsRequest` object and secret formats.\n\n   ```yaml {title=\"Sample Azure CredentialsRequest object with secrets\"}\n   apiVersion: cloudcredential.openshift.io/v1\n   kind: CredentialsRequest\n   metadata:\n     name: <component_credentials_request>\n     namespace: openshift-cloud-credential-operator\n     ...\n   spec:\n     providerSpec:\n       apiVersion: cloudcredential.openshift.io/v1\n       kind: AzureProviderSpec\n       roleBindings:\n       - role: Contributor\n         ...\n     secretRef:\n       name: <component_secret>\n       namespace: <component_namespace>\n     ...\n   ```\n\n   ```yaml {title=\"Sample Azure Secret object\"}\n   apiVersion: v1\n   kind: Secret\n   metadata:\n     name: <component_secret>\n     namespace: <component_namespace>\n   data:\n     azure_subscription_id: <base64_encoded_azure_subscription_id>\n     azure_client_id: <base64_encoded_azure_client_id>\n     azure_client_secret: <base64_encoded_azure_client_secret>\n     azure_tenant_id: <base64_encoded_azure_tenant_id>\n     azure_resource_prefix: <base64_encoded_azure_resource_prefix>\n     azure_resourcegroup: <base64_encoded_azure_resourcegroup>\n     azure_region: <base64_encoded_azure_region>\n   ```\n\n   ```yaml {title=\"Sample Google Cloud CredentialsRequest object with secrets\"}\n   apiVersion: cloudcredential.openshift.io/v1\n   kind: CredentialsRequest\n   metadata:\n     name: <component_credentials_request>\n     namespace: openshift-cloud-credential-operator\n     ...\n   spec:\n     providerSpec:\n       apiVersion: cloudcredential.openshift.io/v1\n       kind: GCPProviderSpec\n         predefinedRoles:\n         - roles/iam.securityReviewer\n         - roles/iam.roleViewer\n         skipServiceCheck: true\n         ...\n     secretRef:\n       name: <component_secret>\n       namespace: <component_namespace>\n     ...\n   ```\n\n   ```yaml {title=\"Sample Google Cloud Secret object\"}\n   apiVersion: v1\n   kind: Secret\n   metadata:\n     name: <component_secret>\n     namespace: <component_namespace>\n   data:\n     service_account.json: <base64_encoded_gcp_service_account_file>\n   ```\n2. If the `CredentialsRequest` custom resources for any existing credentials that are stored in secrets have changed permissions requirements, update the permissions as required.\n\n**Next steps**\n\n- Update the `upgradeable-to` annotation to indicate that the cluster is ready to upgrade.\n\n**Additional resources**\n\n- [Manually creating long-term credentials for AWS](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations)\n- [Manually creating long-term credentials for Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations)\n- [Manually creating long-term credentials for Azure Stack Hub](/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#manually-create-iam_installing-azure-stack-hub-default)\n- [Manually creating long-term credentials for Google Cloud](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations)\n- [Indicating that the cluster is ready to upgrade](/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-manual-upgrade-annotation_preparing-manual-creds-update)\n\n## Indicating that the cluster is ready to upgrade {#cco-manual-upgrade-annotation_preparing-manual-creds-update}\n\nModify the `CloudCredential` resource to include an `upgradeable-to` annotation. This signals that you updated manually maintained credentials and that the cluster is ready to upgrade.\n\n**Prerequisites**\n\n- For the release image that you are upgrading to, you have processed any new credentials manually or by using the Cloud Credential Operator utility (`ccoctl`).\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Log in to `oc` on the cluster as a user with the `cluster-admin` role.\n2. Edit the `CloudCredential` resource to add an `upgradeable-to` annotation within the `metadata` field by running the following command:\n\n   ```terminal\n   $ oc edit cloudcredential cluster\n   ```\n\n   ```yaml {title=\"Text to add\"}\n   ...\n     metadata:\n       annotations:\n         cloudcredential.openshift.io/upgradeable-to: <version_number>\n   ...\n   ```\n\n   Where `<version_number>` is the version that you are upgrading to, in the format `x.y.z`. For example, use `4.12.2` for OpenShift Container Platform 4.12.2.\n\n   It may take several minutes after adding the annotation for the upgradeable status to change.\n\n**Verification**\n\n1. In the **Administrator** perspective of the web console, navigate to **Administration** -> **Cluster Settings**.\n2. To view the CCO status details, click **cloud-credential** in the **Cluster Operators** list.\n\n   - If the **Upgradeable** status in the **Conditions** section is **False**, verify that the `upgradeable-to` annotation is free of typographical errors.\n3. When the **Upgradeable** status in the **Conditions** section is **True**, begin the OpenShift Container Platform upgrade.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +102,48 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="preparing-manual-creds-update" class="group scroll-mt-20">Preparing to update a cluster with manually maintained credentials<a href="#preparing-manual-creds-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Before you update a cluster that uses manually maintained credentials, accommodate any new or changed cloud provider credentials in the target release. This preparation ensures the Cloud Credential Operator (CCO) does not block the upgrade.</p>
       <p>The CCO <code>Upgradeable</code> status for a cluster with manually maintained credentials is <code>False</code> by default.</p>
       <ul>
       <li>For minor releases, for example, from 4.12 to 4.13, this status prevents you from updating until you have addressed any updated permissions and annotated the <code>CloudCredential</code> resource to indicate that the permissions are updated as needed for the next version. This annotation changes the <code>Upgradeable</code> status to <code>True</code>.</li>
       <li>For z-stream releases, for example, from 4.13.0 to 4.13.1, no permissions are added or changed, so the update is not blocked.</li>
       </ul>
+      <h2 id="about-manually-maintained-credentials-upgrade_preparing-manual-creds-update" class="group scroll-mt-20">Update requirements for clusters with manually maintained credentials<a href="#about-manually-maintained-credentials-upgrade_preparing-manual-creds-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you update a cluster that uses manually maintained credentials with the Cloud Credential Operator (CCO), you must update the cloud provider resources for the new release.</p>
+      <p>If the cloud credential management for your cluster was configured using the CCO utility (<code>ccoctl</code>), use the <code>ccoctl</code> utility to update the resources. Clusters that were configured to use manual mode without the <code>ccoctl</code> utility require manual updates for the resources.</p>
+      <p>After updating the cloud provider resources, you must update the <code>upgradeable-to</code> annotation for the cluster to indicate that it is ready to update.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The process to update the cloud provider resources and the <code>upgradeable-to</code> annotation can only be completed by using command-line tools.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="cco-platform-options_preparing-manual-creds-update" class="group scroll-mt-20">Cloud credential configuration options and update requirements by platform type<a href="#cco-platform-options_preparing-manual-creds-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Some platforms only support using the CCO in one mode. For clusters that are installed on those platforms, the platform type determines the credentials update requirements.</p>
+      <p>For platforms that support using the CCO in multiple modes, you must determine which mode the cluster is configured to use and take the required actions for that configuration.</p>
+      <p><strong>Figure 1. Credentials update requirements by platform type</strong></p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/334_OpenShift_cluster_updating_and_CCO_workflows_0523_4.11_B_AliCloud_patch.png" alt="Decision tree showing the possible update paths for your cluster depending on the configured CCO credentials mode." />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Red Hat OpenStack Platform (RHOSP) and VMware vSphere</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>These platforms do not support using the CCO in manual mode. Clusters on these platforms handle changes in cloud provider resources automatically and do not require an update to the <code>upgradeable-to</code> annotation.</p>
+      <p>Administrators of clusters on these platforms should skip the manually maintained credentials section of the update process.</p>
+      </dd>
+      <dt class="font-semibold">IBM Cloud and Nutanix</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Clusters installed on these platforms are configured using the <code>ccoctl</code> utility.</p>
+      <p>Administrators of clusters on these platforms must take the following actions:</p>
+      <ol>
+      <li>Extract and prepare the <code>CredentialsRequest</code> custom resources (CRs) for the new release.</li>
+      <li>Configure the <code>ccoctl</code> utility for the new release and use it to update the cloud provider resources.</li>
+      <li>Indicate that the cluster is ready to update with the <code>upgradeable-to</code> annotation.</li>
+      </ol>
+      </dd>
+      <dt class="font-semibold">Microsoft Azure Stack Hub</dt>
+      <dd class="ml-6 text-muted-foreground"><p>These clusters use manual mode with long-term credentials and do not use the <code>ccoctl</code> utility. Administrators of clusters on these platforms must take the following actions: . Extract and prepare the <code>CredentialsRequest</code> custom resources (CRs) for the new release. . Manually update the cloud provider resources for the new release. . Indicate that the cluster is ready to update with the <code>upgradeable-to</code> annotation.</p></dd>
+      <dt class="font-semibold">Amazon Web Services (AWS), global Microsoft Azure, and Google Cloud</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Clusters installed on these platforms support multiple CCO modes. The required update process depends on the mode that the cluster is configured to use. If you are not sure what mode the CCO is configured to use on your cluster, you can use the web console or the CLI to determine this information.</p></dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-determine-mode-gui_preparing-manual-creds-update">Determining the Cloud Credential Operator mode by using the web console</a></li>
@@ -105,27 +151,490 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update">Extracting and preparing credentials request resources</a></li>
       <li><a href="/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator">About the Cloud Credential Operator</a></li>
       </ul>
+      <h3 id="cco-determine-mode-gui_preparing-manual-creds-update" class="group scroll-mt-20">Determining the Cloud Credential Operator mode by using the web console<a href="#cco-determine-mode-gui_preparing-manual-creds-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can determine what mode the Cloud Credential Operator (CCO) is configured to use by using the web console.</p>
+      <p>Before you perform upgrades or troubleshoot, ensure you understand your cluster’s credential management configuration.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Only Amazon Web Services (AWS), global Microsoft Azure, and Google Cloud clusters support multiple CCO modes.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to an OpenShift Container Platform account with cluster administrator permissions.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console as a user with the <code>cluster-admin</code> role.</li>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>Cluster Settings</strong>.</li>
+      <li>On the <strong>Cluster Settings</strong> page, select the <strong>Configuration</strong> tab.</li>
+      <li>Under <strong>Configuration resource</strong>, select <strong>CloudCredential</strong>.</li>
+      <li>On the <strong>CloudCredential details</strong> page, select the <strong>YAML</strong> tab.</li>
+      <li>
+      In the YAML block, check the value of <code>spec.credentialsMode</code>. The following values are possible, though not all are supported on all platforms:
+      <ul>
+      <li>’'`: The CCO is operating in the default mode. In this configuration, the CCO operates in mint or passthrough mode, depending on the credentials provided during installation.</li>
+      <li><code>Mint</code>: The CCO is operating in mint mode.</li>
+      <li><code>Passthrough</code>: The CCO is operating in passthrough mode.</li>
+      <li><code>Manual</code>: The CCO is operating in manual mode.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>To determine the specific configuration of an AWS, Google Cloud, or global Microsoft Azure cluster that has a <code>spec.credentialsMode</code> of ’'<code>, </code>Mint<code>, or </code>Manual`, you must investigate further.</p>
+          <p>AWS and Google Cloud clusters support using mint mode with the root secret deleted. If the cluster is specifically configured to use mint mode or uses mint mode by default, you must determine if the root secret is present on the cluster before updating.</p>
+          <p>An AWS, Google Cloud, or global Microsoft Azure cluster that uses manual mode might be configured to create and manage cloud credentials from outside of the cluster with AWS STS, Google Cloud Workload Identity, or Microsoft Entra Workload ID. You can determine whether your cluster uses this strategy by examining the cluster <code>Authentication</code> object.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      AWS or Google Cloud clusters that use mint mode only: To determine whether the cluster is operating without the root secret, navigate to <strong>Workloads</strong> -&gt; <strong>Secrets</strong> and look for the root secret for your cloud provider.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Ensure that the <strong>Project</strong> dropdown is set to <strong>All Projects</strong>.</p>
+        </AlertDescription>
+      </Alert>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Platform</TableHead>
+      <TableHead>Secret name</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>AWS</TableCell>
+      <TableCell><code>aws-creds</code></TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Google Cloud</TableCell>
+      <TableCell><code>gcp-credentials</code></TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <ul>
+      <li>If you see one of these values, your cluster is using mint or passthrough mode with the root secret present.</li>
+      <li>If you do not see these values, your cluster is using the CCO in mint mode with the root secret removed.</li>
+      </ul>
+      </li>
+      <li>
+      AWS, Google Cloud, or global Microsoft Azure clusters that use manual mode only: To determine whether the cluster is configured to create and manage cloud credentials from outside of the cluster, you must check the cluster <code>Authentication</code> object YAML values.
+      <ol>
+      <li>Navigate to <strong>Administration</strong> -&gt; <strong>Cluster Settings</strong>.</li>
+      <li>On the <strong>Cluster Settings</strong> page, select the <strong>Configuration</strong> tab.</li>
+      <li>Under <strong>Configuration resource</strong>, select <strong>Authentication</strong>.</li>
+      <li>On the <strong>Authentication details</strong> page, select the <strong>YAML</strong> tab.</li>
+      <li>
+      In the YAML block, check the value of the <code>.spec.serviceAccountIssuer</code> parameter.
+      <ul>
+      <li>A value that contains a URL that is associated with your cloud provider indicates that the CCO is using manual mode with short-term credentials for components. These clusters are configured using the <code>ccoctl</code> utility to create and manage cloud credentials from outside of the cluster.</li>
+      <li>An empty value (’'<code>) indicates that the cluster is using the CCO in manual mode but was not configured using the </code>ccoctl` utility.</li>
+      </ul>
+      </li>
+      </ol>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update">Extracting and preparing credentials request resources</a></li></ul>
-      <p class="/modules/cco-determine-mode-next.md"></p>
+      <h3 id="cco-determine-mode-cli_preparing-manual-creds-update" class="group scroll-mt-20">Determining the Cloud Credential Operator mode by using the CLI<a href="#cco-determine-mode-cli_preparing-manual-creds-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can determine what mode the Cloud Credential Operator (CCO) is configured to use by using the CLI.</p>
+      <p>Before you perform upgrades or troubleshoot, ensure you understand your cluster’s credential management configuration.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Only Amazon Web Services (AWS), global Microsoft Azure, and Google Cloud clusters support multiple CCO modes.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to an OpenShift Container Platform account with cluster administrator permissions.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to <code>oc</code> on the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>
+      To determine the mode that the CCO is configured to use, enter the following command:
+      <CodeBlock code={"$ oc get cloudcredentials cluster \\\n  -o=jsonpath={.spec.credentialsMode}"} lang="terminal" />
+      <p>The following output values are possible, though not all are supported on all platforms:</p>
+      <ul>
+      <li>’'`: The CCO is operating in the default mode. In this configuration, the CCO operates in mint or passthrough mode, depending on the credentials provided during installation.</li>
+      <li><code>Mint</code>: The CCO is operating in mint mode.</li>
+      <li><code>Passthrough</code>: The CCO is operating in passthrough mode.</li>
+      <li><code>Manual</code>: The CCO is operating in manual mode.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>To determine the specific configuration of an AWS, Google Cloud, or global Microsoft Azure cluster that has a <code>spec.credentialsMode</code> of ’'<code>, </code>Mint<code>, or </code>Manual`, you must investigate further.</p>
+          <p>AWS and Google Cloud clusters support using mint mode with the root secret deleted. If the cluster is specifically configured to use mint mode or uses mint mode by default, you must determine if the root secret is present on the cluster before updating.</p>
+          <p>An AWS, Google Cloud, or global Microsoft Azure cluster that uses manual mode might be configured to create and manage cloud credentials from outside of the cluster with AWS STS, Google Cloud Workload Identity, or Microsoft Entra Workload ID. You can determine whether your cluster uses this strategy by examining the cluster <code>Authentication</code> object.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      AWS or Google Cloud clusters that use mint mode only: To determine whether the cluster is operating without the root secret, run the following command:
+      <CodeBlock code={"$ oc get secret <secret_name> \\\n  -n=kube-system"} lang="terminal" />
+      <p>where <code>&lt;secret_name&gt;</code> is <code>aws-creds</code> for AWS or <code>gcp-credentials</code> for Google Cloud.</p>
+      <p>If the root secret is present, the output of this command returns information about the secret. An error indicates that the root secret is not present on the cluster.</p>
+      </li>
+      <li>
+      AWS, Google Cloud, or global Microsoft Azure clusters that use manual mode only: To determine whether the cluster is configured to create and manage cloud credentials from outside of the cluster, run the following command:
+      <CodeBlock code={"$ oc get authentication cluster \\\n  -o jsonpath \\\n  --template='{ .spec.serviceAccountIssuer }'"} lang="terminal" />
+      <p>This command displays the value of the <code>.spec.serviceAccountIssuer</code> parameter in the cluster <code>Authentication</code> object.</p>
+      <ul>
+      <li>An output of a URL that is associated with your cloud provider indicates that the CCO is using manual mode with short-term credentials for components. These clusters are configured using the <code>ccoctl</code> utility to create and manage cloud credentials from outside of the cluster.</li>
+      <li>An empty output indicates that the cluster is using the CCO in manual mode but was not configured using the <code>ccoctl</code> utility.</li>
+      </ul>
+      </li>
+      </ol>
+      <h3 id="cco-determine-mode-next_preparing-manual-creds-update" class="group scroll-mt-20">Determining the next steps in the update<a href="#cco-determine-mode-next_preparing-manual-creds-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">After you determine the Cloud Credential Operator mode, it is important to understand how to proceed with the update. </p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>If you are updating a cluster that has the CCO operating in mint or passthrough mode and the root secret is present, you do not need to update any cloud provider resources and can continue to the next part of the update process.</li>
+      <li>If your cluster is using the CCO in mint mode with the root secret removed, you must reinstate the credential secret with the administrator-level credential before continuing to the next part of the update process.</li>
+      <li>
+      If your cluster was configured using the CCO utility (<code>ccoctl</code>), you must take the following actions:
+      <ol>
+      <li>Extract and prepare the <code>CredentialsRequest</code> custom resources (CRs) for the new release.</li>
+      <li>Configure the <code>ccoctl</code> utility for the new release and use it to update the cloud provider resources.</li>
+      <li>Update the <code>upgradeable-to</code> annotation to indicate that the cluster is ready to update.</li>
+      </ol>
+      </li>
+      <li>
+      If your cluster is using the CCO in manual mode but was not configured using the <code>ccoctl</code> utility, you must take the following actions:
+      <ol>
+      <li>Extract and prepare the <code>CredentialsRequest</code> custom resources (CRs) for the new release.</li>
+      <li>Manually update the cloud provider resources for the new release.</li>
+      <li>Update the <code>upgradeable-to</code> annotation to indicate that the cluster is ready to update.</li>
+      </ol>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update">Extracting and preparing credentials request resources</a></li></ul>
+      <h2 id="cco-ccoctl-upgrading-extracting_preparing-manual-creds-update" class="group scroll-mt-20">Extracting and preparing credentials request resources<a href="#cco-ccoctl-upgrading-extracting_preparing-manual-creds-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before updating a cluster that uses the Cloud Credential Operator (CCO) in manual mode, you must extract and prepare the <code>CredentialsRequest</code> custom resources (CRs) for the new release.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install the OpenShift CLI (<code>oc</code>) that matches the version for your updated version.</li>
+      <li>Log in to the cluster as user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Obtain the pull spec for the update that you want to apply by running the following command:
+      <CodeBlock code={"$ oc adm upgrade"} lang="terminal" />
+      <p>The output of this command includes pull specs for the available updates similar to the following:</p>
+      <CodeBlock code={"...\nRecommended updates:\n\nVERSION IMAGE\n4.22.0  quay.io/openshift-release-dev/ocp-release@sha256:6a899c54dda6b844bb12a247e324a0f6cde367e880b73ba110c056df6d018032\n..."} lang="text" title="Partial example output" />
+      </li>
+      <li>
+      Set a <code>$RELEASE_IMAGE</code> variable with the release image that you want to use by running the following command:
+      <CodeBlock code={"$ RELEASE_IMAGE=<update_pull_spec>"} lang="terminal" />
+      <p>where <code>&lt;update_pull_spec&gt;</code> is the pull spec for the release image that you want to use. For example:</p>
+      <CodeBlock code={"quay.io/openshift-release-dev/ocp-release@sha256:6a899c54dda6b844bb12a247e324a0f6cde367e880b73ba110c056df6d018032"} lang="text" />
+      </li>
+      <li>
+      Extract the list of <code>CredentialsRequest</code> custom resources (CRs) from the OpenShift Container Platform release image by running the following command:
+      <CodeBlock code={"$ oc adm release extract \\\n  --from=$RELEASE_IMAGE \\\n  --credentials-requests \\\n  --included \\\n  --to=<path_to_directory_for_credentials_requests>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>--included</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Includes only the manifests that your specific cluster configuration requires for the target release.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;path_to_directory_for_credentials_requests&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the directory where you want to store the <code>CredentialsRequest</code> objects. If the specified directory does not exist, this command creates it. This command creates a YAML file for each <code>CredentialsRequest</code> object.</p></dd>
+      </dl>
+      <ol>
+      <li>
+      For each <code>CredentialsRequest</code> CR in the release image, ensure that a namespace that matches the text in the <code>spec.secretRef.namespace</code> field exists in the cluster. This field is where the generated secrets that hold the credentials configuration are stored.
+      <CodeBlock code={"apiVersion: cloudcredential.openshift.io/v1\nkind: CredentialsRequest\nmetadata:\n  name: cloud-credential-operator-iam-ro\n  namespace: openshift-cloud-credential-operator\nspec:\n  providerSpec:\n    apiVersion: cloudcredential.openshift.io/v1\n    kind: AWSProviderSpec\n    statementEntries:\n    - effect: Allow\n      action:\n      - iam:GetUser\n      - iam:GetUserPolicy\n      - iam:ListAccessKeys\n      resource: \"*\"\n  secretRef:\n    name: cloud-credential-operator-iam-ro-creds\n    namespace: openshift-cloud-credential-operator"} lang="yaml" title="Sample AWS CredentialsRequest object" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>openshift-cloud-credential-operator</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Indicates the namespace which must exist to hold the generated secret. The <code>CredentialsRequest</code> CRs for other platforms have a similar format with different platform-specific values.</p></dd>
+      </dl>
+      </li>
+      <li>
+      For any <code>CredentialsRequest</code> CR for which the cluster does not already have a namespace with the name specified in <code>spec.secretRef.namespace</code>, create the namespace by running the following command:
+      <CodeBlock code={"$ oc create namespace <component_namespace>"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Next steps</strong></p>
+      <ul>
+      <li>If the cloud credential management for your cluster was configured using the CCO utility (<code>ccoctl</code>), configure the <code>ccoctl</code> utility for a cluster update and use it to update your cloud provider resources.</li>
+      <li>If your cluster was not configured with the <code>ccoctl</code> utility, manually update your cloud provider resources.</li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-ccoctl-configuring_preparing-manual-creds-update">Configuring the Cloud Credential Operator utility for a cluster update</a></li>
       <li><a href="/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#manually-maintained-credentials-upgrade_preparing-manual-creds-update">Manually updating cloud provider resources</a></li>
       </ul>
-      <p class="/modules/cco-ccoctl-upgrading.md"></p>
+      <h2 id="_configuring_the_cloud_credential_operator_utility_for_a_cluster_update" class="group scroll-mt-20">Configuring the Cloud Credential Operator utility for a cluster update<a href="#_configuring_the_cloud_credential_operator_utility_for_a_cluster_update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>{"{"}._abstract{"}"} To upgrade a cluster that uses the Cloud Credential Operator (CCO) in manual mode to create and manage cloud credentials from outside of the cluster, extract and prepare the CCO utility (<code>ccoctl</code>) binary.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>ccoctl</code> utility is a Linux binary that must run in a Linux environment.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to an OpenShift Container Platform account with cluster administrator access.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>Your cluster was configured using the <code>ccoctl</code> utility to create and manage cloud credentials from outside of the cluster.</li>
+      <li>You have extracted the <code>CredentialsRequest</code> custom resources (CRs) from the OpenShift Container Platform release image and ensured that a namespace that matches the text in the <code>spec.secretRef.namespace</code> field exists in the cluster.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set a variable for the OpenShift Container Platform release image by running the following command:
+      <CodeBlock code={"$ RELEASE_IMAGE=$(oc get clusterversion -o jsonpath={..desired.image})"} lang="plaintext" />
+      </li>
+      <li>
+      Obtain the CCO container image from the OpenShift Container Platform release image by running the following command:
+      <CodeBlock code={"$ CCO_IMAGE=$(oc adm release info --image-for='cloud-credential-operator' $RELEASE_IMAGE -a ~/.pull-secret)"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Ensure that the architecture of the <code>$RELEASE_IMAGE</code> matches the architecture of the environment in which you will use the <code>ccoctl</code> tool.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Extract the <code>ccoctl</code> binary from the CCO container image within the OpenShift Container Platform release image by running the following command:
+      <CodeBlock code={"$ oc image extract $CCO_IMAGE \\\n  --file=\"/usr/bin/ccoctl.<rhel_version>\" \\\n  -a ~/.pull-secret"} lang="terminal" />
+      <p>For <code>&lt;rhel_version&gt;</code>, specify the value that corresponds to the version of Red Hat Enterprise Linux (RHEL) that the host uses. If no value is specified, <code>ccoctl.rhel8</code> is used by default. The following values are valid:</p>
+      <ul>
+      <li><code>rhel8</code>: Specify this value for hosts that use RHEL 8.</li>
+      <li>
+      <code>rhel9</code>: Specify this value for hosts that use RHEL 9.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>ccoctl</code> binary is created in the directory from where you executed the command and not in <code>/usr/bin/</code>. You must rename the directory or move the <code>ccoctl.&lt;rhel_version&gt;</code> binary to <code>ccoctl</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      </li>
+      <li>
+      Change the permissions to make <code>ccoctl</code> executable by running the following command:
+      <CodeBlock code={"$ chmod 775 ccoctl"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that <code>ccoctl</code> is ready to use, display the help file. Use a relative file name when you run the command, for example:
+      <CodeBlock code={"$ ./ccoctl"} lang="terminal" />
+      <CodeBlock code={"OpenShift credentials provisioning tool\n\nUsage:\n  ccoctl [command]\n\nAvailable Commands:\n  aws          Manage credentials objects for AWS cloud\n  azure        Manage credentials objects for Azure\n  gcp          Manage credentials objects for Google cloud\n  help         Help about any command\n  ibmcloud     Manage credentials objects for IBM Cloud\n  nutanix      Manage credentials objects for Nutanix\n\nFlags:\n  -h, --help   help for ccoctl\n\nUse \"ccoctl [command] --help\" for more information about a command."} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="cco-ccoctl-upgrading_preparing-manual-creds-update" class="group scroll-mt-20">Updating cloud provider resources with the Cloud Credential Operator utility<a href="#cco-ccoctl-upgrading_preparing-manual-creds-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Update the cloud provider resources for your OpenShift Container Platform cluster by using the CCO utility (<code>ccoctl</code>). The process for upgrading these resources is similar to creating the resources during installation.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>On AWS clusters, some <code>ccoctl</code> commands make AWS API calls to create or modify AWS resources. You can use the <code>--dry-run</code> flag to avoid making API calls. Using this flag creates JSON files on the local file system instead. You can review and modify the JSON files and then apply them with the AWS CLI tool using the <code>--cli-input-json</code> parameters.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have extracted the <code>CredentialsRequest</code> custom resources (CRs) from the OpenShift Container Platform release image and ensured that a namespace that matches the text in the <code>spec.secretRef.namespace</code> field exists in the cluster.</li>
+      <li>You have extracted and configured the <code>ccoctl</code> binary from the release image.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the output directory if it does not already exist by running the following command:
+      <CodeBlock code={"$ mkdir -p <path_to_ccoctl_output_dir>"} lang="terminal" />
+      </li>
+      <li>
+      Extract the bound service account signing key from the cluster and save it to the output directory by running the following command:
+      <CodeBlock code={"$ oc get secret bound-service-account-signing-key \\\n  -n openshift-kube-apiserver \\\n  -ojsonpath='{ .data.service-account\\.pub }' | base64 \\\n  -d > <path_to_ccoctl_output_dir>/serviceaccount-signer.public"} lang="terminal" />
+      </li>
+      <li>
+      Use the <code>ccoctl</code> tool to process all <code>CredentialsRequest</code> objects by running the command for your cloud provider. The following commands process <code>CredentialsRequest</code> objects:
+      <CodeBlock code={"$ ccoctl aws create-all \\\n  --name=<name> \\\n  --region=<aws_region> \\\n  --credentials-requests-dir=<path_to_credentials_requests_directory> \\\n  --output-dir=<path_to_ccoctl_output_dir> \\\n  --public-key-file= \\\n  <path_to_ccoctl_output_dir>/serviceaccount-signer.public \\\n  --create-private-s3-bucket \\\n  --permissions-boundary-arn=<policy_arn>"} lang="terminal" title="Amazon Web Services (AWS)" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name used to tag any cloud resources that are created for tracking.</p></dd>
+      <dt class="font-semibold"><code>&lt;aws_region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the AWS region in which cloud resources will be created.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_credentials_requests_directory&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the directory containing the files for the component <code>CredentialsRequest</code> objects.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_ccoctl_output_dir&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the output directory. For <code>--public-key-file</code>, this directory contains the <code>serviceaccount-signer.public</code> file that you extracted from the cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;policy_arn&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the Amazon Resource Name (ARN) of the AWS IAM policy to use as the permissions boundary for the IAM roles created by the <code>ccoctl</code> utility.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>By default, the <code>ccoctl</code> utility stores the OpenID Connect (OIDC) configuration files in a public S3 bucket and uses the S3 URL as the public OIDC endpoint. To store the OIDC configuration in a private S3 bucket that is accessed by the IAM identity provider through a public CloudFront distribution URL instead, use the <code>--create-private-s3-bucket</code> parameter. This is an optional parameter.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To create the AWS resources individually, use the "Creating AWS resources individually" procedure in the "Installing a cluster on AWS with customizations" content. This option might be useful if you need to review the JSON files that the <code>ccoctl</code> tool creates before modifying AWS resources, or if the process the <code>ccoctl</code> tool uses to create AWS resources automatically does not meet the requirements of your organization.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ ccoctl gcp create-all \\\n  --name=<name> \\\n  --region=<gcp_region> \\\n  --project=<gcp_project_id> \\\n  --credentials-requests-dir=<path_to_credentials_requests_directory> \\\n  --output-dir=<path_to_ccoctl_output_dir> \\\n  --public-key-file=<path_to_ccoctl_output_dir>/serviceaccount-signer.public \\\n  --key-storage-method=<key_storage_method>"} lang="terminal" title="Google Cloud" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the user-defined name for all created Google Cloud resources used for tracking.</p></dd>
+      <dt class="font-semibold"><code>&lt;gcp_region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Google Cloud region in which cloud resources will be created.</p></dd>
+      <dt class="font-semibold"><code>&lt;gcp_project_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Google Cloud project ID in which cloud resources will be created.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_credentials_requests_directory&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the directory containing the files of <code>CredentialsRequest</code> manifests to create Google Cloud service accounts.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_ccoctl_output_dir&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the output directory. For <code>--public-key-file</code>, this directory contains the <code>serviceaccount-signer.public</code> file that you extracted from the cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;key_storage_method&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the method for storing OIDC JWK files. Accepted values are <code>public-bucket</code> and <code>pool-jwk-file</code>. The default value <code>public-bucket</code> creates a public GCS bucket to host the OIDC configuration and JWK files. The <code>pool-jwk-file</code> value attaches the JWK directly to the workload identity pool provider without creating a public bucket.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If your cluster was previously configured with the <code>public-bucket</code> method and you switch to <code>pool-jwk-file</code>, the existing GCS bucket is no longer used. You can delete the old <code>&lt;name&gt;-oidc</code> bucket from your Google Cloud project to avoid retaining an unnecessary public resource.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ ccoctl ibmcloud create-service-id \\\n  --credentials-requests-dir=<path_to_credential_requests_directory> \\\n  --name=<cluster_name> \\\n  --output-dir=<installation_directory> \\\n  --resource-group-name=<resource_group_name>"} lang="terminal" title="IBM Cloud" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;path_to_credential_requests_directory&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the directory containing the files for the component <code>CredentialsRequest</code> objects.</p></dd>
+      <dt class="font-semibold"><code>&lt;cluster_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the OpenShift Container Platform cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;installation_directory&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the directory in which you want the <code>ccoctl</code> utility to create objects. By default, the utility creates objects in the directory in which the commands are run.</p></dd>
+      <dt class="font-semibold"><code>&lt;resource_group_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the name of the resource group used for scoping the access policies.</p></dd>
+      </dl>
+      <CodeBlock code={"$ ccoctl azure create-managed-identities \\\n  --name <azure_infra_name> \\\n  --output-dir=<path_to_ccoctl_output_dir> \\\n  --region <azure_region> \\\n  --subscription-id <azure_subscription_id> \\\n  --credentials-requests-dir <path_to_directory_for_credentials_requests> \\\n  --issuer-url \"${OIDC_ISSUER_URL}\" \\\n  --dnszone-resource-group-name <azure_dns_zone_resourcegroup_name> \\\n  --installation-resource-group-name \"${AZURE_INSTALL_RG}\" \\\n  --preserve-existing-roles"} lang="terminal" title="Microsoft Azure" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;azure_infra_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the value of the <code>name</code> parameter used to create an Azure resource group. To use an existing Azure resource group instead of creating a new one, specify the <code>--oidc-resource-group-name</code> argument with the existing group name as its value.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_ccoctl_output_dir&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the output directory.</p></dd>
+      <dt class="font-semibold"><code>&lt;azure_region&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the region of the existing cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;azure_subscription_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the subscription ID of the existing cluster.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_directory_for_credentials_requests&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the directory containing the files for the component <code>CredentialsRequest</code> objects.</p></dd>
+      <dt class="font-semibold"><code>"${"{"}{"{"} OIDC_ISSUER_URL {"}"}{"}"}"</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the OIDC issuer URL from the existing cluster. You can obtain this value by running the following command:</p>
+      <CodeBlock code={"$ oc get authentication cluster \\\n  -o jsonpath \\\n  --template='{ .spec.serviceAccountIssuer }'"} lang="terminal" />
+      </dd>
+      <dt class="font-semibold"><code>&lt;azure_dns_zone_resourcegroup_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the resource group that contains the DNS zone.</p></dd>
+      <dt class="font-semibold"><code>"${"{"}{"{"} AZURE_INSTALL_RG {"}"}{"}"}"</code></dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Specifies the Azure resource group name. You can obtain this value by running the following command:</p>
+      <CodeBlock code={"$ oc get infrastructure cluster \\\n  -o jsonpath \\\n  --template '{ .status.platformStatus.azure.resourceGroupName }'"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Specifying the flag <code>ccoctl.azure.create-managed-identities.preserve-existing-roles</code> ensures that any custom role assignments you define on managed identities are not removed during OpenShift Container Platform updates. This flag is optional.</p>
+        </AlertDescription>
+      </Alert>
+      </dd>
+      </dl>
+      <CodeBlock code={"$ ccoctl nutanix create-shared-secrets \\\n  --credentials-requests-dir=<path_to_credentials_requests_directory> \\\n  --output-dir=<ccoctl_output_dir> \\\n  --credentials-source-filepath=<path_to_credentials_file>"} lang="terminal" title="Nutanix" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;path_to_credentials_requests_directory&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to the directory that contains the files for the component <code>CredentialsRequests</code> objects.</p></dd>
+      <dt class="font-semibold"><code>&lt;ccoctl_output_dir&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the directory in which you want the <code>ccoctl</code> utility to create objects. By default, the utility creates objects in the directory in which the commands are run.</p></dd>
+      <dt class="font-semibold"><code>&lt;path_to_credentials_file&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional: Specifies the directory that contains the credentials data YAML file. By default, <code>ccoctl</code> expects this file to be in <code>&lt;home_directory&gt;/.nutanix/credentials</code>.</p></dd>
+      </dl>
+      <p>For each <code>CredentialsRequest</code> object, <code>ccoctl</code> creates the required provider resources and a permissions policy as defined in each <code>CredentialsRequest</code> object from the OpenShift Container Platform release image.</p>
+      </li>
+      <li>
+      Apply the secrets to your cluster by running the following command:
+      <CodeBlock code={"$ ls <path_to_ccoctl_output_dir>/manifests/*-credentials.yaml | xargs -I{} oc apply -f {}"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <p>You can verify that the required provider resources and permissions policies are created by querying the cloud provider. For more information, refer to your cloud provider documentation on listing roles or service accounts.</p>
+      <p><strong>Next steps</strong></p>
+      <ul><li>Update the <code>upgradeable-to</code> annotation to indicate that the cluster is ready to upgrade.</li></ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-manual-upgrade-annotation_preparing-manual-creds-update">Indicating that the cluster is ready to upgrade</a></li></ul>
+      <h2 id="manually-maintained-credentials-upgrade_preparing-manual-creds-update" class="group scroll-mt-20">Manually updating cloud provider resources<a href="#manually-maintained-credentials-upgrade_preparing-manual-creds-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Meet the requirements of the target release by manually updating cloud provider credentials. Update these credentials by creating secrets for new components and by adjusting the permissions for existing components.</p>
+      <p>Before you upgrade a cluster with manually maintained credentials, you must create secrets for any new credentials for the release image that you are upgrading to. You must also review the required permissions for existing credentials and accommodate any new permissions requirements in the new release for those components.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have extracted the <code>CredentialsRequest</code> custom resources (CRs) from the OpenShift Container Platform release image and ensured that a namespace that matches the text in the <code>spec.secretRef.namespace</code> field exists in the cluster.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create YAML files with secrets for any <code>CredentialsRequest</code> custom resources that the new release image adds. The secrets must be stored using the namespace and secret name defined in the <code>spec.secretRef</code> for each <code>CredentialsRequest</code> object.
+      <CodeBlock code={"apiVersion: cloudcredential.openshift.io/v1\nkind: CredentialsRequest\nmetadata:\n  name: <component_credentials_request>\n  namespace: openshift-cloud-credential-operator\n  ...\nspec:\n  providerSpec:\n    apiVersion: cloudcredential.openshift.io/v1\n    kind: AWSProviderSpec\n    statementEntries:\n    - effect: Allow\n      action:\n      - s3:CreateBucket\n      - s3:DeleteBucket\n      resource: \"*\"\n      ...\n  secretRef:\n    name: <component_secret>\n    namespace: <component_namespace>\n  ..."} lang="yaml" title="Sample AWS CredentialsRequest object with secrets" />
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n  name: <component_secret>\n  namespace: <component_namespace>\ndata:\n  aws_access_key_id: <base64_encoded_aws_access_key_id>\n  aws_secret_access_key: <base64_encoded_aws_secret_access_key>"} lang="yaml" title="Sample AWS Secret object" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Global Azure and Azure Stack Hub use the same <code>CredentialsRequest</code> object and secret formats.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: cloudcredential.openshift.io/v1\nkind: CredentialsRequest\nmetadata:\n  name: <component_credentials_request>\n  namespace: openshift-cloud-credential-operator\n  ...\nspec:\n  providerSpec:\n    apiVersion: cloudcredential.openshift.io/v1\n    kind: AzureProviderSpec\n    roleBindings:\n    - role: Contributor\n      ...\n  secretRef:\n    name: <component_secret>\n    namespace: <component_namespace>\n  ..."} lang="yaml" title="Sample Azure CredentialsRequest object with secrets" />
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n  name: <component_secret>\n  namespace: <component_namespace>\ndata:\n  azure_subscription_id: <base64_encoded_azure_subscription_id>\n  azure_client_id: <base64_encoded_azure_client_id>\n  azure_client_secret: <base64_encoded_azure_client_secret>\n  azure_tenant_id: <base64_encoded_azure_tenant_id>\n  azure_resource_prefix: <base64_encoded_azure_resource_prefix>\n  azure_resourcegroup: <base64_encoded_azure_resourcegroup>\n  azure_region: <base64_encoded_azure_region>"} lang="yaml" title="Sample Azure Secret object" />
+      <CodeBlock code={"apiVersion: cloudcredential.openshift.io/v1\nkind: CredentialsRequest\nmetadata:\n  name: <component_credentials_request>\n  namespace: openshift-cloud-credential-operator\n  ...\nspec:\n  providerSpec:\n    apiVersion: cloudcredential.openshift.io/v1\n    kind: GCPProviderSpec\n      predefinedRoles:\n      - roles/iam.securityReviewer\n      - roles/iam.roleViewer\n      skipServiceCheck: true\n      ...\n  secretRef:\n    name: <component_secret>\n    namespace: <component_namespace>\n  ..."} lang="yaml" title="Sample Google Cloud CredentialsRequest object with secrets" />
+      <CodeBlock code={"apiVersion: v1\nkind: Secret\nmetadata:\n  name: <component_secret>\n  namespace: <component_namespace>\ndata:\n  service_account.json: <base64_encoded_gcp_service_account_file>"} lang="yaml" title="Sample Google Cloud Secret object" />
+      </li>
+      <li>If the <code>CredentialsRequest</code> custom resources for any existing credentials that are stored in secrets have changed permissions requirements, update the permissions as required.</li>
+      </ol>
+      <p><strong>Next steps</strong></p>
+      <ul><li>Update the <code>upgradeable-to</code> annotation to indicate that the cluster is ready to upgrade.</li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#manually-create-iam_installing-aws-customizations">Manually creating long-term credentials for AWS</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#manually-create-iam_installing-azure-customizations">Manually creating long-term credentials for Azure</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_azure_stack_hub/ipi/installing-azure-stack-hub-default#manually-create-iam_installing-azure-stack-hub-default">Manually creating long-term credentials for Azure Stack Hub</a></li>
-      <li><a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations">Manually creating long-term credentials for {"{"}{"{"} gcp_short {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_gcp/installing-gcp-customizations#manually-create-iam_installing-gcp-customizations">Manually creating long-term credentials for Google Cloud</a></li>
       <li><a href="/openshift-docs-markdown/updating/preparing_for_updates/preparing-manual-creds-update#cco-manual-upgrade-annotation_preparing-manual-creds-update">Indicating that the cluster is ready to upgrade</a></li>
       </ul>
+      <h2 id="cco-manual-upgrade-annotation_preparing-manual-creds-update" class="group scroll-mt-20">Indicating that the cluster is ready to upgrade<a href="#cco-manual-upgrade-annotation_preparing-manual-creds-update" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Modify the <code>CloudCredential</code> resource to include an <code>upgradeable-to</code> annotation. This signals that you updated manually maintained credentials and that the cluster is ready to upgrade.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>For the release image that you are upgrading to, you have processed any new credentials manually or by using the Cloud Credential Operator utility (<code>ccoctl</code>).</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to <code>oc</code> on the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>
+      Edit the <code>CloudCredential</code> resource to add an <code>upgradeable-to</code> annotation within the <code>metadata</code> field by running the following command:
+      <CodeBlock code={"$ oc edit cloudcredential cluster"} lang="terminal" />
+      <CodeBlock code={"...\n  metadata:\n    annotations:\n      cloudcredential.openshift.io/upgradeable-to: <version_number>\n..."} lang="yaml" title="Text to add" />
+      <p>Where <code>&lt;version_number&gt;</code> is the version that you are upgrading to, in the format <code>x.y.z</code>. For example, use <code>4.12.2</code> for OpenShift Container Platform 4.12.2.</p>
+      <p>It may take several minutes after adding the annotation for the upgradeable status to change.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>In the <strong>Administrator</strong> perspective of the web console, navigate to <strong>Administration</strong> -&gt; <strong>Cluster Settings</strong>.</li>
+      <li>
+      To view the CCO status details, click <strong>cloud-credential</strong> in the <strong>Cluster Operators</strong> list.
+      <ul><li>If the <strong>Upgradeable</strong> status in the <strong>Conditions</strong> section is <strong>False</strong>, verify that the <code>upgradeable-to</code> annotation is free of typographical errors.</li></ul>
+      </li>
+      <li>When the <strong>Upgradeable</strong> status in the <strong>Conditions</strong> section is <strong>True</strong>, begin the OpenShift Container Platform upgrade.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

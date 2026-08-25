@@ -18,8 +18,15 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"operating-a-degraded-tnf","text":"Operating a degraded two-node OpenShift cluster with fencing"}];
+const headings = [{"depth":1,"slug":"operating-a-degraded-tnf","text":"Operating a degraded two-node OpenShift cluster with fencing"},{"depth":2,"slug":"tnf-cluster-degradation-causes_operating-a-degraded-tnf","text":"TNF cluster degradation causes"},{"depth":2,"slug":"node-failure-sequence-in-a-tnf-cluster_operating-a-degraded-tnf","text":"Node failure sequence in a TNF cluster"},{"depth":2,"slug":"pacemaker-and-fencing-behavior-during-degraded-operation_operating-a-degraded-tnf","text":"Pacemaker and fencing behavior during degraded operation"},{"depth":2,"slug":"cluster-operator-stability-during-degraded-operation_operating-a-degraded-tnf","text":"Cluster operator stability during degraded operation"},{"depth":2,"slug":"capabilities-during-degraded-tnf-operation_operating-a-degraded-tnf","text":"Capabilities during degraded TNF operation"},{"depth":2,"slug":"prohibited-operations-during-degraded-tnf-operation_operating-a-degraded-tnf","text":"Prohibited operations during degraded TNF operation"},{"depth":2,"slug":"recovering-a-failed-tnf-node_operating-a-degraded-tnf","text":"Recovering a failed TNF node"},{"depth":2,"slug":"verifying-tnf-cluster-state_operating-a-degraded-tnf","text":"Verifying TNF cluster state"},{"depth":2,"slug":"resolving-a-fencing-failure-in-tnf_operating-a-degraded-tnf","text":"Resolving a fencing failure in TNF"},{"depth":2,"slug":"resolving-etcd-not-recovering-on-the-surviving-node_operating-a-degraded-tnf","text":"Resolving etcd not recovering on the surviving node"},{"depth":2,"slug":"resolving-a-failed-node-not-rejoining-after-power-on_operating-a-degraded-tnf","text":"Resolving a failed node not rejoining after power-on"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_two_node_cluster/installing_tnf/operating-a-degraded-tnf";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +49,7 @@ const pageCategory = ["installing","installing/installing_two_node_cluster","ins
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Operating a degraded two-node OpenShift cluster with fencing {#operating-a-degraded-tnf}\n\nA two-node OpenShift cluster with fencing (TNF) enters a `degraded` state when one of its two control plane nodes becomes unavailable. The remaining node continues to host the active control plane; however, the cluster loses its high-availability (HA) redundancy until the failed node recovers.\n\nDegraded operation is an intentional design state rather than a system failure. In this state, the cluster remains functional and core services continue to operate. Only specific capabilities that strictly require two-node redundancy are temporarily unavailable.\n\n> [!IMPORTANT]\n> A degraded cluster has zero fault tolerance. If the surviving node also fails, the cluster fails. Restore the second node as soon as possible. Degraded operation is a temporary recovery window, not a long-term steady state.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_two_node_cluster/installing_tnf/operating-a-degraded-tnf.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Operating a degraded two-node OpenShift cluster with fencing {#operating-a-degraded-tnf}\n\nA two-node OpenShift cluster with fencing (TNF) enters a `degraded` state when one of its two control plane nodes becomes unavailable. The remaining node continues to host the active control plane; however, the cluster loses its high-availability (HA) redundancy until the failed node recovers.\n\nDegraded operation is an intentional design state rather than a system failure. In this state, the cluster remains functional and core services continue to operate. Only specific capabilities that strictly require two-node redundancy are temporarily unavailable.\n\n> [!IMPORTANT]\n> A degraded cluster has zero fault tolerance. If the surviving node also fails, the cluster fails. Restore the second node as soon as possible. Degraded operation is a temporary recovery window, not a long-term steady state.\n\n## TNF cluster degradation causes {#tnf-cluster-degradation-causes_operating-a-degraded-tnf}\n\nA two-node OpenShift cluster with fencing (TNF) becomes degraded when one node fails or loses communication with the cluster. Identifying the specific cause of degradation is essential because it determines whether the cluster can automatically recover or if manual intervention, such as fencing or hardware repair, is required to prevent data corruption and maintain service availability.\n\nSome common causes of cluster degradation include:\n\nGraceful shutdown or power-off\n:   A graceful shutdown occurs when an administrator manually initiates a power-off sequence, allowing the operating system to signal processes to stop and unmount file systems correctly. This intentional action ensures that data remains consistent and the node is marked as `Offline` within the cluster before the hardware ceases operation.\n\nHardware failure or power loss\n:   Sudden hardware malfunctions, such as a disk controller failure or an unconditioned power loss, result in an immediate cessation of service without warning. Unlike a graceful shutdown, these events provide the system no opportunity to clean up active processes, which often necessitates a consistency check or automated recovery once power is restored.\n\nNetwork partition or loss of connectivity\n:   A network partition occurs when a failure in the switching fabric or cabling prevents nodes from communicating with each other, even though the individual nodes remain powered on. In a two-node cluster, this split-brain scenario is particularly dangerous because each node might respond as if the other has failed and attempt to take exclusive control of shared resources.\n\nKernel panic\n:   A kernel panic occurs when the core operating system encounters a critical internal error such as a memory corruption or an unrecoverable driver conflict from which it might not safely recover. To protect the integrity of the data, the kernel immediately halts all system execution, effectively freezing the node until a hard reboot is performed.\n\nNode hang\n:   A node hang describes a situation where the hardware remains powered on, but the system stops responding to all external requests, including pings and SSH attempts. This state is often the result of deadlocks in the software or an infinite loop in a high-priority process that starves the rest of the system of CPU cycles.\n\nKubelet failure or resource exhaustion\n:   A node becomes unstable if the kubelet crashes or if the node suffers from extreme resource exhaustion, such as running out of RAM (OOM) or disk space. When the kubelet cannot report its heartbeat to the control plane, the cluster eventually marks the node as `NotReady` and attempts to evacuate its workloads.\n\n## Node failure sequence in a TNF cluster {#node-failure-sequence-in-a-tnf-cluster_operating-a-degraded-tnf}\n\nA two-node OpenShift cluster with fencing (TNF) enters a `degraded` state when one of its two control plane nodes becomes unavailable. The active control plane remains hosted on the surviving node, allowing the cluster to remain functional within defined constraints.\n\nThe automatic failure handling has the following sequence:\n\n- Detection: Corosync detects the failure.\n\n  The cluster framework registers that heartbeat signals from the peer node have ceased.\n- Isolation: STONITH fencing execution.\n\n  The surviving node uses the Redfish API to contact the baseboard management controller (BMC) of the failed node. It issues a power-off or reboot command to ensure the failed node is isolated. This prevents a `split-brain` scenario where the isolated node continues running containers locally while OpenShift Container Platform attempts to reschedule those same workloads onto healthy nodes, ensuring that stateful pods, routing services, and storage volumes maintain a single, valid owner.\n\n  If the Shoot The Other Node In The Head (STONITH) fencing operation fails, the surviving node cannot safely assume control of cluster resources. In this case, an administrator must manually power off the failed hardware before the cluster can recover.\n- Quorum Adjustment: etcd transits to single-member operation.\n\n  The etcd Operator demotes the etcd member of the failed node to a non-voting learner. The surviving member operates as the sole voter, maintaining quorum. etcd continues to operate with a single voting member, maintaining a valid quorum so that the Kubernetes API remains accessible.\n- Scheduling: Node status transitions to `NotReady`.\n\n  When a node fails, Kubernetes updates its status, and affected workloads lose redundancy. On a live cluster, `DaemonSet` pods remain `Running` and `Deployment` pods display a `Terminating` status. However, because the unreachable kubelet cannot process the deletion, these `Deployment` pods technically remain in a Running API phase and are only rescheduled if surviving nodes have available resources and clear anti-affinity rules.\n\n## Pacemaker and fencing behavior during degraded operation {#pacemaker-and-fencing-behavior-during-degraded-operation_operating-a-degraded-tnf}\n\nDuring degraded operation, the Pacemaker cluster manager transitions from a distributed coordination model to a localized enforcement structure on the surviving node.\n\nDegraded cluster operations include the following structural behaviors:\n\n- The surviving node remains `ONLINE` and continues managing etcd, kubelet, and Shoot The Other Node In The Head (STONITH) fence devices.\n- The failed node is reported as `OFFLINE` or `UNCLEAN OFFLINE`, depending on whether the shutdown was clean.\n- Fencing devices remain enabled. The STONITH device for the failed node is still available on the surviving node. However, the STONITH device for the surviving node cannot be used because the node that would trigger it is offline.\n- Pacemaker does not attempt to restart resources on the failed node or migrate resources to it.\n\n> [!IMPORTANT]\n> Mutual fencing protection is unavailable during degraded operations. Fencing actions cannot execute against the surviving node because the communication and execution paths from the peer node are offline.\n\n## Cluster operator stability during degraded operation {#cluster-operator-stability-during-degraded-operation_operating-a-degraded-tnf}\n\nOpenShift Container Platform cluster Operators maintain control plane stability and API availability when a two-node OpenShift cluster with fencing (TNF) enters a degraded state.\n\nDuring degraded operations, cluster Operator conditions exhibit the following behaviors:\n\n- Most Operators maintain an `Available=True` condition, ensuring that core API functionality remains accessible.\n- The following Operators transition to a `Degraded=True` condition because only one of the two expected control plane instances is operational:\n\n  - `etcd`\n  - `kube-apiserver`\n  - `kube-controller-manager`\n  - `kube-scheduler`\n  - `machine-config`\n- Specific Operators might exhibit a `Progressing=True` condition during reconciliation routines that require data from both infrastructure nodes. This condition resolves when the second node returns to an online state.\n\n> [!NOTE]\n> Unexpected or cascading Operator failures must not occur during degraded operation. If they do, investigate the issue as a potential bug.\n\n## Capabilities during degraded TNF operation {#capabilities-during-degraded-tnf-operation_operating-a-degraded-tnf}\n\nWhen a two-node OpenShift cluster with fencing (TNF) cluster is operating in a degraded state, some of the cluster capabilities are still available.\n\n**Cluster capabilities during degraded operation**\n\n| Capability | Available |\n| --- | --- |\n| Kubernetes API server (read and write) | Yes |\n| Workloads on the surviving node | Yes |\n| Scheduling new workloads to the surviving node | Yes |\n| etcd (single-member quorum) | Yes |\n| Cluster monitoring and alerting | Yes |\n| Ingress (single endpoint) | Yes |\n| Existing certificates | Yes |\n| Static pod restarts using existing configuration | Yes |\n| etcd redundancy | No |\n| Fencing of the surviving node | No |\n| Cluster upgrades | No |\n| etcd CA rotation | No |\n| `MachineConfig` object changes that require a node reboot | No |\n| Workloads or storage tied exclusively to the failed node | No |\n\n## Prohibited operations during degraded TNF operation {#prohibited-operations-during-degraded-tnf-operation_operating-a-degraded-tnf}\n\nYou must not perform certain administrative operations while a two-node OpenShift cluster with fencing (TNF) is in a degraded state. Attempting these operations can leave the cluster in a state that is more difficult to recover from than the original degraded state.\n\nDo not perform the following operations while the cluster is degraded:\n\nCluster upgrades\n:   Do not initiate a cluster upgrade while the cluster is degraded. The upgrade process requires rolling out new configurations to both control plane nodes. With one node unavailable, configuration rollouts cannot complete. The cluster stalls in a partially upgraded state, which is more difficult to recover from than the original degraded state.\n\n    Do not initiate any upgrade before restoring the second node. If you cannot restore the second node, replace it.\n\netcd certificate authority (CA) rotation\n:   Do not initiate etcd CA rotation while the cluster is degraded. The etcd CA rotation requires distributing new trust bundles to both control plane nodes and converging a new static pod revision on each. With one node down, bundle distribution cannot complete and the revision cannot advance.\n\n    As a result, a new signer CA may be created, but downstream certificates such as peer, serving, and client certificates are not regenerated by using the new CA. The cluster appears to have partially rotated, but the rotation is incomplete.\n\n> [!WARNING]\n> Do not delete the etcd signer secret while the cluster is degraded. Doing so triggers a new CA creation, but the downstream certificates cannot be regenerated. The `kube-apiserver` eventually loses trust in etcd, resulting in permanent control plane failure that cannot be recovered.\n\nCertificate validity operations\n:   Individual leaf certificate regeneration, for example an etcd serving certificate for the surviving node, does work during degraded operation because it uses the existing signer rather than a new one.\n\n    Existing etcd certificates remain valid during degraded operation. Certificate validity periods are approximately five years for peer, serving certificates, and signer CA.\n\n`MachineConfig` object updates\n:   `MachineConfig` object changes that require a node reboot are not applied during degraded operation. The primary `MachineConfigPool` resource has a `maxUnavailable` setting, which defaults to `1`. The unavailable node already counts against this budget. Because the budget is fully consumed, the Machine Config Operator does not proceed with updates that might require draining and rebooting the surviving node. New `MachineConfig` resources are accepted, but the `MachineConfigPool` resource update does not progress.\n\n    Queued `MachineConfig` object changes are applied after the second node is restored and the cluster exits degraded mode.\n\nPod disruption budget (PDB) enforcement\n:   `PodDisruptionBudget` (PDB) enforcement continues during degraded operation. Eviction requests that might violate `minAvailable` or `maxUnavailable` policies are rejected. Administrative operations involving pod eviction, such as node drains, might be blocked.\n\n    Do not bypass PDBs during degraded operation. Forcing evictions might remove the last running instance of critical services.\n\n## Recovering a failed TNF node {#recovering-a-failed-tnf-node_operating-a-degraded-tnf}\n\nRecovery is automatic when the failed node is powered on and rejoins the network. Degraded operation is a temporary state. Restore the failed node as soon as possible to regain fault tolerance, fencing protection, and the ability to perform upgrades and maintenance. If the original node cannot be recovered, replace it.\n\n> [!IMPORTANT]\n> A two-node OpenShift cluster with fencing (TNF) running on a single node indefinitely is at risk of experiencing the following issues:\n>\n> - Complete cluster loss if the surviving node fails\n> - Inability to apply security updates or upgrades\n> - Certificate expiration if the cluster remains degraded beyond certificate validity periods\n\n**Procedure**\n\n1. Power on the failed node and verify network connectivity on all three network planes before the node can fully rejoin the cluster.\n\n   - BMC or management network: Ensure that the peer node must reach the BMC address of the failed node. Without BMC connectivity, fencing cannot protect the cluster if a subsequent failure occurs.\n   - Cluster network: Ensure that there is bilateral connectivity between nodes for Corosync membership  (ports 5405 to 5407), Pacemaker management (port 2224), and etcd replication (ports 2379, 2380).\n   - Kubernetes API: Ensure that the recovering node can reach the API server (port 6443).\n2. Wait for Pacemaker to re-establish communication. Corosync detects the returning node and Pacemaker marks it as `ONLINE`. Pacemaker then starts managed resources, including kubelet and etcd, on the returning node.\n3. Wait for etcd to re-join the cluster. The returning member first rejoins as a learner (non-voting), receives a data snapshot, and replicates the log from the surviving member. After it has caught up, it is promoted to a voting member, and the cluster returns to two-member quorum.\n\n   > [!NOTE]\n   > This process typically takes about 15 to 25 minutes.\n4. Verify that the node transitions to `Ready` status by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n**Verification**\n\n1. Verify that cluster Operators have cleared their degraded conditions by running the following command:\n\n   ```terminal\n   $ oc get co\n   ```\n2. After recovery, confirm the following conditions:\n\n   - Both nodes show `Ready` status by running the following command:\n\n     ```terminal\n     $ oc get nodes\n     ```\n\n     The output is similar to the following example:\n\n     ```terminal\n     oc get nodes\n     NAME                                                   STATUS   ROLES                         AGE    VERSION\n     e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com   Ready    control-plane,master,worker   5d1h   v1.35.4\n     e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com   Ready    control-plane,master,worker   5d1h   v1.35.4\n     ```\n   - Verify that the etcd Operator no longer reports `Degraded=True` by running the following command:\n\n     ```terminal\n     $ oc get co etcd\n     ```\n\n     The output is similar to the following example:\n\n     ```terminal\n     NAME   VERSION       AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE\n     etcd   4.22.0-rc.3   True        False         False      5d1h\n     ```\n   - Verify that both fencing devices are operational.\n   - Queued MachineConfig changes, upgrades, and certificate rotations can proceed.\n\n## Verifying TNF cluster state {#verifying-tnf-cluster-state_operating-a-degraded-tnf}\n\nYou can diagnose and resolve common issues during degraded operation of a Two-Node with Fencing (TNF) cluster by assessing the health of Pacemaker, etcd, and node status.\n\n**Procedure**\n\n1. Check Pacemaker status from the surviving node by running the following command:\n\n   ```terminal\n   $ oc debug node/<surviving-node> -- chroot /host pcs status\n   ```\n2. Check etcd membership by running the following command:\n\n   ```terminal\n   $ oc debug node/<surviving-node> -- chroot /host podman exec etcd etcdctl member list -w table\n   ```\n3. Check node status by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n4. Check cluster Operators by running the following command:\n\n   ```terminal\n   $ oc get co\n   ```\n\n## Resolving a fencing failure in TNF {#resolving-a-fencing-failure-in-tnf_operating-a-degraded-tnf}\n\nYou must manually intervene when a cluster cannot automatically fence a failed node. Use the following procedure to safely power off the unresponsive hardware and clear the `UNCLEAN (offline)` state to allow the surviving node to resume cluster operations.\n\nIf the `pcs status` command shows the failed node as `UNCLEAN (offline)`, the automated fencing sequence did not succeed, and manual recovery is required.\n\n**Procedure**\n\n1. Verify that the failed node is powered off using the BMC console or physical inspection.\n2. Confirm the fencing manually by running the following command:\n\n   ```terminal\n   $ oc debug node/<surviving-node> -- chroot /host pcs stonith confirm <failed_node_name> --force\n   ```\n\n## Resolving etcd not recovering on the surviving node {#resolving-etcd-not-recovering-on-the-surviving-node_operating-a-degraded-tnf}\n\nIf the surviving node does not automatically restart etcd after a successful fencing operation, reset the resource state to restore service. .Prerequisites\n\n- Ensure that you run the following `oc debug` commands in the two-node OpenShift cluster with fencing (TNF).\n\n**Procedure**\n\n1. Clean up the etcd resource by running the following command:\n\n   ```terminal\n   $ oc debug node/<surviving_node> -- chroot /host bash -c '\n     pcs resource cleanup etcd\n   '\n   ```\n\n   The output is similar to the following example:\n\n   ```terminal {title=\"Example\"}\n   sudo  pcs resource cleanup etcd\n   +\n   Cleaned up etcd:0 on e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com\n   +\n   Cleaned up etcd:1 on e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com\n   +\n   Waiting for 1 reply from the controller\n   +\n   ... got reply (done)\n   ```\n2. Verify Pacemaker status by running the following command:\n\n   ```terminal\n   $ oc debug node/<surviving_node> -- chroot /host bash -c ' \\\n     pcs status\n   '\n   ```\n\n   The output is similar to the following example:\n\n   ```terminal\n   Cluster name: TNF\n   +\n   Cluster Summary:\n   +\n   Stack: corosync (Pacemaker is running)\n   +\n   Current DC: e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com (version 2.1.10-2.el9-5693eaeee) - partition with quorum\n   +\n   Last updated: Wed May 20 17:36:23 2026 on e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com\n   +\n   Last change:  Wed May 20 17:36:22 2026 by root via root on e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com\n   +\n   2 nodes configured\n   +\n   6 resource instances configured\n   +\n   Node List:\n   +\n   Online: [ e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com ]\n   +\n   Full List of Resources:\n   +\n   Clone Set: kubelet-clone [kubelet]:\n   +\n   Started: [ e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com ]\n   +\n   e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com_redfish\t(stonith:fence_redfish):\t Started e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com\n   +\n   e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com_redfish\t(stonith:fence_redfish):\t Started e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com\n   +\n   Clone Set: etcd-clone [etcd]:\n   +\n   Started: [ e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com ]\n   +\n   Failed Resource Actions:\n   +\n   e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com_redfish 1m-interval monitor on e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com could not be executed (Timed Out: Fence agent did not complete within 20s) at Sun May 17 12:50:32 2026 after 20.003s\n   +\n   Daemon Status:\n   +\n   corosync: active/enabled\n   +\n   pacemaker: active/enabled\n   +\n   pcsd: active/enabled\n   ```\n\n## Resolving a failed node not rejoining after power-on {#resolving-a-failed-node-not-rejoining-after-power-on_operating-a-degraded-tnf}\n\nIf the failed node does not rejoin the cluster after being powered on, verify Corosync connectivity and service health.\n\n**Procedure**\n\n1. Verify Corosync and cluster service status on the returning node by running the following command:\n\n   ```terminal\n   $ oc debug node/<returning-node> -- chroot /host bash -c '\\\n     corosync-cfgtool -s\\\n     systemctl status corosync pacemaker pcsd\n   '\n   ```\n2. Verify network connectivity between both nodes.\n\n   - For a  Cluster Network (Corosync), ping an adjacent node to check the peer node on the cluster network by running the following command:\n\n     ```terminal\n     $ ping -c 3 <peer_node_ip>\n     ```\n   - For a Management or BMC Network (Fencing Path), run the following command:\n\n     ```terminal\n     $ ping -c 3\n     ```\n\n     The output is similar to the following example:\n\n     ```terminal\n     HTTP_CODE: 401\n     TIME_TOTAL: 0.224628s\n     TIME_CONNECT: 0.000322s\n     ```\n\n     > [!NOTE]\n     > The `HTTP 401` code is expected because the curl command does not pass credentials (no --user Administrator:password). It confirms the Redfish API is listening and rejecting unauthenticated requests.\n     >\n     > TIME_CONNECT value is approximately 0.322ms which shows the fast connectivity.\n   - For an Application Network (OpenShift/etcd), perform the following tasks:\n\n     - Check API server health on the local node by running the following command:\n\n       ```terminal\n       $ curl -sk https://localhost:6443/healthz\n       ```\n     - Check API server health on the peer node by running the following command:\n\n       ```terminal\n       $ curl -sk https://<peer-node-ip>:6443/healthz\n       ```\n     - List etcd cluster members by running the following command:\n\n       ```terminal\n       $ podman exec etcd etcdctl member list --write-out=table\n       ```\n     - Check etcd endpoint health across the cluster by running the following command:\n\n       ```terminal\n       $ podman exec etcd etcdctl endpoint health --cluster\n       ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_two_node_cluster/installing_tnf/operating-a-degraded-tnf.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -102,17 +109,356 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>A degraded cluster has zero fault tolerance. If the surviving node also fails, the cluster fails. Restore the second node as soon as possible. Degraded operation is a temporary recovery window, not a long-term steady state.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/tnf-cluster-degradation-causes.md"></p>
-      <p class="/modules/node-failure-sequence-in-a-tnf-cluster.md"></p>
-      <p class="/modules/pacemaker-and-fencing-behavior-during-degraded-operation.md"></p>
-      <p class="/modules/cluster-operator-stability-during-degraded-operation.md"></p>
-      <p class="/modules/capabilities-during-degraded-tnf-operation.md"></p>
-      <p class="/modules/prohibited-operations-during-degraded-tnf-operation.md"></p>
-      <p class="/modules/recovering-a-failed-tnf-node.md"></p>
-      <p class="/modules/verifying-tnf-cluster-state.md"></p>
-      <p class="/modules/resolving-a-fencing-failure-in-tnf.md"></p>
-      <p class="/modules/resolving-etcd-not-recovering-on-the-surviving-node.md"></p>
-      <p class="/modules/resolving-a-failed-node-not-rejoining-after-power-on.md"></p>
+      <h2 id="tnf-cluster-degradation-causes_operating-a-degraded-tnf" class="group scroll-mt-20">TNF cluster degradation causes<a href="#tnf-cluster-degradation-causes_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A two-node OpenShift cluster with fencing (TNF) becomes degraded when one node fails or loses communication with the cluster. Identifying the specific cause of degradation is essential because it determines whether the cluster can automatically recover or if manual intervention, such as fencing or hardware repair, is required to prevent data corruption and maintain service availability.</p>
+      <p>Some common causes of cluster degradation include:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Graceful shutdown or power-off</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A graceful shutdown occurs when an administrator manually initiates a power-off sequence, allowing the operating system to signal processes to stop and unmount file systems correctly. This intentional action ensures that data remains consistent and the node is marked as <code>Offline</code> within the cluster before the hardware ceases operation.</p></dd>
+      <dt class="font-semibold">Hardware failure or power loss</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Sudden hardware malfunctions, such as a disk controller failure or an unconditioned power loss, result in an immediate cessation of service without warning. Unlike a graceful shutdown, these events provide the system no opportunity to clean up active processes, which often necessitates a consistency check or automated recovery once power is restored.</p></dd>
+      <dt class="font-semibold">Network partition or loss of connectivity</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A network partition occurs when a failure in the switching fabric or cabling prevents nodes from communicating with each other, even though the individual nodes remain powered on. In a two-node cluster, this split-brain scenario is particularly dangerous because each node might respond as if the other has failed and attempt to take exclusive control of shared resources.</p></dd>
+      <dt class="font-semibold">Kernel panic</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A kernel panic occurs when the core operating system encounters a critical internal error such as a memory corruption or an unrecoverable driver conflict from which it might not safely recover. To protect the integrity of the data, the kernel immediately halts all system execution, effectively freezing the node until a hard reboot is performed.</p></dd>
+      <dt class="font-semibold">Node hang</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A node hang describes a situation where the hardware remains powered on, but the system stops responding to all external requests, including pings and SSH attempts. This state is often the result of deadlocks in the software or an infinite loop in a high-priority process that starves the rest of the system of CPU cycles.</p></dd>
+      <dt class="font-semibold">Kubelet failure or resource exhaustion</dt>
+      <dd class="ml-6 text-muted-foreground"><p>A node becomes unstable if the kubelet crashes or if the node suffers from extreme resource exhaustion, such as running out of RAM (OOM) or disk space. When the kubelet cannot report its heartbeat to the control plane, the cluster eventually marks the node as <code>NotReady</code> and attempts to evacuate its workloads.</p></dd>
+      </dl>
+      <h2 id="node-failure-sequence-in-a-tnf-cluster_operating-a-degraded-tnf" class="group scroll-mt-20">Node failure sequence in a TNF cluster<a href="#node-failure-sequence-in-a-tnf-cluster_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A two-node OpenShift cluster with fencing (TNF) enters a <code>degraded</code> state when one of its two control plane nodes becomes unavailable. The active control plane remains hosted on the surviving node, allowing the cluster to remain functional within defined constraints.</p>
+      <p>The automatic failure handling has the following sequence:</p>
+      <ul>
+      <li>
+      Detection: Corosync detects the failure.
+      <p>The cluster framework registers that heartbeat signals from the peer node have ceased.</p>
+      </li>
+      <li>
+      Isolation: STONITH fencing execution.
+      <p>The surviving node uses the Redfish API to contact the baseboard management controller (BMC) of the failed node. It issues a power-off or reboot command to ensure the failed node is isolated. This prevents a <code>split-brain</code> scenario where the isolated node continues running containers locally while OpenShift Container Platform attempts to reschedule those same workloads onto healthy nodes, ensuring that stateful pods, routing services, and storage volumes maintain a single, valid owner.</p>
+      <p>If the Shoot The Other Node In The Head (STONITH) fencing operation fails, the surviving node cannot safely assume control of cluster resources. In this case, an administrator must manually power off the failed hardware before the cluster can recover.</p>
+      </li>
+      <li>
+      Quorum Adjustment: etcd transits to single-member operation.
+      <p>The etcd Operator demotes the etcd member of the failed node to a non-voting learner. The surviving member operates as the sole voter, maintaining quorum. etcd continues to operate with a single voting member, maintaining a valid quorum so that the Kubernetes API remains accessible.</p>
+      </li>
+      <li>
+      Scheduling: Node status transitions to <code>NotReady</code>.
+      <p>When a node fails, Kubernetes updates its status, and affected workloads lose redundancy. On a live cluster, <code>DaemonSet</code> pods remain <code>Running</code> and <code>Deployment</code> pods display a <code>Terminating</code> status. However, because the unreachable kubelet cannot process the deletion, these <code>Deployment</code> pods technically remain in a Running API phase and are only rescheduled if surviving nodes have available resources and clear anti-affinity rules.</p>
+      </li>
+      </ul>
+      <h2 id="pacemaker-and-fencing-behavior-during-degraded-operation_operating-a-degraded-tnf" class="group scroll-mt-20">Pacemaker and fencing behavior during degraded operation<a href="#pacemaker-and-fencing-behavior-during-degraded-operation_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">During degraded operation, the Pacemaker cluster manager transitions from a distributed coordination model to a localized enforcement structure on the surviving node.</p>
+      <p>Degraded cluster operations include the following structural behaviors:</p>
+      <ul>
+      <li>The surviving node remains <code>ONLINE</code> and continues managing etcd, kubelet, and Shoot The Other Node In The Head (STONITH) fence devices.</li>
+      <li>The failed node is reported as <code>OFFLINE</code> or <code>UNCLEAN OFFLINE</code>, depending on whether the shutdown was clean.</li>
+      <li>Fencing devices remain enabled. The STONITH device for the failed node is still available on the surviving node. However, the STONITH device for the surviving node cannot be used because the node that would trigger it is offline.</li>
+      <li>Pacemaker does not attempt to restart resources on the failed node or migrate resources to it.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Mutual fencing protection is unavailable during degraded operations. Fencing actions cannot execute against the surviving node because the communication and execution paths from the peer node are offline.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="cluster-operator-stability-during-degraded-operation_operating-a-degraded-tnf" class="group scroll-mt-20">Cluster operator stability during degraded operation<a href="#cluster-operator-stability-during-degraded-operation_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Container Platform cluster Operators maintain control plane stability and API availability when a two-node OpenShift cluster with fencing (TNF) enters a degraded state.</p>
+      <p>During degraded operations, cluster Operator conditions exhibit the following behaviors:</p>
+      <ul>
+      <li>Most Operators maintain an <code>Available=True</code> condition, ensuring that core API functionality remains accessible.</li>
+      <li>
+      The following Operators transition to a <code>Degraded=True</code> condition because only one of the two expected control plane instances is operational:
+      <ul>
+      <li><code>etcd</code></li>
+      <li><code>kube-apiserver</code></li>
+      <li><code>kube-controller-manager</code></li>
+      <li><code>kube-scheduler</code></li>
+      <li><code>machine-config</code></li>
+      </ul>
+      </li>
+      <li>Specific Operators might exhibit a <code>Progressing=True</code> condition during reconciliation routines that require data from both infrastructure nodes. This condition resolves when the second node returns to an online state.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Unexpected or cascading Operator failures must not occur during degraded operation. If they do, investigate the issue as a potential bug.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="capabilities-during-degraded-tnf-operation_operating-a-degraded-tnf" class="group scroll-mt-20">Capabilities during degraded TNF operation<a href="#capabilities-during-degraded-tnf-operation_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When a two-node OpenShift cluster with fencing (TNF) cluster is operating in a degraded state, some of the cluster capabilities are still available.</p>
+      <p><strong>Cluster capabilities during degraded operation</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Capability</TableHead>
+      <TableHead>Available</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Kubernetes API server (read and write)</TableCell>
+      <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Workloads on the surviving node</TableCell>
+      <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Scheduling new workloads to the surviving node</TableCell>
+      <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>etcd (single-member quorum)</TableCell>
+      <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Cluster monitoring and alerting</TableCell>
+      <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Ingress (single endpoint)</TableCell>
+      <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Existing certificates</TableCell>
+      <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Static pod restarts using existing configuration</TableCell>
+      <TableCell>Yes</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>etcd redundancy</TableCell>
+      <TableCell>No</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Fencing of the surviving node</TableCell>
+      <TableCell>No</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Cluster upgrades</TableCell>
+      <TableCell>No</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>etcd CA rotation</TableCell>
+      <TableCell>No</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>MachineConfig</code> object changes that require a node reboot</TableCell>
+      <TableCell>No</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Workloads or storage tied exclusively to the failed node</TableCell>
+      <TableCell>No</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="prohibited-operations-during-degraded-tnf-operation_operating-a-degraded-tnf" class="group scroll-mt-20">Prohibited operations during degraded TNF operation<a href="#prohibited-operations-during-degraded-tnf-operation_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You must not perform certain administrative operations while a two-node OpenShift cluster with fencing (TNF) is in a degraded state. Attempting these operations can leave the cluster in a state that is more difficult to recover from than the original degraded state.</p>
+      <p>Do not perform the following operations while the cluster is degraded:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Cluster upgrades</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Do not initiate a cluster upgrade while the cluster is degraded. The upgrade process requires rolling out new configurations to both control plane nodes. With one node unavailable, configuration rollouts cannot complete. The cluster stalls in a partially upgraded state, which is more difficult to recover from than the original degraded state.</p>
+      <p>Do not initiate any upgrade before restoring the second node. If you cannot restore the second node, replace it.</p>
+      </dd>
+      <dt class="font-semibold">etcd certificate authority (CA) rotation</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Do not initiate etcd CA rotation while the cluster is degraded. The etcd CA rotation requires distributing new trust bundles to both control plane nodes and converging a new static pod revision on each. With one node down, bundle distribution cannot complete and the revision cannot advance.</p>
+      <p>As a result, a new signer CA may be created, but downstream certificates such as peer, serving, and client certificates are not regenerated by using the new CA. The cluster appears to have partially rotated, but the rotation is incomplete.</p>
+      </dd>
+      </dl>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Do not delete the etcd signer secret while the cluster is degraded. Doing so triggers a new CA creation, but the downstream certificates cannot be regenerated. The <code>kube-apiserver</code> eventually loses trust in etcd, resulting in permanent control plane failure that cannot be recovered.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Certificate validity operations</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Individual leaf certificate regeneration, for example an etcd serving certificate for the surviving node, does work during degraded operation because it uses the existing signer rather than a new one.</p>
+      <p>Existing etcd certificates remain valid during degraded operation. Certificate validity periods are approximately five years for peer, serving certificates, and signer CA.</p>
+      </dd>
+      <dt class="font-semibold"><code>MachineConfig</code> object updates</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p><code>MachineConfig</code> object changes that require a node reboot are not applied during degraded operation. The primary <code>MachineConfigPool</code> resource has a <code>maxUnavailable</code> setting, which defaults to <code>1</code>. The unavailable node already counts against this budget. Because the budget is fully consumed, the Machine Config Operator does not proceed with updates that might require draining and rebooting the surviving node. New <code>MachineConfig</code> resources are accepted, but the <code>MachineConfigPool</code> resource update does not progress.</p>
+      <p>Queued <code>MachineConfig</code> object changes are applied after the second node is restored and the cluster exits degraded mode.</p>
+      </dd>
+      <dt class="font-semibold">Pod disruption budget (PDB) enforcement</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p><code>PodDisruptionBudget</code> (PDB) enforcement continues during degraded operation. Eviction requests that might violate <code>minAvailable</code> or <code>maxUnavailable</code> policies are rejected. Administrative operations involving pod eviction, such as node drains, might be blocked.</p>
+      <p>Do not bypass PDBs during degraded operation. Forcing evictions might remove the last running instance of critical services.</p>
+      </dd>
+      </dl>
+      <h2 id="recovering-a-failed-tnf-node_operating-a-degraded-tnf" class="group scroll-mt-20">Recovering a failed TNF node<a href="#recovering-a-failed-tnf-node_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Recovery is automatic when the failed node is powered on and rejoins the network. Degraded operation is a temporary state. Restore the failed node as soon as possible to regain fault tolerance, fencing protection, and the ability to perform upgrades and maintenance. If the original node cannot be recovered, replace it.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>A two-node OpenShift cluster with fencing (TNF) running on a single node indefinitely is at risk of experiencing the following issues:</p>
+          <ul>
+          <li>Complete cluster loss if the surviving node fails</li>
+          <li>Inability to apply security updates or upgrades</li>
+          <li>Certificate expiration if the cluster remains degraded beyond certificate validity periods</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Power on the failed node and verify network connectivity on all three network planes before the node can fully rejoin the cluster.
+      <ul>
+      <li>BMC or management network: Ensure that the peer node must reach the BMC address of the failed node. Without BMC connectivity, fencing cannot protect the cluster if a subsequent failure occurs.</li>
+      <li>Cluster network: Ensure that there is bilateral connectivity between nodes for Corosync membership  (ports 5405 to 5407), Pacemaker management (port 2224), and etcd replication (ports 2379, 2380).</li>
+      <li>Kubernetes API: Ensure that the recovering node can reach the API server (port 6443).</li>
+      </ul>
+      </li>
+      <li>Wait for Pacemaker to re-establish communication. Corosync detects the returning node and Pacemaker marks it as <code>ONLINE</code>. Pacemaker then starts managed resources, including kubelet and etcd, on the returning node.</li>
+      <li>
+      Wait for etcd to re-join the cluster. The returning member first rejoins as a learner (non-voting), receives a data snapshot, and replicates the log from the surviving member. After it has caught up, it is promoted to a voting member, and the cluster returns to two-member quorum.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This process typically takes about 15 to 25 minutes.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Verify that the node transitions to <code>Ready</code> status by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that cluster Operators have cleared their degraded conditions by running the following command:
+      <CodeBlock code={"$ oc get co"} lang="terminal" />
+      </li>
+      <li>
+      After recovery, confirm the following conditions:
+      <ul>
+      <li>
+      Both nodes show <code>Ready</code> status by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <p>The output is similar to the following example:</p>
+      <CodeBlock code={"oc get nodes \nNAME                                                   STATUS   ROLES                         AGE    VERSION\ne920t-01.cluster1.metal-platform.eng.rdu2.redhat.com   Ready    control-plane,master,worker   5d1h   v1.35.4\ne920t-02.cluster1.metal-platform.eng.rdu2.redhat.com   Ready    control-plane,master,worker   5d1h   v1.35.4"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the etcd Operator no longer reports <code>Degraded=True</code> by running the following command:
+      <CodeBlock code={"$ oc get co etcd "} lang="terminal" />
+      <p>The output is similar to the following example:</p>
+      <CodeBlock code={"NAME   VERSION       AVAILABLE   PROGRESSING   DEGRADED   SINCE   MESSAGE\netcd   4.22.0-rc.3   True        False         False      5d1h"} lang="terminal" />
+      </li>
+      <li>Verify that both fencing devices are operational.</li>
+      <li>Queued MachineConfig changes, upgrades, and certificate rotations can proceed.</li>
+      </ul>
+      </li>
+      </ol>
+      <h2 id="verifying-tnf-cluster-state_operating-a-degraded-tnf" class="group scroll-mt-20">Verifying TNF cluster state<a href="#verifying-tnf-cluster-state_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can diagnose and resolve common issues during degraded operation of a Two-Node with Fencing (TNF) cluster by assessing the health of Pacemaker, etcd, and node status.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check Pacemaker status from the surviving node by running the following command:
+      <CodeBlock code={"$ oc debug node/<surviving-node> -- chroot /host pcs status"} lang="terminal" />
+      </li>
+      <li>
+      Check etcd membership by running the following command:
+      <CodeBlock code={"$ oc debug node/<surviving-node> -- chroot /host podman exec etcd etcdctl member list -w table"} lang="terminal" />
+      </li>
+      <li>
+      Check node status by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      </li>
+      <li>
+      Check cluster Operators by running the following command:
+      <CodeBlock code={"$ oc get co"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="resolving-a-fencing-failure-in-tnf_operating-a-degraded-tnf" class="group scroll-mt-20">Resolving a fencing failure in TNF<a href="#resolving-a-fencing-failure-in-tnf_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You must manually intervene when a cluster cannot automatically fence a failed node. Use the following procedure to safely power off the unresponsive hardware and clear the <code>UNCLEAN (offline)</code> state to allow the surviving node to resume cluster operations.</p>
+      <p>If the <code>pcs status</code> command shows the failed node as <code>UNCLEAN (offline)</code>, the automated fencing sequence did not succeed, and manual recovery is required.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Verify that the failed node is powered off using the BMC console or physical inspection.</li>
+      <li>
+      Confirm the fencing manually by running the following command:
+      <CodeBlock code={"$ oc debug node/<surviving-node> -- chroot /host pcs stonith confirm <failed_node_name> --force"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="resolving-etcd-not-recovering-on-the-surviving-node_operating-a-degraded-tnf" class="group scroll-mt-20">Resolving etcd not recovering on the surviving node<a href="#resolving-etcd-not-recovering-on-the-surviving-node_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>If the surviving node does not automatically restart etcd after a successful fencing operation, reset the resource state to restore service. .Prerequisites</p>
+      <ul><li>Ensure that you run the following <code>oc debug</code> commands in the two-node OpenShift cluster with fencing (TNF).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Clean up the etcd resource by running the following command:
+      <CodeBlock code={"$ oc debug node/<surviving_node> -- chroot /host bash -c '\n  pcs resource cleanup etcd  \n'"} lang="terminal" />
+      <p>The output is similar to the following example:</p>
+      <CodeBlock code={"sudo  pcs resource cleanup etcd\n+\nCleaned up etcd:0 on e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com\n+\nCleaned up etcd:1 on e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com\n+\nWaiting for 1 reply from the controller\n+\n... got reply (done) \n"} lang="terminal" title="Example" />
+      </li>
+      <li>
+      Verify Pacemaker status by running the following command:
+      <CodeBlock code={"$ oc debug node/<surviving_node> -- chroot /host bash -c ' \\\n  pcs status \n'"} lang="terminal" />
+      <p>The output is similar to the following example:</p>
+      <CodeBlock code={"Cluster name: TNF\n+\nCluster Summary:\n+\nStack: corosync (Pacemaker is running)\n+\nCurrent DC: e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com (version 2.1.10-2.el9-5693eaeee) - partition with quorum\n+\nLast updated: Wed May 20 17:36:23 2026 on e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com\n+\nLast change:  Wed May 20 17:36:22 2026 by root via root on e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com\n+\n2 nodes configured\n+\n6 resource instances configured\n+\nNode List:\n+\nOnline: [ e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com ]\n+\nFull List of Resources:\n+\nClone Set: kubelet-clone [kubelet]:\n+\nStarted: [ e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com ]\n+\ne920t-01.cluster1.metal-platform.eng.rdu2.redhat.com_redfish\t(stonith:fence_redfish):\t Started e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com\n+\ne920t-02.cluster1.metal-platform.eng.rdu2.redhat.com_redfish\t(stonith:fence_redfish):\t Started e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com\n+\nClone Set: etcd-clone [etcd]:\n+\nStarted: [ e920t-01.cluster1.metal-platform.eng.rdu2.redhat.com e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com ]\n+\nFailed Resource Actions:\n+\ne920t-01.cluster1.metal-platform.eng.rdu2.redhat.com_redfish 1m-interval monitor on e920t-02.cluster1.metal-platform.eng.rdu2.redhat.com could not be executed (Timed Out: Fence agent did not complete within 20s) at Sun May 17 12:50:32 2026 after 20.003s\n+\nDaemon Status:\n+\ncorosync: active/enabled\n+\npacemaker: active/enabled\n+\npcsd: active/enabled"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="resolving-a-failed-node-not-rejoining-after-power-on_operating-a-degraded-tnf" class="group scroll-mt-20">Resolving a failed node not rejoining after power-on<a href="#resolving-a-failed-node-not-rejoining-after-power-on_operating-a-degraded-tnf" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If the failed node does not rejoin the cluster after being powered on, verify Corosync connectivity and service health.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Verify Corosync and cluster service status on the returning node by running the following command:
+      <CodeBlock code={"$ oc debug node/<returning-node> -- chroot /host bash -c '\\\n  corosync-cfgtool -s\\\n  systemctl status corosync pacemaker pcsd\n'"} lang="terminal" />
+      </li>
+      <li>
+      Verify network connectivity between both nodes.
+      <ul>
+      <li>
+      For a  Cluster Network (Corosync), ping an adjacent node to check the peer node on the cluster network by running the following command:
+      <CodeBlock code={"$ ping -c 3 <peer_node_ip>"} lang="terminal" />
+      </li>
+      <li>
+      For a Management or BMC Network (Fencing Path), run the following command:
+      <CodeBlock code={"$ ping -c 3"} lang="terminal" />
+      <p>The output is similar to the following example:</p>
+      <CodeBlock code={"HTTP_CODE: 401\nTIME_TOTAL: 0.224628s\nTIME_CONNECT: 0.000322s"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>HTTP 401</code> code is expected because the curl command does not pass credentials (no --user Administrator:password). It confirms the Redfish API is listening and rejecting unauthenticated requests.</p>
+          <p>TIME_CONNECT value is approximately 0.322ms which shows the fast connectivity.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      For an Application Network (OpenShift/etcd), perform the following tasks:
+      <ul>
+      <li>
+      Check API server health on the local node by running the following command:
+      <CodeBlock code={"$ curl -sk https://localhost:6443/healthz"} lang="terminal" />
+      </li>
+      <li>
+      Check API server health on the peer node by running the following command:
+      <CodeBlock code={"$ curl -sk https://<peer-node-ip>:6443/healthz"} lang="terminal" />
+      </li>
+      <li>
+      List etcd cluster members by running the following command:
+      <CodeBlock code={"$ podman exec etcd etcdctl member list --write-out=table"} lang="terminal" />
+      </li>
+      <li>
+      Check etcd endpoint health across the cluster by running the following command:
+      <CodeBlock code={"$ podman exec etcd etcdctl endpoint health --cluster"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

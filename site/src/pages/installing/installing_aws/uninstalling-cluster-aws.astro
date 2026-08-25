@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"uninstalling-cluster-aws","text":"Uninstalling a cluster on {{ aws_short }}"},{"depth":2,"slug":"installing-localzone-additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"uninstalling-cluster-aws","text":"Uninstalling a cluster on AWS"},{"depth":2,"slug":"installation-uninstall-clouds_uninstall-cluster-aws","text":"Removing a cluster that uses installer-provisioned infrastructure"},{"depth":2,"slug":"cco-ccoctl-deleting-sts-resources_uninstall-cluster-aws","text":"Deleting Amazon Web Services resources with the Cloud Credential Operator utility"},{"depth":2,"slug":"installation-aws-delete-cluster","text":"Deleting a cluster with a configured AWS Local Zone infrastructure"},{"depth":2,"slug":"installing-localzone-additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_aws/uninstalling-cluster-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Uninstalling a cluster on {{ aws_short }}";
-const description = "You can remove a cluster that you deployed to {{ aws_first }}." || undefined;
+const description = "You can remove a cluster that you deployed to Amazon Web Services (AWS)." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_aws"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling a cluster on {{ aws_short }} {#uninstalling-cluster-aws}\n\nYou can remove a cluster that you deployed to {{ aws_first }}.\n\n## Additional resources {#installing-localzone-additional-resources}\n\n- [Working with stacks ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)\n- [Opt in to {{ aws_short }} Local Zones ({{ aws_short }} documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#opt-in-local-zone)\n- [{{ aws_short }} Local Zones available locations ({{ aws_short }} documentation)](https://aws.amazon.com/about-aws/global-infrastructure/localzones/locations)\n- [{{ aws_short }} Local Zones features ({{ aws_short }} documentation)](https://aws.amazon.com/about-aws/global-infrastructure/localzones/features)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/uninstalling-cluster-aws.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling a cluster on AWS {#uninstalling-cluster-aws}\n\nYou can remove a cluster that you deployed to Amazon Web Services (AWS).\n\n## Removing a cluster that uses installer-provisioned infrastructure {#installation-uninstall-clouds_uninstall-cluster-aws}\n\nTo remove an OpenShift Container Platform cluster that uses installer-provisioned infrastructure, you can use the installation program and the installation files from your original deployment to uninstall the cluster from your cloud platform.\n\n> [!NOTE]\n> After uninstallation, check your cloud provider for any resources that were not removed properly, especially with user-provisioned infrastructure clusters. Some resources might exist because either the installation program did not create the resource or could not access the resource.\n\n**Prerequisites**\n\n- You have a copy of the installation program that you used to deploy the cluster.\n- You have the files that the installation program generated when you created your cluster.\n\n**Procedure**\n\n1. From the directory that has the installation program on the computer that you used to install the cluster, run the following command:\n\n   ```terminal\n   $ ./openshift-install destroy cluster \\\n   --dir <installation_directory> --log-level info\n   ```\n\n   where:\n\n   `<installation_directory>`\n   :   Specify the path to the directory that you stored the installation files in.\n\n   `--log-level info`\n   :   To view different details, specify `warn`, `debug`, or `error` instead of `info`.\n\n   > [!NOTE]\n   > You must specify the directory that includes the cluster definition files for your cluster. The installation program requires the `metadata.json` file in this directory to delete the cluster.\n2. Optional: Delete the `<installation_directory>` directory and the OpenShift Container Platform installation program.\n\n## Deleting Amazon Web Services resources with the Cloud Credential Operator utility {#cco-ccoctl-deleting-sts-resources_uninstall-cluster-aws}\n\nAfter uninstalling an OpenShift Container Platform cluster that uses short-term credentials managed outside the cluster, you can use the Cloud Credential Operator (CCO) utility (`ccoctl`) to remove the Amazon Web Services resources that `ccoctl` created during installation.\n\n**Prerequisites**\n\n- Extract and prepare the `ccoctl` binary.\n- Uninstall an OpenShift Container Platform cluster on AWS that uses short-term credentials.\n\n**Procedure**\n\n````\n*   Delete the AWS resources that `ccoctl` created by running the following command:\n\n```terminal\n$ ccoctl {{ cp_name }} delete \\\n  --name=<name> \\\n````\n\n{% if aws_sts %} --region=<{{ cp_name }}\\_region> {% endif %} {% if gcp_workload_id %} --project=<{{ cp_name }}\\_project_id>\n--credentials-requests-dir=<path_to_credentials_requests_directory>\n--force-delete-custom-roles {% endif %} {% if azure_workload_id %} --region=<{{ cp_name }}\\_region>\n--subscription-id=<{{ cp_name }}\\_subscription_id>\n--delete-oidc-resource-group {%- endif %} \\`\\`\\`\n\n````\n    where:\n\n    `<name>`\n    :   Matches the name that was originally used to create and tag the cloud resources.\n\n    `<{{ cp_name }}_region>`\n    :   is the AWS region in which to delete cloud resources.\n\n    ```text title=\"Example output\"\n    2021/04/08 17:50:41 Identity Provider object .well-known/openid-configuration deleted from the bucket <name>-oidc\n    2021/04/08 17:50:42 Identity Provider object keys.json deleted from the bucket <name>-oidc\n    2021/04/08 17:50:43 Identity Provider bucket <name>-oidc deleted\n    2021/04/08 17:51:05 Policy <name>-openshift-cloud-credential-operator-cloud-credential-o associated with IAM Role <name>-openshift-cloud-credential-operator-cloud-credential-o deleted\n    2021/04/08 17:51:05 IAM Role <name>-openshift-cloud-credential-operator-cloud-credential-o deleted\n    2021/04/08 17:51:07 Policy <name>-openshift-cluster-csi-drivers-ebs-cloud-credentials associated with IAM Role <name>-openshift-cluster-csi-drivers-ebs-cloud-credentials deleted\n    2021/04/08 17:51:07 IAM Role <name>-openshift-cluster-csi-drivers-ebs-cloud-credentials deleted\n    2021/04/08 17:51:08 Policy <name>-openshift-image-registry-installer-cloud-credentials associated with IAM Role <name>-openshift-image-registry-installer-cloud-credentials deleted\n    2021/04/08 17:51:08 IAM Role <name>-openshift-image-registry-installer-cloud-credentials deleted\n    2021/04/08 17:51:09 Policy <name>-openshift-ingress-operator-cloud-credentials associated with IAM Role <name>-openshift-ingress-operator-cloud-credentials deleted\n    2021/04/08 17:51:10 IAM Role <name>-openshift-ingress-operator-cloud-credentials deleted\n    2021/04/08 17:51:11 Policy <name>-openshift-machine-api-aws-cloud-credentials associated with IAM Role <name>-openshift-machine-api-aws-cloud-credentials deleted\n    2021/04/08 17:51:11 IAM Role <name>-openshift-machine-api-aws-cloud-credentials deleted\n    2021/04/08 17:51:39 Identity Provider with ARN arn:aws:iam::<aws_account_id>:oidc-provider/<name>-oidc.s3.<aws_region>.amazonaws.com deleted\n    ```\n````\n\n**Verification**\n\n```\n*   To verify that the resources are deleted, query AWS. For more information, refer to AWS documentation.\n```\n\n## Deleting a cluster with a configured AWS Local Zone infrastructure {#installation-aws-delete-cluster}\n\nAfter you install a cluster on Amazon Web Services (AWS) into an existing Virtual Private Cloud (VPC), and you set subnets for each Local Zone location, you can delete the cluster and any AWS resources associated with it.\n\nThe example in the procedure assumes that you created a VPC and its subnets by using a CloudFormation template.\n\n**Prerequisites**\n\n- You know the name of the CloudFormation stacks, `<local_zone_stack_name>` and `<vpc_stack_name>`, that were used during the creation of the network. You need the name of the stack to delete the cluster.\n- You have access rights to the directory that contains the installation files that were created by the installation program.\n- Your account includes a policy that provides you with permissions to delete the CloudFormation stack.\n\n**Procedure**\n\n1. Change to the directory that contains the stored installation program, and delete the cluster by using the `destroy cluster` command:\n\n   ```terminal\n   $ ./openshift-install destroy cluster --dir <installation_directory> \\\n      --log-level=debug\n   ```\n\n   where:\n\n   `<installation_directory>`\n   :   Specify the directory that stored any files created by the installation program.\n\n   `--log-level=debug`\n   :   To view different log details, specify `error`, `info`, or `warn` instead of `debug`.\n2. Delete the CloudFormation stack for the Local Zone subnet:\n\n   ```terminal\n   $ aws cloudformation delete-stack --stack-name <local_zone_stack_name>\n   ```\n3. Delete the stack of resources that represent the VPC:\n\n   ```terminal\n   $ aws cloudformation delete-stack --stack-name <vpc_stack_name>\n   ```\n\n**Verification**\n\n- Check that you removed the stack resources by issuing the following commands in the AWS CLI. The AWS CLI outputs that no template component exists.\n\n  ```terminal\n  $ aws cloudformation describe-stacks --stack-name <local_zone_stack_name>\n  ```\n\n  ```terminal\n  $ aws cloudformation describe-stacks --stack-name <vpc_stack_name>\n  ```\n\n## Additional resources {#installing-localzone-additional-resources}\n\n- [Working with stacks (AWS documentation)](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html)\n- [Opt in to AWS Local Zones (AWS documentation)](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#opt-in-local-zone)\n- [AWS Local Zones available locations (AWS documentation)](https://aws.amazon.com/about-aws/global-infrastructure/localzones/locations)\n- [AWS Local Zones features (AWS documentation)](https://aws.amazon.com/about-aws/global-infrastructure/localzones/features)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/uninstalling-cluster-aws.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,18 +94,100 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="uninstalling-cluster-aws" class="group scroll-mt-20">Uninstalling a cluster on {"{"}{"{"} aws_short {"}"}{"}"}<a href="#uninstalling-cluster-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can remove a cluster that you deployed to {"{"}{"{"} aws_first {"}"}{"}"}.</p>
-      <p class="/modules/installation-uninstall-clouds.md"></p>
-      <p class="/modules/cco-ccoctl-deleting-sts-resources.md"></p>
-      <p class="/modules/installation-aws-delete-cluster.md"></p>
+      <h1 id="uninstalling-cluster-aws" class="group scroll-mt-20">Uninstalling a cluster on AWS<a href="#uninstalling-cluster-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can remove a cluster that you deployed to Amazon Web Services (AWS).</p>
+      <h2 id="installation-uninstall-clouds_uninstall-cluster-aws" class="group scroll-mt-20">Removing a cluster that uses installer-provisioned infrastructure<a href="#installation-uninstall-clouds_uninstall-cluster-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To remove an OpenShift Container Platform cluster that uses installer-provisioned infrastructure, you can use the installation program and the installation files from your original deployment to uninstall the cluster from your cloud platform.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>After uninstallation, check your cloud provider for any resources that were not removed properly, especially with user-provisioned infrastructure clusters. Some resources might exist because either the installation program did not create the resource or could not access the resource.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a copy of the installation program that you used to deploy the cluster.</li>
+      <li>You have the files that the installation program generated when you created your cluster.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      From the directory that has the installation program on the computer that you used to install the cluster, run the following command:
+      <CodeBlock code={"$ ./openshift-install destroy cluster \\\n--dir <installation_directory> --log-level info"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;installation_directory&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specify the path to the directory that you stored the installation files in.</p></dd>
+      <dt class="font-semibold"><code>--log-level info</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>To view different details, specify <code>warn</code>, <code>debug</code>, or <code>error</code> instead of <code>info</code>.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You must specify the directory that includes the cluster definition files for your cluster. The installation program requires the <code>metadata.json</code> file in this directory to delete the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Optional: Delete the <code>&lt;installation_directory&gt;</code> directory and the OpenShift Container Platform installation program.</li>
+      </ol>
+      <h2 id="cco-ccoctl-deleting-sts-resources_uninstall-cluster-aws" class="group scroll-mt-20">Deleting Amazon Web Services resources with the Cloud Credential Operator utility<a href="#cco-ccoctl-deleting-sts-resources_uninstall-cluster-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After uninstalling an OpenShift Container Platform cluster that uses short-term credentials managed outside the cluster, you can use the Cloud Credential Operator (CCO) utility (<code>ccoctl</code>) to remove the Amazon Web Services resources that <code>ccoctl</code> created during installation.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Extract and prepare the <code>ccoctl</code> binary.</li>
+      <li>Uninstall an OpenShift Container Platform cluster on AWS that uses short-term credentials.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <CodeBlock code={"*   Delete the AWS resources that `ccoctl` created by running the following command:\n    \n```terminal\n$ ccoctl {{ cp_name }} delete \\\n  --name=<name> \\"} lang="plaintext" />
+      <p>{"{"}% if aws_sts %{"}"} --region=&lt;{"{"}{"{"} cp_name {"}"}{"}"}_region&gt; {"{"}% endif %{"}"} {"{"}% if gcp_workload_id %{"}"} --project=&lt;{"{"}{"{"} cp_name {"}"}{"}"}_project_id&gt; <br />--credentials-requests-dir=&lt;path_to_credentials_requests_directory&gt; <br />--force-delete-custom-roles {"{"}% endif %{"}"} {"{"}% if azure_workload_id %{"}"} --region=&lt;{"{"}{"{"} cp_name {"}"}{"}"}_region&gt; <br />--subscription-id=&lt;{"{"}{"{"} cp_name {"}"}{"}"}_subscription_id&gt; <br />--delete-oidc-resource-group {"{"}%- endif %{"}"} ```</p>
+      <CodeBlock code={"    where:\n\n    `<name>`\n    :   Matches the name that was originally used to create and tag the cloud resources.\n\n\n    `<{{ cp_name }}_region>`\n    :   is the AWS region in which to delete cloud resources.\n\n\n\n\n    ```text title=\"Example output\"\n    2021/04/08 17:50:41 Identity Provider object .well-known/openid-configuration deleted from the bucket <name>-oidc\n    2021/04/08 17:50:42 Identity Provider object keys.json deleted from the bucket <name>-oidc\n    2021/04/08 17:50:43 Identity Provider bucket <name>-oidc deleted\n    2021/04/08 17:51:05 Policy <name>-openshift-cloud-credential-operator-cloud-credential-o associated with IAM Role <name>-openshift-cloud-credential-operator-cloud-credential-o deleted\n    2021/04/08 17:51:05 IAM Role <name>-openshift-cloud-credential-operator-cloud-credential-o deleted\n    2021/04/08 17:51:07 Policy <name>-openshift-cluster-csi-drivers-ebs-cloud-credentials associated with IAM Role <name>-openshift-cluster-csi-drivers-ebs-cloud-credentials deleted\n    2021/04/08 17:51:07 IAM Role <name>-openshift-cluster-csi-drivers-ebs-cloud-credentials deleted\n    2021/04/08 17:51:08 Policy <name>-openshift-image-registry-installer-cloud-credentials associated with IAM Role <name>-openshift-image-registry-installer-cloud-credentials deleted\n    2021/04/08 17:51:08 IAM Role <name>-openshift-image-registry-installer-cloud-credentials deleted\n    2021/04/08 17:51:09 Policy <name>-openshift-ingress-operator-cloud-credentials associated with IAM Role <name>-openshift-ingress-operator-cloud-credentials deleted\n    2021/04/08 17:51:10 IAM Role <name>-openshift-ingress-operator-cloud-credentials deleted\n    2021/04/08 17:51:11 Policy <name>-openshift-machine-api-aws-cloud-credentials associated with IAM Role <name>-openshift-machine-api-aws-cloud-credentials deleted\n    2021/04/08 17:51:11 IAM Role <name>-openshift-machine-api-aws-cloud-credentials deleted\n    2021/04/08 17:51:39 Identity Provider with ARN arn:aws:iam::<aws_account_id>:oidc-provider/<name>-oidc.s3.<aws_region>.amazonaws.com deleted\n    ```"} lang="plaintext" />
+      <p><strong>Verification</strong></p>
+      <CodeBlock code={"*   To verify that the resources are deleted, query AWS. For more information, refer to AWS documentation."} lang="plaintext" />
+      <h2 id="installation-aws-delete-cluster" class="group scroll-mt-20">Deleting a cluster with a configured AWS Local Zone infrastructure<a href="#installation-aws-delete-cluster" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you install a cluster on Amazon Web Services (AWS) into an existing Virtual Private Cloud (VPC), and you set subnets for each Local Zone location, you can delete the cluster and any AWS resources associated with it.</p>
+      <p>The example in the procedure assumes that you created a VPC and its subnets by using a CloudFormation template.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You know the name of the CloudFormation stacks, <code>&lt;local_zone_stack_name&gt;</code> and <code>&lt;vpc_stack_name&gt;</code>, that were used during the creation of the network. You need the name of the stack to delete the cluster.</li>
+      <li>You have access rights to the directory that contains the installation files that were created by the installation program.</li>
+      <li>Your account includes a policy that provides you with permissions to delete the CloudFormation stack.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Change to the directory that contains the stored installation program, and delete the cluster by using the <code>destroy cluster</code> command:
+      <CodeBlock code={"$ ./openshift-install destroy cluster --dir <installation_directory> \\\n   --log-level=debug"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;installation_directory&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specify the directory that stored any files created by the installation program.</p></dd>
+      <dt class="font-semibold"><code>--log-level=debug</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>To view different log details, specify <code>error</code>, <code>info</code>, or <code>warn</code> instead of <code>debug</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Delete the CloudFormation stack for the Local Zone subnet:
+      <CodeBlock code={"$ aws cloudformation delete-stack --stack-name <local_zone_stack_name>"} lang="terminal" />
+      </li>
+      <li>
+      Delete the stack of resources that represent the VPC:
+      <CodeBlock code={"$ aws cloudformation delete-stack --stack-name <vpc_stack_name>"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Check that you removed the stack resources by issuing the following commands in the AWS CLI. The AWS CLI outputs that no template component exists.
+      <CodeBlock code={"$ aws cloudformation describe-stacks --stack-name <local_zone_stack_name>"} lang="terminal" />
+      <CodeBlock code={"$ aws cloudformation describe-stacks --stack-name <vpc_stack_name>"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="installing-localzone-additional-resources" class="group scroll-mt-20">Additional resources<a href="#installing-localzone-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Working with stacks ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#opt-in-local-zone">Opt in to {"{"}{"{"} aws_short {"}"}{"}"} Local Zones ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="https://aws.amazon.com/about-aws/global-infrastructure/localzones/locations">{"{"}{"{"} aws_short {"}"}{"}"} Local Zones available locations ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="https://aws.amazon.com/about-aws/global-infrastructure/localzones/features">{"{"}{"{"} aws_short {"}"}{"}"} Local Zones features ({"{"}{"{"} aws_short {"}"}{"}"} documentation)</a></li>
+      <li><a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/stacks.html">Working with stacks (AWS documentation)</a></li>
+      <li><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#opt-in-local-zone">Opt in to AWS Local Zones (AWS documentation)</a></li>
+      <li><a href="https://aws.amazon.com/about-aws/global-infrastructure/localzones/locations">AWS Local Zones available locations (AWS documentation)</a></li>
+      <li><a href="https://aws.amazon.com/about-aws/global-infrastructure/localzones/features">AWS Local Zones features (AWS documentation)</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

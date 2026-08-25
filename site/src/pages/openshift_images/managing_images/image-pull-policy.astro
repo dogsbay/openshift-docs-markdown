@@ -15,8 +15,15 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"image-pull-policy","text":"Image pull policy"}];
+const headings = [{"depth":1,"slug":"image-pull-policy","text":"Image pull policy"},{"depth":2,"slug":"images-image-pull-policy-overview_image-pull-policy","text":"About the imagePullPolicy parameter"},{"depth":3,"slug":"images-image-pull-policy-default-behavior_image-pull-policy","text":"Omitting the imagePullPolicy parameter"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/openshift_images/managing_images/image-pull-policy";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +46,7 @@ const pageCategory = ["openshift_images","openshift_images/managing_images"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Image pull policy {#image-pull-policy}\n\nTo manage image updates and optimize pod startup performance in OpenShift Container Platform, you can configure the `imagePullPolicy` parameter in your container specifications. This setting controls when container images are pulled from registries.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/managing_images/image-pull-policy.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Image pull policy {#image-pull-policy}\n\nTo manage image updates and optimize pod startup performance in OpenShift Container Platform, you can configure the `imagePullPolicy` parameter in your container specifications. This setting controls when container images are pulled from registries.\n\n## About the imagePullPolicy parameter {#images-image-pull-policy-overview_image-pull-policy}\n\nTo control when OpenShift Container Platform pulls container images from registries or uses locally cached copies when starting containers, you can configure the `imagePullPolicy` parameter. This policy helps you manage image updates and optimize pod startup performance.\n\nThe following table lists the possible values for the `imagePullPolicy` parameter:\n\n`imagePullPolicy`** values**\n\n| Value | Description |\n| --- | --- |\n| `Always` | Always pull the image. |\n| `IfNotPresent` | Only pull the image if it does not already exist on the node. |\n| `Never` | Never pull the image. |\n\nThe following example sets the `imagePullPolicy` parameter to `IfNotPresent` for the image tagged `v1.2.3`:\n\n```yaml {title=\"Example imagePullPolicy configuration\"}\napiVersion: apps/v1\nkind: Deployment\n# ...\nspec:\n  # ...\n  template:\n    spec:\n      containers:\n      - name: my-app-container\n        image: registry.example.com/myapp:v1.2.3\n        imagePullPolicy: IfNotPresent\n        ports:\n        - containerPort: 8080\n```\n\nwhere:\n\n`spec.template.spec.containers.image`\n:   Specifies is the image to use. In this example, the image tag is explicitly set to `v1.2.3`.\n\n`spec.template.spec.containers.imagePullPolicy`\n:   Specifies the policy to use. In this example, the policy is set to `IfNotPresent` because the image tag is not `latest`.\n\n### Omitting the imagePullPolicy parameter {#images-image-pull-policy-default-behavior_image-pull-policy}\n\nWhen you omit the `imagePullPolicy` parameter, OpenShift Container Platform automatically determines the policy based on the image tag. This default behavior ensures that the `latest` tag always pulls the newest image, while specific version tags use locally cached images when available to improve efficiency.\n\n| Image tag | `imagePullPolicy` setting | Behavior |\n| --- | --- | --- |\n| `latest` | `Always` | Always pulls the image. This policy helps ensure that the container always uses the latest version of the image. |\n| Any other tag (for example, `v1.2.3`, `stable`, `production`) | `IfNotPresent` | Pull only if necessary. This policy uses the locally cached version of the image if it exists on the node, avoiding unnecessary pulls from the registry. |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/openshift_images/managing_images/image-pull-policy.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +98,65 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="image-pull-policy" class="group scroll-mt-20">Image pull policy<a href="#image-pull-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To manage image updates and optimize pod startup performance in OpenShift Container Platform, you can configure the <code>imagePullPolicy</code> parameter in your container specifications. This setting controls when container images are pulled from registries.</p>
-      <p class="/modules/images-image-pull-policy-overview.md"></p>
-      <p class="/modules/images-image-pull-policy-default-behavior.md"></p>
+      <h2 id="images-image-pull-policy-overview_image-pull-policy" class="group scroll-mt-20">About the imagePullPolicy parameter<a href="#images-image-pull-policy-overview_image-pull-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To control when OpenShift Container Platform pulls container images from registries or uses locally cached copies when starting containers, you can configure the <code>imagePullPolicy</code> parameter. This policy helps you manage image updates and optimize pod startup performance.</p>
+      <p>The following table lists the possible values for the <code>imagePullPolicy</code> parameter:</p>
+      <p><code>imagePullPolicy</code><strong> values</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Value</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>Always</code></TableCell>
+      <TableCell>Always pull the image.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>IfNotPresent</code></TableCell>
+      <TableCell>Only pull the image if it does not already exist on the node.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Never</code></TableCell>
+      <TableCell>Never pull the image.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>The following example sets the <code>imagePullPolicy</code> parameter to <code>IfNotPresent</code> for the image tagged <code>v1.2.3</code>:</p>
+      <CodeBlock code={"apiVersion: apps/v1\nkind: Deployment\n# ...\nspec:\n  # ...\n  template:\n    spec:\n      containers:\n      - name: my-app-container\n        image: registry.example.com/myapp:v1.2.3\n        imagePullPolicy: IfNotPresent\n        ports:\n        - containerPort: 8080"} lang="yaml" title="Example imagePullPolicy configuration" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.template.spec.containers.image</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies is the image to use. In this example, the image tag is explicitly set to <code>v1.2.3</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.containers.imagePullPolicy</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the policy to use. In this example, the policy is set to <code>IfNotPresent</code> because the image tag is not <code>latest</code>.</p></dd>
+      </dl>
+      <h3 id="images-image-pull-policy-default-behavior_image-pull-policy" class="group scroll-mt-20">Omitting the imagePullPolicy parameter<a href="#images-image-pull-policy-default-behavior_image-pull-policy" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When you omit the <code>imagePullPolicy</code> parameter, OpenShift Container Platform automatically determines the policy based on the image tag. This default behavior ensures that the <code>latest</code> tag always pulls the newest image, while specific version tags use locally cached images when available to improve efficiency.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Image tag</TableHead>
+      <TableHead><code>imagePullPolicy</code> setting</TableHead>
+      <TableHead>Behavior</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>latest</code></TableCell>
+      <TableCell><code>Always</code></TableCell>
+      <TableCell>Always pulls the image. This policy helps ensure that the container always uses the latest version of the image.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Any other tag (for example, <code>v1.2.3</code>, <code>stable</code>, <code>production</code>)</TableCell>
+      <TableCell><code>IfNotPresent</code></TableCell>
+      <TableCell>Pull only if necessary. This policy uses the locally cached version of the image if it exists on the node, avoiding unnecessary pulls from the registry.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -16,12 +16,12 @@ SR-IOV can segment a compliant network device, recognized on the host node as a 
 - `netdevice` driver: A regular kernel network device in the `netns` of the container
 - `vfio-pci` driver: A character device mounted in the container
 
-You can use SR-IOV network devices with additional networks on your OpenShift Container Platform cluster installed on bare metal or {{ rh_openstack_first }} infrastructure for applications that require high bandwidth or low latency.
+You can use SR-IOV network devices with additional networks on your OpenShift Container Platform cluster installed on bare metal or Red Hat OpenStack Platform (RHOSP) infrastructure for applications that require high bandwidth or low latency.
 
 The SR-IOV Network Operator is supported on the following platforms:
 
 - Bare metal
-- {{ rh_openstack_first }}
+- Red Hat OpenStack Platform (RHOSP)
 
 > [!NOTE]
 > For a list of devices, such as network interface controllers (NICs) that OpenShift Container Platform supports, see [Red Hat certified hardware](https://catalog.redhat.com/en/hardware) on the Red Hat Ecosystem Catalog. The following example, finds the Intel X710 network adapter:
@@ -35,6 +35,11 @@ You can configure multi-network policies for SR-IOV networks. The support for th
 
 > [!NOTE]
 > Creating multi-network policies on SR-IOV networks might not deliver the same performance to applications compared to SR-IOV networks without a multi-network policy configured.
+
+> [!IMPORTANT]
+> Multi-network policies for SR-IOV network is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.
+>
+> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).
 
 You can enable SR-IOV on a node by using the following command:
 
@@ -87,7 +92,7 @@ SR-IOV InfiniBand CNI plugin
 
 - [Configuring the SR-IOV Network Operator](/openshift-docs-markdown/networking/networking_operators/sr-iov-operator/configuring-sriov-operator#configuring-sriov-operator)
 - [Configuring an SR-IOV network device](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-device#configuring-sriov-device)
-- If you use {{ VirtProductName }}: [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
+- If you use OpenShift Virtualization: [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)
 - [Configuring an SR-IOV network attachment](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-net-attach#configuring-sriov-net-attach)
 - [Ethernet network attachement: Adding a pod to an SR-IOV additional network](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-net-attach#configuring-sriov-net-attach)
 - [InfiniBand network attachement: Adding a pod to an SR-IOV additional network](/openshift-docs-markdown/networking/hardware_networks/configuring-sriov-ib-attach#configuring-sriov-ib-attach)

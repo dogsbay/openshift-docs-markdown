@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"network-observability-operator-default","text":"Network Observability Operator"}];
+const headings = [{"depth":1,"slug":"network-observability-operator-default","text":"Network Observability Operator"},{"depth":2,"slug":"network-observability-operator-stub_network-observability-operator","text":"Network Observability Operator features"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/network_observability_operator/network-observability-operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +42,7 @@ const pageCategory = ["networking","networking/network_observability_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network Observability Operator {#network-observability-operator-default}\n\nNetwork Observability Operator provides network flow monitoring, visualization, and analysis capabilities for OpenShift Container Platform clusters.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_observability_operator/network-observability-operator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Network Observability Operator {#network-observability-operator-default}\n\nNetwork Observability Operator provides network flow monitoring, visualization, and analysis capabilities for OpenShift Container Platform clusters.\n\n## Network Observability Operator features {#network-observability-operator-stub_network-observability-operator}\n\nWith the Network Observability Operator, you can monitor ingress, egress, and internal network traffic flows between pods, services, and nodes in your cluster.\n\nUse this network flow data to troubleshoot connectivity issues, analyze traffic patterns, detect security threats, and optimize overall network performance.\n\nYou can perform the following tasks with this Operator:\n\n- Collect network flow data by using eBPF technology.\n- Visualize traffic flows inside the OpenShift Container Platform web console.\n- Filter and analyze flows by namespace, pod, service, or port attributes.\n- Export flow data to external analysis tools for long-term storage or processing.\n\n> [!NOTE]\n> For complete documentation about installing, configuring, and using the Network Observability Operator, see [Network Observability overview](/openshift-docs-markdown/observability/network_observability/network-observability-overview#network-observability-overview) in the Observability section.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/network_observability_operator/network-observability-operator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +94,23 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="network-observability-operator-default" class="group scroll-mt-20">Network Observability Operator<a href="#network-observability-operator-default" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Network Observability Operator provides network flow monitoring, visualization, and analysis capabilities for OpenShift Container Platform clusters.</p>
-      <p class="/modules/network-observability-operator-stub.md"></p>
+      <h2 id="network-observability-operator-stub_network-observability-operator" class="group scroll-mt-20">Network Observability Operator features<a href="#network-observability-operator-stub_network-observability-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">With the Network Observability Operator, you can monitor ingress, egress, and internal network traffic flows between pods, services, and nodes in your cluster.</p>
+      <p>Use this network flow data to troubleshoot connectivity issues, analyze traffic patterns, detect security threats, and optimize overall network performance.</p>
+      <p>You can perform the following tasks with this Operator:</p>
+      <ul>
+      <li>Collect network flow data by using eBPF technology.</li>
+      <li>Visualize traffic flows inside the OpenShift Container Platform web console.</li>
+      <li>Filter and analyze flows by namespace, pod, service, or port attributes.</li>
+      <li>Export flow data to external analysis tools for long-term storage or processing.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For complete documentation about installing, configuring, and using the Network Observability Operator, see <a href="/openshift-docs-markdown/observability/network_observability/network-observability-overview#network-observability-overview">Network Observability overview</a> in the Observability section.</p>
+        </AlertDescription>
+      </Alert>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

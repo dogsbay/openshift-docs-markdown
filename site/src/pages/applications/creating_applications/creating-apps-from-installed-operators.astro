@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"creating-apps-from-installed-operators","text":"Creating applications from installed Operators"}];
+const headings = [{"depth":1,"slug":"creating-apps-from-installed-operators","text":"Creating applications from installed Operators"},{"depth":2,"slug":"olm-creating-etcd-cluster-from-operator_creating-apps-from-installed-operators","text":"Creating an etcd cluster using an Operator"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/applications/creating_applications/creating-apps-from-installed-operators";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["applications","applications/creating_applications"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating applications from installed Operators {#creating-apps-from-installed-operators}\n\nYou can deploy applications on your OpenShift Container Platform cluster from Operators that a cluster administrator installed. Use the **Installed Operators** page in the web console to create an application from an Operator custom resource (CR) API.\n\n**Additional resources**\n\n- [What are Operators?](/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/creating_applications/creating-apps-from-installed-operators.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating applications from installed Operators {#creating-apps-from-installed-operators}\n\nYou can deploy applications on your OpenShift Container Platform cluster from Operators that a cluster administrator installed. Use the **Installed Operators** page in the web console to create an application from an Operator custom resource (CR) API.\n\n**Additional resources**\n\n- [What are Operators?](/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are)\n\n## Creating an etcd cluster using an Operator {#olm-creating-etcd-cluster-from-operator_creating-apps-from-installed-operators}\n\nYou can create an etcd cluster using the etcd Operator in the OpenShift Container Platform web console. The Operator creates the pods, services, and other cluster resources for you.\n\n**Prerequisites**\n\n- Access to an OpenShift Container Platform 4.22 cluster.\n- The etcd Operator already installed cluster-wide by an administrator.\n\n**Procedure**\n\n1. Create a new project in the OpenShift Container Platform web console for this procedure. This example uses a project called `my-etcd`.\n2. Navigate to the **Ecosystem** -> **Installed Operators** page.\n\n   The Operators installed on the cluster by the cluster administrator\n\n   and available for use are shown here as a list of cluster service versions (CSVs). Each CSV launches and manages the software provided by the Operator.\n\n   > [!TIP]\n   > You can get this list from the CLI by running the following command:\n   >\n   > ```terminal\n   > $ oc get csv\n   > ```\n3. On the **Installed Operators** page, click the etcd Operator to view more details and available actions.\n\n   As shown under **Provided APIs**, this Operator makes available three new resource types, including one for an **etcd Cluster**, the `EtcdCluster` resource.\n\n   These objects work similarly to the built-in native Kubernetes ones, such as `Deployment` or `ReplicaSet`, but contain logic specific to managing etcd.\n4. Create a new etcd cluster:\n\n   1. In the **etcd Cluster** API box, click **Create instance**.\n   2. Optional: Modify the minimal starting template of an `EtcdCluster` object, such as the size of the cluster.\n   3. Click **Create** to finalize. This triggers the Operator to start up the pods, services, and other components of the new etcd cluster.\n5. Click the **example** etcd cluster.\n6. Click the **Resources** tab.\n\n   Your project contains several resources that the Operator created and configured.\n7. Verify that a Kubernetes service exists that allows you to access the database from other pods in your project.\n8. Optional: To grant another user permission to create Operator-managed applications in the project, add the `edit` role by running the following command:\n\n   ```terminal\n   $ oc policy add-role-to-user edit <user> -n <target_project>\n   ```\n\n   Users with the `edit` role in a project can create, manage, and delete Operator-managed application instances, such as an etcd cluster.\n\n**Results**\n\nYou have an etcd cluster that reacts to failures and rebalances data as pods become unhealthy or migrate between nodes in the cluster. Cluster administrators\n\nor developers with proper access can use the database with their applications.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/applications/creating_applications/creating-apps-from-installed-operators.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,59 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-apps-from-installed-operators" class="group scroll-mt-20">Creating applications from installed Operators<a href="#creating-apps-from-installed-operators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can deploy applications on your OpenShift Container Platform cluster from Operators that a cluster administrator installed. Use the <strong>Installed Operators</strong> page in the web console to create an application from an Operator custom resource (CR) API.</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are">What are Operators?</a></li></ul>
+      <h2 id="olm-creating-etcd-cluster-from-operator_creating-apps-from-installed-operators" class="group scroll-mt-20">Creating an etcd cluster using an Operator<a href="#olm-creating-etcd-cluster-from-operator_creating-apps-from-installed-operators" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create an etcd cluster using the etcd Operator in the OpenShift Container Platform web console. The Operator creates the pods, services, and other cluster resources for you.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to an OpenShift Container Platform 4.22 cluster.</li>
+      <li>The etcd Operator already installed cluster-wide by an administrator.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create a new project in the OpenShift Container Platform web console for this procedure. This example uses a project called <code>my-etcd</code>.</li>
+      <li>
+      Navigate to the <strong>Ecosystem</strong> -&gt; <strong>Installed Operators</strong> page.
+      <p>The Operators installed on the cluster by the cluster administrator</p>
+      <p>and available for use are shown here as a list of cluster service versions (CSVs). Each CSV launches and manages the software provided by the Operator.</p>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can get this list from the CLI by running the following command:</p>
+          <CodeBlock code={"$ oc get csv"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      On the <strong>Installed Operators</strong> page, click the etcd Operator to view more details and available actions.
+      <p>As shown under <strong>Provided APIs</strong>, this Operator makes available three new resource types, including one for an <strong>etcd Cluster</strong>, the <code>EtcdCluster</code> resource.</p>
+      <p>These objects work similarly to the built-in native Kubernetes ones, such as <code>Deployment</code> or <code>ReplicaSet</code>, but contain logic specific to managing etcd.</p>
+      </li>
+      <li>
+      Create a new etcd cluster:
+      <ol>
+      <li>In the <strong>etcd Cluster</strong> API box, click <strong>Create instance</strong>.</li>
+      <li>Optional: Modify the minimal starting template of an <code>EtcdCluster</code> object, such as the size of the cluster.</li>
+      <li>Click <strong>Create</strong> to finalize. This triggers the Operator to start up the pods, services, and other components of the new etcd cluster.</li>
+      </ol>
+      </li>
+      <li>Click the <strong>example</strong> etcd cluster.</li>
+      <li>
+      Click the <strong>Resources</strong> tab.
+      <p>Your project contains several resources that the Operator created and configured.</p>
+      </li>
+      <li>Verify that a Kubernetes service exists that allows you to access the database from other pods in your project.</li>
+      <li>
+      Optional: To grant another user permission to create Operator-managed applications in the project, add the <code>edit</code> role by running the following command:
+      <CodeBlock code={"$ oc policy add-role-to-user edit <user> -n <target_project>"} lang="terminal" />
+      <p>Users with the <code>edit</code> role in a project can create, manage, and delete Operator-managed application instances, such as an etcd cluster.</p>
+      </li>
+      </ol>
+      <p><strong>Results</strong></p>
+      <p>You have an etcd cluster that reacts to failures and rebalances data as pods become unhealthy or migrate between nodes in the cluster. Cluster administrators</p>
+      <p>or developers with proper access can use the database with their applications.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

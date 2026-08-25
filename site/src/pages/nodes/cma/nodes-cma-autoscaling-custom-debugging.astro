@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-cma-autoscaling-custom-debugging","text":"Gathering debugging data"}];
+const headings = [{"depth":1,"slug":"nodes-cma-autoscaling-custom-debugging","text":"Gathering debugging data"},{"depth":2,"slug":"nodes-cma-autoscaling-custom-debugging-gather_nodes-cma-autoscaling-custom-debugging","text":"Gathering debugging data"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-debugging";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/cma"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Gathering debugging data {#nodes-cma-autoscaling-custom-debugging}\n\nWhen opening a support case, it is helpful to provide debugging information about your cluster to Red Hat Support.\n\nTo help troubleshoot your issue, provide the following information:\n\n- Data gathered using the `must-gather` tool.\n- The unique cluster ID.\n\nYou can use the `must-gather` tool to collect data about the Custom Metrics Autoscaler Operator and its components, including the following items:\n\n- The `openshift-keda` namespace and its child objects.\n- The Custom Metric Autoscaler Operator installation objects.\n- The Custom Metric Autoscaler Operator CRD objects.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-debugging.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Gathering debugging data {#nodes-cma-autoscaling-custom-debugging}\n\nWhen opening a support case, it is helpful to provide debugging information about your cluster to Red Hat Support.\n\nTo help troubleshoot your issue, provide the following information:\n\n- Data gathered using the `must-gather` tool.\n- The unique cluster ID.\n\nYou can use the `must-gather` tool to collect data about the Custom Metrics Autoscaler Operator and its components, including the following items:\n\n- The `openshift-keda` namespace and its child objects.\n- The Custom Metric Autoscaler Operator installation objects.\n- The Custom Metric Autoscaler Operator CRD objects.\n\n## Gathering debugging data {#nodes-cma-autoscaling-custom-debugging-gather_nodes-cma-autoscaling-custom-debugging}\n\nThe following command runs the `must-gather` tool for the Custom Metrics Autoscaler Operator:\n\n```terminal\n$ oc adm must-gather --image=\"$(oc get packagemanifests openshift-custom-metrics-autoscaler-operator \\\n-n openshift-marketplace \\\n-o jsonpath='{.status.channels[?(@.name==\"stable\")].currentCSVDesc.annotations.containerImage}')\"\n```\n\n> [!NOTE]\n> The standard OpenShift Container Platform `must-gather` command, `oc adm must-gather`, does not collect Custom Metrics Autoscaler Operator data.\n\n**Prerequisites**\n\n- You are logged in to OpenShift Container Platform as a user with the `cluster-admin` role.\n- The OpenShift Container Platform CLI (`oc`) installed.\n\n**Procedure**\n\n1. Navigate to the directory where you want to store the `must-gather` data.\n\n   > [!NOTE]\n   > If your cluster is using a restricted network, you must take additional steps. If your mirror registry has a trusted CA, you must first add the trusted CA to the cluster. For all clusters on restricted networks, you must import the default `must-gather` image as an image stream by running the following command.\n   >\n   > ```terminal\n   > $ oc import-image is/must-gather -n openshift\n   > ```\n2. Perform one of the following:\n\n   - To get only the Custom Metrics Autoscaler Operator `must-gather` data, use the following command:\n\n     ```terminal\n     $ oc adm must-gather --image=\"$(oc get packagemanifests openshift-custom-metrics-autoscaler-operator \\\n     -n openshift-marketplace \\\n     -o jsonpath='{.status.channels[?(@.name==\"stable\")].currentCSVDesc.annotations.containerImage}')\"\n     ```\n\n     The custom image for the `must-gather` command is pulled directly from the Operator package manifests, so that it works on any cluster where the Custom Metric Autoscaler Operator is available.\n   - To gather the default `must-gather` data in addition to the Custom Metric Autoscaler Operator information:\n\n     1. Use the following command to obtain the Custom Metrics Autoscaler Operator image and set it as an environment variable:\n\n        ```terminal\n        $ IMAGE=\"$(oc get packagemanifests openshift-custom-metrics-autoscaler-operator \\\n          -n openshift-marketplace \\\n          -o jsonpath='{.status.channels[?(@.name==\"stable\")].currentCSVDesc.annotations.containerImage}')\"\n        ```\n     2. Use the `oc adm must-gather` with the Custom Metrics Autoscaler Operator image:\n\n        ```terminal\n        $ oc adm must-gather --image-stream=openshift/must-gather --image=${IMAGE}\n        ```\n\n   **Example must-gather output for the Custom Metric Autoscaler**\n\n   <details>\n   <summary>Details</summary>\n\n   ```terminal\n   └── openshift-keda\n       ├── apps\n       │   ├── daemonsets.yaml\n       │   ├── deployments.yaml\n       │   ├── replicasets.yaml\n       │   └── statefulsets.yaml\n       ├── apps.openshift.io\n       │   └── deploymentconfigs.yaml\n       ├── autoscaling\n       │   └── horizontalpodautoscalers.yaml\n       ├── batch\n       │   ├── cronjobs.yaml\n       │   └── jobs.yaml\n       ├── build.openshift.io\n       │   ├── buildconfigs.yaml\n       │   └── builds.yaml\n       ├── core\n       │   ├── configmaps.yaml\n       │   ├── endpoints.yaml\n       │   ├── events.yaml\n       │   ├── persistentvolumeclaims.yaml\n       │   ├── pods.yaml\n       │   ├── replicationcontrollers.yaml\n       │   ├── secrets.yaml\n       │   └── services.yaml\n       ├── discovery.k8s.io\n       │   └── endpointslices.yaml\n       ├── image.openshift.io\n       │   └── imagestreams.yaml\n       ├── k8s.ovn.org\n       │   ├── egressfirewalls.yaml\n       │   └── egressqoses.yaml\n       ├── keda.sh\n       │   ├── kedacontrollers\n       │   │   └── keda.yaml\n       │   ├── scaledobjects\n       │   │   └── example-scaledobject.yaml\n       │   └── triggerauthentications\n       │       └── example-triggerauthentication.yaml\n       ├── monitoring.coreos.com\n       │   └── servicemonitors.yaml\n       ├── networking.k8s.io\n       │   └── networkpolicies.yaml\n       ├── openshift-keda.yaml\n       ├── pods\n       │   ├── custom-metrics-autoscaler-operator-58bd9f458-ptgwx\n       │   │   ├── custom-metrics-autoscaler-operator\n       │   │   │   └── custom-metrics-autoscaler-operator\n       │   │   │       └── logs\n       │   │   │           ├── current.log\n       │   │   │           ├── previous.insecure.log\n       │   │   │           └── previous.log\n       │   │   └── custom-metrics-autoscaler-operator-58bd9f458-ptgwx.yaml\n       │   ├── custom-metrics-autoscaler-operator-58bd9f458-thbsh\n       │   │   └── custom-metrics-autoscaler-operator\n       │   │       └── custom-metrics-autoscaler-operator\n       │   │           └── logs\n       │   ├── keda-metrics-apiserver-65c7cc44fd-6wq4g\n       │   │   ├── keda-metrics-apiserver\n       │   │   │   └── keda-metrics-apiserver\n       │   │   │       └── logs\n       │   │   │           ├── current.log\n       │   │   │           ├── previous.insecure.log\n       │   │   │           └── previous.log\n       │   │   └── keda-metrics-apiserver-65c7cc44fd-6wq4g.yaml\n       │   └── keda-operator-776cbb6768-fb6m5\n       │       ├── keda-operator\n       │       │   └── keda-operator\n       │       │       └── logs\n       │       │           ├── current.log\n       │       │           ├── previous.insecure.log\n       │       │           └── previous.log\n       │       └── keda-operator-776cbb6768-fb6m5.yaml\n       ├── policy\n       │   └── poddisruptionbudgets.yaml\n       └── route.openshift.io\n           └── routes.yaml\n   ```\n\n   </details>\n\n3. Create a compressed file from the `must-gather` directory that was created in your working directory. For example, on a computer that uses a Linux operating system, run the following command:\n\n   ```terminal\n   $ tar cvaf must-gather.tar.gz must-gather.local.5421342344627712289/ (1)\n   ```\n\n   1. Replace `must-gather-local.5421342344627712289/` with the actual directory name.\n4. Attach the compressed file to your support case on the [Red Hat Customer Portal](https://access.redhat.com).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/cma/nodes-cma-autoscaling-custom-debugging.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-cma-autoscaling-custom-debugging" class="group scroll-mt-20">Gathering debugging data<a href="#nodes-cma-autoscaling-custom-debugging" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>When opening a support case, it is helpful to provide debugging information about your cluster to Red Hat Support.</p>
       <p>To help troubleshoot your issue, provide the following information:</p>
       <ul>
@@ -104,6 +107,66 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>The Custom Metric Autoscaler Operator installation objects.</li>
       <li>The Custom Metric Autoscaler Operator CRD objects.</li>
       </ul>
+      <h2 id="nodes-cma-autoscaling-custom-debugging-gather_nodes-cma-autoscaling-custom-debugging" class="group scroll-mt-20">Gathering debugging data<a href="#nodes-cma-autoscaling-custom-debugging-gather_nodes-cma-autoscaling-custom-debugging" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The following command runs the <code>must-gather</code> tool for the Custom Metrics Autoscaler Operator:</p>
+      <CodeBlock code={"$ oc adm must-gather --image=\"$(oc get packagemanifests openshift-custom-metrics-autoscaler-operator \\\n-n openshift-marketplace \\\n-o jsonpath='{.status.channels[?(@.name==\"stable\")].currentCSVDesc.annotations.containerImage}')\""} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The standard OpenShift Container Platform <code>must-gather</code> command, <code>oc adm must-gather</code>, does not collect Custom Metrics Autoscaler Operator data.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to OpenShift Container Platform as a user with the <code>cluster-admin</code> role.</li>
+      <li>The OpenShift Container Platform CLI (<code>oc</code>) installed.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Navigate to the directory where you want to store the <code>must-gather</code> data.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If your cluster is using a restricted network, you must take additional steps. If your mirror registry has a trusted CA, you must first add the trusted CA to the cluster. For all clusters on restricted networks, you must import the default <code>must-gather</code> image as an image stream by running the following command.</p>
+          <CodeBlock code={"$ oc import-image is/must-gather -n openshift"} lang="terminal" />
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Perform one of the following:
+      <ul>
+      <li>
+      To get only the Custom Metrics Autoscaler Operator <code>must-gather</code> data, use the following command:
+      <CodeBlock code={"$ oc adm must-gather --image=\"$(oc get packagemanifests openshift-custom-metrics-autoscaler-operator \\\n-n openshift-marketplace \\\n-o jsonpath='{.status.channels[?(@.name==\"stable\")].currentCSVDesc.annotations.containerImage}')\""} lang="terminal" />
+      <p>The custom image for the <code>must-gather</code> command is pulled directly from the Operator package manifests, so that it works on any cluster where the Custom Metric Autoscaler Operator is available.</p>
+      </li>
+      <li>
+      To gather the default <code>must-gather</code> data in addition to the Custom Metric Autoscaler Operator information:
+      <ol>
+      <li>
+      Use the following command to obtain the Custom Metrics Autoscaler Operator image and set it as an environment variable:
+      <CodeBlock code={"$ IMAGE=\"$(oc get packagemanifests openshift-custom-metrics-autoscaler-operator \\\n  -n openshift-marketplace \\\n  -o jsonpath='{.status.channels[?(@.name==\"stable\")].currentCSVDesc.annotations.containerImage}')\""} lang="terminal" />
+      </li>
+      <li>
+      Use the <code>oc adm must-gather</code> with the Custom Metrics Autoscaler Operator image:
+      <CodeBlock code={"$ oc adm must-gather --image-stream=openshift/must-gather --image=${IMAGE}"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ul>
+      <p><strong>Example must-gather output for the Custom Metric Autoscaler</strong></p>
+      <Fragment set:html={"<details>\n<summary>Details</summary>\n"} />
+      <CodeBlock code={"└── openshift-keda\n    ├── apps\n    │   ├── daemonsets.yaml\n    │   ├── deployments.yaml\n    │   ├── replicasets.yaml\n    │   └── statefulsets.yaml\n    ├── apps.openshift.io\n    │   └── deploymentconfigs.yaml\n    ├── autoscaling\n    │   └── horizontalpodautoscalers.yaml\n    ├── batch\n    │   ├── cronjobs.yaml\n    │   └── jobs.yaml\n    ├── build.openshift.io\n    │   ├── buildconfigs.yaml\n    │   └── builds.yaml\n    ├── core\n    │   ├── configmaps.yaml\n    │   ├── endpoints.yaml\n    │   ├── events.yaml\n    │   ├── persistentvolumeclaims.yaml\n    │   ├── pods.yaml\n    │   ├── replicationcontrollers.yaml\n    │   ├── secrets.yaml\n    │   └── services.yaml\n    ├── discovery.k8s.io\n    │   └── endpointslices.yaml\n    ├── image.openshift.io\n    │   └── imagestreams.yaml\n    ├── k8s.ovn.org\n    │   ├── egressfirewalls.yaml\n    │   └── egressqoses.yaml\n    ├── keda.sh\n    │   ├── kedacontrollers\n    │   │   └── keda.yaml\n    │   ├── scaledobjects\n    │   │   └── example-scaledobject.yaml\n    │   └── triggerauthentications\n    │       └── example-triggerauthentication.yaml\n    ├── monitoring.coreos.com\n    │   └── servicemonitors.yaml\n    ├── networking.k8s.io\n    │   └── networkpolicies.yaml\n    ├── openshift-keda.yaml\n    ├── pods\n    │   ├── custom-metrics-autoscaler-operator-58bd9f458-ptgwx\n    │   │   ├── custom-metrics-autoscaler-operator\n    │   │   │   └── custom-metrics-autoscaler-operator\n    │   │   │       └── logs\n    │   │   │           ├── current.log\n    │   │   │           ├── previous.insecure.log\n    │   │   │           └── previous.log\n    │   │   └── custom-metrics-autoscaler-operator-58bd9f458-ptgwx.yaml\n    │   ├── custom-metrics-autoscaler-operator-58bd9f458-thbsh\n    │   │   └── custom-metrics-autoscaler-operator\n    │   │       └── custom-metrics-autoscaler-operator\n    │   │           └── logs\n    │   ├── keda-metrics-apiserver-65c7cc44fd-6wq4g\n    │   │   ├── keda-metrics-apiserver\n    │   │   │   └── keda-metrics-apiserver\n    │   │   │       └── logs\n    │   │   │           ├── current.log\n    │   │   │           ├── previous.insecure.log\n    │   │   │           └── previous.log\n    │   │   └── keda-metrics-apiserver-65c7cc44fd-6wq4g.yaml\n    │   └── keda-operator-776cbb6768-fb6m5\n    │       ├── keda-operator\n    │       │   └── keda-operator\n    │       │       └── logs\n    │       │           ├── current.log\n    │       │           ├── previous.insecure.log\n    │       │           └── previous.log\n    │       └── keda-operator-776cbb6768-fb6m5.yaml\n    ├── policy\n    │   └── poddisruptionbudgets.yaml\n    └── route.openshift.io\n        └── routes.yaml"} lang="terminal" />
+      <Fragment set:html={"</details>\n"} />
+      </li>
+      <li>
+      Create a compressed file from the <code>must-gather</code> directory that was created in your working directory. For example, on a computer that uses a Linux operating system, run the following command:
+      <CodeBlock code={"$ tar cvaf must-gather.tar.gz must-gather.local.5421342344627712289/ (1)"} lang="terminal" />
+      <ol><li>Replace <code>must-gather-local.5421342344627712289/</code> with the actual directory name.</li></ol>
+      </li>
+      <li>Attach the compressed file to your support case on the <a href="https://access.redhat.com">Red Hat Customer Portal</a>.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

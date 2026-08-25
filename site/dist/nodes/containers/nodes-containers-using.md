@@ -14,7 +14,7 @@ The Linux kernel has been incorporating capabilities for container technologies 
 
 ## About containers and RHEL kernel memory {#nodes-containers-memory}
 
-Due to {{ op_system_base_full }} behavior, a container on a node with high CPU usage might seem to consume more memory than expected. The higher memory consumption could be caused by the `kmem_cache` in the RHEL kernel. The RHEL kernel creates a `kmem_cache` for each cgroup. For added performance, the `kmem_cache` contains a `cpu_cache`, and a node cache for any NUMA nodes. These caches all consume kernel memory.
+Due to Red Hat Enterprise Linux (RHEL) behavior, a container on a node with high CPU usage might seem to consume more memory than expected. The higher memory consumption could be caused by the `kmem_cache` in the RHEL kernel. The RHEL kernel creates a `kmem_cache` for each cgroup. For added performance, the `kmem_cache` contains a `cpu_cache`, and a node cache for any NUMA nodes. These caches all consume kernel memory.
 
 The amount of memory stored in those caches is proportional to the number of CPUs that the system uses. As a result, a higher number of CPUs results in a greater amount of kernel memory being held in these caches. Higher amounts of kernel memory in these caches can cause OpenShift Container Platform containers to exceed the configured memory limits, resulting in the container being killed.
 
@@ -35,6 +35,8 @@ OpenShift Container Platform uses CRI-O as the container engine and runC or crun
 
 > [!WARNING]
 > Starting in OpenShift Container Platform 4.22, the runC container runtime is deprecated.
+
+CRI-O is a Kubernetes-native container engine implementation that integrates closely with the operating system to deliver an efficient and optimized Kubernetes experience. The CRI-O container engine runs as a systemd service on each OpenShift Container Platform cluster node.
 
 crun, developed by Red Hat, is a fast and low-memory container runtime fully written in C. runC, developed by Docker and maintained by the Open Container Project, is a lightweight, portable container runtime written in Go.
 

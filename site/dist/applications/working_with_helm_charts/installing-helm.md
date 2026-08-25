@@ -17,12 +17,12 @@ You can also find the URL to the latest binaries from the OpenShift Container Pl
      ```terminal
      # curl -L https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-amd64 -o /usr/local/bin/helm
      ```
-   - Linux on {{ ibm_z_name }} and {{ ibm_linuxone_name }} (s390x)
+   - Linux on IBM Z(R) and IBM(R) LinuxONE (s390x)
 
      ```terminal
      # curl -L https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-s390x -o /usr/local/bin/helm
      ```
-   - Linux on {{ ibm_power_name }} (ppc64le)
+   - Linux on IBM Power(R) (ppc64le)
 
      ```terminal
      # curl -L https://mirror.openshift.com/pub/openshift-v4/clients/helm/latest/helm-linux-ppc64le -o /usr/local/bin/helm

@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-azure-account","text":"Configuring an {{ azure_short }} account"},{"depth":2,"slug":"additional-resources_installing-azure-account","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"installing-azure-account","text":"Configuring an Azure account"},{"depth":2,"slug":"installation-azure-limits_installing-azure-account","text":"Azure account limits"},{"depth":2,"slug":"installation-azure-network-config_installing-azure-account","text":"Configuring a public DNS zone in Azure"},{"depth":2,"slug":"installation-azure-subscription-tenant-id_installing-azure-account","text":"Recording the subscription and tenant IDs"},{"depth":2,"slug":"installation-azure-identities_installing-azure-account","text":"Supported identities to access Azure resources"},{"depth":3,"slug":"installation-azure-permissions_installing-azure-account","text":"Required Azure roles"},{"depth":4,"slug":"minimum-required-permissions-ipi-azure_installing-azure-account","text":"Required Azure permissions for installer-provisioned infrastructure"},{"depth":3,"slug":"installation-using-azure-managed-identities_installing-azure-account","text":"Using Azure managed identities"},{"depth":3,"slug":"installation-creating-azure-service-principal_installing-azure-account","text":"Creating a service principal"},{"depth":2,"slug":"installation-azure-marketplace_installing-azure-account","text":"Supported Azure Marketplace regions"},{"depth":2,"slug":"installation-azure-regions_installing-azure-account","text":"Supported Azure regions"},{"depth":3,"slug":"_supported_azure_short_public_regions","text":"Supported Azure public regions"},{"depth":3,"slug":"_supported_azure_short_government_regions","text":"Supported Azure Government regions"},{"depth":2,"slug":"additional-resources_installing-azure-account","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_azure/installing-azure-account";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring an {{ azure_short }} account";
-const description = "Before you can install OpenShift Container Platform on {{ azure_first }}, you must configure an {{ azure_short }} account with the correct identity and…" || undefined;
+const description = "Before you can install OpenShift Container Platform on Microsoft Azure, you must configure an Azure account with the correct identity and permissions…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["installing","installing/installing_azure"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring an {{ azure_short }} account {#installing-azure-account}\n\nBefore you can install OpenShift Container Platform on {{ azure_first }}, you must configure an {{ azure_short }} account with the correct identity and permissions before you start the installation.\n\n> [!IMPORTANT]\n> All {{ azure_short }} resources that are available through public endpoints are subject to resource name restrictions. For a list of terms that {{ azure_short }} restricts for resource names, see \"Resolve errors for reserved resource names\".\n\n**Additional resources**\n\n- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n- [Azure subscription and service limits, quotas, and constraints ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits)\n\n**Additional resources**\n\n- [Managed identity types ({{ azure_short }} documentation)](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview#managed-identity-types)\n\n**Additional resources**\n\n- [Assign {{ azure_short }} roles using the {{ azure_short }} portal ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)\n\n**Additional resources**\n\n- [Managing access to Azure resources using the Azure portal ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)\n- [Custom roles ({{ azure_short }} documentation)](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles)\n\n**Additional resources**\n\n- [List user-assigned managed identities ({{ azure_short }} documentation)](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#list-user-assigned-managed-identities)\n\n**Additional resources**\n\n- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)\n\n## Additional resources {#additional-resources_installing-azure-account}\n\n- [Resolve errors for reserved resource names ({{ azure_short }} documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)\n- [Install a customized cluster on Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)\n- [Quickly install a cluster on Azure with default options](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-default#installing-azure-default)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_azure/installing-azure-account.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring an Azure account {#installing-azure-account}\n\nBefore you can install OpenShift Container Platform on Microsoft Azure, you must configure an Azure account with the correct identity and permissions before you start the installation.\n\n> [!IMPORTANT]\n> All Azure resources that are available through public endpoints are subject to resource name restrictions. For a list of terms that Azure restricts for resource names, see \"Resolve errors for reserved resource names\".\n\n## Azure account limits {#installation-azure-limits_installing-azure-account}\n\nThe OpenShift Container Platform cluster uses a number of Microsoft Azure components. Default subscription and service limits, quotas, and constraints can affect your ability to install OpenShift Container Platform clusters.\n\nFor more information on Azure subscription and service limits, see \"Azure subscription and service limits, quotas, and constraints\".\n\n> [!IMPORTANT]\n> Default limits vary by offer category types, such as Free Trial and Pay-As-You-Go, and by series, such as Dv2, F, and G. For example, the default for Enterprise Agreement subscriptions is 350 cores.\n>\n> Check the limits for your subscription type and if necessary, increase quota limits for your account before you install a default cluster on Azure.\n\nThe following table summarizes the Azure components whose limits can impact your ability to install and run OpenShift Container Platform clusters.\n\n<table>\n<thead>\n<tr>\n  <th>Component</th>\n  <th>Number of components required by default</th>\n  <th>Default Azure limit</th>\n  <th>Description</th>\n</tr>\n</thead>\n</table>\n\n|Component |Number of components required by default |Description\n\n|vCPU\n\n|44\n\n|20 per region |A default cluster requires 44 vCPUs, so you must increase the account limit.\n\nBy default, each cluster creates the following instances:\n\n- One bootstrap machine, which is removed after installation\n- Three control plane machines\n- Three compute machines\n\nBecause the bootstrap and control plane machines use `Standard_D8s_v3` virtual machines, which use 8 vCPUs, and the compute machines use `Standard_D4s_v3` virtual machines, which use 4 vCPUs, a default cluster requires 44 vCPUs. The bootstrap node VM, which uses 8 vCPUs, is used only during installation.\n\nTo deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, you must further increase the vCPU limit for your account to ensure that your cluster can deploy the machines that you require.\n\n|OS Disk |7 | |Each cluster machine must have a minimum of 100 GB of storage and 300 IOPS.\n\n> [!NOTE]\n> Faster storage is recommended for production clusters and clusters with intensive workloads. For more information about optimizing storage for performance, see the page titled \"Optimizing storage\" in the \"Scalability and performance\" section.\n\n|VNet | 1 | 1000 per region\n\n| Each default cluster requires one Virtual Network (VNet), which contains two subnets.\n\n|Network interfaces |7 |65,536 per region\n\n|Each default cluster requires seven network interfaces. If you create more machines or your deployed workloads create load balancers, your cluster uses more network interfaces.\n\n|Network security groups |2 |5000\n\n| Each cluster creates network security groups for each subnet in the VNet. The default cluster creates network security groups for the control plane and for the compute node subnets:\n\n`controlplane`\n:   Allows the control plane machines to be reached on port 6443 from anywhere\n\n`node`\n:   Allows worker nodes to be reached from the internet on ports 80 and 443\n\n|Network load balancers | 3 | 1000 per region\n\n|Each cluster creates the following [load balancers](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview):\n\n`default`\n:   Public IP address that load balances requests to ports 80 and 443 across worker machines\n\n`internal`\n:   Private IP address that load balances requests to ports 6443 and 22623 across control plane machines\n\n`external`\n:   Public IP address that load balances requests to port 6443 across control plane machines\n\nIf your applications create more Kubernetes `LoadBalancer` service objects, your cluster uses more load balancers.\n\n|Public IP addresses |3 | |Each of the two public load balancers uses a public IP address. The bootstrap machine also uses a public IP address so that you can SSH into the machine to troubleshoot issues during installation. The IP address for the bootstrap node is used only during installation.\n\n|Private IP addresses |7 |\n\n|The internal load balancer, each of the three control plane machines, and each of the three worker machines each use a private IP address.\n\n|Spot VM vCPUs (optional) |0\n\nIf you configure spot VMs, your cluster must have two spot VM vCPUs for every compute node. |20 per region |This is an optional component. To use spot VMs, you must increase the Azure default limit to at least twice the number of compute nodes in your cluster.\n\n> [!NOTE]\n> Using spot VMs for control plane nodes is not recommended.\n\n<table>\n</table>\n\n**Additional resources**\n\n- [Optimizing storage](/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage)\n- [Azure subscription and service limits, quotas, and constraints (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits)\n\n## Configuring a public DNS zone in Azure {#installation-azure-network-config_installing-azure-account}\n\nTo install OpenShift Container Platform, the Microsoft Azure account you use must have a dedicated public hosted DNS zone in your account that is authoritative for the domain. This zone provides cluster DNS resolution and name lookup for external connections to the cluster.\n\n**Procedure**\n\n1. Identify your domain, or subdomain, and registrar. You can transfer an existing domain and registrar or obtain a new one through Azure or another source.\n\n   - To purchase a new domain through Azure, see [Buy a custom domain name for Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/manage-custom-dns-buy-domain).\n   - If you are using an existing domain and registrar, migrate its DNS to Azure. For more information, see [Migrate an active DNS name to Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/manage-custom-dns-migrate-domain) in the Azure documentation.\n2. Configure DNS for your domain, which includes creating a public hosted zone for your domain or subdomain, extracting the new authoritative name servers, and updating the registrar records for the name servers that your domain uses. For more information, see [Tutorial: Host your domain in Azure DNS](https://docs.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns).\n\n   Use an appropriate root domain, such as `openshiftcorp.com`, or subdomain, such as `clusters.openshiftcorp.com`.\n3. If you use a subdomain, follow your organization’s procedures to add its delegation records to the parent domain.\n\n## Recording the subscription and tenant IDs {#installation-azure-subscription-tenant-id_installing-azure-account}\n\nTo record the subscription and tenant IDs that the installation program requires for your Azure account, you can use the Azure CLI.\n\n**Prerequisites**\n\n- You have installed or updated the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-yum?view=azure-cli-latest).\n\n**Procedure**\n\n1. Log in to the Azure CLI by running the following command:\n\n   ```terminal\n   $ az login\n   ```\n2. Ensure that you are using the right subscription:\n\n   1. View a list of available subscriptions by running the following command:\n\n      ```terminal\n      $ az account list --refresh\n      ```\n\n      ```terminal {title=\"Example output\"}\n      [\n        {\n          \"cloudName\": \"AzureCloud\",\n          \"id\": \"8xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n          \"isDefault\": true,\n          \"name\": \"Subscription Name 1\",\n          \"state\": \"Enabled\",\n          \"tenantId\": \"6xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n          \"user\": {\n            \"name\": \"you@example.com\",\n            \"type\": \"user\"\n          }\n        },\n        {\n          \"cloudName\": \"AzureCloud\",\n          \"id\": \"9xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n          \"isDefault\": false,\n          \"name\": \"Subscription Name 2\",\n          \"state\": \"Enabled\",\n          \"tenantId\": \"7xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n          \"user\": {\n            \"name\": \"you2@example.com\",\n            \"type\": \"user\"\n          }\n        }\n      ]\n      ```\n   2. View the details of the active account, and confirm that this is the subscription you want to use, by running the following command:\n\n      ```terminal\n      $ az account show\n      ```\n\n      ```terminal {title=\"Example output\"}\n      {\n        \"environmentName\": \"AzureCloud\",\n        \"id\": \"8xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n        \"isDefault\": true,\n        \"name\": \"Subscription Name 1\",\n        \"state\": \"Enabled\",\n        \"tenantId\": \"6xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n        \"user\": {\n          \"name\": \"you@example.com\",\n          \"type\": \"user\"\n        }\n      }\n      ```\n3. If you are not using the right subscription:\n\n   1. Change the active subscription by running the following command:\n\n      ```terminal\n      $ az account set -s <subscription_id>\n      ```\n   2. Verify that you are using the subscription you need by running the following command:\n\n      ```terminal\n      $ az account show\n      ```\n\n      ```terminal {title=\"Example output\"}\n      {\n        \"environmentName\": \"AzureCloud\",\n        \"id\": \"9xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n        \"isDefault\": true,\n        \"name\": \"Subscription Name 2\",\n        \"state\": \"Enabled\",\n        \"tenantId\": \"7xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n        \"user\": {\n          \"name\": \"you2@example.com\",\n          \"type\": \"user\"\n        }\n      }\n      ```\n4. Record the `id` and `tenantId` parameter values from the output. You require these values to install an OpenShift Container Platform cluster.\n\n## Supported identities to access Azure resources {#installation-azure-identities_installing-azure-account}\n\nAn OpenShift Container Platform cluster requires an Azure identity to create and manage Azure resources. You need a service principal, a system-assigned managed identity, or a user-assigned managed identity to complete the installation.\n\n- A service principal\n- A system-assigned managed identity\n- A user-assigned managed identity\n\nFor more information on Azure identities, see \"Managed identity types\".\n\n**Additional resources**\n\n- [Managed identity types (Azure documentation)](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview#managed-identity-types)\n\n### Required Azure roles {#installation-azure-permissions_installing-azure-account}\n\nBefore you create the identity for an OpenShift Container Platform cluster on Azure, verify that your environment meets the role and permission requirements for the identity type you plan to use.\n\nThe following requirements must be met:\n\n- The Azure account that you use to create the identity is assigned the `User Access Administrator` and `Contributor` roles. These roles are required when:\n\n  - Creating a service principal or user-assigned managed identity.\n  - Enabling a system-assigned managed identity on a virtual machine.\n- If you are going to use a service principal to complete the installation, verify that the Azure account that you use to create the identity is assigned the `microsoft.directory/servicePrincipals/createAsOwner` permission in Microsoft Entra ID.\n\n**Additional resources**\n\n- [Assign Azure roles using the Azure portal (Azure documentation)](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)\n\n#### Required Azure permissions for installer-provisioned infrastructure {#minimum-required-permissions-ipi-azure_installing-azure-account}\n\nThe installation program requires access to a Microsoft Azure service principal or managed identity with the necessary permissions to deploy the cluster and to maintain its daily operation. These permissions must be granted to the Azure subscription that is associated with the identity.\n\nThe following options are available to you:\n\n- You can assign the identity the `Contributor` and `User Access Administrator` roles, which grant all of the required permissions.\n\n  If you set `identity.type` to `None` in the `install-config.yaml` file, you do not need to assign the `User Access Administrator` role to the service principal.\n\n  For more information about assigning roles, see the Azure documentation for [managing access to Azure resources using the Azure portal](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal).\n- If the security policies of your organization require a more restrictive set of permissions, you can create a [custom role](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles) with the necessary permissions.\n\nThe following permissions are required for creating an OpenShift Container Platform cluster on Microsoft Azure.\n\nRequired permissions for creating authorization resources\n:   - `Microsoft.Authorization/policies/audit/action`\n    - `Microsoft.Authorization/policies/auditIfNotExists/action`\n    - `Microsoft.Authorization/roleAssignments/read`\n    - `Microsoft.Authorization/roleAssignments/write`\n\n> [!IMPORTANT]\n> The following permissions are not required if you set `identity.type` to `None` in the `install-config.yaml` file:\n>\n> - `Microsoft.Authorization/roleAssignments/read`\n> - `Microsoft.Authorization/roleAssignments/write`\n> - `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action`\n> - `Microsoft.ManagedIdentity/userAssignedIdentities/read`\n> - `Microsoft.ManagedIdentity/userAssignedIdentities/write`\n> - `Microsoft.Authorization/roleAssignments/delete`\n>\n> The following permissions are not required if you set `identity.type` to `UserAssigned` in the `install-config.yaml` file and provide a user-assigned identity:\n>\n> - `Microsoft.Authorization/roleAssignments/read`\n> - `Microsoft.Authorization/roleAssignments/write`\n> - `Microsoft.ManagedIdentity/userAssignedIdentities/write`\n> - `Microsoft.Authorization/roleAssignments/delete`\n\nRequired permissions for creating compute resources\n:   - `Microsoft.Compute/availabilitySets/read`\n    - `Microsoft.Compute/availabilitySets/write`\n    - `Microsoft.Compute/disks/beginGetAccess/action`\n    - `Microsoft.Compute/disks/delete`\n    - `Microsoft.Compute/disks/read`\n    - `Microsoft.Compute/disks/write`\n    - `Microsoft.Compute/galleries/images/read`\n    - `Microsoft.Compute/galleries/images/versions/read`\n    - `Microsoft.Compute/galleries/images/versions/write`\n    - `Microsoft.Compute/galleries/images/write`\n    - `Microsoft.Compute/galleries/read`\n    - `Microsoft.Compute/galleries/write`\n    - `Microsoft.Compute/snapshots/read`\n    - `Microsoft.Compute/snapshots/write`\n    - `Microsoft.Compute/snapshots/delete`\n    - `Microsoft.Compute/virtualMachines/delete`\n    - `Microsoft.Compute/virtualMachines/powerOff/action`\n    - `Microsoft.Compute/virtualMachines/read`\n    - `Microsoft.Compute/virtualMachines/write`\n\nRequired permissions for creating identity management resources\n:   - `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action`\n    - `Microsoft.ManagedIdentity/userAssignedIdentities/read`\n    - `Microsoft.ManagedIdentity/userAssignedIdentities/write`\n\nRequired permissions for creating network resources\n:   - `Microsoft.Network/dnsZones/A/write`\n    - `Microsoft.Network/dnsZones/CNAME/write`\n    - `Microsoft.Network/dnszones/CNAME/read`\n    - `Microsoft.Network/dnszones/read`\n    - `Microsoft.Network/loadBalancers/backendAddressPools/join/action`\n    - `Microsoft.Network/loadBalancers/backendAddressPools/read`\n    - `Microsoft.Network/loadBalancers/backendAddressPools/write`\n    - `Microsoft.Network/loadBalancers/read`\n    - `Microsoft.Network/loadBalancers/write`\n    - `Microsoft.Network/loadBalancers/inboundNatRules/read`\n    - `Microsoft.Network/loadBalancers/inboundNatRules/write`\n    - `Microsoft.Network/loadBalancers/inboundNatRules/join/action`\n    - `Microsoft.Network/loadBalancers/inboundNatRules/delete`\n    - `Microsoft.Network/routeTables/read`\n    - `Microsoft.Network/routeTables/write`\n    - `Microsoft.Network/routeTables/join/action`\n    - `Microsoft.Network/networkInterfaces/delete`\n    - `Microsoft.Network/networkInterfaces/join/action`\n    - `Microsoft.Network/networkInterfaces/read`\n    - `Microsoft.Network/networkInterfaces/write`\n    - `Microsoft.Network/networkSecurityGroups/join/action`\n    - `Microsoft.Network/networkSecurityGroups/read`\n    - `Microsoft.Network/networkSecurityGroups/securityRules/delete`\n    - `Microsoft.Network/networkSecurityGroups/securityRules/read`\n    - `Microsoft.Network/networkSecurityGroups/securityRules/write`\n    - `Microsoft.Network/networkSecurityGroups/write`\n    - `Microsoft.Network/privateDnsZones/A/read`\n    - `Microsoft.Network/privateDnsZones/A/write`\n    - `Microsoft.Network/privateDnsZones/A/delete`\n    - `Microsoft.Network/privateDnsZones/SOA/read`\n    - `Microsoft.Network/privateDnsZones/read`\n    - `Microsoft.Network/privateDnsZones/virtualNetworkLinks/read`\n    - `Microsoft.Network/privateDnsZones/virtualNetworkLinks/write`\n    - `Microsoft.Network/privateDnsZones/write`\n    - `Microsoft.Network/publicIPAddresses/delete`\n    - `Microsoft.Network/publicIPAddresses/join/action`\n    - `Microsoft.Network/publicIPAddresses/read`\n    - `Microsoft.Network/publicIPAddresses/write`\n    - `Microsoft.Network/virtualNetworks/checkIpAddressAvailability/read`\n    - `Microsoft.Network/virtualNetworks/join/action`\n    - `Microsoft.Network/virtualNetworks/read`\n    - `Microsoft.Network/virtualNetworks/subnets/join/action`\n    - `Microsoft.Network/virtualNetworks/subnets/read`\n    - `Microsoft.Network/virtualNetworks/subnets/write`\n    - `Microsoft.Network/virtualNetworks/write`\n\n> [!NOTE]\n> The following permissions are not required to create the private OpenShift Container Platform cluster on Azure.\n>\n> - `Microsoft.Network/dnsZones/A/write`\n> - `Microsoft.Network/dnsZones/CNAME/write`\n> - `Microsoft.Network/dnszones/CNAME/read`\n> - `Microsoft.Network/dnszones/read`\n\nRequired permissions for checking the health of resources\n:   - `Microsoft.Resourcehealth/healthevent/Activated/action`\n    - `Microsoft.Resourcehealth/healthevent/InProgress/action`\n    - `Microsoft.Resourcehealth/healthevent/Pending/action`\n    - `Microsoft.Resourcehealth/healthevent/Resolved/action`\n    - `Microsoft.Resourcehealth/healthevent/Updated/action`\n\nRequired permissions for creating a resource group\n:   - `Microsoft.Resources/subscriptions/resourceGroups/read`\n    - `Microsoft.Resources/subscriptions/resourcegroups/write`\n\nOptional permissions for attaching an existing user-assigned identity to a node\n:   - `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action`\n    - `Microsoft.ManagedIdentity/userAssignedIdentities/read`\n\nRequired permissions for creating resource tags\n:   - `Microsoft.Resources/tags/write`\n\nRequired permissions for creating storage resources\n:   - `Microsoft.Storage/storageAccounts/blobServices/read`\n    - `Microsoft.Storage/storageAccounts/blobServices/containers/write`\n    - `Microsoft.Storage/storageAccounts/fileServices/read`\n    - `Microsoft.Storage/storageAccounts/fileServices/shares/read`\n    - `Microsoft.Storage/storageAccounts/fileServices/shares/write`\n    - `Microsoft.Storage/storageAccounts/fileServices/shares/delete`\n    - `Microsoft.Storage/storageAccounts/listKeys/action`\n    - `Microsoft.Storage/storageAccounts/read`\n    - `Microsoft.Storage/storageAccounts/write`\n\nOptional permissions for creating a private storage endpoint for the image registry\n:   - `Microsoft.Network/privateEndpoints/write`\n    - `Microsoft.Network/privateEndpoints/read`\n    - `Microsoft.Network/privateEndpoints/privateDnsZoneGroups/write`\n    - `Microsoft.Network/privateEndpoints/privateDnsZoneGroups/read`\n    - `Microsoft.Network/privateDnsZones/join/action`\n    - `Microsoft.Storage/storageAccounts/PrivateEndpointConnectionsApproval/action`\n\nOptional permissions for creating marketplace virtual machine resources\n:   - `Microsoft.MarketplaceOrdering/offertypes/publishers/offers/plans/agreements/read`\n    - `Microsoft.MarketplaceOrdering/offertypes/publishers/offers/plans/agreements/write`\n\nOptional permissions for creating compute resources\n:   - `Microsoft.Compute/availabilitySets/delete`\n    - `Microsoft.Compute/images/read`\n    - `Microsoft.Compute/images/write`\n    - `Microsoft.Compute/images/delete`\n\nOptional permissions for enabling user-managed encryption\n:   - `Microsoft.Compute/diskEncryptionSets/read`\n    - `Microsoft.Compute/diskEncryptionSets/write`\n    - `Microsoft.Compute/diskEncryptionSets/delete`\n    - `Microsoft.KeyVault/vaults/read`\n    - `Microsoft.KeyVault/vaults/write`\n    - `Microsoft.KeyVault/vaults/delete`\n    - `Microsoft.KeyVault/vaults/deploy/action`\n    - `Microsoft.KeyVault/vaults/keys/read`\n    - `Microsoft.KeyVault/vaults/keys/write`\n    - `Microsoft.Features/providers/features/register/action`\n\nOptional permissions for installing a cluster using the `NatGateway` outbound type\n:   - `Microsoft.Network/natGateways/read`\n    - `Microsoft.Network/natGateways/write`\n\nOptional permissions for installing a private cluster with Azure Network Address Translation (NAT)\n:   - `Microsoft.Network/natGateways/join/action`\n    - `Microsoft.Network/natGateways/read`\n    - `Microsoft.Network/natGateways/write`\n\nOptional permissions for installing a private cluster with Azure firewall\n:   - `Microsoft.Network/azureFirewalls/applicationRuleCollections/write`\n    - `Microsoft.Network/azureFirewalls/read`\n    - `Microsoft.Network/azureFirewalls/write`\n    - `Microsoft.Network/routeTables/join/action`\n    - `Microsoft.Network/routeTables/read`\n    - `Microsoft.Network/routeTables/routes/read`\n    - `Microsoft.Network/routeTables/routes/write`\n    - `Microsoft.Network/routeTables/write`\n    - `Microsoft.Network/virtualNetworks/peer/action`\n    - `Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read`\n    - `Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write`\n\nOptional permission for running gather bootstrap\n:   - `Microsoft.Compute/virtualMachines/retrieveBootDiagnosticsData/action`\n\nThe following permissions are required for deleting an OpenShift Container Platform cluster on Microsoft Azure. You can use the same permissions to delete a private OpenShift Container Platform cluster on Azure.\n\nRequired permissions for deleting authorization resources\n:   - `Microsoft.Authorization/roleAssignments/delete`\n\nRequired permissions for deleting compute resources\n:   - `Microsoft.Compute/disks/delete`\n    - `Microsoft.Compute/galleries/delete`\n    - `Microsoft.Compute/galleries/images/delete`\n    - `Microsoft.Compute/galleries/images/versions/delete`\n    - `Microsoft.Compute/virtualMachines/delete`\n\nRequired permissions for deleting identity management resources\n:   - `Microsoft.ManagedIdentity/userAssignedIdentities/delete`\n\nRequired permissions for deleting network resources\n:   - `Microsoft.Network/dnszones/read`\n    - `Microsoft.Network/dnsZones/A/read`\n    - `Microsoft.Network/dnsZones/A/delete`\n    - `Microsoft.Network/dnsZones/CNAME/read`\n    - `Microsoft.Network/dnsZones/CNAME/delete`\n    - `Microsoft.Network/loadBalancers/delete`\n    - `Microsoft.Network/networkInterfaces/delete`\n    - `Microsoft.Network/networkSecurityGroups/delete`\n    - `Microsoft.Network/privateDnsZones/read`\n    - `Microsoft.Network/privateDnsZones/A/read`\n    - `Microsoft.Network/privateDnsZones/delete`\n    - `Microsoft.Network/privateDnsZones/virtualNetworkLinks/delete`\n    - `Microsoft.Network/publicIPAddresses/delete`\n    - `Microsoft.Network/virtualNetworks/delete`\n\n> [!NOTE]\n> The following permissions are not required to delete a private OpenShift Container Platform cluster on Azure.\n>\n> - `Microsoft.Network/dnszones/read`\n> - `Microsoft.Network/dnsZones/A/read`\n> - `Microsoft.Network/dnsZones/A/delete`\n> - `Microsoft.Network/dnsZones/CNAME/read`\n> - `Microsoft.Network/dnsZones/CNAME/delete`\n\nRequired permissions for checking the health of resources\n:   - `Microsoft.Resourcehealth/healthevent/Activated/action`\n    - `Microsoft.Resourcehealth/healthevent/Resolved/action`\n    - `Microsoft.Resourcehealth/healthevent/Updated/action`\n\nRequired permissions for deleting a resource group\n:   - `Microsoft.Resources/subscriptions/resourcegroups/delete`\n\nRequired permissions for deleting storage resources\n:   - `Microsoft.Storage/storageAccounts/delete`\n    - `Microsoft.Storage/storageAccounts/listKeys/action`\n\n> [!NOTE]\n> To install OpenShift Container Platform on Azure, you must scope the permissions to your subscription. You can re-scope these permissions to the resource group created by installation program. If the public DNS zone is present in a different resource group, then the network DNS zone related permissions must always be applied to your subscription. By default, the OpenShift Container Platform installation program assigns the Azure identity the `Contributor` role.\n>\n> You can scope all the permissions to your subscription when deleting an OpenShift Container Platform cluster.\n\n**Additional resources**\n\n- [Managing access to Azure resources using the Azure portal (Azure documentation)](https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal)\n- [Custom roles (Azure documentation)](https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles)\n\n### Using Azure managed identities {#installation-using-azure-managed-identities_installing-azure-account}\n\nTo provide the identity that the installation program requires on Azure, you can use a system-assigned or user-assigned managed identity.\n\nIf you are unable to use a managed identity, you can use a service principal.\n\n**Procedure**\n\n1. If you are using a system-assigned managed identity, enable it on the virtual machine that you will run the installation program from.\n2. If you are using a user-assigned managed identity:\n\n   1. Assign it to the virtual machine that you will run the installation program from.\n   2. Record its client ID. You require this value when installing the cluster.\n3. Verify that the required permissions are assigned to the managed identity.\n\n**Additional resources**\n\n- [List user-assigned managed identities (Azure documentation)](https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#list-user-assigned-managed-identities)\n\n### Creating a service principal {#installation-creating-azure-service-principal_installing-azure-account}\n\nTo provide the identity that the installation program requires on Azure, you can create a service principal.\n\nIf you are unable to use a service principal, you can use a managed identity.\n\n**Prerequisites**\n\n- You have installed or updated the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-yum?view=azure-cli-latest).\n- You have an Azure subscription ID.\n- If you are not assigning the `Contributor` and `User Administrator Access` roles to the service principal, you have created a custom role with the required Azure permissions.\n\n**Procedure**\n\n1. Create the service principal for your account by running the following command:\n\n   ```terminal\n   $ az ad sp create-for-rbac --role <role_name> \\\n        --name <service_principal> \\\n        --scopes /subscriptions/<subscription_id>\n   ```\n\n   where:\n\n   `<role_name>`\n   :   Specifies the role name. You can use the `Contributor` role, or you can specify a custom role which contains the necessary permissions.\n\n   `<service_principal>`\n   :   Specifies the service principal name.\n\n   `<subscription_id>`\n   :   Specifies the subscription ID.\n\n   ```terminal {title=\"Example output\"}\n   Creating 'Contributor' role assignment under scope '/subscriptions/<subscription_id>'\n   The output includes credentials that you must protect. Be sure that you do not\n   include these credentials in your code or check the credentials into your source\n   control. For more information, see https://aka.ms/azadsp-cli\n   {\n     \"appId\": \"axxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n     \"displayName\": <service_principal>\",\n     \"password\": \"00000000-0000-0000-0000-000000000000\",\n     \"tenantId\": \"8xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"\n   }\n   ```\n\nRecord the values of the `appId` and `password` parameters from the output. You require these values when installing the cluster.\n\n1. If you assigned the `Contributor` role to your service principal, assign the `User Administrator Access` role by running the following command:\n\n   ```terminal\n   $ az role assignment create --role \"User Access Administrator\" \\\n     --assignee-object-id $(az ad sp show --id <appId> --query id -o tsv) \\\n     --scope /subscriptions/<subscription_id>\n   ```\n\n   where:\n\n   `<appId>`\n   :   Specifies the `appId` parameter value for your service principal.\n\n   `<subscription_id>`\n   :   Specifies the subscription ID.\n\n**Additional resources**\n\n- [About the Cloud Credential Operator](/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes)\n\n## Supported Azure Marketplace regions {#installation-azure-marketplace_installing-azure-account}\n\nInstalling a cluster by using the Azure Marketplace image is available to customers who purchase the offer in North America and EMEA.\n\nWhile the offer must be purchased in North America or EMEA, you can deploy the cluster to any of the Azure public partitions that OpenShift Container Platform supports.\n\n> [!NOTE]\n> Deploying a cluster using the Azure Marketplace image is not supported for the Azure Government regions.\n\n## Supported Azure regions {#installation-azure-regions_installing-azure-account}\n\nBased on your subscription, the installation program dynamically generates the list of available Microsoft Azure public regions.\n\n### Supported Azure public regions {#_supported_azure_short_public_regions}\n\n- `australiacentral` (Australia Central)\n- `australiaeast` (Australia East)\n- `australiasoutheast` (Australia South East)\n- `austriaeast` (Austria East)\n- `belgiumcentral` (Belgium Central)\n- `brazilsouth` (Brazil South)\n- `canadacentral` (Canada Central)\n- `canadaeast` (Canada East)\n- `centralindia` (Central India)\n- `centralus` (Central US)\n- `chilecentral` (Chile Central)\n- `eastasia` (East Asia)\n- `eastus` (East US)\n- `eastus2` (East US 2)\n- `francecentral` (France Central)\n- `germanywestcentral` (Germany West Central)\n- `indonesiacentral` (Indonesia Central)\n- `israelcentral` (Israel Central)\n- `italynorth` (Italy North)\n- `japaneast` (Japan East)\n- `japanwest` (Japan West)\n- `koreacentral` (Korea Central)\n- `koreasouth` (Korea South)\n- `malaysiawest` (Malaysia West)\n- `mexicocentral` (Mexico Central)\n- `newzealandnorth` (New Zealand North)\n- `northcentralus` (North Central US)\n- `northeurope` (North Europe)\n- `norwayeast` (Norway East)\n- `polandcentral` (Poland Central)\n- `qatarcentral` (Qatar Central)\n- `southafricanorth` (South Africa North)\n- `southcentralus` (South Central US)\n- `southeastasia` (Southeast Asia)\n- `southindia` (South India)\n- `spaincentral` (Spain Central)\n- `swedencentral` (Sweden Central)\n- `switzerlandnorth` (Switzerland North)\n- `uaenorth` (UAE North)\n- `uksouth` (UK South)\n- `ukwest` (UK West)\n- `westcentralus` (West Central US)\n- `westeurope` (West Europe)\n- `westindia` (West India)\n- `westus` (West US)\n- `westus2` (West US 2)\n- `westus3` (West US 3)\n\n### Supported Azure Government regions {#_supported_azure_short_government_regions}\n\nSupport for the following Microsoft Azure Government (MAG) regions was added in OpenShift Container Platform version 4.6:\n\n- `usgovtexas` (US Gov Texas)\n- `usgovvirginia` (US Gov Virginia)\n\nYou can reference all available MAG regions in the [Azure documentation](https://azure.microsoft.com/en-us/global-infrastructure/geographies/#geographies). Other provided MAG regions are expected to work with OpenShift Container Platform, but have not been tested.\n\n## Additional resources {#additional-resources_installing-azure-account}\n\n- [Resolve errors for reserved resource names (Azure documentation)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name)\n- [Install a customized cluster on Azure](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations)\n- [Quickly install a cluster on Azure with default options](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-default#installing-azure-default)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_azure/installing-azure-account.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,40 +94,635 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="installing-azure-account" class="group scroll-mt-20">Configuring an {"{"}{"{"} azure_short {"}"}{"}"} account<a href="#installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Before you can install OpenShift Container Platform on {"{"}{"{"} azure_first {"}"}{"}"}, you must configure an {"{"}{"{"} azure_short {"}"}{"}"} account with the correct identity and permissions before you start the installation.</p>
+      <h1 id="installing-azure-account" class="group scroll-mt-20">Configuring an Azure account<a href="#installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Before you can install OpenShift Container Platform on Microsoft Azure, you must configure an Azure account with the correct identity and permissions before you start the installation.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
-          <p>All {"{"}{"{"} azure_short {"}"}{"}"} resources that are available through public endpoints are subject to resource name restrictions. For a list of terms that {"{"}{"{"} azure_short {"}"}{"}"} restricts for resource names, see "Resolve errors for reserved resource names".</p>
+          <p>All Azure resources that are available through public endpoints are subject to resource name restrictions. For a list of terms that Azure restricts for resource names, see "Resolve errors for reserved resource names".</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/installation-azure-limits.md"></p>
+      <h2 id="installation-azure-limits_installing-azure-account" class="group scroll-mt-20">Azure account limits<a href="#installation-azure-limits_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The OpenShift Container Platform cluster uses a number of Microsoft Azure components. Default subscription and service limits, quotas, and constraints can affect your ability to install OpenShift Container Platform clusters.</p>
+      <p>For more information on Azure subscription and service limits, see "Azure subscription and service limits, quotas, and constraints".</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Default limits vary by offer category types, such as Free Trial and Pay-As-You-Go, and by series, such as Dv2, F, and G. For example, the default for Enterprise Agreement subscriptions is 350 cores.</p>
+          <p>Check the limits for your subscription type and if necessary, increase quota limits for your account before you install a default cluster on Azure.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following table summarizes the Azure components whose limits can impact your ability to install and run OpenShift Container Platform clusters.</p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Component</th>\n  <th>Number of components required by default</th>\n  <th>Default Azure limit</th>\n  <th>Description</th>\n</tr>\n</thead>\n</table>\n"} />
+      <p>|Component |Number of components required by default |Description</p>
+      <p>|vCPU</p>
+      <p>|44</p>
+      <p>|20 per region |A default cluster requires 44 vCPUs, so you must increase the account limit.</p>
+      <p>By default, each cluster creates the following instances:</p>
+      <ul>
+      <li>One bootstrap machine, which is removed after installation</li>
+      <li>Three control plane machines</li>
+      <li>Three compute machines</li>
+      </ul>
+      <p>Because the bootstrap and control plane machines use <code>Standard_D8s_v3</code> virtual machines, which use 8 vCPUs, and the compute machines use <code>Standard_D4s_v3</code> virtual machines, which use 4 vCPUs, a default cluster requires 44 vCPUs. The bootstrap node VM, which uses 8 vCPUs, is used only during installation.</p>
+      <p>To deploy more worker nodes, enable autoscaling, deploy large workloads, or use a different instance type, you must further increase the vCPU limit for your account to ensure that your cluster can deploy the machines that you require.</p>
+      <p>|OS Disk |7 | |Each cluster machine must have a minimum of 100 GB of storage and 300 IOPS.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Faster storage is recommended for production clusters and clusters with intensive workloads. For more information about optimizing storage for performance, see the page titled "Optimizing storage" in the "Scalability and performance" section.</p>
+        </AlertDescription>
+      </Alert>
+      <p>|VNet | 1 | 1000 per region</p>
+      <p>| Each default cluster requires one Virtual Network (VNet), which contains two subnets.</p>
+      <p>|Network interfaces |7 |65,536 per region</p>
+      <p>|Each default cluster requires seven network interfaces. If you create more machines or your deployed workloads create load balancers, your cluster uses more network interfaces.</p>
+      <p>|Network security groups |2 |5000</p>
+      <p>| Each cluster creates network security groups for each subnet in the VNet. The default cluster creates network security groups for the control plane and for the compute node subnets:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>controlplane</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Allows the control plane machines to be reached on port 6443 from anywhere</p></dd>
+      <dt class="font-semibold"><code>node</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Allows worker nodes to be reached from the internet on ports 80 and 443</p></dd>
+      </dl>
+      <p>|Network load balancers | 3 | 1000 per region</p>
+      <p>|Each cluster creates the following <a href="https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview">load balancers</a>:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>default</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Public IP address that load balances requests to ports 80 and 443 across worker machines</p></dd>
+      <dt class="font-semibold"><code>internal</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Private IP address that load balances requests to ports 6443 and 22623 across control plane machines</p></dd>
+      <dt class="font-semibold"><code>external</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Public IP address that load balances requests to port 6443 across control plane machines</p></dd>
+      </dl>
+      <p>If your applications create more Kubernetes <code>LoadBalancer</code> service objects, your cluster uses more load balancers.</p>
+      <p>|Public IP addresses |3 | |Each of the two public load balancers uses a public IP address. The bootstrap machine also uses a public IP address so that you can SSH into the machine to troubleshoot issues during installation. The IP address for the bootstrap node is used only during installation.</p>
+      <p>|Private IP addresses |7 |</p>
+      <p>|The internal load balancer, each of the three control plane machines, and each of the three worker machines each use a private IP address.</p>
+      <p>|Spot VM vCPUs (optional) |0</p>
+      <p>If you configure spot VMs, your cluster must have two spot VM vCPUs for every compute node. |20 per region |This is an optional component. To use spot VMs, you must increase the Azure default limit to at least twice the number of compute nodes in your cluster.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Using spot VMs for control plane nodes is not recommended.</p>
+        </AlertDescription>
+      </Alert>
+      <Fragment set:html={"<table>\n</table>\n"} />
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-storage#optimizing-storage">Optimizing storage</a></li>
-      <li><a href="https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits">Azure subscription and service limits, quotas, and constraints ({"{"}{"{"} azure_short {"}"}{"}"} documentation)</a></li>
+      <li><a href="https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits">Azure subscription and service limits, quotas, and constraints (Azure documentation)</a></li>
       </ul>
-      <p class="/modules/installation-azure-subscription-tenant-id.md"></p>
-      <p class="/modules/installation-azure-identities.md"></p>
+      <h2 id="installation-azure-network-config_installing-azure-account" class="group scroll-mt-20">Configuring a public DNS zone in Azure<a href="#installation-azure-network-config_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To install OpenShift Container Platform, the Microsoft Azure account you use must have a dedicated public hosted DNS zone in your account that is authoritative for the domain. This zone provides cluster DNS resolution and name lookup for external connections to the cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Identify your domain, or subdomain, and registrar. You can transfer an existing domain and registrar or obtain a new one through Azure or another source.
+      <ul>
+      <li>To purchase a new domain through Azure, see <a href="https://docs.microsoft.com/en-us/azure/app-service/manage-custom-dns-buy-domain">Buy a custom domain name for Azure App Service</a>.</li>
+      <li>If you are using an existing domain and registrar, migrate its DNS to Azure. For more information, see <a href="https://docs.microsoft.com/en-us/azure/app-service/manage-custom-dns-migrate-domain">Migrate an active DNS name to Azure App Service</a> in the Azure documentation.</li>
+      </ul>
+      </li>
+      <li>
+      Configure DNS for your domain, which includes creating a public hosted zone for your domain or subdomain, extracting the new authoritative name servers, and updating the registrar records for the name servers that your domain uses. For more information, see <a href="https://docs.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns">Tutorial: Host your domain in Azure DNS</a>.
+      <p>Use an appropriate root domain, such as <code>openshiftcorp.com</code>, or subdomain, such as <code>clusters.openshiftcorp.com</code>.</p>
+      </li>
+      <li>If you use a subdomain, follow your organization’s procedures to add its delegation records to the parent domain.</li>
+      </ol>
+      <h2 id="installation-azure-subscription-tenant-id_installing-azure-account" class="group scroll-mt-20">Recording the subscription and tenant IDs<a href="#installation-azure-subscription-tenant-id_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To record the subscription and tenant IDs that the installation program requires for your Azure account, you can use the Azure CLI.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed or updated the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-yum?view=azure-cli-latest">Azure CLI</a>.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Log in to the Azure CLI by running the following command:
+      <CodeBlock code={"$ az login"} lang="terminal" />
+      </li>
+      <li>
+      Ensure that you are using the right subscription:
+      <ol>
+      <li>
+      View a list of available subscriptions by running the following command:
+      <CodeBlock code={"$ az account list --refresh"} lang="terminal" />
+      <CodeBlock code={"[\n  {\n    \"cloudName\": \"AzureCloud\",\n    \"id\": \"8xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n    \"isDefault\": true,\n    \"name\": \"Subscription Name 1\",\n    \"state\": \"Enabled\",\n    \"tenantId\": \"6xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n    \"user\": {\n      \"name\": \"you@example.com\",\n      \"type\": \"user\"\n    }\n  },\n  {\n    \"cloudName\": \"AzureCloud\",\n    \"id\": \"9xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n    \"isDefault\": false,\n    \"name\": \"Subscription Name 2\",\n    \"state\": \"Enabled\",\n    \"tenantId\": \"7xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n    \"user\": {\n      \"name\": \"you2@example.com\",\n      \"type\": \"user\"\n    }\n  }\n]"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View the details of the active account, and confirm that this is the subscription you want to use, by running the following command:
+      <CodeBlock code={"$ az account show"} lang="terminal" />
+      <CodeBlock code={"{\n  \"environmentName\": \"AzureCloud\",\n  \"id\": \"8xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n  \"isDefault\": true,\n  \"name\": \"Subscription Name 1\",\n  \"state\": \"Enabled\",\n  \"tenantId\": \"6xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n  \"user\": {\n    \"name\": \"you@example.com\",\n    \"type\": \"user\"\n  }\n}"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      If you are not using the right subscription:
+      <ol>
+      <li>
+      Change the active subscription by running the following command:
+      <CodeBlock code={"$ az account set -s <subscription_id>"} lang="terminal" />
+      </li>
+      <li>
+      Verify that you are using the subscription you need by running the following command:
+      <CodeBlock code={"$ az account show"} lang="terminal" />
+      <CodeBlock code={"{\n  \"environmentName\": \"AzureCloud\",\n  \"id\": \"9xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n  \"isDefault\": true,\n  \"name\": \"Subscription Name 2\",\n  \"state\": \"Enabled\",\n  \"tenantId\": \"7xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n  \"user\": {\n    \"name\": \"you2@example.com\",\n    \"type\": \"user\"\n  }\n}"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      <li>Record the <code>id</code> and <code>tenantId</code> parameter values from the output. You require these values to install an OpenShift Container Platform cluster.</li>
+      </ol>
+      <h2 id="installation-azure-identities_installing-azure-account" class="group scroll-mt-20">Supported identities to access Azure resources<a href="#installation-azure-identities_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">An OpenShift Container Platform cluster requires an Azure identity to create and manage Azure resources. You need a service principal, a system-assigned managed identity, or a user-assigned managed identity to complete the installation.</p>
+      <ul>
+      <li>A service principal</li>
+      <li>A system-assigned managed identity</li>
+      <li>A user-assigned managed identity</li>
+      </ul>
+      <p>For more information on Azure identities, see "Managed identity types".</p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview#managed-identity-types">Managed identity types ({"{"}{"{"} azure_short {"}"}{"}"} documentation)</a></li></ul>
+      <ul><li><a href="https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview#managed-identity-types">Managed identity types (Azure documentation)</a></li></ul>
+      <h3 id="installation-azure-permissions_installing-azure-account" class="group scroll-mt-20">Required Azure roles<a href="#installation-azure-permissions_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Before you create the identity for an OpenShift Container Platform cluster on Azure, verify that your environment meets the role and permission requirements for the identity type you plan to use.</p>
+      <p>The following requirements must be met:</p>
+      <ul>
+      <li>
+      The Azure account that you use to create the identity is assigned the <code>User Access Administrator</code> and <code>Contributor</code> roles. These roles are required when:
+      <ul>
+      <li>Creating a service principal or user-assigned managed identity.</li>
+      <li>Enabling a system-assigned managed identity on a virtual machine.</li>
+      </ul>
+      </li>
+      <li>If you are going to use a service principal to complete the installation, verify that the Azure account that you use to create the identity is assigned the <code>microsoft.directory/servicePrincipals/createAsOwner</code> permission in Microsoft Entra ID.</li>
+      </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal">Assign {"{"}{"{"} azure_short {"}"}{"}"} roles using the {"{"}{"{"} azure_short {"}"}{"}"} portal ({"{"}{"{"} azure_short {"}"}{"}"} documentation)</a></li></ul>
+      <ul><li><a href="https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal">Assign Azure roles using the Azure portal (Azure documentation)</a></li></ul>
+      <h4 id="minimum-required-permissions-ipi-azure_installing-azure-account" class="group scroll-mt-20">Required Azure permissions for installer-provisioned infrastructure<a href="#minimum-required-permissions-ipi-azure_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p class="_abstract">The installation program requires access to a Microsoft Azure service principal or managed identity with the necessary permissions to deploy the cluster and to maintain its daily operation. These permissions must be granted to the Azure subscription that is associated with the identity.</p>
+      <p>The following options are available to you:</p>
+      <ul>
+      <li>
+      You can assign the identity the <code>Contributor</code> and <code>User Access Administrator</code> roles, which grant all of the required permissions.
+      <p>If you set <code>identity.type</code> to <code>None</code> in the <code>install-config.yaml</code> file, you do not need to assign the <code>User Access Administrator</code> role to the service principal.</p>
+      <p>For more information about assigning roles, see the Azure documentation for <a href="https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal">managing access to Azure resources using the Azure portal</a>.</p>
+      </li>
+      <li>If the security policies of your organization require a more restrictive set of permissions, you can create a <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles">custom role</a> with the necessary permissions.</li>
+      </ul>
+      <p>The following permissions are required for creating an OpenShift Container Platform cluster on Microsoft Azure.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Required permissions for creating authorization resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Authorization/policies/audit/action</code></li>
+      <li><code>Microsoft.Authorization/policies/auditIfNotExists/action</code></li>
+      <li><code>Microsoft.Authorization/roleAssignments/read</code></li>
+      <li><code>Microsoft.Authorization/roleAssignments/write</code></li>
+      </ul>
+      </dd>
+      </dl>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The following permissions are not required if you set <code>identity.type</code> to <code>None</code> in the <code>install-config.yaml</code> file:</p>
+          <ul>
+          <li><code>Microsoft.Authorization/roleAssignments/read</code></li>
+          <li><code>Microsoft.Authorization/roleAssignments/write</code></li>
+          <li><code>Microsoft.ManagedIdentity/userAssignedIdentities/assign/action</code></li>
+          <li><code>Microsoft.ManagedIdentity/userAssignedIdentities/read</code></li>
+          <li><code>Microsoft.ManagedIdentity/userAssignedIdentities/write</code></li>
+          <li><code>Microsoft.Authorization/roleAssignments/delete</code></li>
+          </ul>
+          <p>The following permissions are not required if you set <code>identity.type</code> to <code>UserAssigned</code> in the <code>install-config.yaml</code> file and provide a user-assigned identity:</p>
+          <ul>
+          <li><code>Microsoft.Authorization/roleAssignments/read</code></li>
+          <li><code>Microsoft.Authorization/roleAssignments/write</code></li>
+          <li><code>Microsoft.ManagedIdentity/userAssignedIdentities/write</code></li>
+          <li><code>Microsoft.Authorization/roleAssignments/delete</code></li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Required permissions for creating compute resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Compute/availabilitySets/read</code></li>
+      <li><code>Microsoft.Compute/availabilitySets/write</code></li>
+      <li><code>Microsoft.Compute/disks/beginGetAccess/action</code></li>
+      <li><code>Microsoft.Compute/disks/delete</code></li>
+      <li><code>Microsoft.Compute/disks/read</code></li>
+      <li><code>Microsoft.Compute/disks/write</code></li>
+      <li><code>Microsoft.Compute/galleries/images/read</code></li>
+      <li><code>Microsoft.Compute/galleries/images/versions/read</code></li>
+      <li><code>Microsoft.Compute/galleries/images/versions/write</code></li>
+      <li><code>Microsoft.Compute/galleries/images/write</code></li>
+      <li><code>Microsoft.Compute/galleries/read</code></li>
+      <li><code>Microsoft.Compute/galleries/write</code></li>
+      <li><code>Microsoft.Compute/snapshots/read</code></li>
+      <li><code>Microsoft.Compute/snapshots/write</code></li>
+      <li><code>Microsoft.Compute/snapshots/delete</code></li>
+      <li><code>Microsoft.Compute/virtualMachines/delete</code></li>
+      <li><code>Microsoft.Compute/virtualMachines/powerOff/action</code></li>
+      <li><code>Microsoft.Compute/virtualMachines/read</code></li>
+      <li><code>Microsoft.Compute/virtualMachines/write</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Required permissions for creating identity management resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.ManagedIdentity/userAssignedIdentities/assign/action</code></li>
+      <li><code>Microsoft.ManagedIdentity/userAssignedIdentities/read</code></li>
+      <li><code>Microsoft.ManagedIdentity/userAssignedIdentities/write</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Required permissions for creating network resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Network/dnsZones/A/write</code></li>
+      <li><code>Microsoft.Network/dnsZones/CNAME/write</code></li>
+      <li><code>Microsoft.Network/dnszones/CNAME/read</code></li>
+      <li><code>Microsoft.Network/dnszones/read</code></li>
+      <li><code>Microsoft.Network/loadBalancers/backendAddressPools/join/action</code></li>
+      <li><code>Microsoft.Network/loadBalancers/backendAddressPools/read</code></li>
+      <li><code>Microsoft.Network/loadBalancers/backendAddressPools/write</code></li>
+      <li><code>Microsoft.Network/loadBalancers/read</code></li>
+      <li><code>Microsoft.Network/loadBalancers/write</code></li>
+      <li><code>Microsoft.Network/loadBalancers/inboundNatRules/read</code></li>
+      <li><code>Microsoft.Network/loadBalancers/inboundNatRules/write</code></li>
+      <li><code>Microsoft.Network/loadBalancers/inboundNatRules/join/action</code></li>
+      <li><code>Microsoft.Network/loadBalancers/inboundNatRules/delete</code></li>
+      <li><code>Microsoft.Network/routeTables/read</code></li>
+      <li><code>Microsoft.Network/routeTables/write</code></li>
+      <li><code>Microsoft.Network/routeTables/join/action</code></li>
+      <li><code>Microsoft.Network/networkInterfaces/delete</code></li>
+      <li><code>Microsoft.Network/networkInterfaces/join/action</code></li>
+      <li><code>Microsoft.Network/networkInterfaces/read</code></li>
+      <li><code>Microsoft.Network/networkInterfaces/write</code></li>
+      <li><code>Microsoft.Network/networkSecurityGroups/join/action</code></li>
+      <li><code>Microsoft.Network/networkSecurityGroups/read</code></li>
+      <li><code>Microsoft.Network/networkSecurityGroups/securityRules/delete</code></li>
+      <li><code>Microsoft.Network/networkSecurityGroups/securityRules/read</code></li>
+      <li><code>Microsoft.Network/networkSecurityGroups/securityRules/write</code></li>
+      <li><code>Microsoft.Network/networkSecurityGroups/write</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/A/read</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/A/write</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/A/delete</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/SOA/read</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/read</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/virtualNetworkLinks/read</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/virtualNetworkLinks/write</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/write</code></li>
+      <li><code>Microsoft.Network/publicIPAddresses/delete</code></li>
+      <li><code>Microsoft.Network/publicIPAddresses/join/action</code></li>
+      <li><code>Microsoft.Network/publicIPAddresses/read</code></li>
+      <li><code>Microsoft.Network/publicIPAddresses/write</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/checkIpAddressAvailability/read</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/join/action</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/read</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/subnets/join/action</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/subnets/read</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/subnets/write</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/write</code></li>
+      </ul>
+      </dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The following permissions are not required to create the private OpenShift Container Platform cluster on Azure.</p>
+          <ul>
+          <li><code>Microsoft.Network/dnsZones/A/write</code></li>
+          <li><code>Microsoft.Network/dnsZones/CNAME/write</code></li>
+          <li><code>Microsoft.Network/dnszones/CNAME/read</code></li>
+          <li><code>Microsoft.Network/dnszones/read</code></li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Required permissions for checking the health of resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Resourcehealth/healthevent/Activated/action</code></li>
+      <li><code>Microsoft.Resourcehealth/healthevent/InProgress/action</code></li>
+      <li><code>Microsoft.Resourcehealth/healthevent/Pending/action</code></li>
+      <li><code>Microsoft.Resourcehealth/healthevent/Resolved/action</code></li>
+      <li><code>Microsoft.Resourcehealth/healthevent/Updated/action</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Required permissions for creating a resource group</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Resources/subscriptions/resourceGroups/read</code></li>
+      <li><code>Microsoft.Resources/subscriptions/resourcegroups/write</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Optional permissions for attaching an existing user-assigned identity to a node</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.ManagedIdentity/userAssignedIdentities/assign/action</code></li>
+      <li><code>Microsoft.ManagedIdentity/userAssignedIdentities/read</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Required permissions for creating resource tags</dt>
+      <dd class="ml-6 text-muted-foreground"><ul><li><code>Microsoft.Resources/tags/write</code></li></ul></dd>
+      <dt class="font-semibold">Required permissions for creating storage resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Storage/storageAccounts/blobServices/read</code></li>
+      <li><code>Microsoft.Storage/storageAccounts/blobServices/containers/write</code></li>
+      <li><code>Microsoft.Storage/storageAccounts/fileServices/read</code></li>
+      <li><code>Microsoft.Storage/storageAccounts/fileServices/shares/read</code></li>
+      <li><code>Microsoft.Storage/storageAccounts/fileServices/shares/write</code></li>
+      <li><code>Microsoft.Storage/storageAccounts/fileServices/shares/delete</code></li>
+      <li><code>Microsoft.Storage/storageAccounts/listKeys/action</code></li>
+      <li><code>Microsoft.Storage/storageAccounts/read</code></li>
+      <li><code>Microsoft.Storage/storageAccounts/write</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Optional permissions for creating a private storage endpoint for the image registry</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Network/privateEndpoints/write</code></li>
+      <li><code>Microsoft.Network/privateEndpoints/read</code></li>
+      <li><code>Microsoft.Network/privateEndpoints/privateDnsZoneGroups/write</code></li>
+      <li><code>Microsoft.Network/privateEndpoints/privateDnsZoneGroups/read</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/join/action</code></li>
+      <li><code>Microsoft.Storage/storageAccounts/PrivateEndpointConnectionsApproval/action</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Optional permissions for creating marketplace virtual machine resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.MarketplaceOrdering/offertypes/publishers/offers/plans/agreements/read</code></li>
+      <li><code>Microsoft.MarketplaceOrdering/offertypes/publishers/offers/plans/agreements/write</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Optional permissions for creating compute resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Compute/availabilitySets/delete</code></li>
+      <li><code>Microsoft.Compute/images/read</code></li>
+      <li><code>Microsoft.Compute/images/write</code></li>
+      <li><code>Microsoft.Compute/images/delete</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Optional permissions for enabling user-managed encryption</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Compute/diskEncryptionSets/read</code></li>
+      <li><code>Microsoft.Compute/diskEncryptionSets/write</code></li>
+      <li><code>Microsoft.Compute/diskEncryptionSets/delete</code></li>
+      <li><code>Microsoft.KeyVault/vaults/read</code></li>
+      <li><code>Microsoft.KeyVault/vaults/write</code></li>
+      <li><code>Microsoft.KeyVault/vaults/delete</code></li>
+      <li><code>Microsoft.KeyVault/vaults/deploy/action</code></li>
+      <li><code>Microsoft.KeyVault/vaults/keys/read</code></li>
+      <li><code>Microsoft.KeyVault/vaults/keys/write</code></li>
+      <li><code>Microsoft.Features/providers/features/register/action</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Optional permissions for installing a cluster using the <code>NatGateway</code> outbound type</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Network/natGateways/read</code></li>
+      <li><code>Microsoft.Network/natGateways/write</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Optional permissions for installing a private cluster with Azure Network Address Translation (NAT)</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Network/natGateways/join/action</code></li>
+      <li><code>Microsoft.Network/natGateways/read</code></li>
+      <li><code>Microsoft.Network/natGateways/write</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Optional permissions for installing a private cluster with Azure firewall</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Network/azureFirewalls/applicationRuleCollections/write</code></li>
+      <li><code>Microsoft.Network/azureFirewalls/read</code></li>
+      <li><code>Microsoft.Network/azureFirewalls/write</code></li>
+      <li><code>Microsoft.Network/routeTables/join/action</code></li>
+      <li><code>Microsoft.Network/routeTables/read</code></li>
+      <li><code>Microsoft.Network/routeTables/routes/read</code></li>
+      <li><code>Microsoft.Network/routeTables/routes/write</code></li>
+      <li><code>Microsoft.Network/routeTables/write</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/peer/action</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Optional permission for running gather bootstrap</dt>
+      <dd class="ml-6 text-muted-foreground"><ul><li><code>Microsoft.Compute/virtualMachines/retrieveBootDiagnosticsData/action</code></li></ul></dd>
+      </dl>
+      <p>The following permissions are required for deleting an OpenShift Container Platform cluster on Microsoft Azure. You can use the same permissions to delete a private OpenShift Container Platform cluster on Azure.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Required permissions for deleting authorization resources</dt>
+      <dd class="ml-6 text-muted-foreground"><ul><li><code>Microsoft.Authorization/roleAssignments/delete</code></li></ul></dd>
+      <dt class="font-semibold">Required permissions for deleting compute resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Compute/disks/delete</code></li>
+      <li><code>Microsoft.Compute/galleries/delete</code></li>
+      <li><code>Microsoft.Compute/galleries/images/delete</code></li>
+      <li><code>Microsoft.Compute/galleries/images/versions/delete</code></li>
+      <li><code>Microsoft.Compute/virtualMachines/delete</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Required permissions for deleting identity management resources</dt>
+      <dd class="ml-6 text-muted-foreground"><ul><li><code>Microsoft.ManagedIdentity/userAssignedIdentities/delete</code></li></ul></dd>
+      <dt class="font-semibold">Required permissions for deleting network resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Network/dnszones/read</code></li>
+      <li><code>Microsoft.Network/dnsZones/A/read</code></li>
+      <li><code>Microsoft.Network/dnsZones/A/delete</code></li>
+      <li><code>Microsoft.Network/dnsZones/CNAME/read</code></li>
+      <li><code>Microsoft.Network/dnsZones/CNAME/delete</code></li>
+      <li><code>Microsoft.Network/loadBalancers/delete</code></li>
+      <li><code>Microsoft.Network/networkInterfaces/delete</code></li>
+      <li><code>Microsoft.Network/networkSecurityGroups/delete</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/read</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/A/read</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/delete</code></li>
+      <li><code>Microsoft.Network/privateDnsZones/virtualNetworkLinks/delete</code></li>
+      <li><code>Microsoft.Network/publicIPAddresses/delete</code></li>
+      <li><code>Microsoft.Network/virtualNetworks/delete</code></li>
+      </ul>
+      </dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The following permissions are not required to delete a private OpenShift Container Platform cluster on Azure.</p>
+          <ul>
+          <li><code>Microsoft.Network/dnszones/read</code></li>
+          <li><code>Microsoft.Network/dnsZones/A/read</code></li>
+          <li><code>Microsoft.Network/dnsZones/A/delete</code></li>
+          <li><code>Microsoft.Network/dnsZones/CNAME/read</code></li>
+          <li><code>Microsoft.Network/dnsZones/CNAME/delete</code></li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Required permissions for checking the health of resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Resourcehealth/healthevent/Activated/action</code></li>
+      <li><code>Microsoft.Resourcehealth/healthevent/Resolved/action</code></li>
+      <li><code>Microsoft.Resourcehealth/healthevent/Updated/action</code></li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Required permissions for deleting a resource group</dt>
+      <dd class="ml-6 text-muted-foreground"><ul><li><code>Microsoft.Resources/subscriptions/resourcegroups/delete</code></li></ul></dd>
+      <dt class="font-semibold">Required permissions for deleting storage resources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li><code>Microsoft.Storage/storageAccounts/delete</code></li>
+      <li><code>Microsoft.Storage/storageAccounts/listKeys/action</code></li>
+      </ul>
+      </dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>To install OpenShift Container Platform on Azure, you must scope the permissions to your subscription. You can re-scope these permissions to the resource group created by installation program. If the public DNS zone is present in a different resource group, then the network DNS zone related permissions must always be applied to your subscription. By default, the OpenShift Container Platform installation program assigns the Azure identity the <code>Contributor</code> role.</p>
+          <p>You can scope all the permissions to your subscription when deleting an OpenShift Container Platform cluster.</p>
+        </AlertDescription>
+      </Alert>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal">Managing access to Azure resources using the Azure portal ({"{"}{"{"} azure_short {"}"}{"}"} documentation)</a></li>
-      <li><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles">Custom roles ({"{"}{"{"} azure_short {"}"}{"}"} documentation)</a></li>
+      <li><a href="https://docs.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal">Managing access to Azure resources using the Azure portal (Azure documentation)</a></li>
+      <li><a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles">Custom roles (Azure documentation)</a></li>
       </ul>
+      <h3 id="installation-using-azure-managed-identities_installing-azure-account" class="group scroll-mt-20">Using Azure managed identities<a href="#installation-using-azure-managed-identities_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To provide the identity that the installation program requires on Azure, you can use a system-assigned or user-assigned managed identity.</p>
+      <p>If you are unable to use a managed identity, you can use a service principal.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>If you are using a system-assigned managed identity, enable it on the virtual machine that you will run the installation program from.</li>
+      <li>
+      If you are using a user-assigned managed identity:
+      <ol>
+      <li>Assign it to the virtual machine that you will run the installation program from.</li>
+      <li>Record its client ID. You require this value when installing the cluster.</li>
+      </ol>
+      </li>
+      <li>Verify that the required permissions are assigned to the managed identity.</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#list-user-assigned-managed-identities">List user-assigned managed identities ({"{"}{"{"} azure_short {"}"}{"}"} documentation)</a></li></ul>
+      <ul><li><a href="https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp#list-user-assigned-managed-identities">List user-assigned managed identities (Azure documentation)</a></li></ul>
+      <h3 id="installation-creating-azure-service-principal_installing-azure-account" class="group scroll-mt-20">Creating a service principal<a href="#installation-creating-azure-service-principal_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To provide the identity that the installation program requires on Azure, you can create a service principal.</p>
+      <p>If you are unable to use a service principal, you can use a managed identity.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed or updated the <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-yum?view=azure-cli-latest">Azure CLI</a>.</li>
+      <li>You have an Azure subscription ID.</li>
+      <li>If you are not assigning the <code>Contributor</code> and <code>User Administrator Access</code> roles to the service principal, you have created a custom role with the required Azure permissions.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the service principal for your account by running the following command:
+      <CodeBlock code={"$ az ad sp create-for-rbac --role <role_name> \\\n     --name <service_principal> \\\n     --scopes /subscriptions/<subscription_id>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;role_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the role name. You can use the <code>Contributor</code> role, or you can specify a custom role which contains the necessary permissions.</p></dd>
+      <dt class="font-semibold"><code>&lt;service_principal&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the service principal name.</p></dd>
+      <dt class="font-semibold"><code>&lt;subscription_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the subscription ID.</p></dd>
+      </dl>
+      <CodeBlock code={"Creating 'Contributor' role assignment under scope '/subscriptions/<subscription_id>'\nThe output includes credentials that you must protect. Be sure that you do not\ninclude these credentials in your code or check the credentials into your source\ncontrol. For more information, see https://aka.ms/azadsp-cli\n{\n  \"appId\": \"axxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\",\n  \"displayName\": <service_principal>\",\n  \"password\": \"00000000-0000-0000-0000-000000000000\",\n  \"tenantId\": \"8xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx\"\n}"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <p>Record the values of the <code>appId</code> and <code>password</code> parameters from the output. You require these values when installing the cluster.</p>
+      <ol>
+      <li>
+      If you assigned the <code>Contributor</code> role to your service principal, assign the <code>User Administrator Access</code> role by running the following command:
+      <CodeBlock code={"$ az role assignment create --role \"User Access Administrator\" \\\n  --assignee-object-id $(az ad sp show --id <appId> --query id -o tsv) \\\n  --scope /subscriptions/<subscription_id>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;appId&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>appId</code> parameter value for your service principal.</p></dd>
+      <dt class="font-semibold"><code>&lt;subscription_id&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the subscription ID.</p></dd>
+      </dl>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/authentication/managing_cloud_provider_credentials/about-cloud-credential-operator#about-cloud-credential-operator-modes">About the Cloud Credential Operator</a></li></ul>
-      <p class="/modules/installation-azure-regions.md"></p>
+      <h2 id="installation-azure-marketplace_installing-azure-account" class="group scroll-mt-20">Supported Azure Marketplace regions<a href="#installation-azure-marketplace_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Installing a cluster by using the Azure Marketplace image is available to customers who purchase the offer in North America and EMEA.</p>
+      <p>While the offer must be purchased in North America or EMEA, you can deploy the cluster to any of the Azure public partitions that OpenShift Container Platform supports.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Deploying a cluster using the Azure Marketplace image is not supported for the Azure Government regions.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="installation-azure-regions_installing-azure-account" class="group scroll-mt-20">Supported Azure regions<a href="#installation-azure-regions_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Based on your subscription, the installation program dynamically generates the list of available Microsoft Azure public regions.</p>
+      <h3 id="_supported_azure_short_public_regions" class="group scroll-mt-20">Supported Azure public regions<a href="#_supported_azure_short_public_regions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul>
+      <li><code>australiacentral</code> (Australia Central)</li>
+      <li><code>australiaeast</code> (Australia East)</li>
+      <li><code>australiasoutheast</code> (Australia South East)</li>
+      <li><code>austriaeast</code> (Austria East)</li>
+      <li><code>belgiumcentral</code> (Belgium Central)</li>
+      <li><code>brazilsouth</code> (Brazil South)</li>
+      <li><code>canadacentral</code> (Canada Central)</li>
+      <li><code>canadaeast</code> (Canada East)</li>
+      <li><code>centralindia</code> (Central India)</li>
+      <li><code>centralus</code> (Central US)</li>
+      <li><code>chilecentral</code> (Chile Central)</li>
+      <li><code>eastasia</code> (East Asia)</li>
+      <li><code>eastus</code> (East US)</li>
+      <li><code>eastus2</code> (East US 2)</li>
+      <li><code>francecentral</code> (France Central)</li>
+      <li><code>germanywestcentral</code> (Germany West Central)</li>
+      <li><code>indonesiacentral</code> (Indonesia Central)</li>
+      <li><code>israelcentral</code> (Israel Central)</li>
+      <li><code>italynorth</code> (Italy North)</li>
+      <li><code>japaneast</code> (Japan East)</li>
+      <li><code>japanwest</code> (Japan West)</li>
+      <li><code>koreacentral</code> (Korea Central)</li>
+      <li><code>koreasouth</code> (Korea South)</li>
+      <li><code>malaysiawest</code> (Malaysia West)</li>
+      <li><code>mexicocentral</code> (Mexico Central)</li>
+      <li><code>newzealandnorth</code> (New Zealand North)</li>
+      <li><code>northcentralus</code> (North Central US)</li>
+      <li><code>northeurope</code> (North Europe)</li>
+      <li><code>norwayeast</code> (Norway East)</li>
+      <li><code>polandcentral</code> (Poland Central)</li>
+      <li><code>qatarcentral</code> (Qatar Central)</li>
+      <li><code>southafricanorth</code> (South Africa North)</li>
+      <li><code>southcentralus</code> (South Central US)</li>
+      <li><code>southeastasia</code> (Southeast Asia)</li>
+      <li><code>southindia</code> (South India)</li>
+      <li><code>spaincentral</code> (Spain Central)</li>
+      <li><code>swedencentral</code> (Sweden Central)</li>
+      <li><code>switzerlandnorth</code> (Switzerland North)</li>
+      <li><code>uaenorth</code> (UAE North)</li>
+      <li><code>uksouth</code> (UK South)</li>
+      <li><code>ukwest</code> (UK West)</li>
+      <li><code>westcentralus</code> (West Central US)</li>
+      <li><code>westeurope</code> (West Europe)</li>
+      <li><code>westindia</code> (West India)</li>
+      <li><code>westus</code> (West US)</li>
+      <li><code>westus2</code> (West US 2)</li>
+      <li><code>westus3</code> (West US 3)</li>
+      </ul>
+      <h3 id="_supported_azure_short_government_regions" class="group scroll-mt-20">Supported Azure Government regions<a href="#_supported_azure_short_government_regions" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Support for the following Microsoft Azure Government (MAG) regions was added in OpenShift Container Platform version 4.6:</p>
+      <ul>
+      <li><code>usgovtexas</code> (US Gov Texas)</li>
+      <li><code>usgovvirginia</code> (US Gov Virginia)</li>
+      </ul>
+      <p>You can reference all available MAG regions in the <a href="https://azure.microsoft.com/en-us/global-infrastructure/geographies/#geographies">Azure documentation</a>. Other provided MAG regions are expected to work with OpenShift Container Platform, but have not been tested.</p>
       <h2 id="additional-resources_installing-azure-account" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-azure-account" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name">Resolve errors for reserved resource names ({"{"}{"{"} azure_short {"}"}{"}"} documentation)</a></li>
+      <li><a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-reserved-resource-name">Resolve errors for reserved resource names (Azure documentation)</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-customizations#installing-azure-customizations">Install a customized cluster on Azure</a></li>
       <li><a href="/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-default#installing-azure-default">Quickly install a cluster on Azure with default options</a></li>
       </ul>

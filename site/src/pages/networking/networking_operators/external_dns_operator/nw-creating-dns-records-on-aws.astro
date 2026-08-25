@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"creating-dns-records-on-aws","text":"Creating DNS records on AWS"}];
+const headings = [{"depth":1,"slug":"creating-dns-records-on-aws","text":"Creating DNS records on AWS"},{"depth":2,"slug":"nw-control-dns-records-public-hosted-zone-aws_creating-dns-records-on-aws","text":"Creating DNS records on a public hosted zone for AWS by using Red Hat External DNS Operator"},{"depth":2,"slug":"nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws","text":"Creating DNS records in a different AWS account by using a shared VPC"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["networking","networking/networking_operators","networking
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating DNS records on AWS {#creating-dns-records-on-aws}\n\nTo create DNS records on AWS and AWS GovCloud, use the External DNS Operator. The Operator manages external name resolution for your cluster services directly through the Operator.\n\n> [!IMPORTANT]\n> Usage of External DNS Operator on an STS-enabled cluster that runs in AWS Government (AWS GovCloud) regions is not supported.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-aws.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating DNS records on AWS {#creating-dns-records-on-aws}\n\nTo create DNS records on AWS and AWS GovCloud, use the External DNS Operator. The Operator manages external name resolution for your cluster services directly through the Operator.\n\n> [!IMPORTANT]\n> Usage of External DNS Operator on an STS-enabled cluster that runs in AWS Government (AWS GovCloud) regions is not supported.\n\n## Creating DNS records on a public hosted zone for AWS by using Red Hat External DNS Operator {#nw-control-dns-records-public-hosted-zone-aws_creating-dns-records-on-aws}\n\nYou can create DNS records on a public hosted zone for AWS by using the Red Hat External DNS Operator. You can use the same instructions to create DNS records on a hosted zone for AWS GovCloud.\n\n**Procedure**\n\n1. Check the user profile by running the following command. The profile, such as `system:admin`, must have access to the `kube-system` namespace. If you do not have the credentials, you can fetch the credentials from the `kube-system` namespace to use the cloud provider client by running the following command:\n\n   ```terminal\n   $ oc whoami\n   ```\n2. Fetch the values from the `aws-creds` secret that exists in the `kube-system` namespace.\n\n   ```terminal\n   $ export AWS_ACCESS_KEY_ID=$(oc get secrets aws-creds -n kube-system  --template={{.data.aws_access_key_id}} | base64 -d)\n   ```\n\n   ```terminal\n   $ export AWS_SECRET_ACCESS_KEY=$(oc get secrets aws-creds -n kube-system  --template={{.data.aws_secret_access_key}} | base64 -d)\n   ```\n3. Get the routes to check the domain:\n\n   ```terminal\n   $ oc get routes --all-namespaces | grep console\n   ```\n\n   ```terminal {title=\"Example output\"}\n   openshift-console          console             console-openshift-console.apps.testextdnsoperator.apacshift.support                       console             https   reencrypt/Redirect     None\n   openshift-console          downloads           downloads-openshift-console.apps.testextdnsoperator.apacshift.support                     downloads           http    edge/Redirect          None\n   ```\n4. Get the list of DNS zones and find the DNS zone that corresponds to the domain of the route that you previously queried:\n\n   ```terminal\n   $ aws route53 list-hosted-zones | grep testextdnsoperator.apacshift.support\n   ```\n\n   ```terminal {title=\"Example output\"}\n   HOSTEDZONES\tterraform\t/hostedzone/Z02355203TNN1XXXX1J6O\ttestextdnsoperator.apacshift.support.\t5\n   ```\n5. Create the `ExternalDNS` CR for the `route` source:\n\n   ```yaml\n   $ cat <<EOF | oc create -f -\n   apiVersion: externaldns.olm.openshift.io/v1beta1\n   kind: ExternalDNS\n   metadata:\n     name: sample-aws\n   spec:\n     domains:\n     - filterType: Include\n       matchType: Exact\n       name: testextdnsoperator.apacshift.support\n     provider:\n       type: AWS\n     source:\n       type: OpenShiftRoute\n       openshiftRouteOptions:\n         routerName: default\n   EOF\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the name of the external DNS resource.\n\n   `spec.domains`\n   :   By default all hosted zones are selected as potential targets. You can include a hosted zone that you need.\n\n   `domains.matchType`\n   :   Specifies that the matching of the domain from the target zone has to be exact. Exact as opposed to regular expression match.\n\n   `domains.name`\n   :   Specifies the exact domain of the zone you want to update. The hostname of the routes must be subdomains of the specified domain.\n\n   `provider.type`\n   :   Specifies the `AWS Route53` DNS provider.\n\n   `source`\n   :   Specifies the options for the source of DNS records.\n\n   `source.type`\n   :   Specifies the `OpenShiftRoute` resource as the source for the DNS records which gets created in the previously specified DNS provider.\n\n   `openshiftRouteOptions.routerName`\n   :   If the source is `OpenShiftRoute`, then you can pass the OpenShift Ingress Controller name. External DNS Operator selects the canonical hostname of that router as the target while creating the CNAME record.\n6. Check the records created for OpenShift Container Platform routes by using the following command:\n\n   ```terminal\n   $ aws route53 list-resource-record-sets --hosted-zone-id Z02355203TNN1XXXX1J6O --query \"ResourceRecordSets[?Type == 'CNAME']\" | grep console\n   ```\n\n## Creating DNS records in a different AWS account by using a shared VPC {#nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws}\n\nYou can use the ExternalDNS Operator to create DNS records in a different AWS account using a shared Virtual Private Cloud (VPC).\n\nBy using a shared VPC, an organization can connect resources from multiple projects to a common VPC network. Organizations can then use VPC sharing to use a single Route 53 instance across multiple AWS accounts.\n\n**Prerequisites**\n\n- You have created two Amazon AWS accounts: one with a VPC and a Route 53 private hosted zone configured (Account A), and another for installing a cluster (Account B).\n- You have created an IAM Policy and IAM Role with the appropriate permissions in Account A for Account B to create DNS records in the Route 53 hosted zone of Account A.\n- You have installed a cluster in Account B into the existing VPC for Account A.\n- You have installed the ExternalDNS Operator in the cluster in Account B.\n\n**Procedure**\n\n1. Get the Role ARN of the IAM Role that you created to allow Account B to access Account A’s Route 53 hosted zone by running the following command:\n\n   ```terminal\n   $ aws --profile account-a iam get-role --role-name user-rol1 | head -1\n   ```\n\n   ```terminal {title=\"Example output\"}\n   ROLE\tarn:aws:iam::1234567890123:role/user-rol1\t2023-09-14T17:21:54+00:00\t3600\t/\tAROA3SGB2ZRKRT5NISNJN\tuser-rol1\n   ```\n2. Locate the private hosted zone to use with Account A’s credentials by running the following command:\n\n   ```terminal\n   $ aws --profile account-a route53 list-hosted-zones | grep testextdnsoperator.apacshift.support\n   ```\n\n   ```terminal {title=\"Example output\"}\n   HOSTEDZONES\tterraform\t/hostedzone/Z02355203TNN1XXXX1J6O\ttestextdnsoperator.apacshift.support. 5\n   ```\n3. Create the `ExternalDNS` object by running the following command:\n\n   ```terminal\n   $ cat <<EOF | oc create -f -\n   apiVersion: externaldns.olm.openshift.io/v1beta1\n   kind: ExternalDNS\n   metadata:\n     name: sample-aws\n   spec:\n     domains:\n     - filterType: Include\n       matchType: Exact\n       name: testextdnsoperator.apacshift.support\n     provider:\n       type: AWS\n       aws:\n         assumeRole:\n           arn: arn:aws:iam::12345678901234:role/user-rol1\n     source:\n       type: OpenShiftRoute\n       openshiftRouteOptions:\n         routerName: default\n   EOF\n   ```\n\n   where:\n\n   `arn`\n   :   Specifies the Role ARN to have DNS records created in Account A.\n4. Check the records created for OpenShift Container Platform routes by entering the following command:\n\n   ```terminal\n   $ aws --profile account-a route53 list-resource-record-sets --hosted-zone-id Z02355203TNN1XXXX1J6O --query \"ResourceRecordSets[?Type == 'CNAME']\" | grep console-openshift-console\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/networking_operators/external_dns_operator/nw-creating-dns-records-on-aws.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="creating-dns-records-on-aws" class="group scroll-mt-20">Creating DNS records on AWS<a href="#creating-dns-records-on-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To create DNS records on AWS and AWS GovCloud, use the External DNS Operator. The Operator manages external name resolution for your cluster services directly through the Operator.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
@@ -102,8 +102,93 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>Usage of External DNS Operator on an STS-enabled cluster that runs in AWS Government (AWS GovCloud) regions is not supported.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/nw-control-dns-records-public-hosted-zone-aws.md"></p>
-      <p class="/modules/nw-control-dns-records-public-aws-with-VPC.md"></p>
+      <h2 id="nw-control-dns-records-public-hosted-zone-aws_creating-dns-records-on-aws" class="group scroll-mt-20">Creating DNS records on a public hosted zone for AWS by using Red Hat External DNS Operator<a href="#nw-control-dns-records-public-hosted-zone-aws_creating-dns-records-on-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create DNS records on a public hosted zone for AWS by using the Red Hat External DNS Operator. You can use the same instructions to create DNS records on a hosted zone for AWS GovCloud.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check the user profile by running the following command. The profile, such as <code>system:admin</code>, must have access to the <code>kube-system</code> namespace. If you do not have the credentials, you can fetch the credentials from the <code>kube-system</code> namespace to use the cloud provider client by running the following command:
+      <CodeBlock code={"$ oc whoami"} lang="terminal" />
+      </li>
+      <li>
+      Fetch the values from the <code>aws-creds</code> secret that exists in the <code>kube-system</code> namespace.
+      <CodeBlock code={"$ export AWS_ACCESS_KEY_ID=$(oc get secrets aws-creds -n kube-system  --template={{.data.aws_access_key_id}} | base64 -d)"} lang="terminal" />
+      <CodeBlock code={"$ export AWS_SECRET_ACCESS_KEY=$(oc get secrets aws-creds -n kube-system  --template={{.data.aws_secret_access_key}} | base64 -d)"} lang="terminal" />
+      </li>
+      <li>
+      Get the routes to check the domain:
+      <CodeBlock code={"$ oc get routes --all-namespaces | grep console"} lang="terminal" />
+      <CodeBlock code={"openshift-console          console             console-openshift-console.apps.testextdnsoperator.apacshift.support                       console             https   reencrypt/Redirect     None\nopenshift-console          downloads           downloads-openshift-console.apps.testextdnsoperator.apacshift.support                     downloads           http    edge/Redirect          None"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Get the list of DNS zones and find the DNS zone that corresponds to the domain of the route that you previously queried:
+      <CodeBlock code={"$ aws route53 list-hosted-zones | grep testextdnsoperator.apacshift.support"} lang="terminal" />
+      <CodeBlock code={"HOSTEDZONES\tterraform\t/hostedzone/Z02355203TNN1XXXX1J6O\ttestextdnsoperator.apacshift.support.\t5"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Create the <code>ExternalDNS</code> CR for the <code>route</code> source:
+      <CodeBlock code={"$ cat <<EOF | oc create -f -\napiVersion: externaldns.olm.openshift.io/v1beta1\nkind: ExternalDNS\nmetadata:\n  name: sample-aws\nspec:\n  domains:\n  - filterType: Include\n    matchType: Exact\n    name: testextdnsoperator.apacshift.support\n  provider:\n    type: AWS\n  source:\n    type: OpenShiftRoute\n    openshiftRouteOptions:\n      routerName: default\nEOF"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the external DNS resource.</p></dd>
+      <dt class="font-semibold"><code>spec.domains</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>By default all hosted zones are selected as potential targets. You can include a hosted zone that you need.</p></dd>
+      <dt class="font-semibold"><code>domains.matchType</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the matching of the domain from the target zone has to be exact. Exact as opposed to regular expression match.</p></dd>
+      <dt class="font-semibold"><code>domains.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the exact domain of the zone you want to update. The hostname of the routes must be subdomains of the specified domain.</p></dd>
+      <dt class="font-semibold"><code>provider.type</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>AWS Route53</code> DNS provider.</p></dd>
+      <dt class="font-semibold"><code>source</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the options for the source of DNS records.</p></dd>
+      <dt class="font-semibold"><code>source.type</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the <code>OpenShiftRoute</code> resource as the source for the DNS records which gets created in the previously specified DNS provider.</p></dd>
+      <dt class="font-semibold"><code>openshiftRouteOptions.routerName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>If the source is <code>OpenShiftRoute</code>, then you can pass the OpenShift Ingress Controller name. External DNS Operator selects the canonical hostname of that router as the target while creating the CNAME record.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Check the records created for OpenShift Container Platform routes by using the following command:
+      <CodeBlock code={"$ aws route53 list-resource-record-sets --hosted-zone-id Z02355203TNN1XXXX1J6O --query \"ResourceRecordSets[?Type == 'CNAME']\" | grep console"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws" class="group scroll-mt-20">Creating DNS records in a different AWS account by using a shared VPC<a href="#nw-control-dns-records-public-aws-with-VPC_creating-dns-records-on-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the ExternalDNS Operator to create DNS records in a different AWS account using a shared Virtual Private Cloud (VPC).</p>
+      <p>By using a shared VPC, an organization can connect resources from multiple projects to a common VPC network. Organizations can then use VPC sharing to use a single Route 53 instance across multiple AWS accounts.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have created two Amazon AWS accounts: one with a VPC and a Route 53 private hosted zone configured (Account A), and another for installing a cluster (Account B).</li>
+      <li>You have created an IAM Policy and IAM Role with the appropriate permissions in Account A for Account B to create DNS records in the Route 53 hosted zone of Account A.</li>
+      <li>You have installed a cluster in Account B into the existing VPC for Account A.</li>
+      <li>You have installed the ExternalDNS Operator in the cluster in Account B.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Get the Role ARN of the IAM Role that you created to allow Account B to access Account A’s Route 53 hosted zone by running the following command:
+      <CodeBlock code={"$ aws --profile account-a iam get-role --role-name user-rol1 | head -1"} lang="terminal" />
+      <CodeBlock code={"ROLE\tarn:aws:iam::1234567890123:role/user-rol1\t2023-09-14T17:21:54+00:00\t3600\t/\tAROA3SGB2ZRKRT5NISNJN\tuser-rol1"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Locate the private hosted zone to use with Account A’s credentials by running the following command:
+      <CodeBlock code={"$ aws --profile account-a route53 list-hosted-zones | grep testextdnsoperator.apacshift.support"} lang="terminal" />
+      <CodeBlock code={"HOSTEDZONES\tterraform\t/hostedzone/Z02355203TNN1XXXX1J6O\ttestextdnsoperator.apacshift.support. 5"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Create the <code>ExternalDNS</code> object by running the following command:
+      <CodeBlock code={"$ cat <<EOF | oc create -f -\napiVersion: externaldns.olm.openshift.io/v1beta1\nkind: ExternalDNS\nmetadata:\n  name: sample-aws \nspec:\n  domains:\n  - filterType: Include   \n    matchType: Exact   \n    name: testextdnsoperator.apacshift.support \n  provider:\n    type: AWS\n    aws: \n      assumeRole: \n        arn: arn:aws:iam::12345678901234:role/user-rol1\n  source:  \n    type: OpenShiftRoute \n    openshiftRouteOptions:\n      routerName: default \nEOF"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>arn</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Role ARN to have DNS records created in Account A.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Check the records created for OpenShift Container Platform routes by entering the following command:
+      <CodeBlock code={"$ aws --profile account-a route53 list-resource-record-sets --hosted-zone-id Z02355203TNN1XXXX1J6O --query \"ResourceRecordSets[?Type == 'CNAME']\" | grep console-openshift-console"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

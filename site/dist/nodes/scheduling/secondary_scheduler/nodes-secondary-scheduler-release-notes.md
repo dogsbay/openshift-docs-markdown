@@ -4,8 +4,36 @@ title: "{{ secondary_scheduler_operator_full }} release notes"
 
 # {{ secondary_scheduler_operator_full }} release notes {#nodes-secondary-scheduler-release-notes}
 
-Review the {{ secondary_scheduler_operator_full }} release notes to track its development and learn what is new and changed with each release.
+Review the Secondary Scheduler Operator for Red Hat OpenShift release notes to track its development and learn what is new and changed with each release.
 
-The {{ secondary_scheduler_operator }} allows you to deploy a custom secondary scheduler in your OpenShift Container Platform cluster.
+The Secondary Scheduler Operator allows you to deploy a custom secondary scheduler in your OpenShift Container Platform cluster.
 
-For more information, see [About the {{ secondary_scheduler_operator }}](/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/index#nodes-secondary-scheduler-about_nodes-secondary-scheduler-about).
+For more information, see [About the Secondary Scheduler Operator](/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/index#nodes-secondary-scheduler-about_nodes-secondary-scheduler-about).
+
+## Release notes for Secondary Scheduler Operator for Red Hat OpenShift 1.6.0 {#secondary-scheduler-operator-release-notes-1.6.0_nodes-secondary-scheduler-release-notes}
+
+Review the release notes for Secondary Scheduler Operator 1.6.0 to learn what is new and updated with this release.
+
+Issued: 24 June 2026
+
+The following advisory is available for the Secondary Scheduler Operator for Red Hat OpenShift 1.6.0:
+
+- [RHBA-2026:28915](https://access.redhat.com/errata/RHBA-2026:28915)
+
+### New features and enhancements {#secondary-scheduler-1.6.0-new-features_nodes-secondary-scheduler-release-notes}
+
+- You can now configure high availability for the Secondary Scheduler Operator, ensuring continuous pod scheduling for specialized workloads during scheduler pod failures or maintenance. High availability eliminates the secondary scheduler as a single point of failure in production environments.
+
+  To enable high availability, set the topology mode to `HighlyAvailable` in the `SecondaryScheduler` custom resource (CR). In this mode, the Operator deploys multiple secondary scheduler replicas distributed across nodes, up to a configurable maximum. You can optionally set a node selector to target specific nodes or set tolerations for tainted nodes.
+
+  For more information, see [Deploying a secondary scheduler](/openshift-docs-markdown/nodes/scheduling/secondary_scheduler/nodes-secondary-scheduler-configuring#nodes-secondary-scheduler-configuring-console_secondary-scheduler-configuring).
+- The Secondary Scheduler Operator now publishes secondary scheduler metrics to Prometheus by default.
+- This release of the Secondary Scheduler Operator updates the Kubernetes version to 1.35.
+
+### Bug fixes {#secondary-scheduler-1.6.0-bug-fixes_nodes-secondary-scheduler-release-notes}
+
+- This release of the Secondary Scheduler Operator addresses Common Vulnerabilities and Exposures (CVEs).
+
+### Known issues {#secondary-scheduler-operator-1.6.0-known-issues_nodes-secondary-scheduler-release-notes}
+
+- Currently, you cannot deploy additional resources, such as config maps, CRDs, or RBAC policies through the Secondary Scheduler Operator. Any resources other than roles and role bindings that are required by your custom secondary scheduler must be applied externally. ([WRKLDS-645](https://issues.redhat.com/browse/WRKLDS-645))

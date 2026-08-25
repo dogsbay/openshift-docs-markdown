@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"oadp-timeouts","text":"OADP timeouts"},{"depth":2,"slug":"additional-resources_oadp-timeouts","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"oadp-timeouts","text":"OADP timeouts"},{"depth":2,"slug":"restic-timeout_oadp-timeouts","text":"Implementing restic timeout"},{"depth":2,"slug":"velero-timeout_oadp-timeouts","text":"Implementing velero resource timeout"},{"depth":3,"slug":"velero-default-item-operation-timeout_oadp-timeouts","text":"Implementing velero default item operation timeout"},{"depth":2,"slug":"datamover-timeout_oadp-timeouts","text":"Implementing Data Mover timeout"},{"depth":2,"slug":"csisnapshot-timeout_oadp-timeouts","text":"Implementing CSI snapshot timeout"},{"depth":2,"slug":"item-operation-timeout-restore_oadp-timeouts","text":"Implementing item operation timeout - restore"},{"depth":2,"slug":"item-operation-timeout-backup_oadp-timeouts","text":"Implementing item operation timeout - backup"},{"depth":2,"slug":"additional-resources_oadp-timeouts","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "OADP timeouts";
-const description = "Configure {{ oadp_short }} timeout parameters for Restic, Velero, Data Mover, CSI snapshots, and item operations to allow complex or resource-intensive…" || undefined;
+const description = "Configure OADP timeout parameters for Restic, Velero, Data Mover, CSI snapshots, and item operations to allow complex or resource-intensive processes to…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OADP timeouts {#oadp-timeouts}\n\nConfigure {{ oadp_short }} timeout parameters for Restic, Velero, Data Mover, CSI snapshots, and item operations to allow complex or resource-intensive processes to complete successfully. This helps you reduce errors, retries, and failures caused by premature termination of backup and restore operations.\n\nEnsure that you balance timeout extensions in a logical manner so that you do not configure excessively long timeouts that might hide underlying issues in the process. Consider and monitor an appropriate timeout value that meets the needs of the process and the overall system performance.\n\n## Additional resources {#additional-resources_oadp-timeouts}\n\n- [Restic timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#restic-timeout_oadp-timeouts)\n- [Velero resource timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#velero-timeout_oadp-timeouts)\n- [Data Mover timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#datamover-timeout_oadp-timeouts)\n- [CSI snapshot timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#csisnapshot-timeout_oadp-timeouts)\n- [Item operation timeout - backup](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#item-operation-timeout-backup_oadp-timeouts)\n- [Item operation timeout - restore](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#item-operation-timeout-restore_oadp-timeouts)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OADP timeouts {#oadp-timeouts}\n\nConfigure OADP timeout parameters for Restic, Velero, Data Mover, CSI snapshots, and item operations to allow complex or resource-intensive processes to complete successfully. This helps you reduce errors, retries, and failures caused by premature termination of backup and restore operations.\n\nEnsure that you balance timeout extensions in a logical manner so that you do not configure excessively long timeouts that might hide underlying issues in the process. Consider and monitor an appropriate timeout value that meets the needs of the process and the overall system performance.\n\n## Implementing restic timeout {#restic-timeout_oadp-timeouts}\n\nConfigure the Restic timeout parameter to prevent backup failures for large persistent volumes or long-running backup operations. This helps you avoid timeout errors when backing up data greater than 500GB or when backups exceed the default one-hour limit.\n\nUse the `spec.configuration.nodeAgent.timeout` parameter to set the Restic timeout. The default value is `1h`.\n\nUse the Restic `timeout` parameter in the `nodeAgent` section for the following scenarios:\n\n- For Restic backups with total PV data usage that is greater than 500GB.\n- If backups are timing out with the following error:\n\n  ```terminal\n  level=error msg=\"Error backing up item\" backup=velero/monitoring error=\"timed out waiting for all PodVolumeBackups to complete\"\n  ```\n\n**Procedure**\n\n- Edit the values in the `spec.configuration.nodeAgent.timeout` block of the `DataProtectionApplication` custom resource (CR) manifest, as shown in the following example:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n   name: <dpa_name>\n  spec:\n    configuration:\n      nodeAgent:\n        enable: true\n        uploaderType: restic\n        timeout: 1h\n  # ...\n  ```\n\n## Implementing velero resource timeout {#velero-timeout_oadp-timeouts}\n\nConfigure the `resourceTimeout` parameter in the `DataProtectionApplication` custom resource (CR) to define how long Velero waits for resource availability. Adjusting this timeout helps you prevent errors during large backups, repository readiness checks, and restore operations.\n\nUse the `resourceTimeout` for the following scenarios:\n\n- For backups with total PV data usage that is greater than 1 TB. Use the parameter as a timeout value when Velero tries to clean up or delete the Container Storage Interface (CSI) snapshots, before marking the backup as complete.\n\n  - A sub-task of this cleanup tries to patch VSC, and this timeout can be used for that task.\n- To create or ensure a backup repository is ready for filesystem based backups for Restic or Kopia.\n- To check if the Velero CRD is available in the cluster before restoring the custom resource (CR) or resource from the backup.\n\n**Procedure**\n\n- Edit the values in the `spec.configuration.velero.resourceTimeout` block of the `DataProtectionApplication` CR manifest, as shown in the following example:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n   name: <dpa_name>\n  spec:\n    configuration:\n      velero:\n        resourceTimeout: 10m\n  # ...\n  ```\n\n### Implementing velero default item operation timeout {#velero-default-item-operation-timeout_oadp-timeouts}\n\nConfigure the `defaultItemOperationTimeout` parameter in the `DataProtectionApplication`ccustom resource (CR) to define how long Velero waits for backup and restore operations to finish. Adjusting this timeout helps you prevent errors during Container Storage Interface (CSI) Data Mover tasks.\n\nThe default value is `1h`.\n\nUse the `defaultItemOperationTimeout` for the following scenarios:\n\n- Only with Data Mover 1.2.x.\n- When `defaultItemOperationTimeout` is defined in the Data Protection Application (DPA)  using the `defaultItemOperationTimeout`, it applies to both backup and restore operations. You can use `itemOperationTimeout` to define only the backup or only the restore of those CRs, as described in the following \"Item operation timeout - restore\", and \"Item operation timeout - backup\" sections.\n\n**Procedure**\n\n- Edit the values in the `spec.configuration.velero.defaultItemOperationTimeout` block of the `DataProtectionApplication` CR manifest, as shown in the following example:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n   name: <dpa_name>\n  spec:\n    configuration:\n      velero:\n        defaultItemOperationTimeout: 1h\n  # ...\n  ```\n\n## Implementing Data Mover timeout {#datamover-timeout_oadp-timeouts}\n\nConfigure the Data Mover `timeout` parameter in the `DataProtectionApplication` custom resource (CR) to define how long backup and restore operations run. Adjusting this value helps prevent timeouts in large environments over 500GB or when using the `VolumeSnapshotMover` plugin. The default value is `10m`.\n\nUse the Data Mover `timeout` for the following scenarios:\n\n- If creation of `VolumeSnapshotBackups` (VSBs) and `VolumeSnapshotRestores` (VSRs), times out after 10 minutes.\n- For large scale environments with total PV data usage that is greater than 500GB. Set the timeout for `1h`.\n- With the `VolumeSnapshotMover` (VSM) plugin.\n\n**Procedure**\n\n- Edit the values in the `spec.features.dataMover.timeout` block of the `DataProtectionApplication` CR manifest, as shown in the following example:\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n   name: <dpa_name>\n  spec:\n    features:\n      dataMover:\n        timeout: 10m\n  # ...\n  ```\n\n## Implementing CSI snapshot timeout {#csisnapshot-timeout_oadp-timeouts}\n\nConfigure the `CSISnapshotTimeout` parameter in the `Backup` custom resource (CR) to define how long to wait for a CSI snapshot to become ready. Adjusting this timeout prevents errors when using the CSI plugin to take snapshots of large storage volumes that require more time. The default value is `10m`.\n\n> [!NOTE]\n> Typically, the default value for `CSISnapshotTimeout` does not require adjustment, because the default setting can accommodate large storage volumes.\n\n**Procedure**\n\n- Edit the values in the `spec.csiSnapshotTimeout` block of the `Backup` CR manifest, as shown in the following example:\n\n  ```yaml\n  apiVersion: velero.io/v1\n  kind: Backup\n  metadata:\n   name: <backup_name>\n  spec:\n   csiSnapshotTimeout: 10m\n  # ...\n  ```\n\n## Implementing item operation timeout - restore {#item-operation-timeout-restore_oadp-timeouts}\n\nConfigure the `ItemOperationTimeout` parameter in the `Restore` custom resource (CR) to define how long restore operations wait to complete. Adjusting this timeout prevents failures when Data Mover needs more time to download large storage volumes. The default value is `1h`.\n\n**Procedure**\n\n- Edit the values in the `Restore.spec.itemOperationTimeout` block of the `Restore` CR manifest, as shown in the following example:\n\n  ```yaml\n  apiVersion: velero.io/v1\n  kind: Restore\n  metadata:\n   name: <restore_name>\n  spec:\n   itemOperationTimeout: 1h\n  # ...\n  ```\n\n## Implementing item operation timeout - backup {#item-operation-timeout-backup_oadp-timeouts}\n\nConfigure the `ItemOperationTimeout` parameter in the `Backup` custom resource (CR) to define how long asynchronous `BackupItemAction` operations wait to complete. Adjusting this timeout prevents failures when Data Mover needs more time to upload large storage volumes. The default value is `1h`.\n\n**Procedure**\n\n- Edit the values in the `Backup.spec.itemOperationTimeout` block of the `Backup` CR manifest, as shown in the following example:\n\n  ```yaml\n  apiVersion: velero.io/v1\n  kind: Backup\n  metadata:\n   name: <backup_name>\n  spec:\n   itemOperationTimeout: 1h\n  # ...\n  ```\n\n## Additional resources {#additional-resources_oadp-timeouts}\n\n- [Restic timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#restic-timeout_oadp-timeouts)\n- [Velero resource timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#velero-timeout_oadp-timeouts)\n- [Data Mover timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#datamover-timeout_oadp-timeouts)\n- [CSI snapshot timeout](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#csisnapshot-timeout_oadp-timeouts)\n- [Item operation timeout - backup](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#item-operation-timeout-backup_oadp-timeouts)\n- [Item operation timeout - restore](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#item-operation-timeout-restore_oadp-timeouts)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,16 +95,107 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-timeouts" class="group scroll-mt-20">OADP timeouts<a href="#oadp-timeouts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
-      <p>Configure {"{"}{"{"} oadp_short {"}"}{"}"} timeout parameters for Restic, Velero, Data Mover, CSI snapshots, and item operations to allow complex or resource-intensive processes to complete successfully. This helps you reduce errors, retries, and failures caused by premature termination of backup and restore operations.</p>
+      <p>Configure OADP timeout parameters for Restic, Velero, Data Mover, CSI snapshots, and item operations to allow complex or resource-intensive processes to complete successfully. This helps you reduce errors, retries, and failures caused by premature termination of backup and restore operations.</p>
       <p>Ensure that you balance timeout extensions in a logical manner so that you do not configure excessively long timeouts that might hide underlying issues in the process. Consider and monitor an appropriate timeout value that meets the needs of the process and the overall system performance.</p>
-      <p class="/modules/oadp-restic-timeouts.md"></p>
-      <p class="/modules/oadp-velero-timeouts.md"></p>
-      <p class="/modules/oadp-velero-default-timeouts.md"></p>
-      <p class="/modules/oadp-datamover-timeouts.md"></p>
-      <p class="/modules/oadp-csi-snapshot-timeouts.md"></p>
-      <p class="/modules/oadp-item-restore-timeouts.md"></p>
-      <p class="/modules/oadp-item-backup-timeouts.md"></p>
+      <h2 id="restic-timeout_oadp-timeouts" class="group scroll-mt-20">Implementing restic timeout<a href="#restic-timeout_oadp-timeouts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the Restic timeout parameter to prevent backup failures for large persistent volumes or long-running backup operations. This helps you avoid timeout errors when backing up data greater than 500GB or when backups exceed the default one-hour limit.</p>
+      <p>Use the <code>spec.configuration.nodeAgent.timeout</code> parameter to set the Restic timeout. The default value is <code>1h</code>.</p>
+      <p>Use the Restic <code>timeout</code> parameter in the <code>nodeAgent</code> section for the following scenarios:</p>
+      <ul>
+      <li>For Restic backups with total PV data usage that is greater than 500GB.</li>
+      <li>
+      If backups are timing out with the following error:
+      <CodeBlock code={"level=error msg=\"Error backing up item\" backup=velero/monitoring error=\"timed out waiting for all PodVolumeBackups to complete\""} lang="terminal" />
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the values in the <code>spec.configuration.nodeAgent.timeout</code> block of the <code>DataProtectionApplication</code> custom resource (CR) manifest, as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n name: <dpa_name>\nspec:\n  configuration:\n    nodeAgent:\n      enable: true\n      uploaderType: restic\n      timeout: 1h\n# ..."} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="velero-timeout_oadp-timeouts" class="group scroll-mt-20">Implementing velero resource timeout<a href="#velero-timeout_oadp-timeouts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>resourceTimeout</code> parameter in the <code>DataProtectionApplication</code> custom resource (CR) to define how long Velero waits for resource availability. Adjusting this timeout helps you prevent errors during large backups, repository readiness checks, and restore operations.</p>
+      <p>Use the <code>resourceTimeout</code> for the following scenarios:</p>
+      <ul>
+      <li>
+      For backups with total PV data usage that is greater than 1 TB. Use the parameter as a timeout value when Velero tries to clean up or delete the Container Storage Interface (CSI) snapshots, before marking the backup as complete.
+      <ul><li>A sub-task of this cleanup tries to patch VSC, and this timeout can be used for that task.</li></ul>
+      </li>
+      <li>To create or ensure a backup repository is ready for filesystem based backups for Restic or Kopia.</li>
+      <li>To check if the Velero CRD is available in the cluster before restoring the custom resource (CR) or resource from the backup.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the values in the <code>spec.configuration.velero.resourceTimeout</code> block of the <code>DataProtectionApplication</code> CR manifest, as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n name: <dpa_name>\nspec:\n  configuration:\n    velero:\n      resourceTimeout: 10m\n# ..."} lang="yaml" />
+      </li>
+      </ul>
+      <h3 id="velero-default-item-operation-timeout_oadp-timeouts" class="group scroll-mt-20">Implementing velero default item operation timeout<a href="#velero-default-item-operation-timeout_oadp-timeouts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Configure the <code>defaultItemOperationTimeout</code> parameter in the <code>DataProtectionApplication</code>ccustom resource (CR) to define how long Velero waits for backup and restore operations to finish. Adjusting this timeout helps you prevent errors during Container Storage Interface (CSI) Data Mover tasks.</p>
+      <p>The default value is <code>1h</code>.</p>
+      <p>Use the <code>defaultItemOperationTimeout</code> for the following scenarios:</p>
+      <ul>
+      <li>Only with Data Mover 1.2.x.</li>
+      <li>When <code>defaultItemOperationTimeout</code> is defined in the Data Protection Application (DPA)  using the <code>defaultItemOperationTimeout</code>, it applies to both backup and restore operations. You can use <code>itemOperationTimeout</code> to define only the backup or only the restore of those CRs, as described in the following "Item operation timeout - restore", and "Item operation timeout - backup" sections.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the values in the <code>spec.configuration.velero.defaultItemOperationTimeout</code> block of the <code>DataProtectionApplication</code> CR manifest, as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n name: <dpa_name>\nspec:\n  configuration:\n    velero:\n      defaultItemOperationTimeout: 1h\n# ..."} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="datamover-timeout_oadp-timeouts" class="group scroll-mt-20">Implementing Data Mover timeout<a href="#datamover-timeout_oadp-timeouts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the Data Mover <code>timeout</code> parameter in the <code>DataProtectionApplication</code> custom resource (CR) to define how long backup and restore operations run. Adjusting this value helps prevent timeouts in large environments over 500GB or when using the <code>VolumeSnapshotMover</code> plugin. The default value is <code>10m</code>.</p>
+      <p>Use the Data Mover <code>timeout</code> for the following scenarios:</p>
+      <ul>
+      <li>If creation of <code>VolumeSnapshotBackups</code> (VSBs) and <code>VolumeSnapshotRestores</code> (VSRs), times out after 10 minutes.</li>
+      <li>For large scale environments with total PV data usage that is greater than 500GB. Set the timeout for <code>1h</code>.</li>
+      <li>With the <code>VolumeSnapshotMover</code> (VSM) plugin.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the values in the <code>spec.features.dataMover.timeout</code> block of the <code>DataProtectionApplication</code> CR manifest, as shown in the following example:
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n name: <dpa_name>\nspec:\n  features:\n    dataMover:\n      timeout: 10m\n# ..."} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="csisnapshot-timeout_oadp-timeouts" class="group scroll-mt-20">Implementing CSI snapshot timeout<a href="#csisnapshot-timeout_oadp-timeouts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>CSISnapshotTimeout</code> parameter in the <code>Backup</code> custom resource (CR) to define how long to wait for a CSI snapshot to become ready. Adjusting this timeout prevents errors when using the CSI plugin to take snapshots of large storage volumes that require more time. The default value is <code>10m</code>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Typically, the default value for <code>CSISnapshotTimeout</code> does not require adjustment, because the default setting can accommodate large storage volumes.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the values in the <code>spec.csiSnapshotTimeout</code> block of the <code>Backup</code> CR manifest, as shown in the following example:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Backup\nmetadata:\n name: <backup_name>\nspec:\n csiSnapshotTimeout: 10m\n# ..."} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="item-operation-timeout-restore_oadp-timeouts" class="group scroll-mt-20">Implementing item operation timeout - restore<a href="#item-operation-timeout-restore_oadp-timeouts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>ItemOperationTimeout</code> parameter in the <code>Restore</code> custom resource (CR) to define how long restore operations wait to complete. Adjusting this timeout prevents failures when Data Mover needs more time to download large storage volumes. The default value is <code>1h</code>.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the values in the <code>Restore.spec.itemOperationTimeout</code> block of the <code>Restore</code> CR manifest, as shown in the following example:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Restore\nmetadata:\n name: <restore_name>\nspec:\n itemOperationTimeout: 1h\n# ..."} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="item-operation-timeout-backup_oadp-timeouts" class="group scroll-mt-20">Implementing item operation timeout - backup<a href="#item-operation-timeout-backup_oadp-timeouts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>ItemOperationTimeout</code> parameter in the <code>Backup</code> custom resource (CR) to define how long asynchronous <code>BackupItemAction</code> operations wait to complete. Adjusting this timeout prevents failures when Data Mover needs more time to upload large storage volumes. The default value is <code>1h</code>.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the values in the <code>Backup.spec.itemOperationTimeout</code> block of the <code>Backup</code> CR manifest, as shown in the following example:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Backup\nmetadata:\n name: <backup_name>\nspec:\n itemOperationTimeout: 1h\n# ..."} lang="yaml" />
+      </li>
+      </ul>
       <h2 id="additional-resources_oadp-timeouts" class="group scroll-mt-20">Additional resources<a href="#additional-resources_oadp-timeouts" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-timeouts#restic-timeout_oadp-timeouts">Restic timeout</a></li>

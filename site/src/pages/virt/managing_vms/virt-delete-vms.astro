@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-delete-vms","text":"Delete a virtual machine"}];
+const headings = [{"depth":1,"slug":"virt-delete-vms","text":"Delete a virtual machine"},{"depth":2,"slug":"virt-delete-vm-web_virt-delete-vms","text":"Deleting a virtual machine using the web console"},{"depth":2,"slug":"virt-deleting-vms_virt-delete-vms","text":"Deleting a virtual machine by using the CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/virt-delete-vms";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/managing_vms"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Delete a virtual machine {#virt-delete-vms}\n\nYou can remove virtual machines (VMs) from your cluster to free up resources using either the web console or CLI. Deleting a VM removes the virtual machine definition and optionally its associated storage resources.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-delete-vms.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Delete a virtual machine {#virt-delete-vms}\n\nYou can remove virtual machines (VMs) from your cluster to free up resources using either the web console or CLI. Deleting a VM removes the virtual machine definition and optionally its associated storage resources.\n\n## Deleting a virtual machine using the web console {#virt-delete-vm-web_virt-delete-vms}\n\nDeleting a virtual machine (VM) permanently removes it from the cluster.\n\nIf the VM is delete protected, the **Delete** action is disabled in the VM’s **Actions** menu.\n\n**Prerequisites**\n\n- You have disabled the VM’s delete protection setting.\n- You have stopped the VM.\n\n**Procedure**\n\n1. From the OpenShift Container Platform web console, choose your view:\n\n   - For a virtualization-focused view, select **Administrator** → **Virtualization** → **VirtualMachines**.\n   - For a general view, navigate to **Virtualization** → **VirtualMachines**.\n2. Click the **Options** menu ![](kebab.png \"Options menu\") beside a VM and select **Delete**.\n\n   Alternatively, click the VM’s name to open the **VirtualMachine details** page and click **Actions** -> **Delete**.\n\n   You can also right-click the VM in the tree view and select **Delete** from the pop-up menu.\n3. Optional: Select **With grace period** or clear **Delete disks**.\n4. Click **Delete** to permanently delete the VM.\n\n## Deleting a virtual machine by using the CLI {#virt-deleting-vms_virt-delete-vms}\n\nYou can delete a virtual machine (VM) by using the `oc` command-line interface (CLI). The `oc` client enables you to perform actions on multiple VMs.\n\n**Prerequisites**\n\n- You have disabled the VM’s delete protection setting.\n- You have stopped the VM.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Delete the VM by running the following command:\n\n  ```terminal\n  $ oc delete vm <vm_name>\n  ```\n\n  > [!NOTE]\n  > This command only deletes a VM in the current project. Specify the `-n <project_name>` option if the VM you want to delete is in a different project or namespace.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-delete-vms.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,53 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-delete-vms" class="group scroll-mt-20">Delete a virtual machine<a href="#virt-delete-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can remove virtual machines (VMs) from your cluster to free up resources using either the web console or CLI. Deleting a VM removes the virtual machine definition and optionally its associated storage resources.</p>
-      <p class="/modules/virt-deleting-vms.md /modules/virt-delete-vm-web.md"></p>
+      <h2 id="virt-delete-vm-web_virt-delete-vms" class="group scroll-mt-20">Deleting a virtual machine using the web console<a href="#virt-delete-vm-web_virt-delete-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Deleting a virtual machine (VM) permanently removes it from the cluster.</p>
+      <p>If the VM is delete protected, the <strong>Delete</strong> action is disabled in the VM’s <strong>Actions</strong> menu.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have disabled the VM’s delete protection setting.</li>
+      <li>You have stopped the VM.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      From the OpenShift Container Platform web console, choose your view:
+      <ul>
+      <li>For a virtualization-focused view, select <strong>Administrator</strong> → <strong>Virtualization</strong> → <strong>VirtualMachines</strong>.</li>
+      <li>For a general view, navigate to <strong>Virtualization</strong> → <strong>VirtualMachines</strong>.</li>
+      </ul>
+      </li>
+      <li>
+      Click the <strong>Options</strong> menu <img src="kebab.png" alt="" loading="lazy" /> beside a VM and select <strong>Delete</strong>.
+      <p>Alternatively, click the VM’s name to open the <strong>VirtualMachine details</strong> page and click <strong>Actions</strong> -&gt; <strong>Delete</strong>.</p>
+      <p>You can also right-click the VM in the tree view and select <strong>Delete</strong> from the pop-up menu.</p>
+      </li>
+      <li>Optional: Select <strong>With grace period</strong> or clear <strong>Delete disks</strong>.</li>
+      <li>Click <strong>Delete</strong> to permanently delete the VM.</li>
+      </ol>
+      <h2 id="virt-deleting-vms_virt-delete-vms" class="group scroll-mt-20">Deleting a virtual machine by using the CLI<a href="#virt-deleting-vms_virt-delete-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can delete a virtual machine (VM) by using the <code>oc</code> command-line interface (CLI). The <code>oc</code> client enables you to perform actions on multiple VMs.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have disabled the VM’s delete protection setting.</li>
+      <li>You have stopped the VM.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Delete the VM by running the following command:
+      <CodeBlock code={"$ oc delete vm <vm_name>"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This command only deletes a VM in the current project. Specify the <code>-n &lt;project_name&gt;</code> option if the VM you want to delete is in a different project or namespace.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

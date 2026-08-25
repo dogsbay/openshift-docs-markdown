@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"disconnected-install-ibmz-hcp","text":"Deploying {{ hcp }} on {{ ibm_z_title }} in a disconnected environment"}];
+const headings = [{"depth":1,"slug":"disconnected-install-ibmz-hcp","text":"Deploying hosted control planes on IBM Z in a disconnected environment"},{"depth":2,"slug":"hcp-ibm-z-dc-prereqs_disconnected-install-ibmz-hcp","text":"Prerequisites to deploy hosted control planes on IBM Z in a disconnected environment"},{"depth":2,"slug":"hcp-ibm-z-adding-credentials-registry_disconnected-install-ibmz-hcp","text":"Adding credentials and the registry certificate authority to the management cluster"},{"depth":2,"slug":"hcp-ibm-z-update-registry-ca_disconnected-install-ibmz-hcp","text":"Update the registry certificate authority in the AgentServiceConfig resource with the mirror registry"},{"depth":2,"slug":"hcp-ibm-z-adding-registry-ca-hostedcluster_disconnected-install-ibmz-hcp","text":"Adding the registry certificate authority to the hosted cluster"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/disconnected-install-ibmz-hcp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Deploying {{ hcp }} on {{ ibm_z_title }} in a disconnected environment";
-const description = "{{ hcp_capital }} deployments in disconnected environments function differently than in a standalone OpenShift Container Platform." || undefined;
+const description = "Hosted control planes deployments in disconnected environments function differently than in a standalone OpenShift Container Platform." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-disconn
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying {{ hcp }} on {{ ibm_z_title }} in a disconnected environment {#disconnected-install-ibmz-hcp}\n\n{{ hcp_capital }} deployments in disconnected environments function differently than in a standalone OpenShift Container Platform.\n\n{{ hcp_capital }} involves two distinct environments:\n\n- Control plane: Located in the management cluster, where the {{ hcp }} pods are run and managed by the Control Plane Operator.\n- Data plane: Located in the workers of the hosted cluster, where the workload and a few other pods run, managed by the Hosted Cluster Config Operator.\n\nThe `ImageContentSourcePolicy` (ICSP) custom resource for the data plane is managed through the `ImageContentSources` API in the hosted cluster manifest.\n\nFor the control plane, ICSP objects are managed in the management cluster. These objects are parsed by the HyperShift Operator and are shared as `registry-overrides` entries with the Control Plane Operator. These entries are injected into any one of the available  deployments in the {{ hcp }} namespace as an argument.\n\nTo work with disconnected registries in the {{ hcp }}, you must first create the appropriate ICSP in the management cluster. Then, to deploy disconnected workloads in the data plane, you need to add the entries that you want into the `ImageContentSources` field in the hosted cluster manifest.\n\n**Additional resources**\n\n- [Mirror registry for Red Hat OpenShift introduction](/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry)\n- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/disconnected-install-ibmz-hcp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Deploying hosted control planes on IBM Z in a disconnected environment {#disconnected-install-ibmz-hcp}\n\nHosted control planes deployments in disconnected environments function differently than in a standalone OpenShift Container Platform.\n\nHosted control planes involves two distinct environments:\n\n- Control plane: Located in the management cluster, where the hosted control planes pods are run and managed by the Control Plane Operator.\n- Data plane: Located in the workers of the hosted cluster, where the workload and a few other pods run, managed by the Hosted Cluster Config Operator.\n\nThe `ImageContentSourcePolicy` (ICSP) custom resource for the data plane is managed through the `ImageContentSources` API in the hosted cluster manifest.\n\nFor the control plane, ICSP objects are managed in the management cluster. These objects are parsed by the HyperShift Operator and are shared as `registry-overrides` entries with the Control Plane Operator. These entries are injected into any one of the available  deployments in the hosted control planes namespace as an argument.\n\nTo work with disconnected registries in the hosted control planes, you must first create the appropriate ICSP in the management cluster. Then, to deploy disconnected workloads in the data plane, you need to add the entries that you want into the `ImageContentSources` field in the hosted cluster manifest.\n\n## Prerequisites to deploy hosted control planes on IBM Z in a disconnected environment {#hcp-ibm-z-dc-prereqs_disconnected-install-ibmz-hcp}\n\nTo deploy hosted control planes on IBM Z in a disconnected environment, you must meet a few prerequisites.\n\nYou need the following resources:\n\n- A mirror registry. For more information, see \"Mirror registry for Red Hat OpenShift introduction\".\n- A mirrored image for a disconnected installation. For more information, see \"Mirroring images for a disconnected installation using the oc-mirror plugin\".\n\n**Additional resources**\n\n- [Mirror registry for Red Hat OpenShift introduction](/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry)\n- [Mirroring images for a disconnected installation by using the oc-mirror plugin v2](/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2)\n\n## Adding credentials and the registry certificate authority to the management cluster {#hcp-ibm-z-adding-credentials-registry_disconnected-install-ibmz-hcp}\n\nTo pull the mirror registry images from the management cluster, you must first add credentials and the certificate authority of the mirror registry to the management cluster.\n\n**Procedure**\n\n1. Create a `ConfigMap` with the certificate of the mirror registry by running the following command:\n\n   ```terminal\n   $ oc apply -f registry-config.yaml\n   ```\n\n   ```yaml {title=\"Example output\"}\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: registry-config\n     namespace: openshift-config\n   data:\n     <mirror_registry>: |\n       -----BEGIN CERTIFICATE-----\n       -----END CERTIFICATE-----\n   #...\n   ```\n2. Patch the `image.config.openshift.io` cluster-wide object to include the following entries:\n\n   ```yaml\n   spec:\n     additionalTrustedCA:\n       - name: registry-config\n   ```\n3. Update the management cluster pull secret to add the credentials of the mirror registry.\n\n   1. Fetch the pull secret from the cluster in a JSON format by running the following command:\n\n      ```terminal\n      $ oc get secret/pull-secret -n openshift-config -o json \\\n        | jq -r '.data.\".dockerconfigjson\"' \\\n        | base64 -d > authfile\n      ```\n   2. Edit the fetched secret JSON file to include a section with the credentials of the certificate authority:\n\n      ```terminal\n        \"auths\": {\n          \"<mirror_registry>\": {\n            \"auth\": \"<credentials>\",\n            \"email\": \"you@example.com\"\n          }\n        },\n      ```\n\n      - `<mirror_registry>` specifies the name of the mirror registry.\n      - `<credentials>` specifies the credentials for the mirror registry to allow fetch of images.\n   3. Update the pull secret on the cluster by running the following command:\n\n      ```terminal\n      $ oc set data secret/pull-secret -n openshift-config \\\n        --from-file=.dockerconfigjson=authfile\n      ```\n\n## Update the registry certificate authority in the AgentServiceConfig resource with the mirror registry {#hcp-ibm-z-update-registry-ca_disconnected-install-ibmz-hcp}\n\nWhen you use a mirror registry for images, agents need to trust the registry’s certificate to securely pull images. You can add the certificate authority of the mirror registry to the `AgentServiceConfig` custom resource by creating a `ConfigMap`.\n\n**Prerequisites**\n\n- You must have installed multicluster engine for Kubernetes Operator.\n\n**Procedure**\n\n1. In the same namespace where you installed multicluster engine Operator, create a `ConfigMap` resource with the mirror registry details. This `ConfigMap` resource ensures that you grant the hosted cluster workers the capability to retrieve images from the mirror registry.\n\n   ```yaml {title=\"Example ConfigMap file\"}\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: mirror-config\n     namespace: multicluster-engine\n     labels:\n       app: assisted-service\n   data:\n     ca-bundle.crt: |\n       -----BEGIN CERTIFICATE-----\n       -----END CERTIFICATE-----\n     registries.conf: |\n\n       [[registry]]\n         location = \"registry.stage.redhat.io\"\n         insecure = false\n         blocked = false\n         mirror-by-digest-only = true\n         prefix = \"\"\n\n         [[registry.mirror]]\n           location = \"<mirror_registry>\"\n           insecure = false\n\n       [[registry]]\n         location = \"registry.redhat.io/multicluster-engine\"\n         insecure = false\n         blocked = false\n         mirror-by-digest-only = true\n         prefix = \"\"\n\n         [[registry.mirror]]\n           location = \"<mirror_registry>/multicluster-engine\"\n           insecure = false\n   ```\n\n   Replace `<mirror_registry>` with the name of the mirror registry.\n2. Patch the `AgentServiceConfig` resource to include the `ConfigMap` resource that you created. If the `AgentServiceConfig` resource is not present, create the `AgentServiceConfig` resource with the following content embedded into it:\n\n   ```terminal\n   spec:\n     mirrorRegistryRef:\n       name: mirror-config\n   ```\n\n## Adding the registry certificate authority to the hosted cluster {#hcp-ibm-z-adding-registry-ca-hostedcluster_disconnected-install-ibmz-hcp}\n\nWhen you are deploying hosted control planes on IBM Z in a disconnected environment, include the `additional-trust-bundle` and `image-content-sources` resources. The hosted cluster uses those resources to inject the certificate authority into the data plane compute nodes so that the images are pulled from the registry.\n\n**Procedure**\n\n1. Create the `icsp.yaml` file with the `image-content-sources` information.\n\n   The `image-content-sources` information is available in the `ImageContentSourcePolicy` YAML file that is generated after you mirror the images by using `oc-mirror`.\n\n   ```terminal {title=\"Example ImageContentSourcePolicy file\"}\n   # cat icsp.yaml\n   - mirrors:\n     - <mirror_registry>/openshift/release\n     source: quay.io/openshift-release-dev/ocp-v4.0-art-dev\n   - mirrors:\n     - <mirror_registry>/openshift/release-images\n     source: quay.io/openshift-release-dev/ocp-release\n   ```\n2. Create a hosted cluster and provide the `additional-trust-bundle` certificate to update the compute nodes with the certificates as in the following example:\n\n   ```terminal\n   $ hcp create cluster agent \\\n       --name=my-hosted-cluster \\\n       --pull-secret=/user/name/pullsecret \\\n       --agent-namespace=clusters-hosted \\\n       --base-domain=example.com \\\n       --api-server-address=api.my-hosted-cluster.example.com \\\n       --etcd-storage-class=lvm-storageclass \\\n       --ssh-key ~/.ssh/id_rsa.pub \\\n       --namespace <hosted_cluster_namespace> \\\n       --control-plane-availability-policy SingleReplica \\\n       --release-image=quay.io/openshift-release-dev/ocp-release:4.22.0-multi \\\n       --additional-trust-bundle <path for cert> \\\n       --image-content-sources icsp.yaml\n   ```\n\n   - `--name` specifies the name of your hosted cluster.\n   - `--pull-secret` specifies the path to your pull secret.\n   - `--agent-namespace` specifies the name of the hosted control plane namespace.\n   - `--base-domain` specifies the name of your base domain.\n   - `--etcd-storage-class` specifies the etcd storage class name.\n   - `--ssh-key` specifies the path to your SSH public key. The default file path is `~/.ssh/id_rsa.pub`.\n   - `--namespace` specifies the name of the hosted cluster namespace.\n   - `--release-image` specifies the supported OpenShift Container Platform version that you want to use.\n   - `--additional-trust-bundle` specifies the path to the Certificate Authority of the mirror registry.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/disconnected-install-ibmz-hcp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,25 +91,104 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="disconnected-install-ibmz-hcp" class="group scroll-mt-20">Deploying {"{"}{"{"} hcp {"}"}{"}"} on {"{"}{"{"} ibm_z_title {"}"}{"}"} in a disconnected environment<a href="#disconnected-install-ibmz-hcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>{"{"}{"{"} hcp_capital {"}"}{"}"} deployments in disconnected environments function differently than in a standalone OpenShift Container Platform.</p>
-      <p>{"{"}{"{"} hcp_capital {"}"}{"}"} involves two distinct environments:</p>
+      <h1 id="disconnected-install-ibmz-hcp" class="group scroll-mt-20">Deploying hosted control planes on IBM Z in a disconnected environment<a href="#disconnected-install-ibmz-hcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Hosted control planes deployments in disconnected environments function differently than in a standalone OpenShift Container Platform.</p>
+      <p>Hosted control planes involves two distinct environments:</p>
       <ul>
-      <li>Control plane: Located in the management cluster, where the {"{"}{"{"} hcp {"}"}{"}"} pods are run and managed by the Control Plane Operator.</li>
+      <li>Control plane: Located in the management cluster, where the hosted control planes pods are run and managed by the Control Plane Operator.</li>
       <li>Data plane: Located in the workers of the hosted cluster, where the workload and a few other pods run, managed by the Hosted Cluster Config Operator.</li>
       </ul>
       <p>The <code>ImageContentSourcePolicy</code> (ICSP) custom resource for the data plane is managed through the <code>ImageContentSources</code> API in the hosted cluster manifest.</p>
-      <p>For the control plane, ICSP objects are managed in the management cluster. These objects are parsed by the HyperShift Operator and are shared as <code>registry-overrides</code> entries with the Control Plane Operator. These entries are injected into any one of the available  deployments in the {"{"}{"{"} hcp {"}"}{"}"} namespace as an argument.</p>
-      <p>To work with disconnected registries in the {"{"}{"{"} hcp {"}"}{"}"}, you must first create the appropriate ICSP in the management cluster. Then, to deploy disconnected workloads in the data plane, you need to add the entries that you want into the <code>ImageContentSources</code> field in the hosted cluster manifest.</p>
-      <p class="/modules/hcp-ibm-z-dc-prereqs.md"></p>
+      <p>For the control plane, ICSP objects are managed in the management cluster. These objects are parsed by the HyperShift Operator and are shared as <code>registry-overrides</code> entries with the Control Plane Operator. These entries are injected into any one of the available  deployments in the hosted control planes namespace as an argument.</p>
+      <p>To work with disconnected registries in the hosted control planes, you must first create the appropriate ICSP in the management cluster. Then, to deploy disconnected workloads in the data plane, you need to add the entries that you want into the <code>ImageContentSources</code> field in the hosted cluster manifest.</p>
+      <h2 id="hcp-ibm-z-dc-prereqs_disconnected-install-ibmz-hcp" class="group scroll-mt-20">Prerequisites to deploy hosted control planes on IBM Z in a disconnected environment<a href="#hcp-ibm-z-dc-prereqs_disconnected-install-ibmz-hcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To deploy hosted control planes on IBM Z in a disconnected environment, you must meet a few prerequisites.</p>
+      <p>You need the following resources:</p>
+      <ul>
+      <li>A mirror registry. For more information, see "Mirror registry for Red Hat OpenShift introduction".</li>
+      <li>A mirrored image for a disconnected installation. For more information, see "Mirroring images for a disconnected installation using the oc-mirror plugin".</li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/disconnected/installing-mirroring-creating-registry#mirror-registry-introduction_installing-mirroring-creating-registry">Mirror registry for Red Hat OpenShift introduction</a></li>
       <li><a href="/openshift-docs-markdown/disconnected/about-installing-oc-mirror-v2#about-installing-oc-mirror-v2">Mirroring images for a disconnected installation by using the oc-mirror plugin v2</a></li>
       </ul>
-      <p class="/modules/hcp-ibm-z-update-reg-ca.md"></p>
-      <p class="/modules/hcp-ibm-z-adding-reg-ca-hostedcluster.md"></p>
+      <h2 id="hcp-ibm-z-adding-credentials-registry_disconnected-install-ibmz-hcp" class="group scroll-mt-20">Adding credentials and the registry certificate authority to the management cluster<a href="#hcp-ibm-z-adding-credentials-registry_disconnected-install-ibmz-hcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To pull the mirror registry images from the management cluster, you must first add credentials and the certificate authority of the mirror registry to the management cluster.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>ConfigMap</code> with the certificate of the mirror registry by running the following command:
+      <CodeBlock code={"$ oc apply -f registry-config.yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: registry-config\n  namespace: openshift-config\ndata:\n  <mirror_registry>: |\n    -----BEGIN CERTIFICATE-----\n    -----END CERTIFICATE-----\n#..."} lang="yaml" title="Example output" />
+      </li>
+      <li>
+      Patch the <code>image.config.openshift.io</code> cluster-wide object to include the following entries:
+      <CodeBlock code={"spec:\n  additionalTrustedCA:\n    - name: registry-config"} lang="yaml" />
+      </li>
+      <li>
+      Update the management cluster pull secret to add the credentials of the mirror registry.
+      <ol>
+      <li>
+      Fetch the pull secret from the cluster in a JSON format by running the following command:
+      <CodeBlock code={"$ oc get secret/pull-secret -n openshift-config -o json \\\n  | jq -r '.data.\".dockerconfigjson\"' \\\n  | base64 -d > authfile"} lang="terminal" />
+      </li>
+      <li>
+      Edit the fetched secret JSON file to include a section with the credentials of the certificate authority:
+      <CodeBlock code={"  \"auths\": {\n    \"<mirror_registry>\": {\n      \"auth\": \"<credentials>\",\n      \"email\": \"you@example.com\"\n    }\n  },"} lang="terminal" />
+      <ul>
+      <li><code>&lt;mirror_registry&gt;</code> specifies the name of the mirror registry.</li>
+      <li><code>&lt;credentials&gt;</code> specifies the credentials for the mirror registry to allow fetch of images.</li>
+      </ul>
+      </li>
+      <li>
+      Update the pull secret on the cluster by running the following command:
+      <CodeBlock code={"$ oc set data secret/pull-secret -n openshift-config \\\n  --from-file=.dockerconfigjson=authfile"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="hcp-ibm-z-update-registry-ca_disconnected-install-ibmz-hcp" class="group scroll-mt-20">Update the registry certificate authority in the AgentServiceConfig resource with the mirror registry<a href="#hcp-ibm-z-update-registry-ca_disconnected-install-ibmz-hcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When you use a mirror registry for images, agents need to trust the registry’s certificate to securely pull images. You can add the certificate authority of the mirror registry to the <code>AgentServiceConfig</code> custom resource by creating a <code>ConfigMap</code>.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have installed multicluster engine for Kubernetes Operator.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      In the same namespace where you installed multicluster engine Operator, create a <code>ConfigMap</code> resource with the mirror registry details. This <code>ConfigMap</code> resource ensures that you grant the hosted cluster workers the capability to retrieve images from the mirror registry.
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: mirror-config\n  namespace: multicluster-engine\n  labels:\n    app: assisted-service\ndata:\n  ca-bundle.crt: |\n    -----BEGIN CERTIFICATE-----\n    -----END CERTIFICATE-----\n  registries.conf: |\n\n    [[registry]]\n      location = \"registry.stage.redhat.io\"\n      insecure = false\n      blocked = false\n      mirror-by-digest-only = true\n      prefix = \"\"\n\n      [[registry.mirror]]\n        location = \"<mirror_registry>\"\n        insecure = false\n\n    [[registry]]\n      location = \"registry.redhat.io/multicluster-engine\"\n      insecure = false\n      blocked = false\n      mirror-by-digest-only = true\n      prefix = \"\"\n\n      [[registry.mirror]]\n        location = \"<mirror_registry>/multicluster-engine\"\n        insecure = false"} lang="yaml" title="Example ConfigMap file" />
+      <p>Replace <code>&lt;mirror_registry&gt;</code> with the name of the mirror registry.</p>
+      </li>
+      <li>
+      Patch the <code>AgentServiceConfig</code> resource to include the <code>ConfigMap</code> resource that you created. If the <code>AgentServiceConfig</code> resource is not present, create the <code>AgentServiceConfig</code> resource with the following content embedded into it:
+      <CodeBlock code={"spec:\n  mirrorRegistryRef:\n    name: mirror-config"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="hcp-ibm-z-adding-registry-ca-hostedcluster_disconnected-install-ibmz-hcp" class="group scroll-mt-20">Adding the registry certificate authority to the hosted cluster<a href="#hcp-ibm-z-adding-registry-ca-hostedcluster_disconnected-install-ibmz-hcp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When you are deploying hosted control planes on IBM Z in a disconnected environment, include the <code>additional-trust-bundle</code> and <code>image-content-sources</code> resources. The hosted cluster uses those resources to inject the certificate authority into the data plane compute nodes so that the images are pulled from the registry.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the <code>icsp.yaml</code> file with the <code>image-content-sources</code> information.
+      <p>The <code>image-content-sources</code> information is available in the <code>ImageContentSourcePolicy</code> YAML file that is generated after you mirror the images by using <code>oc-mirror</code>.</p>
+      <CodeBlock code={"# cat icsp.yaml\n- mirrors:\n  - <mirror_registry>/openshift/release\n  source: quay.io/openshift-release-dev/ocp-v4.0-art-dev\n- mirrors:\n  - <mirror_registry>/openshift/release-images\n  source: quay.io/openshift-release-dev/ocp-release"} lang="terminal" title="Example ImageContentSourcePolicy file" />
+      </li>
+      <li>
+      Create a hosted cluster and provide the <code>additional-trust-bundle</code> certificate to update the compute nodes with the certificates as in the following example:
+      <CodeBlock code={"$ hcp create cluster agent \\\n    --name=my-hosted-cluster \\\n    --pull-secret=/user/name/pullsecret \\\n    --agent-namespace=clusters-hosted \\\n    --base-domain=example.com \\\n    --api-server-address=api.my-hosted-cluster.example.com \\\n    --etcd-storage-class=lvm-storageclass \\\n    --ssh-key ~/.ssh/id_rsa.pub \\\n    --namespace <hosted_cluster_namespace> \\\n    --control-plane-availability-policy SingleReplica \\\n    --release-image=quay.io/openshift-release-dev/ocp-release:4.22.0-multi \\\n    --additional-trust-bundle <path for cert> \\\n    --image-content-sources icsp.yaml"} lang="terminal" />
+      <ul>
+      <li><code>--name</code> specifies the name of your hosted cluster.</li>
+      <li><code>--pull-secret</code> specifies the path to your pull secret.</li>
+      <li><code>--agent-namespace</code> specifies the name of the hosted control plane namespace.</li>
+      <li><code>--base-domain</code> specifies the name of your base domain.</li>
+      <li><code>--etcd-storage-class</code> specifies the etcd storage class name.</li>
+      <li><code>--ssh-key</code> specifies the path to your SSH public key. The default file path is <code>~/.ssh/id_rsa.pub</code>.</li>
+      <li><code>--namespace</code> specifies the name of the hosted cluster namespace.</li>
+      <li><code>--release-image</code> specifies the supported OpenShift Container Platform version that you want to use.</li>
+      <li><code>--additional-trust-bundle</code> specifies the path to the Certificate Authority of the mirror registry.</li>
+      </ul>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-dc-monitor","text":"Monitoring user workload in a disconnected environment"}];
+const headings = [{"depth":1,"slug":"hcp-dc-monitor","text":"Monitoring user workload in a disconnected environment"},{"depth":2,"slug":"hcp-dc-usr-wkld_hcp-dc-monitor","text":"Resolving user workload monitoring issues"},{"depth":2,"slug":"hcp-dc-verify_hcp-dc-monitor","text":"Verifying the status of the hosted control plane feature"},{"depth":2,"slug":"hcp-dc-addon_hcp-dc-monitor","text":"Configuring the hypershift-addon managed cluster add-on to run on an infrastructure node"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-dc-monitor";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-disconn
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring user workload in a disconnected environment {#hcp-dc-monitor}\n\nWhen the `--enable-uwm-telemetry-remote-write` option is enabled, user workload monitoring is enabled and it can remotely write telemetry metrics from control planes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-dc-monitor.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Monitoring user workload in a disconnected environment {#hcp-dc-monitor}\n\nWhen the `--enable-uwm-telemetry-remote-write` option is enabled, user workload monitoring is enabled and it can remotely write telemetry metrics from control planes.\n\n## Resolving user workload monitoring issues {#hcp-dc-usr-wkld_hcp-dc-monitor}\n\nIf you installed multicluster engine Operator on OpenShift Container Platform clusters that are not connected to the internet, when you try to run the user workload monitoring feature, it might fail with an error.\n\nFor example, when you try to run the user workload monitoring feature by entering the following command, it fails with an error:\n\n```terminal\n$ oc get events -n hypershift\n```\n\n```terminal\nLAST SEEN   TYPE      REASON           OBJECT                MESSAGE\n4m46s       Warning   ReconcileError   deployment/operator   Failed to ensure UWM telemetry remote write: cannot get telemeter client secret: Secret \"telemeter-client\" not found\n```\n\nTo resolve the error, you must disable the user workload monitoring option by creating a config map in the `local-cluster` namespace. You can create the config map either before or after you enable the add-on. The add-on agent reconfigures the HyperShift Operator.\n\n**Procedure**\n\n1. Create the following config map:\n\n   ```yaml\n   kind: ConfigMap\n   apiVersion: v1\n   metadata:\n     name: hypershift-operator-install-flags\n     namespace: local-cluster\n   data:\n     installFlagsToAdd: \"\"\n     installFlagsToRemove: \"--enable-uwm-telemetry-remote-write\"\n   ```\n2. Apply the config map by running the following command:\n\n   ```terminal\n   $ oc apply -f <filename>.yaml\n   ```\n\n## Verifying the status of the hosted control plane feature {#hcp-dc-verify_hcp-dc-monitor}\n\nThe hosted control plane feature is enabled by default. However, if you are not sure that it is enabled, you can run a command to verify its status.\n\n**Procedure**\n\n1. If the feature is disabled and you want to enable it, enter the following command. Replace `<multiclusterengine>` with the name of your multicluster engine Operator instance:\n\n   ```terminal\n   $ oc patch mce <multiclusterengine> --type=merge -p \\\n     '{\"spec\":{\"overrides\":{\"components\":[{\"name\":\"hypershift\",\"enabled\": true}]}}}'\n   ```\n\n   When you enable the feature, the `hypershift-addon` managed cluster add-on is installed in the `local-cluster` managed cluster, and the add-on agent installs the HyperShift Operator on the multicluster engine Operator hub cluster.\n2. Confirm that the `hypershift-addon` managed cluster add-on is installed by entering the following command:\n\n   ```terminal\n   $ oc get managedclusteraddons -n local-cluster hypershift-addon\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME               AVAILABLE   DEGRADED   PROGRESSING\n   hypershift-addon   True        False\n   ```\n3. To avoid a timeout during this process, enter the following commands:\n\n   1. To avoid a timeout when the condition is `Degraded`, enter the following command:\n\n      ```terminal\n      $ oc wait --for=condition=Degraded=True managedclusteraddons/hypershift-addon \\\n        -n local-cluster --timeout=5m\n      ```\n   2. To avoid a timeout when the condition is `Available`, enter the following command:\n\n      ```terminal\n      $ oc wait --for=condition=Available=True managedclusteraddons/hypershift-addon \\\n        -n local-cluster --timeout=5m\n      ```\n\n      When the process is complete, the `hypershift-addon` managed cluster add-on and the HyperShift Operator are installed, and the `local-cluster` managed cluster is available to host and manage hosted clusters.\n\n## Configuring the hypershift-addon managed cluster add-on to run on an infrastructure node {#hcp-dc-addon_hcp-dc-monitor}\n\nBy default, no node placement preference is specified for the `hypershift-addon` managed cluster add-on. Consider running the add-ons on the infrastructure nodes, because by doing so, you can prevent incurring billing costs against subscription counts and separate maintenance and management tasks.\n\n**Procedure**\n\n1. Log in to the hub cluster.\n2. Open the `hypershift-addon-deploy-config` add-on deployment configuration specification for editing by entering the following command:\n\n   ```terminal\n   $ oc edit addondeploymentconfig hypershift-addon-deploy-config \\\n     -n multicluster-engine\n   ```\n3. Add the `nodePlacement` field to the specification, as shown in the following example:\n\n   ```yaml\n   apiVersion: addon.open-cluster-management.io/v1alpha1\n   kind: AddOnDeploymentConfig\n   metadata:\n     name: hypershift-addon-deploy-config\n     namespace: multicluster-engine\n   spec:\n     nodePlacement:\n       nodeSelector:\n         node-role.kubernetes.io/infra: \"\"\n       tolerations:\n       - effect: NoSchedule\n         key: node-role.kubernetes.io/infra\n         operator: Exists\n   ```\n4. Save the changes. The `hypershift-addon` managed cluster add-on is deployed on an infrastructure node for new and existing managed clusters.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-dc-monitor.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,12 +91,69 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="hcp-dc-monitor" class="group scroll-mt-20">Monitoring user workload in a disconnected environment<a href="#hcp-dc-monitor" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>When the <code>--enable-uwm-telemetry-remote-write</code> option is enabled, user workload monitoring is enabled and it can remotely write telemetry metrics from control planes.</p>
-      <p class="/modules/hcp-dc-usr-wkld.md"></p>
-      <p class="/modules/hcp-dc-verify.md"></p>
-      <p class="/modules/hcp-dc-addon.md"></p>
+      <h2 id="hcp-dc-usr-wkld_hcp-dc-monitor" class="group scroll-mt-20">Resolving user workload monitoring issues<a href="#hcp-dc-usr-wkld_hcp-dc-monitor" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you installed multicluster engine Operator on OpenShift Container Platform clusters that are not connected to the internet, when you try to run the user workload monitoring feature, it might fail with an error.</p>
+      <p>For example, when you try to run the user workload monitoring feature by entering the following command, it fails with an error:</p>
+      <CodeBlock code={"$ oc get events -n hypershift"} lang="terminal" />
+      <CodeBlock code={"LAST SEEN   TYPE      REASON           OBJECT                MESSAGE\n4m46s       Warning   ReconcileError   deployment/operator   Failed to ensure UWM telemetry remote write: cannot get telemeter client secret: Secret \"telemeter-client\" not found"} lang="terminal" />
+      <p>To resolve the error, you must disable the user workload monitoring option by creating a config map in the <code>local-cluster</code> namespace. You can create the config map either before or after you enable the add-on. The add-on agent reconfigures the HyperShift Operator.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the following config map:
+      <CodeBlock code={"kind: ConfigMap\napiVersion: v1\nmetadata:\n  name: hypershift-operator-install-flags\n  namespace: local-cluster\ndata:\n  installFlagsToAdd: \"\"\n  installFlagsToRemove: \"--enable-uwm-telemetry-remote-write\""} lang="yaml" />
+      </li>
+      <li>
+      Apply the config map by running the following command:
+      <CodeBlock code={"$ oc apply -f <filename>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="hcp-dc-verify_hcp-dc-monitor" class="group scroll-mt-20">Verifying the status of the hosted control plane feature<a href="#hcp-dc-verify_hcp-dc-monitor" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The hosted control plane feature is enabled by default. However, if you are not sure that it is enabled, you can run a command to verify its status.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      If the feature is disabled and you want to enable it, enter the following command. Replace <code>&lt;multiclusterengine&gt;</code> with the name of your multicluster engine Operator instance:
+      <CodeBlock code={"$ oc patch mce <multiclusterengine> --type=merge -p \\\n  '{\"spec\":{\"overrides\":{\"components\":[{\"name\":\"hypershift\",\"enabled\": true}]}}}'"} lang="terminal" />
+      <p>When you enable the feature, the <code>hypershift-addon</code> managed cluster add-on is installed in the <code>local-cluster</code> managed cluster, and the add-on agent installs the HyperShift Operator on the multicluster engine Operator hub cluster.</p>
+      </li>
+      <li>
+      Confirm that the <code>hypershift-addon</code> managed cluster add-on is installed by entering the following command:
+      <CodeBlock code={"$ oc get managedclusteraddons -n local-cluster hypershift-addon"} lang="terminal" />
+      <CodeBlock code={"NAME               AVAILABLE   DEGRADED   PROGRESSING\nhypershift-addon   True        False"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To avoid a timeout during this process, enter the following commands:
+      <ol>
+      <li>
+      To avoid a timeout when the condition is <code>Degraded</code>, enter the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Degraded=True managedclusteraddons/hypershift-addon \\\n  -n local-cluster --timeout=5m"} lang="terminal" />
+      </li>
+      <li>
+      To avoid a timeout when the condition is <code>Available</code>, enter the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Available=True managedclusteraddons/hypershift-addon \\\n  -n local-cluster --timeout=5m"} lang="terminal" />
+      <p>When the process is complete, the <code>hypershift-addon</code> managed cluster add-on and the HyperShift Operator are installed, and the <code>local-cluster</code> managed cluster is available to host and manage hosted clusters.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h2 id="hcp-dc-addon_hcp-dc-monitor" class="group scroll-mt-20">Configuring the hypershift-addon managed cluster add-on to run on an infrastructure node<a href="#hcp-dc-addon_hcp-dc-monitor" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By default, no node placement preference is specified for the <code>hypershift-addon</code> managed cluster add-on. Consider running the add-ons on the infrastructure nodes, because by doing so, you can prevent incurring billing costs against subscription counts and separate maintenance and management tasks.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the hub cluster.</li>
+      <li>
+      Open the <code>hypershift-addon-deploy-config</code> add-on deployment configuration specification for editing by entering the following command:
+      <CodeBlock code={"$ oc edit addondeploymentconfig hypershift-addon-deploy-config \\\n  -n multicluster-engine"} lang="terminal" />
+      </li>
+      <li>
+      Add the <code>nodePlacement</code> field to the specification, as shown in the following example:
+      <CodeBlock code={"apiVersion: addon.open-cluster-management.io/v1alpha1\nkind: AddOnDeploymentConfig\nmetadata:\n  name: hypershift-addon-deploy-config\n  namespace: multicluster-engine\nspec:\n  nodePlacement:\n    nodeSelector:\n      node-role.kubernetes.io/infra: \"\"\n    tolerations:\n    - effect: NoSchedule\n      key: node-role.kubernetes.io/infra\n      operator: Exists "} lang="yaml" />
+      </li>
+      <li>Save the changes. The <code>hypershift-addon</code> managed cluster add-on is deployed on an infrastructure node for new and existing managed clusters.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

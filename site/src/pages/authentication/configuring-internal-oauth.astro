@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"configuring-internal-oauth","text":"Configuring the internal OAuth server"}];
+const headings = [{"depth":1,"slug":"configuring-internal-oauth","text":"Configuring the internal OAuth server"},{"depth":2,"slug":"oauth-server-overview_configuring-internal-oauth","text":"OpenShift Container Platform OAuth server"},{"depth":2,"slug":"oauth-token-request-flows_configuring-internal-oauth","text":"OAuth token request flows and responses"},{"depth":2,"slug":"oauth-internal-options_configuring-internal-oauth","text":"Options for the internal OAuth server"},{"depth":3,"slug":"oauth-token-duration_configuring-internal-oauth","text":"OAuth token duration options"},{"depth":3,"slug":"oauth-grant-options_configuring-internal-oauth","text":"OAuth grant options"},{"depth":2,"slug":"oauth-configuring-internal-oauth_configuring-internal-oauth","text":"Configuring the internal OAuth server’s token duration"},{"depth":2,"slug":"oauth-token-inactivity-timeout_configuring-internal-oauth","text":"Configuring token inactivity timeout for the internal OAuth server"},{"depth":2,"slug":"customizing-the-oauth-server-url_configuring-internal-oauth","text":"Customizing the internal OAuth server URL"},{"depth":2,"slug":"oauth-server-metadata_configuring-internal-oauth","text":"OAuth server metadata"},{"depth":2,"slug":"oauth-troubleshooting-api-events_configuring-internal-oauth","text":"Troubleshooting OAuth API events"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/authentication/configuring-internal-oauth";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["authentication"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the internal OAuth server {#configuring-internal-oauth}\n\nThe OpenShift Container Platform Control Plane includes a built-in OAuth server for user authentication. You can configure token duration, inactivity timeouts, and customize the OAuth server URL.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/configuring-internal-oauth.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring the internal OAuth server {#configuring-internal-oauth}\n\nThe OpenShift Container Platform Control Plane includes a built-in OAuth server for user authentication. You can configure token duration, inactivity timeouts, and customize the OAuth server URL.\n\n## OpenShift Container Platform OAuth server {#oauth-server-overview_configuring-internal-oauth}\n\nThe OpenShift Container Platform Control Plane includes a built-in OAuth server. Users obtain OAuth access tokens to authenticate themselves to the API.\n\nWhen a person requests a new OAuth token, the OAuth server uses the configured identity provider to determine the identity of the person making the request.\n\nIt then determines what user that identity maps to, creates an access token for that user, and returns the token for use.\n\n## OAuth token request flows and responses {#oauth-token-request-flows_configuring-internal-oauth}\n\nThe OAuth server supports standard authorization code grant and implicit grant flows, with specific server responses for token requests using the implicit grant flow with WWW-Authenticate challenges.\n\nWhen requesting an OAuth token using the implicit grant flow (`response_type=token`) with a client_id configured to request `WWW-Authenticate challenges` (like `openshift-challenging-client`), these are the possible server responses from `/oauth/authorize`, and how they should be handled:\n\n<table>\n<thead>\n<tr>\n  <th>Status</th>\n  <th>Content</th>\n  <th>Client response</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>302</td>\n  <td><code>Location</code> header containing an <code>access_token</code> parameter in the URL fragment (RFC 6749 section 4.2.2)</td>\n  <td>Use the <code>access_token</code> value as the OAuth token.</td>\n</tr>\n<tr>\n  <td>302</td>\n  <td><code>Location</code> header containing an <code>error</code> query parameter (RFC 6749 section 4.1.2.1)</td>\n  <td>Fail, optionally surfacing the <code>error</code> (and optional <code>error_description</code>) query values to the user.</td>\n</tr>\n<tr>\n  <td>302</td>\n  <td>Other <code>Location</code> header</td>\n  <td>Follow the redirect, and process the result using these rules.</td>\n</tr>\n<tr>\n  <td>401</td>\n  <td><code>WWW-Authenticate</code> header present</td>\n  <td>Respond to challenge if type is recognized (e.g. <code>Basic</code>, <code>Negotiate</code>, etc), resubmit request, and process the result using these rules.</td>\n</tr>\n<tr>\n  <td>401</td>\n  <td><code>WWW-Authenticate</code> header missing</td>\n  <td>No challenge authentication is possible. Fail and show response body (which might contain links or details on alternate methods to obtain an OAuth token).</td>\n</tr>\n<tr>\n  <td>Other</td>\n  <td>Other</td>\n  <td>Fail, optionally surfacing response body to the user.</td>\n</tr>\n</tbody>\n</table>\n\n- [Authorization Code Grant](https://tools.ietf.org/html/rfc6749#section-4.1)\n- [Implicit Grant](https://tools.ietf.org/html/rfc6749#section-4.2)\n- [Access Token Response](https://tools.ietf.org/html/rfc6749#section-4.2.2)\n- [Error Response](https://tools.ietf.org/html/rfc6749#section-4.1.2.1)\n\n## Options for the internal OAuth server {#oauth-internal-options_configuring-internal-oauth}\n\nThe internal OAuth server provides configuration options for token duration and grant strategies to control authentication behavior.\n\n### OAuth token duration options {#oauth-token-duration_configuring-internal-oauth}\n\nThe internal OAuth server generates two kinds of tokens:\n\n| Token | Description |\n| --- | --- |\n| Access tokens | Longer-lived tokens that grant access to the API. |\n| Authorize codes | Short-lived tokens whose only use is to be exchanged for an access token. |\n\nYou can configure the default duration for both types of token. If necessary, you can override the duration of the access token by using an `OAuthClient` object definition.\n\n### OAuth grant options {#oauth-grant-options_configuring-internal-oauth}\n\nWhen the OAuth server receives token requests for a client to which the user has not previously granted permission, the action that the OAuth server takes is dependent on the OAuth client’s grant strategy.\n\nThe OAuth client requesting token must provide its own grant strategy.\n\nYou can apply the following default methods:\n\n| Grant option | Description |\n| --- | --- |\n| `auto` | Auto-approve the grant and retry the request. |\n| `prompt` | Prompt the user to approve or deny the grant. |\n\n## Configuring the internal OAuth server’s token duration {#oauth-configuring-internal-oauth_configuring-internal-oauth}\n\nConfigure the internal OAuth server to extend or reduce access token validity beyond the default 24-hour lifetime.\n\n> [!IMPORTANT]\n> By default, tokens are only valid for 24 hours. Existing sessions expire after this time elapses.\n\nIf the default time is insufficient, then this can be modified using the following procedure.\n\n**Procedure**\n\n1. Create a configuration file that contains the token duration options. The following file sets this to 48 hours, twice the default.\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: OAuth\n   metadata:\n     name: cluster\n   spec:\n     tokenConfig:\n       accessTokenMaxAgeSeconds: 172800\n   ```\n\n   where:\n\n   `spec.tokenConfig.accessTokenMaxAgeSeconds`\n   :   Specifies the lifetime of access tokens in seconds. The default lifetime is 24 hours, or 86400 seconds. This attribute cannot be negative. If set to zero, the default lifetime is used.\n2. Apply the new configuration file:\n\n   > [!NOTE]\n   > Because you update the existing OAuth server, you must use the `oc apply` command to apply the change.\n\n   ```terminal\n   $ oc apply -f </path/to/file.yaml>\n   ```\n3. Confirm that the changes are in effect:\n\n   ```terminal\n   $ oc describe oauth.config.openshift.io/cluster\n   ```\n\n   ```terminal {title=\"Example output\"}\n   ...\n   Spec:\n     Token Config:\n       Access Token Max Age Seconds:  172800\n   ...\n   ```\n\n## Configuring token inactivity timeout for the internal OAuth server {#oauth-token-inactivity-timeout_configuring-internal-oauth}\n\nConfigure the internal OAuth server to automatically expire tokens after a set period of inactivity, improving security by invalidating idle sessions.\n\nBy default, no token inactivity timeout is set.\n\n> [!NOTE]\n> If the token inactivity timeout is also configured in your OAuth client, that value overrides the timeout that is set in the internal OAuth server configuration.\n\n**Prerequisites**\n\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have configured an identity provider (IDP).\n\n**Procedure**\n\n1. Update the `OAuth` configuration to set a token inactivity timeout.\n\n   1. Edit the `OAuth` object:\n\n      ```terminal\n      $ oc edit oauth cluster\n      ```\n\n      Add the `spec.tokenConfig.accessTokenInactivityTimeout` field and set your timeout value:\n\n      ```yaml\n      apiVersion: config.openshift.io/v1\n      kind: OAuth\n      metadata:\n      ...\n      spec:\n        tokenConfig:\n          accessTokenInactivityTimeout: 400s\n      ```\n\n      where:\n\n      `spec.tokenConfig.accessTokenInactivityTimeout`\n      :   Specifies the token inactivity timeout with appropriate units, for example `400s` for 400 seconds, or `30m` for 30 minutes. The minimum allowed timeout value is `300s`.\n   2. Save the file to apply the changes.\n2. Check that the OAuth server pods have restarted:\n\n   ```terminal\n   $ oc get clusteroperators authentication\n   ```\n\n   Do not continue to the next step until `PROGRESSING` is listed as `False`, as shown in the following output:\n\n   ```terminal {title=\"Example output\"}\n   NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE\n   authentication   {{ product_version }}.0    True        False         False      145m\n   ```\n3. Check that a new revision of the Kubernetes API server pods has rolled out. This will take several minutes.\n\n   ```terminal\n   $ oc get clusteroperators kube-apiserver\n   ```\n\n   Do not continue to the next step until `PROGRESSING` is listed as `False`, as shown in the following output:\n\n   ```terminal {title=\"Example output\"}\n   NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE\n   kube-apiserver   {{ product_version }}.0     True        False         False      145m\n   ```\n\n   If `PROGRESSING` is showing `True`, wait a few minutes and try again.\n\n**Verification**\n\n1. Log in to the cluster with an identity from your IDP.\n2. Execute a command and verify that it was successful.\n3. Wait longer than the configured timeout without using the identity. In this procedure’s example, wait longer than 400 seconds.\n4. Try to execute a command from the same identity’s session.\n\n   This command should fail because the token should have expired due to inactivity longer than the configured timeout.\n\n   ```terminal {title=\"Example output\"}\n   error: You must be logged in to the server (Unauthorized)\n   ```\n\n## Customizing the internal OAuth server URL {#customizing-the-oauth-server-url_configuring-internal-oauth}\n\nCustomize the internal OAuth server URL to use a custom hostname and TLS certificate by configuring the cluster Ingress component routes.\n\n> [!WARNING]\n> If you update the internal OAuth server URL, you might break trust from components in the cluster that need to communicate with the OpenShift Container Platform OAuth server to retrieve OAuth access tokens. Components that need to trust the OAuth server will need to include the proper CA bundle when calling OAuth endpoints. For example:\n>\n> ```terminal\n> $ oc login -u <username> -p <password> --certificate-authority=<path_to_ca.crt>\n> ```\n>\n> For self-signed certificates, the `ca.crt` file must contain the custom CA certificate, otherwise the login will not succeed.\n>\n> The Cluster Authentication Operator publishes the OAuth server’s serving certificate in the `oauth-serving-cert` config map in the `openshift-config-managed` namespace. You can find the certificate in the `data.ca-bundle.crt` key of the config map.\n\n**Prerequisites**\n\n- You have logged in to the cluster as a user with administrative privileges.\n- You have created a secret in the `openshift-config` namespace containing the TLS certificate and key. This is required if the domain for the custom hostname suffix does not match the cluster domain suffix. The secret is optional if the suffix matches.\n\n  > [!TIP]\n  > You can create a TLS secret by using the `oc create secret tls` command.\n\n**Procedure**\n\n1. Edit the cluster `Ingress` configuration:\n\n   ```terminal\n   $ oc edit ingress.config.openshift.io cluster\n   ```\n2. Set the custom hostname and optionally the serving certificate and key:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: Ingress\n   metadata:\n     name: cluster\n   spec:\n     componentRoutes:\n       - name: oauth-openshift\n         namespace: openshift-authentication\n         hostname: <custom_hostname>\n         servingCertKeyPairSecret:\n           name: <secret_name>\n   ```\n\n   where:\n\n   `spec.componentRoutes.hostname`\n   :   Specifies the custom hostname for the OAuth server.\n\n   `spec.componentRoutes.servingCertKeyPairSecret.name`\n   :   Specifies the name of a secret in the `openshift-config` namespace that contains a TLS certificate (`tls.crt`) and key (`tls.key`). This is required if the domain for the custom hostname suffix does not match the cluster domain suffix. The secret is optional if the suffix matches.\n3. Save the file to apply the changes.\n\n## OAuth server metadata {#oauth-server-metadata_configuring-internal-oauth}\n\nApplications running in the cluster can query the OAuth 2.0 Authorization Server Metadata endpoint to dynamically discover OAuth server endpoints, supported scopes, and grant types for automated client configuration.\n\nAny application running inside the cluster can issue a `GET` request to <span>***https://</span>openshift.default.svc/.well-known/oauth-authorization-server*** to fetch the following information:\n\n```\n{\n  \"issuer\": \"https://<namespace_route>\",\n  \"authorization_endpoint\": \"https://<namespace_route>/oauth/authorize\",\n  \"token_endpoint\": \"https://<namespace_route>/oauth/token\",\n  \"scopes_supported\": [\n    \"user:full\",\n    \"user:info\",\n    \"user:check-access\",\n    \"user:list-scoped-projects\",\n    \"user:list-projects\"\n  ],\n  \"response_types_supported\": [\n    \"code\",\n    \"token\"\n  ],\n  \"grant_types_supported\": [\n    \"authorization_code\",\n    \"implicit\"\n  ],\n  \"code_challenge_methods_supported\": [\n    \"plain\",\n    \"S256\"\n  ]\n}\n```\n\nwhere:\n\n`issuer`\n:   Specifies the authorization server’s issuer identifier, which is a URL that uses the `https` scheme and has no query or fragment components. This is the location where `.well-known` RFC 5785 resources containing information about the authorization server are published.\n\n`authorization_endpoint`\n:   Specifies the URL of the authorization server’s authorization endpoint.\n\n`token_endpoint`\n:   Specifies the URL of the authorization server’s token endpoint.\n\n`scopes_supported`\n:   Specifies a JSON array containing a list of the OAuth 2.0 RFC 6749 scope values that this authorization server supports. Note that not all supported scope values are advertised.\n\n`response_types_supported`\n:   Specifies a JSON array containing a list of the OAuth 2.0 `response_type` values that this authorization server supports. The array values used are the same as those used with the `response_types` parameter defined by OAuth 2.0 Dynamic Client Registration Protocol in RFC 7591.\n\n`grant_types_supported`\n:   Specifies a JSON array containing a list of the OAuth 2.0 grant type values that this authorization server supports. The array values used are the same as those used with the `grant_types` parameter defined by OAuth 2.0 Dynamic Client Registration Protocol in RFC 7591.\n\n`code_challenge_methods_supported`\n:   Specifies a JSON array containing a list of PKCE RFC 7636 code challenge methods supported by this authorization server. Code challenge method values are used in the `code_challenge_method` parameter defined in Section 4.3 of RFC 7636. The valid code challenge method values are those registered in the IANA PKCE Code Challenge Methods registry.\n\n- [OAuth 2.0 Authorization Server Metadata](https://tools.ietf.org/html/draft-ietf-oauth-discovery-10)\n- [RFC 5785 - Defining Well-Known Uniform Resource Identifiers](https://tools.ietf.org/html/rfc5785)\n- [RFC 6749 - The OAuth 2.0 Authorization Framework](https://tools.ietf.org/html/rfc6749)\n- [RFC 7591 - OAuth 2.0 Dynamic Client Registration Protocol](https://tools.ietf.org/html/rfc7591)\n- [RFC 7636 - Proof Key for Code Exchange by OAuth Public Clients](https://tools.ietf.org/html/rfc7636)\n- [RFC 7636 Section 4.3 - Client Creates a Code Challenge](https://tools.ietf.org/html/rfc7636#section-4.3)\n- [IANA OAuth Parameters](http://www.iana.org/assignments/oauth-parameters)\n\n## Troubleshooting OAuth API events {#oauth-troubleshooting-api-events_configuring-internal-oauth}\n\nUse service account event messages to diagnose OAuth configuration issues when the API server returns `unexpected condition` errors that are otherwise difficult to debug.\n\nIn some cases the API server returns an `unexpected condition` error message that is difficult to debug without direct access to the API master log. The underlying reason for the error is purposely obscured in order to avoid providing an unauthenticated user with information about the server’s state.\n\nA subset of these errors is related to service account OAuth configuration issues. These issues are captured in events that can be viewed by non-administrator users. When encountering an `unexpected condition` server error during OAuth, run `oc get events` to view these events under `ServiceAccount`.\n\nThe following example warns of a service account that is missing a proper OAuth redirect URI:\n\n```terminal\n$ oc get events | grep ServiceAccount\n```\n\n```terminal {title=\"Example output\"}\n1m         1m          1         proxy                    ServiceAccount                                  Warning   NoSAOAuthRedirectURIs   service-account-oauth-client-getter   system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>\n```\n\nRunning `oc describe sa/<service_account_name>` reports any OAuth events associated with the given service account name.\n\n```terminal\n$ oc describe sa/proxy | grep -A5 Events\n```\n\n```terminal {title=\"Example output\"}\nEvents:\n  FirstSeen     LastSeen        Count   From                                    SubObjectPath   Type            Reason                  Message\n  ---------     --------        -----   ----                                    -------------   --------        ------                  -------\n  3m            3m              1       service-account-oauth-client-getter                     Warning         NoSAOAuthRedirectURIs   system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>\n```\n\nThe following is a list of the possible event errors:\n\n***No redirect URI annotations or an invalid URI is specified***\n\n```terminal\nReason                  Message\nNoSAOAuthRedirectURIs   system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>\n```\n\n***Invalid route specified***\n\n```terminal\nReason                  Message\nNoSAOAuthRedirectURIs   [routes.route.openshift.io \"<name>\" not found, system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>]\n```\n\n***Invalid reference type specified***\n\n```terminal\nReason                  Message\nNoSAOAuthRedirectURIs   [no kind \"<name>\" is registered for version \"v1\", system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>]\n```\n\n***Missing SA tokens***\n\n```terminal\nReason                  Message\nNoSAOAuthTokens         system:serviceaccount:myproject:proxy has no tokens\n```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/configuring-internal-oauth.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,16 +101,258 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-internal-oauth" class="group scroll-mt-20">Configuring the internal OAuth server<a href="#configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The OpenShift Container Platform Control Plane includes a built-in OAuth server for user authentication. You can configure token duration, inactivity timeouts, and customize the OAuth server URL.</p>
-      <p class="/modules/oauth-server-overview.md"></p>
-      <p class="/modules/oauth-internal-tokens.md"></p>
-      <p class="/modules/oauth-internal-options.md"></p>
-      <p class="/modules/oauth-configuring-internal-oauth.md"></p>
-      <p class="/modules/oauth-configuring-token-inactivity-timeout.md"></p>
-      <p class="/modules/oauth-customizing-the-oauth-server-URL.md"></p>
-      <p class="/modules/oauth-server-metadata.md"></p>
-      <p class="/modules/oauth-troubleshooting-api-events.md"></p>
+      <h2 id="oauth-server-overview_configuring-internal-oauth" class="group scroll-mt-20">OpenShift Container Platform OAuth server<a href="#oauth-server-overview_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The OpenShift Container Platform Control Plane includes a built-in OAuth server. Users obtain OAuth access tokens to authenticate themselves to the API.</p>
+      <p>When a person requests a new OAuth token, the OAuth server uses the configured identity provider to determine the identity of the person making the request.</p>
+      <p>It then determines what user that identity maps to, creates an access token for that user, and returns the token for use.</p>
+      <h2 id="oauth-token-request-flows_configuring-internal-oauth" class="group scroll-mt-20">OAuth token request flows and responses<a href="#oauth-token-request-flows_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The OAuth server supports standard authorization code grant and implicit grant flows, with specific server responses for token requests using the implicit grant flow with WWW-Authenticate challenges.</p>
+      <p>When requesting an OAuth token using the implicit grant flow (<code>response_type=token</code>) with a client_id configured to request <code>WWW-Authenticate challenges</code> (like <code>openshift-challenging-client</code>), these are the possible server responses from <code>/oauth/authorize</code>, and how they should be handled:</p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Status</th>\n  <th>Content</th>\n  <th>Client response</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td>302</td>\n  <td><code>Location</code> header containing an <code>access_token</code> parameter in the URL fragment (RFC 6749 section 4.2.2)</td>\n  <td>Use the <code>access_token</code> value as the OAuth token.</td>\n</tr>\n<tr>\n  <td>302</td>\n  <td><code>Location</code> header containing an <code>error</code> query parameter (RFC 6749 section 4.1.2.1)</td>\n  <td>Fail, optionally surfacing the <code>error</code> (and optional <code>error_description</code>) query values to the user.</td>\n</tr>\n<tr>\n  <td>302</td>\n  <td>Other <code>Location</code> header</td>\n  <td>Follow the redirect, and process the result using these rules.</td>\n</tr>\n<tr>\n  <td>401</td>\n  <td><code>WWW-Authenticate</code> header present</td>\n  <td>Respond to challenge if type is recognized (e.g. <code>Basic</code>, <code>Negotiate</code>, etc), resubmit request, and process the result using these rules.</td>\n</tr>\n<tr>\n  <td>401</td>\n  <td><code>WWW-Authenticate</code> header missing</td>\n  <td>No challenge authentication is possible. Fail and show response body (which might contain links or details on alternate methods to obtain an OAuth token).</td>\n</tr>\n<tr>\n  <td>Other</td>\n  <td>Other</td>\n  <td>Fail, optionally surfacing response body to the user.</td>\n</tr>\n</tbody>\n</table>\n"} />
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul>
+      <li><a href="https://tools.ietf.org/html/rfc6749#section-4.1">Authorization Code Grant</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc6749#section-4.2">Implicit Grant</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc6749#section-4.2.2">Access Token Response</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc6749#section-4.1.2.1">Error Response</a></li>
+      </ul>
+      </section>
+      <h2 id="oauth-internal-options_configuring-internal-oauth" class="group scroll-mt-20">Options for the internal OAuth server<a href="#oauth-internal-options_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The internal OAuth server provides configuration options for token duration and grant strategies to control authentication behavior.</p>
+      <h3 id="oauth-token-duration_configuring-internal-oauth" class="group scroll-mt-20">OAuth token duration options<a href="#oauth-token-duration_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The internal OAuth server generates two kinds of tokens:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Token</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Access tokens</TableCell>
+      <TableCell>Longer-lived tokens that grant access to the API.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Authorize codes</TableCell>
+      <TableCell>Short-lived tokens whose only use is to be exchanged for an access token.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>You can configure the default duration for both types of token. If necessary, you can override the duration of the access token by using an <code>OAuthClient</code> object definition.</p>
+      <h3 id="oauth-grant-options_configuring-internal-oauth" class="group scroll-mt-20">OAuth grant options<a href="#oauth-grant-options_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>When the OAuth server receives token requests for a client to which the user has not previously granted permission, the action that the OAuth server takes is dependent on the OAuth client’s grant strategy.</p>
+      <p>The OAuth client requesting token must provide its own grant strategy.</p>
+      <p>You can apply the following default methods:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Grant option</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>auto</code></TableCell>
+      <TableCell>Auto-approve the grant and retry the request.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>prompt</code></TableCell>
+      <TableCell>Prompt the user to approve or deny the grant.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="oauth-configuring-internal-oauth_configuring-internal-oauth" class="group scroll-mt-20">Configuring the internal OAuth server’s token duration<a href="#oauth-configuring-internal-oauth_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the internal OAuth server to extend or reduce access token validity beyond the default 24-hour lifetime.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>By default, tokens are only valid for 24 hours. Existing sessions expire after this time elapses.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If the default time is insufficient, then this can be modified using the following procedure.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a configuration file that contains the token duration options. The following file sets this to 48 hours, twice the default.
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: OAuth\nmetadata:\n  name: cluster\nspec:\n  tokenConfig:\n    accessTokenMaxAgeSeconds: 172800"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.tokenConfig.accessTokenMaxAgeSeconds</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the lifetime of access tokens in seconds. The default lifetime is 24 hours, or 86400 seconds. This attribute cannot be negative. If set to zero, the default lifetime is used.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the new configuration file:
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Because you update the existing OAuth server, you must use the <code>oc apply</code> command to apply the change.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ oc apply -f </path/to/file.yaml>"} lang="terminal" />
+      </li>
+      <li>
+      Confirm that the changes are in effect:
+      <CodeBlock code={"$ oc describe oauth.config.openshift.io/cluster"} lang="terminal" />
+      <CodeBlock code={"...\nSpec:\n  Token Config:\n    Access Token Max Age Seconds:  172800\n..."} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="oauth-token-inactivity-timeout_configuring-internal-oauth" class="group scroll-mt-20">Configuring token inactivity timeout for the internal OAuth server<a href="#oauth-token-inactivity-timeout_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the internal OAuth server to automatically expire tokens after a set period of inactivity, improving security by invalidating idle sessions.</p>
+      <p>By default, no token inactivity timeout is set.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If the token inactivity timeout is also configured in your OAuth client, that value overrides the timeout that is set in the internal OAuth server configuration.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have configured an identity provider (IDP).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Update the <code>OAuth</code> configuration to set a token inactivity timeout.
+      <ol>
+      <li>
+      Edit the <code>OAuth</code> object:
+      <CodeBlock code={"$ oc edit oauth cluster"} lang="terminal" />
+      <p>Add the <code>spec.tokenConfig.accessTokenInactivityTimeout</code> field and set your timeout value:</p>
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: OAuth\nmetadata:\n...\nspec:\n  tokenConfig:\n    accessTokenInactivityTimeout: 400s"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.tokenConfig.accessTokenInactivityTimeout</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the token inactivity timeout with appropriate units, for example <code>400s</code> for 400 seconds, or <code>30m</code> for 30 minutes. The minimum allowed timeout value is <code>300s</code>.</p></dd>
+      </dl>
+      </li>
+      <li>Save the file to apply the changes.</li>
+      </ol>
+      </li>
+      <li>
+      Check that the OAuth server pods have restarted:
+      <CodeBlock code={"$ oc get clusteroperators authentication"} lang="terminal" />
+      <p>Do not continue to the next step until <code>PROGRESSING</code> is listed as <code>False</code>, as shown in the following output:</p>
+      <CodeBlock code={"NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE\nauthentication   {{ product_version }}.0    True        False         False      145m"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check that a new revision of the Kubernetes API server pods has rolled out. This will take several minutes.
+      <CodeBlock code={"$ oc get clusteroperators kube-apiserver"} lang="terminal" />
+      <p>Do not continue to the next step until <code>PROGRESSING</code> is listed as <code>False</code>, as shown in the following output:</p>
+      <CodeBlock code={"NAME             VERSION   AVAILABLE   PROGRESSING   DEGRADED   SINCE\nkube-apiserver   {{ product_version }}.0     True        False         False      145m"} lang="terminal" title="Example output" />
+      <p>If <code>PROGRESSING</code> is showing <code>True</code>, wait a few minutes and try again.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>Log in to the cluster with an identity from your IDP.</li>
+      <li>Execute a command and verify that it was successful.</li>
+      <li>Wait longer than the configured timeout without using the identity. In this procedure’s example, wait longer than 400 seconds.</li>
+      <li>
+      Try to execute a command from the same identity’s session.
+      <p>This command should fail because the token should have expired due to inactivity longer than the configured timeout.</p>
+      <CodeBlock code={"error: You must be logged in to the server (Unauthorized)"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="customizing-the-oauth-server-url_configuring-internal-oauth" class="group scroll-mt-20">Customizing the internal OAuth server URL<a href="#customizing-the-oauth-server-url_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Customize the internal OAuth server URL to use a custom hostname and TLS certificate by configuring the cluster Ingress component routes.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>If you update the internal OAuth server URL, you might break trust from components in the cluster that need to communicate with the OpenShift Container Platform OAuth server to retrieve OAuth access tokens. Components that need to trust the OAuth server will need to include the proper CA bundle when calling OAuth endpoints. For example:</p>
+          <CodeBlock code={"$ oc login -u <username> -p <password> --certificate-authority=<path_to_ca.crt>"} lang="terminal" />
+          <p>For self-signed certificates, the <code>ca.crt</code> file must contain the custom CA certificate, otherwise the login will not succeed.</p>
+          <p>The Cluster Authentication Operator publishes the OAuth server’s serving certificate in the <code>oauth-serving-cert</code> config map in the <code>openshift-config-managed</code> namespace. You can find the certificate in the <code>data.ca-bundle.crt</code> key of the config map.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have logged in to the cluster as a user with administrative privileges.</li>
+      <li>
+      You have created a secret in the <code>openshift-config</code> namespace containing the TLS certificate and key. This is required if the domain for the custom hostname suffix does not match the cluster domain suffix. The secret is optional if the suffix matches.
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>You can create a TLS secret by using the <code>oc create secret tls</code> command.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the cluster <code>Ingress</code> configuration:
+      <CodeBlock code={"$ oc edit ingress.config.openshift.io cluster"} lang="terminal" />
+      </li>
+      <li>
+      Set the custom hostname and optionally the serving certificate and key:
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: Ingress\nmetadata:\n  name: cluster\nspec:\n  componentRoutes:\n    - name: oauth-openshift\n      namespace: openshift-authentication\n      hostname: <custom_hostname>\n      servingCertKeyPairSecret:\n        name: <secret_name>"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.componentRoutes.hostname</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the custom hostname for the OAuth server.</p></dd>
+      <dt class="font-semibold"><code>spec.componentRoutes.servingCertKeyPairSecret.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of a secret in the <code>openshift-config</code> namespace that contains a TLS certificate (<code>tls.crt</code>) and key (<code>tls.key</code>). This is required if the domain for the custom hostname suffix does not match the cluster domain suffix. The secret is optional if the suffix matches.</p></dd>
+      </dl>
+      </li>
+      <li>Save the file to apply the changes.</li>
+      </ol>
+      <h2 id="oauth-server-metadata_configuring-internal-oauth" class="group scroll-mt-20">OAuth server metadata<a href="#oauth-server-metadata_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Applications running in the cluster can query the OAuth 2.0 Authorization Server Metadata endpoint to dynamically discover OAuth server endpoints, supported scopes, and grant types for automated client configuration.</p>
+      <p>Any application running inside the cluster can issue a <code>GET</code> request to <Fragment set:html={"<span>"} /><em><strong>https://</strong></em><Fragment set:html={"</span>"} /><em><strong>openshift.default.svc/.well-known/oauth-authorization-server</strong></em> to fetch the following information:</p>
+      <CodeBlock code={"{\n  \"issuer\": \"https://<namespace_route>\",\n  \"authorization_endpoint\": \"https://<namespace_route>/oauth/authorize\",\n  \"token_endpoint\": \"https://<namespace_route>/oauth/token\",\n  \"scopes_supported\": [\n    \"user:full\",\n    \"user:info\",\n    \"user:check-access\",\n    \"user:list-scoped-projects\",\n    \"user:list-projects\"\n  ],\n  \"response_types_supported\": [\n    \"code\",\n    \"token\"\n  ],\n  \"grant_types_supported\": [\n    \"authorization_code\",\n    \"implicit\"\n  ],\n  \"code_challenge_methods_supported\": [\n    \"plain\",\n    \"S256\"\n  ]\n}"} lang="plaintext" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>issuer</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the authorization server’s issuer identifier, which is a URL that uses the <code>https</code> scheme and has no query or fragment components. This is the location where <code>.well-known</code> RFC 5785 resources containing information about the authorization server are published.</p></dd>
+      <dt class="font-semibold"><code>authorization_endpoint</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the URL of the authorization server’s authorization endpoint.</p></dd>
+      <dt class="font-semibold"><code>token_endpoint</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the URL of the authorization server’s token endpoint.</p></dd>
+      <dt class="font-semibold"><code>scopes_supported</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a JSON array containing a list of the OAuth 2.0 RFC 6749 scope values that this authorization server supports. Note that not all supported scope values are advertised.</p></dd>
+      <dt class="font-semibold"><code>response_types_supported</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a JSON array containing a list of the OAuth 2.0 <code>response_type</code> values that this authorization server supports. The array values used are the same as those used with the <code>response_types</code> parameter defined by OAuth 2.0 Dynamic Client Registration Protocol in RFC 7591.</p></dd>
+      <dt class="font-semibold"><code>grant_types_supported</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a JSON array containing a list of the OAuth 2.0 grant type values that this authorization server supports. The array values used are the same as those used with the <code>grant_types</code> parameter defined by OAuth 2.0 Dynamic Client Registration Protocol in RFC 7591.</p></dd>
+      <dt class="font-semibold"><code>code_challenge_methods_supported</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a JSON array containing a list of PKCE RFC 7636 code challenge methods supported by this authorization server. Code challenge method values are used in the <code>code_challenge_method</code> parameter defined in Section 4.3 of RFC 7636. The valid code challenge method values are those registered in the IANA PKCE Code Challenge Methods registry.</p></dd>
+      </dl>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul>
+      <li><a href="https://tools.ietf.org/html/draft-ietf-oauth-discovery-10">OAuth 2.0 Authorization Server Metadata</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc5785">RFC 5785 - Defining Well-Known Uniform Resource Identifiers</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc6749">RFC 6749 - The OAuth 2.0 Authorization Framework</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc7591">RFC 7591 - OAuth 2.0 Dynamic Client Registration Protocol</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc7636">RFC 7636 - Proof Key for Code Exchange by OAuth Public Clients</a></li>
+      <li><a href="https://tools.ietf.org/html/rfc7636#section-4.3">RFC 7636 Section 4.3 - Client Creates a Code Challenge</a></li>
+      <li><a href="http://www.iana.org/assignments/oauth-parameters">IANA OAuth Parameters</a></li>
+      </ul>
+      </section>
+      <h2 id="oauth-troubleshooting-api-events_configuring-internal-oauth" class="group scroll-mt-20">Troubleshooting OAuth API events<a href="#oauth-troubleshooting-api-events_configuring-internal-oauth" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use service account event messages to diagnose OAuth configuration issues when the API server returns <code>unexpected condition</code> errors that are otherwise difficult to debug.</p>
+      <p>In some cases the API server returns an <code>unexpected condition</code> error message that is difficult to debug without direct access to the API master log. The underlying reason for the error is purposely obscured in order to avoid providing an unauthenticated user with information about the server’s state.</p>
+      <p>A subset of these errors is related to service account OAuth configuration issues. These issues are captured in events that can be viewed by non-administrator users. When encountering an <code>unexpected condition</code> server error during OAuth, run <code>oc get events</code> to view these events under <code>ServiceAccount</code>.</p>
+      <p>The following example warns of a service account that is missing a proper OAuth redirect URI:</p>
+      <CodeBlock code={"$ oc get events | grep ServiceAccount"} lang="terminal" />
+      <CodeBlock code={"1m         1m          1         proxy                    ServiceAccount                                  Warning   NoSAOAuthRedirectURIs   service-account-oauth-client-getter   system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>"} lang="terminal" title="Example output" />
+      <p>Running <code>oc describe sa/&lt;service_account_name&gt;</code> reports any OAuth events associated with the given service account name.</p>
+      <CodeBlock code={"$ oc describe sa/proxy | grep -A5 Events"} lang="terminal" />
+      <CodeBlock code={"Events:\n  FirstSeen     LastSeen        Count   From                                    SubObjectPath   Type            Reason                  Message\n  ---------     --------        -----   ----                                    -------------   --------        ------                  -------\n  3m            3m              1       service-account-oauth-client-getter                     Warning         NoSAOAuthRedirectURIs   system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>"} lang="terminal" title="Example output" />
+      <p>The following is a list of the possible event errors:</p>
+      <p><em></em><em><strong>No redirect URI annotations or an invalid URI is specified</strong></em><em></em></p>
+      <CodeBlock code={"Reason                  Message\nNoSAOAuthRedirectURIs   system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>"} lang="terminal" />
+      <p><em></em><em><strong>Invalid route specified</strong></em><em></em></p>
+      <CodeBlock code={"Reason                  Message\nNoSAOAuthRedirectURIs   [routes.route.openshift.io \"<name>\" not found, system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>]"} lang="terminal" />
+      <p><em></em><em><strong>Invalid reference type specified</strong></em><em></em></p>
+      <CodeBlock code={"Reason                  Message\nNoSAOAuthRedirectURIs   [no kind \"<name>\" is registered for version \"v1\", system:serviceaccount:myproject:proxy has no redirectURIs; set serviceaccounts.openshift.io/oauth-redirecturi.<some-value>=<redirect> or create a dynamic URI using serviceaccounts.openshift.io/oauth-redirectreference.<some-value>=<reference>]"} lang="terminal" />
+      <p><em></em><em><strong>Missing SA tokens</strong></em><em></em></p>
+      <CodeBlock code={"Reason                  Message\nNoSAOAuthTokens         system:serviceaccount:myproject:proxy has no tokens"} lang="terminal" />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

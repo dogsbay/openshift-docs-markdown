@@ -39,7 +39,7 @@ const pageCategory = ["welcome"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Providing feedback on OpenShift Container Platform documentation {#providing-feedback-on-red-hat-documentation}\n\nTo report an error or to improve our documentation, log in to your Red Hat Jira account and submit an issue. If you do not have a Red Hat Jira account, then you will be prompted to create an account.\n\n**Procedure**\n\n1. Click one of the following links:\n\n   - To create a [Jira issue](https://redhat.atlassian.net/secure/CreateIssueDetails%21init.jspa?priority=10003&summary=%5BDoc%5D&pid=10325&issuetype=10016&components=14669) for OpenShift Container Platform\n   - To create a [Jira issue](https://redhat.atlassian.net/secure/CreateIssueDetails%21init.jspa?priority=10003&summary=%5BDoc%5D&pid=10270&issuetype=10016&components=13563) for {{ VirtProductName }}\n2. Enter a brief description of the issue in the **Summary**.\n3. Provide a detailed description of the issue or enhancement in the **Description**. Include a URL to where the issue occurs in the documentation.\n4. Click **Create** to create the issue.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/welcome/providing-feedback-on-red-hat-documentation.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Providing feedback on OpenShift Container Platform documentation {#providing-feedback-on-red-hat-documentation}\n\nTo report an error or to improve our documentation, log in to your Red Hat Jira account and submit an issue. If you do not have a Red Hat Jira account, then you will be prompted to create an account.\n\n**Procedure**\n\n1. Click one of the following links:\n\n   - To create a [Jira issue](https://redhat.atlassian.net/secure/CreateIssueDetails%21init.jspa?priority=10003&summary=%5BDoc%5D&pid=10325&issuetype=10016&components=14669) for OpenShift Container Platform\n   - To create a [Jira issue](https://redhat.atlassian.net/secure/CreateIssueDetails%21init.jspa?priority=10003&summary=%5BDoc%5D&pid=10270&issuetype=10016&components=13563) for OpenShift Virtualization\n2. Enter a brief description of the issue in the **Summary**.\n3. Provide a detailed description of the issue or enhancement in the **Description**. Include a URL to where the issue occurs in the documentation.\n4. Click **Create** to create the issue.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/welcome/providing-feedback-on-red-hat-documentation.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,7 +90,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="providing-feedback-on-red-hat-documentation" class="group scroll-mt-20">Providing feedback on OpenShift Container Platform documentation<a href="#providing-feedback-on-red-hat-documentation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>To report an error or to improve our documentation, log in to your Red Hat Jira account and submit an issue. If you do not have a Red Hat Jira account, then you will be prompted to create an account.</p>
       <p><strong>Procedure</strong></p>
@@ -99,7 +98,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       Click one of the following links:
       <ul>
       <li>To create a <a href="https://redhat.atlassian.net/secure/CreateIssueDetails%21init.jspa?priority=10003&amp;summary=%5BDoc%5D&amp;pid=10325&amp;issuetype=10016&amp;components=14669">Jira issue</a> for OpenShift Container Platform</li>
-      <li>To create a <a href="https://redhat.atlassian.net/secure/CreateIssueDetails%21init.jspa?priority=10003&amp;summary=%5BDoc%5D&amp;pid=10270&amp;issuetype=10016&amp;components=13563">Jira issue</a> for {"{"}{"{"} VirtProductName {"}"}{"}"}</li>
+      <li>To create a <a href="https://redhat.atlassian.net/secure/CreateIssueDetails%21init.jspa?priority=10003&amp;summary=%5BDoc%5D&amp;pid=10270&amp;issuetype=10016&amp;components=13563">Jira issue</a> for OpenShift Virtualization</li>
       </ul>
       </li>
       <li>Enter a brief description of the issue in the <strong>Summary</strong>.</li>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"uninstalling-cluster-nutanix","text":"Uninstalling a cluster on Nutanix"}];
+const headings = [{"depth":1,"slug":"uninstalling-cluster-nutanix","text":"Uninstalling a cluster on Nutanix"},{"depth":2,"slug":"installation-uninstall-clouds_uninstalling-cluster-nutanix","text":"Removing a cluster that uses installer-provisioned infrastructure"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_nutanix/uninstalling-cluster-nutanix";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_nutanix"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling a cluster on Nutanix {#uninstalling-cluster-nutanix}\n\nYou can remove a cluster that you deployed to Nutanix.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_nutanix/uninstalling-cluster-nutanix.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Uninstalling a cluster on Nutanix {#uninstalling-cluster-nutanix}\n\nYou can remove a cluster that you deployed to Nutanix.\n\n## Removing a cluster that uses installer-provisioned infrastructure {#installation-uninstall-clouds_uninstalling-cluster-nutanix}\n\nTo remove an OpenShift Container Platform cluster that uses installer-provisioned infrastructure, you can use the installation program and the installation files from your original deployment to uninstall the cluster from your cloud platform.\n\n> [!NOTE]\n> After uninstallation, check your cloud provider for any resources that were not removed properly, especially with user-provisioned infrastructure clusters. Some resources might exist because either the installation program did not create the resource or could not access the resource.\n\n**Prerequisites**\n\n- You have a copy of the installation program that you used to deploy the cluster.\n- You have the files that the installation program generated when you created your cluster.\n\n**Procedure**\n\n1. From the directory that has the installation program on the computer that you used to install the cluster, run the following command:\n\n   ```terminal\n   $ ./openshift-install destroy cluster \\\n   --dir <installation_directory> --log-level info\n   ```\n\n   where:\n\n   `<installation_directory>`\n   :   Specify the path to the directory that you stored the installation files in.\n\n   `--log-level info`\n   :   To view different details, specify `warn`, `debug`, or `error` instead of `info`.\n\n   > [!NOTE]\n   > You must specify the directory that includes the cluster definition files for your cluster. The installation program requires the `metadata.json` file in this directory to delete the cluster.\n2. Optional: Delete the `<installation_directory>` directory and the OpenShift Container Platform installation program.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_nutanix/uninstalling-cluster-nutanix.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,41 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="uninstalling-cluster-nutanix" class="group scroll-mt-20">Uninstalling a cluster on Nutanix<a href="#uninstalling-cluster-nutanix" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can remove a cluster that you deployed to Nutanix.</p>
-      <p class="/modules/installation-uninstall-clouds.md"></p>
+      <h2 id="installation-uninstall-clouds_uninstalling-cluster-nutanix" class="group scroll-mt-20">Removing a cluster that uses installer-provisioned infrastructure<a href="#installation-uninstall-clouds_uninstalling-cluster-nutanix" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To remove an OpenShift Container Platform cluster that uses installer-provisioned infrastructure, you can use the installation program and the installation files from your original deployment to uninstall the cluster from your cloud platform.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>After uninstallation, check your cloud provider for any resources that were not removed properly, especially with user-provisioned infrastructure clusters. Some resources might exist because either the installation program did not create the resource or could not access the resource.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a copy of the installation program that you used to deploy the cluster.</li>
+      <li>You have the files that the installation program generated when you created your cluster.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      From the directory that has the installation program on the computer that you used to install the cluster, run the following command:
+      <CodeBlock code={"$ ./openshift-install destroy cluster \\\n--dir <installation_directory> --log-level info"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;installation_directory&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specify the path to the directory that you stored the installation files in.</p></dd>
+      <dt class="font-semibold"><code>--log-level info</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>To view different details, specify <code>warn</code>, <code>debug</code>, or <code>error</code> instead of <code>info</code>.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You must specify the directory that includes the cluster definition files for your cluster. The installation program requires the <code>metadata.json</code> file in this directory to delete the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Optional: Delete the <code>&lt;installation_directory&gt;</code> directory and the OpenShift Container Platform installation program.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

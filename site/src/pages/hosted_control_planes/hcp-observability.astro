@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"hcp-observability","text":"Observability for {{ hcp }}"}];
+const headings = [{"depth":1,"slug":"hcp-observability","text":"Observability for hosted control planes"},{"depth":2,"slug":"hosted-control-planes-metrics-sets_hcp-observability","text":"Configuring metrics sets for hosted control planes"},{"depth":3,"slug":"hcp-metrics-set-ref_hcp-observability","text":"SRE metrics set example"},{"depth":2,"slug":"hcp-cluster-ids_hcp-observability","text":"Customized hosted cluster identifiers"},{"depth":3,"slug":"hcp-cluster-ids-example_hcp-observability","text":"Example: Setting a custom cluster identifier"},{"depth":4,"slug":"hcp-cluster-ids-reusing_hcp-observability","text":"Cluster identifier reuse after a reinstall"},{"depth":2,"slug":"hosted-control-planes-monitoring-dashboard_hcp-observability","text":"Enabling monitoring dashboards in a hosted cluster"},{"depth":3,"slug":"hcp-customize-dashboards_hcp-observability","text":"Dashboard customization"},{"depth":2,"slug":"hcp-cp-metrics-overview_hcp-observability","text":"Control plane metrics for hosted control planes"},{"depth":3,"slug":"hcp-cp-metrics-architecture_hcp-observability","text":"Metrics forwarding architecture"},{"depth":3,"slug":"hcp-cp-metrics-enable_hcp-observability","text":"Enabling metrics forwarding"},{"depth":3,"slug":"hcp-cp-query-metrics_hcp-observability","text":"Querying control plane metrics in hosted clusters by using the CLI"},{"depth":3,"slug":"hcp-cp-query-metrics-console_hcp-observability","text":"Querying control plane metrics in hosted clusters by using the web console"},{"depth":3,"slug":"hcp-cp-metrics-dashboards_hcp-observability","text":"Importing control plane health dashboards"},{"depth":2,"slug":"hcp-connectivity-metrics_hcp-observability","text":"Connectivity monitoring for hosted control planes"},{"depth":3,"slug":"hcp-connect-data-plane_hcp-observability","text":"Connectivity monitoring from the control plane to the data plane"},{"depth":3,"slug":"hcp-connect-control-plane_hcp-observability","text":"Connectivity monitoring from the data plane to the control plane"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-observability";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Observability for {{ hcp }}";
-const description = "You can gather metrics for {{ hcp }} by configuring metrics sets. Monitoring dashboards are created in the management cluster for each hosted cluster that…" || undefined;
+const description = "You can gather metrics for hosted control planes by configuring metrics sets. Monitoring dashboards are created in the management cluster for each hosted…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["hosted_control_planes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Observability for {{ hcp }} {#hcp-observability}\n\nYou can gather metrics for {{ hcp }} by configuring metrics sets. Monitoring dashboards are created in the management cluster for each hosted cluster that it manages.\n\n**Additional resources**\n\n- [Dashboard customization](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hcp-customize-dashboards_hcp-observability)\n- [Configuring metrics sets for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hosted-control-planes-metrics-sets_hcp-observability)\n- [Enabling monitoring dashboards in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hosted-control-planes-monitoring-dashboard_hcp-observability)\n\n**Additional resources**\n\n- [Customized hosted cluster identifiers](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hcp-cluster-ids_hcp-observability)\n\n**Additional resources**\n\n- [Exposed metrics](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-metrics#olm-metrics_olm-understanding-metrics)\n\n**Additional resources**\n\n- [Exposed metrics](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-metrics#olm-metrics_olm-understanding-metrics)\n\n**Additional resources**\n\n- [Troubleshooting connectivity for {{ hcp }}](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hcp-ts-connectivity_hcp-troubleshooting)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-observability.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Observability for hosted control planes {#hcp-observability}\n\nYou can gather metrics for hosted control planes by configuring metrics sets. Monitoring dashboards are created in the management cluster for each hosted cluster that it manages.\n\n## Configuring metrics sets for hosted control planes {#hosted-control-planes-metrics-sets_hcp-observability}\n\nHosted control planes creates `ServiceMonitor` resources in each control plane namespace that allow a Prometheus stack to gather metrics from the control planes.\n\nThe `ServiceMonitor` resources use metrics relabelings to define which metrics are included or excluded from a particular component, such as etcd or the Kubernetes API server. The number of metrics that are produced by control planes directly impacts the resource requirements of the monitoring stack that gathers them.\n\nInstead of producing a fixed number of metrics that apply to all situations, you can configure a metrics set that identifies a set of metrics to produce for each control plane. The following metrics sets are supported:\n\n- `Telemetry`: These metrics are needed for telemetry. This set is the default set and is the smallest set of metrics.\n- `SRE`: This set includes the necessary metrics to produce alerts and allow the troubleshooting of control plane components.\n- `All`: This set includes all of the metrics that are produced by standalone OpenShift Container Platform control plane components.\n\n**Procedure**\n\n- To configure a metrics set, set the `METRICS_SET` environment variable in the HyperShift Operator deployment by entering the following command:\n\n  ```terminal\n  $ oc set env -n hypershift deployment/operator METRICS_SET=All\n  ```\n\n### SRE metrics set example {#hcp-metrics-set-ref_hcp-observability}\n\nWhen you specify the `SRE` metrics set, the HyperShift Operator looks for a config map named `sre-metric-set` with a single key: `config`. The value of the `config` key must contain a set of `RelabelConfigs` that are organized by control plane component.\n\nYou can specify the following components:\n\n- `etcd`\n- `kubeAPIServer`\n- `kubeControllerManager`\n- `openshiftAPIServer`\n- `openshiftControllerManager`\n- `openshiftRouteControllerManager`\n- `cvo`\n- `olm`\n- `catalogOperator`\n- `registryOperator`\n- `nodeTuningOperator`\n- `controlPlaneOperator`\n- `hostedClusterConfigOperator`\n\nA configuration of the `SRE` metrics set is illustrated in the following example:\n\n```terminal\nkubeAPIServer:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|server).*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_admission_controller_admission_latencies_seconds_.*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_admission_step_admission_latencies_seconds_.*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"scheduler_(e2e_scheduling_latency_microseconds|scheduling_algorithm_predicate_evaluation|scheduling_algorithm_priority_evaluation|scheduling_algorithm_preemption_evaluation|scheduling_algorithm_latency_microseconds|binding_latency_microseconds|scheduling_latency_seconds)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_(request_count|request_latencies|request_latencies_summary|dropped_requests|storage_data_key_generation_latencies_microseconds|storage_transformation_failures_total|storage_transformation_latencies_microseconds|proxy_tunnel_sync_latency_secs)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"docker_(operations|operations_latency_microseconds|operations_errors|operations_timeout)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"reflector_(items_per_list|items_per_watch|list_duration_seconds|lists_total|short_watches_total|watch_duration_seconds|watches_total)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"etcd_(helper_cache_hit_count|helper_cache_miss_count|helper_cache_entry_count|request_cache_get_latencies_summary|request_cache_add_latencies_summary|request_latencies_summary)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"transformation_(transformation_latencies_microseconds|failures_total)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"network_plugin_operations_latency_microseconds|sync_proxy_rules_latency_microseconds|rest_client_request_latency_seconds\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_request_duration_seconds_bucket;(0.15|0.25|0.3|0.35|0.4|0.45|0.6|0.7|0.8|0.9|1.25|1.5|1.75|2.5|3|3.5|4.5|6|7|8|9|15|25|30|50)\"\n    sourceLabels: [\"__name__\", \"le\"]\nkubeControllerManager:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|request|server).*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"rest_client_request_latency_seconds_(bucket|count|sum)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"root_ca_cert_publisher_sync_duration_seconds_(bucket|count|sum)\"\n    sourceLabels: [\"__name__\"]\nopenshiftAPIServer:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|server).*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_admission_controller_admission_latencies_seconds_.*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_admission_step_admission_latencies_seconds_.*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_request_duration_seconds_bucket;(0.15|0.25|0.3|0.35|0.4|0.45|0.6|0.7|0.8|0.9|1.25|1.5|1.75|2.5|3|3.5|4.5|6|7|8|9|15|25|30|50)\"\n    sourceLabels: [\"__name__\", \"le\"]\nopenshiftControllerManager:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|request|server).*\"\n    sourceLabels: [\"__name__\"]\nopenshiftRouteControllerManager:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|request|server).*\"\n    sourceLabels: [\"__name__\"]\nolm:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|server).*\"\n    sourceLabels: [\"__name__\"]\ncatalogOperator:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|server).*\"\n    sourceLabels: [\"__name__\"]\ncvo:\n  - action: drop\n    regex: \"etcd_(debugging|disk|server).*\"\n    sourceLabels: [\"__name__\"]\n```\n\n## Customized hosted cluster identifiers {#hcp-cluster-ids_hcp-observability}\n\nWhen you enable observability for hosted control planes, control plane metrics include an `_id` label that identifies the hosted cluster. You can set `spec.clusterID` in the `HostedCluster` custom resource (CR) at creation time to use a stable identifier instead of a randomly assigned UUID.\n\nWhen you forward hosted cluster metrics to an external monitoring system, the `_id` label is commonly used to identify the cluster. If you reinstall a hosted cluster, specifying the same `clusterID` value preserves your external monitoring configuration.\n\nEach hosted cluster has a unique cluster identifier. The HyperShift Operator uses this identifier in telemetry and in metrics that the control plane operators produce. The identifier is exposed on time series as the `_id` label.\n\nIf you do not specify `spec.clusterID` when you create a `HostedCluster` CR, the HyperShift controller generates a random RFC4122 UUID and sets the field for you.\n\n> [!NOTE]\n> The `spec.clusterID` specification is not the same as the `spec.infraID` specification. The `infraID` value identifies cloud infrastructure resources.\n\n### Example: Setting a custom cluster identifier {#hcp-cluster-ids-example_hcp-observability}\n\nYou can set the `spec.clusterID` value only when you create a `HostedCluster` custom resource (CR).\n\n> [!IMPORTANT]\n> After you set `spec.clusterID` is set, you cannot change it. Plan the identifier before you create the hosted cluster.\n\nThe following example shows a `HostedCluster` CR with a custom cluster identifier set:\n\n```yaml {title=\"Example HostedCluster CR with a custom cluster identifier\"}\napiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: <hosted_cluster_name>\n  namespace: <hosted_cluster_namespace>\nspec:\n  clusterID: fa45babd-40f3-4085-9b30-8bc3b7df1557\n  controllerAvailabilityPolicy: SingleReplica\n  dns:\n    baseDomain: example.com\n  platform:\n    type: AWS\n  release:\n    image: <ocp_release_image>\n  pullSecret:\n    name: <pull_secret_name>\n```\n\nThe `spec.clusterID` value is the UUID that you want to use as the stable cluster identifier in metrics. The value must be a valid RFC4122 UUID: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx` in hexadecimal digits.\n\nThe value of `spec.clusterID` is added as the `_id` label on control plane metrics through Prometheus relabeling rules on `ServiceMonitor` and `PodMonitor` resources. HyperShift Operator metrics for the hosted cluster also use the same `_id` label, so you can correlate metrics from the management cluster and the hosted control plane in one query.\n\nFor example, to filter metrics for a specific hosted cluster, use the `_id` label in a PromQL expression:\n\n```promql\n{__name__=~\"hypershift_.*\", _id=\"fa45babd-40f3-4085-9b30-8bc3b7df1557\"}\n```\n\nWhen you enable monitoring dashboards, the `__CLUSTER_ID__` placeholder in the dashboard template is replaced with the same UUID. For more information, see \"Dashboard customization\".\n\n#### Cluster identifier reuse after a reinstall {#hcp-cluster-ids-reusing_hcp-observability}\n\nIf you delete and re-create a hosted cluster, a new random `clusterID` is assigned unless you specify one. To keep the same identifier in external monitoring systems, set `spec.clusterID` in the new `HostedCluster` CR to the UUID that you used before.\n\n**Additional resources**\n\n- [Dashboard customization](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hcp-customize-dashboards_hcp-observability)\n- [Configuring metrics sets for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hosted-control-planes-metrics-sets_hcp-observability)\n- [Enabling monitoring dashboards in a hosted cluster](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hosted-control-planes-monitoring-dashboard_hcp-observability)\n\n## Enabling monitoring dashboards in a hosted cluster {#hosted-control-planes-monitoring-dashboard_hcp-observability}\n\nYou can enable monitoring dashboards in a hosted cluster by creating a config map.\n\n**Procedure**\n\n1. Create the `hypershift-operator-install-flags` config map in the `local-cluster` namespace. See the following example configuration:\n\n   ```yaml\n   kind: ConfigMap\n   apiVersion: v1\n   metadata:\n     name: hypershift-operator-install-flags\n     namespace: local-cluster\n   data:\n     installFlagsToAdd: \"--monitoring-dashboards --metrics-set=All\"\n     installFlagsToRemove: \"\"\n   ```\n\n   The `--monitoring-dashboards --metrics-set=All` flag adds the monitoring dashboard for all metrics.\n2. Wait a couple of minutes for the HyperShift Operator deployment in the `hypershift` namespace to be updated to include the following environment variable:\n\n   ```yaml\n       - name: MONITORING_DASHBOARDS\n         value: \"1\"\n   ```\n\n   When monitoring dashboards are enabled, for each hosted cluster that the HyperShift Operator manages, the Operator creates a config map named `hc-<hosted_cluster_namespace>-<hosted_cluster_name>` in the `openshift-config-managed` namespace, where `<hosted_cluster_namespace>` is the namespace of the hosted cluster and `<hosted_cluster_name>` is the name of the hosted cluster. As a result, a new dashboard is added in the administrative console of the management cluster.\n3. To view the dashboard, log in to the management cluster’s console and go to the dashboard for the hosted cluster by clicking **Observe -> Dashboards**.\n4. Optional: To disable monitoring dashboards in a hosted cluster, remove the `--monitoring-dashboards --metrics-set=All` flag from the `hypershift-operator-install-flags` config map. When you delete a hosted cluster, its corresponding dashboard is also deleted.\n\n**Additional resources**\n\n- [Customized hosted cluster identifiers](/openshift-docs-markdown/hosted_control_planes/hcp-observability#hcp-cluster-ids_hcp-observability)\n\n### Dashboard customization {#hcp-customize-dashboards_hcp-observability}\n\nTo generate dashboards for each hosted cluster, the HyperShift Operator uses a template that is stored in the `monitoring-dashboard-template` config map in the Operator namespace (`hypershift`). This template contains a set of Grafana panels that contain the metrics for the dashboard.\n\nYou can edit the content of the config map to customize the dashboards.\n\nWhen a dashboard is generated, the following strings are replaced with values that correspond to a specific hosted cluster:\n\n| Name | Description |\n| --- | --- |\n| `__NAME__` | The name of the hosted cluster |\n| `__NAMESPACE__` | The namespace of the hosted cluster |\n| `__CONTROL_PLANE_NAMESPACE__` | The namespace where the control plane pods of the hosted cluster are placed |\n| `__CLUSTER_ID__` | The UUID of the hosted cluster, which matches the `_id` label of the hosted cluster metrics |\n\nTo set a custom cluster identifier when you create the hosted cluster, see \"Customized hosted cluster identifiers\".\n\n## Control plane metrics for hosted control planes {#hcp-cp-metrics-overview_hcp-observability}\n\nYou can observe hosted control plane health from the hosted cluster monitoring stack when metrics forwarding is enabled.\n\nWith propagated metrics, you can diagnose API server, etcd, Operator, and scheduling issues from the hosted cluster web console and CLI without management cluster credentials.\n\nThis capability is available in OpenShift Container Platform 4.22 and later.\n\nBefore OpenShift Container Platform 4.22, control plane components for hosted control planes ran on the management cluster and were invisible to the Cluster Monitoring Operator stack in the hosted cluster. Hosted cluster administrators could not query metrics such as `apiserver_request_total`, `etcd_mvcc_db_total_size_in_bytes`, or `csv_succeeded` from the hosted cluster Prometheus.\n\nWith metrics forwarding, selected control plane metrics are propagated from the management cluster into the hosted cluster platform Prometheus.\n\nAfter you enable forwarding on the `HostedCluster` resource, you can use familiar PromQL queries, alerts, and dashboards.\n\n### Metrics forwarding architecture {#hcp-cp-metrics-architecture_hcp-observability}\n\nWhen you enable metrics forwarding, hosted control planes deploys components on both the management cluster and the hosted cluster.\n\nOn the management cluster, in the hosted control plane namespace, the following steps take place:\n\n- The `endpoint-resolver` deployment discovers pod IP addresses for control plane components.\n- The `metrics-proxy` deployment scrapes control plane pods, applies per-component metric filters, injects OpenShift Container Platform-compatible labels, and serves aggregated metrics at paths, such as `/metrics/kube-apiserver` and `/metrics/etcd`, behind a TLS-passthrough Route.\n\nOn the hosted cluster, in the `openshift-monitoring` namespace, the following steps take place:\n\n- The `control-plane-metrics-forwarder` deployment runs HAProxy and TCP-proxies scrape requests to the management cluster `metrics-proxy` Route.\n- A `PodMonitor` named `control-plane-metrics-forwarder` configures platform Prometheus to scrape the forwarder using mutual TLS (mTLS).\n\nThe data path is as follows:\n\n1. Platform Prometheus in the hosted cluster discovers the `PodMonitor` and scrapes the metrics-forwarder.\n2. The metrics-forwarder forwards the scrape over mTLS to the management cluster `metrics-proxy` Route.\n3. The metrics-proxy scrapes control plane pods through the endpoint-resolver and returns filtered, relabeled metrics.\n\n### Enabling metrics forwarding {#hcp-cp-metrics-enable_hcp-observability}\n\nEnable metrics forwarding so that you can observe hosted control plane health from the hosted cluster monitoring stack.\n\nIf you are a hosted cluster administrator without management cluster access, ask a platform administrator enable metrics forwarding on your `HostedCluster` resource.\n\n**Prerequisites**\n\n- You have a hosted cluster that is version 4.22 or later.\n- You have the multicluster engine for Kubernetes Operator version 2.17 or later.\n- You are logged in to the management cluster. Alternatively, you can use a `kubeconfig` file with access to the namespace that contains the `HostedCluster` resource. The `HostedCluster` object exists on the management cluster; annotating it from a hosted cluster `kubeconfig` file fails or targets the wrong resource.\n\n**Procedure**\n\n- Add the `hypershift.openshift.io/enable-metrics-forwarding=true` annotation to the `HostedCluster` resource on the management cluster by entering the following command:\n\n  ```terminal\n  $ oc annotate hostedcluster -n <hosted_cluster_namespace> <hosted_cluster_name> \\\n    hypershift.openshift.io/enable-metrics-forwarding=true\n  ```\n\n  Replace `<hosted_cluster_namespace>` with the namespace of the hosted cluster and `<hosted_cluster_name>` with the name of the hosted cluster.\n- To disable metrics forwarding, remove the annotation by entering the following command:\n\n  ```terminal\n  $ oc annotate hostedcluster -n <hosted_cluster_namespace> <hosted_cluster_name> \\\n    hypershift.openshift.io/enable-metrics-forwarding-\n  ```\n\n### Querying control plane metrics in hosted clusters by using the CLI {#hcp-cp-query-metrics_hcp-observability}\n\nAfter you enable metrics forwarding, you can verify that control plane metrics are ingested and query them from the CLI.\n\nUse the same PromQL patterns as standalone OpenShift Container Platform clusters because the metrics-proxy injects compatible labels.\n\n**Prerequisites**\n\n- Metrics forwarding is enabled on the `HostedCluster` resource. For enablement steps, see \"Enabling metrics forwarding\".\n- You have `cluster-admin` access to the hosted cluster.\n- At least two minutes have elapsed since you enabled forwarding so Prometheus can complete initial scrapes.\n\n**Procedure**\n\n1. Verify that the `control-plane-metrics-forwarder` deployment exists in the `openshift-monitoring` namespace:\n\n   ```terminal\n   $ oc get deployment control-plane-metrics-forwarder -n openshift-monitoring\n   ```\n\n   > [!NOTE]\n   > Control plane metrics are available when the Cluster Monitoring Operator and platform Prometheus are running, even if no compute nodes are scheduled. Data-plane node and workload metrics still require compute nodes.\n2. Verify that the `control-plane-metrics-forwarder` `PodMonitor` exists:\n\n   ```terminal\n   $ oc get podmonitor control-plane-metrics-forwarder -n openshift-monitoring\n   ```\n3. Optional: Verify that management-cluster components are running by logging in to the management cluster:\n\n   1. Enter the following command:\n\n      ```terminal\n      $ oc get deployment endpoint-resolver metrics-proxy -n <hcp_namespace>\n      ```\n\n      Replace `<hcp_namespace>` with the namespace for your hosted cluster. Typically, the format of the namespace is `<hosted_cluster_namespace>-<hosted_cluster_name>`.\n   2. Enter the following command:\n\n      ```terminal\n      $ oc get route metrics-proxy -n <hcp_namespace>\n      ```\n4. Verify that Prometheus scraped targets for the forwarder report:\n\n   ```terminal\n   $ oc exec -n openshift-monitoring prometheus-k8s-0 -c prometheus -- \\\n     curl -s http://localhost:9090/api/v1/targets \\\n     | jq '.data.activeTargets[] | select(.scrapePool | contains(\"control-plane-metrics-forwarder\")) | {scrapePool, scrapeUrl: .scrapeUrl, health}'\n   ```\n\n   You should see one target per forwarded component with the status of `\"health\": \"up\"`.\n5. Confirm that Kubernetes API server metrics are ingested by querying `apiserver_request_total`:\n\n   ```terminal\n   $ oc exec -n openshift-monitoring prometheus-k8s-0 -c prometheus -- \\\n     curl -gs 'http://localhost:9090/api/v1/query?query=apiserver_request_total{job=\"apiserver\"}' \\\n     | jq '.data.result | length'\n   ```\n\n   A nonzero result confirms that API server metrics are available in the guest cluster monitoring stack.\n\n**Additional resources**\n\n- [Exposed metrics](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-metrics#olm-metrics_olm-understanding-metrics)\n\n### Querying control plane metrics in hosted clusters by using the web console {#hcp-cp-query-metrics-console_hcp-observability}\n\nAfter you enable metrics forwarding, you can verify that control plane metrics are ingested and query them from the web console.\n\nUse the same PromQL patterns as standalone OpenShift Container Platform clusters because the metrics-proxy injects compatible labels.\n\n**Prerequisites**\n\n- Metrics forwarding is enabled on the `HostedCluster` resource. For enablement steps, see \"Enabling metrics forwarding\".\n- You have `cluster-admin` access to the hosted cluster.\n- At least two minutes have elapsed since you enabled forwarding so Prometheus can complete initial scrapes.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console for the hosted cluster.\n2. Click **Observe** -> **Metrics**.\n3. In the query field, enter a PromQL expression and run the query.\n\n   Use the following examples:\n\n   ```text {title=\"Operator health\"}\n   csv_succeeded{job=\"olm-operator-metrics\"} == 0\n   ```\n\n   This query lists CSVs that are not in the `Succeeded` state.\n\n   ```text {title=\"API server request rate\"}\n   sum(rate(apiserver_request_total{job=\"apiserver\"}[5m])) by (verb, code)\n   ```\n\n   ```text {title=\"Scheduler activity\"}\n   sum(rate(scheduler_schedule_attempts_total[5m])) by (result)\n   ```\n\n   This query is available on OpenShift Container Platform 4.22 and later with metrics forwarding enabled.\n\n   ```text {title=\"Workload-oriented API saturation\"}\n   apiserver_current_inflight_requests{job=\"apiserver\"}\n   ```\n\n   ```text {title=\"Scheduling backlog\"}\n   scheduler_pending_pods\n   ```\n\n   ```text {title=\"Controller workqueue depth\"}\n   workqueue_depth{job=\"kube-controller-manager\"}\n   ```\n\n   For `csv_succeeded` and other OLM metrics, see \"Exposed metrics\".\n\n**Verification**\n\n- Prometheus targets for `control-plane-metrics-forwarder` scrape pools report the `health: up` status.\n- PromQL queries for `apiserver_request_total{job=\"apiserver\"}` return nonzero results.\n- Example queries in the web console return time series for enabled components.\n\n**Additional resources**\n\n- [Exposed metrics](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-metrics#olm-metrics_olm-understanding-metrics)\n\n### Importing control plane health dashboards {#hcp-cp-metrics-dashboards_hcp-observability}\n\nYou can import a sample Grafana dashboard that visualizes propagated control plane metrics in the hosted cluster web console. The dashboard covers API server, etcd, cluster Operators, scheduler, controller manager, and OLM health panels.\n\n**Prerequisites**\n\n- Metrics forwarding is enabled and verified.\n- The HyperShift Operator uses `METRICS_SET=All` or `METRICS_SET=SRE` with a matching `sre-metric-set` `ConfigMap` object in the hosted control plane namespace. The default `Telemetry` metrics set forwards only a small metric subset and leaves most dashboard panels empty.\n- You have `cluster-admin` access to the hosted cluster.\n\n**Procedure**\n\n1. Download the sample dashboard JSON file by entering the following command:\n\n   ```terminal\n   $ curl -LO https://raw.githubusercontent.com/openshift/hypershift/main/contrib/metrics/guest-control-plane-dashboard.json\n   ```\n\n   > [!NOTE]\n   > If you deploy user-workload Grafana through the Grafana Operator, import the dashboard JSON as a `GrafanaDashboard` custom resource instead of using a console `ConfigMap` object.\n2. Create a `ConfigMap` object from the dashboard file in the `openshift-config-managed` namespace by entering the following command:\n\n   ```terminal\n   $ oc create configmap guest-control-plane-dashboard \\\n     --from-file=guest-control-plane-dashboard.json=guest-control-plane-dashboard.json \\\n     -n openshift-config-managed\n   ```\n3. Label the `ConfigMap` object so the console discovers it as a dashboard by entering the following command:\n\n   ```terminal\n   $ oc label configmap guest-control-plane-dashboard \\\n     console.openshift.io/dashboard=true \\\n     -n openshift-config-managed\n   ```\n4. Log in to the web console and click **Observe** -> **Dashboards**.\n5. Select the **Hosted Cluster Control Plane** dashboard.\n6. Optional: If you use `METRICS_SET=SRE` on the HyperShift Operator, configure the Operator and create or update the `sre-metric-set` `ConfigMap` object in the hosted control plane namespace with relabel configurations that forward the dashboard metric names.\n\n   1. Log in to the management cluster and set the metrics set on the HyperShift Operator by entering the following command:\n\n      ```terminal\n      $ oc set env -n hypershift deployment/operator METRICS_SET=SRE\n      ```\n   2. Replace `<hcp_namespace>` with your hosted control plane namespace and create the `ConfigMap` object:\n\n      ```yaml\n      apiVersion: v1\n      kind: ConfigMap\n      metadata:\n        name: sre-metric-set\n        namespace: <hcp_namespace>\n      data:\n        config: |\n          kubeAPIServer:\n            - action: keep\n              sourceLabels: [\"__name__\"]\n              regex: \"(apiserver_request_total|apiserver_request_duration_seconds_bucket|apiserver_current_inflight_requests|apiserver_storage_objects)\"\n          etcd:\n            - action: keep\n              sourceLabels: [\"__name__\"]\n              regex: \"(etcd_mvcc_db_total_size_in_bytes|etcd_mvcc_db_total_size_in_use_in_bytes|etcd_disk_wal_fsync_duration_seconds_bucket|etcd_disk_backend_commit_duration_seconds_bucket|etcd_network_peer_round_trip_time_seconds_bucket|etcd_server_leader_changes_seen_total|etcd_server_has_leader)\"\n          kubeControllerManager:\n            - action: keep\n              sourceLabels: [\"__name__\"]\n              regex: \"(workqueue_depth|workqueue_adds_total)\"\n          kubeScheduler:\n            - action: keep\n              sourceLabels: [\"__name__\"]\n              regex: \"(scheduler_e2e_scheduling_duration_seconds_count|scheduler_schedule_attempts_total|scheduler_pending_pods)\"\n          cvo:\n            - action: keep\n              sourceLabels: [\"__name__\"]\n              regex: \"(cluster_version|cluster_operator_up|cluster_operator_conditions)\"\n          olm:\n            - action: keep\n              sourceLabels: [\"__name__\"]\n              regex: \"(csv_succeeded)\"\n      ```\n\n      This configuration forwards 20 metric names across five components that the dashboard uses.\n\n      For full `SRE` metrics set configuration, see \"Configuring the SRE metrics set\".\n   3. Apply the `ConfigMap` object on the management cluster:\n\n      ```terminal\n      $ oc apply -f sre-metric-set.yaml\n      ```\n\n      The Control Plane Operator detects the `ConfigMap` object change and updates the `metrics-proxy` configuration.\n\n**Verification**\n\n- The dashboard is displayed under **Observe** -> **Dashboards** in the web console.\n- Panels display data when the configured metrics set includes the required metric names.\n- The etcd database size panels show current use relative to the 8 GB limit.\n\n## Connectivity monitoring for hosted control planes {#hcp-connectivity-metrics_hcp-observability}\n\nCluster service providers can monitor connectivity metrics to ensure proper function during an update. They can also use the metrics to find connectivity issues between the control plane and the data plane, or vice versa.\n\nStudying these metrics over time can inform decisions about capacity planning and scaling.\n\n### Connectivity monitoring from the control plane to the data plane {#hcp-connect-data-plane_hcp-observability}\n\nCluster administrators can monitor network activity between a hosted control plane and the compute nodes in a data plane by using the `DataPlaneConnectionAvailable` condition. This condition is useful for identifying and troubleshooting network connectivity issues in hosted clusters.\n\nThe `DataPlaneConnectionAvailable` condition is available by default starting with version 4.21.\n\nThe `DataPlaneConnectionAvailable` condition monitors the connectivity from the control plane to the data plane by taking the following steps:\n\n1. Counts available compute nodes in the hosted cluster.\n2. Lists the `konnectivity-agent` pods that are running in the `kube-system` namespace on the data plane.\n3. Reads the logs from the running `konnectivity-agent` pod to verify that it can communicate with the data plane.\n\nThe `hosted-cluster-config-operator` component that runs in the control plane namespace evaluates the condition and provides status and reason information.\n\nThe following table details the status and reason values that can be displayed for the condition:\n\n| Status | Reason value | Description |\n| --- | --- | --- |\n| `True` | `AsExpected` | The control plane can reach the data plane nodes through the `konnectivity-agent` pods. |\n| `False` | `KonnectivityAgentPodsNotFound` | No `konnectivity-agent` pods are running, or none are found. |\n| `False` | `ReconciliationError` | An error occurred while listing the `konnectivity-agent` pods. |\n| `Unknown` | `NoWorkerNodesAvailable` | No compute nodes are available in the cluster. No errors occurred, but no compute nodes were found. |\n| `Unknown` | `ReconcileError` | Unable to count compute nodes because an error occurred. |\n\nFor information about how to troubleshoot connectivity issues, see \"Troubleshooting connectivity for hosted control planes\".\n\n**Additional resources**\n\n- [Troubleshooting connectivity for hosted control planes](/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hcp-ts-connectivity_hcp-troubleshooting)\n\n### Connectivity monitoring from the data plane to the control plane {#hcp-connect-control-plane_hcp-observability}\n\nCluster administrators can monitor network activity between the compute nodes in a data plane and a hosted control plane by using the `ControlPlaneConnectionAvailable` condition. This condition is useful for identifying and troubleshooting network connectivity issues in hosted clusters.\n\nThe `ControlPlaneConnectionAvailable` condition detects whether data plane nodes can reach control plane components. The `hosted-cluster-config-operator` component evaluates the condition, and a deployment with 3 replicas checks connectivity.\n\nThe condition monitors the connectivity between the data plane and the control plane by taking the following steps:\n\n1. Deploys a `kas-connection-checker` deployment to the `kube-system` namespace on the data plane.\n2. Each pod runs a shell script in an infinite loop that transfers data to and from the Kubernetes API server endpoint every 60 seconds. On success, the script patches the `control-plane-connectivity-check` config map with a `lastSucceeded` timestamp.\n3. The `hosted-cluster-config-operator` component checks whether the `control-plane-connectivity-check` config map exists and whether the `lastSucceeded` timestamp is within the last 5 minutes. It does not check pod readiness counts.\n\nThe following table details the status and reason values that can be displayed for the condition:\n\n| Status | Reason value | Description |\n| --- | --- | --- |\n| `True` | `AsExpected` | All data plane nodes can reach the control plane (`NumberReady = DesiredNumberScheduled`). |\n| `False` | `KASAccessFailed` | At least one data plane node cannot reach the control plane. The message shows the ratio of pods that are ready; for example, `1/3 pods ready`. |\n| `Unknown` | `NoWorkerNodesAvailable` | No compute nodes are available to check connectivity (`DesiredNumberScheduled = 0`). |\n| `Unknown` | `StatusUnknown` | The Kubernetes API server connection checker DaemonSet was not found. |\n| `Unknown` | `ReconcileError` | An API error blocked the retrieval of the DaemonSet status. |\n\n> [!IMPORTANT]\n> This condition has a known limitation with HTTPS proxy environments. In HTTPS proxy environments, the condition might incorrectly report `False` because of probe limitations.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-observability.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,32 +100,423 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-observability" class="group scroll-mt-20">Observability for {"{"}{"{"} hcp {"}"}{"}"}<a href="#hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can gather metrics for {"{"}{"{"} hcp {"}"}{"}"} by configuring metrics sets. Monitoring dashboards are created in the management cluster for each hosted cluster that it manages.</p>
-      <p class="/modules/hosted-control-planes-metrics-sets.md"></p>
-      <p class="/modules/hcp-metrics-sets-ref.md"></p>
-      <p class="/modules/hcp-cluster-ids.md"></p>
-      <p class="/modules/hcp-cluster-ids-example.md"></p>
+      <h1 id="hcp-observability" class="group scroll-mt-20">Observability for hosted control planes<a href="#hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>You can gather metrics for hosted control planes by configuring metrics sets. Monitoring dashboards are created in the management cluster for each hosted cluster that it manages.</p>
+      <h2 id="hosted-control-planes-metrics-sets_hcp-observability" class="group scroll-mt-20">Configuring metrics sets for hosted control planes<a href="#hosted-control-planes-metrics-sets_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Hosted control planes creates <code>ServiceMonitor</code> resources in each control plane namespace that allow a Prometheus stack to gather metrics from the control planes.</p>
+      <p>The <code>ServiceMonitor</code> resources use metrics relabelings to define which metrics are included or excluded from a particular component, such as etcd or the Kubernetes API server. The number of metrics that are produced by control planes directly impacts the resource requirements of the monitoring stack that gathers them.</p>
+      <p>Instead of producing a fixed number of metrics that apply to all situations, you can configure a metrics set that identifies a set of metrics to produce for each control plane. The following metrics sets are supported:</p>
+      <ul>
+      <li><code>Telemetry</code>: These metrics are needed for telemetry. This set is the default set and is the smallest set of metrics.</li>
+      <li><code>SRE</code>: This set includes the necessary metrics to produce alerts and allow the troubleshooting of control plane components.</li>
+      <li><code>All</code>: This set includes all of the metrics that are produced by standalone OpenShift Container Platform control plane components.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To configure a metrics set, set the <code>METRICS_SET</code> environment variable in the HyperShift Operator deployment by entering the following command:
+      <CodeBlock code={"$ oc set env -n hypershift deployment/operator METRICS_SET=All"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="hcp-metrics-set-ref_hcp-observability" class="group scroll-mt-20">SRE metrics set example<a href="#hcp-metrics-set-ref_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When you specify the <code>SRE</code> metrics set, the HyperShift Operator looks for a config map named <code>sre-metric-set</code> with a single key: <code>config</code>. The value of the <code>config</code> key must contain a set of <code>RelabelConfigs</code> that are organized by control plane component.</p>
+      <p>You can specify the following components:</p>
+      <ul>
+      <li><code>etcd</code></li>
+      <li><code>kubeAPIServer</code></li>
+      <li><code>kubeControllerManager</code></li>
+      <li><code>openshiftAPIServer</code></li>
+      <li><code>openshiftControllerManager</code></li>
+      <li><code>openshiftRouteControllerManager</code></li>
+      <li><code>cvo</code></li>
+      <li><code>olm</code></li>
+      <li><code>catalogOperator</code></li>
+      <li><code>registryOperator</code></li>
+      <li><code>nodeTuningOperator</code></li>
+      <li><code>controlPlaneOperator</code></li>
+      <li><code>hostedClusterConfigOperator</code></li>
+      </ul>
+      <p>A configuration of the <code>SRE</code> metrics set is illustrated in the following example:</p>
+      <CodeBlock code={"kubeAPIServer:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|server).*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_admission_controller_admission_latencies_seconds_.*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_admission_step_admission_latencies_seconds_.*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"scheduler_(e2e_scheduling_latency_microseconds|scheduling_algorithm_predicate_evaluation|scheduling_algorithm_priority_evaluation|scheduling_algorithm_preemption_evaluation|scheduling_algorithm_latency_microseconds|binding_latency_microseconds|scheduling_latency_seconds)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_(request_count|request_latencies|request_latencies_summary|dropped_requests|storage_data_key_generation_latencies_microseconds|storage_transformation_failures_total|storage_transformation_latencies_microseconds|proxy_tunnel_sync_latency_secs)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"docker_(operations|operations_latency_microseconds|operations_errors|operations_timeout)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"reflector_(items_per_list|items_per_watch|list_duration_seconds|lists_total|short_watches_total|watch_duration_seconds|watches_total)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"etcd_(helper_cache_hit_count|helper_cache_miss_count|helper_cache_entry_count|request_cache_get_latencies_summary|request_cache_add_latencies_summary|request_latencies_summary)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"transformation_(transformation_latencies_microseconds|failures_total)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"network_plugin_operations_latency_microseconds|sync_proxy_rules_latency_microseconds|rest_client_request_latency_seconds\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_request_duration_seconds_bucket;(0.15|0.25|0.3|0.35|0.4|0.45|0.6|0.7|0.8|0.9|1.25|1.5|1.75|2.5|3|3.5|4.5|6|7|8|9|15|25|30|50)\"\n    sourceLabels: [\"__name__\", \"le\"]\nkubeControllerManager:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|request|server).*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"rest_client_request_latency_seconds_(bucket|count|sum)\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"root_ca_cert_publisher_sync_duration_seconds_(bucket|count|sum)\"\n    sourceLabels: [\"__name__\"]\nopenshiftAPIServer:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|server).*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_admission_controller_admission_latencies_seconds_.*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_admission_step_admission_latencies_seconds_.*\"\n    sourceLabels: [\"__name__\"]\n  - action:       \"drop\"\n    regex:        \"apiserver_request_duration_seconds_bucket;(0.15|0.25|0.3|0.35|0.4|0.45|0.6|0.7|0.8|0.9|1.25|1.5|1.75|2.5|3|3.5|4.5|6|7|8|9|15|25|30|50)\"\n    sourceLabels: [\"__name__\", \"le\"]\nopenshiftControllerManager:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|request|server).*\"\n    sourceLabels: [\"__name__\"]\nopenshiftRouteControllerManager:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|request|server).*\"\n    sourceLabels: [\"__name__\"]\nolm:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|server).*\"\n    sourceLabels: [\"__name__\"]\ncatalogOperator:\n  - action:       \"drop\"\n    regex:        \"etcd_(debugging|disk|server).*\"\n    sourceLabels: [\"__name__\"]\ncvo:\n  - action: drop\n    regex: \"etcd_(debugging|disk|server).*\"\n    sourceLabels: [\"__name__\"]"} lang="terminal" />
+      <h2 id="hcp-cluster-ids_hcp-observability" class="group scroll-mt-20">Customized hosted cluster identifiers<a href="#hcp-cluster-ids_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When you enable observability for hosted control planes, control plane metrics include an <code>_id</code> label that identifies the hosted cluster. You can set <code>spec.clusterID</code> in the <code>HostedCluster</code> custom resource (CR) at creation time to use a stable identifier instead of a randomly assigned UUID.</p>
+      <p>When you forward hosted cluster metrics to an external monitoring system, the <code>_id</code> label is commonly used to identify the cluster. If you reinstall a hosted cluster, specifying the same <code>clusterID</code> value preserves your external monitoring configuration.</p>
+      <p>Each hosted cluster has a unique cluster identifier. The HyperShift Operator uses this identifier in telemetry and in metrics that the control plane operators produce. The identifier is exposed on time series as the <code>_id</code> label.</p>
+      <p>If you do not specify <code>spec.clusterID</code> when you create a <code>HostedCluster</code> CR, the HyperShift controller generates a random RFC4122 UUID and sets the field for you.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>spec.clusterID</code> specification is not the same as the <code>spec.infraID</code> specification. The <code>infraID</code> value identifies cloud infrastructure resources.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="hcp-cluster-ids-example_hcp-observability" class="group scroll-mt-20">Example: Setting a custom cluster identifier<a href="#hcp-cluster-ids-example_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can set the <code>spec.clusterID</code> value only when you create a <code>HostedCluster</code> custom resource (CR).</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>After you set <code>spec.clusterID</code> is set, you cannot change it. Plan the identifier before you create the hosted cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The following example shows a <code>HostedCluster</code> CR with a custom cluster identifier set:</p>
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: <hosted_cluster_name>\n  namespace: <hosted_cluster_namespace>\nspec:\n  clusterID: fa45babd-40f3-4085-9b30-8bc3b7df1557\n  controllerAvailabilityPolicy: SingleReplica\n  dns:\n    baseDomain: example.com\n  platform:\n    type: AWS\n  release:\n    image: <ocp_release_image>\n  pullSecret:\n    name: <pull_secret_name>"} lang="yaml" title="Example HostedCluster CR with a custom cluster identifier" />
+      <p>The <code>spec.clusterID</code> value is the UUID that you want to use as the stable cluster identifier in metrics. The value must be a valid RFC4122 UUID: <code>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</code> in hexadecimal digits.</p>
+      <p>The value of <code>spec.clusterID</code> is added as the <code>_id</code> label on control plane metrics through Prometheus relabeling rules on <code>ServiceMonitor</code> and <code>PodMonitor</code> resources. HyperShift Operator metrics for the hosted cluster also use the same <code>_id</code> label, so you can correlate metrics from the management cluster and the hosted control plane in one query.</p>
+      <p>For example, to filter metrics for a specific hosted cluster, use the <code>_id</code> label in a PromQL expression:</p>
+      <CodeBlock code={"{__name__=~\"hypershift_.*\", _id=\"fa45babd-40f3-4085-9b30-8bc3b7df1557\"}"} lang="promql" />
+      <p>When you enable monitoring dashboards, the <code>__CLUSTER_ID__</code> placeholder in the dashboard template is replaced with the same UUID. For more information, see "Dashboard customization".</p>
+      <h4 id="hcp-cluster-ids-reusing_hcp-observability" class="group scroll-mt-20">Cluster identifier reuse after a reinstall<a href="#hcp-cluster-ids-reusing_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h4>
+      <p>If you delete and re-create a hosted cluster, a new random <code>clusterID</code> is assigned unless you specify one. To keep the same identifier in external monitoring systems, set <code>spec.clusterID</code> in the new <code>HostedCluster</code> CR to the UUID that you used before.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-observability#hcp-customize-dashboards_hcp-observability">Dashboard customization</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-observability#hosted-control-planes-metrics-sets_hcp-observability">Configuring metrics sets for hosted control planes</a></li>
       <li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-observability#hosted-control-planes-monitoring-dashboard_hcp-observability">Enabling monitoring dashboards in a hosted cluster</a></li>
       </ul>
+      <h2 id="hosted-control-planes-monitoring-dashboard_hcp-observability" class="group scroll-mt-20">Enabling monitoring dashboards in a hosted cluster<a href="#hosted-control-planes-monitoring-dashboard_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can enable monitoring dashboards in a hosted cluster by creating a config map.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the <code>hypershift-operator-install-flags</code> config map in the <code>local-cluster</code> namespace. See the following example configuration:
+      <CodeBlock code={"kind: ConfigMap\napiVersion: v1\nmetadata:\n  name: hypershift-operator-install-flags\n  namespace: local-cluster\ndata:\n  installFlagsToAdd: \"--monitoring-dashboards --metrics-set=All\"\n  installFlagsToRemove: \"\""} lang="yaml" />
+      <p>The <code>--monitoring-dashboards --metrics-set=All</code> flag adds the monitoring dashboard for all metrics.</p>
+      </li>
+      <li>
+      Wait a couple of minutes for the HyperShift Operator deployment in the <code>hypershift</code> namespace to be updated to include the following environment variable:
+      <CodeBlock code={"    - name: MONITORING_DASHBOARDS\n      value: \"1\""} lang="yaml" />
+      <p>When monitoring dashboards are enabled, for each hosted cluster that the HyperShift Operator manages, the Operator creates a config map named <code>hc-&lt;hosted_cluster_namespace&gt;-&lt;hosted_cluster_name&gt;</code> in the <code>openshift-config-managed</code> namespace, where <code>&lt;hosted_cluster_namespace&gt;</code> is the namespace of the hosted cluster and <code>&lt;hosted_cluster_name&gt;</code> is the name of the hosted cluster. As a result, a new dashboard is added in the administrative console of the management cluster.</p>
+      </li>
+      <li>To view the dashboard, log in to the management cluster’s console and go to the dashboard for the hosted cluster by clicking <strong>Observe -&gt; Dashboards</strong>.</li>
+      <li>Optional: To disable monitoring dashboards in a hosted cluster, remove the <code>--monitoring-dashboards --metrics-set=All</code> flag from the <code>hypershift-operator-install-flags</code> config map. When you delete a hosted cluster, its corresponding dashboard is also deleted.</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-observability#hcp-cluster-ids_hcp-observability">Customized hosted cluster identifiers</a></li></ul>
-      <p class="/modules/hcp-cp-metrics-overview.md"></p>
-      <p class="/modules/hcp-cp-metrics-enable.md"></p>
-      <p class="/modules/hcp-cp-query-metrics.md"></p>
+      <h3 id="hcp-customize-dashboards_hcp-observability" class="group scroll-mt-20">Dashboard customization<a href="#hcp-customize-dashboards_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To generate dashboards for each hosted cluster, the HyperShift Operator uses a template that is stored in the <code>monitoring-dashboard-template</code> config map in the Operator namespace (<code>hypershift</code>). This template contains a set of Grafana panels that contain the metrics for the dashboard.</p>
+      <p>You can edit the content of the config map to customize the dashboards.</p>
+      <p>When a dashboard is generated, the following strings are replaced with values that correspond to a specific hosted cluster:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Name</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>__NAME__</code></TableCell>
+      <TableCell>The name of the hosted cluster</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>__NAMESPACE__</code></TableCell>
+      <TableCell>The namespace of the hosted cluster</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>__CONTROL_PLANE_NAMESPACE__</code></TableCell>
+      <TableCell>The namespace where the control plane pods of the hosted cluster are placed</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>__CLUSTER_ID__</code></TableCell>
+      <TableCell>The UUID of the hosted cluster, which matches the <code>_id</code> label of the hosted cluster metrics</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>To set a custom cluster identifier when you create the hosted cluster, see "Customized hosted cluster identifiers".</p>
+      <h2 id="hcp-cp-metrics-overview_hcp-observability" class="group scroll-mt-20">Control plane metrics for hosted control planes<a href="#hcp-cp-metrics-overview_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can observe hosted control plane health from the hosted cluster monitoring stack when metrics forwarding is enabled.</p>
+      <p>With propagated metrics, you can diagnose API server, etcd, Operator, and scheduling issues from the hosted cluster web console and CLI without management cluster credentials.</p>
+      <p>This capability is available in OpenShift Container Platform 4.22 and later.</p>
+      <p>Before OpenShift Container Platform 4.22, control plane components for hosted control planes ran on the management cluster and were invisible to the Cluster Monitoring Operator stack in the hosted cluster. Hosted cluster administrators could not query metrics such as <code>apiserver_request_total</code>, <code>etcd_mvcc_db_total_size_in_bytes</code>, or <code>csv_succeeded</code> from the hosted cluster Prometheus.</p>
+      <p>With metrics forwarding, selected control plane metrics are propagated from the management cluster into the hosted cluster platform Prometheus.</p>
+      <p>After you enable forwarding on the <code>HostedCluster</code> resource, you can use familiar PromQL queries, alerts, and dashboards.</p>
+      <h3 id="hcp-cp-metrics-architecture_hcp-observability" class="group scroll-mt-20">Metrics forwarding architecture<a href="#hcp-cp-metrics-architecture_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>When you enable metrics forwarding, hosted control planes deploys components on both the management cluster and the hosted cluster.</p>
+      <p>On the management cluster, in the hosted control plane namespace, the following steps take place:</p>
+      <ul>
+      <li>The <code>endpoint-resolver</code> deployment discovers pod IP addresses for control plane components.</li>
+      <li>The <code>metrics-proxy</code> deployment scrapes control plane pods, applies per-component metric filters, injects OpenShift Container Platform-compatible labels, and serves aggregated metrics at paths, such as <code>/metrics/kube-apiserver</code> and <code>/metrics/etcd</code>, behind a TLS-passthrough Route.</li>
+      </ul>
+      <p>On the hosted cluster, in the <code>openshift-monitoring</code> namespace, the following steps take place:</p>
+      <ul>
+      <li>The <code>control-plane-metrics-forwarder</code> deployment runs HAProxy and TCP-proxies scrape requests to the management cluster <code>metrics-proxy</code> Route.</li>
+      <li>A <code>PodMonitor</code> named <code>control-plane-metrics-forwarder</code> configures platform Prometheus to scrape the forwarder using mutual TLS (mTLS).</li>
+      </ul>
+      <p>The data path is as follows:</p>
+      <ol>
+      <li>Platform Prometheus in the hosted cluster discovers the <code>PodMonitor</code> and scrapes the metrics-forwarder.</li>
+      <li>The metrics-forwarder forwards the scrape over mTLS to the management cluster <code>metrics-proxy</code> Route.</li>
+      <li>The metrics-proxy scrapes control plane pods through the endpoint-resolver and returns filtered, relabeled metrics.</li>
+      </ol>
+      <h3 id="hcp-cp-metrics-enable_hcp-observability" class="group scroll-mt-20">Enabling metrics forwarding<a href="#hcp-cp-metrics-enable_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Enable metrics forwarding so that you can observe hosted control plane health from the hosted cluster monitoring stack.</p>
+      <p>If you are a hosted cluster administrator without management cluster access, ask a platform administrator enable metrics forwarding on your <code>HostedCluster</code> resource.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have a hosted cluster that is version 4.22 or later.</li>
+      <li>You have the multicluster engine for Kubernetes Operator version 2.17 or later.</li>
+      <li>You are logged in to the management cluster. Alternatively, you can use a <code>kubeconfig</code> file with access to the namespace that contains the <code>HostedCluster</code> resource. The <code>HostedCluster</code> object exists on the management cluster; annotating it from a hosted cluster <code>kubeconfig</code> file fails or targets the wrong resource.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Add the <code>hypershift.openshift.io/enable-metrics-forwarding=true</code> annotation to the <code>HostedCluster</code> resource on the management cluster by entering the following command:
+      <CodeBlock code={"$ oc annotate hostedcluster -n <hosted_cluster_namespace> <hosted_cluster_name> \\\n  hypershift.openshift.io/enable-metrics-forwarding=true"} lang="terminal" />
+      <p>Replace <code>&lt;hosted_cluster_namespace&gt;</code> with the namespace of the hosted cluster and <code>&lt;hosted_cluster_name&gt;</code> with the name of the hosted cluster.</p>
+      </li>
+      <li>
+      To disable metrics forwarding, remove the annotation by entering the following command:
+      <CodeBlock code={"$ oc annotate hostedcluster -n <hosted_cluster_namespace> <hosted_cluster_name> \\\n  hypershift.openshift.io/enable-metrics-forwarding-"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="hcp-cp-query-metrics_hcp-observability" class="group scroll-mt-20">Querying control plane metrics in hosted clusters by using the CLI<a href="#hcp-cp-query-metrics_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">After you enable metrics forwarding, you can verify that control plane metrics are ingested and query them from the CLI.</p>
+      <p>Use the same PromQL patterns as standalone OpenShift Container Platform clusters because the metrics-proxy injects compatible labels.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Metrics forwarding is enabled on the <code>HostedCluster</code> resource. For enablement steps, see "Enabling metrics forwarding".</li>
+      <li>You have <code>cluster-admin</code> access to the hosted cluster.</li>
+      <li>At least two minutes have elapsed since you enabled forwarding so Prometheus can complete initial scrapes.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Verify that the <code>control-plane-metrics-forwarder</code> deployment exists in the <code>openshift-monitoring</code> namespace:
+      <CodeBlock code={"$ oc get deployment control-plane-metrics-forwarder -n openshift-monitoring"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Control plane metrics are available when the Cluster Monitoring Operator and platform Prometheus are running, even if no compute nodes are scheduled. Data-plane node and workload metrics still require compute nodes.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Verify that the <code>control-plane-metrics-forwarder</code> <code>PodMonitor</code> exists:
+      <CodeBlock code={"$ oc get podmonitor control-plane-metrics-forwarder -n openshift-monitoring"} lang="terminal" />
+      </li>
+      <li>
+      Optional: Verify that management-cluster components are running by logging in to the management cluster:
+      <ol>
+      <li>
+      Enter the following command:
+      <CodeBlock code={"$ oc get deployment endpoint-resolver metrics-proxy -n <hcp_namespace>"} lang="terminal" />
+      <p>Replace <code>&lt;hcp_namespace&gt;</code> with the namespace for your hosted cluster. Typically, the format of the namespace is <code>&lt;hosted_cluster_namespace&gt;-&lt;hosted_cluster_name&gt;</code>.</p>
+      </li>
+      <li>
+      Enter the following command:
+      <CodeBlock code={"$ oc get route metrics-proxy -n <hcp_namespace>"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Verify that Prometheus scraped targets for the forwarder report:
+      <CodeBlock code={"$ oc exec -n openshift-monitoring prometheus-k8s-0 -c prometheus -- \\\n  curl -s http://localhost:9090/api/v1/targets \\\n  | jq '.data.activeTargets[] | select(.scrapePool | contains(\"control-plane-metrics-forwarder\")) | {scrapePool, scrapeUrl: .scrapeUrl, health}'"} lang="terminal" />
+      <p>You should see one target per forwarded component with the status of <code>"health": "up"</code>.</p>
+      </li>
+      <li>
+      Confirm that Kubernetes API server metrics are ingested by querying <code>apiserver_request_total</code>:
+      <CodeBlock code={"$ oc exec -n openshift-monitoring prometheus-k8s-0 -c prometheus -- \\\n  curl -gs 'http://localhost:9090/api/v1/query?query=apiserver_request_total{job=\"apiserver\"}' \\\n  | jq '.data.result | length'"} lang="terminal" />
+      <p>A nonzero result confirms that API server metrics are available in the guest cluster monitoring stack.</p>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-understanding-metrics#olm-metrics_olm-understanding-metrics">Exposed metrics</a></li></ul>
+      <h3 id="hcp-cp-query-metrics-console_hcp-observability" class="group scroll-mt-20">Querying control plane metrics in hosted clusters by using the web console<a href="#hcp-cp-query-metrics-console_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">After you enable metrics forwarding, you can verify that control plane metrics are ingested and query them from the web console.</p>
+      <p>Use the same PromQL patterns as standalone OpenShift Container Platform clusters because the metrics-proxy injects compatible labels.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Metrics forwarding is enabled on the <code>HostedCluster</code> resource. For enablement steps, see "Enabling metrics forwarding".</li>
+      <li>You have <code>cluster-admin</code> access to the hosted cluster.</li>
+      <li>At least two minutes have elapsed since you enabled forwarding so Prometheus can complete initial scrapes.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console for the hosted cluster.</li>
+      <li>Click <strong>Observe</strong> -&gt; <strong>Metrics</strong>.</li>
+      <li>
+      In the query field, enter a PromQL expression and run the query.
+      <p>Use the following examples:</p>
+      <CodeBlock code={"csv_succeeded{job=\"olm-operator-metrics\"} == 0"} lang="text" title="Operator health" />
+      <p>This query lists CSVs that are not in the <code>Succeeded</code> state.</p>
+      <CodeBlock code={"sum(rate(apiserver_request_total{job=\"apiserver\"}[5m])) by (verb, code)"} lang="text" title="API server request rate" />
+      <CodeBlock code={"sum(rate(scheduler_schedule_attempts_total[5m])) by (result)"} lang="text" title="Scheduler activity" />
+      <p>This query is available on OpenShift Container Platform 4.22 and later with metrics forwarding enabled.</p>
+      <CodeBlock code={"apiserver_current_inflight_requests{job=\"apiserver\"}"} lang="text" title="Workload-oriented API saturation" />
+      <CodeBlock code={"scheduler_pending_pods"} lang="text" title="Scheduling backlog" />
+      <CodeBlock code={"workqueue_depth{job=\"kube-controller-manager\"}"} lang="text" title="Controller workqueue depth" />
+      <p>For <code>csv_succeeded</code> and other OLM metrics, see "Exposed metrics".</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>Prometheus targets for <code>control-plane-metrics-forwarder</code> scrape pools report the <code>health: up</code> status.</li>
+      <li>PromQL queries for <code>apiserver_request_total{"{"}job="apiserver"{"}"}</code> return nonzero results.</li>
+      <li>Example queries in the web console return time series for enabled components.</li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-understanding-metrics#olm-metrics_olm-understanding-metrics">Exposed metrics</a></li></ul>
-      <p class="/modules/hcp-connectivity-metrics.md"></p>
-      <p class="/modules/hcp-connect-data-plane.md"></p>
+      <h3 id="hcp-cp-metrics-dashboards_hcp-observability" class="group scroll-mt-20">Importing control plane health dashboards<a href="#hcp-cp-metrics-dashboards_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can import a sample Grafana dashboard that visualizes propagated control plane metrics in the hosted cluster web console. The dashboard covers API server, etcd, cluster Operators, scheduler, controller manager, and OLM health panels.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Metrics forwarding is enabled and verified.</li>
+      <li>The HyperShift Operator uses <code>METRICS_SET=All</code> or <code>METRICS_SET=SRE</code> with a matching <code>sre-metric-set</code> <code>ConfigMap</code> object in the hosted control plane namespace. The default <code>Telemetry</code> metrics set forwards only a small metric subset and leaves most dashboard panels empty.</li>
+      <li>You have <code>cluster-admin</code> access to the hosted cluster.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Download the sample dashboard JSON file by entering the following command:
+      <CodeBlock code={"$ curl -LO https://raw.githubusercontent.com/openshift/hypershift/main/contrib/metrics/guest-control-plane-dashboard.json"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you deploy user-workload Grafana through the Grafana Operator, import the dashboard JSON as a <code>GrafanaDashboard</code> custom resource instead of using a console <code>ConfigMap</code> object.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Create a <code>ConfigMap</code> object from the dashboard file in the <code>openshift-config-managed</code> namespace by entering the following command:
+      <CodeBlock code={"$ oc create configmap guest-control-plane-dashboard \\\n  --from-file=guest-control-plane-dashboard.json=guest-control-plane-dashboard.json \\\n  -n openshift-config-managed"} lang="terminal" />
+      </li>
+      <li>
+      Label the <code>ConfigMap</code> object so the console discovers it as a dashboard by entering the following command:
+      <CodeBlock code={"$ oc label configmap guest-control-plane-dashboard \\\n  console.openshift.io/dashboard=true \\\n  -n openshift-config-managed"} lang="terminal" />
+      </li>
+      <li>Log in to the web console and click <strong>Observe</strong> -&gt; <strong>Dashboards</strong>.</li>
+      <li>Select the <strong>Hosted Cluster Control Plane</strong> dashboard.</li>
+      <li>
+      Optional: If you use <code>METRICS_SET=SRE</code> on the HyperShift Operator, configure the Operator and create or update the <code>sre-metric-set</code> <code>ConfigMap</code> object in the hosted control plane namespace with relabel configurations that forward the dashboard metric names.
+      <ol>
+      <li>
+      Log in to the management cluster and set the metrics set on the HyperShift Operator by entering the following command:
+      <CodeBlock code={"$ oc set env -n hypershift deployment/operator METRICS_SET=SRE"} lang="terminal" />
+      </li>
+      <li>
+      Replace <code>&lt;hcp_namespace&gt;</code> with your hosted control plane namespace and create the <code>ConfigMap</code> object:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: sre-metric-set\n  namespace: <hcp_namespace>\ndata:\n  config: |\n    kubeAPIServer:\n      - action: keep\n        sourceLabels: [\"__name__\"]\n        regex: \"(apiserver_request_total|apiserver_request_duration_seconds_bucket|apiserver_current_inflight_requests|apiserver_storage_objects)\"\n    etcd:\n      - action: keep\n        sourceLabels: [\"__name__\"]\n        regex: \"(etcd_mvcc_db_total_size_in_bytes|etcd_mvcc_db_total_size_in_use_in_bytes|etcd_disk_wal_fsync_duration_seconds_bucket|etcd_disk_backend_commit_duration_seconds_bucket|etcd_network_peer_round_trip_time_seconds_bucket|etcd_server_leader_changes_seen_total|etcd_server_has_leader)\"\n    kubeControllerManager:\n      - action: keep\n        sourceLabels: [\"__name__\"]\n        regex: \"(workqueue_depth|workqueue_adds_total)\"\n    kubeScheduler:\n      - action: keep\n        sourceLabels: [\"__name__\"]\n        regex: \"(scheduler_e2e_scheduling_duration_seconds_count|scheduler_schedule_attempts_total|scheduler_pending_pods)\"\n    cvo:\n      - action: keep\n        sourceLabels: [\"__name__\"]\n        regex: \"(cluster_version|cluster_operator_up|cluster_operator_conditions)\"\n    olm:\n      - action: keep\n        sourceLabels: [\"__name__\"]\n        regex: \"(csv_succeeded)\""} lang="yaml" />
+      <p>This configuration forwards 20 metric names across five components that the dashboard uses.</p>
+      <p>For full <code>SRE</code> metrics set configuration, see "Configuring the SRE metrics set".</p>
+      </li>
+      <li>
+      Apply the <code>ConfigMap</code> object on the management cluster:
+      <CodeBlock code={"$ oc apply -f sre-metric-set.yaml"} lang="terminal" />
+      <p>The Control Plane Operator detects the <code>ConfigMap</code> object change and updates the <code>metrics-proxy</code> configuration.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>The dashboard is displayed under <strong>Observe</strong> -&gt; <strong>Dashboards</strong> in the web console.</li>
+      <li>Panels display data when the configured metrics set includes the required metric names.</li>
+      <li>The etcd database size panels show current use relative to the 8 GB limit.</li>
+      </ul>
+      <h2 id="hcp-connectivity-metrics_hcp-observability" class="group scroll-mt-20">Connectivity monitoring for hosted control planes<a href="#hcp-connectivity-metrics_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Cluster service providers can monitor connectivity metrics to ensure proper function during an update. They can also use the metrics to find connectivity issues between the control plane and the data plane, or vice versa. </p>
+      <p>Studying these metrics over time can inform decisions about capacity planning and scaling.</p>
+      <h3 id="hcp-connect-data-plane_hcp-observability" class="group scroll-mt-20">Connectivity monitoring from the control plane to the data plane<a href="#hcp-connect-data-plane_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Cluster administrators can monitor network activity between a hosted control plane and the compute nodes in a data plane by using the <code>DataPlaneConnectionAvailable</code> condition. This condition is useful for identifying and troubleshooting network connectivity issues in hosted clusters. </p>
+      <p>The <code>DataPlaneConnectionAvailable</code> condition is available by default starting with version 4.21.</p>
+      <p>The <code>DataPlaneConnectionAvailable</code> condition monitors the connectivity from the control plane to the data plane by taking the following steps:</p>
+      <ol>
+      <li>Counts available compute nodes in the hosted cluster.</li>
+      <li>Lists the <code>konnectivity-agent</code> pods that are running in the <code>kube-system</code> namespace on the data plane.</li>
+      <li>Reads the logs from the running <code>konnectivity-agent</code> pod to verify that it can communicate with the data plane.</li>
+      </ol>
+      <p>The <code>hosted-cluster-config-operator</code> component that runs in the control plane namespace evaluates the condition and provides status and reason information.</p>
+      <p>The following table details the status and reason values that can be displayed for the condition:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Status</TableHead>
+      <TableHead>Reason value</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>True</code></TableCell>
+      <TableCell><code>AsExpected</code></TableCell>
+      <TableCell>The control plane can reach the data plane nodes through the <code>konnectivity-agent</code> pods.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>False</code></TableCell>
+      <TableCell><code>KonnectivityAgentPodsNotFound</code></TableCell>
+      <TableCell>No <code>konnectivity-agent</code> pods are running, or none are found.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>False</code></TableCell>
+      <TableCell><code>ReconciliationError</code></TableCell>
+      <TableCell>An error occurred while listing the <code>konnectivity-agent</code> pods.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Unknown</code></TableCell>
+      <TableCell><code>NoWorkerNodesAvailable</code></TableCell>
+      <TableCell>No compute nodes are available in the cluster. No errors occurred, but no compute nodes were found.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Unknown</code></TableCell>
+      <TableCell><code>ReconcileError</code></TableCell>
+      <TableCell>Unable to count compute nodes because an error occurred.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>For information about how to troubleshoot connectivity issues, see "Troubleshooting connectivity for hosted control planes".</p>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hcp-ts-connectivity_hcp-troubleshooting">Troubleshooting connectivity for {"{"}{"{"} hcp {"}"}{"}"}</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hcp-ts-connectivity_hcp-troubleshooting">Troubleshooting connectivity for hosted control planes</a></li></ul>
+      <h3 id="hcp-connect-control-plane_hcp-observability" class="group scroll-mt-20">Connectivity monitoring from the data plane to the control plane<a href="#hcp-connect-control-plane_hcp-observability" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Cluster administrators can monitor network activity between the compute nodes in a data plane and a hosted control plane by using the <code>ControlPlaneConnectionAvailable</code> condition. This condition is useful for identifying and troubleshooting network connectivity issues in hosted clusters.</p>
+      <p>The <code>ControlPlaneConnectionAvailable</code> condition detects whether data plane nodes can reach control plane components. The <code>hosted-cluster-config-operator</code> component evaluates the condition, and a deployment with 3 replicas checks connectivity.</p>
+      <p>The condition monitors the connectivity between the data plane and the control plane by taking the following steps:</p>
+      <ol>
+      <li>Deploys a <code>kas-connection-checker</code> deployment to the <code>kube-system</code> namespace on the data plane.</li>
+      <li>Each pod runs a shell script in an infinite loop that transfers data to and from the Kubernetes API server endpoint every 60 seconds. On success, the script patches the <code>control-plane-connectivity-check</code> config map with a <code>lastSucceeded</code> timestamp.</li>
+      <li>The <code>hosted-cluster-config-operator</code> component checks whether the <code>control-plane-connectivity-check</code> config map exists and whether the <code>lastSucceeded</code> timestamp is within the last 5 minutes. It does not check pod readiness counts.</li>
+      </ol>
+      <p>The following table details the status and reason values that can be displayed for the condition:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Status</TableHead>
+      <TableHead>Reason value</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>True</code></TableCell>
+      <TableCell><code>AsExpected</code></TableCell>
+      <TableCell>All data plane nodes can reach the control plane (<code>NumberReady = DesiredNumberScheduled</code>).</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>False</code></TableCell>
+      <TableCell><code>KASAccessFailed</code></TableCell>
+      <TableCell>At least one data plane node cannot reach the control plane. The message shows the ratio of pods that are ready; for example, <code>1/3 pods ready</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Unknown</code></TableCell>
+      <TableCell><code>NoWorkerNodesAvailable</code></TableCell>
+      <TableCell>No compute nodes are available to check connectivity (<code>DesiredNumberScheduled = 0</code>).</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Unknown</code></TableCell>
+      <TableCell><code>StatusUnknown</code></TableCell>
+      <TableCell>The Kubernetes API server connection checker DaemonSet was not found.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Unknown</code></TableCell>
+      <TableCell><code>ReconcileError</code></TableCell>
+      <TableCell>An API error blocked the retrieval of the DaemonSet status.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>This condition has a known limitation with HTTPS proxy environments. In HTTPS proxy environments, the condition might incorrectly report <code>False</code> because of probe limitations.</p>
+        </AlertDescription>
+      </Alert>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

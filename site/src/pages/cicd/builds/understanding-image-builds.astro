@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"understanding-image-builds","text":"Understanding image builds"}];
+const headings = [{"depth":1,"slug":"understanding-image-builds","text":"Understanding image builds"},{"depth":2,"slug":"builds-about_understanding-image-builds","text":"Builds"},{"depth":3,"slug":"builds-strategy-docker-build_understanding-image-builds","text":"Docker build"},{"depth":3,"slug":"builds-strategy-s2i-build_understanding-image-builds","text":"Source-to-image build"},{"depth":3,"slug":"builds-strategy-custom-build_understanding-image-builds","text":"Custom build"},{"depth":3,"slug":"builds-strategy-pipeline-build_understanding-image-builds","text":"Pipeline build"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cicd/builds/understanding-image-builds";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Understanding image builds";
-const description = "" || undefined;
+const description = "A build is the process of transforming input parameters into a resulting object. Most often, the process is used to transform input parameters or source…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +42,7 @@ const pageCategory = ["cicd","cicd/builds"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding image builds {#understanding-image-builds}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/understanding-image-builds.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Understanding image builds {#understanding-image-builds}\n\n## Builds {#builds-about_understanding-image-builds}\n\nA build is the process of transforming input parameters into a resulting object. Most often, the process is used to transform input parameters or source code into a runnable image. A `BuildConfig` object is the definition of the entire build process.\n\nOpenShift Container Platform uses Kubernetes by creating containers from build images and pushing them to a container image registry.\n\nBuild objects share common characteristics including inputs for a build, the requirement to complete a build process, logging the build process, publishing resources from successful builds, and publishing the final status of the build. Builds take advantage of resource restrictions, specifying limitations on resources such as CPU usage, memory usage, and build or pod execution time.\n\nThe OpenShift Container Platform build system provides extensible support for build strategies that are based on selectable types specified in the build API. There are three primary build strategies available:\n\n- Docker build\n- Source-to-image (S2I) build\n- Custom build\n\nBy default, docker builds and S2I builds are supported.\n\nThe resulting object of a build depends on the builder used to create it. For docker and S2I builds, the resulting objects are runnable images. For custom builds, the resulting objects are whatever the builder image author has specified.\n\nAdditionally, the pipeline build strategy can be used to implement sophisticated workflows:\n\n- Continuous integration\n- Continuous deployment\n\n### Docker build {#builds-strategy-docker-build_understanding-image-builds}\n\nOpenShift Container Platform uses Buildah to build a container image from a Dockerfile. For more information on building container images with Dockerfiles, see [the Dockerfile reference documentation](https://docs.docker.com/engine/reference/builder/).\n\n> [!TIP]\n> If you set Docker build arguments by using the `buildArgs` array, see [Understand how ARG and FROM interact](https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact) in the Dockerfile reference documentation.\n\n### Source-to-image build {#builds-strategy-s2i-build_understanding-image-builds}\n\nSource-to-image (S2I) is a tool for building reproducible container images. It produces ready-to-run images by injecting application source into a container image and assembling a new image. The new image incorporates the base image, the builder, and built source and is ready to use with the `buildah run` command. S2I supports incremental builds, which re-use previously downloaded dependencies, previously built artifacts, and so on.\n\n### Custom build {#builds-strategy-custom-build_understanding-image-builds}\n\nThe custom build strategy allows developers to define a specific builder image responsible for the entire build process. Using your own builder image allows you to customize your build process.\n\nA custom builder image is a plain container image embedded with build process logic, for example for building RPMs or base images.\n\nCustom builds run with a high level of privilege and are not available to users by default. Only users who can be trusted with cluster administration permissions should be granted access to run custom builds.\n\n### Pipeline build {#builds-strategy-pipeline-build_understanding-image-builds}\n\n> [!IMPORTANT]\n> The Pipeline build strategy is deprecated in OpenShift Container Platform 4. Equivalent and improved functionality is present in the OpenShift Container Platform Pipelines based on Tekton.\n>\n> Jenkins images on OpenShift Container Platform are fully supported and users should follow Jenkins user documentation for defining their `jenkinsfile` in a job or store it in a Source Control Management system.\n\nThe Pipeline build strategy allows developers to define a Jenkins pipeline for use by the Jenkins pipeline plugin. The build can be started, monitored, and managed by OpenShift Container Platform in the same way as any other build type.\n\nPipeline workflows are defined in a `jenkinsfile`, either embedded directly in the build configuration, or supplied in a Git repository and referenced by the build configuration.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/understanding-image-builds.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +94,47 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="understanding-image-builds" class="group scroll-mt-20">Understanding image builds<a href="#understanding-image-builds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/modules/builds-about.md"></p>
-      <p class="/modules/builds-strategy-docker-build.md"></p>
-      <p class="/modules/builds-strategy-custom-build.md /modules/builds-strategy-s2i-build.md"></p>
-      <p class="/modules/builds-strategy-pipeline-build.md"></p>
+      <h2 id="builds-about_understanding-image-builds" class="group scroll-mt-20">Builds<a href="#builds-about_understanding-image-builds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>A build is the process of transforming input parameters into a resulting object. Most often, the process is used to transform input parameters or source code into a runnable image. A <code>BuildConfig</code> object is the definition of the entire build process.</p>
+      <p>OpenShift Container Platform uses Kubernetes by creating containers from build images and pushing them to a container image registry.</p>
+      <p>Build objects share common characteristics including inputs for a build, the requirement to complete a build process, logging the build process, publishing resources from successful builds, and publishing the final status of the build. Builds take advantage of resource restrictions, specifying limitations on resources such as CPU usage, memory usage, and build or pod execution time.</p>
+      <p>The OpenShift Container Platform build system provides extensible support for build strategies that are based on selectable types specified in the build API. There are three primary build strategies available:</p>
+      <ul>
+      <li>Docker build</li>
+      <li>Source-to-image (S2I) build</li>
+      <li>Custom build</li>
+      </ul>
+      <p>By default, docker builds and S2I builds are supported.</p>
+      <p>The resulting object of a build depends on the builder used to create it. For docker and S2I builds, the resulting objects are runnable images. For custom builds, the resulting objects are whatever the builder image author has specified.</p>
+      <p>Additionally, the pipeline build strategy can be used to implement sophisticated workflows:</p>
+      <ul>
+      <li>Continuous integration</li>
+      <li>Continuous deployment</li>
+      </ul>
+      <h3 id="builds-strategy-docker-build_understanding-image-builds" class="group scroll-mt-20">Docker build<a href="#builds-strategy-docker-build_understanding-image-builds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>OpenShift Container Platform uses Buildah to build a container image from a Dockerfile. For more information on building container images with Dockerfiles, see <a href="https://docs.docker.com/engine/reference/builder/">the Dockerfile reference documentation</a>.</p>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>If you set Docker build arguments by using the <code>buildArgs</code> array, see <a href="https://docs.docker.com/engine/reference/builder/#understand-how-arg-and-from-interact">Understand how ARG and FROM interact</a> in the Dockerfile reference documentation.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="builds-strategy-s2i-build_understanding-image-builds" class="group scroll-mt-20">Source-to-image build<a href="#builds-strategy-s2i-build_understanding-image-builds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Source-to-image (S2I) is a tool for building reproducible container images. It produces ready-to-run images by injecting application source into a container image and assembling a new image. The new image incorporates the base image, the builder, and built source and is ready to use with the <code>buildah run</code> command. S2I supports incremental builds, which re-use previously downloaded dependencies, previously built artifacts, and so on.</p>
+      <h3 id="builds-strategy-custom-build_understanding-image-builds" class="group scroll-mt-20">Custom build<a href="#builds-strategy-custom-build_understanding-image-builds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The custom build strategy allows developers to define a specific builder image responsible for the entire build process. Using your own builder image allows you to customize your build process.</p>
+      <p>A custom builder image is a plain container image embedded with build process logic, for example for building RPMs or base images.</p>
+      <p>Custom builds run with a high level of privilege and are not available to users by default. Only users who can be trusted with cluster administration permissions should be granted access to run custom builds.</p>
+      <h3 id="builds-strategy-pipeline-build_understanding-image-builds" class="group scroll-mt-20">Pipeline build<a href="#builds-strategy-pipeline-build_understanding-image-builds" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The Pipeline build strategy is deprecated in OpenShift Container Platform 4. Equivalent and improved functionality is present in the OpenShift Container Platform Pipelines based on Tekton.</p>
+          <p>Jenkins images on OpenShift Container Platform are fully supported and users should follow Jenkins user documentation for defining their <code>jenkinsfile</code> in a job or store it in a Source Control Management system.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The Pipeline build strategy allows developers to define a Jenkins pipeline for use by the Jenkins pipeline plugin. The build can be started, monitored, and managed by OpenShift Container Platform in the same way as any other build type.</p>
+      <p>Pipeline workflows are defined in a <code>jenkinsfile</code>, either embedded directly in the build configuration, or supplied in a Git repository and referenced by the build configuration.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

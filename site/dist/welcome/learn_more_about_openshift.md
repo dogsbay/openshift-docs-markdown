@@ -36,7 +36,7 @@ Other cluster installer tasks
 :   | Learn about other installer tasks on OpenShift Container Platform | Optional additional resources |
     | --- | --- |
     | [Troubleshooting installation issues](/openshift-docs-markdown/installing/validation_and_troubleshooting/installing-troubleshooting#installing-troubleshooting) | [Validating an installation](/openshift-docs-markdown/installing/validation_and_troubleshooting/validating-an-installation#validating-an-installation) |
-    | [Install {{ rh_storage_first }}](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-ocs#red-hat-openshift-data-foundation) | [{{ image_mode_os_lower }}](/openshift-docs-markdown/machine_configuration/mco-coreos-layering#mco-coreos-layering) |
+    | [Install Red Hat OpenShift Data Foundation](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-ocs#red-hat-openshift-data-foundation) | [image mode for OpenShift](/openshift-docs-markdown/machine_configuration/mco-coreos-layering#mco-coreos-layering) |
 
 Install a cluster in a restricted network
 
@@ -50,7 +50,7 @@ Install a cluster in a restricted network
 <tbody>
 <tr>
   <td><a href="/openshift-docs-markdown/disconnected/index#index">About disconnected installation mirroring</a></td>
-  <td>If your cluster uses user-provisioned infrastructure, and the cluster does not have full access to the internet, you must mirror the OpenShift Container Platform installation images.<br><br><ul><li><a href="/openshift-docs-markdown/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws">{{ aws_first }}</a></li><li><a href="/openshift-docs-markdown/installing/installing_gcp/installing-restricted-networks-gcp#installing-restricted-networks-gcp">{{ gcp_short }}</a></li><li><a href="/openshift-docs-markdown/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere">{{ vmw_short }}</a></li><li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-restricted#installing-ibm-cloud-restricted">{{ ibm_cloud_name }}</a></li><li><a href="/openshift-docs-markdown/installing/installing_ibm_z/preparing-to-install-on-ibm-z#preparing-to-install-on-ibm-z">{{ ibm_z_name }} and {{ ibm_linuxone_name }}</a></li><li><a href="/openshift-docs-markdown/installing/installing_ibm_power/installing-restricted-networks-ibm-power#installing-restricted-networks-ibm-power">{{ ibm_power_name }}</a></li><li><a href="/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal">bare metal</a></li></ul></td>
+  <td>If your cluster uses user-provisioned infrastructure, and the cluster does not have full access to the internet, you must mirror the OpenShift Container Platform installation images.<br><br><ul><li><a href="/openshift-docs-markdown/installing/installing_aws/upi/installing-restricted-networks-aws#installing-restricted-networks-aws">Amazon Web Services (AWS)</a></li><li><a href="/openshift-docs-markdown/installing/installing_gcp/installing-restricted-networks-gcp#installing-restricted-networks-gcp">Google Cloud</a></li><li><a href="/openshift-docs-markdown/installing/installing_vsphere/upi/installing-restricted-networks-vsphere#installing-restricted-networks-vsphere">vSphere</a></li><li><a href="/openshift-docs-markdown/installing/installing_ibm_cloud/installing-ibm-cloud-restricted#installing-ibm-cloud-restricted">IBM Cloud(R)</a></li><li><a href="/openshift-docs-markdown/installing/installing_ibm_z/preparing-to-install-on-ibm-z#preparing-to-install-on-ibm-z">IBM Z(R) and IBM(R) LinuxONE</a></li><li><a href="/openshift-docs-markdown/installing/installing_ibm_power/installing-restricted-networks-ibm-power#installing-restricted-networks-ibm-power">IBM Power(R)</a></li><li><a href="/openshift-docs-markdown/installing/installing_bare_metal/upi/installing-restricted-networks-bare-metal#installing-restricted-networks-bare-metal">bare metal</a></li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -58,7 +58,7 @@ Install a cluster in a restricted network
 Install a cluster in an existing network
 :   | Learn about installing in a restricted network | Optional additional resources |
     | --- | --- |
-    | If you use an existing Virtual Private Cloud (VPC) in [{{ aws_first }}](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-vpc#installing-aws-vpc) or [{{ gcp_short }}](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-vpc#installing-gcp-vpc) or an existing [VNet](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-vnet#installing-azure-vnet) on Microsoft Azure, you can install a cluster | [Installing a cluster on {{ gcp_short }} into a shared VPC](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-shared-vpc#installation-gcp-shared-vpc-prerequisites_installing-gcp-shared-vpc) |
+    | If you use an existing Virtual Private Cloud (VPC) in [Amazon Web Services (AWS)](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-vpc#installing-aws-vpc) or [Google Cloud](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-vpc#installing-gcp-vpc) or an existing [VNet](/openshift-docs-markdown/installing/installing_azure/ipi/installing-azure-vnet#installing-azure-vnet) on Microsoft Azure, you can install a cluster | [Installing a cluster on Google Cloud into a shared VPC](/openshift-docs-markdown/installing/installing_gcp/installing-gcp-shared-vpc#installation-gcp-shared-vpc-prerequisites_installing-gcp-shared-vpc) |
 
 Cluster administration
 
@@ -101,7 +101,7 @@ Managing cluster components
 </tr>
 <tr>
   <td><a href="/openshift-docs-markdown/registry/index#registry-overview">Manage container registries</a></td>
-  <td><a href="https://access.redhat.com/documentation/en-us/red_hat_quay/">{{ quay }}</a></td>
+  <td><a href="https://access.redhat.com/documentation/en-us/red_hat_quay/">Red&#160;Hat Quay</a></td>
 </tr>
 <tr>
   <td><a href="/openshift-docs-markdown/authentication/understanding-authentication#understanding-authentication">Manage users and groups</a></td>
@@ -170,8 +170,8 @@ Observe a cluster
 </thead>
 <tbody>
 <tr>
-  <td><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest/html/release_notes_for_the_distributed_tracing_platform/distr-tracing-rn">Release notes for the {{ DTProductName }}</a></td>
-  <td><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest">{{ DTProductName }}</a></td>
+  <td><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest/html/release_notes_for_the_distributed_tracing_platform/distr-tracing-rn">Release notes for the Red&#160;Hat OpenShift Distributed Tracing Platform</a></td>
+  <td><a href="https://docs.redhat.com/en/documentation/red_hat_openshift_distributed_tracing_platform/latest">Red&#160;Hat OpenShift Distributed Tracing Platform</a></td>
 </tr>
 <tr>
   <td><a href="https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest/html/installing_red_hat_build_of_opentelemetry/install-otel">Red Hat build of OpenTelemetry</a></td>
@@ -183,7 +183,7 @@ Observe a cluster
 </tr>
 <tr>
   <td><a href="https://docs.redhat.com/en/documentation/monitoring_stack_for_red_hat_openshift/latest/html/about_monitoring/about-ocp-monitoring">About OpenShift Container Platform monitoring</a></td>
-  <td><ul><li><a href="/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring_about-remote-health-monitoring">Remote health monitoring</a></li><li><a href="https://docs.redhat.com/en/documentation/power_monitoring_for_red_hat_openshift/latest/html/about_power_monitoring/about-power-monitoring">{{ PM_title_c }} (Technology Preview)</a></li></ul></td>
+  <td><ul><li><a href="/openshift-docs-markdown/support/remote_health_monitoring/about-remote-health-monitoring#about-remote-health-monitoring_about-remote-health-monitoring">Remote health monitoring</a></li><li><a href="https://docs.redhat.com/en/documentation/power_monitoring_for_red_hat_openshift/latest/html/about_power_monitoring/about-power-monitoring">Power monitoring for Red Hat OpenShift (Technology Preview)</a></li></ul></td>
 </tr>
 </tbody>
 </table>
@@ -231,7 +231,7 @@ Developing applications
   <td><a href="/openshift-docs-markdown/cicd/builds/understanding-image-builds#understanding-image-builds">Understanding image builds</a></td>
 </tr>
 <tr>
-  <td><a href="https://developers.redhat.com/products/openshift-dev-spaces/overview">{{ openshift_dev_spaces_productname }} (formerly Red Hat CodeReady Workspaces)</a></td>
+  <td><a href="https://developers.redhat.com/products/openshift-dev-spaces/overview">Red&#160;Hat OpenShift Dev Spaces (formerly Red Hat CodeReady Workspaces)</a></td>
   <td><a href="/openshift-docs-markdown/operators/understanding/olm-what-operators-are#olm-what-operators-are">Operators</a></td>
 </tr>
 <tr>
@@ -247,7 +247,7 @@ Developing applications
   <td><a href="/openshift-docs-markdown/applications/odc-exporting-applications#odc-exporting-applications">Exporting applications</a></td>
 </tr>
 <tr>
-  <td><a href="https://docs.openshift.com/pipelines/1.15/about/understanding-openshift-pipelines.html">Understanding {{ pipelines_shortname }}</a></td>
+  <td><a href="https://docs.openshift.com/pipelines/1.15/about/understanding-openshift-pipelines.html">Understanding OpenShift Pipelines</a></td>
   <td><a href="https://docs.openshift.com/pipelines/latest/create/creating-applications-with-cicd-pipelines.html">Create CI/CD Pipelines</a></td>
 </tr>
 <tr>
@@ -257,35 +257,35 @@ Developing applications
 </tbody>
 </table>
 
-{{ hcp_capital }}
+Hosted control planes
 
 <table>
 <thead>
 <tr>
-  <th>Learn about {{ hcp }}</th>
+  <th>Learn about hosted control planes</th>
   <th>Optional additional resources</th>
 </tr>
 </thead>
 <tbody>
 <tr>
   <td><a href="/openshift-docs-markdown/hosted_control_planes/index#hosted-control-planes-overview">Hosted control planes overview</a></td>
-  <td><a href="/openshift-docs-markdown/hosted_control_planes/index#hosted-control-planes-version-support_hcp-overview">Versioning for {{ hcp }}</a></td>
+  <td><a href="/openshift-docs-markdown/hosted_control_planes/index#hosted-control-planes-version-support_hcp-overview">Versioning for hosted control planes</a></td>
 </tr>
 <tr>
   <td>Preparing to deploy</td>
-  <td><ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements#hcp-requirements">Requirements for {{ hcp }}</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance">Sizing guidance for {{ hcp }}</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util">Overriding resource utilization measurements</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli">Installing the {{ hcp }} command-line interface</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads">Distributing hosted cluster workloads</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-disable">Enabling or disabling the {{ hcp }} feature</a></li></ul></td>
+  <td><ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-requirements#hcp-requirements">Requirements for hosted control planes</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-sizing-guidance#hcp-sizing-guidance">Sizing guidance for hosted control planes</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util#hcp-override-resource-util">Overriding resource utilization measurements</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-cli#hcp-cli">Installing the hosted control planes command-line interface</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-distribute-workloads#hcp-distribute-workloads">Distributing hosted cluster workloads</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-enable-disable#hcp-enable-disable">Enabling or disabling the hosted control planes feature</a></li></ul></td>
 </tr>
 <tr>
-  <td>Deploying {{ hcp }}</td>
-  <td><ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-deploy-virt">Deploying {{ hcp }} on {{ VirtProductName }}</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-deploy-aws">Deploying {{ hcp }} on {{ aws_short }}</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-deploy-bm">Deploying {{ hcp }} on bare metal</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-non-bm#hcp-deploy-non-bm">Deploying {{ hcp }} on non-bare-metal agent machines</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-ibmz#hcp-deploy-ibmz">Deploying {{ hcp }} on {{ ibm_z_title }}</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-ibm-power#hcp-deploy-ibm-power">Deploying {{ hcp }} on {{ ibm_power_title }}</a></li></ul></td>
+  <td>Deploying hosted control planes</td>
+  <td><ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-virt#hcp-deploy-virt">Deploying hosted control planes on OpenShift Virtualization</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-aws#hcp-deploy-aws">Deploying hosted control planes on AWS</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-bm#hcp-deploy-bm">Deploying hosted control planes on bare metal</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-non-bm#hcp-deploy-non-bm">Deploying hosted control planes on non-bare-metal agent machines</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-ibmz#hcp-deploy-ibmz">Deploying hosted control planes on IBM Z</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-deploy/hcp-deploy-ibm-power#hcp-deploy-ibm-power">Deploying hosted control planes on IBM Power</a></li></ul></td>
 </tr>
 <tr>
-  <td>Deploying {{ hcp }} in a disconnected environment</td>
-  <td><ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-deploy-dc-bm">Deploying {{ hcp }} on bare metal in a disconnected environment</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-virt#hcp-deploy-dc-virt">Deploying {{ hcp }} on {{ VirtProductName }} in a disconnected environment</a></li></ul></td>
+  <td>Deploying hosted control planes in a disconnected environment</td>
+  <td><ul><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-bm#hcp-deploy-dc-bm">Deploying hosted control planes on bare metal in a disconnected environment</a></li><li><a href="/openshift-docs-markdown/hosted_control_planes/hcp-disconnected/hcp-deploy-dc-virt#hcp-deploy-dc-virt">Deploying hosted control planes on OpenShift Virtualization in a disconnected environment</a></li></ul></td>
 </tr>
 <tr>
-  <td><a href="/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hcp-troubleshooting">Troubleshooting {{ hcp }}</a></td>
-  <td><a href="/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hosted-control-planes-troubleshooting_hcp-troubleshooting">Gathering information to troubleshoot {{ hcp }}</a></td>
+  <td><a href="/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hcp-troubleshooting">Troubleshooting hosted control planes</a></td>
+  <td><a href="/openshift-docs-markdown/hosted_control_planes/hcp-troubleshooting#hosted-control-planes-troubleshooting_hcp-troubleshooting">Gathering information to troubleshoot hosted control planes</a></td>
 </tr>
 </tbody>
 </table>

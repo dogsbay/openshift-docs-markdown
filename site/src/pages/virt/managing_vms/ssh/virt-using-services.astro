@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-using-services","text":"Create a service to connect with SSH"}];
+const headings = [{"depth":1,"slug":"virt-using-services","text":"Create a service to connect with SSH"},{"depth":2,"slug":"virt-about-services_virt-using-services","text":"About services"},{"depth":2,"slug":"virt-enabling-load-balancer-service-web_virt-using-services","text":"Enabling load balancer service creation by using the web console"},{"depth":2,"slug":"virt-creating-service-web_virt-using-services","text":"Create a service with the web console"},{"depth":2,"slug":"virt-creating-service-virtctl_virt-using-services","text":"Create a service with virtctl"},{"depth":2,"slug":"virt-creating-service-cli_virt-using-services","text":"Creating a service by using the CLI"},{"depth":2,"slug":"virt-connecting-service-ssh_virt-using-services","text":"Connecting to a VM exposed by a service by using SSH"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-services";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/ssh"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Create a service to connect with SSH {#virt-using-services}\n\nYou can create a service for a virtual machine (VM) and connect to the IP address and port exposed by the service. Services provide excellent performance and are recommended for applications that are accessed from outside the cluster or within the cluster. Ingress traffic is protected by firewalls.\n\nAfter you create a service with `virtctl`, you must add `special: key` to the `spec.template.metadata.labels` stanza of the `VirtualMachine` manifest. If the cluster network cannot handle the traffic load, consider using a secondary network for VM access.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-services.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Create a service to connect with SSH {#virt-using-services}\n\nYou can create a service for a virtual machine (VM) and connect to the IP address and port exposed by the service. Services provide excellent performance and are recommended for applications that are accessed from outside the cluster or within the cluster. Ingress traffic is protected by firewalls.\n\nAfter you create a service with `virtctl`, you must add `special: key` to the `spec.template.metadata.labels` stanza of the `VirtualMachine` manifest. If the cluster network cannot handle the traffic load, consider using a secondary network for VM access.\n\n## About services {#virt-about-services_virt-using-services}\n\nA Kubernetes service exposes network access for clients to an application running on a set of pods. Services offer abstraction, load balancing, and, in the case of the `NodePort` and `LoadBalancer` types, exposure to the outside world.\n\n`ClusterIP`\n:   Exposes the service on an internal IP address and as a DNS name to other applications within the cluster. A single service can map to multiple virtual machines. When a client tries to connect to the service, the client’s request is load balanced among available backends. `ClusterIP` is the default service type.\n\n`NodePort`\n:   Exposes the service on the same port of each selected node in the cluster. `NodePort` makes a port accessible from outside the cluster, provided that the node itself is externally accessible to the client.\n\n`LoadBalancer`\n:   Creates an external load balancer in the current cloud (if supported) and assigns a fixed, external IP address to the service.\n\n> [!NOTE]\n> For on-premise clusters, you can configure a load balancing service by deploying the MetalLB Operator.\n\n## Enabling load balancer service creation by using the web console {#virt-enabling-load-balancer-service-web_virt-using-services}\n\nYou can enable the creation of load balancer services for a virtual machine (VM) by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You have configured a load balancer for the cluster.\n- You have logged in as a user with the `cluster-admin` role.\n- You created a network attachment definition for the network.\n\n**Procedure**\n\n1. Go to **Virtualization** -> **Settings**.\n2. Click **Cluster**.\n3. Expand **General settings** and **SSH configuration**.\n4. Set **SSH over LoadBalancer service** to on.\n\n## Create a service with the web console {#virt-creating-service-web_virt-using-services}\n\nYou can create a node port or load balancer service for a virtual machine (VM) by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You configured the cluster network to support either a load balancer or a node port.\n- To create a load balancer service, you enabled the creation of load balancer services.\n\n**Procedure**\n\n1. Navigate to **VirtualMachines** and select a virtual machine to view the **VirtualMachine details** page.\n2. On the **Details** tab, select **SSH over LoadBalancer** from the **SSH service type** list.\n3. Optional: Click the copy icon to copy the `SSH` command to your clipboard.\n\n**Verification**\n\n- Check the **Services** pane on the **Details** tab to view the new service.\n\n## Create a service with virtctl {#virt-creating-service-virtctl_virt-using-services}\n\nYou can create a service for a virtual machine (VM) by using the `virtctl` command-line tool.\n\n**Prerequisites**\n\n- You installed the `virtctl` command-line tool.\n- You configured the cluster network to support the service.\n- The environment where you installed `virtctl` has the cluster permissions required to access the VM. For example, you ran `oc login` or you set the `KUBECONFIG` environment variable.\n\n**Procedure**\n\n- Create a service by running the following command:\n\n  ```terminal\n  $ virtctl expose vm <vm_name> --name <service_name> --type <service_type> --port <port>\n  ```\n\n  where:\n\n  `<vm_name>`\n  :   Specifies the name of the VM you are exposing.\n\n  `<service_name>`\n  :   Specifies a user-defined name for the service you are creating.\n\n  `<service_type>`\n  :   Specifies one of `ClusterIP`, `NodePort`, or `LoadBalancer`.\n\n  `<port>`\n  :   Specifies the network port on the VM that the service will expose. Example:\n\n  ```terminal\n  $ virtctl expose vm example-vm --name example-service --type NodePort --port 22\n  ```\n\n**Verification**\n\n- Verify the service by running the following command:\n\n  ```terminal\n  $ oc get service\n  ```\n\n## Creating a service by using the CLI {#virt-creating-service-cli_virt-using-services}\n\nYou can create a service and associate it with a virtual machine (VM) by using the command line.\n\n**Prerequisites**\n\n- You configured the cluster network to support the service.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Edit the `VirtualMachine` manifest to add the label for service creation. Add `special: key` to the `spec.template.metadata.labels` stanza:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: example-vm\n     namespace: example-namespace\n   spec:\n     runStrategy: Halted\n     template:\n       metadata:\n         labels:\n           special: key\n   # ...\n   ```\n\n   > [!NOTE]\n   > Labels on a virtual machine pass through to the pod. The `special: key` label must match the label in the `spec.selector` attribute of the `Service` manifest.\n2. Save the `VirtualMachine` manifest file to apply your changes.\n3. Create a `Service` manifest to expose the VM:\n\n   ```yaml\n   apiVersion: v1\n   kind: Service\n   metadata:\n     name: example-service\n     namespace: example-namespace\n   spec:\n   # ...\n     selector:\n       special: key\n     type: NodePort\n     ports:\n       protocol: TCP\n       port: 80\n       targetPort: 9376\n       nodePort: 30000\n   ```\n\n   - `spec.selector` defines the label that you added to the `spec.template.metadata.labels` stanza of the `VirtualMachine` manifest.\n   - `spec.type` defines the type of service by the way it is exposed. Choose one of `ClusterIP`, `NodePort`, or `LoadBalancer`.\n   - `spec.ports` defines a collection of network ports and protocols to expose from the virtual machine.\n4. Save the `Service` manifest file.\n5. Create the service by running the following command:\n\n   ```terminal\n   $ oc create -f example-service.yaml\n   ```\n6. Restart the VM to apply the changes.\n\n**Verification**\n\n- Query the `Service` object to verify that it is available:\n\n  ```terminal\n  $ oc get service -n example-namespace\n  ```\n\n## Connecting to a VM exposed by a service by using SSH {#virt-connecting-service-ssh_virt-using-services}\n\nYou can connect to a virtual machine (VM) that a service exposes by using SSH.\n\n**Prerequisites**\n\n- You created a service to expose the VM.\n- You have an SSH client installed.\n- You are logged in to the cluster.\n\n**Procedure**\n\n- Run the following command to access the VM:\n\n  ```terminal\n  $ ssh <user_name>@<ip_address> -p <port>\n  ```\n\n  where:\n\n  `<ip_address>`\n  :   Specifies the cluster IP for a cluster IP service, the node IP for a node port service, or the external IP address for a load balancer service.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-services.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,16 +94,152 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-using-services" class="group scroll-mt-20">Create a service to connect with SSH<a href="#virt-using-services" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You can create a service for a virtual machine (VM) and connect to the IP address and port exposed by the service. Services provide excellent performance and are recommended for applications that are accessed from outside the cluster or within the cluster. Ingress traffic is protected by firewalls.</p>
       <p>After you create a service with <code>virtctl</code>, you must add <code>special: key</code> to the <code>spec.template.metadata.labels</code> stanza of the <code>VirtualMachine</code> manifest. If the cluster network cannot handle the traffic load, consider using a secondary network for VM access.</p>
-      <p class="/modules/virt-about-services.md"></p>
-      <p class="/modules/virt-enabling-load-balancer-service-web.md"></p>
-      <p class="/modules/virt-creating-service-web.md"></p>
-      <p class="/modules/virt-creating-service-virtctl.md"></p>
-      <p class="/modules/virt-creating-service-cli.md"></p>
-      <p class="/modules/virt-connecting-service-ssh.md"></p>
+      <h2 id="virt-about-services_virt-using-services" class="group scroll-mt-20">About services<a href="#virt-about-services_virt-using-services" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A Kubernetes service exposes network access for clients to an application running on a set of pods. Services offer abstraction, load balancing, and, in the case of the <code>NodePort</code> and <code>LoadBalancer</code> types, exposure to the outside world.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>ClusterIP</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Exposes the service on an internal IP address and as a DNS name to other applications within the cluster. A single service can map to multiple virtual machines. When a client tries to connect to the service, the client’s request is load balanced among available backends. <code>ClusterIP</code> is the default service type.</p></dd>
+      <dt class="font-semibold"><code>NodePort</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Exposes the service on the same port of each selected node in the cluster. <code>NodePort</code> makes a port accessible from outside the cluster, provided that the node itself is externally accessible to the client.</p></dd>
+      <dt class="font-semibold"><code>LoadBalancer</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Creates an external load balancer in the current cloud (if supported) and assigns a fixed, external IP address to the service.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For on-premise clusters, you can configure a load balancing service by deploying the MetalLB Operator.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="virt-enabling-load-balancer-service-web_virt-using-services" class="group scroll-mt-20">Enabling load balancer service creation by using the web console<a href="#virt-enabling-load-balancer-service-web_virt-using-services" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can enable the creation of load balancer services for a virtual machine (VM) by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have configured a load balancer for the cluster.</li>
+      <li>You have logged in as a user with the <code>cluster-admin</code> role.</li>
+      <li>You created a network attachment definition for the network.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Go to <strong>Virtualization</strong> -&gt; <strong>Settings</strong>.</li>
+      <li>Click <strong>Cluster</strong>.</li>
+      <li>Expand <strong>General settings</strong> and <strong>SSH configuration</strong>.</li>
+      <li>Set <strong>SSH over LoadBalancer service</strong> to on.</li>
+      </ol>
+      <h2 id="virt-creating-service-web_virt-using-services" class="group scroll-mt-20">Create a service with the web console<a href="#virt-creating-service-web_virt-using-services" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a node port or load balancer service for a virtual machine (VM) by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You configured the cluster network to support either a load balancer or a node port.</li>
+      <li>To create a load balancer service, you enabled the creation of load balancer services.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>VirtualMachines</strong> and select a virtual machine to view the <strong>VirtualMachine details</strong> page.</li>
+      <li>On the <strong>Details</strong> tab, select <strong>SSH over LoadBalancer</strong> from the <strong>SSH service type</strong> list.</li>
+      <li>Optional: Click the copy icon to copy the <code>SSH</code> command to your clipboard.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>Check the <strong>Services</strong> pane on the <strong>Details</strong> tab to view the new service.</li></ul>
+      <h2 id="virt-creating-service-virtctl_virt-using-services" class="group scroll-mt-20">Create a service with virtctl<a href="#virt-creating-service-virtctl_virt-using-services" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a service for a virtual machine (VM) by using the <code>virtctl</code> command-line tool.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the <code>virtctl</code> command-line tool.</li>
+      <li>You configured the cluster network to support the service.</li>
+      <li>The environment where you installed <code>virtctl</code> has the cluster permissions required to access the VM. For example, you ran <code>oc login</code> or you set the <code>KUBECONFIG</code> environment variable.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create a service by running the following command:
+      <CodeBlock code={"$ virtctl expose vm <vm_name> --name <service_name> --type <service_type> --port <port>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;vm_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the VM you are exposing.</p></dd>
+      <dt class="font-semibold"><code>&lt;service_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a user-defined name for the service you are creating.</p></dd>
+      <dt class="font-semibold"><code>&lt;service_type&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies one of <code>ClusterIP</code>, <code>NodePort</code>, or <code>LoadBalancer</code>.</p></dd>
+      <dt class="font-semibold"><code>&lt;port&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the network port on the VM that the service will expose. Example:</p></dd>
+      </dl>
+      <CodeBlock code={"$ virtctl expose vm example-vm --name example-service --type NodePort --port 22"} lang="terminal" />
+      </li>
+      </ul>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify the service by running the following command:
+      <CodeBlock code={"$ oc get service"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="virt-creating-service-cli_virt-using-services" class="group scroll-mt-20">Creating a service by using the CLI<a href="#virt-creating-service-cli_virt-using-services" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a service and associate it with a virtual machine (VM) by using the command line.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You configured the cluster network to support the service.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the <code>VirtualMachine</code> manifest to add the label for service creation. Add <code>special: key</code> to the <code>spec.template.metadata.labels</code> stanza:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: example-vm\n  namespace: example-namespace\nspec:\n  runStrategy: Halted\n  template:\n    metadata:\n      labels:\n        special: key\n# ..."} lang="yaml" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Labels on a virtual machine pass through to the pod. The <code>special: key</code> label must match the label in the <code>spec.selector</code> attribute of the <code>Service</code> manifest.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Save the <code>VirtualMachine</code> manifest file to apply your changes.</li>
+      <li>
+      Create a <code>Service</code> manifest to expose the VM:
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  name: example-service\n  namespace: example-namespace\nspec:\n# ...\n  selector:\n    special: key\n  type: NodePort\n  ports:\n    protocol: TCP\n    port: 80\n    targetPort: 9376\n    nodePort: 30000"} lang="yaml" />
+      <ul>
+      <li><code>spec.selector</code> defines the label that you added to the <code>spec.template.metadata.labels</code> stanza of the <code>VirtualMachine</code> manifest.</li>
+      <li><code>spec.type</code> defines the type of service by the way it is exposed. Choose one of <code>ClusterIP</code>, <code>NodePort</code>, or <code>LoadBalancer</code>.</li>
+      <li><code>spec.ports</code> defines a collection of network ports and protocols to expose from the virtual machine.</li>
+      </ul>
+      </li>
+      <li>Save the <code>Service</code> manifest file.</li>
+      <li>
+      Create the service by running the following command:
+      <CodeBlock code={"$ oc create -f example-service.yaml"} lang="terminal" />
+      </li>
+      <li>Restart the VM to apply the changes.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Query the <code>Service</code> object to verify that it is available:
+      <CodeBlock code={"$ oc get service -n example-namespace"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="virt-connecting-service-ssh_virt-using-services" class="group scroll-mt-20">Connecting to a VM exposed by a service by using SSH<a href="#virt-connecting-service-ssh_virt-using-services" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can connect to a virtual machine (VM) that a service exposes by using SSH.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You created a service to expose the VM.</li>
+      <li>You have an SSH client installed.</li>
+      <li>You are logged in to the cluster.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Run the following command to access the VM:
+      <CodeBlock code={"$ ssh <user_name>@<ip_address> -p <port>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;ip_address&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the cluster IP for a cluster IP service, the node IP for a node port service, or the external IP address for a load balancer service.</p></dd>
+      </dl>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

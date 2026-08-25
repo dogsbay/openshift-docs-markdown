@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"amd-gpu-operator","text":"AMD GPU Operator"}];
+const headings = [{"depth":1,"slug":"amd-gpu-operator","text":"AMD GPU Operator"},{"depth":2,"slug":"amd-about-amd-gpu-operator_amd-gpu-operator","text":"About the AMD GPU Operator"},{"depth":2,"slug":"amd-installing-gpu-operator_amd-gpu-operator","text":"Installing the AMD GPU Operator"},{"depth":2,"slug":"amd-testing-the-amd-gpu-operator_amd-gpu-operator","text":"Testing the AMD GPU Operator"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hardware_accelerators/amd-gpu-operator";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["hardware_accelerators"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# AMD GPU Operator {#amd-gpu-operator}\n\nAMD Instinct GPU accelerators combined with the AMD GPU Operator within your OpenShift Container Platform cluster lets you seamlessly harness computing capabilities for machine learning, Generative AI, and GPU-accelerated applications.\n\nThis documentation provides the information you need to enable, configure, and test the AMD GPU Operator. For more information, see [AMD Instinct™ Accelerators](https://www.amd.com/en/products/accelerators/instinct.html).\n\n**Next steps**\n\n1. Install the [Node Feature Discovery Operator](/openshift-docs-markdown/hardware_enablement/psap-node-feature-discovery-operator#installing-the-node-feature-discovery-operator_node-feature-discovery-operator).\n2. Install the [Kernel Module Management Operator](/openshift-docs-markdown/hardware_enablement/kmm-kernel-module-management#kmm-install_kernel-module-management-operator).\n3. Install and configure the [AMD GPU Operator](https://instinct.docs.amd.com/projects/gpu-operator/en/main/installation/openshift-olm.html#install-amd-gpu-operator).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hardware_accelerators/amd-gpu-operator.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# AMD GPU Operator {#amd-gpu-operator}\n\nAMD Instinct GPU accelerators combined with the AMD GPU Operator within your OpenShift Container Platform cluster lets you seamlessly harness computing capabilities for machine learning, Generative AI, and GPU-accelerated applications.\n\nThis documentation provides the information you need to enable, configure, and test the AMD GPU Operator. For more information, see [AMD Instinct™ Accelerators](https://www.amd.com/en/products/accelerators/instinct.html).\n\n## About the AMD GPU Operator {#amd-about-amd-gpu-operator_amd-gpu-operator}\n\nThe hardware acceleration capabilities of the AMD GPU Operator provide enhanced performance and cost efficiency for data scientists and developers using Red Hat OpenShift AI for creating artificial intelligence and machine learning (AI/ML) applications. Accelerating specific areas of GPU functions can minimize CPU processing and memory usage, improving overall application speed, memory consumption, and bandwidth restrictions.\n\n## Installing the AMD GPU Operator {#amd-installing-gpu-operator_amd-gpu-operator}\n\nAs a cluster administrator, you can install the AMD GPU Operator by using the OpenShift CLI and the web console. This is a multi-step procedure that requires the installation of the Node Feature Discovery Operator, the Kernel Module Management Operator, and then the AMD GPU Operator. Use the following steps in succession to install the AMD community release of the Operator.\n\n**Next steps**\n\n1. Install the [Node Feature Discovery Operator](/openshift-docs-markdown/hardware_enablement/psap-node-feature-discovery-operator#installing-the-node-feature-discovery-operator_node-feature-discovery-operator).\n2. Install the [Kernel Module Management Operator](/openshift-docs-markdown/hardware_enablement/kmm-kernel-module-management#kmm-install_kernel-module-management-operator).\n3. Install and configure the [AMD GPU Operator](https://instinct.docs.amd.com/projects/gpu-operator/en/main/installation/openshift-olm.html#install-amd-gpu-operator).\n\n## Testing the AMD GPU Operator {#amd-testing-the-amd-gpu-operator_amd-gpu-operator}\n\nUse the following procedure to test the ROCmInfo installation and view the logs for the AMD MI210 GPU.\n\n**Procedure**\n\n1. Create a YAML file that tests ROCmInfo:\n\n   ```terminal\n   $ cat << EOF > rocminfo.yaml\n\n   apiVersion: v1\n   kind: Pod\n   metadata:\n    name: rocminfo\n   spec:\n    containers:\n    - image: docker.io/rocm/pytorch:latest\n      name: rocminfo\n      command: [\"/bin/sh\",\"-c\"]\n      args: [\"rocminfo\"]\n      resources:\n       limits:\n         amd.com/gpu: 1\n       requests:\n         amd.com/gpu: 1\n    restartPolicy: Never\n   EOF\n   ```\n2. Create the `rocminfo` pod:\n\n   ```terminal\n   $ oc create -f rocminfo.yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   apiVersion: v1\n   pod/rocminfo created\n   ```\n3. Check the `rocmnfo` log with one MI210 GPU:\n\n   ```terminal\n   $ oc logs rocminfo | grep -A5 \"Agent\"\n   ```\n\n   ```terminal {title=\"Example output\"}\n   HSA Agents\n   ==========\n   *******\n   Agent 1\n   *******\n     Name:                    Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz\n     Uuid:                    CPU-XX\n     Marketing Name:          Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz\n     Vendor Name:             CPU\n   --\n   Agent 2\n   *******\n     Name:                    Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz\n     Uuid:                    CPU-XX\n     Marketing Name:          Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz\n     Vendor Name:             CPU\n   --\n   Agent 3\n   *******\n     Name:                    gfx90a\n     Uuid:                    GPU-024b776f768a638b\n     Marketing Name:          AMD Instinct MI210\n     Vendor Name:             AMD\n   ```\n4. Delete the pod:\n\n   ```terminal\n   $ oc delete -f rocminfo.yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   pod \"rocminfo\" deleted\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hardware_accelerators/amd-gpu-operator.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,16 +92,41 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="amd-gpu-operator" class="group scroll-mt-20">AMD GPU Operator<a href="#amd-gpu-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>AMD Instinct GPU accelerators combined with the AMD GPU Operator within your OpenShift Container Platform cluster lets you seamlessly harness computing capabilities for machine learning, Generative AI, and GPU-accelerated applications.</p>
       <p>This documentation provides the information you need to enable, configure, and test the AMD GPU Operator. For more information, see <a href="https://www.amd.com/en/products/accelerators/instinct.html">AMD Instinct™ Accelerators</a>.</p>
-      <p class="/modules/amd-about-amd-gpu-operator.md"></p>
-      <p class="/modules/amd-installing-gpu-operator.md"></p>
+      <h2 id="amd-about-amd-gpu-operator_amd-gpu-operator" class="group scroll-mt-20">About the AMD GPU Operator<a href="#amd-about-amd-gpu-operator_amd-gpu-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The hardware acceleration capabilities of the AMD GPU Operator provide enhanced performance and cost efficiency for data scientists and developers using Red Hat OpenShift AI for creating artificial intelligence and machine learning (AI/ML) applications. Accelerating specific areas of GPU functions can minimize CPU processing and memory usage, improving overall application speed, memory consumption, and bandwidth restrictions.</p>
+      <h2 id="amd-installing-gpu-operator_amd-gpu-operator" class="group scroll-mt-20">Installing the AMD GPU Operator<a href="#amd-installing-gpu-operator_amd-gpu-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>As a cluster administrator, you can install the AMD GPU Operator by using the OpenShift CLI and the web console. This is a multi-step procedure that requires the installation of the Node Feature Discovery Operator, the Kernel Module Management Operator, and then the AMD GPU Operator. Use the following steps in succession to install the AMD community release of the Operator.</p>
       <p><strong>Next steps</strong></p>
       <ol>
       <li>Install the <a href="/openshift-docs-markdown/hardware_enablement/psap-node-feature-discovery-operator#installing-the-node-feature-discovery-operator_node-feature-discovery-operator">Node Feature Discovery Operator</a>.</li>
       <li>Install the <a href="/openshift-docs-markdown/hardware_enablement/kmm-kernel-module-management#kmm-install_kernel-module-management-operator">Kernel Module Management Operator</a>.</li>
       <li>Install and configure the <a href="https://instinct.docs.amd.com/projects/gpu-operator/en/main/installation/openshift-olm.html#install-amd-gpu-operator">AMD GPU Operator</a>.</li>
+      </ol>
+      <h2 id="amd-testing-the-amd-gpu-operator_amd-gpu-operator" class="group scroll-mt-20">Testing the AMD GPU Operator<a href="#amd-testing-the-amd-gpu-operator_amd-gpu-operator" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Use the following procedure to test the ROCmInfo installation and view the logs for the AMD MI210 GPU.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file that tests ROCmInfo:
+      <CodeBlock code={"$ cat << EOF > rocminfo.yaml\n\napiVersion: v1\nkind: Pod\nmetadata:\n name: rocminfo\nspec:\n containers:\n - image: docker.io/rocm/pytorch:latest\n   name: rocminfo\n   command: [\"/bin/sh\",\"-c\"]\n   args: [\"rocminfo\"]\n   resources:\n    limits:\n      amd.com/gpu: 1\n    requests:\n      amd.com/gpu: 1\n restartPolicy: Never\nEOF"} lang="terminal" />
+      </li>
+      <li>
+      Create the <code>rocminfo</code> pod:
+      <CodeBlock code={"$ oc create -f rocminfo.yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: v1\npod/rocminfo created"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check the <code>rocmnfo</code> log with one MI210 GPU:
+      <CodeBlock code={"$ oc logs rocminfo | grep -A5 \"Agent\""} lang="terminal" />
+      <CodeBlock code={"HSA Agents               \n==========               \n*******                  \nAgent 1                  \n*******                  \n  Name:                    Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz\n  Uuid:                    CPU-XX                             \n  Marketing Name:          Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz\n  Vendor Name:             CPU                                \n--\nAgent 2                  \n*******                  \n  Name:                    Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz\n  Uuid:                    CPU-XX                             \n  Marketing Name:          Intel(R) Xeon(R) Gold 6330 CPU @ 2.00GHz\n  Vendor Name:             CPU                                \n--\nAgent 3                  \n*******                  \n  Name:                    gfx90a                             \n  Uuid:                    GPU-024b776f768a638b               \n  Marketing Name:          AMD Instinct MI210                 \n  Vendor Name:             AMD             "} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Delete the pod:
+      <CodeBlock code={"$ oc delete -f rocminfo.yaml"} lang="terminal" />
+      <CodeBlock code={"pod \"rocminfo\" deleted"} lang="terminal" title="Example output" />
+      </li>
       </ol>
     </article>
   </MarkdownContentStack>

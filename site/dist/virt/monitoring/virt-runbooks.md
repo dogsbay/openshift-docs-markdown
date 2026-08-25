@@ -4,12 +4,12 @@ title: "{{ VirtProductName }} runbooks"
 
 # {{ VirtProductName }} runbooks {#virt-runbooks}
 
-{% include "./_attributes/common-attributes.md" %} To diagnose and resolve {{ VirtProductName }} alerts, you can use the {{ VirtProductName }} Operator runbooks. These guides help ensure you can effectively troubleshoot cluster issues and restore system health.
+To diagnose and resolve OpenShift Virtualization alerts, you can use the OpenShift Virtualization Operator runbooks. These guides help ensure you can effectively troubleshoot cluster issues and restore system health.
 
 > [!NOTE]
-> Runbooks for the {{ VirtProductName }} Operator are maintained in the [openshift/runbooks](https://github.com/openshift/runbooks/tree/master/alerts/openshift-virtualization-operator) Git repository, and you can view them on GitHub.
+> Runbooks for the OpenShift Virtualization Operator are maintained in the [openshift/runbooks](https://github.com/openshift/runbooks/tree/master/alerts/openshift-virtualization-operator) Git repository, and you can view them on GitHub.
 
-**Runbooks for {{ VirtProductName }} alerts**
+**Runbooks for OpenShift Virtualization alerts**
 
 | Alert | GitHub link |
 | --- | --- |
@@ -87,7 +87,7 @@ title: "{{ VirtProductName }} runbooks"
 
 Deprecated alerts no longer report actual issues and you can safely ignore them.
 
-**Runbooks for deprecated {{ VirtProductName }} alerts**
+**Runbooks for deprecated OpenShift Virtualization alerts**
 
 | Alert | GitHub link | Notes |
 | --- | --- | --- |

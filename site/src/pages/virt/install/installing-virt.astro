@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-virt","text":"Installing {{ VirtProductName }}"},{"depth":2,"slug":"additional-resources_installing-virt","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"installing-virt","text":"Installing OpenShift Virtualization"},{"depth":2,"slug":"virt-about-installation-methods_installing-virt","text":"About installation methods for OpenShift Virtualization"},{"depth":3,"slug":"_choosing_an_installation_method","text":"Choosing an installation method"},{"depth":2,"slug":"virt-installing-virt-operator_installing-virt","text":"Installing the OpenShift Virtualization Operator by using the web console"},{"depth":2,"slug":"virt-subscribing-cli_installing-virt","text":"Subscribing to the OpenShift Virtualization catalog by using the CLI"},{"depth":2,"slug":"virt-deploying-operator-cli_installing-virt","text":"Deploying the OpenShift Virtualization Operator by using the CLI"},{"depth":2,"slug":"additional-resources_installing-virt","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/install/installing-virt";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Installing {{ VirtProductName }}";
-const description = "Install {{ VirtProductName }} to add virtualization functionality to your OpenShift Container Platform cluster." || undefined;
+const description = "Install OpenShift Virtualization to add virtualization functionality to your OpenShift Container Platform cluster." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/install"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing {{ VirtProductName }} {#installing-virt}\n\nInstall {{ VirtProductName }} to add virtualization functionality to your OpenShift Container Platform cluster.\n\n> [!IMPORTANT]\n> If you install {{ VirtProductName }} in a restricted environment with no internet connectivity, you must configure {{ olm_first }} for a disconnected environment.\n>\n> If you have limited internet connectivity, you can configure proxy support in {{ olm }} to access the software catalog.\n\n{% include \"./modules/virt-installing-virt-operator.md\" %}\n\n## Additional resources {#additional-resources_installing-virt}\n\n- [Installing a cluster for {{ VirtProductName }} using the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-ove#installing-ove)\n- [Installing with the virtualization operator bundle (Assisted Installer)](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/customizing-with-bundles-and-operators#openshift-virtualization-operator_customizing-with-bundles-and-operators)\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n- [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)\n- [Self validation checkup](/openshift-docs-markdown/virt/post_installation_configuration/virt-self-validation-checkups#virt-self-validation-checkups)\n- [Configure certificate rotation](/openshift-docs-markdown/virt/post_installation_configuration/virt-configuring-certificate-rotation#virt-configuring-certificate-rotation)\n- [Creating a hostpath provisioner with a basic storage pool](/openshift-docs-markdown/virt/storage/virt-configuring-local-storage-with-hpp#virt-creating-hpp-basic-storage-pool_virt-configuring-local-storage-with-hpp)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/install/installing-virt.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing OpenShift Virtualization {#installing-virt}\n\nInstall OpenShift Virtualization to add virtualization functionality to your OpenShift Container Platform cluster.\n\n> [!IMPORTANT]\n> If you install OpenShift Virtualization in a restricted environment with no internet connectivity, you must configure Operator Lifecycle Manager (OLM) for a disconnected environment.\n>\n> If you have limited internet connectivity, you can configure proxy support in OLM to access the software catalog.\n\n## About installation methods for OpenShift Virtualization {#virt-about-installation-methods_installing-virt}\n\nYou can install OpenShift Virtualization on your OpenShift Container Platform cluster by using Operator Lifecycle Manager (OLM), agent-based installation, or the Assisted Installer.\n\nStandard installation by using Operator Lifecycle Manager (OLM)\n:   Install the OpenShift Virtualization Operator from the OpenShift Container Platform web console or CLI. This method is suitable for most deployment scenarios and provides the most flexibility for cluster configuration.\n\n    For disconnected environments, you must configure OLM for restricted networks before installing OpenShift Virtualization.\n\nAgent-based installation\n:   Use the Agent-based Installer to deploy a cluster with OpenShift Virtualization and related operators pre-configured. This installation method is designed for users who want a streamlined, UI-driven installation experience, particularly in disconnected environments.\n\n> [!IMPORTANT]\n> Agent-based installation is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\nAssisted Installer with virtualization bundle\n:   Use the Assisted Installer to deploy OpenShift Virtualization or Red Hat OpenShift Virtualization Engine by using the virtualization operator bundle, which includes OpenShift Virtualization and essential supporting operators. This installation method simplifies the deployment process by pre-configuring operators and minimizing external dependencies. This is the preferred installation method for OpenShift Virtualization Engine.\n\n### Choosing an installation method {#_choosing_an_installation_method}\n\nConsider the following factors when choosing an installation method:\n\n- Network connectivity: For disconnected or air-gapped environments, the Agent-based Installer or Assisted Installer with the virtualization bundle can simplify deployment by reducing registry dependencies.\n- Installation experience: If you prefer a UI-driven installation workflow over writing YAML files, consider using the Agent-based Installer or Assisted Installer.\n- Operator requirements: If you need additional operators such as the Node Health Check Operator, Fence Agents Remediation Operator, or NMState Operator, the Assisted Installer virtualization bundle includes these operators by default.\n- Customization needs: For maximum flexibility in cluster configuration, use the standard OLM installation method.\n\n## Installing the OpenShift Virtualization Operator by using the web console {#virt-installing-virt-operator_installing-virt}\n\nYou can deploy the OpenShift Virtualization Operator by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- Install OpenShift Container Platform 4.22 on your cluster.\n- Log in to the OpenShift Container Platform web console as a user with `cluster-admin` permissions.\n\n**Procedure**\n\n1. From the **Administrator** perspective, click **Ecosystem** -> **Software Catalog**.\n2. In the **Filter by keyword** field, type **Virtualization**.\n3. Select the **OpenShift Virtualization Operator** tile with the **Red Hat** source label.\n4. Read the information about the Operator and click **Install**.\n5. On the **Install Operator** page:\n\n   1. Select **stable** from the list of available **Update Channel** options. This ensures that you install the version of OpenShift Virtualization that is compatible with your OpenShift Container Platform version.\n   2. For **Installed Namespace**, ensure that the **Operator recommended namespace** option is selected. This installs the Operator in the mandatory `{{ CNVNamespace }}` namespace, which is automatically created if it does not exist.\n\n      > [!WARNING]\n      > Attempting to install the OpenShift Virtualization Operator in a namespace other than `{{ CNVNamespace }}` causes the installation to fail.\n   3. For **Approval Strategy**, it is highly recommended that you select **Automatic**, which is the default value, so that OpenShift Virtualization automatically updates when a new version is available in the **stable** update channel.\n\n      Selecting the **Manual** approval strategy is not recommended, as it poses a high risk to cluster support and functionality. Only select **Manual** if you fully understand these risks and cannot use **Automatic**.\n\n      > [!WARNING]\n      > Because OpenShift Virtualization is only supported when used with the corresponding OpenShift Container Platform version, missing OpenShift Virtualization updates can cause your cluster to become unsupported.\n6. Click **Install** to make the Operator available to the `{{ CNVNamespace }}` namespace.\n7. When the Operator installs successfully, click **Create HyperConverged**.\n8. Optional: Configure **Infra** and **Workloads** node placement options for OpenShift Virtualization components.\n9. Click **Create** to launch OpenShift Virtualization.\n\n**Verification**\n\n- Navigate to the **Workloads** -> **Pods** page and monitor the OpenShift Virtualization pods until they are all **Running**. After all the pods display the **Running** state, you can use OpenShift Virtualization.\n\n## Subscribing to the OpenShift Virtualization catalog by using the CLI {#virt-subscribing-cli_installing-virt}\n\nBefore you install OpenShift Virtualization, you must subscribe to the OpenShift Virtualization catalog. Subscribing gives the `{{ CNVNamespace }}` namespace access to the OpenShift Virtualization Operators.\n\nTo subscribe, configure `Namespace`, `OperatorGroup`, and `Subscription` objects by applying a single manifest to your cluster.\n\n**Prerequisites**\n\n- Install OpenShift Container Platform 4.22 on your cluster.\n- Install the OpenShift CLI (`oc`).\n- Log in as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Create a YAML file that contains the following manifest:\n\n   ```yaml\n   apiVersion: v1\n   kind: Namespace\n   metadata:\n     name: {{ CNVNamespace }}\n     labels:\n       openshift.io/cluster-monitoring: \"true\"\n   ---\n   apiVersion: operators.coreos.com/v1\n   kind: OperatorGroup\n   metadata:\n     name: kubevirt-hyperconverged-group\n     namespace: {{ CNVNamespace }}\n   spec:\n     targetNamespaces:\n       - {{ CNVNamespace }}\n   ---\n   apiVersion: operators.coreos.com/v1alpha1\n   kind: Subscription\n   metadata:\n     name: hco-operatorhub\n     namespace: {{ CNVNamespace }}\n   spec:\n     source: {{ CNVSubscriptionSpecSource }}\n     sourceNamespace: openshift-marketplace\n     name: {{ CNVSubscriptionSpecName }}\n     startingCSV: kubevirt-hyperconverged-operator.v{{ HCOVersion }}\n     channel: \"stable\"\n   ```\n\n   Using the `stable` channel ensures that you install the version of OpenShift Virtualization that is compatible with your OpenShift Container Platform version.\n2. Create the required `Namespace`, `OperatorGroup`, and `Subscription` objects for OpenShift Virtualization by running the following command:\n\n   ```terminal\n   $ oc apply -f <filename>.yaml\n   ```\n\n**Verification**\n\nYou must verify that the subscription creation was successful before you can proceed with installing OpenShift Virtualization.\n\n1. Check that the `ClusterServiceVersion` (CSV) object was created successfully. Run the following command and verify the output:\n\n   ```terminal\n   $ oc get csv -n {{ CNVNamespace }}\n   ```\n\n   If the CSV was created successfully, the output shows an entry that contains a `NAME` value of `kubevirt-hyperconverged-operator-*`, a `DISPLAY` value of `{{ VirtProductName }}`, and a `PHASE` value of `Succeeded`, as shown in the following example output:\n\n   Example output:\n\n   ```terminal\n   NAME                                       DISPLAY                    VERSION   REPLACES                                   PHASE\n   kubevirt-hyperconverged-operator.v{{ HCOVersion }}   {{ VirtProductName }}   {{ HCOVersion }}    kubevirt-hyperconverged-operator.v{{ HCOVersionPrev }}   Succeeded\n   ```\n2. Check that the `HyperConverged` custom resource (CR) has the correct version. Run the following command and verify the output:\n\n   ```terminal\n   $ oc get {{ HCOCliKind }} -n {{ CNVNamespace }} kubevirt-hyperconverged -o json | jq .status.versions\n   ```\n\n   Example output:\n\n   ```terminal\n   {\n   \"name\": \"operator\",\n   \"version\": \"{{ HCOVersion }}\"\n   }\n   ```\n3. Verify the `HyperConverged` CR conditions. Run the following command and check the output:\n\n   ```terminal\n   $ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o json | jq -r '.status.conditions[] | {type,status}'\n   ```\n\n   Example output:\n\n   ```terminal\n   {\n     \"type\": \"ReconcileComplete\",\n     \"status\": \"True\"\n   }\n   {\n     \"type\": \"Available\",\n     \"status\": \"True\"\n   }\n   {\n     \"type\": \"Progressing\",\n     \"status\": \"False\"\n   }\n   {\n     \"type\": \"Degraded\",\n     \"status\": \"False\"\n   }\n   {\n     \"type\": \"Upgradeable\",\n     \"status\": \"True\"\n   }\n   ```\n\n## Deploying the OpenShift Virtualization Operator by using the CLI {#virt-deploying-operator-cli_installing-virt}\n\nYou can deploy the OpenShift Virtualization Operator by using the `oc` CLI.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n- Subscribe to the OpenShift Virtualization catalog in the `{{ CNVNamespace }}` namespace.\n- Log in as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Create a YAML file that contains the following manifest:\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n     namespace: {{ CNVNamespace }}\n   spec:\n   ```\n2. Deploy the OpenShift Virtualization Operator by running the following command:\n\n   ```terminal\n   $ oc apply -f <file_name>.yaml\n   ```\n\n**Verification**\n\n- Ensure that OpenShift Virtualization deployed successfully by watching the `PHASE` of the cluster service version (CSV) in the `{{ CNVNamespace }}` namespace. Run the following command:\n\n  ```terminal\n  $ watch oc get csv -n {{ CNVNamespace }}\n  ```\n\n  The following output displays if deployment was successful:\n\n  ```terminal\n  NAME                                      DISPLAY                    VERSION   REPLACES   PHASE\n  kubevirt-hyperconverged-operator.v{{ HCOVersion }}   {{ VirtProductName }}   {{ HCOVersion }}                Succeeded\n  ```\n\n## Additional resources {#additional-resources_installing-virt}\n\n- [Installing a cluster for OpenShift Virtualization using the Agent-based Installer](/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-ove#installing-ove)\n- [Installing with the virtualization operator bundle (Assisted Installer)](https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/customizing-with-bundles-and-operators#openshift-virtualization-operator_customizing-with-bundles-and-operators)\n- [Using Operator Lifecycle Manager in disconnected environments](/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks)\n- [Configuring proxy support in Operator Lifecycle Manager](/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support)\n- [Self validation checkup](/openshift-docs-markdown/virt/post_installation_configuration/virt-self-validation-checkups#virt-self-validation-checkups)\n- [Configure certificate rotation](/openshift-docs-markdown/virt/post_installation_configuration/virt-configuring-certificate-rotation#virt-configuring-certificate-rotation)\n- [Creating a hostpath provisioner with a basic storage pool](/openshift-docs-markdown/virt/storage/virt-configuring-local-storage-with-hpp#virt-creating-hpp-basic-storage-pool_virt-configuring-local-storage-with-hpp)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/install/installing-virt.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,21 +94,165 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="installing-virt" class="group scroll-mt-20">Installing {"{"}{"{"} VirtProductName {"}"}{"}"}<a href="#installing-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Install {"{"}{"{"} VirtProductName {"}"}{"}"} to add virtualization functionality to your OpenShift Container Platform cluster.</p>
+      <h1 id="installing-virt" class="group scroll-mt-20">Installing OpenShift Virtualization<a href="#installing-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Install OpenShift Virtualization to add virtualization functionality to your OpenShift Container Platform cluster.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
-          <p>If you install {"{"}{"{"} VirtProductName {"}"}{"}"} in a restricted environment with no internet connectivity, you must configure {"{"}{"{"} olm_first {"}"}{"}"} for a disconnected environment.</p>
-          <p>If you have limited internet connectivity, you can configure proxy support in {"{"}{"{"} olm {"}"}{"}"} to access the software catalog.</p>
+          <p>If you install OpenShift Virtualization in a restricted environment with no internet connectivity, you must configure Operator Lifecycle Manager (OLM) for a disconnected environment.</p>
+          <p>If you have limited internet connectivity, you can configure proxy support in OLM to access the software catalog.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/virt-about-installation-methods.md"></p>
-      <p class="/modules/virt-deploying-operator-cli.md /modules/virt-subscribing-cli.md">{"{"}% include "./modules/virt-installing-virt-operator.md" %{"}"} </p>
+      <h2 id="virt-about-installation-methods_installing-virt" class="group scroll-mt-20">About installation methods for OpenShift Virtualization<a href="#virt-about-installation-methods_installing-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can install OpenShift Virtualization on your OpenShift Container Platform cluster by using Operator Lifecycle Manager (OLM), agent-based installation, or the Assisted Installer.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Standard installation by using Operator Lifecycle Manager (OLM)</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Install the OpenShift Virtualization Operator from the OpenShift Container Platform web console or CLI. This method is suitable for most deployment scenarios and provides the most flexibility for cluster configuration.</p>
+      <p>For disconnected environments, you must configure OLM for restricted networks before installing OpenShift Virtualization.</p>
+      </dd>
+      <dt class="font-semibold">Agent-based installation</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Use the Agent-based Installer to deploy a cluster with OpenShift Virtualization and related operators pre-configured. This installation method is designed for users who want a streamlined, UI-driven installation experience, particularly in disconnected environments.</p></dd>
+      </dl>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Agent-based installation is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Assisted Installer with virtualization bundle</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Use the Assisted Installer to deploy OpenShift Virtualization or Red Hat OpenShift Virtualization Engine by using the virtualization operator bundle, which includes OpenShift Virtualization and essential supporting operators. This installation method simplifies the deployment process by pre-configuring operators and minimizing external dependencies. This is the preferred installation method for OpenShift Virtualization Engine.</p></dd>
+      </dl>
+      <h3 id="_choosing_an_installation_method" class="group scroll-mt-20">Choosing an installation method<a href="#_choosing_an_installation_method" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Consider the following factors when choosing an installation method:</p>
+      <ul>
+      <li>Network connectivity: For disconnected or air-gapped environments, the Agent-based Installer or Assisted Installer with the virtualization bundle can simplify deployment by reducing registry dependencies.</li>
+      <li>Installation experience: If you prefer a UI-driven installation workflow over writing YAML files, consider using the Agent-based Installer or Assisted Installer.</li>
+      <li>Operator requirements: If you need additional operators such as the Node Health Check Operator, Fence Agents Remediation Operator, or NMState Operator, the Assisted Installer virtualization bundle includes these operators by default.</li>
+      <li>Customization needs: For maximum flexibility in cluster configuration, use the standard OLM installation method.</li>
+      </ul>
+      <h2 id="virt-installing-virt-operator_installing-virt" class="group scroll-mt-20">Installing the OpenShift Virtualization Operator by using the web console<a href="#virt-installing-virt-operator_installing-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can deploy the OpenShift Virtualization Operator by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install OpenShift Container Platform 4.22 on your cluster.</li>
+      <li>Log in to the OpenShift Container Platform web console as a user with <code>cluster-admin</code> permissions.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>From the <strong>Administrator</strong> perspective, click <strong>Ecosystem</strong> -&gt; <strong>Software Catalog</strong>.</li>
+      <li>In the <strong>Filter by keyword</strong> field, type <strong>Virtualization</strong>.</li>
+      <li>Select the <strong>OpenShift Virtualization Operator</strong> tile with the <strong>Red Hat</strong> source label.</li>
+      <li>Read the information about the Operator and click <strong>Install</strong>.</li>
+      <li>
+      On the <strong>Install Operator</strong> page:
+      <ol>
+      <li>Select <strong>stable</strong> from the list of available <strong>Update Channel</strong> options. This ensures that you install the version of OpenShift Virtualization that is compatible with your OpenShift Container Platform version.</li>
+      <li>
+      For <strong>Installed Namespace</strong>, ensure that the <strong>Operator recommended namespace</strong> option is selected. This installs the Operator in the mandatory <code>{"{"}{"{"} CNVNamespace {"}"}{"}"}</code> namespace, which is automatically created if it does not exist.
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Attempting to install the OpenShift Virtualization Operator in a namespace other than <code>{"{"}{"{"} CNVNamespace {"}"}{"}"}</code> causes the installation to fail.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      For <strong>Approval Strategy</strong>, it is highly recommended that you select <strong>Automatic</strong>, which is the default value, so that OpenShift Virtualization automatically updates when a new version is available in the <strong>stable</strong> update channel.
+      <p>Selecting the <strong>Manual</strong> approval strategy is not recommended, as it poses a high risk to cluster support and functionality. Only select <strong>Manual</strong> if you fully understand these risks and cannot use <strong>Automatic</strong>.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Because OpenShift Virtualization is only supported when used with the corresponding OpenShift Container Platform version, missing OpenShift Virtualization updates can cause your cluster to become unsupported.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      </li>
+      <li>Click <strong>Install</strong> to make the Operator available to the <code>{"{"}{"{"} CNVNamespace {"}"}{"}"}</code> namespace.</li>
+      <li>When the Operator installs successfully, click <strong>Create HyperConverged</strong>.</li>
+      <li>Optional: Configure <strong>Infra</strong> and <strong>Workloads</strong> node placement options for OpenShift Virtualization components.</li>
+      <li>Click <strong>Create</strong> to launch OpenShift Virtualization.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul><li>Navigate to the <strong>Workloads</strong> -&gt; <strong>Pods</strong> page and monitor the OpenShift Virtualization pods until they are all <strong>Running</strong>. After all the pods display the <strong>Running</strong> state, you can use OpenShift Virtualization.</li></ul>
+      <h2 id="virt-subscribing-cli_installing-virt" class="group scroll-mt-20">Subscribing to the OpenShift Virtualization catalog by using the CLI<a href="#virt-subscribing-cli_installing-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Before you install OpenShift Virtualization, you must subscribe to the OpenShift Virtualization catalog. Subscribing gives the <code>{"{"}{"{"} CNVNamespace {"}"}{"}"}</code> namespace access to the OpenShift Virtualization Operators.</p>
+      <p>To subscribe, configure <code>Namespace</code>, <code>OperatorGroup</code>, and <code>Subscription</code> objects by applying a single manifest to your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install OpenShift Container Platform 4.22 on your cluster.</li>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Log in as a user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file that contains the following manifest:
+      <CodeBlock code={"apiVersion: v1\nkind: Namespace\nmetadata:\n  name: {{ CNVNamespace }}\n  labels:\n    openshift.io/cluster-monitoring: \"true\"\n---\napiVersion: operators.coreos.com/v1\nkind: OperatorGroup\nmetadata:\n  name: kubevirt-hyperconverged-group\n  namespace: {{ CNVNamespace }}\nspec:\n  targetNamespaces:\n    - {{ CNVNamespace }}\n---\napiVersion: operators.coreos.com/v1alpha1\nkind: Subscription\nmetadata:\n  name: hco-operatorhub\n  namespace: {{ CNVNamespace }}\nspec:\n  source: {{ CNVSubscriptionSpecSource }}\n  sourceNamespace: openshift-marketplace\n  name: {{ CNVSubscriptionSpecName }}\n  startingCSV: kubevirt-hyperconverged-operator.v{{ HCOVersion }}\n  channel: \"stable\""} lang="yaml" />
+      <p>Using the <code>stable</code> channel ensures that you install the version of OpenShift Virtualization that is compatible with your OpenShift Container Platform version.</p>
+      </li>
+      <li>
+      Create the required <code>Namespace</code>, <code>OperatorGroup</code>, and <code>Subscription</code> objects for OpenShift Virtualization by running the following command:
+      <CodeBlock code={"$ oc apply -f <filename>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <p>You must verify that the subscription creation was successful before you can proceed with installing OpenShift Virtualization.</p>
+      <ol>
+      <li>
+      Check that the <code>ClusterServiceVersion</code> (CSV) object was created successfully. Run the following command and verify the output:
+      <CodeBlock code={"$ oc get csv -n {{ CNVNamespace }}"} lang="terminal" />
+      <p>If the CSV was created successfully, the output shows an entry that contains a <code>NAME</code> value of <code>kubevirt-hyperconverged-operator-*</code>, a <code>DISPLAY</code> value of <code>{"{"}{"{"} VirtProductName {"}"}{"}"}</code>, and a <code>PHASE</code> value of <code>Succeeded</code>, as shown in the following example output:</p>
+      <p>Example output:</p>
+      <CodeBlock code={"NAME                                       DISPLAY                    VERSION   REPLACES                                   PHASE\nkubevirt-hyperconverged-operator.v{{ HCOVersion }}   {{ VirtProductName }}   {{ HCOVersion }}    kubevirt-hyperconverged-operator.v{{ HCOVersionPrev }}   Succeeded"} lang="terminal" />
+      </li>
+      <li>
+      Check that the <code>HyperConverged</code> custom resource (CR) has the correct version. Run the following command and verify the output:
+      <CodeBlock code={"$ oc get {{ HCOCliKind }} -n {{ CNVNamespace }} kubevirt-hyperconverged -o json | jq .status.versions"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"{\n\"name\": \"operator\",\n\"version\": \"{{ HCOVersion }}\"\n}"} lang="terminal" />
+      </li>
+      <li>
+      Verify the <code>HyperConverged</code> CR conditions. Run the following command and check the output:
+      <CodeBlock code={"$ oc get {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }} -o json | jq -r '.status.conditions[] | {type,status}'"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"{\n  \"type\": \"ReconcileComplete\",\n  \"status\": \"True\"\n}\n{\n  \"type\": \"Available\",\n  \"status\": \"True\"\n}\n{\n  \"type\": \"Progressing\",\n  \"status\": \"False\"\n}\n{\n  \"type\": \"Degraded\",\n  \"status\": \"False\"\n}\n{\n  \"type\": \"Upgradeable\",\n  \"status\": \"True\"\n}"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-deploying-operator-cli_installing-virt" class="group scroll-mt-20">Deploying the OpenShift Virtualization Operator by using the CLI<a href="#virt-deploying-operator-cli_installing-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can deploy the OpenShift Virtualization Operator by using the <code>oc</code> CLI.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Subscribe to the OpenShift Virtualization catalog in the <code>{"{"}{"{"} CNVNamespace {"}"}{"}"}</code> namespace.</li>
+      <li>Log in as a user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file that contains the following manifest:
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:"} lang="yaml" />
+      </li>
+      <li>
+      Deploy the OpenShift Virtualization Operator by running the following command:
+      <CodeBlock code={"$ oc apply -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Ensure that OpenShift Virtualization deployed successfully by watching the <code>PHASE</code> of the cluster service version (CSV) in the <code>{"{"}{"{"} CNVNamespace {"}"}{"}"}</code> namespace. Run the following command:
+      <CodeBlock code={"$ watch oc get csv -n {{ CNVNamespace }}"} lang="terminal" />
+      <p>The following output displays if deployment was successful:</p>
+      <CodeBlock code={"NAME                                      DISPLAY                    VERSION   REPLACES   PHASE\nkubevirt-hyperconverged-operator.v{{ HCOVersion }}   {{ VirtProductName }}   {{ HCOVersion }}                Succeeded"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="additional-resources_installing-virt" class="group scroll-mt-20">Additional resources<a href="#additional-resources_installing-virt" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-ove#installing-ove">Installing a cluster for {"{"}{"{"} VirtProductName {"}"}{"}"} using the Agent-based Installer</a></li>
+      <li><a href="/openshift-docs-markdown/installing/installing_with_agent_based_installer/installing-ove#installing-ove">Installing a cluster for OpenShift Virtualization using the Agent-based Installer</a></li>
       <li><a href="https://docs.redhat.com/en/documentation/assisted_installer_for_openshift_container_platform/2026/html/installing_openshift_container_platform_with_the_assisted_installer/customizing-with-bundles-and-operators#openshift-virtualization-operator_customizing-with-bundles-and-operators">Installing with the virtualization operator bundle (Assisted Installer)</a></li>
       <li><a href="/openshift-docs-markdown/disconnected/using-olm#olm-restricted-networks">Using Operator Lifecycle Manager in disconnected environments</a></li>
       <li><a href="/openshift-docs-markdown/operators/admin/olm-configuring-proxy-support#olm-configuring-proxy-support">Configuring proxy support in Operator Lifecycle Manager</a></li>

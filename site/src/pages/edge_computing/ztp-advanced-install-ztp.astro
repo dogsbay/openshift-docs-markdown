@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"ztp-advanced-install-ztp","text":"Advanced managed cluster configuration with ClusterInstance resources"}];
+const headings = [{"depth":1,"slug":"ztp-advanced-install-ztp","text":"Advanced managed cluster configuration with ClusterInstance resources"},{"depth":2,"slug":"ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp","text":"Customizing extra installation manifests in the GitOps ZTP pipeline"},{"depth":2,"slug":"ztp-configuring-cluster-network-mtu_ztp-advanced-install-ztp","text":"Configuring cluster network MTU at installation time"},{"depth":2,"slug":"ztp-deleting-node-clusterinstance_ztp-advanced-install-ztp","text":"Deleting a node by using the ClusterInstance CR"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["edge_computing"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Advanced managed cluster configuration with ClusterInstance resources {#ztp-advanced-install-ztp}\n\nYou can use `ClusterInstance` custom resources (CRs) to deploy custom functionality and configurations in your managed clusters at installation time.\n\n**Additional resources**\n\n- [Customizing extra installation manifests in the {{ ztp }} pipeline](/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Advanced managed cluster configuration with ClusterInstance resources {#ztp-advanced-install-ztp}\n\nYou can use `ClusterInstance` custom resources (CRs) to deploy custom functionality and configurations in your managed clusters at installation time.\n\n## Customizing extra installation manifests in the GitOps ZTP pipeline {#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp}\n\nYou can define a set of extra manifests for inclusion in the installation phase of the GitOps Zero Touch Provisioning (ZTP) pipeline. These manifests are linked to the `ClusterInstance` custom resources (CRs) and are applied to the cluster during installation. Including `MachineConfig` CRs at install time makes the installation process more efficient.\n\nExtra manifests must be packaged in `ConfigMap` resources and referenced in the `extraManifestsRefs` field of the `ClusterInstance` CR.\n\n**Prerequisites**\n\n- Create a Git repository where you manage your custom site configuration data. The repository must be accessible from the hub cluster and be defined as a source repository for the Argo CD application.\n\n**Procedure**\n\n1. Create a set of extra manifest CRs that the GitOps ZTP pipeline uses to customize the cluster installs.\n2. In your `/clusterinstance` directory, create a subdirectory with your extra manifests. The following example illustrates a sample folder structure:\n\n   ```text\n   clusterinstance/\n   ├── site1-sno-du.yaml\n   ├── extra-manifest/\n   │   ├── 01-example-machine-config.yaml\n   │   ├── enable-crun-master.yaml\n   │   └── enable-crun-worker.yaml\n   └── kustomization.yaml\n   ```\n3. Create or update the `kustomization.yaml` file to use `configMapGenerator` to package your extra manifests into a `ConfigMap`:\n\n   ```yaml\n   apiVersion: kustomize.config.k8s.io/v1beta1\n   kind: Kustomization\n   resources:\n     - site1-sno-du.yaml\n   configMapGenerator:\n     - name: extra-manifests-cm\n       namespace: site1-sno-du\n       files:\n         - extra-manifest/01-example-machine-config.yaml\n         - extra-manifest/enable-crun-master.yaml\n         - extra-manifest/enable-crun-worker.yaml\n   generatorOptions:\n     disableNameSuffixHash: true\n   ```\n\n   - The `configMapGenerator.namespace` value must match the `ClusterInstance` namespace.\n   - Setting `generatorOptions.disableNameSuffixHash` to `true` disables the hash suffix so the `ConfigMap` name is predictable.\n4. In your `ClusterInstance` CR, reference the `ConfigMap` in the `extraManifestsRefs` field:\n\n   ```yaml\n   apiVersion: siteconfig.open-cluster-management.io/v1alpha1\n   kind: ClusterInstance\n   metadata:\n     name: \"site1-sno-du\"\n     namespace: \"site1-sno-du\"\n   spec:\n     clusterName: \"site1-sno-du\"\n     networkType: \"OVNKubernetes\"\n     extraManifestsRefs:\n       - name: extra-manifests-cm\n     # ...\n   ```\n\n   - The `extraManifestsRefs` field references the `ConfigMap` containing the extra manifests.\n5. Commit the `ClusterInstance` CR, extra manifest files, and `kustomization.yaml` to your Git repository and push the changes.\n\n   During cluster provisioning, the SiteConfig Operator applies the CRs contained in the referenced `ConfigMap` resources as extra manifests.\n\n   > [!NOTE]\n   > You can reference multiple `ConfigMap` resources in `extraManifestsRefs` to organize your manifests logically. For example, you might have separate `ConfigMap` resources for crun configuration, custom `MachineConfig` CRs, and other Day 0 configurations.\n\n## Configuring cluster network MTU at installation time {#ztp-configuring-cluster-network-mtu_ztp-advanced-install-ztp}\n\nYou can explicitly set the cluster network maximum transmission unit (MTU) during installation by including a `Network` custom resource (CR) as an extra manifest in the GitOps Zero Touch Provisioning (ZTP) pipeline.\n\nSetting the cluster network MTU with additional headroom during deployment prevents the need for a Day 2 MTU update that requires at least two rolling reboots of all cluster nodes.\n\nDuring installation, the Cluster Network Operator (CNO) automatically calculates the cluster network MTU based on the primary network interface MTU. When you enable IPsec at installation time, the calculation includes both the OVN-Kubernetes overhead of 100 bytes and the IPsec overhead. If you plan to enable IPsec or another encapsulation technology as a Day 2 operation, the calculated MTU includes only the OVN-Kubernetes overhead and might be insufficient.\n\nBy explicitly setting the cluster network MTU at installation time, you can include additional headroom for those future needs and avoid a disruptive MTU migration.\n\n> [!IMPORTANT]\n> The cluster network MTU value must be lower than the machine network MTU by at least 100 bytes to account for OVN-Kubernetes overlay overhead. If you plan to enable IPsec as a Day 2 operation, allow an additional 46 bytes for IPsec headroom. For example, with a machine network MTU of `9100` bytes, set the cluster network MTU to `8900` bytes, which accounts for the following offset:\n>\n> - OVN-Kubernetes overhead: 100 bytes\n> - IPsec headroom: 46 bytes\n> - Extra headroom: 54 bytes\n> - Total offset: 200 bytes\n>\n> To avoid selecting an MTU value that a node cannot support, verify the maximum MTU (`maxmtu`) that the network interface accepts by running the `ip -d link` command.\n\n**Prerequisites**\n\n- You have configured the hub cluster to provision managed clusters by using the GitOps ZTP pipeline.\n- You have a Git repository where you manage your custom site configuration data. The repository must be accessible from the hub cluster and be defined as a source repository for the Argo CD application.\n\n**Procedure**\n\n1. In your `ClusterInstance` CR, set the machine network MTU on the network interface for all nodes.\n\n   The following example configures a VLAN interface with MTU `9100`:\n\n   ```yaml\n   apiVersion: siteconfig.open-cluster-management.io/v1alpha1\n   kind: ClusterInstance\n   metadata:\n     name: \"site1-sno-du\"\n     namespace: \"site1-sno-du\"\n   spec:\n     nodes:\n       - hostName: \"node1.example.com\"\n         nodeNetwork:\n           interfaces:\n             - name: \"bond0.120\"\n               macAddress: \"00:00:00:00:00:00\"\n           config:\n             interfaces:\n               - name: bond0.120\n                 type: vlan\n                 state: up\n                 mtu: 9100\n                 ipv4:\n                   enabled: true\n                   dhcp: false\n                   address:\n                     - ip: \"192.168.120.15\"\n                       prefix-length: 25\n                 vlan:\n                   base-iface: bond0\n                   id: 120\n     # ...\n   ```\n2. Create a `Network` CR manifest file named `set-cluster-mtu.yaml` that sets the cluster network MTU:\n\n   ```yaml\n   apiVersion: operator.openshift.io/v1\n   kind: Network\n   metadata:\n     name: cluster\n   spec:\n     defaultNetwork:\n       ovnKubernetesConfig:\n         mtu: 8900\n   ```\n\n   where:\n\n   `mtu`\n   :   Specifies the cluster network MTU value. This value must be at least 100 bytes less than the machine network MTU. In this example, the value is 200 bytes less than the machine network MTU of 9100 to allow headroom for IPsec and other future requirements.\n3. In your `clusterinstance` directory, place the manifest file in an extra manifests subdirectory:\n\n   ```text\n   clusterinstance/\n   ├── site1-sno-du.yaml\n   ├── extra-manifest/\n   │   └── set-cluster-mtu.yaml\n   └── kustomization.yaml\n   ```\n4. Create or update the `kustomization.yaml` file to package the extra manifest into a `ConfigMap`:\n\n   ```yaml\n   apiVersion: kustomize.config.k8s.io/v1beta1\n   kind: Kustomization\n   resources:\n     - site1-sno-du.yaml\n   configMapGenerator:\n     - name: cluster-mtu-extra-manifests\n       namespace: site1-sno-du\n       files:\n         - extra-manifest/set-cluster-mtu.yaml\n   generatorOptions:\n     disableNameSuffixHash: true\n   ```\n5. In your `ClusterInstance` CR, reference the `ConfigMap` in the `extraManifestsRefs` field:\n\n   ```yaml\n   apiVersion: siteconfig.open-cluster-management.io/v1alpha1\n   kind: ClusterInstance\n   metadata:\n     name: \"site1-sno-du\"\n     namespace: \"site1-sno-du\"\n   spec:\n     clusterName: \"site1-sno-du\"\n     networkType: \"OVNKubernetes\"\n     extraManifestsRefs:\n       - name: cluster-mtu-extra-manifests\n     # ...\n   ```\n6. Commit the `ClusterInstance` CR, the `set-cluster-mtu.yaml` manifest, and the `kustomization.yaml` to your Git repository and push the changes.\n\n   During cluster provisioning, the SiteConfig Operator applies the `Network` CR as an extra manifest, and the CNO uses the specified MTU value instead of auto-calculating it.\n\n**Verification**\n\n- After the cluster installation is complete, verify the cluster network MTU by running the following command:\n\n  ```terminal\n  $ oc get networks.operator.openshift.io cluster -o yaml\n  ```\n\n  ```yaml {title=\"Example output\"}\n  apiVersion: operator.openshift.io/v1\n  kind: Network\n  metadata:\n    name: cluster\n  # ...\n  spec:\n    # ...\n    defaultNetwork:\n      ovnKubernetesConfig:\n        # ...\n        mtu: 8900\n  ```\n\n**Additional resources**\n\n- [Customizing extra installation manifests in the GitOps ZTP pipeline](/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp)\n\n## Deleting a node by using the ClusterInstance CR {#ztp-deleting-node-clusterinstance_ztp-advanced-install-ztp}\n\nBy using a `ClusterInstance` custom resource (CR), you can delete and reprovision a node. This method is more efficient than manually deleting the node.\n\n**Prerequisites**\n\n- You have configured the hub cluster to generate the required installation and policy CRs.\n- You have created a Git repository in which you can manage your custom site configuration data. The repository must be accessible from the hub cluster and be defined as the source repository for the Argo CD application.\n\n**Procedure**\n\n1. Update the `ClusterInstance` CR to add the `bmac.agent-install.openshift.io/remove-agent-and-node-on-delete=true` annotation to the `BareMetalHost` resource for the node, and push the changes to the Git repository:\n\n   ```yaml\n   apiVersion: siteconfig.open-cluster-management.io/v1alpha1\n   kind: ClusterInstance\n   metadata:\n     name: \"example-cluster\"\n     namespace: \"example-cluster\"\n   spec:\n     # ...\n     nodes:\n       - hostName: \"worker-node2.example.com\"\n         role: \"worker\"\n         extraAnnotations:\n           BareMetalHost:\n             bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: \"true\"\n   # ...\n   ```\n2. Verify that the `BareMetalHost` object is annotated by running the following command:\n\n   ```terminal\n   $ oc get bmh -n <cluster_namespace> <bmh_name> -ojsonpath='{.metadata}' | jq -r '.annotations[\"bmac.agent-install.openshift.io/remove-agent-and-node-on-delete\"]'\n   ```\n\n   ```terminal {title=\"Example output\"}\n   true\n   ```\n3. Delete the `BareMetalHost` CR by configuring the `pruneManifests` field in the `ClusterInstance` CR to remove the target `BareMetalHost` resource:\n\n   ```yaml\n   apiVersion: siteconfig.open-cluster-management.io/v1alpha1\n   kind: ClusterInstance\n   metadata:\n     name: \"example-cluster\"\n     namespace: \"example-cluster\"\n   spec:\n     # ...\n     nodes:\n       - hostName: \"worker-node2.example.com\"\n         role: \"worker\"\n         pruneManifests:\n           - apiVersion: metal3.io/v1alpha1\n             kind: BareMetalHost\n   # ...\n   ```\n4. Push the changes to the Git repository and wait for deprovisioning to start. The status of the `BareMetalHost` CR should change to `deprovisioning`. Wait for the `BareMetalHost` to finish deprovisioning, and be fully deleted.\n\n**Verification**\n\n1. Verify that the `BareMetalHost` and `Agent` CRs for the worker node have been deleted from the hub cluster by running the following commands:\n\n   ```terminal\n   $ oc get bmh -n <cluster_namespace>\n   ```\n\n   ```terminal\n   $ oc get agent -n <cluster_namespace>\n   ```\n2. Verify that the node record has been deleted from the spoke cluster by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   > [!NOTE]\n   > If you are working with secrets, deleting a secret too early can cause an issue because ArgoCD needs the secret to complete resynchronization after deletion. Delete the secret only after the node cleanup, when the current ArgoCD synchronization is complete.\n3. After the `BareMetalHost` object is successfully deleted, remove the worker node definition from the `spec.nodes` section in the `ClusterInstance` CR and push the changes to the Git repository.\n\n**Next steps**\n\nTo reprovision a node, add the node definition back to the `spec.nodes` section in the `ClusterInstance` CR, push the changes to the Git repository, and wait for the synchronization to complete. This regenerates the `BareMetalHost` CR of the worker node and triggers the re-install of the node.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,154 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ztp-advanced-install-ztp" class="group scroll-mt-20">Advanced managed cluster configuration with ClusterInstance resources<a href="#ztp-advanced-install-ztp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can use <code>ClusterInstance</code> custom resources (CRs) to deploy custom functionality and configurations in your managed clusters at installation time.</p>
-      <p class="/modules/ztp-customizing-the-install-extra-manifests.md"></p>
-      <p class="/modules/ztp-configuring-cluster-network-mtu.md"></p>
+      <h2 id="ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp" class="group scroll-mt-20">Customizing extra installation manifests in the GitOps ZTP pipeline<a href="#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can define a set of extra manifests for inclusion in the installation phase of the GitOps Zero Touch Provisioning (ZTP) pipeline. These manifests are linked to the <code>ClusterInstance</code> custom resources (CRs) and are applied to the cluster during installation. Including <code>MachineConfig</code> CRs at install time makes the installation process more efficient.</p>
+      <p>Extra manifests must be packaged in <code>ConfigMap</code> resources and referenced in the <code>extraManifestsRefs</code> field of the <code>ClusterInstance</code> CR.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>Create a Git repository where you manage your custom site configuration data. The repository must be accessible from the hub cluster and be defined as a source repository for the Argo CD application.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Create a set of extra manifest CRs that the GitOps ZTP pipeline uses to customize the cluster installs.</li>
+      <li>
+      In your <code>/clusterinstance</code> directory, create a subdirectory with your extra manifests. The following example illustrates a sample folder structure:
+      <CodeBlock code={"clusterinstance/\n├── site1-sno-du.yaml\n├── extra-manifest/\n│   ├── 01-example-machine-config.yaml\n│   ├── enable-crun-master.yaml\n│   └── enable-crun-worker.yaml\n└── kustomization.yaml"} lang="text" />
+      </li>
+      <li>
+      Create or update the <code>kustomization.yaml</code> file to use <code>configMapGenerator</code> to package your extra manifests into a <code>ConfigMap</code>:
+      <CodeBlock code={"apiVersion: kustomize.config.k8s.io/v1beta1\nkind: Kustomization\nresources:\n  - site1-sno-du.yaml\nconfigMapGenerator:\n  - name: extra-manifests-cm\n    namespace: site1-sno-du\n    files:\n      - extra-manifest/01-example-machine-config.yaml\n      - extra-manifest/enable-crun-master.yaml\n      - extra-manifest/enable-crun-worker.yaml\ngeneratorOptions:\n  disableNameSuffixHash: true"} lang="yaml" />
+      <ul>
+      <li>The <code>configMapGenerator.namespace</code> value must match the <code>ClusterInstance</code> namespace.</li>
+      <li>Setting <code>generatorOptions.disableNameSuffixHash</code> to <code>true</code> disables the hash suffix so the <code>ConfigMap</code> name is predictable.</li>
+      </ul>
+      </li>
+      <li>
+      In your <code>ClusterInstance</code> CR, reference the <code>ConfigMap</code> in the <code>extraManifestsRefs</code> field:
+      <CodeBlock code={"apiVersion: siteconfig.open-cluster-management.io/v1alpha1\nkind: ClusterInstance\nmetadata:\n  name: \"site1-sno-du\"\n  namespace: \"site1-sno-du\"\nspec:\n  clusterName: \"site1-sno-du\"\n  networkType: \"OVNKubernetes\"\n  extraManifestsRefs:\n    - name: extra-manifests-cm\n  # ..."} lang="yaml" />
+      <ul><li>The <code>extraManifestsRefs</code> field references the <code>ConfigMap</code> containing the extra manifests.</li></ul>
+      </li>
+      <li>
+      Commit the <code>ClusterInstance</code> CR, extra manifest files, and <code>kustomization.yaml</code> to your Git repository and push the changes.
+      <p>During cluster provisioning, the SiteConfig Operator applies the CRs contained in the referenced <code>ConfigMap</code> resources as extra manifests.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You can reference multiple <code>ConfigMap</code> resources in <code>extraManifestsRefs</code> to organize your manifests logically. For example, you might have separate <code>ConfigMap</code> resources for crun configuration, custom <code>MachineConfig</code> CRs, and other Day 0 configurations.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <h2 id="ztp-configuring-cluster-network-mtu_ztp-advanced-install-ztp" class="group scroll-mt-20">Configuring cluster network MTU at installation time<a href="#ztp-configuring-cluster-network-mtu_ztp-advanced-install-ztp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can explicitly set the cluster network maximum transmission unit (MTU) during installation by including a <code>Network</code> custom resource (CR) as an extra manifest in the GitOps Zero Touch Provisioning (ZTP) pipeline.</p>
+      <p>Setting the cluster network MTU with additional headroom during deployment prevents the need for a Day 2 MTU update that requires at least two rolling reboots of all cluster nodes.</p>
+      <p>During installation, the Cluster Network Operator (CNO) automatically calculates the cluster network MTU based on the primary network interface MTU. When you enable IPsec at installation time, the calculation includes both the OVN-Kubernetes overhead of 100 bytes and the IPsec overhead. If you plan to enable IPsec or another encapsulation technology as a Day 2 operation, the calculated MTU includes only the OVN-Kubernetes overhead and might be insufficient.</p>
+      <p>By explicitly setting the cluster network MTU at installation time, you can include additional headroom for those future needs and avoid a disruptive MTU migration.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The cluster network MTU value must be lower than the machine network MTU by at least 100 bytes to account for OVN-Kubernetes overlay overhead. If you plan to enable IPsec as a Day 2 operation, allow an additional 46 bytes for IPsec headroom. For example, with a machine network MTU of <code>9100</code> bytes, set the cluster network MTU to <code>8900</code> bytes, which accounts for the following offset:</p>
+          <ul>
+          <li>OVN-Kubernetes overhead: 100 bytes</li>
+          <li>IPsec headroom: 46 bytes</li>
+          <li>Extra headroom: 54 bytes</li>
+          <li>Total offset: 200 bytes</li>
+          </ul>
+          <p>To avoid selecting an MTU value that a node cannot support, verify the maximum MTU (<code>maxmtu</code>) that the network interface accepts by running the <code>ip -d link</code> command.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have configured the hub cluster to provision managed clusters by using the GitOps ZTP pipeline.</li>
+      <li>You have a Git repository where you manage your custom site configuration data. The repository must be accessible from the hub cluster and be defined as a source repository for the Argo CD application.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      In your <code>ClusterInstance</code> CR, set the machine network MTU on the network interface for all nodes.
+      <p>The following example configures a VLAN interface with MTU <code>9100</code>:</p>
+      <CodeBlock code={"apiVersion: siteconfig.open-cluster-management.io/v1alpha1\nkind: ClusterInstance\nmetadata:\n  name: \"site1-sno-du\"\n  namespace: \"site1-sno-du\"\nspec:\n  nodes:\n    - hostName: \"node1.example.com\"\n      nodeNetwork:\n        interfaces:\n          - name: \"bond0.120\"\n            macAddress: \"00:00:00:00:00:00\"\n        config:\n          interfaces:\n            - name: bond0.120\n              type: vlan\n              state: up\n              mtu: 9100\n              ipv4:\n                enabled: true\n                dhcp: false\n                address:\n                  - ip: \"192.168.120.15\"\n                    prefix-length: 25\n              vlan:\n                base-iface: bond0\n                id: 120\n  # ..."} lang="yaml" />
+      </li>
+      <li>
+      Create a <code>Network</code> CR manifest file named <code>set-cluster-mtu.yaml</code> that sets the cluster network MTU:
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: Network\nmetadata:\n  name: cluster\nspec:\n  defaultNetwork:\n    ovnKubernetesConfig:\n      mtu: 8900"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>mtu</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the cluster network MTU value. This value must be at least 100 bytes less than the machine network MTU. In this example, the value is 200 bytes less than the machine network MTU of 9100 to allow headroom for IPsec and other future requirements.</p></dd>
+      </dl>
+      </li>
+      <li>
+      In your <code>clusterinstance</code> directory, place the manifest file in an extra manifests subdirectory:
+      <CodeBlock code={"clusterinstance/\n├── site1-sno-du.yaml\n├── extra-manifest/\n│   └── set-cluster-mtu.yaml\n└── kustomization.yaml"} lang="text" />
+      </li>
+      <li>
+      Create or update the <code>kustomization.yaml</code> file to package the extra manifest into a <code>ConfigMap</code>:
+      <CodeBlock code={"apiVersion: kustomize.config.k8s.io/v1beta1\nkind: Kustomization\nresources:\n  - site1-sno-du.yaml\nconfigMapGenerator:\n  - name: cluster-mtu-extra-manifests\n    namespace: site1-sno-du\n    files:\n      - extra-manifest/set-cluster-mtu.yaml\ngeneratorOptions:\n  disableNameSuffixHash: true"} lang="yaml" />
+      </li>
+      <li>
+      In your <code>ClusterInstance</code> CR, reference the <code>ConfigMap</code> in the <code>extraManifestsRefs</code> field:
+      <CodeBlock code={"apiVersion: siteconfig.open-cluster-management.io/v1alpha1\nkind: ClusterInstance\nmetadata:\n  name: \"site1-sno-du\"\n  namespace: \"site1-sno-du\"\nspec:\n  clusterName: \"site1-sno-du\"\n  networkType: \"OVNKubernetes\"\n  extraManifestsRefs:\n    - name: cluster-mtu-extra-manifests\n  # ..."} lang="yaml" />
+      </li>
+      <li>
+      Commit the <code>ClusterInstance</code> CR, the <code>set-cluster-mtu.yaml</code> manifest, and the <code>kustomization.yaml</code> to your Git repository and push the changes.
+      <p>During cluster provisioning, the SiteConfig Operator applies the <code>Network</code> CR as an extra manifest, and the CNO uses the specified MTU value instead of auto-calculating it.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      After the cluster installation is complete, verify the cluster network MTU by running the following command:
+      <CodeBlock code={"$ oc get networks.operator.openshift.io cluster -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: operator.openshift.io/v1\nkind: Network\nmetadata:\n  name: cluster\n# ...\nspec:\n  # ...\n  defaultNetwork:\n    ovnKubernetesConfig:\n      # ...\n      mtu: 8900"} lang="yaml" title="Example output" />
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
-      <ul><li><a href="/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp">Customizing extra installation manifests in the {"{"}{"{"} ztp {"}"}{"}"} pipeline</a></li></ul>
+      <ul><li><a href="/openshift-docs-markdown/edge_computing/ztp-advanced-install-ztp#ztp-customizing-the-install-extra-manifests_ztp-advanced-install-ztp">Customizing extra installation manifests in the GitOps ZTP pipeline</a></li></ul>
+      <h2 id="ztp-deleting-node-clusterinstance_ztp-advanced-install-ztp" class="group scroll-mt-20">Deleting a node by using the ClusterInstance CR<a href="#ztp-deleting-node-clusterinstance_ztp-advanced-install-ztp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By using a <code>ClusterInstance</code> custom resource (CR), you can delete and reprovision a node. This method is more efficient than manually deleting the node.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have configured the hub cluster to generate the required installation and policy CRs.</li>
+      <li>You have created a Git repository in which you can manage your custom site configuration data. The repository must be accessible from the hub cluster and be defined as the source repository for the Argo CD application.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Update the <code>ClusterInstance</code> CR to add the <code>bmac.agent-install.openshift.io/remove-agent-and-node-on-delete=true</code> annotation to the <code>BareMetalHost</code> resource for the node, and push the changes to the Git repository:
+      <CodeBlock code={"apiVersion: siteconfig.open-cluster-management.io/v1alpha1\nkind: ClusterInstance\nmetadata:\n  name: \"example-cluster\"\n  namespace: \"example-cluster\"\nspec:\n  # ...\n  nodes:\n    - hostName: \"worker-node2.example.com\"\n      role: \"worker\"\n      extraAnnotations:\n        BareMetalHost:\n          bmac.agent-install.openshift.io/remove-agent-and-node-on-delete: \"true\"\n# ..."} lang="yaml" />
+      </li>
+      <li>
+      Verify that the <code>BareMetalHost</code> object is annotated by running the following command:
+      <CodeBlock code={"$ oc get bmh -n <cluster_namespace> <bmh_name> -ojsonpath='{.metadata}' | jq -r '.annotations[\"bmac.agent-install.openshift.io/remove-agent-and-node-on-delete\"]'"} lang="terminal" />
+      <CodeBlock code={"true"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Delete the <code>BareMetalHost</code> CR by configuring the <code>pruneManifests</code> field in the <code>ClusterInstance</code> CR to remove the target <code>BareMetalHost</code> resource:
+      <CodeBlock code={"apiVersion: siteconfig.open-cluster-management.io/v1alpha1\nkind: ClusterInstance\nmetadata:\n  name: \"example-cluster\"\n  namespace: \"example-cluster\"\nspec:\n  # ...\n  nodes:\n    - hostName: \"worker-node2.example.com\"\n      role: \"worker\"\n      pruneManifests:\n        - apiVersion: metal3.io/v1alpha1\n          kind: BareMetalHost\n# ..."} lang="yaml" />
+      </li>
+      <li>Push the changes to the Git repository and wait for deprovisioning to start. The status of the <code>BareMetalHost</code> CR should change to <code>deprovisioning</code>. Wait for the <code>BareMetalHost</code> to finish deprovisioning, and be fully deleted.</li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that the <code>BareMetalHost</code> and <code>Agent</code> CRs for the worker node have been deleted from the hub cluster by running the following commands:
+      <CodeBlock code={"$ oc get bmh -n <cluster_namespace>"} lang="terminal" />
+      <CodeBlock code={"$ oc get agent -n <cluster_namespace>"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the node record has been deleted from the spoke cluster by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you are working with secrets, deleting a secret too early can cause an issue because ArgoCD needs the secret to complete resynchronization after deletion. Delete the secret only after the node cleanup, when the current ArgoCD synchronization is complete.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>After the <code>BareMetalHost</code> object is successfully deleted, remove the worker node definition from the <code>spec.nodes</code> section in the <code>ClusterInstance</code> CR and push the changes to the Git repository.</li>
+      </ol>
+      <p><strong>Next steps</strong></p>
+      <p>To reprovision a node, add the node definition back to the <code>spec.nodes</code> section in the <code>ClusterInstance</code> CR, push the changes to the Git repository, and wait for the synchronization to complete. This regenerates the <code>BareMetalHost</code> CR of the worker node and triggers the re-install of the node.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

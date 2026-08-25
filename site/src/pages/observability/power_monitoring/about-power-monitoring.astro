@@ -19,7 +19,7 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"about-power-monitoring","text":"About {{ PM_title }}"}];
+const headings = [{"depth":1,"slug":"about-power-monitoring","text":"About power monitoring for Red Hat OpenShift"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/power_monitoring/about-power-monitoring";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "About {{ PM_title }}";
-const description = "With {{ PM_title_c }}, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for pods and namespaces to…" || undefined;
+const description = "With Power monitoring for Red Hat OpenShift, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +42,7 @@ const pageCategory = ["observability","observability/power_monitoring"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About {{ PM_title }} {#about-power-monitoring}\n\nWith {{ PM_title_c }}, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for pods and namespaces to help you identify and optimize workload energy usage.\n\n> [!IMPORTANT]\n> {{ PM_title_c }} is deprecated and will have no further releases or support.\n\nYou can use {{ PM_title }} to monitor the power usage and identify power-consuming containers running in an OpenShift Container Platform cluster. {{ PM_shortname_c }} collects and exports energy-related system statistics from various components, such as CPU and DRAM. It provides estimates and granular power consumption data for Kubernetes pods and namespaces, and reads the power consumption of nodes.\n\n> [!NOTE]\n> The {{ PM_shortname }} documentation is available as a separate documentation set at [{{ PM_title_c }}](https://docs.redhat.com/en/documentation/power_monitoring_for_red_hat_openshift/latest).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/power_monitoring/about-power-monitoring.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About power monitoring for Red Hat OpenShift {#about-power-monitoring}\n\nWith Power monitoring for Red Hat OpenShift, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for pods and namespaces to help you identify and optimize workload energy usage.\n\n> [!IMPORTANT]\n> Power monitoring for Red Hat OpenShift is deprecated and will have no further releases or support.\n\nYou can use power monitoring for Red Hat OpenShift to monitor the power usage and identify power-consuming containers running in an OpenShift Container Platform cluster. Power monitoring collects and exports energy-related system statistics from various components, such as CPU and DRAM. It provides estimates and granular power consumption data for Kubernetes pods and namespaces, and reads the power consumption of nodes.\n\n> [!NOTE]\n> The power monitoring documentation is available as a separate documentation set at [Power monitoring for Red Hat OpenShift](https://docs.redhat.com/en/documentation/power_monitoring_for_red_hat_openshift/latest).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/power_monitoring/about-power-monitoring.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,20 +93,19 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="about-power-monitoring" class="group scroll-mt-20">About {"{"}{"{"} PM_title {"}"}{"}"}<a href="#about-power-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>With {"{"}{"{"} PM_title_c {"}"}{"}"}, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for pods and namespaces to help you identify and optimize workload energy usage.</p>
+      <h1 id="about-power-monitoring" class="group scroll-mt-20">About power monitoring for Red Hat OpenShift<a href="#about-power-monitoring" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>With Power monitoring for Red Hat OpenShift, you can track energy consumption across your cluster infrastructure. It provides granular power metrics for pods and namespaces to help you identify and optimize workload energy usage.</p>
       <Alert variant="info" class="my-4">
         <AlertTitle>Important</AlertTitle>
         <AlertDescription>
-          <p>{"{"}{"{"} PM_title_c {"}"}{"}"} is deprecated and will have no further releases or support.</p>
+          <p>Power monitoring for Red Hat OpenShift is deprecated and will have no further releases or support.</p>
         </AlertDescription>
       </Alert>
-      <p>You can use {"{"}{"{"} PM_title {"}"}{"}"} to monitor the power usage and identify power-consuming containers running in an OpenShift Container Platform cluster. {"{"}{"{"} PM_shortname_c {"}"}{"}"} collects and exports energy-related system statistics from various components, such as CPU and DRAM. It provides estimates and granular power consumption data for Kubernetes pods and namespaces, and reads the power consumption of nodes.</p>
+      <p>You can use power monitoring for Red Hat OpenShift to monitor the power usage and identify power-consuming containers running in an OpenShift Container Platform cluster. Power monitoring collects and exports energy-related system statistics from various components, such as CPU and DRAM. It provides estimates and granular power consumption data for Kubernetes pods and namespaces, and reads the power consumption of nodes.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>The {"{"}{"{"} PM_shortname {"}"}{"}"} documentation is available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/power_monitoring_for_red_hat_openshift/latest">{"{"}{"{"} PM_title_c {"}"}{"}"}</a>.</p>
+          <p>The power monitoring documentation is available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/power_monitoring_for_red_hat_openshift/latest">Power monitoring for Red Hat OpenShift</a>.</p>
         </AlertDescription>
       </Alert>
     </article>

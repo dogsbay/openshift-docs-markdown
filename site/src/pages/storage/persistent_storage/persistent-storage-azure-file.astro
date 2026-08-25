@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"persistent-storage-using-azure-file","text":"Persistent storage using Azure File"}];
+const headings = [{"depth":1,"slug":"persistent-storage-using-azure-file","text":"Persistent storage using Azure File"},{"depth":2,"slug":"create-azure-file-secret_persistent-storage-azure-file","text":"Create the Azure File share persistent volume claim"},{"depth":2,"slug":"create-azure-file-pod_persistent-storage-azure-file","text":"Mount the Azure File share in a pod"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/storage/persistent_storage/persistent-storage-azure-file";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["storage","storage/persistent_storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using Azure File {#persistent-storage-using-azure-file}\n\nOpenShift Container Platform supports Microsoft Azure File volumes. You can provision your OpenShift Container Platform cluster with persistent storage using Azure. Some familiarity with Kubernetes and Azure is assumed.\n\nThe Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure. You can provision Azure File volumes dynamically.\n\nPersistent volumes are not bound to a single project or namespace, and you can share them across the OpenShift Container Platform cluster. Persistent volume claims are specific to a project or namespace, and can be requested by users for use in applications.\n\n> [!IMPORTANT]\n> High availability of storage in the infrastructure is left to the underlying storage provider.\n\n> [!IMPORTANT]\n> Azure File volumes use Server Message Block.\n\n> [!IMPORTANT]\n> OpenShift Container Platform 4.13 and later provides automatic migration for the Azure File in-tree volume plugin to its equivalent CSI driver.\n>\n> CSI automatic migration should be seamless. Migration does not change how you use all existing API objects, such as persistent volumes, persistent volume claims, and storage classes. For more information about migration, see \"CSI automatic migration\".\n\n**Additional resources**\n\n- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)\n- [Azure Files](https://azure.microsoft.com/en-us/services/storage/files/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/persistent_storage/persistent-storage-azure-file.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Persistent storage using Azure File {#persistent-storage-using-azure-file}\n\nOpenShift Container Platform supports Microsoft Azure File volumes. You can provision your OpenShift Container Platform cluster with persistent storage using Azure. Some familiarity with Kubernetes and Azure is assumed.\n\nThe Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure. You can provision Azure File volumes dynamically.\n\nPersistent volumes are not bound to a single project or namespace, and you can share them across the OpenShift Container Platform cluster. Persistent volume claims are specific to a project or namespace, and can be requested by users for use in applications.\n\n> [!IMPORTANT]\n> High availability of storage in the infrastructure is left to the underlying storage provider.\n\n> [!IMPORTANT]\n> Azure File volumes use Server Message Block.\n\n> [!IMPORTANT]\n> OpenShift Container Platform 4.13 and later provides automatic migration for the Azure File in-tree volume plugin to its equivalent CSI driver.\n>\n> CSI automatic migration should be seamless. Migration does not change how you use all existing API objects, such as persistent volumes, persistent volume claims, and storage classes. For more information about migration, see \"CSI automatic migration\".\n\n**Additional resources**\n\n- [CSI automatic migration](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration)\n- [Azure Files](https://azure.microsoft.com/en-us/services/storage/files/)\n\n## Create the Azure File share persistent volume claim {#create-azure-file-secret_persistent-storage-azure-file}\n\nTo create the persistent volume claim, you must first define a `Secret` object that contains the Azure account and key. This secret is used in the `PersistentVolume` definition, and will be referenced by the persistent volume claim for use in applications.\n\n**Prerequisites**\n\n- An Azure File share exists.\n- The credentials to access this share, specifically the storage account and key, are available.\n\n**Procedure**\n\n1. Create a `Secret` object that contains the Azure File credentials:\n\n   ```terminal\n   $ oc create secret generic __<secret-name>__ --from-literal=azurestorageaccountname=__<storage-account> --from-literal=azurestorageaccountkey=__<storage-account-key>\n   ```\n\n   where:\n\n   `<secret-name>`\n   :   Specifies the Azure File storage account name.\n\n   `<storage-account-key>`\n   :   Specifies the Azure File storage account key.\n2. Create a `PersistentVolume` object that references the `Secret` object you created:\n\n   ```yaml\n   apiVersion: \"v1\"\n   kind: \"PersistentVolume\"\n   metadata:\n     name: \"pv0001\"\n   spec:\n     capacity:\n       storage: \"5Gi\"\n     accessModes:\n       - \"ReadWriteOnce\"\n     storageClassName: azure-file-sc\n     azureFile:\n       secretName: <secret-name>\n       shareName: <share-name>\n       readOnly: false\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the name of the persistent volume.\n\n   `spec.capacity.storage`\n   :   Specifies the size of this persistent volume, for example `5Gi`.\n\n   `spec.azureFile.secretName`\n   :   Specifies the name of the secret that contains the Azure File share credentials.\n\n   `spec.azureFile.shareName`\n   :   Specifies the name of the Azure File share.\n3. Create a `PersistentVolumeClaim` object that maps to the persistent volume you created:\n\n   ```yaml\n   apiVersion: \"v1\"\n   kind: \"PersistentVolumeClaim\"\n   metadata:\n     name: \"claim1\"\n   spec:\n     accessModes:\n       - \"ReadWriteOnce\"\n     resources:\n       requests:\n         storage: \"5Gi\"\n     storageClassName: azure-file-sc\n     volumeName: \"pv0001\"\n   ```\n\n   where:\n\n   `metadata.name`\n   :   Specifies the name of the persistent volume claim.\n\n   `spec.resources.requests.storage`\n   :   Specifies the size of this persistent volume claim, for example `5Gi`.\n\n   `spec.storageClassName`\n   :   Specifies the name of the existing `PersistentVolume` object that references the Azure File share. Specify the storage class used in the `PersistentVolume` definition.\n\n   `spec.volumeName`\n   :   Specifies the name of the existing `PersistentVolume` object that references the Azure File share.\n\n## Mount the Azure File share in a pod {#create-azure-file-pod_persistent-storage-azure-file}\n\nAfter you create a persistent volume (PV), you can use the PV inside by an application.\n\nThe following example demonstrates mounting this share inside of a pod.\n\n**Prerequisites**\n\n- A persistent volume claim exists that is mapped to the underlying Azure File share.\n\n**Procedure**\n\n- Create a pod that mounts the existing persistent volume claim:\n\n  ```yaml\n  apiVersion: v1\n  kind: Pod\n  metadata:\n    name: pod-name\n  spec:\n    containers:\n      ...\n      volumeMounts:\n      - mountPath: \"/data\"\n        name: azure-file-share\n    volumes:\n      - name: azure-file-share\n        persistentVolumeClaim:\n          claimName: claim1\n  ```\n\n  where:\n\n  `metadata.name`\n  :   Specifies the name of the pod.\n\n  `spec.containers.volumeMounts.mountPath`\n  :   Specifies the path to mount the Azure File share inside the pod, for example `/data`. Do not mount to the container root, `/`, or any path that is the same in the host and the container. This can corrupt your host system if the container is sufficiently privileged, such as the host `/dev/pts` files. It is safe to mount the host by using `/host`.\n\n  `spec.volumes.persistentVolumeClaim.claimName`\n  :   Specifies the name of the `PersistentVolumeClaim` object that has been previously created.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/persistent_storage/persistent-storage-azure-file.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +95,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="persistent-storage-using-azure-file" class="group scroll-mt-20">Persistent storage using Azure File<a href="#persistent-storage-using-azure-file" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>OpenShift Container Platform supports Microsoft Azure File volumes. You can provision your OpenShift Container Platform cluster with persistent storage using Azure. Some familiarity with Kubernetes and Azure is assumed.</p>
       <p>The Kubernetes persistent volume framework allows administrators to provision a cluster with persistent storage and gives users a way to request those resources without having any knowledge of the underlying infrastructure. You can provision Azure File volumes dynamically.</p>
       <p>Persistent volumes are not bound to a single project or namespace, and you can share them across the OpenShift Container Platform cluster. Persistent volume claims are specific to a project or namespace, and can be requested by users for use in applications.</p>
@@ -122,7 +122,78 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-migration#persistent-storage-csi-migration">CSI automatic migration</a></li>
       <li><a href="https://azure.microsoft.com/en-us/services/storage/files/">Azure Files</a></li>
       </ul>
-      <p class="/modules/storage-persistent-storage-azure-file-pod.md"></p>
+      <h2 id="create-azure-file-secret_persistent-storage-azure-file" class="group scroll-mt-20">Create the Azure File share persistent volume claim<a href="#create-azure-file-secret_persistent-storage-azure-file" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To create the persistent volume claim, you must first define a <code>Secret</code> object that contains the Azure account and key. This secret is used in the <code>PersistentVolume</code> definition, and will be referenced by the persistent volume claim for use in applications.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>An Azure File share exists.</li>
+      <li>The credentials to access this share, specifically the storage account and key, are available.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>Secret</code> object that contains the Azure File credentials:
+      <CodeBlock code={"$ oc create secret generic __<secret-name>__ --from-literal=azurestorageaccountname=__<storage-account> --from-literal=azurestorageaccountkey=__<storage-account-key>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;secret-name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Azure File storage account name.</p></dd>
+      <dt class="font-semibold"><code>&lt;storage-account-key&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the Azure File storage account key.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create a <code>PersistentVolume</code> object that references the <code>Secret</code> object you created:
+      <CodeBlock code={"apiVersion: \"v1\"\nkind: \"PersistentVolume\"\nmetadata:\n  name: \"pv0001\"\nspec:\n  capacity:\n    storage: \"5Gi\"\n  accessModes:\n    - \"ReadWriteOnce\"\n  storageClassName: azure-file-sc\n  azureFile:\n    secretName: <secret-name>\n    shareName: <share-name>\n    readOnly: false"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the persistent volume.</p></dd>
+      <dt class="font-semibold"><code>spec.capacity.storage</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the size of this persistent volume, for example <code>5Gi</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.azureFile.secretName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the secret that contains the Azure File share credentials.</p></dd>
+      <dt class="font-semibold"><code>spec.azureFile.shareName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the Azure File share.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create a <code>PersistentVolumeClaim</code> object that maps to the persistent volume you created:
+      <CodeBlock code={"apiVersion: \"v1\"\nkind: \"PersistentVolumeClaim\"\nmetadata:\n  name: \"claim1\"\nspec:\n  accessModes:\n    - \"ReadWriteOnce\"\n  resources:\n    requests:\n      storage: \"5Gi\"\n  storageClassName: azure-file-sc\n  volumeName: \"pv0001\""} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the persistent volume claim.</p></dd>
+      <dt class="font-semibold"><code>spec.resources.requests.storage</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the size of this persistent volume claim, for example <code>5Gi</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.storageClassName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the existing <code>PersistentVolume</code> object that references the Azure File share. Specify the storage class used in the <code>PersistentVolume</code> definition.</p></dd>
+      <dt class="font-semibold"><code>spec.volumeName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the existing <code>PersistentVolume</code> object that references the Azure File share.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      <h2 id="create-azure-file-pod_persistent-storage-azure-file" class="group scroll-mt-20">Mount the Azure File share in a pod<a href="#create-azure-file-pod_persistent-storage-azure-file" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you create a persistent volume (PV), you can use the PV inside by an application.</p>
+      <p>The following example demonstrates mounting this share inside of a pod.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>A persistent volume claim exists that is mapped to the underlying Azure File share.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create a pod that mounts the existing persistent volume claim:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: pod-name\nspec:\n  containers:\n    ...\n    volumeMounts:\n    - mountPath: \"/data\"\n      name: azure-file-share\n  volumes:\n    - name: azure-file-share\n      persistentVolumeClaim:\n        claimName: claim1"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the pod.</p></dd>
+      <dt class="font-semibold"><code>spec.containers.volumeMounts.mountPath</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path to mount the Azure File share inside the pod, for example <code>/data</code>. Do not mount to the container root, <code>/</code>, or any path that is the same in the host and the container. This can corrupt your host system if the container is sufficiently privileged, such as the host <code>/dev/pts</code> files. It is safe to mount the host by using <code>/host</code>.</p></dd>
+      <dt class="font-semibold"><code>spec.volumes.persistentVolumeClaim.claimName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the <code>PersistentVolumeClaim</code> object that has been previously created.</p></dd>
+      </dl>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

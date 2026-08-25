@@ -15,8 +15,15 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"managing-build-output","text":"Managing build output"}];
+const headings = [{"depth":1,"slug":"managing-build-output","text":"Managing build output"},{"depth":2,"slug":"builds-docker-source-build-output_managing-build-output","text":"Build output"},{"depth":2,"slug":"builds-output-image-environment-variables_managing-build-output","text":"Output image environment variables"},{"depth":2,"slug":"builds-output-image-labels_managing-build-output","text":"Output image labels"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cicd/builds/managing-build-output";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +46,7 @@ const pageCategory = ["cicd","cicd/builds"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing build output {#managing-build-output}\n\nUse the following sections for an overview of and instructions for managing build output.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/managing-build-output.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing build output {#managing-build-output}\n\nUse the following sections for an overview of and instructions for managing build output.\n\n## Build output {#builds-docker-source-build-output_managing-build-output}\n\nBuilds that use the docker or\n\nsource-to-image (S2I) strategy result in the creation of a new container image. The image is then pushed to the container image registry specified in the `output` section of the `Build` specification.\n\nIf the output kind is `ImageStreamTag`, then the image will be pushed to the integrated OpenShift image registry and tagged in the specified imagestream. If the output is of type `DockerImage`, then the name of the output reference will be used as a docker push specification. The specification may contain a registry or will default to DockerHub if no registry is specified. If the output section of the build specification is empty, then the image will not be pushed at the end of the build.\n\n```yaml {title=\"Output to an ImageStreamTag\"}\nspec:\n  output:\n    to:\n      kind: \"ImageStreamTag\"\n      name: \"sample-image:latest\"\n```\n\n```yaml {title=\"Output to a docker Push Specification\"}\nspec:\n  output:\n    to:\n      kind: \"DockerImage\"\n      name: \"my-registry.mycompany.com:5000/myimages/myimage:tag\"\n```\n\n## Output image environment variables {#builds-output-image-environment-variables_managing-build-output}\n\ndocker and\n\nsource-to-image (S2I) strategy builds set the following environment variables on output images:\n\n| Variable | Description |\n| --- | --- |\n| `OPENSHIFT_BUILD_NAME` | Name of the build |\n| `OPENSHIFT_BUILD_NAMESPACE` | Namespace of the build |\n| `OPENSHIFT_BUILD_SOURCE` | The source URL of the build |\n| `OPENSHIFT_BUILD_REFERENCE` | The Git reference used in the build |\n| `OPENSHIFT_BUILD_COMMIT` | Source commit used in the build |\n\nAdditionally, any user-defined environment variable, for example those configured with S2I or docker\n\nstrategy options, will also be part of the output image environment variable list.\n\n## Output image labels {#builds-output-image-labels_managing-build-output}\n\ndocker and\n\nsource-to-image (S2I) builds set the following labels on output images:\n\n| Label | Description |\n| --- | --- |\n| `io.openshift.build.commit.author` | Author of the source commit used in the build |\n| `io.openshift.build.commit.date` | Date of the source commit used in the build |\n| `io.openshift.build.commit.id` | Hash of the source commit used in the build |\n| `io.openshift.build.commit.message` | Message of the source commit used in the build |\n| `io.openshift.build.commit.ref` | Branch or reference specified in the source |\n| `io.openshift.build.source-location` | Source URL for the build |\n\nYou can also use the `BuildConfig.spec.output.imageLabels` field to specify a list of custom labels that will be applied to each image built from the build configuration.\n\n```yaml {title=\"Custom labels for built images\"}\nspec:\n  output:\n    to:\n      kind: \"ImageStreamTag\"\n      name: \"my-image:latest\"\n    imageLabels:\n    - name: \"vendor\"\n      value: \"MyCompany\"\n    - name: \"authoritative-source-url\"\n      value: \"registry.mycompany.com\"\n```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/managing-build-output.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +98,87 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="managing-build-output" class="group scroll-mt-20">Managing build output<a href="#managing-build-output" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Use the following sections for an overview of and instructions for managing build output.</p>
-      <p class="/modules/builds-docker-source-build-output.md"></p>
-      <p class="/modules/builds-output-image-environment-variables.md"></p>
-      <p class="/modules/builds-output-image-labels.md"></p>
+      <h2 id="builds-docker-source-build-output_managing-build-output" class="group scroll-mt-20">Build output<a href="#builds-docker-source-build-output_managing-build-output" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>Builds that use the docker or</p>
+      <p>source-to-image (S2I) strategy result in the creation of a new container image. The image is then pushed to the container image registry specified in the <code>output</code> section of the <code>Build</code> specification.</p>
+      <p>If the output kind is <code>ImageStreamTag</code>, then the image will be pushed to the integrated OpenShift image registry and tagged in the specified imagestream. If the output is of type <code>DockerImage</code>, then the name of the output reference will be used as a docker push specification. The specification may contain a registry or will default to DockerHub if no registry is specified. If the output section of the build specification is empty, then the image will not be pushed at the end of the build.</p>
+      <CodeBlock code={"spec:\n  output:\n    to:\n      kind: \"ImageStreamTag\"\n      name: \"sample-image:latest\""} lang="yaml" title="Output to an ImageStreamTag" />
+      <CodeBlock code={"spec:\n  output:\n    to:\n      kind: \"DockerImage\"\n      name: \"my-registry.mycompany.com:5000/myimages/myimage:tag\""} lang="yaml" title="Output to a docker Push Specification" />
+      <h2 id="builds-output-image-environment-variables_managing-build-output" class="group scroll-mt-20">Output image environment variables<a href="#builds-output-image-environment-variables_managing-build-output" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>docker and</p>
+      <p>source-to-image (S2I) strategy builds set the following environment variables on output images:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Variable</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>OPENSHIFT_BUILD_NAME</code></TableCell>
+      <TableCell>Name of the build</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OPENSHIFT_BUILD_NAMESPACE</code></TableCell>
+      <TableCell>Namespace of the build</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OPENSHIFT_BUILD_SOURCE</code></TableCell>
+      <TableCell>The source URL of the build</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OPENSHIFT_BUILD_REFERENCE</code></TableCell>
+      <TableCell>The Git reference used in the build</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>OPENSHIFT_BUILD_COMMIT</code></TableCell>
+      <TableCell>Source commit used in the build</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>Additionally, any user-defined environment variable, for example those configured with S2I or docker</p>
+      <p>strategy options, will also be part of the output image environment variable list.</p>
+      <h2 id="builds-output-image-labels_managing-build-output" class="group scroll-mt-20">Output image labels<a href="#builds-output-image-labels_managing-build-output" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>docker and</p>
+      <p>source-to-image (S2I) builds set the following labels on output images:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Label</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>io.openshift.build.commit.author</code></TableCell>
+      <TableCell>Author of the source commit used in the build</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>io.openshift.build.commit.date</code></TableCell>
+      <TableCell>Date of the source commit used in the build</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>io.openshift.build.commit.id</code></TableCell>
+      <TableCell>Hash of the source commit used in the build</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>io.openshift.build.commit.message</code></TableCell>
+      <TableCell>Message of the source commit used in the build</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>io.openshift.build.commit.ref</code></TableCell>
+      <TableCell>Branch or reference specified in the source</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>io.openshift.build.source-location</code></TableCell>
+      <TableCell>Source URL for the build</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>You can also use the <code>BuildConfig.spec.output.imageLabels</code> field to specify a list of custom labels that will be applied to each image built from the build configuration.</p>
+      <CodeBlock code={"spec:\n  output:\n    to:\n      kind: \"ImageStreamTag\"\n      name: \"my-image:latest\"\n    imageLabels:\n    - name: \"vendor\"\n      value: \"MyCompany\"\n    - name: \"authoritative-source-url\"\n      value: \"registry.mycompany.com\""} lang="yaml" title="Custom labels for built images" />
     </article>
   </MarkdownContentStack>
 </DocsLayout>

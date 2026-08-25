@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"catalogd","text":"Catalogd"}];
+const headings = [{"depth":1,"slug":"catalogd","text":"Catalogd"},{"depth":2,"slug":"olmv1-about-catalogs_catalogd","text":"About catalogs in OLM v1"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/extensions/arch/catalogd";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Catalogd";
-const description = "{{ olmv1_first }} uses the catalogd component and its resources to manage Operator and extension catalogs." || undefined;
+const description = "Operator Lifecycle Manager (OLM) v1 uses the catalogd component and its resources to manage Operator and extension catalogs." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["extensions","extensions/arch"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Catalogd {#catalogd}\n\n{{ olmv1_first }} uses the catalogd component and its resources to manage Operator and extension catalogs.\n\n**Additional resources**\n\n- [File-based catalogs](/openshift-docs-markdown/extensions/catalogs/fbc#fbc)\n- [Adding a catalog to a cluster](/openshift-docs-markdown/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs)\n- [Red Hat-provided catalogs](/openshift-docs-markdown/extensions/catalogs/rh-catalogs#rh-catalogs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/arch/catalogd.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Catalogd {#catalogd}\n\nOperator Lifecycle Manager (OLM) v1 uses the catalogd component and its resources to manage Operator and extension catalogs.\n\n## About catalogs in OLM v1 {#olmv1-about-catalogs_catalogd}\n\nYou can discover installable content by querying a catalog for Kubernetes extensions, such as Operators and controllers, by using the catalogd component.\n\nCatalogd is a Kubernetes extension that unpacks catalog content for on-cluster clients and is part of the Operator Lifecycle Manager (OLM) v1 suite of microservices. Currently, catalogd unpacks catalog content that is packaged and distributed as container images.\n\n**Additional resources**\n\n- [File-based catalogs](/openshift-docs-markdown/extensions/catalogs/fbc#fbc)\n- [Adding a catalog to a cluster](/openshift-docs-markdown/extensions/catalogs/managing-catalogs#olmv1-adding-a-catalog-to-a-cluster_managing-catalogs)\n- [Red Hat-provided catalogs](/openshift-docs-markdown/extensions/catalogs/rh-catalogs#rh-catalogs)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/extensions/arch/catalogd.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +91,10 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="catalogd" class="group scroll-mt-20">Catalogd<a href="#catalogd" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>{"{"}{"{"} olmv1_first {"}"}{"}"} uses the catalogd component and its resources to manage Operator and extension catalogs.</p>
-      <p class="/modules/olmv1-about-catalogs.md"></p>
+      <p>Operator Lifecycle Manager (OLM) v1 uses the catalogd component and its resources to manage Operator and extension catalogs.</p>
+      <h2 id="olmv1-about-catalogs_catalogd" class="group scroll-mt-20">About catalogs in OLM v1<a href="#olmv1-about-catalogs_catalogd" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can discover installable content by querying a catalog for Kubernetes extensions, such as Operators and controllers, by using the catalogd component.</p>
+      <p>Catalogd is a Kubernetes extension that unpacks catalog content for on-cluster clients and is part of the Operator Lifecycle Manager (OLM) v1 suite of microservices. Currently, catalogd unpacks catalog content that is packaged and distributed as container images.</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/extensions/catalogs/fbc#fbc">File-based catalogs</a></li>

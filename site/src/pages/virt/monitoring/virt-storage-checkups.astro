@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"virt-storage-checkups","text":"Storage checkups"}];
+const headings = [{"depth":1,"slug":"virt-storage-checkups","text":"Storage checkups"},{"depth":2,"slug":"virt-retain-storage-checkup-resources_virt-storage-checkups","text":"Retaining resources for troubleshooting storage checkups"},{"depth":2,"slug":"virt-storage-checkup-web-console_virt-storage-checkups","text":"Running a storage checkup by using the web console"},{"depth":2,"slug":"virt-checking-storage-configuration_virt-storage-checkups","text":"Running a storage checkup by using the CLI"},{"depth":2,"slug":"virt-troubleshoot-storage-checkup_virt-storage-checkups","text":"Troubleshooting a failed storage checkup"},{"depth":2,"slug":"virt-troubleshoot-storage-checkup-error-codes_virt-storage-checkups","text":"Storage checkup error codes"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/monitoring/virt-storage-checkups";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Storage checkups";
-const description = "You can use a storage checkup to verify that the cluster storage is optimally configured for {{ VirtProductName }}." || undefined;
+const description = "You can use a storage checkup to verify that the cluster storage is optimally configured for OpenShift Virtualization." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["virt","virt/monitoring"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Storage checkups {#virt-storage-checkups}\n\nYou can use a storage checkup to verify that the cluster storage is optimally configured for {{ VirtProductName }}.\n\n**Additional resources**\n\n- [Collecting data for Red Hat Support](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-collecting-virt-data)\n- [Using the `must-gather` tool for {{ VirtProductName }}](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/monitoring/virt-storage-checkups.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Storage checkups {#virt-storage-checkups}\n\nYou can use a storage checkup to verify that the cluster storage is optimally configured for OpenShift Virtualization.\n\nRunning a predefined checkup in an existing namespace involves setting up a service account for the checkup, creating the `Role` and `RoleBinding` objects for the service account, enabling permissions for the checkup, and creating the input config map and the checkup job. You can run a checkup multiple times.\n\n> [!IMPORTANT]\n> You must always:\n>\n> - Verify that the checkup image is from a trustworthy source before applying it.\n> - Review the checkup permissions before creating the `Role` and `RoleBinding` objects.\n\n## Retaining resources for troubleshooting storage checkups {#virt-retain-storage-checkup-resources_virt-storage-checkups}\n\nThe predefined storage checkup includes `skipTeardown` configuration options, which control resource clean up after a storage checkup runs. By default, the `skipTeardown` field value is `Never`, which means that the checkup always performs teardown steps and deletes all resources after the checkup runs.\n\nYou can retain resources for further inspection in case a failure occurs by setting the `skipTeardown` field to `onfailure`.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Run the following command to edit the `storage-checkup-config` config map:\n\n   ```terminal\n   $ oc edit configmap storage-checkup-config -n <checkup_namespace>\n   ```\n2. Configure the `skipTeardown` field to use the `onfailure` value. You can do this by modifying the `storage-checkup-config` config map, stored in the `storage_checkup.yaml` file:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: storage-checkup-config\n     namespace: <checkup_namespace>\n   data:\n     spec.param.skipTeardown: onfailure\n   # ...\n   ```\n3. Reapply the `storage-checkup-config` config map by running the following command:\n\n   ```terminal\n   $ oc apply -f storage_checkup.yaml -n <checkup_namespace>\n   ```\n\n## Running a storage checkup by using the web console {#virt-storage-checkup-web-console_virt-storage-checkups}\n\nYou can run a storage checkup to validate that storage is working correctly for virtual machines.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **Checkups** in the web console.\n2. Click the **Storage** tab.\n3. Click **Install permissions**.\n4. Click **Run checkup**.\n5. Enter a name for the checkup in the **Name** field.\n6. Enter a timeout value for the checkup in the **Timeout (minutes)** fields.\n7. Click **Run**.\n\n**Result**\n\nYou can view the status of the storage checkup in the **Checkups** list on the **Storage** tab. Click on the name of the checkup for more details.\n\n## Running a storage checkup by using the CLI {#virt-checking-storage-configuration_virt-storage-checkups}\n\nUse a predefined checkup to verify that the OpenShift Container Platform cluster storage is configured optimally to run OpenShift Virtualization workloads.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- The cluster administrator has created the required `cluster-reader` permissions for the storage checkup service account and namespace, such as in the following example:\n\n  ```yaml\n  apiVersion: rbac.authorization.k8s.io/v1\n  kind: ClusterRoleBinding\n  metadata:\n    name: kubevirt-storage-checkup-clustereader\n  roleRef:\n    apiGroup: rbac.authorization.k8s.io\n    kind: ClusterRole\n    name: cluster-reader\n  subjects:\n  - kind: ServiceAccount\n    name: storage-checkup-sa\n    namespace: <target_namespace>\n  ```\n\n  where:\n\n  `<target_namespace>`\n  :   Specifies the namespace where the checkup is to be run.\n\n**Procedure**\n\n1. Create a `ServiceAccount`, `Role`, and `RoleBinding` manifest file for the storage checkup.\n\n   Example service account, role, and rolebinding manifest:\n\n   ```yaml\n   ---\n   apiVersion: v1\n   kind: ServiceAccount\n   metadata:\n     name: storage-checkup-sa\n   ---\n   apiVersion: rbac.authorization.k8s.io/v1\n   kind: Role\n   metadata:\n     name: storage-checkup-role\n   rules:\n     - apiGroups: [ \"\" ]\n       resources: [ \"configmaps\" ]\n       verbs: [\"get\", \"update\"]\n     - apiGroups: [ \"kubevirt.io\" ]\n       resources: [ \"virtualmachines\" ]\n       verbs: [ \"create\", \"delete\" ]\n     - apiGroups: [ \"kubevirt.io\" ]\n       resources: [ \"virtualmachineinstances\" ]\n       verbs: [ \"get\" ]\n     - apiGroups: [ \"subresources.kubevirt.io\" ]\n       resources: [ \"virtualmachineinstances/addvolume\", \"virtualmachineinstances/removevolume\" ]\n       verbs: [ \"update\" ]\n     - apiGroups: [ \"kubevirt.io\" ]\n       resources: [ \"virtualmachineinstancemigrations\" ]\n       verbs: [ \"create\" ]\n     - apiGroups: [ \"cdi.kubevirt.io\" ]\n       resources: [ \"datavolumes\" ]\n       verbs: [ \"create\", \"delete\" ]\n     - apiGroups: [ \"\" ]\n       resources: [ \"persistentvolumeclaims\" ]\n       verbs: [ \"delete\" ]\n   ---\n   apiVersion: rbac.authorization.k8s.io/v1\n   kind: RoleBinding\n   metadata:\n     name: storage-checkup-role\n   subjects:\n     - kind: ServiceAccount\n       name: storage-checkup-sa\n   roleRef:\n     apiGroup: rbac.authorization.k8s.io\n     kind: Role\n     name: storage-checkup-role\n   ```\n2. Apply the `ServiceAccount`, `Role`, and `RoleBinding` manifest in the target namespace:\n\n   ```terminal\n   $ oc apply -n <target_namespace> -f <storage_sa_roles_rolebinding>.yaml\n   ```\n3. Create a `ConfigMap` and `Job` manifest file. The config map contains the input parameters for the checkup job.\n\n   Example input config map and job manifest:\n\n   ```yaml\n   ---\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: storage-checkup-config\n     namespace: $CHECKUP_NAMESPACE\n   data:\n     spec.timeout: 10m\n     spec.param.storageClass: ocs-storagecluster-ceph-rbd-virtualization\n     spec.param.vmiTimeout: 3m\n   ---\n   apiVersion: batch/v1\n   kind: Job\n   metadata:\n     name: storage-checkup\n     namespace: $CHECKUP_NAMESPACE\n   spec:\n     backoffLimit: 0\n     template:\n       spec:\n         serviceAccount: storage-checkup-sa\n         restartPolicy: Never\n         containers:\n           - name: storage-checkup\n             image: quay.io/kiagnose/kubevirt-storage-checkup:main\n             imagePullPolicy: Always\n             env:\n               - name: CONFIGMAP_NAMESPACE\n                 value: $CHECKUP_NAMESPACE\n               - name: CONFIGMAP_NAME\n                 value: storage-checkup-config\n   ```\n4. Apply the `ConfigMap` and `Job` manifest file in the target namespace to run the checkup:\n\n   ```terminal\n   $ oc apply -n <target_namespace> -f <storage_configmap_job>.yaml\n   ```\n5. Wait for the job to complete:\n\n   ```terminal\n   $ oc wait job storage-checkup -n <target_namespace> --for condition=complete --timeout 10m\n   ```\n6. Review the results of the checkup by running the following command:\n\n   ```terminal\n   $ oc get configmap storage-checkup-config -n <target_namespace> -o yaml\n   ```\n\n   Example output config map (success):\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: storage-checkup-config\n     labels:\n       kiagnose/checkup-type: kubevirt-storage\n   data:\n     spec.timeout: 10m\n     status.succeeded: \"true\"\n     status.failureReason: \"\"\n     status.startTimestamp: \"2023-07-31T13:14:38Z\"\n     status.completionTimestamp: \"2023-07-31T13:19:41Z\"\n     status.result.cnvVersion: 4.21.2\n     status.result.defaultStorageClass: trident-nfs\n     status.result.goldenImagesNoDataSource: <data_import_cron_list>\n     status.result.goldenImagesNotUpToDate: <data_import_cron_list>\n     status.result.ocpVersion: 4.21.0\n     status.result.pvcBound: \"true\"\n     status.result.storageProfileMissingVolumeSnapshotClass: <storage_class_list>\n     status.result.storageProfilesWithEmptyClaimPropertySets: <storage_profile_list>\n     status.result.storageProfilesWithSmartClone: <storage_profile_list>\n     status.result.storageProfilesWithSpecClaimPropertySets: <storage_profile_list>\n     status.result.storageProfilesWithRWX: |-\n       ocs-storagecluster-ceph-rbd\n       ocs-storagecluster-ceph-rbd-virtualization\n       ocs-storagecluster-cephfs\n       trident-iscsi\n       trident-minio\n       trident-nfs\n       windows-vms\n     status.result.vmBootFromGoldenImage: VMI \"vmi-under-test-dhkb8\" successfully booted\n     status.result.vmHotplugVolume: |-\n       VMI \"vmi-under-test-dhkb8\" hotplug volume ready\n       VMI \"vmi-under-test-dhkb8\" hotplug volume removed\n     status.result.vmLiveMigration: VMI \"vmi-under-test-dhkb8\" migration completed\n     status.result.vmVolumeClone: 'DV cloneType: \"csi-clone\"'\n     status.result.vmsWithNonVirtRbdStorageClass: <vm_list>\n     status.result.vmsWithUnsetEfsStorageClass: <vm_list>\n   ```\n\n- `data.status.succeeded` defines if the checkup is successful (`true`) or not (`false`).\n- `data.status.failureReason` defines the reason for failure if the checkup fails.\n- `data.status.startTimestamp` defines the time when the checkup started, in RFC 3339 time format.\n- `data.status.completionTimestamp` defines the time when the checkup has completed, in RFC 3339 time format.\n- `data.status.result.cnvVersion` defines the OpenShift Virtualization version.\n- `data.status.result.defaultStorageClass` defines if there is a default storage class.\n- `data.status.result.goldenImagesNoDataSource` defines the list of golden images whose data source is not ready.\n- `data.status.result.goldenImagesNotUpToDate` defines the list of golden images whose data import cron is not up-to-date.\n- `data.status.result.ocpVersion` defines the OpenShift Container Platform version.\n- `data.status.result.pvcBound` defines if a PVC of 10Mi has been created and bound by the provisioner.\n- `data.status.result.storageProfileMissingVolumeSnapshotClass` defines the list of storage profiles using snapshot-based clone but missing VolumeSnapshotClass.\n- `data.status.result.storageProfilesWithEmptyClaimPropertySets` defines the list of storage profiles with unknown provisioners.\n- `data.status.result.storageProfilesWithSmartClone` defines the list of storage profiles with smart clone support (CSI/snapshot).\n- `data.status.result.storageProfilesWithSpecClaimPropertySets` defines the list of storage profiles spec-overriden claimPropertySets.\n- `data.status.result.vmsWithNonVirtRbdStorageClass` defines the list of virtual machines that use the Ceph RBD storage class when the virtualization storage class exists.\n- `data.status.result.vmsWithUnsetEfsStorageClass` defines the list of virtual machines that use an Elastic File Store (EFS) storage class where the GID and UID are not set in the storage class.\n\n  1. Delete the job and config map that you previously created by running the following commands:\n\n     ```terminal\n     $ oc delete job -n <target_namespace> storage-checkup\n     ```\n\n     ```terminal\n     $ oc delete config-map -n <target_namespace> storage-checkup-config\n     ```\n  2. Optional: If you do not plan to run another checkup, delete the `ServiceAccount`, `Role`, and `RoleBinding` manifest:\n\n     ```terminal\n     $ oc delete -f <storage_sa_roles_rolebinding>.yaml\n     ```\n\n## Troubleshooting a failed storage checkup {#virt-troubleshoot-storage-checkup_virt-storage-checkups}\n\nIf a storage checkup fails, there are steps that you can take to identify the reason for failure.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have downloaded the directory provided by the `must-gather` tool.\n\n**Procedure**\n\n1. Review the `status.failureReason` field in the `storage-checkup-config` config map by running the following command and observing the output:\n\n   ```terminal\n   $ oc get configmap storage-checkup-config -n <namespace> -o yaml\n   ```\n\n   Example output config map:\n\n   ```yaml\n   apiVersion: v1\n   kind: ConfigMap\n   metadata:\n     name: storage-checkup-config\n     labels:\n       kiagnose/checkup-type: kubevirt-storage\n   data:\n     spec.timeout: 10m\n     status.succeeded: \"false\"\n     status.failureReason: \"ErrNoDefaultStorageClass\"\n   # ...\n   ```\n\n   - If the checkup has failed, the `status.succeeded` value is `false`.\n   - If the checkup has failed, the `status.failureReason` field contains an error message. In this example output, the `ErrNoDefaultStorageClass` error message means that no default storage class is configured.\n2. Search the directory provided by the `must-gather` tool for logs, events, or terms related to the error in the `data.status.failureReason` field value.\n\n**Additional resources**\n\n- [Collecting data for Red Hat Support](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-collecting-virt-data)\n- [Using the `must-gather` tool for OpenShift Virtualization](/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data)\n\n## Storage checkup error codes {#virt-troubleshoot-storage-checkup-error-codes_virt-storage-checkups}\n\nStorage checkup error codes might appear in the `storage-checkup-config` config map after a storage checkup fails.\n\n| Error code | Meaning |\n| --- | --- |\n| `ErrNoDefaultStorageClass` | No default storage class is configured. |\n| `ErrPvcNotBound` | One or more persistent volume claims (PVCs) failed to bind. |\n| `ErrMultipleDefaultStorageClasses` | Multiple default storage classes are configured. |\n| `ErrEmptyClaimPropertySets` | There are `StorageProfile` objects containing empty `ClaimPropertySets` specs. |\n| `ErrVMsWithUnsetEfsStorageClass` | There are VMs using elastic file system (EFS) storage classes, where the GID and UID are not set in the `StorageClass` object. |\n| `ErrGoldenImagesNotUpToDate` | One or more golden images has a `DataImportCron` object that is either not up to date or has a `DataSource` object which is not ready. |\n| `ErrGoldenImageNoDataSource` | The `DataSource` object of the golden image has either no PVC or no snapshot source configured. |\n| `ErrBootFailedOnSomeVMs` | Some VMs failed to boot within the expected time. |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/monitoring/virt-storage-checkups.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +85,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,19 +100,200 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-storage-checkups" class="group scroll-mt-20">Storage checkups<a href="#virt-storage-checkups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>You can use a storage checkup to verify that the cluster storage is optimally configured for {"{"}{"{"} VirtProductName {"}"}{"}"}.</p>
-      <p class="/snippets/virt-about-running-checkups.md"></p>
-      <p class="/modules/virt-retain-storage-checkup-resources.md"></p>
-      <p class="/modules/virt-storage-checkup-web-console.md"></p>
-      <p class="/modules/virt-checking-storage-configuration.md"></p>
-      <p class="/modules/virt-troubleshoot-storage-checkup.md"></p>
+      <p>You can use a storage checkup to verify that the cluster storage is optimally configured for OpenShift Virtualization.</p>
+      <p>Running a predefined checkup in an existing namespace involves setting up a service account for the checkup, creating the <code>Role</code> and <code>RoleBinding</code> objects for the service account, enabling permissions for the checkup, and creating the input config map and the checkup job. You can run a checkup multiple times.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You must always:</p>
+          <ul>
+          <li>Verify that the checkup image is from a trustworthy source before applying it.</li>
+          <li>Review the checkup permissions before creating the <code>Role</code> and <code>RoleBinding</code> objects.</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <h2 id="virt-retain-storage-checkup-resources_virt-storage-checkups" class="group scroll-mt-20">Retaining resources for troubleshooting storage checkups<a href="#virt-retain-storage-checkup-resources_virt-storage-checkups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The predefined storage checkup includes <code>skipTeardown</code> configuration options, which control resource clean up after a storage checkup runs. By default, the <code>skipTeardown</code> field value is <code>Never</code>, which means that the checkup always performs teardown steps and deletes all resources after the checkup runs.</p>
+      <p>You can retain resources for further inspection in case a failure occurs by setting the <code>skipTeardown</code> field to <code>onfailure</code>.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run the following command to edit the <code>storage-checkup-config</code> config map:
+      <CodeBlock code={"$ oc edit configmap storage-checkup-config -n <checkup_namespace>"} lang="terminal" />
+      </li>
+      <li>
+      Configure the <code>skipTeardown</code> field to use the <code>onfailure</code> value. You can do this by modifying the <code>storage-checkup-config</code> config map, stored in the <code>storage_checkup.yaml</code> file:
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: storage-checkup-config\n  namespace: <checkup_namespace>\ndata:\n  spec.param.skipTeardown: onfailure\n# ..."} lang="yaml" />
+      </li>
+      <li>
+      Reapply the <code>storage-checkup-config</code> config map by running the following command:
+      <CodeBlock code={"$ oc apply -f storage_checkup.yaml -n <checkup_namespace>"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-storage-checkup-web-console_virt-storage-checkups" class="group scroll-mt-20">Running a storage checkup by using the web console<a href="#virt-storage-checkup-web-console_virt-storage-checkups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can run a storage checkup to validate that storage is working correctly for virtual machines.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>Checkups</strong> in the web console.</li>
+      <li>Click the <strong>Storage</strong> tab.</li>
+      <li>Click <strong>Install permissions</strong>.</li>
+      <li>Click <strong>Run checkup</strong>.</li>
+      <li>Enter a name for the checkup in the <strong>Name</strong> field.</li>
+      <li>Enter a timeout value for the checkup in the <strong>Timeout (minutes)</strong> fields.</li>
+      <li>Click <strong>Run</strong>.</li>
+      </ol>
+      <p><strong>Result</strong></p>
+      <p>You can view the status of the storage checkup in the <strong>Checkups</strong> list on the <strong>Storage</strong> tab. Click on the name of the checkup for more details.</p>
+      <h2 id="virt-checking-storage-configuration_virt-storage-checkups" class="group scroll-mt-20">Running a storage checkup by using the CLI<a href="#virt-checking-storage-configuration_virt-storage-checkups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use a predefined checkup to verify that the OpenShift Container Platform cluster storage is configured optimally to run OpenShift Virtualization workloads.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>
+      The cluster administrator has created the required <code>cluster-reader</code> permissions for the storage checkup service account and namespace, such as in the following example:
+      <CodeBlock code={"apiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRoleBinding\nmetadata:\n  name: kubevirt-storage-checkup-clustereader\nroleRef:\n  apiGroup: rbac.authorization.k8s.io\n  kind: ClusterRole\n  name: cluster-reader\nsubjects:\n- kind: ServiceAccount\n  name: storage-checkup-sa\n  namespace: <target_namespace> "} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;target_namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the namespace where the checkup is to be run.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>ServiceAccount</code>, <code>Role</code>, and <code>RoleBinding</code> manifest file for the storage checkup.
+      <p>Example service account, role, and rolebinding manifest:</p>
+      <CodeBlock code={"---\napiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: storage-checkup-sa\n---\napiVersion: rbac.authorization.k8s.io/v1\nkind: Role\nmetadata:\n  name: storage-checkup-role\nrules:\n  - apiGroups: [ \"\" ]\n    resources: [ \"configmaps\" ]\n    verbs: [\"get\", \"update\"]\n  - apiGroups: [ \"kubevirt.io\" ]\n    resources: [ \"virtualmachines\" ]\n    verbs: [ \"create\", \"delete\" ]\n  - apiGroups: [ \"kubevirt.io\" ]\n    resources: [ \"virtualmachineinstances\" ]\n    verbs: [ \"get\" ]\n  - apiGroups: [ \"subresources.kubevirt.io\" ]\n    resources: [ \"virtualmachineinstances/addvolume\", \"virtualmachineinstances/removevolume\" ]\n    verbs: [ \"update\" ]\n  - apiGroups: [ \"kubevirt.io\" ]\n    resources: [ \"virtualmachineinstancemigrations\" ]\n    verbs: [ \"create\" ]\n  - apiGroups: [ \"cdi.kubevirt.io\" ]\n    resources: [ \"datavolumes\" ]\n    verbs: [ \"create\", \"delete\" ]\n  - apiGroups: [ \"\" ]\n    resources: [ \"persistentvolumeclaims\" ]\n    verbs: [ \"delete\" ]\n---\napiVersion: rbac.authorization.k8s.io/v1\nkind: RoleBinding\nmetadata:\n  name: storage-checkup-role\nsubjects:\n  - kind: ServiceAccount\n    name: storage-checkup-sa\nroleRef:\n  apiGroup: rbac.authorization.k8s.io\n  kind: Role\n  name: storage-checkup-role"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>ServiceAccount</code>, <code>Role</code>, and <code>RoleBinding</code> manifest in the target namespace:
+      <CodeBlock code={"$ oc apply -n <target_namespace> -f <storage_sa_roles_rolebinding>.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Create a <code>ConfigMap</code> and <code>Job</code> manifest file. The config map contains the input parameters for the checkup job.
+      <p>Example input config map and job manifest:</p>
+      <CodeBlock code={"---\napiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: storage-checkup-config\n  namespace: $CHECKUP_NAMESPACE\ndata:\n  spec.timeout: 10m\n  spec.param.storageClass: ocs-storagecluster-ceph-rbd-virtualization\n  spec.param.vmiTimeout: 3m\n---\napiVersion: batch/v1\nkind: Job\nmetadata:\n  name: storage-checkup\n  namespace: $CHECKUP_NAMESPACE\nspec:\n  backoffLimit: 0\n  template:\n    spec:\n      serviceAccount: storage-checkup-sa\n      restartPolicy: Never\n      containers:\n        - name: storage-checkup\n          image: quay.io/kiagnose/kubevirt-storage-checkup:main\n          imagePullPolicy: Always\n          env:\n            - name: CONFIGMAP_NAMESPACE\n              value: $CHECKUP_NAMESPACE\n            - name: CONFIGMAP_NAME\n              value: storage-checkup-config"} lang="yaml" />
+      </li>
+      <li>
+      Apply the <code>ConfigMap</code> and <code>Job</code> manifest file in the target namespace to run the checkup:
+      <CodeBlock code={"$ oc apply -n <target_namespace> -f <storage_configmap_job>.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the job to complete:
+      <CodeBlock code={"$ oc wait job storage-checkup -n <target_namespace> --for condition=complete --timeout 10m"} lang="terminal" />
+      </li>
+      <li>
+      Review the results of the checkup by running the following command:
+      <CodeBlock code={"$ oc get configmap storage-checkup-config -n <target_namespace> -o yaml"} lang="terminal" />
+      <p>Example output config map (success):</p>
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: storage-checkup-config\n  labels:\n    kiagnose/checkup-type: kubevirt-storage\ndata:\n  spec.timeout: 10m\n  status.succeeded: \"true\" \n  status.failureReason: \"\" \n  status.startTimestamp: \"2023-07-31T13:14:38Z\" \n  status.completionTimestamp: \"2023-07-31T13:19:41Z\" \n  status.result.cnvVersion: 4.21.2 \n  status.result.defaultStorageClass: trident-nfs\n  status.result.goldenImagesNoDataSource: <data_import_cron_list> \n  status.result.goldenImagesNotUpToDate: <data_import_cron_list> \n  status.result.ocpVersion: 4.21.0\n  status.result.pvcBound: \"true\"\n  status.result.storageProfileMissingVolumeSnapshotClass: <storage_class_list> \n  status.result.storageProfilesWithEmptyClaimPropertySets: <storage_profile_list> \n  status.result.storageProfilesWithSmartClone: <storage_profile_list>\n  status.result.storageProfilesWithSpecClaimPropertySets: <storage_profile_list>\n  status.result.storageProfilesWithRWX: |-\n    ocs-storagecluster-ceph-rbd\n    ocs-storagecluster-ceph-rbd-virtualization\n    ocs-storagecluster-cephfs\n    trident-iscsi\n    trident-minio\n    trident-nfs\n    windows-vms\n  status.result.vmBootFromGoldenImage: VMI \"vmi-under-test-dhkb8\" successfully booted\n  status.result.vmHotplugVolume: |-\n    VMI \"vmi-under-test-dhkb8\" hotplug volume ready\n    VMI \"vmi-under-test-dhkb8\" hotplug volume removed\n  status.result.vmLiveMigration: VMI \"vmi-under-test-dhkb8\" migration completed\n  status.result.vmVolumeClone: 'DV cloneType: \"csi-clone\"'\n  status.result.vmsWithNonVirtRbdStorageClass: <vm_list>\n  status.result.vmsWithUnsetEfsStorageClass: <vm_list>"} lang="yaml" />
+      </li>
+      </ol>
+      <ul>
+      <li><code>data.status.succeeded</code> defines if the checkup is successful (<code>true</code>) or not (<code>false</code>).</li>
+      <li><code>data.status.failureReason</code> defines the reason for failure if the checkup fails.</li>
+      <li><code>data.status.startTimestamp</code> defines the time when the checkup started, in RFC 3339 time format.</li>
+      <li><code>data.status.completionTimestamp</code> defines the time when the checkup has completed, in RFC 3339 time format.</li>
+      <li><code>data.status.result.cnvVersion</code> defines the OpenShift Virtualization version.</li>
+      <li><code>data.status.result.defaultStorageClass</code> defines if there is a default storage class.</li>
+      <li><code>data.status.result.goldenImagesNoDataSource</code> defines the list of golden images whose data source is not ready.</li>
+      <li><code>data.status.result.goldenImagesNotUpToDate</code> defines the list of golden images whose data import cron is not up-to-date.</li>
+      <li><code>data.status.result.ocpVersion</code> defines the OpenShift Container Platform version.</li>
+      <li><code>data.status.result.pvcBound</code> defines if a PVC of 10Mi has been created and bound by the provisioner.</li>
+      <li><code>data.status.result.storageProfileMissingVolumeSnapshotClass</code> defines the list of storage profiles using snapshot-based clone but missing VolumeSnapshotClass.</li>
+      <li><code>data.status.result.storageProfilesWithEmptyClaimPropertySets</code> defines the list of storage profiles with unknown provisioners.</li>
+      <li><code>data.status.result.storageProfilesWithSmartClone</code> defines the list of storage profiles with smart clone support (CSI/snapshot).</li>
+      <li><code>data.status.result.storageProfilesWithSpecClaimPropertySets</code> defines the list of storage profiles spec-overriden claimPropertySets.</li>
+      <li><code>data.status.result.vmsWithNonVirtRbdStorageClass</code> defines the list of virtual machines that use the Ceph RBD storage class when the virtualization storage class exists.</li>
+      <li>
+      <code>data.status.result.vmsWithUnsetEfsStorageClass</code> defines the list of virtual machines that use an Elastic File Store (EFS) storage class where the GID and UID are not set in the storage class.
+      <ol>
+      <li>
+      Delete the job and config map that you previously created by running the following commands:
+      <CodeBlock code={"$ oc delete job -n <target_namespace> storage-checkup"} lang="terminal" />
+      <CodeBlock code={"$ oc delete config-map -n <target_namespace> storage-checkup-config"} lang="terminal" />
+      </li>
+      <li>
+      Optional: If you do not plan to run another checkup, delete the <code>ServiceAccount</code>, <code>Role</code>, and <code>RoleBinding</code> manifest:
+      <CodeBlock code={"$ oc delete -f <storage_sa_roles_rolebinding>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ul>
+      <h2 id="virt-troubleshoot-storage-checkup_virt-storage-checkups" class="group scroll-mt-20">Troubleshooting a failed storage checkup<a href="#virt-troubleshoot-storage-checkup_virt-storage-checkups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If a storage checkup fails, there are steps that you can take to identify the reason for failure.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have downloaded the directory provided by the <code>must-gather</code> tool.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Review the <code>status.failureReason</code> field in the <code>storage-checkup-config</code> config map by running the following command and observing the output:
+      <CodeBlock code={"$ oc get configmap storage-checkup-config -n <namespace> -o yaml"} lang="terminal" />
+      <p>Example output config map:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: ConfigMap\nmetadata:\n  name: storage-checkup-config\n  labels:\n    kiagnose/checkup-type: kubevirt-storage\ndata:\n  spec.timeout: 10m\n  status.succeeded: \"false\"\n  status.failureReason: \"ErrNoDefaultStorageClass\"\n# ..."} lang="yaml" />
+      <ul>
+      <li>If the checkup has failed, the <code>status.succeeded</code> value is <code>false</code>.</li>
+      <li>If the checkup has failed, the <code>status.failureReason</code> field contains an error message. In this example output, the <code>ErrNoDefaultStorageClass</code> error message means that no default storage class is configured.</li>
+      </ul>
+      </li>
+      <li>Search the directory provided by the <code>must-gather</code> tool for logs, events, or terms related to the error in the <code>data.status.failureReason</code> field value.</li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-collecting-virt-data">Collecting data for Red Hat Support</a></li>
-      <li><a href="/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data">Using the <code>must-gather</code> tool for {"{"}{"{"} VirtProductName {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/virt/support/virt-collecting-virt-data#virt-using-virt-must-gather_virt-collecting-virt-data">Using the <code>must-gather</code> tool for OpenShift Virtualization</a></li>
       </ul>
+      <h2 id="virt-troubleshoot-storage-checkup-error-codes_virt-storage-checkups" class="group scroll-mt-20">Storage checkup error codes<a href="#virt-troubleshoot-storage-checkup-error-codes_virt-storage-checkups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Storage checkup error codes might appear in the <code>storage-checkup-config</code> config map after a storage checkup fails.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Error code</TableHead>
+      <TableHead>Meaning</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>ErrNoDefaultStorageClass</code></TableCell>
+      <TableCell>No default storage class is configured.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ErrPvcNotBound</code></TableCell>
+      <TableCell>One or more persistent volume claims (PVCs) failed to bind.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ErrMultipleDefaultStorageClasses</code></TableCell>
+      <TableCell>Multiple default storage classes are configured.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ErrEmptyClaimPropertySets</code></TableCell>
+      <TableCell>There are <code>StorageProfile</code> objects containing empty <code>ClaimPropertySets</code> specs.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ErrVMsWithUnsetEfsStorageClass</code></TableCell>
+      <TableCell>There are VMs using elastic file system (EFS) storage classes, where the GID and UID are not set in the <code>StorageClass</code> object.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ErrGoldenImagesNotUpToDate</code></TableCell>
+      <TableCell>One or more golden images has a <code>DataImportCron</code> object that is either not up to date or has a <code>DataSource</code> object which is not ready.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ErrGoldenImageNoDataSource</code></TableCell>
+      <TableCell>The <code>DataSource</code> object of the golden image has either no PVC or no snapshot source configured.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>ErrBootFailedOnSomeVMs</code></TableCell>
+      <TableCell>Some VMs failed to boot within the expected time.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

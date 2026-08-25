@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"agent-based-installer-postinstallation","text":"Postinstallation tasks"}];
+const headings = [{"depth":1,"slug":"agent-based-installer-postinstallation","text":"Postinstallation tasks"},{"depth":2,"slug":"creating-manifest-file-customized-br-ex-bridge-post_agent-based-installer-postinstallation","text":"Creating a manifest object that includes a customized br-ex bridge"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_with_agent_based_installer/agent-based-installer-postinstallation";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["installing","installing/installing_with_agent_based_insta
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation tasks {#agent-based-installer-postinstallation}\n\nAfter using the Agent-based Installer to deploy your cluster, you can perform post-installation procedures such as customizing a `br-ex` bridge for nodes in your cluster. Customizing your cluster can help prepare the cluster for specific workloads and deployment requirements.\n\n**Additional resources**\n\n- [Converting to a dual-stack cluster network](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)\n- [Expanding the cluster](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#bare-metal-expanding-the-cluster)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_with_agent_based_installer/agent-based-installer-postinstallation.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Postinstallation tasks {#agent-based-installer-postinstallation}\n\nAfter using the Agent-based Installer to deploy your cluster, you can perform post-installation procedures such as customizing a `br-ex` bridge for nodes in your cluster. Customizing your cluster can help prepare the cluster for specific workloads and deployment requirements.\n\n## Creating a manifest object that includes a customized br-ex bridge {#creating-manifest-file-customized-br-ex-bridge-post_agent-based-installer-postinstallation}\n\nUse the default OVS br-ex bridge configuration for standard environments. This configuration applies when you have a single network interface controller (NIC) and standard OVS settings.\n\nBy default, OpenShift Container Platform automatically configures the Open vSwitch (OVS) `br-ex` bridge on bare-metal nodes. For advanced networking requirements, you can override this default behavior on bare-metal platforms. To do this, create an `NodeNetworkConfigurationPolicy` (NNCP) custom resource (CR) that includes an NMState configuration file.\n\nThe Kubernetes NMState Operator uses the NMState configuration file to create a customized `br-ex` bridge network configuration. This configuration applies to each node in your cluster.\n\n> [!IMPORTANT]\n> After creating the `NodeNetworkConfigurationPolicy` CR, copy content from the installation NMState configuration file into the NNCP CR. An incomplete NNCP CR can result in loss of network connectivity, because the NNCP overrides all existing policies.\n\nConsider using the customized `br-ex` bridge configuration for any of the following tasks:\n\n- You need to modify the `br-ex` bridge after you installed the cluster.\n- You need to modify the maximum transmission unit (MTU) for your cluster.\n- You need to update DNS values.\n- You need to modify attributes for a different bond interface, such as MIImon (Media Independent Interface Monitor), bonding mode, or Quality of Service (QoS).\n- You need to enable Link Layer Discovery Protocol (LLDP) to discover and troubleshoot switch connectivity.\n\n> [!WARNING]\n> The following list of interface names are reserved and you cannot use the names with NMstate configurations:\n>\n> - `br-ext`\n> - `br-int`\n> - `br-local`\n> - `br-nexthop`\n> - `br0`\n> - `ext-vxlan`\n> - `ext`\n> - `genev_sys_*`\n> - `int`\n> - `k8s-*`\n> - `ovn-k8s-*`\n> - `patch-br-*`\n> - `tun0`\n> - `vxlan_sys_*`\n\n**Prerequisites**\n\n- You have installed the Kubernetes NMState Operator.\n- You have identified the specific nodes where you want to apply the policy.\n\n**Procedure**\n\n- Create a `NodeNetworkConfigurationPolicy` (NNCP) CR and define a customized `br-ex` bridge network configuration. The `br-ex` NNCP CR must include the OVN-Kubernetes masquerade IP address and subnet of your network. The example NNCP CR includes default values in the `ipv4.address.ip` and `ipv6.address.ip` parameters. You can set the masquerade IP address in the `ipv4.address.ip`, `ipv6.address.ip`, or both parameters.\n\n  > [!IMPORTANT]\n  > As a post-installation task, you cannot change the primary IP address of the customized `br-ex` bridge. If you want to convert your single-stack cluster network to a dual-stack cluster network, you can add or change a secondary IPv6 address in the NNCP CR, but the existing primary IP address cannot be changed.\n\n  ```yaml\n  apiVersion: nmstate.io/v1\n  kind: NodeNetworkConfigurationPolicy\n  metadata:\n    name: worker-0-br-ex\n  spec:\n    nodeSelector:\n      kubernetes.io/hostname: worker-0\n    desiredState:\n      interfaces:\n      - name: enp2s0\n        type: ethernet\n        state: up\n        mtu: 9000\n        ipv4:\n          enabled: false\n        ipv6:\n          enabled: false\n      - name: br-ex\n        type: ovs-bridge\n        state: up\n        ipv4:\n          enabled: false\n          dhcp: false\n        ipv6:\n          enabled: false\n          dhcp: false\n        bridge:\n          options:\n            mcast-snooping-enable: true\n          port:\n          - name: enp2s0\n          - name: br-ex\n      - name: br-ex\n        type: ovs-interface\n        state: up\n        copy-mac-from: enp2s0\n        mtu: 9000\n        ipv4:\n          enabled: true\n          dhcp: true\n          auto-route-metric: 48\n          address:\n          - ip: \"169.254.0.2\"\n            prefix-length: 17\n        ipv6:\n          enabled: true\n          dhcp: true\n          auto-route-metric: 48\n          address:\n          - ip: \"fd69::2\"\n          prefix-length: 112\n  # ...\n  ```\n\n  where:\n\n  `metadata.name`\n  :   Specifies the name of the policy.\n\n  `interfaces.name`\n  :   Specifies the name of the interface.\n\n  `interfaces.type`\n  :   Specifies the type of ethernet.\n\n  `interfaces.state`\n  :   Specifies the requested state for the interface after creation.\n\n  `mtu`\n  :   To ensure network stability and performance, you must explicitly declare the MTU in the manifest for every interface. Do not rely on automatic MTU configuration. The MTU configured on a bridge port or VLAN-tagged interface must not exceed the maximum frame size supported by the attached physical medium. A mismatch causes packet fragmentation or connectivity loss.\n\n  `ipv4.enabled`\n  :   Disables IPv4 and IPv6 in this example.\n\n  `port.name`\n  :   Specifies the node NIC to which the bridge is attached.\n\n  `address.ip`\n  :   Shows the default IPv4 and IPv6 IP addresses. Ensure that you set the masquerade IPv4 and IPv6 IP addresses of your network.\n\n  `auto-route-metric`\n  :   Set the parameter to `48` to ensure the `br-ex` default route always has the highest precedence (lowest metric). This configuration prevents routing conflicts with any other interfaces automatically configured by the `NetworkManager` service.\n\n**Next steps**\n\n- Scaling compute nodes to apply the manifest object that includes a customized `br-ex` bridge to each compute node that exists in your cluster. For more information, see \"Expanding the cluster\" in the *Additional resources* section.\n\n**Additional resources**\n\n- [Converting to a dual-stack cluster network](/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack)\n- [Expanding the cluster](/openshift-docs-markdown/installing/installing_bare_metal/bare-metal-expanding-the-cluster#bare-metal-expanding-the-cluster)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_with_agent_based_installer/agent-based-installer-postinstallation.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +95,88 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="agent-based-installer-postinstallation" class="group scroll-mt-20">Postinstallation tasks<a href="#agent-based-installer-postinstallation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>After using the Agent-based Installer to deploy your cluster, you can perform post-installation procedures such as customizing a <code>br-ex</code> bridge for nodes in your cluster. Customizing your cluster can help prepare the cluster for specific workloads and deployment requirements.</p>
-      <p class="/modules/creating-manifest-file-customized-br-ex-bridge-post.md"></p>
+      <h2 id="creating-manifest-file-customized-br-ex-bridge-post_agent-based-installer-postinstallation" class="group scroll-mt-20">Creating a manifest object that includes a customized br-ex bridge<a href="#creating-manifest-file-customized-br-ex-bridge-post_agent-based-installer-postinstallation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the default OVS br-ex bridge configuration for standard environments. This configuration applies when you have a single network interface controller (NIC) and standard OVS settings. </p>
+      <p>By default, OpenShift Container Platform automatically configures the Open vSwitch (OVS) <code>br-ex</code> bridge on bare-metal nodes. For advanced networking requirements, you can override this default behavior on bare-metal platforms. To do this, create an <code>NodeNetworkConfigurationPolicy</code> (NNCP) custom resource (CR) that includes an NMState configuration file.</p>
+      <p>The Kubernetes NMState Operator uses the NMState configuration file to create a customized <code>br-ex</code> bridge network configuration. This configuration applies to each node in your cluster.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>After creating the <code>NodeNetworkConfigurationPolicy</code> CR, copy content from the installation NMState configuration file into the NNCP CR. An incomplete NNCP CR can result in loss of network connectivity, because the NNCP overrides all existing policies.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Consider using the customized <code>br-ex</code> bridge configuration for any of the following tasks:</p>
+      <ul>
+      <li>You need to modify the <code>br-ex</code> bridge after you installed the cluster.</li>
+      <li>You need to modify the maximum transmission unit (MTU) for your cluster.</li>
+      <li>You need to update DNS values.</li>
+      <li>You need to modify attributes for a different bond interface, such as MIImon (Media Independent Interface Monitor), bonding mode, or Quality of Service (QoS).</li>
+      <li>You need to enable Link Layer Discovery Protocol (LLDP) to discover and troubleshoot switch connectivity.</li>
+      </ul>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>The following list of interface names are reserved and you cannot use the names with NMstate configurations:</p>
+          <ul>
+          <li><code>br-ext</code></li>
+          <li><code>br-int</code></li>
+          <li><code>br-local</code></li>
+          <li><code>br-nexthop</code></li>
+          <li><code>br0</code></li>
+          <li><code>ext-vxlan</code></li>
+          <li><code>ext</code></li>
+          <li><code>genev_sys_*</code></li>
+          <li><code>int</code></li>
+          <li><code>k8s-*</code></li>
+          <li><code>ovn-k8s-*</code></li>
+          <li><code>patch-br-*</code></li>
+          <li><code>tun0</code></li>
+          <li><code>vxlan_sys_*</code></li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the Kubernetes NMState Operator.</li>
+      <li>You have identified the specific nodes where you want to apply the policy.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create a <code>NodeNetworkConfigurationPolicy</code> (NNCP) CR and define a customized <code>br-ex</code> bridge network configuration. The <code>br-ex</code> NNCP CR must include the OVN-Kubernetes masquerade IP address and subnet of your network. The example NNCP CR includes default values in the <code>ipv4.address.ip</code> and <code>ipv6.address.ip</code> parameters. You can set the masquerade IP address in the <code>ipv4.address.ip</code>, <code>ipv6.address.ip</code>, or both parameters.
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>As a post-installation task, you cannot change the primary IP address of the customized <code>br-ex</code> bridge. If you want to convert your single-stack cluster network to a dual-stack cluster network, you can add or change a secondary IPv6 address in the NNCP CR, but the existing primary IP address cannot be changed.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: nmstate.io/v1\nkind: NodeNetworkConfigurationPolicy\nmetadata:\n  name: worker-0-br-ex\nspec:\n  nodeSelector:\n    kubernetes.io/hostname: worker-0\n  desiredState:\n    interfaces:\n    - name: enp2s0\n      type: ethernet\n      state: up\n      mtu: 9000\n      ipv4:\n        enabled: false\n      ipv6:\n        enabled: false\n    - name: br-ex\n      type: ovs-bridge\n      state: up\n      ipv4:\n        enabled: false\n        dhcp: false\n      ipv6:\n        enabled: false\n        dhcp: false\n      bridge:\n        options:\n          mcast-snooping-enable: true\n        port:\n        - name: enp2s0\n        - name: br-ex\n    - name: br-ex\n      type: ovs-interface\n      state: up\n      copy-mac-from: enp2s0\n      mtu: 9000\n      ipv4:\n        enabled: true\n        dhcp: true\n        auto-route-metric: 48\n        address:\n        - ip: \"169.254.0.2\"\n          prefix-length: 17\n      ipv6:\n        enabled: true\n        dhcp: true\n        auto-route-metric: 48\n        address:\n        - ip: \"fd69::2\"\n        prefix-length: 112\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the policy.</p></dd>
+      <dt class="font-semibold"><code>interfaces.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the interface.</p></dd>
+      <dt class="font-semibold"><code>interfaces.type</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the type of ethernet.</p></dd>
+      <dt class="font-semibold"><code>interfaces.state</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the requested state for the interface after creation.</p></dd>
+      <dt class="font-semibold"><code>mtu</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>To ensure network stability and performance, you must explicitly declare the MTU in the manifest for every interface. Do not rely on automatic MTU configuration. The MTU configured on a bridge port or VLAN-tagged interface must not exceed the maximum frame size supported by the attached physical medium. A mismatch causes packet fragmentation or connectivity loss.</p></dd>
+      <dt class="font-semibold"><code>ipv4.enabled</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Disables IPv4 and IPv6 in this example.</p></dd>
+      <dt class="font-semibold"><code>port.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the node NIC to which the bridge is attached.</p></dd>
+      <dt class="font-semibold"><code>address.ip</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Shows the default IPv4 and IPv6 IP addresses. Ensure that you set the masquerade IPv4 and IPv6 IP addresses of your network.</p></dd>
+      <dt class="font-semibold"><code>auto-route-metric</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Set the parameter to <code>48</code> to ensure the <code>br-ex</code> default route always has the highest precedence (lowest metric). This configuration prevents routing conflicts with any other interfaces automatically configured by the <code>NetworkManager</code> service.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <p><strong>Next steps</strong></p>
+      <ul><li>Scaling compute nodes to apply the manifest object that includes a customized <code>br-ex</code> bridge to each compute node that exists in your cluster. For more information, see "Expanding the cluster" in the <em>Additional resources</em> section.</li></ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/networking/ovn_kubernetes_network_provider/converting-to-dual-stack#nw-dual-stack-convert_converting-to-dual-stack">Converting to a dual-stack cluster network</a></li>

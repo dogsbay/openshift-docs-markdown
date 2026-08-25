@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-using-virtctl-ssh","text":"Configure SSH by using the virtctl CLI tool"}];
+const headings = [{"depth":1,"slug":"virt-using-virtctl-ssh","text":"Configure SSH by using the virtctl CLI tool"},{"depth":2,"slug":"virt-about-static-and-dynamic-ssh-keys_virt-using-virtctl-ssh","text":"About static and dynamic SSH key management"},{"depth":3,"slug":"static-key-management_virt-using-virtctl-ssh","text":"Static SSH key management"},{"depth":3,"slug":"dynamic-key-management_virt-using-virtctl-ssh","text":"Dynamic SSH key management"},{"depth":2,"slug":"virt-static-key-management-vm_virt-using-virtctl-ssh","text":"Manage static keys"},{"depth":3,"slug":"virt-adding-key-creating-vm-template_static-key","text":"Adding a key when creating a VM from a template"},{"depth":3,"slug":"virt-creating-vm-instancetype_static-key","text":"Creating a VM from an instance type by using the web console"},{"depth":3,"slug":"virt-adding-public-key-vm-cli_static-key","text":"Adding a key when creating a VM by using the CLI"},{"depth":2,"slug":"virt-adding-dynamic-key-vm_static-key","text":"Manage dynamic keys"},{"depth":3,"slug":"virt-adding-key-creating-vm-template_dynamic-key","text":"Enabling dynamic key injection when creating a VM from a template"},{"depth":3,"slug":"virt-creating-vm-instancetype_dynamic-key","text":"Creating a VM from an instance type by using the web console"},{"depth":3,"slug":"virt-editing-vm-dynamic-key-injection_dynamic-key","text":"Enabling dynamic SSH key injection by using the web console"},{"depth":3,"slug":"virt-enabling-dynamic-key-injection-cli_dynamic-key","text":"Enabling dynamic key injection by using the CLI"},{"depth":3,"slug":"virt-using-virtctl-ssh-command_dynamic-key","text":"Using the virtctl ssh command"},{"depth":2,"slug":"virt-using-virtctl-port-forward-command_dynamic-key","text":"Using the virtctl port-forward command"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-virtctl-ssh";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +43,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/ssh"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configure SSH by using the virtctl CLI tool {#virt-using-virtctl-ssh}\n\nYou can add a public SSH key to a virtual machine (VM) and connect to the VM by running the `virtctl ssh` command, or add the `virtctl port-foward` command to your `.ssh/config` file and connect to the VM by using OpenSSH.\n\n> [!IMPORTANT]\n> The `virtctl ssh` command method is not recommended for high traffic loads because it places a burden on the API server.\n\nYou can add public SSH keys to {{ op_system_base_full }} 9 VMs at runtime or at first boot to VMs with guest operating systems that can be configured by using a cloud-init data source.\n\n> [!TIP]\n> You can copy the `virtctl ssh` command in the web console by selecting **Copy SSH command** from the options {{ kebab }} menu beside a VM on the **VirtualMachines** page.\n>\n> Alternatively, right-click the VM in the tree view and select **Copy SSH command** from the menu to copy the `virtctl ssh` command.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-virtctl-ssh.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configure SSH by using the virtctl CLI tool {#virt-using-virtctl-ssh}\n\nYou can add a public SSH key to a virtual machine (VM) and connect to the VM by running the `virtctl ssh` command, or add the `virtctl port-foward` command to your `.ssh/config` file and connect to the VM by using OpenSSH.\n\n> [!IMPORTANT]\n> The `virtctl ssh` command method is not recommended for high traffic loads because it places a burden on the API server.\n\nYou can add public SSH keys to Red Hat Enterprise Linux (RHEL) 9 VMs at runtime or at first boot to VMs with guest operating systems that can be configured by using a cloud-init data source.\n\n> [!TIP]\n> You can copy the `virtctl ssh` command in the web console by selecting **Copy SSH command** from the options ![](kebab.png \"Options menu\") menu beside a VM on the **VirtualMachines** page.\n>\n> Alternatively, right-click the VM in the tree view and select **Copy SSH command** from the menu to copy the `virtctl ssh` command.\n\n## About static and dynamic SSH key management {#virt-about-static-and-dynamic-ssh-keys_virt-using-virtctl-ssh}\n\nYou can add public SSH keys to virtual machines (VMs) statically at first boot or dynamically at runtime.\n\n> [!NOTE]\n> Only Red Hat Enterprise Linux (RHEL) 9 supports dynamic key injection.\n\n### Static SSH key management {#static-key-management_virt-using-virtctl-ssh}\n\nYou can add a statically managed SSH key to a VM with a guest operating system that supports configuration by using a cloud-init data source. The key is added to the virtual machine (VM) at first boot.\n\nYou can add the key by using one of the following methods:\n\n- Add a key to a single VM when you create it by using the web console or the command line.\n- Add a key to a project by using the web console. Afterwards, the key is automatically added to the VMs that you create in this project.\n\nUse cases:\n\n- As a VM owner, you can provision all your newly created VMs with a single key.\n\n### Dynamic SSH key management {#dynamic-key-management_virt-using-virtctl-ssh}\n\nYou can enable dynamic SSH key management for a VM with Red Hat Enterprise Linux (RHEL) 9 installed. Afterwards, you can update the key during runtime. The key is added by the QEMU guest agent, which is installed with Red Hat boot sources.\n\nWhen dynamic key management is disabled, the default key management setting of a VM is determined by the image used for the VM.\n\nUse cases:\n\n- Granting or revoking access to VMs: As a cluster administrator, you can grant or revoke remote VM access by adding or removing the keys of individual users from a `Secret` object that is applied to all VMs in a namespace.\n- User access: You can add your access credentials to all VMs that you create and manage.\n- Ansible provisioning:\n\n  - As an operations team member, you can create a single secret that contains all the keys used for Ansible provisioning.\n  - As a VM owner, you can create a VM and attach the keys used for Ansible provisioning.\n- Key rotation:\n\n  - As a cluster administrator, you can rotate the Ansible provisioner keys used by VMs in a namespace.\n  - As a workload owner, you can rotate the key for the VMs that you manage.\n\n## Manage static keys {#virt-static-key-management-vm_virt-using-virtctl-ssh}\n\nYou can add a statically managed public SSH key when you create a virtual machine (VM) by using the OpenShift Container Platform web console or the command line. The key is added as a cloud-init data source when the VM boots for the first time.\n\nYou can also add a public SSH key to a project when you create a VM by using the web console. The key is saved as a secret and is added automatically to all VMs that you create.\n\n> [!NOTE]\n> If you add a secret to a project and then delete the VM, the secret is retained because it is a namespace resource. You must delete the secret manually.\n\n### Adding a key when creating a VM from a template {#virt-adding-key-creating-vm-template_static-key}\n\nYou can add a statically managed public SSH key when you create a virtual machine (VM) by using the OpenShift Container Platform web console. The key is added to the VM as a cloud-init data source at first boot. This method does not affect cloud-init user data.\n\nOptional: You can add a key to a project. Afterwards, this key is added automatically to VMs that you create in the project.\n\n**Prerequisites**\n\n- You generated an SSH key pair by running the `ssh-keygen` command.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **Catalog** in the web console.\n2. Click a template tile.\n\n   The guest operating system must support configuration from a cloud-init data source.\n3. Click **Customize VirtualMachine**.\n4. Click **Next**.\n5. Click the **Scripts** tab.\n6. If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** and select one of the following options:\n\n   - **Use existing**: Select a secret from the secrets list.\n   - **Add new**:\n\n     1. Browse to the SSH key file or paste the file in the key field.\n     2. Enter the secret name.\n     3. Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.\n7. Click **Save**.\n8. Click **Create VirtualMachine**.\n\n   The **VirtualMachine details** page displays the progress of the VM creation.\n\n**Verification**\n\n- Click the **Scripts** tab on the **Configuration** tab.\n\n  The secret name is displayed in the **Authorized SSH key** section.\n\n### Creating a VM from an instance type by using the web console {#virt-creating-vm-instancetype_static-key}\n\nYou can add a statically managed SSH key when you create a virtual machine (VM) from an instance type by using the OpenShift Container Platform web console. The key is added to the VM as a cloud-init data source at first boot. This method does not affect cloud-init user data.\n\n**Procedure**\n\n1. In the web console, navigate to **Virtualization** -> **Catalog**.\n\n   The **InstanceTypes** tab opens by default.\n\n   > [!NOTE]\n   > When configuring a downward-metrics device on an IBM Z(R) system that uses a VM preference, set the `spec.preference.name` value to `rhel.9.s390x` or another available preference with the format `*.s390x`.\n2. Heterogeneous clusters only: To filter the bootable volumes using the options provided, click **Architecture**.\n3. Select either of the following options:\n\n   - Select a suitable bootable volume from the list. If the list is truncated, click the **Show all** button to display the entire list.\n\n     > [!NOTE]\n     > The bootable volume table lists only those volumes in the `openshift-virtualization-os-images` namespace that have the `instancetype.kubevirt.io/default-preference` label.\n\n     - Optional: Click the star icon to designate a bootable volume as a favorite. Starred bootable volumes appear first in the volume list.\n   - Click **Add volume** to upload a new volume or to use an existing persistent volume claim (PVC), a volume snapshot, or a `containerDisk` volume. Click **Save**.\n\n     Logos of operating systems that are not available in the cluster are shown at the bottom of the list. You can add a volume for the required operating system by clicking the **Add volume** link.\n\n     In addition, there is a link to the **Create a Windows bootable volume** quick start. The same link appears in a popover if you hover the pointer over the question mark icon next to the *Select volume to boot from* line.\n\n     Immediately after you install the environment or when the environment is disconnected, the list of volumes to boot from is empty. In that case, three operating system logos are displayed: Windows, RHEL, and Linux. You can add a new volume that meets your requirements by clicking the **Add volume** button.\n\n     1. If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.\n     2. Select one of the following options:\n\n        - **Use existing**: Select a secret from the secrets list.\n        - **Add new**: Follow these steps:\n\n          1. Browse to the public SSH key file or paste the file in the key field.\n          2. Enter the secret name.\n          3. Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.\n     3. Click **Save**.\n4. Optional: If you are creating a Windows VM, you can mount a Windows driver disk:\n\n   1. Click the **Customize VirtualMachine** button.\n   2. On the **VirtualMachine details** page, click **Storage**.\n   3. Select the **Mount Windows drivers disk** checkbox.\n5. Optional: Click **View YAML & CLI** to view the YAML file. Click **CLI** to view the CLI commands. You can also download or copy either the YAML file contents or the CLI commands.\n6. Click **Create VirtualMachine**.\n\n**Result**\n\nAfter the VM is created, you can monitor the status on the **VirtualMachine details** page.\n\n### Adding a key when creating a VM by using the CLI {#virt-adding-public-key-vm-cli_static-key}\n\nYou can add a statically managed public SSH key when you create a virtual machine (VM) by using the command line. The key is added to the VM at first boot.\n\nThe key is added to the VM as a cloud-init data source. This method separates the access credentials from the application data in the cloud-init user data. This method does not affect cloud-init user data.\n\n**Prerequisites**\n\n- You generated an SSH key pair by running the `ssh-keygen` command.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a manifest file for a `VirtualMachine` object and a `Secret` object.\n\n   Example manifest:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: example-vm\n     namespace: example-namespace\n   spec:\n     dataVolumeTemplates:\n       - metadata:\n           name: example-vm-volume\n         spec:\n           sourceRef:\n             kind: DataSource\n             name: rhel9\n             namespace: openshift-virtualization-os-images\n           storage:\n             resources: {}\n     instancetype:\n       name: u1.medium\n     preference:\n       name: rhel.9\n     runStrategy: Always\n     template:\n       spec:\n         domain:\n           devices: {}\n         volumes:\n           - dataVolume:\n               name: example-vm-volume\n             name: rootdisk\n           - cloudInitNoCloud:\n               userData: |-\n                 #cloud-config\n                 user: cloud-user\n             name: cloudinitdisk\n         accessCredentials:\n           - sshPublicKey:\n               propagationMethod:\n                 noCloud: {}\n               source:\n                 secret:\n                   secretName: authorized-keys\n   ---\n   apiVersion: v1\n   kind: Secret\n   metadata:\n     name: authorized-keys\n   data:\n     key: c3NoLXJzYSB...\n   ```\n\n   - `spec.template.spec.volumes.cloudInitNoCloud` specifies the `cloudInitNoCloud` data source.\n   - `spec.template.spec.accessCredentials.sshPublicKey.source.secret.secretName` specifies the `Secret` object name.\n   - `data.key` specifies the public SSH key.\n2. Create the `VirtualMachine` and `Secret` objects by running the following command:\n\n   ```terminal\n   $ oc create -f <manifest_file>.yaml\n   ```\n3. Start the VM by running the following command:\n\n   ```terminal\n   $ virtctl start vm example-vm -n example-namespace\n   ```\n\n**Verification**\n\n- Get the VM configuration:\n\n  ```terminal\n  $ oc describe vm example-vm -n example-namespace\n  ```\n\n  Example output:\n\n  ```yaml\n  apiVersion: kubevirt.io/v1\n  kind: VirtualMachine\n  metadata:\n    name: example-vm\n    namespace: example-namespace\n  spec:\n    template:\n      spec:\n        accessCredentials:\n          - sshPublicKey:\n              propagationMethod:\n                noCloud: {}\n              source:\n                secret:\n                  secretName: authorized-keys\n  # ...\n  ```\n\n## Manage dynamic keys {#virt-adding-dynamic-key-vm_static-key}\n\nYou can enable dynamic key injection for a virtual machine (VM) by using the OpenShift Container Platform web console or the command line. Then, you can update the key at runtime.\n\n> [!NOTE]\n> Only Red Hat Enterprise Linux (RHEL) 9 supports dynamic key injection.\n\nIf you disable dynamic key injection, the VM inherits the key management method of the image from which it was created.\n\n### Enabling dynamic key injection when creating a VM from a template {#virt-adding-key-creating-vm-template_dynamic-key}\n\nYou can enable dynamic public SSH key injection when you create a virtual machine (VM) from a template by using the OpenShift Container Platform web console. Then, you can update the key at runtime.\n\n> [!NOTE]\n> Only Red Hat Enterprise Linux (RHEL) 9 supports dynamic key injection.\n\nThe key is added to the VM by the QEMU guest agent, which is installed with RHEL 9.\n\n**Prerequisites**\n\n- You generated an SSH key pair by running the `ssh-keygen` command.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **Catalog** in the web console.\n2. Click the **Red Hat Enterprise Linux 9 VM** tile.\n3. Click **Customize VirtualMachine**.\n4. Click **Next**.\n5. Click the **Scripts** tab.\n6. If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** and select one of the following options:\n\n   - **Use existing**: Select a secret from the secrets list.\n   - **Add new**:\n\n     1. Browse to the SSH key file or paste the file in the key field.\n     2. Enter the secret name.\n     3. Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.\n7. Set **Dynamic SSH key injection** to on.\n8. Click **Save**.\n9. Click **Create VirtualMachine**.\n\n   The **VirtualMachine details** page displays the progress of the VM creation.\n\n**Verification**\n\n- Click the **Scripts** tab on the **Configuration** tab.\n\n  The secret name is displayed in the **Authorized SSH key** section.\n\n### Creating a VM from an instance type by using the web console {#virt-creating-vm-instancetype_dynamic-key}\n\nYou can enable dynamic SSH key injection when you create a virtual machine (VM) from an instance type by using the OpenShift Container Platform web console. Then, you can add or revoke the key at runtime.\n\n> [!NOTE]\n> Only Red Hat Enterprise Linux (RHEL) 9 supports dynamic key injection.\n\nThe key is added to the VM by the QEMU guest agent, which is installed with RHEL 9.\n\n**Procedure**\n\n1. In the web console, navigate to **Virtualization** -> **Catalog**.\n\n   The **InstanceTypes** tab opens by default.\n\n   > [!NOTE]\n   > When configuring a downward-metrics device on an IBM Z(R) system that uses a VM preference, set the `spec.preference.name` value to `rhel.9.s390x` or another available preference with the format `*.s390x`.\n2. Heterogeneous clusters only: To filter the bootable volumes using the options provided, click **Architecture**.\n3. Select either of the following options:\n\n   - Select a suitable bootable volume from the list. If the list is truncated, click the **Show all** button to display the entire list.\n\n     > [!NOTE]\n     > The bootable volume table lists only those volumes in the `openshift-virtualization-os-images` namespace that have the `instancetype.kubevirt.io/default-preference` label.\n\n     - Optional: Click the star icon to designate a bootable volume as a favorite. Starred bootable volumes appear first in the volume list.\n   - Click **Add volume** to upload a new volume or to use an existing persistent volume claim (PVC), a volume snapshot, or a `containerDisk` volume. Click **Save**.\n\n     Logos of operating systems that are not available in the cluster are shown at the bottom of the list. You can add a volume for the required operating system by clicking the **Add volume** link.\n\n     In addition, there is a link to the **Create a Windows bootable volume** quick start. The same link appears in a popover if you hover the pointer over the question mark icon next to the *Select volume to boot from* line.\n\n     Immediately after you install the environment or when the environment is disconnected, the list of volumes to boot from is empty. In that case, three operating system logos are displayed: Windows, RHEL, and Linux. You can add a new volume that meets your requirements by clicking the **Add volume** button.\n4. Click the **Red Hat Enterprise Linux 9 VM** tile.\n\n   ```\n   1.  If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.\n   1.  Select one of the following options:\n       *   **Use existing**: Select a secret from the secrets list.\n       *   **Add new**: Follow these steps:\n           1.  Browse to the public SSH key file or paste the file in the key field.\n           1.  Enter the secret name.\n           1.  Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.\n   1.  Click **Save**.\n   ```\n5. Set **Dynamic SSH key injection** in the **VirtualMachine details** section to on.\n6. Optional: If you are creating a Windows VM, you can mount a Windows driver disk:\n\n   1. Click the **Customize VirtualMachine** button.\n   2. On the **VirtualMachine details** page, click **Storage**.\n   3. Select the **Mount Windows drivers disk** checkbox.\n7. Optional: Click **View YAML & CLI** to view the YAML file. Click **CLI** to view the CLI commands. You can also download or copy either the YAML file contents or the CLI commands.\n8. Click **Create VirtualMachine**.\n\n**Result**\n\nAfter the VM is created, you can monitor the status on the **VirtualMachine details** page.\n\n### Enabling dynamic SSH key injection by using the web console {#virt-editing-vm-dynamic-key-injection_dynamic-key}\n\nYou can enable dynamic key injection for a virtual machine (VM) by using the OpenShift Container Platform web console. Then, you can update the public SSH key at runtime.\n\nThe key is added to the VM by the QEMU guest agent, which is installed with Red Hat Enterprise Linux (RHEL) 9 and later.\n\n**Prerequisites**\n\n- The guest operating system is RHEL 9 or later.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **VirtualMachines** in the web console.\n2. Select a VM to open the **VirtualMachine details** page.\n3. On the **Configuration** tab, click **Scripts**.\n4. If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** and select one of the following options:\n\n   - **Use existing**: Select a secret from the secrets list.\n   - **Add new**:\n\n     1. Browse to the SSH key file or paste the file in the key field.\n     2. Enter the secret name.\n     3. Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.\n5. Set **Dynamic SSH key injection** to on.\n6. Click **Save**.\n\n### Enabling dynamic key injection by using the CLI {#virt-enabling-dynamic-key-injection-cli_dynamic-key}\n\nYou can enable dynamic key injection for a virtual machine (VM) by using the command line. Then, you can update the public SSH key at runtime.\n\n> [!NOTE]\n> Only Red Hat Enterprise Linux (RHEL) 9 supports dynamic key injection.\n\nThe key is added to the VM by the QEMU guest agent, which is installed automatically with RHEL 9.\n\n**Prerequisites**\n\n- You generated an SSH key pair by running the `ssh-keygen` command.\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Create a manifest file for a `VirtualMachine` object and a `Secret` object.\n\n   Example manifest:\n\n   ```yaml\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   metadata:\n     name: example-vm\n     namespace: example-namespace\n   spec:\n     dataVolumeTemplates:\n       - metadata:\n           name: example-vm-volume\n         spec:\n           sourceRef:\n             kind: DataSource\n             name: rhel9\n             namespace: openshift-virtualization-os-images\n           storage:\n             resources: {}\n     instancetype:\n       name: u1.medium\n     preference:\n       name: rhel.9\n     runStrategy: Always\n     template:\n       spec:\n         domain:\n           devices: {}\n         volumes:\n           - dataVolume:\n               name: example-vm-volume\n             name: rootdisk\n           - cloudInitNoCloud:\n               userData: |-\n                 #cloud-config\n                 runcmd:\n                 - [ setsebool, -P, virt_qemu_ga_manage_ssh, on ]\n             name: cloudinitdisk\n         accessCredentials:\n           - sshPublicKey:\n               propagationMethod:\n                 qemuGuestAgent:\n                   users: [\"cloud-user\"]\n               source:\n                 secret:\n                   secretName: authorized-keys\n   ---\n   apiVersion: v1\n   kind: Secret\n   metadata:\n     name: authorized-keys\n   data:\n     key: c3NoLXJzYSB...\n   ```\n\n   - `spec.template.spec.volumes.cloudInitNoCloud` defines the data source, for example `userData`.\n   - `spec.template.spec.accessCredentials.sshPublicKey.source.secret.secretName` defines the `secret` object name.\n   - `data.key` within the `secret` object defines the full public SSH key.\n2. Create the `VirtualMachine` and `Secret` objects by running the following command:\n\n   ```terminal\n   $ oc create -f <manifest_file>.yaml\n   ```\n3. Start the VM by running the following command:\n\n   ```terminal\n   $ virtctl start vm example-vm -n example-namespace\n   ```\n\n**Verification**\n\n- Get the VM configuration by running the following command:\n\n  ```terminal\n  $ oc describe vm example-vm -n example-namespace\n  ```\n\n  Example output:\n\n  ```yaml\n  apiVersion: kubevirt.io/v1\n  kind: VirtualMachine\n  metadata:\n    name: example-vm\n    namespace: example-namespace\n  spec:\n    template:\n      spec:\n        accessCredentials:\n          - sshPublicKey:\n              propagationMethod:\n                qemuGuestAgent:\n                  users: [\"cloud-user\"]\n              source:\n                secret:\n                  secretName: authorized-keys\n  # ...\n  ```\n\n### Using the virtctl ssh command {#virt-using-virtctl-ssh-command_dynamic-key}\n\nYou can use the `virtctl ssh` command to access a running virtual machine instance (VMI). The command accepts VM or VMI targets.\n\n**Prerequisites**\n\n- You installed the `virtctl` command-line tool.\n- You added a public SSH key to the VM.\n- You have an SSH client installed.\n- The environment where you installed the `virtctl` tool has the cluster permissions required to access the VM. For example, you ran `oc login` or you set the `KUBECONFIG` environment variable.\n\n**Procedure**\n\n1. Run the `virtctl ssh` command:\n\n   ```terminal\n   $ virtctl -n <namespace> ssh <username>@vm/<vm_name> -i <ssh_key>\n   ```\n\n   You must specify the resource type (`vmi/` or `vm/`) before the VM name.\n\n   For example:\n\n   ```terminal\n   $ virtctl -n my-namespace ssh cloud-user@vm/example-vm -i my-key\n   ```\n\n## Using the virtctl port-forward command {#virt-using-virtctl-port-forward-command_dynamic-key}\n\nYou can use your local OpenSSH client and the `virtctl port-forward` command to connect to a running virtual machine (VM). You can use this method with Ansible to automate the configuration of VMs.\n\nThis method is recommended for low-traffic applications because port-forwarding traffic is sent over the control plane. This method is not recommended for high-traffic applications such as Rsync or Remote Desktop Protocol because it places a heavy burden on the API server.\n\n**Prerequisites**\n\n- You have installed the `virtctl` client.\n- The virtual machine you want to access is running.\n- The environment where you installed the `virtctl` tool has the cluster permissions required to access the VM. For example, you ran `oc login` or you set the `KUBECONFIG` environment variable.\n\n**Procedure**\n\n1. Add the following text to the `~/.ssh/config` file on your client machine:\n\n   ```terminal\n   Host vm/*\n     ProxyCommand virtctl port-forward --stdio=true %h %p\n   ```\n2. Connect to the VM by running the following command:\n\n   ```terminal\n   $ ssh <user>@vm/<vm_name>.<namespace>\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/ssh/virt-using-virtctl-ssh.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,7 +94,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-using-virtctl-ssh" class="group scroll-mt-20">Configure SSH by using the virtctl CLI tool<a href="#virt-using-virtctl-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You can add a public SSH key to a virtual machine (VM) and connect to the VM by running the <code>virtctl ssh</code> command, or add the <code>virtctl port-foward</code> command to your <code>.ssh/config</code> file and connect to the VM by using OpenSSH.</p>
       <Alert variant="info" class="my-4">
@@ -102,24 +102,435 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>The <code>virtctl ssh</code> command method is not recommended for high traffic loads because it places a burden on the API server.</p>
         </AlertDescription>
       </Alert>
-      <p>You can add public SSH keys to {"{"}{"{"} op_system_base_full {"}"}{"}"} 9 VMs at runtime or at first boot to VMs with guest operating systems that can be configured by using a cloud-init data source.</p>
+      <p>You can add public SSH keys to Red Hat Enterprise Linux (RHEL) 9 VMs at runtime or at first boot to VMs with guest operating systems that can be configured by using a cloud-init data source.</p>
       <Alert variant="tip" class="my-4">
         <AlertTitle>Tip</AlertTitle>
         <AlertDescription>
-          <p>You can copy the <code>virtctl ssh</code> command in the web console by selecting <strong>Copy SSH command</strong> from the options {"{"}{"{"} kebab {"}"}{"}"} menu beside a VM on the <strong>VirtualMachines</strong> page.</p>
+          <p>You can copy the <code>virtctl ssh</code> command in the web console by selecting <strong>Copy SSH command</strong> from the options <img src="kebab.png" alt="" loading="lazy" /> menu beside a VM on the <strong>VirtualMachines</strong> page.</p>
           <p>Alternatively, right-click the VM in the tree view and select <strong>Copy SSH command</strong> from the menu to copy the <code>virtctl ssh</code> command.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/virt-about-static-and-dynamic-ssh-keys.md"></p>
-      <p class="/modules/virt-adding-key-creating-vm-template.md /modules/virt-static-key-management-vm.md"></p>
-      <p class="/modules/virt-creating-vm-instancetype.md"></p>
-      <p class="/modules/virt-adding-public-key-vm-cli.md"></p>
-      <p class="/modules/virt-adding-key-creating-vm-template.md /modules/virt-adding-dynamic-key-vm.md"></p>
-      <p class="/modules/virt-creating-vm-instancetype.md"></p>
-      <p class="/modules/virt-editing-vm-dynamic-key-injection.md"></p>
-      <p class="/modules/virt-enabling-dynamic-key-injection-cli.md"></p>
-      <p class="/modules/virt-using-virtctl-ssh-command.md"></p>
-      <p class="/modules/virt-using-virtctl-port-forward-command.md"></p>
+      <h2 id="virt-about-static-and-dynamic-ssh-keys_virt-using-virtctl-ssh" class="group scroll-mt-20">About static and dynamic SSH key management<a href="#virt-about-static-and-dynamic-ssh-keys_virt-using-virtctl-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add public SSH keys to virtual machines (VMs) statically at first boot or dynamically at runtime.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Only Red Hat Enterprise Linux (RHEL) 9 supports dynamic key injection.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="static-key-management_virt-using-virtctl-ssh" class="group scroll-mt-20">Static SSH key management<a href="#static-key-management_virt-using-virtctl-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can add a statically managed SSH key to a VM with a guest operating system that supports configuration by using a cloud-init data source. The key is added to the virtual machine (VM) at first boot.</p>
+      <p>You can add the key by using one of the following methods:</p>
+      <ul>
+      <li>Add a key to a single VM when you create it by using the web console or the command line.</li>
+      <li>Add a key to a project by using the web console. Afterwards, the key is automatically added to the VMs that you create in this project.</li>
+      </ul>
+      <p>Use cases:</p>
+      <ul><li>As a VM owner, you can provision all your newly created VMs with a single key.</li></ul>
+      <h3 id="dynamic-key-management_virt-using-virtctl-ssh" class="group scroll-mt-20">Dynamic SSH key management<a href="#dynamic-key-management_virt-using-virtctl-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can enable dynamic SSH key management for a VM with Red Hat Enterprise Linux (RHEL) 9 installed. Afterwards, you can update the key during runtime. The key is added by the QEMU guest agent, which is installed with Red Hat boot sources.</p>
+      <p>When dynamic key management is disabled, the default key management setting of a VM is determined by the image used for the VM.</p>
+      <p>Use cases:</p>
+      <ul>
+      <li>Granting or revoking access to VMs: As a cluster administrator, you can grant or revoke remote VM access by adding or removing the keys of individual users from a <code>Secret</code> object that is applied to all VMs in a namespace.</li>
+      <li>User access: You can add your access credentials to all VMs that you create and manage.</li>
+      <li>
+      Ansible provisioning:
+      <ul>
+      <li>As an operations team member, you can create a single secret that contains all the keys used for Ansible provisioning.</li>
+      <li>As a VM owner, you can create a VM and attach the keys used for Ansible provisioning.</li>
+      </ul>
+      </li>
+      <li>
+      Key rotation:
+      <ul>
+      <li>As a cluster administrator, you can rotate the Ansible provisioner keys used by VMs in a namespace.</li>
+      <li>As a workload owner, you can rotate the key for the VMs that you manage.</li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="virt-static-key-management-vm_virt-using-virtctl-ssh" class="group scroll-mt-20">Manage static keys<a href="#virt-static-key-management-vm_virt-using-virtctl-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add a statically managed public SSH key when you create a virtual machine (VM) by using the OpenShift Container Platform web console or the command line. The key is added as a cloud-init data source when the VM boots for the first time.</p>
+      <p>You can also add a public SSH key to a project when you create a VM by using the web console. The key is saved as a secret and is added automatically to all VMs that you create.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you add a secret to a project and then delete the VM, the secret is retained because it is a namespace resource. You must delete the secret manually.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="virt-adding-key-creating-vm-template_static-key" class="group scroll-mt-20">Adding a key when creating a VM from a template<a href="#virt-adding-key-creating-vm-template_static-key" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can add a statically managed public SSH key when you create a virtual machine (VM) by using the OpenShift Container Platform web console. The key is added to the VM as a cloud-init data source at first boot. This method does not affect cloud-init user data.</p>
+      <p>Optional: You can add a key to a project. Afterwards, this key is added automatically to VMs that you create in the project.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You generated an SSH key pair by running the <code>ssh-keygen</code> command.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>Catalog</strong> in the web console.</li>
+      <li>
+      Click a template tile.
+      <p>The guest operating system must support configuration from a cloud-init data source.</p>
+      </li>
+      <li>Click <strong>Customize VirtualMachine</strong>.</li>
+      <li>Click <strong>Next</strong>.</li>
+      <li>Click the <strong>Scripts</strong> tab.</li>
+      <li>
+      If you have not already added a public SSH key to your project, click the edit icon beside <strong>Authorized SSH key</strong> and select one of the following options:
+      <ul>
+      <li><strong>Use existing</strong>: Select a secret from the secrets list.</li>
+      <li>
+      <strong>Add new</strong>:
+      <ol>
+      <li>Browse to the SSH key file or paste the file in the key field.</li>
+      <li>Enter the secret name.</li>
+      <li>Optional: Select <strong>Automatically apply this key to any new VirtualMachine you create in this project</strong>.</li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      <li>Click <strong>Save</strong>.</li>
+      <li>
+      Click <strong>Create VirtualMachine</strong>.
+      <p>The <strong>VirtualMachine details</strong> page displays the progress of the VM creation.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Click the <strong>Scripts</strong> tab on the <strong>Configuration</strong> tab.
+      <p>The secret name is displayed in the <strong>Authorized SSH key</strong> section.</p>
+      </li>
+      </ul>
+      <h3 id="virt-creating-vm-instancetype_static-key" class="group scroll-mt-20">Creating a VM from an instance type by using the web console<a href="#virt-creating-vm-instancetype_static-key" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can add a statically managed SSH key when you create a virtual machine (VM) from an instance type by using the OpenShift Container Platform web console. The key is added to the VM as a cloud-init data source at first boot. This method does not affect cloud-init user data.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      In the web console, navigate to <strong>Virtualization</strong> -&gt; <strong>Catalog</strong>.
+      <p>The <strong>InstanceTypes</strong> tab opens by default.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When configuring a downward-metrics device on an IBM Z(R) system that uses a VM preference, set the <code>spec.preference.name</code> value to <code>rhel.9.s390x</code> or another available preference with the format <code>*.s390x</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Heterogeneous clusters only: To filter the bootable volumes using the options provided, click <strong>Architecture</strong>.</li>
+      <li>
+      Select either of the following options:
+      <ul>
+      <li>
+      Select a suitable bootable volume from the list. If the list is truncated, click the <strong>Show all</strong> button to display the entire list.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The bootable volume table lists only those volumes in the <code>openshift-virtualization-os-images</code> namespace that have the <code>instancetype.kubevirt.io/default-preference</code> label.</p>
+        </AlertDescription>
+      </Alert>
+      <ul><li>Optional: Click the star icon to designate a bootable volume as a favorite. Starred bootable volumes appear first in the volume list.</li></ul>
+      </li>
+      <li>
+      Click <strong>Add volume</strong> to upload a new volume or to use an existing persistent volume claim (PVC), a volume snapshot, or a <code>containerDisk</code> volume. Click <strong>Save</strong>.
+      <p>Logos of operating systems that are not available in the cluster are shown at the bottom of the list. You can add a volume for the required operating system by clicking the <strong>Add volume</strong> link.</p>
+      <p>In addition, there is a link to the <strong>Create a Windows bootable volume</strong> quick start. The same link appears in a popover if you hover the pointer over the question mark icon next to the <em>Select volume to boot from</em> line.</p>
+      <p>Immediately after you install the environment or when the environment is disconnected, the list of volumes to boot from is empty. In that case, three operating system logos are displayed: Windows, RHEL, and Linux. You can add a new volume that meets your requirements by clicking the <strong>Add volume</strong> button.</p>
+      <ol>
+      <li>If you have not already added a public SSH key to your project, click the edit icon beside <strong>Authorized SSH key</strong> in the <strong>VirtualMachine details</strong> section.</li>
+      <li>
+      Select one of the following options:
+      <ul>
+      <li><strong>Use existing</strong>: Select a secret from the secrets list.</li>
+      <li>
+      <strong>Add new</strong>: Follow these steps:
+      <ol>
+      <li>Browse to the public SSH key file or paste the file in the key field.</li>
+      <li>Enter the secret name.</li>
+      <li>Optional: Select <strong>Automatically apply this key to any new VirtualMachine you create in this project</strong>.</li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      <li>Click <strong>Save</strong>.</li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      <li>
+      Optional: If you are creating a Windows VM, you can mount a Windows driver disk:
+      <ol>
+      <li>Click the <strong>Customize VirtualMachine</strong> button.</li>
+      <li>On the <strong>VirtualMachine details</strong> page, click <strong>Storage</strong>.</li>
+      <li>Select the <strong>Mount Windows drivers disk</strong> checkbox.</li>
+      </ol>
+      </li>
+      <li>Optional: Click <strong>View YAML &amp; CLI</strong> to view the YAML file. Click <strong>CLI</strong> to view the CLI commands. You can also download or copy either the YAML file contents or the CLI commands.</li>
+      <li>Click <strong>Create VirtualMachine</strong>.</li>
+      </ol>
+      <p><strong>Result</strong></p>
+      <p>After the VM is created, you can monitor the status on the <strong>VirtualMachine details</strong> page.</p>
+      <h3 id="virt-adding-public-key-vm-cli_static-key" class="group scroll-mt-20">Adding a key when creating a VM by using the CLI<a href="#virt-adding-public-key-vm-cli_static-key" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can add a statically managed public SSH key when you create a virtual machine (VM) by using the command line. The key is added to the VM at first boot.</p>
+      <p>The key is added to the VM as a cloud-init data source. This method separates the access credentials from the application data in the cloud-init user data. This method does not affect cloud-init user data.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You generated an SSH key pair by running the <code>ssh-keygen</code> command.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a manifest file for a <code>VirtualMachine</code> object and a <code>Secret</code> object.
+      <p>Example manifest:</p>
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: example-vm\n  namespace: example-namespace\nspec:\n  dataVolumeTemplates:\n    - metadata:\n        name: example-vm-volume\n      spec:\n        sourceRef:\n          kind: DataSource\n          name: rhel9\n          namespace: openshift-virtualization-os-images\n        storage:\n          resources: {}\n  instancetype:\n    name: u1.medium\n  preference:\n    name: rhel.9\n  runStrategy: Always\n  template:\n    spec:\n      domain:\n        devices: {}\n      volumes:\n        - dataVolume:\n            name: example-vm-volume\n          name: rootdisk\n        - cloudInitNoCloud:\n            userData: |-\n              #cloud-config\n              user: cloud-user\n          name: cloudinitdisk\n      accessCredentials:\n        - sshPublicKey:\n            propagationMethod:\n              noCloud: {}\n            source:\n              secret:\n                secretName: authorized-keys\n---\napiVersion: v1\nkind: Secret\nmetadata:\n  name: authorized-keys\ndata:\n  key: c3NoLXJzYSB..."} lang="yaml" />
+      <ul>
+      <li><code>spec.template.spec.volumes.cloudInitNoCloud</code> specifies the <code>cloudInitNoCloud</code> data source.</li>
+      <li><code>spec.template.spec.accessCredentials.sshPublicKey.source.secret.secretName</code> specifies the <code>Secret</code> object name.</li>
+      <li><code>data.key</code> specifies the public SSH key.</li>
+      </ul>
+      </li>
+      <li>
+      Create the <code>VirtualMachine</code> and <code>Secret</code> objects by running the following command:
+      <CodeBlock code={"$ oc create -f <manifest_file>.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Start the VM by running the following command:
+      <CodeBlock code={"$ virtctl start vm example-vm -n example-namespace"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Get the VM configuration:
+      <CodeBlock code={"$ oc describe vm example-vm -n example-namespace"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: example-vm\n  namespace: example-namespace\nspec:\n  template:\n    spec:\n      accessCredentials:\n        - sshPublicKey:\n            propagationMethod:\n              noCloud: {}\n            source:\n              secret:\n                secretName: authorized-keys\n# ..."} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="virt-adding-dynamic-key-vm_static-key" class="group scroll-mt-20">Manage dynamic keys<a href="#virt-adding-dynamic-key-vm_static-key" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can enable dynamic key injection for a virtual machine (VM) by using the OpenShift Container Platform web console or the command line. Then, you can update the key at runtime.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Only Red Hat Enterprise Linux (RHEL) 9 supports dynamic key injection.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If you disable dynamic key injection, the VM inherits the key management method of the image from which it was created.</p>
+      <h3 id="virt-adding-key-creating-vm-template_dynamic-key" class="group scroll-mt-20">Enabling dynamic key injection when creating a VM from a template<a href="#virt-adding-key-creating-vm-template_dynamic-key" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can enable dynamic public SSH key injection when you create a virtual machine (VM) from a template by using the OpenShift Container Platform web console. Then, you can update the key at runtime.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Only Red Hat Enterprise Linux (RHEL) 9 supports dynamic key injection.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The key is added to the VM by the QEMU guest agent, which is installed with RHEL 9.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You generated an SSH key pair by running the <code>ssh-keygen</code> command.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>Catalog</strong> in the web console.</li>
+      <li>Click the <strong>Red Hat Enterprise Linux 9 VM</strong> tile.</li>
+      <li>Click <strong>Customize VirtualMachine</strong>.</li>
+      <li>Click <strong>Next</strong>.</li>
+      <li>Click the <strong>Scripts</strong> tab.</li>
+      <li>
+      If you have not already added a public SSH key to your project, click the edit icon beside <strong>Authorized SSH key</strong> and select one of the following options:
+      <ul>
+      <li><strong>Use existing</strong>: Select a secret from the secrets list.</li>
+      <li>
+      <strong>Add new</strong>:
+      <ol>
+      <li>Browse to the SSH key file or paste the file in the key field.</li>
+      <li>Enter the secret name.</li>
+      <li>Optional: Select <strong>Automatically apply this key to any new VirtualMachine you create in this project</strong>.</li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      <li>Set <strong>Dynamic SSH key injection</strong> to on.</li>
+      <li>Click <strong>Save</strong>.</li>
+      <li>
+      Click <strong>Create VirtualMachine</strong>.
+      <p>The <strong>VirtualMachine details</strong> page displays the progress of the VM creation.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Click the <strong>Scripts</strong> tab on the <strong>Configuration</strong> tab.
+      <p>The secret name is displayed in the <strong>Authorized SSH key</strong> section.</p>
+      </li>
+      </ul>
+      <h3 id="virt-creating-vm-instancetype_dynamic-key" class="group scroll-mt-20">Creating a VM from an instance type by using the web console<a href="#virt-creating-vm-instancetype_dynamic-key" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can enable dynamic SSH key injection when you create a virtual machine (VM) from an instance type by using the OpenShift Container Platform web console. Then, you can add or revoke the key at runtime.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Only Red Hat Enterprise Linux (RHEL) 9 supports dynamic key injection.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The key is added to the VM by the QEMU guest agent, which is installed with RHEL 9.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      In the web console, navigate to <strong>Virtualization</strong> -&gt; <strong>Catalog</strong>.
+      <p>The <strong>InstanceTypes</strong> tab opens by default.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When configuring a downward-metrics device on an IBM Z(R) system that uses a VM preference, set the <code>spec.preference.name</code> value to <code>rhel.9.s390x</code> or another available preference with the format <code>*.s390x</code>.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Heterogeneous clusters only: To filter the bootable volumes using the options provided, click <strong>Architecture</strong>.</li>
+      <li>
+      Select either of the following options:
+      <ul>
+      <li>
+      Select a suitable bootable volume from the list. If the list is truncated, click the <strong>Show all</strong> button to display the entire list.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The bootable volume table lists only those volumes in the <code>openshift-virtualization-os-images</code> namespace that have the <code>instancetype.kubevirt.io/default-preference</code> label.</p>
+        </AlertDescription>
+      </Alert>
+      <ul><li>Optional: Click the star icon to designate a bootable volume as a favorite. Starred bootable volumes appear first in the volume list.</li></ul>
+      </li>
+      <li>
+      Click <strong>Add volume</strong> to upload a new volume or to use an existing persistent volume claim (PVC), a volume snapshot, or a <code>containerDisk</code> volume. Click <strong>Save</strong>.
+      <p>Logos of operating systems that are not available in the cluster are shown at the bottom of the list. You can add a volume for the required operating system by clicking the <strong>Add volume</strong> link.</p>
+      <p>In addition, there is a link to the <strong>Create a Windows bootable volume</strong> quick start. The same link appears in a popover if you hover the pointer over the question mark icon next to the <em>Select volume to boot from</em> line.</p>
+      <p>Immediately after you install the environment or when the environment is disconnected, the list of volumes to boot from is empty. In that case, three operating system logos are displayed: Windows, RHEL, and Linux. You can add a new volume that meets your requirements by clicking the <strong>Add volume</strong> button.</p>
+      </li>
+      </ul>
+      </li>
+      <li>
+      Click the <strong>Red Hat Enterprise Linux 9 VM</strong> tile.
+      <CodeBlock code={"1.  If you have not already added a public SSH key to your project, click the edit icon beside **Authorized SSH key** in the **VirtualMachine details** section.\n1.  Select one of the following options:\n    *   **Use existing**: Select a secret from the secrets list.\n    *   **Add new**: Follow these steps:\n        1.  Browse to the public SSH key file or paste the file in the key field.\n        1.  Enter the secret name.\n        1.  Optional: Select **Automatically apply this key to any new VirtualMachine you create in this project**.\n1.  Click **Save**."} lang="plaintext" />
+      </li>
+      <li>Set <strong>Dynamic SSH key injection</strong> in the <strong>VirtualMachine details</strong> section to on.</li>
+      <li>
+      Optional: If you are creating a Windows VM, you can mount a Windows driver disk:
+      <ol>
+      <li>Click the <strong>Customize VirtualMachine</strong> button.</li>
+      <li>On the <strong>VirtualMachine details</strong> page, click <strong>Storage</strong>.</li>
+      <li>Select the <strong>Mount Windows drivers disk</strong> checkbox.</li>
+      </ol>
+      </li>
+      <li>Optional: Click <strong>View YAML &amp; CLI</strong> to view the YAML file. Click <strong>CLI</strong> to view the CLI commands. You can also download or copy either the YAML file contents or the CLI commands.</li>
+      <li>Click <strong>Create VirtualMachine</strong>.</li>
+      </ol>
+      <p><strong>Result</strong></p>
+      <p>After the VM is created, you can monitor the status on the <strong>VirtualMachine details</strong> page.</p>
+      <h3 id="virt-editing-vm-dynamic-key-injection_dynamic-key" class="group scroll-mt-20">Enabling dynamic SSH key injection by using the web console<a href="#virt-editing-vm-dynamic-key-injection_dynamic-key" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can enable dynamic key injection for a virtual machine (VM) by using the OpenShift Container Platform web console. Then, you can update the public SSH key at runtime.</p>
+      <p>The key is added to the VM by the QEMU guest agent, which is installed with Red Hat Enterprise Linux (RHEL) 9 and later.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>The guest operating system is RHEL 9 or later.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> in the web console.</li>
+      <li>Select a VM to open the <strong>VirtualMachine details</strong> page.</li>
+      <li>On the <strong>Configuration</strong> tab, click <strong>Scripts</strong>.</li>
+      <li>
+      If you have not already added a public SSH key to your project, click the edit icon beside <strong>Authorized SSH key</strong> and select one of the following options:
+      <ul>
+      <li><strong>Use existing</strong>: Select a secret from the secrets list.</li>
+      <li>
+      <strong>Add new</strong>:
+      <ol>
+      <li>Browse to the SSH key file or paste the file in the key field.</li>
+      <li>Enter the secret name.</li>
+      <li>Optional: Select <strong>Automatically apply this key to any new VirtualMachine you create in this project</strong>.</li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      <li>Set <strong>Dynamic SSH key injection</strong> to on.</li>
+      <li>Click <strong>Save</strong>.</li>
+      </ol>
+      <h3 id="virt-enabling-dynamic-key-injection-cli_dynamic-key" class="group scroll-mt-20">Enabling dynamic key injection by using the CLI<a href="#virt-enabling-dynamic-key-injection-cli_dynamic-key" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can enable dynamic key injection for a virtual machine (VM) by using the command line. Then, you can update the public SSH key at runtime.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Only Red Hat Enterprise Linux (RHEL) 9 supports dynamic key injection.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The key is added to the VM by the QEMU guest agent, which is installed automatically with RHEL 9.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You generated an SSH key pair by running the <code>ssh-keygen</code> command.</li>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a manifest file for a <code>VirtualMachine</code> object and a <code>Secret</code> object.
+      <p>Example manifest:</p>
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: example-vm\n  namespace: example-namespace\nspec:\n  dataVolumeTemplates:\n    - metadata:\n        name: example-vm-volume\n      spec:\n        sourceRef:\n          kind: DataSource\n          name: rhel9\n          namespace: openshift-virtualization-os-images\n        storage:\n          resources: {}\n  instancetype:\n    name: u1.medium\n  preference:\n    name: rhel.9\n  runStrategy: Always\n  template:\n    spec:\n      domain:\n        devices: {}\n      volumes:\n        - dataVolume:\n            name: example-vm-volume\n          name: rootdisk\n        - cloudInitNoCloud:\n            userData: |-\n              #cloud-config\n              runcmd:\n              - [ setsebool, -P, virt_qemu_ga_manage_ssh, on ]\n          name: cloudinitdisk\n      accessCredentials:\n        - sshPublicKey:\n            propagationMethod:\n              qemuGuestAgent:\n                users: [\"cloud-user\"]\n            source:\n              secret:\n                secretName: authorized-keys\n---\napiVersion: v1\nkind: Secret\nmetadata:\n  name: authorized-keys\ndata:\n  key: c3NoLXJzYSB..."} lang="yaml" />
+      <ul>
+      <li><code>spec.template.spec.volumes.cloudInitNoCloud</code> defines the data source, for example <code>userData</code>.</li>
+      <li><code>spec.template.spec.accessCredentials.sshPublicKey.source.secret.secretName</code> defines the <code>secret</code> object name.</li>
+      <li><code>data.key</code> within the <code>secret</code> object defines the full public SSH key.</li>
+      </ul>
+      </li>
+      <li>
+      Create the <code>VirtualMachine</code> and <code>Secret</code> objects by running the following command:
+      <CodeBlock code={"$ oc create -f <manifest_file>.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Start the VM by running the following command:
+      <CodeBlock code={"$ virtctl start vm example-vm -n example-namespace"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Get the VM configuration by running the following command:
+      <CodeBlock code={"$ oc describe vm example-vm -n example-namespace"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: example-vm\n  namespace: example-namespace\nspec:\n  template:\n    spec:\n      accessCredentials:\n        - sshPublicKey:\n            propagationMethod:\n              qemuGuestAgent:\n                users: [\"cloud-user\"]\n            source:\n              secret:\n                secretName: authorized-keys\n# ..."} lang="yaml" />
+      </li>
+      </ul>
+      <h3 id="virt-using-virtctl-ssh-command_dynamic-key" class="group scroll-mt-20">Using the virtctl ssh command<a href="#virt-using-virtctl-ssh-command_dynamic-key" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can use the <code>virtctl ssh</code> command to access a running virtual machine instance (VMI). The command accepts VM or VMI targets.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the <code>virtctl</code> command-line tool.</li>
+      <li>You added a public SSH key to the VM.</li>
+      <li>You have an SSH client installed.</li>
+      <li>The environment where you installed the <code>virtctl</code> tool has the cluster permissions required to access the VM. For example, you ran <code>oc login</code> or you set the <code>KUBECONFIG</code> environment variable.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run the <code>virtctl ssh</code> command:
+      <CodeBlock code={"$ virtctl -n <namespace> ssh <username>@vm/<vm_name> -i <ssh_key>"} lang="terminal" />
+      <p>You must specify the resource type (<code>vmi/</code> or <code>vm/</code>) before the VM name.</p>
+      <p>For example:</p>
+      <CodeBlock code={"$ virtctl -n my-namespace ssh cloud-user@vm/example-vm -i my-key"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-using-virtctl-port-forward-command_dynamic-key" class="group scroll-mt-20">Using the virtctl port-forward command<a href="#virt-using-virtctl-port-forward-command_dynamic-key" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use your local OpenSSH client and the <code>virtctl port-forward</code> command to connect to a running virtual machine (VM). You can use this method with Ansible to automate the configuration of VMs.</p>
+      <p>This method is recommended for low-traffic applications because port-forwarding traffic is sent over the control plane. This method is not recommended for high-traffic applications such as Rsync or Remote Desktop Protocol because it places a heavy burden on the API server.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the <code>virtctl</code> client.</li>
+      <li>The virtual machine you want to access is running.</li>
+      <li>The environment where you installed the <code>virtctl</code> tool has the cluster permissions required to access the VM. For example, you ran <code>oc login</code> or you set the <code>KUBECONFIG</code> environment variable.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Add the following text to the <code>~/.ssh/config</code> file on your client machine:
+      <CodeBlock code={"Host vm/*\n  ProxyCommand virtctl port-forward --stdio=true %h %p"} lang="terminal" />
+      </li>
+      <li>
+      Connect to the VM by running the following command:
+      <CodeBlock code={"$ ssh <user>@vm/<vm_name>.<namespace>"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

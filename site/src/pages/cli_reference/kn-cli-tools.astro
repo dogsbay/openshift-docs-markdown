@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"kn-cli-tools","text":"Knative CLI for use with {{ ServerlessProductName }}"},{"depth":2,"slug":"kn-cli-tools-key-features","text":"Key features"},{"depth":2,"slug":"kn-cli-tools-installing-kn","text":"Installing the Knative CLI"}];
+const headings = [{"depth":1,"slug":"kn-cli-tools","text":"Knative CLI for use with OpenShift Serverless"},{"depth":2,"slug":"kn-cli-tools-key-features","text":"Key features"},{"depth":2,"slug":"kn-cli-tools-installing-kn","text":"Installing the Knative CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cli_reference/kn-cli-tools";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +39,7 @@ const pageCategory = ["cli_reference"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Knative CLI for use with {{ ServerlessProductName }} {#kn-cli-tools}\n\nThe Knative (`kn`) CLI enables simple interaction with Knative components on OpenShift Container Platform.\n\n## Key features {#kn-cli-tools-key-features}\n\nThe Knative (`kn`) CLI is designed to make serverless computing tasks simple and concise. Key features of the Knative CLI include:\n\n- Deploy serverless applications from the command line.\n- Manage features of Knative Serving, such as services, revisions, and traffic-splitting.\n- Create and manage Knative Eventing components, such as event sources and triggers.\n- Create sink bindings to connect existing Kubernetes applications and Knative services.\n- Extend the Knative CLI with flexible plugin architecture, similar to the `kubectl` CLI.\n- Configure autoscaling parameters for Knative services.\n- Scripted usage, such as waiting for the results of an operation, or deploying custom rollout and rollback strategies.\n\n## Installing the Knative CLI {#kn-cli-tools-installing-kn}\n\nSee [Installing the Knative CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_serverless/1.28/html/installing_serverless/installing-kn#installing-kn).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/kn-cli-tools.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Knative CLI for use with OpenShift Serverless {#kn-cli-tools}\n\nThe Knative (`kn`) CLI enables simple interaction with Knative components on OpenShift Container Platform.\n\n## Key features {#kn-cli-tools-key-features}\n\nThe Knative (`kn`) CLI is designed to make serverless computing tasks simple and concise. Key features of the Knative CLI include:\n\n- Deploy serverless applications from the command line.\n- Manage features of Knative Serving, such as services, revisions, and traffic-splitting.\n- Create and manage Knative Eventing components, such as event sources and triggers.\n- Create sink bindings to connect existing Kubernetes applications and Knative services.\n- Extend the Knative CLI with flexible plugin architecture, similar to the `kubectl` CLI.\n- Configure autoscaling parameters for Knative services.\n- Scripted usage, such as waiting for the results of an operation, or deploying custom rollout and rollback strategies.\n\n## Installing the Knative CLI {#kn-cli-tools-installing-kn}\n\nSee [Installing the Knative CLI](https://docs.redhat.com/en/documentation/red_hat_openshift_serverless/1.28/html/installing_serverless/installing-kn#installing-kn).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cli_reference/kn-cli-tools.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,8 +90,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="kn-cli-tools" class="group scroll-mt-20">Knative CLI for use with {"{"}{"{"} ServerlessProductName {"}"}{"}"}<a href="#kn-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <h1 id="kn-cli-tools" class="group scroll-mt-20">Knative CLI for use with OpenShift Serverless<a href="#kn-cli-tools" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>The Knative (<code>kn</code>) CLI enables simple interaction with Knative components on OpenShift Container Platform.</p>
       <h2 id="kn-cli-tools-key-features" class="group scroll-mt-20">Key features<a href="#kn-cli-tools-key-features" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>The Knative (<code>kn</code>) CLI is designed to make serverless computing tasks simple and concise. Key features of the Knative CLI include:</p>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-backup-restore-on-premise","text":"Backing up and restoring etcd on a hosted cluster"}];
+const headings = [{"depth":1,"slug":"hcp-backup-restore-on-premise","text":"Backing up and restoring etcd on a hosted cluster"},{"depth":2,"slug":"hosted-cluster-etcd-backup-restore-on-premise_hcp-backup-restore-on-premise","text":"Backing up etcd on a hosted cluster"},{"depth":2,"slug":"hosted-cluster-etcd-restore-on-premise_hcp-backup-restore-on-premise","text":"Restoring etcd on a hosted cluster"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-on-premise";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp_high_av
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring etcd on a hosted cluster {#hcp-backup-restore-on-premise}\n\nBy backing up and restoring etcd on a hosted cluster, you can fix failures, such as corrupted or missing data in an etcd member of a three-node cluster. If members of the etcd cluster lose data or have a `CrashLoopBackOff` status, this approach helps prevent an etcd quorum loss.\n\n**Additional resources**\n\n- [Configuring Amazon Web Services](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#migration-configuring-aws-s3_installing-oadp-aws)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-on-premise.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring etcd on a hosted cluster {#hcp-backup-restore-on-premise}\n\nBy backing up and restoring etcd on a hosted cluster, you can fix failures, such as corrupted or missing data in an etcd member of a three-node cluster. If members of the etcd cluster lose data or have a `CrashLoopBackOff` status, this approach helps prevent an etcd quorum loss.\n\n## Backing up etcd on a hosted cluster {#hosted-cluster-etcd-backup-restore-on-premise_hcp-backup-restore-on-premise}\n\nFix failures by taking a snapshot of etcd on a hosted cluster.\n\n**Prerequisites**\n\n- The `oc` and `jq` binaries have been installed.\n- For hosted control planes on AWS, the OIDC provider configuration must be accessible so that any necessary fixes can be completed after the restore process. See the following procedure for more information about applying any necessary fixes.\n- For hosted control planes on bare metal, the `InfraEnv` resource must reside in a different namespace from the hosted control plane namespace. Do not delete the `InfraEnv` resource during the backup or restore process.\n- Management cluster prerequisites:\n\n  - A valid `StorageClass` resource is configured in the management cluster.\n  - You have `cluster-admin` access to the management cluster.\n  - You have access to online storage that is compatible with OpenShift API for Data Protection (OADP) cloud storage providers, such as Amazon Web Services (AWS) S3, Microsoft Azure, Google Cloud, or MinIO. If you use S3 for backup storage, ensure that IAM roles and policies are configured. For more information, see \"Configuring Amazon Web Services\".\n  - Hosted control plane pods are accessible and functioning properly.\n  - You have access to the `openshift-adp` subscription through a `CatalogSource` object.\n- Service publishing strategy prerequisites for hosted clusters:\n\n  - The `APIServer` service must have a fixed hostname. Otherwise, the restore process fails and nodes cannot rejoin the cluster. For hosted control planes on AWS, the `APIServer` service can also use a `Route` service publishing strategy with a fixed hostname.\n  - For production environments, it is strongly recommended to configure all services with fixed hostnames. By having fixed hostnames, you can ensure full service continuity and DNS consistency during the restore process on a different management cluster.\n  - When you restore a hosted cluster to a different management cluster, all services in the hosted cluster must be configured with a fixed hostname in its `servicePublishingStrategy` property. This requirement applies to all platforms. Restoring a hosted cluster to a different management cluster is a Technology Preview feature. Restoring a hosted cluster to its original management cluster is supported.\n\n> [!IMPORTANT]\n> After you back up the hosted cluster, you must back up workloads in the data cluster and then delete the original hosted cluster so that the restore process can begin.\n\n**Procedure**\n\n1. Set up environment variables for your hosted cluster by entering the following commands, replacing values as necessary:\n\n   ```terminal\n   $ CLUSTER_NAME=my-cluster\n   ```\n\n   ```terminal\n   $ HOSTED_CLUSTER_NAMESPACE=clusters\n   ```\n\n   ```terminal\n   $ CONTROL_PLANE_NAMESPACE=\"${HOSTED_CLUSTER_NAMESPACE}-${CLUSTER_NAME}\"\n   ```\n2. Pause reconciliation of the hosted cluster by entering the following command, replacing values as necessary:\n\n   ```terminal\n   $ oc patch -n ${HOSTED_CLUSTER_NAMESPACE} hostedclusters/${CLUSTER_NAME} \\\n     -p '{\"spec\":{\"pausedUntil\":\"true\"}}' --type=merge\n   ```\n3. Take a snapshot of etcd by using one of the following methods:\n\n   - Use a previously backed-up snapshot of etcd.\n   - If you have an available etcd pod, take a snapshot from the active etcd pod by completing the following steps:\n\n     1. List etcd pods by entering the following command:\n\n        ```terminal\n        $ oc get -n ${CONTROL_PLANE_NAMESPACE} pods -l app=etcd\n        ```\n     2. Take a snapshot of the pod database and save it locally to your machine by entering the following commands:\n\n        ```terminal\n        $ ETCD_POD=etcd-0\n        ```\n\n        ```terminal\n        $ oc exec -n ${CONTROL_PLANE_NAMESPACE} -c etcd -t ${ETCD_POD} -- \\\n          env ETCDCTL_API=3 /usr/bin/etcdctl \\\n          --cacert /etc/etcd/tls/etcd-ca/ca.crt \\\n          --cert /etc/etcd/tls/client/etcd-client.crt \\\n          --key /etc/etcd/tls/client/etcd-client.key \\\n          --endpoints=https://localhost:2379 \\\n          snapshot save /var/lib/snapshot.db\n        ```\n     3. Verify that the snapshot is successful by entering the following command:\n\n        ```terminal\n        $ oc exec -n ${CONTROL_PLANE_NAMESPACE} -c etcd -t ${ETCD_POD} -- \\\n          env ETCDCTL_API=3 /usr/bin/etcdctl -w table snapshot status \\\n          /var/lib/snapshot.db\n        ```\n   - Make a local copy of the snapshot:\n\n     1. Copy the snapshot by entering the following command:\n\n        ```terminal\n        $ oc cp -c etcd ${CONTROL_PLANE_NAMESPACE}/${ETCD_POD}:/var/lib/snapshot.db \\\n          /tmp/etcd.snapshot.db\n        ```\n     2. Copy the snapshot database from etcd persistent storage:\n\n        1. List etcd pods by entering the following command:\n\n           ```terminal\n           $ oc get -n ${CONTROL_PLANE_NAMESPACE} pods -l app=etcd\n           ```\n        2. Find a pod that is running and set its name as the value of `ETCD_POD: ETCD_POD=etcd-0`, and then copy its snapshot database by entering the following command:\n\n           ```terminal\n           $ oc cp -c etcd \\\n             ${CONTROL_PLANE_NAMESPACE}/${ETCD_POD}:/var/lib/data/member/snap/db \\\n             /tmp/etcd.snapshot.db\n           ```\n\n**Additional resources**\n\n- [Configuring Amazon Web Services](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#migration-configuring-aws-s3_installing-oadp-aws)\n\n## Restoring etcd on a hosted cluster {#hosted-cluster-etcd-restore-on-premise_hcp-backup-restore-on-premise}\n\nFix failures by restoring a snapshot of etcd on a hosted cluster.\n\n**Prerequisites**\n\n- You completed the steps in \"Backing up etcd on a hosted cluster\". Ensure that you meet the prerequisites listed in that procedure.\n\n> [!IMPORTANT]\n> After you back up the hosted cluster, you must back up workloads in the data cluster and then delete the original hosted cluster so that the restore process can begin.\n\n**Procedure**\n\n1. If you are working in a new terminal session from the session you used to complete the steps in \"Backing up etcd on a hosted cluster\", set the environment variables again as described in the backup procedure.\n2. Scale down the etcd statefulset by entering the following command:\n\n   ```terminal\n   $ oc scale -n ${CONTROL_PLANE_NAMESPACE} statefulset/etcd --replicas=0\n   ```\n3. Delete volumes for second and third members by entering the following command:\n\n   ```terminal\n   $ oc delete -n ${CONTROL_PLANE_NAMESPACE} pvc/data-etcd-1 pvc/data-etcd-2\n   ```\n4. Create a pod to access the first etcd member’s data:\n\n   1. Get the etcd image by entering the following command:\n\n      ```terminal\n      $ ETCD_IMAGE=$(oc get -n ${CONTROL_PLANE_NAMESPACE} statefulset/etcd \\\n        -o jsonpath='{ .spec.template.spec.containers[0].image }')\n      ```\n   2. Create a pod that allows access to etcd data:\n\n      ```yaml\n      $ cat << EOF | oc apply -n ${{ CONTROL_PLANE_NAMESPACE }} -f -\n      apiVersion: apps/v1\n      kind: Deployment\n      metadata:\n        name: etcd-data\n      spec:\n        replicas: 1\n        selector:\n          matchLabels:\n            app: etcd-data\n        template:\n          metadata:\n            labels:\n              app: etcd-data\n          spec:\n            containers:\n            - name: access\n              image: $ETCD_IMAGE\n              volumeMounts:\n              - name: data\n                mountPath: /var/lib\n              command:\n              - /usr/bin/bash\n              args:\n              - -c\n              - |-\n                while true; do\n                  sleep 1000\n                done\n            volumes:\n            - name: data\n              persistentVolumeClaim:\n                claimName: data-etcd-0\n          EOF\n      ```\n   3. Check the status of the `etcd-data` pod and wait for it to be running by entering the following command:\n\n      ```terminal\n      $ oc get -n ${CONTROL_PLANE_NAMESPACE} pods -l app=etcd-data\n      ```\n   4. Get the name of the `etcd-data` pod by entering the following command:\n\n      ```terminal\n      $ DATA_POD=$(oc get -n ${CONTROL_PLANE_NAMESPACE} pods --no-headers \\\n        -l app=etcd-data -o name | cut -d/ -f2)\n      ```\n5. Copy an etcd snapshot into the pod by entering the following command:\n\n   ```terminal\n   $ oc cp /tmp/etcd.snapshot.db \\\n     ${CONTROL_PLANE_NAMESPACE}/${DATA_POD}:/var/lib/restored.snap.db\n   ```\n6. Remove old data from the `etcd-data` pod by entering the following commands:\n\n   ```terminal\n   $ oc exec -n ${CONTROL_PLANE_NAMESPACE} ${DATA_POD} -- rm -rf /var/lib/data\n   ```\n\n   ```terminal\n   $ oc exec -n ${CONTROL_PLANE_NAMESPACE} ${DATA_POD} -- mkdir -p /var/lib/data\n   ```\n7. Restore the etcd snapshot by entering the following command:\n\n   ```terminal\n   $ oc exec -n ${CONTROL_PLANE_NAMESPACE} ${DATA_POD} -- \\\n        etcdutl snapshot restore /var/lib/restored.snap.db \\\n        --data-dir=/var/lib/data --skip-hash-check \\\n        --name etcd-0 \\\n        --initial-cluster-token=etcd-cluster \\\n        --initial-cluster etcd-0=https://etcd-0.etcd-discovery.${CONTROL_PLANE_NAMESPACE}.svc:2380,etcd-1=https://etcd-1.etcd-discovery.${CONTROL_PLANE_NAMESPACE}.svc:2380,etcd-2=https://etcd-2.etcd-discovery.${CONTROL_PLANE_NAMESPACE}.svc:2380 \\\n        --initial-advertise-peer-urls https://etcd-0.etcd-discovery.${CONTROL_PLANE_NAMESPACE}.svc:2380\n   ```\n8. Remove the temporary etcd snapshot from the pod by entering the following command:\n\n   ```terminal\n   $ oc exec -n ${CONTROL_PLANE_NAMESPACE} ${DATA_POD} -- \\\n     rm /var/lib/restored.snap.db\n   ```\n9. Delete data access deployment by entering the following command:\n\n   ```terminal\n   $ oc delete -n ${CONTROL_PLANE_NAMESPACE} deployment/etcd-data\n   ```\n10. Scale up the etcd cluster by entering the following command:\n\n    ```terminal\n    $ oc scale -n ${CONTROL_PLANE_NAMESPACE} statefulset/etcd --replicas=3\n    ```\n11. Wait for the etcd member pods to return and report as available by entering the following command:\n\n    ```terminal\n    $ oc get -n ${CONTROL_PLANE_NAMESPACE} pods -l app=etcd -w\n    ```\n12. Restore reconciliation of the hosted cluster by entering the following command:\n\n    ```terminal\n    $ oc patch -n ${HOSTED_CLUSTER_NAMESPACE} hostedclusters/${CLUSTER_NAME} \\\n      -p '{\"spec\":{\"pausedUntil\":\"null\"}}' --type=merge\n    ```\n\n    This command uses the `\"null\"` string. When you use that string, the controller treats unrecognized strings as not paused, but it logs an error. Instead of `\"null\"`, you can also use `\"false\"`, which is valid per Common Expression Language (CEL) validation, or JSON `null`, which removes the field.\n13. Manually roll out the hosted cluster by entering the following command:\n\n    ```terminal\n    $ oc annotate hostedcluster -n \\\n      <hosted_cluster_namespace> <hosted_cluster_name> \\\n      hypershift.openshift.io/restart-date=$(date --iso-8601=seconds)\n    ```\n\n    The Multus admission controller and network node identity pods do not start yet.\n14. Delete the pods for the second and third members of etcd and their PVCs by entering the following commands:\n\n    ```terminal\n    $ oc delete -n ${CONTROL_PLANE_NAMESPACE} pvc/data-etcd-1 pod/etcd-1 --wait=false\n    ```\n\n    ```terminal\n    $ oc delete -n ${CONTROL_PLANE_NAMESPACE} pvc/data-etcd-2 pod/etcd-2 --wait=false\n    ```\n15. Manually roll out the hosted cluster again by entering the following command:\n\n    ```terminal\n    $ oc annotate hostedcluster -n \\\n      <hosted_cluster_namespace> <hosted_cluster_name> \\\n      hypershift.openshift.io/restart-date=$(date --iso-8601=seconds) \\\n      --overwrite\n    ```\n\n    After a few minutes, the control plane pods start running.\n16. If your hosted cluster is on AWS and you need to apply OIDC fixes after the restore process, enter the following command:\n\n    ```terminal\n    $ hcp fix dr-oidc-iam --hc-name <hosted_cluster_name> --hc-namespace <hosted_cluster_namespace> --aws-creds ~/.aws/credentials\n    ```\n\n    This command regenerates the OIDC in S3 in case OIDC is deleted.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-on-premise.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,12 +94,198 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="hcp-backup-restore-on-premise" class="group scroll-mt-20">Backing up and restoring etcd on a hosted cluster<a href="#hcp-backup-restore-on-premise" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>By backing up and restoring etcd on a hosted cluster, you can fix failures, such as corrupted or missing data in an etcd member of a three-node cluster. If members of the etcd cluster lose data or have a <code>CrashLoopBackOff</code> status, this approach helps prevent an etcd quorum loss.</p>
-      <p class="/modules/hosted-cluster-etcd-backup-restore-on-premise.md"></p>
+      <h2 id="hosted-cluster-etcd-backup-restore-on-premise_hcp-backup-restore-on-premise" class="group scroll-mt-20">Backing up etcd on a hosted cluster<a href="#hosted-cluster-etcd-backup-restore-on-premise_hcp-backup-restore-on-premise" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Fix failures by taking a snapshot of etcd on a hosted cluster. </p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The <code>oc</code> and <code>jq</code> binaries have been installed.</li>
+      <li>For hosted control planes on AWS, the OIDC provider configuration must be accessible so that any necessary fixes can be completed after the restore process. See the following procedure for more information about applying any necessary fixes.</li>
+      <li>For hosted control planes on bare metal, the <code>InfraEnv</code> resource must reside in a different namespace from the hosted control plane namespace. Do not delete the <code>InfraEnv</code> resource during the backup or restore process.</li>
+      <li>
+      Management cluster prerequisites:
+      <ul>
+      <li>A valid <code>StorageClass</code> resource is configured in the management cluster.</li>
+      <li>You have <code>cluster-admin</code> access to the management cluster.</li>
+      <li>You have access to online storage that is compatible with OpenShift API for Data Protection (OADP) cloud storage providers, such as Amazon Web Services (AWS) S3, Microsoft Azure, Google Cloud, or MinIO. If you use S3 for backup storage, ensure that IAM roles and policies are configured. For more information, see "Configuring Amazon Web Services".</li>
+      <li>Hosted control plane pods are accessible and functioning properly.</li>
+      <li>You have access to the <code>openshift-adp</code> subscription through a <code>CatalogSource</code> object.</li>
+      </ul>
+      </li>
+      <li>
+      Service publishing strategy prerequisites for hosted clusters:
+      <ul>
+      <li>The <code>APIServer</code> service must have a fixed hostname. Otherwise, the restore process fails and nodes cannot rejoin the cluster. For hosted control planes on AWS, the <code>APIServer</code> service can also use a <code>Route</code> service publishing strategy with a fixed hostname.</li>
+      <li>For production environments, it is strongly recommended to configure all services with fixed hostnames. By having fixed hostnames, you can ensure full service continuity and DNS consistency during the restore process on a different management cluster.</li>
+      <li>When you restore a hosted cluster to a different management cluster, all services in the hosted cluster must be configured with a fixed hostname in its <code>servicePublishingStrategy</code> property. This requirement applies to all platforms. Restoring a hosted cluster to a different management cluster is a Technology Preview feature. Restoring a hosted cluster to its original management cluster is supported.</li>
+      </ul>
+      </li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>After you back up the hosted cluster, you must back up workloads in the data cluster and then delete the original hosted cluster so that the restore process can begin.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set up environment variables for your hosted cluster by entering the following commands, replacing values as necessary:
+      <CodeBlock code={"$ CLUSTER_NAME=my-cluster"} lang="terminal" />
+      <CodeBlock code={"$ HOSTED_CLUSTER_NAMESPACE=clusters"} lang="terminal" />
+      <CodeBlock code={"$ CONTROL_PLANE_NAMESPACE=\"${HOSTED_CLUSTER_NAMESPACE}-${CLUSTER_NAME}\""} lang="terminal" />
+      </li>
+      <li>
+      Pause reconciliation of the hosted cluster by entering the following command, replacing values as necessary:
+      <CodeBlock code={"$ oc patch -n ${HOSTED_CLUSTER_NAMESPACE} hostedclusters/${CLUSTER_NAME} \\\n  -p '{\"spec\":{\"pausedUntil\":\"true\"}}' --type=merge"} lang="terminal" />
+      </li>
+      <li>
+      Take a snapshot of etcd by using one of the following methods:
+      <ul>
+      <li>Use a previously backed-up snapshot of etcd.</li>
+      <li>
+      If you have an available etcd pod, take a snapshot from the active etcd pod by completing the following steps:
+      <ol>
+      <li>
+      List etcd pods by entering the following command:
+      <CodeBlock code={"$ oc get -n ${CONTROL_PLANE_NAMESPACE} pods -l app=etcd"} lang="terminal" />
+      </li>
+      <li>
+      Take a snapshot of the pod database and save it locally to your machine by entering the following commands:
+      <CodeBlock code={"$ ETCD_POD=etcd-0"} lang="terminal" />
+      <CodeBlock code={"$ oc exec -n ${CONTROL_PLANE_NAMESPACE} -c etcd -t ${ETCD_POD} -- \\\n  env ETCDCTL_API=3 /usr/bin/etcdctl \\\n  --cacert /etc/etcd/tls/etcd-ca/ca.crt \\\n  --cert /etc/etcd/tls/client/etcd-client.crt \\\n  --key /etc/etcd/tls/client/etcd-client.key \\\n  --endpoints=https://localhost:2379 \\\n  snapshot save /var/lib/snapshot.db"} lang="terminal" />
+      </li>
+      <li>
+      Verify that the snapshot is successful by entering the following command:
+      <CodeBlock code={"$ oc exec -n ${CONTROL_PLANE_NAMESPACE} -c etcd -t ${ETCD_POD} -- \\\n  env ETCDCTL_API=3 /usr/bin/etcdctl -w table snapshot status \\\n  /var/lib/snapshot.db"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Make a local copy of the snapshot:
+      <ol>
+      <li>
+      Copy the snapshot by entering the following command:
+      <CodeBlock code={"$ oc cp -c etcd ${CONTROL_PLANE_NAMESPACE}/${ETCD_POD}:/var/lib/snapshot.db \\\n  /tmp/etcd.snapshot.db"} lang="terminal" />
+      </li>
+      <li>
+      Copy the snapshot database from etcd persistent storage:
+      <ol>
+      <li>
+      List etcd pods by entering the following command:
+      <CodeBlock code={"$ oc get -n ${CONTROL_PLANE_NAMESPACE} pods -l app=etcd"} lang="terminal" />
+      </li>
+      <li>
+      Find a pod that is running and set its name as the value of <code>ETCD_POD: ETCD_POD=etcd-0</code>, and then copy its snapshot database by entering the following command:
+      <CodeBlock code={"$ oc cp -c etcd \\\n  ${CONTROL_PLANE_NAMESPACE}/${ETCD_POD}:/var/lib/data/member/snap/db \\\n  /tmp/etcd.snapshot.db"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#migration-configuring-aws-s3_installing-oadp-aws">Configuring Amazon Web Services</a></li></ul>
+      <h2 id="hosted-cluster-etcd-restore-on-premise_hcp-backup-restore-on-premise" class="group scroll-mt-20">Restoring etcd on a hosted cluster<a href="#hosted-cluster-etcd-restore-on-premise_hcp-backup-restore-on-premise" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Fix failures by restoring a snapshot of etcd on a hosted cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You completed the steps in "Backing up etcd on a hosted cluster". Ensure that you meet the prerequisites listed in that procedure.</li></ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>After you back up the hosted cluster, you must back up workloads in the data cluster and then delete the original hosted cluster so that the restore process can begin.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>If you are working in a new terminal session from the session you used to complete the steps in "Backing up etcd on a hosted cluster", set the environment variables again as described in the backup procedure.</li>
+      <li>
+      Scale down the etcd statefulset by entering the following command:
+      <CodeBlock code={"$ oc scale -n ${CONTROL_PLANE_NAMESPACE} statefulset/etcd --replicas=0"} lang="terminal" />
+      </li>
+      <li>
+      Delete volumes for second and third members by entering the following command:
+      <CodeBlock code={"$ oc delete -n ${CONTROL_PLANE_NAMESPACE} pvc/data-etcd-1 pvc/data-etcd-2"} lang="terminal" />
+      </li>
+      <li>
+      Create a pod to access the first etcd member’s data:
+      <ol>
+      <li>
+      Get the etcd image by entering the following command:
+      <CodeBlock code={"$ ETCD_IMAGE=$(oc get -n ${CONTROL_PLANE_NAMESPACE} statefulset/etcd \\\n  -o jsonpath='{ .spec.template.spec.containers[0].image }')"} lang="terminal" />
+      </li>
+      <li>
+      Create a pod that allows access to etcd data:
+      <CodeBlock code={"$ cat << EOF | oc apply -n ${{ CONTROL_PLANE_NAMESPACE }} -f -\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: etcd-data\nspec:\n  replicas: 1\n  selector:\n    matchLabels:\n      app: etcd-data\n  template:\n    metadata:\n      labels:\n        app: etcd-data\n    spec:\n      containers:\n      - name: access\n        image: $ETCD_IMAGE\n        volumeMounts:\n        - name: data\n          mountPath: /var/lib\n        command:\n        - /usr/bin/bash\n        args:\n        - -c\n        - |-\n          while true; do\n            sleep 1000\n          done\n      volumes:\n      - name: data\n        persistentVolumeClaim:\n          claimName: data-etcd-0\n    EOF"} lang="yaml" />
+      </li>
+      <li>
+      Check the status of the <code>etcd-data</code> pod and wait for it to be running by entering the following command:
+      <CodeBlock code={"$ oc get -n ${CONTROL_PLANE_NAMESPACE} pods -l app=etcd-data"} lang="terminal" />
+      </li>
+      <li>
+      Get the name of the <code>etcd-data</code> pod by entering the following command:
+      <CodeBlock code={"$ DATA_POD=$(oc get -n ${CONTROL_PLANE_NAMESPACE} pods --no-headers \\\n  -l app=etcd-data -o name | cut -d/ -f2)"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Copy an etcd snapshot into the pod by entering the following command:
+      <CodeBlock code={"$ oc cp /tmp/etcd.snapshot.db \\\n  ${CONTROL_PLANE_NAMESPACE}/${DATA_POD}:/var/lib/restored.snap.db"} lang="terminal" />
+      </li>
+      <li>
+      Remove old data from the <code>etcd-data</code> pod by entering the following commands:
+      <CodeBlock code={"$ oc exec -n ${CONTROL_PLANE_NAMESPACE} ${DATA_POD} -- rm -rf /var/lib/data"} lang="terminal" />
+      <CodeBlock code={"$ oc exec -n ${CONTROL_PLANE_NAMESPACE} ${DATA_POD} -- mkdir -p /var/lib/data"} lang="terminal" />
+      </li>
+      <li>
+      Restore the etcd snapshot by entering the following command:
+      <CodeBlock code={"$ oc exec -n ${CONTROL_PLANE_NAMESPACE} ${DATA_POD} -- \\\n     etcdutl snapshot restore /var/lib/restored.snap.db \\\n     --data-dir=/var/lib/data --skip-hash-check \\\n     --name etcd-0 \\\n     --initial-cluster-token=etcd-cluster \\\n     --initial-cluster etcd-0=https://etcd-0.etcd-discovery.${CONTROL_PLANE_NAMESPACE}.svc:2380,etcd-1=https://etcd-1.etcd-discovery.${CONTROL_PLANE_NAMESPACE}.svc:2380,etcd-2=https://etcd-2.etcd-discovery.${CONTROL_PLANE_NAMESPACE}.svc:2380 \\\n     --initial-advertise-peer-urls https://etcd-0.etcd-discovery.${CONTROL_PLANE_NAMESPACE}.svc:2380"} lang="terminal" />
+      </li>
+      <li>
+      Remove the temporary etcd snapshot from the pod by entering the following command:
+      <CodeBlock code={"$ oc exec -n ${CONTROL_PLANE_NAMESPACE} ${DATA_POD} -- \\\n  rm /var/lib/restored.snap.db"} lang="terminal" />
+      </li>
+      <li>
+      Delete data access deployment by entering the following command:
+      <CodeBlock code={"$ oc delete -n ${CONTROL_PLANE_NAMESPACE} deployment/etcd-data"} lang="terminal" />
+      </li>
+      <li>
+      Scale up the etcd cluster by entering the following command:
+      <CodeBlock code={"$ oc scale -n ${CONTROL_PLANE_NAMESPACE} statefulset/etcd --replicas=3"} lang="terminal" />
+      </li>
+      <li>
+      Wait for the etcd member pods to return and report as available by entering the following command:
+      <CodeBlock code={"$ oc get -n ${CONTROL_PLANE_NAMESPACE} pods -l app=etcd -w"} lang="terminal" />
+      </li>
+      <li>
+      Restore reconciliation of the hosted cluster by entering the following command:
+      <CodeBlock code={"$ oc patch -n ${HOSTED_CLUSTER_NAMESPACE} hostedclusters/${CLUSTER_NAME} \\\n  -p '{\"spec\":{\"pausedUntil\":\"null\"}}' --type=merge"} lang="terminal" />
+      <p>This command uses the <code>"null"</code> string. When you use that string, the controller treats unrecognized strings as not paused, but it logs an error. Instead of <code>"null"</code>, you can also use <code>"false"</code>, which is valid per Common Expression Language (CEL) validation, or JSON <code>null</code>, which removes the field.</p>
+      </li>
+      <li>
+      Manually roll out the hosted cluster by entering the following command:
+      <CodeBlock code={"$ oc annotate hostedcluster -n \\\n  <hosted_cluster_namespace> <hosted_cluster_name> \\\n  hypershift.openshift.io/restart-date=$(date --iso-8601=seconds)"} lang="terminal" />
+      <p>The Multus admission controller and network node identity pods do not start yet.</p>
+      </li>
+      <li>
+      Delete the pods for the second and third members of etcd and their PVCs by entering the following commands:
+      <CodeBlock code={"$ oc delete -n ${CONTROL_PLANE_NAMESPACE} pvc/data-etcd-1 pod/etcd-1 --wait=false"} lang="terminal" />
+      <CodeBlock code={"$ oc delete -n ${CONTROL_PLANE_NAMESPACE} pvc/data-etcd-2 pod/etcd-2 --wait=false"} lang="terminal" />
+      </li>
+      <li>
+      Manually roll out the hosted cluster again by entering the following command:
+      <CodeBlock code={"$ oc annotate hostedcluster -n \\\n  <hosted_cluster_namespace> <hosted_cluster_name> \\\n  hypershift.openshift.io/restart-date=$(date --iso-8601=seconds) \\\n  --overwrite"} lang="terminal" />
+      <p>After a few minutes, the control plane pods start running.</p>
+      </li>
+      <li>
+      If your hosted cluster is on AWS and you need to apply OIDC fixes after the restore process, enter the following command:
+      <CodeBlock code={"$ hcp fix dr-oidc-iam --hc-name <hosted_cluster_name> --hc-namespace <hosted_cluster_namespace> --aws-creds ~/.aws/credentials"} lang="terminal" />
+      <p>This command regenerates the OIDC in S3 in case OIDC is deleted.</p>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

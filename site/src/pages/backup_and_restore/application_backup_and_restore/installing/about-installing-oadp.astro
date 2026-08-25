@@ -15,8 +15,17 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"about-installing-oadp","text":"About installing OADP"},{"depth":2,"slug":"additional-resources_about-installing-oadp","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"about-installing-oadp","text":"About installing OADP"},{"depth":2,"slug":"oadp-s3-compatible-backup-storage-providers_about-installing-oadp","text":"AWS S3 compatible backup storage providers"},{"depth":3,"slug":"oadp-certified-backup-storage-providers_about-installing-oadp","text":"Certified backup storage providers"},{"depth":3,"slug":"oadp-s3-compatible-backup-storage-providers-unsupported","text":"Unsupported backup storage providers"},{"depth":3,"slug":"oadp-s3-compatible-backup-storage-providers-known-limitations","text":"Backup storage providers with known limitations"},{"depth":2,"slug":"oadp-configuring-noobaa-for-dr_about-installing-oadp","text":"Configuring Multicloud Object Gateway (MCG) for disaster recovery on OpenShift Data Foundation"},{"depth":2,"slug":"additional-resources_about-installing-oadp","text":"Additional resources"},{"depth":2,"slug":"about-oadp-update-channels_about-installing-oadp","text":"About OADP update channels"},{"depth":2,"slug":"about-installing-oadp-on-multiple-namespaces_about-installing-oadp","text":"Installation of OADP on multiple namespaces"},{"depth":2,"slug":"oadp-support-backup-data-immutability_about-installing-oadp","text":"OADP support for backup data immutability"},{"depth":2,"slug":"oadp-velero-cpu-memory-requirements_about-installing-oadp","text":"Velero CPU and memory requirements based on collected data"},{"depth":3,"slug":"_cpu_and_memory_requirement_for_configurations","text":"CPU and memory requirement for configurations"},{"depth":3,"slug":"oadp-backup-restore-for-large-usage_about-installing-oadp","text":"NodeAgent CPU for large usage"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +35,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "About installing OADP";
-const description = "As a cluster administrator, you install the OpenShift API for Data Protection (OADP) by installing the OADP Operator. The OADP Operator installs {{…" || undefined;
+const description = "As a cluster administrator, you install the OpenShift API for Data Protection (OADP) by installing the OADP Operator. The OADP Operator installs Velero…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +48,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About installing OADP {#about-installing-oadp}\n\nAs a cluster administrator, you install the OpenShift API for Data Protection (OADP) by installing the OADP Operator. The OADP Operator installs {{ velero_link }}.\n\nTo back up Kubernetes resources and internal images, you must have object storage as a backup location, such as one of the following storage types:\n\n- Amazon Web Services\n- Microsoft Azure\n- {{ gcp_full }}\n- Multicloud Object Gateway\n- {{ ibm_cloud_name }} Object Storage S3\n- AWS S3 compatible object storage, such as Multicloud Object Gateway or MinIO\n\nYou can configure multiple backup storage locations within the same namespace for each individual OADP deployment.\n\nYou can back up persistent volumes (PVs) by using snapshots or a File System Backup (FSB).\n\nTo back up PVs with snapshots, you must have a cloud provider that supports either a native snapshot API or Container Storage Interface (CSI) snapshots, such as one of the following cloud providers:\n\n- Amazon Web Services\n- Microsoft Azure\n- {{ gcp_full }}\n- CSI snapshot-enabled cloud provider, such as {{ rh_storage }}\n\nIf your cloud provider does not support snapshots or if your storage is NFS, you can back up applications with File System Backup: Kopia or Restic on object storage.\n\nYou create a default `Secret` and then you install the Data Protection Application.\n\n## Additional resources {#additional-resources_about-installing-oadp}\n\n- [Installing OADP on Amazon Web Services](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)\n- [Installing OADP on Microsoft Azure](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-azure#installing-oadp-azure)\n- [Installing OADP on {{ gcp_full }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-gcp#installing-oadp-gcp)\n- [Installing OADP on Multicloud Object Gateway](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)\n- [Installing OADP on {{ rh_storage }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs#installing-oadp-ocs)\n- [Backing up applications with File System Backup: Kopia or Restic](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#backing-up-applications)\n- [Cluster service version](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-csv_olm-understanding-olm)\n\n{% include \"./modules/about-oadp-update-channels.md\" %}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About installing OADP {#about-installing-oadp}\n\nAs a cluster administrator, you install the OpenShift API for Data Protection (OADP) by installing the OADP Operator. The OADP Operator installs [Velero 1.16](https://velero.io/docs/v1.16/).\n\nTo back up Kubernetes resources and internal images, you must have object storage as a backup location, such as one of the following storage types:\n\n- Amazon Web Services\n- Microsoft Azure\n- Google Cloud\n- Multicloud Object Gateway\n- IBM Cloud(R) Object Storage S3\n- AWS S3 compatible object storage, such as Multicloud Object Gateway or MinIO\n\nYou can configure multiple backup storage locations within the same namespace for each individual OADP deployment.\n\n> [!NOTE]\n> Unless specified otherwise, \"NooBaa\" refers to the open source project that provides lightweight object storage, while \"Multicloud Object Gateway (MCG)\" refers to the Red Hat distribution of NooBaa.\n>\n> For more information on the MCG, see [Accessing the Multicloud Object Gateway with your applications](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.13/html-single/managing_hybrid_and_multicloud_resources/index#accessing-the-multicloud-object-gateway-with-your-applications_rhodf).\n\nYou can back up persistent volumes (PVs) by using snapshots or a File System Backup (FSB).\n\nTo back up PVs with snapshots, you must have a cloud provider that supports either a native snapshot API or Container Storage Interface (CSI) snapshots, such as one of the following cloud providers:\n\n- Amazon Web Services\n- Microsoft Azure\n- Google Cloud\n- CSI snapshot-enabled cloud provider, such as OpenShift Data Foundation\n\n> [!NOTE]\n> If you want to use CSI backup on OCP 4.11 and later, install OADP 1.1.*x*.\n>\n> OADP 1.0.*x* does not support CSI backup on OCP 4.11 and later. OADP 1.0.*x* includes Velero 1.7.*x* and expects the API group `snapshot.storage.k8s.io/v1beta1`, which is not present on OCP 4.11 and later.\n\nIf your cloud provider does not support snapshots or if your storage is NFS, you can back up applications with File System Backup: Kopia or Restic on object storage.\n\nYou create a default `Secret` and then you install the Data Protection Application.\n\n## AWS S3 compatible backup storage providers {#oadp-s3-compatible-backup-storage-providers_about-installing-oadp}\n\nOADP works with many S3-compatible object storage providers. Several object storage providers are certified and tested with every release of OADP. Various S3 providers are known to work with OADP but are not specifically tested and certified. These providers will be supported on a best-effort basis. Additionally, there are a few S3 object storage providers with known issues and limitations that are listed in this documentation.\n\n> [!NOTE]\n> Red Hat will provide support for OADP on any S3-compatible storage, but support will stop if the S3 endpoint is determined to be the root cause of an issue.\n\n### Certified backup storage providers {#oadp-certified-backup-storage-providers_about-installing-oadp}\n\nThe following AWS S3 compatible object storage providers are fully supported by OADP through the AWS plugin for use as backup storage locations:\n\n- MinIO\n- Multicloud Object Gateway (MCG)\n- Amazon Web Services (AWS) S3\n- IBM Cloud(R) Object Storage S3\n- Ceph RADOS Gateway (Ceph Object Gateway)\n- Red Hat Container Storage\n- Red Hat OpenShift Data Foundation\n- NetApp ONTAP S3 Object Storage\n- Scality ARTESCA S3 object storage\n\n> [!NOTE]\n> The following compatible object storage providers are supported and have their own Velero object store plugins:\n>\n> - Google Cloud\n> - Microsoft Azure\n\n### Unsupported backup storage providers {#oadp-s3-compatible-backup-storage-providers-unsupported}\n\nThe following AWS S3 compatible object storage providers, are known to work with Velero through the AWS plugin, for use as backup storage locations, however, they are unsupported and have not been tested by Red Hat:\n\n- Oracle Cloud\n- DigitalOcean\n- NooBaa, unless installed using Multicloud Object Gateway (MCG)\n- Tencent Cloud\n- Ceph RADOS v12.2.7\n- Quobyte\n- Cloudian HyperStore\n\n> [!NOTE]\n> Unless specified otherwise, \"NooBaa\" refers to the open source project that provides lightweight object storage, while \"Multicloud Object Gateway (MCG)\" refers to the Red Hat distribution of NooBaa.\n>\n> For more information on the MCG, see [Accessing the Multicloud Object Gateway with your applications](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.13/html-single/managing_hybrid_and_multicloud_resources/index#accessing-the-multicloud-object-gateway-with-your-applications_rhodf).\n\n### Backup storage providers with known limitations {#oadp-s3-compatible-backup-storage-providers-known-limitations}\n\nThe following AWS S3 compatible object storage providers are known to work with Velero through the AWS plugin with a limited feature set:\n\n- Swift - It works for use as a backup storage location for backup storage, but is not compatible with Restic for filesystem-based volume backup and restore.\n\n- [Scality ARTESCA S3 object storage (Scality documentation)](https://downloads.scality.com/artesca-ova/doc/general_introduction.html#)\n\n## Configuring Multicloud Object Gateway (MCG) for disaster recovery on OpenShift Data Foundation {#oadp-configuring-noobaa-for-dr_about-installing-oadp}\n\nIf you use cluster storage for your MCG bucket `backupStorageLocation` on OpenShift Data Foundation, configure MCG as an external object store.\n\n> [!WARNING]\n> Failure to configure MCG as an external object store might lead to backups not being available.\n\n> [!NOTE]\n> Unless specified otherwise, \"NooBaa\" refers to the open source project that provides lightweight object storage, while \"Multicloud Object Gateway (MCG)\" refers to the Red Hat distribution of NooBaa.\n>\n> For more information on the MCG, see [Accessing the Multicloud Object Gateway with your applications](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.13/html-single/managing_hybrid_and_multicloud_resources/index#accessing-the-multicloud-object-gateway-with-your-applications_rhodf).\n\n**Procedure**\n\n- Configure MCG as an external object store as described in [Adding storage resources for hybrid or Multicloud](https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.13/html/managing_hybrid_and_multicloud_resources/adding-storage-resources-for-hybrid-or-multicloud_rhodf#doc-wrapper).\n\n## Additional resources {#additional-resources_about-installing-oadp}\n\n- [Installing OADP on Amazon Web Services](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws)\n- [Installing OADP on Microsoft Azure](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-azure#installing-oadp-azure)\n- [Installing OADP on Google Cloud](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-gcp#installing-oadp-gcp)\n- [Installing OADP on Multicloud Object Gateway](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg)\n- [Installing OADP on OpenShift Data Foundation](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs#installing-oadp-ocs)\n- [Backing up applications with File System Backup: Kopia or Restic](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#backing-up-applications)\n- [Cluster service version](/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-csv_olm-understanding-olm)\n\n## About OADP update channels {#about-oadp-update-channels_about-installing-oadp}\n\nWhen you install an OADP Operator, you choose an update channel. This channel determines which upgrades to the OADP Operator and to Velero you receive.\n\nThe following update channels are available:\n\n- The **stable-1.3** channel contains `{{ oadp_short }}.v1.3.z`, the most recent OADP 1.3 `ClusterServiceVersion`.\n- The **stable-1.4** channel contains `{{ oadp_short }}.v1.4.z`, the most recent OADP 1.4 `ClusterServiceVersion`.\n- Starting with OADP 1.5 on OpenShift Container Platform v4.19, OADP reintroduces the **stable** channel which contains a single supported OADP version for a particular OpenShift Container Platform version.\n\nFor more information, see *OpenShift Operator Life Cycles*.\n\n**Which update channel is right for you?**\n\n- If you are already using the **stable** channel, you will continue to get updates from `{{ oadp_short }}.v1.5.z`.\n- Choose the **stable-1.y** update channel to install OADP 1.y and to continue receiving patches for it. If you choose this channel, you will receive all z-stream patches for version 1.y.z.\n\n**When must you switch update channels?**\n\n- If you have OADP 1.y installed, and you want to receive patches only for that y-stream, you must switch from the **stable** update channel to the **stable-1.y** update channel. You will then receive all z-stream patches for version 1.y.z.\n- If you have OADP 1.0 installed, want to upgrade to OADP 1.1, and then receive patches only for OADP 1.1, you must switch from the **stable-1.0** update channel to the **stable-1.1** update channel. You will then receive all z-stream patches for version 1.1.z.\n- If you have OADP 1.y installed, with *y* greater than 0, and want to switch to OADP 1.0, you must uninstall your OADP Operator and then reinstall it using the **stable-1.0** update channel. You will then receive all z-stream patches for version 1.0.z.\n\n> [!NOTE]\n> You cannot switch from OADP 1.y to OADP 1.0 by switching update channels. You must uninstall the Operator and then reinstall it.\n\n- [OpenShift Operator Life Cycles](https://access.redhat.com/support/policy/updates/openshift_operators)\n\n## Installation of OADP on multiple namespaces {#about-installing-oadp-on-multiple-namespaces_about-installing-oadp}\n\nYou can install OpenShift API for Data Protection into multiple namespaces on the same cluster so that multiple project owners can manage their own OADP instance. This use case has been validated with File System Backup (FSB) and Container Storage Interface (CSI).\n\nYou install each instance of OADP as specified by the per-platform procedures contained in this document with the following additional requirements:\n\n- All deployments of OADP on the same cluster must be the same version, for example, 1.4.0. Installing different versions of OADP on the same cluster is **not** supported.\n- Each individual deployment of OADP must have a unique set of credentials and at least one `BackupStorageLocation` configuration. You can also use multiple `BackupStorageLocation` configurations within the same namespace.\n- By default, each OADP deployment has cluster-level access across namespaces. OpenShift Container Platform administrators need to carefully review potential impacts, such as not backing up and restoring to and from the same namespace concurrently.\n\n## OADP support for backup data immutability {#oadp-support-backup-data-immutability_about-installing-oadp}\n\nStarting with OADP 1.4, you can store OADP backups in an AWS S3 bucket with enabled versioning. The versioning support is only for AWS S3 buckets and not for S3-compatible buckets.\n\nSee the following list for specific cloud provider limitations:\n\n- AWS S3 service supports backups because an S3 object lock applies only to versioned buckets. You can still update the object data for the new version. However, when backups are deleted, old versions of the objects are not deleted.\n- OADP backups are not supported and might not work as expected when you enable immutability on Azure Storage Blob.\n- Google Cloud storage policy only supports bucket-level immutability. Therefore, it is not feasible to implement it in the Google Cloud environment.\n\nDepending on your storage provider, the immutability options are called differently:\n\n- S3 object lock\n- Object retention\n- Bucket versioning\n- Write Once Read Many (WORM) buckets\n\nThe primary reason for the absence of support for other S3-compatible object storage is that OADP initially saves the state of a backup as *finalizing* and then verifies whether any asynchronous operations are in progress.\n\n## Velero CPU and memory requirements based on collected data {#oadp-velero-cpu-memory-requirements_about-installing-oadp}\n\nThe following recommendations are based on observations of performance made in the scale and performance lab. The backup and restore resources can be impacted by the type of plugin, the amount of resources required by that backup or restore, and the respective data contained in the persistent volumes (PVs) related to those resources.\n\n### CPU and memory requirement for configurations {#_cpu_and_memory_requirement_for_configurations}\n\n| Configuration types | [^1]^ Average usage | [^2]^ Large usage | resourceTimeouts |\n| --- | --- | --- | --- |\n| CSI | Velero: CPU- Request 200m, Limits 1000m Memory - Request 256Mi, Limits 1024Mi | Velero: CPU- Request 200m, Limits 2000m Memory- Request  256Mi, Limits 2048Mi | N/A |\n| Restic | [^3]^ Restic: CPU- Request 1000m, Limits 2000m Memory - Request 16Gi, Limits 32Gi | [^4]^ Restic: CPU - Request 2000m, Limits 8000m Memory - Request 16Gi, Limits 40Gi | 900m |\n| [^5]^ Data Mover | N/A | N/A | 10m - average usage 60m - large usage |\n\n1. Average usage - use these settings for most usage situations.\n2. Large usage - use these settings for large usage situations, such as a large PV (500GB Usage), multiple namespaces (100+), or many pods within a single namespace (2000 pods+), and for optimal performance for backup and restore involving large datasets.\n3. Restic resource usage corresponds to the amount of data, and type of data. For example, many small files or large amounts of data can cause Restic to use large amounts of resources. The Velero documentation references 500m as a supplied default, for most of our testing we found a 200m request suitable with 1000m limit. As cited in the Velero documentation, exact CPU and memory usage is dependent on the scale of files and directories, in addition to environmental limitations.\n4. Increasing the CPU has a significant impact on improving backup and restore times.\n5. Data Mover - Data Mover default resourceTimeout is 10m. Our tests show that for restoring a large PV (500GB usage), it is required to increase the resourceTimeout to 60m.\n\n> [!NOTE]\n> The resource requirements listed throughout the guide are for average usage only. For large usage, adjust the settings as described in the table above.\n\n- [Customize Velero Install (Velero documentation)](https://velero.io/docs/v1.11/customize-installation/#customize-resource-requests-and-limits/)\n\n### NodeAgent CPU for large usage {#oadp-backup-restore-for-large-usage_about-installing-oadp}\n\nTesting shows that increasing `NodeAgent` CPU can significantly improve backup and restore times when using OpenShift API for Data Protection (OADP).\n\n> [!IMPORTANT]\n> You can tune your OpenShift Container Platform environment based on your performance analysis and preference. Use CPU limits in the workloads when you use Kopia for file system backups.\n>\n> If you do not use CPU limits on the pods, the pods can use excess CPU when it is available. If you specify CPU limits, the pods might be throttled if they exceed their limits. Therefore, the use of CPU limits on the pods is considered an anti-pattern.\n>\n> Ensure that you are accurately specifying CPU requests so that pods can take advantage of excess CPU. Resource allocation is guaranteed based on CPU requests rather than CPU limits.\n>\n> Testing showed that running Kopia with 20 cores and 32 Gi memory supported backup and restore operations of over 100 GB of data, multiple namespaces, or over 2000 pods in a single namespace. Testing detected no CPU limiting or memory saturation with these resource specifications.\n\nIn some environments, you might need to adjust Ceph MDS pod resources to avoid pod restarts, which occur when default settings cause resource saturation.\n\n- [Changing the CPU and memory resources on the rook-ceph pods](https://docs.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html/troubleshooting_openshift_data_foundation/changing-resources-for-the-openshift-data-foundation-components_rhodf#changing_the_cpu_and_memory_resources_on_the_rook_ceph_pods)\n\n[^1]: 1\n\n[^2]: 2\n\n[^3]: 3\n\n[^4]: 4\n\n[^5]: 5\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/about-installing-oadp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,43 +100,255 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="about-installing-oadp" class="group scroll-mt-20">About installing OADP<a href="#about-installing-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
-      <p>As a cluster administrator, you install the OpenShift API for Data Protection (OADP) by installing the OADP Operator. The OADP Operator installs {"{"}{"{"} velero_link {"}"}{"}"}.</p>
+      <p>As a cluster administrator, you install the OpenShift API for Data Protection (OADP) by installing the OADP Operator. The OADP Operator installs <a href="https://velero.io/docs/v1.16/">Velero 1.16</a>.</p>
       <p>To back up Kubernetes resources and internal images, you must have object storage as a backup location, such as one of the following storage types:</p>
       <ul>
       <li>Amazon Web Services</li>
       <li>Microsoft Azure</li>
-      <li>{"{"}{"{"} gcp_full {"}"}{"}"}</li>
+      <li>Google Cloud</li>
       <li>Multicloud Object Gateway</li>
-      <li>{"{"}{"{"} ibm_cloud_name {"}"}{"}"} Object Storage S3</li>
+      <li>IBM Cloud(R) Object Storage S3</li>
       <li>AWS S3 compatible object storage, such as Multicloud Object Gateway or MinIO</li>
       </ul>
       <p>You can configure multiple backup storage locations within the same namespace for each individual OADP deployment.</p>
-      <p class="/snippets/snip-noobaa-and-mcg.md"></p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Unless specified otherwise, "NooBaa" refers to the open source project that provides lightweight object storage, while "Multicloud Object Gateway (MCG)" refers to the Red Hat distribution of NooBaa.</p>
+          <p>For more information on the MCG, see <a href="https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.13/html-single/managing_hybrid_and_multicloud_resources/index#accessing-the-multicloud-object-gateway-with-your-applications_rhodf">Accessing the Multicloud Object Gateway with your applications</a>.</p>
+        </AlertDescription>
+      </Alert>
       <p>You can back up persistent volumes (PVs) by using snapshots or a File System Backup (FSB).</p>
       <p>To back up PVs with snapshots, you must have a cloud provider that supports either a native snapshot API or Container Storage Interface (CSI) snapshots, such as one of the following cloud providers:</p>
       <ul>
       <li>Amazon Web Services</li>
       <li>Microsoft Azure</li>
-      <li>{"{"}{"{"} gcp_full {"}"}{"}"}</li>
-      <li>CSI snapshot-enabled cloud provider, such as {"{"}{"{"} rh_storage {"}"}{"}"}</li>
+      <li>Google Cloud</li>
+      <li>CSI snapshot-enabled cloud provider, such as OpenShift Data Foundation</li>
       </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you want to use CSI backup on OCP 4.11 and later, install OADP 1.1.<em>x</em>.</p>
+          <p>OADP 1.0.<em>x</em> does not support CSI backup on OCP 4.11 and later. OADP 1.0.<em>x</em> includes Velero 1.7.<em>x</em> and expects the API group <code>snapshot.storage.k8s.io/v1beta1</code>, which is not present on OCP 4.11 and later.</p>
+        </AlertDescription>
+      </Alert>
       <p>If your cloud provider does not support snapshots or if your storage is NFS, you can back up applications with File System Backup: Kopia or Restic on object storage.</p>
       <p>You create a default <code>Secret</code> and then you install the Data Protection Application.</p>
-      <p class="/modules/oadp-s3-compatible-backup-storage-providers.md"></p>
-      <p class="/modules/oadp-configuring-noobaa-for-dr.md"></p>
+      <h2 id="oadp-s3-compatible-backup-storage-providers_about-installing-oadp" class="group scroll-mt-20">AWS S3 compatible backup storage providers<a href="#oadp-s3-compatible-backup-storage-providers_about-installing-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>OADP works with many S3-compatible object storage providers. Several object storage providers are certified and tested with every release of OADP. Various S3 providers are known to work with OADP but are not specifically tested and certified. These providers will be supported on a best-effort basis. Additionally, there are a few S3 object storage providers with known issues and limitations that are listed in this documentation.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Red Hat will provide support for OADP on any S3-compatible storage, but support will stop if the S3 endpoint is determined to be the root cause of an issue.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="oadp-certified-backup-storage-providers_about-installing-oadp" class="group scroll-mt-20">Certified backup storage providers<a href="#oadp-certified-backup-storage-providers_about-installing-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following AWS S3 compatible object storage providers are fully supported by OADP through the AWS plugin for use as backup storage locations:</p>
+      <ul>
+      <li>MinIO</li>
+      <li>Multicloud Object Gateway (MCG)</li>
+      <li>Amazon Web Services (AWS) S3</li>
+      <li>IBM Cloud(R) Object Storage S3</li>
+      <li>Ceph RADOS Gateway (Ceph Object Gateway)</li>
+      <li>Red Hat Container Storage</li>
+      <li>Red Hat OpenShift Data Foundation</li>
+      <li>NetApp ONTAP S3 Object Storage</li>
+      <li>Scality ARTESCA S3 object storage</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The following compatible object storage providers are supported and have their own Velero object store plugins:</p>
+          <ul>
+          <li>Google Cloud</li>
+          <li>Microsoft Azure</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <h3 id="oadp-s3-compatible-backup-storage-providers-unsupported" class="group scroll-mt-20">Unsupported backup storage providers<a href="#oadp-s3-compatible-backup-storage-providers-unsupported" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The following AWS S3 compatible object storage providers, are known to work with Velero through the AWS plugin, for use as backup storage locations, however, they are unsupported and have not been tested by Red Hat:</p>
+      <ul>
+      <li>Oracle Cloud</li>
+      <li>DigitalOcean</li>
+      <li>NooBaa, unless installed using Multicloud Object Gateway (MCG)</li>
+      <li>Tencent Cloud</li>
+      <li>Ceph RADOS v12.2.7</li>
+      <li>Quobyte</li>
+      <li>Cloudian HyperStore</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Unless specified otherwise, "NooBaa" refers to the open source project that provides lightweight object storage, while "Multicloud Object Gateway (MCG)" refers to the Red Hat distribution of NooBaa.</p>
+          <p>For more information on the MCG, see <a href="https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.13/html-single/managing_hybrid_and_multicloud_resources/index#accessing-the-multicloud-object-gateway-with-your-applications_rhodf">Accessing the Multicloud Object Gateway with your applications</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="oadp-s3-compatible-backup-storage-providers-known-limitations" class="group scroll-mt-20">Backup storage providers with known limitations<a href="#oadp-s3-compatible-backup-storage-providers-known-limitations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The following AWS S3 compatible object storage providers are known to work with Velero through the AWS plugin with a limited feature set:</p>
+      <ul><li>Swift - It works for use as a backup storage location for backup storage, but is not compatible with Restic for filesystem-based volume backup and restore.</li></ul>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://downloads.scality.com/artesca-ova/doc/general_introduction.html#">Scality ARTESCA S3 object storage (Scality documentation)</a></li></ul>
+      </section>
+      <h2 id="oadp-configuring-noobaa-for-dr_about-installing-oadp" class="group scroll-mt-20">Configuring Multicloud Object Gateway (MCG) for disaster recovery on OpenShift Data Foundation<a href="#oadp-configuring-noobaa-for-dr_about-installing-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you use cluster storage for your MCG bucket <code>backupStorageLocation</code> on OpenShift Data Foundation, configure MCG as an external object store.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Failure to configure MCG as an external object store might lead to backups not being available.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Unless specified otherwise, "NooBaa" refers to the open source project that provides lightweight object storage, while "Multicloud Object Gateway (MCG)" refers to the Red Hat distribution of NooBaa.</p>
+          <p>For more information on the MCG, see <a href="https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.13/html-single/managing_hybrid_and_multicloud_resources/index#accessing-the-multicloud-object-gateway-with-your-applications_rhodf">Accessing the Multicloud Object Gateway with your applications</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ul><li>Configure MCG as an external object store as described in <a href="https://access.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/4.13/html/managing_hybrid_and_multicloud_resources/adding-storage-resources-for-hybrid-or-multicloud_rhodf#doc-wrapper">Adding storage resources for hybrid or Multicloud</a>.</li></ul>
       <h2 id="additional-resources_about-installing-oadp" class="group scroll-mt-20">Additional resources<a href="#additional-resources_about-installing-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-aws#installing-oadp-aws">Installing OADP on Amazon Web Services</a></li>
       <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-azure#installing-oadp-azure">Installing OADP on Microsoft Azure</a></li>
-      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-gcp#installing-oadp-gcp">Installing OADP on {"{"}{"{"} gcp_full {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-gcp#installing-oadp-gcp">Installing OADP on Google Cloud</a></li>
       <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-mcg#installing-oadp-mcg">Installing OADP on Multicloud Object Gateway</a></li>
-      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs#installing-oadp-ocs">Installing OADP on {"{"}{"{"} rh_storage {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/installing-oadp-ocs#installing-oadp-ocs">Installing OADP on OpenShift Data Foundation</a></li>
       <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-backing-up-applications-restic-doc#backing-up-applications">Backing up applications with File System Backup: Kopia or Restic</a></li>
       <li><a href="/openshift-docs-markdown/operators/understanding/olm/olm-understanding-olm#olm-csv_olm-understanding-olm">Cluster service version</a></li>
       </ul>
-      <p class="/modules/oadp-support-backup-data-immutability.md /modules/about-installing-oadp-on-multiple-namespaces.md">{"{"}% include "./modules/about-oadp-update-channels.md" %{"}"} </p>
-      <p class="/modules/oadp-backup-restore-for-large-usage.md /modules/oadp-velero-cpu-memory-requirements.md"></p>
+      <h2 id="about-oadp-update-channels_about-installing-oadp" class="group scroll-mt-20">About OADP update channels<a href="#about-oadp-update-channels_about-installing-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When you install an OADP Operator, you choose an update channel. This channel determines which upgrades to the OADP Operator and to Velero you receive.</p>
+      <p>The following update channels are available:</p>
+      <ul>
+      <li>The <strong>stable-1.3</strong> channel contains <code>{"{"}{"{"} oadp_short {"}"}{"}"}.v1.3.z</code>, the most recent OADP 1.3 <code>ClusterServiceVersion</code>.</li>
+      <li>The <strong>stable-1.4</strong> channel contains <code>{"{"}{"{"} oadp_short {"}"}{"}"}.v1.4.z</code>, the most recent OADP 1.4 <code>ClusterServiceVersion</code>.</li>
+      <li>Starting with OADP 1.5 on OpenShift Container Platform v4.19, OADP reintroduces the <strong>stable</strong> channel which contains a single supported OADP version for a particular OpenShift Container Platform version.</li>
+      </ul>
+      <p>For more information, see <em>OpenShift Operator Life Cycles</em>.</p>
+      <p><strong>Which update channel is right for you?</strong></p>
+      <ul>
+      <li>If you are already using the <strong>stable</strong> channel, you will continue to get updates from <code>{"{"}{"{"} oadp_short {"}"}{"}"}.v1.5.z</code>.</li>
+      <li>Choose the <strong>stable-1.y</strong> update channel to install OADP 1.y and to continue receiving patches for it. If you choose this channel, you will receive all z-stream patches for version 1.y.z.</li>
+      </ul>
+      <p><strong>When must you switch update channels?</strong></p>
+      <ul>
+      <li>If you have OADP 1.y installed, and you want to receive patches only for that y-stream, you must switch from the <strong>stable</strong> update channel to the <strong>stable-1.y</strong> update channel. You will then receive all z-stream patches for version 1.y.z.</li>
+      <li>If you have OADP 1.0 installed, want to upgrade to OADP 1.1, and then receive patches only for OADP 1.1, you must switch from the <strong>stable-1.0</strong> update channel to the <strong>stable-1.1</strong> update channel. You will then receive all z-stream patches for version 1.1.z.</li>
+      <li>If you have OADP 1.y installed, with <em>y</em> greater than 0, and want to switch to OADP 1.0, you must uninstall your OADP Operator and then reinstall it using the <strong>stable-1.0</strong> update channel. You will then receive all z-stream patches for version 1.0.z.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You cannot switch from OADP 1.y to OADP 1.0 by switching update channels. You must uninstall the Operator and then reinstall it.</p>
+        </AlertDescription>
+      </Alert>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://access.redhat.com/support/policy/updates/openshift_operators">OpenShift Operator Life Cycles</a></li></ul>
+      </section>
+      <h2 id="about-installing-oadp-on-multiple-namespaces_about-installing-oadp" class="group scroll-mt-20">Installation of OADP on multiple namespaces<a href="#about-installing-oadp-on-multiple-namespaces_about-installing-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can install OpenShift API for Data Protection into multiple namespaces on the same cluster so that multiple project owners can manage their own OADP instance. This use case has been validated with File System Backup (FSB) and Container Storage Interface (CSI).</p>
+      <p>You install each instance of OADP as specified by the per-platform procedures contained in this document with the following additional requirements:</p>
+      <ul>
+      <li>All deployments of OADP on the same cluster must be the same version, for example, 1.4.0. Installing different versions of OADP on the same cluster is <strong>not</strong> supported.</li>
+      <li>Each individual deployment of OADP must have a unique set of credentials and at least one <code>BackupStorageLocation</code> configuration. You can also use multiple <code>BackupStorageLocation</code> configurations within the same namespace.</li>
+      <li>By default, each OADP deployment has cluster-level access across namespaces. OpenShift Container Platform administrators need to carefully review potential impacts, such as not backing up and restoring to and from the same namespace concurrently.</li>
+      </ul>
+      <h2 id="oadp-support-backup-data-immutability_about-installing-oadp" class="group scroll-mt-20">OADP support for backup data immutability<a href="#oadp-support-backup-data-immutability_about-installing-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Starting with OADP 1.4, you can store OADP backups in an AWS S3 bucket with enabled versioning. The versioning support is only for AWS S3 buckets and not for S3-compatible buckets.</p>
+      <p>See the following list for specific cloud provider limitations:</p>
+      <ul>
+      <li>AWS S3 service supports backups because an S3 object lock applies only to versioned buckets. You can still update the object data for the new version. However, when backups are deleted, old versions of the objects are not deleted.</li>
+      <li>OADP backups are not supported and might not work as expected when you enable immutability on Azure Storage Blob.</li>
+      <li>Google Cloud storage policy only supports bucket-level immutability. Therefore, it is not feasible to implement it in the Google Cloud environment.</li>
+      </ul>
+      <p>Depending on your storage provider, the immutability options are called differently:</p>
+      <ul>
+      <li>S3 object lock</li>
+      <li>Object retention</li>
+      <li>Bucket versioning</li>
+      <li>Write Once Read Many (WORM) buckets</li>
+      </ul>
+      <p>The primary reason for the absence of support for other S3-compatible object storage is that OADP initially saves the state of a backup as <em>finalizing</em> and then verifies whether any asynchronous operations are in progress.</p>
+      <h2 id="oadp-velero-cpu-memory-requirements_about-installing-oadp" class="group scroll-mt-20">Velero CPU and memory requirements based on collected data<a href="#oadp-velero-cpu-memory-requirements_about-installing-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following recommendations are based on observations of performance made in the scale and performance lab. The backup and restore resources can be impacted by the type of plugin, the amount of resources required by that backup or restore, and the respective data contained in the persistent volumes (PVs) related to those resources.</p>
+      <h3 id="_cpu_and_memory_requirement_for_configurations" class="group scroll-mt-20">CPU and memory requirement for configurations<a href="#_cpu_and_memory_requirement_for_configurations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Configuration types</TableHead>
+      <TableHead><sup><a href="#fn-1" id="fnref-1" class="text-primary hover:underline">[1]</a></sup>^ Average usage</TableHead>
+      <TableHead><sup><a href="#fn-2" id="fnref-2" class="text-primary hover:underline">[2]</a></sup>^ Large usage</TableHead>
+      <TableHead>resourceTimeouts</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>CSI</TableCell>
+      <TableCell>Velero: CPU- Request 200m, Limits 1000m Memory - Request 256Mi, Limits 1024Mi</TableCell>
+      <TableCell>Velero: CPU- Request 200m, Limits 2000m Memory- Request  256Mi, Limits 2048Mi</TableCell>
+      <TableCell>N/A</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Restic</TableCell>
+      <TableCell><sup><a href="#fn-3" id="fnref-3" class="text-primary hover:underline">[3]</a></sup>^ Restic: CPU- Request 1000m, Limits 2000m Memory - Request 16Gi, Limits 32Gi</TableCell>
+      <TableCell><sup><a href="#fn-4" id="fnref-4" class="text-primary hover:underline">[4]</a></sup>^ Restic: CPU - Request 2000m, Limits 8000m Memory - Request 16Gi, Limits 40Gi</TableCell>
+      <TableCell>900m</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><sup><a href="#fn-5" id="fnref-5" class="text-primary hover:underline">[5]</a></sup>^ Data Mover</TableCell>
+      <TableCell>N/A</TableCell>
+      <TableCell>N/A</TableCell>
+      <TableCell>10m - average usage 60m - large usage</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <ol>
+      <li>Average usage - use these settings for most usage situations.</li>
+      <li>Large usage - use these settings for large usage situations, such as a large PV (500GB Usage), multiple namespaces (100+), or many pods within a single namespace (2000 pods+), and for optimal performance for backup and restore involving large datasets.</li>
+      <li>Restic resource usage corresponds to the amount of data, and type of data. For example, many small files or large amounts of data can cause Restic to use large amounts of resources. The Velero documentation references 500m as a supplied default, for most of our testing we found a 200m request suitable with 1000m limit. As cited in the Velero documentation, exact CPU and memory usage is dependent on the scale of files and directories, in addition to environmental limitations.</li>
+      <li>Increasing the CPU has a significant impact on improving backup and restore times.</li>
+      <li>Data Mover - Data Mover default resourceTimeout is 10m. Our tests show that for restoring a large PV (500GB usage), it is required to increase the resourceTimeout to 60m.</li>
+      </ol>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The resource requirements listed throughout the guide are for average usage only. For large usage, adjust the settings as described in the table above.</p>
+        </AlertDescription>
+      </Alert>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://velero.io/docs/v1.11/customize-installation/#customize-resource-requests-and-limits/">Customize Velero Install (Velero documentation)</a></li></ul>
+      </section>
+      <h3 id="oadp-backup-restore-for-large-usage_about-installing-oadp" class="group scroll-mt-20">NodeAgent CPU for large usage<a href="#oadp-backup-restore-for-large-usage_about-installing-oadp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Testing shows that increasing <code>NodeAgent</code> CPU can significantly improve backup and restore times when using OpenShift API for Data Protection (OADP).</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You can tune your OpenShift Container Platform environment based on your performance analysis and preference. Use CPU limits in the workloads when you use Kopia for file system backups.</p>
+          <p>If you do not use CPU limits on the pods, the pods can use excess CPU when it is available. If you specify CPU limits, the pods might be throttled if they exceed their limits. Therefore, the use of CPU limits on the pods is considered an anti-pattern.</p>
+          <p>Ensure that you are accurately specifying CPU requests so that pods can take advantage of excess CPU. Resource allocation is guaranteed based on CPU requests rather than CPU limits.</p>
+          <p>Testing showed that running Kopia with 20 cores and 32 Gi memory supported backup and restore operations of over 100 GB of data, multiple namespaces, or over 2000 pods in a single namespace. Testing detected no CPU limiting or memory saturation with these resource specifications.</p>
+        </AlertDescription>
+      </Alert>
+      <p>In some environments, you might need to adjust Ceph MDS pod resources to avoid pod restarts, which occur when default settings cause resource saturation.</p>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul><li><a href="https://docs.redhat.com/documentation/en-us/red_hat_openshift_data_foundation/latest/html/troubleshooting_openshift_data_foundation/changing-resources-for-the-openshift-data-foundation-components_rhodf#changing_the_cpu_and_memory_resources_on_the_rook_ceph_pods">Changing the CPU and memory resources on the rook-ceph pods</a></li></ul>
+      </section>
+      <hr class="my-8 border-t border-border" data-footnotes-separator />
+      <section class="footnotes" data-footnotes aria-labelledby="footnote-label">
+        <h2 id="footnote-label" class="sr-only">Footnotes</h2>
+        <ol class="list-decimal pl-6 space-y-1 text-sm text-muted-foreground" data-footnote-list>
+      <li id="fn-1" class="text-sm text-muted-foreground">1 <a href="#fnref-1" class="text-primary hover:underline">↩</a></li>
+      <li id="fn-2" class="text-sm text-muted-foreground">2 <a href="#fnref-2" class="text-primary hover:underline">↩</a></li>
+      <li id="fn-3" class="text-sm text-muted-foreground">3 <a href="#fnref-3" class="text-primary hover:underline">↩</a></li>
+      <li id="fn-4" class="text-sm text-muted-foreground">4 <a href="#fnref-4" class="text-primary hover:underline">↩</a></li>
+      <li id="fn-5" class="text-sm text-muted-foreground">5 <a href="#fnref-5" class="text-primary hover:underline">↩</a></li>
+        </ol>
+      </section>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

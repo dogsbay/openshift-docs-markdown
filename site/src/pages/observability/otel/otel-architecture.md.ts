@@ -2,7 +2,7 @@
 // Source: observability/otel/otel-architecture.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: About {{ OTELName }}\n---\n\n# About {{ OTELName }} {#otel-architecture}\n\nThe standalone {{ OTELName }} documentation is available at [https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest](https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest).\n";
+const body = "---\ntitle: About {{ OTELName }}\n---\n\n# About Red Hat build of OpenTelemetry {#otel-architecture}\n\nThe standalone Red Hat build of OpenTelemetry documentation is available at [https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest](https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest).\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

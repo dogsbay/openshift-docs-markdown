@@ -8,7 +8,7 @@ Back up applications by creating a `Backup` custom resource (CR) using snapshots
 
 Frequent backups might consume storage on the backup storage location. Check the frequency of backups, retention time, and the amount of data of the persistent volumes (PVs) if using non-local backups, for example, S3 buckets. Because all backups are retained until they expire, check the time to live (TTL) setting of the schedule.
 
-Review the following information regarding backing up applications by using {{ oadp_short }}:
+Review the following information regarding backing up applications by using OADP:
 
 - The `Backup` CR creates backup files for Kubernetes resources and internal images on S3 object storage.
 - If you use Velero’s snapshot feature to back up data stored on the persistent volume, only snapshot related information is stored in the S3 bucket along with the OpenShift object data.
@@ -24,7 +24,56 @@ Review the following information regarding backing up applications by using {{ o
   For more information, see *Restic restore partially failing on Red Hat OpenShift Container Platform 4.15 due to changed PSA policy*.
 
 > [!IMPORTANT]
-> The {{ oadp_first }} does not support backing up volume snapshots that were created by other software.
+> The OpenShift API for Data Protection (OADP) does not support backing up volume snapshots that were created by other software.
+
+> [!IMPORTANT]
+> The `.../.snapshot` directory is a snapshot copy directory, which is used by several NFS servers. This directory has read-only access by default, so Velero cannot restore to this directory.
+>
+> Do not give Velero write access to the `.snapshot` directory, and disable client access to this directory.
+
+## Previewing resources before running backup and restore {#oadp-review-backup-restore_backing-up-applications}
+
+Preview the backup and restore resources in advance by doing a dry run of the backup and restore operations. This helps you to verify which resources will be included before committing to a full backup or restore.
+
+OADP backs up application resources based on the type, namespace, or label. This means that you can view the resources after the backup is complete. Similarly, you can view the restored objects based on the namespace, persistent volume (PV), or label after a restore operation is complete.
+
+**Prerequisites**
+
+- You have installed the OADP Operator.
+
+**Procedure**
+
+1. To preview the resources included in the backup before running the actual backup, run the following command:
+
+   ```terminal
+   $ velero backup create <backup-name> --snapshot-volumes false
+   ```
+
+   Specify the value of `--snapshot-volumes` parameter as `false`.
+2. To know more details about the backup resources, run the following command:
+
+   ```terminal
+   $ velero describe backup <backup_name> --details
+   ```
+
+   Replace `<backup_name>` with the name of the backup.
+3. To preview the resources included in the restore before running the actual restore, run the following command:
+
+   ```terminal
+   $ velero restore create --from-backup <backup_name>
+   ```
+
+   Replace `<backup_name>` with the name of the backup.
+
+   > [!IMPORTANT]
+   > The `velero restore create` command creates restore resources in the cluster. You must delete the resources created as part of the restore, after you review the resources.
+4. To know more details about the restore resources, run the following command:
+
+   ```terminal
+   $ velero describe restore <restore_name> --details
+   ```
+
+   Replace `<restore_name>` with the name of the restore.
 
 **Additional resources**
 

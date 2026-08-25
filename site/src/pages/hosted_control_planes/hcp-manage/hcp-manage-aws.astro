@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-manage-aws","text":"Managing {{ hcp }} on {{ aws_short }}"}];
+const headings = [{"depth":1,"slug":"hcp-manage-aws","text":"Managing hosted control planes on AWS"},{"depth":2,"slug":"hcp-manage-aws-prereq_hcp-managing-aws","text":"Prerequisites to manage AWS infrastructure and IAM permissions"},{"depth":3,"slug":"hcp-manage-aws-infra-req_hcp-managing-aws","text":"Infrastructure requirements for AWS"},{"depth":3,"slug":"hcp-manage-aws-infra-ho-req_hcp-managing-aws","text":"Unmanaged infrastructure for the HyperShift Operator in an AWS account"},{"depth":3,"slug":"hcp-unmanaged-aws-hc-prereq_hcp-managing-aws","text":"Unmanaged infrastructure requirements for a management AWS account"},{"depth":3,"slug":"hcp-managed-aws-infra-mgmt_hcp-managing-aws","text":"Infrastructure requirements for a management AWS account"},{"depth":3,"slug":"hcp-managed-aws-infra-hc_hcp-managing-aws","text":"Infrastructure requirements for an AWS account in a hosted cluster"},{"depth":3,"slug":"hcp-k8s-managed-aws-infra-hc_hcp-managing-aws","text":"Kubernetes-managed infrastructure in a hosted cluster AWS account"},{"depth":2,"slug":"hcp-managed-aws-iam_hcp-managing-aws","text":"Identity and Access Management (IAM) permissions for hosted control planes on AWS"},{"depth":2,"slug":"hcp-managed-aws-infra-iam-separate_hcp-managing-aws","text":"Separate creation of the hosted cluster and its resources"},{"depth":3,"slug":"hcp-managed-aws-infra-separate_hcp-managing-aws","text":"Creating the AWS infrastructure separately"},{"depth":3,"slug":"hcp-managed-aws-hc-separate_hcp-managing-aws","text":"Creating a hosted cluster separately"},{"depth":2,"slug":"hcp-migrate-aws-single-to-multiarch_hcp-managing-aws","text":"Transitioning a hosted cluster from single-architecture to multi-architecture"},{"depth":2,"slug":"hcp-migrate-aws-multiarch-nodepools_hcp-managing-aws","text":"Creating node pools on the multi-architecture hosted cluster"},{"depth":2,"slug":"hcp-aws-tags_hcp-managing-aws","text":"Adding or updating AWS tags for a hosted cluster"},{"depth":2,"slug":"hcp-np-capacity-blocks_hcp-managing-aws","text":"Configuring node pool capacity blocks on AWS"},{"depth":3,"slug":"hcp-np-capacity-blocks-destroy_hcp-managing-aws","text":"Deleting a hosted cluster after configuring node pool capacity blocks"},{"depth":2,"slug":"hcp-aws-spot-instance_hcp-managing-aws","text":"Amazon Spot Instance support for node pools"},{"depth":3,"slug":"hcp-aws-config-sqs-eventbridge_hcp-managing-aws","text":"Configuring Amazon SQS and Amazon EventBridge to receive Amazon EC2 interruption events"},{"depth":3,"slug":"hcp-aws-spot-instance-enable_hcp-managing-aws","text":"Enabling Amazon Spot Instance support for node pools"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Managing {{ hcp }} on {{ aws_short }}";
-const description = "After you deploy a hosted cluster on {{ aws_first }}, you can manage the cluster." || undefined;
+const description = "After you deploy a hosted cluster on Amazon Web Services (AWS), you can manage the cluster." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-manage"
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing {{ hcp }} on {{ aws_short }} {#hcp-manage-aws}\n\nAfter you deploy a hosted cluster on {{ aws_first }}, you can manage the cluster.\n\n**Additional resources**\n\n- [Getting started with Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html)\n- [Getting started: Create an Amazon EventBridge event bus rule](https://docs.aws.amazon.com/eventbridge/latest/userguide/event-bus-rule-get-started.html)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-aws.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing hosted control planes on AWS {#hcp-manage-aws}\n\nAfter you deploy a hosted cluster on Amazon Web Services (AWS), you can manage the cluster.\n\n## Prerequisites to manage AWS infrastructure and IAM permissions {#hcp-manage-aws-prereq_hcp-managing-aws}\n\nTo configure hosted control planes for OpenShift Container Platform on Amazon Web Services (AWS), you must meet the infrastructure requirements.\n\n- You must configure hosted control planes before you can create hosted clusters.\n- You must create an AWS Identity and Access Management (IAM) role and AWS Security Token Service (STS) credentials.\n\n### Infrastructure requirements for AWS {#hcp-manage-aws-infra-req_hcp-managing-aws}\n\nWhen you use hosted control planes on Amazon Web Services (AWS), the infrastructure requirements vary based on your setup.\n\nThe infrastructure requirements fit in the following categories:\n\n- Prerequired and unmanaged infrastructure for the HyperShift Operator in an arbitrary AWS account\n- Prerequired and unmanaged infrastructure in a hosted cluster AWS account\n- Hosted control planes-managed infrastructure in a management AWS account\n- Hosted control planes-managed infrastructure in a hosted cluster AWS account\n- Kubernetes-managed infrastructure in a hosted cluster AWS account\n\n*Prerequired* means that hosted control planes requires AWS infrastructure to properly work. *Unmanaged* means that no Operator or controller creates the infrastructure for you.\n\n### Unmanaged infrastructure for the HyperShift Operator in an AWS account {#hcp-manage-aws-infra-ho-req_hcp-managing-aws}\n\nAn arbitrary Amazon Web Services (AWS) account depends on the provider of the hosted control planes service.\n\nIn self-managed hosted control planes, the cluster service provider controls the AWS account. The cluster service provider is the administrator who hosts cluster control planes and is responsible for uptime. In managed hosted control planes, the AWS account belongs to Red Hat.\n\nIn a prerequired and unmanaged infrastructure for the HyperShift Operator, the following infrastructure requirements apply for a management cluster AWS account:\n\n- One S3 Bucket\n\n  - OpenID Connect (OIDC)\n- Route 53 hosted zones\n\n  - A domain to host private and public entries for hosted clusters\n\n### Unmanaged infrastructure requirements for a management AWS account {#hcp-unmanaged-aws-hc-prereq_hcp-managing-aws}\n\nWhen your infrastructure is prerequired and unmanaged in a hosted cluster Amazon Web Services (AWS) account, ensure that you are familiar with the infrastructure requirements for all access modes.\n\n- One VPC\n- One DHCP Option\n- Two subnets\n\n  - A private subnet that is an internal data plane subnet\n  - A public subnet that enables access to the internet from the data plane\n- One internet gateway\n- One elastic IP\n- One NAT gateway\n- One security group (worker nodes)\n- Two route tables (one private and one public)\n- Two Route 53 hosted zones\n- Enough quota for the following items:\n\n  - One Ingress service load balancer for public hosted clusters\n  - One private link endpoint for private hosted clusters\n\n> [!NOTE]\n> For private link networking to work, the endpoint zone in the hosted cluster AWS account must match the zone of the instance that is resolved by the service endpoint in the management cluster AWS account. In AWS, the zone names are aliases, such as us-east-2b, which do not necessarily map to the same zone in different accounts. As a result, for private link to work, the management cluster must have subnets or workers in all zones of its region.\n\n### Infrastructure requirements for a management AWS account {#hcp-managed-aws-infra-mgmt_hcp-managing-aws}\n\nWhen your infrastructure is managed by hosted control planes in a management AWS account, the infrastructure requirements differ depending on whether your clusters are public, private, or a combination.\n\nFor accounts with public clusters, the infrastructure requirements are as follows:\n\n- Network load balancer: a load balancer Kube API server\n\n  - Kubernetes creates a security group\n- Volumes\n\n  - For etcd (one or three depending on high availability)\n  - For OVN-Kube\n\nFor accounts with private clusters, the infrastructure requirements are as follows:\n\n- Network load balancer: a load balancer private router\n- Endpoint service (private link)\n\nFor accounts with public and private clusters, the infrastructure requirements are as follows:\n\n- Network load balancer: a load balancer public router\n- Network load balancer: a load balancer private router\n- Endpoint service (private link)\n- Volumes\n\n  - For etcd (one or three depending on high availability)\n  - For OVN-Kube\n\n### Infrastructure requirements for an AWS account in a hosted cluster {#hcp-managed-aws-infra-hc_hcp-managing-aws}\n\nWhen your infrastructure is managed by hosted control planes in a hosted cluster Amazon Web Services (AWS) account, the infrastructure requirements differ depending on whether your clusters are public, private, or a combination.\n\nFor accounts with public clusters, the infrastructure requirements are as follows:\n\n- Node pools must have EC2 instances that have `Role` and `RolePolicy` defined.\n\nFor accounts with private clusters, the infrastructure requirements are as follows:\n\n- One private link endpoint for each availability zone\n- EC2 instances for node pools\n\nFor accounts with public and private clusters, the infrastructure requirements are as follows:\n\n- One private link endpoint for each availability zone\n- EC2 instances for node pools\n\n### Kubernetes-managed infrastructure in a hosted cluster AWS account {#hcp-k8s-managed-aws-infra-hc_hcp-managing-aws}\n\nWhen Kubernetes manages your infrastructure in a hosted cluster Amazon Web Services (AWS) account, ensure that you meet the infrastructure requirements.\n\nThe infrastructure requirements are as follows:\n\n- A network load balancer for default Ingress\n- An S3 bucket for registry\n\n## Identity and Access Management (IAM) permissions for hosted control planes on AWS {#hcp-managed-aws-iam_hcp-managing-aws}\n\nIn the context of hosted control planes, the consumer is responsible to create the Amazon Resource Name (ARN) roles. The *consumer* is an automated process to generate the permissions files. It might be the command-line interface (CLI) or OpenShift Cluster Manager.\n\nHosted control planes can enable granularity to honor the principle of least-privilege components, which means that every component uses its own role to operate or create Amazon Web Services (AWS) objects, and the roles are limited to what is required for the product to function normally.\n\nThe hosted cluster receives the ARN roles as input and the consumer creates an AWS permission configuration for each component. As a result, the component can authenticate through STS and preconfigured OIDC IDP.\n\nThe following roles are consumed by some of the components from hosted control planes that run on the control plane and operate on the data plane:\n\n- `controlPlaneOperatorARN`\n- `imageRegistryARN`\n- `ingressARN`\n- `kubeCloudControllerARN`\n- `nodePoolManagementARN`\n- `storageARN`\n- `networkARN`\n\nThe following example shows a reference to the IAM roles from the hosted cluster:\n\n```yaml\n...\nendpointAccess: Public\n  region: us-east-2\n  resourceTags:\n  - key: kubernetes.io/cluster/example-cluster-bz4j5\n    value: owned\nrolesRef:\n    controlPlaneOperatorARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-control-plane-operator\n    imageRegistryARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-openshift-image-registry\n    ingressARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-openshift-ingress\n    kubeCloudControllerARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-cloud-controller\n    networkARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-cloud-network-config-controller\n    nodePoolManagementARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-node-pool\n    storageARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-aws-ebs-csi-driver-controller\ntype: AWS\n...\n```\n\nThe roles that hosted control planes uses are shown in the following examples:\n\n- `ingressARN`\n\n  ```yaml\n  {\n      \"Version\": \"2012-10-17\",\n      \"Statement\": [\n          {\n              \"Effect\": \"Allow\",\n              \"Action\": [\n                  \"elasticloadbalancing:DescribeLoadBalancers\",\n                  \"tag:GetResources\",\n                  \"route53:ListHostedZones\"\n              ],\n              \"Resource\": \"\\*\"\n          },\n          {\n              \"Effect\": \"Allow\",\n              \"Action\": [\n                  \"route53:ChangeResourceRecordSets\"\n              ],\n              \"Resource\": [\n                  \"arn:aws:route53:::PUBLIC_ZONE_ID\",\n                  \"arn:aws:route53:::PRIVATE_ZONE_ID\"\n              ]\n          }\n      ]\n  }\n  ```\n- `imageRegistryARN`\n\n  ```yaml\n  {\n      \"Version\": \"2012-10-17\",\n      \"Statement\": [\n          {\n              \"Effect\": \"Allow\",\n              \"Action\": [\n                  \"s3:CreateBucket\",\n                  \"s3:DeleteBucket\",\n                  \"s3:PutBucketTagging\",\n                  \"s3:GetBucketTagging\",\n                  \"s3:PutBucketPublicAccessBlock\",\n                  \"s3:GetBucketPublicAccessBlock\",\n                  \"s3:PutEncryptionConfiguration\",\n                  \"s3:GetEncryptionConfiguration\",\n                  \"s3:PutLifecycleConfiguration\",\n                  \"s3:GetLifecycleConfiguration\",\n                  \"s3:GetBucketLocation\",\n                  \"s3:ListBucket\",\n                  \"s3:GetObject\",\n                  \"s3:PutObject\",\n                  \"s3:DeleteObject\",\n                  \"s3:ListBucketMultipartUploads\",\n                  \"s3:AbortMultipartUpload\",\n                  \"s3:ListMultipartUploadParts\"\n              ],\n              \"Resource\": \"\\*\"\n          }\n      ]\n  }\n  ```\n- `storageARN`\n\n  ```yaml\n  {\n      \"Version\": \"2012-10-17\",\n      \"Statement\": [\n          {\n              \"Effect\": \"Allow\",\n              \"Action\": [\n                  \"ec2:AttachVolume\",\n                  \"ec2:CreateSnapshot\",\n                  \"ec2:CreateTags\",\n                  \"ec2:CreateVolume\",\n                  \"ec2:DeleteSnapshot\",\n                  \"ec2:DeleteTags\",\n                  \"ec2:DeleteVolume\",\n                  \"ec2:DescribeInstances\",\n                  \"ec2:DescribeSnapshots\",\n                  \"ec2:DescribeTags\",\n                  \"ec2:DescribeVolumes\",\n                  \"ec2:DescribeVolumesModifications\",\n                  \"ec2:DetachVolume\",\n                  \"ec2:ModifyVolume\"\n              ],\n              \"Resource\": \"\\*\"\n          }\n      ]\n  }\n  ```\n- `networkARN`\n\n  ```yaml\n  {\n      \"Version\": \"2012-10-17\",\n      \"Statement\": [\n          {\n              \"Effect\": \"Allow\",\n              \"Action\": [\n                  \"ec2:DescribeInstances\",\n                  \"ec2:DescribeInstanceStatus\",\n                  \"ec2:DescribeInstanceTypes\",\n                  \"ec2:UnassignPrivateIpAddresses\",\n                  \"ec2:AssignPrivateIpAddresses\",\n                  \"ec2:UnassignIpv6Addresses\",\n                  \"ec2:AssignIpv6Addresses\",\n                  \"ec2:DescribeSubnets\",\n                  \"ec2:DescribeNetworkInterfaces\"\n              ],\n              \"Resource\": \"\\*\"\n          }\n      ]\n  }\n  ```\n- `kubeCloudControllerARN`\n\n  ```\n  {\n      \"Version\": \"2012-10-17\",\n      \"Statement\": [\n          {\n              \"Action\": [\n                  \"ec2:DescribeInstances\",\n                  \"ec2:DescribeImages\",\n                  \"ec2:DescribeRegions\",\n                  \"ec2:DescribeRouteTables\",\n                  \"ec2:DescribeSecurityGroups\",\n                  \"ec2:DescribeSubnets\",\n                  \"ec2:DescribeVolumes\",\n                  \"ec2:CreateSecurityGroup\",\n                  \"ec2:CreateTags\",\n                  \"ec2:CreateVolume\",\n                  \"ec2:ModifyInstanceAttribute\",\n                  \"ec2:ModifyVolume\",\n                  \"ec2:AttachVolume\",\n                  \"ec2:AuthorizeSecurityGroupIngress\",\n                  \"ec2:CreateRoute\",\n                  \"ec2:DeleteRoute\",\n                  \"ec2:DeleteSecurityGroup\",\n                  \"ec2:DeleteVolume\",\n                  \"ec2:DetachVolume\",\n                  \"ec2:RevokeSecurityGroupIngress\",\n                  \"ec2:DescribeVpcs\",\n                  \"elasticloadbalancing:AddTags\",\n                  \"elasticloadbalancing:AttachLoadBalancerToSubnets\",\n                  \"elasticloadbalancing:ApplySecurityGroupsToLoadBalancer\",\n                  \"elasticloadbalancing:CreateLoadBalancer\",\n                  \"elasticloadbalancing:CreateLoadBalancerPolicy\",\n                  \"elasticloadbalancing:CreateLoadBalancerListeners\",\n                  \"elasticloadbalancing:ConfigureHealthCheck\",\n                  \"elasticloadbalancing:DeleteLoadBalancer\",\n                  \"elasticloadbalancing:DeleteLoadBalancerListeners\",\n                  \"elasticloadbalancing:DescribeLoadBalancers\",\n                  \"elasticloadbalancing:DescribeLoadBalancerAttributes\",\n                  \"elasticloadbalancing:DetachLoadBalancerFromSubnets\",\n                  \"elasticloadbalancing:DeregisterInstancesFromLoadBalancer\",\n                  \"elasticloadbalancing:ModifyLoadBalancerAttributes\",\n                  \"elasticloadbalancing:RegisterInstancesWithLoadBalancer\",\n                  \"elasticloadbalancing:SetLoadBalancerPoliciesForBackendServer\",\n                  \"elasticloadbalancing:AddTags\",\n                  \"elasticloadbalancing:CreateListener\",\n                  \"elasticloadbalancing:CreateTargetGroup\",\n                  \"elasticloadbalancing:DeleteListener\",\n                  \"elasticloadbalancing:DeleteTargetGroup\",\n                  \"elasticloadbalancing:DescribeListeners\",\n                  \"elasticloadbalancing:DescribeLoadBalancerPolicies\",\n                  \"elasticloadbalancing:DescribeTargetGroups\",\n                  \"elasticloadbalancing:DescribeTargetHealth\",\n                  \"elasticloadbalancing:ModifyListener\",\n                  \"elasticloadbalancing:ModifyTargetGroup\",\n                  \"elasticloadbalancing:RegisterTargets\",\n                  \"elasticloadbalancing:SetLoadBalancerPoliciesOfListener\",\n                  \"iam:CreateServiceLinkedRole\",\n                  \"kms:DescribeKey\"\n              ],\n              \"Resource\": [\n                  \"\\*\"\n              ],\n              \"Effect\": \"Allow\"\n          }\n      ]\n  }\n  ```\n- `nodePoolManagementARN`\n\n  ```yaml\n  {\n      \"Version\": \"2012-10-17\",\n      \"Statement\": [\n          {\n              \"Action\": [\n                  \"ec2:AllocateAddress\",\n                  \"ec2:AssociateRouteTable\",\n                  \"ec2:AttachInternetGateway\",\n                  \"ec2:AuthorizeSecurityGroupIngress\",\n                  \"ec2:CreateInternetGateway\",\n                  \"ec2:CreateNatGateway\",\n                  \"ec2:CreateRoute\",\n                  \"ec2:CreateRouteTable\",\n                  \"ec2:CreateSecurityGroup\",\n                  \"ec2:CreateSubnet\",\n                  \"ec2:CreateTags\",\n                  \"ec2:DeleteInternetGateway\",\n                  \"ec2:DeleteNatGateway\",\n                  \"ec2:DeleteRouteTable\",\n                  \"ec2:DeleteSecurityGroup\",\n                  \"ec2:DeleteSubnet\",\n                  \"ec2:DeleteTags\",\n                  \"ec2:DescribeAccountAttributes\",\n                  \"ec2:DescribeAddresses\",\n                  \"ec2:DescribeAvailabilityZones\",\n                  \"ec2:DescribeImages\",\n                  \"ec2:DescribeInstances\",\n                  \"ec2:DescribeInternetGateways\",\n                  \"ec2:DescribeNatGateways\",\n                  \"ec2:DescribeNetworkInterfaces\",\n                  \"ec2:DescribeNetworkInterfaceAttribute\",\n                  \"ec2:DescribeRouteTables\",\n                  \"ec2:DescribeSecurityGroups\",\n                  \"ec2:DescribeSubnets\",\n                  \"ec2:DescribeVpcs\",\n                  \"ec2:DescribeVpcAttribute\",\n                  \"ec2:DescribeVolumes\",\n                  \"ec2:DetachInternetGateway\",\n                  \"ec2:DisassociateRouteTable\",\n                  \"ec2:DisassociateAddress\",\n                  \"ec2:ModifyInstanceAttribute\",\n                  \"ec2:ModifyNetworkInterfaceAttribute\",\n                  \"ec2:ModifySubnetAttribute\",\n                  \"ec2:ReleaseAddress\",\n                  \"ec2:RevokeSecurityGroupIngress\",\n                  \"ec2:RunInstances\",\n                  \"ec2:TerminateInstances\",\n                  \"tag:GetResources\",\n                  \"ec2:CreateLaunchTemplate\",\n                  \"ec2:CreateLaunchTemplateVersion\",\n                  \"ec2:DescribeLaunchTemplates\",\n                  \"ec2:DescribeLaunchTemplateVersions\",\n                  \"ec2:DeleteLaunchTemplate\",\n                  \"ec2:DeleteLaunchTemplateVersions\"\n              ],\n              \"Resource\": [\n                  \"\\*\"\n              ],\n              \"Effect\": \"Allow\"\n          },\n          {\n              \"Condition\": {\n                  \"StringLike\": {\n                      \"iam:AWSServiceName\": \"elasticloadbalancing.amazonaws.com\"\n                  }\n              },\n              \"Action\": [\n                  \"iam:CreateServiceLinkedRole\"\n              ],\n              \"Resource\": [\n                  \"arn:*:iam::*:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing\"\n              ],\n              \"Effect\": \"Allow\"\n          },\n          {\n              \"Action\": [\n                  \"iam:PassRole\"\n              ],\n              \"Resource\": [\n                  \"arn:*:iam::*:role/*-worker-role\"\n              ],\n              \"Effect\": \"Allow\"\n          }\n      ]\n  }\n  ```\n- `controlPlaneOperatorARN`\n\n  ```yaml\n  {\n      \"Version\": \"2012-10-17\",\n      \"Statement\": [\n          {\n              \"Effect\": \"Allow\",\n              \"Action\": [\n                  \"ec2:CreateVpcEndpoint\",\n                  \"ec2:DescribeVpcEndpoints\",\n                  \"ec2:ModifyVpcEndpoint\",\n                  \"ec2:DeleteVpcEndpoints\",\n                  \"ec2:CreateTags\",\n                  \"route53:ListHostedZones\"\n              ],\n              \"Resource\": \"\\*\"\n          },\n          {\n              \"Effect\": \"Allow\",\n              \"Action\": [\n                  \"route53:ChangeResourceRecordSets\",\n                  \"route53:ListResourceRecordSets\"\n              ],\n              \"Resource\": \"arn:aws:route53:::%s\"\n          }\n      ]\n  }\n  ```\n\n## Separate creation of the hosted cluster and its resources {#hcp-managed-aws-infra-iam-separate_hcp-managing-aws}\n\nBy default, the `hcp create cluster aws` command creates the cloud infrastructure with the hosted cluster and applies it. However, you can create the cloud infrastructure separately so that you can use the command to create only the cluster, or render it to modify it before you apply it.\n\nThe process to create the hosted cluster and its resources separately involves creating the cloud infrastructure, creating the AWS Identity and Access (IAM) resources, and then creating the cluster.\n\n### Creating the AWS infrastructure separately {#hcp-managed-aws-infra-separate_hcp-managing-aws}\n\nTo create the Amazon Web Services (AWS) infrastructure, you need to create a Virtual Private Cloud (VPC) and other resources for your cluster. You can use the AWS console or an infrastructure automation and provisioning tool.\n\nFor instructions to use the AWS console, see [Create a VPC plus other VPC resources](https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html#create-vpc-and-other-resources) in the AWS Documentation.\n\nThe VPC must include private and public subnets and resources for external access, such as a network address translation (NAT) gateway and an internet gateway. In addition to the VPC, you need a private hosted zone for the ingress of your cluster. If you are creating clusters that use PrivateLink (`Private` or `PublicAndPrivate` access modes), you need an additional hosted zone for PrivateLink.\n\n**Procedure**\n\n- Create the AWS infrastructure for your hosted cluster by using the following example configuration:\n\n  ```yaml\n  ---\n  apiVersion: v1\n  kind: Namespace\n  metadata:\n    creationTimestamp: null\n    name: clusters\n  spec: {}\n  status: {}\n  ---\n  apiVersion: v1\n  data:\n    .dockerconfigjson: xxxxxxxxxxx\n  kind: Secret\n  metadata:\n    creationTimestamp: null\n    labels:\n      hypershift.openshift.io/safe-to-delete-with-cluster: \"true\"\n    name: <pull_secret_name>\n    namespace: clusters\n  ---\n  apiVersion: v1\n  data:\n    key: xxxxxxxxxxxxxxxxx\n  kind: Secret\n  metadata:\n    creationTimestamp: null\n    labels:\n      hypershift.openshift.io/safe-to-delete-with-cluster: \"true\"\n    name: <etcd_encryption_key_name>\n    namespace: clusters\n  type: Opaque\n  ---\n  apiVersion: v1\n  data:\n    id_rsa: xxxxxxxxx\n    id_rsa.pub: xxxxxxxxx\n  kind: Secret\n  metadata:\n    creationTimestamp: null\n    labels:\n      hypershift.openshift.io/safe-to-delete-with-cluster: \"true\"\n    name: <ssh_key_name>\n    namespace: clusters\n  ---\n  apiVersion: hypershift.openshift.io/v1beta1\n  kind: HostedCluster\n  metadata:\n    creationTimestamp: null\n    name: <hosted_cluster_name>\n    namespace: clusters\n  spec:\n    autoscaling: {}\n    configuration: {}\n    controllerAvailabilityPolicy: SingleReplica\n    dns:\n      baseDomain: <dns_domain>\n      privateZoneID: xxxxxxxx\n      publicZoneID: xxxxxxxx\n    etcd:\n      managed:\n        storage:\n          persistentVolume:\n            size: 8Gi\n            storageClassName: gp3-csi\n          type: PersistentVolume\n      managementType: Managed\n    fips: false\n    infraID: <infra_id>\n    issuerURL: <issuer_url>\n    networking:\n      clusterNetwork:\n      - cidr: 10.132.0.0/14\n      machineNetwork:\n      - cidr: 10.0.0.0/16\n      networkType: OVNKubernetes\n      serviceNetwork:\n      - cidr: 172.31.0.0/16\n    olmCatalogPlacement: management\n    platform:\n      aws:\n        cloudProviderConfig:\n          subnet:\n            id: <subnet_xxx>\n          vpc: <vpc_xxx>\n          zone: us-west-1b\n        endpointAccess: Public\n        multiArch: false\n        region: us-west-1\n        rolesRef:\n          controlPlaneOperatorARN: arn:aws:iam::820196288204:role/<infra_id>-control-plane-operator\n          imageRegistryARN: arn:aws:iam::820196288204:role/<infra_id>-openshift-image-registry\n          ingressARN: arn:aws:iam::820196288204:role/<infra_id>-openshift-ingress\n          kubeCloudControllerARN: arn:aws:iam::820196288204:role/<infra_id>-cloud-controller\n          networkARN: arn:aws:iam::820196288204:role/<infra_id>-cloud-network-config-controller\n          nodePoolManagementARN: arn:aws:iam::820196288204:role/<infra_id>-node-pool\n          storageARN: arn:aws:iam::820196288204:role/<infra_id>-aws-ebs-csi-driver-controller\n      type: AWS\n    pullSecret:\n      name: <pull_secret_name>\n    release:\n      image: quay.io/openshift-release-dev/ocp-release:4.16-x86_64\n    secretEncryption:\n      aescbc:\n        activeKey:\n          name: <etcd_encryption_key_name>\n      type: aescbc\n    services:\n    - service: APIServer\n      servicePublishingStrategy:\n        type: LoadBalancer\n    - service: OAuthServer\n      servicePublishingStrategy:\n        type: Route\n    - service: Konnectivity\n      servicePublishingStrategy:\n        type: Route\n    - service: Ignition\n      servicePublishingStrategy:\n        type: Route\n    - service: OVNSbDb\n      servicePublishingStrategy:\n        type: Route\n    sshKey:\n      name: <ssh_key_name>\n  status:\n    controlPlaneEndpoint:\n      host: \"\"\n      port: 0\n  ---\n  apiVersion: hypershift.openshift.io/v1beta1\n  kind: NodePool\n  metadata:\n    creationTimestamp: null\n    name: <node_pool_name>\n    namespace: clusters\n  spec:\n    arch: amd64\n    clusterName: <hosted_cluster_name>\n    management:\n      autoRepair: true\n      upgradeType: Replace\n    nodeDrainTimeout: 0s\n    platform:\n      aws:\n        instanceProfile: <instance_profile_name>\n        instanceType: m6i.xlarge\n        rootVolume:\n          size: 120\n          type: gp3\n        subnet:\n          id: <subnet_xxx>\n      type: AWS\n    release:\n      image: quay.io/openshift-release-dev/ocp-release:4.16-x86_64\n    replicas: 2\n  status:\n    replicas: 0\n  ```\n\n  - `<pull_secret_name>` specifies the name of your pull secret.\n  - `<etcd_encryption_key_name>` specifies the name of your etcd encryption key.\n  - `<ssh_key_name>` specifies the name of your SSH key.\n  - `<hosted_cluster_name>` specifies the name of your hosted cluster.\n  - `<dns_domain>` specifies your base DNS domain, such as `example.com`.\n  - `<infra_id>` specifies the value that identifies the IAM resources that are associated with the hosted cluster.\n  - `<issuer_url>` specifies your issuer URL, which ends with your `infra_id` value. For example, `https://example-hosted-us-west-1.s3.us-west-1.amazonaws.com/example-hosted-infra-id`.\n  - `<subnet_xxx>` specifies your subnet ID. Both private and public subnets need to be tagged. For public subnets, use `kubernetes.io/role/elb=1`. For private subnets, use `kubernetes.io/role/internal-elb=1`.\n  - `<vpc_xxx>` specifies your VPC ID.\n  - `<node_pool_name>` specifies the name of your `NodePool` resource.\n  - `<instance_profile_name>` specifies the name of your AWS instance.\n\n### Creating a hosted cluster separately {#hcp-managed-aws-hc-separate_hcp-managing-aws}\n\nIn hosted control planes on AWS, you can create a hosted cluster separately from creating the infrastructure and Identity and Access Management (IAM) resources.\n\n**Prerequisites**\n\n- You created infrastructure resources separately. For more information, see \"Creating the AWS infrastructure separately\".\n- You created the following IAM resources:\n\n  - An OpenID Connect (OIDC) identity provider in IAM, which is required to enable STS authentication. For more information, see [Create an OpenID Connect (OIDC) identity provider in IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html).\n  - The seven roles that are listed in \"Identity and Access Management (IAM) permissions.\" The roles are separate for every component that interacts with the provider, such as the Kubernetes controller manager, cluster API provider, and registry. For more information, see [IAM role creation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html).\n  - The instance profile, which is the profile that is assigned to all worker instances of the cluster. For more information, see [Use instance profiles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html).\n\n**Procedure**\n\n1. To create a hosted cluster separately, enter the following command:\n\n   ```terminal\n   $ hcp create cluster aws \\\n       --infra-id <infra_id> \\\n       --name <hosted_cluster_name> \\\n       --sts-creds <path_to_sts_credential_file> \\\n       --pull-secret <path_to_pull_secret> \\\n       --generate-ssh \\\n       --node-pool-replicas 3 \\\n       --role-arn <role_name> \\\n       --render-sensitive \\\n       --render > <file_name>.yaml\n   ```\n\n   - `--infra-id` specifies the same ID that you specified in the `create infra aws` command. This value identifies the IAM resources that are associated with the hosted cluster.\n   - `--name` specifies the name of your hosted cluster.\n   - `--sts-creds` specifies the same name that you specified in the `create infra aws` command.\n   - `--pull-secret` specifies the name of the file that contains a valid OpenShift Container Platform pull secret.\n   - `--generate-ssh` is an optional flag, but it is good to include in case you need to SSH to your workers. An SSH key is generated for you and is stored as a secret in the same namespace as the hosted cluster.\n   - `--role-arn` specifies the Amazon Resource Name (ARN); for example, `arn:aws:iam::820196288204:role/myrole`. For more information about ARN roles, see \"Identity and Access Management (IAM) permissions\".\n   - `--render-sensitive` generates secrets that are stored in the YAML file.\n   - `--render` is an optional flag. You can include this flag to redirect output to a file where you can edit the resources before you apply them to the cluster.\n2. Apply the manifests by entering the following command:\n\n   ```terminal\n   $ oc apply -f <file_name>.yaml\n   ```\n\n**Verification**\n\n- After you run the command, you can verify that the following resources are applied to your cluster:\n\n  - A namespace\n  - A secret with your pull secret\n  - A `HostedCluster`\n  - A `NodePool`\n  - Three AWS STS secrets for control plane components\n  - If you specified the `--generate-ssh` flag, one SSH key secret.\n\n## Transitioning a hosted cluster from single-architecture to multi-architecture {#hcp-migrate-aws-single-to-multiarch_hcp-managing-aws}\n\nYou can transition your single-architecture 64-bit AMD hosted cluster to a multi-architecture hosted cluster on Amazon Web Services (AWS) to reduce the cost of running workloads on your cluster.\n\nFor example, you can run existing workloads on 64-bit AMD while transitioning to 64-bit ARM and you can manage these workloads from a central Kubernetes cluster.\n\nA single-architecture hosted cluster can manage node pools of only one particular CPU architecture. However, a multi-architecture hosted cluster can manage node pools with different CPU architectures. On AWS, a multi-architecture hosted cluster can manage both 64-bit AMD and 64-bit ARM node pools.\n\n**Prerequisites**\n\n- You installed an OpenShift Container Platform management cluster for AWS with the multicluster engine for Kubernetes Operator.\n- You have an existing single-architecture hosted cluster that uses 64-bit AMD variant of the OpenShift Container Platform release payload.\n- You have an existing node pool that uses the same 64-bit AMD variant of the OpenShift Container Platform release payload and is managed by an existing hosted cluster.\n- You installed the following command-line tools:\n\n  - `oc`\n  - `kubectl`\n  - `hcp`\n  - `skopeo`\n\n**Procedure**\n\n1. Review an existing OpenShift Container Platform release image of the single-architecture hosted cluster by running the following command:\n\n   ```terminal\n   $ oc get hostedcluster/<hosted_cluster_name> \\\n     -o jsonpath='{.spec.release.image}'\n   ```\n\n   Replace `<hosted_cluster_name>` with your hosted cluster name.\n\n   ```terminal {title=\"Example output\"}\n   quay.io/openshift-release-dev/ocp-release:4.20.0-x86_64\n   ```\n2. In your OpenShift Container Platform release image, if you use the digest instead of a tag, find the multi-architecture tag version of your release image:\n\n   1. Set the `OCP_VERSION` environment variable for the OpenShift Container Platform version by running the following command:\n\n      ```terminal\n      $ OCP_VERSION=$(oc image info quay.io/openshift-release-dev/ocp-release@sha256:ac78ebf77f95ab8ff52847ecd22592b545415e1ff6c7ff7f66bf81f158ae4f5e \\\n        -o jsonpath='{.config.config.Labels[\"io.openshift.release\"]}')\n      ```\n   2. Set the `MULTI_ARCH_TAG` environment variable for the multi-architecture tag version of your release image by running the following command:\n\n      ```terminal\n      $ MULTI_ARCH_TAG=$(skopeo inspect docker://quay.io/openshift-release-dev/ocp-release@sha256:ac78ebf77f95ab8ff52847ecd22592b545415e1ff6c7ff7f66bf81f158ae4f5e \\\n        | jq -r '.RepoTags' | sed 's/\"//g' | sed 's/,//g' \\\n        | grep -w \"$OCP_VERSION-multi$\" | xargs)\n      ```\n   3. Set the `IMAGE` environment variable for the multi-architecture release image name by running the following command:\n\n      ```terminal\n      $ IMAGE=quay.io/openshift-release-dev/ocp-release:$MULTI_ARCH_TAG\n      ```\n   4. To see the list of multi-architecture image digests, run the following command:\n\n      ```terminal\n      $ oc image info $IMAGE\n      ```\n\n      ```terminal {title=\"Example output\"}\n      OS            DIGEST\n      linux/amd64   sha256:b4c7a91802c09a5a748fe19ddd99a8ffab52d8a31db3a081a956a87f22a22ff8\n      linux/ppc64le sha256:66fda2ff6bd7704f1ba72be8bfe3e399c323de92262f594f8e482d110ec37388\n      linux/s390x   sha256:b1c1072dc639aaa2b50ec99b530012e3ceac19ddc28adcbcdc9643f2dfd14f34\n      linux/arm64   sha256:7b046404572ac96202d82b6cb029b421dddd40e88c73bbf35f602ffc13017f21\n      ```\n3. Transition the hosted cluster from single-architecture to multi-architecture:\n\n   1. Set the multi-architecture OpenShift Container Platform release image for the hosted cluster by ensuring that you use the same OpenShift Container Platform version as the hosted cluster. Run the following command:\n\n      ```terminal\n      $ oc patch -n clusters hostedclusters/<hosted_cluster_name> -p \\\n        '{\"spec\":{\"release\":{\"image\":\"quay.io/openshift-release-dev/ocp-release:<4.x.y>-multi\"}}}' \\\n        --type=merge\n      ```\n\n      Replace `<4.y.z>` with the supported OpenShift Container Platform version that you use.\n   2. Confirm that the multi-architecture image is set in your hosted cluster by running the following command:\n\n      ```terminal\n      $ oc get hostedcluster/<hosted_cluster_name> \\\n        -o jsonpath='{.spec.release.image}'\n      ```\n4. Check that the status of the `HostedControlPlane` resource is `Progressing` by running the following command:\n\n   ```terminal\n   $ oc get hostedcontrolplane -n <hosted_control_plane_namespace> -oyaml\n   ```\n\n   ```yaml {title=\"Example output\"}\n   #...\n     - lastTransitionTime: \"2024-07-28T13:07:18Z\"\n       message: HostedCluster is deploying, upgrading, or reconfiguring\n       observedGeneration: 5\n       reason: Progressing\n       status: \"True\"\n       type: Progressing\n   #...\n   ```\n5. Check that the status of the `HostedCluster` resource is `Progressing` by running the following command:\n\n   ```terminal\n   $ oc get hostedcluster <hosted_cluster_name> \\\n     -n <hosted_cluster_namespace> -oyaml\n   ```\n\n**Verification**\n\n- Verify that a node pool is using the multi-architecture release image in your `HostedControlPlane` resource by running the following command:\n\n  ```terminal\n  $ oc get hostedcontrolplane -n clusters-example -oyaml\n  ```\n\n  ```yaml {title=\"Example output\"}\n  #...\n  version:\n      availableUpdates: null\n      desired:\n        image: quay.io/openshift-release-dev/ocp-release:4.20.0-multi\n        url: https://access.redhat.com/errata/RHBA-2024:4855\n        version: 4.20.0\n      history:\n      - completionTime: \"2024-07-28T13:10:58Z\"\n        image: quay.io/openshift-release-dev/ocp-release:4.20.0-multi\n        startedTime: \"2024-07-28T13:10:27Z\"\n        state: Completed\n        verified: false\n        version: 4.20.0\n  ```\n\n  > [!NOTE]\n  > The multi-architecture OpenShift Container Platform release image is updated in your `HostedCluster`, `HostedControlPlane` resources, and hosted control plane pods. However, your existing node pools do not transition with the multi-architecture image automatically, because the release image transition is decoupled between the hosted cluster and node pools. You must create new node pools on your new multi-architecture hosted cluster.\n\n**Next steps**\n\n- Create node pools on the multi-architecture hosted cluster.\n\n## Creating node pools on the multi-architecture hosted cluster {#hcp-migrate-aws-multiarch-nodepools_hcp-managing-aws}\n\nAfter you transition your hosted cluster from single-architecture to multi-architecture, create node pools on compute machines based on 64-bit AMD and 64-bit ARM architectures.\n\n**Procedure**\n\n1. Create node pools based on 64-bit ARM architecture by entering the following command:\n\n   ```terminal\n   $ hcp create nodepool aws \\\n     --cluster-name <hosted_cluster_name> \\\n     --name <nodepool_name> \\\n     --node-count=<node_count> \\\n     --arch arm64\n   ```\n\n   - Replace `<hosted_cluster_name>` with your hosted cluster name.\n   - Replace `<nodepool_name>` with your node pool name.\n   - Replace `<node_count>` with integer for your node count, for example, `2`.\n2. Create node pools based on 64-bit AMD architecture by entering the following command:\n\n   ```terminal\n   $ hcp create nodepool aws \\\n     --cluster-name <hosted_cluster_name> \\\n     --name <nodepool_name> \\\n     --node-count=<node_count> \\\n     --arch amd64\n   ```\n\n   - Replace `<hosted_cluster_name>` with your hosted cluster name.\n   - Replace `<nodepool_name>` with your node pool name.\n   - Replace `<node_count>` with integer for your node count, for example, `2`.\n\n**Verification**\n\n- Verify that a node pool is using the multi-architecture release image by entering the following command:\n\n  ```terminal\n  $ oc get nodepool/<nodepool_name> -oyaml\n  ```\n\n  ```yaml {title=\"Example output for 64-bit AMD node pools\"}\n  #...\n  spec:\n    arch: amd64\n  #...\n    release:\n      image: quay.io/openshift-release-dev/ocp-release:4.20.0-multi\n  ```\n\n  ```yaml {title=\"Example output for 64-bit ARM node pools\"}\n  #...\n  spec:\n    arch: arm64\n  #...\n    release:\n      image: quay.io/openshift-release-dev/ocp-release:4.20.0-multi\n  ```\n\n## Adding or updating AWS tags for a hosted cluster {#hcp-aws-tags_hcp-managing-aws}\n\nAs a cluster instance administrator, you can add or update Amazon Web Services (AWS) tags without needing to re-create your hosted cluster. *Tags* are key-value pairs that are attached to AWS resources for management and automation.\n\nYou might want to use tags for the following purposes:\n\n- Managing access controls.\n- Tracking chargeback or showback.\n- Managing cloud Identity and Access Management (IAM) conditional permissions.\n- Aggregating resources based on tags. For example, you can query tags to calculate resource usage and billing costs.\n\nYou can add or update tags for several different types of resources, including Amazon Elastic File System (EFS) access points, load balancer resources, Amazon Elastic Block Storage (EBS) volumes, IAM users, and AWS S3.\n\n> [!IMPORTANT]\n> On network load balancers, tags cannot be added or updated. The AWS load balancer reconciles whatever tags are in the `HostedCluster` resource. If you try to add or update a tag, the load balancer overwrites the tag.\n>\n> In addition, tags cannot be updated on the default security group resource that is created directly by hosted control planes.\n\n**Prerequisites**\n\n- You must have cluster administrator permissions for your hosted cluster on AWS.\n\n**Procedure**\n\n1. If you want to add or update tags for EFS access points, complete steps 1 and 2. If you are adding or updating tags for other types of resources, complete only step 2.\n\n   1. In the `aws-efs-csi-driver-operator` service account, add two annotations, as shown in the following example. These annotations are required so that the Amazon Elastic Kubernetes Service (EKS) pod identity webhook that runs on the cluster can correctly assign AWS roles to the pods that the EFS Operator uses.\n\n      ```yaml\n      apiVersion: v1\n      kind: ServiceAccount\n      metadata:\n        name: <service_account_name>\n        namespace: <project_name>\n        annotations:\n          eks.amazonaws.com/role-arn:<role_arn>\n          eks.amazonaws.com/audience:sts.amazonaws.com\n      ```\n   2. Delete the Operator pod or roll out a restart of the `aws-efs-csi-driver-operator` deployment.\n2. In the `HostedCluster` resource, enter information in the `resourceTags` fields, as shown in the following example:\n\n   ```yaml {title=\"Example HostedCluster resource\"}\n   apiVersion: hypershift.openshift.io/v1beta1\n   kind: HostedCluster\n   metadata:\n     #...\n   spec:\n     autoscaling: {}\n     clusterID: <cluster_id>\n     configuration: {}\n     controllerAvailabilityPolicy: SingleReplica\n     dns:\n       #...\n     etcd:\n       #...\n     fips: false\n     infraID: <infra_id>\n     infrastructureAvailabilityPolicy: SingleReplica\n     issuerURL: https://<issuer_url>.s3.<region>.amazonaws.com\n     networking:\n       #...\n     olmCatalogPlacement: management\n     platform:\n       aws:\n         #...\n         resourceTags:\n         - key: kubernetes.io/cluster/<tag>\n           value: owned\n         rolesRef:\n           #...\n       type: AWS\n   ```\n\n   Replace `<tag>` with the tag that you want to add to your resource.\n\n## Configuring node pool capacity blocks on AWS {#hcp-np-capacity-blocks_hcp-managing-aws}\n\nAfter you create a hosted cluster, you can configure node pool capacity blocks for graphics processing unit (GPU) reservations on Amazon Web Services (AWS).\n\n**Procedure**\n\n1. Create GPU reservations on AWS by running a command similar to the following example:\n\n   > [!IMPORTANT]\n   > The zone of the GPU reservation must match your hosted cluster zone.\n\n   ```terminal\n   $ aws ec2 describe-capacity-block-offerings \\\n         --instance-type \"p4d.24xlarge\"\\\n         --instance-count  \"1\" \\\n         --start-date-range \"$(date -u +\"2025-07-21T10:14:39Z\")\"  \\\n         --end-date-range \"$(date -u -d \"2 day\" +\"2025-07-22T10:16:36Z\")\" \\\n         --capacity-duration-hours 24 \\\n         --output json\n   ```\n\n   - `--instance-type` defines the type of your AWS instance.\n   - `--instance-count` defines your instance purchase quantity. Valid values are integers ranging from `1` to `64`.\n   - `--start-date-range` defines the start date range.\n   - `--end-date-range` defines the end date range.\n   - `--capacity-duration-hours` defines the duration of capacity blocks in hours.\n2. Purchase the minimum fee capacity block by running the following command:\n\n   ```terminal\n   $ aws ec2 purchase-capacity-block \\\n         --capacity-block-offering-id \"${MIN_FEE_ID}\" \\\n         --instance-platform \"Linux/UNIX\"\\\n         --tag-specifications 'ResourceType=capacity-reservation,Tags=[{Key=usage-cluster-type,Value=hypershift-hosted}]' \\\n         --output json   > \"${CR_OUTPUT_FILE}\"\n   ```\n\n   - `--capacity-block-offering-id` defines the ID of the capacity block offering.\n   - `--instance-platform` defines the platform of your instance.\n   - `--tag-specifications` defines the tag for your instance.\n3. Create an environment variable to set the capacity reservation ID by running the following command:\n\n   ```terminal\n   $ CB_RESERVATION_ID=$(jq -r '.CapacityReservation.CapacityReservationId' \"${CR_OUTPUT_FILE}\")\n   ```\n\n   Wait for a couple of minutes for the GPU reservation to become available.\n4. Add a node pool to use the GPU reservation by running the following command:\n\n   ```terminal\n   $ hcp create nodepool aws \\\n     --cluster-name <hosted_cluster_name> \\\n     --name <node_pool_name> \\\n     --node-count <node_pool_count> \\\n     --instance-type <instance_type> \\\n     --arch <arch_type> \\\n     --release-image <release_image> \\\n     --render > /tmp/np.yaml\n   ```\n\n   - `--cluster-name` specifies the name of your hosted cluster.\n   - `--name` specifies the name of your node pool.\n   - `--node-count` defines the node pool count, for example, `1`.\n   - `--instance-type` defines the instance type, for example, `p4d.24xlarge`.\n   - `--arch` defines an architecture type, for example, `amd64`.\n   - `--release-image` specifies the release image you want to use.\n5. Add the `capacityReservation` setting in your `NodePool` resource by using the following example configuration:\n\n   ```yaml\n   # ...\n   spec:\n     arch: amd64\n     clusterName: cb-np-hcp\n     management:\n       autoRepair: false\n       upgradeType: Replace\n     platform:\n       aws:\n         instanceProfile: cb-np-hcp-dqppw-worker\n         instanceType: p4d.24xlarge\n         rootVolume:\n           size: 120\n           type: gp3\n         subnet:\n           id: subnet-00000\n         placement:\n           capacityReservation:\n             id: ${CB_RESERVATION_ID}\n             marketType: CapacityBlocks\n       type: AWS\n   # ...\n   ```\n6. Apply the node pool configuration by running the following command:\n\n   ```terminal\n   $ oc apply -f /tmp/np.yaml\n   ```\n\n**Verification**\n\n1. Verify that your new node pool is created successfully by running the following command:\n\n   ```terminal\n   $ oc get np -n clusters\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAMESPACE   NAME    CLUSTER     DESIRED NODES   CURRENT  NODES   AUTOSCALING     AUTOREPAIR   VERSION                               UPDATINGVERSION   UPDATINGCONFIG   MESSAGE\n   clusters    cb-np   cb-np-hcp   1               1                False           False        4.22.0-0.nightly-2025-06-05-224220    False             False\n   ```\n2. Verify that your new compute nodes are created in the hosted cluster by running the following command:\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                           STATUS   ROLES    AGE    VERSION\n   ip-10-0-132-74.ec2.internal    Ready    worker   17m    v1.35.4\n   ip-10-0-134-183.ec2.internal   Ready    worker   4h5m   v1.35.4\n   ```\n\n### Deleting a hosted cluster after configuring node pool capacity blocks {#hcp-np-capacity-blocks-destroy_hcp-managing-aws}\n\nAfter you configure node pool capacity blocks, you can optionally delete a hosted cluster and uninstall the HyperShift Operator.\n\n**Procedure**\n\n1. To delete a hosted cluster, run a command similar to the following example:\n\n   ```terminal\n   $ hcp destroy cluster aws \\\n     --name cb-np-hcp \\\n     --aws-creds $HOME/.aws/credentials \\\n     --namespace clusters \\\n     --region us-east-2\n   ```\n2. To uninstall the HyperShift Operator, run the following command:\n\n   ```terminal\n   $ hcp install render --format=yaml | oc delete -f -\n   ```\n\n## Amazon Spot Instance support for node pools {#hcp-aws-spot-instance_hcp-managing-aws}\n\nTo reduce cloud infrastructure costs for non-critical and fault-tolerant workloads, you can use Amazon Spot Instances for your compute nodes in hosted clusters.\n\nSpot Instances use spare Amazon Elastic Compute Cloud (Amazon EC2) capacity at reduced prices compared to on-demand instances. When Amazon EC2 needs the capacity block, it can interrupt a Spot Instance with a 2-minute warning. You can use Spot Instances for node pools in hosted clusters on AWS. However, you cannot combine Spot Instances with Amazon EC2 Capacity Reservations.\n\n> [!IMPORTANT]\n> Spot Instances are suitable for fault-tolerant, stateless, and flexible workloads. Do not use Spot Instances for workloads that cannot tolerate interruptions. Spot Instances require default tenancy. Dedicated tenancy is not supported.\n\n### Configuring Amazon SQS and Amazon EventBridge to receive Amazon EC2 interruption events {#hcp-aws-config-sqs-eventbridge_hcp-managing-aws}\n\nBefore you enable Amazon Spot Instances, you must set up Amazon Simple Queue Service (SQS) and Amazon EventBridge to receive Amazon EC2 interruption events.\n\nFor hosted control planes to be able to provide a graceful shut down, it needs to poll the SQS queue and cordon or drain nodes before they are deleted. For more information about Amazon SQS and Amazon EventBridge, see \"Getting started with Amazon SQS\" and \"Getting started: Create an Amazon EventBridge bus rule\".\n\n**Procedure**\n\n1. Create an Amazon SQS queue to receive Spot Instance notifications by entering the following command:\n\n   ```terminal\n   CLUSTER_NAME=\"my-cluster\"\n   AWS_REGION=\"us-east-1\"\n\n   $ aws sqs create-queue \\\n     --queue-name \"${CLUSTER_NAME}-spot-interruption-queue\" \\\n     --region \"${AWS_REGION}\"\n   ```\n\n   - Be sure to replace `my-cluster` and `us-east-1` with your cluster name and AWS region.\n   - Take note of the URL from the output. You need the URL when you create the hosted cluster.\n2. Create Amazon EventBridge rules to route Amazon EC2 Spot interruption warnings and rebalance recommendations to the SQS queue.\n\n   1. Set the attributes by entering the following command:\n\n      ```terminal\n      ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)\n      QUEUE_URL=\"https://sqs.${AWS_REGION}.amazonaws.com/${ACCOUNT_ID}/${CLUSTER_NAME}-spot-interruption-queue\"\n\n      QUEUE_ARN=$(aws sqs get-queue-attributes \\\n        --queue-url \"${QUEUE_URL}\" \\\n        --attribute-names QueueArn \\\n        --query 'Attributes.QueueArn' --output text)\n      ```\n   2. Set the interruption warning by entering the following command:\n\n      ```terminal\n      $ aws events put-rule \\\n        --name \"${CLUSTER_NAME}-spot-interruption-warning\" \\\n        --event-pattern '{\"source\":[\"aws.ec2\"],\"detail-type\":[\"EC2 Spot Instance Interruption Warning\"]}' \\\n        --region \"${AWS_REGION}\"\n      ```\n   3. Set the target for the interruption warning by entering the following command:\n\n      ```terminal\n      $ aws events put-targets \\\n        --rule \"${CLUSTER_NAME}-spot-interruption-warning\" \\\n        --targets \"Id=1,Arn=${QUEUE_ARN}\" \\\n        --region \"${AWS_REGION}\"\n      ```\n   4. Set the recommendations by entering the following command:\n\n      ```terminal\n      $ aws events put-rule \\\n        --name \"${CLUSTER_NAME}-rebalance-recommendation\" \\\n        --event-pattern '{\"source\":[\"aws.ec2\"],\"detail-type\":[\"EC2 Instance Rebalance Recommendation\"]}' \\\n        --region \"${AWS_REGION}\"\n      ```\n   5. Set the target for the recommendations by entering the following command:\n\n      ```terminal\n      $ aws events put-targets \\\n        --rule \"${CLUSTER_NAME}-rebalance-recommendation\" \\\n        --targets \"Id=1,Arn=${QUEUE_ARN}\" \\\n        --region \"${AWS_REGION}\"\n      ```\n3. Configure the Amazon SQS queue policy to allow EventBridge to send messages to the queue by entering the following command:\n\n   ```terminal\n   ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)\n   QUEUE_URL=\"https://sqs.${AWS_REGION}.amazonaws.com/${ACCOUNT_ID}/${CLUSTER_NAME}-spot-interruption-queue\"\n\n   $ aws sqs set-queue-attributes \\\n     --queue-url \"${QUEUE_URL}\" \\\n     --attributes '{\n       \"Policy\": \"{\\\"Version\\\":\\\"2012-10-17\\\",\\\"Statement\\\":[{\\\"Effect\\\":\\\"Allow\\\",\\\"Principal\\\":{\\\"Service\\\":\\\"events.amazonaws.com\\\"},\\\"Action\\\":\\\"sqs:SendMessage\\\",\\\"Resource\\\":\\\"'${QUEUE_ARN}'\\\"}]}\"\n     }'\n   ```\n\n**Additional resources**\n\n- [Getting started with Amazon SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html)\n- [Getting started: Create an Amazon EventBridge event bus rule](https://docs.aws.amazon.com/eventbridge/latest/userguide/event-bus-rule-get-started.html)\n\n### Enabling Amazon Spot Instance support for node pools {#hcp-aws-spot-instance-enable_hcp-managing-aws}\n\nEnable Amazon Spot Instances for your compute nodes in hosted cluster node pools to reduce cloud infrastructure costs for non-critical and fault-tolerant workloads.\n\n**Prerequisites**\n\n- You set up Amazon Simple Queue Service (SQS) and Amazon EventBridge to receive Amazon EC2 interruption events.\n- You have the URL of your Amazon SQS queue, which you created in \"Configuring Amazon SQS and Amazon EventBridge to receive Amazon EC2 interruption events\".\n\n**Procedure**\n\n1. Set the Amazon SQS queue URL on your hosted cluster.\n\n   - If you are setting the SQS queue URL on a new hosted cluster, take the following steps:\n\n     1. Configure the `HostedCluster` resource as follows:\n\n        ```yaml\n        apiVersion: hypershift.openshift.io/v1beta1\n        kind: HostedCluster\n        metadata:\n          name: <my_hosted_cluster>\n          namespace: <my_hosted_cluster_namespace>\n        spec:\n          platform:\n            type: AWS\n            aws:\n              region: us-east-1\n              terminationHandlerQueueURL: \"https://sqs.us-east-1.amazonaws.com/123456789012/my-cluster-spot-interruption-queue\"\n        ...\n        ```\n\n        where:\n\n        `spec.platform.aws.terminationHandlerQueueURL`\n        :   Specifies the SQS queue URL.\n     2. Apply the configuration by entering the following command:\n\n        ```terminal\n        $ oc apply -f <hosted_cluster_config>.yaml\n        ```\n   - If you are setting the SQS queue URL on an existing hosted cluster, patch the `HostedCluster` resource as follows:\n\n     ```terminal\n     $ oc patch hostedcluster my-cluster -n clusters --type merge -p '{\n       \"spec\": {\n         \"platform\": {\n           \"aws\": {\n             \"terminationHandlerQueueURL\": \"https://sqs.us-east-1.amazonaws.com/123456789012/my-cluster-spot-interruption-queue\"\n           }\n         }\n       }\n     }'\n     ```\n2. Create a `NodePool` object that has the Spot market type configured, as shown in the following example:\n\n   ```yaml\n   apiVersion: hypershift.openshift.io/v1beta1\n   kind: NodePool\n   metadata:\n     name: spot-workers\n     namespace: <my_hosted_cluster_namespace>\n   spec:\n     clusterName: <my_hosted_cluster>\n     replicas: 3\n     release:\n       image: quay.io/openshift-release-dev/ocp-release:4.22.0-x86_64\n     management:\n       autoRepair: true\n       upgradeType: Replace\n     platform:\n       type: AWS\n       aws:\n         instanceType: m5.xlarge\n         instanceProfile: my-cluster-worker\n         rootVolume:\n           size: 120\n           type: gp3\n         placement:\n           marketType: Spot\n   ```\n\n   `marketType: Spot`\n   :   Specifies that all `Machine` objects and `Node` objects have the `hypershift.openshift.io/interruptible-instance` label and that the EC2 instances have the `aws-node-termination-handler/managed` tag so they can be identified by the termination-handling components. You can specify `spot` options only when the `marketType` field is set to `Spot`.\n3. Apply the configuration by entering the following command:\n\n   ```terminal\n   $ oc apply -f <node_pool_config>.yaml\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-manage/hcp-manage-aws.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,32 +94,595 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-manage-aws" class="group scroll-mt-20">Managing {"{"}{"{"} hcp {"}"}{"}"} on {"{"}{"{"} aws_short {"}"}{"}"}<a href="#hcp-manage-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>After you deploy a hosted cluster on {"{"}{"{"} aws_first {"}"}{"}"}, you can manage the cluster.</p>
-      <p class="/modules/hcp-manage-aws-prereq.md"></p>
-      <p class="/modules/hcp-manage-aws-infra-req.md"></p>
-      <p class="/modules/hcp-manage-aws-infra-ho-req.md"></p>
-      <p class="/modules/hcp-unmanaged-aws-hc-prereq.md"></p>
-      <p class="/modules/hcp-managed-aws-infra-mgmt.md"></p>
-      <p class="/modules/hcp-managed-aws-infra-hc.md"></p>
-      <p class="/modules/hcp-k8s-managed-aws-infra-hc.md"></p>
-      <p class="/modules/hcp-managed-aws-iam.md"></p>
-      <p class="/modules/hcp-managed-aws-infra-iam-separate.md"></p>
-      <p class="/modules/hcp-managed-aws-infra-separate.md"></p>
-      <p class="/modules/hcp-managed-aws-hc-separate.md"></p>
-      <p class="/modules/hcp-migrate-aws-single-to-multiarch.md"></p>
-      <p class="/modules/hcp-migrate-aws-multiarch-nodepools.md"></p>
-      <p class="/modules/hcp-aws-tags.md"></p>
-      <p class="/modules/hcp-np-capacity-blocks.md"></p>
-      <p class="/modules/hcp-np-capacity-blocks-destroy.md"></p>
-      <p class="/modules/hcp-aws-spot-instance.md"></p>
-      <p class="/modules/hcp-aws-config-sqs-eventbridge.md"></p>
+      <h1 id="hcp-manage-aws" class="group scroll-mt-20">Managing hosted control planes on AWS<a href="#hcp-manage-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>After you deploy a hosted cluster on Amazon Web Services (AWS), you can manage the cluster.</p>
+      <h2 id="hcp-manage-aws-prereq_hcp-managing-aws" class="group scroll-mt-20">Prerequisites to manage AWS infrastructure and IAM permissions<a href="#hcp-manage-aws-prereq_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To configure hosted control planes for OpenShift Container Platform on Amazon Web Services (AWS), you must meet the infrastructure requirements.</p>
+      <ul>
+      <li>You must configure hosted control planes before you can create hosted clusters.</li>
+      <li>You must create an AWS Identity and Access Management (IAM) role and AWS Security Token Service (STS) credentials.</li>
+      </ul>
+      <h3 id="hcp-manage-aws-infra-req_hcp-managing-aws" class="group scroll-mt-20">Infrastructure requirements for AWS<a href="#hcp-manage-aws-infra-req_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When you use hosted control planes on Amazon Web Services (AWS), the infrastructure requirements vary based on your setup.</p>
+      <p>The infrastructure requirements fit in the following categories:</p>
+      <ul>
+      <li>Prerequired and unmanaged infrastructure for the HyperShift Operator in an arbitrary AWS account</li>
+      <li>Prerequired and unmanaged infrastructure in a hosted cluster AWS account</li>
+      <li>Hosted control planes-managed infrastructure in a management AWS account</li>
+      <li>Hosted control planes-managed infrastructure in a hosted cluster AWS account</li>
+      <li>Kubernetes-managed infrastructure in a hosted cluster AWS account</li>
+      </ul>
+      <p><em>Prerequired</em> means that hosted control planes requires AWS infrastructure to properly work. <em>Unmanaged</em> means that no Operator or controller creates the infrastructure for you.</p>
+      <h3 id="hcp-manage-aws-infra-ho-req_hcp-managing-aws" class="group scroll-mt-20">Unmanaged infrastructure for the HyperShift Operator in an AWS account<a href="#hcp-manage-aws-infra-ho-req_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">An arbitrary Amazon Web Services (AWS) account depends on the provider of the hosted control planes service.</p>
+      <p>In self-managed hosted control planes, the cluster service provider controls the AWS account. The cluster service provider is the administrator who hosts cluster control planes and is responsible for uptime. In managed hosted control planes, the AWS account belongs to Red Hat.</p>
+      <p>In a prerequired and unmanaged infrastructure for the HyperShift Operator, the following infrastructure requirements apply for a management cluster AWS account:</p>
+      <ul>
+      <li>
+      One S3 Bucket
+      <ul><li>OpenID Connect (OIDC)</li></ul>
+      </li>
+      <li>
+      Route 53 hosted zones
+      <ul><li>A domain to host private and public entries for hosted clusters</li></ul>
+      </li>
+      </ul>
+      <h3 id="hcp-unmanaged-aws-hc-prereq_hcp-managing-aws" class="group scroll-mt-20">Unmanaged infrastructure requirements for a management AWS account<a href="#hcp-unmanaged-aws-hc-prereq_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When your infrastructure is prerequired and unmanaged in a hosted cluster Amazon Web Services (AWS) account, ensure that you are familiar with the infrastructure requirements for all access modes.</p>
+      <ul>
+      <li>One VPC</li>
+      <li>One DHCP Option</li>
+      <li>
+      Two subnets
+      <ul>
+      <li>A private subnet that is an internal data plane subnet</li>
+      <li>A public subnet that enables access to the internet from the data plane</li>
+      </ul>
+      </li>
+      <li>One internet gateway</li>
+      <li>One elastic IP</li>
+      <li>One NAT gateway</li>
+      <li>One security group (worker nodes)</li>
+      <li>Two route tables (one private and one public)</li>
+      <li>Two Route 53 hosted zones</li>
+      <li>
+      Enough quota for the following items:
+      <ul>
+      <li>One Ingress service load balancer for public hosted clusters</li>
+      <li>One private link endpoint for private hosted clusters</li>
+      </ul>
+      </li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>For private link networking to work, the endpoint zone in the hosted cluster AWS account must match the zone of the instance that is resolved by the service endpoint in the management cluster AWS account. In AWS, the zone names are aliases, such as us-east-2b, which do not necessarily map to the same zone in different accounts. As a result, for private link to work, the management cluster must have subnets or workers in all zones of its region.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="hcp-managed-aws-infra-mgmt_hcp-managing-aws" class="group scroll-mt-20">Infrastructure requirements for a management AWS account<a href="#hcp-managed-aws-infra-mgmt_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When your infrastructure is managed by hosted control planes in a management AWS account, the infrastructure requirements differ depending on whether your clusters are public, private, or a combination.</p>
+      <p>For accounts with public clusters, the infrastructure requirements are as follows:</p>
+      <ul>
+      <li>
+      Network load balancer: a load balancer Kube API server
+      <ul><li>Kubernetes creates a security group</li></ul>
+      </li>
+      <li>
+      Volumes
+      <ul>
+      <li>For etcd (one or three depending on high availability)</li>
+      <li>For OVN-Kube</li>
+      </ul>
+      </li>
+      </ul>
+      <p>For accounts with private clusters, the infrastructure requirements are as follows:</p>
+      <ul>
+      <li>Network load balancer: a load balancer private router</li>
+      <li>Endpoint service (private link)</li>
+      </ul>
+      <p>For accounts with public and private clusters, the infrastructure requirements are as follows:</p>
+      <ul>
+      <li>Network load balancer: a load balancer public router</li>
+      <li>Network load balancer: a load balancer private router</li>
+      <li>Endpoint service (private link)</li>
+      <li>
+      Volumes
+      <ul>
+      <li>For etcd (one or three depending on high availability)</li>
+      <li>For OVN-Kube</li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="hcp-managed-aws-infra-hc_hcp-managing-aws" class="group scroll-mt-20">Infrastructure requirements for an AWS account in a hosted cluster<a href="#hcp-managed-aws-infra-hc_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When your infrastructure is managed by hosted control planes in a hosted cluster Amazon Web Services (AWS) account, the infrastructure requirements differ depending on whether your clusters are public, private, or a combination.</p>
+      <p>For accounts with public clusters, the infrastructure requirements are as follows:</p>
+      <ul><li>Node pools must have EC2 instances that have <code>Role</code> and <code>RolePolicy</code> defined.</li></ul>
+      <p>For accounts with private clusters, the infrastructure requirements are as follows:</p>
+      <ul>
+      <li>One private link endpoint for each availability zone</li>
+      <li>EC2 instances for node pools</li>
+      </ul>
+      <p>For accounts with public and private clusters, the infrastructure requirements are as follows:</p>
+      <ul>
+      <li>One private link endpoint for each availability zone</li>
+      <li>EC2 instances for node pools</li>
+      </ul>
+      <h3 id="hcp-k8s-managed-aws-infra-hc_hcp-managing-aws" class="group scroll-mt-20">Kubernetes-managed infrastructure in a hosted cluster AWS account<a href="#hcp-k8s-managed-aws-infra-hc_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When Kubernetes manages your infrastructure in a hosted cluster Amazon Web Services (AWS) account, ensure that you meet the infrastructure requirements.</p>
+      <p>The infrastructure requirements are as follows:</p>
+      <ul>
+      <li>A network load balancer for default Ingress</li>
+      <li>An S3 bucket for registry</li>
+      </ul>
+      <h2 id="hcp-managed-aws-iam_hcp-managing-aws" class="group scroll-mt-20">Identity and Access Management (IAM) permissions for hosted control planes on AWS<a href="#hcp-managed-aws-iam_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">In the context of hosted control planes, the consumer is responsible to create the Amazon Resource Name (ARN) roles. The <em>consumer</em> is an automated process to generate the permissions files. It might be the command-line interface (CLI) or OpenShift Cluster Manager.</p>
+      <p>Hosted control planes can enable granularity to honor the principle of least-privilege components, which means that every component uses its own role to operate or create Amazon Web Services (AWS) objects, and the roles are limited to what is required for the product to function normally.</p>
+      <p>The hosted cluster receives the ARN roles as input and the consumer creates an AWS permission configuration for each component. As a result, the component can authenticate through STS and preconfigured OIDC IDP.</p>
+      <p>The following roles are consumed by some of the components from hosted control planes that run on the control plane and operate on the data plane:</p>
+      <ul>
+      <li><code>controlPlaneOperatorARN</code></li>
+      <li><code>imageRegistryARN</code></li>
+      <li><code>ingressARN</code></li>
+      <li><code>kubeCloudControllerARN</code></li>
+      <li><code>nodePoolManagementARN</code></li>
+      <li><code>storageARN</code></li>
+      <li><code>networkARN</code></li>
+      </ul>
+      <p>The following example shows a reference to the IAM roles from the hosted cluster:</p>
+      <CodeBlock code={"...\nendpointAccess: Public\n  region: us-east-2\n  resourceTags:\n  - key: kubernetes.io/cluster/example-cluster-bz4j5\n    value: owned\nrolesRef:\n    controlPlaneOperatorARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-control-plane-operator\n    imageRegistryARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-openshift-image-registry\n    ingressARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-openshift-ingress\n    kubeCloudControllerARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-cloud-controller\n    networkARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-cloud-network-config-controller\n    nodePoolManagementARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-node-pool\n    storageARN: arn:aws:iam::820196288204:role/example-cluster-bz4j5-aws-ebs-csi-driver-controller\ntype: AWS\n..."} lang="yaml" />
+      <p>The roles that hosted control planes uses are shown in the following examples:</p>
+      <ul>
+      <li>
+      <code>ingressARN</code>
+      <CodeBlock code={"{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"elasticloadbalancing:DescribeLoadBalancers\",\n                \"tag:GetResources\",\n                \"route53:ListHostedZones\"\n            ],\n            \"Resource\": \"\\*\"\n        },\n        {\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"route53:ChangeResourceRecordSets\"\n            ],\n            \"Resource\": [\n                \"arn:aws:route53:::PUBLIC_ZONE_ID\",\n                \"arn:aws:route53:::PRIVATE_ZONE_ID\"\n            ]\n        }\n    ]\n}"} lang="yaml" />
+      </li>
+      <li>
+      <code>imageRegistryARN</code>
+      <CodeBlock code={"{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"s3:CreateBucket\",\n                \"s3:DeleteBucket\",\n                \"s3:PutBucketTagging\",\n                \"s3:GetBucketTagging\",\n                \"s3:PutBucketPublicAccessBlock\",\n                \"s3:GetBucketPublicAccessBlock\",\n                \"s3:PutEncryptionConfiguration\",\n                \"s3:GetEncryptionConfiguration\",\n                \"s3:PutLifecycleConfiguration\",\n                \"s3:GetLifecycleConfiguration\",\n                \"s3:GetBucketLocation\",\n                \"s3:ListBucket\",\n                \"s3:GetObject\",\n                \"s3:PutObject\",\n                \"s3:DeleteObject\",\n                \"s3:ListBucketMultipartUploads\",\n                \"s3:AbortMultipartUpload\",\n                \"s3:ListMultipartUploadParts\"\n            ],\n            \"Resource\": \"\\*\"\n        }\n    ]\n}"} lang="yaml" />
+      </li>
+      <li>
+      <code>storageARN</code>
+      <CodeBlock code={"{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"ec2:AttachVolume\",\n                \"ec2:CreateSnapshot\",\n                \"ec2:CreateTags\",\n                \"ec2:CreateVolume\",\n                \"ec2:DeleteSnapshot\",\n                \"ec2:DeleteTags\",\n                \"ec2:DeleteVolume\",\n                \"ec2:DescribeInstances\",\n                \"ec2:DescribeSnapshots\",\n                \"ec2:DescribeTags\",\n                \"ec2:DescribeVolumes\",\n                \"ec2:DescribeVolumesModifications\",\n                \"ec2:DetachVolume\",\n                \"ec2:ModifyVolume\"\n            ],\n            \"Resource\": \"\\*\"\n        }\n    ]\n}"} lang="yaml" />
+      </li>
+      <li>
+      <code>networkARN</code>
+      <CodeBlock code={"{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"ec2:DescribeInstances\",\n                \"ec2:DescribeInstanceStatus\",\n                \"ec2:DescribeInstanceTypes\",\n                \"ec2:UnassignPrivateIpAddresses\",\n                \"ec2:AssignPrivateIpAddresses\",\n                \"ec2:UnassignIpv6Addresses\",\n                \"ec2:AssignIpv6Addresses\",\n                \"ec2:DescribeSubnets\",\n                \"ec2:DescribeNetworkInterfaces\"\n            ],\n            \"Resource\": \"\\*\"\n        }\n    ]\n}"} lang="yaml" />
+      </li>
+      <li>
+      <code>kubeCloudControllerARN</code>
+      <CodeBlock code={"{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Action\": [\n                \"ec2:DescribeInstances\",\n                \"ec2:DescribeImages\",\n                \"ec2:DescribeRegions\",\n                \"ec2:DescribeRouteTables\",\n                \"ec2:DescribeSecurityGroups\",\n                \"ec2:DescribeSubnets\",\n                \"ec2:DescribeVolumes\",\n                \"ec2:CreateSecurityGroup\",\n                \"ec2:CreateTags\",\n                \"ec2:CreateVolume\",\n                \"ec2:ModifyInstanceAttribute\",\n                \"ec2:ModifyVolume\",\n                \"ec2:AttachVolume\",\n                \"ec2:AuthorizeSecurityGroupIngress\",\n                \"ec2:CreateRoute\",\n                \"ec2:DeleteRoute\",\n                \"ec2:DeleteSecurityGroup\",\n                \"ec2:DeleteVolume\",\n                \"ec2:DetachVolume\",\n                \"ec2:RevokeSecurityGroupIngress\",\n                \"ec2:DescribeVpcs\",\n                \"elasticloadbalancing:AddTags\",\n                \"elasticloadbalancing:AttachLoadBalancerToSubnets\",\n                \"elasticloadbalancing:ApplySecurityGroupsToLoadBalancer\",\n                \"elasticloadbalancing:CreateLoadBalancer\",\n                \"elasticloadbalancing:CreateLoadBalancerPolicy\",\n                \"elasticloadbalancing:CreateLoadBalancerListeners\",\n                \"elasticloadbalancing:ConfigureHealthCheck\",\n                \"elasticloadbalancing:DeleteLoadBalancer\",\n                \"elasticloadbalancing:DeleteLoadBalancerListeners\",\n                \"elasticloadbalancing:DescribeLoadBalancers\",\n                \"elasticloadbalancing:DescribeLoadBalancerAttributes\",\n                \"elasticloadbalancing:DetachLoadBalancerFromSubnets\",\n                \"elasticloadbalancing:DeregisterInstancesFromLoadBalancer\",\n                \"elasticloadbalancing:ModifyLoadBalancerAttributes\",\n                \"elasticloadbalancing:RegisterInstancesWithLoadBalancer\",\n                \"elasticloadbalancing:SetLoadBalancerPoliciesForBackendServer\",\n                \"elasticloadbalancing:AddTags\",\n                \"elasticloadbalancing:CreateListener\",\n                \"elasticloadbalancing:CreateTargetGroup\",\n                \"elasticloadbalancing:DeleteListener\",\n                \"elasticloadbalancing:DeleteTargetGroup\",\n                \"elasticloadbalancing:DescribeListeners\",\n                \"elasticloadbalancing:DescribeLoadBalancerPolicies\",\n                \"elasticloadbalancing:DescribeTargetGroups\",\n                \"elasticloadbalancing:DescribeTargetHealth\",\n                \"elasticloadbalancing:ModifyListener\",\n                \"elasticloadbalancing:ModifyTargetGroup\",\n                \"elasticloadbalancing:RegisterTargets\",\n                \"elasticloadbalancing:SetLoadBalancerPoliciesOfListener\",\n                \"iam:CreateServiceLinkedRole\",\n                \"kms:DescribeKey\"\n            ],\n            \"Resource\": [\n                \"\\*\"\n            ],\n            \"Effect\": \"Allow\"\n        }\n    ]\n}"} lang="plaintext" />
+      </li>
+      <li>
+      <code>nodePoolManagementARN</code>
+      <CodeBlock code={"{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Action\": [\n                \"ec2:AllocateAddress\",\n                \"ec2:AssociateRouteTable\",\n                \"ec2:AttachInternetGateway\",\n                \"ec2:AuthorizeSecurityGroupIngress\",\n                \"ec2:CreateInternetGateway\",\n                \"ec2:CreateNatGateway\",\n                \"ec2:CreateRoute\",\n                \"ec2:CreateRouteTable\",\n                \"ec2:CreateSecurityGroup\",\n                \"ec2:CreateSubnet\",\n                \"ec2:CreateTags\",\n                \"ec2:DeleteInternetGateway\",\n                \"ec2:DeleteNatGateway\",\n                \"ec2:DeleteRouteTable\",\n                \"ec2:DeleteSecurityGroup\",\n                \"ec2:DeleteSubnet\",\n                \"ec2:DeleteTags\",\n                \"ec2:DescribeAccountAttributes\",\n                \"ec2:DescribeAddresses\",\n                \"ec2:DescribeAvailabilityZones\",\n                \"ec2:DescribeImages\",\n                \"ec2:DescribeInstances\",\n                \"ec2:DescribeInternetGateways\",\n                \"ec2:DescribeNatGateways\",\n                \"ec2:DescribeNetworkInterfaces\",\n                \"ec2:DescribeNetworkInterfaceAttribute\",\n                \"ec2:DescribeRouteTables\",\n                \"ec2:DescribeSecurityGroups\",\n                \"ec2:DescribeSubnets\",\n                \"ec2:DescribeVpcs\",\n                \"ec2:DescribeVpcAttribute\",\n                \"ec2:DescribeVolumes\",\n                \"ec2:DetachInternetGateway\",\n                \"ec2:DisassociateRouteTable\",\n                \"ec2:DisassociateAddress\",\n                \"ec2:ModifyInstanceAttribute\",\n                \"ec2:ModifyNetworkInterfaceAttribute\",\n                \"ec2:ModifySubnetAttribute\",\n                \"ec2:ReleaseAddress\",\n                \"ec2:RevokeSecurityGroupIngress\",\n                \"ec2:RunInstances\",\n                \"ec2:TerminateInstances\",\n                \"tag:GetResources\",\n                \"ec2:CreateLaunchTemplate\",\n                \"ec2:CreateLaunchTemplateVersion\",\n                \"ec2:DescribeLaunchTemplates\",\n                \"ec2:DescribeLaunchTemplateVersions\",\n                \"ec2:DeleteLaunchTemplate\",\n                \"ec2:DeleteLaunchTemplateVersions\"\n            ],\n            \"Resource\": [\n                \"\\*\"\n            ],\n            \"Effect\": \"Allow\"\n        },\n        {\n            \"Condition\": {\n                \"StringLike\": {\n                    \"iam:AWSServiceName\": \"elasticloadbalancing.amazonaws.com\"\n                }\n            },\n            \"Action\": [\n                \"iam:CreateServiceLinkedRole\"\n            ],\n            \"Resource\": [\n                \"arn:*:iam::*:role/aws-service-role/elasticloadbalancing.amazonaws.com/AWSServiceRoleForElasticLoadBalancing\"\n            ],\n            \"Effect\": \"Allow\"\n        },\n        {\n            \"Action\": [\n                \"iam:PassRole\"\n            ],\n            \"Resource\": [\n                \"arn:*:iam::*:role/*-worker-role\"\n            ],\n            \"Effect\": \"Allow\"\n        }\n    ]\n}"} lang="yaml" />
+      </li>
+      <li>
+      <code>controlPlaneOperatorARN</code>
+      <CodeBlock code={"{\n    \"Version\": \"2012-10-17\",\n    \"Statement\": [\n        {\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"ec2:CreateVpcEndpoint\",\n                \"ec2:DescribeVpcEndpoints\",\n                \"ec2:ModifyVpcEndpoint\",\n                \"ec2:DeleteVpcEndpoints\",\n                \"ec2:CreateTags\",\n                \"route53:ListHostedZones\"\n            ],\n            \"Resource\": \"\\*\"\n        },\n        {\n            \"Effect\": \"Allow\",\n            \"Action\": [\n                \"route53:ChangeResourceRecordSets\",\n                \"route53:ListResourceRecordSets\"\n            ],\n            \"Resource\": \"arn:aws:route53:::%s\"\n        }\n    ]\n}"} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="hcp-managed-aws-infra-iam-separate_hcp-managing-aws" class="group scroll-mt-20">Separate creation of the hosted cluster and its resources<a href="#hcp-managed-aws-infra-iam-separate_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By default, the <code>hcp create cluster aws</code> command creates the cloud infrastructure with the hosted cluster and applies it. However, you can create the cloud infrastructure separately so that you can use the command to create only the cluster, or render it to modify it before you apply it.</p>
+      <p>The process to create the hosted cluster and its resources separately involves creating the cloud infrastructure, creating the AWS Identity and Access (IAM) resources, and then creating the cluster.</p>
+      <h3 id="hcp-managed-aws-infra-separate_hcp-managing-aws" class="group scroll-mt-20">Creating the AWS infrastructure separately<a href="#hcp-managed-aws-infra-separate_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To create the Amazon Web Services (AWS) infrastructure, you need to create a Virtual Private Cloud (VPC) and other resources for your cluster. You can use the AWS console or an infrastructure automation and provisioning tool. </p>
+      <p>For instructions to use the AWS console, see <a href="https://docs.aws.amazon.com/vpc/latest/userguide/create-vpc.html#create-vpc-and-other-resources">Create a VPC plus other VPC resources</a> in the AWS Documentation.</p>
+      <p>The VPC must include private and public subnets and resources for external access, such as a network address translation (NAT) gateway and an internet gateway. In addition to the VPC, you need a private hosted zone for the ingress of your cluster. If you are creating clusters that use PrivateLink (<code>Private</code> or <code>PublicAndPrivate</code> access modes), you need an additional hosted zone for PrivateLink.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Create the AWS infrastructure for your hosted cluster by using the following example configuration:
+      <CodeBlock code={"---\napiVersion: v1\nkind: Namespace\nmetadata:\n  creationTimestamp: null\n  name: clusters\nspec: {}\nstatus: {}\n---\napiVersion: v1\ndata:\n  .dockerconfigjson: xxxxxxxxxxx\nkind: Secret\nmetadata:\n  creationTimestamp: null\n  labels:\n    hypershift.openshift.io/safe-to-delete-with-cluster: \"true\"\n  name: <pull_secret_name>\n  namespace: clusters\n---\napiVersion: v1\ndata:\n  key: xxxxxxxxxxxxxxxxx\nkind: Secret\nmetadata:\n  creationTimestamp: null\n  labels:\n    hypershift.openshift.io/safe-to-delete-with-cluster: \"true\"\n  name: <etcd_encryption_key_name>\n  namespace: clusters\ntype: Opaque\n---\napiVersion: v1\ndata:\n  id_rsa: xxxxxxxxx\n  id_rsa.pub: xxxxxxxxx\nkind: Secret\nmetadata:\n  creationTimestamp: null\n  labels:\n    hypershift.openshift.io/safe-to-delete-with-cluster: \"true\"\n  name: <ssh_key_name>\n  namespace: clusters\n---\napiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  creationTimestamp: null\n  name: <hosted_cluster_name>\n  namespace: clusters\nspec:\n  autoscaling: {}\n  configuration: {}\n  controllerAvailabilityPolicy: SingleReplica\n  dns:\n    baseDomain: <dns_domain>\n    privateZoneID: xxxxxxxx\n    publicZoneID: xxxxxxxx\n  etcd:\n    managed:\n      storage:\n        persistentVolume:\n          size: 8Gi\n          storageClassName: gp3-csi\n        type: PersistentVolume\n    managementType: Managed\n  fips: false\n  infraID: <infra_id>\n  issuerURL: <issuer_url>\n  networking:\n    clusterNetwork:\n    - cidr: 10.132.0.0/14\n    machineNetwork:\n    - cidr: 10.0.0.0/16\n    networkType: OVNKubernetes\n    serviceNetwork:\n    - cidr: 172.31.0.0/16\n  olmCatalogPlacement: management\n  platform:\n    aws:\n      cloudProviderConfig:\n        subnet:\n          id: <subnet_xxx>\n        vpc: <vpc_xxx>\n        zone: us-west-1b\n      endpointAccess: Public\n      multiArch: false\n      region: us-west-1\n      rolesRef:\n        controlPlaneOperatorARN: arn:aws:iam::820196288204:role/<infra_id>-control-plane-operator\n        imageRegistryARN: arn:aws:iam::820196288204:role/<infra_id>-openshift-image-registry\n        ingressARN: arn:aws:iam::820196288204:role/<infra_id>-openshift-ingress\n        kubeCloudControllerARN: arn:aws:iam::820196288204:role/<infra_id>-cloud-controller\n        networkARN: arn:aws:iam::820196288204:role/<infra_id>-cloud-network-config-controller\n        nodePoolManagementARN: arn:aws:iam::820196288204:role/<infra_id>-node-pool\n        storageARN: arn:aws:iam::820196288204:role/<infra_id>-aws-ebs-csi-driver-controller\n    type: AWS\n  pullSecret:\n    name: <pull_secret_name>\n  release:\n    image: quay.io/openshift-release-dev/ocp-release:4.16-x86_64\n  secretEncryption:\n    aescbc:\n      activeKey:\n        name: <etcd_encryption_key_name>\n    type: aescbc\n  services:\n  - service: APIServer\n    servicePublishingStrategy:\n      type: LoadBalancer\n  - service: OAuthServer\n    servicePublishingStrategy:\n      type: Route\n  - service: Konnectivity\n    servicePublishingStrategy:\n      type: Route\n  - service: Ignition\n    servicePublishingStrategy:\n      type: Route\n  - service: OVNSbDb\n    servicePublishingStrategy:\n      type: Route\n  sshKey:\n    name: <ssh_key_name>\nstatus:\n  controlPlaneEndpoint:\n    host: \"\"\n    port: 0\n---\napiVersion: hypershift.openshift.io/v1beta1\nkind: NodePool\nmetadata:\n  creationTimestamp: null\n  name: <node_pool_name>\n  namespace: clusters\nspec:\n  arch: amd64\n  clusterName: <hosted_cluster_name>\n  management:\n    autoRepair: true\n    upgradeType: Replace\n  nodeDrainTimeout: 0s\n  platform:\n    aws:\n      instanceProfile: <instance_profile_name>\n      instanceType: m6i.xlarge\n      rootVolume:\n        size: 120\n        type: gp3\n      subnet:\n        id: <subnet_xxx>\n    type: AWS\n  release:\n    image: quay.io/openshift-release-dev/ocp-release:4.16-x86_64\n  replicas: 2\nstatus:\n  replicas: 0"} lang="yaml" />
+      <ul>
+      <li><code>&lt;pull_secret_name&gt;</code> specifies the name of your pull secret.</li>
+      <li><code>&lt;etcd_encryption_key_name&gt;</code> specifies the name of your etcd encryption key.</li>
+      <li><code>&lt;ssh_key_name&gt;</code> specifies the name of your SSH key.</li>
+      <li><code>&lt;hosted_cluster_name&gt;</code> specifies the name of your hosted cluster.</li>
+      <li><code>&lt;dns_domain&gt;</code> specifies your base DNS domain, such as <code>example.com</code>.</li>
+      <li><code>&lt;infra_id&gt;</code> specifies the value that identifies the IAM resources that are associated with the hosted cluster.</li>
+      <li><code>&lt;issuer_url&gt;</code> specifies your issuer URL, which ends with your <code>infra_id</code> value. For example, <code>https://example-hosted-us-west-1.s3.us-west-1.amazonaws.com/example-hosted-infra-id</code>.</li>
+      <li><code>&lt;subnet_xxx&gt;</code> specifies your subnet ID. Both private and public subnets need to be tagged. For public subnets, use <code>kubernetes.io/role/elb=1</code>. For private subnets, use <code>kubernetes.io/role/internal-elb=1</code>.</li>
+      <li><code>&lt;vpc_xxx&gt;</code> specifies your VPC ID.</li>
+      <li><code>&lt;node_pool_name&gt;</code> specifies the name of your <code>NodePool</code> resource.</li>
+      <li><code>&lt;instance_profile_name&gt;</code> specifies the name of your AWS instance.</li>
+      </ul>
+      </li>
+      </ul>
+      <h3 id="hcp-managed-aws-hc-separate_hcp-managing-aws" class="group scroll-mt-20">Creating a hosted cluster separately<a href="#hcp-managed-aws-hc-separate_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">In hosted control planes on AWS, you can create a hosted cluster separately from creating the infrastructure and Identity and Access Management (IAM) resources.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You created infrastructure resources separately. For more information, see "Creating the AWS infrastructure separately".</li>
+      <li>
+      You created the following IAM resources:
+      <ul>
+      <li>An OpenID Connect (OIDC) identity provider in IAM, which is required to enable STS authentication. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html">Create an OpenID Connect (OIDC) identity provider in IAM</a>.</li>
+      <li>The seven roles that are listed in "Identity and Access Management (IAM) permissions." The roles are separate for every component that interacts with the provider, such as the Kubernetes controller manager, cluster API provider, and registry. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html">IAM role creation</a>.</li>
+      <li>The instance profile, which is the profile that is assigned to all worker instances of the cluster. For more information, see <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html">Use instance profiles</a>.</li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To create a hosted cluster separately, enter the following command:
+      <CodeBlock code={"$ hcp create cluster aws \\\n    --infra-id <infra_id> \\\n    --name <hosted_cluster_name> \\\n    --sts-creds <path_to_sts_credential_file> \\\n    --pull-secret <path_to_pull_secret> \\\n    --generate-ssh \\\n    --node-pool-replicas 3 \\\n    --role-arn <role_name> \\\n    --render-sensitive \\\n    --render > <file_name>.yaml"} lang="terminal" />
+      <ul>
+      <li><code>--infra-id</code> specifies the same ID that you specified in the <code>create infra aws</code> command. This value identifies the IAM resources that are associated with the hosted cluster.</li>
+      <li><code>--name</code> specifies the name of your hosted cluster.</li>
+      <li><code>--sts-creds</code> specifies the same name that you specified in the <code>create infra aws</code> command.</li>
+      <li><code>--pull-secret</code> specifies the name of the file that contains a valid OpenShift Container Platform pull secret.</li>
+      <li><code>--generate-ssh</code> is an optional flag, but it is good to include in case you need to SSH to your workers. An SSH key is generated for you and is stored as a secret in the same namespace as the hosted cluster.</li>
+      <li><code>--role-arn</code> specifies the Amazon Resource Name (ARN); for example, <code>arn:aws:iam::820196288204:role/myrole</code>. For more information about ARN roles, see "Identity and Access Management (IAM) permissions".</li>
+      <li><code>--render-sensitive</code> generates secrets that are stored in the YAML file.</li>
+      <li><code>--render</code> is an optional flag. You can include this flag to redirect output to a file where you can edit the resources before you apply them to the cluster.</li>
+      </ul>
+      </li>
+      <li>
+      Apply the manifests by entering the following command:
+      <CodeBlock code={"$ oc apply -f <file_name>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      After you run the command, you can verify that the following resources are applied to your cluster:
+      <ul>
+      <li>A namespace</li>
+      <li>A secret with your pull secret</li>
+      <li>A <code>HostedCluster</code></li>
+      <li>A <code>NodePool</code></li>
+      <li>Three AWS STS secrets for control plane components</li>
+      <li>If you specified the <code>--generate-ssh</code> flag, one SSH key secret.</li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="hcp-migrate-aws-single-to-multiarch_hcp-managing-aws" class="group scroll-mt-20">Transitioning a hosted cluster from single-architecture to multi-architecture<a href="#hcp-migrate-aws-single-to-multiarch_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can transition your single-architecture 64-bit AMD hosted cluster to a multi-architecture hosted cluster on Amazon Web Services (AWS) to reduce the cost of running workloads on your cluster.</p>
+      <p>For example, you can run existing workloads on 64-bit AMD while transitioning to 64-bit ARM and you can manage these workloads from a central Kubernetes cluster.</p>
+      <p>A single-architecture hosted cluster can manage node pools of only one particular CPU architecture. However, a multi-architecture hosted cluster can manage node pools with different CPU architectures. On AWS, a multi-architecture hosted cluster can manage both 64-bit AMD and 64-bit ARM node pools.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed an OpenShift Container Platform management cluster for AWS with the multicluster engine for Kubernetes Operator.</li>
+      <li>You have an existing single-architecture hosted cluster that uses 64-bit AMD variant of the OpenShift Container Platform release payload.</li>
+      <li>You have an existing node pool that uses the same 64-bit AMD variant of the OpenShift Container Platform release payload and is managed by an existing hosted cluster.</li>
+      <li>
+      You installed the following command-line tools:
+      <ul>
+      <li><code>oc</code></li>
+      <li><code>kubectl</code></li>
+      <li><code>hcp</code></li>
+      <li><code>skopeo</code></li>
+      </ul>
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Review an existing OpenShift Container Platform release image of the single-architecture hosted cluster by running the following command:
+      <CodeBlock code={"$ oc get hostedcluster/<hosted_cluster_name> \\\n  -o jsonpath='{.spec.release.image}'"} lang="terminal" />
+      <p>Replace <code>&lt;hosted_cluster_name&gt;</code> with your hosted cluster name.</p>
+      <CodeBlock code={"quay.io/openshift-release-dev/ocp-release:4.20.0-x86_64"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      In your OpenShift Container Platform release image, if you use the digest instead of a tag, find the multi-architecture tag version of your release image:
+      <ol>
+      <li>
+      Set the <code>OCP_VERSION</code> environment variable for the OpenShift Container Platform version by running the following command:
+      <CodeBlock code={"$ OCP_VERSION=$(oc image info quay.io/openshift-release-dev/ocp-release@sha256:ac78ebf77f95ab8ff52847ecd22592b545415e1ff6c7ff7f66bf81f158ae4f5e \\\n  -o jsonpath='{.config.config.Labels[\"io.openshift.release\"]}')"} lang="terminal" />
+      </li>
+      <li>
+      Set the <code>MULTI_ARCH_TAG</code> environment variable for the multi-architecture tag version of your release image by running the following command:
+      <CodeBlock code={"$ MULTI_ARCH_TAG=$(skopeo inspect docker://quay.io/openshift-release-dev/ocp-release@sha256:ac78ebf77f95ab8ff52847ecd22592b545415e1ff6c7ff7f66bf81f158ae4f5e \\\n  | jq -r '.RepoTags' | sed 's/\"//g' | sed 's/,//g' \\\n  | grep -w \"$OCP_VERSION-multi$\" | xargs)"} lang="terminal" />
+      </li>
+      <li>
+      Set the <code>IMAGE</code> environment variable for the multi-architecture release image name by running the following command:
+      <CodeBlock code={"$ IMAGE=quay.io/openshift-release-dev/ocp-release:$MULTI_ARCH_TAG"} lang="terminal" />
+      </li>
+      <li>
+      To see the list of multi-architecture image digests, run the following command:
+      <CodeBlock code={"$ oc image info $IMAGE"} lang="terminal" />
+      <CodeBlock code={"OS            DIGEST\nlinux/amd64   sha256:b4c7a91802c09a5a748fe19ddd99a8ffab52d8a31db3a081a956a87f22a22ff8\nlinux/ppc64le sha256:66fda2ff6bd7704f1ba72be8bfe3e399c323de92262f594f8e482d110ec37388\nlinux/s390x   sha256:b1c1072dc639aaa2b50ec99b530012e3ceac19ddc28adcbcdc9643f2dfd14f34\nlinux/arm64   sha256:7b046404572ac96202d82b6cb029b421dddd40e88c73bbf35f602ffc13017f21"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Transition the hosted cluster from single-architecture to multi-architecture:
+      <ol>
+      <li>
+      Set the multi-architecture OpenShift Container Platform release image for the hosted cluster by ensuring that you use the same OpenShift Container Platform version as the hosted cluster. Run the following command:
+      <CodeBlock code={"$ oc patch -n clusters hostedclusters/<hosted_cluster_name> -p \\\n  '{\"spec\":{\"release\":{\"image\":\"quay.io/openshift-release-dev/ocp-release:<4.x.y>-multi\"}}}' \\\n  --type=merge"} lang="terminal" />
+      <p>Replace <code>&lt;4.y.z&gt;</code> with the supported OpenShift Container Platform version that you use.</p>
+      </li>
+      <li>
+      Confirm that the multi-architecture image is set in your hosted cluster by running the following command:
+      <CodeBlock code={"$ oc get hostedcluster/<hosted_cluster_name> \\\n  -o jsonpath='{.spec.release.image}'"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Check that the status of the <code>HostedControlPlane</code> resource is <code>Progressing</code> by running the following command:
+      <CodeBlock code={"$ oc get hostedcontrolplane -n <hosted_control_plane_namespace> -oyaml"} lang="terminal" />
+      <CodeBlock code={"#...\n  - lastTransitionTime: \"2024-07-28T13:07:18Z\"\n    message: HostedCluster is deploying, upgrading, or reconfiguring\n    observedGeneration: 5\n    reason: Progressing\n    status: \"True\"\n    type: Progressing\n#..."} lang="yaml" title="Example output" />
+      </li>
+      <li>
+      Check that the status of the <code>HostedCluster</code> resource is <code>Progressing</code> by running the following command:
+      <CodeBlock code={"$ oc get hostedcluster <hosted_cluster_name> \\\n  -n <hosted_cluster_namespace> -oyaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that a node pool is using the multi-architecture release image in your <code>HostedControlPlane</code> resource by running the following command:
+      <CodeBlock code={"$ oc get hostedcontrolplane -n clusters-example -oyaml"} lang="terminal" />
+      <CodeBlock code={"#...\nversion:\n    availableUpdates: null\n    desired:\n      image: quay.io/openshift-release-dev/ocp-release:4.20.0-multi\n      url: https://access.redhat.com/errata/RHBA-2024:4855\n      version: 4.20.0\n    history:\n    - completionTime: \"2024-07-28T13:10:58Z\"\n      image: quay.io/openshift-release-dev/ocp-release:4.20.0-multi\n      startedTime: \"2024-07-28T13:10:27Z\"\n      state: Completed\n      verified: false\n      version: 4.20.0"} lang="yaml" title="Example output" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The multi-architecture OpenShift Container Platform release image is updated in your <code>HostedCluster</code>, <code>HostedControlPlane</code> resources, and hosted control plane pods. However, your existing node pools do not transition with the multi-architecture image automatically, because the release image transition is decoupled between the hosted cluster and node pools. You must create new node pools on your new multi-architecture hosted cluster.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <p><strong>Next steps</strong></p>
+      <ul><li>Create node pools on the multi-architecture hosted cluster.</li></ul>
+      <h2 id="hcp-migrate-aws-multiarch-nodepools_hcp-managing-aws" class="group scroll-mt-20">Creating node pools on the multi-architecture hosted cluster<a href="#hcp-migrate-aws-multiarch-nodepools_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you transition your hosted cluster from single-architecture to multi-architecture, create node pools on compute machines based on 64-bit AMD and 64-bit ARM architectures.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create node pools based on 64-bit ARM architecture by entering the following command:
+      <CodeBlock code={"$ hcp create nodepool aws \\\n  --cluster-name <hosted_cluster_name> \\\n  --name <nodepool_name> \\\n  --node-count=<node_count> \\\n  --arch arm64"} lang="terminal" />
+      <ul>
+      <li>Replace <code>&lt;hosted_cluster_name&gt;</code> with your hosted cluster name.</li>
+      <li>Replace <code>&lt;nodepool_name&gt;</code> with your node pool name.</li>
+      <li>Replace <code>&lt;node_count&gt;</code> with integer for your node count, for example, <code>2</code>.</li>
+      </ul>
+      </li>
+      <li>
+      Create node pools based on 64-bit AMD architecture by entering the following command:
+      <CodeBlock code={"$ hcp create nodepool aws \\\n  --cluster-name <hosted_cluster_name> \\\n  --name <nodepool_name> \\\n  --node-count=<node_count> \\\n  --arch amd64"} lang="terminal" />
+      <ul>
+      <li>Replace <code>&lt;hosted_cluster_name&gt;</code> with your hosted cluster name.</li>
+      <li>Replace <code>&lt;nodepool_name&gt;</code> with your node pool name.</li>
+      <li>Replace <code>&lt;node_count&gt;</code> with integer for your node count, for example, <code>2</code>.</li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that a node pool is using the multi-architecture release image by entering the following command:
+      <CodeBlock code={"$ oc get nodepool/<nodepool_name> -oyaml"} lang="terminal" />
+      <CodeBlock code={"#...\nspec:\n  arch: amd64\n#...\n  release:\n    image: quay.io/openshift-release-dev/ocp-release:4.20.0-multi"} lang="yaml" title="Example output for 64-bit AMD node pools" />
+      <CodeBlock code={"#...\nspec:\n  arch: arm64\n#...\n  release:\n    image: quay.io/openshift-release-dev/ocp-release:4.20.0-multi"} lang="yaml" title="Example output for 64-bit ARM node pools" />
+      </li>
+      </ul>
+      <h2 id="hcp-aws-tags_hcp-managing-aws" class="group scroll-mt-20">Adding or updating AWS tags for a hosted cluster<a href="#hcp-aws-tags_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">As a cluster instance administrator, you can add or update Amazon Web Services (AWS) tags without needing to re-create your hosted cluster. <em>Tags</em> are key-value pairs that are attached to AWS resources for management and automation.</p>
+      <p>You might want to use tags for the following purposes:</p>
+      <ul>
+      <li>Managing access controls.</li>
+      <li>Tracking chargeback or showback.</li>
+      <li>Managing cloud Identity and Access Management (IAM) conditional permissions.</li>
+      <li>Aggregating resources based on tags. For example, you can query tags to calculate resource usage and billing costs.</li>
+      </ul>
+      <p>You can add or update tags for several different types of resources, including Amazon Elastic File System (EFS) access points, load balancer resources, Amazon Elastic Block Storage (EBS) volumes, IAM users, and AWS S3.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>On network load balancers, tags cannot be added or updated. The AWS load balancer reconciles whatever tags are in the <code>HostedCluster</code> resource. If you try to add or update a tag, the load balancer overwrites the tag.</p>
+          <p>In addition, tags cannot be updated on the default security group resource that is created directly by hosted control planes.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You must have cluster administrator permissions for your hosted cluster on AWS.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      If you want to add or update tags for EFS access points, complete steps 1 and 2. If you are adding or updating tags for other types of resources, complete only step 2.
+      <ol>
+      <li>
+      In the <code>aws-efs-csi-driver-operator</code> service account, add two annotations, as shown in the following example. These annotations are required so that the Amazon Elastic Kubernetes Service (EKS) pod identity webhook that runs on the cluster can correctly assign AWS roles to the pods that the EFS Operator uses.
+      <CodeBlock code={"apiVersion: v1\nkind: ServiceAccount\nmetadata:\n  name: <service_account_name>\n  namespace: <project_name>\n  annotations:\n    eks.amazonaws.com/role-arn:<role_arn>\n    eks.amazonaws.com/audience:sts.amazonaws.com"} lang="yaml" />
+      </li>
+      <li>Delete the Operator pod or roll out a restart of the <code>aws-efs-csi-driver-operator</code> deployment.</li>
+      </ol>
+      </li>
+      <li>
+      In the <code>HostedCluster</code> resource, enter information in the <code>resourceTags</code> fields, as shown in the following example:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  #...\nspec:\n  autoscaling: {}\n  clusterID: <cluster_id>\n  configuration: {}\n  controllerAvailabilityPolicy: SingleReplica\n  dns:\n    #...\n  etcd:\n    #...\n  fips: false\n  infraID: <infra_id>\n  infrastructureAvailabilityPolicy: SingleReplica\n  issuerURL: https://<issuer_url>.s3.<region>.amazonaws.com\n  networking:\n    #...\n  olmCatalogPlacement: management\n  platform:\n    aws:\n      #...\n      resourceTags:\n      - key: kubernetes.io/cluster/<tag>\n        value: owned\n      rolesRef:\n        #...\n    type: AWS"} lang="yaml" title="Example HostedCluster resource" />
+      <p>Replace <code>&lt;tag&gt;</code> with the tag that you want to add to your resource.</p>
+      </li>
+      </ol>
+      <h2 id="hcp-np-capacity-blocks_hcp-managing-aws" class="group scroll-mt-20">Configuring node pool capacity blocks on AWS<a href="#hcp-np-capacity-blocks_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you create a hosted cluster, you can configure node pool capacity blocks for graphics processing unit (GPU) reservations on Amazon Web Services (AWS).</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create GPU reservations on AWS by running a command similar to the following example:
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The zone of the GPU reservation must match your hosted cluster zone.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"$ aws ec2 describe-capacity-block-offerings \\\n      --instance-type \"p4d.24xlarge\"\\\n      --instance-count  \"1\" \\\n      --start-date-range \"$(date -u +\"2025-07-21T10:14:39Z\")\"  \\\n      --end-date-range \"$(date -u -d \"2 day\" +\"2025-07-22T10:16:36Z\")\" \\\n      --capacity-duration-hours 24 \\\n      --output json"} lang="terminal" />
+      <ul>
+      <li><code>--instance-type</code> defines the type of your AWS instance.</li>
+      <li><code>--instance-count</code> defines your instance purchase quantity. Valid values are integers ranging from <code>1</code> to <code>64</code>.</li>
+      <li><code>--start-date-range</code> defines the start date range.</li>
+      <li><code>--end-date-range</code> defines the end date range.</li>
+      <li><code>--capacity-duration-hours</code> defines the duration of capacity blocks in hours.</li>
+      </ul>
+      </li>
+      <li>
+      Purchase the minimum fee capacity block by running the following command:
+      <CodeBlock code={"$ aws ec2 purchase-capacity-block \\\n      --capacity-block-offering-id \"${MIN_FEE_ID}\" \\\n      --instance-platform \"Linux/UNIX\"\\\n      --tag-specifications 'ResourceType=capacity-reservation,Tags=[{Key=usage-cluster-type,Value=hypershift-hosted}]' \\\n      --output json   > \"${CR_OUTPUT_FILE}\""} lang="terminal" />
+      <ul>
+      <li><code>--capacity-block-offering-id</code> defines the ID of the capacity block offering.</li>
+      <li><code>--instance-platform</code> defines the platform of your instance.</li>
+      <li><code>--tag-specifications</code> defines the tag for your instance.</li>
+      </ul>
+      </li>
+      <li>
+      Create an environment variable to set the capacity reservation ID by running the following command:
+      <CodeBlock code={"$ CB_RESERVATION_ID=$(jq -r '.CapacityReservation.CapacityReservationId' \"${CR_OUTPUT_FILE}\")"} lang="terminal" />
+      <p>Wait for a couple of minutes for the GPU reservation to become available.</p>
+      </li>
+      <li>
+      Add a node pool to use the GPU reservation by running the following command:
+      <CodeBlock code={"$ hcp create nodepool aws \\\n  --cluster-name <hosted_cluster_name> \\\n  --name <node_pool_name> \\\n  --node-count <node_pool_count> \\\n  --instance-type <instance_type> \\\n  --arch <arch_type> \\\n  --release-image <release_image> \\\n  --render > /tmp/np.yaml"} lang="terminal" />
+      <ul>
+      <li><code>--cluster-name</code> specifies the name of your hosted cluster.</li>
+      <li><code>--name</code> specifies the name of your node pool.</li>
+      <li><code>--node-count</code> defines the node pool count, for example, <code>1</code>.</li>
+      <li><code>--instance-type</code> defines the instance type, for example, <code>p4d.24xlarge</code>.</li>
+      <li><code>--arch</code> defines an architecture type, for example, <code>amd64</code>.</li>
+      <li><code>--release-image</code> specifies the release image you want to use.</li>
+      </ul>
+      </li>
+      <li>
+      Add the <code>capacityReservation</code> setting in your <code>NodePool</code> resource by using the following example configuration:
+      <CodeBlock code={"# ...\nspec:\n  arch: amd64\n  clusterName: cb-np-hcp\n  management:\n    autoRepair: false\n    upgradeType: Replace\n  platform:\n    aws:\n      instanceProfile: cb-np-hcp-dqppw-worker\n      instanceType: p4d.24xlarge\n      rootVolume:\n        size: 120\n        type: gp3\n      subnet:\n        id: subnet-00000\n      placement:\n        capacityReservation:\n          id: ${CB_RESERVATION_ID}\n          marketType: CapacityBlocks\n    type: AWS\n# ..."} lang="yaml" />
+      </li>
+      <li>
+      Apply the node pool configuration by running the following command:
+      <CodeBlock code={"$ oc apply -f /tmp/np.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Verify that your new node pool is created successfully by running the following command:
+      <CodeBlock code={"$ oc get np -n clusters"} lang="terminal" />
+      <CodeBlock code={"NAMESPACE   NAME    CLUSTER     DESIRED NODES   CURRENT  NODES   AUTOSCALING     AUTOREPAIR   VERSION                               UPDATINGVERSION   UPDATINGCONFIG   MESSAGE\nclusters    cb-np   cb-np-hcp   1               1                False           False        4.22.0-0.nightly-2025-06-05-224220    False             False"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Verify that your new compute nodes are created in the hosted cluster by running the following command:
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      <CodeBlock code={"NAME                           STATUS   ROLES    AGE    VERSION\nip-10-0-132-74.ec2.internal    Ready    worker   17m    v1.35.4\nip-10-0-134-183.ec2.internal   Ready    worker   4h5m   v1.35.4"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h3 id="hcp-np-capacity-blocks-destroy_hcp-managing-aws" class="group scroll-mt-20">Deleting a hosted cluster after configuring node pool capacity blocks<a href="#hcp-np-capacity-blocks-destroy_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">After you configure node pool capacity blocks, you can optionally delete a hosted cluster and uninstall the HyperShift Operator.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To delete a hosted cluster, run a command similar to the following example:
+      <CodeBlock code={"$ hcp destroy cluster aws \\\n  --name cb-np-hcp \\\n  --aws-creds $HOME/.aws/credentials \\\n  --namespace clusters \\\n  --region us-east-2"} lang="terminal" />
+      </li>
+      <li>
+      To uninstall the HyperShift Operator, run the following command:
+      <CodeBlock code={"$ hcp install render --format=yaml | oc delete -f -"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="hcp-aws-spot-instance_hcp-managing-aws" class="group scroll-mt-20">Amazon Spot Instance support for node pools<a href="#hcp-aws-spot-instance_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To reduce cloud infrastructure costs for non-critical and fault-tolerant workloads, you can use Amazon Spot Instances for your compute nodes in hosted clusters.</p>
+      <p>Spot Instances use spare Amazon Elastic Compute Cloud (Amazon EC2) capacity at reduced prices compared to on-demand instances. When Amazon EC2 needs the capacity block, it can interrupt a Spot Instance with a 2-minute warning. You can use Spot Instances for node pools in hosted clusters on AWS. However, you cannot combine Spot Instances with Amazon EC2 Capacity Reservations.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Spot Instances are suitable for fault-tolerant, stateless, and flexible workloads. Do not use Spot Instances for workloads that cannot tolerate interruptions. Spot Instances require default tenancy. Dedicated tenancy is not supported.</p>
+        </AlertDescription>
+      </Alert>
+      <h3 id="hcp-aws-config-sqs-eventbridge_hcp-managing-aws" class="group scroll-mt-20">Configuring Amazon SQS and Amazon EventBridge to receive Amazon EC2 interruption events<a href="#hcp-aws-config-sqs-eventbridge_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Before you enable Amazon Spot Instances, you must set up Amazon Simple Queue Service (SQS) and Amazon EventBridge to receive Amazon EC2 interruption events. </p>
+      <p>For hosted control planes to be able to provide a graceful shut down, it needs to poll the SQS queue and cordon or drain nodes before they are deleted. For more information about Amazon SQS and Amazon EventBridge, see "Getting started with Amazon SQS" and "Getting started: Create an Amazon EventBridge bus rule".</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an Amazon SQS queue to receive Spot Instance notifications by entering the following command:
+      <CodeBlock code={"CLUSTER_NAME=\"my-cluster\"\nAWS_REGION=\"us-east-1\"\n\n$ aws sqs create-queue \\\n  --queue-name \"${CLUSTER_NAME}-spot-interruption-queue\" \\\n  --region \"${AWS_REGION}\""} lang="terminal" />
+      <ul>
+      <li>Be sure to replace <code>my-cluster</code> and <code>us-east-1</code> with your cluster name and AWS region.</li>
+      <li>Take note of the URL from the output. You need the URL when you create the hosted cluster.</li>
+      </ul>
+      </li>
+      <li>
+      Create Amazon EventBridge rules to route Amazon EC2 Spot interruption warnings and rebalance recommendations to the SQS queue.
+      <ol>
+      <li>
+      Set the attributes by entering the following command:
+      <CodeBlock code={"ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)\nQUEUE_URL=\"https://sqs.${AWS_REGION}.amazonaws.com/${ACCOUNT_ID}/${CLUSTER_NAME}-spot-interruption-queue\"\n\nQUEUE_ARN=$(aws sqs get-queue-attributes \\\n  --queue-url \"${QUEUE_URL}\" \\\n  --attribute-names QueueArn \\\n  --query 'Attributes.QueueArn' --output text)"} lang="terminal" />
+      </li>
+      <li>
+      Set the interruption warning by entering the following command:
+      <CodeBlock code={"$ aws events put-rule \\\n  --name \"${CLUSTER_NAME}-spot-interruption-warning\" \\\n  --event-pattern '{\"source\":[\"aws.ec2\"],\"detail-type\":[\"EC2 Spot Instance Interruption Warning\"]}' \\\n  --region \"${AWS_REGION}\""} lang="terminal" />
+      </li>
+      <li>
+      Set the target for the interruption warning by entering the following command:
+      <CodeBlock code={"$ aws events put-targets \\\n  --rule \"${CLUSTER_NAME}-spot-interruption-warning\" \\\n  --targets \"Id=1,Arn=${QUEUE_ARN}\" \\\n  --region \"${AWS_REGION}\""} lang="terminal" />
+      </li>
+      <li>
+      Set the recommendations by entering the following command:
+      <CodeBlock code={"$ aws events put-rule \\\n  --name \"${CLUSTER_NAME}-rebalance-recommendation\" \\\n  --event-pattern '{\"source\":[\"aws.ec2\"],\"detail-type\":[\"EC2 Instance Rebalance Recommendation\"]}' \\\n  --region \"${AWS_REGION}\""} lang="terminal" />
+      </li>
+      <li>
+      Set the target for the recommendations by entering the following command:
+      <CodeBlock code={"$ aws events put-targets \\\n  --rule \"${CLUSTER_NAME}-rebalance-recommendation\" \\\n  --targets \"Id=1,Arn=${QUEUE_ARN}\" \\\n  --region \"${AWS_REGION}\""} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Configure the Amazon SQS queue policy to allow EventBridge to send messages to the queue by entering the following command:
+      <CodeBlock code={"ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)\nQUEUE_URL=\"https://sqs.${AWS_REGION}.amazonaws.com/${ACCOUNT_ID}/${CLUSTER_NAME}-spot-interruption-queue\"\n\n$ aws sqs set-queue-attributes \\\n  --queue-url \"${QUEUE_URL}\" \\\n  --attributes '{\n    \"Policy\": \"{\\\"Version\\\":\\\"2012-10-17\\\",\\\"Statement\\\":[{\\\"Effect\\\":\\\"Allow\\\",\\\"Principal\\\":{\\\"Service\\\":\\\"events.amazonaws.com\\\"},\\\"Action\\\":\\\"sqs:SendMessage\\\",\\\"Resource\\\":\\\"'${QUEUE_ARN}'\\\"}]}\"\n  }'"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html">Getting started with Amazon SQS</a></li>
       <li><a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/event-bus-rule-get-started.html">Getting started: Create an Amazon EventBridge event bus rule</a></li>
       </ul>
+      <h3 id="hcp-aws-spot-instance-enable_hcp-managing-aws" class="group scroll-mt-20">Enabling Amazon Spot Instance support for node pools<a href="#hcp-aws-spot-instance-enable_hcp-managing-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Enable Amazon Spot Instances for your compute nodes in hosted cluster node pools to reduce cloud infrastructure costs for non-critical and fault-tolerant workloads.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You set up Amazon Simple Queue Service (SQS) and Amazon EventBridge to receive Amazon EC2 interruption events.</li>
+      <li>You have the URL of your Amazon SQS queue, which you created in "Configuring Amazon SQS and Amazon EventBridge to receive Amazon EC2 interruption events".</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set the Amazon SQS queue URL on your hosted cluster.
+      <ul>
+      <li>
+      If you are setting the SQS queue URL on a new hosted cluster, take the following steps:
+      <ol>
+      <li>
+      Configure the <code>HostedCluster</code> resource as follows:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: <my_hosted_cluster>\n  namespace: <my_hosted_cluster_namespace>\nspec:\n  platform:\n    type: AWS\n    aws:\n      region: us-east-1\n      terminationHandlerQueueURL: \"https://sqs.us-east-1.amazonaws.com/123456789012/my-cluster-spot-interruption-queue\"\n..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>spec.platform.aws.terminationHandlerQueueURL</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the SQS queue URL.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the configuration by entering the following command:
+      <CodeBlock code={"$ oc apply -f <hosted_cluster_config>.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      If you are setting the SQS queue URL on an existing hosted cluster, patch the <code>HostedCluster</code> resource as follows:
+      <CodeBlock code={"$ oc patch hostedcluster my-cluster -n clusters --type merge -p '{\n  \"spec\": {\n    \"platform\": {\n      \"aws\": {\n        \"terminationHandlerQueueURL\": \"https://sqs.us-east-1.amazonaws.com/123456789012/my-cluster-spot-interruption-queue\"\n      }\n    }\n  }\n}'"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      Create a <code>NodePool</code> object that has the Spot market type configured, as shown in the following example:
+      <CodeBlock code={"apiVersion: hypershift.openshift.io/v1beta1\nkind: NodePool\nmetadata:\n  name: spot-workers\n  namespace: <my_hosted_cluster_namespace>\nspec:\n  clusterName: <my_hosted_cluster>\n  replicas: 3\n  release:\n    image: quay.io/openshift-release-dev/ocp-release:4.22.0-x86_64\n  management:\n    autoRepair: true\n    upgradeType: Replace\n  platform:\n    type: AWS\n    aws:\n      instanceType: m5.xlarge\n      instanceProfile: my-cluster-worker\n      rootVolume:\n        size: 120\n        type: gp3\n      placement:\n        marketType: Spot"} lang="yaml" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>marketType: Spot</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that all <code>Machine</code> objects and <code>Node</code> objects have the <code>hypershift.openshift.io/interruptible-instance</code> label and that the EC2 instances have the <code>aws-node-termination-handler/managed</code> tag so they can be identified by the termination-handling components. You can specify <code>spot</code> options only when the <code>marketType</code> field is set to <code>Spot</code>.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Apply the configuration by entering the following command:
+      <CodeBlock code={"$ oc apply -f <node_pool_config>.yaml"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"using-oc-compliance-plug-in","text":"Using the oc-compliance plugin"},{"depth":2,"slug":"additional-resources_oc-compliance-plug-in-understanding","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"using-oc-compliance-plug-in","text":"Using the oc-compliance plugin"},{"depth":2,"slug":"installing-oc-compliance_oc-compliance-plug-in-understanding","text":"Installing the oc-compliance plugin"},{"depth":2,"slug":"fetching-raw-results_oc-compliance-plug-in-understanding","text":"Fetching raw results"},{"depth":2,"slug":"re-running-scans_oc-compliance-plug-in-understanding","text":"Re-running scans"},{"depth":2,"slug":"using-scan-setting-bindings_oc-compliance-plug-in-understanding","text":"Using ScanSettingBinding custom resources"},{"depth":2,"slug":"printing-controls_oc-compliance-plug-in-understanding","text":"Printing controls"},{"depth":2,"slug":"fetching-compliance-remediation-details_oc-compliance-plug-in-understanding","text":"Fetching compliance remediation details"},{"depth":2,"slug":"viewing-compliance-remediation-details_oc-compliance-plug-in-understanding","text":"Viewing ComplianceCheckResult object details"},{"depth":2,"slug":"additional-resources_oc-compliance-plug-in-understanding","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/security/compliance_operator/co-scans/oc-compliance-plug-in-using";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["security","security/compliance_operator","security/compli
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the oc-compliance plugin {#using-oc-compliance-plug-in}\n\nAlthough the Compliance Operator automates many of the checks and remediations for the cluster, an administrator can use the `oc-compliance` plugin to perform the full process of bringing a cluster into compliance by interacting with the Compliance Operator API and other components.\n\n## Additional resources {#additional-resources_oc-compliance-plug-in-understanding}\n\n- [Understanding the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-scans/oc-compliance-plug-in-using.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the oc-compliance plugin {#using-oc-compliance-plug-in}\n\nAlthough the Compliance Operator automates many of the checks and remediations for the cluster, an administrator can use the `oc-compliance` plugin to perform the full process of bringing a cluster into compliance by interacting with the Compliance Operator API and other components.\n\n## Installing the oc-compliance plugin {#installing-oc-compliance_oc-compliance-plug-in-understanding}\n\nYou can install the `oc-compliance` plugin to simplify compliance operations from the command line.\n\n**Procedure**\n\n- Extract the `oc-compliance` image to get the `oc-compliance` binary:\n\n  ```terminal\n  $ podman run --rm -v ~/.local/bin:/mnt/out:Z registry.redhat.io/compliance/oc-compliance-rhel8:stable /bin/cp /usr/bin/oc-compliance /mnt/out/\n  ```\n\n  ```terminal {title=\"Example output\"}\n  W0611 20:35:46.486903   11354 manifest.go:440] Chose linux/amd64 manifest from the manifest list.\n  ```\n\n  You can now run `oc-compliance`.\n\n## Fetching raw results {#fetching-raw-results_oc-compliance-plug-in-understanding}\n\nAn administrator or auditor can review the complete detailed results of a scan as created by the OpenSCAP tool. These results contain more details than what is contained in the  `ComplianceCheckResult` custom resource (CR).\n\nWhen a compliance scan finishes, the results of the individual checks are listed in the resulting `ComplianceCheckResult` custom resource (CR). However, an administrator or auditor might require the complete details of the scan. The OpenSCAP tool creates an Advanced Recording Format (ARF) formatted file with the detailed results. This ARF file is too large to store in a config map or other standard Kubernetes resource, so a persistent volume (PV) is created to contain it.\n\n**Procedure**\n\n1. Fetch the results from the PV by running the following command:\n\n   ```terminal\n   $ oc compliance fetch-raw <object-type> <object-name> -o <output-path>\n   ```\n\n   where:\n\n   - `<object-type>` can be either `scansettingbinding`, `compliancescan` or `compliancesuite`, depending on which of these objects the scans were launched with.\n   - `<object-name>` is the name of the binding, suite, or scan object to gather the ARF file for, and `<output-path>` is the local directory to place the results.\n\n     For example:\n\n     ```terminal\n     $ oc compliance fetch-raw scansettingbindings my-binding -o /tmp/\n     ```\n\n     ```terminal {title=\"Example output\"}\n     Fetching results for my-binding scans: ocp4-cis, ocp4-cis-node-worker, ocp4-cis-node-master\n     Fetching raw compliance results for scan 'ocp4-cis'.......\n     The raw compliance results are available in the following directory: /tmp/ocp4-cis\n     Fetching raw compliance results for scan 'ocp4-cis-node-worker'...........\n     The raw compliance results are available in the following directory: /tmp/ocp4-cis-node-worker\n     Fetching raw compliance results for scan 'ocp4-cis-node-master'......\n     The raw compliance results are available in the following directory: /tmp/ocp4-cis-node-master\n     ```\n2. View the list of files in the directory:\n\n   ```terminal\n   $ ls /tmp/ocp4-cis-node-master/\n   ```\n\n   ```terminal {title=\"Example output\"}\n   ocp4-cis-node-master-ip-10-0-128-89.ec2.internal-pod.xml.bzip2  ocp4-cis-node-master-ip-10-0-150-5.ec2.internal-pod.xml.bzip2  ocp4-cis-node-master-ip-10-0-163-32.ec2.internal-pod.xml.bzip2\n   ```\n3. Extract the results:\n\n   ```terminal\n   $ bunzip2 -c resultsdir/worker-scan/worker-scan-stage-459-tqkg7-compute-0-pod.xml.bzip2 > resultsdir/worker-scan/worker-scan-ip-10-0-170-231.us-east-2.compute.internal-pod.xml\n   ```\n4. View the extracted results:\n\n   ```terminal\n   $ ls resultsdir/worker-scan/\n   ```\n\n   ```terminal {title=\"Example output\"}\n   worker-scan-ip-10-0-170-231.us-east-2.compute.internal-pod.xml\n   worker-scan-stage-459-tqkg7-compute-0-pod.xml.bzip2\n   worker-scan-stage-459-tqkg7-compute-1-pod.xml.bzip2\n   ```\n\n## Re-running scans {#re-running-scans_oc-compliance-plug-in-understanding}\n\nAlthough it is possible to run scans as scheduled jobs, you must often re-run a scan on demand, particularly after remediations are applied or when other changes to the cluster are made.\n\nRerunning a scan with the Compliance Operator requires the use of an annotation on the scan object. However, with the `oc-compliance` plugin you can rerun a scan with a single command.\n\n**Procedure**\n\n- Rerun the scans for the `ScanSettingBinding` object named `my-binding` by running the following command:\n\n  ```terminal\n  $ oc compliance rerun-now scansettingbindings my-binding\n  ```\n\n  ```terminal {title=\"Example output\"}\n  Rerunning scans from 'my-binding': ocp4-cis\n  Re-running scan 'openshift-compliance/ocp4-cis'\n  ```\n\n## Using ScanSettingBinding custom resources {#using-scan-setting-bindings_oc-compliance-plug-in-understanding}\n\nWhen using the `ScanSetting` and `ScanSettingBinding` custom resources (CRs) that the Compliance Operator provides, it is possible to run scans for multiple profiles while using a common set of scan options, such as `schedule`, `machine roles`, `tolerations`, and so on.\n\nAlthough that is easier than working with multiple `ComplianceSuite` or `ComplianceScan` objects, it can confuse new users.\n\nThe `oc compliance bind` subcommand helps you create a `ScanSettingBinding` CR.\n\n**Procedure**\n\n1. Run:\n\n   ```terminal\n   $ oc compliance bind [--dry-run] -N <binding name> [-S <scansetting name>] <objtype/objname> [..<objtype/objname>]\n   ```\n\n   - If you omit the `-S` flag, the `default` scan setting provided by the Compliance Operator is used.\n   - The object type is the Kubernetes object type, which  can be `profile` or `tailoredprofile`. More than one object can be provided.\n   - The object name is the name of the Kubernetes resource, such as `.metadata.name`.\n   - Add the `--dry-run` option to display the YAML file of the objects that are created.\n\n     For example, given the following profiles and scan settings:\n\n     ```terminal\n     $ oc get profile.compliance -n openshift-compliance\n     ```\n\n     ```terminal {title=\"Example output\"}\n     NAME                       AGE     VERSION\n     ocp4-cis                   3h49m   1.9.0\n     ocp4-cis-1-9               3h49m   1.9.0\n     ocp4-cis-node              3h49m   1.9.0\n     ocp4-cis-node-1-9          3h49m   1.9.0\n     ocp4-e8                    3h49m\n     ocp4-high                  3h49m   Revision 4\n     ocp4-high-node             3h49m   Revision 4\n     ocp4-high-node-rev-4       3h49m   Revision 4\n     ocp4-high-rev-4            3h49m   Revision 4\n     ocp4-moderate              3h49m   Revision 4\n     ocp4-moderate-node         3h49m   Revision 4\n     ocp4-moderate-node-rev-4   3h49m   Revision 4\n     ocp4-moderate-rev-4        3h49m   Revision 4\n     ocp4-nerc-cip              3h49m\n     ocp4-nerc-cip-node         3h49m\n     ocp4-pci-dss               3h49m   4.0.0\n     ocp4-pci-dss-3-2           3h49m   3.2.1\n     ocp4-pci-dss-4-0           3h49m   4.0.0\n     ocp4-pci-dss-node          3h49m   4.0.0\n     ocp4-pci-dss-node-3-2      3h49m   3.2.1\n     ocp4-pci-dss-node-4-0      3h49m   4.0.0\n     ocp4-stig                  3h49m   V2R3\n     ocp4-stig-node             3h49m   V2R3\n     ocp4-stig-node-v2r3        3h49m   V2R3\n     ocp4-stig-v2r3             3h49m   V2R3\n     rhcos4-e8                  3h49m\n     rhcos4-high                3h49m   Revision 4\n     rhcos4-high-rev-4          3h49m   Revision 4\n     rhcos4-moderate            3h49m   Revision 4\n     rhcos4-moderate-rev-4      3h49m   Revision 4\n     rhcos4-nerc-cip            3h49m\n     rhcos4-stig                3h49m   V2R3\n     rhcos4-stig-v2r3           3h49m   V2R3\n     ```\n\n     ```terminal\n     $ oc get scansettings -n openshift-compliance\n     ```\n\n     ```terminal {title=\"Example output\"}\n     NAME                 AGE\n     default              10m\n     default-auto-apply   10m\n     ```\n2. To apply the `default` settings to the `ocp4-cis` and `ocp4-cis-node` profiles, run:\n\n   ```terminal\n   $ oc compliance bind -N my-binding profile/ocp4-cis profile/ocp4-cis-node\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Creating ScanSettingBinding my-binding\n   ```\n\n   After the `ScanSettingBinding` CR is created, the bound profile begins scanning for both profiles with the related settings. Overall, this is the fastest way to begin scanning with the Compliance Operator.\n\n## Printing controls {#printing-controls_oc-compliance-plug-in-understanding}\n\nYou can view a report of the compliance standards and controls that a given profile satisfies.\n\nCompliance standards are generally organized into a the following hierarchy:\n\n- A benchmark is the top-level definition of a set of controls for a particular standard. For example, FedRAMP Moderate or Center for Internet Security (CIS) v.1.6.0.\n- A control describes a family of requirements that must be met to be in compliance with the benchmark. For example, FedRAMP AC-01 (access control policy and procedures).\n- A rule is a single check that is specific for the system being brought into compliance, and one or more of these rules map to a control.\n- The Compliance Operator handles the grouping of rules into a profile for a single benchmark. It can be difficult to determine which controls that the set of rules in a profile satisfy.\n\n**Procedure**\n\n- The `oc compliance` `controls` subcommand provides a report of the standards and controls that a given profile satisfies:\n\n  ```terminal\n  $ oc compliance controls profile ocp4-cis-node\n  ```\n\n  ```terminal {title=\"Example output\"}\n  +-----------+----------+\n  | FRAMEWORK | CONTROLS |\n  +-----------+----------+\n  | CIS-OCP   | 1.1.1    |\n  +           +----------+\n  |           | 1.1.10   |\n  +           +----------+\n  |           | 1.1.11   |\n  +           +----------+\n  ...\n  ```\n\n## Fetching compliance remediation details {#fetching-compliance-remediation-details_oc-compliance-plug-in-understanding}\n\nThe Compliance Operator provides remediation objects that are used to automate the changes required to make the cluster compliant. You can use the `fetch-fixes` subcommand to help you understand exactly which configuration remediations are used.\n\nThe `fetch-fixes` extracts the remediation objects from a profile, rule, or `ComplianceRemediation` object into a directory for you to inspect.\n\n> [!WARNING]\n> Use caution before applying remediations directly. Some remediations might not be applicable in bulk, such as the usbguard rules in the moderate profile. In these cases, allow the Compliance Operator to apply the rules because it addresses the dependencies and ensures that the cluster remains in a good state.\n\n**Procedure**\n\n1. View the remediations for a profile:\n\n   ```terminal\n   $ oc compliance fetch-fixes profile ocp4-cis -o /tmp\n   ```\n\n   ```terminal {title=\"Example output\"}\n   No fixes to persist for rule 'ocp4-api-server-api-priority-flowschema-catch-all'\n   No fixes to persist for rule 'ocp4-api-server-api-priority-gate-enabled'\n   No fixes to persist for rule 'ocp4-api-server-audit-log-maxbackup'\n   Persisted rule fix to /tmp/ocp4-api-server-audit-log-maxsize.yaml\n   No fixes to persist for rule 'ocp4-api-server-audit-log-path'\n   No fixes to persist for rule 'ocp4-api-server-auth-mode-no-aa'\n   No fixes to persist for rule 'ocp4-api-server-auth-mode-node'\n   No fixes to persist for rule 'ocp4-api-server-auth-mode-rbac'\n   No fixes to persist for rule 'ocp4-api-server-basic-auth'\n   No fixes to persist for rule 'ocp4-api-server-bind-address'\n   No fixes to persist for rule 'ocp4-api-server-client-ca'\n   Persisted rule fix to /tmp/ocp4-api-server-encryption-provider-cipher.yaml\n   Persisted rule fix to /tmp/ocp4-api-server-encryption-provider-config.yaml\n   ```\n\n   > [!NOTE]\n   > The `No fixes to persist` warning is expected whenever there are rules in a profile that do not have a corresponding remediation, because either the rule cannot be remediated automatically or a remediation was not provided.\n2. You can view a sample of the YAML file. The `head` command will show you the first 10 lines:\n\n   ```terminal\n   $ head /tmp/ocp4-api-server-audit-log-maxsize.yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   apiVersion: config.openshift.io/v1\n   kind: APIServer\n   metadata:\n     name: cluster\n   spec:\n     maximumFileSizeMegabytes: 100\n   ```\n3. View the remediation from a `ComplianceRemediation` object created after a scan:\n\n   ```terminal\n   $ oc get complianceremediations -n openshift-compliance\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME                                             STATE\n   ocp4-cis-api-server-encryption-provider-cipher   NotApplied\n   ocp4-cis-api-server-encryption-provider-config   NotApplied\n   ```\n\n   ```terminal\n   $ oc compliance fetch-fixes complianceremediations ocp4-cis-api-server-encryption-provider-cipher -o /tmp\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Persisted compliance remediation fix to /tmp/ocp4-cis-api-server-encryption-provider-cipher.yaml\n   ```\n4. You can view a sample of the YAML file. The `head` command will show you the first 10 lines:\n\n   ```terminal\n   $ head /tmp/ocp4-cis-api-server-encryption-provider-cipher.yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   apiVersion: config.openshift.io/v1\n   kind: APIServer\n   metadata:\n     name: cluster\n   spec:\n     encryption:\n       type: aescbc\n   ```\n\n## Viewing ComplianceCheckResult object details {#viewing-compliance-remediation-details_oc-compliance-plug-in-understanding}\n\nWhen scans are finished running, `ComplianceCheckResult` objects are created for the individual scan rules. You can use the `view-result` subcommand to provide a human-readable output of the `ComplianceCheckResult` object details.\n\n**Procedure**\n\n- Run:\n\n  ```terminal\n  $ oc compliance view-result ocp4-cis-scheduler-no-bind-address\n  ```\n\n## Additional resources {#additional-resources_oc-compliance-plug-in-understanding}\n\n- [Understanding the Compliance Operator](/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/security/compliance_operator/co-scans/oc-compliance-plug-in-using.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,15 +95,159 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="using-oc-compliance-plug-in" class="group scroll-mt-20">Using the oc-compliance plugin<a href="#using-oc-compliance-plug-in" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Although the Compliance Operator automates many of the checks and remediations for the cluster, an administrator can use the <code>oc-compliance</code> plugin to perform the full process of bringing a cluster into compliance by interacting with the Compliance Operator API and other components.</p>
-      <p class="/modules/oc-compliance-installing.md"></p>
-      <p class="/modules/oc-compliance-fetching-raw-results.md"></p>
-      <p class="/modules/oc-compliance-rerunning-scans.md"></p>
-      <p class="/modules/oc-compliance-using-scan-setting-bindings.md"></p>
-      <p class="/modules/oc-compliance-printing-controls.md"></p>
-      <p class="/modules/oc-compliance-fetching-compliance-remediation-details.md"></p>
-      <p class="/modules/oc-compliance-viewing-compliance-check-result-details.md"></p>
+      <h2 id="installing-oc-compliance_oc-compliance-plug-in-understanding" class="group scroll-mt-20">Installing the oc-compliance plugin<a href="#installing-oc-compliance_oc-compliance-plug-in-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can install the <code>oc-compliance</code> plugin to simplify compliance operations from the command line.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Extract the <code>oc-compliance</code> image to get the <code>oc-compliance</code> binary:
+      <CodeBlock code={"$ podman run --rm -v ~/.local/bin:/mnt/out:Z registry.redhat.io/compliance/oc-compliance-rhel8:stable /bin/cp /usr/bin/oc-compliance /mnt/out/"} lang="terminal" />
+      <CodeBlock code={"W0611 20:35:46.486903   11354 manifest.go:440] Chose linux/amd64 manifest from the manifest list."} lang="terminal" title="Example output" />
+      <p>You can now run <code>oc-compliance</code>.</p>
+      </li>
+      </ul>
+      <h2 id="fetching-raw-results_oc-compliance-plug-in-understanding" class="group scroll-mt-20">Fetching raw results<a href="#fetching-raw-results_oc-compliance-plug-in-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">An administrator or auditor can review the complete detailed results of a scan as created by the OpenSCAP tool. These results contain more details than what is contained in the  <code>ComplianceCheckResult</code> custom resource (CR).</p>
+      <p>When a compliance scan finishes, the results of the individual checks are listed in the resulting <code>ComplianceCheckResult</code> custom resource (CR). However, an administrator or auditor might require the complete details of the scan. The OpenSCAP tool creates an Advanced Recording Format (ARF) formatted file with the detailed results. This ARF file is too large to store in a config map or other standard Kubernetes resource, so a persistent volume (PV) is created to contain it.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Fetch the results from the PV by running the following command:
+      <CodeBlock code={"$ oc compliance fetch-raw <object-type> <object-name> -o <output-path>"} lang="terminal" />
+      <p>where:</p>
+      <ul>
+      <li><code>&lt;object-type&gt;</code> can be either <code>scansettingbinding</code>, <code>compliancescan</code> or <code>compliancesuite</code>, depending on which of these objects the scans were launched with.</li>
+      <li>
+      <code>&lt;object-name&gt;</code> is the name of the binding, suite, or scan object to gather the ARF file for, and <code>&lt;output-path&gt;</code> is the local directory to place the results.
+      <p>For example:</p>
+      <CodeBlock code={"$ oc compliance fetch-raw scansettingbindings my-binding -o /tmp/"} lang="terminal" />
+      <CodeBlock code={"Fetching results for my-binding scans: ocp4-cis, ocp4-cis-node-worker, ocp4-cis-node-master\nFetching raw compliance results for scan 'ocp4-cis'.......\nThe raw compliance results are available in the following directory: /tmp/ocp4-cis\nFetching raw compliance results for scan 'ocp4-cis-node-worker'...........\nThe raw compliance results are available in the following directory: /tmp/ocp4-cis-node-worker\nFetching raw compliance results for scan 'ocp4-cis-node-master'......\nThe raw compliance results are available in the following directory: /tmp/ocp4-cis-node-master"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      View the list of files in the directory:
+      <CodeBlock code={"$ ls /tmp/ocp4-cis-node-master/"} lang="terminal" />
+      <CodeBlock code={"ocp4-cis-node-master-ip-10-0-128-89.ec2.internal-pod.xml.bzip2  ocp4-cis-node-master-ip-10-0-150-5.ec2.internal-pod.xml.bzip2  ocp4-cis-node-master-ip-10-0-163-32.ec2.internal-pod.xml.bzip2"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Extract the results:
+      <CodeBlock code={"$ bunzip2 -c resultsdir/worker-scan/worker-scan-stage-459-tqkg7-compute-0-pod.xml.bzip2 > resultsdir/worker-scan/worker-scan-ip-10-0-170-231.us-east-2.compute.internal-pod.xml"} lang="terminal" />
+      </li>
+      <li>
+      View the extracted results:
+      <CodeBlock code={"$ ls resultsdir/worker-scan/"} lang="terminal" />
+      <CodeBlock code={"worker-scan-ip-10-0-170-231.us-east-2.compute.internal-pod.xml\nworker-scan-stage-459-tqkg7-compute-0-pod.xml.bzip2\nworker-scan-stage-459-tqkg7-compute-1-pod.xml.bzip2"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="re-running-scans_oc-compliance-plug-in-understanding" class="group scroll-mt-20">Re-running scans<a href="#re-running-scans_oc-compliance-plug-in-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Although it is possible to run scans as scheduled jobs, you must often re-run a scan on demand, particularly after remediations are applied or when other changes to the cluster are made.</p>
+      <p>Rerunning a scan with the Compliance Operator requires the use of an annotation on the scan object. However, with the <code>oc-compliance</code> plugin you can rerun a scan with a single command.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Rerun the scans for the <code>ScanSettingBinding</code> object named <code>my-binding</code> by running the following command:
+      <CodeBlock code={"$ oc compliance rerun-now scansettingbindings my-binding"} lang="terminal" />
+      <CodeBlock code={"Rerunning scans from 'my-binding': ocp4-cis\nRe-running scan 'openshift-compliance/ocp4-cis'"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="using-scan-setting-bindings_oc-compliance-plug-in-understanding" class="group scroll-mt-20">Using ScanSettingBinding custom resources<a href="#using-scan-setting-bindings_oc-compliance-plug-in-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>When using the <code>ScanSetting</code> and <code>ScanSettingBinding</code> custom resources (CRs) that the Compliance Operator provides, it is possible to run scans for multiple profiles while using a common set of scan options, such as <code>schedule</code>, <code>machine roles</code>, <code>tolerations</code>, and so on.</p>
+      <p class="_abstract">Although that is easier than working with multiple <code>ComplianceSuite</code> or <code>ComplianceScan</code> objects, it can confuse new users.</p>
+      <p>The <code>oc compliance bind</code> subcommand helps you create a <code>ScanSettingBinding</code> CR.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Run:
+      <CodeBlock code={"$ oc compliance bind [--dry-run] -N <binding name> [-S <scansetting name>] <objtype/objname> [..<objtype/objname>]"} lang="terminal" />
+      <ul>
+      <li>If you omit the <code>-S</code> flag, the <code>default</code> scan setting provided by the Compliance Operator is used.</li>
+      <li>The object type is the Kubernetes object type, which  can be <code>profile</code> or <code>tailoredprofile</code>. More than one object can be provided.</li>
+      <li>The object name is the name of the Kubernetes resource, such as <code>.metadata.name</code>.</li>
+      <li>
+      Add the <code>--dry-run</code> option to display the YAML file of the objects that are created.
+      <p>For example, given the following profiles and scan settings:</p>
+      <CodeBlock code={"$ oc get profile.compliance -n openshift-compliance"} lang="terminal" />
+      <CodeBlock code={"NAME                       AGE     VERSION\nocp4-cis                   3h49m   1.9.0\nocp4-cis-1-9               3h49m   1.9.0\nocp4-cis-node              3h49m   1.9.0\nocp4-cis-node-1-9          3h49m   1.9.0\nocp4-e8                    3h49m\nocp4-high                  3h49m   Revision 4\nocp4-high-node             3h49m   Revision 4\nocp4-high-node-rev-4       3h49m   Revision 4\nocp4-high-rev-4            3h49m   Revision 4\nocp4-moderate              3h49m   Revision 4\nocp4-moderate-node         3h49m   Revision 4\nocp4-moderate-node-rev-4   3h49m   Revision 4\nocp4-moderate-rev-4        3h49m   Revision 4\nocp4-nerc-cip              3h49m\nocp4-nerc-cip-node         3h49m\nocp4-pci-dss               3h49m   4.0.0\nocp4-pci-dss-3-2           3h49m   3.2.1\nocp4-pci-dss-4-0           3h49m   4.0.0\nocp4-pci-dss-node          3h49m   4.0.0\nocp4-pci-dss-node-3-2      3h49m   3.2.1\nocp4-pci-dss-node-4-0      3h49m   4.0.0\nocp4-stig                  3h49m   V2R3\nocp4-stig-node             3h49m   V2R3\nocp4-stig-node-v2r3        3h49m   V2R3\nocp4-stig-v2r3             3h49m   V2R3\nrhcos4-e8                  3h49m\nrhcos4-high                3h49m   Revision 4\nrhcos4-high-rev-4          3h49m   Revision 4\nrhcos4-moderate            3h49m   Revision 4\nrhcos4-moderate-rev-4      3h49m   Revision 4\nrhcos4-nerc-cip            3h49m\nrhcos4-stig                3h49m   V2R3\nrhcos4-stig-v2r3           3h49m   V2R3\n"} lang="terminal" title="Example output" />
+      <CodeBlock code={"$ oc get scansettings -n openshift-compliance"} lang="terminal" />
+      <CodeBlock code={"NAME                 AGE\ndefault              10m\ndefault-auto-apply   10m"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      </li>
+      <li>
+      To apply the <code>default</code> settings to the <code>ocp4-cis</code> and <code>ocp4-cis-node</code> profiles, run:
+      <CodeBlock code={"$ oc compliance bind -N my-binding profile/ocp4-cis profile/ocp4-cis-node"} lang="terminal" />
+      <CodeBlock code={"Creating ScanSettingBinding my-binding"} lang="terminal" title="Example output" />
+      <p>After the <code>ScanSettingBinding</code> CR is created, the bound profile begins scanning for both profiles with the related settings. Overall, this is the fastest way to begin scanning with the Compliance Operator.</p>
+      </li>
+      </ol>
+      <h2 id="printing-controls_oc-compliance-plug-in-understanding" class="group scroll-mt-20">Printing controls<a href="#printing-controls_oc-compliance-plug-in-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can view a report of the compliance standards and controls that a given profile satisfies.</p>
+      <p>Compliance standards are generally organized into a the following hierarchy:</p>
+      <ul>
+      <li>A benchmark is the top-level definition of a set of controls for a particular standard. For example, FedRAMP Moderate or Center for Internet Security (CIS) v.1.6.0.</li>
+      <li>A control describes a family of requirements that must be met to be in compliance with the benchmark. For example, FedRAMP AC-01 (access control policy and procedures).</li>
+      <li>A rule is a single check that is specific for the system being brought into compliance, and one or more of these rules map to a control.</li>
+      <li>The Compliance Operator handles the grouping of rules into a profile for a single benchmark. It can be difficult to determine which controls that the set of rules in a profile satisfy.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      The <code>oc compliance</code> <code>controls</code> subcommand provides a report of the standards and controls that a given profile satisfies:
+      <CodeBlock code={"$ oc compliance controls profile ocp4-cis-node"} lang="terminal" />
+      <CodeBlock code={"+-----------+----------+\n| FRAMEWORK | CONTROLS |\n+-----------+----------+\n| CIS-OCP   | 1.1.1    |\n+           +----------+\n|           | 1.1.10   |\n+           +----------+\n|           | 1.1.11   |\n+           +----------+\n..."} lang="terminal" title="Example output" />
+      </li>
+      </ul>
+      <h2 id="fetching-compliance-remediation-details_oc-compliance-plug-in-understanding" class="group scroll-mt-20">Fetching compliance remediation details<a href="#fetching-compliance-remediation-details_oc-compliance-plug-in-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The Compliance Operator provides remediation objects that are used to automate the changes required to make the cluster compliant. You can use the <code>fetch-fixes</code> subcommand to help you understand exactly which configuration remediations are used.</p>
+      <p class="_abstract">The <code>fetch-fixes</code> extracts the remediation objects from a profile, rule, or <code>ComplianceRemediation</code> object into a directory for you to inspect.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>Use caution before applying remediations directly. Some remediations might not be applicable in bulk, such as the usbguard rules in the moderate profile. In these cases, allow the Compliance Operator to apply the rules because it addresses the dependencies and ensures that the cluster remains in a good state.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      View the remediations for a profile:
+      <CodeBlock code={"$ oc compliance fetch-fixes profile ocp4-cis -o /tmp"} lang="terminal" />
+      <CodeBlock code={"No fixes to persist for rule 'ocp4-api-server-api-priority-flowschema-catch-all'\nNo fixes to persist for rule 'ocp4-api-server-api-priority-gate-enabled'\nNo fixes to persist for rule 'ocp4-api-server-audit-log-maxbackup'\nPersisted rule fix to /tmp/ocp4-api-server-audit-log-maxsize.yaml\nNo fixes to persist for rule 'ocp4-api-server-audit-log-path'\nNo fixes to persist for rule 'ocp4-api-server-auth-mode-no-aa'\nNo fixes to persist for rule 'ocp4-api-server-auth-mode-node'\nNo fixes to persist for rule 'ocp4-api-server-auth-mode-rbac'\nNo fixes to persist for rule 'ocp4-api-server-basic-auth'\nNo fixes to persist for rule 'ocp4-api-server-bind-address'\nNo fixes to persist for rule 'ocp4-api-server-client-ca'\nPersisted rule fix to /tmp/ocp4-api-server-encryption-provider-cipher.yaml\nPersisted rule fix to /tmp/ocp4-api-server-encryption-provider-config.yaml"} lang="terminal" title="Example output" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>No fixes to persist</code> warning is expected whenever there are rules in a profile that do not have a corresponding remediation, because either the rule cannot be remediated automatically or a remediation was not provided.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      You can view a sample of the YAML file. The <code>head</code> command will show you the first 10 lines:
+      <CodeBlock code={"$ head /tmp/ocp4-api-server-audit-log-maxsize.yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: APIServer\nmetadata:\n  name: cluster\nspec:\n  maximumFileSizeMegabytes: 100"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      View the remediation from a <code>ComplianceRemediation</code> object created after a scan:
+      <CodeBlock code={"$ oc get complianceremediations -n openshift-compliance"} lang="terminal" />
+      <CodeBlock code={"NAME                                             STATE\nocp4-cis-api-server-encryption-provider-cipher   NotApplied\nocp4-cis-api-server-encryption-provider-config   NotApplied"} lang="terminal" title="Example output" />
+      <CodeBlock code={"$ oc compliance fetch-fixes complianceremediations ocp4-cis-api-server-encryption-provider-cipher -o /tmp"} lang="terminal" />
+      <CodeBlock code={"Persisted compliance remediation fix to /tmp/ocp4-cis-api-server-encryption-provider-cipher.yaml"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      You can view a sample of the YAML file. The <code>head</code> command will show you the first 10 lines:
+      <CodeBlock code={"$ head /tmp/ocp4-cis-api-server-encryption-provider-cipher.yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: APIServer\nmetadata:\n  name: cluster\nspec:\n  encryption:\n    type: aescbc"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="viewing-compliance-remediation-details_oc-compliance-plug-in-understanding" class="group scroll-mt-20">Viewing ComplianceCheckResult object details<a href="#viewing-compliance-remediation-details_oc-compliance-plug-in-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When scans are finished running, <code>ComplianceCheckResult</code> objects are created for the individual scan rules. You can use the <code>view-result</code> subcommand to provide a human-readable output of the <code>ComplianceCheckResult</code> object details.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Run:
+      <CodeBlock code={"$ oc compliance view-result ocp4-cis-scheduler-no-bind-address"} lang="terminal" />
+      </li>
+      </ul>
       <h2 id="additional-resources_oc-compliance-plug-in-understanding" class="group scroll-mt-20">Additional resources<a href="#additional-resources_oc-compliance-plug-in-understanding" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/security/compliance_operator/co-concepts/compliance-operator-understanding#understanding-compliance-operator">Understanding the Compliance Operator</a></li></ul>
     </article>

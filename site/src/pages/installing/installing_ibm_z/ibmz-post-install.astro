@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"post-install-configure-additional-devices-ibm-z","text":"Configuring additional devices in an {{ ibm_z_title }} or {{ ibm_linuxone_title }} environment"}];
+const headings = [{"depth":1,"slug":"post-install-configure-additional-devices-ibm-z","text":"Configuring additional devices in an IBM Z or IBM LinuxONE environment"},{"depth":2,"slug":"configure-additional-devices-using-mco_post-install-configure-additional-devices-ibm-z","text":"Configuring additional devices by using the Machine Config Operator"},{"depth":2,"slug":"configure-additional-devices-manually_post-install-configure-additional-devices-ibm-z","text":"Configuring additional devices manually"},{"depth":2,"slug":"ibm-z-roce-network-cards_post-install-configure-additional-devices-ibm-z","text":"RoCE network cards"},{"depth":2,"slug":"enabling-multipathing-fcp-luns_post-install-configure-additional-devices-ibm-z","text":"Enabling multipathing for FCP LUNs"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_ibm_z/ibmz-post-install";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Configuring additional devices in an {{ ibm_z_title }} or {{ ibm_linuxone_title }} environment";
-const description = "After installing OpenShift Container Platform, you can configure additional devices for your cluster in an {{ ibm_z_name }} or {{ ibm_linuxone_name }}…" || undefined;
+const description = "After installing OpenShift Container Platform, you can configure additional devices for your cluster in an IBM Z(R) or IBM(R) LinuxONE environment, which…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["installing","installing/installing_ibm_z"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring additional devices in an {{ ibm_z_title }} or {{ ibm_linuxone_title }} environment {#post-install-configure-additional-devices-ibm-z}\n\nAfter installing OpenShift Container Platform, you can configure additional devices for your cluster in an {{ ibm_z_name }} or {{ ibm_linuxone_name }} environment, which is installed with z/VM.\n\nThe following devices can be configured:\n\n- Fibre Channel Protocol (FCP) host\n- FCP LUN\n- DASD\n- qeth\n\nYou can configure devices by adding udev rules by using the Machine Config Operator (MCO) or you can configure devices manually.\n\n> [!NOTE]\n> The procedures described here apply only to z/VM installations. If you have installed your cluster with {{ op_system_base }} KVM on {{ ibm_z_name }} or {{ ibm_linuxone_name }} infrastructure, no additional configuration is needed inside the KVM guest after the devices were added to the KVM guests. However, both in z/VM and {{ op_system_base }} KVM environments the next steps to configure the Local Storage Operator and Kubernetes NMState Operator need to be applied.\n\n**Additional resources**\n\n- [Machine configuration overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)\n\n**Additional resources**\n\n- [Install and configure the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)\n- [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)\n\n**Additional resources**\n\n- [chzdev - Configure {{ ibm_z_name }} devices ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=commands-chzdev)\n- [Persistent device configuration ({{ ibm_name }} Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=linuxonibm/com.ibm.linux.z.ludd/ludd_c_perscfg.html)\n\n**Additional resources**\n\n- [Install and configure the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)\n- [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_z/ibmz-post-install.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring additional devices in an IBM Z or IBM LinuxONE environment {#post-install-configure-additional-devices-ibm-z}\n\nAfter installing OpenShift Container Platform, you can configure additional devices for your cluster in an IBM Z(R) or IBM(R) LinuxONE environment, which is installed with z/VM.\n\nThe following devices can be configured:\n\n- Fibre Channel Protocol (FCP) host\n- FCP LUN\n- DASD\n- qeth\n\nYou can configure devices by adding udev rules by using the Machine Config Operator (MCO) or you can configure devices manually.\n\n> [!NOTE]\n> The procedures described here apply only to z/VM installations. If you have installed your cluster with RHEL KVM on IBM Z(R) or IBM(R) LinuxONE infrastructure, no additional configuration is needed inside the KVM guest after the devices were added to the KVM guests. However, both in z/VM and RHEL KVM environments the next steps to configure the Local Storage Operator and Kubernetes NMState Operator need to be applied.\n\n**Additional resources**\n\n- [Machine configuration overview](/openshift-docs-markdown/machine_configuration/index#machine-config-overview)\n\n## Configuring additional devices by using the Machine Config Operator {#configure-additional-devices-using-mco_post-install-configure-additional-devices-ibm-z}\n\nYou can use the Machine Config Operator (MCO) to configure additional devices in an IBM Z(R) or IBM(R) LinuxONE environment. Configuring devices with the MCO is persistent but only allows specific configurations for compute nodes. MCO does not allow control plane nodes to have different configurations.\n\n**Prerequisites**\n\n- You are logged in to the cluster as a user with administrative privileges.\n- The device must be available to the z/VM guest.\n- The device is already attached.\n- The device is not included in the `cio_ignore` list, which can be set in the kernel parameters.\n- You have created a `MachineConfig` object file with the following YAML:\n\n  ```yaml\n  apiVersion: machineconfiguration.openshift.io/v1\n  kind: MachineConfigPool\n  metadata:\n    name: worker0\n  spec:\n    machineConfigSelector:\n      matchExpressions:\n        - {key: machineconfiguration.openshift.io/role, operator: In, values: [worker,worker0]}\n    nodeSelector:\n      matchLabels:\n        node-role.kubernetes.io/worker0: \"\"\n  ```\n\n**Procedure**\n\n1. To configure an FCP host adapter with N_Port Identifier Virtualization (NPIV) by adding a udev rule, complete the following steps:\n\n   1. Take the following sample udev rule `441-zfcp-host-0.0.8000.rules`:\n\n      ```terminal\n      ACTION==\"add\", SUBSYSTEM==\"ccw\", KERNEL==\"0.0.8000\", DRIVER==\"zfcp\", GOTO=\"cfg_zfcp_host_0.0.8000\"\n      ACTION==\"add\", SUBSYSTEM==\"drivers\", KERNEL==\"zfcp\", TEST==\"[ccw/0.0.8000]\", GOTO=\"cfg_zfcp_host_0.0.8000\"\n      GOTO=\"end_zfcp_host_0.0.8000\"\n\n      LABEL=\"cfg_zfcp_host_0.0.8000\"\n      ATTR{[ccw/0.0.8000]online}=\"1\"\n\n      LABEL=\"end_zfcp_host_0.0.8000\"\n      ```\n   2. Convert the rule to Base64 encoded by running the following command:\n\n      ```terminal\n      $ base64 /path/to/file/\n      ```\n   3. Copy the following MCO sample profile into a YAML file:\n\n      ```yaml\n      apiVersion: machineconfiguration.openshift.io/v1\n      kind: MachineConfig\n      metadata:\n         labels:\n           machineconfiguration.openshift.io/role: worker0\n         name: 99-worker0-devices\n      spec:\n         config:\n           ignition:\n             version: 3.2.0\n           storage:\n             files:\n             - contents:\n                 source: <base64_data_uri>\n               filesystem: root\n               mode: 420\n               path: /etc/udev/rules.d/41-zfcp-host-0.0.8000.rules\n      ```\n\n      where:\n\n      `metadata.labels.machineconfiguration.openshift.io/role`\n      :   Specifies the role you have defined in the machine config file.\n\n      `spec.config.storage.files.contents.source`\n      :   Specifies the data URI for the Base64 encoded udev rule. The value is the Base64 encoded string that you generated in the previous step, formatted as an Ignition data URI.\n\n      `spec.config.storage.files.path`\n      :   Specifies the path where the udev rule is located.\n2. To configure an FCP LUN by adding a udev rule, complete the following steps. You can add new FCP LUNs or add additional paths to LUNs that are already configured with multipathing.\n\n   1. Take the following sample udev rule `41-zfcp-lun-0.0.8000:0x500507680d760026:0x00bc000000000000.rules`:\n\n      ```terminal\n      ACTION==\"add\", SUBSYSTEMS==\"ccw\", KERNELS==\"0.0.8000\", GOTO=\"start_zfcp_lun_0.0.8207\"\n      GOTO=\"end_zfcp_lun_0.0.8000\"\n\n      LABEL=\"start_zfcp_lun_0.0.8000\"\n      SUBSYSTEM==\"fc_remote_ports\", ATTR{port_name}==\"0x500507680d760026\", GOTO=\"cfg_fc_0.0.8000_0x500507680d760026\"\n      GOTO=\"end_zfcp_lun_0.0.8000\"\n\n      LABEL=\"cfg_fc_0.0.8000_0x500507680d760026\"\n      ATTR{[ccw/0.0.8000]0x500507680d760026/unit_add}=\"0x00bc000000000000\"\n      GOTO=\"end_zfcp_lun_0.0.8000\"\n\n      LABEL=\"end_zfcp_lun_0.0.8000\"\n      ```\n   2. Convert the rule to Base64 encoded by running the following command:\n\n      ```terminal\n      $ base64 /path/to/file/\n      ```\n   3. Copy the following MCO sample profile into a YAML file:\n\n      ```yaml\n      apiVersion: machineconfiguration.openshift.io/v1\n      kind: MachineConfig\n      metadata:\n         labels:\n           machineconfiguration.openshift.io/role: worker0\n         name: 99-worker0-devices\n      spec:\n         config:\n           ignition:\n             version: 3.2.0\n           storage:\n             files:\n             - contents:\n                 source: <base64_data_uri>\n               filesystem: root\n               mode: 420\n               path: /etc/udev/rules.d/41-zfcp-lun-0.0.8000:0x500507680d760026:0x00bc000000000000.rules\n      ```\n\n      where:\n\n      `metadata.labels.machineconfiguration.openshift.io/role`\n      :   Specifies the role you have defined in the machine config file.\n\n      `spec.config.storage.files.contents.source`\n      :   Specifies the data URI for the Base64 encoded udev rule. The value is the Base64 encoded string that you generated in the previous step, formatted as an Ignition data URI.\n\n      `spec.config.storage.files.path`\n      :   Specifies the path where the udev rule is located.\n3. To configure a DASD device by adding a udev rule, complete the following steps:\n\n   1. Take the following sample udev rule `41-dasd-eckd-0.0.4444.rules`:\n\n      ```terminal\n      ACTION==\"add\", SUBSYSTEM==\"ccw\", KERNEL==\"0.0.4444\", DRIVER==\"dasd-eckd\", GOTO=\"cfg_dasd_eckd_0.0.4444\"\n      ACTION==\"add\", SUBSYSTEM==\"drivers\", KERNEL==\"dasd-eckd\", TEST==\"[ccw/0.0.4444]\", GOTO=\"cfg_dasd_eckd_0.0.4444\"\n      GOTO=\"end_dasd_eckd_0.0.4444\"\n\n      LABEL=\"cfg_dasd_eckd_0.0.4444\"\n      ATTR{[ccw/0.0.4444]online}=\"1\"\n\n      LABEL=\"end_dasd_eckd_0.0.4444\"\n      ```\n   2. Convert the rule to Base64 encoded by running the following command:\n\n      ```terminal\n      $ base64 /path/to/file/\n      ```\n   3. Copy the following MCO sample profile into a YAML file:\n\n      ```yaml\n      apiVersion: machineconfiguration.openshift.io/v1\n      kind: MachineConfig\n      metadata:\n         labels:\n           machineconfiguration.openshift.io/role: worker0\n         name: 99-worker0-devices\n      spec:\n         config:\n           ignition:\n             version: 3.2.0\n           storage:\n             files:\n             - contents:\n                 source: <base64_data_uri>\n               filesystem: root\n               mode: 420\n               path: /etc/udev/rules.d/41-dasd-eckd-0.0.4444.rules\n      ```\n\n      where:\n\n      `metadata.labels.machineconfiguration.openshift.io/role`\n      :   Specifies the role you have defined in the machine config file.\n\n      `spec.config.storage.files.contents.source`\n      :   Specifies the data URI for the Base64 encoded udev rule. The value is the Base64 encoded string that you generated in the previous step, formatted as an Ignition data URI.\n\n      `spec.config.storage.files.path`\n      :   Specifies the path where the udev rule is located.\n4. To configure a qeth device by adding a udev rule, complete the following steps:\n\n   1. Take the following sample udev rule `41-qeth-0.0.1000.rules`:\n\n      ```terminal\n      ACTION==\"add\", SUBSYSTEM==\"drivers\", KERNEL==\"qeth\", GOTO=\"group_qeth_0.0.1000\"\n      ACTION==\"add\", SUBSYSTEM==\"ccw\", KERNEL==\"0.0.1000\", DRIVER==\"qeth\", GOTO=\"group_qeth_0.0.1000\"\n      ACTION==\"add\", SUBSYSTEM==\"ccw\", KERNEL==\"0.0.1001\", DRIVER==\"qeth\", GOTO=\"group_qeth_0.0.1000\"\n      ACTION==\"add\", SUBSYSTEM==\"ccw\", KERNEL==\"0.0.1002\", DRIVER==\"qeth\", GOTO=\"group_qeth_0.0.1000\"\n      ACTION==\"add\", SUBSYSTEM==\"ccwgroup\", KERNEL==\"0.0.1000\", DRIVER==\"qeth\", GOTO=\"cfg_qeth_0.0.1000\"\n      GOTO=\"end_qeth_0.0.1000\"\n\n      LABEL=\"group_qeth_0.0.1000\"\n      TEST==\"[ccwgroup/0.0.1000]\", GOTO=\"end_qeth_0.0.1000\"\n      TEST!=\"[ccw/0.0.1000]\", GOTO=\"end_qeth_0.0.1000\"\n      TEST!=\"[ccw/0.0.1001]\", GOTO=\"end_qeth_0.0.1000\"\n      TEST!=\"[ccw/0.0.1002]\", GOTO=\"end_qeth_0.0.1000\"\n      ATTR{[drivers/ccwgroup:qeth]group}=\"0.0.1000,0.0.1001,0.0.1002\"\n      GOTO=\"end_qeth_0.0.1000\"\n\n      LABEL=\"cfg_qeth_0.0.1000\"\n      ATTR{[ccwgroup/0.0.1000]online}=\"1\"\n\n      LABEL=\"end_qeth_0.0.1000\"\n      ```\n   2. Convert the rule to Base64 encoded by running the following command:\n\n      ```terminal\n      $ base64 /path/to/file/\n      ```\n   3. Copy the following MCO sample profile into a YAML file:\n\n      ```yaml\n      apiVersion: machineconfiguration.openshift.io/v1\n      kind: MachineConfig\n      metadata:\n         labels:\n           machineconfiguration.openshift.io/role: worker0\n         name: 99-worker0-devices\n      spec:\n         config:\n           ignition:\n             version: 3.2.0\n           storage:\n             files:\n             - contents:\n                 source: <base64_data_uri>\n               filesystem: root\n               mode: 420\n               path: /etc/udev/rules.d/41-dasd-eckd-0.0.4444.rules\n      ```\n\n      where:\n\n      `metadata.labels.machineconfiguration.openshift.io/role`\n      :   Specifies the role you have defined in the machine config file.\n\n      `spec.config.storage.files.contents.source`\n      :   Specifies the data URI for the Base64 encoded udev rule. The value is the Base64 encoded string that you generated in the previous step, formatted as an Ignition data URI.\n\n      `spec.config.storage.files.path`\n      :   Specifies the path where the udev rule is located.\n\n**Additional resources**\n\n- [Install and configure the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)\n- [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)\n\n## Configuring additional devices manually {#configure-additional-devices-manually_post-install-configure-additional-devices-ibm-z}\n\nAfter installation, you can manually configure additional devices on IBM Z(R) or IBM(R) LinuxONE nodes. This configuration persists across node restarts, but you must redo the steps if you replace the node.\n\n**Prerequisites**\n\n- You are logged in to the cluster as a user with administrative privileges.\n- The device must be available to the node.\n- In a z/VM environment, the device must be attached to the z/VM guest.\n\n**Procedure**\n\n1. Connect to the node via SSH by running the following command:\n\n   ```terminal\n   $ ssh <user>@<node_ip_address>\n   ```\n\n   You can also start a debug session to the node by running the following command:\n\n   ```terminal\n   $ oc debug node/<node_name>\n   ```\n2. To enable the devices with the `chzdev` command, enter the following command:\n\n   ```terminal\n   $ sudo chzdev -e <device>\n   ```\n\n**Additional resources**\n\n- [chzdev - Configure IBM Z(R) devices (IBM(R) Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=commands-chzdev)\n- [Persistent device configuration (IBM(R) Documentation)](https://www.ibm.com/docs/en/linux-on-systems?topic=linuxonibm/com.ibm.linux.z.ludd/ludd_c_perscfg.html)\n\n## RoCE network cards {#ibm-z-roce-network-cards_post-install-configure-additional-devices-ibm-z}\n\nYou can configure RoCE (RDMA over Converged Ethernet) interfaces with the Kubernetes NMState Operator when RoCE network cards are available on a node. For example, the cards are available if they are attached in a z/VM environment or passed through in a RHEL KVM environment.\n\n## Enabling multipathing for FCP LUNs {#enabling-multipathing-fcp-luns_post-install-configure-additional-devices-ibm-z}\n\nAfter installation, you can enable multipathing for Fibre Channel Protocol (FCP) logical unit numbers (LUNs) on IBM Z(R) or IBM(R) LinuxONE nodes. This configuration persists across node restarts, but you must redo the steps if you replace the node.\n\n> [!IMPORTANT]\n> On IBM Z(R) and IBM(R) LinuxONE, you can enable multipathing only if you configured your cluster for it during installation. For more information, see \"Installing RHCOS and starting the OpenShift Container Platform bootstrap process\" in *Installing a cluster with z/VM on IBM Z(R) and IBM(R) LinuxONE*.\n\n**Prerequisites**\n\n- You are logged in to the cluster as a user with administrative privileges.\n- You have configured multiple paths to a LUN with either method explained above.\n\n**Procedure**\n\n1. Connect to the node via SSH by running the following command:\n\n   ```terminal\n   $ ssh <user>@<node_ip_address>\n   ```\n\n   You can also start a debug session to the node by running the following command:\n\n   ```terminal\n   $ oc debug node/<node_name>\n   ```\n2. To enable multipathing, run the following command:\n\n   ```terminal\n   $ sudo /sbin/mpathconf --enable\n   ```\n3. To start the `multipathd` daemon, run the following command:\n\n   ```terminal\n   $ sudo multipath\n   ```\n4. Optional: To format your multipath device with fdisk, run the following command:\n\n   ```terminal\n   $ sudo fdisk /dev/mapper/mpatha\n   ```\n\n**Verification**\n\n- To verify that the devices have been grouped, run the following command:\n\n  ```terminal\n  $ sudo multipath -ll\n  ```\n\n  For example:\n\n  ```terminal\n  mpatha (20017380030290197) dm-1 IBM,2810XIV\n     size=512G features='1 queue_if_no_path' hwhandler='1 alua' wp=rw\n  \t-+- policy='service-time 0' prio=50 status=enabled\n   \t|- 1:0:0:6  sde 68:16  active ready running\n   \t|- 1:0:1:6  sdf 69:24  active ready running\n   \t|- 0:0:0:6  sdg  8:80  active ready running\n   \t`- 0:0:1:6  sdh 66:48  active ready running\n  ```\n\n**Additional resources**\n\n- [Install and configure the Local Storage Operator](/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume)\n- [Observing and updating the node network state and configuration](/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_ibm_z/ibmz-post-install.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,9 +94,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="post-install-configure-additional-devices-ibm-z" class="group scroll-mt-20">Configuring additional devices in an {"{"}{"{"} ibm_z_title {"}"}{"}"} or {"{"}{"{"} ibm_linuxone_title {"}"}{"}"} environment<a href="#post-install-configure-additional-devices-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>After installing OpenShift Container Platform, you can configure additional devices for your cluster in an {"{"}{"{"} ibm_z_name {"}"}{"}"} or {"{"}{"{"} ibm_linuxone_name {"}"}{"}"} environment, which is installed with z/VM.</p>
+      <h1 id="post-install-configure-additional-devices-ibm-z" class="group scroll-mt-20">Configuring additional devices in an IBM Z or IBM LinuxONE environment<a href="#post-install-configure-additional-devices-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>After installing OpenShift Container Platform, you can configure additional devices for your cluster in an IBM Z(R) or IBM(R) LinuxONE environment, which is installed with z/VM.</p>
       <p>The following devices can be configured:</p>
       <ul>
       <li>Fibre Channel Protocol (FCP) host</li>
@@ -107,22 +107,207 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>The procedures described here apply only to z/VM installations. If you have installed your cluster with {"{"}{"{"} op_system_base {"}"}{"}"} KVM on {"{"}{"{"} ibm_z_name {"}"}{"}"} or {"{"}{"{"} ibm_linuxone_name {"}"}{"}"} infrastructure, no additional configuration is needed inside the KVM guest after the devices were added to the KVM guests. However, both in z/VM and {"{"}{"{"} op_system_base {"}"}{"}"} KVM environments the next steps to configure the Local Storage Operator and Kubernetes NMState Operator need to be applied.</p>
+          <p>The procedures described here apply only to z/VM installations. If you have installed your cluster with RHEL KVM on IBM Z(R) or IBM(R) LinuxONE infrastructure, no additional configuration is needed inside the KVM guest after the devices were added to the KVM guests. However, both in z/VM and RHEL KVM environments the next steps to configure the Local Storage Operator and Kubernetes NMState Operator need to be applied.</p>
         </AlertDescription>
       </Alert>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/machine_configuration/index#machine-config-overview">Machine configuration overview</a></li></ul>
+      <h2 id="configure-additional-devices-using-mco_post-install-configure-additional-devices-ibm-z" class="group scroll-mt-20">Configuring additional devices by using the Machine Config Operator<a href="#configure-additional-devices-using-mco_post-install-configure-additional-devices-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the Machine Config Operator (MCO) to configure additional devices in an IBM Z(R) or IBM(R) LinuxONE environment. Configuring devices with the MCO is persistent but only allows specific configurations for compute nodes. MCO does not allow control plane nodes to have different configurations.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to the cluster as a user with administrative privileges.</li>
+      <li>The device must be available to the z/VM guest.</li>
+      <li>The device is already attached.</li>
+      <li>The device is not included in the <code>cio_ignore</code> list, which can be set in the kernel parameters.</li>
+      <li>
+      You have created a <code>MachineConfig</code> object file with the following YAML:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfigPool\nmetadata:\n  name: worker0\nspec:\n  machineConfigSelector:\n    matchExpressions:\n      - {key: machineconfiguration.openshift.io/role, operator: In, values: [worker,worker0]}\n  nodeSelector:\n    matchLabels:\n      node-role.kubernetes.io/worker0: \"\""} lang="yaml" />
+      </li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      To configure an FCP host adapter with N_Port Identifier Virtualization (NPIV) by adding a udev rule, complete the following steps:
+      <ol>
+      <li>
+      Take the following sample udev rule <code>441-zfcp-host-0.0.8000.rules</code>:
+      <CodeBlock code={"ACTION==\"add\", SUBSYSTEM==\"ccw\", KERNEL==\"0.0.8000\", DRIVER==\"zfcp\", GOTO=\"cfg_zfcp_host_0.0.8000\"\nACTION==\"add\", SUBSYSTEM==\"drivers\", KERNEL==\"zfcp\", TEST==\"[ccw/0.0.8000]\", GOTO=\"cfg_zfcp_host_0.0.8000\"\nGOTO=\"end_zfcp_host_0.0.8000\"\n\nLABEL=\"cfg_zfcp_host_0.0.8000\"\nATTR{[ccw/0.0.8000]online}=\"1\"\n\nLABEL=\"end_zfcp_host_0.0.8000\""} lang="terminal" />
+      </li>
+      <li>
+      Convert the rule to Base64 encoded by running the following command:
+      <CodeBlock code={"$ base64 /path/to/file/"} lang="terminal" />
+      </li>
+      <li>
+      Copy the following MCO sample profile into a YAML file:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n   labels:\n     machineconfiguration.openshift.io/role: worker0\n   name: 99-worker0-devices\nspec:\n   config:\n     ignition:\n       version: 3.2.0\n     storage:\n       files:\n       - contents:\n           source: <base64_data_uri>\n         filesystem: root\n         mode: 420\n         path: /etc/udev/rules.d/41-zfcp-host-0.0.8000.rules"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.labels.machineconfiguration.openshift.io/role</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the role you have defined in the machine config file.</p></dd>
+      <dt class="font-semibold"><code>spec.config.storage.files.contents.source</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the data URI for the Base64 encoded udev rule. The value is the Base64 encoded string that you generated in the previous step, formatted as an Ignition data URI.</p></dd>
+      <dt class="font-semibold"><code>spec.config.storage.files.path</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path where the udev rule is located.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      <li>
+      To configure an FCP LUN by adding a udev rule, complete the following steps. You can add new FCP LUNs or add additional paths to LUNs that are already configured with multipathing.
+      <ol>
+      <li>
+      Take the following sample udev rule <code>41-zfcp-lun-0.0.8000:0x500507680d760026:0x00bc000000000000.rules</code>:
+      <CodeBlock code={"ACTION==\"add\", SUBSYSTEMS==\"ccw\", KERNELS==\"0.0.8000\", GOTO=\"start_zfcp_lun_0.0.8207\"\nGOTO=\"end_zfcp_lun_0.0.8000\"\n\nLABEL=\"start_zfcp_lun_0.0.8000\"\nSUBSYSTEM==\"fc_remote_ports\", ATTR{port_name}==\"0x500507680d760026\", GOTO=\"cfg_fc_0.0.8000_0x500507680d760026\"\nGOTO=\"end_zfcp_lun_0.0.8000\"\n\nLABEL=\"cfg_fc_0.0.8000_0x500507680d760026\"\nATTR{[ccw/0.0.8000]0x500507680d760026/unit_add}=\"0x00bc000000000000\"\nGOTO=\"end_zfcp_lun_0.0.8000\"\n\nLABEL=\"end_zfcp_lun_0.0.8000\""} lang="terminal" />
+      </li>
+      <li>
+      Convert the rule to Base64 encoded by running the following command:
+      <CodeBlock code={"$ base64 /path/to/file/"} lang="terminal" />
+      </li>
+      <li>
+      Copy the following MCO sample profile into a YAML file:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n   labels:\n     machineconfiguration.openshift.io/role: worker0\n   name: 99-worker0-devices\nspec:\n   config:\n     ignition:\n       version: 3.2.0\n     storage:\n       files:\n       - contents:\n           source: <base64_data_uri>\n         filesystem: root\n         mode: 420\n         path: /etc/udev/rules.d/41-zfcp-lun-0.0.8000:0x500507680d760026:0x00bc000000000000.rules"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.labels.machineconfiguration.openshift.io/role</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the role you have defined in the machine config file.</p></dd>
+      <dt class="font-semibold"><code>spec.config.storage.files.contents.source</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the data URI for the Base64 encoded udev rule. The value is the Base64 encoded string that you generated in the previous step, formatted as an Ignition data URI.</p></dd>
+      <dt class="font-semibold"><code>spec.config.storage.files.path</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path where the udev rule is located.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      <li>
+      To configure a DASD device by adding a udev rule, complete the following steps:
+      <ol>
+      <li>
+      Take the following sample udev rule <code>41-dasd-eckd-0.0.4444.rules</code>:
+      <CodeBlock code={"ACTION==\"add\", SUBSYSTEM==\"ccw\", KERNEL==\"0.0.4444\", DRIVER==\"dasd-eckd\", GOTO=\"cfg_dasd_eckd_0.0.4444\"\nACTION==\"add\", SUBSYSTEM==\"drivers\", KERNEL==\"dasd-eckd\", TEST==\"[ccw/0.0.4444]\", GOTO=\"cfg_dasd_eckd_0.0.4444\"\nGOTO=\"end_dasd_eckd_0.0.4444\"\n\nLABEL=\"cfg_dasd_eckd_0.0.4444\"\nATTR{[ccw/0.0.4444]online}=\"1\"\n\nLABEL=\"end_dasd_eckd_0.0.4444\""} lang="terminal" />
+      </li>
+      <li>
+      Convert the rule to Base64 encoded by running the following command:
+      <CodeBlock code={"$ base64 /path/to/file/"} lang="terminal" />
+      </li>
+      <li>
+      Copy the following MCO sample profile into a YAML file:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n   labels:\n     machineconfiguration.openshift.io/role: worker0\n   name: 99-worker0-devices\nspec:\n   config:\n     ignition:\n       version: 3.2.0\n     storage:\n       files:\n       - contents:\n           source: <base64_data_uri>\n         filesystem: root\n         mode: 420\n         path: /etc/udev/rules.d/41-dasd-eckd-0.0.4444.rules"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.labels.machineconfiguration.openshift.io/role</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the role you have defined in the machine config file.</p></dd>
+      <dt class="font-semibold"><code>spec.config.storage.files.contents.source</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the data URI for the Base64 encoded udev rule. The value is the Base64 encoded string that you generated in the previous step, formatted as an Ignition data URI.</p></dd>
+      <dt class="font-semibold"><code>spec.config.storage.files.path</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path where the udev rule is located.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      <li>
+      To configure a qeth device by adding a udev rule, complete the following steps:
+      <ol>
+      <li>
+      Take the following sample udev rule <code>41-qeth-0.0.1000.rules</code>:
+      <CodeBlock code={"ACTION==\"add\", SUBSYSTEM==\"drivers\", KERNEL==\"qeth\", GOTO=\"group_qeth_0.0.1000\"\nACTION==\"add\", SUBSYSTEM==\"ccw\", KERNEL==\"0.0.1000\", DRIVER==\"qeth\", GOTO=\"group_qeth_0.0.1000\"\nACTION==\"add\", SUBSYSTEM==\"ccw\", KERNEL==\"0.0.1001\", DRIVER==\"qeth\", GOTO=\"group_qeth_0.0.1000\"\nACTION==\"add\", SUBSYSTEM==\"ccw\", KERNEL==\"0.0.1002\", DRIVER==\"qeth\", GOTO=\"group_qeth_0.0.1000\"\nACTION==\"add\", SUBSYSTEM==\"ccwgroup\", KERNEL==\"0.0.1000\", DRIVER==\"qeth\", GOTO=\"cfg_qeth_0.0.1000\"\nGOTO=\"end_qeth_0.0.1000\"\n\nLABEL=\"group_qeth_0.0.1000\"\nTEST==\"[ccwgroup/0.0.1000]\", GOTO=\"end_qeth_0.0.1000\"\nTEST!=\"[ccw/0.0.1000]\", GOTO=\"end_qeth_0.0.1000\"\nTEST!=\"[ccw/0.0.1001]\", GOTO=\"end_qeth_0.0.1000\"\nTEST!=\"[ccw/0.0.1002]\", GOTO=\"end_qeth_0.0.1000\"\nATTR{[drivers/ccwgroup:qeth]group}=\"0.0.1000,0.0.1001,0.0.1002\"\nGOTO=\"end_qeth_0.0.1000\"\n\nLABEL=\"cfg_qeth_0.0.1000\"\nATTR{[ccwgroup/0.0.1000]online}=\"1\"\n\nLABEL=\"end_qeth_0.0.1000\""} lang="terminal" />
+      </li>
+      <li>
+      Convert the rule to Base64 encoded by running the following command:
+      <CodeBlock code={"$ base64 /path/to/file/"} lang="terminal" />
+      </li>
+      <li>
+      Copy the following MCO sample profile into a YAML file:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n   labels:\n     machineconfiguration.openshift.io/role: worker0\n   name: 99-worker0-devices\nspec:\n   config:\n     ignition:\n       version: 3.2.0\n     storage:\n       files:\n       - contents:\n           source: <base64_data_uri>\n         filesystem: root\n         mode: 420\n         path: /etc/udev/rules.d/41-dasd-eckd-0.0.4444.rules"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.labels.machineconfiguration.openshift.io/role</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the role you have defined in the machine config file.</p></dd>
+      <dt class="font-semibold"><code>spec.config.storage.files.contents.source</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the data URI for the Base64 encoded udev rule. The value is the Base64 encoded string that you generated in the previous step, formatted as an Ignition data URI.</p></dd>
+      <dt class="font-semibold"><code>spec.config.storage.files.path</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the path where the udev rule is located.</p></dd>
+      </dl>
+      </li>
+      </ol>
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume">Install and configure the Local Storage Operator</a></li>
       <li><a href="/openshift-docs-markdown/networking/k8s_nmstate/k8s-nmstate-updating-node-network-config#k8s-nmstate-updating-node-network-config">Observing and updating the node network state and configuration</a></li>
       </ul>
+      <h2 id="configure-additional-devices-manually_post-install-configure-additional-devices-ibm-z" class="group scroll-mt-20">Configuring additional devices manually<a href="#configure-additional-devices-manually_post-install-configure-additional-devices-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After installation, you can manually configure additional devices on IBM Z(R) or IBM(R) LinuxONE nodes. This configuration persists across node restarts, but you must redo the steps if you replace the node.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to the cluster as a user with administrative privileges.</li>
+      <li>The device must be available to the node.</li>
+      <li>In a z/VM environment, the device must be attached to the z/VM guest.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Connect to the node via SSH by running the following command:
+      <CodeBlock code={"$ ssh <user>@<node_ip_address>"} lang="terminal" />
+      <p>You can also start a debug session to the node by running the following command:</p>
+      <CodeBlock code={"$ oc debug node/<node_name>"} lang="terminal" />
+      </li>
+      <li>
+      To enable the devices with the <code>chzdev</code> command, enter the following command:
+      <CodeBlock code={"$ sudo chzdev -e <device>"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=commands-chzdev">chzdev - Configure {"{"}{"{"} ibm_z_name {"}"}{"}"} devices ({"{"}{"{"} ibm_name {"}"}{"}"} Documentation)</a></li>
-      <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=linuxonibm/com.ibm.linux.z.ludd/ludd_c_perscfg.html">Persistent device configuration ({"{"}{"{"} ibm_name {"}"}{"}"} Documentation)</a></li>
+      <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=commands-chzdev">chzdev - Configure IBM Z(R) devices (IBM(R) Documentation)</a></li>
+      <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=linuxonibm/com.ibm.linux.z.ludd/ludd_c_perscfg.html">Persistent device configuration (IBM(R) Documentation)</a></li>
       </ul>
-      <p class="/modules/ibm-z-enable-multipathing-fcp-luns.md"></p>
+      <h2 id="ibm-z-roce-network-cards_post-install-configure-additional-devices-ibm-z" class="group scroll-mt-20">RoCE network cards<a href="#ibm-z-roce-network-cards_post-install-configure-additional-devices-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can configure RoCE (RDMA over Converged Ethernet) interfaces with the Kubernetes NMState Operator when RoCE network cards are available on a node. For example, the cards are available if they are attached in a z/VM environment or passed through in a RHEL KVM environment.</p>
+      <h2 id="enabling-multipathing-fcp-luns_post-install-configure-additional-devices-ibm-z" class="group scroll-mt-20">Enabling multipathing for FCP LUNs<a href="#enabling-multipathing-fcp-luns_post-install-configure-additional-devices-ibm-z" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After installation, you can enable multipathing for Fibre Channel Protocol (FCP) logical unit numbers (LUNs) on IBM Z(R) or IBM(R) LinuxONE nodes. This configuration persists across node restarts, but you must redo the steps if you replace the node.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>On IBM Z(R) and IBM(R) LinuxONE, you can enable multipathing only if you configured your cluster for it during installation. For more information, see "Installing RHCOS and starting the OpenShift Container Platform bootstrap process" in <em>Installing a cluster with z/VM on IBM Z(R) and IBM(R) LinuxONE</em>.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You are logged in to the cluster as a user with administrative privileges.</li>
+      <li>You have configured multiple paths to a LUN with either method explained above.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Connect to the node via SSH by running the following command:
+      <CodeBlock code={"$ ssh <user>@<node_ip_address>"} lang="terminal" />
+      <p>You can also start a debug session to the node by running the following command:</p>
+      <CodeBlock code={"$ oc debug node/<node_name>"} lang="terminal" />
+      </li>
+      <li>
+      To enable multipathing, run the following command:
+      <CodeBlock code={"$ sudo /sbin/mpathconf --enable"} lang="terminal" />
+      </li>
+      <li>
+      To start the <code>multipathd</code> daemon, run the following command:
+      <CodeBlock code={"$ sudo multipath"} lang="terminal" />
+      </li>
+      <li>
+      Optional: To format your multipath device with fdisk, run the following command:
+      <CodeBlock code={"$ sudo fdisk /dev/mapper/mpatha"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that the devices have been grouped, run the following command:
+      <CodeBlock code={"$ sudo multipath -ll"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"mpatha (20017380030290197) dm-1 IBM,2810XIV\n   size=512G features='1 queue_if_no_path' hwhandler='1 alua' wp=rw\n\t-+- policy='service-time 0' prio=50 status=enabled\n \t|- 1:0:0:6  sde 68:16  active ready running\n \t|- 1:0:1:6  sdf 69:24  active ready running\n \t|- 0:0:0:6  sdg  8:80  active ready running\n \t`- 0:0:1:6  sdh 66:48  active ready running"} lang="terminal" />
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/storage/persistent_storage_local/persistent-storage-local#persistent-storage-using-local-volume">Install and configure the Local Storage Operator</a></li>

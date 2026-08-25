@@ -15,8 +15,13 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import BlockImage from "@ui/image/Image.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"optimizing-cpu-usage","text":"Optimizing CPU usage with mount namespace encapsulation"},{"depth":2,"slug":"optimizing-cpu-usage-additional-resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"optimizing-cpu-usage","text":"Optimizing CPU usage with mount namespace encapsulation"},{"depth":2,"slug":"optimizing-cpu-usage_optimizing-cpu-usage","text":"Encapsulating mount namespaces"},{"depth":2,"slug":"enabling-encapsulation_optimizing-cpu-usage","text":"Configuring mount namespace encapsulation"},{"depth":2,"slug":"supporting-encapsulation_optimizing-cpu-usage","text":"Inspecting encapsulated namespaces"},{"depth":2,"slug":"running-services-with-encapsulation_optimizing-cpu-usage","text":"Running additional services in the encapsulated namespace"},{"depth":2,"slug":"optimizing-cpu-usage-additional-resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-cpu-usage";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +44,7 @@ const pageCategory = ["scalability_and_performance","scalability_and_performance
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Optimizing CPU usage with mount namespace encapsulation {#optimizing-cpu-usage}\n\nYou can optimize CPU usage in OpenShift Container Platform clusters by using mount namespace encapsulation to provide a private namespace for kubelet and CRI-O processes. This reduces the cluster CPU resources used by systemd with no difference in functionality.\n\n## Additional resources {#optimizing-cpu-usage-additional-resources}\n\n- [What are namespaces](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/setting-limits-for-applications_monitoring-and-managing-system-status-and-performance#what-namespaces-are_setting-limits-for-applications)\n- [Manage containers in namespaces by using nsenter](https://www.redhat.com/sysadmin/container-namespaces-nsenter)\n- [MachineConfig](/openshift-docs-markdown/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-cpu-usage.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Optimizing CPU usage with mount namespace encapsulation {#optimizing-cpu-usage}\n\nYou can optimize CPU usage in OpenShift Container Platform clusters by using mount namespace encapsulation to provide a private namespace for kubelet and CRI-O processes. This reduces the cluster CPU resources used by systemd with no difference in functionality.\n\n> [!IMPORTANT]\n> Mount namespace encapsulation is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Encapsulating mount namespaces {#optimizing-cpu-usage_optimizing-cpu-usage}\n\nYou can encapsulate mount namespaces to isolate mount points so that processes in different namespaces cannot view each others' files. Encapsulation is the process of moving Kubernetes mount namespaces to an alternative location where they do not get constantly scanned by the host operating system.\n\nThe host operating system uses systemd to constantly scan all mount namespaces: both the standard Linux mounts and the numerous mounts that Kubernetes uses to operate. The current implementation of kubelet and CRI-O both use the top-level namespace for all container runtime and kubelet mount points. However, encapsulating these container-specific mount points in a private namespace reduces systemd overhead with no difference in functionality. Using a separate mount namespace for both CRI-O and kubelet can encapsulate container-specific mounts from any systemd or other host operating system interaction.\n\nThis ability to potentially achieve major CPU optimization is now available to all OpenShift Container Platform administrators. Encapsulation can also improve security by storing Kubernetes-specific mount points in a location safe from inspection by unprivileged users.\n\nThe following diagrams illustrate a Kubernetes installation before and after encapsulation. Both scenarios show example containers which have mount propagation settings of bidirectional, host-to-container, and none.\n\n![Before encapsulation](/openshift-docs-markdown/_assets/images/before-k8s-mount-propagation.png)\n\nThe diagram shows systemd, host operating system processes, kubelet, and the container runtime sharing a single mount namespace.\n\n- systemd, host operating system processes, kubelet, and the container runtime each have access to and visibility of all mount points.\n- Container 1, configured with bidirectional mount propagation, can access systemd and host mounts, kubelet and CRI-O mounts. A mount originating in Container 1, such as `/run/a` is visible to systemd, host operating system processes, kubelet, container runtime, and other containers with host-to-container or bidirectional mount propagation configured (as in Container 2).\n- Container 2, configured with host-to-container mount propagation, can access systemd and host mounts, kubelet and CRI-O mounts. A mount originating in Container 2, such as `/run/b`, is not visible to any other context.\n- Container 3, configured with no mount propagation, has no visibility of external mount points. A mount originating in Container 3, such as `/run/c`, is not visible to any other context.\n\nThe following diagram illustrates the system state after encapsulation.\n\n![After encapsulation](/openshift-docs-markdown/_assets/images/after-k8s-mount-propagation.png)\n\n- The main systemd process is no longer devoted to unnecessary scanning of Kubernetes-specific mount points. It only monitors systemd-specific and host mount points.\n- The host operating system processes can access only the systemd and host mount points.\n- Using a separate mount namespace for both CRI-O and kubelet completely separates all container-specific mounts away from any systemd or other host operating system interaction whatsoever.\n- The behavior of Container 1 is unchanged, except a mount it creates such as `/run/a` is no longer visible to systemd or host operating system processes. It is still visible to kubelet, CRI-O, and other containers with host-to-container or bidirectional mount propagation configured (like Container 2).\n- The behavior of Container 2 and Container 3 is unchanged.\n\n## Configuring mount namespace encapsulation {#enabling-encapsulation_optimizing-cpu-usage}\n\nYou can configure mount namespace encapsulation so that a cluster runs with less resource overhead.\n\n> [!NOTE]\n> Mount namespace encapsulation is a Technology Preview feature and the feature is disabled by default. To use the feature, you must enable the feature manually.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have logged in as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Create a file called `mount_namespace_config.yaml` with the following YAML:\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: master\n     name: 99-kubens-master\n   spec:\n     config:\n       ignition:\n         version: 3.2.0\n       systemd:\n         units:\n         - enabled: true\n           name: kubens.service\n   ---\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: worker\n     name: 99-kubens-worker\n   spec:\n     config:\n       ignition:\n         version: 3.2.0\n       systemd:\n         units:\n         - enabled: true\n           name: kubens.service\n   ```\n2. Apply the mount namespace `MachineConfig` CR by running the following command:\n\n   ```terminal\n   $ oc apply -f mount_namespace_config.yaml\n   ```\n\n   ```terminal {title=\"Example output\"}\n   machineconfig.machineconfiguration.openshift.io/99-kubens-master created\n   machineconfig.machineconfiguration.openshift.io/99-kubens-worker created\n   ```\n3. The `MachineConfig` CR can take up to thirty minutes to finish being applied in the cluster. You can check the status of the `MachineConfig` CR by running the following command:\n\n   ```terminal\n   $ oc get mcp\n   ```\n\n   ```terminal {title=\"Example output\"}\n   NAME     CONFIG                                             UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\n   master   rendered-master-03d4bc4befb0f4ed3566a2c8f7636751   False     True       False      3              0                   0                     0                      45m\n   worker   rendered-worker-10577f6ab0117ed1825f8af2ac687ddf   False     True       False      3              1                   1\n   ```\n4. Wait for the `MachineConfig` CR to be applied successfully across all control plane and worker nodes after running the following command:\n\n   ```terminal\n   $ oc wait --for=condition=Updated mcp --all --timeout=30m\n   ```\n\n   ```terminal {title=\"Example output\"}\n   machineconfigpool.machineconfiguration.openshift.io/master condition met\n   machineconfigpool.machineconfiguration.openshift.io/worker condition met\n   ```\n\n**Verification**\n\n1. Open a debug shell to the cluster host:\n\n   ```terminal\n   $ oc debug node/<node_name>\n   ```\n2. Open a `chroot` session:\n\n   ```terminal\n   sh-4.4# chroot /host\n   ```\n3. Check the systemd mount namespace:\n\n   ```terminal\n   sh-4.4# readlink /proc/1/ns/mnt\n   ```\n\n   ```terminal {title=\"Example output\"}\n   mnt:[4026531953]\n   ```\n4. Check kubelet mount namespace:\n\n   ```terminal\n   sh-4.4# readlink /proc/$(pgrep kubelet)/ns/mnt\n   ```\n\n   ```terminal {title=\"Example output\"}\n   mnt:[4026531840]\n   ```\n5. Check the CRI-O mount namespace:\n\n   ```terminal\n   sh-4.4# readlink /proc/$(pgrep crio)/ns/mnt\n   ```\n\n   ```terminal {title=\"Example output\"}\n   mnt:[4026531840]\n   ```\n\n   These commands return the mount namespaces associated with systemd, kubelet, and the container runtime. In OpenShift Container Platform, the container runtime is CRI-O.\n\n   Encapsulation is in effect if systemd is in a different mount namespace from kubelet and CRI-O as in the previous output example. Encapsulation is not in effect if all three processes are in the same mount namespace.\n\n## Inspecting encapsulated namespaces {#supporting-encapsulation_optimizing-cpu-usage}\n\nYou can inspect Kubernetes-specific mount points in the cluster host operating system for debugging or auditing purposes by using the `kubensenter` script that is available in Red Hat Enterprise Linux CoreOS (RHCOS).\n\nSSH shell sessions to the cluster host are in the default namespace. To inspect Kubernetes-specific mount points in an SSH shell prompt, you need to run the `kubensenter` script as root. The `kubensenter` script is aware of the state of the mount encapsulation, and the script is safe to run even if encapsulation is not enabled.\n\n> [!NOTE]\n> `oc debug` remote shell sessions start inside the Kubernetes namespace by default. You do not need to run `kubensenter` to inspect mount points when you use `oc debug`.\n\nIf the encapsulation feature is not enabled, the `kubensenter findmnt` and `findmnt` commands return the same output, regardless of whether they are run in an `oc debug` session or in an SSH shell prompt.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You have logged in as a user with `cluster-admin` privileges.\n- You have configured SSH access to the cluster host.\n\n**Procedure**\n\n1. Open a remote SSH shell to the cluster host. For example:\n\n   ```terminal\n   $ ssh core@<node_name>\n   ```\n2. Run commands using the provided `kubensenter` script as the root user. To run a single command inside the Kubernetes namespace, provide the command and any arguments to the `kubensenter` script. For example, to run the `findmnt` command inside the Kubernetes namespace, run the following command:\n\n   ```terminal\n   [core@control-plane-1 ~]$ sudo kubensenter findmnt\n   ```\n\n   ```terminal {title=\"Example output\"}\n   kubensenter: Autodetect: kubens.service namespace found at /run/kubens/mnt\n   TARGET                                SOURCE                 FSTYPE     OPTIONS\n   /                                     /dev/sda4[/ostree/deploy/rhcos/deploy/32074f0e8e5ec453e56f5a8a7bc9347eaa4172349ceab9c22b709d9d71a3f4b0.0]\n   |                                                            xfs        rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,prjquota\n                                         shm                    tmpfs\n   ...\n   ```\n3. To start a new interactive shell inside the Kubernetes namespace, run the `kubensenter` script without any arguments:\n\n   ```terminal\n   [core@control-plane-1 ~]$ sudo kubensenter\n   ```\n\n   ```terminal {title=\"Example output\"}\n   kubensenter: Autodetect: kubens.service namespace found at /run/kubens/mnt\n   ```\n\n## Running additional services in the encapsulated namespace {#running-services-with-encapsulation_optimizing-cpu-usage}\n\nYou can adapt any existing tools by using the `kubensenter` script that is provided with OpenShift Container Platform to execute an additional command inside the Kubernetes mount point.\n\nAny monitoring tool that relies on the ability to run in the host operating system and have visibility of mount points created by kubelet, CRI-O, or containers themselves, must enter the container mount namespace to see these mount points.\n\nThe `kubensenter` script is aware of the state of the mount encapsulation feature status, and is safe to run even if encapsulation is not enabled. In that case the script executes the provided command in the default mount namespace.\n\nFor example, if a systemd service needs to run inside the new Kubernetes mount namespace, edit the service file and use the `ExecStart=` command line with `kubensenter`.\n\n```terminal\n[Unit]\nDescription=Example service\n[Service]\nExecStart=/usr/bin/kubensenter /path/to/original/command arg1 arg2\n```\n\n## Additional resources {#optimizing-cpu-usage-additional-resources}\n\n- [What are namespaces](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/setting-limits-for-applications_monitoring-and-managing-system-status-and-performance#what-namespaces-are_setting-limits-for-applications)\n- [Manage containers in namespaces by using nsenter](https://www.redhat.com/sysadmin/container-namespaces-nsenter)\n- [MachineConfig](/openshift-docs-markdown/rest_api/machine_apis/machineconfig-machineconfiguration-openshift-io-v1)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/optimization/optimizing-cpu-usage.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +96,138 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="optimizing-cpu-usage" class="group scroll-mt-20">Optimizing CPU usage with mount namespace encapsulation<a href="#optimizing-cpu-usage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/snippets/technology-preview.md">You can optimize CPU usage in OpenShift Container Platform clusters by using mount namespace encapsulation to provide a private namespace for kubelet and CRI-O processes. This reduces the cluster CPU resources used by systemd with no difference in functionality.</p>
-      <p class="/modules/optimizing-by-encapsulation.md"></p>
-      <p class="/modules/enabling-encapsulation.md"></p>
-      <p class="/modules/supporting-encapsulation.md"></p>
-      <p class="/modules/running-services-with-encapsulation.md"></p>
+      <p>You can optimize CPU usage in OpenShift Container Platform clusters by using mount namespace encapsulation to provide a private namespace for kubelet and CRI-O processes. This reduces the cluster CPU resources used by systemd with no difference in functionality.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Mount namespace encapsulation is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="optimizing-cpu-usage_optimizing-cpu-usage" class="group scroll-mt-20">Encapsulating mount namespaces<a href="#optimizing-cpu-usage_optimizing-cpu-usage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can encapsulate mount namespaces to isolate mount points so that processes in different namespaces cannot view each others' files. Encapsulation is the process of moving Kubernetes mount namespaces to an alternative location where they do not get constantly scanned by the host operating system.</p>
+      <p>The host operating system uses systemd to constantly scan all mount namespaces: both the standard Linux mounts and the numerous mounts that Kubernetes uses to operate. The current implementation of kubelet and CRI-O both use the top-level namespace for all container runtime and kubelet mount points. However, encapsulating these container-specific mount points in a private namespace reduces systemd overhead with no difference in functionality. Using a separate mount namespace for both CRI-O and kubelet can encapsulate container-specific mounts from any systemd or other host operating system interaction.</p>
+      <p>This ability to potentially achieve major CPU optimization is now available to all OpenShift Container Platform administrators. Encapsulation can also improve security by storing Kubernetes-specific mount points in a location safe from inspection by unprivileged users.</p>
+      <p>The following diagrams illustrate a Kubernetes installation before and after encapsulation. Both scenarios show example containers which have mount propagation settings of bidirectional, host-to-container, and none.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/before-k8s-mount-propagation.png" alt="Before encapsulation" />
+      <p>The diagram shows systemd, host operating system processes, kubelet, and the container runtime sharing a single mount namespace.</p>
+      <ul>
+      <li>systemd, host operating system processes, kubelet, and the container runtime each have access to and visibility of all mount points.</li>
+      <li>Container 1, configured with bidirectional mount propagation, can access systemd and host mounts, kubelet and CRI-O mounts. A mount originating in Container 1, such as <code>/run/a</code> is visible to systemd, host operating system processes, kubelet, container runtime, and other containers with host-to-container or bidirectional mount propagation configured (as in Container 2).</li>
+      <li>Container 2, configured with host-to-container mount propagation, can access systemd and host mounts, kubelet and CRI-O mounts. A mount originating in Container 2, such as <code>/run/b</code>, is not visible to any other context.</li>
+      <li>Container 3, configured with no mount propagation, has no visibility of external mount points. A mount originating in Container 3, such as <code>/run/c</code>, is not visible to any other context.</li>
+      </ul>
+      <p>The following diagram illustrates the system state after encapsulation.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/after-k8s-mount-propagation.png" alt="After encapsulation" />
+      <ul>
+      <li>The main systemd process is no longer devoted to unnecessary scanning of Kubernetes-specific mount points. It only monitors systemd-specific and host mount points.</li>
+      <li>The host operating system processes can access only the systemd and host mount points.</li>
+      <li>Using a separate mount namespace for both CRI-O and kubelet completely separates all container-specific mounts away from any systemd or other host operating system interaction whatsoever.</li>
+      <li>The behavior of Container 1 is unchanged, except a mount it creates such as <code>/run/a</code> is no longer visible to systemd or host operating system processes. It is still visible to kubelet, CRI-O, and other containers with host-to-container or bidirectional mount propagation configured (like Container 2).</li>
+      <li>The behavior of Container 2 and Container 3 is unchanged.</li>
+      </ul>
+      <h2 id="enabling-encapsulation_optimizing-cpu-usage" class="group scroll-mt-20">Configuring mount namespace encapsulation<a href="#enabling-encapsulation_optimizing-cpu-usage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure mount namespace encapsulation so that a cluster runs with less resource overhead.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Mount namespace encapsulation is a Technology Preview feature and the feature is disabled by default. To use the feature, you must enable the feature manually.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have logged in as a user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a file called <code>mount_namespace_config.yaml</code> with the following YAML:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: master\n  name: 99-kubens-master\nspec:\n  config:\n    ignition:\n      version: 3.2.0\n    systemd:\n      units:\n      - enabled: true\n        name: kubens.service\n---\napiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: worker\n  name: 99-kubens-worker\nspec:\n  config:\n    ignition:\n      version: 3.2.0\n    systemd:\n      units:\n      - enabled: true\n        name: kubens.service"} lang="yaml" />
+      </li>
+      <li>
+      Apply the mount namespace <code>MachineConfig</code> CR by running the following command:
+      <CodeBlock code={"$ oc apply -f mount_namespace_config.yaml"} lang="terminal" />
+      <CodeBlock code={"machineconfig.machineconfiguration.openshift.io/99-kubens-master created\nmachineconfig.machineconfiguration.openshift.io/99-kubens-worker created"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      The <code>MachineConfig</code> CR can take up to thirty minutes to finish being applied in the cluster. You can check the status of the <code>MachineConfig</code> CR by running the following command:
+      <CodeBlock code={"$ oc get mcp"} lang="terminal" />
+      <CodeBlock code={"NAME     CONFIG                                             UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE\nmaster   rendered-master-03d4bc4befb0f4ed3566a2c8f7636751   False     True       False      3              0                   0                     0                      45m\nworker   rendered-worker-10577f6ab0117ed1825f8af2ac687ddf   False     True       False      3              1                   1"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Wait for the <code>MachineConfig</code> CR to be applied successfully across all control plane and worker nodes after running the following command:
+      <CodeBlock code={"$ oc wait --for=condition=Updated mcp --all --timeout=30m"} lang="terminal" />
+      <CodeBlock code={"machineconfigpool.machineconfiguration.openshift.io/master condition met\nmachineconfigpool.machineconfiguration.openshift.io/worker condition met"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ol>
+      <li>
+      Open a debug shell to the cluster host:
+      <CodeBlock code={"$ oc debug node/<node_name>"} lang="terminal" />
+      </li>
+      <li>
+      Open a <code>chroot</code> session:
+      <CodeBlock code={"sh-4.4# chroot /host"} lang="terminal" />
+      </li>
+      <li>
+      Check the systemd mount namespace:
+      <CodeBlock code={"sh-4.4# readlink /proc/1/ns/mnt"} lang="terminal" />
+      <CodeBlock code={"mnt:[4026531953]"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check kubelet mount namespace:
+      <CodeBlock code={"sh-4.4# readlink /proc/$(pgrep kubelet)/ns/mnt"} lang="terminal" />
+      <CodeBlock code={"mnt:[4026531840]"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check the CRI-O mount namespace:
+      <CodeBlock code={"sh-4.4# readlink /proc/$(pgrep crio)/ns/mnt"} lang="terminal" />
+      <CodeBlock code={"mnt:[4026531840]"} lang="terminal" title="Example output" />
+      <p>These commands return the mount namespaces associated with systemd, kubelet, and the container runtime. In OpenShift Container Platform, the container runtime is CRI-O.</p>
+      <p>Encapsulation is in effect if systemd is in a different mount namespace from kubelet and CRI-O as in the previous output example. Encapsulation is not in effect if all three processes are in the same mount namespace.</p>
+      </li>
+      </ol>
+      <h2 id="supporting-encapsulation_optimizing-cpu-usage" class="group scroll-mt-20">Inspecting encapsulated namespaces<a href="#supporting-encapsulation_optimizing-cpu-usage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can inspect Kubernetes-specific mount points in the cluster host operating system for debugging or auditing purposes by using the <code>kubensenter</code> script that is available in Red Hat Enterprise Linux CoreOS (RHCOS).</p>
+      <p>SSH shell sessions to the cluster host are in the default namespace. To inspect Kubernetes-specific mount points in an SSH shell prompt, you need to run the <code>kubensenter</code> script as root. The <code>kubensenter</code> script is aware of the state of the mount encapsulation, and the script is safe to run even if encapsulation is not enabled.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p><code>oc debug</code> remote shell sessions start inside the Kubernetes namespace by default. You do not need to run <code>kubensenter</code> to inspect mount points when you use <code>oc debug</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If the encapsulation feature is not enabled, the <code>kubensenter findmnt</code> and <code>findmnt</code> commands return the same output, regardless of whether they are run in an <code>oc debug</code> session or in an SSH shell prompt.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You have logged in as a user with <code>cluster-admin</code> privileges.</li>
+      <li>You have configured SSH access to the cluster host.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Open a remote SSH shell to the cluster host. For example:
+      <CodeBlock code={"$ ssh core@<node_name>"} lang="terminal" />
+      </li>
+      <li>
+      Run commands using the provided <code>kubensenter</code> script as the root user. To run a single command inside the Kubernetes namespace, provide the command and any arguments to the <code>kubensenter</code> script. For example, to run the <code>findmnt</code> command inside the Kubernetes namespace, run the following command:
+      <CodeBlock code={"[core@control-plane-1 ~]$ sudo kubensenter findmnt"} lang="terminal" />
+      <CodeBlock code={"kubensenter: Autodetect: kubens.service namespace found at /run/kubens/mnt\nTARGET                                SOURCE                 FSTYPE     OPTIONS\n/                                     /dev/sda4[/ostree/deploy/rhcos/deploy/32074f0e8e5ec453e56f5a8a7bc9347eaa4172349ceab9c22b709d9d71a3f4b0.0]\n|                                                            xfs        rw,relatime,seclabel,attr2,inode64,logbufs=8,logbsize=32k,prjquota\n                                      shm                    tmpfs\n..."} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      To start a new interactive shell inside the Kubernetes namespace, run the <code>kubensenter</code> script without any arguments:
+      <CodeBlock code={"[core@control-plane-1 ~]$ sudo kubensenter"} lang="terminal" />
+      <CodeBlock code={"kubensenter: Autodetect: kubens.service namespace found at /run/kubens/mnt"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="running-services-with-encapsulation_optimizing-cpu-usage" class="group scroll-mt-20">Running additional services in the encapsulated namespace<a href="#running-services-with-encapsulation_optimizing-cpu-usage" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can adapt any existing tools by using the <code>kubensenter</code> script that is provided with OpenShift Container Platform to execute an additional command inside the Kubernetes mount point.</p>
+      <p>Any monitoring tool that relies on the ability to run in the host operating system and have visibility of mount points created by kubelet, CRI-O, or containers themselves, must enter the container mount namespace to see these mount points.</p>
+      <p>The <code>kubensenter</code> script is aware of the state of the mount encapsulation feature status, and is safe to run even if encapsulation is not enabled. In that case the script executes the provided command in the default mount namespace.</p>
+      <p>For example, if a systemd service needs to run inside the new Kubernetes mount namespace, edit the service file and use the <code>ExecStart=</code> command line with <code>kubensenter</code>.</p>
+      <CodeBlock code={"[Unit]\nDescription=Example service\n[Service]\nExecStart=/usr/bin/kubensenter /path/to/original/command arg1 arg2"} lang="terminal" />
       <h2 id="optimizing-cpu-usage-additional-resources" class="group scroll-mt-20">Additional resources<a href="#optimizing-cpu-usage-additional-resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/9/html/monitoring_and_managing_system_status_and_performance/setting-limits-for-applications_monitoring-and-managing-system-status-and-performance#what-namespaces-are_setting-limits-for-applications">What are namespaces</a></li>

@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"oadp-cli-tool","text":"Troubleshoot backup and restore with the OADP CLI"}];
+const headings = [{"depth":1,"slug":"oadp-cli-tool","text":"Troubleshoot backup and restore with the OADP CLI"},{"depth":2,"slug":"oadp-cli-installing_oadp-cli-tool","text":"Install the OADP CLI plugin"},{"depth":3,"slug":"velero-oadp-version-relationship_oadp-cli-tool","text":"OADP-Velero-OpenShift Container Platform version relationship"},{"depth":2,"slug":"oadp-debugging-oc-cli_oadp-cli-tool","text":"Debugging Velero resources with the OpenShift CLI tool"},{"depth":2,"slug":"migration-debugging-velero-resources_oadp-cli-tool","text":"Debugging backups and restores using the OADP CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +36,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Troubleshoot backup and restore with the OADP CLI";
-const description = "Use the {{ oadp_short }} CLI plugin for all backup and restore operations, including viewing logs and descriptions. You do not need to download the velero…" || undefined;
+const description = "Use the OADP CLI plugin for all backup and restore operations, including viewing logs and descriptions. You do not need to download the velero CLI tool to…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +49,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshoot backup and restore with the OADP CLI {#oadp-cli-tool}\n\nUse the {{ oadp_short }} CLI plugin for all backup and restore operations, including viewing logs and descriptions. You do not need to download the `velero` CLI tool to debug `Backup` and `Restore` custom resources (CRs) or troubleshoot failed operations.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Troubleshoot backup and restore with the OADP CLI {#oadp-cli-tool}\n\nUse the OADP CLI plugin for all backup and restore operations, including viewing logs and descriptions. You do not need to download the `velero` CLI tool to debug `Backup` and `Restore` custom resources (CRs) or troubleshoot failed operations.\n\n## Install the OADP CLI plugin {#oadp-cli-installing_oadp-cli-tool}\n\nThe OADP command-line interface (CLI) plugin is available from the **Command-line tools** page in the OpenShift Container Platform web console when the OADP Operator is installed.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform cluster with the OADP Operator installed.\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform web console as a user with access to the cluster.\n2. Click the **?** icon in the toolbar and select **Command-line tools**.\n3. Download the `oc-oadp` binary for your operating system and architecture.\n4. Extract the archive and place the `oc-oadp` binary in a directory on your `PATH`.\n5. Verify the installation:\n\n   ```terminal\n   $ oc oadp version\n   ```\n\n### OADP-Velero-OpenShift Container Platform version relationship {#velero-oadp-version-relationship_oadp-cli-tool}\n\nReview the version relationship between OADP, Velero, and OpenShift Container Platform to decide compatible version combinations. This helps you select the appropriate OADP version for your cluster environment.\n\n| OADP version | Velero version | OpenShift Container Platform version |\n| --- | --- | --- |\n| 1.3.0 | 1.12 | 4.12-4.15 |\n| 1.3.1 | 1.12 | 4.12-4.15 |\n| 1.3.2 | 1.12 | 4.12-4.15 |\n| 1.3.3 | 1.12 | 4.12-4.15 |\n| 1.3.4 | 1.12 | 4.12-4.15 |\n| 1.3.5 | 1.12 | 4.12-4.15 |\n| 1.4.0 | 1.14 | 4.14-4.18 |\n| 1.4.1 | 1.14 | 4.14-4.18 |\n| 1.4.2 | 1.14 | 4.14-4.18 |\n| 1.4.3 | 1.14 | 4.14-4.18 |\n| 1.5.0 | 1.16 | 4.19 |\n\n- [Velero 1.12 documentation](https://velero.io/docs/v1.12/)\n- [Velero 1.14 documentation](https://velero.io/docs/v1.14/)\n- [Velero 1.16 documentation](https://velero.io/docs/v1.16/)\n\n## Debugging Velero resources with the OpenShift CLI tool {#oadp-debugging-oc-cli_oadp-cli-tool}\n\nDebug a failed backup or restore by checking Velero custom resources (CRs) and the `Velero` pod log with the OpenShift CLI tool.\n\n**Procedure**\n\n- Retrieve a summary of warnings and errors associated with a `Backup` or `Restore` CR by using the following `oc describe` command:\n\n  ```terminal\n  $ oc describe <velero_cr> <cr_name>\n  ```\n- Retrieve the `Velero` pod logs by using the following `oc logs` command:\n\n  ```terminal\n  $ oc logs pod/<velero>\n  ```\n- Specify the Velero log level in the `DataProtectionApplication` resource as shown in the following example.\n\n  > [!NOTE]\n  > This option is available starting from OADP 1.0.3.\n\n  ```yaml\n  apiVersion: oadp.openshift.io/v1alpha1\n  kind: DataProtectionApplication\n  metadata:\n    name: velero-sample\n  spec:\n    configuration:\n      velero:\n        logLevel: warning\n  ```\n\n  The following `logLevel` values are available:\n\n  - `trace`\n  - `debug`\n  - `info`\n  - `warning`\n  - `error`\n  - `fatal`\n  - `panic`\n\n    Use the `info` `logLevel` value for most logs.\n\n## Debugging backups and restores using the OADP CLI {#migration-debugging-velero-resources_oadp-cli-tool}\n\nUse the OADP CLI plugin to retrieve logs and descriptions of backup and restore custom resources (CRs). Use the following information to interpret the output.\n\nTo retrieve backup and restore information, use the following OADP CLI plugin commands:\n\n- `oc oadp backup describe <backup_name> --details`\n- `oc oadp backup logs <backup_name>`\n- `oc oadp restore describe <restore_name> --details`\n- `oc oadp restore logs <restore_name>`\n\nThe following types of errors and warnings appear in describe output:\n\n- `Velero`: Messages related to the operation of Velero itself, for example, connecting to the cloud or reading a backup file.\n- `Cluster`: Messages related to backing up or restoring cluster-scoped resources.\n- `Namespaces`: Messages related to backing up or restoring resources stored in namespaces.\n\nOne or more errors in one of these categories results in a `Restore` operation receiving the status of `PartiallyFailed` and not `Completed`. Warnings do not lead to a change in the completion status.\n\nConsider the following points when you encounter restore errors:\n\n- For resource-specific errors (`Cluster` and `Namespaces`), the `restore describe --details` output includes a resource list of all resources that Velero attempted to restore. For any resource that has such an error, check whether the resource exists in the cluster.\n- If there are `Velero` errors but no resource-specific errors, it is possible that the restore completed without problems restoring workloads. In this case, carefully validate post-restore applications.\n\n  For example, if the output contains `PodVolumeRestore` or node agent-related errors, check the status of `PodVolumeRestores` and `DataDownloads`. If none of these are failed or still running, volume data might have been fully restored.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/troubleshooting/oadp-cli-tool.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +101,158 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-cli-tool" class="group scroll-mt-20">Troubleshoot backup and restore with the OADP CLI<a href="#oadp-cli-tool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/attributes-openshift-dedicated.md /_attributes/common-attributes.md"></p>
-      <p>Use the {"{"}{"{"} oadp_short {"}"}{"}"} CLI plugin for all backup and restore operations, including viewing logs and descriptions. You do not need to download the <code>velero</code> CLI tool to debug <code>Backup</code> and <code>Restore</code> custom resources (CRs) or troubleshoot failed operations.</p>
-      <p class="/modules/oadp-cli-installing.md"></p>
-      <p class="/modules/velero-oadp-version-relationship.md"></p>
-      <p class="/modules/oadp-debugging-oc-cli.md"></p>
-      <p class="/modules/migration-debugging-velero-resources.md"></p>
+      <p>Use the OADP CLI plugin for all backup and restore operations, including viewing logs and descriptions. You do not need to download the <code>velero</code> CLI tool to debug <code>Backup</code> and <code>Restore</code> custom resources (CRs) or troubleshoot failed operations.</p>
+      <h2 id="oadp-cli-installing_oadp-cli-tool" class="group scroll-mt-20">Install the OADP CLI plugin<a href="#oadp-cli-installing_oadp-cli-tool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The OADP command-line interface (CLI) plugin is available from the <strong>Command-line tools</strong> page in the OpenShift Container Platform web console when the OADP Operator is installed.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to an OpenShift Container Platform cluster with the OADP Operator installed.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform web console as a user with access to the cluster.</li>
+      <li>Click the <strong>?</strong> icon in the toolbar and select <strong>Command-line tools</strong>.</li>
+      <li>Download the <code>oc-oadp</code> binary for your operating system and architecture.</li>
+      <li>Extract the archive and place the <code>oc-oadp</code> binary in a directory on your <code>PATH</code>.</li>
+      <li>
+      Verify the installation:
+      <CodeBlock code={"$ oc oadp version"} lang="terminal" />
+      </li>
+      </ol>
+      <h3 id="velero-oadp-version-relationship_oadp-cli-tool" class="group scroll-mt-20">OADP-Velero-OpenShift Container Platform version relationship<a href="#velero-oadp-version-relationship_oadp-cli-tool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Review the version relationship between OADP, Velero, and OpenShift Container Platform to decide compatible version combinations. This helps you select the appropriate OADP version for your cluster environment.</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>OADP version</TableHead>
+      <TableHead>Velero version</TableHead>
+      <TableHead>OpenShift Container Platform version</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>1.3.0</TableCell>
+      <TableCell>1.12</TableCell>
+      <TableCell>4.12-4.15</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>1.3.1</TableCell>
+      <TableCell>1.12</TableCell>
+      <TableCell>4.12-4.15</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>1.3.2</TableCell>
+      <TableCell>1.12</TableCell>
+      <TableCell>4.12-4.15</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>1.3.3</TableCell>
+      <TableCell>1.12</TableCell>
+      <TableCell>4.12-4.15</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>1.3.4</TableCell>
+      <TableCell>1.12</TableCell>
+      <TableCell>4.12-4.15</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>1.3.5</TableCell>
+      <TableCell>1.12</TableCell>
+      <TableCell>4.12-4.15</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>1.4.0</TableCell>
+      <TableCell>1.14</TableCell>
+      <TableCell>4.14-4.18</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>1.4.1</TableCell>
+      <TableCell>1.14</TableCell>
+      <TableCell>4.14-4.18</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>1.4.2</TableCell>
+      <TableCell>1.14</TableCell>
+      <TableCell>4.14-4.18</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>1.4.3</TableCell>
+      <TableCell>1.14</TableCell>
+      <TableCell>4.14-4.18</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>1.5.0</TableCell>
+      <TableCell>1.16</TableCell>
+      <TableCell>4.19</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <section class="related-resources _additional-resources">
+      <p class="related-resources-title">Additional resources</p>
+      <ul>
+      <li><a href="https://velero.io/docs/v1.12/">Velero 1.12 documentation</a></li>
+      <li><a href="https://velero.io/docs/v1.14/">Velero 1.14 documentation</a></li>
+      <li><a href="https://velero.io/docs/v1.16/">Velero 1.16 documentation</a></li>
+      </ul>
+      </section>
+      <h2 id="oadp-debugging-oc-cli_oadp-cli-tool" class="group scroll-mt-20">Debugging Velero resources with the OpenShift CLI tool<a href="#oadp-debugging-oc-cli_oadp-cli-tool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Debug a failed backup or restore by checking Velero custom resources (CRs) and the <code>Velero</code> pod log with the OpenShift CLI tool.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Retrieve a summary of warnings and errors associated with a <code>Backup</code> or <code>Restore</code> CR by using the following <code>oc describe</code> command:
+      <CodeBlock code={"$ oc describe <velero_cr> <cr_name>"} lang="terminal" />
+      </li>
+      <li>
+      Retrieve the <code>Velero</code> pod logs by using the following <code>oc logs</code> command:
+      <CodeBlock code={"$ oc logs pod/<velero>"} lang="terminal" />
+      </li>
+      <li>
+      Specify the Velero log level in the <code>DataProtectionApplication</code> resource as shown in the following example.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This option is available starting from OADP 1.0.3.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: oadp.openshift.io/v1alpha1\nkind: DataProtectionApplication\nmetadata:\n  name: velero-sample\nspec:\n  configuration:\n    velero:\n      logLevel: warning"} lang="yaml" />
+      <p>The following <code>logLevel</code> values are available:</p>
+      <ul>
+      <li><code>trace</code></li>
+      <li><code>debug</code></li>
+      <li><code>info</code></li>
+      <li><code>warning</code></li>
+      <li><code>error</code></li>
+      <li><code>fatal</code></li>
+      <li>
+      <code>panic</code>
+      <p>Use the <code>info</code> <code>logLevel</code> value for most logs.</p>
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="migration-debugging-velero-resources_oadp-cli-tool" class="group scroll-mt-20">Debugging backups and restores using the OADP CLI<a href="#migration-debugging-velero-resources_oadp-cli-tool" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use the OADP CLI plugin to retrieve logs and descriptions of backup and restore custom resources (CRs). Use the following information to interpret the output.</p>
+      <p>To retrieve backup and restore information, use the following OADP CLI plugin commands:</p>
+      <ul>
+      <li><code>oc oadp backup describe &lt;backup_name&gt; --details</code></li>
+      <li><code>oc oadp backup logs &lt;backup_name&gt;</code></li>
+      <li><code>oc oadp restore describe &lt;restore_name&gt; --details</code></li>
+      <li><code>oc oadp restore logs &lt;restore_name&gt;</code></li>
+      </ul>
+      <p>The following types of errors and warnings appear in describe output:</p>
+      <ul>
+      <li><code>Velero</code>: Messages related to the operation of Velero itself, for example, connecting to the cloud or reading a backup file.</li>
+      <li><code>Cluster</code>: Messages related to backing up or restoring cluster-scoped resources.</li>
+      <li><code>Namespaces</code>: Messages related to backing up or restoring resources stored in namespaces.</li>
+      </ul>
+      <p>One or more errors in one of these categories results in a <code>Restore</code> operation receiving the status of <code>PartiallyFailed</code> and not <code>Completed</code>. Warnings do not lead to a change in the completion status.</p>
+      <p>Consider the following points when you encounter restore errors:</p>
+      <ul>
+      <li>For resource-specific errors (<code>Cluster</code> and <code>Namespaces</code>), the <code>restore describe --details</code> output includes a resource list of all resources that Velero attempted to restore. For any resource that has such an error, check whether the resource exists in the cluster.</li>
+      <li>
+      If there are <code>Velero</code> errors but no resource-specific errors, it is possible that the restore completed without problems restoring workloads. In this case, carefully validate post-restore applications.
+      <p>For example, if the output contains <code>PodVolumeRestore</code> or node agent-related errors, check the status of <code>PodVolumeRestores</code> and <code>DataDownloads</code>. If none of these are failed or still running, volume data might have been fully restored.</p>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

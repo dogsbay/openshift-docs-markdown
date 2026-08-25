@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-override-resource-util","text":"Overriding resource utilization measurements"}];
+const headings = [{"depth":1,"slug":"hcp-override-resource-util","text":"Overriding resource utilization measurements"},{"depth":2,"slug":"hcp-override_hcp-override-resource-util","text":"Overriding resource utilization measurements for a hosted cluster"},{"depth":2,"slug":"hcp-disable-metrics_hcp-override-resource-util","text":"Disabling the metric service monitoring"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-prepare
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overriding resource utilization measurements {#hcp-override-resource-util}\n\nThe set of baseline measurements for resource utilization can vary in each hosted cluster. Ensure that you understand the resource utilization needed for your deployment.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Overriding resource utilization measurements {#hcp-override-resource-util}\n\nThe set of baseline measurements for resource utilization can vary in each hosted cluster. Ensure that you understand the resource utilization needed for your deployment.\n\n## Overriding resource utilization measurements for a hosted cluster {#hcp-override_hcp-override-resource-util}\n\nYou can override resource utilization measurements based on the type and pace of your cluster workload.\n\n**Procedure**\n\n1. Create the `ConfigMap` resource by running the following command:\n\n   ```terminal\n   $ oc create -f <your-config-map-file.yaml>\n   ```\n\n   Replace `<your-config-map-file.yaml>` with the name of your YAML file that contains your `hcp-sizing-baseline` config map.\n2. Create the `hcp-sizing-baseline` config map in the `local-cluster` namespace to specify the measurements you want to override. Your config map might resemble the following YAML file:\n\n   ```yaml\n   kind: ConfigMap\n   apiVersion: v1\n   metadata:\n     name: hcp-sizing-baseline\n     namespace: local-cluster\n   data:\n     incrementalCPUUsagePer1KQPS: \"9.0\"\n     memoryRequestPerHCP: \"18\"\n     minimumQPSPerHCP: \"50.0\"\n   ```\n3. Delete the `hypershift-addon-agent` deployment to restart the `hypershift-addon-agent` pod by running the following command:\n\n   ```terminal\n   $ oc delete deployment hypershift-addon-agent \\\n     -n open-cluster-management-agent-addon\n   ```\n\n**Verification**\n\n- Observe the `hypershift-addon-agent` pod logs. Verify that the overridden measurements are updated in the config map by running the following command:\n\n  ```terminal\n  $ oc logs hypershift-addon-agent -n open-cluster-management-agent-addon\n  ```\n\n  Your logs might resemble the following output:\n\n  ```terminal {title=\"Example output\"}\n  2024-01-05T19:41:05.392Z\tINFO\tagent.agent-reconciler\tagent/agent.go:793\tsetting cpuRequestPerHCP to 5\n  2024-01-05T19:41:05.392Z\tINFO\tagent.agent-reconciler\tagent/agent.go:802\tsetting memoryRequestPerHCP to 18\n  2024-01-05T19:53:54.070Z\tINFO\tagent.agent-reconciler\tagent/hcp_capacity_calculation.go:141\tThe worker nodes have 12.000000 vCPUs\n  2024-01-05T19:53:54.070Z\tINFO\tagent.agent-reconciler\tagent/hcp_capacity_calculation.go:142\tThe worker nodes have 49.173369 GB memory\n  ```\n\n  If the overridden measurements are not updated properly in the `hcp-sizing-baseline` config map, you might see the following error message in the `hypershift-addon-agent` pod logs:\n\n  ```terminal {title=\"Example error\"}\n  2024-01-05T19:53:54.052Z\tERROR\tagent.agent-reconciler\tagent/agent.go:788\tfailed to get configmap from the hub. Setting the HCP sizing baseline with default values.\t{\"error\": \"configmaps \\\"hcp-sizing-baseline\\\" not found\"}\n  ```\n\n## Disabling the metric service monitoring {#hcp-disable-metrics_hcp-override-resource-util}\n\nAfter you enable the `hypershift-addon` managed cluster add-on, metric service monitoring is configured by default so that OpenShift Container Platform monitoring can gather metrics from `hypershift-addon`. If needed, you can disable metric service monitoring.\n\n**Procedure**\n\n1. Log in to your hub cluster by running the following command:\n\n   ```terminal\n   $ oc login\n   ```\n2. Edit the `hypershift-addon-deploy-config` add-on deployment configuration specification by running the following command:\n\n   ```terminal\n   $ oc edit addondeploymentconfig hypershift-addon-deploy-config \\\n     -n multicluster-engine\n   ```\n3. Add the `disableMetrics=true` customized variable to the specification, as shown in the following example:\n\n   ```yaml\n   apiVersion: addon.open-cluster-management.io/v1alpha1\n   kind: AddOnDeploymentConfig\n   metadata:\n     name: hypershift-addon-deploy-config\n     namespace: multicluster-engine\n   spec:\n     customizedVariables:\n     - name: hcMaxNumber\n       value: \"80\"\n     - name: hcThresholdNumber\n       value: \"60\"\n     - name: disableMetrics\n       value: \"true\"\n   ```\n\n   The `disableMetrics=true` customized variable disables metric service monitoring for both new and existing `hypershift-addon` managed cluster add-ons.\n4. Apply the changes to the configuration specification by running the following command:\n\n   ```terminal\n   $ oc apply -f <filename>.yaml\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-prepare/hcp-override-resource-util.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,58 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="hcp-override-resource-util" class="group scroll-mt-20">Overriding resource utilization measurements<a href="#hcp-override-resource-util" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The set of baseline measurements for resource utilization can vary in each hosted cluster. Ensure that you understand the resource utilization needed for your deployment.</p>
-      <p class="/modules/hcp-override.md"></p>
-      <p class="/modules/hcp-disable-metrics.md"></p>
+      <h2 id="hcp-override_hcp-override-resource-util" class="group scroll-mt-20">Overriding resource utilization measurements for a hosted cluster<a href="#hcp-override_hcp-override-resource-util" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can override resource utilization measurements based on the type and pace of your cluster workload.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create the <code>ConfigMap</code> resource by running the following command:
+      <CodeBlock code={"$ oc create -f <your-config-map-file.yaml>"} lang="terminal" />
+      <p>Replace <code>&lt;your-config-map-file.yaml&gt;</code> with the name of your YAML file that contains your <code>hcp-sizing-baseline</code> config map.</p>
+      </li>
+      <li>
+      Create the <code>hcp-sizing-baseline</code> config map in the <code>local-cluster</code> namespace to specify the measurements you want to override. Your config map might resemble the following YAML file:
+      <CodeBlock code={"kind: ConfigMap\napiVersion: v1\nmetadata:\n  name: hcp-sizing-baseline\n  namespace: local-cluster\ndata:\n  incrementalCPUUsagePer1KQPS: \"9.0\"\n  memoryRequestPerHCP: \"18\"\n  minimumQPSPerHCP: \"50.0\""} lang="yaml" />
+      </li>
+      <li>
+      Delete the <code>hypershift-addon-agent</code> deployment to restart the <code>hypershift-addon-agent</code> pod by running the following command:
+      <CodeBlock code={"$ oc delete deployment hypershift-addon-agent \\\n  -n open-cluster-management-agent-addon"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Observe the <code>hypershift-addon-agent</code> pod logs. Verify that the overridden measurements are updated in the config map by running the following command:
+      <CodeBlock code={"$ oc logs hypershift-addon-agent -n open-cluster-management-agent-addon"} lang="terminal" />
+      <p>Your logs might resemble the following output:</p>
+      <CodeBlock code={"2024-01-05T19:41:05.392Z\tINFO\tagent.agent-reconciler\tagent/agent.go:793\tsetting cpuRequestPerHCP to 5\n2024-01-05T19:41:05.392Z\tINFO\tagent.agent-reconciler\tagent/agent.go:802\tsetting memoryRequestPerHCP to 18\n2024-01-05T19:53:54.070Z\tINFO\tagent.agent-reconciler\tagent/hcp_capacity_calculation.go:141\tThe worker nodes have 12.000000 vCPUs\n2024-01-05T19:53:54.070Z\tINFO\tagent.agent-reconciler\tagent/hcp_capacity_calculation.go:142\tThe worker nodes have 49.173369 GB memory"} lang="terminal" title="Example output" />
+      <p>If the overridden measurements are not updated properly in the <code>hcp-sizing-baseline</code> config map, you might see the following error message in the <code>hypershift-addon-agent</code> pod logs:</p>
+      <CodeBlock code={"2024-01-05T19:53:54.052Z\tERROR\tagent.agent-reconciler\tagent/agent.go:788\tfailed to get configmap from the hub. Setting the HCP sizing baseline with default values.\t{\"error\": \"configmaps \\\"hcp-sizing-baseline\\\" not found\"}"} lang="terminal" title="Example error" />
+      </li>
+      </ul>
+      <h2 id="hcp-disable-metrics_hcp-override-resource-util" class="group scroll-mt-20">Disabling the metric service monitoring<a href="#hcp-disable-metrics_hcp-override-resource-util" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">After you enable the <code>hypershift-addon</code> managed cluster add-on, metric service monitoring is configured by default so that OpenShift Container Platform monitoring can gather metrics from <code>hypershift-addon</code>. If needed, you can disable metric service monitoring.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Log in to your hub cluster by running the following command:
+      <CodeBlock code={"$ oc login"} lang="terminal" />
+      </li>
+      <li>
+      Edit the <code>hypershift-addon-deploy-config</code> add-on deployment configuration specification by running the following command:
+      <CodeBlock code={"$ oc edit addondeploymentconfig hypershift-addon-deploy-config \\\n  -n multicluster-engine"} lang="terminal" />
+      </li>
+      <li>
+      Add the <code>disableMetrics=true</code> customized variable to the specification, as shown in the following example:
+      <CodeBlock code={"apiVersion: addon.open-cluster-management.io/v1alpha1\nkind: AddOnDeploymentConfig\nmetadata:\n  name: hypershift-addon-deploy-config\n  namespace: multicluster-engine\nspec:\n  customizedVariables:\n  - name: hcMaxNumber\n    value: \"80\"\n  - name: hcThresholdNumber\n    value: \"60\"\n  - name: disableMetrics\n    value: \"true\""} lang="yaml" />
+      <p>The <code>disableMetrics=true</code> customized variable disables metric service monitoring for both new and existing <code>hypershift-addon</code> managed cluster add-ons.</p>
+      </li>
+      <li>
+      Apply the changes to the configuration specification by running the following command:
+      <CodeBlock code={"$ oc apply -f <filename>.yaml"} lang="terminal" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

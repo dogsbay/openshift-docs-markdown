@@ -15,8 +15,8 @@ Large changes to the underlying architecture and installation process are applie
 | Hawkular | Replaced by cluster monitoring. |
 | Cassandra | Replaced by cluster monitoring. |
 | Heapster | Replaced by Prometheus adapter. |
-| Atomic Host | Replaced by {{ op_system_first }}. |
-| System containers | Replaced by {{ op_system_first }}. |
+| Atomic Host | Replaced by Red Hat Enterprise Linux CoreOS (RHCOS). |
+| System containers | Replaced by Red Hat Enterprise Linux CoreOS (RHCOS). |
 | `projectatomic/docker-1.13` additional search registries | CRI-O is the default container runtime for OpenShift Container Platform v4 on Fedora. |
 | `oc adm diagnostics` | Operator-based diagnostics. |
 | `oc adm registry` | Replaced by the Image Registry Operator. |

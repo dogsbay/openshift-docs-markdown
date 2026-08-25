@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-destroy-non-bm","text":"Destroying a hosted cluster on non-bare-metal agent machines"}];
+const headings = [{"depth":1,"slug":"hcp-destroy-non-bm","text":"Destroying a hosted cluster on non-bare-metal agent machines"},{"depth":2,"slug":"destroy-hc-non-bm-cli_hcp-destroy-non-bm","text":"Destroying a hosted cluster on non-bare-metal agent machines"},{"depth":2,"slug":"destroy-hc-non-bm-console_hcp-destroy-non-bm","text":"Destroying a hosted cluster on non-bare-metal agent machines by using the web console"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-non-bm";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-destroy
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Destroying a hosted cluster on non-bare-metal agent machines {#hcp-destroy-non-bm}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-non-bm.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Destroying a hosted cluster on non-bare-metal agent machines {#hcp-destroy-non-bm}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n\n## Destroying a hosted cluster on non-bare-metal agent machines {#destroy-hc-non-bm-cli_hcp-destroy-non-bm}\n\nYou can use the `hcp` command-line interface (CLI) to destroy a hosted cluster on non-bare-metal agent machines.\n\n**Procedure**\n\n- Delete the hosted cluster and its backend resources by running the following command:\n\n  ```terminal\n  $ hcp destroy cluster agent --name <hosted_cluster_name>\n  ```\n\n  Replace `<hosted_cluster_name>` with the name of your hosted cluster.\n\n## Destroying a hosted cluster on non-bare-metal agent machines by using the web console {#destroy-hc-non-bm-console_hcp-destroy-non-bm}\n\nYou can use the multicluster engine Operator web console to destroy a hosted cluster on non-bare-metal agent machines.\n\n**Procedure**\n\n1. In the console, click **Infrastructure** -> **Clusters**.\n2. On the **Clusters** page, select the cluster that you want to destroy.\n3. In the **Actions** menu, select **Destroy clusters** to remove the cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-non-bm.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +91,26 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="hcp-destroy-non-bm" class="group scroll-mt-20">Destroying a hosted cluster on non-bare-metal agent machines<a href="#hcp-destroy-non-bm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.</p>
-      <p class="/modules/destroy-hc-non-bm-cli.md"></p>
-      <p class="/modules/destroy-hc-non-bm-console.md"></p>
+      <h2 id="destroy-hc-non-bm-cli_hcp-destroy-non-bm" class="group scroll-mt-20">Destroying a hosted cluster on non-bare-metal agent machines<a href="#destroy-hc-non-bm-cli_hcp-destroy-non-bm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the <code>hcp</code> command-line interface (CLI) to destroy a hosted cluster on non-bare-metal agent machines.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Delete the hosted cluster and its backend resources by running the following command:
+      <CodeBlock code={"$ hcp destroy cluster agent --name <hosted_cluster_name>"} lang="terminal" />
+      <p>Replace <code>&lt;hosted_cluster_name&gt;</code> with the name of your hosted cluster.</p>
+      </li>
+      </ul>
+      <h2 id="destroy-hc-non-bm-console_hcp-destroy-non-bm" class="group scroll-mt-20">Destroying a hosted cluster on non-bare-metal agent machines by using the web console<a href="#destroy-hc-non-bm-console_hcp-destroy-non-bm" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the multicluster engine Operator web console to destroy a hosted cluster on non-bare-metal agent machines.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the console, click <strong>Infrastructure</strong> -&gt; <strong>Clusters</strong>.</li>
+      <li>On the <strong>Clusters</strong> page, select the cluster that you want to destroy.</li>
+      <li>In the <strong>Actions</strong> menu, select <strong>Destroy clusters</strong> to remove the cluster.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

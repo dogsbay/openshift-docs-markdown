@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"using-sctp","text":"Using the Stream Control Transmission Protocol (SCTP)"}];
+const headings = [{"depth":1,"slug":"using-sctp","text":"Using the Stream Control Transmission Protocol (SCTP)"},{"depth":2,"slug":"nw-sctp-about_using-sctp","text":"Support for SCTP on OpenShift Container Platform"},{"depth":3,"slug":"example_configurations_using-sctp","text":"Example configurations using SCTP protocol"},{"depth":2,"slug":"nw-sctp-enabling_using-sctp","text":"Enabling Stream Control Transmission Protocol (SCTP)"},{"depth":2,"slug":"nw-sctp-verifying_using-sctp","text":"Verifying Stream Control Transmission Protocol (SCTP) is enabled"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/advanced_networking/using-sctp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/advanced_networking"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the Stream Control Transmission Protocol (SCTP) {#using-sctp}\n\nAs a cluster administrator, you can use the Stream Control Transmission Protocol (SCTP) on a bare-metal cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/advanced_networking/using-sctp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Using the Stream Control Transmission Protocol (SCTP) {#using-sctp}\n\nAs a cluster administrator, you can use the Stream Control Transmission Protocol (SCTP) on a bare-metal cluster.\n\n## Support for SCTP on OpenShift Container Platform {#nw-sctp-about_using-sctp}\n\nAs a cluster administrator, you can enable SCTP on the hosts in the cluster. On Red Hat Enterprise Linux CoreOS (RHCOS), the SCTP module is disabled by default.\n\nSCTP is a reliable message based protocol that runs on top of an IP network.\n\nWhen enabled, you can use SCTP as a protocol with pods, services, and network policy. A `Service` object must be defined with the `type` parameter set to either the `ClusterIP` or `NodePort` value.\n\n### Example configurations using SCTP protocol {#example_configurations_using-sctp}\n\nYou can configure a pod or service to use SCTP by setting the `protocol` parameter to the `SCTP` value in the pod or service object.\n\nIn the following example, a pod is configured to use SCTP:\n\n```yaml\napiVersion: v1\nkind: Pod\nmetadata:\n  namespace: project1\n  name: example-pod\nspec:\n  containers:\n    - name: example-pod\n...\n      ports:\n        - containerPort: 30100\n          name: sctpserver\n          protocol: SCTP\n```\n\nIn the following example, a service is configured to use SCTP:\n\n```yaml\napiVersion: v1\nkind: Service\nmetadata:\n  namespace: project1\n  name: sctpserver\nspec:\n...\n  ports:\n    - name: sctpserver\n      protocol: SCTP\n      port: 30100\n      targetPort: 30100\n  type: ClusterIP\n```\n\nIn the following example, a `NetworkPolicy` object is configured to apply to SCTP network traffic on port `80` from any pods with a specific label:\n\n```yaml\nkind: NetworkPolicy\napiVersion: networking.k8s.io/v1\nmetadata:\n  name: allow-sctp-on-http\nspec:\n  podSelector:\n    matchLabels:\n      role: web\n  ingress:\n  - ports:\n    - protocol: SCTP\n      port: 80\n```\n\n## Enabling Stream Control Transmission Protocol (SCTP) {#nw-sctp-enabling_using-sctp}\n\nAs a cluster administrator, you can load and enable the blacklisted SCTP kernel module on worker nodes in your cluster.\n\n**Prerequisites**\n\n- Install the OpenShift CLI (`oc`).\n- Access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Create a file named `load-sctp-module.yaml` that contains the following YAML definition:\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     name: load-sctp-module\n     labels:\n       machineconfiguration.openshift.io/role: worker\n   spec:\n     config:\n       ignition:\n         version: 3.2.0\n       storage:\n         files:\n           - path: /etc/modprobe.d/sctp-blacklist.conf\n             mode: 0644\n             overwrite: true\n             contents:\n               source: data:,\n           - path: /etc/modules-load.d/sctp-load.conf\n             mode: 0644\n             overwrite: true\n             contents:\n               source: data:,sctp\n   ```\n2. To create the `MachineConfig` object, enter the following command:\n\n   ```terminal\n   $ oc create -f load-sctp-module.yaml\n   ```\n3. Optional: To watch the status of the nodes while the MachineConfig Operator applies the configuration change, enter the following command. When the status of a node transitions to `Ready`, the configuration update is applied.\n\n   ```terminal\n   $ oc get nodes\n   ```\n\n## Verifying Stream Control Transmission Protocol (SCTP) is enabled {#nw-sctp-verifying_using-sctp}\n\nYou can verify that SCTP is working on a cluster by creating a pod with an application that listens for SCTP traffic, associating it with a service, and then connecting to the exposed service.\n\n**Prerequisites**\n\n- Access to the internet from the cluster to install the `nc` package.\n- Install the OpenShift CLI (`oc`).\n- Access to the cluster as a user with the `cluster-admin` role.\n\n**Procedure**\n\n1. Create a pod starts an SCTP listener:\n\n   1. Create a file named `sctp-server.yaml` that defines a pod with the following YAML:\n\n      ```yaml\n      apiVersion: v1\n      kind: Pod\n      metadata:\n        name: sctpserver\n        labels:\n          app: sctpserver\n      spec:\n        containers:\n          - name: sctpserver\n            image: {{ image }}\n            command: [\"/bin/sh\", \"-c\"]\n            args:\n              [\"dnf install -y nc && sleep inf\"]\n            ports:\n              - containerPort: 30102\n                name: sctpserver\n                protocol: SCTP\n      ```\n   2. Create the pod by entering the following command:\n\n      ```terminal\n      $ oc create -f sctp-server.yaml\n      ```\n2. Create a service for the SCTP listener pod.\n\n   1. Create a file named `sctp-service.yaml` that defines a service with the following YAML:\n\n      ```yaml\n      apiVersion: v1\n      kind: Service\n      metadata:\n        name: sctpservice\n        labels:\n          app: sctpserver\n      spec:\n        type: NodePort\n        selector:\n          app: sctpserver\n        ports:\n          - name: sctpserver\n            protocol: SCTP\n            port: 30102\n            targetPort: 30102\n      ```\n   2. To create the service, enter the following command:\n\n      ```terminal\n      $ oc create -f sctp-service.yaml\n      ```\n3. Create a pod for the SCTP client.\n\n   1. Create a file named `sctp-client.yaml` with the following YAML:\n\n      ```yaml\n      apiVersion: v1\n      kind: Pod\n      metadata:\n        name: sctpclient\n        labels:\n          app: sctpclient\n      spec:\n        containers:\n          - name: sctpclient\n            image: {{ image }}\n            command: [\"/bin/sh\", \"-c\"]\n            args:\n              [\"dnf install -y nc && sleep inf\"]\n      ```\n   2. To create the `Pod` object, enter the following command:\n\n      ```terminal\n      $ oc apply -f sctp-client.yaml\n      ```\n4. Run an SCTP listener on the server.\n\n   1. To connect to the server pod, enter the following command:\n\n      ```terminal\n      $ oc rsh sctpserver\n      ```\n   2. To start the SCTP listener, enter the following command:\n\n      ```terminal\n      $ nc -l 30102 --sctp\n      ```\n5. Connect to the SCTP listener on the server.\n\n   1. Open a new terminal window or tab in your terminal program.\n   2. Obtain the IP address of the `sctpservice` service. Enter the following command:\n\n      ```terminal\n      $ oc get services sctpservice -o go-template='{{.spec.clusterIP}}{{\"\\n\"}}'\n      ```\n   3. To connect to the client pod, enter the following command:\n\n      ```terminal\n      $ oc rsh sctpclient\n      ```\n   4. To start the SCTP client, enter the following command. Replace `<cluster_IP>` with the cluster IP address of the `sctpservice` service.\n\n      ```terminal\n      # nc <cluster_IP> 30102 --sctp\n      ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/advanced_networking/using-sctp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +92,122 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="using-sctp" class="group scroll-mt-20">Using the Stream Control Transmission Protocol (SCTP)<a href="#using-sctp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>As a cluster administrator, you can use the Stream Control Transmission Protocol (SCTP) on a bare-metal cluster.</p>
-      <p class="/modules/nw-sctp-about.md"></p>
-      <p class="/modules/nw-sctp-enabling.md"></p>
-      <p class="/modules/nw-sctp-verifying.md"></p>
+      <h2 id="nw-sctp-about_using-sctp" class="group scroll-mt-20">Support for SCTP on OpenShift Container Platform<a href="#nw-sctp-about_using-sctp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>As a cluster administrator, you can enable SCTP on the hosts in the cluster. On Red Hat Enterprise Linux CoreOS (RHCOS), the SCTP module is disabled by default.</p>
+      <p>SCTP is a reliable message based protocol that runs on top of an IP network.</p>
+      <p>When enabled, you can use SCTP as a protocol with pods, services, and network policy. A <code>Service</code> object must be defined with the <code>type</code> parameter set to either the <code>ClusterIP</code> or <code>NodePort</code> value.</p>
+      <h3 id="example_configurations_using-sctp" class="group scroll-mt-20">Example configurations using SCTP protocol<a href="#example_configurations_using-sctp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can configure a pod or service to use SCTP by setting the <code>protocol</code> parameter to the <code>SCTP</code> value in the pod or service object.</p>
+      <p>In the following example, a pod is configured to use SCTP:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  namespace: project1\n  name: example-pod\nspec:\n  containers:\n    - name: example-pod\n...\n      ports:\n        - containerPort: 30100\n          name: sctpserver\n          protocol: SCTP"} lang="yaml" />
+      <p>In the following example, a service is configured to use SCTP:</p>
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  namespace: project1\n  name: sctpserver\nspec:\n...\n  ports:\n    - name: sctpserver\n      protocol: SCTP\n      port: 30100\n      targetPort: 30100\n  type: ClusterIP"} lang="yaml" />
+      <p>In the following example, a <code>NetworkPolicy</code> object is configured to apply to SCTP network traffic on port <code>80</code> from any pods with a specific label:</p>
+      <CodeBlock code={"kind: NetworkPolicy\napiVersion: networking.k8s.io/v1\nmetadata:\n  name: allow-sctp-on-http\nspec:\n  podSelector:\n    matchLabels:\n      role: web\n  ingress:\n  - ports:\n    - protocol: SCTP\n      port: 80"} lang="yaml" />
+      <h2 id="nw-sctp-enabling_using-sctp" class="group scroll-mt-20">Enabling Stream Control Transmission Protocol (SCTP)<a href="#nw-sctp-enabling_using-sctp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>As a cluster administrator, you can load and enable the blacklisted SCTP kernel module on worker nodes in your cluster.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a file named <code>load-sctp-module.yaml</code> that contains the following YAML definition:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  name: load-sctp-module\n  labels:\n    machineconfiguration.openshift.io/role: worker\nspec:\n  config:\n    ignition:\n      version: 3.2.0\n    storage:\n      files:\n        - path: /etc/modprobe.d/sctp-blacklist.conf\n          mode: 0644\n          overwrite: true\n          contents:\n            source: data:,\n        - path: /etc/modules-load.d/sctp-load.conf\n          mode: 0644\n          overwrite: true\n          contents:\n            source: data:,sctp"} lang="yaml" />
+      </li>
+      <li>
+      To create the <code>MachineConfig</code> object, enter the following command:
+      <CodeBlock code={"$ oc create -f load-sctp-module.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Optional: To watch the status of the nodes while the MachineConfig Operator applies the configuration change, enter the following command. When the status of a node transitions to <code>Ready</code>, the configuration update is applied.
+      <CodeBlock code={"$ oc get nodes"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="nw-sctp-verifying_using-sctp" class="group scroll-mt-20">Verifying Stream Control Transmission Protocol (SCTP) is enabled<a href="#nw-sctp-verifying_using-sctp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can verify that SCTP is working on a cluster by creating a pod with an application that listens for SCTP traffic, associating it with a service, and then connecting to the exposed service.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>Access to the internet from the cluster to install the <code>nc</code> package.</li>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a pod starts an SCTP listener:
+      <ol>
+      <li>
+      Create a file named <code>sctp-server.yaml</code> that defines a pod with the following YAML:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: sctpserver\n  labels:\n    app: sctpserver\nspec:\n  containers:\n    - name: sctpserver\n      image: {{ image }}\n      command: [\"/bin/sh\", \"-c\"]\n      args:\n        [\"dnf install -y nc && sleep inf\"]\n      ports:\n        - containerPort: 30102\n          name: sctpserver\n          protocol: SCTP"} lang="yaml" />
+      </li>
+      <li>
+      Create the pod by entering the following command:
+      <CodeBlock code={"$ oc create -f sctp-server.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a service for the SCTP listener pod.
+      <ol>
+      <li>
+      Create a file named <code>sctp-service.yaml</code> that defines a service with the following YAML:
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  name: sctpservice\n  labels:\n    app: sctpserver\nspec:\n  type: NodePort\n  selector:\n    app: sctpserver\n  ports:\n    - name: sctpserver\n      protocol: SCTP\n      port: 30102\n      targetPort: 30102"} lang="yaml" />
+      </li>
+      <li>
+      To create the service, enter the following command:
+      <CodeBlock code={"$ oc create -f sctp-service.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create a pod for the SCTP client.
+      <ol>
+      <li>
+      Create a file named <code>sctp-client.yaml</code> with the following YAML:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  name: sctpclient\n  labels:\n    app: sctpclient\nspec:\n  containers:\n    - name: sctpclient\n      image: {{ image }}\n      command: [\"/bin/sh\", \"-c\"]\n      args:\n        [\"dnf install -y nc && sleep inf\"]"} lang="yaml" />
+      </li>
+      <li>
+      To create the <code>Pod</code> object, enter the following command:
+      <CodeBlock code={"$ oc apply -f sctp-client.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Run an SCTP listener on the server.
+      <ol>
+      <li>
+      To connect to the server pod, enter the following command:
+      <CodeBlock code={"$ oc rsh sctpserver"} lang="terminal" />
+      </li>
+      <li>
+      To start the SCTP listener, enter the following command:
+      <CodeBlock code={"$ nc -l 30102 --sctp"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Connect to the SCTP listener on the server.
+      <ol>
+      <li>Open a new terminal window or tab in your terminal program.</li>
+      <li>
+      Obtain the IP address of the <code>sctpservice</code> service. Enter the following command:
+      <CodeBlock code={"$ oc get services sctpservice -o go-template='{{.spec.clusterIP}}{{\"\\n\"}}'"} lang="terminal" />
+      </li>
+      <li>
+      To connect to the client pod, enter the following command:
+      <CodeBlock code={"$ oc rsh sctpclient"} lang="terminal" />
+      </li>
+      <li>
+      To start the SCTP client, enter the following command. Replace <code>&lt;cluster_IP&gt;</code> with the cluster IP address of the <code>sctpservice</code> service.
+      <CodeBlock code={"# nc <cluster_IP> 30102 --sctp"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

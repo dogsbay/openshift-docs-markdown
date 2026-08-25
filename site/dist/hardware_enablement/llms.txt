@@ -2,8 +2,8 @@
 
 ## Specialized hardware and driver enablement
 
-- [About specialized hardware and driver enablement](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/about-hardware-enablement.md)
-- [Driver Toolkit](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/psap-driver-toolkit.md)
-- [Node Feature Discovery Operator](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/psap-node-feature-discovery-operator.md)
-- [Kernel Module Management Operator](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/kmm-kernel-module-management.md)
-- [Kernel Module Management Operator release notes](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/kmm-release-notes.md)
+- [About specialized hardware and driver enablement](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/about-hardware-enablement.md): The Driver Toolkit (DTK) is a container image in the OpenShift Container Platform payload that you can use as a base image to build driver containers. The…
+- [Driver Toolkit](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/psap-driver-toolkit.md): The Driver Toolkit is a base container image for building driver containers that enable specialized hardware and software devices on OpenShift Container…
+- [Node Feature Discovery Operator](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/psap-node-feature-discovery-operator.md): You can use the Node Feature Discovery (NFD) Operator to detect and expose hardware features and system configuration as node-level information.
+- [Kernel Module Management Operator](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/kmm-kernel-module-management.md): The Kernel Module Management (KMM) Operator deploys out-of-tree kernel modules and device plugins on OpenShift Container Platform clusters. You can use KMM to…
+- [Kernel Module Management Operator release notes](https://dogsbay.github.io/openshift-docs-markdown/hardware_enablement/kmm-release-notes.md): Use the release notes to learn what is new or changed in Kernel Module Management (KMM).

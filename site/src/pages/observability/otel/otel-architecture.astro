@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"otel-architecture","text":"About {{ OTELName }}"}];
+const headings = [{"depth":1,"slug":"otel-architecture","text":"About Red Hat build of OpenTelemetry"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/observability/otel/otel-architecture";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "About {{ OTELName }}";
-const description = "The standalone {{ OTELName }} documentation is available at https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest." || undefined;
+const description = "The standalone Red Hat build of OpenTelemetry documentation is available at https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["observability","observability/otel"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About {{ OTELName }} {#otel-architecture}\n\nThe standalone {{ OTELName }} documentation is available at [https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest](https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/otel/otel-architecture.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About Red Hat build of OpenTelemetry {#otel-architecture}\n\nThe standalone Red Hat build of OpenTelemetry documentation is available at [https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest](https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/observability/otel/otel-architecture.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,9 +90,8 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="otel-architecture" class="group scroll-mt-20">About {"{"}{"{"} OTELName {"}"}{"}"}<a href="#otel-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>The standalone {"{"}{"{"} OTELName {"}"}{"}"} documentation is available at <a href="https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest">https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest</a>.</p>
+      <h1 id="otel-architecture" class="group scroll-mt-20">About Red Hat build of OpenTelemetry<a href="#otel-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>The standalone Red Hat build of OpenTelemetry documentation is available at <a href="https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest">https://docs.redhat.com/en/documentation/red_hat_build_of_opentelemetry/latest</a>.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

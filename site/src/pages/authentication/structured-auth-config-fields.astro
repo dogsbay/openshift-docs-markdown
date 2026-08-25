@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"structured-auth-config-fields","text":"Configuring advanced direct authentication fields"}];
+const headings = [{"depth":1,"slug":"structured-auth-config-fields","text":"Configuring advanced direct authentication fields"},{"depth":2,"slug":"structured-auth-config-about_structured-auth-config-fields","text":"About advanced direct authentication fields"},{"depth":2,"slug":"structured-auth-config-discovery-url_structured-auth-config-fields","text":"Configuring a custom OIDC discovery URL"},{"depth":2,"slug":"structured-auth-config-cel-claim-mapping_structured-auth-config-fields","text":"Configuring CEL expressions for username and groups claim mapping"},{"depth":2,"slug":"structured-auth-config-claim-validation_structured-auth-config-fields","text":"Configuring claim validation rules"},{"depth":2,"slug":"structured-auth-config-user-validation_structured-auth-config-fields","text":"Configuring user validation rules"},{"depth":2,"slug":"structured-auth-config-fields-reference_structured-auth-config-fields","text":"Advanced authentication field reference"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/authentication/structured-auth-config-fields";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["authentication"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring advanced direct authentication fields {#structured-auth-config-fields}\n\nYou can configure advanced direct authentication fields in the `authentications.config.openshift.io` custom resource definition (CRD) to enable enhanced OIDC configurations, security enforcement, and flexible token validation for standalone and hosted control plane (HCP) clusters.\n\n**Additional resources**\n\n- [Enabling direct authentication with an external OIDC identity provider](/openshift-docs-markdown/authentication/external-auth#external-auth)\n- [Common Expression Language (CEL) specification](https://cel.dev/)\n- [Common Expression Language in Kubernetes](https://kubernetes.io/docs/reference/using-api/cel/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/structured-auth-config-fields.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring advanced direct authentication fields {#structured-auth-config-fields}\n\nYou can configure advanced direct authentication fields in the `authentications.config.openshift.io` custom resource definition (CRD) to enable enhanced OIDC configurations, security enforcement, and flexible token validation for standalone and hosted control plane (HCP) clusters.\n\n> [!IMPORTANT]\n> Advanced direct authentication fields is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## About advanced direct authentication fields {#structured-auth-config-about_structured-auth-config-fields}\n\nAdvanced direct authentication fields provide flexibility and security for OIDC-based authentication in OpenShift Container Platform. You can configure advanced OIDC settings, implement custom token validation logic, and enforce security policies on usernames and groups.\n\nThe following capabilities are available:\n\nCustom OIDC discovery URL\n:   Specify a custom OIDC discovery endpoint when your identity provider does not use the standard discovery URL format. Useful for complex networking setups or non-standard identity providers.\n\nCEL-based claim mapping\n:   Use Common Expression Language (CEL) expressions to construct usernames and groups from JWT token claims with fallback logic. This addresses scenarios where different user types require varying claim mappings.\n\nClaim validation rules\n:   Use CEL expressions to implement advanced token validation logic, such as enforcing maximum token lifetimes, validating multiple claims, or implementing custom security policies.\n\nUser validation rules\n:   Enforce security policies on usernames and groups extracted from tokens to prevent privilege escalation by blocking reserved system usernames and group prefixes.\n\nThese fields extend the base OIDC authentication configuration introduced in OpenShift Container Platform 4.14. You must first configure an external OIDC identity provider before using these advanced fields.\n\nThese fields require the `TechPreviewNoUpgrade` feature set to be enabled. They are available on standalone OpenShift Container Platform clusters and hosted control plane (HCP) environments.\n\n> [!IMPORTANT]\n> These advanced authentication fields are available as a Technology Preview feature. Ensure you have a backup authentication method, such as a certificate-based kubeconfig file, before configuring these fields.\n\n## Configuring a custom OIDC discovery URL {#structured-auth-config-discovery-url_structured-auth-config-fields}\n\nConfigure a custom OIDC discovery URL when your identity provider does not follow the standard discovery endpoint format.\n\n**Prerequisites**\n\n- You have configured an external OIDC identity provider for direct authentication.\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have access to a long-lived authentication method, such as a certificate-based kubeconfig file.\n\n**Procedure**\n\n1. Create a YAML file named `authentication-discovery-url.yaml` with your custom discovery URL configuration:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: Authentication\n   metadata:\n     name: cluster\n   spec:\n     type: OIDC\n     oidcProviders:\n     - name: my-oidc-provider\n       issuer:\n         issuerURL: https://idp.example.com\n         discoveryURL: https://custom-discovery.example.com/.well-known/openid-configuration\n         audiences:\n         - my-audience\n       claimMappings:\n         username:\n           claim: email\n   ```\n\n   where:\n\n   `issuerURL`\n   :   Specifies the issuer URL displayed in JWT token `iss` claim.\n\n   `discoveryURL`\n   :   Specifies the custom OIDC discovery endpoint URL. Must differ from `issuerURL`, use HTTPS, and must not contain query parameters, fragments, or user info. Maximum length: 2048 characters.\n\n   > [!NOTE]\n   > Replace the placeholder values (`my-oidc-provider`, `https://idp.example.com`, `https://custom-discovery.example.com/.well-known/openid-configuration`, `my-audience`) with your actual OIDC provider configuration.\n2. Apply the configuration:\n\n   ```terminal\n   $ oc apply -f authentication-discovery-url.yaml\n   ```\n\n**Verification**\n\n- Monitor the cluster authentication Operator status to ensure the configuration is applied successfully:\n\n  ```terminal\n  $ oc get clusteroperator authentication\n  ```\n\n  The Operator should report `Available=True` and `Degraded=False`.\n- Check the cluster authentication Operator logs for any errors:\n\n  ```terminal\n  $ oc logs -n openshift-authentication-operator deployments/authentication-operator\n  ```\n- Verify the kube-apiserver is using the custom discovery URL by checking the authentication configuration:\n\n  ```terminal\n  $ oc get configmap kube-apiserver-to-kubelet-client-ca -n openshift-kube-apiserver -o yaml\n  ```\n\n  ```terminal\n  $ oc get authentication.config.openshift.io/cluster -o jsonpath='{.spec.oidcProviders[0].issuer.discoveryURL}'\n  ```\n\n  The output should display your custom discovery URL.\n\n## Configuring CEL expressions for username and groups claim mapping {#structured-auth-config-cel-claim-mapping_structured-auth-config-fields}\n\nYou can use Common Expression Language (CEL) expressions to construct usernames and groups from JWT token claims. This provides flexible claim mapping, including fallback logic when specific claims are not present.\n\n**Prerequisites**\n\n- You have configured an external OIDC identity provider for direct authentication.\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have access to a long-lived authentication method, such as a certificate-based kubeconfig file.\n- You are familiar with CEL expression syntax.\n\n**Procedure**\n\n1. Create a YAML file named `authentication-cel-mapping.yaml` with your CEL expression configuration:\n\n   > [!IMPORTANT]\n   > When using `expression`, do not set the `claim` field. You must use either `claim` or `expression`, but not both. Setting both will result in a validation error. Additionally, when using `expression`, do not set `prefixPolicy` to `Prefix`. Prefix policies are only compatible with `claim`-based mappings.\n\n   > [!NOTE]\n   > When using the `email` claim in CEL expressions, you must also validate `email_verified` to ensure the email address has been verified by the identity provider.\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: Authentication\n   metadata:\n     name: cluster\n   spec:\n     type: OIDC\n     oidcProviders:\n     - name: my-oidc-provider\n       issuer:\n         issuerURL: https://idp.example.com\n         audiences:\n         - my-audience\n       claimMappings:\n         username:\n           expression: 'claims.?upn.orValue(claims.?oid.orValue(claims.sub))'\n         groups:\n           expression: 'claims.?groups.orValue([])'\n   # ...\n   ```\n\n   where:\n\n   `username.expression`\n   :   Specifies the fallback logic for username: `upn` if present, else `oid`, else `sub`.\n\n   `groups.expression`\n   :   Specifies that the `groups` claim is used if present, else an empty array.\n\n   > [!NOTE]\n   > Replace the placeholder values (`my-oidc-provider`, `https://idp.example.com`, `my-audience`) with your actual OIDC provider configuration.\n2. Apply the configuration:\n\n   ```terminal\n   $ oc apply -f authentication-cel-mapping.yaml\n   ```\n\n**Verification**\n\n- Verify that the authentication configuration is applied successfully:\n\n  ```terminal\n  $ oc get authentication.config.openshift.io/cluster -o yaml\n  ```\n- Authenticate with a user account and verify the username is constructed correctly:\n\n  ```terminal\n  $ oc whoami\n  ```\n- Monitor the cluster authentication Operator status:\n\n  ```terminal\n  $ oc get clusteroperator authentication\n  ```\n\n  The Operator should report `Available=True` and `Degraded=False`.\n\n> [!NOTE]\n> CEL expressions have access to standard CEL string functions (`lowerAscii()`, `upperAscii()`, `contains()`, `startsWith()`, `endsWith()`, `matches()`, `split()`), operators (`+`, `?`, `has()`, ternary `? :`), and the `orValue()` method for optional chaining. See the CEL specification link in Additional resources for the complete function reference.\n\nYou can use the following CEL expression patterns for claim mapping:\n\nUse the optional chaining Operator `?` to safely access claims that might not exist\n:   ```yaml\n    username:\n      expression: 'claims.email_verified ? claims.email : claims.sub'\n    ```\n\n    Uses `email` if verified, otherwise `sub`. When using the `email` claim, you must also check `email_verified`.\n\nConcatenate multiple claims\n:   ```yaml\n    username:\n      expression: 'claims.givenname + \".\" + claims.surname'\n    ```\n\n    Combines given name and surname claims.\n\nTransform claim values\n:   ```yaml\n    username:\n      expression: 'claims.email.lowerAscii()'\n    ```\n\n    Converts email to lowercase.\n\nConditional logic for different user types\n:   ```yaml\n    username:\n      expression: 'has(claims.upn) ? claims.upn : claims.oid'\n    ```\n\n    Uses `upn` for regular users, `oid` for service principals.\n\nExtract domain from email\n:   ```yaml\n    groups:\n      expression: 'claims.?email.orValue(\"\").split(\"@\").size() > 1 ? [claims.email.split(\"@\")[1]] : []'\n    ```\n\n    Safely extracts domain from email address for group assignment, returning an empty array if email is missing or malformed.\n\nCombine group sources\n:   ```yaml\n    groups:\n      expression: 'claims.?groups.orValue([]) + claims.?roles.orValue([])'\n    ```\n\n    Combines `groups` and `roles` claims.\n\n## Configuring claim validation rules {#structured-auth-config-claim-validation_structured-auth-config-fields}\n\nUse Common Expression Language (CEL) expressions to define custom validation rules for JWT token claims and enforce advanced security policies such as maximum token lifetimes.\n\n> [!WARNING]\n> All claim validation rules must pass for authentication to succeed. Incorrectly configured validation rules can lock all users out of the cluster. Ensure you complete the following tasks:\n>\n> - Have a backup authentication method, such as a certificate-based kubeconfig file, before applying these rules\n> - Test validation rules in a non-production environment first\n> - Verify your CEL expressions are correct to avoid blocking valid users from accessing the cluster\n\n**Prerequisites**\n\n- You have configured an external OIDC identity provider for direct authentication.\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have access to a long-lived authentication method, such as a certificate-based kubeconfig file.\n- You are familiar with CEL expression syntax.\n\n**Procedure**\n\n1. Create a YAML file named `authentication-claim-validation.yaml` with your claim validation rules:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: Authentication\n   metadata:\n     name: cluster\n   spec:\n     type: OIDC\n     oidcProviders:\n     - name: my-oidc-provider\n       issuer:\n         issuerURL: https://idp.example.com\n         audiences:\n         - my-audience\n       claimMappings:\n         username:\n           claim: email\n       claimValidationRules:\n       - type: CEL\n         cel:\n           expression: 'claims.exp - claims.nbf <= 86400'\n           message: 'Total token lifetime must not exceed 24 hours'\n       - type: CEL\n         cel:\n           expression: 'has(claims.email) && claims.email_verified && claims.email.contains(\"@example.com\")'\n           message: 'Email claim must be verified and from example.com domain'\n   ```\n\n   where:\n\n   `claimValidationRules`\n   :   Specifies an array of validation rules. All must pass for authentication.\n\n   `type`\n   :   Specifies the validation type. Set to `CEL` for CEL-based validation.\n\n   `cel.expression`\n   :   Specifies the CEL expression that must evaluate to `true`.\n\n   `cel.message`\n   :   Specifies the error message displayed when validation fails.\n\n   > [!NOTE]\n   > Replace the placeholder values (`my-oidc-provider`, `https://idp.example.com`, `my-audience`, `@example.com`) with your actual OIDC provider configuration and validation requirements.\n2. Apply the configuration:\n\n   ```terminal\n   $ oc apply -f authentication-claim-validation.yaml\n   ```\n\n**Verification**\n\n- Verify that the authentication configuration is applied successfully:\n\n  ```terminal\n  $ oc get authentication.config.openshift.io/cluster -o yaml\n  ```\n- Authenticate with a token that matches your validation rules to confirm they are enforced correctly.\n- Check the cluster authentication Operator logs for validation errors:\n\n  ```terminal\n  $ oc logs -n openshift-authentication-operator deployments/authentication-operator\n  ```\n\nWhen writing CEL expressions for claim validation:\n\n- Access claims using `claims` variable (for example, `claims.sub` or `claims.foo.bar` for nested claims)\n- Expressions must evaluate to boolean values\n- Use `has()` to check claim existence\n- Standard CEL operators and functions available: `&&`, `||`, `!`, `contains()`, `startsWith()`, `endsWith()`\n\nCommon use cases include:\n\nEnforce maximum token lifetime\n:   ```yaml\n    claimValidationRules:\n    - type: CEL\n      cel:\n        expression: 'claims.exp - claims.nbf <= 86400'\n        message: 'Token lifetime must not exceed 24 hours'\n    ```\n\nRequire specific claim values\n:   ```yaml\n    claimValidationRules:\n    - type: CEL\n      cel:\n        expression: 'claims.tenant == \"production\"'\n        message: 'Only production tenant tokens are allowed'\n    ```\n\nValidate email domain\n:   ```yaml\n    claimValidationRules:\n    - type: CEL\n      cel:\n        expression: 'has(claims.email) && claims.email_verified && claims.email.endsWith(\"@trusted-domain.com\")'\n        message: 'Email must be verified and from trusted-domain.com'\n    ```\n\n    When using the `email` claim, you must also check `email_verified` to ensure the email address has been verified by the identity provider.\n\nCombine conditions\n:   ```yaml\n    claimValidationRules:\n    - type: CEL\n      cel:\n        expression: 'has(claims.role) && (claims.role == \"admin\" || claims.role == \"developer\")'\n        message: 'User must have admin or developer role'\n    ```\n\nIf authentication fails after the configuration is applied **Troubleshooting**\n\n:   Even if your claim validation rules pass the configuration validation gates, runtime authentication errors can occur. Check the kube-apiserver logs for detailed error messages explaining why authentication failed: `terminal     $ oc logs -n openshift-kube-apiserver -l app=openshift-kube-apiserver | grep -i auth     `\n\n```\nThese log messages will indicate which validation rule failed and include the custom `message` you specified in the CEL expression.\n```\n\nIf you incorrectly configure validation rules and lock users out of the cluster\n:   1. Use your certificate-based kubeconfig to authenticate as `cluster-admin`.\n    2. Edit the Authentication custom resource to remove or fix invalid rules:\n\n    ```terminal\n    $ oc edit authentication.config.openshift.io/cluster\n    ```\n\n    1. Monitor the cluster authentication Operator to confirm it returns to `Available` status:\n\n    ```terminal\n    $ oc get clusteroperator authentication\n    ```\n\n## Configuring user validation rules {#structured-auth-config-user-validation_structured-auth-config-fields}\n\nYou can define validation rules to enforce security policies on the user object created from an authenticated token. This helps prevent privilege escalation by blocking reserved usernames and group prefixes.\n\n> [!NOTE]\n> User validation rules are evaluated after claim mapping is complete, including all prefix transformations. Your CEL expressions must validate the final username and group names as they will appear in RBAC policies, not the raw claim values from the JWT token.\n\n> [!WARNING]\n> All user validation rules must pass for authentication to succeed. Incorrectly configured validation rules can lock all users out of the cluster. Ensure you:\n>\n> - Have a backup authentication method, such as a certificate-based kubeconfig file, before applying these rules\n> - Test validation rules in a non-production environment first\n> - Verify your CEL expressions correctly validate the final username and groups to avoid blocking valid users or allowing unauthorized access\n\n**Prerequisites**\n\n- You have configured an external OIDC identity provider for direct authentication.\n- You have access to the cluster as a user with the `cluster-admin` role.\n- You have access to a long-lived authentication method, such as a certificate-based kubeconfig file.\n- You are familiar with CEL expression syntax.\n\n**Procedure**\n\n1. Create a YAML file named `authentication-user-validation.yaml` with your user validation rules:\n\n   ```yaml\n   apiVersion: config.openshift.io/v1\n   kind: Authentication\n   metadata:\n     name: cluster\n   spec:\n     type: OIDC\n     oidcProviders:\n     - name: my-oidc-provider\n       issuer:\n         issuerURL: https://idp.example.com\n         audiences:\n         - my-audience\n       claimMappings:\n         username:\n           claim: email\n         groups:\n           claim: groups\n       userValidationRules:\n       - expression: \"!user.username.startsWith('system:')\"\n         message: 'Username cannot use reserved system: prefix'\n       - expression: \"!user.groups.exists(g, g.startsWith('system:'))\"\n         message: 'Groups cannot use reserved system: prefix'\n   ```\n\n   where:\n\n   `userValidationRules`\n   :   Specifies an array of validation rules. All must pass for authentication.\n\n   `expression`\n   :   Specifies the CEL expression that must evaluate to `true`.\n\n   `message`\n   :   Specifies the error message displayed when validation fails.\n\n   > [!NOTE]\n   > Replace the placeholder values (`my-oidc-provider`, `https://idp.example.com`, `my-audience`) with your actual OIDC provider configuration.\n2. Apply the configuration:\n\n   ```terminal\n   $ oc apply -f authentication-user-validation.yaml\n   ```\n\n**Verification**\n\n- Verify that the authentication configuration is applied successfully:\n\n  ```terminal\n  $ oc get authentication.config.openshift.io/cluster -o yaml\n  ```\n- Authenticate with credentials that would create a user matching your validation rules to confirm they are enforced correctly.\n- Check the cluster authentication Operator logs for validation errors:\n\n  ```terminal\n  $ oc logs -n openshift-authentication-operator deployments/authentication-operator\n  ```\n\nWhen writing CEL expressions for user validation:\n\n- Access user fields: `user.username`, `user.groups` (array), `user.uid`, `user.extra` (map)\n- Expressions must evaluate to boolean values\n- Use `startsWith()`, `endsWith()`, `contains()` for string matching\n- Use `exists()` for array checks (for example, `user.groups.exists(g, g == \"admin\")`)\n\nCommon use cases include:\n\nPrevent reserved username prefixes\n:   ```yaml\n    userValidationRules:\n    - expression: \"!user.username.startsWith('system:')\"\n      message: 'Username cannot use reserved system: prefix'\n    ```\n\nPrevent reserved group prefixes\n:   ```yaml\n    userValidationRules:\n    - expression: \"!user.groups.exists(g, g.startsWith('system:'))\"\n      message: 'Groups cannot use reserved system: prefix'\n    ```\n\nRequire username format\n:   ```yaml\n    userValidationRules:\n    - expression: \"user.username.matches('^[a-z0-9]([-a-z0-9]*[a-z0-9])?$')\"\n      message: 'Username must be a valid DNS subdomain'\n    ```\n\nValidate group membership\n:   ```yaml\n    userValidationRules:\n    - expression: \"user.groups.exists(g, g == 'verified-users')\"\n      message: 'User must be a member of verified-users group'\n    ```\n\nCombine conditions\n:   ```yaml\n    userValidationRules:\n    - expression: \"!user.username.startsWith('system:') && !user.username.startsWith('kube:')\"\n      message: 'Username cannot use reserved system: or kube: prefixes'\n    ```\n\n**Troubleshooting**\n\nIf you incorrectly configure validation rules and lock users out of the cluster:\n\n1. Use your certificate-based kubeconfig to authenticate as `cluster-admin`.\n2. Edit the Authentication custom resource to remove or fix invalid rules:\n\n   ```terminal\n   $ oc edit authentication.config.openshift.io/cluster\n   ```\n3. Monitor the cluster authentication Operator to confirm it returns to `Available` status:\n\n   ```terminal\n   $ oc get clusteroperator authentication\n   ```\n\n## Advanced authentication field reference {#structured-auth-config-fields-reference_structured-auth-config-fields}\n\nThe following table describes the advanced authentication configuration fields available as Technology Preview in OpenShift Container Platform.\n\n***Advanced `oidcProviders` configuration fields***\n\n<table>\n<thead>\n<tr>\n  <th>Parameter</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>issuer.discoveryURL</code></td>\n  <td>Optional parameter. Custom OIDC discovery endpoint URL for retrieving identity provider metadata from a non-standard location.<br><br>Requirements:<br><br><ul><li>Must be a valid HTTPS URL</li><li>Must differ from <code>issuer.issuerURL</code></li></ul>When not specified, OpenShift Container Platform constructs the discovery URL by using the standard OIDC format: <code>{{ issuerURL }}/.well-known/openid-configuration</code>.<br><br><strong>Example:</strong><br><br><pre>issuer:&#10;  issuerURL: https://idp.example.com&#10;  discoveryURL: https://custom-discovery.example.com/.well-known/openid-configuration</pre></td>\n</tr>\n<tr>\n  <td><code>claimValidationRules</code></td>\n  <td>Optional parameter. Array of validation rules for JWT token claims using Common Expression Language (CEL) expressions. All rules must evaluate to <code>true</code> for authentication to succeed (AND operation).<br><br>Each rule has:<br><br><ul><li><code>type</code>: Set to <code>CEL</code> for CEL-based validation</li><li><code>cel</code>: Object with <code>expression</code> (must evaluate to <code>true</code>) and <code>message</code> (error text)</li></ul>CEL expressions access claims by using <code>claims</code> variable (for example, <code>claims.sub</code>).<br><br><strong>Example:</strong><br><br><pre>claimValidationRules:&#10;- type: CEL&#10;  cel:&#10;    expression: 'claims.exp - claims.nbf &lt;= 86400'&#10;    message: 'Total token lifetime must not exceed 24 hours'&#10;- type: CEL&#10;  cel:&#10;    expression: 'has(claims.email) &amp;&amp; claims.email.contains(\"@example.com\")'&#10;    message: 'Email claim must be present and from example.com domain'</pre></td>\n</tr>\n<tr>\n  <td><code>claimValidationRules[].type</code></td>\n  <td>Required. Validation rule type. Set to <code>CEL</code> for CEL-based validation. Requires <code>cel</code> field.</td>\n</tr>\n<tr>\n  <td><code>claimValidationRules[].cel</code></td>\n  <td>Required when <code>type</code> is <code>CEL</code>. Contains <code>expression</code> (CEL expression to evaluate) and <code>message</code> (error text).</td>\n</tr>\n<tr>\n  <td><code>claimValidationRules[].cel.expression</code></td>\n  <td>Required. CEL expression that validates token claims. Must evaluate to <code>true</code> for authentication to succeed.<br><br>Constraints: 1-1024 characters, must evaluate to boolean.<br><br>Access claims by using <code>claims</code> variable: <code>claims.sub</code>, <code>claims.foo.bar</code> (nested), <code>has(claims.email)</code> (existence check).<br><br><dl><dt>Note</dt><dd>When using the <code>email</code> claim in CEL expressions, you must also validate the <code>email_verified</code> claim to ensure the email address has been verified by the identity provider. For example: <code>claims.email_verified && claims.email.endsWith(\"@example.com\")</code>.</dd></dl></td>\n</tr>\n<tr>\n  <td><code>claimValidationRules[].cel.message</code></td>\n  <td>Required. Error message displayed when validation fails. Constraints: 1-256 characters.</td>\n</tr>\n<tr>\n  <td><code>userValidationRules</code></td>\n  <td>Optional parameter. Array of validation rules for user objects by using CEL expressions. All rules must evaluate to <code>true</code> for authentication to succeed (AND operation).<br><br>Each rule has <code>expression</code> (must evaluate to <code>true</code>) and <code>message</code> (error text).<br><br>CEL expressions access user object by using <code>user</code> variable: <code>user.username</code> (string), <code>user.groups</code> (array), <code>user.uid</code> (string), <code>user.extra</code> (map).<br><br><strong>Example:</strong><br><br><pre>userValidationRules:&#10;- expression: \"!user.username.startsWith('system:')\"&#10;  message: 'Username cannot use reserved system: prefix'&#10;- expression: \"!user.groups.exists(g, g.startsWith('system:'))\"&#10;  message: 'Groups cannot use reserved system: prefix'</pre></td>\n</tr>\n<tr>\n  <td><code>userValidationRules[].expression</code></td>\n  <td>Required. CEL expression that validates the user object. Must evaluate to <code>true</code> for authentication to succeed.<br><br>Constraints: 1-1024 characters, must evaluate to boolean.<br><br>Access user fields: <code>user.username.startsWith('system:')</code>, <code>user.groups.exists(g, g == \"admin\")</code>, <code>user.extra[\"example.com/role\"]</code>.</td>\n</tr>\n<tr>\n  <td><code>userValidationRules[].message</code></td>\n  <td>Required. Error message displayed when validation fails. Must not be empty.</td>\n</tr>\n</tbody>\n</table>\n\n**Additional resources**\n\n- [Enabling direct authentication with an external OIDC identity provider](/openshift-docs-markdown/authentication/external-auth#external-auth)\n- [Common Expression Language (CEL) specification](https://cel.dev/)\n- [Common Expression Language in Kubernetes](https://kubernetes.io/docs/reference/using-api/cel/)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/authentication/structured-auth-config-fields.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,14 +95,382 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="structured-auth-config-fields" class="group scroll-mt-20">Configuring advanced direct authentication fields<a href="#structured-auth-config-fields" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/snippets/technology-preview.md">You can configure advanced direct authentication fields in the <code>authentications.config.openshift.io</code> custom resource definition (CRD) to enable enhanced OIDC configurations, security enforcement, and flexible token validation for standalone and hosted control plane (HCP) clusters.</p>
-      <p class="/modules/structured-auth-config-about.md"></p>
-      <p class="/modules/structured-auth-config-discovery-url.md"></p>
-      <p class="/modules/structured-auth-config-cel-claim-mapping.md"></p>
-      <p class="/modules/structured-auth-config-claim-validation.md"></p>
-      <p class="/modules/structured-auth-config-user-validation.md"></p>
-      <p class="/modules/structured-auth-config-fields-reference.md"></p>
+      <p>You can configure advanced direct authentication fields in the <code>authentications.config.openshift.io</code> custom resource definition (CRD) to enable enhanced OIDC configurations, security enforcement, and flexible token validation for standalone and hosted control plane (HCP) clusters.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Advanced direct authentication fields is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="structured-auth-config-about_structured-auth-config-fields" class="group scroll-mt-20">About advanced direct authentication fields<a href="#structured-auth-config-about_structured-auth-config-fields" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Advanced direct authentication fields provide flexibility and security for OIDC-based authentication in OpenShift Container Platform. You can configure advanced OIDC settings, implement custom token validation logic, and enforce security policies on usernames and groups.</p>
+      <p>The following capabilities are available:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Custom OIDC discovery URL</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specify a custom OIDC discovery endpoint when your identity provider does not use the standard discovery URL format. Useful for complex networking setups or non-standard identity providers.</p></dd>
+      <dt class="font-semibold">CEL-based claim mapping</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Use Common Expression Language (CEL) expressions to construct usernames and groups from JWT token claims with fallback logic. This addresses scenarios where different user types require varying claim mappings.</p></dd>
+      <dt class="font-semibold">Claim validation rules</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Use CEL expressions to implement advanced token validation logic, such as enforcing maximum token lifetimes, validating multiple claims, or implementing custom security policies.</p></dd>
+      <dt class="font-semibold">User validation rules</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Enforce security policies on usernames and groups extracted from tokens to prevent privilege escalation by blocking reserved system usernames and group prefixes.</p></dd>
+      </dl>
+      <p>These fields extend the base OIDC authentication configuration introduced in OpenShift Container Platform 4.14. You must first configure an external OIDC identity provider before using these advanced fields.</p>
+      <p>These fields require the <code>TechPreviewNoUpgrade</code> feature set to be enabled. They are available on standalone OpenShift Container Platform clusters and hosted control plane (HCP) environments.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>These advanced authentication fields are available as a Technology Preview feature. Ensure you have a backup authentication method, such as a certificate-based kubeconfig file, before configuring these fields.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="structured-auth-config-discovery-url_structured-auth-config-fields" class="group scroll-mt-20">Configuring a custom OIDC discovery URL<a href="#structured-auth-config-discovery-url_structured-auth-config-fields" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure a custom OIDC discovery URL when your identity provider does not follow the standard discovery endpoint format.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have configured an external OIDC identity provider for direct authentication.</li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have access to a long-lived authentication method, such as a certificate-based kubeconfig file.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file named <code>authentication-discovery-url.yaml</code> with your custom discovery URL configuration:
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: Authentication\nmetadata:\n  name: cluster\nspec:\n  type: OIDC\n  oidcProviders:\n  - name: my-oidc-provider\n    issuer:\n      issuerURL: https://idp.example.com\n      discoveryURL: https://custom-discovery.example.com/.well-known/openid-configuration\n      audiences:\n      - my-audience\n    claimMappings:\n      username:\n        claim: email"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>issuerURL</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the issuer URL displayed in JWT token <code>iss</code> claim.</p></dd>
+      <dt class="font-semibold"><code>discoveryURL</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the custom OIDC discovery endpoint URL. Must differ from <code>issuerURL</code>, use HTTPS, and must not contain query parameters, fragments, or user info. Maximum length: 2048 characters.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Replace the placeholder values (<code>my-oidc-provider</code>, <code>https://idp.example.com</code>, <code>https://custom-discovery.example.com/.well-known/openid-configuration</code>, <code>my-audience</code>) with your actual OIDC provider configuration.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Apply the configuration:
+      <CodeBlock code={"$ oc apply -f authentication-discovery-url.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Monitor the cluster authentication Operator status to ensure the configuration is applied successfully:
+      <CodeBlock code={"$ oc get clusteroperator authentication"} lang="terminal" />
+      <p>The Operator should report <code>Available=True</code> and <code>Degraded=False</code>.</p>
+      </li>
+      <li>
+      Check the cluster authentication Operator logs for any errors:
+      <CodeBlock code={"$ oc logs -n openshift-authentication-operator deployments/authentication-operator"} lang="terminal" />
+      </li>
+      <li>
+      Verify the kube-apiserver is using the custom discovery URL by checking the authentication configuration:
+      <CodeBlock code={"$ oc get configmap kube-apiserver-to-kubelet-client-ca -n openshift-kube-apiserver -o yaml"} lang="terminal" />
+      <CodeBlock code={"$ oc get authentication.config.openshift.io/cluster -o jsonpath='{.spec.oidcProviders[0].issuer.discoveryURL}'"} lang="terminal" />
+      <p>The output should display your custom discovery URL.</p>
+      </li>
+      </ul>
+      <h2 id="structured-auth-config-cel-claim-mapping_structured-auth-config-fields" class="group scroll-mt-20">Configuring CEL expressions for username and groups claim mapping<a href="#structured-auth-config-cel-claim-mapping_structured-auth-config-fields" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use Common Expression Language (CEL) expressions to construct usernames and groups from JWT token claims. This provides flexible claim mapping, including fallback logic when specific claims are not present.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have configured an external OIDC identity provider for direct authentication.</li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have access to a long-lived authentication method, such as a certificate-based kubeconfig file.</li>
+      <li>You are familiar with CEL expression syntax.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file named <code>authentication-cel-mapping.yaml</code> with your CEL expression configuration:
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>When using <code>expression</code>, do not set the <code>claim</code> field. You must use either <code>claim</code> or <code>expression</code>, but not both. Setting both will result in a validation error. Additionally, when using <code>expression</code>, do not set <code>prefixPolicy</code> to <code>Prefix</code>. Prefix policies are only compatible with <code>claim</code>-based mappings.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When using the <code>email</code> claim in CEL expressions, you must also validate <code>email_verified</code> to ensure the email address has been verified by the identity provider.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: Authentication\nmetadata:\n  name: cluster\nspec:\n  type: OIDC\n  oidcProviders:\n  - name: my-oidc-provider\n    issuer:\n      issuerURL: https://idp.example.com\n      audiences:\n      - my-audience\n    claimMappings:\n      username:\n        expression: 'claims.?upn.orValue(claims.?oid.orValue(claims.sub))'\n      groups:\n        expression: 'claims.?groups.orValue([])'\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>username.expression</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the fallback logic for username: <code>upn</code> if present, else <code>oid</code>, else <code>sub</code>.</p></dd>
+      <dt class="font-semibold"><code>groups.expression</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies that the <code>groups</code> claim is used if present, else an empty array.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Replace the placeholder values (<code>my-oidc-provider</code>, <code>https://idp.example.com</code>, <code>my-audience</code>) with your actual OIDC provider configuration.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Apply the configuration:
+      <CodeBlock code={"$ oc apply -f authentication-cel-mapping.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the authentication configuration is applied successfully:
+      <CodeBlock code={"$ oc get authentication.config.openshift.io/cluster -o yaml"} lang="terminal" />
+      </li>
+      <li>
+      Authenticate with a user account and verify the username is constructed correctly:
+      <CodeBlock code={"$ oc whoami"} lang="terminal" />
+      </li>
+      <li>
+      Monitor the cluster authentication Operator status:
+      <CodeBlock code={"$ oc get clusteroperator authentication"} lang="terminal" />
+      <p>The Operator should report <code>Available=True</code> and <code>Degraded=False</code>.</p>
+      </li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>CEL expressions have access to standard CEL string functions (<code>lowerAscii()</code>, <code>upperAscii()</code>, <code>contains()</code>, <code>startsWith()</code>, <code>endsWith()</code>, <code>matches()</code>, <code>split()</code>), operators (<code>+</code>, <code>?</code>, <code>has()</code>, ternary <code>? :</code>), and the <code>orValue()</code> method for optional chaining. See the CEL specification link in Additional resources for the complete function reference.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can use the following CEL expression patterns for claim mapping:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Use the optional chaining Operator <code>?</code> to safely access claims that might not exist</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <CodeBlock code={"username:\n  expression: 'claims.email_verified ? claims.email : claims.sub'"} lang="yaml" />
+      <p>Uses <code>email</code> if verified, otherwise <code>sub</code>. When using the <code>email</code> claim, you must also check <code>email_verified</code>.</p>
+      </dd>
+      <dt class="font-semibold">Concatenate multiple claims</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <CodeBlock code={"username:\n  expression: 'claims.givenname + \".\" + claims.surname'"} lang="yaml" />
+      <p>Combines given name and surname claims.</p>
+      </dd>
+      <dt class="font-semibold">Transform claim values</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <CodeBlock code={"username:\n  expression: 'claims.email.lowerAscii()'"} lang="yaml" />
+      <p>Converts email to lowercase.</p>
+      </dd>
+      <dt class="font-semibold">Conditional logic for different user types</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <CodeBlock code={"username:\n  expression: 'has(claims.upn) ? claims.upn : claims.oid'"} lang="yaml" />
+      <p>Uses <code>upn</code> for regular users, <code>oid</code> for service principals.</p>
+      </dd>
+      <dt class="font-semibold">Extract domain from email</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <CodeBlock code={"groups:\n  expression: 'claims.?email.orValue(\"\").split(\"@\").size() > 1 ? [claims.email.split(\"@\")[1]] : []'"} lang="yaml" />
+      <p>Safely extracts domain from email address for group assignment, returning an empty array if email is missing or malformed.</p>
+      </dd>
+      <dt class="font-semibold">Combine group sources</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <CodeBlock code={"groups:\n  expression: 'claims.?groups.orValue([]) + claims.?roles.orValue([])'"} lang="yaml" />
+      <p>Combines <code>groups</code> and <code>roles</code> claims.</p>
+      </dd>
+      </dl>
+      <h2 id="structured-auth-config-claim-validation_structured-auth-config-fields" class="group scroll-mt-20">Configuring claim validation rules<a href="#structured-auth-config-claim-validation_structured-auth-config-fields" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use Common Expression Language (CEL) expressions to define custom validation rules for JWT token claims and enforce advanced security policies such as maximum token lifetimes.</p>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>All claim validation rules must pass for authentication to succeed. Incorrectly configured validation rules can lock all users out of the cluster. Ensure you complete the following tasks:</p>
+          <ul>
+          <li>Have a backup authentication method, such as a certificate-based kubeconfig file, before applying these rules</li>
+          <li>Test validation rules in a non-production environment first</li>
+          <li>Verify your CEL expressions are correct to avoid blocking valid users from accessing the cluster</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have configured an external OIDC identity provider for direct authentication.</li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have access to a long-lived authentication method, such as a certificate-based kubeconfig file.</li>
+      <li>You are familiar with CEL expression syntax.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file named <code>authentication-claim-validation.yaml</code> with your claim validation rules:
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: Authentication\nmetadata:\n  name: cluster\nspec:\n  type: OIDC\n  oidcProviders:\n  - name: my-oidc-provider\n    issuer:\n      issuerURL: https://idp.example.com\n      audiences:\n      - my-audience\n    claimMappings:\n      username:\n        claim: email\n    claimValidationRules:\n    - type: CEL\n      cel:\n        expression: 'claims.exp - claims.nbf <= 86400'\n        message: 'Total token lifetime must not exceed 24 hours'\n    - type: CEL\n      cel:\n        expression: 'has(claims.email) && claims.email_verified && claims.email.contains(\"@example.com\")'\n        message: 'Email claim must be verified and from example.com domain'"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>claimValidationRules</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies an array of validation rules. All must pass for authentication.</p></dd>
+      <dt class="font-semibold"><code>type</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the validation type. Set to <code>CEL</code> for CEL-based validation.</p></dd>
+      <dt class="font-semibold"><code>cel.expression</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the CEL expression that must evaluate to <code>true</code>.</p></dd>
+      <dt class="font-semibold"><code>cel.message</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the error message displayed when validation fails.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Replace the placeholder values (<code>my-oidc-provider</code>, <code>https://idp.example.com</code>, <code>my-audience</code>, <code>@example.com</code>) with your actual OIDC provider configuration and validation requirements.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Apply the configuration:
+      <CodeBlock code={"$ oc apply -f authentication-claim-validation.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the authentication configuration is applied successfully:
+      <CodeBlock code={"$ oc get authentication.config.openshift.io/cluster -o yaml"} lang="terminal" />
+      </li>
+      <li>Authenticate with a token that matches your validation rules to confirm they are enforced correctly.</li>
+      <li>
+      Check the cluster authentication Operator logs for validation errors:
+      <CodeBlock code={"$ oc logs -n openshift-authentication-operator deployments/authentication-operator"} lang="terminal" />
+      </li>
+      </ul>
+      <p>When writing CEL expressions for claim validation:</p>
+      <ul>
+      <li>Access claims using <code>claims</code> variable (for example, <code>claims.sub</code> or <code>claims.foo.bar</code> for nested claims)</li>
+      <li>Expressions must evaluate to boolean values</li>
+      <li>Use <code>has()</code> to check claim existence</li>
+      <li>Standard CEL operators and functions available: <code>&amp;&amp;</code>, <code>||</code>, <code>!</code>, <code>contains()</code>, <code>startsWith()</code>, <code>endsWith()</code></li>
+      </ul>
+      <p>Common use cases include:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Enforce maximum token lifetime</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"claimValidationRules:\n- type: CEL\n  cel:\n    expression: 'claims.exp - claims.nbf <= 86400'\n    message: 'Token lifetime must not exceed 24 hours'"} lang="yaml" /></dd>
+      <dt class="font-semibold">Require specific claim values</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"claimValidationRules:\n- type: CEL\n  cel:\n    expression: 'claims.tenant == \"production\"'\n    message: 'Only production tenant tokens are allowed'"} lang="yaml" /></dd>
+      <dt class="font-semibold">Validate email domain</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <CodeBlock code={"claimValidationRules:\n- type: CEL\n  cel:\n    expression: 'has(claims.email) && claims.email_verified && claims.email.endsWith(\"@trusted-domain.com\")'\n    message: 'Email must be verified and from trusted-domain.com'"} lang="yaml" />
+      <p>When using the <code>email</code> claim, you must also check <code>email_verified</code> to ensure the email address has been verified by the identity provider.</p>
+      </dd>
+      <dt class="font-semibold">Combine conditions</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"claimValidationRules:\n- type: CEL\n  cel:\n    expression: 'has(claims.role) && (claims.role == \"admin\" || claims.role == \"developer\")'\n    message: 'User must have admin or developer role'"} lang="yaml" /></dd>
+      </dl>
+      <p>If authentication fails after the configuration is applied <strong>Troubleshooting</strong></p>
+      <p>:   Even if your claim validation rules pass the configuration validation gates, runtime authentication errors can occur. Check the kube-apiserver logs for detailed error messages explaining why authentication failed: <code>terminal     $ oc logs -n openshift-kube-apiserver -l app=openshift-kube-apiserver | grep -i auth     </code></p>
+      <CodeBlock code={"These log messages will indicate which validation rule failed and include the custom `message` you specified in the CEL expression."} lang="plaintext" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">If you incorrectly configure validation rules and lock users out of the cluster</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ol>
+      <li>Use your certificate-based kubeconfig to authenticate as <code>cluster-admin</code>.</li>
+      <li>Edit the Authentication custom resource to remove or fix invalid rules:</li>
+      </ol>
+      <CodeBlock code={"$ oc edit authentication.config.openshift.io/cluster"} lang="terminal" />
+      <ol><li>Monitor the cluster authentication Operator to confirm it returns to <code>Available</code> status:</li></ol>
+      <CodeBlock code={"$ oc get clusteroperator authentication"} lang="terminal" />
+      </dd>
+      </dl>
+      <h2 id="structured-auth-config-user-validation_structured-auth-config-fields" class="group scroll-mt-20">Configuring user validation rules<a href="#structured-auth-config-user-validation_structured-auth-config-fields" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can define validation rules to enforce security policies on the user object created from an authenticated token. This helps prevent privilege escalation by blocking reserved usernames and group prefixes.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>User validation rules are evaluated after claim mapping is complete, including all prefix transformations. Your CEL expressions must validate the final username and group names as they will appear in RBAC policies, not the raw claim values from the JWT token.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="warning" class="my-4">
+        <AlertTitle>Warning</AlertTitle>
+        <AlertDescription>
+          <p>All user validation rules must pass for authentication to succeed. Incorrectly configured validation rules can lock all users out of the cluster. Ensure you:</p>
+          <ul>
+          <li>Have a backup authentication method, such as a certificate-based kubeconfig file, before applying these rules</li>
+          <li>Test validation rules in a non-production environment first</li>
+          <li>Verify your CEL expressions correctly validate the final username and groups to avoid blocking valid users or allowing unauthorized access</li>
+          </ul>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have configured an external OIDC identity provider for direct authentication.</li>
+      <li>You have access to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>You have access to a long-lived authentication method, such as a certificate-based kubeconfig file.</li>
+      <li>You are familiar with CEL expression syntax.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file named <code>authentication-user-validation.yaml</code> with your user validation rules:
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: Authentication\nmetadata:\n  name: cluster\nspec:\n  type: OIDC\n  oidcProviders:\n  - name: my-oidc-provider\n    issuer:\n      issuerURL: https://idp.example.com\n      audiences:\n      - my-audience\n    claimMappings:\n      username:\n        claim: email\n      groups:\n        claim: groups\n    userValidationRules:\n    - expression: \"!user.username.startsWith('system:')\"\n      message: 'Username cannot use reserved system: prefix'\n    - expression: \"!user.groups.exists(g, g.startsWith('system:'))\"\n      message: 'Groups cannot use reserved system: prefix'"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>userValidationRules</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies an array of validation rules. All must pass for authentication.</p></dd>
+      <dt class="font-semibold"><code>expression</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the CEL expression that must evaluate to <code>true</code>.</p></dd>
+      <dt class="font-semibold"><code>message</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the error message displayed when validation fails.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Replace the placeholder values (<code>my-oidc-provider</code>, <code>https://idp.example.com</code>, <code>my-audience</code>) with your actual OIDC provider configuration.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Apply the configuration:
+      <CodeBlock code={"$ oc apply -f authentication-user-validation.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the authentication configuration is applied successfully:
+      <CodeBlock code={"$ oc get authentication.config.openshift.io/cluster -o yaml"} lang="terminal" />
+      </li>
+      <li>Authenticate with credentials that would create a user matching your validation rules to confirm they are enforced correctly.</li>
+      <li>
+      Check the cluster authentication Operator logs for validation errors:
+      <CodeBlock code={"$ oc logs -n openshift-authentication-operator deployments/authentication-operator"} lang="terminal" />
+      </li>
+      </ul>
+      <p>When writing CEL expressions for user validation:</p>
+      <ul>
+      <li>Access user fields: <code>user.username</code>, <code>user.groups</code> (array), <code>user.uid</code>, <code>user.extra</code> (map)</li>
+      <li>Expressions must evaluate to boolean values</li>
+      <li>Use <code>startsWith()</code>, <code>endsWith()</code>, <code>contains()</code> for string matching</li>
+      <li>Use <code>exists()</code> for array checks (for example, <code>user.groups.exists(g, g == "admin")</code>)</li>
+      </ul>
+      <p>Common use cases include:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Prevent reserved username prefixes</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"userValidationRules:\n- expression: \"!user.username.startsWith('system:')\"\n  message: 'Username cannot use reserved system: prefix'"} lang="yaml" /></dd>
+      <dt class="font-semibold">Prevent reserved group prefixes</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"userValidationRules:\n- expression: \"!user.groups.exists(g, g.startsWith('system:'))\"\n  message: 'Groups cannot use reserved system: prefix'"} lang="yaml" /></dd>
+      <dt class="font-semibold">Require username format</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"userValidationRules:\n- expression: \"user.username.matches('^[a-z0-9]([-a-z0-9]*[a-z0-9])?$')\"\n  message: 'Username must be a valid DNS subdomain'"} lang="yaml" /></dd>
+      <dt class="font-semibold">Validate group membership</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"userValidationRules:\n- expression: \"user.groups.exists(g, g == 'verified-users')\"\n  message: 'User must be a member of verified-users group'"} lang="yaml" /></dd>
+      <dt class="font-semibold">Combine conditions</dt>
+      <dd class="ml-6 text-muted-foreground"><CodeBlock code={"userValidationRules:\n- expression: \"!user.username.startsWith('system:') && !user.username.startsWith('kube:')\"\n  message: 'Username cannot use reserved system: or kube: prefixes'"} lang="yaml" /></dd>
+      </dl>
+      <p><strong>Troubleshooting</strong></p>
+      <p>If you incorrectly configure validation rules and lock users out of the cluster:</p>
+      <ol>
+      <li>Use your certificate-based kubeconfig to authenticate as <code>cluster-admin</code>.</li>
+      <li>
+      Edit the Authentication custom resource to remove or fix invalid rules:
+      <CodeBlock code={"$ oc edit authentication.config.openshift.io/cluster"} lang="terminal" />
+      </li>
+      <li>
+      Monitor the cluster authentication Operator to confirm it returns to <code>Available</code> status:
+      <CodeBlock code={"$ oc get clusteroperator authentication"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="structured-auth-config-fields-reference_structured-auth-config-fields" class="group scroll-mt-20">Advanced authentication field reference<a href="#structured-auth-config-fields-reference_structured-auth-config-fields" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The following table describes the advanced authentication configuration fields available as Technology Preview in OpenShift Container Platform.</p>
+      <p><em></em><em><strong>Advanced </strong></em><code>oidcProviders</code><em><strong> configuration fields</strong></em><em></em></p>
+      <Fragment set:html={"<table>\n<thead>\n<tr>\n  <th>Parameter</th>\n  <th>Description</th>\n</tr>\n</thead>\n<tbody>\n<tr>\n  <td><code>issuer.discoveryURL</code></td>\n  <td>Optional parameter. Custom OIDC discovery endpoint URL for retrieving identity provider metadata from a non-standard location.<br><br>Requirements:<br><br><ul><li>Must be a valid HTTPS URL</li><li>Must differ from <code>issuer.issuerURL</code></li></ul>When not specified, OpenShift Container Platform constructs the discovery URL by using the standard OIDC format: <code>{{ issuerURL }}/.well-known/openid-configuration</code>.<br><br><strong>Example:</strong><br><br><pre>issuer:&#10;  issuerURL: https://idp.example.com&#10;  discoveryURL: https://custom-discovery.example.com/.well-known/openid-configuration</pre></td>\n</tr>\n<tr>\n  <td><code>claimValidationRules</code></td>\n  <td>Optional parameter. Array of validation rules for JWT token claims using Common Expression Language (CEL) expressions. All rules must evaluate to <code>true</code> for authentication to succeed (AND operation).<br><br>Each rule has:<br><br><ul><li><code>type</code>: Set to <code>CEL</code> for CEL-based validation</li><li><code>cel</code>: Object with <code>expression</code> (must evaluate to <code>true</code>) and <code>message</code> (error text)</li></ul>CEL expressions access claims by using <code>claims</code> variable (for example, <code>claims.sub</code>).<br><br><strong>Example:</strong><br><br><pre>claimValidationRules:&#10;- type: CEL&#10;  cel:&#10;    expression: 'claims.exp - claims.nbf &lt;= 86400'&#10;    message: 'Total token lifetime must not exceed 24 hours'&#10;- type: CEL&#10;  cel:&#10;    expression: 'has(claims.email) &amp;&amp; claims.email.contains(\"@example.com\")'&#10;    message: 'Email claim must be present and from example.com domain'</pre></td>\n</tr>\n<tr>\n  <td><code>claimValidationRules[].type</code></td>\n  <td>Required. Validation rule type. Set to <code>CEL</code> for CEL-based validation. Requires <code>cel</code> field.</td>\n</tr>\n<tr>\n  <td><code>claimValidationRules[].cel</code></td>\n  <td>Required when <code>type</code> is <code>CEL</code>. Contains <code>expression</code> (CEL expression to evaluate) and <code>message</code> (error text).</td>\n</tr>\n<tr>\n  <td><code>claimValidationRules[].cel.expression</code></td>\n  <td>Required. CEL expression that validates token claims. Must evaluate to <code>true</code> for authentication to succeed.<br><br>Constraints: 1-1024 characters, must evaluate to boolean.<br><br>Access claims by using <code>claims</code> variable: <code>claims.sub</code>, <code>claims.foo.bar</code> (nested), <code>has(claims.email)</code> (existence check).<br><br><dl><dt>Note</dt><dd>When using the <code>email</code> claim in CEL expressions, you must also validate the <code>email_verified</code> claim to ensure the email address has been verified by the identity provider. For example: <code>claims.email_verified && claims.email.endsWith(\"@example.com\")</code>.</dd></dl></td>\n</tr>\n<tr>\n  <td><code>claimValidationRules[].cel.message</code></td>\n  <td>Required. Error message displayed when validation fails. Constraints: 1-256 characters.</td>\n</tr>\n<tr>\n  <td><code>userValidationRules</code></td>\n  <td>Optional parameter. Array of validation rules for user objects by using CEL expressions. All rules must evaluate to <code>true</code> for authentication to succeed (AND operation).<br><br>Each rule has <code>expression</code> (must evaluate to <code>true</code>) and <code>message</code> (error text).<br><br>CEL expressions access user object by using <code>user</code> variable: <code>user.username</code> (string), <code>user.groups</code> (array), <code>user.uid</code> (string), <code>user.extra</code> (map).<br><br><strong>Example:</strong><br><br><pre>userValidationRules:&#10;- expression: \"!user.username.startsWith('system:')\"&#10;  message: 'Username cannot use reserved system: prefix'&#10;- expression: \"!user.groups.exists(g, g.startsWith('system:'))\"&#10;  message: 'Groups cannot use reserved system: prefix'</pre></td>\n</tr>\n<tr>\n  <td><code>userValidationRules[].expression</code></td>\n  <td>Required. CEL expression that validates the user object. Must evaluate to <code>true</code> for authentication to succeed.<br><br>Constraints: 1-1024 characters, must evaluate to boolean.<br><br>Access user fields: <code>user.username.startsWith('system:')</code>, <code>user.groups.exists(g, g == \"admin\")</code>, <code>user.extra[\"example.com/role\"]</code>.</td>\n</tr>\n<tr>\n  <td><code>userValidationRules[].message</code></td>\n  <td>Required. Error message displayed when validation fails. Must not be empty.</td>\n</tr>\n</tbody>\n</table>\n"} />
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/authentication/external-auth#external-auth">Enabling direct authentication with an external OIDC identity provider</a></li>

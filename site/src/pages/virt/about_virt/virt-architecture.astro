@@ -16,8 +16,14 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 import BlockImage from "@ui/image/Image.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"virt-architecture","text":"{{ VirtProductName }} Architecture"},{"depth":2,"slug":"additional-resources_virt-architecture","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-architecture","text":"OpenShift Virtualization Architecture"},{"depth":2,"slug":"virt-about-hco-operator_virt-architecture","text":"About the HyperConverged Operator (HCO)"},{"depth":2,"slug":"virt-about-cdi-operator_virt-architecture","text":"About the Containerized Data Importer (CDI) Operator"},{"depth":2,"slug":"virt-about-cluster-network-addons-operator_virt-architecture","text":"About the Cluster Network Addons Operator"},{"depth":2,"slug":"virt-about-hpp-operator_virt-architecture","text":"About the Hostpath Provisioner (HPP) Operator"},{"depth":2,"slug":"virt-about-ssp-operator_virt-architecture","text":"About the Scheduling, Scale, and Performance (SSP) Operator"},{"depth":2,"slug":"virt-about-virt-operator_virt-architecture","text":"About the OpenShift Virtualization Operator"},{"depth":2,"slug":"additional-resources_virt-architecture","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/about_virt/virt-architecture";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -27,7 +33,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ VirtProductName }} Architecture";
-const description = "{{ VirtProductName }} architecture consists of several Operators and components that manage the lifecycle, storage, networking, and scheduling of virtual…" || undefined;
+const description = "OpenShift Virtualization architecture consists of several Operators and components that manage the lifecycle, storage, networking, and scheduling of…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -40,7 +46,7 @@ const pageCategory = ["virt","virt/about_virt"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ VirtProductName }} Architecture {#virt-architecture}\n\n{{ VirtProductName }} architecture consists of several Operators and components that manage the lifecycle, storage, networking, and scheduling of virtual machine workloads within the cluster.\n\nThe Operator Lifecycle Manager (OLM) deploys operator pods for each component of {{ VirtProductName }}:\n\n- Compute: `virt-operator`\n- Storage: `cdi-operator`\n- Network: `cluster-network-addons-operator`\n- Scaling: `ssp-operator`\n\nOLM also deploys the `hyperconverged-cluster-operator` pod, which is responsible for the deployment, configuration, and life cycle of other components, and several helper pods: `hco-webhook`, and `hyperconverged-cluster-cli-download`.\n\nAfter all operator pods are successfully deployed, you should create the `HyperConverged` custom resource (CR). The configurations set in the `HyperConverged` CR serve as the single source of truth and the entrypoint for {{ VirtProductName }}, and guide the behavior of the CRs.\n\nThe `HyperConverged` CR creates corresponding CRs for the operators of all other components within its reconciliation loop. Each operator then creates resources such as daemon sets, config maps, and additional components for the {{ VirtProductName }} control plane. For example, when the HyperConverged Operator (HCO) creates the `KubeVirt` CR, the {{ VirtProductName }} Operator reconciles it and creates additional resources such as `virt-controller`, `virt-handler`, and `virt-api`.\n\nThe OLM deploys the Hostpath Provisioner (HPP) Operator, but it is not functional until you create a `hostpath-provisioner` CR.\n\n![Deployments](/openshift-docs-markdown/_assets/images/cnv_components_main.png)\n\n## Additional resources {#additional-resources_virt-architecture}\n\n- [virtctl client commands](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/about_virt/virt-architecture.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OpenShift Virtualization Architecture {#virt-architecture}\n\nOpenShift Virtualization architecture consists of several Operators and components that manage the lifecycle, storage, networking, and scheduling of virtual machine workloads within the cluster.\n\nThe Operator Lifecycle Manager (OLM) deploys operator pods for each component of OpenShift Virtualization:\n\n- Compute: `virt-operator`\n- Storage: `cdi-operator`\n- Network: `cluster-network-addons-operator`\n- Scaling: `ssp-operator`\n\nOLM also deploys the `hyperconverged-cluster-operator` pod, which is responsible for the deployment, configuration, and life cycle of other components, and several helper pods: `hco-webhook`, and `hyperconverged-cluster-cli-download`.\n\nAfter all operator pods are successfully deployed, you should create the `HyperConverged` custom resource (CR). The configurations set in the `HyperConverged` CR serve as the single source of truth and the entrypoint for OpenShift Virtualization, and guide the behavior of the CRs.\n\nThe `HyperConverged` CR creates corresponding CRs for the operators of all other components within its reconciliation loop. Each operator then creates resources such as daemon sets, config maps, and additional components for the OpenShift Virtualization control plane. For example, when the HyperConverged Operator (HCO) creates the `KubeVirt` CR, the OpenShift Virtualization Operator reconciles it and creates additional resources such as `virt-controller`, `virt-handler`, and `virt-api`.\n\nThe OLM deploys the Hostpath Provisioner (HPP) Operator, but it is not functional until you create a `hostpath-provisioner` CR.\n\n![Deployments](/openshift-docs-markdown/_assets/images/cnv_components_main.png)\n\n## About the HyperConverged Operator (HCO) {#virt-about-hco-operator_virt-architecture}\n\nThe HCO, `hco-operator`, provides a single entry point for deploying and managing OpenShift Virtualization and several helper operators with opinionated defaults. It also creates custom resources (CRs) for those operators.\n\n![hco-operator components](/openshift-docs-markdown/_assets/images/cnv_components_hco-operator.png)\n\n**HyperConverged Operator components**\n\n| **Component** | **Description** |\n| --- | --- |\n| `deployment/hco-webhook` | Validates the `HyperConverged` custom resource contents. |\n| `deployment/hyperconverged-cluster-cli-download` | Provides the `virtctl` tool binaries to the cluster so that you can download them directly from the cluster. |\n| `KubeVirt/kubevirt-kubevirt-hyperconverged` | Contains all operators, CRs, and objects needed by OpenShift Virtualization. |\n| `SSP/ssp-kubevirt-hyperconverged` | A Scheduling, Scale, and Performance (SSP) CR. This is automatically created by the HCO. |\n| `CDI/cdi-kubevirt-hyperconverged` | A Containerized Data Importer (CDI) CR. This is automatically created by the HCO. |\n| `NetworkAddonsConfig/cluster` | A CR that instructs and is managed by the `cluster-network-addons-operator`. |\n\n## About the Containerized Data Importer (CDI) Operator {#virt-about-cdi-operator_virt-architecture}\n\nThe CDI Operator, `cdi-operator`, manages CDI and its related resources, which imports a virtual machine (VM) image into a persistent volume claim (PVC) by using a data volume.\n\n![cdi-operator components](/openshift-docs-markdown/_assets/images/cnv_components_cdi-operator.png)\n\n**CDI Operator components**\n\n| **Component** | **Description** |\n| --- | --- |\n| `deployment/cdi-apiserver` | Manages the authorization to upload VM disks into PVCs by issuing secure upload tokens. |\n| `deployment/cdi-uploadproxy` | Directs external disk upload traffic to the appropriate upload server pod so that it can be written to the correct PVC. Requires a valid upload token. |\n| `pod/cdi-importer` | Helper pod that imports a virtual machine image into a PVC when creating a data volume. |\n\n## About the Cluster Network Addons Operator {#virt-about-cluster-network-addons-operator_virt-architecture}\n\nThe Cluster Network Addons Operator, `cluster-network-addons-operator`, deploys networking components on a cluster and manages the related resources for extended network functionality.\n\n![cluster-network-addons-operator components](/openshift-docs-markdown/_assets/images/cnv_components_cluster-network-addons-operator.png)\n\n**Cluster Network Addons Operator components**\n\n| **Component** | **Description** |\n| --- | --- |\n| `deployment/kubemacpool-cert-manager` | Manages TLS certificates of Kubemacpool’s webhooks. |\n| `deployment/kubemacpool-mac-controller-manager` | Provides a MAC address pooling service for virtual machine (VM) network interface cards (NICs). |\n| `daemonset/bridge-marker` | Marks network bridges available on nodes as node resources. |\n| `daemonset/kube-cni-linux-bridge-plugin` | Installs Container Network Interface (CNI) plugins on cluster nodes, enabling the attachment of VMs to Linux bridges through network attachment definitions. |\n\n## About the Hostpath Provisioner (HPP) Operator {#virt-about-hpp-operator_virt-architecture}\n\nThe HPP Operator, `hostpath-provisioner-operator`, deploys and manages the multi-node HPP and related resources.\n\n![hpp-operator components](/openshift-docs-markdown/_assets/images/cnv_components_hpp-operator.png)\n\n**HPP Operator components**\n\n| **Component** | **Description** |\n| --- | --- |\n| `deployment/hpp-pool-hpp-csi-pvc-block-<worker_node_name>` | Provides a worker for each node where the HPP is designated to run. The pods mount the specified backing storage on the node. |\n| `daemonset/hostpath-provisioner-csi` | Implements the Container Storage Interface (CSI) driver interface of the HPP. |\n| `daemonset/hostpath-provisioner` | Implements the legacy driver interface of the HPP. |\n\n## About the Scheduling, Scale, and Performance (SSP) Operator {#virt-about-ssp-operator_virt-architecture}\n\nThe SSP Operator, `ssp-operator`, deploys the common templates, the related default boot sources, the pipeline tasks, and the template validator.\n\n## About the OpenShift Virtualization Operator {#virt-about-virt-operator_virt-architecture}\n\nThe OpenShift Virtualization Operator, `virt-operator`, deploys, upgrades, and manages OpenShift Virtualization without disrupting current virtual machine (VM) workloads. In addition, the OpenShift Virtualization Operator deploys the common instance types and common preferences.\n\n![virt-operator components](/openshift-docs-markdown/_assets/images/cnv_components_virt-operator.png)\n\n**virt-operator components**\n\n| **Component** | **Description** |\n| --- | --- |\n| `deployment/virt-api` | HTTP API server that serves as the entry point for all virtualization-related flows. |\n| `deployment/virt-controller` | Observes the creation of a new VM instance object and creates a corresponding pod. When the pod is scheduled on a node, `virt-controller` updates the VM with the node name. |\n| `daemonset/virt-handler` | Monitors any changes to a VM and instructs `virt-launcher` to perform the required operations. This component is node-specific. |\n| `pod/virt-launcher` | Contains the VM that was created by the user as implemented by `libvirt` and `qemu`. |\n\n## Additional resources {#additional-resources_virt-architecture}\n\n- [virtctl client commands](/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/about_virt/virt-architecture.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -76,7 +82,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -91,10 +97,9 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="virt-architecture" class="group scroll-mt-20">{"{"}{"{"} VirtProductName {"}"}{"}"} Architecture<a href="#virt-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>{"{"}{"{"} VirtProductName {"}"}{"}"} architecture consists of several Operators and components that manage the lifecycle, storage, networking, and scheduling of virtual machine workloads within the cluster.</p>
-      <p>The Operator Lifecycle Manager (OLM) deploys operator pods for each component of {"{"}{"{"} VirtProductName {"}"}{"}"}:</p>
+      <h1 id="virt-architecture" class="group scroll-mt-20">OpenShift Virtualization Architecture<a href="#virt-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>OpenShift Virtualization architecture consists of several Operators and components that manage the lifecycle, storage, networking, and scheduling of virtual machine workloads within the cluster.</p>
+      <p>The Operator Lifecycle Manager (OLM) deploys operator pods for each component of OpenShift Virtualization:</p>
       <ul>
       <li>Compute: <code>virt-operator</code></li>
       <li>Storage: <code>cdi-operator</code></li>
@@ -102,16 +107,162 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li>Scaling: <code>ssp-operator</code></li>
       </ul>
       <p>OLM also deploys the <code>hyperconverged-cluster-operator</code> pod, which is responsible for the deployment, configuration, and life cycle of other components, and several helper pods: <code>hco-webhook</code>, and <code>hyperconverged-cluster-cli-download</code>.</p>
-      <p>After all operator pods are successfully deployed, you should create the <code>HyperConverged</code> custom resource (CR). The configurations set in the <code>HyperConverged</code> CR serve as the single source of truth and the entrypoint for {"{"}{"{"} VirtProductName {"}"}{"}"}, and guide the behavior of the CRs.</p>
-      <p>The <code>HyperConverged</code> CR creates corresponding CRs for the operators of all other components within its reconciliation loop. Each operator then creates resources such as daemon sets, config maps, and additional components for the {"{"}{"{"} VirtProductName {"}"}{"}"} control plane. For example, when the HyperConverged Operator (HCO) creates the <code>KubeVirt</code> CR, the {"{"}{"{"} VirtProductName {"}"}{"}"} Operator reconciles it and creates additional resources such as <code>virt-controller</code>, <code>virt-handler</code>, and <code>virt-api</code>.</p>
+      <p>After all operator pods are successfully deployed, you should create the <code>HyperConverged</code> custom resource (CR). The configurations set in the <code>HyperConverged</code> CR serve as the single source of truth and the entrypoint for OpenShift Virtualization, and guide the behavior of the CRs.</p>
+      <p>The <code>HyperConverged</code> CR creates corresponding CRs for the operators of all other components within its reconciliation loop. Each operator then creates resources such as daemon sets, config maps, and additional components for the OpenShift Virtualization control plane. For example, when the HyperConverged Operator (HCO) creates the <code>KubeVirt</code> CR, the OpenShift Virtualization Operator reconciles it and creates additional resources such as <code>virt-controller</code>, <code>virt-handler</code>, and <code>virt-api</code>.</p>
       <p>The OLM deploys the Hostpath Provisioner (HPP) Operator, but it is not functional until you create a <code>hostpath-provisioner</code> CR.</p>
       <BlockImage src="/openshift-docs-markdown/_assets/images/cnv_components_main.png" alt="Deployments" />
-      <p class="/modules/virt-about-hco-operator.md"></p>
-      <p class="/modules/virt-about-cdi-operator.md"></p>
-      <p class="/modules/virt-about-cluster-network-addons-operator.md"></p>
-      <p class="/modules/virt-about-hpp-operator.md"></p>
-      <p class="/modules/virt-about-ssp-operator.md"></p>
-      <p class="/modules/virt-about-virt-operator.md"></p>
+      <h2 id="virt-about-hco-operator_virt-architecture" class="group scroll-mt-20">About the HyperConverged Operator (HCO)<a href="#virt-about-hco-operator_virt-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The HCO, <code>hco-operator</code>, provides a single entry point for deploying and managing OpenShift Virtualization and several helper operators with opinionated defaults. It also creates custom resources (CRs) for those operators.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/cnv_components_hco-operator.png" alt="hco-operator components" />
+      <p><strong>HyperConverged Operator components</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead><strong>Component</strong></TableHead>
+      <TableHead><strong>Description</strong></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>deployment/hco-webhook</code></TableCell>
+      <TableCell>Validates the <code>HyperConverged</code> custom resource contents.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>deployment/hyperconverged-cluster-cli-download</code></TableCell>
+      <TableCell>Provides the <code>virtctl</code> tool binaries to the cluster so that you can download them directly from the cluster.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>KubeVirt/kubevirt-kubevirt-hyperconverged</code></TableCell>
+      <TableCell>Contains all operators, CRs, and objects needed by OpenShift Virtualization.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>SSP/ssp-kubevirt-hyperconverged</code></TableCell>
+      <TableCell>A Scheduling, Scale, and Performance (SSP) CR. This is automatically created by the HCO.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>CDI/cdi-kubevirt-hyperconverged</code></TableCell>
+      <TableCell>A Containerized Data Importer (CDI) CR. This is automatically created by the HCO.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>NetworkAddonsConfig/cluster</code></TableCell>
+      <TableCell>A CR that instructs and is managed by the <code>cluster-network-addons-operator</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="virt-about-cdi-operator_virt-architecture" class="group scroll-mt-20">About the Containerized Data Importer (CDI) Operator<a href="#virt-about-cdi-operator_virt-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The CDI Operator, <code>cdi-operator</code>, manages CDI and its related resources, which imports a virtual machine (VM) image into a persistent volume claim (PVC) by using a data volume.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/cnv_components_cdi-operator.png" alt="cdi-operator components" />
+      <p><strong>CDI Operator components</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead><strong>Component</strong></TableHead>
+      <TableHead><strong>Description</strong></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>deployment/cdi-apiserver</code></TableCell>
+      <TableCell>Manages the authorization to upload VM disks into PVCs by issuing secure upload tokens.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>deployment/cdi-uploadproxy</code></TableCell>
+      <TableCell>Directs external disk upload traffic to the appropriate upload server pod so that it can be written to the correct PVC. Requires a valid upload token.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>pod/cdi-importer</code></TableCell>
+      <TableCell>Helper pod that imports a virtual machine image into a PVC when creating a data volume.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="virt-about-cluster-network-addons-operator_virt-architecture" class="group scroll-mt-20">About the Cluster Network Addons Operator<a href="#virt-about-cluster-network-addons-operator_virt-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Cluster Network Addons Operator, <code>cluster-network-addons-operator</code>, deploys networking components on a cluster and manages the related resources for extended network functionality.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/cnv_components_cluster-network-addons-operator.png" alt="cluster-network-addons-operator components" />
+      <p><strong>Cluster Network Addons Operator components</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead><strong>Component</strong></TableHead>
+      <TableHead><strong>Description</strong></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>deployment/kubemacpool-cert-manager</code></TableCell>
+      <TableCell>Manages TLS certificates of Kubemacpool’s webhooks.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>deployment/kubemacpool-mac-controller-manager</code></TableCell>
+      <TableCell>Provides a MAC address pooling service for virtual machine (VM) network interface cards (NICs).</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>daemonset/bridge-marker</code></TableCell>
+      <TableCell>Marks network bridges available on nodes as node resources.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>daemonset/kube-cni-linux-bridge-plugin</code></TableCell>
+      <TableCell>Installs Container Network Interface (CNI) plugins on cluster nodes, enabling the attachment of VMs to Linux bridges through network attachment definitions.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="virt-about-hpp-operator_virt-architecture" class="group scroll-mt-20">About the Hostpath Provisioner (HPP) Operator<a href="#virt-about-hpp-operator_virt-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The HPP Operator, <code>hostpath-provisioner-operator</code>, deploys and manages the multi-node HPP and related resources.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/cnv_components_hpp-operator.png" alt="hpp-operator components" />
+      <p><strong>HPP Operator components</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead><strong>Component</strong></TableHead>
+      <TableHead><strong>Description</strong></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>deployment/hpp-pool-hpp-csi-pvc-block-&lt;worker_node_name&gt;</code></TableCell>
+      <TableCell>Provides a worker for each node where the HPP is designated to run. The pods mount the specified backing storage on the node.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>daemonset/hostpath-provisioner-csi</code></TableCell>
+      <TableCell>Implements the Container Storage Interface (CSI) driver interface of the HPP.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>daemonset/hostpath-provisioner</code></TableCell>
+      <TableCell>Implements the legacy driver interface of the HPP.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="virt-about-ssp-operator_virt-architecture" class="group scroll-mt-20">About the Scheduling, Scale, and Performance (SSP) Operator<a href="#virt-about-ssp-operator_virt-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The SSP Operator, <code>ssp-operator</code>, deploys the common templates, the related default boot sources, the pipeline tasks, and the template validator.</p>
+      <h2 id="virt-about-virt-operator_virt-architecture" class="group scroll-mt-20">About the OpenShift Virtualization Operator<a href="#virt-about-virt-operator_virt-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The OpenShift Virtualization Operator, <code>virt-operator</code>, deploys, upgrades, and manages OpenShift Virtualization without disrupting current virtual machine (VM) workloads. In addition, the OpenShift Virtualization Operator deploys the common instance types and common preferences.</p>
+      <BlockImage src="/openshift-docs-markdown/_assets/images/cnv_components_virt-operator.png" alt="virt-operator components" />
+      <p><strong>virt-operator components</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead><strong>Component</strong></TableHead>
+      <TableHead><strong>Description</strong></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>deployment/virt-api</code></TableCell>
+      <TableCell>HTTP API server that serves as the entry point for all virtualization-related flows.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>deployment/virt-controller</code></TableCell>
+      <TableCell>Observes the creation of a new VM instance object and creates a corresponding pod. When the pod is scheduled on a node, <code>virt-controller</code> updates the VM with the node name.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>daemonset/virt-handler</code></TableCell>
+      <TableCell>Monitors any changes to a VM and instructs <code>virt-launcher</code> to perform the required operations. This component is node-specific.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>pod/virt-launcher</code></TableCell>
+      <TableCell>Contains the VM that was created by the user as implemented by <code>libvirt</code> and <code>qemu</code>.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
       <h2 id="additional-resources_virt-architecture" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/virt/getting_started/virt-using-the-cli-tools#virt-using-the-cli-tools">virtctl client commands</a></li></ul>
     </article>

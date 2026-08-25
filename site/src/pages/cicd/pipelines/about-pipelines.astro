@@ -19,7 +19,7 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"about-pipelines","text":"About {{ pipelines_title }}"}];
+const headings = [{"depth":1,"slug":"about-pipelines","text":"About Red Hat OpenShift Pipelines"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cicd/pipelines/about-pipelines";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "About {{ pipelines_title }}";
-const description = "{{ pipelines_title }} is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. It uses Tekton…" || undefined;
+const description = "Red Hat OpenShift Pipelines is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. It uses…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +42,7 @@ const pageCategory = ["cicd","cicd/pipelines"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About {{ pipelines_title }} {#about-pipelines}\n\n{{ pipelines_title }} is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. It uses Tekton building blocks to automate deployments across multiple platforms by abstracting away the underlying implementation details. Tekton introduces a number of standard custom resource definitions (CRDs) for defining CI/CD pipelines that are portable across Kubernetes distributions.\n\n> [!NOTE]\n> Because {{ pipelines_title }} releases on a different cadence from OpenShift Container Platform, the {{ pipelines_title }} documentation is now available as a separate documentation set at [Red Hat OpenShift Pipelines](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/pipelines/about-pipelines.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# About Red Hat OpenShift Pipelines {#about-pipelines}\n\nRed Hat OpenShift Pipelines is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. It uses Tekton building blocks to automate deployments across multiple platforms by abstracting away the underlying implementation details. Tekton introduces a number of standard custom resource definitions (CRDs) for defining CI/CD pipelines that are portable across Kubernetes distributions.\n\n> [!NOTE]\n> Because Red Hat OpenShift Pipelines releases on a different cadence from OpenShift Container Platform, the Red Hat OpenShift Pipelines documentation is now available as a separate documentation set at [Red Hat OpenShift Pipelines](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/pipelines/about-pipelines.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,13 +93,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="about-pipelines" class="group scroll-mt-20">About {"{"}{"{"} pipelines_title {"}"}{"}"}<a href="#about-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>{"{"}{"{"} pipelines_title {"}"}{"}"} is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. It uses Tekton building blocks to automate deployments across multiple platforms by abstracting away the underlying implementation details. Tekton introduces a number of standard custom resource definitions (CRDs) for defining CI/CD pipelines that are portable across Kubernetes distributions.</p>
+      <h1 id="about-pipelines" class="group scroll-mt-20">About Red Hat OpenShift Pipelines<a href="#about-pipelines" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Red Hat OpenShift Pipelines is a cloud-native, continuous integration and continuous delivery (CI/CD) solution based on Kubernetes resources. It uses Tekton building blocks to automate deployments across multiple platforms by abstracting away the underlying implementation details. Tekton introduces a number of standard custom resource definitions (CRDs) for defining CI/CD pipelines that are portable across Kubernetes distributions.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Because {"{"}{"{"} pipelines_title {"}"}{"}"} releases on a different cadence from OpenShift Container Platform, the {"{"}{"{"} pipelines_title {"}"}{"}"} documentation is now available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines">Red Hat OpenShift Pipelines</a>.</p>
+          <p>Because Red Hat OpenShift Pipelines releases on a different cadence from OpenShift Container Platform, the Red Hat OpenShift Pipelines documentation is now available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines">Red Hat OpenShift Pipelines</a>.</p>
         </AlertDescription>
       </Alert>
     </article>

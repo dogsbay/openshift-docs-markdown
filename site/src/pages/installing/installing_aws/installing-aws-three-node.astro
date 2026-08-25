@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"installing-aws-three-node","text":"Installing a three-node cluster on {{ aws_short }}"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"installing-aws-three-node","text":"Installing a three-node cluster on AWS"},{"depth":2,"slug":"installation-three-node-cluster_installing-aws-three-node","text":"Configuring a three-node cluster"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/installing/installing_aws/installing-aws-three-node";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Installing a three-node cluster on {{ aws_short }}";
-const description = "In OpenShift Container Platform version 4.22, you can install a three-node cluster on {{ aws_first }}. A three-node cluster consists of three control…" || undefined;
+const description = "In OpenShift Container Platform version 4.22, you can install a three-node cluster on Amazon Web Services (AWS). A three-node cluster consists of three…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["installing","installing/installing_aws"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a three-node cluster on {{ aws_short }} {#installing-aws-three-node}\n\nIn OpenShift Container Platform version 4.22, you can install a three-node cluster on {{ aws_first }}. A three-node cluster consists of three control plane machines, which also act as compute machines.\n\nThis type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.\n\nYou can install a three-node cluster using either installer-provisioned or user-provisioned infrastructure.\n\n> [!NOTE]\n> Deploying a three-node cluster using an {{ aws_short }} Marketplace image is not supported.\n\n## Additional resources {#_additional_resources}\n\n- [Installing a cluster on AWS with customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)\n- [Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/installing-aws-three-node.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Installing a three-node cluster on AWS {#installing-aws-three-node}\n\nIn OpenShift Container Platform version 4.22, you can install a three-node cluster on Amazon Web Services (AWS). A three-node cluster consists of three control plane machines, which also act as compute machines.\n\nThis type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.\n\nYou can install a three-node cluster using either installer-provisioned or user-provisioned infrastructure.\n\n> [!NOTE]\n> Deploying a three-node cluster using an AWS Marketplace image is not supported.\n\n## Configuring a three-node cluster {#installation-three-node-cluster_installing-aws-three-node}\n\nTo configure a three-node cluster, set the number of worker nodes to `0` in the `install-config.yaml` file before you deploy the cluster.\n\nSetting the number of worker nodes to `0` ensures that the control plane machines are schedulable. This allows application workloads to be scheduled to run from the control plane nodes.\n\n> [!NOTE]\n> Because application workloads run from control plane nodes, additional subscriptions are required, as the control plane nodes are considered to be compute nodes.\n\n**Prerequisites**\n\n- You have an existing `install-config.yaml` file.\n\n**Procedure**\n\n1. Set the number of compute replicas to `0` in your `install-config.yaml` file, as shown in the following `compute` stanza:\n\n   ```yaml {title=\"Example install-config.yaml file for a three-node cluster\"}\n   apiVersion: v1\n   baseDomain: example.com\n   compute:\n   - name: worker\n     platform: {}\n     replicas: 0\n   # ...\n   ```\n2. If you are deploying a cluster with user-provisioned infrastructure:\n\n   - After you create the Kubernetes manifest files, make sure that the `spec.mastersSchedulable` parameter is set to `true` in `cluster-scheduler-02-config.yml` file. You can locate this file in `<installation_directory>/manifests`. For more information, see \"Creating the Kubernetes manifest and Ignition config files\" in \"Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates\".\n   - Do not create additional worker nodes.\n\n     ```yaml {title=\"Example cluster-scheduler-02-config.yml file for a three-node cluster\"}\n     apiVersion: config.openshift.io/v1\n     kind: Scheduler\n     metadata:\n       creationTimestamp: null\n       name: cluster\n     spec:\n       mastersSchedulable: true\n       policy:\n         name: \"\"\n     status: {}\n     ```\n\n## Additional resources {#_additional_resources}\n\n- [Installing a cluster on AWS with customizations](/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations)\n- [Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates](/openshift-docs-markdown/installing/installing_aws/upi/installing-aws-user-infra#installing-aws-user-infra)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/installing/installing_aws/installing-aws-three-node.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,18 +94,44 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="installing-aws-three-node" class="group scroll-mt-20">Installing a three-node cluster on {"{"}{"{"} aws_short {"}"}{"}"}<a href="#installing-aws-three-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>In OpenShift Container Platform version 4.22, you can install a three-node cluster on {"{"}{"{"} aws_first {"}"}{"}"}. A three-node cluster consists of three control plane machines, which also act as compute machines.</p>
+      <h1 id="installing-aws-three-node" class="group scroll-mt-20">Installing a three-node cluster on AWS<a href="#installing-aws-three-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>In OpenShift Container Platform version 4.22, you can install a three-node cluster on Amazon Web Services (AWS). A three-node cluster consists of three control plane machines, which also act as compute machines.</p>
       <p>This type of cluster provides a smaller, more resource efficient cluster, for cluster administrators and developers to use for testing, development, and production.</p>
       <p>You can install a three-node cluster using either installer-provisioned or user-provisioned infrastructure.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Deploying a three-node cluster using an {"{"}{"{"} aws_short {"}"}{"}"} Marketplace image is not supported.</p>
+          <p>Deploying a three-node cluster using an AWS Marketplace image is not supported.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/installation-three-node-cluster-cloud-provider.md"></p>
+      <h2 id="installation-three-node-cluster_installing-aws-three-node" class="group scroll-mt-20">Configuring a three-node cluster<a href="#installation-three-node-cluster_installing-aws-three-node" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To configure a three-node cluster, set the number of worker nodes to <code>0</code> in the <code>install-config.yaml</code> file before you deploy the cluster.</p>
+      <p>Setting the number of worker nodes to <code>0</code> ensures that the control plane machines are schedulable. This allows application workloads to be scheduled to run from the control plane nodes.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Because application workloads run from control plane nodes, additional subscriptions are required, as the control plane nodes are considered to be compute nodes.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have an existing <code>install-config.yaml</code> file.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Set the number of compute replicas to <code>0</code> in your <code>install-config.yaml</code> file, as shown in the following <code>compute</code> stanza:
+      <CodeBlock code={"apiVersion: v1\nbaseDomain: example.com\ncompute:\n- name: worker\n  platform: {}\n  replicas: 0\n# ..."} lang="yaml" title="Example install-config.yaml file for a three-node cluster" />
+      </li>
+      <li>
+      If you are deploying a cluster with user-provisioned infrastructure:
+      <ul>
+      <li>After you create the Kubernetes manifest files, make sure that the <code>spec.mastersSchedulable</code> parameter is set to <code>true</code> in <code>cluster-scheduler-02-config.yml</code> file. You can locate this file in <code>&lt;installation_directory&gt;/manifests</code>. For more information, see "Creating the Kubernetes manifest and Ignition config files" in "Installing a cluster on user-provisioned infrastructure in AWS by using CloudFormation templates".</li>
+      <li>
+      Do not create additional worker nodes.
+      <CodeBlock code={"apiVersion: config.openshift.io/v1\nkind: Scheduler\nmetadata:\n  creationTimestamp: null\n  name: cluster\nspec:\n  mastersSchedulable: true\n  policy:\n    name: \"\"\nstatus: {}"} lang="yaml" title="Example cluster-scheduler-02-config.yml file for a three-node cluster" />
+      </li>
+      </ul>
+      </li>
+      </ol>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/installing/installing_aws/ipi/installing-aws-customizations#installing-aws-customizations">Installing a cluster on AWS with customizations</a></li>

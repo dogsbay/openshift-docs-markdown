@@ -15,8 +15,14 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"overview-traffic","text":"Configuring ingress cluster traffic overview"},{"depth":2,"slug":"additional-resources_overview-traffic","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"overview-traffic","text":"Configuring ingress cluster traffic overview"},{"depth":2,"slug":"nw-ingresscontroller-communication-service-methods_overview-traffic","text":"Methods for communicating from outside the cluster"},{"depth":2,"slug":"additional-resources_overview-traffic","text":"Additional resources"},{"depth":2,"slug":"overview-traffic-comparision_overview-traffic","text":"Comparison: Fault-tolerant access to external IP addresses"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/overview-traffic";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +45,7 @@ const pageCategory = ["networking","networking/ingress_load_balancing","networki
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring ingress cluster traffic overview {#overview-traffic}\n\nTo enable communication between external networks and services in OpenShift Container Platform, configure ingress cluster traffic.\n\n## Additional resources {#additional-resources_overview-traffic}\n\n- [Use an Ingress Controller](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller)\n- [Automatically assign an external IP using a load balancer service](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer#configuring-ingress-cluster-traffic-load-balancer)\n- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)\n- [Manually assign an external IP to a service](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-service-external-ip#configuring-ingress-cluster-traffic-service-external-ip)\n- [Configure a `NodePort`](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/overview-traffic.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring ingress cluster traffic overview {#overview-traffic}\n\nTo enable communication between external networks and services in OpenShift Container Platform, configure ingress cluster traffic.\n\n## Methods for communicating from outside the cluster {#nw-ingresscontroller-communication-service-methods_overview-traffic}\n\nTo enable communication between external networks and services in OpenShift Container Platform, configure the appropriate ingress method.\n\nOpenShift Container Platform provides the following methods for communicating from outside the cluster with services running in the cluster. Note that the methods are listed in order of preference.\n\n- If you have HTTP/HTTPS, use an Ingress Controller.\n- If you have a TLS-encrypted protocol other than HTTPS. For example, for TLS with the SNI header, use an Ingress Controller.\n- Otherwise, use a Load Balancer, an External IP, or a `NodePort`.\n\n| Method | Purpose |\n| --- | --- |\n| Use an Ingress Controller | Allows access to HTTP/HTTPS traffic and TLS-encrypted protocols other than HTTPS (for example, TLS with the SNI header). |\n| Automatically assign an external IP using a load balancer service | Allows traffic to non-standard ports through an IP address assigned from a pool. Most cloud platforms offer a method to start a service with a load-balancer IP address. |\n| About MetalLB and the MetalLB Operator | Allows traffic to a specific IP address or address from a pool on the machine network. For bare-metal installations or platforms that are like bare metal, MetalLB provides a way to start a service with a load-balancer IP address. |\n| Manually assign an external IP to a service | Allows traffic to non-standard ports through a specific IP address. |\n| Configure a `NodePort` | Expose a service on all nodes in the cluster. |\n\n## Additional resources {#additional-resources_overview-traffic}\n\n- [Use an Ingress Controller](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller)\n- [Automatically assign an external IP using a load balancer service](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer#configuring-ingress-cluster-traffic-load-balancer)\n- [About MetalLB and the MetalLB Operator](/openshift-docs-markdown/networking/networking_operators/metallb-operator/about-metallb#about-metallb)\n- [Manually assign an external IP to a service](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-service-external-ip#configuring-ingress-cluster-traffic-service-external-ip)\n- [Configure a `NodePort`](/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport)\n\n## Comparison: Fault-tolerant access to external IP addresses {#overview-traffic-comparision_overview-traffic}\n\nTo ensure continuous service availability and maintain external IP access in OpenShift Container Platform, configure fault-tolerant networking features.\n\nFor the communication methods that provide access to an external IP address, fault tolerant access to the IP address is another consideration. The following features provide fault tolerant access to an external IP address.\n\nIP failover\n:   IP failover manages a pool of virtual IP addresses for a set of nodes. IP failover gets implemented with Keepalived and Virtual Router Redundancy Protocol (VRRP). IP failover is a layer 2 mechanism only and relies on multicast. Multicast can have disadvantages for some networks.\n\nMetalLB\n:   MetalLB has a layer 2 mode, but it does not use multicast. Layer 2 mode has a disadvantage that it transfers all traffic for an external IP address through one node.\n\nManually assigning external IP addresses\n:   You can configure your cluster with an IP address block that is used to assign external IP addresses to services. By default, this feature is disabled. This feature is flexible, but places the largest burden on the cluster or network administrator. The cluster is prepared to receive traffic that is destined for the external IP, but you must decide how to route traffic to nodes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/overview-traffic.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +97,45 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="overview-traffic" class="group scroll-mt-20">Configuring ingress cluster traffic overview<a href="#overview-traffic" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To enable communication between external networks and services in OpenShift Container Platform, configure ingress cluster traffic.</p>
-      <p class="/modules/nw-ingresscontroller-communication-service-methods.md"></p>
+      <h2 id="nw-ingresscontroller-communication-service-methods_overview-traffic" class="group scroll-mt-20">Methods for communicating from outside the cluster<a href="#nw-ingresscontroller-communication-service-methods_overview-traffic" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To enable communication between external networks and services in OpenShift Container Platform, configure the appropriate ingress method. </p>
+      <p>OpenShift Container Platform provides the following methods for communicating from outside the cluster with services running in the cluster. Note that the methods are listed in order of preference.</p>
+      <ul>
+      <li>If you have HTTP/HTTPS, use an Ingress Controller.</li>
+      <li>If you have a TLS-encrypted protocol other than HTTPS. For example, for TLS with the SNI header, use an Ingress Controller.</li>
+      <li>Otherwise, use a Load Balancer, an External IP, or a <code>NodePort</code>.</li>
+      </ul>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Method</TableHead>
+      <TableHead>Purpose</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>Use an Ingress Controller</TableCell>
+      <TableCell>Allows access to HTTP/HTTPS traffic and TLS-encrypted protocols other than HTTPS (for example, TLS with the SNI header).</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Automatically assign an external IP using a load balancer service</TableCell>
+      <TableCell>Allows traffic to non-standard ports through an IP address assigned from a pool. Most cloud platforms offer a method to start a service with a load-balancer IP address.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>About MetalLB and the MetalLB Operator</TableCell>
+      <TableCell>Allows traffic to a specific IP address or address from a pool on the machine network. For bare-metal installations or platforms that are like bare metal, MetalLB provides a way to start a service with a load-balancer IP address.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Manually assign an external IP to a service</TableCell>
+      <TableCell>Allows traffic to non-standard ports through a specific IP address.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>Configure a <code>NodePort</code></TableCell>
+      <TableCell>Expose a service on all nodes in the cluster.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
       <h2 id="additional-resources_overview-traffic" class="group scroll-mt-20">Additional resources<a href="#additional-resources_overview-traffic" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-ingress-controller#configuring-ingress-cluster-traffic-ingress-controller">Use an Ingress Controller</a></li>
@@ -102,6 +144,17 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-service-external-ip#configuring-ingress-cluster-traffic-service-external-ip">Manually assign an external IP to a service</a></li>
       <li><a href="/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-nodeport#configuring-ingress-cluster-traffic-nodeport">Configure a <code>NodePort</code></a></li>
       </ul>
+      <h2 id="overview-traffic-comparision_overview-traffic" class="group scroll-mt-20">Comparison: Fault-tolerant access to external IP addresses<a href="#overview-traffic-comparision_overview-traffic" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To ensure continuous service availability and maintain external IP access in OpenShift Container Platform, configure fault-tolerant networking features.</p>
+      <p>For the communication methods that provide access to an external IP address, fault tolerant access to the IP address is another consideration. The following features provide fault tolerant access to an external IP address.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">IP failover</dt>
+      <dd class="ml-6 text-muted-foreground"><p>IP failover manages a pool of virtual IP addresses for a set of nodes. IP failover gets implemented with Keepalived and Virtual Router Redundancy Protocol (VRRP). IP failover is a layer 2 mechanism only and relies on multicast. Multicast can have disadvantages for some networks.</p></dd>
+      <dt class="font-semibold">MetalLB</dt>
+      <dd class="ml-6 text-muted-foreground"><p>MetalLB has a layer 2 mode, but it does not use multicast. Layer 2 mode has a disadvantage that it transfers all traffic for an external IP address through one node.</p></dd>
+      <dt class="font-semibold">Manually assigning external IP addresses</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You can configure your cluster with an IP address block that is used to assign external IP addresses to services. By default, this feature is disabled. This feature is flexible, but places the largest burden on the cluster or network administrator. The cluster is prepared to receive traffic that is destined for the external IP, but you must decide how to route traffic to nodes.</p></dd>
+      </dl>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

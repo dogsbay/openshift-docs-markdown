@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-backup-restore-aws","text":"Backing up and restoring etcd on the management cluster"}];
+const headings = [{"depth":1,"slug":"hcp-backup-restore-aws","text":"Backing up and restoring etcd on the management cluster"},{"depth":2,"slug":"backup-etcd-hosted-cluster_hcp-backup-restore-aws","text":"Taking a snapshot of etcd for a hosted cluster"},{"depth":2,"slug":"restoring-etcd-snapshot-hosted-cluster_hcp-backup-restore-aws","text":"Restoring an etcd snapshot on a hosted cluster"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-aws";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp_high_av
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring etcd on the management cluster {#hcp-backup-restore-aws}\n\nYou can back up and restore etcd on the management cluster to fix failures.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-aws.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring etcd on the management cluster {#hcp-backup-restore-aws}\n\nYou can back up and restore etcd on the management cluster to fix failures.\n\n## Taking a snapshot of etcd for a hosted cluster {#backup-etcd-hosted-cluster_hcp-backup-restore-aws}\n\nTo back up etcd for a hosted cluster, you must take a snapshot of etcd. Later, you can restore etcd by using the snapshot.\n\n**Procedure**\n\n1. Stop all etcd-writer deployments by entering the following command:\n\n   ```terminal\n   $ oc scale deployment -n <hosted_cluster_namespace> --replicas=0 \\\n     kube-apiserver openshift-apiserver openshift-oauth-apiserver\n   ```\n2. To take an etcd snapshot, use the `exec` command in the etcd container by entering the following command:\n\n   ```terminal\n   $ oc exec -it <etcd_pod_name> -n <hosted_cluster_namespace> -- \\\n     env ETCDCTL_API=3 /usr/bin/etcdctl \\\n     --cacert /etc/etcd/tls/etcd-ca/ca.crt \\\n     --cert /etc/etcd/tls/client/etcd-client.crt \\\n     --key /etc/etcd/tls/client/etcd-client.key \\\n     --endpoints=localhost:2379 \\\n     snapshot save /var/lib/data/snapshot.db\n   ```\n3. To check the snapshot status, use the `exec` command in the etcd container by running the following command:\n\n   ```terminal\n   $ oc exec -it <etcd_pod_name> -n <hosted_cluster_namespace> -- \\\n     env ETCDCTL_API=3 /usr/bin/etcdctl -w table snapshot status \\\n     /var/lib/data/snapshot.db\n   ```\n4. Copy the snapshot data to a location where you can retrieve it later, such as an S3 bucket. See the following example.\n\n   > [!NOTE]\n   > The following example uses signature version 2. If you are in a region that supports signature version 4, such as the `us-east-2` region, use signature version 4. Otherwise, when copying the snapshot to an S3 bucket, the upload fails.\n\n   ```terminal {title=\"Example\"}\n   BUCKET_NAME=somebucket\n   CLUSTER_NAME=cluster_name\n   FILEPATH=\"/${BUCKET_NAME}/${CLUSTER_NAME}-snapshot.db\"\n   CONTENT_TYPE=\"application/x-compressed-tar\"\n   DATE_VALUE=`date -R`\n   SIGNATURE_STRING=\"PUT\\n\\n${CONTENT_TYPE}\\n${DATE_VALUE}\\n${FILEPATH}\"\n   ACCESS_KEY=<access_key>\n   SECRET_KEY=<secret>\n   SIGNATURE_HASH=`echo -en ${SIGNATURE_STRING} | openssl sha1 -hmac ${SECRET_KEY} -binary | base64`\n   HOSTED_CLUSTER_NAMESPACE=hosted_cluster_namespace\n\n   $ oc exec -it etcd-0 -n ${HOSTED_CLUSTER_NAMESPACE} -- curl -X PUT -T \"/var/lib/data/snapshot.db\" \\\n     -H \"Host: ${BUCKET_NAME}.s3.amazonaws.com\" \\\n     -H \"Date: ${DATE_VALUE}\" \\\n     -H \"Content-Type: ${CONTENT_TYPE}\" \\\n     -H \"Authorization: AWS ${ACCESS_KEY}:${SIGNATURE_HASH}\" \\\n     https://${BUCKET_NAME}.s3.amazonaws.com/${CLUSTER_NAME}-snapshot.db\n   ```\n5. To restore the snapshot on a new cluster later, save the encryption secret that the hosted cluster references.\n\n   1. Get the secret encryption key by entering the following command:\n\n      ```terminal\n      $ oc get -n <hosted_cluster_namespace> hostedcluster <hosted_cluster_name> \\\n        -o=jsonpath='{.spec.secretEncryption.aescbc}'\n      ```\n\n      ```terminal {title=\"Example output\"}\n      {\"activeKey\":{\"name\":\"<hosted_cluster_name>-etcd-encryption-key\"}}\n      ```\n   2. Save the secret encryption key by entering the following command:\n\n      ```terminal\n      $ oc get -n <hosted_cluster_namespace> secret <hosted_cluster_name>-etcd-encryption-key \\\n        -o=jsonpath='{.data.key}'\n      ```\n\n      You can decrypt this key when restoring a snapshot on a new cluster.\n6. Restart all etcd-writer deployments by entering the following command:\n\n   ```terminal\n   $ oc scale deployment -n <control_plane_namespace> --replicas=3 \\\n     kube-apiserver openshift-apiserver openshift-oauth-apiserver\n   ```\n\n**Next steps**\n\nRestore the etcd snapshot.\n\n## Restoring an etcd snapshot on a hosted cluster {#restoring-etcd-snapshot-hosted-cluster_hcp-backup-restore-aws}\n\nIf you have a snapshot of etcd from your hosted cluster, you can restore it. Currently, you can restore an etcd snapshot only during cluster creation.\n\nTo restore an etcd snapshot, you change the output from the `create cluster --render` command and define a `restoreSnapshotURL` value in the etcd section of the `HostedCluster` specification.\n\n> [!IMPORTANT]\n> If the snapshot that you are restoring is from a hosted cluster with `LoadBalancer` services, the load balancer IPs might no longer be valid. In that case, you must delete and re-create the `LoadBalancer` services.\n\n**Prerequisites**\n\n- You took an etcd snapshot on a hosted cluster.\n\n**Procedure**\n\n1. Delete the hosted cluster that you backed up in \"Taking a snapshot of etcd for a hosted cluster\" by entering the following command:\n\n   ```terminal\n   $ hcp destroy cluster <cluster_infra> \\\n     --name <hosted_cluster_name> \\\n     --namespace <hosted_cluster_namespace>\n   ```\n2. On the `aws` command-line interface (CLI), create a pre-signed URL so that you can download your etcd snapshot from S3 without passing credentials to the etcd deployment:\n\n   1. Define the snapshot by entering the following command:\n\n      ```terminal\n      $ ETCD_SNAPSHOT=${ETCD_SNAPSHOT:-\"s3://${BUCKET_NAME}/${CLUSTER_NAME}-snapshot.db\"}\n      ```\n   2. Define the snapshot URL by entering the following command:\n\n      ```terminal\n      $ ETCD_SNAPSHOT_URL=$(aws s3 presign ${ETCD_SNAPSHOT})\n      ```\n3. Create the new hosted cluster by entering the following command:\n\n   ```terminal\n   $ hcp create cluster <platform> \\\n     --name <hosted_cluster_name> \\\n     --namespace <hosted_cluster_namespace> \\\n     --node-pool-replicas=2 \\\n     --node-upgrade-type=Replace \\\n     --pull-secret <path_to_pull_secret> \\\n     --memory <value_for_memory> \\\n     --cores <value_for_cpu> \\\n     --etcd-storage-class=gp3-csi \\\n     --release-image=<release_image_reference> \\\n     --etcd-storage-size=8Gi \\\n     --fips=false \\\n     --render \\\n     --render-sensitive\n   ```\n\n   - `<hosted_cluster_name>` specifies the name of the new hosted cluster. The name of the new cluster must be identical to the name of the cluster from which the etcd backup was taken.\n   - `<platform>` specifies the platform you are creating the hosted cluster on, such as `kubevirt` or `aws`.\n   - `<hosted_cluster_namespace>` specifies the namespace where you are creating the hosted cluster.\n   - `<path_to_pull_secret>` specifies the path to your pull secret; for example, `/user/name/pullsecret`.\n   - `<value_for_memory>` specifies the memory value, such as `8Gi`.\n   - `<value_for_cpu>` specifies the CPU value, such as `2`.\n   - `<release_image_reference>` specifies the OpenShift Container Platform release image for the cluster, for example, `quay.io/openshift-release-dev/ocp-release:4.20.14-multi`. You can use the `--release-image` flag to set up the hosted cluster with a specific OpenShift Container Platform release.\n\n     > [!NOTE]\n     > The `--render` flag in the `hcp create` command does not render the secrets. To render the secrets, you must use both the `--render` and the `--render-sensitive` flags in the `hcp create` command.\n\n     ```yaml {title=\"Example output\"}\n     apiVersion: v1\n     kind: Namespace\n     metadata:\n       name: <hosted_cluster_namespace>\n     spec: {}\n     status: {}\n     ---\n     apiVersion: v1\n     data:\n       .dockerconfigjson: <path_to_pull_secret>\n     kind: Secret\n     metadata:\n       labels:\n         hypershift.openshift.io/safe-to-delete-with-cluster: \"true\"\n       name: <hosted_cluster_name_pull_secret>\n       namespace: <hosted_cluster_namespace>\n     ---\n     apiVersion: hypershift.openshift.io/v1beta1\n     kind: HostedCluster\n     metadata:\n       name: <hosted_cluster_name>\n       namespace: <hosted_cluster_namespace>\n     spec:\n       autoscaling: {}\n       capabilities: {}\n       configuration: {}\n       controllerAvailabilityPolicy: HighlyAvailable\n       dns:\n         baseDomain: \"\"\n       etcd:\n         managed:\n           storage:\n             persistentVolume:\n               size: 8Gi\n               storageClassName: gp3-csi\n             type: PersistentVolume\n         managementType: Managed\n       fips: false\n       infraID: <hosted_cluster_name>-68tlg\n       infrastructureAvailabilityPolicy: HighlyAvailable\n       networking:\n         clusterNetwork:\n         - cidr: 10.132.0.0/14\n         networkType: OVNKubernetes\n         serviceNetwork:\n         - cidr: 172.31.0.0/16\n       olmCatalogPlacement: guest\n       platform:\n         kubevirt:\n           baseDomainPassthrough: true\n         type: KubeVirt\n       pullSecret:\n         name: <hosted_cluster_name_pull_secret>\n       release:\n         image: quay.io/openshift-release-dev/ocp-release:4.21.12-multi\n       services:\n       - service: APIServer\n         servicePublishingStrategy:\n           type: LoadBalancer\n       - service: Ignition\n         servicePublishingStrategy:\n           type: Route\n       - service: Konnectivity\n         servicePublishingStrategy:\n           type: Route\n       - service: OAuthServer\n         servicePublishingStrategy:\n           type: Route\n       sshKey: {}\n     status:\n       controlPlaneEndpoint:\n         host: \"\"\n         port: 0\n     ---\n     apiVersion: hypershift.openshift.io/v1beta1\n     kind: NodePool\n     metadata:\n       name: <hosted_cluster_name>\n       namespace: <hosted_cluster_namespace>\n     spec:\n       arch: amd64\n       clusterName: <hosted_cluster_name>\n       management:\n         autoRepair: false\n         upgradeType: Replace\n       nodeDrainTimeout: 0s\n       nodeVolumeDetachTimeout: 0s\n       platform:\n         kubevirt:\n           attachDefaultNetwork: true\n           compute:\n             cores: 2\n             memory: 8Gi\n           networkInterfaceMultiqueue: Enable\n           rootVolume:\n             persistent:\n               size: 32Gi\n             type: Persistent\n         type: KubeVirt\n       release:\n         image: quay.io/openshift-release-dev/ocp-release:<4.x.x>-multi\n       replicas: 2\n     status:\n       replicas: 0\n     ```\n   - `<hosted_cluster_namespace>` specifies the name of the hosted cluster namespace.\n   - `<path_to_pull_secret>` specifies the path to the pull secret.\n   - `<hosted_cluster_name_pull_secret>` specifies the name of the restored pull secret for the new hosted cluster.\n   - `<hosted_cluster_name>` specifies the name of the new hosted cluster. The name of the new cluster must be identical to the name of the cluster from which the etcd backup was taken.\n   - `<4.x.x>` specifies the version of the release image.\n4. Change the `HostedCluster` specification to refer to the URL:\n\n   ```yaml\n   spec:\n     etcd:\n       managed:\n         storage:\n           persistentVolume:\n             size: 8Gi\n           type: PersistentVolume\n           restoreSnapshotURL:\n           - \"${ETCD_SNAPSHOT_URL}\"\n       managementType: Managed\n   ```\n5. Change the `HostedCluster` specification to include the new etcd encryption key:\n\n   ```yaml\n   apiVersion: v1\n   data:\n     key: <pre_generated_etcd_encryption_key>\n   kind: Secret\n   metadata:\n     labels:\n       hypershift.openshift.io/safe-to-delete-with-cluster: \"true\"\n     name: <new_hc_etcd_encryption_key>\n     namespace: <hosted_cluster_namespace>\n   type: Opaque\n   ---\n   spec:\n     secretEncryption:\n       aescbc:\n         activeKey:\n           name: <new_hc_etcd_encryption_key>\n       type: aescbc\n   ```\n\n   - `<pre_generated_etcd_encryption_key>` specifies the etcd encryption key of original hosted cluster.\n   - `<new_hc_etcd_encryption_key>` specifies the etcd encryption key of the new hosted cluster. Ensure that the secret that you referenced from the `spec.secretEncryption.aescbc` value has the same Advanced Encryption Standard (AES) key that you saved earlier.\n\n**Verification**\n\n- To verify that the snapshot was restored, enter the following command:\n\n  ```terminal\n  $ oc logs -n <hosted_control_plane_namespace> etcd-0 -c etcd-init\n  ```\n\n  If you use a high availability deployment, you can also check the `etcd-1` and `etcd-2` containers.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp_high_availability/hcp-backup-restore-aws.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +79,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +94,134 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="hcp-backup-restore-aws" class="group scroll-mt-20">Backing up and restoring etcd on the management cluster<a href="#hcp-backup-restore-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You can back up and restore etcd on the management cluster to fix failures.</p>
-      <p class="/modules/backup-etcd-hosted-cluster.md"></p>
-      <p class="/modules/restoring-etcd-snapshot-hosted-cluster.md"></p>
+      <h2 id="backup-etcd-hosted-cluster_hcp-backup-restore-aws" class="group scroll-mt-20">Taking a snapshot of etcd for a hosted cluster<a href="#backup-etcd-hosted-cluster_hcp-backup-restore-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To back up etcd for a hosted cluster, you must take a snapshot of etcd. Later, you can restore etcd by using the snapshot.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Stop all etcd-writer deployments by entering the following command:
+      <CodeBlock code={"$ oc scale deployment -n <hosted_cluster_namespace> --replicas=0 \\\n  kube-apiserver openshift-apiserver openshift-oauth-apiserver"} lang="terminal" />
+      </li>
+      <li>
+      To take an etcd snapshot, use the <code>exec</code> command in the etcd container by entering the following command:
+      <CodeBlock code={"$ oc exec -it <etcd_pod_name> -n <hosted_cluster_namespace> -- \\\n  env ETCDCTL_API=3 /usr/bin/etcdctl \\\n  --cacert /etc/etcd/tls/etcd-ca/ca.crt \\\n  --cert /etc/etcd/tls/client/etcd-client.crt \\\n  --key /etc/etcd/tls/client/etcd-client.key \\\n  --endpoints=localhost:2379 \\\n  snapshot save /var/lib/data/snapshot.db"} lang="terminal" />
+      </li>
+      <li>
+      To check the snapshot status, use the <code>exec</code> command in the etcd container by running the following command:
+      <CodeBlock code={"$ oc exec -it <etcd_pod_name> -n <hosted_cluster_namespace> -- \\\n  env ETCDCTL_API=3 /usr/bin/etcdctl -w table snapshot status \\\n  /var/lib/data/snapshot.db"} lang="terminal" />
+      </li>
+      <li>
+      Copy the snapshot data to a location where you can retrieve it later, such as an S3 bucket. See the following example.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The following example uses signature version 2. If you are in a region that supports signature version 4, such as the <code>us-east-2</code> region, use signature version 4. Otherwise, when copying the snapshot to an S3 bucket, the upload fails.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"BUCKET_NAME=somebucket\nCLUSTER_NAME=cluster_name\nFILEPATH=\"/${BUCKET_NAME}/${CLUSTER_NAME}-snapshot.db\"\nCONTENT_TYPE=\"application/x-compressed-tar\"\nDATE_VALUE=`date -R`\nSIGNATURE_STRING=\"PUT\\n\\n${CONTENT_TYPE}\\n${DATE_VALUE}\\n${FILEPATH}\"\nACCESS_KEY=<access_key>\nSECRET_KEY=<secret>\nSIGNATURE_HASH=`echo -en ${SIGNATURE_STRING} | openssl sha1 -hmac ${SECRET_KEY} -binary | base64`\nHOSTED_CLUSTER_NAMESPACE=hosted_cluster_namespace\n\n$ oc exec -it etcd-0 -n ${HOSTED_CLUSTER_NAMESPACE} -- curl -X PUT -T \"/var/lib/data/snapshot.db\" \\\n  -H \"Host: ${BUCKET_NAME}.s3.amazonaws.com\" \\\n  -H \"Date: ${DATE_VALUE}\" \\\n  -H \"Content-Type: ${CONTENT_TYPE}\" \\\n  -H \"Authorization: AWS ${ACCESS_KEY}:${SIGNATURE_HASH}\" \\\n  https://${BUCKET_NAME}.s3.amazonaws.com/${CLUSTER_NAME}-snapshot.db"} lang="terminal" title="Example" />
+      </li>
+      <li>
+      To restore the snapshot on a new cluster later, save the encryption secret that the hosted cluster references.
+      <ol>
+      <li>
+      Get the secret encryption key by entering the following command:
+      <CodeBlock code={"$ oc get -n <hosted_cluster_namespace> hostedcluster <hosted_cluster_name> \\\n  -o=jsonpath='{.spec.secretEncryption.aescbc}'"} lang="terminal" />
+      <CodeBlock code={"{\"activeKey\":{\"name\":\"<hosted_cluster_name>-etcd-encryption-key\"}}"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Save the secret encryption key by entering the following command:
+      <CodeBlock code={"$ oc get -n <hosted_cluster_namespace> secret <hosted_cluster_name>-etcd-encryption-key \\\n  -o=jsonpath='{.data.key}'"} lang="terminal" />
+      <p>You can decrypt this key when restoring a snapshot on a new cluster.</p>
+      </li>
+      </ol>
+      </li>
+      <li>
+      Restart all etcd-writer deployments by entering the following command:
+      <CodeBlock code={"$ oc scale deployment -n <control_plane_namespace> --replicas=3 \\\n  kube-apiserver openshift-apiserver openshift-oauth-apiserver"} lang="terminal" />
+      </li>
+      </ol>
+      <p><strong>Next steps</strong></p>
+      <p>Restore the etcd snapshot.</p>
+      <h2 id="restoring-etcd-snapshot-hosted-cluster_hcp-backup-restore-aws" class="group scroll-mt-20">Restoring an etcd snapshot on a hosted cluster<a href="#restoring-etcd-snapshot-hosted-cluster_hcp-backup-restore-aws" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you have a snapshot of etcd from your hosted cluster, you can restore it. Currently, you can restore an etcd snapshot only during cluster creation.</p>
+      <p>To restore an etcd snapshot, you change the output from the <code>create cluster --render</code> command and define a <code>restoreSnapshotURL</code> value in the etcd section of the <code>HostedCluster</code> specification.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>If the snapshot that you are restoring is from a hosted cluster with <code>LoadBalancer</code> services, the load balancer IPs might no longer be valid. In that case, you must delete and re-create the <code>LoadBalancer</code> services.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You took an etcd snapshot on a hosted cluster.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Delete the hosted cluster that you backed up in "Taking a snapshot of etcd for a hosted cluster" by entering the following command:
+      <CodeBlock code={"$ hcp destroy cluster <cluster_infra> \\\n  --name <hosted_cluster_name> \\\n  --namespace <hosted_cluster_namespace>"} lang="terminal" />
+      </li>
+      <li>
+      On the <code>aws</code> command-line interface (CLI), create a pre-signed URL so that you can download your etcd snapshot from S3 without passing credentials to the etcd deployment:
+      <ol>
+      <li>
+      Define the snapshot by entering the following command:
+      <CodeBlock code={"$ ETCD_SNAPSHOT=${ETCD_SNAPSHOT:-\"s3://${BUCKET_NAME}/${CLUSTER_NAME}-snapshot.db\"}"} lang="terminal" />
+      </li>
+      <li>
+      Define the snapshot URL by entering the following command:
+      <CodeBlock code={"$ ETCD_SNAPSHOT_URL=$(aws s3 presign ${ETCD_SNAPSHOT})"} lang="terminal" />
+      </li>
+      </ol>
+      </li>
+      <li>
+      Create the new hosted cluster by entering the following command:
+      <CodeBlock code={"$ hcp create cluster <platform> \\\n  --name <hosted_cluster_name> \\\n  --namespace <hosted_cluster_namespace> \\\n  --node-pool-replicas=2 \\\n  --node-upgrade-type=Replace \\\n  --pull-secret <path_to_pull_secret> \\\n  --memory <value_for_memory> \\\n  --cores <value_for_cpu> \\\n  --etcd-storage-class=gp3-csi \\\n  --release-image=<release_image_reference> \\\n  --etcd-storage-size=8Gi \\\n  --fips=false \\\n  --render \\\n  --render-sensitive"} lang="terminal" />
+      <ul>
+      <li><code>&lt;hosted_cluster_name&gt;</code> specifies the name of the new hosted cluster. The name of the new cluster must be identical to the name of the cluster from which the etcd backup was taken.</li>
+      <li><code>&lt;platform&gt;</code> specifies the platform you are creating the hosted cluster on, such as <code>kubevirt</code> or <code>aws</code>.</li>
+      <li><code>&lt;hosted_cluster_namespace&gt;</code> specifies the namespace where you are creating the hosted cluster.</li>
+      <li><code>&lt;path_to_pull_secret&gt;</code> specifies the path to your pull secret; for example, <code>/user/name/pullsecret</code>.</li>
+      <li><code>&lt;value_for_memory&gt;</code> specifies the memory value, such as <code>8Gi</code>.</li>
+      <li><code>&lt;value_for_cpu&gt;</code> specifies the CPU value, such as <code>2</code>.</li>
+      <li>
+      <code>&lt;release_image_reference&gt;</code> specifies the OpenShift Container Platform release image for the cluster, for example, <code>quay.io/openshift-release-dev/ocp-release:4.20.14-multi</code>. You can use the <code>--release-image</code> flag to set up the hosted cluster with a specific OpenShift Container Platform release.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>The <code>--render</code> flag in the <code>hcp create</code> command does not render the secrets. To render the secrets, you must use both the <code>--render</code> and the <code>--render-sensitive</code> flags in the <code>hcp create</code> command.</p>
+        </AlertDescription>
+      </Alert>
+      <CodeBlock code={"apiVersion: v1\nkind: Namespace\nmetadata:\n  name: <hosted_cluster_namespace>\nspec: {}\nstatus: {}\n---\napiVersion: v1\ndata:\n  .dockerconfigjson: <path_to_pull_secret>\nkind: Secret\nmetadata:\n  labels:\n    hypershift.openshift.io/safe-to-delete-with-cluster: \"true\"\n  name: <hosted_cluster_name_pull_secret>\n  namespace: <hosted_cluster_namespace>\n---\napiVersion: hypershift.openshift.io/v1beta1\nkind: HostedCluster\nmetadata:\n  name: <hosted_cluster_name>\n  namespace: <hosted_cluster_namespace>\nspec:\n  autoscaling: {}\n  capabilities: {}\n  configuration: {}\n  controllerAvailabilityPolicy: HighlyAvailable\n  dns:\n    baseDomain: \"\"\n  etcd:\n    managed:\n      storage:\n        persistentVolume:\n          size: 8Gi\n          storageClassName: gp3-csi\n        type: PersistentVolume\n    managementType: Managed\n  fips: false\n  infraID: <hosted_cluster_name>-68tlg\n  infrastructureAvailabilityPolicy: HighlyAvailable\n  networking:\n    clusterNetwork:\n    - cidr: 10.132.0.0/14\n    networkType: OVNKubernetes\n    serviceNetwork:\n    - cidr: 172.31.0.0/16\n  olmCatalogPlacement: guest\n  platform:\n    kubevirt:\n      baseDomainPassthrough: true\n    type: KubeVirt\n  pullSecret:\n    name: <hosted_cluster_name_pull_secret>\n  release:\n    image: quay.io/openshift-release-dev/ocp-release:4.21.12-multi\n  services:\n  - service: APIServer\n    servicePublishingStrategy:\n      type: LoadBalancer\n  - service: Ignition\n    servicePublishingStrategy:\n      type: Route\n  - service: Konnectivity\n    servicePublishingStrategy:\n      type: Route\n  - service: OAuthServer\n    servicePublishingStrategy:\n      type: Route\n  sshKey: {}\nstatus:\n  controlPlaneEndpoint:\n    host: \"\"\n    port: 0\n---\napiVersion: hypershift.openshift.io/v1beta1\nkind: NodePool\nmetadata:\n  name: <hosted_cluster_name>\n  namespace: <hosted_cluster_namespace>\nspec:\n  arch: amd64\n  clusterName: <hosted_cluster_name>\n  management:\n    autoRepair: false\n    upgradeType: Replace\n  nodeDrainTimeout: 0s\n  nodeVolumeDetachTimeout: 0s\n  platform:\n    kubevirt:\n      attachDefaultNetwork: true\n      compute:\n        cores: 2\n        memory: 8Gi\n      networkInterfaceMultiqueue: Enable\n      rootVolume:\n        persistent:\n          size: 32Gi\n        type: Persistent\n    type: KubeVirt\n  release:\n    image: quay.io/openshift-release-dev/ocp-release:<4.x.x>-multi\n  replicas: 2\nstatus:\n  replicas: 0"} lang="yaml" title="Example output" />
+      </li>
+      <li><code>&lt;hosted_cluster_namespace&gt;</code> specifies the name of the hosted cluster namespace.</li>
+      <li><code>&lt;path_to_pull_secret&gt;</code> specifies the path to the pull secret.</li>
+      <li><code>&lt;hosted_cluster_name_pull_secret&gt;</code> specifies the name of the restored pull secret for the new hosted cluster.</li>
+      <li><code>&lt;hosted_cluster_name&gt;</code> specifies the name of the new hosted cluster. The name of the new cluster must be identical to the name of the cluster from which the etcd backup was taken.</li>
+      <li><code>&lt;4.x.x&gt;</code> specifies the version of the release image.</li>
+      </ul>
+      </li>
+      <li>
+      Change the <code>HostedCluster</code> specification to refer to the URL:
+      <CodeBlock code={"spec:\n  etcd:\n    managed:\n      storage:\n        persistentVolume:\n          size: 8Gi\n        type: PersistentVolume\n        restoreSnapshotURL:\n        - \"${ETCD_SNAPSHOT_URL}\"\n    managementType: Managed"} lang="yaml" />
+      </li>
+      <li>
+      Change the <code>HostedCluster</code> specification to include the new etcd encryption key:
+      <CodeBlock code={"apiVersion: v1\ndata:\n  key: <pre_generated_etcd_encryption_key>\nkind: Secret\nmetadata:\n  labels:\n    hypershift.openshift.io/safe-to-delete-with-cluster: \"true\"\n  name: <new_hc_etcd_encryption_key>\n  namespace: <hosted_cluster_namespace>\ntype: Opaque\n---\nspec:\n  secretEncryption:\n    aescbc:\n      activeKey:\n        name: <new_hc_etcd_encryption_key>\n    type: aescbc"} lang="yaml" />
+      <ul>
+      <li><code>&lt;pre_generated_etcd_encryption_key&gt;</code> specifies the etcd encryption key of original hosted cluster.</li>
+      <li><code>&lt;new_hc_etcd_encryption_key&gt;</code> specifies the etcd encryption key of the new hosted cluster. Ensure that the secret that you referenced from the <code>spec.secretEncryption.aescbc</code> value has the same Advanced Encryption Standard (AES) key that you saved earlier.</li>
+      </ul>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      To verify that the snapshot was restored, enter the following command:
+      <CodeBlock code={"$ oc logs -n <hosted_control_plane_namespace> etcd-0 -c etcd-init"} lang="terminal" />
+      <p>If you use a high availability deployment, you can also check the <code>etcd-1</code> and <code>etcd-2</code> containers.</p>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

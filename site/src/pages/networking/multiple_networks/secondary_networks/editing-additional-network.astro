@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"edit-additional-network","text":"Editing a secondary network"}];
+const headings = [{"depth":1,"slug":"edit-additional-network","text":"Editing a secondary network"},{"depth":2,"slug":"nw-multus-edit-network_edit-additional-network","text":"Modifying a NetworkAttachmentDefinition custom resource"},{"depth":2,"slug":"nw-multus-edit-network-additional-vlans_edit-additional-network","text":"Using an OVN-Kubernetes localnet topology to map VLANs to a secondary interface"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/multiple_networks/secondary_networks/editing-additional-network";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/multiple_networks","networking/mu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Editing a secondary network {#edit-additional-network}\n\nTo update network settings or change network parameters for a secondary network in OpenShift Container Platform, you can modify the configuration for an existing secondary network. Edit the `NetworkAttachmentDefinition` custom resource to apply your changes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/multiple_networks/secondary_networks/editing-additional-network.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Editing a secondary network {#edit-additional-network}\n\nTo update network settings or change network parameters for a secondary network in OpenShift Container Platform, you can modify the configuration for an existing secondary network. Edit the `NetworkAttachmentDefinition` custom resource to apply your changes.\n\n## Modifying a NetworkAttachmentDefinition custom resource {#nw-multus-edit-network_edit-additional-network}\n\nTo update network settings or change network parameters for a secondary network in OpenShift Container Platform, you can modify the `NetworkAttachmentDefinition` custom resource. Edit the Cluster Network Operator CR to apply your changes.\n\n**Prerequisites**\n\n- You have configured a secondary network for your cluster.\n- Install the OpenShift CLI (`oc`).\n- Log in as a user with `cluster-admin` privileges.\n\n**Procedure**\n\n1. Edit the Cluster Network Operator (CNO) CR in your default text editor by running the following command:\n\n   ```terminal\n   $ oc edit networks.operator.openshift.io cluster\n   ```\n2. In the `additionalNetworks` collection, update the secondary network with your changes.\n3. Save your changes and quit the text editor to commit your changes.\n4. Optional: Confirm that the CNO updated the `NetworkAttachmentDefinition` object by running the following command. Replace `<network_name>` with the name of the secondary network to display. There might be a delay before the CNO updates the `NetworkAttachmentDefinition` object to reflect your changes.\n\n   ```terminal\n   $ oc get network-attachment-definitions <network_name> -o yaml\n   ```\n\n   For example, the following console output displays a `NetworkAttachmentDefinition` object that is named `net1`:\n\n   ```terminal\n   $ oc get network-attachment-definitions net1 -o go-template='{{printf \"%s\\n\" .spec.config}}'\n   { \"cniVersion\": \"0.3.1\", \"type\": \"macvlan\",\n   \"master\": \"ens5\",\n   \"mode\": \"bridge\",\n   \"ipam\":       {\"type\":\"static\",\"routes\":[{\"dst\":\"0.0.0.0/0\",\"gw\":\"10.128.2.1\"}],\"addresses\":[{\"address\":\"10.128.2.100/23\",\"gateway\":\"10.128.2.1\"}],\"dns\":{\"nameservers\":[\"172.30.0.10\"],\"domain\":\"us-west-2.compute.internal\",\"search\":[\"us-west-2.compute.internal\"]}} }\n   ```\n\n## Using an OVN-Kubernetes localnet topology to map VLANs to a secondary interface {#nw-multus-edit-network-additional-vlans_edit-additional-network}\n\nYou can use OVN-Kubernetes localnet topology in a `NetworkAttachmentDefinition` (NAD) to map a specific VLAN ID from the physical network to the secondary interface of a pod.\n\nTo provide multiple VLANs for cluster workloads in OpenShift Container Platform, define additional VLANs in the `NetworkAttachmentDefinition` custom resource (CR). Configuring trunk ports ensures that the physical network associates correctly with your virtual infrastructure for reliable traffic management.\n\nThe example in the procedure demonstrates the following configurations:\n\n- Physical switch ports connect to OpenShift Container Platform nodes by using VLAN trunking. The trunk carries tagged traffic for the VLANs you define in NADs.\n- The `br-ex` acts as the OVS bridge that connects virtual workloads to the physical workloads.\n- Multiple NADs with specific VLAN tags get created by using the `localnet` topology. This configuration defines specific VLAN IDs for traffic isolation.\n- Pods or virtual machines (VMs) attach to the NAD CRs for the purposes of improved network connectivity.\n\n**Prerequisites**\n\n- You installed the OpenShift CLI (`oc`).\n- You logged in as a user with `cluster-admin` privileges.\n- You installed the NMState Operator.\n- You configured the `br-ex` bridge interface during cluster installation.\n\n**Procedure**\n\n1. Create an `NetworkAttachmentDefinition` CR for each VLAN, such as `nad-cvlan100.yaml`. OVN-Kubernetes uses the NAD files to tag and untag Ethernet frames for pods or VMs.\n\n   ```yaml {title=\"Example configuration\"}\n   apiVersion: k8s.cni.cncf.io/v1\n   kind: NetworkAttachmentDefinition\n   metadata:\n     name: vlan-100\n     namespace: default\n   spec:\n     config: |-\n       {\n         \"cniVersion\": \"0.4.0\",\n         \"name\": \"localnet-vlan-100\",\n         \"type\": \"ovn-k8s-cni-overlay\",\n         \"physicalNetworkName\": \"physnet\",\n         \"topology\": \"localnet\",\n         \"vlanID\": 100,\n         \"mtu\": 1500,\n         \"netAttachDefName\": \"default/vlan-100\"\n       }\n   # ...\n   ```\n2. Attach pods or VMs to the VLANs by referencing the NAD in the configuration for the pod or VM:\n\n   ```yaml {title=\"Example pod configuration\"}\n   apiVersion: v1\n   kind: Pod\n   metadata:\n     annotations:\n       k8s.v1.cni.cncf.io/networks: vlan-100\n   # ...\n   ```\n\n   ```yaml {title=\"Example VM configuration\"}\n   apiVersion: kubevirt.io/v1\n   kind: VirtualMachine\n   spec:\n       template:\n           spec:\n           networks:\n           - multus:\n               networkName: vlan-100\n               name: secondary-vlan\n   # ...\n   ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/multiple_networks/secondary_networks/editing-additional-network.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,59 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="edit-additional-network" class="group scroll-mt-20">Editing a secondary network<a href="#edit-additional-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To update network settings or change network parameters for a secondary network in OpenShift Container Platform, you can modify the configuration for an existing secondary network. Edit the <code>NetworkAttachmentDefinition</code> custom resource to apply your changes.</p>
-      <p class="/modules/nw-multus-edit-network.md"></p>
-      <p class="/modules/nw-multus-edit-network-additional-vlans.md"></p>
+      <h2 id="nw-multus-edit-network_edit-additional-network" class="group scroll-mt-20">Modifying a NetworkAttachmentDefinition custom resource<a href="#nw-multus-edit-network_edit-additional-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To update network settings or change network parameters for a secondary network in OpenShift Container Platform, you can modify the <code>NetworkAttachmentDefinition</code> custom resource. Edit the Cluster Network Operator CR to apply your changes.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have configured a secondary network for your cluster.</li>
+      <li>Install the OpenShift CLI (<code>oc</code>).</li>
+      <li>Log in as a user with <code>cluster-admin</code> privileges.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Edit the Cluster Network Operator (CNO) CR in your default text editor by running the following command:
+      <CodeBlock code={"$ oc edit networks.operator.openshift.io cluster"} lang="terminal" />
+      </li>
+      <li>In the <code>additionalNetworks</code> collection, update the secondary network with your changes.</li>
+      <li>Save your changes and quit the text editor to commit your changes.</li>
+      <li>
+      Optional: Confirm that the CNO updated the <code>NetworkAttachmentDefinition</code> object by running the following command. Replace <code>&lt;network_name&gt;</code> with the name of the secondary network to display. There might be a delay before the CNO updates the <code>NetworkAttachmentDefinition</code> object to reflect your changes.
+      <CodeBlock code={"$ oc get network-attachment-definitions <network_name> -o yaml"} lang="terminal" />
+      <p>For example, the following console output displays a <code>NetworkAttachmentDefinition</code> object that is named <code>net1</code>:</p>
+      <CodeBlock code={"$ oc get network-attachment-definitions net1 -o go-template='{{printf \"%s\\n\" .spec.config}}'\n{ \"cniVersion\": \"0.3.1\", \"type\": \"macvlan\",\n\"master\": \"ens5\",\n\"mode\": \"bridge\",\n\"ipam\":       {\"type\":\"static\",\"routes\":[{\"dst\":\"0.0.0.0/0\",\"gw\":\"10.128.2.1\"}],\"addresses\":[{\"address\":\"10.128.2.100/23\",\"gateway\":\"10.128.2.1\"}],\"dns\":{\"nameservers\":[\"172.30.0.10\"],\"domain\":\"us-west-2.compute.internal\",\"search\":[\"us-west-2.compute.internal\"]}} }"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="nw-multus-edit-network-additional-vlans_edit-additional-network" class="group scroll-mt-20">Using an OVN-Kubernetes localnet topology to map VLANs to a secondary interface<a href="#nw-multus-edit-network-additional-vlans_edit-additional-network" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use OVN-Kubernetes localnet topology in a <code>NetworkAttachmentDefinition</code> (NAD) to map a specific VLAN ID from the physical network to the secondary interface of a pod.</p>
+      <p>To provide multiple VLANs for cluster workloads in OpenShift Container Platform, define additional VLANs in the <code>NetworkAttachmentDefinition</code> custom resource (CR). Configuring trunk ports ensures that the physical network associates correctly with your virtual infrastructure for reliable traffic management.</p>
+      <p>The example in the procedure demonstrates the following configurations:</p>
+      <ul>
+      <li>Physical switch ports connect to OpenShift Container Platform nodes by using VLAN trunking. The trunk carries tagged traffic for the VLANs you define in NADs.</li>
+      <li>The <code>br-ex</code> acts as the OVS bridge that connects virtual workloads to the physical workloads.</li>
+      <li>Multiple NADs with specific VLAN tags get created by using the <code>localnet</code> topology. This configuration defines specific VLAN IDs for traffic isolation.</li>
+      <li>Pods or virtual machines (VMs) attach to the NAD CRs for the purposes of improved network connectivity.</li>
+      </ul>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You logged in as a user with <code>cluster-admin</code> privileges.</li>
+      <li>You installed the NMState Operator.</li>
+      <li>You configured the <code>br-ex</code> bridge interface during cluster installation.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create an <code>NetworkAttachmentDefinition</code> CR for each VLAN, such as <code>nad-cvlan100.yaml</code>. OVN-Kubernetes uses the NAD files to tag and untag Ethernet frames for pods or VMs.
+      <CodeBlock code={"apiVersion: k8s.cni.cncf.io/v1\nkind: NetworkAttachmentDefinition\nmetadata:\n  name: vlan-100\n  namespace: default\nspec:\n  config: |-\n    {\n      \"cniVersion\": \"0.4.0\",\n      \"name\": \"localnet-vlan-100\",\n      \"type\": \"ovn-k8s-cni-overlay\",\n      \"physicalNetworkName\": \"physnet\",\n      \"topology\": \"localnet\",\n      \"vlanID\": 100,\n      \"mtu\": 1500,\n      \"netAttachDefName\": \"default/vlan-100\"\n    }\n# ..."} lang="yaml" title="Example configuration" />
+      </li>
+      <li>
+      Attach pods or VMs to the VLANs by referencing the NAD in the configuration for the pod or VM:
+      <CodeBlock code={"apiVersion: v1\nkind: Pod\nmetadata:\n  annotations:\n    k8s.v1.cni.cncf.io/networks: vlan-100\n# ..."} lang="yaml" title="Example pod configuration" />
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nspec:\n    template:\n        spec:\n        networks:\n        - multus:\n            networkName: vlan-100\n            name: secondary-vlan\n# ..."} lang="yaml" title="Example VM configuration" />
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

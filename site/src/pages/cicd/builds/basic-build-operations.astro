@@ -15,8 +15,18 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"basic-build-operations","text":"Performing and configuring basic builds"}];
+const headings = [{"depth":1,"slug":"basic-build-operations","text":"Performing and configuring basic builds"},{"depth":2,"slug":"builds-basic-start-build_basic-build-operations","text":"Starting a build"},{"depth":3,"slug":"builds-basic-start-re-run_basic-build-operations","text":"Re-running a build"},{"depth":3,"slug":"builds-basic-start-logs_basic-build-operations","text":"Streaming build logs"},{"depth":3,"slug":"builds-basic-start-environment-variable_basic-build-operations","text":"Setting environment variables when starting a build"},{"depth":3,"slug":"builds-basic-start-source_basic-build-operations","text":"Starting a build with source"},{"depth":2,"slug":"builds-basic-cancel-build_basic-build-operations","text":"Canceling a build"},{"depth":3,"slug":"builds-basic-cancel-multiple_basic-build-operations","text":"Canceling multiple builds"},{"depth":3,"slug":"builds-basic-cancel-all_basic-build-operations","text":"Canceling all builds"},{"depth":3,"slug":"builds-basic-cancel-all-state_basic-build-operations","text":"Canceling all builds in a given state"},{"depth":2,"slug":"builds-basic-edit-buildconfig_basic-build-operations","text":"Editing a BuildConfig"},{"depth":2,"slug":"builds-basic-delete-buildconfig_basic-build-operations","text":"Deleting a BuildConfig"},{"depth":2,"slug":"builds-basic-view-build-details_basic-build-operations","text":"Viewing build details"},{"depth":2,"slug":"builds-basic-access-build-logs_basic-build-operations","text":"Accessing build logs"},{"depth":3,"slug":"builds-basic-access-buildconfig-logs_basic-build-operations","text":"Accessing BuildConfig logs"},{"depth":3,"slug":"builds-basic-access-buildconfig-version-logs_basic-build-operations","text":"Accessing BuildConfig logs for a given version build"},{"depth":3,"slug":"builds-basic-access-build-verbosity_basic-build-operations","text":"Enabling log verbosity"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/cicd/builds/basic-build-operations";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +49,7 @@ const pageCategory = ["cicd","cicd/builds"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Performing and configuring basic builds {#basic-build-operations}\n\nThe following sections provide instructions for basic build operations, including starting and canceling builds, editing `BuildConfigs`, deleting `BuildConfigs`, viewing build details, and accessing build logs.\n\n{% include \"./modules/builds-basic-start-build.md\" %} {% include \"./modules/builds-basic-start-re-run.md\" %} {% include \"./modules/builds-basic-start-logs.md\" %} {% include \"./modules/builds-basic-start-environment-variable.md\" %} {% include \"./modules/builds-basic-start-source.md\" %} {% include \"./modules/builds-basic-cancel-build.md\" %} {% include \"./modules/builds-basic-cancel-multiple.md\" %} {% include \"./modules/builds-basic-cancel-all.md\" %} {% include \"./modules/builds-basic-cancel-all-state.md\" %} {% include \"./modules/builds-basic-edit-buildconfig.md\" %} {% include \"./modules/builds-basic-delete-buildconfig.md\" %} {% include \"./modules/builds-basic-view-build-details.md\" %} {% include \"./modules/builds-basic-access-build-logs.md\" %} {% include \"./modules/builds-basic-access-buildconfig-logs.md\" %}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/basic-build-operations.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Performing and configuring basic builds {#basic-build-operations}\n\nThe following sections provide instructions for basic build operations, including starting and canceling builds, editing `BuildConfigs`, deleting `BuildConfigs`, viewing build details, and accessing build logs.\n\n## Starting a build {#builds-basic-start-build_basic-build-operations}\n\nYou can manually start a new build from an existing build configuration in your current project.\n\n**Procedure**\n\n- To start a build manually, enter the following command:\n\n  ```terminal\n  $ oc start-build <buildconfig_name>\n  ```\n\n### Re-running a build {#builds-basic-start-re-run_basic-build-operations}\n\nYou can manually re-run a build using the `--from-build` flag.\n\n**Procedure**\n\n- To manually re-run a build, enter the following command:\n\n  ```terminal\n  $ oc start-build --from-build=<build_name>\n  ```\n\n### Streaming build logs {#builds-basic-start-logs_basic-build-operations}\n\nYou can specify the `--follow` flag to stream the build’s logs in `stdout`.\n\n**Procedure**\n\n- To manually stream a build’s logs in `stdout`, enter the following command:\n\n  ```terminal\n  $ oc start-build <buildconfig_name> --follow\n  ```\n\n### Setting environment variables when starting a build {#builds-basic-start-environment-variable_basic-build-operations}\n\nYou can specify the `--env` flag to set any desired environment variable for the build.\n\n**Procedure**\n\n- To specify a desired environment variable, enter the following command:\n\n  ```terminal\n  $ oc start-build <buildconfig_name> --env=<key>=<value>\n  ```\n\n### Starting a build with source {#builds-basic-start-source_basic-build-operations}\n\nRather than relying on a Git source pull or a Dockerfile\n\nfor a build, you can also start a build by directly pushing your source, which could be the contents of a Git or SVN working directory, a set of pre-built binary artifacts you want to deploy, or a single file. This can be done by specifying one of the following options for the `start-build` command:\n\n| Option | Description |\n| --- | --- |\n| `--from-dir=<directory>` | Specifies a directory that will be archived and used as a binary input for the build. |\n| `--from-file=<file>` | Specifies a single file that will be the only file in the build source. The file is placed in the root of an empty directory with the same file name as the original file provided. |\n| `--from-repo=<local_source_repo>` | Specifies a path to a local repository to use as the binary input for a build. Add the `--commit` option to control which branch, tag, or commit is used for the build. |\n\nWhen passing any of these options directly to the build, the contents are streamed to the build and override the current build source settings.\n\n> [!NOTE]\n> Builds triggered from binary input will not preserve the source on the server, so rebuilds triggered by base image changes will use the source specified in the build configuration.\n\n**Procedure**\n\n- To start a build from a source code repository and send the contents of a local Git repository as an archive from the tag `v2`, enter the following command:\n\n  ```terminal\n  $ oc start-build hello-world --from-repo=../hello-world --commit=v2\n  ```\n\n## Canceling a build {#builds-basic-cancel-build_basic-build-operations}\n\nYou can cancel a build using the web console, or with the following CLI command.\n\n**Procedure**\n\n- To manually cancel a build, enter the following command:\n\n  ```terminal\n  $ oc cancel-build <build_name>\n  ```\n\n### Canceling multiple builds {#builds-basic-cancel-multiple_basic-build-operations}\n\nYou can cancel multiple builds with the following CLI command.\n\n**Procedure**\n\n- To manually cancel multiple builds, enter the following command:\n\n  ```terminal\n  $ oc cancel-build <build1_name> <build2_name> <build3_name>\n  ```\n\n### Canceling all builds {#builds-basic-cancel-all_basic-build-operations}\n\nYou can cancel all builds from the build configuration with the following CLI command.\n\n**Procedure**\n\n- To cancel all builds, enter the following command:\n\n  ```terminal\n  $ oc cancel-build bc/<buildconfig_name>\n  ```\n\n### Canceling all builds in a given state {#builds-basic-cancel-all-state_basic-build-operations}\n\nYou can cancel all builds in a given state, such as `new` or `pending`, while ignoring the builds in other states.\n\n**Procedure**\n\n- To cancel all in a given state, enter the following command:\n\n  ```terminal\n  $ oc cancel-build bc/<buildconfig_name>\n  ```\n\n## Editing a BuildConfig {#builds-basic-edit-buildconfig_basic-build-operations}\n\nTo edit your build configurations, you use the **Edit BuildConfig** option in the **Builds** page.\n\nYou can use either of the following views to edit a `BuildConfig`:\n\n- The **Form view** enables you to edit your `BuildConfig` using the standard form fields and checkboxes.\n- The **YAML view** enables you to edit your `BuildConfig` with full control over the operations.\n\nYou can switch between the **Form view** and **YAML view** without losing any data. The data in the **Form view** is transferred to the **YAML view** and vice versa.\n\n**Procedure**\n\n1. On the **Builds** page, click the Options menu ![](kebab.png \"Options menu\") to see the **Edit BuildConfig** option.\n2. Click **Edit BuildConfig** to see the **Form view** option.\n3. In the **Git** section, enter the Git repository URL for the codebase you want to use to create an application. The URL is then validated.\n\n   - Optional: Click **Show Advanced Git Options** to add details such as:\n\n     - **Git Reference** to specify a branch, tag, or commit that contains code you want to use to build the application.\n     - **Context Dir** to specify the subdirectory that contains code you want to use to build the application.\n     - **Source Secret** to create a **Secret Name** with credentials for pulling your source code from a private repository.\n4. In the **Build from** section, select the option that you would like to build from. You can use the following options:\n\n   - **Image Stream tag** references an image for a given image stream and tag. Enter the project, image stream, and tag of the location you would like to build from and push to.\n   - **Image Stream image** references an image for a given image stream and image name. Enter the image stream image you would like to build from. Also enter the project, image stream, and tag to push to.\n   - **Docker image**: The Docker image is referenced through a Docker image repository. You will also need to enter the project, image stream, and tag to refer to where you would like to push to.\n5. Optional: In the **Environment Variables** section, add the environment variables associated with the project by using the **Name** and **Value** fields. To add more environment variables, use **Add Value**, or **Add from ConfigMap** and **Secret** .\n6. Optional: To further customize your application, use the following advanced options:\n\nTrigger\n:   Triggers a new image build when the builder image changes. Add more triggers by clicking **Add Trigger** and selecting the **Type** and **Secret**.\n\nSecrets\n:   Adds secrets for your application. Add more secrets by clicking **Add secret** and selecting the **Secret** and **Mount point**.\n\nPolicy\n:   Click **Run policy** to select the build run policy. The selected policy determines the order in which builds created from the build configuration must run.\n\nHooks\n:   Select **Run build hooks after image is built** to run commands at the end of the build and verify the image. Add **Hook type**, **Command**, and **Arguments** to append to the command.\n\n1. Click **Save** to save the `BuildConfig`.\n\n## Deleting a BuildConfig {#builds-basic-delete-buildconfig_basic-build-operations}\n\nYou can delete a `BuildConfig` using the following command.\n\n**Procedure**\n\n- To delete a `BuildConfig`, enter the following command:\n\n  ```terminal\n  $ oc delete bc <BuildConfigName>\n  ```\n\n  This also deletes all builds that were instantiated from this `BuildConfig`.\n- To delete a `BuildConfig` and keep the builds instatiated from the `BuildConfig`, specify the `--cascade=false` flag when you enter the following command:\n\n  ```terminal\n  $ oc delete --cascade=false bc <BuildConfigName>\n  ```\n\n## Viewing build details {#builds-basic-view-build-details_basic-build-operations}\n\nYou can view build details with the web console or by using the `oc describe` CLI command.\n\nThis displays information including:\n\n- The build source.\n- The build strategy.\n- The output destination.\n- Digest of the image in the destination registry.\n- How the build was created.\n\nIf the build uses the `Docker` or\n\n`Source` strategy, the `oc describe` output also includes information about the source revision used for the build, including the commit ID, author, committer, and message.\n\n**Procedure**\n\n- To view build details, enter the following command:\n\n  ```terminal\n  $ oc describe build <build_name>\n  ```\n\n## Accessing build logs {#builds-basic-access-build-logs_basic-build-operations}\n\nYou can access build logs using the web console or the CLI.\n\n**Procedure**\n\n- To stream the logs using the build directly, enter the following command:\n\n  ```terminal\n  $ oc describe build <build_name>\n  ```\n\n### Accessing BuildConfig logs {#builds-basic-access-buildconfig-logs_basic-build-operations}\n\nYou can access `BuildConfig` logs using the web console or the CLI.\n\n**Procedure**\n\n- To stream the logs of the latest build for a `BuildConfig`, enter the following command:\n\n  ```terminal\n  $ oc logs -f bc/<buildconfig_name>\n  ```\n\n### Accessing BuildConfig logs for a given version build {#builds-basic-access-buildconfig-version-logs_basic-build-operations}\n\nYou can access logs for a given version build for a `BuildConfig` using the web console or the CLI.\n\n**Procedure**\n\n- To stream the logs for a given version build for a `BuildConfig`, enter the following command:\n\n  ```terminal\n  $ oc logs --version=<number> bc/<buildconfig_name>\n  ```\n\n### Enabling log verbosity {#builds-basic-access-build-verbosity_basic-build-operations}\n\nYou can enable a more verbose output by passing the `BUILD_LOGLEVEL` environment variable as part of the `sourceStrategy` or `dockerStrategy`\n\nin a `BuildConfig`.\n\n> [!NOTE]\n> An administrator can set the default build verbosity for the entire OpenShift Container Platform instance by configuring `env/BUILD_LOGLEVEL`. This default can be overridden by specifying `BUILD_LOGLEVEL` in a given `BuildConfig`. You can specify a higher priority override on the command line for non-binary builds by passing `--build-loglevel` to `oc start-build`.\n\nAvailable log levels for source builds are as follows:\n\nLevel 0\n:   Produces output from containers running the `assemble` script and all encountered errors. This is the default.\n\nLevel 1\n:   Produces basic information about the executed process.\n\nLevel 2\n:   Produces very detailed information about the executed process.\n\nLevel 3\n:   Produces very detailed information about the executed process, and a listing of the archive contents.\n\nLevel 4\n:   Currently produces the same information as level 3.\n\nLevel 5\n:   Produces everything mentioned on previous levels and additionally provides docker push messages.\n\n**Procedure**\n\n- To enable more verbose output, pass the `BUILD_LOGLEVEL` environment variable as part of the `sourceStrategy` or `dockerStrategy`\n\n  in a `BuildConfig`:\n\n  ```yaml\n  sourceStrategy:\n  ...\n    env:\n      - name: \"BUILD_LOGLEVEL\"\n        value: \"2\" (1)\n  ```\n\n  1. Adjust this value to the desired log level.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/cicd/builds/basic-build-operations.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +101,258 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="basic-build-operations" class="group scroll-mt-20">Performing and configuring basic builds<a href="#basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>The following sections provide instructions for basic build operations, including starting and canceling builds, editing <code>BuildConfigs</code>, deleting <code>BuildConfigs</code>, viewing build details, and accessing build logs.</p>
-      <p class="/modules/builds-basic-access-build-verbosity.md /modules/builds-basic-access-buildconfig-version-logs.md">{"{"}% include "./modules/builds-basic-start-build.md" %{"}"} {"{"}% include "./modules/builds-basic-start-re-run.md" %{"}"} {"{"}% include "./modules/builds-basic-start-logs.md" %{"}"} {"{"}% include "./modules/builds-basic-start-environment-variable.md" %{"}"} {"{"}% include "./modules/builds-basic-start-source.md" %{"}"} {"{"}% include "./modules/builds-basic-cancel-build.md" %{"}"} {"{"}% include "./modules/builds-basic-cancel-multiple.md" %{"}"} {"{"}% include "./modules/builds-basic-cancel-all.md" %{"}"} {"{"}% include "./modules/builds-basic-cancel-all-state.md" %{"}"} {"{"}% include "./modules/builds-basic-edit-buildconfig.md" %{"}"} {"{"}% include "./modules/builds-basic-delete-buildconfig.md" %{"}"} {"{"}% include "./modules/builds-basic-view-build-details.md" %{"}"} {"{"}% include "./modules/builds-basic-access-build-logs.md" %{"}"} {"{"}% include "./modules/builds-basic-access-buildconfig-logs.md" %{"}"} </p>
+      <h2 id="builds-basic-start-build_basic-build-operations" class="group scroll-mt-20">Starting a build<a href="#builds-basic-start-build_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can manually start a new build from an existing build configuration in your current project.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To start a build manually, enter the following command:
+      <CodeBlock code={"$ oc start-build <buildconfig_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="builds-basic-start-re-run_basic-build-operations" class="group scroll-mt-20">Re-running a build<a href="#builds-basic-start-re-run_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can manually re-run a build using the <code>--from-build</code> flag.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To manually re-run a build, enter the following command:
+      <CodeBlock code={"$ oc start-build --from-build=<build_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="builds-basic-start-logs_basic-build-operations" class="group scroll-mt-20">Streaming build logs<a href="#builds-basic-start-logs_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can specify the <code>--follow</code> flag to stream the build’s logs in <code>stdout</code>.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To manually stream a build’s logs in <code>stdout</code>, enter the following command:
+      <CodeBlock code={"$ oc start-build <buildconfig_name> --follow"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="builds-basic-start-environment-variable_basic-build-operations" class="group scroll-mt-20">Setting environment variables when starting a build<a href="#builds-basic-start-environment-variable_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can specify the <code>--env</code> flag to set any desired environment variable for the build.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To specify a desired environment variable, enter the following command:
+      <CodeBlock code={"$ oc start-build <buildconfig_name> --env=<key>=<value>"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="builds-basic-start-source_basic-build-operations" class="group scroll-mt-20">Starting a build with source<a href="#builds-basic-start-source_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Rather than relying on a Git source pull or a Dockerfile</p>
+      <p>for a build, you can also start a build by directly pushing your source, which could be the contents of a Git or SVN working directory, a set of pre-built binary artifacts you want to deploy, or a single file. This can be done by specifying one of the following options for the <code>start-build</code> command:</p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Option</TableHead>
+      <TableHead>Description</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>--from-dir=&lt;directory&gt;</code></TableCell>
+      <TableCell>Specifies a directory that will be archived and used as a binary input for the build.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--from-file=&lt;file&gt;</code></TableCell>
+      <TableCell>Specifies a single file that will be the only file in the build source. The file is placed in the root of an empty directory with the same file name as the original file provided.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--from-repo=&lt;local_source_repo&gt;</code></TableCell>
+      <TableCell>Specifies a path to a local repository to use as the binary input for a build. Add the <code>--commit</code> option to control which branch, tag, or commit is used for the build.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>When passing any of these options directly to the build, the contents are streamed to the build and override the current build source settings.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Builds triggered from binary input will not preserve the source on the server, so rebuilds triggered by base image changes will use the source specified in the build configuration.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To start a build from a source code repository and send the contents of a local Git repository as an archive from the tag <code>v2</code>, enter the following command:
+      <CodeBlock code={"$ oc start-build hello-world --from-repo=../hello-world --commit=v2"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="builds-basic-cancel-build_basic-build-operations" class="group scroll-mt-20">Canceling a build<a href="#builds-basic-cancel-build_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can cancel a build using the web console, or with the following CLI command.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To manually cancel a build, enter the following command:
+      <CodeBlock code={"$ oc cancel-build <build_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="builds-basic-cancel-multiple_basic-build-operations" class="group scroll-mt-20">Canceling multiple builds<a href="#builds-basic-cancel-multiple_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can cancel multiple builds with the following CLI command.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To manually cancel multiple builds, enter the following command:
+      <CodeBlock code={"$ oc cancel-build <build1_name> <build2_name> <build3_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="builds-basic-cancel-all_basic-build-operations" class="group scroll-mt-20">Canceling all builds<a href="#builds-basic-cancel-all_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can cancel all builds from the build configuration with the following CLI command.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To cancel all builds, enter the following command:
+      <CodeBlock code={"$ oc cancel-build bc/<buildconfig_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="builds-basic-cancel-all-state_basic-build-operations" class="group scroll-mt-20">Canceling all builds in a given state<a href="#builds-basic-cancel-all-state_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can cancel all builds in a given state, such as <code>new</code> or <code>pending</code>, while ignoring the builds in other states.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To cancel all in a given state, enter the following command:
+      <CodeBlock code={"$ oc cancel-build bc/<buildconfig_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="builds-basic-edit-buildconfig_basic-build-operations" class="group scroll-mt-20">Editing a BuildConfig<a href="#builds-basic-edit-buildconfig_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>To edit your build configurations, you use the <strong>Edit BuildConfig</strong> option in the <strong>Builds</strong> page.</p>
+      <p>You can use either of the following views to edit a <code>BuildConfig</code>:</p>
+      <ul>
+      <li>The <strong>Form view</strong> enables you to edit your <code>BuildConfig</code> using the standard form fields and checkboxes.</li>
+      <li>The <strong>YAML view</strong> enables you to edit your <code>BuildConfig</code> with full control over the operations.</li>
+      </ul>
+      <p>You can switch between the <strong>Form view</strong> and <strong>YAML view</strong> without losing any data. The data in the <strong>Form view</strong> is transferred to the <strong>YAML view</strong> and vice versa.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>On the <strong>Builds</strong> page, click the Options menu <img src="kebab.png" alt="" loading="lazy" /> to see the <strong>Edit BuildConfig</strong> option.</li>
+      <li>Click <strong>Edit BuildConfig</strong> to see the <strong>Form view</strong> option.</li>
+      <li>
+      In the <strong>Git</strong> section, enter the Git repository URL for the codebase you want to use to create an application. The URL is then validated.
+      <ul>
+      <li>
+      Optional: Click <strong>Show Advanced Git Options</strong> to add details such as:
+      <ul>
+      <li><strong>Git Reference</strong> to specify a branch, tag, or commit that contains code you want to use to build the application.</li>
+      <li><strong>Context Dir</strong> to specify the subdirectory that contains code you want to use to build the application.</li>
+      <li><strong>Source Secret</strong> to create a <strong>Secret Name</strong> with credentials for pulling your source code from a private repository.</li>
+      </ul>
+      </li>
+      </ul>
+      </li>
+      <li>
+      In the <strong>Build from</strong> section, select the option that you would like to build from. You can use the following options:
+      <ul>
+      <li><strong>Image Stream tag</strong> references an image for a given image stream and tag. Enter the project, image stream, and tag of the location you would like to build from and push to.</li>
+      <li><strong>Image Stream image</strong> references an image for a given image stream and image name. Enter the image stream image you would like to build from. Also enter the project, image stream, and tag to push to.</li>
+      <li><strong>Docker image</strong>: The Docker image is referenced through a Docker image repository. You will also need to enter the project, image stream, and tag to refer to where you would like to push to.</li>
+      </ul>
+      </li>
+      <li>Optional: In the <strong>Environment Variables</strong> section, add the environment variables associated with the project by using the <strong>Name</strong> and <strong>Value</strong> fields. To add more environment variables, use <strong>Add Value</strong>, or <strong>Add from ConfigMap</strong> and <strong>Secret</strong> .</li>
+      <li>Optional: To further customize your application, use the following advanced options:</li>
+      </ol>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Trigger</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Triggers a new image build when the builder image changes. Add more triggers by clicking <strong>Add Trigger</strong> and selecting the <strong>Type</strong> and <strong>Secret</strong>.</p></dd>
+      <dt class="font-semibold">Secrets</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Adds secrets for your application. Add more secrets by clicking <strong>Add secret</strong> and selecting the <strong>Secret</strong> and <strong>Mount point</strong>.</p></dd>
+      <dt class="font-semibold">Policy</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Click <strong>Run policy</strong> to select the build run policy. The selected policy determines the order in which builds created from the build configuration must run.</p></dd>
+      <dt class="font-semibold">Hooks</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Select <strong>Run build hooks after image is built</strong> to run commands at the end of the build and verify the image. Add <strong>Hook type</strong>, <strong>Command</strong>, and <strong>Arguments</strong> to append to the command.</p></dd>
+      </dl>
+      <ol><li>Click <strong>Save</strong> to save the <code>BuildConfig</code>.</li></ol>
+      <h2 id="builds-basic-delete-buildconfig_basic-build-operations" class="group scroll-mt-20">Deleting a BuildConfig<a href="#builds-basic-delete-buildconfig_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can delete a <code>BuildConfig</code> using the following command.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To delete a <code>BuildConfig</code>, enter the following command:
+      <CodeBlock code={"$ oc delete bc <BuildConfigName>"} lang="terminal" />
+      <p>This also deletes all builds that were instantiated from this <code>BuildConfig</code>.</p>
+      </li>
+      <li>
+      To delete a <code>BuildConfig</code> and keep the builds instatiated from the <code>BuildConfig</code>, specify the <code>--cascade=false</code> flag when you enter the following command:
+      <CodeBlock code={"$ oc delete --cascade=false bc <BuildConfigName>"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="builds-basic-view-build-details_basic-build-operations" class="group scroll-mt-20">Viewing build details<a href="#builds-basic-view-build-details_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can view build details with the web console or by using the <code>oc describe</code> CLI command.</p>
+      <p>This displays information including:</p>
+      <ul>
+      <li>The build source.</li>
+      <li>The build strategy.</li>
+      <li>The output destination.</li>
+      <li>Digest of the image in the destination registry.</li>
+      <li>How the build was created.</li>
+      </ul>
+      <p>If the build uses the <code>Docker</code> or</p>
+      <p><code>Source</code> strategy, the <code>oc describe</code> output also includes information about the source revision used for the build, including the commit ID, author, committer, and message.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To view build details, enter the following command:
+      <CodeBlock code={"$ oc describe build <build_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h2 id="builds-basic-access-build-logs_basic-build-operations" class="group scroll-mt-20">Accessing build logs<a href="#builds-basic-access-build-logs_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can access build logs using the web console or the CLI.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To stream the logs using the build directly, enter the following command:
+      <CodeBlock code={"$ oc describe build <build_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="builds-basic-access-buildconfig-logs_basic-build-operations" class="group scroll-mt-20">Accessing BuildConfig logs<a href="#builds-basic-access-buildconfig-logs_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can access <code>BuildConfig</code> logs using the web console or the CLI.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To stream the logs of the latest build for a <code>BuildConfig</code>, enter the following command:
+      <CodeBlock code={"$ oc logs -f bc/<buildconfig_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="builds-basic-access-buildconfig-version-logs_basic-build-operations" class="group scroll-mt-20">Accessing BuildConfig logs for a given version build<a href="#builds-basic-access-buildconfig-version-logs_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can access logs for a given version build for a <code>BuildConfig</code> using the web console or the CLI.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To stream the logs for a given version build for a <code>BuildConfig</code>, enter the following command:
+      <CodeBlock code={"$ oc logs --version=<number> bc/<buildconfig_name>"} lang="terminal" />
+      </li>
+      </ul>
+      <h3 id="builds-basic-access-build-verbosity_basic-build-operations" class="group scroll-mt-20">Enabling log verbosity<a href="#builds-basic-access-build-verbosity_basic-build-operations" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>You can enable a more verbose output by passing the <code>BUILD_LOGLEVEL</code> environment variable as part of the <code>sourceStrategy</code> or <code>dockerStrategy</code></p>
+      <p>in a <code>BuildConfig</code>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>An administrator can set the default build verbosity for the entire OpenShift Container Platform instance by configuring <code>env/BUILD_LOGLEVEL</code>. This default can be overridden by specifying <code>BUILD_LOGLEVEL</code> in a given <code>BuildConfig</code>. You can specify a higher priority override on the command line for non-binary builds by passing <code>--build-loglevel</code> to <code>oc start-build</code>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>Available log levels for source builds are as follows:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Level 0</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Produces output from containers running the <code>assemble</code> script and all encountered errors. This is the default.</p></dd>
+      <dt class="font-semibold">Level 1</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Produces basic information about the executed process.</p></dd>
+      <dt class="font-semibold">Level 2</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Produces very detailed information about the executed process.</p></dd>
+      <dt class="font-semibold">Level 3</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Produces very detailed information about the executed process, and a listing of the archive contents.</p></dd>
+      <dt class="font-semibold">Level 4</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Currently produces the same information as level 3.</p></dd>
+      <dt class="font-semibold">Level 5</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Produces everything mentioned on previous levels and additionally provides docker push messages.</p></dd>
+      </dl>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To enable more verbose output, pass the <code>BUILD_LOGLEVEL</code> environment variable as part of the <code>sourceStrategy</code> or <code>dockerStrategy</code>
+      <p>in a <code>BuildConfig</code>:</p>
+      <CodeBlock code={"sourceStrategy:\n...\n  env:\n    - name: \"BUILD_LOGLEVEL\"\n      value: \"2\" (1)"} lang="yaml" />
+      <ol><li>Adjust this value to the desired log level.</li></ol>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"disabling-bgp-routing","text":"Disabling BGP routing"}];
+const headings = [{"depth":1,"slug":"disabling-bgp-routing","text":"Disabling BGP routing"},{"depth":2,"slug":"nw-bgp-routing-config_disable-bgp-routing","text":"Disabling Border Gateway Protocol (BGP) routing"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/advanced_networking/bgp_routing/disabling-bgp-routing";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["networking","networking/advanced_networking","networking/
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling BGP routing {#disabling-bgp-routing}\n\nTo stop external route advertisement and restore standard cluster networking behavior, disable OVN-Kubernetes Border Gateway Protocol (BGP) routing.\n\nAs a cluster administrator, you can disable OVN-Kubernetes BGP routing support for your cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/advanced_networking/bgp_routing/disabling-bgp-routing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Disabling BGP routing {#disabling-bgp-routing}\n\nTo stop external route advertisement and restore standard cluster networking behavior, disable OVN-Kubernetes Border Gateway Protocol (BGP) routing.\n\nAs a cluster administrator, you can disable OVN-Kubernetes BGP routing support for your cluster.\n\n## Disabling Border Gateway Protocol (BGP) routing {#nw-bgp-routing-config_disable-bgp-routing}\n\nDisable Border Gateway Protocol (BGP) routing for your cluster by removing additional routing capabilities from the network configuration.\n\nAs a cluster administrator, you can disable BGP routing support for your cluster on bare-metal infrastructure.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You are logged in to the cluster as a user with the `cluster-admin` role.\n- The cluster is installed on compatible infrastructure.\n\n**Procedure**\n\n- To disable dynamic routing, enter the following command:\n\n  ```terminal\n  $ oc patch Network.operator.openshift.io/cluster --type=merge -p '{\n    \"spec\": { \"additionalRoutingCapabilities\": null }\n  }'\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/advanced_networking/bgp_routing/disabling-bgp-routing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,24 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="disabling-bgp-routing" class="group scroll-mt-20">Disabling BGP routing<a href="#disabling-bgp-routing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To stop external route advertisement and restore standard cluster networking behavior, disable OVN-Kubernetes Border Gateway Protocol (BGP) routing.</p>
       <p>As a cluster administrator, you can disable OVN-Kubernetes BGP routing support for your cluster.</p>
-      <p class="/modules/nw-bgp-routing-disable.md"></p>
+      <h2 id="nw-bgp-routing-config_disable-bgp-routing" class="group scroll-mt-20">Disabling Border Gateway Protocol (BGP) routing<a href="#nw-bgp-routing-config_disable-bgp-routing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Disable Border Gateway Protocol (BGP) routing for your cluster by removing additional routing capabilities from the network configuration.</p>
+      <p>As a cluster administrator, you can disable BGP routing support for your cluster on bare-metal infrastructure.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You are logged in to the cluster as a user with the <code>cluster-admin</code> role.</li>
+      <li>The cluster is installed on compatible infrastructure.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To disable dynamic routing, enter the following command:
+      <CodeBlock code={"$ oc patch Network.operator.openshift.io/cluster --type=merge -p '{\n  \"spec\": { \"additionalRoutingCapabilities\": null }\n}'"} lang="terminal" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

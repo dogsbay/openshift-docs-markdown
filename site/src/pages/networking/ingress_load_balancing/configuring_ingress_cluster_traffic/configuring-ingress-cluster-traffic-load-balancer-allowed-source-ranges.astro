@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"configuring-ingress-cluster-traffic-lb-allowed-source-ranges","text":"Configuring ingress cluster traffic using load balancer allowed source ranges"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"configuring-ingress-cluster-traffic-lb-allowed-source-ranges","text":"Configuring ingress cluster traffic using load balancer allowed source ranges"},{"depth":2,"slug":"nw-configuring-lb-allowed-source-ranges_configuring-ingress-cluster-traffic-lb-allowed-source-ranges","text":"Configuring load balancer allowed source ranges"},{"depth":2,"slug":"nw-configuring-lb-allowed-source-ranges-migration_configuring-ingress-cluster-traffic-lb-allowed-source-ranges","text":"Migrating to load balancer allowed source ranges"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer-allowed-source-ranges";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["networking","networking/ingress_load_balancing","networki
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring ingress cluster traffic using load balancer allowed source ranges {#configuring-ingress-cluster-traffic-lb-allowed-source-ranges}\n\nYou can specify a list of IP address ranges for the Ingress Controller. This action restricts access to the load balancer service when you specify the `LoadBalancerService` value for the `endpointPublishingStrategy` parameter.\n\n## Additional resources {#_additional_resources}\n\n- [Introduction to OpenShift updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer-allowed-source-ranges.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring ingress cluster traffic using load balancer allowed source ranges {#configuring-ingress-cluster-traffic-lb-allowed-source-ranges}\n\nYou can specify a list of IP address ranges for the Ingress Controller. This action restricts access to the load balancer service when you specify the `LoadBalancerService` value for the `endpointPublishingStrategy` parameter.\n\n## Configuring load balancer allowed source ranges {#nw-configuring-lb-allowed-source-ranges_configuring-ingress-cluster-traffic-lb-allowed-source-ranges}\n\nYou can enable and configure the `spec.endpointPublishingStrategy.loadBalancer.allowedSourceRanges` parameter. By configuring load balancer allowed source ranges, you can limit the access to the load balancer for the Ingress Controller to a specified list of IP address ranges.\n\nThe Ingress Operator reconciles the load balancer Service and sets the `spec.loadBalancerSourceRanges` parameter based on `AllowedSourceRanges`.\n\n> [!NOTE]\n> If you have already set the `spec.loadBalancerSourceRanges` parameter or the load balancer service anotation `service.beta.kubernetes.io/load-balancer-source-ranges` in a previous version of OpenShift Container Platform, Ingress Controller starts reporting `Progressing=True` after an upgrade. To fix this, set `AllowedSourceRanges` that overwrites the `spec.loadBalancerSourceRanges` parameter and clears the `service.beta.kubernetes.io/load-balancer-source-ranges` annotation. Ingress Controller starts reporting `Progressing=False` again.\n\n**Prerequisites**\n\n- You have a deployed Ingress Controller on a running cluster.\n\n**Procedure**\n\n- Set the allowed source ranges API for the Ingress Controller by running the following command:\n\n  ```terminal\n  $ oc -n openshift-ingress-operator patch ingresscontroller/default \\\n      --type=merge --patch='{\"spec\":{\"endpointPublishingStrategy\": \\\n      {\"type\":\"LoadBalancerService\", \"loadbalancer\": \\\n      {\"scope\":\"External\", \"allowedSourceRanges\":[\"0.0.0.0/0\"]}}}}'\n  ```\n\n  where:\n\n  `allowedSourceRanges`\n  :   The example value `0.0.0.0/0` specifies the allowed source range.\n\n## Migrating to load balancer allowed source ranges {#nw-configuring-lb-allowed-source-ranges-migration_configuring-ingress-cluster-traffic-lb-allowed-source-ranges}\n\nIf you have already set the annotation `service.beta.kubernetes.io/load-balancer-source-ranges`, you can migrate to load balancer allowed source ranges. When you set the `AllowedSourceRanges`, the Ingress Controller sets the `spec.loadBalancerSourceRanges` field based on the `AllowedSourceRanges` value and unsets the `service.beta.kubernetes.io/load-balancer-source-ranges` annotation.\n\n> [!NOTE]\n> If you have already set the `spec.loadBalancerSourceRanges` parameter or the load balancer service anotation `service.beta.kubernetes.io/load-balancer-source-ranges` in a previous version of OpenShift Container Platform, the Ingress Controller starts reporting `Progressing=True` after an upgrade. To fix this, set `AllowedSourceRanges` that overwrites the `spec.loadBalancerSourceRanges` parameter and clears the `service.beta.kubernetes.io/load-balancer-source-ranges` annotation. The Ingress Controller starts reporting `Progressing=False` again.\n\n**Prerequisites**\n\n- You have set the `service.beta.kubernetes.io/load-balancer-source-ranges` annotation.\n\n**Procedure**\n\n1. Check that the `service.beta.kubernetes.io/load-balancer-source-ranges` is set by entering the following command:\n\n   ```terminal\n   $ oc get svc router-default -n openshift-ingress -o yaml\n   ```\n\n   ```yaml {title=\"Example output\"}\n   apiVersion: v1\n   kind: Service\n   metadata:\n     annotations:\n       service.beta.kubernetes.io/load-balancer-source-ranges: 192.168.0.1/32\n   ```\n2. Check that the `spec.loadBalancerSourceRanges` parameter is unset by entering the following command:\n\n   ```terminal\n   $ oc get svc router-default -n openshift-ingress -o yaml\n   ```\n\n   ```yaml {title=\"Example output\"}\n   ...\n   spec:\n     loadBalancerSourceRanges:\n     - 0.0.0.0/0\n   ...\n   ```\n3. Update your cluster to OpenShift Container Platform 4.22.\n4. Set the allowed source ranges API for the `ingresscontroller` by running the following command:\n\n   ```terminal\n   $ oc -n openshift-ingress-operator patch ingresscontroller/default \\\n       --type=merge --patch='{\"spec\":{\"endpointPublishingStrategy\": \\\n       {\"loadBalancer\":{\"allowedSourceRanges\":[\"0.0.0.0/0\"]}}}}'\n   ```\n\n   where:\n\n   `allowedSourceRanges`\n   :   The example value `0.0.0.0/0` specifies the allowed source range.\n\n## Additional resources {#_additional_resources}\n\n- [Introduction to OpenShift updates](/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-openshift-updates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/networking/ingress_load_balancing/configuring_ingress_cluster_traffic/configuring-ingress-cluster-traffic-load-balancer-allowed-source-ranges.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,63 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="configuring-ingress-cluster-traffic-lb-allowed-source-ranges" class="group scroll-mt-20">Configuring ingress cluster traffic using load balancer allowed source ranges<a href="#configuring-ingress-cluster-traffic-lb-allowed-source-ranges" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can specify a list of IP address ranges for the Ingress Controller. This action restricts access to the load balancer service when you specify the <code>LoadBalancerService</code> value for the <code>endpointPublishingStrategy</code> parameter.</p>
-      <p class="/modules/nw-configuring-lb-allowed-source-ranges.md"></p>
-      <p class="/modules/nw-configuring-lb-allowed-source-ranges-migration.md"></p>
+      <h2 id="nw-configuring-lb-allowed-source-ranges_configuring-ingress-cluster-traffic-lb-allowed-source-ranges" class="group scroll-mt-20">Configuring load balancer allowed source ranges<a href="#nw-configuring-lb-allowed-source-ranges_configuring-ingress-cluster-traffic-lb-allowed-source-ranges" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can enable and configure the <code>spec.endpointPublishingStrategy.loadBalancer.allowedSourceRanges</code> parameter. By configuring load balancer allowed source ranges, you can limit the access to the load balancer for the Ingress Controller to a specified list of IP address ranges. </p>
+      <p>The Ingress Operator reconciles the load balancer Service and sets the <code>spec.loadBalancerSourceRanges</code> parameter based on <code>AllowedSourceRanges</code>.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you have already set the <code>spec.loadBalancerSourceRanges</code> parameter or the load balancer service anotation <code>service.beta.kubernetes.io/load-balancer-source-ranges</code> in a previous version of OpenShift Container Platform, Ingress Controller starts reporting <code>Progressing=True</code> after an upgrade. To fix this, set <code>AllowedSourceRanges</code> that overwrites the <code>spec.loadBalancerSourceRanges</code> parameter and clears the <code>service.beta.kubernetes.io/load-balancer-source-ranges</code> annotation. Ingress Controller starts reporting <code>Progressing=False</code> again.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have a deployed Ingress Controller on a running cluster.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Set the allowed source ranges API for the Ingress Controller by running the following command:
+      <CodeBlock code={"$ oc -n openshift-ingress-operator patch ingresscontroller/default \\\n    --type=merge --patch='{\"spec\":{\"endpointPublishingStrategy\": \\\n    {\"type\":\"LoadBalancerService\", \"loadbalancer\": \\\n    {\"scope\":\"External\", \"allowedSourceRanges\":[\"0.0.0.0/0\"]}}}}'"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>allowedSourceRanges</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The example value <code>0.0.0.0/0</code> specifies the allowed source range.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      <h2 id="nw-configuring-lb-allowed-source-ranges-migration_configuring-ingress-cluster-traffic-lb-allowed-source-ranges" class="group scroll-mt-20">Migrating to load balancer allowed source ranges<a href="#nw-configuring-lb-allowed-source-ranges-migration_configuring-ingress-cluster-traffic-lb-allowed-source-ranges" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">If you have already set the annotation <code>service.beta.kubernetes.io/load-balancer-source-ranges</code>, you can migrate to load balancer allowed source ranges. When you set the <code>AllowedSourceRanges</code>, the Ingress Controller sets the <code>spec.loadBalancerSourceRanges</code> field based on the <code>AllowedSourceRanges</code> value and unsets the <code>service.beta.kubernetes.io/load-balancer-source-ranges</code> annotation.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you have already set the <code>spec.loadBalancerSourceRanges</code> parameter or the load balancer service anotation <code>service.beta.kubernetes.io/load-balancer-source-ranges</code> in a previous version of OpenShift Container Platform, the Ingress Controller starts reporting <code>Progressing=True</code> after an upgrade. To fix this, set <code>AllowedSourceRanges</code> that overwrites the <code>spec.loadBalancerSourceRanges</code> parameter and clears the <code>service.beta.kubernetes.io/load-balancer-source-ranges</code> annotation. The Ingress Controller starts reporting <code>Progressing=False</code> again.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have set the <code>service.beta.kubernetes.io/load-balancer-source-ranges</code> annotation.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Check that the <code>service.beta.kubernetes.io/load-balancer-source-ranges</code> is set by entering the following command:
+      <CodeBlock code={"$ oc get svc router-default -n openshift-ingress -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: v1\nkind: Service\nmetadata:\n  annotations:\n    service.beta.kubernetes.io/load-balancer-source-ranges: 192.168.0.1/32"} lang="yaml" title="Example output" />
+      </li>
+      <li>
+      Check that the <code>spec.loadBalancerSourceRanges</code> parameter is unset by entering the following command:
+      <CodeBlock code={"$ oc get svc router-default -n openshift-ingress -o yaml"} lang="terminal" />
+      <CodeBlock code={"...\nspec:\n  loadBalancerSourceRanges:\n  - 0.0.0.0/0\n..."} lang="yaml" title="Example output" />
+      </li>
+      <li>Update your cluster to OpenShift Container Platform 4.22.</li>
+      <li>
+      Set the allowed source ranges API for the <code>ingresscontroller</code> by running the following command:
+      <CodeBlock code={"$ oc -n openshift-ingress-operator patch ingresscontroller/default \\\n    --type=merge --patch='{\"spec\":{\"endpointPublishingStrategy\": \\\n    {\"loadBalancer\":{\"allowedSourceRanges\":[\"0.0.0.0/0\"]}}}}'"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>allowedSourceRanges</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The example value <code>0.0.0.0/0</code> specifies the allowed source range.</p></dd>
+      </dl>
+      </li>
+      </ol>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/updating/understanding_updates/intro-to-updates#understanding-openshift-updates">Introduction to OpenShift updates</a></li></ul>
     </article>

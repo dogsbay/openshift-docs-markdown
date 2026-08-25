@@ -15,8 +15,15 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"virt-recovering-individual-files-from-vm-backups","text":"Recover individual files from virtual machine backups"},{"depth":2,"slug":"additional-resources_virt-recovering-individual-files-from-vm-backups","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-recovering-individual-files-from-vm-backups","text":"Recover individual files from virtual machine backups"},{"depth":2,"slug":"oadp-vmfr-overview_virt-recovering-individual-files-from-vm-backups","text":"What problem is OADP VMFR solving"},{"depth":2,"slug":"oadp-vmfr-use-scenarios_virt-recovering-individual-files-from-vm-backups","text":"When to use OADP VMFR"},{"depth":2,"slug":"oadp-vmfr-custom-resources_virt-recovering-individual-files-from-vm-backups","text":"OADP VMFR custom resources"},{"depth":2,"slug":"oadp-vmfr-how-it-works_virt-recovering-individual-files-from-vm-backups","text":"How OADP VMFR works"},{"depth":3,"slug":"_backup_discovery_phase","text":"Backup discovery phase"},{"depth":3,"slug":"_file_restore_phase","text":"File restore phase"},{"depth":3,"slug":"_file-serving_pod_architecture","text":"File-serving pod architecture"},{"depth":2,"slug":"oadp-vmfr-prerequisites_virt-recovering-individual-files-from-vm-backups","text":"OADP VMFR prerequisites"},{"depth":2,"slug":"oadp-vmfr-access-methods_virt-recovering-individual-files-from-vm-backups","text":"OADP VMFR file access methods"},{"depth":3,"slug":"oadp-vmfr-web-browser-access_virt-recovering-individual-files-from-vm-backups","text":"Web browser access"},{"depth":3,"slug":"_ssh-based_access","text":"SSH-based access"},{"depth":2,"slug":"oadp-vmfr-limitations_virt-recovering-individual-files-from-vm-backups","text":"OADP VMFR limitations"},{"depth":2,"slug":"oadp-vmfr-security_virt-recovering-individual-files-from-vm-backups","text":"OADP VMFR security considerations"},{"depth":2,"slug":"oadp-vmfr-phases_virt-recovering-individual-files-from-vm-backups","text":"OADP VMFR discovery and restore phases"},{"depth":2,"slug":"additional-resources_virt-recovering-individual-files-from-vm-backups","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/backup_restore/virt-recovering-individual-files-from-vm-backups";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +46,7 @@ const pageCategory = ["virt","virt/backup_restore"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Recover individual files from virtual machine backups {#virt-recovering-individual-files-from-vm-backups}\n\nRecover individual files from virtual machine backups without restoring the entire VM. Browse, compare, and download files from multiple backups simultaneously through a web browser or SSH-based tools.\n\n## Additional resources {#additional-resources_virt-recovering-individual-files-from-vm-backups}\n\n- [Use virtual machine file restore](/openshift-docs-markdown/virt/backup_restore/virt-using-vm-file-restore#virt-using-vm-file-restore)\n- [Backing up and restoring virtual machines](/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-overview#virt-backup-restore-overview)\n- [Backup and restore by using VM snapshots](/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-snapshots#virt-backup-restore-snapshots)\n- [Introduction to {{ oadp_full }}](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-introduction)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/backup_restore/virt-recovering-individual-files-from-vm-backups.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Recover individual files from virtual machine backups {#virt-recovering-individual-files-from-vm-backups}\n\nRecover individual files from virtual machine backups without restoring the entire VM. Browse, compare, and download files from multiple backups simultaneously through a web browser or SSH-based tools.\n\n## What problem is OADP VMFR solving {#oadp-vmfr-overview_virt-recovering-individual-files-from-vm-backups}\n\nRecover individual files from virtual machine (VM) backups without restoring the entire VM. Browse multiple backups simultaneously and retrieve only the files you need through standard tools such as a web browser or `rsync`.\n\nCurrent VM backup recovery workflows require you to restore an entire virtual machine to access a single file. This uses substantial cluster resources and time. The virtual machine file restore (VMFR) feature addresses this problem by providing a Kubernetes-native mechanism for file-level recovery from VM backups created by OADP.\n\nThe VMFR feature uses a two-phase approach:\n\n1. **Backup discovery**: Identify which Velero backups contain a specified virtual machine by creating a `VirtualMachineBackupsDiscovery` (VMBD) custom resource (CR).\n2. **File restore**: Make the discovered backup files accessible for browsing and downloading by creating a `VirtualMachineFileRestore` (VMFR) CR.\n\nOADP VMFR offers the following benefits:\n\n- You can recover individual files from VM backups without restoring the entire VM.\n- You can browse and compare files across multiple backup versions simultaneously.\n- You can access restored files through a web browser or SSH-based tools such as `rsync`, `scp`, and `sftp`.\n- All operations are managed within the cluster by using standard Kubernetes resources.\n- Temporary namespaces isolate file-serving resources and are cleaned up automatically.\n\n## When to use OADP VMFR {#oadp-vmfr-use-scenarios_virt-recovering-individual-files-from-vm-backups}\n\nReview the following scenarios where OADP virtual machine file restore (VMFR) addresses common file recovery challenges. This helps you determine whether VMFR is the appropriate solution for your use case.\n\nConfiguration issue investigation\n:   You have a production virtual machine (VM) that has a configuration issue. You need to compare configuration files from before and after the incident. Without VMFR, you have to restore multiple full VMs and perform manual file comparisons, which uses significant time and resources. With VMFR, you can browse files from multiple backup versions simultaneously and compare configurations without restoring any VMs.\n\nSelective file recovery\n:   You accidentally delete critical documents from a VM. The files exist in a recent backup, but restoring the entire VM would overwrite changes made since that backup. With VMFR, you can recover the specific files you need without losing the current VM state or overwriting recent modifications.\n\nMulti-VM backup discovery\n:   You have a namespace that runs multiple VMs with daily backups over several weeks. You need to recover a file from a specific VM but do not know which backup contains it. Without VMFR, you must inspect each backup individually or attempt multiple restores. With VMFR, you can create a `VirtualMachineBackupsDiscovery` CR to identify which backups contain the target VM and then restore files from the target backup.\n\n## OADP VMFR custom resources {#oadp-vmfr-custom-resources_virt-recovering-individual-files-from-vm-backups}\n\nUse OADP virtual machine file restore (VMFR) custom resources to discover VM backups and restore individual files from those backups.\n\nThe OADP VMFR feature uses the following custom resources (CRs) to perform file-level restore operations:\n\n**Custom resources**\n\n| **CR** | **Description** |\n| --- | --- |\n| `VirtualMachineBackupsDiscovery` (VMBD) | Identifies which Velero backups contain a specified virtual machine. Returns categorized results of valid and invalid backups. |\n| `VirtualMachineFileRestore` (VMFR) | Orchestrates the workflow for making discovered backup files accessible through web or SSH access methods. |\n\n## How OADP VMFR works {#oadp-vmfr-how-it-works_virt-recovering-individual-files-from-vm-backups}\n\nReview how OADP virtual machine file restore (VMFR) processes file-level restore requests through a two-phase workflow that discovers virtual machine (VM) backups and makes their contents accessible for browsing and downloading.\n\n### Backup discovery phase {#_backup_discovery_phase}\n\nThe backup discovery phase identifies which Velero backups contain a specified VM. When you create a `VirtualMachineBackupsDiscovery` (VMBD) CR, the discovery controller performs the following steps:\n\n1. Compiles a list of candidate backups from explicitly named backups or all cluster backups.\n2. Filters candidates by time range if you specify `startTime` and `endTime` boundaries.\n3. Validates that each candidate backup is in the `Completed` phase.\n4. Verifies that the specified VM is present in each candidate backup by querying Velero metadata.\n5. Updates the VMBD status with categorized results of valid and invalid backups.\n\n### File restore phase {#_file_restore_phase}\n\nThe file restore phase makes the discovered backup files accessible. When you create a `VirtualMachineFileRestore` (VMFR) CR, the restore controller performs the following steps:\n\n1. Validates that the referenced VMBD CR exists and is in the `Completed` phase.\n2. Verifies that the selected backups exist in the valid discovery results.\n3. Extracts persistent volume claim (PVC) metadata from the selected backup manifests.\n4. Creates a temporary namespace to isolate file-serving resources.\n5. Triggers Velero restore objects for the PVCs for each backup. The restore objects use `includedResources` to restore only `PersistentVolumeClaims` (PVCs) and `VolumeSnapshots`, and use `orLabelSelectors` to target specific PVCs by their `velero.kubevirt.io/pvc-uid` label. A `namespaceMapping` redirects the restored PVCs to the temporary namespace.\n6. Creates a file-serving pod with an initialization container and access sidecars.\n\n### File-serving pod architecture {#_file-serving_pod_architecture}\n\nThe file-serving pod uses `libguestfs` and FUSE to mount VM disk images without requiring privileged access. The initialization container performs the following steps:\n\n1. Scans PVCs to locate VM disk image files.\n2. Detects disk image formats, including `qcow2` and `raw`.\n3. Mounts disk images as read-only under the `/backups/` directory.\n4. Organizes files by backup name and PVC name.\n\nAfter initialization, the sidecars provide file access through web or SSH methods.\n\nThe mounted directory structure provides an intuitive organization as shown in the following example:\n\n```terminal\n/backups/\n  <backup_name_1>/\n    <vm_disk_root>/\n      etc/\n      var/\n    <vm_disk_data>/\n      application-data/\n  <backup_name_2>/\n    <vm_disk_root>/\n      etc/\n      var/\n```\n\n## OADP VMFR prerequisites {#oadp-vmfr-prerequisites_virt-recovering-individual-files-from-vm-backups}\n\nConfigure your cluster environment to enable OADP virtual machine file restore (VMFR) operations by meeting the following prerequisites. This helps you perform file-level restore from virtual machine backups.\n\n- You have installed the OADP Operator.\n- You have configured the `DataProtectionApplication` (DPA) CR with the `vmFileRestore.enable` field set to `true`.\n- The DPA CR includes the `kubevirt` Velero plugin in the `defaultPlugins` list.\n- OpenShift Virtualization is installed and running on the cluster.\n- You have a default storage class configured on the cluster.\n- You have existing Velero backups that contain virtual machine data.\n\n## OADP VMFR file access methods {#oadp-vmfr-access-methods_virt-recovering-individual-files-from-vm-backups}\n\nAccess restored files from virtual machine (VM) backups through a web browser or SSH-based tools. OADP virtual machine file restore (VMFR) provides access methods that you can configure individually or together.\n\n### Web browser access {#oadp-vmfr-web-browser-access_virt-recovering-individual-files-from-vm-backups}\n\nThe web access method uses a `FileBrowser` container to serve an HTTPS interface for browsing and downloading files. Web browser access provides the following capabilities:\n\n- Directory navigation across backup versions\n- File preview for common text and image formats\n- Individual file or directory archive downloads\n- Credential management through Kubernetes secrets\n- `ClusterIP` service exposure for internal cluster access\n- Optional external route exposure for access outside the cluster by setting `exposeExternally: true` in the VMFR CR\n\n### SSH-based access {#_ssh-based_access}\n\nThe SSH access method provides command-line file transfer capabilities through key-based authentication. When you configure `fileAccess.ssh: {}` in the VMFR CR, the controller autogenerates an SSH key pair and stores it in a Kubernetes secret. SSH-based access supports the following tools:\n\n- `scp` for individual file transfer\n- `sftp` for interactive file browsing sessions\n- `rsync` over SSH for synchronizing files and directories\n\nSSH access uses the following defaults:\n\n- Default username: `oadp`\n- Default port: `2222`\n- Remote path format: `/restores/<date>/<backup_name>/<vm_name>/<path_to_file>`\n- SSH access uses key-based authentication only. Password-based logins are not supported.\n\n## OADP VMFR limitations {#oadp-vmfr-limitations_virt-recovering-individual-files-from-vm-backups}\n\nReview the limitations of OADP virtual machine file restore (VMFR) to understand which operations are restricted. This helps you plan appropriate file-level restore strategies within the supported functionality.\n\nThe following limitations apply to OADP VMFR:\n\n- VMFR supports only VM backups created by OADP with the `kubevirt` Velero plugin. Backups created without this plugin are not supported.\n- Restored files are mounted as read-only. You cannot modify files directly in the backup.\n- VMFR supports the following disk image formats: `qcow2` and `raw`. Other disk image formats are not supported.\n- VMFR supports the following file systems: `ext4`, `xfs`, `ntfs`, and `fat`. Other file systems are not supported.\n- File-serving pods require sufficient disk capacity to mount and serve backup data. Each restore operation mounts the PVC at the size it was at the time of backup. Ensure that your cluster has adequate disk resources available.\n- The VMFR CR must reference a `VirtualMachineBackupsDiscovery` CR that is in the `Completed` phase. You cannot create a VMFR CR without a completed discovery.\n- VMFR does not replace full VM restore capabilities. File-level restore and full VM restore are separate workflows that coexist.\n- VMFR does not support hot-mount capabilities into running VMs.\n\n## OADP VMFR security considerations {#oadp-vmfr-security_virt-recovering-individual-files-from-vm-backups}\n\nReview the security considerations for OADP virtual machine file restore (VMFR) to understand how access control, data protection, and multi-tenancy are managed. This helps you to plan secure file-level restore operations.\n\nAccess control\n:   VMFR enforces the following access control policies:\n\n    - File-serving resources are created in a temporary namespace that is separate from the OADP namespace. This namespace is owned by the `VirtualMachineFileRestore` CR and is cleaned up automatically when you delete the CR.\n    - The discovery controller requires read-only access to Velero `Backup` resources.\n    - The file restore controller requires create and delete access for namespaces, pods, services, and PVCs.\n    - Cluster administrators require create, read, update, and delete access to `VirtualMachineBackupsDiscovery` and `VirtualMachineFileRestore` resources in the OADP namespace.\n    - Controllers authenticate to object storage by using the Velero backup storage location credentials. Controllers have read-only access to backup data and never modify backups.\n\nData protection\n:   VMFR protects data in transit by using the following mechanisms:\n\n    - Web browser access uses HTTPS endpoints with TLS certificates.\n    - SSH access uses auto generated key pairs.\n    - Credentials are stored in Kubernetes secrets.\n\nMulti-tenancy\n:   VMFR supports multi-tenancy through namespace isolation:\n\n    - Multiple `VirtualMachineFileRestore` resources can exist simultaneously. Each resource creates an isolated temporary namespace.\n    - Resources from different restores cannot interfere with each other.\n    - You can restore the same VM from different backups in parallel.\n    - Temporary namespace names are derived from the `VirtualMachineFileRestore` resource name, and PVC names in the temporary namespace use the backup name as a suffix to prevent naming conflicts.\n\n## OADP VMFR discovery and restore phases {#oadp-vmfr-phases_virt-recovering-individual-files-from-vm-backups}\n\nReview the status phases of `VirtualMachineBackupsDiscovery` (VMBD) and `VirtualMachineFileRestore` (VMFR) custom resources (CRs) to track the progress of file-level restore operations. This helps you monitor and troubleshoot VMFR requests.\n\n**VirtualMachineBackupsDiscovery phases**\n\n| **Value** | **Description** |\n| --- | --- |\n| `New` | The VMBD CR creation request is accepted but discovery has not yet started. |\n| `InProgress` | The controller is actively validating candidate backups and verifying VM presence. |\n| `Completed` | All candidate backups are processed and results are available in the VMBD status. |\n| `PartiallyFailed` | Some candidate backups were validated but others failed verification. |\n| `Failed` | The discovery process failed. Check the VMBD status conditions for error details. |\n\n**VirtualMachineFileRestore phases**\n\n| **Value** | **Description** |\n| --- | --- |\n| `New` | The VMFR CR creation request is accepted but the restore process has not yet started. |\n| `InProgress` | The controller is restoring PVCs and creating file-serving resources. |\n| `Completed` | All PVCs are restored and file-serving endpoints are available. |\n| `PartiallyFailed` | Some PVCs were restored but others failed. Partial file access might be available. |\n| `Failed` | The restore process failed. Check the VMFR status conditions for error details. |\n| `Deleting` | The VMFR CR is marked for deletion. The controller is cleaning up file-serving resources, restored PVCs, and the temporary namespace. |\n\n**PVC restore state values**\n\n| **Value** | **Description** |\n| --- | --- |\n| `available` | The PVC is restored and the file system is mounted and accessible. |\n| `processing` | The PVC restore is in progress. |\n| `failed` | The PVC restore failed. |\n| `backup-deleted` | The source backup for this PVC has been deleted. |\n| `backup-missing` | The source backup for this PVC cannot be found. |\n| `unsupported-plugin` | The backup was created with an unsupported plugin format. |\n| `extraction-failed` | The file system extraction from the disk image failed. |\n\n## Additional resources {#additional-resources_virt-recovering-individual-files-from-vm-backups}\n\n- [Use virtual machine file restore](/openshift-docs-markdown/virt/backup_restore/virt-using-vm-file-restore#virt-using-vm-file-restore)\n- [Backing up and restoring virtual machines](/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-overview#virt-backup-restore-overview)\n- [Backup and restore by using VM snapshots](/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-snapshots#virt-backup-restore-snapshots)\n- [Introduction to OpenShift API for Data Protection](/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-introduction)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/backup_restore/virt-recovering-individual-files-from-vm-backups.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +82,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,24 +97,284 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">Recover individual files from virtual machine backups<a href="#virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>Recover individual files from virtual machine backups without restoring the entire VM. Browse, compare, and download files from multiple backups simultaneously through a web browser or SSH-based tools.</p>
-      <p class="/modules/oadp-vmfr-overview.md"></p>
-      <p class="/modules/oadp-vmfr-use-scenarios.md"></p>
-      <p class="/modules/oadp-vmfr-custom-resources.md"></p>
-      <p class="/modules/oadp-vmfr-how-it-works.md"></p>
-      <p class="/modules/oadp-vmfr-prerequisites.md"></p>
-      <p class="/modules/oadp-vmfr-access-methods.md"></p>
-      <p class="/modules/oadp-vmfr-limitations.md"></p>
-      <p class="/modules/oadp-vmfr-security.md"></p>
-      <p class="/modules/oadp-vmfr-phases.md"></p>
+      <h2 id="oadp-vmfr-overview_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">What problem is OADP VMFR solving<a href="#oadp-vmfr-overview_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Recover individual files from virtual machine (VM) backups without restoring the entire VM. Browse multiple backups simultaneously and retrieve only the files you need through standard tools such as a web browser or <code>rsync</code>.</p>
+      <p>Current VM backup recovery workflows require you to restore an entire virtual machine to access a single file. This uses substantial cluster resources and time. The virtual machine file restore (VMFR) feature addresses this problem by providing a Kubernetes-native mechanism for file-level recovery from VM backups created by OADP.</p>
+      <p>The VMFR feature uses a two-phase approach:</p>
+      <ol>
+      <li><strong>Backup discovery</strong>: Identify which Velero backups contain a specified virtual machine by creating a <code>VirtualMachineBackupsDiscovery</code> (VMBD) custom resource (CR).</li>
+      <li><strong>File restore</strong>: Make the discovered backup files accessible for browsing and downloading by creating a <code>VirtualMachineFileRestore</code> (VMFR) CR.</li>
+      </ol>
+      <p>OADP VMFR offers the following benefits:</p>
+      <ul>
+      <li>You can recover individual files from VM backups without restoring the entire VM.</li>
+      <li>You can browse and compare files across multiple backup versions simultaneously.</li>
+      <li>You can access restored files through a web browser or SSH-based tools such as <code>rsync</code>, <code>scp</code>, and <code>sftp</code>.</li>
+      <li>All operations are managed within the cluster by using standard Kubernetes resources.</li>
+      <li>Temporary namespaces isolate file-serving resources and are cleaned up automatically.</li>
+      </ul>
+      <h2 id="oadp-vmfr-use-scenarios_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">When to use OADP VMFR<a href="#oadp-vmfr-use-scenarios_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the following scenarios where OADP virtual machine file restore (VMFR) addresses common file recovery challenges. This helps you determine whether VMFR is the appropriate solution for your use case.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Configuration issue investigation</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You have a production virtual machine (VM) that has a configuration issue. You need to compare configuration files from before and after the incident. Without VMFR, you have to restore multiple full VMs and perform manual file comparisons, which uses significant time and resources. With VMFR, you can browse files from multiple backup versions simultaneously and compare configurations without restoring any VMs.</p></dd>
+      <dt class="font-semibold">Selective file recovery</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You accidentally delete critical documents from a VM. The files exist in a recent backup, but restoring the entire VM would overwrite changes made since that backup. With VMFR, you can recover the specific files you need without losing the current VM state or overwriting recent modifications.</p></dd>
+      <dt class="font-semibold">Multi-VM backup discovery</dt>
+      <dd class="ml-6 text-muted-foreground"><p>You have a namespace that runs multiple VMs with daily backups over several weeks. You need to recover a file from a specific VM but do not know which backup contains it. Without VMFR, you must inspect each backup individually or attempt multiple restores. With VMFR, you can create a <code>VirtualMachineBackupsDiscovery</code> CR to identify which backups contain the target VM and then restore files from the target backup.</p></dd>
+      </dl>
+      <h2 id="oadp-vmfr-custom-resources_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">OADP VMFR custom resources<a href="#oadp-vmfr-custom-resources_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Use OADP virtual machine file restore (VMFR) custom resources to discover VM backups and restore individual files from those backups.</p>
+      <p>The OADP VMFR feature uses the following custom resources (CRs) to perform file-level restore operations:</p>
+      <p><strong>Custom resources</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead><strong>CR</strong></TableHead>
+      <TableHead><strong>Description</strong></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>VirtualMachineBackupsDiscovery</code> (VMBD)</TableCell>
+      <TableCell>Identifies which Velero backups contain a specified virtual machine. Returns categorized results of valid and invalid backups.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>VirtualMachineFileRestore</code> (VMFR)</TableCell>
+      <TableCell>Orchestrates the workflow for making discovered backup files accessible through web or SSH access methods.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <h2 id="oadp-vmfr-how-it-works_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">How OADP VMFR works<a href="#oadp-vmfr-how-it-works_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review how OADP virtual machine file restore (VMFR) processes file-level restore requests through a two-phase workflow that discovers virtual machine (VM) backups and makes their contents accessible for browsing and downloading.</p>
+      <h3 id="_backup_discovery_phase" class="group scroll-mt-20">Backup discovery phase<a href="#_backup_discovery_phase" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The backup discovery phase identifies which Velero backups contain a specified VM. When you create a <code>VirtualMachineBackupsDiscovery</code> (VMBD) CR, the discovery controller performs the following steps:</p>
+      <ol>
+      <li>Compiles a list of candidate backups from explicitly named backups or all cluster backups.</li>
+      <li>Filters candidates by time range if you specify <code>startTime</code> and <code>endTime</code> boundaries.</li>
+      <li>Validates that each candidate backup is in the <code>Completed</code> phase.</li>
+      <li>Verifies that the specified VM is present in each candidate backup by querying Velero metadata.</li>
+      <li>Updates the VMBD status with categorized results of valid and invalid backups.</li>
+      </ol>
+      <h3 id="_file_restore_phase" class="group scroll-mt-20">File restore phase<a href="#_file_restore_phase" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The file restore phase makes the discovered backup files accessible. When you create a <code>VirtualMachineFileRestore</code> (VMFR) CR, the restore controller performs the following steps:</p>
+      <ol>
+      <li>Validates that the referenced VMBD CR exists and is in the <code>Completed</code> phase.</li>
+      <li>Verifies that the selected backups exist in the valid discovery results.</li>
+      <li>Extracts persistent volume claim (PVC) metadata from the selected backup manifests.</li>
+      <li>Creates a temporary namespace to isolate file-serving resources.</li>
+      <li>Triggers Velero restore objects for the PVCs for each backup. The restore objects use <code>includedResources</code> to restore only <code>PersistentVolumeClaims</code> (PVCs) and <code>VolumeSnapshots</code>, and use <code>orLabelSelectors</code> to target specific PVCs by their <code>velero.kubevirt.io/pvc-uid</code> label. A <code>namespaceMapping</code> redirects the restored PVCs to the temporary namespace.</li>
+      <li>Creates a file-serving pod with an initialization container and access sidecars.</li>
+      </ol>
+      <h3 id="_file-serving_pod_architecture" class="group scroll-mt-20">File-serving pod architecture<a href="#_file-serving_pod_architecture" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The file-serving pod uses <code>libguestfs</code> and FUSE to mount VM disk images without requiring privileged access. The initialization container performs the following steps:</p>
+      <ol>
+      <li>Scans PVCs to locate VM disk image files.</li>
+      <li>Detects disk image formats, including <code>qcow2</code> and <code>raw</code>.</li>
+      <li>Mounts disk images as read-only under the <code>/backups/</code> directory.</li>
+      <li>Organizes files by backup name and PVC name.</li>
+      </ol>
+      <p>After initialization, the sidecars provide file access through web or SSH methods.</p>
+      <p>The mounted directory structure provides an intuitive organization as shown in the following example:</p>
+      <CodeBlock code={"/backups/\n  <backup_name_1>/\n    <vm_disk_root>/\n      etc/\n      var/\n    <vm_disk_data>/\n      application-data/\n  <backup_name_2>/\n    <vm_disk_root>/\n      etc/\n      var/"} lang="terminal" />
+      <h2 id="oadp-vmfr-prerequisites_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">OADP VMFR prerequisites<a href="#oadp-vmfr-prerequisites_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure your cluster environment to enable OADP virtual machine file restore (VMFR) operations by meeting the following prerequisites. This helps you perform file-level restore from virtual machine backups.</p>
+      <ul>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have configured the <code>DataProtectionApplication</code> (DPA) CR with the <code>vmFileRestore.enable</code> field set to <code>true</code>.</li>
+      <li>The DPA CR includes the <code>kubevirt</code> Velero plugin in the <code>defaultPlugins</code> list.</li>
+      <li>OpenShift Virtualization is installed and running on the cluster.</li>
+      <li>You have a default storage class configured on the cluster.</li>
+      <li>You have existing Velero backups that contain virtual machine data.</li>
+      </ul>
+      <h2 id="oadp-vmfr-access-methods_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">OADP VMFR file access methods<a href="#oadp-vmfr-access-methods_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Access restored files from virtual machine (VM) backups through a web browser or SSH-based tools. OADP virtual machine file restore (VMFR) provides access methods that you can configure individually or together.</p>
+      <h3 id="oadp-vmfr-web-browser-access_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">Web browser access<a href="#oadp-vmfr-web-browser-access_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The web access method uses a <code>FileBrowser</code> container to serve an HTTPS interface for browsing and downloading files. Web browser access provides the following capabilities:</p>
+      <ul>
+      <li>Directory navigation across backup versions</li>
+      <li>File preview for common text and image formats</li>
+      <li>Individual file or directory archive downloads</li>
+      <li>Credential management through Kubernetes secrets</li>
+      <li><code>ClusterIP</code> service exposure for internal cluster access</li>
+      <li>Optional external route exposure for access outside the cluster by setting <code>exposeExternally: true</code> in the VMFR CR</li>
+      </ul>
+      <h3 id="_ssh-based_access" class="group scroll-mt-20">SSH-based access<a href="#_ssh-based_access" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>The SSH access method provides command-line file transfer capabilities through key-based authentication. When you configure <code>fileAccess.ssh: {"{"}{"}"}</code> in the VMFR CR, the controller autogenerates an SSH key pair and stores it in a Kubernetes secret. SSH-based access supports the following tools:</p>
+      <ul>
+      <li><code>scp</code> for individual file transfer</li>
+      <li><code>sftp</code> for interactive file browsing sessions</li>
+      <li><code>rsync</code> over SSH for synchronizing files and directories</li>
+      </ul>
+      <p>SSH access uses the following defaults:</p>
+      <ul>
+      <li>Default username: <code>oadp</code></li>
+      <li>Default port: <code>2222</code></li>
+      <li>Remote path format: <code>/restores/&lt;date&gt;/&lt;backup_name&gt;/&lt;vm_name&gt;/&lt;path_to_file&gt;</code></li>
+      <li>SSH access uses key-based authentication only. Password-based logins are not supported.</li>
+      </ul>
+      <h2 id="oadp-vmfr-limitations_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">OADP VMFR limitations<a href="#oadp-vmfr-limitations_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the limitations of OADP virtual machine file restore (VMFR) to understand which operations are restricted. This helps you plan appropriate file-level restore strategies within the supported functionality.</p>
+      <p>The following limitations apply to OADP VMFR:</p>
+      <ul>
+      <li>VMFR supports only VM backups created by OADP with the <code>kubevirt</code> Velero plugin. Backups created without this plugin are not supported.</li>
+      <li>Restored files are mounted as read-only. You cannot modify files directly in the backup.</li>
+      <li>VMFR supports the following disk image formats: <code>qcow2</code> and <code>raw</code>. Other disk image formats are not supported.</li>
+      <li>VMFR supports the following file systems: <code>ext4</code>, <code>xfs</code>, <code>ntfs</code>, and <code>fat</code>. Other file systems are not supported.</li>
+      <li>File-serving pods require sufficient disk capacity to mount and serve backup data. Each restore operation mounts the PVC at the size it was at the time of backup. Ensure that your cluster has adequate disk resources available.</li>
+      <li>The VMFR CR must reference a <code>VirtualMachineBackupsDiscovery</code> CR that is in the <code>Completed</code> phase. You cannot create a VMFR CR without a completed discovery.</li>
+      <li>VMFR does not replace full VM restore capabilities. File-level restore and full VM restore are separate workflows that coexist.</li>
+      <li>VMFR does not support hot-mount capabilities into running VMs.</li>
+      </ul>
+      <h2 id="oadp-vmfr-security_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">OADP VMFR security considerations<a href="#oadp-vmfr-security_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the security considerations for OADP virtual machine file restore (VMFR) to understand how access control, data protection, and multi-tenancy are managed. This helps you to plan secure file-level restore operations.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Access control</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>VMFR enforces the following access control policies:</p>
+      <ul>
+      <li>File-serving resources are created in a temporary namespace that is separate from the OADP namespace. This namespace is owned by the <code>VirtualMachineFileRestore</code> CR and is cleaned up automatically when you delete the CR.</li>
+      <li>The discovery controller requires read-only access to Velero <code>Backup</code> resources.</li>
+      <li>The file restore controller requires create and delete access for namespaces, pods, services, and PVCs.</li>
+      <li>Cluster administrators require create, read, update, and delete access to <code>VirtualMachineBackupsDiscovery</code> and <code>VirtualMachineFileRestore</code> resources in the OADP namespace.</li>
+      <li>Controllers authenticate to object storage by using the Velero backup storage location credentials. Controllers have read-only access to backup data and never modify backups.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Data protection</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>VMFR protects data in transit by using the following mechanisms:</p>
+      <ul>
+      <li>Web browser access uses HTTPS endpoints with TLS certificates.</li>
+      <li>SSH access uses auto generated key pairs.</li>
+      <li>Credentials are stored in Kubernetes secrets.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Multi-tenancy</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>VMFR supports multi-tenancy through namespace isolation:</p>
+      <ul>
+      <li>Multiple <code>VirtualMachineFileRestore</code> resources can exist simultaneously. Each resource creates an isolated temporary namespace.</li>
+      <li>Resources from different restores cannot interfere with each other.</li>
+      <li>You can restore the same VM from different backups in parallel.</li>
+      <li>Temporary namespace names are derived from the <code>VirtualMachineFileRestore</code> resource name, and PVC names in the temporary namespace use the backup name as a suffix to prevent naming conflicts.</li>
+      </ul>
+      </dd>
+      </dl>
+      <h2 id="oadp-vmfr-phases_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">OADP VMFR discovery and restore phases<a href="#oadp-vmfr-phases_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the status phases of <code>VirtualMachineBackupsDiscovery</code> (VMBD) and <code>VirtualMachineFileRestore</code> (VMFR) custom resources (CRs) to track the progress of file-level restore operations. This helps you monitor and troubleshoot VMFR requests.</p>
+      <p><strong>VirtualMachineBackupsDiscovery phases</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead><strong>Value</strong></TableHead>
+      <TableHead><strong>Description</strong></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>New</code></TableCell>
+      <TableCell>The VMBD CR creation request is accepted but discovery has not yet started.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>InProgress</code></TableCell>
+      <TableCell>The controller is actively validating candidate backups and verifying VM presence.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Completed</code></TableCell>
+      <TableCell>All candidate backups are processed and results are available in the VMBD status.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>PartiallyFailed</code></TableCell>
+      <TableCell>Some candidate backups were validated but others failed verification.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Failed</code></TableCell>
+      <TableCell>The discovery process failed. Check the VMBD status conditions for error details.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>VirtualMachineFileRestore phases</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead><strong>Value</strong></TableHead>
+      <TableHead><strong>Description</strong></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>New</code></TableCell>
+      <TableCell>The VMFR CR creation request is accepted but the restore process has not yet started.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>InProgress</code></TableCell>
+      <TableCell>The controller is restoring PVCs and creating file-serving resources.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Completed</code></TableCell>
+      <TableCell>All PVCs are restored and file-serving endpoints are available.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>PartiallyFailed</code></TableCell>
+      <TableCell>Some PVCs were restored but others failed. Partial file access might be available.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Failed</code></TableCell>
+      <TableCell>The restore process failed. Check the VMFR status conditions for error details.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>Deleting</code></TableCell>
+      <TableCell>The VMFR CR is marked for deletion. The controller is cleaning up file-serving resources, restored PVCs, and the temporary namespace.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p><strong>PVC restore state values</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead><strong>Value</strong></TableHead>
+      <TableHead><strong>Description</strong></TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>available</code></TableCell>
+      <TableCell>The PVC is restored and the file system is mounted and accessible.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>processing</code></TableCell>
+      <TableCell>The PVC restore is in progress.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>failed</code></TableCell>
+      <TableCell>The PVC restore failed.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>backup-deleted</code></TableCell>
+      <TableCell>The source backup for this PVC has been deleted.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>backup-missing</code></TableCell>
+      <TableCell>The source backup for this PVC cannot be found.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>unsupported-plugin</code></TableCell>
+      <TableCell>The backup was created with an unsupported plugin format.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>extraction-failed</code></TableCell>
+      <TableCell>The file system extraction from the disk image failed.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
       <h2 id="additional-resources_virt-recovering-individual-files-from-vm-backups" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-recovering-individual-files-from-vm-backups" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
       <li><a href="/openshift-docs-markdown/virt/backup_restore/virt-using-vm-file-restore#virt-using-vm-file-restore">Use virtual machine file restore</a></li>
       <li><a href="/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-overview#virt-backup-restore-overview">Backing up and restoring virtual machines</a></li>
       <li><a href="/openshift-docs-markdown/virt/backup_restore/virt-backup-restore-snapshots#virt-backup-restore-snapshots">Backup and restore by using VM snapshots</a></li>
-      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-introduction">Introduction to {"{"}{"{"} oadp_full {"}"}{"}"}</a></li>
+      <li><a href="/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/oadp-intro#oadp-introduction">Introduction to OpenShift API for Data Protection</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

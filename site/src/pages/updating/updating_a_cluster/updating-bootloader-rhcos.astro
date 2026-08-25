@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"updating-bootloader-rhcos","text":"Updating the boot loader on {{ op_system }} nodes using bootupd"}];
+const headings = [{"depth":1,"slug":"updating-bootloader-rhcos","text":"Updating the boot loader on {{ op_system }} nodes using bootupd"},{"depth":2,"slug":"updating-bootloader-manual_updating-bootloader-rhcos","text":"Updating the boot loader manually"},{"depth":2,"slug":"updating-bootloader-auto_updating-bootloader-rhcos","text":"Updating the boot loader automatically by using a machine config"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/updating/updating_a_cluster/updating-bootloader-rhcos";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Updating the boot loader on {{ op_system }} nodes using bootupd";
-const description = "To update the boot loader on {{ op_system }} nodes using bootupd, you must either run the bootupctl update command on {{ op_system }} machines manually or…" || undefined;
+const description = "To update the boot loader on RHCOS nodes using bootupd, you must either run the bootupctl update command on RHCOS machines manually or provide a machine…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["updating","updating/updating_a_cluster"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Updating the boot loader on {{ op_system }} nodes using bootupd {#updating-bootloader-rhcos}\n\nTo update the boot loader on {{ op_system }} nodes using `bootupd`, you must either run the `bootupctl update` command on {{ op_system }} machines manually or provide a machine config with a `systemd` unit.\n\nUnlike `grubby` or other boot loader tools, `bootupd` does not manage kernel space configuration such as passing kernel arguments. To configure kernel arguments, see [Adding kernel arguments to nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing).\n\n> [!NOTE]\n> You can use `bootupd` to update the boot loader to protect against the BootHole vulnerability.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/updating_a_cluster/updating-bootloader-rhcos.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Updating the boot loader on {{ op_system }} nodes using bootupd {#updating-bootloader-rhcos}\n\nTo update the boot loader on RHCOS nodes using `bootupd`, you must either run the `bootupctl update` command on RHCOS machines manually or provide a machine config with a `systemd` unit.\n\nUnlike `grubby` or other boot loader tools, `bootupd` does not manage kernel space configuration such as passing kernel arguments. To configure kernel arguments, see [Adding kernel arguments to nodes](/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing).\n\n> [!NOTE]\n> You can use `bootupd` to update the boot loader to protect against the BootHole vulnerability.\n\n## Updating the boot loader manually {#updating-bootloader-manual_updating-bootloader-rhcos}\n\nYou can manually inspect the status of the system and update the boot loader by using the `bootupctl` command-line tool.\n\n**Procedure**\n\n1. Inspect the system status by running the following command:\n\n   ```terminal\n   # bootupctl status\n   ```\n\n   ```terminal {title=\"Example output for x86_64\"}\n   Component EFI\n     Installed: grub2-efi-x64-1:2.04-31.el8_4.1.x86_64,shim-x64-15-8.el8_1.x86_64\n     Update: At latest version\n   ```\n\n   ```terminal {title=\"Example output for aarch64\"}\n   Component EFI\n     Installed: grub2-efi-aa64-1:2.02-99.el8_4.1.aarch64,shim-aa64-15.4-2.el8_1.aarch64\n     Update: At latest version\n   ```\n2. OpenShift Container Platform clusters initially installed on version 4.4 and older require an explicit adoption phase.\n\n   If the system status is `Adoptable`, perform the adoption by running the following command:\n\n   ```terminal\n   # bootupctl adopt-and-update\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Updated: grub2-efi-x64-1:2.04-31.el8_4.1.x86_64,shim-x64-15-8.el8_1.x86_64\n   ```\n3. If an update is available, apply the update so that the changes take effect on the next reboot by running the following command:\n\n   ```terminal\n   # bootupctl update\n   ```\n\n   ```terminal {title=\"Example output\"}\n   Updated: grub2-efi-x64-1:2.04-31.el8_4.1.x86_64,shim-x64-15-8.el8_1.x86_64\n   ```\n\n## Updating the boot loader automatically by using a machine config {#updating-bootloader-auto_updating-bootloader-rhcos}\n\nYou can automatically update the boot loader with `bootupd` by creating a systemd service unit that will update the boot loader as needed on every boot. This unit will run the `bootupctl update` command during the boot process and will be installed on the nodes via a machine config.\n\n> [!NOTE]\n> This configuration is not enabled by default because unexpected interruptions of the update operation might lead to unbootable nodes. If you enable this configuration, make sure to avoid interrupting nodes during the boot process while the boot loader update is in progress. The boot loader update operation generally completes quickly thus the risk is low.\n\n**Procedure**\n\n1. Create a Butane config file, `99-worker-bootupctl-update.bu`, including the contents of the `bootupctl-update.service` systemd unit.\n\n   > [!NOTE]\n   >\n\nThe [Butane version](https://coreos.github.io/butane/specs/) you specify in the config file should match the OpenShift Container Platform version and always ends in `0`. For example, `{{ product_version }}.0`. See \"Creating machine configs with Butane\" for information about Butane.\n\n````\n:::\n\n```yaml title=\"Example output\"\nvariant: openshift\nversion: {{ product_version }}.0\nmetadata:\n  name: 99-worker-chrony\n  labels:\n    machineconfiguration.openshift.io/role: worker\nsystemd:\n  units:\n  - name: bootupctl-update.service\n    enabled: true\n    contents: |\n      [Unit]\n      Description=Bootupd automatic update\n\n      [Service]\n      ExecStart=/usr/bin/bootupctl update\n      RemainAfterExit=yes\n\n      [Install]\n      WantedBy=multi-user.target\n```\n\nOn control plane nodes, substitute `master` for `worker` in `metadata.name` and `metadata.labels.machineconfiguration.openshift.io/role`.\n````\n\n1. Generate a `MachineConfig` object file, `99-worker-bootupctl-update.yaml`, containing the configuration to be delivered to the nodes by running the following command:\n\n   ```terminal\n   $ butane 99-worker-bootupctl-update.bu -o 99-worker-bootupctl-update.yaml\n   ```\n2. Apply the configurations in one of two ways:\n\n   - If the cluster is not running yet, after you generate manifest files, add the `MachineConfig` object file to the `<installation_directory>/openshift` directory, and then continue to create the cluster.\n   - If the cluster is already running, apply the file by running the following command:\n\n     ```terminal\n     $ oc apply -f ./99-worker-bootupctl-update.yaml\n     ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/updating/updating_a_cluster/updating-bootloader-rhcos.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,8 +95,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="updating-bootloader-rhcos" class="group scroll-mt-20">Updating the boot loader on {"{"}{"{"} op_system {"}"}{"}"} nodes using bootupd<a href="#updating-bootloader-rhcos" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>To update the boot loader on {"{"}{"{"} op_system {"}"}{"}"} nodes using <code>bootupd</code>, you must either run the <code>bootupctl update</code> command on {"{"}{"{"} op_system {"}"}{"}"} machines manually or provide a machine config with a <code>systemd</code> unit.</p>
+      <p>To update the boot loader on RHCOS nodes using <code>bootupd</code>, you must either run the <code>bootupctl update</code> command on RHCOS machines manually or provide a machine config with a <code>systemd</code> unit.</p>
       <p>Unlike <code>grubby</code> or other boot loader tools, <code>bootupd</code> does not manage kernel space configuration such as passing kernel arguments. To configure kernel arguments, see <a href="/openshift-docs-markdown/nodes/nodes/nodes-nodes-managing#nodes-nodes-kernel-arguments_nodes-nodes-managing">Adding kernel arguments to nodes</a>.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
@@ -103,8 +103,66 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
           <p>You can use <code>bootupd</code> to update the boot loader to protect against the BootHole vulnerability.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/updating-bootloader-manual.md"></p>
-      <p class="/modules/updating-bootloader-auto.md"></p>
+      <h2 id="updating-bootloader-manual_updating-bootloader-rhcos" class="group scroll-mt-20">Updating the boot loader manually<a href="#updating-bootloader-manual_updating-bootloader-rhcos" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can manually inspect the status of the system and update the boot loader by using the <code>bootupctl</code> command-line tool.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Inspect the system status by running the following command:
+      <CodeBlock code={"# bootupctl status"} lang="terminal" />
+      <CodeBlock code={"Component EFI\n  Installed: grub2-efi-x64-1:2.04-31.el8_4.1.x86_64,shim-x64-15-8.el8_1.x86_64\n  Update: At latest version"} lang="terminal" title="Example output for x86_64" />
+      <CodeBlock code={"Component EFI\n  Installed: grub2-efi-aa64-1:2.02-99.el8_4.1.aarch64,shim-aa64-15.4-2.el8_1.aarch64\n  Update: At latest version"} lang="terminal" title="Example output for aarch64" />
+      </li>
+      <li>
+      OpenShift Container Platform clusters initially installed on version 4.4 and older require an explicit adoption phase.
+      <p>If the system status is <code>Adoptable</code>, perform the adoption by running the following command:</p>
+      <CodeBlock code={"# bootupctl adopt-and-update"} lang="terminal" />
+      <CodeBlock code={"Updated: grub2-efi-x64-1:2.04-31.el8_4.1.x86_64,shim-x64-15-8.el8_1.x86_64"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      If an update is available, apply the update so that the changes take effect on the next reboot by running the following command:
+      <CodeBlock code={"# bootupctl update"} lang="terminal" />
+      <CodeBlock code={"Updated: grub2-efi-x64-1:2.04-31.el8_4.1.x86_64,shim-x64-15-8.el8_1.x86_64"} lang="terminal" title="Example output" />
+      </li>
+      </ol>
+      <h2 id="updating-bootloader-auto_updating-bootloader-rhcos" class="group scroll-mt-20">Updating the boot loader automatically by using a machine config<a href="#updating-bootloader-auto_updating-bootloader-rhcos" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can automatically update the boot loader with <code>bootupd</code> by creating a systemd service unit that will update the boot loader as needed on every boot. This unit will run the <code>bootupctl update</code> command during the boot process and will be installed on the nodes via a machine config.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This configuration is not enabled by default because unexpected interruptions of the update operation might lead to unbootable nodes. If you enable this configuration, make sure to avoid interrupting nodes during the boot process while the boot loader update is in progress. The boot loader update operation generally completes quickly thus the risk is low.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a Butane config file, <code>99-worker-bootupctl-update.bu</code>, including the contents of the <code>bootupctl-update.service</code> systemd unit.
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+      
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <p>The <a href="https://coreos.github.io/butane/specs/">Butane version</a> you specify in the config file should match the OpenShift Container Platform version and always ends in <code>0</code>. For example, <code>{"{"}{"{"} product_version {"}"}{"}"}.0</code>. See "Creating machine configs with Butane" for information about Butane.</p>
+      <CodeBlock code={":::\n\n```yaml title=\"Example output\"\nvariant: openshift\nversion: {{ product_version }}.0\nmetadata:\n  name: 99-worker-chrony\n  labels:\n    machineconfiguration.openshift.io/role: worker\nsystemd:\n  units:\n  - name: bootupctl-update.service\n    enabled: true\n    contents: |\n      [Unit]\n      Description=Bootupd automatic update\n\n      [Service]\n      ExecStart=/usr/bin/bootupctl update\n      RemainAfterExit=yes\n\n      [Install]\n      WantedBy=multi-user.target\n```\n\nOn control plane nodes, substitute `master` for `worker` in `metadata.name` and `metadata.labels.machineconfiguration.openshift.io/role`."} lang="plaintext" />
+      <ol>
+      <li>
+      Generate a <code>MachineConfig</code> object file, <code>99-worker-bootupctl-update.yaml</code>, containing the configuration to be delivered to the nodes by running the following command:
+      <CodeBlock code={"$ butane 99-worker-bootupctl-update.bu -o 99-worker-bootupctl-update.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Apply the configurations in one of two ways:
+      <ul>
+      <li>If the cluster is not running yet, after you generate manifest files, add the <code>MachineConfig</code> object file to the <code>&lt;installation_directory&gt;/openshift</code> directory, and then continue to create the cluster.</li>
+      <li>
+      If the cluster is already running, apply the file by running the following command:
+      <CodeBlock code={"$ oc apply -f ./99-worker-bootupctl-update.yaml"} lang="terminal" />
+      </li>
+      </ul>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

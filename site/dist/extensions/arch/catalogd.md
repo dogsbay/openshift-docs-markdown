@@ -4,7 +4,13 @@ title: Catalogd
 
 # Catalogd {#catalogd}
 
-{{ olmv1_first }} uses the catalogd component and its resources to manage Operator and extension catalogs.
+Operator Lifecycle Manager (OLM) v1 uses the catalogd component and its resources to manage Operator and extension catalogs.
+
+## About catalogs in OLM v1 {#olmv1-about-catalogs_catalogd}
+
+You can discover installable content by querying a catalog for Kubernetes extensions, such as Operators and controllers, by using the catalogd component.
+
+Catalogd is a Kubernetes extension that unpacks catalog content for on-cluster clients and is part of the Operator Lifecycle Manager (OLM) v1 suite of microservices. Currently, catalogd unpacks catalog content that is packaged and distributed as container images.
 
 **Additional resources**
 

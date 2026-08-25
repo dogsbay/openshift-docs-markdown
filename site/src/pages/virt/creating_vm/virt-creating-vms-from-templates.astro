@@ -19,7 +19,7 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"virt-creating-vms-from-templates","text":"Creating virtual machines from templates"},{"depth":2,"slug":"virt-about-templates","text":"About VM templates"},{"depth":2,"slug":"additional-resources_virt-creating-vms-from-templates","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-creating-vms-from-templates","text":"Creating virtual machines from templates"},{"depth":2,"slug":"virt-about-templates","text":"About VM templates"},{"depth":2,"slug":"virt-creating-vm-from-template_virt-creating-vms-from-templates","text":"Creating a VM from a template"},{"depth":2,"slug":"virt-customizing-vm-template-web_virt-creating-vms-from-templates","text":"Removing a deprecated designation from a customized VM template by using the web console"},{"depth":3,"slug":"virt-creating-template_virt-creating-vms-from-templates","text":"Creating a custom VM template in the web console"},{"depth":3,"slug":"virt-dedicated-resources-vm-template_virt-creating-vms-from-templates","text":"Enabling dedicated resources for a virtual machine template"},{"depth":2,"slug":"additional-resources_virt-creating-vms-from-templates","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-templates";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +42,7 @@ const pageCategory = ["virt","virt/creating_vm"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating virtual machines from templates {#virt-creating-vms-from-templates}\n\nYou can create virtual machines (VMs) from Red Hat templates by using the OpenShift Container Platform web console.\n\n## About VM templates {#virt-about-templates}\n\nYou can use VM templates to help you easily create VMs.\n\nExpedite creation with boot sources\n:   You can expedite VM creation by using templates that have an available boot source. Templates with a boot source are labeled **Available boot source** if they do not have a custom label.\n\n    Templates without a boot source are labeled **Boot source required**. See \"Managing automatic boot source updates\" for details.\n\nCustomize before starting the VM\n:   You can customize the disk source and VM parameters before you start the VM.\n\n> [!NOTE]\n> If you copy a VM template with all its labels and annotations, your version of the template is marked as deprecated when a new version of the Scheduling, Scale, and Performance (SSP) Operator is deployed. You can remove this designation. See \"Removing a deprecated designation from a customized VM template by using the web console\".\n\n{{ sno_caps }}\n:   Due to differences in storage behavior, some templates are incompatible with {{ sno }}. To ensure compatibility, do not set the `evictionStrategy` field for templates or VMs that use data volumes or storage profiles.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-templates}\n\n- [Managing automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-templates.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Creating virtual machines from templates {#virt-creating-vms-from-templates}\n\nYou can create virtual machines (VMs) from Red Hat templates by using the OpenShift Container Platform web console.\n\n## About VM templates {#virt-about-templates}\n\nYou can use VM templates to help you easily create VMs.\n\nExpedite creation with boot sources\n:   You can expedite VM creation by using templates that have an available boot source. Templates with a boot source are labeled **Available boot source** if they do not have a custom label.\n\n    Templates without a boot source are labeled **Boot source required**. See \"Managing automatic boot source updates\" for details.\n\nCustomize before starting the VM\n:   You can customize the disk source and VM parameters before you start the VM.\n\n> [!NOTE]\n> If you copy a VM template with all its labels and annotations, your version of the template is marked as deprecated when a new version of the Scheduling, Scale, and Performance (SSP) Operator is deployed. You can remove this designation. See \"Removing a deprecated designation from a customized VM template by using the web console\".\n\nSingle-node OpenShift\n:   Due to differences in storage behavior, some templates are incompatible with single-node OpenShift. To ensure compatibility, do not set the `evictionStrategy` field for templates or VMs that use data volumes or storage profiles.\n\n## Creating a VM from a template {#virt-creating-vm-from-template_virt-creating-vms-from-templates}\n\nYou can create a virtual machine (VM) from a template with an available boot source by using the OpenShift Container Platform web console. You can customize template or VM parameters, such as data sources, Cloud-init, or SSH keys, before you start the VM.\n\nYou can choose between two views in the web console to create the VM:\n\n- A virtualization-focused view, which provides a concise list of virtualization-related options at the top of the view\n- A general view, which provides access to the various web console options, including **Virtualization**\n\n**Procedure**\n\n1. From the OpenShift Container Platform web console, choose your view:\n\n   - For a virtualization-focused view, select **Administrator** -> **Virtualization** -> **Catalog**.\n   - For a general view, navigate to **Virtualization** -> **Catalog**.\n2. Click the **Template catalog** tab.\n3. Click the **Boot source available** checkbox to filter templates with boot sources. The catalog displays the default templates.\n4. Heterogeneous clusters only: To filter the search results to show templates associated with a particular architecture, click **Architecture Type** .\n5. Click **All templates** to view the available templates for your filters.\n\n   - To focus on particular templates, enter the keyword in the `Filter by keyword` field.\n   - Choose a template project from the **All projects** dropdown menu, or view all projects.\n6. Click a template tile to view its details.\n\n   - Optional: If you are using a Windows template, you can mount a Windows driver disk by selecting the **Mount Windows drivers disk** checkbox.\n   - If you do not need to customize the template or VM parameters, click **Quick create VirtualMachine** to create a VM from the template.\n   - If you need to customize the template or VM parameters, do the following:\n\n     1. Click **Customize VirtualMachine**. The **Customize and create VirtualMachine** page displays the **Overview**, **YAML**, **Scheduling**, **Environment**, **Network interfaces**, **Disks**, **Scripts**, and **Metadata** tabs.\n     2. Click the **Scripts** tab to edit the parameters that must be set before the VM boots, such as `Cloud-init`, `SSH key`, or `Sysprep` (Windows VM only).\n     3. Optional: Click the **Start this virtualmachine after creation (Always)** checkbox.\n     4. Click **Create VirtualMachine**.\n\n        The **VirtualMachine details** page displays the provisioning status.\n\n## Removing a deprecated designation from a customized VM template by using the web console {#virt-customizing-vm-template-web_virt-creating-vms-from-templates}\n\nYou can customize an existing virtual machine (VM) template before you start the VM, by modifying the VM or template parameters, such as data sources, cloud-init, or SSH keys.\n\n> [!NOTE]\n> If you customize a template by copying it and including all of its labels and annotations, the customized template is marked as deprecated when a new version of the Scheduling, Scale, and Performance (SSP) Operator is deployed. You can remove the deprecated designation from the customized template.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **Templates** in the web console.\n2. From the list of VM templates, click the template marked as deprecated.\n3. Click **Edit** next to the pencil icon beside **Labels**.\n4. Remove the following two labels:\n\n   - `template.kubevirt.io/type: \"base\"`\n   - `template.kubevirt.io/version: \"version\"`\n5. Click **Save**.\n6. Click the pencil icon beside the number of existing **Annotations**.\n7. Remove the following annotation:\n\n   - `template.kubevirt.io/deprecated`\n8. Click **Save**.\n\n### Creating a custom VM template in the web console {#virt-creating-template_virt-creating-vms-from-templates}\n\nYou can create a virtual machine template by editing a YAML file example in the OpenShift Container Platform web console.\n\n**Procedure**\n\n1. In the web console, click **Virtualization** -> **Templates** in the side menu.\n2. Optional: Use the **Project** drop-down menu to change the project associated with the new template. All templates are saved to the `openshift` project by default.\n3. Click **Create Template**.\n4. Specify the template parameters by editing the YAML file.\n5. Click **Create**.\n\n   The template is displayed on the **Templates** page.\n6. Optional: Click **Download** to download and save the YAML file.\n\n### Enabling dedicated resources for a virtual machine template {#virt-dedicated-resources-vm-template_virt-creating-vms-from-templates}\n\nYou can enable dedicated resources for a virtual machine (VM) template in the OpenShift Container Platform web console. VMs that are created from this template will be scheduled with dedicated resources.\n\n**Procedure**\n\n1. In the OpenShift Container Platform web console, click **Virtualization** -> **Templates** in the side menu.\n2. Select the template that you want to edit to open the **Template details** page.\n3. On the **Scheduling** tab, click the edit icon beside **Dedicated Resources**.\n4. Select **Schedule this workload with dedicated resources (guaranteed policy)**.\n5. Click **Save**.\n\n## Additional resources {#additional-resources_virt-creating-vms-from-templates}\n\n- [Managing automatic boot source updates](/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/creating_vm/virt-creating-vms-from-templates.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +94,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-creating-vms-from-templates" class="group scroll-mt-20">Creating virtual machines from templates<a href="#virt-creating-vms-from-templates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can create virtual machines (VMs) from Red Hat templates by using the OpenShift Container Platform web console.</p>
       <h2 id="virt-about-templates" class="group scroll-mt-20">About VM templates<a href="#virt-about-templates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <p>You can use VM templates to help you easily create VMs.</p>
@@ -114,13 +113,107 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
         </AlertDescription>
       </Alert>
       <dl class="my-4 space-y-2">
-      <dt class="font-semibold">{"{"}{"{"} sno_caps {"}"}{"}"}</dt>
-      <dd class="ml-6 text-muted-foreground"><p>Due to differences in storage behavior, some templates are incompatible with {"{"}{"{"} sno {"}"}{"}"}. To ensure compatibility, do not set the <code>evictionStrategy</code> field for templates or VMs that use data volumes or storage profiles.</p></dd>
+      <dt class="font-semibold">Single-node OpenShift</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Due to differences in storage behavior, some templates are incompatible with single-node OpenShift. To ensure compatibility, do not set the <code>evictionStrategy</code> field for templates or VMs that use data volumes or storage profiles.</p></dd>
       </dl>
-      <p class="/modules/virt-creating-vm-from-template.md"></p>
-      <p class="/modules/virt-customizing-vm-template-web.md"></p>
-      <p class="/modules/virt-creating-template.md"></p>
-      <p class="/modules/virt-dedicated-resources-vm-template.md"></p>
+      <h2 id="virt-creating-vm-from-template_virt-creating-vms-from-templates" class="group scroll-mt-20">Creating a VM from a template<a href="#virt-creating-vm-from-template_virt-creating-vms-from-templates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a virtual machine (VM) from a template with an available boot source by using the OpenShift Container Platform web console. You can customize template or VM parameters, such as data sources, Cloud-init, or SSH keys, before you start the VM.</p>
+      <p>You can choose between two views in the web console to create the VM:</p>
+      <ul>
+      <li>A virtualization-focused view, which provides a concise list of virtualization-related options at the top of the view</li>
+      <li>A general view, which provides access to the various web console options, including <strong>Virtualization</strong></li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      From the OpenShift Container Platform web console, choose your view:
+      <ul>
+      <li>For a virtualization-focused view, select <strong>Administrator</strong> -&gt; <strong>Virtualization</strong> -&gt; <strong>Catalog</strong>.</li>
+      <li>For a general view, navigate to <strong>Virtualization</strong> -&gt; <strong>Catalog</strong>.</li>
+      </ul>
+      </li>
+      <li>Click the <strong>Template catalog</strong> tab.</li>
+      <li>Click the <strong>Boot source available</strong> checkbox to filter templates with boot sources. The catalog displays the default templates.</li>
+      <li>Heterogeneous clusters only: To filter the search results to show templates associated with a particular architecture, click <strong>Architecture Type</strong> .</li>
+      <li>
+      Click <strong>All templates</strong> to view the available templates for your filters.
+      <ul>
+      <li>To focus on particular templates, enter the keyword in the <code>Filter by keyword</code> field.</li>
+      <li>Choose a template project from the <strong>All projects</strong> dropdown menu, or view all projects.</li>
+      </ul>
+      </li>
+      <li>
+      Click a template tile to view its details.
+      <ul>
+      <li>Optional: If you are using a Windows template, you can mount a Windows driver disk by selecting the <strong>Mount Windows drivers disk</strong> checkbox.</li>
+      <li>If you do not need to customize the template or VM parameters, click <strong>Quick create VirtualMachine</strong> to create a VM from the template.</li>
+      <li>
+      If you need to customize the template or VM parameters, do the following:
+      <ol>
+      <li>Click <strong>Customize VirtualMachine</strong>. The <strong>Customize and create VirtualMachine</strong> page displays the <strong>Overview</strong>, <strong>YAML</strong>, <strong>Scheduling</strong>, <strong>Environment</strong>, <strong>Network interfaces</strong>, <strong>Disks</strong>, <strong>Scripts</strong>, and <strong>Metadata</strong> tabs.</li>
+      <li>Click the <strong>Scripts</strong> tab to edit the parameters that must be set before the VM boots, such as <code>Cloud-init</code>, <code>SSH key</code>, or <code>Sysprep</code> (Windows VM only).</li>
+      <li>Optional: Click the <strong>Start this virtualmachine after creation (Always)</strong> checkbox.</li>
+      <li>
+      Click <strong>Create VirtualMachine</strong>.
+      <p>The <strong>VirtualMachine details</strong> page displays the provisioning status.</p>
+      </li>
+      </ol>
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <h2 id="virt-customizing-vm-template-web_virt-creating-vms-from-templates" class="group scroll-mt-20">Removing a deprecated designation from a customized VM template by using the web console<a href="#virt-customizing-vm-template-web_virt-creating-vms-from-templates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can customize an existing virtual machine (VM) template before you start the VM, by modifying the VM or template parameters, such as data sources, cloud-init, or SSH keys.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you customize a template by copying it and including all of its labels and annotations, the customized template is marked as deprecated when a new version of the Scheduling, Scale, and Performance (SSP) Operator is deployed. You can remove the deprecated designation from the customized template.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>Templates</strong> in the web console.</li>
+      <li>From the list of VM templates, click the template marked as deprecated.</li>
+      <li>Click <strong>Edit</strong> next to the pencil icon beside <strong>Labels</strong>.</li>
+      <li>
+      Remove the following two labels:
+      <ul>
+      <li><code>template.kubevirt.io/type: "base"</code></li>
+      <li><code>template.kubevirt.io/version: "version"</code></li>
+      </ul>
+      </li>
+      <li>Click <strong>Save</strong>.</li>
+      <li>Click the pencil icon beside the number of existing <strong>Annotations</strong>.</li>
+      <li>
+      Remove the following annotation:
+      <ul><li><code>template.kubevirt.io/deprecated</code></li></ul>
+      </li>
+      <li>Click <strong>Save</strong>.</li>
+      </ol>
+      <h3 id="virt-creating-template_virt-creating-vms-from-templates" class="group scroll-mt-20">Creating a custom VM template in the web console<a href="#virt-creating-template_virt-creating-vms-from-templates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can create a virtual machine template by editing a YAML file example in the OpenShift Container Platform web console.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the web console, click <strong>Virtualization</strong> -&gt; <strong>Templates</strong> in the side menu.</li>
+      <li>Optional: Use the <strong>Project</strong> drop-down menu to change the project associated with the new template. All templates are saved to the <code>openshift</code> project by default.</li>
+      <li>Click <strong>Create Template</strong>.</li>
+      <li>Specify the template parameters by editing the YAML file.</li>
+      <li>
+      Click <strong>Create</strong>.
+      <p>The template is displayed on the <strong>Templates</strong> page.</p>
+      </li>
+      <li>Optional: Click <strong>Download</strong> to download and save the YAML file.</li>
+      </ol>
+      <h3 id="virt-dedicated-resources-vm-template_virt-creating-vms-from-templates" class="group scroll-mt-20">Enabling dedicated resources for a virtual machine template<a href="#virt-dedicated-resources-vm-template_virt-creating-vms-from-templates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can enable dedicated resources for a virtual machine (VM) template in the OpenShift Container Platform web console. VMs that are created from this template will be scheduled with dedicated resources.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform web console, click <strong>Virtualization</strong> -&gt; <strong>Templates</strong> in the side menu.</li>
+      <li>Select the template that you want to edit to open the <strong>Template details</strong> page.</li>
+      <li>On the <strong>Scheduling</strong> tab, click the edit icon beside <strong>Dedicated Resources</strong>.</li>
+      <li>Select <strong>Schedule this workload with dedicated resources (guaranteed policy)</strong>.</li>
+      <li>Click <strong>Save</strong>.</li>
+      </ol>
       <h2 id="additional-resources_virt-creating-vms-from-templates" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-creating-vms-from-templates" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/virt/storage/virt-automatic-bootsource-updates#virt-automatic-bootsource-updates">Managing automatic boot source updates</a></li></ul>
     </article>

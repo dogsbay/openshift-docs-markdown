@@ -18,8 +18,9 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"ibm-z-recommended-host-practices","text":"Host practices for IBM Z and IBM LinuxONE environments"}];
+const headings = [{"depth":1,"slug":"ibm-z-recommended-host-practices","text":"Host practices for IBM Z and IBM LinuxONE environments"},{"depth":2,"slug":"ibm-z-managing-cpu-overcommitment_ibm-z-recommended-host-practices","text":"Managing CPU overcommitment"},{"depth":2,"slug":"ibm-z-disable-thp_ibm-z-recommended-host-practices","text":"Disable Transparent Huge Pages"},{"depth":2,"slug":"ibm-z-boost-networking-performance-with-rfs_ibm-z-recommended-host-practices","text":"Boosting networking performance with RFS"},{"depth":2,"slug":"ibm-z-choose-networking-setup_ibm-z-recommended-host-practices","text":"Choose your networking setup"},{"depth":2,"slug":"ibm-z-ensure-high-disk-performance-hyperpav_ibm-z-recommended-host-practices","text":"Ensure high disk performance with HyperPAV on z/VM"},{"depth":2,"slug":"ibm-z-rhel-kvm-host-recommendations_ibm-z-recommended-host-practices","text":"RHEL KVM on IBM Z host recommendations"},{"depth":3,"slug":"use-io-threads-for-your-virtual-block-devices_ibm-z-recommended-host-practices","text":"Use I/O threads for your virtual block devices"},{"depth":3,"slug":"avoid-virtual-scsi-devices_ibm-z-recommended-host-practices","text":"Avoid virtual SCSI devices"},{"depth":3,"slug":"configure-guest-caching-for-disk_ibm-z-recommended-host-practices","text":"Configure guest caching for disk"},{"depth":3,"slug":"exclude-the-memory-balloon-device_ibm-z-recommended-host-practices","text":"Excluding the memory balloon device"},{"depth":3,"slug":"tune-the-cpu-migration-algorithm-of-the-host-scheduler_ibm-z-recommended-host-practices","text":"Tuning the CPU migration algorithm of the host scheduler"},{"depth":3,"slug":"disabling-the-cpuset-cgroup-controller_ibm-z-recommended-host-practices","text":"Disabling the cpuset cgroup controller"},{"depth":3,"slug":"tune-the-polling-period-for-idle-virtual-cpus_ibm-z-recommended-host-practices","text":"Tuning the polling period for idle virtual CPUs"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/scalability_and_performance/ibm-z-recommended-host-practices";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Host practices for IBM Z and IBM LinuxONE environments";
-const description = "You can apply host practices for {{ ibm_z_title }} and {{ ibm_linuxone_name }} environments to ensure your s390x architecture meets specific operational…" || undefined;
+const description = "You can apply host practices for IBM Z and IBM(R) LinuxONE environments to ensure your s390x architecture meets specific operational requirements." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +43,7 @@ const pageCategory = ["scalability_and_performance"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Host practices for IBM Z and IBM LinuxONE environments {#ibm-z-recommended-host-practices}\n\nYou can apply host practices for {{ ibm_z_title }} and {{ ibm_linuxone_name }} environments to ensure your s390x architecture meets specific operational requirements.\n\nThe s390x architecture is unique in many aspects. Some host practice recommendations might not apply to other platforms.\n\n> [!NOTE]\n> Unless stated otherwise, the host practices apply to both z/VM and {{ op_system_base_full }} KVM installations on {{ ibm_z_name }} and {{ ibm_linuxone_name }}.\n\n**Additional resources**\n\n- [z/VM Common Performance Problems and Solutions](https://www.vm.ibm.com/perf/tips/prgcom.html)\n- [z/VM overcommitment considerations](https://www.ibm.com/docs/en/linux-on-systems?topic=overcommitment-considerations)\n- [LPAR CPU management](https://www.ibm.com/docs/en/zos/2.2.0?topic=director-lpar-cpu-management)\n\n**Additional resources**\n\n- [OpenShift Container Platform on {{ ibm_z_name }}: Tune your network performance with RFS](https://developer.ibm.com/tutorials/red-hat-openshift-on-ibm-z-tune-your-network-performance-with-rfs/)\n- [Configuring Receive Flow Steering (RFS)](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/performance_tuning_guide/sect-red_hat_enterprise_linux-performance_tuning_guide-networking-configuration_tools#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuration_tools-Configuring_Receive_Flow_Steering_RFS)\n- [Scaling in the Linux Networking Stack](https://www.kernel.org/doc/Documentation/networking/scaling.txt)\n\n**Additional resources**\n\n- [OpenShift Container Platform on {{ ibm_z_name }} - Performance Experiences, Hints and Tips](https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_eval)\n- [OpenShift Container Platform on {{ ibm_z_name }} Networking Performance](https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_net)\n- [Controlling pod placement on nodes using node affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity)\n\n**Additional resources**\n\n- [Using HyperPAV for ECKD DASD](https://www.ibm.com/docs/en/linux-on-systems?topic=io-using-hyperpav-eckd-dasd)\n- [Scaling HyperPAV alias devices on Linux guests on z/VM](https://public.dhe.ibm.com/software/dw/linux390/perf/zvm_hpav00.pdf)\n\n**Additional resources**\n\n- [Linux on {{ ibm_z_name }} Performance Tuning for KVM](https://www.ibm.com/docs/en/linux-on-systems?topic=v-kvm)\n- [Getting started with virtualization on {{ ibm_z_name }}](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_virtualization/getting-started-with-virtualization-in-rhel-8-on-ibm-z_configuring-and-managing-virtualization)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/ibm-z-recommended-host-practices.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Host practices for IBM Z and IBM LinuxONE environments {#ibm-z-recommended-host-practices}\n\nYou can apply host practices for IBM Z and IBM(R) LinuxONE environments to ensure your s390x architecture meets specific operational requirements.\n\nThe s390x architecture is unique in many aspects. Some host practice recommendations might not apply to other platforms.\n\n> [!NOTE]\n> Unless stated otherwise, the host practices apply to both z/VM and Red Hat Enterprise Linux (RHEL) KVM installations on IBM Z(R) and IBM(R) LinuxONE.\n\n## Managing CPU overcommitment {#ibm-z-managing-cpu-overcommitment_ibm-z-recommended-host-practices}\n\nTo optimize infrastructure sizing in a highly virtualized IBM Z environment, manage CPU overcommitment. By adopting this strategy, you can allocate more resources to virtual machines than are physically available at the hypervisor level. This capability requires that you plan carefully for specific workload dependencies.\n\nDepending on your setup, consider the following best practices regarding CPU overcommitment:\n\n- Avoid over-allocating physical cores, Integrated Facilities for Linux (IFLs), at the Logical Partition (LPAR) level (PR/SM hypervisor). If your system has 4 physical IFLs, do not configure multiple LPARs with 4 logical IFLs each.\n- Check and understand LPAR shares and weights.\n- An excessive number of virtual CPUs can adversely affect performance. Do not define more virtual processors to a guest than logical processors are defined to the LPAR.\n- Configure the number of virtual processors per guest for peak workload.\n- Start small and monitor the workload. If required, increase the vCPU number incrementally.\n- Not all workloads are suitable for high overcommitment ratios. If the workload is CPU intensive, you might experience performance problems with high overcommitment ratios. Workloads that are more I/O intensive can keep consistent performance even with high overcommitment ratios.\n\n**Additional resources**\n\n- [z/VM Common Performance Problems and Solutions](https://www.vm.ibm.com/perf/tips/prgcom.html)\n- [z/VM overcommitment considerations](https://www.ibm.com/docs/en/linux-on-systems?topic=overcommitment-considerations)\n- [LPAR CPU management](https://www.ibm.com/docs/en/zos/2.2.0?topic=director-lpar-cpu-management)\n\n## Disable Transparent Huge Pages {#ibm-z-disable-thp_ibm-z-recommended-host-practices}\n\nTo prevent the operating system from automatically managing memory segments, disable Transparent Huge Pages (THP).\n\nTransparent Huge Pages (THP) tries to automate most aspects of creating, managing, and using huge pages. Since THP automatically manages the huge pages, THP does not always handle optimally for all types of workloads. THP can lead to performance regressions, since many applications handle huge pages on their own.\n\n## Boosting networking performance with RFS {#ibm-z-boost-networking-performance-with-rfs_ibm-z-recommended-host-practices}\n\nTo boost networking performance, activate Receive Flow Steering (RFS) by using the Machine Config Operator (MCO). This configuration improves packet processing efficiency.\n\nRFS extends Receive Packet Steering (RPS) by further reducing network latency. RFS is technically based on RPS, and improves the efficiency of packet processing by increasing the CPU cache hit rate. RFS achieves this, while considering queue length, by determining the most convenient CPU for computation so that cache hits are more likely to occur within the CPU. This means that the CPU cache is invalidated less and requires fewer cycles to rebuild the cache, which reduces packet processing run time.\n\n**Procedure**\n\n1. Copy the following MCO sample profile into a YAML file. For example, `enable-rfs.yaml`:\n\n   ```yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: worker\n     name: 50-enable-rfs\n   spec:\n     config:\n       ignition:\n         version: 2.2.0\n       storage:\n         files:\n         - contents:\n             source: data:text/plain;charset=US-ASCII,%23%20turn%20on%20Receive%20Flow%20Steering%20%28RFS%29%20for%20all%20network%20interfaces%0ASUBSYSTEM%3D%3D%22net%22%2C%20ACTION%3D%3D%22add%22%2C%20RUN%7Bprogram%7D%2B%3D%22/bin/bash%20-c%20%27for%20x%20in%20/sys/%24DEVPATH/queues/rx-%2A%3B%20do%20echo%208192%20%3E%20%24x/rps_flow_cnt%3B%20%20done%27%22%0A\n           filesystem: root\n           mode: 0644\n           path: /etc/udev/rules.d/70-persistent-net.rules\n         - contents:\n             source: data:text/plain;charset=US-ASCII,%23%20define%20sock%20flow%20enbtried%20for%20%20Receive%20Flow%20Steering%20%28RFS%29%0Anet.core.rps_sock_flow_entries%3D8192%0A\n           filesystem: root\n           mode: 0644\n           path: /etc/sysctl.d/95-enable-rps.conf\n   ```\n2. Create the MCO profile by entering the following command:\n\n   ```terminal\n   $ oc create -f enable-rfs.yaml\n   ```\n3. Verify that an entry named `50-enable-rfs` is listed by entering the following command:\n\n   ```terminal\n   $ oc get mc\n   ```\n4. To deactivate the MCO profile, enter the following command:\n\n   ```terminal\n   $ oc delete mc 50-enable-rfs\n   ```\n\n**Additional resources**\n\n- [OpenShift Container Platform on IBM Z(R): Tune your network performance with RFS](https://developer.ibm.com/tutorials/red-hat-openshift-on-ibm-z-tune-your-network-performance-with-rfs/)\n- [Configuring Receive Flow Steering (RFS)](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/performance_tuning_guide/sect-red_hat_enterprise_linux-performance_tuning_guide-networking-configuration_tools#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuration_tools-Configuring_Receive_Flow_Steering_RFS)\n- [Scaling in the Linux Networking Stack](https://www.kernel.org/doc/Documentation/networking/scaling.txt)\n\n## Choose your networking setup {#ibm-z-choose-networking-setup_ibm-z-recommended-host-practices}\n\nFor IBM Z(R) setups, the networking setup depends on the hypervisor of your choice. Depending on the workload and the application, the best fit usually changes with the use case and the traffic pattern.\n\nThe networking stack is one of the most important components for a Kubernetes-based product like OpenShift Container Platform.\n\nDepending on your setup, consider these best practices:\n\n- Consider all options regarding networking devices to optimize your traffic pattern. Explore the advantages of OSA-Express, RoCE Express, HiperSockets, z/VM VSwitch, Linux Bridge (KVM), and others to decide which option leads to the greatest benefit for your setup.\n- Always use the latest available NIC version. For example, OSA Express 7S 10 GbE shows great improvement compared to OSA Express 6S 10 GbE with transactional workload types, although both are 10 GbE adapters.\n- Each virtual switch adds an additional layer of latency.\n- The load balancer plays an important role for network communication outside the cluster. Consider using a production-grade hardware load balancer if this is critical for your application.\n- OpenShift Container Platform OVN-Kubernetes network plugin introduces flows and rules, which impact the networking performance. Make sure to consider pod affinities and placements, to benefit from the locality of services where communication is critical.\n- Balance the trade-off between performance and functionality.\n\n**Additional resources**\n\n- [OpenShift Container Platform on IBM Z(R) - Performance Experiences, Hints and Tips](https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_eval)\n- [OpenShift Container Platform on IBM Z(R) Networking Performance](https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_net)\n- [Controlling pod placement on nodes using node affinity rules](/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity)\n\n## Ensure high disk performance with HyperPAV on z/VM {#ibm-z-ensure-high-disk-performance-hyperpav_ibm-z-recommended-host-practices}\n\nTo improve I/O performance for Direct Access Storage Devices (DASD) disks in z/VM environments, configure HyperPAV alias devices. To increase throughput for both control plane nodes and compute nodes, add YAML configurations with full-pack minidisks to the Machine Config Operator (MCO) profiles for IBM Z clusters.\n\nDASD and Extended Count Key Data (ECKD) devices are commonly used disk types in IBM Z(R) environments. In a typical OpenShift Container Platform setup in z/VM environments, DASD disks are commonly used to support the local storage for the nodes. You can set up HyperPAV alias devices to provide more throughput and overall better I/O performance for the DASD disks that support the z/VM guests.\n\nUsing HyperPAV for the local storage devices leads to a significant performance benefit. However, be aware of the trade-off between throughput and CPU costs.\n\n**Procedure**\n\n1. Copy the following MCO sample profile into a YAML file for the control plane node. For example, `05-master-kernelarg-hpav.yaml`:\n\n   ```terminal\n   $ cat 05-master-kernelarg-hpav.yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: master\n     name: 05-master-kernelarg-hpav\n   spec:\n     config:\n       ignition:\n         version: 3.1.0\n     kernelArguments:\n       - rd.dasd=800-805\n   # ...\n   ```\n2. Copy the following MCO sample profile into a YAML file for the compute node. For example, `05-worker-kernelarg-hpav.yaml`:\n\n   ```terminal\n   $ cat 05-worker-kernelarg-hpav.yaml\n   apiVersion: machineconfiguration.openshift.io/v1\n   kind: MachineConfig\n   metadata:\n     labels:\n       machineconfiguration.openshift.io/role: worker\n     name: 05-worker-kernelarg-hpav\n   spec:\n     config:\n       ignition:\n         version: 3.1.0\n     kernelArguments:\n       - rd.dasd=800-805\n   # ...\n   ```\n\n   > [!NOTE]\n   > You must modify the `rd.dasd` arguments to fit the device IDs.\n3. Create the MCO profiles by entering the following commands:\n\n   ```terminal\n   $ oc create -f 05-master-kernelarg-hpav.yaml\n   ```\n\n   ```terminal\n   $ oc create -f 05-worker-kernelarg-hpav.yaml\n   ```\n4. To deactivate the MCO profiles, enter the following commands:\n\n   ```terminal\n   $ oc delete -f 05-master-kernelarg-hpav.yaml\n   ```\n\n   ```terminal\n   $ oc delete -f 05-worker-kernelarg-hpav.yaml\n   ```\n\n**Additional resources**\n\n- [Using HyperPAV for ECKD DASD](https://www.ibm.com/docs/en/linux-on-systems?topic=io-using-hyperpav-eckd-dasd)\n- [Scaling HyperPAV alias devices on Linux guests on z/VM](https://public.dhe.ibm.com/software/dw/linux390/perf/zvm_hpav00.pdf)\n\n## RHEL KVM on IBM Z host recommendations {#ibm-z-rhel-kvm-host-recommendations_ibm-z-recommended-host-practices}\n\nTo optimize Kernel-based Virtual Machine (KVM) performance on IBM Z, apply host recommendations.\n\nOptimizing a KVM virtual server environment strongly depends on the workloads of the virtual servers and on the available resources. The same action that enhances performance in one environment can have adverse effects in another. Finding the best balance for a particular setting can be a challenge and often involves experimentation.\n\nThe following sections introduces some best practices when using OpenShift Container Platform with RHEL KVM on IBM Z(R) and IBM(R) LinuxONE environments.\n\n### Use I/O threads for your virtual block devices {#use-io-threads-for-your-virtual-block-devices_ibm-z-recommended-host-practices}\n\nTo make virtual block devices use I/O threads, you must configure one or more I/O threads for the virtual server and each virtual block device to use one of these I/O threads.\n\nThe following example specifies `<iothreads>3</iothreads>` to configure three I/O threads, with consecutive decimal thread IDs 1, 2, and 3. The `iothread=\"2\"` parameter specifies the driver element of the disk device to use the I/O thread with ID 2.\n\n```xml {title=\"Sample I/O thread specification\"}\n...\n<domain>\n \t<iothreads>3</iothreads>\n  \t ...\n    \t<devices>\n       ...\n          <disk type=\"block\" device=\"disk\">\n<driver ... iothread=\"2\"/>\n    </disk>\n       ...\n    \t</devices>\n   ...\n</domain>\n```\n\nwhere:\n\n`iothreads`\n:   Specifies the number of I/O threads.\n\n`disk`\n:   Specifies the driver element of the disk device.\n\nThreads can increase the performance of I/O operations for disk devices, but they also use memory and CPU resources. You can configure multiple devices to use the same thread. The best mapping of threads to devices depends on the available resources and the workload.\n\nStart with a small number of I/O threads. Often, a single I/O thread for all disk devices is sufficient. Do not configure more threads than the number of virtual CPUs, and do not configure idle threads.\n\nYou can use the `virsh iothreadadd` command to add I/O threads with specific thread IDs to a running virtual server.\n\n### Avoid virtual SCSI devices {#avoid-virtual-scsi-devices_ibm-z-recommended-host-practices}\n\nConfigure virtual SCSI devices only if you need to address the device through SCSI-specific interfaces. Configure disk space as virtual block devices rather than virtual SCSI devices, regardless of the backing on the host.\n\nHowever, you might need SCSI-specific interfaces for:\n\n- A logical unit number (LUN) for a SCSI-attached tape drive on the host.\n- A DVD ISO file on the host file system that is mounted on a virtual DVD drive.\n\n### Configure guest caching for disk {#configure-guest-caching-for-disk_ibm-z-recommended-host-practices}\n\nTo ensure that the guest manages caching instead of the host, configure your disk devices.\n\nEnsure that the driver element of the disk device includes the `cache=\"none\"` and `io=\"native\"` parameters.\n\n```xml {title=\"Example configuration\"}\n<disk type=\"block\" device=\"disk\">\n    <driver name=\"qemu\" type=\"raw\" cache=\"none\" io=\"native\" iothread=\"1\"/>\n...\n</disk>\n```\n\n### Excluding the memory balloon device {#exclude-the-memory-balloon-device_ibm-z-recommended-host-practices}\n\nUnless you need a dynamic memory size, do not define a memory balloon device and ensure that libvirt does not create one for you. Include the `memballoon` parameter as a child of the devices element in your domain configuration file.\n\n**Procedure**\n\n- To disable the memory balloon driver, add the following configuration setting to your domain configuration file:\n\n  ```xml\n  <memballoon model=\"none\"/>\n  ```\n\n### Tuning the CPU migration algorithm of the host scheduler {#tune-the-cpu-migration-algorithm-of-the-host-scheduler_ibm-z-recommended-host-practices}\n\nYou can tune the CPU migration algorithm of the host scheduler to meet the demands of your production system.\n\n> [!IMPORTANT]\n> Do not change the scheduler settings unless you are an expert who understands the implications. Do not apply changes to production systems without testing them and confirming that they have the intended effect.\n\nThe `kernel.sched_migration_cost_ns` parameter specifies a time interval in nanoseconds. After the last execution of a task, the CPU cache is considered to have useful content until this interval expires. Increasing this interval results in fewer task migrations. The default value is `500000` ns.\n\nIf the CPU idle time is higher than expected when there are runnable processes, try reducing this interval. If tasks bounce between CPUs or nodes too often, try increasing it.\n\n**Procedure**\n\n- To dynamically set the interval to `60000` ns, enter the following command:\n\n  ```terminal\n  # sysctl kernel.sched_migration_cost_ns=60000\n  ```\n- To persistently change the value to `60000` ns, add the following entry to `/etc/sysctl.conf`:\n\n  ```config\n  kernel.sched_migration_cost_ns=60000\n  ```\n\n### Disabling the cpuset cgroup controller {#disabling-the-cpuset-cgroup-controller_ibm-z-recommended-host-practices}\n\nYou can disable the cpuset cgroup controller. Disabling the controller requires a restart of the libvirtd daemon.\n\n> [!NOTE]\n> This setting applies only to KVM hosts with cgroups version 1. To enable CPU hotplug on the host, disable the cgroup controller.\n\n**Procedure**\n\n1. Open `/etc/libvirt/qemu.conf` with an editor of your choice.\n2. Go to the `cgroup_controllers` line.\n3. Duplicate the entire line and remove the leading number sign (#) from the copy.\n4. Remove the `cpuset` entry, as follows:\n\n   ```config\n   cgroup_controllers = [ \"cpu\", \"devices\", \"memory\", \"blkio\", \"cpuacct\" ]\n   ```\n5. For the new setting to take effect, you must restart the libvirtd daemon:\n\n   1. Stop all virtual machines.\n   2. Run the following command:\n\n      ```terminal\n      # systemctl restart libvirtd\n      ```\n   3. Restart the virtual machines.\n\n      This setting persists across host reboots.\n\n### Tuning the polling period for idle virtual CPUs {#tune-the-polling-period-for-idle-virtual-cpus_ibm-z-recommended-host-practices}\n\nWhen a virtual CPU becomes idle, KVM polls for wakeup conditions for the virtual CPU before allocating the host resource. You can specify the time interval, during which polling takes place in sysfs at `/sys/module/kvm/parameters/halt_poll_ns`.\n\nDuring the specified time, polling reduces the wakeup latency for the virtual CPU at the expense of resource usage. Depending on the workload, a longer or shorter time for polling can be beneficial. The time interval is specified in nanoseconds. The default is `50000` ns.\n\n**Procedure**\n\n- To optimize for low CPU consumption, enter a small value or write `0` to disable polling:\n\n  ```terminal\n  # echo 0 > /sys/module/kvm/parameters/halt_poll_ns\n  ```\n- To optimize for low latency, for example for transactional workloads, enter a large value:\n\n  ```terminal\n  # echo 80000 > /sys/module/kvm/parameters/halt_poll_ns\n  ```\n\n**Additional resources**\n\n- [Linux on IBM Z(R) Performance Tuning for KVM](https://www.ibm.com/docs/en/linux-on-systems?topic=v-kvm)\n- [Getting started with virtualization on IBM Z(R)](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_virtualization/getting-started-with-virtualization-in-rhel-8-on-ibm-z_configuring-and-managing-virtualization)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/scalability_and_performance/ibm-z-recommended-host-practices.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,51 +95,225 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ibm-z-recommended-host-practices" class="group scroll-mt-20">Host practices for IBM Z and IBM LinuxONE environments<a href="#ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can apply host practices for {"{"}{"{"} ibm_z_title {"}"}{"}"} and {"{"}{"{"} ibm_linuxone_name {"}"}{"}"} environments to ensure your s390x architecture meets specific operational requirements.</p>
+      <p>You can apply host practices for IBM Z and IBM(R) LinuxONE environments to ensure your s390x architecture meets specific operational requirements.</p>
       <p>The s390x architecture is unique in many aspects. Some host practice recommendations might not apply to other platforms.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Unless stated otherwise, the host practices apply to both z/VM and {"{"}{"{"} op_system_base_full {"}"}{"}"} KVM installations on {"{"}{"{"} ibm_z_name {"}"}{"}"} and {"{"}{"{"} ibm_linuxone_name {"}"}{"}"}.</p>
+          <p>Unless stated otherwise, the host practices apply to both z/VM and Red Hat Enterprise Linux (RHEL) KVM installations on IBM Z(R) and IBM(R) LinuxONE.</p>
         </AlertDescription>
       </Alert>
-      <p class="/modules/ibm-z-managing-cpu-overcommitment.md"></p>
+      <h2 id="ibm-z-managing-cpu-overcommitment_ibm-z-recommended-host-practices" class="group scroll-mt-20">Managing CPU overcommitment<a href="#ibm-z-managing-cpu-overcommitment_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To optimize infrastructure sizing in a highly virtualized IBM Z environment, manage CPU overcommitment. By adopting this strategy, you can allocate more resources to virtual machines than are physically available at the hypervisor level. This capability requires that you plan carefully for specific workload dependencies.</p>
+      <p>Depending on your setup, consider the following best practices regarding CPU overcommitment:</p>
+      <ul>
+      <li>Avoid over-allocating physical cores, Integrated Facilities for Linux (IFLs), at the Logical Partition (LPAR) level (PR/SM hypervisor). If your system has 4 physical IFLs, do not configure multiple LPARs with 4 logical IFLs each.</li>
+      <li>Check and understand LPAR shares and weights.</li>
+      <li>An excessive number of virtual CPUs can adversely affect performance. Do not define more virtual processors to a guest than logical processors are defined to the LPAR.</li>
+      <li>Configure the number of virtual processors per guest for peak workload.</li>
+      <li>Start small and monitor the workload. If required, increase the vCPU number incrementally.</li>
+      <li>Not all workloads are suitable for high overcommitment ratios. If the workload is CPU intensive, you might experience performance problems with high overcommitment ratios. Workloads that are more I/O intensive can keep consistent performance even with high overcommitment ratios.</li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://www.vm.ibm.com/perf/tips/prgcom.html">z/VM Common Performance Problems and Solutions</a></li>
       <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=overcommitment-considerations">z/VM overcommitment considerations</a></li>
       <li><a href="https://www.ibm.com/docs/en/zos/2.2.0?topic=director-lpar-cpu-management">LPAR CPU management</a></li>
       </ul>
-      <p class="/modules/ibm-z-boost-networking-performance-with-rfs.md"></p>
+      <h2 id="ibm-z-disable-thp_ibm-z-recommended-host-practices" class="group scroll-mt-20">Disable Transparent Huge Pages<a href="#ibm-z-disable-thp_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To prevent the operating system from automatically managing memory segments, disable Transparent Huge Pages (THP). </p>
+      <p>Transparent Huge Pages (THP) tries to automate most aspects of creating, managing, and using huge pages. Since THP automatically manages the huge pages, THP does not always handle optimally for all types of workloads. THP can lead to performance regressions, since many applications handle huge pages on their own.</p>
+      <h2 id="ibm-z-boost-networking-performance-with-rfs_ibm-z-recommended-host-practices" class="group scroll-mt-20">Boosting networking performance with RFS<a href="#ibm-z-boost-networking-performance-with-rfs_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To boost networking performance, activate Receive Flow Steering (RFS) by using the Machine Config Operator (MCO). This configuration improves packet processing efficiency.</p>
+      <p>RFS extends Receive Packet Steering (RPS) by further reducing network latency. RFS is technically based on RPS, and improves the efficiency of packet processing by increasing the CPU cache hit rate. RFS achieves this, while considering queue length, by determining the most convenient CPU for computation so that cache hits are more likely to occur within the CPU. This means that the CPU cache is invalidated less and requires fewer cycles to rebuild the cache, which reduces packet processing run time.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Copy the following MCO sample profile into a YAML file. For example, <code>enable-rfs.yaml</code>:
+      <CodeBlock code={"apiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: worker\n  name: 50-enable-rfs\nspec:\n  config:\n    ignition:\n      version: 2.2.0\n    storage:\n      files:\n      - contents:\n          source: data:text/plain;charset=US-ASCII,%23%20turn%20on%20Receive%20Flow%20Steering%20%28RFS%29%20for%20all%20network%20interfaces%0ASUBSYSTEM%3D%3D%22net%22%2C%20ACTION%3D%3D%22add%22%2C%20RUN%7Bprogram%7D%2B%3D%22/bin/bash%20-c%20%27for%20x%20in%20/sys/%24DEVPATH/queues/rx-%2A%3B%20do%20echo%208192%20%3E%20%24x/rps_flow_cnt%3B%20%20done%27%22%0A\n        filesystem: root\n        mode: 0644\n        path: /etc/udev/rules.d/70-persistent-net.rules\n      - contents:\n          source: data:text/plain;charset=US-ASCII,%23%20define%20sock%20flow%20enbtried%20for%20%20Receive%20Flow%20Steering%20%28RFS%29%0Anet.core.rps_sock_flow_entries%3D8192%0A\n        filesystem: root\n        mode: 0644\n        path: /etc/sysctl.d/95-enable-rps.conf"} lang="yaml" />
+      </li>
+      <li>
+      Create the MCO profile by entering the following command:
+      <CodeBlock code={"$ oc create -f enable-rfs.yaml"} lang="terminal" />
+      </li>
+      <li>
+      Verify that an entry named <code>50-enable-rfs</code> is listed by entering the following command:
+      <CodeBlock code={"$ oc get mc"} lang="terminal" />
+      </li>
+      <li>
+      To deactivate the MCO profile, enter the following command:
+      <CodeBlock code={"$ oc delete mc 50-enable-rfs"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="https://developer.ibm.com/tutorials/red-hat-openshift-on-ibm-z-tune-your-network-performance-with-rfs/">OpenShift Container Platform on {"{"}{"{"} ibm_z_name {"}"}{"}"}: Tune your network performance with RFS</a></li>
+      <li><a href="https://developer.ibm.com/tutorials/red-hat-openshift-on-ibm-z-tune-your-network-performance-with-rfs/">OpenShift Container Platform on IBM Z(R): Tune your network performance with RFS</a></li>
       <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/performance_tuning_guide/sect-red_hat_enterprise_linux-performance_tuning_guide-networking-configuration_tools#sect-Red_Hat_Enterprise_Linux-Performance_Tuning_Guide-Configuration_tools-Configuring_Receive_Flow_Steering_RFS">Configuring Receive Flow Steering (RFS)</a></li>
       <li><a href="https://www.kernel.org/doc/Documentation/networking/scaling.txt">Scaling in the Linux Networking Stack</a></li>
       </ul>
+      <h2 id="ibm-z-choose-networking-setup_ibm-z-recommended-host-practices" class="group scroll-mt-20">Choose your networking setup<a href="#ibm-z-choose-networking-setup_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">For IBM Z(R) setups, the networking setup depends on the hypervisor of your choice. Depending on the workload and the application, the best fit usually changes with the use case and the traffic pattern.</p>
+      <p>The networking stack is one of the most important components for a Kubernetes-based product like OpenShift Container Platform.</p>
+      <p>Depending on your setup, consider these best practices:</p>
+      <ul>
+      <li>Consider all options regarding networking devices to optimize your traffic pattern. Explore the advantages of OSA-Express, RoCE Express, HiperSockets, z/VM VSwitch, Linux Bridge (KVM), and others to decide which option leads to the greatest benefit for your setup.</li>
+      <li>Always use the latest available NIC version. For example, OSA Express 7S 10 GbE shows great improvement compared to OSA Express 6S 10 GbE with transactional workload types, although both are 10 GbE adapters.</li>
+      <li>Each virtual switch adds an additional layer of latency.</li>
+      <li>The load balancer plays an important role for network communication outside the cluster. Consider using a production-grade hardware load balancer if this is critical for your application.</li>
+      <li>OpenShift Container Platform OVN-Kubernetes network plugin introduces flows and rules, which impact the networking performance. Make sure to consider pod affinities and placements, to benefit from the locality of services where communication is critical.</li>
+      <li>Balance the trade-off between performance and functionality.</li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_eval">OpenShift Container Platform on {"{"}{"{"} ibm_z_name {"}"}{"}"} - Performance Experiences, Hints and Tips</a></li>
-      <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_net">OpenShift Container Platform on {"{"}{"{"} ibm_z_name {"}"}{"}"} Networking Performance</a></li>
+      <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_eval">OpenShift Container Platform on IBM Z(R) - Performance Experiences, Hints and Tips</a></li>
+      <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=openshift-performance#openshift_perf__ocp_net">OpenShift Container Platform on IBM Z(R) Networking Performance</a></li>
       <li><a href="/openshift-docs-markdown/nodes/scheduling/nodes-scheduler-node-affinity">Controlling pod placement on nodes using node affinity rules</a></li>
       </ul>
+      <h2 id="ibm-z-ensure-high-disk-performance-hyperpav_ibm-z-recommended-host-practices" class="group scroll-mt-20">Ensure high disk performance with HyperPAV on z/VM<a href="#ibm-z-ensure-high-disk-performance-hyperpav_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To improve I/O performance for Direct Access Storage Devices (DASD) disks in z/VM environments, configure HyperPAV alias devices. To increase throughput for both control plane nodes and compute nodes, add YAML configurations with full-pack minidisks to the Machine Config Operator (MCO) profiles for IBM Z clusters.</p>
+      <p>DASD and Extended Count Key Data (ECKD) devices are commonly used disk types in IBM Z(R) environments. In a typical OpenShift Container Platform setup in z/VM environments, DASD disks are commonly used to support the local storage for the nodes. You can set up HyperPAV alias devices to provide more throughput and overall better I/O performance for the DASD disks that support the z/VM guests.</p>
+      <p>Using HyperPAV for the local storage devices leads to a significant performance benefit. However, be aware of the trade-off between throughput and CPU costs.</p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Copy the following MCO sample profile into a YAML file for the control plane node. For example, <code>05-master-kernelarg-hpav.yaml</code>:
+      <CodeBlock code={"$ cat 05-master-kernelarg-hpav.yaml\napiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: master\n  name: 05-master-kernelarg-hpav\nspec:\n  config:\n    ignition:\n      version: 3.1.0\n  kernelArguments:\n    - rd.dasd=800-805\n# ..."} lang="terminal" />
+      </li>
+      <li>
+      Copy the following MCO sample profile into a YAML file for the compute node. For example, <code>05-worker-kernelarg-hpav.yaml</code>:
+      <CodeBlock code={"$ cat 05-worker-kernelarg-hpav.yaml\napiVersion: machineconfiguration.openshift.io/v1\nkind: MachineConfig\nmetadata:\n  labels:\n    machineconfiguration.openshift.io/role: worker\n  name: 05-worker-kernelarg-hpav\nspec:\n  config:\n    ignition:\n      version: 3.1.0\n  kernelArguments:\n    - rd.dasd=800-805\n# ..."} lang="terminal" />
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You must modify the <code>rd.dasd</code> arguments to fit the device IDs.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Create the MCO profiles by entering the following commands:
+      <CodeBlock code={"$ oc create -f 05-master-kernelarg-hpav.yaml"} lang="terminal" />
+      <CodeBlock code={"$ oc create -f 05-worker-kernelarg-hpav.yaml"} lang="terminal" />
+      </li>
+      <li>
+      To deactivate the MCO profiles, enter the following commands:
+      <CodeBlock code={"$ oc delete -f 05-master-kernelarg-hpav.yaml"} lang="terminal" />
+      <CodeBlock code={"$ oc delete -f 05-worker-kernelarg-hpav.yaml"} lang="terminal" />
+      </li>
+      </ol>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=io-using-hyperpav-eckd-dasd">Using HyperPAV for ECKD DASD</a></li>
       <li><a href="https://public.dhe.ibm.com/software/dw/linux390/perf/zvm_hpav00.pdf">Scaling HyperPAV alias devices on Linux guests on z/VM</a></li>
       </ul>
-      <p class="/modules/use-io-threads-for-your-virtual-block-devices.md"></p>
-      <p class="/modules/avoid-virtual-scsi-devices.md"></p>
-      <p class="/modules/configure-guest-caching-for-disk.md"></p>
-      <p class="/modules/exclude-the-memory-balloon-device.md"></p>
-      <p class="/modules/tune-the-cpu-migration-algorithm-of-the-host-scheduler.md"></p>
-      <p class="/modules/disabling-the-cpuset-cgroup-controller.md"></p>
-      <p class="/modules/tuning-the-polling-period-for-idle-virtual-cpus.md"></p>
+      <h2 id="ibm-z-rhel-kvm-host-recommendations_ibm-z-recommended-host-practices" class="group scroll-mt-20">RHEL KVM on IBM Z host recommendations<a href="#ibm-z-rhel-kvm-host-recommendations_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To optimize Kernel-based Virtual Machine (KVM) performance on IBM Z, apply host recommendations. </p>
+      <p>Optimizing a KVM virtual server environment strongly depends on the workloads of the virtual servers and on the available resources. The same action that enhances performance in one environment can have adverse effects in another. Finding the best balance for a particular setting can be a challenge and often involves experimentation.</p>
+      <p>The following sections introduces some best practices when using OpenShift Container Platform with RHEL KVM on IBM Z(R) and IBM(R) LinuxONE environments.</p>
+      <h3 id="use-io-threads-for-your-virtual-block-devices_ibm-z-recommended-host-practices" class="group scroll-mt-20">Use I/O threads for your virtual block devices<a href="#use-io-threads-for-your-virtual-block-devices_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To make virtual block devices use I/O threads, you must configure one or more I/O threads for the virtual server and each virtual block device to use one of these I/O threads.</p>
+      <p>The following example specifies <code>&lt;iothreads&gt;3&lt;/iothreads&gt;</code> to configure three I/O threads, with consecutive decimal thread IDs 1, 2, and 3. The <code>iothread="2"</code> parameter specifies the driver element of the disk device to use the I/O thread with ID 2.</p>
+      <CodeBlock code={"...\n<domain>\n \t<iothreads>3</iothreads>\n  \t ...\n    \t<devices>\n       ...\n          <disk type=\"block\" device=\"disk\">\n<driver ... iothread=\"2\"/>\n    </disk>\n       ...\n    \t</devices>\n   ...\n</domain>"} lang="xml" title="Sample I/O thread specification" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>iothreads</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the number of I/O threads.</p></dd>
+      <dt class="font-semibold"><code>disk</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the driver element of the disk device.</p></dd>
+      </dl>
+      <p>Threads can increase the performance of I/O operations for disk devices, but they also use memory and CPU resources. You can configure multiple devices to use the same thread. The best mapping of threads to devices depends on the available resources and the workload.</p>
+      <p>Start with a small number of I/O threads. Often, a single I/O thread for all disk devices is sufficient. Do not configure more threads than the number of virtual CPUs, and do not configure idle threads.</p>
+      <p>You can use the <code>virsh iothreadadd</code> command to add I/O threads with specific thread IDs to a running virtual server.</p>
+      <h3 id="avoid-virtual-scsi-devices_ibm-z-recommended-host-practices" class="group scroll-mt-20">Avoid virtual SCSI devices<a href="#avoid-virtual-scsi-devices_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Configure virtual SCSI devices only if you need to address the device through SCSI-specific interfaces. Configure disk space as virtual block devices rather than virtual SCSI devices, regardless of the backing on the host.</p>
+      <p>However, you might need SCSI-specific interfaces for:</p>
+      <ul>
+      <li>A logical unit number (LUN) for a SCSI-attached tape drive on the host.</li>
+      <li>A DVD ISO file on the host file system that is mounted on a virtual DVD drive.</li>
+      </ul>
+      <h3 id="configure-guest-caching-for-disk_ibm-z-recommended-host-practices" class="group scroll-mt-20">Configure guest caching for disk<a href="#configure-guest-caching-for-disk_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">To ensure that the guest manages caching instead of the host, configure your disk devices.</p>
+      <p>Ensure that the driver element of the disk device includes the <code>cache="none"</code> and <code>io="native"</code> parameters.</p>
+      <CodeBlock code={"<disk type=\"block\" device=\"disk\">\n    <driver name=\"qemu\" type=\"raw\" cache=\"none\" io=\"native\" iothread=\"1\"/>\n...\n</disk>"} lang="xml" title="Example configuration" />
+      <h3 id="exclude-the-memory-balloon-device_ibm-z-recommended-host-practices" class="group scroll-mt-20">Excluding the memory balloon device<a href="#exclude-the-memory-balloon-device_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Unless you need a dynamic memory size, do not define a memory balloon device and ensure that libvirt does not create one for you. Include the <code>memballoon</code> parameter as a child of the devices element in your domain configuration file.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To disable the memory balloon driver, add the following configuration setting to your domain configuration file:
+      <CodeBlock code={"<memballoon model=\"none\"/>"} lang="xml" />
+      </li>
+      </ul>
+      <h3 id="tune-the-cpu-migration-algorithm-of-the-host-scheduler_ibm-z-recommended-host-practices" class="group scroll-mt-20">Tuning the CPU migration algorithm of the host scheduler<a href="#tune-the-cpu-migration-algorithm-of-the-host-scheduler_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can tune the CPU migration algorithm of the host scheduler to meet the demands of your production system.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not change the scheduler settings unless you are an expert who understands the implications. Do not apply changes to production systems without testing them and confirming that they have the intended effect.</p>
+        </AlertDescription>
+      </Alert>
+      <p>The <code>kernel.sched_migration_cost_ns</code> parameter specifies a time interval in nanoseconds. After the last execution of a task, the CPU cache is considered to have useful content until this interval expires. Increasing this interval results in fewer task migrations. The default value is <code>500000</code> ns.</p>
+      <p>If the CPU idle time is higher than expected when there are runnable processes, try reducing this interval. If tasks bounce between CPUs or nodes too often, try increasing it.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To dynamically set the interval to <code>60000</code> ns, enter the following command:
+      <CodeBlock code={"# sysctl kernel.sched_migration_cost_ns=60000"} lang="terminal" />
+      </li>
+      <li>
+      To persistently change the value to <code>60000</code> ns, add the following entry to <code>/etc/sysctl.conf</code>:
+      <CodeBlock code={"kernel.sched_migration_cost_ns=60000"} lang="config" />
+      </li>
+      </ul>
+      <h3 id="disabling-the-cpuset-cgroup-controller_ibm-z-recommended-host-practices" class="group scroll-mt-20">Disabling the cpuset cgroup controller<a href="#disabling-the-cpuset-cgroup-controller_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">You can disable the cpuset cgroup controller. Disabling the controller requires a restart of the libvirtd daemon. </p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>This setting applies only to KVM hosts with cgroups version 1. To enable CPU hotplug on the host, disable the cgroup controller.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Open <code>/etc/libvirt/qemu.conf</code> with an editor of your choice.</li>
+      <li>Go to the <code>cgroup_controllers</code> line.</li>
+      <li>Duplicate the entire line and remove the leading number sign (#) from the copy.</li>
+      <li>
+      Remove the <code>cpuset</code> entry, as follows:
+      <CodeBlock code={"cgroup_controllers = [ \"cpu\", \"devices\", \"memory\", \"blkio\", \"cpuacct\" ]"} lang="config" />
+      </li>
+      <li>
+      For the new setting to take effect, you must restart the libvirtd daemon:
+      <ol>
+      <li>Stop all virtual machines.</li>
+      <li>
+      Run the following command:
+      <CodeBlock code={"# systemctl restart libvirtd"} lang="terminal" />
+      </li>
+      <li>
+      Restart the virtual machines.
+      <p>This setting persists across host reboots.</p>
+      </li>
+      </ol>
+      </li>
+      </ol>
+      <h3 id="tune-the-polling-period-for-idle-virtual-cpus_ibm-z-recommended-host-practices" class="group scroll-mt-20">Tuning the polling period for idle virtual CPUs<a href="#tune-the-polling-period-for-idle-virtual-cpus_ibm-z-recommended-host-practices" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">When a virtual CPU becomes idle, KVM polls for wakeup conditions for the virtual CPU before allocating the host resource. You can specify the time interval, during which polling takes place in sysfs at <code>/sys/module/kvm/parameters/halt_poll_ns</code>. </p>
+      <p>During the specified time, polling reduces the wakeup latency for the virtual CPU at the expense of resource usage. Depending on the workload, a longer or shorter time for polling can be beneficial. The time interval is specified in nanoseconds. The default is <code>50000</code> ns.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      To optimize for low CPU consumption, enter a small value or write <code>0</code> to disable polling:
+      <CodeBlock code={"# echo 0 > /sys/module/kvm/parameters/halt_poll_ns"} lang="terminal" />
+      </li>
+      <li>
+      To optimize for low latency, for example for transactional workloads, enter a large value:
+      <CodeBlock code={"# echo 80000 > /sys/module/kvm/parameters/halt_poll_ns"} lang="terminal" />
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul>
-      <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=v-kvm">Linux on {"{"}{"{"} ibm_z_name {"}"}{"}"} Performance Tuning for KVM</a></li>
-      <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_virtualization/getting-started-with-virtualization-in-rhel-8-on-ibm-z_configuring-and-managing-virtualization">Getting started with virtualization on {"{"}{"{"} ibm_z_name {"}"}{"}"}</a></li>
+      <li><a href="https://www.ibm.com/docs/en/linux-on-systems?topic=v-kvm">Linux on IBM Z(R) Performance Tuning for KVM</a></li>
+      <li><a href="https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/8/html/configuring_and_managing_virtualization/getting-started-with-virtualization-in-rhel-8-on-ibm-z_configuring-and-managing-virtualization">Getting started with virtualization on IBM Z(R)</a></li>
       </ul>
     </article>
   </MarkdownContentStack>

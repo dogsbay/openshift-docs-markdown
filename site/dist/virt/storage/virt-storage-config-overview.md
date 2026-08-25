@@ -11,7 +11,7 @@ You can configure a default storage class, storage profiles, Containerized Data 
 The following storage configuration tasks are mandatory:
 
 Configure a default storage class
-:   You must configure a default storage class for the cluster. Otherwise, {{ VirtProductName }} cannot automatically import boot source images. `DataVolume` objects (DVs) and `PersistentVolumeClaim` objects (PVCs) that do not explicitly specify a storage class remain in the `Pending` state until you set a default storage class.
+:   You must configure a default storage class for the cluster. Otherwise, OpenShift Virtualization cannot automatically import boot source images. `DataVolume` objects (DVs) and `PersistentVolumeClaim` objects (PVCs) that do not explicitly specify a storage class remain in the `Pending` state until you set a default storage class.
 
 Configure storage profiles
 :   You must configure storage profiles if your storage provider is not recognized by CDI. A storage profile provides recommended storage settings based on the associated storage class.
@@ -22,7 +22,7 @@ Reserve additional PVC space for file system overhead
 :   By default, 5.5% of a file system PVC is reserved for overhead, reducing the space available for VM disks by that amount. You can configure a different overhead value.
 
 Configure local storage by using the hostpath provisioner
-:   You can configure local storage for virtual machines by using the hostpath provisioner (HPP). When you install the {{ VirtProductName }} Operator, the HPP Operator is automatically installed.
+:   You can configure local storage for virtual machines by using the hostpath provisioner (HPP). When you install the OpenShift Virtualization Operator, the HPP Operator is automatically installed.
 
 Configure user permissions to clone data volumes between namespaces
 :   You can configure RBAC roles to enable users to clone data volumes between namespaces.

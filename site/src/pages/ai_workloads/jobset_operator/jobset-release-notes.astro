@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"js-release-notes","text":"{{ js_operator }} release notes"}];
+const headings = [{"depth":1,"slug":"js-release-notes","text":"JobSet Operator release notes"},{"depth":2,"slug":"js-rn-1-0_js-release-notes","text":"Release notes for JobSet Operator 1.0"},{"depth":3,"slug":"js-rn-1-0-new-features_js-release-notes","text":"New features and enhancements"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-release-notes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ js_operator }} release notes";
-const description = "Track the development, features, and fixes for the {{ js_operator }}, which manages coordinated, large-scale computing workloads on OpenShift Container…" || undefined;
+const description = "Track the development, features, and fixes for the JobSet Operator, which manages coordinated, large-scale computing workloads on OpenShift Container…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["ai_workloads","ai_workloads/jobset_operator"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ js_operator }} release notes {#js-release-notes}\n\nTrack the development, features, and fixes for the {{ js_operator }}, which manages coordinated, large-scale computing workloads on OpenShift Container Platform.\n\nFor more information, see [About the {{ js_operator }}](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-release-notes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# JobSet Operator release notes {#js-release-notes}\n\nTrack the development, features, and fixes for the JobSet Operator, which manages coordinated, large-scale computing workloads on OpenShift Container Platform.\n\nFor more information, see [About the JobSet Operator](/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about).\n\n## Release notes for JobSet Operator 1.0 {#js-rn-1-0_js-release-notes}\n\nReview the new features and advisories for the initial release of JobSet Operator 1.0.\n\nIssued: 12 February 2026\n\nThe following advisories are available for the JobSet Operator 1.0:\n\n- [RHBA-2026:2570](https://access.redhat.com/errata/RHBA-2026:2570)\n\n### New features and enhancements {#js-rn-1-0-new-features_js-release-notes}\n\n- This is the initial Generally Available release of the JobSet Operator.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/jobset_operator/jobset-release-notes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +75,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +90,16 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="js-release-notes" class="group scroll-mt-20">{"{"}{"{"} js_operator {"}"}{"}"} release notes<a href="#js-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>Track the development, features, and fixes for the {"{"}{"{"} js_operator {"}"}{"}"}, which manages coordinated, large-scale computing workloads on OpenShift Container Platform.</p>
-      <p>For more information, see <a href="/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about">About the {"{"}{"{"} js_operator {"}"}{"}"}</a>.</p>
-      <p class="/modules/jobset-release-notes-1-0.md"></p>
+      <h1 id="js-release-notes" class="group scroll-mt-20">JobSet Operator release notes<a href="#js-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>Track the development, features, and fixes for the JobSet Operator, which manages coordinated, large-scale computing workloads on OpenShift Container Platform.</p>
+      <p>For more information, see <a href="/openshift-docs-markdown/ai_workloads/jobset_operator/index#js-about">About the JobSet Operator</a>.</p>
+      <h2 id="js-rn-1-0_js-release-notes" class="group scroll-mt-20">Release notes for JobSet Operator 1.0<a href="#js-rn-1-0_js-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the new features and advisories for the initial release of JobSet Operator 1.0.</p>
+      <p>Issued: 12 February 2026</p>
+      <p>The following advisories are available for the JobSet Operator 1.0:</p>
+      <ul><li><a href="https://access.redhat.com/errata/RHBA-2026:2570">RHBA-2026:2570</a></li></ul>
+      <h3 id="js-rn-1-0-new-features_js-release-notes" class="group scroll-mt-20">New features and enhancements<a href="#js-rn-1-0-new-features_js-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul><li>This is the initial Generally Available release of the JobSet Operator.</li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

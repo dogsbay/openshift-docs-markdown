@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"machine-phases-lifecycle","text":"Machine phases and lifecycle"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"machine-phases-lifecycle","text":"Machine phases and lifecycle"},{"depth":2,"slug":"machine-about-phases_machine-phases-lifecycle","text":"Machine phases"},{"depth":2,"slug":"machine-about-lifecycle_machine-phases-lifecycle","text":"The machine lifecycle"},{"depth":2,"slug":"machine-determine-phase-cli_machine-phases-lifecycle","text":"Determining the phase of a machine by using the CLI"},{"depth":2,"slug":"machine-determine-phase-gui_machine-phases-lifecycle","text":"Determining the phase of a machine by using the web console"},{"depth":2,"slug":"_additional_resources","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_management/machine-phases-lifecycle";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["machine_management"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Machine phases and lifecycle {#machine-phases-lifecycle}\n\nMachines move through a *lifecycle* that has several defined phases. Understanding the machine lifecycle and its phases can help you verify whether a procedure is complete or troubleshoot undesired behavior. In OpenShift Container Platform, the machine lifecycle is consistent across all supported cloud providers.\n\n## Additional resources {#_additional_resources}\n\n- [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/machine-phases-lifecycle.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Machine phases and lifecycle {#machine-phases-lifecycle}\n\nMachines move through a *lifecycle* that has several defined phases. Understanding the machine lifecycle and its phases can help you verify whether a procedure is complete or troubleshoot undesired behavior. In OpenShift Container Platform, the machine lifecycle is consistent across all supported cloud providers.\n\n## Machine phases {#machine-about-phases_machine-phases-lifecycle}\n\nUnderstanding machine lifecycle phases can help you troubleshoot machine issues. As a machine moves through its lifecycle, it passes through different phases. Each phase is a basic representation of the state of the machine.\n\n`Provisioning`\n:   There is a request to provision a new machine. The machine does not yet exist and does not have an instance, a provider ID, or an address.\n\n`Provisioned`\n:   The machine exists and has a provider ID or an address. The cloud provider has created an instance for the machine. The machine has not yet become a node and the `status.nodeRef` section of the machine object is not yet populated.\n\n`Running`\n:   The machine exists and has a provider ID or address. Ignition has run successfully and the cluster machine approver has approved a certificate signing request (CSR). The machine has become a node and the `status.nodeRef` section of the machine object contains node details.\n\n`Deleting`\n:   There is a request to delete the machine. The machine object has a `DeletionTimestamp` field that indicates the time of the deletion request.\n\n`Failed`\n:   There is an unrecoverable problem with the machine. This can happen, for example, if the cloud provider deletes the instance for the machine.\n\n## The machine lifecycle {#machine-about-lifecycle_machine-phases-lifecycle}\n\nUnderstanding the machine lifecycle can help you troubleshoot machine issues. The lifecycle begins with the request to provision a machine and continues until the machine no longer exists.\n\nThe machine lifecycle proceeds in the following order. Interruptions due to errors or lifecycle hooks are not included in this overview.\n\n1. There is a request to provision a new machine for one of the following reasons:\n\n   - A cluster administrator scales a machine set such that it requires additional machines.\n   - An autoscaling policy scales machine set such that it requires additional machines.\n   - A machine that is managed by a machine set fails or is deleted and the machine set creates a replacement to maintain the required number of machines.\n2. The machine enters the `Provisioning` phase.\n3. The infrastructure provider creates an instance for the machine.\n4. The machine has a provider ID or address and enters the `Provisioned` phase.\n5. The Ignition configuration file is processed.\n6. The kubelet issues a certificate signing request (CSR).\n7. The cluster machine approver approves the CSR.\n8. The machine becomes a node and enters the `Running` phase.\n9. An existing machine is slated for deletion for one of the following reasons:\n\n   - A user with `cluster-admin` permissions uses the `oc delete machine` command.\n   - The machine gets a `machine.openshift.io/delete-machine` annotation.\n   - The machine set that manages the machine marks it for deletion to reduce the replica count as part of reconciliation.\n   - The cluster autoscaler identifies a node that is unnecessary to meet the deployment needs of the cluster.\n   - A machine health check is configured to replace an unhealthy machine.\n10. The machine enters the `Deleting` phase, in which it is marked for deletion but is still present in the API.\n11. The machine controller removes the instance from the infrastructure provider.\n12. The machine controller deletes the `Node` object.\n\n## Determining the phase of a machine by using the CLI {#machine-determine-phase-cli_machine-phases-lifecycle}\n\nTo troubleshoot issues with a machine, you can find the phase of a machine by using the OpenShift CLI (`oc`).\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform cluster using an account with `cluster-admin` permissions.\n- You have installed the `oc` CLI.\n\n**Procedure**\n\n- List the machines on the cluster by running the following command:\n\n  ```terminal\n  $ oc get machine -n openshift-machine-api\n  ```\n\n  ```text {title=\"Example output\"}\n  NAME                                      PHASE     TYPE         REGION      ZONE         AGE\n  mycluster-5kbsp-master-0                  Running   m6i.xlarge   us-west-1   us-west-1a   4h55m\n  mycluster-5kbsp-master-1                  Running   m6i.xlarge   us-west-1   us-west-1b   4h55m\n  mycluster-5kbsp-master-2                  Running   m6i.xlarge   us-west-1   us-west-1a   4h55m\n  mycluster-5kbsp-worker-us-west-1a-fmx8t   Running   m6i.xlarge   us-west-1   us-west-1a   4h51m\n  mycluster-5kbsp-worker-us-west-1a-m889l   Running   m6i.xlarge   us-west-1   us-west-1a   4h51m\n  mycluster-5kbsp-worker-us-west-1b-c8qzm   Running   m6i.xlarge   us-west-1   us-west-1b   4h51m\n  ```\n\n  The `PHASE` column of the output contains the phase of each machine.\n\n## Determining the phase of a machine by using the web console {#machine-determine-phase-gui_machine-phases-lifecycle}\n\nTo troubleshoot issues with a machine, you can find the phase of a machine by using the OpenShift Container Platform web console.\n\n**Prerequisites**\n\n- You have access to an OpenShift Container Platform cluster using an account with `cluster-admin` permissions.\n\n**Procedure**\n\n1. Log in to the web console as a user with the `cluster-admin` role.\n2. Navigate to **Compute** -> **Machines**.\n3. On the **Machines** page, select the name of the machine that you want to find the phase of.\n4. On the **Machine details** page, select the **YAML** tab.\n5. In the YAML block, find the value of the `status.phase` field.\n\n   ```yaml {title=\"Example YAML snippet\"}\n   apiVersion: machine.openshift.io/v1beta1\n   kind: Machine\n   metadata:\n     name: mycluster-5kbsp-worker-us-west-1a-fmx8t\n   # ...\n   status:\n     phase: Running\n   ```\n\n   In this example, the phase is `Running`.\n\n## Additional resources {#_additional_resources}\n\n- [Lifecycle hooks for the machine deletion phase](/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/machine-phases-lifecycle.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +92,86 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="machine-phases-lifecycle" class="group scroll-mt-20">Machine phases and lifecycle<a href="#machine-phases-lifecycle" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>Machines move through a <em>lifecycle</em> that has several defined phases. Understanding the machine lifecycle and its phases can help you verify whether a procedure is complete or troubleshoot undesired behavior. In OpenShift Container Platform, the machine lifecycle is consistent across all supported cloud providers.</p>
-      <p class="/modules/machine-about-phases.md"></p>
-      <p class="/modules/machine-about-lifecycle.md"></p>
-      <p class="/modules/machine-determine-phase-cli.md"></p>
-      <p class="/modules/machine-determine-phase-gui.md"></p>
+      <h2 id="machine-about-phases_machine-phases-lifecycle" class="group scroll-mt-20">Machine phases<a href="#machine-about-phases_machine-phases-lifecycle" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Understanding machine lifecycle phases can help you troubleshoot machine issues. As a machine moves through its lifecycle, it passes through different phases. Each phase is a basic representation of the state of the machine.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>Provisioning</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>There is a request to provision a new machine. The machine does not yet exist and does not have an instance, a provider ID, or an address.</p></dd>
+      <dt class="font-semibold"><code>Provisioned</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The machine exists and has a provider ID or an address. The cloud provider has created an instance for the machine. The machine has not yet become a node and the <code>status.nodeRef</code> section of the machine object is not yet populated.</p></dd>
+      <dt class="font-semibold"><code>Running</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The machine exists and has a provider ID or address. Ignition has run successfully and the cluster machine approver has approved a certificate signing request (CSR). The machine has become a node and the <code>status.nodeRef</code> section of the machine object contains node details.</p></dd>
+      <dt class="font-semibold"><code>Deleting</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>There is a request to delete the machine. The machine object has a <code>DeletionTimestamp</code> field that indicates the time of the deletion request.</p></dd>
+      <dt class="font-semibold"><code>Failed</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>There is an unrecoverable problem with the machine. This can happen, for example, if the cloud provider deletes the instance for the machine.</p></dd>
+      </dl>
+      <h2 id="machine-about-lifecycle_machine-phases-lifecycle" class="group scroll-mt-20">The machine lifecycle<a href="#machine-about-lifecycle_machine-phases-lifecycle" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Understanding the machine lifecycle can help you troubleshoot machine issues. The lifecycle begins with the request to provision a machine and continues until the machine no longer exists.</p>
+      <p>The machine lifecycle proceeds in the following order. Interruptions due to errors or lifecycle hooks are not included in this overview.</p>
+      <ol>
+      <li>
+      There is a request to provision a new machine for one of the following reasons:
+      <ul>
+      <li>A cluster administrator scales a machine set such that it requires additional machines.</li>
+      <li>An autoscaling policy scales machine set such that it requires additional machines.</li>
+      <li>A machine that is managed by a machine set fails or is deleted and the machine set creates a replacement to maintain the required number of machines.</li>
+      </ul>
+      </li>
+      <li>The machine enters the <code>Provisioning</code> phase.</li>
+      <li>The infrastructure provider creates an instance for the machine.</li>
+      <li>The machine has a provider ID or address and enters the <code>Provisioned</code> phase.</li>
+      <li>The Ignition configuration file is processed.</li>
+      <li>The kubelet issues a certificate signing request (CSR).</li>
+      <li>The cluster machine approver approves the CSR.</li>
+      <li>The machine becomes a node and enters the <code>Running</code> phase.</li>
+      <li>
+      An existing machine is slated for deletion for one of the following reasons:
+      <ul>
+      <li>A user with <code>cluster-admin</code> permissions uses the <code>oc delete machine</code> command.</li>
+      <li>The machine gets a <code>machine.openshift.io/delete-machine</code> annotation.</li>
+      <li>The machine set that manages the machine marks it for deletion to reduce the replica count as part of reconciliation.</li>
+      <li>The cluster autoscaler identifies a node that is unnecessary to meet the deployment needs of the cluster.</li>
+      <li>A machine health check is configured to replace an unhealthy machine.</li>
+      </ul>
+      </li>
+      <li>The machine enters the <code>Deleting</code> phase, in which it is marked for deletion but is still present in the API.</li>
+      <li>The machine controller removes the instance from the infrastructure provider.</li>
+      <li>The machine controller deletes the <code>Node</code> object.</li>
+      </ol>
+      <h2 id="machine-determine-phase-cli_machine-phases-lifecycle" class="group scroll-mt-20">Determining the phase of a machine by using the CLI<a href="#machine-determine-phase-cli_machine-phases-lifecycle" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To troubleshoot issues with a machine, you can find the phase of a machine by using the OpenShift CLI (<code>oc</code>).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to an OpenShift Container Platform cluster using an account with <code>cluster-admin</code> permissions.</li>
+      <li>You have installed the <code>oc</code> CLI.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      List the machines on the cluster by running the following command:
+      <CodeBlock code={"$ oc get machine -n openshift-machine-api"} lang="terminal" />
+      <CodeBlock code={"NAME                                      PHASE     TYPE         REGION      ZONE         AGE\nmycluster-5kbsp-master-0                  Running   m6i.xlarge   us-west-1   us-west-1a   4h55m\nmycluster-5kbsp-master-1                  Running   m6i.xlarge   us-west-1   us-west-1b   4h55m\nmycluster-5kbsp-master-2                  Running   m6i.xlarge   us-west-1   us-west-1a   4h55m\nmycluster-5kbsp-worker-us-west-1a-fmx8t   Running   m6i.xlarge   us-west-1   us-west-1a   4h51m\nmycluster-5kbsp-worker-us-west-1a-m889l   Running   m6i.xlarge   us-west-1   us-west-1a   4h51m\nmycluster-5kbsp-worker-us-west-1b-c8qzm   Running   m6i.xlarge   us-west-1   us-west-1b   4h51m"} lang="text" title="Example output" />
+      <p>The <code>PHASE</code> column of the output contains the phase of each machine.</p>
+      </li>
+      </ul>
+      <h2 id="machine-determine-phase-gui_machine-phases-lifecycle" class="group scroll-mt-20">Determining the phase of a machine by using the web console<a href="#machine-determine-phase-gui_machine-phases-lifecycle" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To troubleshoot issues with a machine, you can find the phase of a machine by using the OpenShift Container Platform web console.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have access to an OpenShift Container Platform cluster using an account with <code>cluster-admin</code> permissions.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the web console as a user with the <code>cluster-admin</code> role.</li>
+      <li>Navigate to <strong>Compute</strong> -&gt; <strong>Machines</strong>.</li>
+      <li>On the <strong>Machines</strong> page, select the name of the machine that you want to find the phase of.</li>
+      <li>On the <strong>Machine details</strong> page, select the <strong>YAML</strong> tab.</li>
+      <li>
+      In the YAML block, find the value of the <code>status.phase</code> field.
+      <CodeBlock code={"apiVersion: machine.openshift.io/v1beta1\nkind: Machine\nmetadata:\n  name: mycluster-5kbsp-worker-us-west-1a-fmx8t\n# ...\nstatus:\n  phase: Running"} lang="yaml" title="Example YAML snippet" />
+      <p>In this example, the phase is <code>Running</code>.</p>
+      </li>
+      </ol>
       <h2 id="_additional_resources" class="group scroll-mt-20">Additional resources<a href="#_additional_resources" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/machine_management/deleting-machine#machine-lifecycle-hook-deletion_deleting-machine">Lifecycle hooks for the machine deletion phase</a></li></ul>
     </article>

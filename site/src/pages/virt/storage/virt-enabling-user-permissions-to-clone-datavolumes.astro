@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-enabling-user-permissions-to-clone-datavolumes","text":"Enabling user permissions to clone data volumes across namespaces"}];
+const headings = [{"depth":1,"slug":"virt-enabling-user-permissions-to-clone-datavolumes","text":"Enabling user permissions to clone data volumes across namespaces"},{"depth":2,"slug":"virt-creating-rbac-cloning-dvs_virt-enabling-user-permissions-to-clone-datavolumes","text":"Creating RBAC resources for cloning data volumes"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/storage"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling user permissions to clone data volumes across namespaces {#virt-enabling-user-permissions-to-clone-datavolumes}\n\nBy default, users cannot clone resources between namespaces. To enable cloning, a user with the `cluster-admin` role must create and bind a cluster role that grants the required permissions.\n\nTo enable a user to clone a virtual machine to another namespace, a user with the `cluster-admin` role must create a new cluster role. Bind this cluster role to a user to enable them to clone virtual machines to the destination namespace.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Enabling user permissions to clone data volumes across namespaces {#virt-enabling-user-permissions-to-clone-datavolumes}\n\nBy default, users cannot clone resources between namespaces. To enable cloning, a user with the `cluster-admin` role must create and bind a cluster role that grants the required permissions.\n\nTo enable a user to clone a virtual machine to another namespace, a user with the `cluster-admin` role must create a new cluster role. Bind this cluster role to a user to enable them to clone virtual machines to the destination namespace.\n\n## Creating RBAC resources for cloning data volumes {#virt-creating-rbac-cloning-dvs_virt-enabling-user-permissions-to-clone-datavolumes}\n\nYou can create a new cluster role that enables permissions for all actions for the `datavolumes` resource.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n- You must have cluster admin privileges.\n\n> [!NOTE]\n> If you are a non-admin user that is an administrator for both the source and target namespaces, you can create a `Role` instead of a `ClusterRole` where appropriate.\n\n**Procedure**\n\n1. Create a `ClusterRole` manifest:\n\n   ```yaml\n   apiVersion: rbac.authorization.k8s.io/v1\n   kind: ClusterRole\n   metadata:\n     name: <datavolume_cloner>\n   rules:\n   - apiGroups: [\"cdi.kubevirt.io\"]\n     resources: [\"datavolumes/source\"]\n     verbs: [\"*\"]\n   # ...\n   ```\n\n   where:\n\n   `<datavolume_cloner>`\n   :   Specifies a unique name for the cluster role.\n2. Create the cluster role in the cluster:\n\n   ```terminal\n   $ oc create -f <datavolume_cloner.yaml>\n   ```\n\n   where:\n\n   `<datavolume_cloner.yaml>`\n   :   Specifies the file name of the `ClusterRole` manifest created in the previous step.\n3. Create a `RoleBinding` manifest that applies to both the source and destination namespaces and references the cluster role created in the previous step.\n\n   ```yaml\n   apiVersion: rbac.authorization.k8s.io/v1\n   kind: RoleBinding\n   metadata:\n     name: <allow_clone_to_user>\n     namespace: <source_namespace>\n   subjects:\n   - kind: ServiceAccount\n     name: default\n     namespace: <destination_namespace>\n   roleRef:\n     kind: ClusterRole\n     name: datavolume-cloner\n     apiGroup: rbac.authorization.k8s.io\n   ```\n\n   - `metadata.name` specifies a unique name for the role binding.\n   - `metadata.namespace` specifies the namespace for the source data volume.\n   - `subjects.namespace` specifies the namespace to which the data volume is cloned.\n   - `roleRef.name` specifies the name of the cluster role created in the previous step.\n4. Create the role binding in the cluster:\n\n   ```terminal\n   $ oc create -f <datavolume_cloner.yaml>\n   ```\n\n   where:\n\n   `<datavolume_cloner.yaml>`\n   :   Specifies the file name of the `RoleBinding` manifest created in the previous step.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/storage/virt-enabling-user-permissions-to-clone-datavolumes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,61 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-enabling-user-permissions-to-clone-datavolumes" class="group scroll-mt-20">Enabling user permissions to clone data volumes across namespaces<a href="#virt-enabling-user-permissions-to-clone-datavolumes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>By default, users cannot clone resources between namespaces. To enable cloning, a user with the <code>cluster-admin</code> role must create and bind a cluster role that grants the required permissions.</p>
       <p>To enable a user to clone a virtual machine to another namespace, a user with the <code>cluster-admin</code> role must create a new cluster role. Bind this cluster role to a user to enable them to clone virtual machines to the destination namespace.</p>
-      <p class="/modules/virt-creating-rbac-cloning-dvs.md"></p>
+      <h2 id="virt-creating-rbac-cloning-dvs_virt-enabling-user-permissions-to-clone-datavolumes" class="group scroll-mt-20">Creating RBAC resources for cloning data volumes<a href="#virt-creating-rbac-cloning-dvs_virt-enabling-user-permissions-to-clone-datavolumes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can create a new cluster role that enables permissions for all actions for the <code>datavolumes</code> resource.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>).</li>
+      <li>You must have cluster admin privileges.</li>
+      </ul>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you are a non-admin user that is an administrator for both the source and target namespaces, you can create a <code>Role</code> instead of a <code>ClusterRole</code> where appropriate.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a <code>ClusterRole</code> manifest:
+      <CodeBlock code={"apiVersion: rbac.authorization.k8s.io/v1\nkind: ClusterRole\nmetadata:\n  name: <datavolume_cloner>\nrules:\n- apiGroups: [\"cdi.kubevirt.io\"]\n  resources: [\"datavolumes/source\"]\n  verbs: [\"*\"]\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;datavolume_cloner&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a unique name for the cluster role.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create the cluster role in the cluster:
+      <CodeBlock code={"$ oc create -f <datavolume_cloner.yaml>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;datavolume_cloner.yaml&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the file name of the <code>ClusterRole</code> manifest created in the previous step.</p></dd>
+      </dl>
+      </li>
+      <li>
+      Create a <code>RoleBinding</code> manifest that applies to both the source and destination namespaces and references the cluster role created in the previous step.
+      <CodeBlock code={"apiVersion: rbac.authorization.k8s.io/v1\nkind: RoleBinding\nmetadata:\n  name: <allow_clone_to_user>\n  namespace: <source_namespace>\nsubjects:\n- kind: ServiceAccount\n  name: default\n  namespace: <destination_namespace>\nroleRef:\n  kind: ClusterRole\n  name: datavolume-cloner\n  apiGroup: rbac.authorization.k8s.io"} lang="yaml" />
+      <ul>
+      <li><code>metadata.name</code> specifies a unique name for the role binding.</li>
+      <li><code>metadata.namespace</code> specifies the namespace for the source data volume.</li>
+      <li><code>subjects.namespace</code> specifies the namespace to which the data volume is cloned.</li>
+      <li><code>roleRef.name</code> specifies the name of the cluster role created in the previous step.</li>
+      </ul>
+      </li>
+      <li>
+      Create the role binding in the cluster:
+      <CodeBlock code={"$ oc create -f <datavolume_cloner.yaml>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;datavolume_cloner.yaml&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the file name of the <code>RoleBinding</code> manifest created in the previous step.</p></dd>
+      </dl>
+      </li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -16,7 +16,7 @@ import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.ast
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
 
-const headings = [{"depth":1,"slug":"nodes-descheduler-release-notes","text":"{{ descheduler_operator }} release notes"}];
+const headings = [{"depth":1,"slug":"nodes-descheduler-release-notes","text":"{{ descheduler_operator }} release notes"},{"depth":2,"slug":"descheduler-operator-release-notes-5.4.2_nodes-descheduler-release-notes","text":"Release notes for Kube Descheduler Operator 5.4.2"},{"depth":3,"slug":"descheduler-operator-5.4.2-new-features_nodes-descheduler-release-notes","text":"New features and enhancements"},{"depth":2,"slug":"descheduler-operator-release-notes-5.4.1_nodes-descheduler-release-notes","text":"Release notes for Kube Descheduler Operator 5.4.1"},{"depth":3,"slug":"descheduler-operator-5.4.1-new-features_nodes-descheduler-release-notes","text":"New features and enhancements"},{"depth":2,"slug":"descheduler-operator-release-notes-5.4.0_nodes-descheduler-release-notes","text":"Release notes for Kube Descheduler Operator 5.4.0"},{"depth":3,"slug":"descheduler-operator-5.4.0-new-features_nodes-descheduler-release-notes","text":"New features and enhancements"},{"depth":3,"slug":"descheduler-operator-5.4.0-bug-fixes_nodes-descheduler-release-notes","text":"Bug fixes"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/scheduling/descheduler/nodes-descheduler-release-notes";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +26,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ descheduler_operator }} release notes";
-const description = "Review the {{ descheduler_operator }} release notes to track its development and learn what is new and changed with each release." || undefined;
+const description = "Review the Kube Descheduler Operator release notes to track its development and learn what is new and changed with each release." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +39,7 @@ const pageCategory = ["nodes","nodes/scheduling","nodes/scheduling/descheduler"]
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ descheduler_operator }} release notes {#nodes-descheduler-release-notes}\n\nReview the {{ descheduler_operator }} release notes to track its development and learn what is new and changed with each release.\n\nThe {{ descheduler_operator }} allows you to evict pods so that they can be rescheduled on more appropriate nodes.\n\nFor more information, see [About the descheduler](/openshift-docs-markdown/nodes/scheduling/descheduler/index#nodes-descheduler-about_nodes-descheduler-about).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/descheduler/nodes-descheduler-release-notes.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ descheduler_operator }} release notes {#nodes-descheduler-release-notes}\n\nReview the Kube Descheduler Operator release notes to track its development and learn what is new and changed with each release.\n\nThe Kube Descheduler Operator allows you to evict pods so that they can be rescheduled on more appropriate nodes.\n\nFor more information, see [About the descheduler](/openshift-docs-markdown/nodes/scheduling/descheduler/index#nodes-descheduler-about_nodes-descheduler-about).\n\n## Release notes for Kube Descheduler Operator 5.4.2 {#descheduler-operator-release-notes-5.4.2_nodes-descheduler-release-notes}\n\nReview the release notes for Kube Descheduler Operator 5.4.2 to learn what is new and updated with this release.\n\nIssued: 14 August 2026\n\nThe following advisory is available for the Kube Descheduler Operator 5.4.2:\n\n- [RHBA-2026:54867](https://access.redhat.com/errata/RHBA-2026:54867)\n\n### New features and enhancements {#descheduler-operator-5.4.2-new-features_nodes-descheduler-release-notes}\n\n- This release rebuilds the base image for the Kube Descheduler Operator to improve its image grade.\n\n## Release notes for Kube Descheduler Operator 5.4.1 {#descheduler-operator-release-notes-5.4.1_nodes-descheduler-release-notes}\n\nReview the release notes for Kube Descheduler Operator 5.4.1 to learn what is new and updated with this release.\n\nIssued: 13 August 2026\n\nThe following advisory is available for the Kube Descheduler Operator 5.4.1:\n\n- [RHBA-2026:54794](https://access.redhat.com/errata/RHBA-2026:54794)\n\n### New features and enhancements {#descheduler-operator-5.4.1-new-features_nodes-descheduler-release-notes}\n\n- This release rebuilds the base image for the Kube Descheduler Operator to improve its image grade.\n\n## Release notes for Kube Descheduler Operator 5.4.0 {#descheduler-operator-release-notes-5.4.0_nodes-descheduler-release-notes}\n\nReview the release notes for Kube Descheduler Operator 5.4.0 to learn what is new and updated with this release.\n\nIssued: 10 June 2026\n\nThe following advisory is available for the Kube Descheduler Operator 5.4.0:\n\n- [RHBA-2026:25062](https://access.redhat.com/errata/RHBA-2026:25062)\n\n### New features and enhancements {#descheduler-operator-5.4.0-new-features_nodes-descheduler-release-notes}\n\n- This release of the Kube Descheduler Operator updates the Kubernetes version to 1.35.\n\n### Bug fixes {#descheduler-operator-5.4.0-bug-fixes_nodes-descheduler-release-notes}\n\n- This release of the Kube Descheduler Operator addresses several Common Vulnerabilities and Exposures (CVEs).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/scheduling/descheduler/nodes-descheduler-release-notes.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +91,32 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-descheduler-release-notes" class="group scroll-mt-20">{"{"}{"{"} descheduler_operator {"}"}{"}"} release notes<a href="#nodes-descheduler-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>Review the {"{"}{"{"} descheduler_operator {"}"}{"}"} release notes to track its development and learn what is new and changed with each release.</p>
-      <p>The {"{"}{"{"} descheduler_operator {"}"}{"}"} allows you to evict pods so that they can be rescheduled on more appropriate nodes.</p>
+      <p>Review the Kube Descheduler Operator release notes to track its development and learn what is new and changed with each release.</p>
+      <p>The Kube Descheduler Operator allows you to evict pods so that they can be rescheduled on more appropriate nodes.</p>
       <p>For more information, see <a href="/openshift-docs-markdown/nodes/scheduling/descheduler/index#nodes-descheduler-about_nodes-descheduler-about">About the descheduler</a>.</p>
-      <p class="/modules/nodes-descheduler-rn-5.4.2.md"></p>
-      <p class="/modules/nodes-descheduler-rn-5.4.1.md"></p>
-      <p class="/modules/nodes-descheduler-rn-5.4.0.md"></p>
+      <h2 id="descheduler-operator-release-notes-5.4.2_nodes-descheduler-release-notes" class="group scroll-mt-20">Release notes for Kube Descheduler Operator 5.4.2<a href="#descheduler-operator-release-notes-5.4.2_nodes-descheduler-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the release notes for Kube Descheduler Operator 5.4.2 to learn what is new and updated with this release.</p>
+      <p>Issued: 14 August 2026</p>
+      <p>The following advisory is available for the Kube Descheduler Operator 5.4.2:</p>
+      <ul><li><a href="https://access.redhat.com/errata/RHBA-2026:54867">RHBA-2026:54867</a></li></ul>
+      <h3 id="descheduler-operator-5.4.2-new-features_nodes-descheduler-release-notes" class="group scroll-mt-20">New features and enhancements<a href="#descheduler-operator-5.4.2-new-features_nodes-descheduler-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul><li>This release rebuilds the base image for the Kube Descheduler Operator to improve its image grade.</li></ul>
+      <h2 id="descheduler-operator-release-notes-5.4.1_nodes-descheduler-release-notes" class="group scroll-mt-20">Release notes for Kube Descheduler Operator 5.4.1<a href="#descheduler-operator-release-notes-5.4.1_nodes-descheduler-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the release notes for Kube Descheduler Operator 5.4.1 to learn what is new and updated with this release.</p>
+      <p>Issued: 13 August 2026</p>
+      <p>The following advisory is available for the Kube Descheduler Operator 5.4.1:</p>
+      <ul><li><a href="https://access.redhat.com/errata/RHBA-2026:54794">RHBA-2026:54794</a></li></ul>
+      <h3 id="descheduler-operator-5.4.1-new-features_nodes-descheduler-release-notes" class="group scroll-mt-20">New features and enhancements<a href="#descheduler-operator-5.4.1-new-features_nodes-descheduler-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul><li>This release rebuilds the base image for the Kube Descheduler Operator to improve its image grade.</li></ul>
+      <h2 id="descheduler-operator-release-notes-5.4.0_nodes-descheduler-release-notes" class="group scroll-mt-20">Release notes for Kube Descheduler Operator 5.4.0<a href="#descheduler-operator-release-notes-5.4.0_nodes-descheduler-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Review the release notes for Kube Descheduler Operator 5.4.0 to learn what is new and updated with this release.</p>
+      <p>Issued: 10 June 2026</p>
+      <p>The following advisory is available for the Kube Descheduler Operator 5.4.0:</p>
+      <ul><li><a href="https://access.redhat.com/errata/RHBA-2026:25062">RHBA-2026:25062</a></li></ul>
+      <h3 id="descheduler-operator-5.4.0-new-features_nodes-descheduler-release-notes" class="group scroll-mt-20">New features and enhancements<a href="#descheduler-operator-5.4.0-new-features_nodes-descheduler-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul><li>This release of the Kube Descheduler Operator updates the Kubernetes version to 1.35.</li></ul>
+      <h3 id="descheduler-operator-5.4.0-bug-fixes_nodes-descheduler-release-notes" class="group scroll-mt-20">Bug fixes<a href="#descheduler-operator-5.4.0-bug-fixes_nodes-descheduler-release-notes" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <ul><li>This release of the Kube Descheduler Operator addresses several Common Vulnerabilities and Exposures (CVEs).</li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

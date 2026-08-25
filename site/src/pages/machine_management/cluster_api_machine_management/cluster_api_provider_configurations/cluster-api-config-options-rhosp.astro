@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"cluster-api-config-options-rhosp","text":"Cluster API configuration options for Red Hat OpenStack Platform"},{"depth":2,"slug":"cluster-api-sample-yaml-rhosp_cluster-api-config-options-rhosp","text":"Sample YAML for configuring {{ rh_openstack }} clusters"}];
+const headings = [{"depth":1,"slug":"cluster-api-config-options-rhosp","text":"Cluster API configuration options for Red Hat OpenStack Platform"},{"depth":2,"slug":"cluster-api-sample-yaml-rhosp_cluster-api-config-options-rhosp","text":"Sample YAML for configuring RHOSP clusters"},{"depth":3,"slug":"capi-yaml-machine-template-rhosp_cluster-api-config-options-rhosp","text":"Sample YAML for a Cluster API machine template resource on RHOSP"},{"depth":3,"slug":"capi-yaml-machine-set-rhosp_cluster-api-config-options-rhosp","text":"Sample YAML for a Cluster API compute machine set resource on RHOSP"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-rhosp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Cluster API configuration options for Red Hat OpenStack Platform";
-const description = "You can change the configuration of your {{ rh_openstack_first }} Cluster API machines by updating values in the Cluster API custom resource manifests." || undefined;
+const description = "You can change the configuration of your Red Hat OpenStack Platform (RHOSP) Cluster API machines by updating values in the Cluster API custom resource…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["machine_management","machine_management/cluster_api_machi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster API configuration options for Red Hat OpenStack Platform {#cluster-api-config-options-rhosp}\n\nYou can change the configuration of your {{ rh_openstack_first }} Cluster API machines by updating values in the Cluster API custom resource manifests.\n\n## Sample YAML for configuring {{ rh_openstack }} clusters {#cluster-api-sample-yaml-rhosp_cluster-api-config-options-rhosp}\n\nThe following example YAML files show configurations for a {{ rh_openstack }} cluster.\n\n**Additional resources**\n\n- [Creating flavors for launching instances](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_the_compute_service_for_instance_creation/assembly_creating-flavors-for-launching-instances_instance-flavors)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-rhosp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Cluster API configuration options for Red Hat OpenStack Platform {#cluster-api-config-options-rhosp}\n\nYou can change the configuration of your Red Hat OpenStack Platform (RHOSP) Cluster API machines by updating values in the Cluster API custom resource manifests.\n\n> [!IMPORTANT]\n> Managing machines with the Cluster API is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\n## Sample YAML for configuring RHOSP clusters {#cluster-api-sample-yaml-rhosp_cluster-api-config-options-rhosp}\n\nThe following example YAML files show configurations for a RHOSP cluster.\n\n### Sample YAML for a Cluster API machine template resource on RHOSP {#capi-yaml-machine-template-rhosp_cluster-api-config-options-rhosp}\n\nThe machine template resource is provider-specific and defines the basic properties of the machines that a compute machine set creates. The compute machine set references this template when creating machines.\n\n```yaml\napiVersion: infrastructure.cluster.x-k8s.io/v1beta1\nkind: OpenStackMachineTemplate\nmetadata:\n  name: <template_name>\n  namespace: openshift-cluster-api\nspec:\n  template:\n    spec:\n      flavor: <openstack_node_machine_flavor>\n      image:\n        filter:\n          name: <openstack_image>\n```\n\nwhere:\n\n`kind`\n:   Specifies the machine template kind. This value must match the value for your platform.\n\n`metadata.name`\n:   Specifies a name for the machine template.\n\n`spec.template.spec`\n:   Specifies the details for your environment. The values here are examples.\n\n`spec.template.spec.flavor`\n:   Specifies the RHOSP flavor to use. For more information, see \"Creating flavors for launching instances\".\n\n`spec.template.spec.image.filter.name`\n:   Specifies the image to use.\n\n**Additional resources**\n\n- [Creating flavors for launching instances](https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_the_compute_service_for_instance_creation/assembly_creating-flavors-for-launching-instances_instance-flavors)\n\n### Sample YAML for a Cluster API compute machine set resource on RHOSP {#capi-yaml-machine-set-rhosp_cluster-api-config-options-rhosp}\n\nThe compute machine set resource defines additional properties of the machines that the resource creates. The compute machine set also references the infrastructure resource and machine template when creating machines.\n\n```yaml\napiVersion: cluster.x-k8s.io/v1beta1\nkind: MachineSet\nmetadata:\n  name: <machine_set_name>\n  namespace: openshift-cluster-api\nspec:\n  clusterName: <cluster_name>\n  replicas: 1\n  selector:\n    matchLabels:\n      test: example\n      cluster.x-k8s.io/cluster-name: <cluster_name>\n      cluster.x-k8s.io/set-name: <machine_set_name>\n  template:\n    metadata:\n      labels:\n        test: example\n        cluster.x-k8s.io/cluster-name: <cluster_name>\n        cluster.x-k8s.io/set-name: <machine_set_name>\n        node-role.kubernetes.io/<role>: \"\"\n    spec:\n      bootstrap:\n         dataSecretName: worker-user-data\n      clusterName: <cluster_name>\n      infrastructureRef:\n        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\n        kind: OpenStackMachineTemplate\n        name: <template_name>\n      failureDomain: <nova_availability_zone>\n```\n\nwhere:\n\n`metadata.name`\n:   Specifies a name for the compute machine set.\n\n`spec.clusterName`\n:   Specifies the cluster ID as the name of the cluster.\n\n`spec.template.spec.bootstrap.dataSecretName`\n:   For the Cluster API Technology Preview, the Operator can use the worker user data secret from the `openshift-machine-api` namespace.\n\n`spec.template.spec.infrastructureRef.kind`\n:   Specifies the machine template kind. This value must match the value for your platform.\n\n`spec.template.spec.infrastructureRef.name`\n:   Specifies the machine template name.\n\n`spec.template.spec.failureDomain`\n:   Optional parameter. Specifies the name of the Nova availability zone for the machine set to create machines in. If you do not specify a value, machines are not restricted to a specific availability zone.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/machine_management/cluster_api_machine_management/cluster_api_provider_configurations/cluster-api-config-options-rhosp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,13 +95,52 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="cluster-api-config-options-rhosp" class="group scroll-mt-20">Cluster API configuration options for Red Hat OpenStack Platform<a href="#cluster-api-config-options-rhosp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/snippets/technology-preview.md">You can change the configuration of your {"{"}{"{"} rh_openstack_first {"}"}{"}"} Cluster API machines by updating values in the Cluster API custom resource manifests.</p>
-      <h2 id="cluster-api-sample-yaml-rhosp_cluster-api-config-options-rhosp" class="group scroll-mt-20">Sample YAML for configuring {"{"}{"{"} rh_openstack {"}"}{"}"} clusters<a href="#cluster-api-sample-yaml-rhosp_cluster-api-config-options-rhosp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
-      <p>The following example YAML files show configurations for a {"{"}{"{"} rh_openstack {"}"}{"}"} cluster.</p>
-      <p class="/modules/capi-yaml-machine-template-rhosp.md"></p>
+      <p>You can change the configuration of your Red Hat OpenStack Platform (RHOSP) Cluster API machines by updating values in the Cluster API custom resource manifests.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Managing machines with the Cluster API is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="cluster-api-sample-yaml-rhosp_cluster-api-config-options-rhosp" class="group scroll-mt-20">Sample YAML for configuring RHOSP clusters<a href="#cluster-api-sample-yaml-rhosp_cluster-api-config-options-rhosp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>The following example YAML files show configurations for a RHOSP cluster.</p>
+      <h3 id="capi-yaml-machine-template-rhosp_cluster-api-config-options-rhosp" class="group scroll-mt-20">Sample YAML for a Cluster API machine template resource on RHOSP<a href="#capi-yaml-machine-template-rhosp_cluster-api-config-options-rhosp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The machine template resource is provider-specific and defines the basic properties of the machines that a compute machine set creates. The compute machine set references this template when creating machines.</p>
+      <CodeBlock code={"apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\nkind: OpenStackMachineTemplate\nmetadata:\n  name: <template_name>\n  namespace: openshift-cluster-api\nspec:\n  template:\n    spec:\n      flavor: <openstack_node_machine_flavor>\n      image:\n        filter:\n          name: <openstack_image>"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>kind</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the machine template kind. This value must match the value for your platform.</p></dd>
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the machine template.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the details for your environment. The values here are examples.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.flavor</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the RHOSP flavor to use. For more information, see "Creating flavors for launching instances".</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.image.filter.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the image to use.</p></dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="https://docs.redhat.com/en/documentation/red_hat_openstack_platform/17.1/html/configuring_the_compute_service_for_instance_creation/assembly_creating-flavors-for-launching-instances_instance-flavors">Creating flavors for launching instances</a></li></ul>
+      <h3 id="capi-yaml-machine-set-rhosp_cluster-api-config-options-rhosp" class="group scroll-mt-20">Sample YAML for a Cluster API compute machine set resource on RHOSP<a href="#capi-yaml-machine-set-rhosp_cluster-api-config-options-rhosp" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">The compute machine set resource defines additional properties of the machines that the resource creates. The compute machine set also references the infrastructure resource and machine template when creating machines.</p>
+      <CodeBlock code={"apiVersion: cluster.x-k8s.io/v1beta1\nkind: MachineSet\nmetadata:\n  name: <machine_set_name>\n  namespace: openshift-cluster-api\nspec:\n  clusterName: <cluster_name>\n  replicas: 1\n  selector:\n    matchLabels:\n      test: example\n      cluster.x-k8s.io/cluster-name: <cluster_name>\n      cluster.x-k8s.io/set-name: <machine_set_name>\n  template:\n    metadata:\n      labels:\n        test: example\n        cluster.x-k8s.io/cluster-name: <cluster_name>\n        cluster.x-k8s.io/set-name: <machine_set_name>\n        node-role.kubernetes.io/<role>: \"\"\n    spec:\n      bootstrap:\n         dataSecretName: worker-user-data\n      clusterName: <cluster_name>\n      infrastructureRef:\n        apiVersion: infrastructure.cluster.x-k8s.io/v1beta1\n        kind: OpenStackMachineTemplate\n        name: <template_name>\n      failureDomain: <nova_availability_zone>"} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>metadata.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a name for the compute machine set.</p></dd>
+      <dt class="font-semibold"><code>spec.clusterName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the cluster ID as the name of the cluster.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.bootstrap.dataSecretName</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>For the Cluster API Technology Preview, the Operator can use the worker user data secret from the <code>openshift-machine-api</code> namespace.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.infrastructureRef.kind</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the machine template kind. This value must match the value for your platform.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.infrastructureRef.name</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the machine template name.</p></dd>
+      <dt class="font-semibold"><code>spec.template.spec.failureDomain</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Optional parameter. Specifies the name of the Nova availability zone for the machine set to create machines in. If you do not specify a value, machines are not restricted to a specific availability zone.</p></dd>
+      </dl>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

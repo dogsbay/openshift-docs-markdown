@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"security-host-sec","text":"Host security"}];
+const headings = [{"depth":1,"slug":"security-host-sec","text":"Host security"},{"depth":2,"slug":"security-rhcos-overview_security-host-sec","text":"Red Hat Enterprise Linux CoreOS (RHCOS)"},{"depth":2,"slug":"security-command-line-host-access_security-host-sec","text":"Command-line host access"},{"depth":2,"slug":"security-linux-capabilities-overview_security-host-sec","text":"Linux capabilities"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/security/security-host-sec";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Host security";
-const description = "Additional resources" || undefined;
+const description = "Red Hat Enterprise Linux CoreOS (RHCOS) is different from Red Hat Enterprise Linux (RHEL) in key areas. For more information, see \"About RHCOS\"." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["post_installation_configuration","post_installation_confi
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Host security {#security-host-sec}\n\n**Additional resources**\n\n- [About RHCOS](/openshift-docs-markdown/architecture/architecture-rhcos#rhcos-about_architecture-rhcos)\n- [Red Hat Enterprise Linux CoreOS (RHCOS)](/openshift-docs-markdown/architecture/architecture-rhcos)\n- [Linux capabilities](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/security/security-host-sec#security-linux-capabilities-overview_security-host-sec)\n\n**Additional resources**\n\n- [Using node disruption policies to minimize disruption from machine config changes](/openshift-docs-markdown/machine_configuration/machine-config-node-disruption#machine-configs-configure_machine-config-node-disruption)\n- [Starting debug pods with root access](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#starting-debug-pods-with-root-access_investigating-pod-issues)\n- [How to connect to OpenShift Container Platform 4.x Cluster nodes using SSH bastion pod](https://access.redhat.com/solutions/4073041)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/security/security-host-sec.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Host security {#security-host-sec}\n\n## Red Hat Enterprise Linux CoreOS (RHCOS) {#security-rhcos-overview_security-host-sec}\n\nRed Hat Enterprise Linux CoreOS (RHCOS) is different from Red Hat Enterprise Linux (RHEL) in key areas. For more information, see \"About RHCOS\".\n\nA major distinction is the control of `rpm-ostree`, which is updated through the Machine Config Operator.\n\nRHCOS follows the same immutable design used for pods in OpenShift Container Platform. This ensures that the operating system remains consistent across the cluster. For information about RHCOS architecture, see \"Red Hat Enterprise Linux CoreOS (RHCOS)\".\n\nTo manage hosts effectively while maintaining security, avoid direct access whenever possible. Instead, you can use the following methods for host management:\n\n- Debug pod\n- Direct SSH\n- Console access\n\nReview the following RHCOS security mechanisms that are integral to maintaining host security:\n\nLinux namespaces\n:   Provide isolation for processes and resources. Each container keeps its processes and files within its own namespace. If a user escapes from the container namespace, they could gain access to the host operating system, potentially compromising security.\n\nSecurity-Enhanced Linux (SELinux)\n:   Enforces mandatory access controls to restrict access to files and directories by processes. SELinux adds an extra layer of security by preventing unauthorized access to files if a process tries to break its confinement.\n\n    SELinux follows the security policy of denying everything unless explicitly allowed. If a process attempts to modify or access a file without permission, SELinux denies access. For more information, see [Introduction to SELinux](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/using_selinux/index#introduction-to-selinux_getting-started-with-selinux).\n\nLinux capabilities\n:   Assign specific privileges to processes at a granular level, minimizing the need for full root permissions. For more information, see \"Linux capabilities\".\n\nControl groups (cgroups)\n:   Allocate and manage system resources, such as CPU and memory for processes and containers, ensuring efficient usage. As of OpenShift Container Platform 4.16, there are two versions of cgroups. cgroup v2 is now configured by default.\n\nCRI-O\n:   Serves as a lightweight container runtime that enforces security boundaries and manages container workloads.\n\n**Additional resources**\n\n- [About RHCOS](/openshift-docs-markdown/architecture/architecture-rhcos#rhcos-about_architecture-rhcos)\n- [Red Hat Enterprise Linux CoreOS (RHCOS)](/openshift-docs-markdown/architecture/architecture-rhcos)\n- [Linux capabilities](/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/security/security-host-sec#security-linux-capabilities-overview_security-host-sec)\n\n## Command-line host access {#security-command-line-host-access_security-host-sec}\n\nConfigure an external authenticator to restrict direct access and prevent unauthorized modifications. The Machine Config Operator (MCO) manages these logins and maintains consistency across your cluster.\n\nExamples of external authenticators include lightweight directory access protocol (LDAP) and System Security Services Daemon (SSSD). If a node reboot leads to timeout issues, create a node disruption policy. With this policy, you can configure an external authenticator on a host without requiring a node reboot. For more information, see \"Using node disruption policies to minimize disruption from machine config changes\" in the *Additional resources* section.\n\n> [!IMPORTANT]\n> Do not configure direct access to the root ID on any OpenShift Container Platform cluster server.\n\nYou can connect to a node in the cluster by using the following methods:\n\nUsing debug pod\n:   Red Hat recommends this method to access a node. To debug or connect to a node, run the following command:\n\n    ```terminal\n    $ oc debug node/<worker_node_name>\n    ```\n\n    After connecting to the node, run the following command to get access to the root file system:\n\n    ```terminal\n    # chroot /host\n    ```\n\n    This gives you root access within a debug pod on the node. For more information, see \"Starting debug pods with root access\".\n\nDirect SSH\n:   Avoid using the root user. Instead, use the core user ID (or your own ID). To connect to the node by using SSH, run the following command:\n\n    ```terminal\n    $ ssh core@<worker_node_name>\n    ```\n\n    > [!IMPORTANT]\n    > The core user ID is initially given `sudo` privileges within the cluster.\n\n    If you cannot connect to a node by using SSH, add your SSH key to the core user. For more information, see \"How to connect to OpenShift Container Platform 4.x Cluster nodes using SSH bastion pod\" in the *Additional resources* section.\n\n    After connecting to the node using SSH, run the following command to get access to the root shell:\n\n    ```terminal\n    $ sudo -i\n    ```\n\nConsole Access\n:   Ensure that consoles are secure. Do not allow direct login with the root ID, instead use individual IDs.\n\n    > [!NOTE]\n    > Follow the best practices of your organization for securing console access.\n\n**Additional resources**\n\n- [Using node disruption policies to minimize disruption from machine config changes](/openshift-docs-markdown/machine_configuration/machine-config-node-disruption#machine-configs-configure_machine-config-node-disruption)\n- [Starting debug pods with root access](/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#starting-debug-pods-with-root-access_investigating-pod-issues)\n- [How to connect to OpenShift Container Platform 4.x Cluster nodes using SSH bastion pod](https://access.redhat.com/solutions/4073041)\n\n## Linux capabilities {#security-linux-capabilities-overview_security-host-sec}\n\nLinux capabilities define the actions a process can perform on the host system. By default, pods are granted several capabilities unless security measures are applied. These default capabilities are as follows:\n\n- `CHOWN`\n- `DAC_OVERRIDE`\n- `FSETID`\n- `FOWNER`\n- `SETGID`\n- `SETUID`\n- `SETPCAP`\n- `NET_BIND_SERVICE`\n- `KILL`\n\nYou can modify which capabilities that a pod can receive by configuring Security Context Constraints (SCCs).\n\n> [!IMPORTANT]\n> You must not assign the following capabilities to a pod:\n>\n> - `SYS_ADMIN`: A powerful capability that grants elevated privileges. Allowing this capability can break security boundaries and pose a significant security risk.\n> - `NET_ADMIN`: Allows control over networking, like SR-IOV ports, but can be replaced with alternative solutions in modern setups.\n>\n> For more information about Linux capabilities, see the [Linux capabilities](https://man7.org/linux/man-pages/man7/capabilities.7.html) man page.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/security/security-host-sec.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,20 +95,113 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="security-host-sec" class="group scroll-mt-20">Host security<a href="#security-host-sec" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/modules/security-rhcos-overview.md"></p>
+      <h2 id="security-rhcos-overview_security-host-sec" class="group scroll-mt-20">Red Hat Enterprise Linux CoreOS (RHCOS)<a href="#security-rhcos-overview_security-host-sec" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Red Hat Enterprise Linux CoreOS (RHCOS) is different from Red Hat Enterprise Linux (RHEL) in key areas. For more information, see "About RHCOS".</p>
+      <p>A major distinction is the control of <code>rpm-ostree</code>, which is updated through the Machine Config Operator.</p>
+      <p>RHCOS follows the same immutable design used for pods in OpenShift Container Platform. This ensures that the operating system remains consistent across the cluster. For information about RHCOS architecture, see "Red Hat Enterprise Linux CoreOS (RHCOS)".</p>
+      <p>To manage hosts effectively while maintaining security, avoid direct access whenever possible. Instead, you can use the following methods for host management:</p>
+      <ul>
+      <li>Debug pod</li>
+      <li>Direct SSH</li>
+      <li>Console access</li>
+      </ul>
+      <p>Review the following RHCOS security mechanisms that are integral to maintaining host security:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Linux namespaces</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Provide isolation for processes and resources. Each container keeps its processes and files within its own namespace. If a user escapes from the container namespace, they could gain access to the host operating system, potentially compromising security.</p></dd>
+      <dt class="font-semibold">Security-Enhanced Linux (SELinux)</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Enforces mandatory access controls to restrict access to files and directories by processes. SELinux adds an extra layer of security by preventing unauthorized access to files if a process tries to break its confinement.</p>
+      <p>SELinux follows the security policy of denying everything unless explicitly allowed. If a process attempts to modify or access a file without permission, SELinux denies access. For more information, see <a href="https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html-single/using_selinux/index#introduction-to-selinux_getting-started-with-selinux">Introduction to SELinux</a>.</p>
+      </dd>
+      <dt class="font-semibold">Linux capabilities</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Assign specific privileges to processes at a granular level, minimizing the need for full root permissions. For more information, see "Linux capabilities".</p></dd>
+      <dt class="font-semibold">Control groups (cgroups)</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Allocate and manage system resources, such as CPU and memory for processes and containers, ensuring efficient usage. As of OpenShift Container Platform 4.16, there are two versions of cgroups. cgroup v2 is now configured by default.</p></dd>
+      <dt class="font-semibold">CRI-O</dt>
+      <dd class="ml-6 text-muted-foreground"><p>Serves as a lightweight container runtime that enforces security boundaries and manages container workloads.</p></dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/architecture/architecture-rhcos#rhcos-about_architecture-rhcos">About RHCOS</a></li>
       <li><a href="/openshift-docs-markdown/architecture/architecture-rhcos">Red Hat Enterprise Linux CoreOS (RHCOS)</a></li>
       <li><a href="/openshift-docs-markdown/post_installation_configuration/day_2_core_cnf_clusters/security/security-host-sec#security-linux-capabilities-overview_security-host-sec">Linux capabilities</a></li>
       </ul>
+      <h2 id="security-command-line-host-access_security-host-sec" class="group scroll-mt-20">Command-line host access<a href="#security-command-line-host-access_security-host-sec" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure an external authenticator to restrict direct access and prevent unauthorized modifications. The Machine Config Operator (MCO) manages these logins and maintains consistency across your cluster.</p>
+      <p>Examples of external authenticators include lightweight directory access protocol (LDAP) and System Security Services Daemon (SSSD). If a node reboot leads to timeout issues, create a node disruption policy. With this policy, you can configure an external authenticator on a host without requiring a node reboot. For more information, see "Using node disruption policies to minimize disruption from machine config changes" in the <em>Additional resources</em> section.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Do not configure direct access to the root ID on any OpenShift Container Platform cluster server.</p>
+        </AlertDescription>
+      </Alert>
+      <p>You can connect to a node in the cluster by using the following methods:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">Using debug pod</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Red Hat recommends this method to access a node. To debug or connect to a node, run the following command:</p>
+      <CodeBlock code={"$ oc debug node/<worker_node_name>"} lang="terminal" />
+      <p>After connecting to the node, run the following command to get access to the root file system:</p>
+      <CodeBlock code={"# chroot /host"} lang="terminal" />
+      <p>This gives you root access within a debug pod on the node. For more information, see "Starting debug pods with root access".</p>
+      </dd>
+      <dt class="font-semibold">Direct SSH</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Avoid using the root user. Instead, use the core user ID (or your own ID). To connect to the node by using SSH, run the following command:</p>
+      <CodeBlock code={"$ ssh core@<worker_node_name>"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>The core user ID is initially given <code>sudo</code> privileges within the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If you cannot connect to a node by using SSH, add your SSH key to the core user. For more information, see "How to connect to OpenShift Container Platform 4.x Cluster nodes using SSH bastion pod" in the <em>Additional resources</em> section.</p>
+      <p>After connecting to the node using SSH, run the following command to get access to the root shell:</p>
+      <CodeBlock code={"$ sudo -i"} lang="terminal" />
+      </dd>
+      <dt class="font-semibold">Console Access</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Ensure that consoles are secure. Do not allow direct login with the root ID, instead use individual IDs.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Follow the best practices of your organization for securing console access.</p>
+        </AlertDescription>
+      </Alert>
+      </dd>
+      </dl>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/machine_configuration/machine-config-node-disruption#machine-configs-configure_machine-config-node-disruption">Using node disruption policies to minimize disruption from machine config changes</a></li>
       <li><a href="/openshift-docs-markdown/support/troubleshooting/investigating-pod-issues#starting-debug-pods-with-root-access_investigating-pod-issues">Starting debug pods with root access</a></li>
       <li><a href="https://access.redhat.com/solutions/4073041">How to connect to OpenShift Container Platform 4.x Cluster nodes using SSH bastion pod</a></li>
       </ul>
+      <h2 id="security-linux-capabilities-overview_security-host-sec" class="group scroll-mt-20">Linux capabilities<a href="#security-linux-capabilities-overview_security-host-sec" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Linux capabilities define the actions a process can perform on the host system. By default, pods are granted several capabilities unless security measures are applied. These default capabilities are as follows:</p>
+      <ul>
+      <li><code>CHOWN</code></li>
+      <li><code>DAC_OVERRIDE</code></li>
+      <li><code>FSETID</code></li>
+      <li><code>FOWNER</code></li>
+      <li><code>SETGID</code></li>
+      <li><code>SETUID</code></li>
+      <li><code>SETPCAP</code></li>
+      <li><code>NET_BIND_SERVICE</code></li>
+      <li><code>KILL</code></li>
+      </ul>
+      <p>You can modify which capabilities that a pod can receive by configuring Security Context Constraints (SCCs).</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>You must not assign the following capabilities to a pod:</p>
+          <ul>
+          <li><code>SYS_ADMIN</code>: A powerful capability that grants elevated privileges. Allowing this capability can break security boundaries and pose a significant security risk.</li>
+          <li><code>NET_ADMIN</code>: Allows control over networking, like SR-IOV ports, but can be replaced with alternative solutions in modern setups.</li>
+          </ul>
+          <p>For more information about Linux capabilities, see the <a href="https://man7.org/linux/man-pages/man7/capabilities.7.html">Linux capabilities</a> man page.</p>
+        </AlertDescription>
+      </Alert>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

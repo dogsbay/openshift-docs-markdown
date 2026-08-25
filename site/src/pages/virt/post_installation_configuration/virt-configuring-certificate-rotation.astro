@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-configuring-certificate-rotation","text":"Configuring certificate rotation"},{"depth":2,"slug":"additional-resources_virt-configuring-certificate-rotation","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-configuring-certificate-rotation","text":"Configuring certificate rotation"},{"depth":2,"slug":"virt-configuring-certificate-rotation_virt-configuring-certificate-rotation","text":"Configuring certificate rotation"},{"depth":2,"slug":"virt-troubleshooting-cert-rotation-parameters_virt-configuring-certificate-rotation","text":"Troubleshooting certificate rotation parameters"},{"depth":2,"slug":"additional-resources_virt-configuring-certificate-rotation","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/post_installation_configuration/virt-configuring-certificate-rotation";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["virt","virt/post_installation_configuration"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring certificate rotation {#virt-configuring-certificate-rotation}\n\nConfigure certificate rotation parameters to replace existing certificates.\n\n## Additional resources {#additional-resources_virt-configuring-certificate-rotation}\n\n- [golang `ParseDuration` format](https://golang.org/pkg/time/#ParseDuration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-configuring-certificate-rotation.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring certificate rotation {#virt-configuring-certificate-rotation}\n\nConfigure certificate rotation parameters to replace existing certificates.\n\n## Configuring certificate rotation {#virt-configuring-certificate-rotation_virt-configuring-certificate-rotation}\n\nYou can do this during OpenShift Virtualization installation in the web console or after installation in the `HyperConverged` custom resource (CR).\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Open the `HyperConverged` CR by running the following command:\n\n   ```terminal\n   $ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}\n   ```\n2. Edit the `spec.certConfig` fields as shown in the following example. To avoid overloading the system, ensure that all values are greater than or equal to 10 minutes. Express all values as strings that comply with the golang `ParseDuration` format.\n\n   ```yaml\n   apiVersion: hco.kubevirt.io/v1beta1\n   kind: HyperConverged\n   metadata:\n     name: kubevirt-hyperconverged\n     namespace: {{ CNVNamespace }}\n   spec:\n     certConfig:\n       ca:\n         duration: 48h0m0s\n         renewBefore: 24h0m0s\n       server:\n         duration: 24h0m0s\n         renewBefore: 12h0m0s\n   ```\n\n   - The value of `ca.renewBefore` must be less than or equal to the value of `ca.duration`.\n   - The value of `server.duration` must be less than or equal to the value of `ca.duration`.\n   - The value of `server.renewBefore` must be less than or equal to the value of `server.duration`.\n3. Apply updates to the `HyperConverged` CR by running the following command:\n\n   ```terminal\n   $ oc apply -f <filename>.yaml\n   ```\n\n   For example:\n\n   ```terminal\n   $ oc apply -f kubevirt-hyperconverged.yaml\n   ```\n\n## Troubleshooting certificate rotation parameters {#virt-troubleshooting-cert-rotation-parameters_virt-configuring-certificate-rotation}\n\nDeleting one or more `certConfig` values in the `HyperConverged` custom resource (CR) causes the `certConfig` values to revert to the default values.\n\nIf the default values conflict with one of the following conditions, you receive an error message instead:\n\n- The value of `ca.renewBefore` must be less than or equal to the value of `ca.duration`.\n- The value of `server.duration` must be less than or equal to the value of `ca.duration`.\n- The value of `server.renewBefore` must be less than or equal to the value of `server.duration`.\n\nFor example, if you remove the `server.duration` value, the default value of `24h0m0s` is greater than the value of `ca.duration`, which conflicts with the specified conditions:\n\n```yaml\napiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  # ...\n  certConfig:\n    ca:\n      duration: 4h0m0s\n      renewBefore: 1h0m0s\n    server:\n      duration: 4h0m0s\n      renewBefore: 4h0m0s\n# ...\n```\n\nThis results in the following error message:\n\n```terminal\nerror: hyperconvergeds.hco.kubevirt.io \"kubevirt-hyperconverged\" could not be patched: admission webhook \"validate-hco.kubevirt.io\" denied the request: spec.certConfig: ca.duration is smaller than server.duration\n```\n\nThe error message only mentions the first conflict. Review all `certConfig` values before you proceed.\n\n## Additional resources {#additional-resources_virt-configuring-certificate-rotation}\n\n- [golang `ParseDuration` format](https://golang.org/pkg/time/#ParseDuration)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/post_installation_configuration/virt-configuring-certificate-rotation.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +91,47 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-configuring-certificate-rotation" class="group scroll-mt-20">Configuring certificate rotation<a href="#virt-configuring-certificate-rotation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>Configure certificate rotation parameters to replace existing certificates.</p>
-      <p class="/modules/virt-troubleshooting-cert-rotation-parameters.md /modules/virt-configuring-certificate-rotation.md"></p>
+      <h2 id="virt-configuring-certificate-rotation_virt-configuring-certificate-rotation" class="group scroll-mt-20">Configuring certificate rotation<a href="#virt-configuring-certificate-rotation_virt-configuring-certificate-rotation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can do this during OpenShift Virtualization installation in the web console or after installation in the <code>HyperConverged</code> custom resource (CR).</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Open the <code>HyperConverged</code> CR by running the following command:
+      <CodeBlock code={"$ oc edit {{ HCOCliKind }} kubevirt-hyperconverged -n {{ CNVNamespace }}"} lang="terminal" />
+      </li>
+      <li>
+      Edit the <code>spec.certConfig</code> fields as shown in the following example. To avoid overloading the system, ensure that all values are greater than or equal to 10 minutes. Express all values as strings that comply with the golang <code>ParseDuration</code> format.
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  certConfig:\n    ca:\n      duration: 48h0m0s\n      renewBefore: 24h0m0s\n    server:\n      duration: 24h0m0s\n      renewBefore: 12h0m0s"} lang="yaml" />
+      <ul>
+      <li>The value of <code>ca.renewBefore</code> must be less than or equal to the value of <code>ca.duration</code>.</li>
+      <li>The value of <code>server.duration</code> must be less than or equal to the value of <code>ca.duration</code>.</li>
+      <li>The value of <code>server.renewBefore</code> must be less than or equal to the value of <code>server.duration</code>.</li>
+      </ul>
+      </li>
+      <li>
+      Apply updates to the <code>HyperConverged</code> CR by running the following command:
+      <CodeBlock code={"$ oc apply -f <filename>.yaml"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc apply -f kubevirt-hyperconverged.yaml"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="virt-troubleshooting-cert-rotation-parameters_virt-configuring-certificate-rotation" class="group scroll-mt-20">Troubleshooting certificate rotation parameters<a href="#virt-troubleshooting-cert-rotation-parameters_virt-configuring-certificate-rotation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Deleting one or more <code>certConfig</code> values in the <code>HyperConverged</code> custom resource (CR) causes the <code>certConfig</code> values to revert to the default values.</p>
+      <p>If the default values conflict with one of the following conditions, you receive an error message instead:</p>
+      <ul>
+      <li>The value of <code>ca.renewBefore</code> must be less than or equal to the value of <code>ca.duration</code>.</li>
+      <li>The value of <code>server.duration</code> must be less than or equal to the value of <code>ca.duration</code>.</li>
+      <li>The value of <code>server.renewBefore</code> must be less than or equal to the value of <code>server.duration</code>.</li>
+      </ul>
+      <p>For example, if you remove the <code>server.duration</code> value, the default value of <code>24h0m0s</code> is greater than the value of <code>ca.duration</code>, which conflicts with the specified conditions:</p>
+      <CodeBlock code={"apiVersion: hco.kubevirt.io/v1beta1\nkind: HyperConverged\nmetadata:\n  name: kubevirt-hyperconverged\n  namespace: {{ CNVNamespace }}\nspec:\n  # ...\n  certConfig:\n    ca:\n      duration: 4h0m0s\n      renewBefore: 1h0m0s\n    server:\n      duration: 4h0m0s\n      renewBefore: 4h0m0s\n# ..."} lang="yaml" />
+      <p>This results in the following error message:</p>
+      <CodeBlock code={"error: hyperconvergeds.hco.kubevirt.io \"kubevirt-hyperconverged\" could not be patched: admission webhook \"validate-hco.kubevirt.io\" denied the request: spec.certConfig: ca.duration is smaller than server.duration"} lang="terminal" />
+      <p>The error message only mentions the first conflict. Review all <code>certConfig</code> values before you proceed.</p>
       <h2 id="additional-resources_virt-configuring-certificate-rotation" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-configuring-certificate-rotation" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="https://golang.org/pkg/time/#ParseDuration">golang <code>ParseDuration</code> format</a></li></ul>
     </article>

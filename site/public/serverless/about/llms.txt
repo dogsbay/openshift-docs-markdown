@@ -2,4 +2,4 @@
 
 ## Serverless
 
-- [Serverless overview](https://dogsbay.github.io/openshift-docs-markdown/serverless/about/about-serverless.md)
+- [Serverless overview](https://dogsbay.github.io/openshift-docs-markdown/serverless/about/about-serverless.md): OpenShift Serverless provides Kubernetes native building blocks that enable developers to create and deploy serverless, event-driven applications on OpenShift…

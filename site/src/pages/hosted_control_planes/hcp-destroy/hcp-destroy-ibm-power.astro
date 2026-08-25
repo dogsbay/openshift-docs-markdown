@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"hcp-destroy-ibm-power","text":"Destroying a hosted cluster on {{ ibm_power_title }}"}];
+const headings = [{"depth":1,"slug":"hcp-destroy-ibm-power","text":"Destroying a hosted cluster on IBM Power"},{"depth":2,"slug":"destroy-hc-ibm-power-cli_hcp-destroy-ibm-power","text":"Destroying a hosted cluster on IBM Power by using the CLI"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-ibm-power";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["hosted_control_planes","hosted_control_planes/hcp-destroy
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Destroying a hosted cluster on {{ ibm_power_title }} {#hcp-destroy-ibm-power}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-ibm-power.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Destroying a hosted cluster on IBM Power {#hcp-destroy-ibm-power}\n\nYou might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.\n\n## Destroying a hosted cluster on IBM Power by using the CLI {#destroy-hc-ibm-power-cli_hcp-destroy-ibm-power}\n\nTo destroy a hosted cluster on IBM Power, you can use the hcp command-line interface (CLI).\n\n**Procedure**\n\n- Delete the hosted cluster by running the following command:\n\n  ```terminal\n  $ hcp destroy cluster agent\n   --name=<hosted_cluster_name> \\\n   --namespace=<hosted_cluster_namespace> \\\n   --cluster-grace-period <duration>\n  ```\n\n  - `<hosted_cluster_name>` specifies the name of your hosted cluster.\n  - `<hosted_cluster_namespace>` specifies the name of your hosted cluster namespace.\n  - `<duration>` specifies the duration to destroy the hosted cluster completely, for example, `20m0s`.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/hosted_control_planes/hcp-destroy/hcp-destroy-ibm-power.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,10 +91,22 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="hcp-destroy-ibm-power" class="group scroll-mt-20">Destroying a hosted cluster on {"{"}{"{"} ibm_power_title {"}"}{"}"}<a href="#hcp-destroy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <h1 id="hcp-destroy-ibm-power" class="group scroll-mt-20">Destroying a hosted cluster on IBM Power<a href="#hcp-destroy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You might want to remove a hosted cluster if you are no longer using it, you are trying to reduce resources, or the hosted cluster is experiencing issues that are difficult to resolve.</p>
-      <p class="/modules/destroy-hc-ibm-power-cli.md"></p>
+      <h2 id="destroy-hc-ibm-power-cli_hcp-destroy-ibm-power" class="group scroll-mt-20">Destroying a hosted cluster on IBM Power by using the CLI<a href="#destroy-hc-ibm-power-cli_hcp-destroy-ibm-power" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">To destroy a hosted cluster on IBM Power, you can use the hcp command-line interface (CLI).</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Delete the hosted cluster by running the following command:
+      <CodeBlock code={"$ hcp destroy cluster agent\n --name=<hosted_cluster_name> \\\n --namespace=<hosted_cluster_namespace> \\\n --cluster-grace-period <duration>"} lang="terminal" />
+      <ul>
+      <li><code>&lt;hosted_cluster_name&gt;</code> specifies the name of your hosted cluster.</li>
+      <li><code>&lt;hosted_cluster_namespace&gt;</code> specifies the name of your hosted cluster namespace.</li>
+      <li><code>&lt;duration&gt;</code> specifies the duration to destroy the hosted cluster completely, for example, <code>20m0s</code>.</li>
+      </ul>
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

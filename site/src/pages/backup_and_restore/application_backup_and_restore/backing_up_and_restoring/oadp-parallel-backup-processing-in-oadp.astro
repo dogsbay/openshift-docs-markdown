@@ -22,7 +22,7 @@ import TableHead from "@ui/table/TableHead.astro";
 import TableHeader from "@ui/table/TableHeader.astro";
 import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"oadp-parallel-backup-processing-in-oadp_{{ context }}","text":"Parallel backup processing in {{ oadp_short }}"}];
+const headings = [{"depth":1,"slug":"oadp-parallel-backup-processing-in-oadp_{{ context }}","text":"Parallel backup processing in OADP"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-parallel-backup-processing-in-oadp";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -32,7 +32,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Parallel backup processing in {{ oadp_short }}";
-const description = "With parallel backup processing in {{ oadp_full }}, you can back up several applications from different namespaces simultaneously. This concurrent…" || undefined;
+const description = "With parallel backup processing in OpenShift API for Data Protection, you can back up several applications from different namespaces simultaneously. This…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -45,7 +45,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Parallel backup processing in {{ oadp_short }} {#oadp-parallel-backup-processing-in-oadp_{{ context }}}\n\nWith parallel backup processing in {{ oadp_full }}, you can back up several applications from different namespaces simultaneously. This concurrent processing ensures that a single large backup task does not delay the backups for other applications in your cluster.\n\nBy default, Velero processes backup resources sequentially - one resource in the `InProgress` phase at a time. Parallel backup changes this behavior to handle backups concurrently.\n\nThe following considerations apply for enabling parallel backups in {{ oadp_short }}:\n\n- Resource allocation: Increasing the concurrency settings requires additional CPU and memory for the Velero container. Monitor resource consumption to ensure cluster stability.\n- Backup scope: Parallel processing provides the most benefit for backups that contain a large number of Kubernetes resources or many smaller volumes. Backups dominated by a few large volumes see less benefit because most time is spent waiting for asynchronous data movement to complete.\n- Namespace partitioning: To keep data integrity, {{ oadp_short }} uses namespace-level isolation when processing parallel backups. Two backups cannot run simultaneously if they share any included namespaces. **Parallel backup execution examples**\n\n  | Scenario | Included namespaces | Processing behavior |\n  | --- | --- | --- |\n  | Backup A and Backup B | `namespace1` and `namespace2` | Parallel: The namespaces are isolated. |\n  | Backup A and Backup B | `namespace1` and `namespace1` | Serialized: The shared namespace creates a lock. |\n  | Full cluster and Backup A | All namespaces and `namespace1` | Serialized: A cluster-wide backup includes all namespaces and locks the entire cluster. |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-parallel-backup-processing-in-oadp.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Parallel backup processing in OADP {#oadp-parallel-backup-processing-in-oadp_{{ context }}}\n\nWith parallel backup processing in OpenShift API for Data Protection, you can back up several applications from different namespaces simultaneously. This concurrent processing ensures that a single large backup task does not delay the backups for other applications in your cluster.\n\nBy default, Velero processes backup resources sequentially - one resource in the `InProgress` phase at a time. Parallel backup changes this behavior to handle backups concurrently.\n\nThe following considerations apply for enabling parallel backups in OADP:\n\n- Resource allocation: Increasing the concurrency settings requires additional CPU and memory for the Velero container. Monitor resource consumption to ensure cluster stability.\n- Backup scope: Parallel processing provides the most benefit for backups that contain a large number of Kubernetes resources or many smaller volumes. Backups dominated by a few large volumes see less benefit because most time is spent waiting for asynchronous data movement to complete.\n- Namespace partitioning: To keep data integrity, OADP uses namespace-level isolation when processing parallel backups. Two backups cannot run simultaneously if they share any included namespaces. **Parallel backup execution examples**\n\n  | Scenario | Included namespaces | Processing behavior |\n  | --- | --- | --- |\n  | Backup A and Backup B | `namespace1` and `namespace2` | Parallel: The namespaces are isolated. |\n  | Backup A and Backup B | `namespace1` and `namespace1` | Serialized: The shared namespace creates a lock. |\n  | Full cluster and Backup A | All namespaces and `namespace1` | Serialized: A cluster-wide backup includes all namespaces and locks the entire cluster. |\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/backing_up_and_restoring/oadp-parallel-backup-processing-in-oadp.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -81,7 +81,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -96,16 +96,15 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="oadp-parallel-backup-processing-in-oadp_{{ context }}" class="group scroll-mt-20">Parallel backup processing in {"{"}{"{"} oadp_short {"}"}{"}"}<a href="#oadp-parallel-backup-processing-in-oadp_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>With parallel backup processing in {"{"}{"{"} oadp_full {"}"}{"}"}, you can back up several applications from different namespaces simultaneously. This concurrent processing ensures that a single large backup task does not delay the backups for other applications in your cluster.</p>
+      <h1 id="oadp-parallel-backup-processing-in-oadp_{{ context }}" class="group scroll-mt-20">Parallel backup processing in OADP<a href="#oadp-parallel-backup-processing-in-oadp_{{ context }}" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>With parallel backup processing in OpenShift API for Data Protection, you can back up several applications from different namespaces simultaneously. This concurrent processing ensures that a single large backup task does not delay the backups for other applications in your cluster.</p>
       <p>By default, Velero processes backup resources sequentially - one resource in the <code>InProgress</code> phase at a time. Parallel backup changes this behavior to handle backups concurrently.</p>
-      <p>The following considerations apply for enabling parallel backups in {"{"}{"{"} oadp_short {"}"}{"}"}:</p>
+      <p>The following considerations apply for enabling parallel backups in OADP:</p>
       <ul>
       <li>Resource allocation: Increasing the concurrency settings requires additional CPU and memory for the Velero container. Monitor resource consumption to ensure cluster stability.</li>
       <li>Backup scope: Parallel processing provides the most benefit for backups that contain a large number of Kubernetes resources or many smaller volumes. Backups dominated by a few large volumes see less benefit because most time is spent waiting for asynchronous data movement to complete.</li>
       <li>
-      Namespace partitioning: To keep data integrity, {"{"}{"{"} oadp_short {"}"}{"}"} uses namespace-level isolation when processing parallel backups. Two backups cannot run simultaneously if they share any included namespaces. <strong>Parallel backup execution examples</strong>
+      Namespace partitioning: To keep data integrity, OADP uses namespace-level isolation when processing parallel backups. Two backups cannot run simultaneously if they share any included namespaces. <strong>Parallel backup execution examples</strong>
       <Table class="my-4">
       <TableHeader>
       <TableRow>

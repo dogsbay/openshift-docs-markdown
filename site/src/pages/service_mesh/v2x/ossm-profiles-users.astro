@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"ossm-profiles-users","text":"Managing users and profiles"}];
+const headings = [{"depth":1,"slug":"ossm-profiles-users","text":"Managing users and profiles"},{"depth":2,"slug":"ossm-members_ossm-profiles-users","text":"Creating the Red Hat OpenShift Service Mesh members"},{"depth":2,"slug":"ossm-control-plane-profiles_ossm-profiles-users","text":"Creating Service Mesh control plane profiles"},{"depth":3,"slug":"ossm-create-configmap_ossm-profiles-users","text":"Creating the ConfigMap"},{"depth":3,"slug":"ossm-config-network-policy_ossm-profiles-users","text":"Setting the correct network policy"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/service_mesh/v2x/ossm-profiles-users";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +27,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Managing users and profiles";
-const description = "" || undefined;
+const description = "ServiceMeshMember resources provide a way for Red Hat OpenShift Service Mesh administrators to delegate permissions to add projects to a service mesh…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +40,7 @@ const pageCategory = ["service_mesh","service_mesh/v2x"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing users and profiles {#ossm-profiles-users}\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-profiles-users.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Managing users and profiles {#ossm-profiles-users}\n\n## Creating the Red Hat OpenShift Service Mesh members {#ossm-members_ossm-profiles-users}\n\n`ServiceMeshMember` resources provide a way for Red Hat OpenShift Service Mesh administrators to delegate permissions to add projects to a service mesh, even when the respective users do not have direct access to the service mesh project or member roll. While project administrators are automatically given permission to create the `ServiceMeshMember` resource in their project, they cannot point it to any `ServiceMeshControlPlane` until the service mesh administrator explicitly grants access to the service mesh. Administrators can grant users permissions to access the mesh by granting them the `mesh-user` user role. In this example, `istio-system` is the name of the Service Mesh control plane project.\n\n```terminal\n$ oc policy add-role-to-user -n istio-system --role-namespace istio-system mesh-user <user_name>\n```\n\nAdministrators can modify the `mesh-user` role binding in the Service Mesh control plane project to specify the users and groups that are granted access. The `ServiceMeshMember` adds the project to the `ServiceMeshMemberRoll` within the Service Mesh control plane project that it references.\n\n```yaml\napiVersion: maistra.io/v1\nkind: ServiceMeshMember\nmetadata:\n  name: default\nspec:\n  controlPlaneRef:\n    namespace: istio-system\n    name: basic\n```\n\nThe `mesh-users` role binding is created automatically after the administrator creates the `ServiceMeshControlPlane` resource. An administrator can use the following command to add a role to a user.\n\n```terminal\n$ oc policy add-role-to-user\n```\n\nThe administrator can also create the `mesh-user` role binding before the administrator creates the `ServiceMeshControlPlane` resource. For example, the administrator can create it in the same `oc apply` operation as the `ServiceMeshControlPlane` resource.\n\nThis example adds a role binding for `alice`:\n\n```yaml\napiVersion: rbac.authorization.k8s.io/v1\nkind: RoleBinding\nmetadata:\n  namespace: istio-system\n  name: mesh-users\nroleRef:\n  apiGroup: rbac.authorization.k8s.io\n  kind: Role\n  name: mesh-user\nsubjects:\n- apiGroup: rbac.authorization.k8s.io\n  kind: User\n  name: alice\n```\n\n## Creating Service Mesh control plane profiles {#ossm-control-plane-profiles_ossm-profiles-users}\n\nYou can create reusable configurations with `ServiceMeshControlPlane` profiles. Individual users can extend the profiles they create with their own configurations. Profiles can also inherit configuration information from other profiles. For example, you can create an accounting control plane for the accounting team and a marketing control plane for the marketing team. If you create a development template and a production template, members of the marketing team and the accounting team can extend the development and production profiles with team-specific customization.\n\nWhen you configure Service Mesh control plane profiles, which follow the same syntax as the `ServiceMeshControlPlane`, users inherit settings in a hierarchical fashion. The Operator is delivered with a `default` profile with default settings for Red Hat OpenShift Service Mesh.\n\n### Creating the ConfigMap {#ossm-create-configmap_ossm-profiles-users}\n\nTo add custom profiles, you must create a `ConfigMap` named `smcp-templates` in the `openshift-operators` project. The Operator container automatically mounts the `ConfigMap`.\n\n**Prerequisites**\n\n- An installed, verified Service Mesh Operator.\n- An account with the `cluster-admin` role. If you use Red Hat OpenShift Dedicated, you must have an account with the `dedicated-admin` role.\n- Location of the Operator deployment.\n- Access to the OpenShift CLI (`oc`).\n\n**Procedure**\n\n1. Log in to the OpenShift Container Platform CLI as a `cluster-admin`. If you use Red Hat OpenShift Dedicated, you must have an account with the `dedicated-admin` role.\n2. From the CLI, run this command to create the ConfigMap named `smcp-templates` in the `openshift-operators` project and replace `<profiles-directory>` with the location of the `ServiceMeshControlPlane` files on your local disk:\n\n   ```terminal\n   $ oc create configmap --from-file=<profiles-directory> smcp-templates -n openshift-operators\n   ```\n3. You can use the `profiles` parameter in the `ServiceMeshControlPlane` to specify one or more templates.\n\n   ```yaml\n     apiVersion: maistra.io/v2\n     kind: ServiceMeshControlPlane\n     metadata:\n       name: basic\n     spec:\n       profiles:\n       - default\n   ```\n\n### Setting the correct network policy {#ossm-config-network-policy_ossm-profiles-users}\n\nService Mesh creates network policies in the Service Mesh control plane and member namespaces to allow traffic between them. Before you deploy, consider the following conditions to ensure the services in your service mesh that were previously exposed through an OpenShift Container Platform route.\n\n- Traffic into the service mesh must always go through the ingress-gateway for Istio to work properly.\n- Deploy services external to the service mesh in separate namespaces that are not in any service mesh.\n- Non-mesh services that need to be deployed within a service mesh enlisted namespace should label their deployments `maistra.io/expose-route: \"true\"`, which ensures OpenShift Container Platform routes to these services still work.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/service_mesh/v2x/ossm-profiles-users.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +92,47 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="ossm-profiles-users" class="group scroll-mt-20">Managing users and profiles<a href="#ossm-profiles-users" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p class="/modules/ossm-members.md"></p>
-      <p class="/modules/ossm-control-plane-profiles.md"></p>
-      <p class="/modules/ossm-config-network-policy.md"></p>
+      <h2 id="ossm-members_ossm-profiles-users" class="group scroll-mt-20">Creating the Red Hat OpenShift Service Mesh members<a href="#ossm-members_ossm-profiles-users" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p><code>ServiceMeshMember</code> resources provide a way for Red Hat OpenShift Service Mesh administrators to delegate permissions to add projects to a service mesh, even when the respective users do not have direct access to the service mesh project or member roll. While project administrators are automatically given permission to create the <code>ServiceMeshMember</code> resource in their project, they cannot point it to any <code>ServiceMeshControlPlane</code> until the service mesh administrator explicitly grants access to the service mesh. Administrators can grant users permissions to access the mesh by granting them the <code>mesh-user</code> user role. In this example, <code>istio-system</code> is the name of the Service Mesh control plane project.</p>
+      <CodeBlock code={"$ oc policy add-role-to-user -n istio-system --role-namespace istio-system mesh-user <user_name>"} lang="terminal" />
+      <p>Administrators can modify the <code>mesh-user</code> role binding in the Service Mesh control plane project to specify the users and groups that are granted access. The <code>ServiceMeshMember</code> adds the project to the <code>ServiceMeshMemberRoll</code> within the Service Mesh control plane project that it references.</p>
+      <CodeBlock code={"apiVersion: maistra.io/v1\nkind: ServiceMeshMember\nmetadata:\n  name: default\nspec:\n  controlPlaneRef:\n    namespace: istio-system\n    name: basic"} lang="yaml" />
+      <p>The <code>mesh-users</code> role binding is created automatically after the administrator creates the <code>ServiceMeshControlPlane</code> resource. An administrator can use the following command to add a role to a user.</p>
+      <CodeBlock code={"$ oc policy add-role-to-user"} lang="terminal" />
+      <p>The administrator can also create the <code>mesh-user</code> role binding before the administrator creates the <code>ServiceMeshControlPlane</code> resource. For example, the administrator can create it in the same <code>oc apply</code> operation as the <code>ServiceMeshControlPlane</code> resource.</p>
+      <p>This example adds a role binding for <code>alice</code>:</p>
+      <CodeBlock code={"apiVersion: rbac.authorization.k8s.io/v1\nkind: RoleBinding\nmetadata:\n  namespace: istio-system\n  name: mesh-users\nroleRef:\n  apiGroup: rbac.authorization.k8s.io\n  kind: Role\n  name: mesh-user\nsubjects:\n- apiGroup: rbac.authorization.k8s.io\n  kind: User\n  name: alice"} lang="yaml" />
+      <h2 id="ossm-control-plane-profiles_ossm-profiles-users" class="group scroll-mt-20">Creating Service Mesh control plane profiles<a href="#ossm-control-plane-profiles_ossm-profiles-users" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p>You can create reusable configurations with <code>ServiceMeshControlPlane</code> profiles. Individual users can extend the profiles they create with their own configurations. Profiles can also inherit configuration information from other profiles. For example, you can create an accounting control plane for the accounting team and a marketing control plane for the marketing team. If you create a development template and a production template, members of the marketing team and the accounting team can extend the development and production profiles with team-specific customization.</p>
+      <p>When you configure Service Mesh control plane profiles, which follow the same syntax as the <code>ServiceMeshControlPlane</code>, users inherit settings in a hierarchical fashion. The Operator is delivered with a <code>default</code> profile with default settings for Red Hat OpenShift Service Mesh.</p>
+      <h3 id="ossm-create-configmap_ossm-profiles-users" class="group scroll-mt-20">Creating the ConfigMap<a href="#ossm-create-configmap_ossm-profiles-users" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>To add custom profiles, you must create a <code>ConfigMap</code> named <code>smcp-templates</code> in the <code>openshift-operators</code> project. The Operator container automatically mounts the <code>ConfigMap</code>.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>An installed, verified Service Mesh Operator.</li>
+      <li>An account with the <code>cluster-admin</code> role. If you use Red Hat OpenShift Dedicated, you must have an account with the <code>dedicated-admin</code> role.</li>
+      <li>Location of the Operator deployment.</li>
+      <li>Access to the OpenShift CLI (<code>oc</code>).</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Log in to the OpenShift Container Platform CLI as a <code>cluster-admin</code>. If you use Red Hat OpenShift Dedicated, you must have an account with the <code>dedicated-admin</code> role.</li>
+      <li>
+      From the CLI, run this command to create the ConfigMap named <code>smcp-templates</code> in the <code>openshift-operators</code> project and replace <code>&lt;profiles-directory&gt;</code> with the location of the <code>ServiceMeshControlPlane</code> files on your local disk:
+      <CodeBlock code={"$ oc create configmap --from-file=<profiles-directory> smcp-templates -n openshift-operators"} lang="terminal" />
+      </li>
+      <li>
+      You can use the <code>profiles</code> parameter in the <code>ServiceMeshControlPlane</code> to specify one or more templates.
+      <CodeBlock code={"  apiVersion: maistra.io/v2\n  kind: ServiceMeshControlPlane\n  metadata:\n    name: basic\n  spec:\n    profiles:\n    - default"} lang="yaml" />
+      </li>
+      </ol>
+      <h3 id="ossm-config-network-policy_ossm-profiles-users" class="group scroll-mt-20">Setting the correct network policy<a href="#ossm-config-network-policy_ossm-profiles-users" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Service Mesh creates network policies in the Service Mesh control plane and member namespaces to allow traffic between them. Before you deploy, consider the following conditions to ensure the services in your service mesh that were previously exposed through an OpenShift Container Platform route.</p>
+      <ul>
+      <li>Traffic into the service mesh must always go through the ingress-gateway for Istio to work properly.</li>
+      <li>Deploy services external to the service mesh in separate namespaces that are not in any service mesh.</li>
+      <li>Non-mesh services that need to be deployed within a service mesh enlisted namespace should label their deployments <code>maistra.io/expose-route: "true"</code>, which ensures OpenShift Container Platform routes to these services still work.</li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

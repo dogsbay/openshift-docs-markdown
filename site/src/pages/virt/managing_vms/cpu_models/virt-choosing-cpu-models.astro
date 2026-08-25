@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"virt-choosing-cpu-models","text":"Choose a CPU model"}];
+const headings = [{"depth":1,"slug":"virt-choosing-cpu-models","text":"Choose a CPU model"},{"depth":2,"slug":"virt-about-host-model_virt-choosing-cpu-models","text":"Host-model CPU"},{"depth":3,"slug":"virt-cpu-model-homogeneous-clusters_virt-choosing-cpu-models","text":"Homogeneous clusters"},{"depth":3,"slug":"live-migration-with-host-model_virt-choosing-cpu-models","text":"Live migration with host-model"},{"depth":2,"slug":"virt-about-named-cpu-models_virt-choosing-cpu-models","text":"Named CPU models"},{"depth":3,"slug":"virt-cpu-model-heterogeneous-clusters_virt-choosing-cpu-models","text":"Heterogeneous clusters"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/cpu_models/virt-choosing-cpu-models";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +42,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/cpu_models"]
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Choose a CPU model {#virt-choosing-cpu-models}\n\nYou can choose an appropriate CPU model for your virtual machines based on your environment. The host-model CPU provides maximum performance and feature access in homogeneous clusters. CPU models ensure compatibility and migration flexibility in heterogeneous clusters with different CPU types.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/cpu_models/virt-choosing-cpu-models.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Choose a CPU model {#virt-choosing-cpu-models}\n\nYou can choose an appropriate CPU model for your virtual machines based on your environment. The host-model CPU provides maximum performance and feature access in homogeneous clusters. CPU models ensure compatibility and migration flexibility in heterogeneous clusters with different CPU types.\n\n## Host-model CPU {#virt-about-host-model_virt-choosing-cpu-models}\n\n`host-model` is the default CPU configuration. When a virtual machine instance (VMI) is created, libvirt selects the CPU model closest to the physical node’s CPU, including required features in the VMI’s domain definition.\n\nThe CPU model chosen by `host-model` is often not a standard named model supported by libvirt, which may  include additional CPU features. Libvirt creates a CPU definition that only includes the available features on the initial node. This approach ensures:\n\n- The VMI can start successfully on the initial node.\n- Future live migrations only require the subset of CPU features used in the host-model, even if target nodes have different or additional features.\n\n### Homogeneous clusters {#virt-cpu-model-homogeneous-clusters_virt-choosing-cpu-models}\n\nIn a homogeneous cluster, all nodes have similar CPU features. The `host-model` CPU model is recommended for homogeneous clusters, and provides the following benefits:\n\n- Provides VMs with the closest match to the physical CPU.\n- VMs can use all CPU features available on the nodes.\n- Live migration works smoothly because all nodes share the same CPU features.\n\n### Live migration with host-model {#live-migration-with-host-model_virt-choosing-cpu-models}\n\nSince the CPU model and features are determined by the initial node, all the host model required CPU features exposed to the VMI must also exist on any future live migration target nodes.\n\nOpenShift Virtualization ensures compatibility by:\n\n1. Detecting all `host-model-required-features.node.kubevirt.io/<cpuFeature>` labels on the initial node.\n2. Storing these labels per VMI.\n3. Using these same required CPU features to set node selectors for all future live migrations.\n\nThis approach guarantees that VM migrations only target nodes that provide the CPU features actually needed by the VMI.\n\n> [!IMPORTANT]\n> Target nodes may support more CPU features than required, but they must support at minimum all features used by the VMI.\n\n## Named CPU models {#virt-about-named-cpu-models_virt-choosing-cpu-models}\n\nNamed CPU models allow you to explicitly select a CPU type for a virtual machine (VM). You can configure a named CPU model at the VM level or set a cluster-wide default using the `HyperConverged` custom resource (CR).\n\nA node supports a named CPU model only if it includes all required CPU features defined by libvirt for that model. Nodes that support a specific CPU model are labeled with `cpu-model.node.kubevirt.io/<cpuModel>`. OpenShift Virtualization uses these labels to schedule VMs only to compatible nodes. When you configure a named CPU model, the VM receives a node selector that ensures it only runs on nodes labeled with that specific CPU model.\n\n### Heterogeneous clusters {#virt-cpu-model-heterogeneous-clusters_virt-choosing-cpu-models}\n\nIn a heterogeneous cluster, nodes have different CPU generations or feature sets.\n\nA virtual machine instance (VMI) inherits the host model CPU feature of the node where it is first scheduled. If the initial node has CPU features unsupported by other nodes, it can prevent the VM from being migrated to them.\n\nUsing a common named CPU model (for example, `EPYC-IBPB` or `Haswell`) is recommended for  CPU models in heterogeneous clusters, and provides the following benefits:\n\n- Ensures that all nodes selected for migration support the required CPU features.\n- Maximizes VM migratability across nodes with different CPU types.\n- Prevents scheduling VMs on nodes that cannot support live migration targets.\n\n> [!IMPORTANT]\n> In heterogeneous clusters, using `host-model` can limit live migration options if the initial scheduling node has host model required CPU features that are not available on all other nodes in the cluster.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/cpu_models/virt-choosing-cpu-models.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,11 +93,55 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-choosing-cpu-models" class="group scroll-mt-20">Choose a CPU model<a href="#virt-choosing-cpu-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You can choose an appropriate CPU model for your virtual machines based on your environment. The host-model CPU provides maximum performance and feature access in homogeneous clusters. CPU models ensure compatibility and migration flexibility in heterogeneous clusters with different CPU types.</p>
-      <p class="/modules/virt-about-host-model.md"></p>
-      <p class="/modules/virt-about-named-cpu-models.md"></p>
+      <h2 id="virt-about-host-model_virt-choosing-cpu-models" class="group scroll-mt-20">Host-model CPU<a href="#virt-about-host-model_virt-choosing-cpu-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract"><code>host-model</code> is the default CPU configuration. When a virtual machine instance (VMI) is created, libvirt selects the CPU model closest to the physical node’s CPU, including required features in the VMI’s domain definition.</p>
+      <p>The CPU model chosen by <code>host-model</code> is often not a standard named model supported by libvirt, which may  include additional CPU features. Libvirt creates a CPU definition that only includes the available features on the initial node. This approach ensures:</p>
+      <ul>
+      <li>The VMI can start successfully on the initial node.</li>
+      <li>Future live migrations only require the subset of CPU features used in the host-model, even if target nodes have different or additional features.</li>
+      </ul>
+      <h3 id="virt-cpu-model-homogeneous-clusters_virt-choosing-cpu-models" class="group scroll-mt-20">Homogeneous clusters<a href="#virt-cpu-model-homogeneous-clusters_virt-choosing-cpu-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>In a homogeneous cluster, all nodes have similar CPU features. The <code>host-model</code> CPU model is recommended for homogeneous clusters, and provides the following benefits:</p>
+      <ul>
+      <li>Provides VMs with the closest match to the physical CPU.</li>
+      <li>VMs can use all CPU features available on the nodes.</li>
+      <li>Live migration works smoothly because all nodes share the same CPU features.</li>
+      </ul>
+      <h3 id="live-migration-with-host-model_virt-choosing-cpu-models" class="group scroll-mt-20">Live migration with host-model<a href="#live-migration-with-host-model_virt-choosing-cpu-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Since the CPU model and features are determined by the initial node, all the host model required CPU features exposed to the VMI must also exist on any future live migration target nodes.</p>
+      <p>OpenShift Virtualization ensures compatibility by:</p>
+      <ol>
+      <li>Detecting all <code>host-model-required-features.node.kubevirt.io/&lt;cpuFeature&gt;</code> labels on the initial node.</li>
+      <li>Storing these labels per VMI.</li>
+      <li>Using these same required CPU features to set node selectors for all future live migrations.</li>
+      </ol>
+      <p>This approach guarantees that VM migrations only target nodes that provide the CPU features actually needed by the VMI.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>Target nodes may support more CPU features than required, but they must support at minimum all features used by the VMI.</p>
+        </AlertDescription>
+      </Alert>
+      <h2 id="virt-about-named-cpu-models_virt-choosing-cpu-models" class="group scroll-mt-20">Named CPU models<a href="#virt-about-named-cpu-models_virt-choosing-cpu-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Named CPU models allow you to explicitly select a CPU type for a virtual machine (VM). You can configure a named CPU model at the VM level or set a cluster-wide default using the <code>HyperConverged</code> custom resource (CR).</p>
+      <p>A node supports a named CPU model only if it includes all required CPU features defined by libvirt for that model. Nodes that support a specific CPU model are labeled with <code>cpu-model.node.kubevirt.io/&lt;cpuModel&gt;</code>. OpenShift Virtualization uses these labels to schedule VMs only to compatible nodes. When you configure a named CPU model, the VM receives a node selector that ensures it only runs on nodes labeled with that specific CPU model.</p>
+      <h3 id="virt-cpu-model-heterogeneous-clusters_virt-choosing-cpu-models" class="group scroll-mt-20">Heterogeneous clusters<a href="#virt-cpu-model-heterogeneous-clusters_virt-choosing-cpu-models" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>In a heterogeneous cluster, nodes have different CPU generations or feature sets.</p>
+      <p>A virtual machine instance (VMI) inherits the host model CPU feature of the node where it is first scheduled. If the initial node has CPU features unsupported by other nodes, it can prevent the VM from being migrated to them.</p>
+      <p>Using a common named CPU model (for example, <code>EPYC-IBPB</code> or <code>Haswell</code>) is recommended for  CPU models in heterogeneous clusters, and provides the following benefits:</p>
+      <ul>
+      <li>Ensures that all nodes selected for migration support the required CPU features.</li>
+      <li>Maximizes VM migratability across nodes with different CPU types.</li>
+      <li>Prevents scheduling VMs on nodes that cannot support live migration targets.</li>
+      </ul>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>In heterogeneous clusters, using <code>host-model</code> can limit live migration options if the initial scheduling node has host model required CPU features that are not available on all other nodes in the cluster.</p>
+        </AlertDescription>
+      </Alert>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

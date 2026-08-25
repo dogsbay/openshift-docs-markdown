@@ -18,8 +18,15 @@ const siteConfig = siteConfigData as SiteConfig;
 import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
+import Table from "@ui/table/Table.astro";
+import TableBody from "@ui/table/TableBody.astro";
+import TableCell from "@ui/table/TableCell.astro";
+import TableHead from "@ui/table/TableHead.astro";
+import TableHeader from "@ui/table/TableHeader.astro";
+import TableRow from "@ui/table/TableRow.astro";
 
-const headings = [{"depth":1,"slug":"adding-node-iso","text":"Adding worker nodes to an on-premise cluster"},{"depth":2,"slug":"additional-resources_adding-node-iso","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"adding-node-iso","text":"Adding worker nodes to an on-premise cluster"},{"depth":2,"slug":"adding-node-iso-yaml_adding-node-iso","text":"Adding one or more nodes using a configuration file"},{"depth":2,"slug":"adding-node-iso-flags_adding-node-iso","text":"Adding a node with command flags"},{"depth":2,"slug":"adding-node-iso-configs_adding-node-iso","text":"Cluster configuration reference"},{"depth":2,"slug":"additional-resources_adding-node-iso","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/nodes/nodes-nodes-adding-node-iso";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -42,7 +49,7 @@ const pageCategory = ["nodes","nodes/nodes"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Adding worker nodes to an on-premise cluster {#adding-node-iso}\n\nYou can add worker nodes to on-premise clusters by using the OpenShift CLI (`oc`) to generate an ISO image, which can then be used to boot one or more nodes in your target cluster. This process can be used regardless of how you installed your cluster.\n\nYou can add one or more nodes at a time while customizing each node with more complex configurations, such as static network configuration, or you can specify only the MAC address of each node. Any required configurations that are not specified during ISO generation are retrieved from the target cluster and applied to the new nodes.\n\n> [!NOTE]\n> `Machine` or `BareMetalHost` resources are not automatically created after a node has been successfully added to the cluster.\n\nPreflight validation checks are also performed when booting the ISO image to inform you of failure-causing issues before you attempt to boot each node.\n\nSupported platforms\n:   The following platforms are supported for this method of adding nodes:\n\n    - `baremetal`\n    - `vsphere`\n    - `nutanix`\n    - `none`\n\nSupported architectures\n:   The following architecture combinations have been validated to work when adding worker nodes using this process:\n\n- `amd64` worker nodes on `amd64` or `arm64` clusters\n- `arm64` worker nodes on `amd64` or `arm64` clusters\n- `s390x` worker nodes on `s390x` clusters\n- `ppc64le` worker nodes on `ppc64le` clusters\n\nAdding nodes to your cluster\n:   You can add nodes with this method in the following two ways:\n\n- Adding one or more nodes using a configuration file.\n\n  You can specify configurations for one or more nodes in the `nodes-config.yaml` file before running the `oc adm node-image create` command. This is useful if you want to add more than one node at a time, or if you are specifying complex configurations.\n- Adding a single node using only command flags.\n\n  You can add a node by running the `oc adm node-image create` command with flags to specify your configurations. This is useful if you want to add only a single node at a time, and have only simple configurations to specify for that node.\n\n## Additional resources {#additional-resources_adding-node-iso}\n\n- [Root device hints](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#root-device-hints_ipi-install-installation-workflow)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-adding-node-iso.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Adding worker nodes to an on-premise cluster {#adding-node-iso}\n\nYou can add worker nodes to on-premise clusters by using the OpenShift CLI (`oc`) to generate an ISO image, which can then be used to boot one or more nodes in your target cluster. This process can be used regardless of how you installed your cluster.\n\nYou can add one or more nodes at a time while customizing each node with more complex configurations, such as static network configuration, or you can specify only the MAC address of each node. Any required configurations that are not specified during ISO generation are retrieved from the target cluster and applied to the new nodes.\n\n> [!NOTE]\n> `Machine` or `BareMetalHost` resources are not automatically created after a node has been successfully added to the cluster.\n\nPreflight validation checks are also performed when booting the ISO image to inform you of failure-causing issues before you attempt to boot each node.\n\nSupported platforms\n:   The following platforms are supported for this method of adding nodes:\n\n    - `baremetal`\n    - `vsphere`\n    - `nutanix`\n    - `none`\n\nSupported architectures\n:   The following architecture combinations have been validated to work when adding worker nodes using this process:\n\n- `amd64` worker nodes on `amd64` or `arm64` clusters\n- `arm64` worker nodes on `amd64` or `arm64` clusters\n- `s390x` worker nodes on `s390x` clusters\n- `ppc64le` worker nodes on `ppc64le` clusters\n\nAdding nodes to your cluster\n:   You can add nodes with this method in the following two ways:\n\n- Adding one or more nodes using a configuration file.\n\n  You can specify configurations for one or more nodes in the `nodes-config.yaml` file before running the `oc adm node-image create` command. This is useful if you want to add more than one node at a time, or if you are specifying complex configurations.\n- Adding a single node using only command flags.\n\n  You can add a node by running the `oc adm node-image create` command with flags to specify your configurations. This is useful if you want to add only a single node at a time, and have only simple configurations to specify for that node.\n\n## Adding one or more nodes using a configuration file {#adding-node-iso-yaml_adding-node-iso}\n\nYou can add one or more nodes to your cluster by using the `nodes-config.yaml` file to specify configurations for the new nodes.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`)\n- You have installed the Rsync utility\n- You have an active connection to your target cluster\n- You have a kubeconfig file available\n\n**Procedure**\n\n1. Create a new YAML file that contains configurations for the nodes you are adding and is named `nodes-config.yaml`. You must provide a MAC address for each new node.\n\n   In the following example file, two new workers are described with an initial static network configuration:\n\n   ```yaml {title=\"Example nodes-config.yaml file\"}\n   hosts:\n   - hostname: extra-worker-1\n     rootDeviceHints:\n      deviceName: /dev/sda\n     interfaces:\n      - macAddress: 00:00:00:00:00:00\n        name: eth0\n     networkConfig:\n      interfaces:\n        - name: eth0\n          type: ethernet\n          state: up\n          mac-address: 00:00:00:00:00:00\n          ipv4:\n            enabled: true\n            address:\n              - ip: 192.168.122.2\n                prefix-length: 23\n            dhcp: false\n   - hostname: extra-worker-2\n     rootDeviceHints:\n      deviceName: /dev/sda\n     interfaces:\n      - macAddress: 00:00:00:00:00:02\n        name: eth0\n     networkConfig:\n      interfaces:\n        - name: eth0\n          type: ethernet\n          state: up\n          mac-address: 00:00:00:00:00:02\n          ipv4:\n            enabled: true\n            address:\n              - ip: 192.168.122.3\n                prefix-length: 23\n            dhcp: false\n   ```\n2. Generate the ISO image by running the following command:\n\n   ```terminal\n   $ oc adm node-image create\n   ```\n\n   > [!IMPORTANT]\n   > In order for the `create` command to fetch a release image that matches the target cluster version, you must specify a valid pull secret. You can specify the pull secret either by using the `--registry-config` flag or by setting the `REGISTRY_AUTH_FILE` environment variable beforehand.\n\n   > [!NOTE]\n   > If the directory of the `nodes-config.yaml` file is not specified by using the `--dir` flag, the tool looks for the file in the current directory.\n3. Verify that a new `node.<arch>.iso` file is present in the asset directory. The asset directory is your current directory, unless you specified a different one when creating the ISO image.\n4. Boot the selected node with the generated ISO image.\n5. Track progress of the node creation by running the following command:\n\n   ```terminal\n   $ oc adm node-image monitor --ip-addresses <ip_addresses>\n   ```\n\n   where:\n\n   `<ip_addresses>`\n   :   Specifies a list of the IP addresses of the nodes that are being added.\n\n   > [!NOTE]\n   > If reverse DNS entries are not available for your node, the `oc adm node-image monitor` command skips checks for pending certificate signing requests (CSRs). If these checks are skipped, you must manually check for CSRs by running the `oc get csr` command.\n6. Approve the CSRs by running the following command for each CSR:\n\n   ```terminal\n   $ oc adm certificate approve <csr_name>\n   ```\n\n## Adding a node with command flags {#adding-node-iso-flags_adding-node-iso}\n\nYou can add a single node to your cluster by using command flags to specify configurations for the new node.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`)\n- You have installed the Rsync utility\n- You have an active connection to your target cluster\n- You have a kubeconfig file available\n\n**Procedure**\n\n1. Generate the ISO image by running the following command. The MAC address must be specified using a command flag. See the \"Cluster configuration reference\" section for more flags that you can use with this command.\n\n   ```terminal\n   $ oc adm node-image create --mac-address=<mac_address>\n   ```\n\n   where:\n\n   `<mac_address>`\n   :   Specifies the MAC address of the node that is being added.\n\n   > [!IMPORTANT]\n   > In order for the `create` command to fetch a release image that matches the target cluster version, you must specify a valid pull secret. You can specify the pull secret either by using the `--registry-config` flag or by setting the `REGISTRY_AUTH_FILE` environment variable beforehand.\n\n   > [!TIP]\n   > To see additional flags that can be used to configure your node, run the following `oc adm node-image create --help` command.\n2. Verify that a new `node.<arch>.iso` file is present in the asset directory. The asset directory is your current directory, unless you specified a different one when creating the ISO image.\n3. Boot the node with the generated ISO image.\n4. Track progress of the node creation by running the following command:\n\n   ```terminal\n   $ oc adm node-image monitor --ip-addresses <ip_address>\n   ```\n\n   where:\n\n   `<ip_address>`\n   :   Specifies a list of the IP addresses of the nodes that are being added.\n\n   > [!NOTE]\n   > If reverse DNS entries are not available for your node, the `oc adm node-image monitor` command skips checks for pending certificate signing requests (CSRs). If these checks are skipped, you must manually check for CSRs by running the `oc get csr` command.\n5. Approve the pending CSRs by running the following command for each CSR:\n\n   ```terminal\n   $ oc adm certificate approve <csr_name>\n   ```\n\n## Cluster configuration reference {#adding-node-iso-configs_adding-node-iso}\n\nWhen creating the ISO image, configurations are retrieved from the target cluster and are applied to the new nodes. You can override these configurations by specifying new values in either the `nodes-config.yaml` file or any flags you add to the `oc adm node-image create` command before you create the ISO image.\n\nYAML file parameters\n:   Configuration parameters that can be specified in the `nodes-config.yaml` file are described in the following table: `nodes-config.yaml`** parameters**\n\n    | Parameter | Description | Values |\n    | --- | --- | --- |\n    | hosts: | Host configuration. | An array of host configuration objects. |\n    | hosts:   hostname: | Hostname. Overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods, although configuring a hostname through this parameter is optional. | String. |\n    | hosts:   interfaces: | Provides a table of the name and MAC address mappings for the interfaces on the host. If a `NetworkConfig` section is provided in the `nodes-config.yaml` file, this table must be included and the values must match the mappings provided in the `NetworkConfig` section. | An array of host configuration objects. |\n    | hosts:   interfaces:     name: | The name of an interface on the host. | String. |\n    | hosts:   interfaces:     macAddress: | The MAC address of an interface on the host. | A MAC address such as the following example: `00-B0-D0-63-C2-26`. |\n    | hosts:   rootDeviceHints: | Enables provisioning of the Red Hat Enterprise Linux CoreOS (RHCOS) image to a particular device. The node-adding tool examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value. | A dictionary of key-value pairs. For more information, see \"Root device hints\" in the \"Setting up the environment for an OpenShift installation\" page. |\n    | hosts:   rootDeviceHints:     deviceName: | The name of the device the RHCOS image is provisioned to. | String. |\n    | hosts:   networkConfig: | The host network definition. The configuration must match the Host Network Management API defined in the [nmstate documentation](https://nmstate.io/). | A dictionary of host network configuration objects. |\n    | cpuArchitecture: | Optional. Specifies the architecture of the nodes you are adding. This parameter allows you to override the default value from the cluster when required. | String. |\n    | sshKey: | Optional. The file containing the SSH key to authenticate access to your cluster machines. | String. |\n    | bootArtifactsBaseURL: | Optional. Specifies the URL of the server to upload Preboot Execution Environment (PXE) assets to when you are generating an iPXE script. You must also set the `--pxe` flag to generate PXE assets instead of an ISO image. | String. |\n\nCommand flag options\n:   You can use command flags with the `oc adm node-image create` command to configure the nodes you are creating.\n\n    The following table describes command flags that are not limited to the single-node use case: **General command flags**\n\n    | Flag | Description | Values |\n    | --- | --- | --- |\n    | `--certificate-authority` | The path to a certificate authority bundle to use when communicating with the managed container image registries. If the `--insecure` flag is used, this flag is ignored. | String |\n    | `--dir` | The path containing the configuration file, if provided. This path is also used to store the generated artifacts. | String |\n    | `--insecure` | Allows push and pull operations to registries to be made over HTTP. | Boolean |\n    | `-o`, `--output-name` | The name of the generated output image. | String |\n    | `p`, `--pxe` | Generates Preboot Execution Environment (PXE) assets instead of a bootable ISO file. When this flag is set, you can also use the `bootArtifactsBaseURL` parameter in the `nodes-config.yaml` file to specify URL of the server you will upload PXE assets to. | Boolean |\n    | `-a`, `--registry-config` | The path to your registry credentials. Alternatively, you can specify the `REGISTRY_AUTH_FILE` environment variable. The default paths are `${{ XDG_RUNTIME_DIR }}/containers/auth.json`, `/run/containers/${{ UID }}/auth.json`, `${{ XDG_CONFIG_HOME }}/containers/auth.json`, `${{ DOCKER_CONFIG }}`, `~/.docker/config.json`, `~/.dockercfg.` The order can be changed through the deprecated `REGISTRY_AUTH_PREFERENCE` environment variable to a \"docker\" value, in order to prioritize Docker credentials over Podman. | String |\n    | `-r`, `--report` | Generates a report of the node creation process regardless of whether the process is successful or not. If you do not specify this flag, reports are generated only in cases of failure. | Boolean |\n    | `--skip-verification` | An option to skip verifying the integrity of the retrieved content. This is not recommended, but might be necessary when importing images from older image registries. Bypass verification only if the registry is known to be trustworthy. | Boolean |\n\n    The following table describes command flags that can be used only when creating a single node: **Single-node only command flags**\n\n    | Flag | Description | Values |\n    | --- | --- | --- |\n    | `-c`, `--cpu-architecture` | The CPU architecture to be used to install the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |\n    | `--hostname` | The hostname to be set for the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |\n    | `-m`, `--mac-address` | The MAC address used to identify the host to apply configurations to. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |\n    | `--network-config-path` | The path to a YAML file containing NMState configurations to be applied to the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |\n    | `--root-device-hint` | A hint for specifying the storage location for the image root filesystem. The accepted format is `<hint_name>:<value>`. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |\n    | `-k`, `--ssh-key-path` | The path to the SSH key used to access the node. This flag can be used to create only a single node, and the `--mac-address` flag must be defined. | String |\n\n## Additional resources {#additional-resources_adding-node-iso}\n\n- [Root device hints](/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#root-device-hints_ipi-install-installation-workflow)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/nodes/nodes-nodes-adding-node-iso.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -94,7 +101,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="adding-node-iso" class="group scroll-mt-20">Adding worker nodes to an on-premise cluster<a href="#adding-node-iso" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can add worker nodes to on-premise clusters by using the OpenShift CLI (<code>oc</code>) to generate an ISO image, which can then be used to boot one or more nodes in your target cluster. This process can be used regardless of how you installed your cluster.</p>
       <p>You can add one or more nodes at a time while customizing each node with more complex configurations, such as static network configuration, or you can specify only the MAC address of each node. Any required configurations that are not specified during ISO generation are retrieved from the target cluster and applied to the new nodes.</p>
       <Alert variant="note" class="my-4">
@@ -138,8 +144,286 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <p>You can add a node by running the <code>oc adm node-image create</code> command with flags to specify your configurations. This is useful if you want to add only a single node at a time, and have only simple configurations to specify for that node.</p>
       </li>
       </ul>
-      <p class="/modules/adding-node-iso-flags.md"></p>
-      <p class="/modules/adding-node-iso-configs.md"></p>
+      <h2 id="adding-node-iso-yaml_adding-node-iso" class="group scroll-mt-20">Adding one or more nodes using a configuration file<a href="#adding-node-iso-yaml_adding-node-iso" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add one or more nodes to your cluster by using the <code>nodes-config.yaml</code> file to specify configurations for the new nodes.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>)</li>
+      <li>You have installed the Rsync utility</li>
+      <li>You have an active connection to your target cluster</li>
+      <li>You have a kubeconfig file available</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a new YAML file that contains configurations for the nodes you are adding and is named <code>nodes-config.yaml</code>. You must provide a MAC address for each new node.
+      <p>In the following example file, two new workers are described with an initial static network configuration:</p>
+      <CodeBlock code={"hosts:\n- hostname: extra-worker-1\n  rootDeviceHints:\n   deviceName: /dev/sda\n  interfaces:\n   - macAddress: 00:00:00:00:00:00\n     name: eth0\n  networkConfig:\n   interfaces:\n     - name: eth0\n       type: ethernet\n       state: up\n       mac-address: 00:00:00:00:00:00\n       ipv4:\n         enabled: true\n         address:\n           - ip: 192.168.122.2\n             prefix-length: 23\n         dhcp: false\n- hostname: extra-worker-2\n  rootDeviceHints:\n   deviceName: /dev/sda\n  interfaces:\n   - macAddress: 00:00:00:00:00:02\n     name: eth0\n  networkConfig:\n   interfaces:\n     - name: eth0\n       type: ethernet\n       state: up\n       mac-address: 00:00:00:00:00:02\n       ipv4:\n         enabled: true\n         address:\n           - ip: 192.168.122.3\n             prefix-length: 23\n         dhcp: false"} lang="yaml" title="Example nodes-config.yaml file" />
+      </li>
+      <li>
+      Generate the ISO image by running the following command:
+      <CodeBlock code={"$ oc adm node-image create"} lang="terminal" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>In order for the <code>create</code> command to fetch a release image that matches the target cluster version, you must specify a valid pull secret. You can specify the pull secret either by using the <code>--registry-config</code> flag or by setting the <code>REGISTRY_AUTH_FILE</code> environment variable beforehand.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If the directory of the <code>nodes-config.yaml</code> file is not specified by using the <code>--dir</code> flag, the tool looks for the file in the current directory.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Verify that a new <code>node.&lt;arch&gt;.iso</code> file is present in the asset directory. The asset directory is your current directory, unless you specified a different one when creating the ISO image.</li>
+      <li>Boot the selected node with the generated ISO image.</li>
+      <li>
+      Track progress of the node creation by running the following command:
+      <CodeBlock code={"$ oc adm node-image monitor --ip-addresses <ip_addresses>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;ip_addresses&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a list of the IP addresses of the nodes that are being added.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If reverse DNS entries are not available for your node, the <code>oc adm node-image monitor</code> command skips checks for pending certificate signing requests (CSRs). If these checks are skipped, you must manually check for CSRs by running the <code>oc get csr</code> command.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Approve the CSRs by running the following command for each CSR:
+      <CodeBlock code={"$ oc adm certificate approve <csr_name>"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="adding-node-iso-flags_adding-node-iso" class="group scroll-mt-20">Adding a node with command flags<a href="#adding-node-iso-flags_adding-node-iso" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can add a single node to your cluster by using command flags to specify configurations for the new node.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have installed the OpenShift CLI (<code>oc</code>)</li>
+      <li>You have installed the Rsync utility</li>
+      <li>You have an active connection to your target cluster</li>
+      <li>You have a kubeconfig file available</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Generate the ISO image by running the following command. The MAC address must be specified using a command flag. See the "Cluster configuration reference" section for more flags that you can use with this command.
+      <CodeBlock code={"$ oc adm node-image create --mac-address=<mac_address>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;mac_address&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the MAC address of the node that is being added.</p></dd>
+      </dl>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>In order for the <code>create</code> command to fetch a release image that matches the target cluster version, you must specify a valid pull secret. You can specify the pull secret either by using the <code>--registry-config</code> flag or by setting the <code>REGISTRY_AUTH_FILE</code> environment variable beforehand.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="tip" class="my-4">
+        <AlertTitle>Tip</AlertTitle>
+        <AlertDescription>
+          <p>To see additional flags that can be used to configure your node, run the following <code>oc adm node-image create --help</code> command.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>Verify that a new <code>node.&lt;arch&gt;.iso</code> file is present in the asset directory. The asset directory is your current directory, unless you specified a different one when creating the ISO image.</li>
+      <li>Boot the node with the generated ISO image.</li>
+      <li>
+      Track progress of the node creation by running the following command:
+      <CodeBlock code={"$ oc adm node-image monitor --ip-addresses <ip_address>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;ip_address&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies a list of the IP addresses of the nodes that are being added.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If reverse DNS entries are not available for your node, the <code>oc adm node-image monitor</code> command skips checks for pending certificate signing requests (CSRs). If these checks are skipped, you must manually check for CSRs by running the <code>oc get csr</code> command.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      <li>
+      Approve the pending CSRs by running the following command for each CSR:
+      <CodeBlock code={"$ oc adm certificate approve <csr_name>"} lang="terminal" />
+      </li>
+      </ol>
+      <h2 id="adding-node-iso-configs_adding-node-iso" class="group scroll-mt-20">Cluster configuration reference<a href="#adding-node-iso-configs_adding-node-iso" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">When creating the ISO image, configurations are retrieved from the target cluster and are applied to the new nodes. You can override these configurations by specifying new values in either the <code>nodes-config.yaml</code> file or any flags you add to the <code>oc adm node-image create</code> command before you create the ISO image.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">YAML file parameters</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>Configuration parameters that can be specified in the <code>nodes-config.yaml</code> file are described in the following table: <code>nodes-config.yaml</code><strong> parameters</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Parameter</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Values</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell>hosts:</TableCell>
+      <TableCell>Host configuration.</TableCell>
+      <TableCell>An array of host configuration objects.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>hosts:   hostname:</TableCell>
+      <TableCell>Hostname. Overrides the hostname obtained from either the Dynamic Host Configuration Protocol (DHCP) or a reverse DNS lookup. Each host must have a unique hostname supplied by one of these methods, although configuring a hostname through this parameter is optional.</TableCell>
+      <TableCell>String.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>hosts:   interfaces:</TableCell>
+      <TableCell>Provides a table of the name and MAC address mappings for the interfaces on the host. If a <code>NetworkConfig</code> section is provided in the <code>nodes-config.yaml</code> file, this table must be included and the values must match the mappings provided in the <code>NetworkConfig</code> section.</TableCell>
+      <TableCell>An array of host configuration objects.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>hosts:   interfaces:     name:</TableCell>
+      <TableCell>The name of an interface on the host.</TableCell>
+      <TableCell>String.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>hosts:   interfaces:     macAddress:</TableCell>
+      <TableCell>The MAC address of an interface on the host.</TableCell>
+      <TableCell>A MAC address such as the following example: <code>00-B0-D0-63-C2-26</code>.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>hosts:   rootDeviceHints:</TableCell>
+      <TableCell>Enables provisioning of the Red Hat Enterprise Linux CoreOS (RHCOS) image to a particular device. The node-adding tool examines the devices in the order it discovers them, and compares the discovered values with the hint values. It uses the first discovered device that matches the hint value.</TableCell>
+      <TableCell>A dictionary of key-value pairs. For more information, see "Root device hints" in the "Setting up the environment for an OpenShift installation" page.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>hosts:   rootDeviceHints:     deviceName:</TableCell>
+      <TableCell>The name of the device the RHCOS image is provisioned to.</TableCell>
+      <TableCell>String.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>hosts:   networkConfig:</TableCell>
+      <TableCell>The host network definition. The configuration must match the Host Network Management API defined in the <a href="https://nmstate.io/">nmstate documentation</a>.</TableCell>
+      <TableCell>A dictionary of host network configuration objects.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>cpuArchitecture:</TableCell>
+      <TableCell>Optional. Specifies the architecture of the nodes you are adding. This parameter allows you to override the default value from the cluster when required.</TableCell>
+      <TableCell>String.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>sshKey:</TableCell>
+      <TableCell>Optional. The file containing the SSH key to authenticate access to your cluster machines.</TableCell>
+      <TableCell>String.</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell>bootArtifactsBaseURL:</TableCell>
+      <TableCell>Optional. Specifies the URL of the server to upload Preboot Execution Environment (PXE) assets to when you are generating an iPXE script. You must also set the <code>--pxe</code> flag to generate PXE assets instead of an ISO image.</TableCell>
+      <TableCell>String.</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      </dd>
+      <dt class="font-semibold">Command flag options</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <p>You can use command flags with the <code>oc adm node-image create</code> command to configure the nodes you are creating.</p>
+      <p>The following table describes command flags that are not limited to the single-node use case: <strong>General command flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Values</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>--certificate-authority</code></TableCell>
+      <TableCell>The path to a certificate authority bundle to use when communicating with the managed container image registries. If the <code>--insecure</code> flag is used, this flag is ignored.</TableCell>
+      <TableCell>String</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--dir</code></TableCell>
+      <TableCell>The path containing the configuration file, if provided. This path is also used to store the generated artifacts.</TableCell>
+      <TableCell>String</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--insecure</code></TableCell>
+      <TableCell>Allows push and pull operations to registries to be made over HTTP.</TableCell>
+      <TableCell>Boolean</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-o</code>, <code>--output-name</code></TableCell>
+      <TableCell>The name of the generated output image.</TableCell>
+      <TableCell>String</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>p</code>, <code>--pxe</code></TableCell>
+      <TableCell>Generates Preboot Execution Environment (PXE) assets instead of a bootable ISO file. When this flag is set, you can also use the <code>bootArtifactsBaseURL</code> parameter in the <code>nodes-config.yaml</code> file to specify URL of the server you will upload PXE assets to.</TableCell>
+      <TableCell>Boolean</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-a</code>, <code>--registry-config</code></TableCell>
+      <TableCell>The path to your registry credentials. Alternatively, you can specify the <code>REGISTRY_AUTH_FILE</code> environment variable. The default paths are <code>${"{"}{"{"} XDG_RUNTIME_DIR {"}"}{"}"}/containers/auth.json</code>, <code>/run/containers/${"{"}{"{"} UID {"}"}{"}"}/auth.json</code>, <code>${"{"}{"{"} XDG_CONFIG_HOME {"}"}{"}"}/containers/auth.json</code>, <code>${"{"}{"{"} DOCKER_CONFIG {"}"}{"}"}</code>, <code>~/.docker/config.json</code>, <code>~/.dockercfg.</code> The order can be changed through the deprecated <code>REGISTRY_AUTH_PREFERENCE</code> environment variable to a "docker" value, in order to prioritize Docker credentials over Podman.</TableCell>
+      <TableCell>String</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-r</code>, <code>--report</code></TableCell>
+      <TableCell>Generates a report of the node creation process regardless of whether the process is successful or not. If you do not specify this flag, reports are generated only in cases of failure.</TableCell>
+      <TableCell>Boolean</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--skip-verification</code></TableCell>
+      <TableCell>An option to skip verifying the integrity of the retrieved content. This is not recommended, but might be necessary when importing images from older image registries. Bypass verification only if the registry is known to be trustworthy.</TableCell>
+      <TableCell>Boolean</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      <p>The following table describes command flags that can be used only when creating a single node: <strong>Single-node only command flags</strong></p>
+      <Table class="my-4">
+      <TableHeader>
+      <TableRow>
+      <TableHead>Flag</TableHead>
+      <TableHead>Description</TableHead>
+      <TableHead>Values</TableHead>
+      </TableRow>
+      </TableHeader>
+      <TableBody>
+      <TableRow>
+      <TableCell><code>-c</code>, <code>--cpu-architecture</code></TableCell>
+      <TableCell>The CPU architecture to be used to install the node. This flag can be used to create only a single node, and the <code>--mac-address</code> flag must be defined.</TableCell>
+      <TableCell>String</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--hostname</code></TableCell>
+      <TableCell>The hostname to be set for the node. This flag can be used to create only a single node, and the <code>--mac-address</code> flag must be defined.</TableCell>
+      <TableCell>String</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-m</code>, <code>--mac-address</code></TableCell>
+      <TableCell>The MAC address used to identify the host to apply configurations to. This flag can be used to create only a single node, and the <code>--mac-address</code> flag must be defined.</TableCell>
+      <TableCell>String</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--network-config-path</code></TableCell>
+      <TableCell>The path to a YAML file containing NMState configurations to be applied to the node. This flag can be used to create only a single node, and the <code>--mac-address</code> flag must be defined.</TableCell>
+      <TableCell>String</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>--root-device-hint</code></TableCell>
+      <TableCell>A hint for specifying the storage location for the image root filesystem. The accepted format is <code>&lt;hint_name&gt;:&lt;value&gt;</code>. This flag can be used to create only a single node, and the <code>--mac-address</code> flag must be defined.</TableCell>
+      <TableCell>String</TableCell>
+      </TableRow>
+      <TableRow>
+      <TableCell><code>-k</code>, <code>--ssh-key-path</code></TableCell>
+      <TableCell>The path to the SSH key used to access the node. This flag can be used to create only a single node, and the <code>--mac-address</code> flag must be defined.</TableCell>
+      <TableCell>String</TableCell>
+      </TableRow>
+      </TableBody>
+      </Table>
+      </dd>
+      </dl>
       <h2 id="additional-resources_adding-node-iso" class="group scroll-mt-20">Additional resources<a href="#additional-resources_adding-node-iso" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_bare_metal/ipi/ipi-install-installation-workflow#root-device-hints_ipi-install-installation-workflow">Root device hints</a></li></ul>
     </article>

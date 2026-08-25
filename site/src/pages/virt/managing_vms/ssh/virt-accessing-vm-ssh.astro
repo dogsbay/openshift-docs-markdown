@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"virt-accessing-vm-ssh","text":"SSH access for virtual machines"},{"depth":2,"slug":"additional-resources_virt-accessing-vm-ssh","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-accessing-vm-ssh","text":"SSH access for virtual machines"},{"depth":2,"slug":"virt-access-configuration-considerations_virt-accessing-vm-ssh","text":"Access configuration considerations"},{"depth":2,"slug":"additional-resources_virt-accessing-vm-ssh","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/ssh/virt-accessing-vm-ssh";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +42,7 @@ const pageCategory = ["virt","virt/managing_vms","virt/managing_vms/ssh"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# SSH access for virtual machines {#virt-accessing-vm-ssh}\n\nYou can use SSH to securely access your virtual machines (VMs) from the command line. You can set up your SSH configuration using the `virtctl ssh` command, `virtctl port-forward` command, a service, or a secondary network.\n\n## Additional resources {#additional-resources_virt-accessing-vm-ssh}\n\n- [{{ VirtProductName }} Tuning & Scaling Guide](https://access.redhat.com/articles/6994974)\n- [Connecting a virtual machine to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)\n- [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)\n- [Creating a Linux bridge NAD by using the web console](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-creating-linux-bridge-nad-web_virt-connecting-vm-to-linux-bridge)\n- [Configuring SR-IOV additional network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#nw-sriov-additional-network_virt-connecting-vm-to-sriov)\n- [Accessing a virtual machine by using its external FQDN](/openshift-docs-markdown/virt/vm_networking/virt-accessing-vm-secondary-network-fqdn#virt-accessing-vm-secondary-network-fqdn)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/ssh/virt-accessing-vm-ssh.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# SSH access for virtual machines {#virt-accessing-vm-ssh}\n\nYou can use SSH to securely access your virtual machines (VMs) from the command line. You can set up your SSH configuration using the `virtctl ssh` command, `virtctl port-forward` command, a service, or a secondary network.\n\n## Access configuration considerations {#virt-access-configuration-considerations_virt-accessing-vm-ssh}\n\nEach method for configuring access to a virtual machine (VM) has advantages and limitations, depending on the traffic load and client requirements.\n\n> [!NOTE]\n> Services provide excellent performance and are recommended for applications that are accessed from outside the cluster.\n\nIf the internal cluster network cannot handle the traffic load, you can configure a secondary network.\n\n`virtctl ssh` and `virtctl port-forwarding` commands\n:   - Simple to configure.\n    - Recommended for troubleshooting VMs.\n    - `virtctl port-forwarding` recommended for automated configuration of VMs with Ansible.\n    - Dynamic public SSH keys can be used to provision VMs with Ansible.\n    - Not recommended for high-traffic applications like Rsync or Remote Desktop Protocol because of the burden on the API server.\n    - The API server must be able to handle the traffic load.\n    - The clients must be able to access the API server.\n    - The clients must have access credentials for the cluster.\n\nCluster IP service\n:   - The internal cluster network must be able to handle the traffic load.\n    - The clients must be able to access an internal cluster IP address.\n\nNode port service\n:   - The internal cluster network must be able to handle the traffic load.\n    - The clients must be able to access at least one node.\n\nLoad balancer service\n:   - A load balancer must be configured.\n    - Each node must be able to handle the traffic load of one or more load balancer services.\n\nSecondary network\n:   - Excellent performance because traffic does not go through the internal cluster network.\n    - Allows a flexible approach to network topology.\n    - Guest operating system must be configured with appropriate security because the VM is exposed directly to the secondary network. If a VM is compromised, an intruder could gain access to the secondary network.\n\n## Additional resources {#additional-resources_virt-accessing-vm-ssh}\n\n- [OpenShift Virtualization Tuning & Scaling Guide](https://access.redhat.com/articles/6994974)\n- [Connecting a virtual machine to a Linux bridge network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge)\n- [Connecting a virtual machine to an SR-IOV network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov)\n- [Creating a Linux bridge NAD by using the web console](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-creating-linux-bridge-nad-web_virt-connecting-vm-to-linux-bridge)\n- [Configuring SR-IOV additional network](/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#nw-sriov-additional-network_virt-connecting-vm-to-sriov)\n- [Accessing a virtual machine by using its external FQDN](/openshift-docs-markdown/virt/vm_networking/virt-accessing-vm-secondary-network-fqdn#virt-accessing-vm-secondary-network-fqdn)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/ssh/virt-accessing-vm-ssh.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,13 +93,64 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="virt-accessing-vm-ssh" class="group scroll-mt-20">SSH access for virtual machines<a href="#virt-accessing-vm-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>You can use SSH to securely access your virtual machines (VMs) from the command line. You can set up your SSH configuration using the <code>virtctl ssh</code> command, <code>virtctl port-forward</code> command, a service, or a secondary network.</p>
-      <p class="/modules/virt-access-configuration-considerations.md"></p>
+      <h2 id="virt-access-configuration-considerations_virt-accessing-vm-ssh" class="group scroll-mt-20">Access configuration considerations<a href="#virt-access-configuration-considerations_virt-accessing-vm-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Each method for configuring access to a virtual machine (VM) has advantages and limitations, depending on the traffic load and client requirements.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>Services provide excellent performance and are recommended for applications that are accessed from outside the cluster.</p>
+        </AlertDescription>
+      </Alert>
+      <p>If the internal cluster network cannot handle the traffic load, you can configure a secondary network.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>virtctl ssh</code> and <code>virtctl port-forwarding</code> commands</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>Simple to configure.</li>
+      <li>Recommended for troubleshooting VMs.</li>
+      <li><code>virtctl port-forwarding</code> recommended for automated configuration of VMs with Ansible.</li>
+      <li>Dynamic public SSH keys can be used to provision VMs with Ansible.</li>
+      <li>Not recommended for high-traffic applications like Rsync or Remote Desktop Protocol because of the burden on the API server.</li>
+      <li>The API server must be able to handle the traffic load.</li>
+      <li>The clients must be able to access the API server.</li>
+      <li>The clients must have access credentials for the cluster.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Cluster IP service</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>The internal cluster network must be able to handle the traffic load.</li>
+      <li>The clients must be able to access an internal cluster IP address.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Node port service</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>The internal cluster network must be able to handle the traffic load.</li>
+      <li>The clients must be able to access at least one node.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Load balancer service</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>A load balancer must be configured.</li>
+      <li>Each node must be able to handle the traffic load of one or more load balancer services.</li>
+      </ul>
+      </dd>
+      <dt class="font-semibold">Secondary network</dt>
+      <dd class="ml-6 text-muted-foreground">
+      <ul>
+      <li>Excellent performance because traffic does not go through the internal cluster network.</li>
+      <li>Allows a flexible approach to network topology.</li>
+      <li>Guest operating system must be configured with appropriate security because the VM is exposed directly to the secondary network. If a VM is compromised, an intruder could gain access to the secondary network.</li>
+      </ul>
+      </dd>
+      </dl>
       <h2 id="additional-resources_virt-accessing-vm-ssh" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-accessing-vm-ssh" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul>
-      <li><a href="https://access.redhat.com/articles/6994974">{"{"}{"{"} VirtProductName {"}"}{"}"} Tuning &amp; Scaling Guide</a></li>
+      <li><a href="https://access.redhat.com/articles/6994974">OpenShift Virtualization Tuning &amp; Scaling Guide</a></li>
       <li><a href="/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-connecting-vm-to-linux-bridge">Connecting a virtual machine to a Linux bridge network</a></li>
       <li><a href="/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-sriov#virt-connecting-vm-to-sriov">Connecting a virtual machine to an SR-IOV network</a></li>
       <li><a href="/openshift-docs-markdown/virt/vm_networking/virt-connecting-vm-to-linux-bridge#virt-creating-linux-bridge-nad-web_virt-connecting-vm-to-linux-bridge">Creating a Linux bridge NAD by using the web console</a></li>

@@ -19,7 +19,7 @@ import Alert from "@ui/alert/Alert.astro";
 import AlertDescription from "@ui/alert/AlertDescription.astro";
 import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"about-serverless","text":"{{ ServerlessProductName }} overview"}];
+const headings = [{"depth":1,"slug":"about-serverless","text":"OpenShift Serverless overview"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/serverless/about/about-serverless";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -29,7 +29,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "{{ ServerlessProductName }} overview";
-const description = "{{ ServerlessProductName }} provides Kubernetes native building blocks that enable developers to create and deploy serverless, event-driven applications…" || undefined;
+const description = "OpenShift Serverless provides Kubernetes native building blocks that enable developers to create and deploy serverless, event-driven applications on…" || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -42,7 +42,7 @@ const pageCategory = ["serverless","serverless/about"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# {{ ServerlessProductName }} overview {#about-serverless}\n\n{{ ServerlessProductName }} provides Kubernetes native building blocks that enable developers to create and deploy serverless, event-driven applications on OpenShift Container Platform. {{ ServerlessProductName }} is based on the open source [Knative project](https://knative.dev/docs/), which provides portability and consistency for hybrid and multi-cloud environments by enabling an enterprise-grade serverless platform.\n\n> [!NOTE]\n> Because {{ ServerlessProductName }} releases on a different cadence from OpenShift Container Platform, the {{ ServerlessProductName }} documentation is now available as a separate documentation set at [Red Hat OpenShift Serverless](https://docs.redhat.com/en/documentation/red_hat_openshift_serverless).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/serverless/about/about-serverless.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# OpenShift Serverless overview {#about-serverless}\n\nOpenShift Serverless provides Kubernetes native building blocks that enable developers to create and deploy serverless, event-driven applications on OpenShift Container Platform. OpenShift Serverless is based on the open source [Knative project](https://knative.dev/docs/), which provides portability and consistency for hybrid and multi-cloud environments by enabling an enterprise-grade serverless platform.\n\n> [!NOTE]\n> Because OpenShift Serverless releases on a different cadence from OpenShift Container Platform, the OpenShift Serverless documentation is now available as a separate documentation set at [Red Hat OpenShift Serverless](https://docs.redhat.com/en/documentation/red_hat_openshift_serverless).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/serverless/about/about-serverless.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -78,7 +78,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -93,13 +93,12 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
-      <h1 id="about-serverless" class="group scroll-mt-20">{"{"}{"{"} ServerlessProductName {"}"}{"}"} overview<a href="#about-serverless" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p>{"{"}{"{"} ServerlessProductName {"}"}{"}"} provides Kubernetes native building blocks that enable developers to create and deploy serverless, event-driven applications on OpenShift Container Platform. {"{"}{"{"} ServerlessProductName {"}"}{"}"} is based on the open source <a href="https://knative.dev/docs/">Knative project</a>, which provides portability and consistency for hybrid and multi-cloud environments by enabling an enterprise-grade serverless platform.</p>
+      <h1 id="about-serverless" class="group scroll-mt-20">OpenShift Serverless overview<a href="#about-serverless" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
+      <p>OpenShift Serverless provides Kubernetes native building blocks that enable developers to create and deploy serverless, event-driven applications on OpenShift Container Platform. OpenShift Serverless is based on the open source <a href="https://knative.dev/docs/">Knative project</a>, which provides portability and consistency for hybrid and multi-cloud environments by enabling an enterprise-grade serverless platform.</p>
       <Alert variant="note" class="my-4">
         <AlertTitle>Note</AlertTitle>
         <AlertDescription>
-          <p>Because {"{"}{"{"} ServerlessProductName {"}"}{"}"} releases on a different cadence from OpenShift Container Platform, the {"{"}{"{"} ServerlessProductName {"}"}{"}"} documentation is now available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_serverless">Red Hat OpenShift Serverless</a>.</p>
+          <p>Because OpenShift Serverless releases on a different cadence from OpenShift Container Platform, the OpenShift Serverless documentation is now available as a separate documentation set at <a href="https://docs.redhat.com/en/documentation/red_hat_openshift_serverless">Red Hat OpenShift Serverless</a>.</p>
         </AlertDescription>
       </Alert>
     </article>

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"oadp-backup-restore-csi-snapshots","text":"Backing up and restoring CSI snapshots data movement"}];
+const headings = [{"depth":1,"slug":"oadp-backup-restore-csi-snapshots","text":"Backing up and restoring CSI snapshots data movement"},{"depth":2,"slug":"oadp-1-3-backing-csi-snapshots_oadp-backup-restore-csi-snapshots","text":"Backing up persistent volumes with CSI snapshots"},{"depth":2,"slug":"oadp-1-3-restoring-csi-snapshots_oadp-backup-restore-csi-snapshots","text":"Restoring CSI volume snapshots"},{"depth":2,"slug":"oadp-deletion-policy-1-3_oadp-backup-restore-csi-snapshots","text":"Deletion policy for OADP 1.3"},{"depth":3,"slug":"oadp-deletion-policy-guidelines-1-3_oadp-backup-restore-csi-snapshots","text":"Deletion policy guidelines for OADP 1.3"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-backup-restore-csi-snapshots";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -26,7 +30,7 @@ const _navForPagination = filterNavByAxis(nav as any[], {
 });
 const { prev, next } = getPagination(currentPath, _navForPagination);
 const title = "Backing up and restoring CSI snapshots data movement";
-const description = "You can back up and restore persistent volumes by using the {{ oadp_short }} 1.3 Data Mover." || undefined;
+const description = "You can back up and restore persistent volumes by using the OADP 1.3 Data Mover." || undefined;
 const ogImage = "" || undefined;
 const noindex = false;
 const nofollow = false;
@@ -39,7 +43,7 @@ const pageCategory = ["backup_and_restore","backup_and_restore/application_backu
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring CSI snapshots data movement {#oadp-backup-restore-csi-snapshots}\n\nYou can back up and restore persistent volumes by using the {{ oadp_short }} 1.3 Data Mover.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-backup-restore-csi-snapshots.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Backing up and restoring CSI snapshots data movement {#oadp-backup-restore-csi-snapshots}\n\nYou can back up and restore persistent volumes by using the OADP 1.3 Data Mover.\n\n## Backing up persistent volumes with CSI snapshots {#oadp-1-3-backing-csi-snapshots_oadp-backup-restore-csi-snapshots}\n\nYou can use the OADP Data Mover to back up Container Storage Interface (CSI) volume snapshots to a remote object store.\n\n**Prerequisites**\n\n- You have access to the cluster with the `cluster-admin` role.\n- You have installed the OADP Operator.\n- You have included the CSI plugin and enabled the node agent in the `DataProtectionApplication` custom resource (CR).\n- You have an application with persistent volumes running in a separate namespace.\n- You have added the `metadata.labels.velero.io/csi-volumesnapshot-class: \"true\"` key-value pair to the `VolumeSnapshotClass` CR.\n\n**Procedure**\n\n1. Create a YAML file for the `Backup` object, as in the following example:\n\n```yaml\nkind: Backup\napiVersion: velero.io/v1\nmetadata:\n  name: backup\n  namespace: openshift-adp\nspec:\n  csiSnapshotTimeout: 10m0s\n  defaultVolumesToFsBackup:\n  includedNamespaces:\n  - mysql-persistent\n  itemOperationTimeout: 4h0m0s\n  snapshotMoveData: true\n  storageLocation: default\n  ttl: 720h0m0s\n  volumeSnapshotLocations:\n  - dpa-sample-1\n# ...\n```\n\nwhere:\n\n`defaultVolumesToFsBackup`\n:   Set to `true` if you use Data Mover only for volumes that opt out of `fs-backup`. Set to `false` if you use Data Mover by default for volumes.\n\n`snapshotMoveData`\n:   Set to `true` to enable movement of CSI snapshots to remote object storage.\n\n1. Apply the manifest:\n\n   ```terminal\n   $ oc create -f backup.yaml\n   ```\n\n   A `DataUpload` CR is created after the snapshot creation is complete.\n\n   > [!NOTE]\n   > If you format the volume by using XFS filesystem and the volume is at 100% capacity, the backup fails with a `no space left on device` error. For example:\n   >\n   > ```terminal\n   > Error: relabel failed /var/lib/kubelet/pods/3ac..34/volumes/ \\\n   > kubernetes.io~csi/pvc-684..12c/mount: lsetxattr /var/lib/kubelet/ \\\n   > pods/3ac..34/volumes/kubernetes.io~csi/pvc-68..2c/mount/data-xfs-103: \\\n   > no space left on device\n   > ```\n   >\n   > In this scenario, consider resizing the volume or using a different filesystem type, for example, `ext4`, so that the backup completes successfully.\n\n**Verification**\n\n- Verify that the snapshot data is successfully transferred to the remote object store by monitoring the `status.phase` field of the `DataUpload` CR. Possible values are `In Progress`, `Completed`, `Failed`, or `Canceled`. The object store is configured in the `backupLocations` stanza of the `DataProtectionApplication` CR.\n\n  - Run the following command to get a list of all `DataUpload` objects:\n\n    ```terminal\n    $ oc get datauploads -A\n    ```\n\n    ```terminal {title=\"Example output\"}\n    NAMESPACE       NAME                  STATUS      STARTED   BYTES DONE   TOTAL BYTES   STORAGE LOCATION   AGE     NODE\n    openshift-adp   backup-test-1-sw76b   Completed   9m47s     108104082    108104082     dpa-sample-1       9m47s   ip-10-0-150-57.us-west-2.compute.internal\n    openshift-adp   mongo-block-7dtpf     Completed   14m       1073741824   1073741824    dpa-sample-1       14m     ip-10-0-150-57.us-west-2.compute.internal\n    ```\n  - Check the value of the `status.phase` field of the specific `DataUpload` object by running the following command:\n\n    ```terminal\n    $ oc get datauploads <dataupload_name> -o yaml\n    ```\n\n    ```yaml {title=\"Example output\"}\n    apiVersion: velero.io/v2alpha1\n    kind: DataUpload\n    metadata:\n      name: backup-test-1-sw76b\n      namespace: openshift-adp\n    spec:\n      backupStorageLocation: dpa-sample-1\n      csiSnapshot:\n        snapshotClass: \"\"\n        storageClass: gp3-csi\n        volumeSnapshot: velero-mysql-fq8sl\n      operationTimeout: 10m0s\n      snapshotType: CSI\n      sourceNamespace: mysql-persistent\n      sourcePVC: mysql\n    status:\n      completionTimestamp: \"2023-11-02T16:57:02Z\"\n      node: ip-10-0-150-57.us-west-2.compute.internal\n      path: /host_pods/15116bac-cc01-4d9b-8ee7-609c3bef6bde/volumes/kubernetes.io~csi/pvc-eead8167-556b-461a-b3ec-441749e291c4/mount\n      phase: Completed\n      progress:\n        bytesDone: 108104082\n        totalBytes: 108104082\n      snapshotID: 8da1c5febf25225f4577ada2aeb9f899\n      startTimestamp: \"2023-11-02T16:56:22Z\"\n    ```\n\n    where:\n\n    `phase: Completed`\n    :   Indicates that snapshot data is successfully transferred to the remote object store.\n\n## Restoring CSI volume snapshots {#oadp-1-3-restoring-csi-snapshots_oadp-backup-restore-csi-snapshots}\n\nYou can restore a volume snapshot by creating a `Restore` CR.\n\n> [!NOTE]\n> You cannot restore Volsync backups from OADP 1.2 with the OAPD 1.3 built-in Data Mover. It is recommended to do a file system backup of all of your workloads with Restic before upgrading to OADP 1.3.\n\n**Prerequisites**\n\n- You have access to the cluster with the `cluster-admin` role.\n- You have an OADP `Backup` CR from which to restore the data.\n\n**Procedure**\n\n1. Create a YAML file for the `Restore`  CR, as in the following example:\n\n   ```yaml {title=\"Example Restore CR\"}\n   apiVersion: velero.io/v1\n   kind: Restore\n   metadata:\n     name: restore\n     namespace: openshift-adp\n   spec:\n     backupName: <backup>\n   # ...\n   ```\n2. Apply the manifest:\n\n   ```terminal\n   $ oc create -f restore.yaml\n   ```\n\n   A `DataDownload` CR is created when the restore starts.\n\n**Verification**\n\n- You can monitor the status of the restore process by checking the `status.phase` field of the `DataDownload` CR. Possible values are `In Progress`, `Completed`, `Failed`, or `Canceled`.\n\n  - To get a list of all `DataDownload` objects, run the following command:\n\n    ```terminal\n    $ oc get datadownloads -A\n    ```\n\n    ```terminal {title=\"Example output\"}\n    NAMESPACE       NAME                   STATUS      STARTED   BYTES DONE   TOTAL BYTES   STORAGE LOCATION   AGE     NODE\n    openshift-adp   restore-test-1-sk7lg   Completed   7m11s     108104082    108104082     dpa-sample-1       7m11s   ip-10-0-150-57.us-west-2.compute.internal\n    ```\n  - Enter the following command to check the value of the `status.phase` field of the specific `DataDownload` object:\n\n    ```terminal\n    $ oc get datadownloads <datadownload_name> -o yaml\n    ```\n\n    ```yaml {title=\"Example output\"}\n    apiVersion: velero.io/v2alpha1\n    kind: DataDownload\n    metadata:\n      name: restore-test-1-sk7lg\n      namespace: openshift-adp\n    spec:\n      backupStorageLocation: dpa-sample-1\n      operationTimeout: 10m0s\n      snapshotID: 8da1c5febf25225f4577ada2aeb9f899\n      sourceNamespace: mysql-persistent\n      targetVolume:\n        namespace: mysql-persistent\n        pv: \"\"\n        pvc: mysql\n    status:\n      completionTimestamp: \"2023-11-02T17:01:24Z\"\n      node: ip-10-0-150-57.us-west-2.compute.internal\n      phase: Completed\n      progress:\n        bytesDone: 108104082\n        totalBytes: 108104082\n      startTimestamp: \"2023-11-02T17:00:52Z\"\n    ```\n\n    where:\n\n    `phase: Completed`\n    :   Indicates that the CSI snapshot data is successfully restored.\n\n## Deletion policy for OADP 1.3 {#oadp-deletion-policy-1-3_oadp-backup-restore-csi-snapshots}\n\nThe deletion policy determines rules for removing data from a system, specifying when and how deletion occurs based on factors such as retention periods, data sensitivity, and compliance requirements. It manages data removal effectively while meeting regulations and preserving valuable information.\n\n### Deletion policy guidelines for OADP 1.3 {#oadp-deletion-policy-guidelines-1-3_oadp-backup-restore-csi-snapshots}\n\nReview the following deletion policy guidelines for the OADP 1.3:\n\n- In OADP 1.3.x, when using any type of backup and restore methods, you can set the `deletionPolicy` field to `Retain` or `Delete` in the `VolumeSnapshotClass` custom resource (CR).\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/backup_and_restore/application_backup_and_restore/installing/oadp-backup-restore-csi-snapshots.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,11 +95,118 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="oadp-backup-restore-csi-snapshots" class="group scroll-mt-20">Backing up and restoring CSI snapshots data movement<a href="#oadp-backup-restore-csi-snapshots" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
-      <p>You can back up and restore persistent volumes by using the {"{"}{"{"} oadp_short {"}"}{"}"} 1.3 Data Mover.</p>
-      <p class="/modules/oadp-1-3-backing-csi-snapshots.md"></p>
-      <p class="/modules/oadp-1-3-restoring-csi-snapshots.md"></p>
-      <p class="/modules/oadp-deletion-policy-1-3.md"></p>
+      <p>You can back up and restore persistent volumes by using the OADP 1.3 Data Mover.</p>
+      <h2 id="oadp-1-3-backing-csi-snapshots_oadp-backup-restore-csi-snapshots" class="group scroll-mt-20">Backing up persistent volumes with CSI snapshots<a href="#oadp-1-3-backing-csi-snapshots_oadp-backup-restore-csi-snapshots" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the OADP Data Mover to back up Container Storage Interface (CSI) volume snapshots to a remote object store.</p>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with the <code>cluster-admin</code> role.</li>
+      <li>You have installed the OADP Operator.</li>
+      <li>You have included the CSI plugin and enabled the node agent in the <code>DataProtectionApplication</code> custom resource (CR).</li>
+      <li>You have an application with persistent volumes running in a separate namespace.</li>
+      <li>You have added the <code>metadata.labels.velero.io/csi-volumesnapshot-class: "true"</code> key-value pair to the <code>VolumeSnapshotClass</code> CR.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol><li>Create a YAML file for the <code>Backup</code> object, as in the following example:</li></ol>
+      <CodeBlock code={"kind: Backup\napiVersion: velero.io/v1\nmetadata:\n  name: backup\n  namespace: openshift-adp\nspec:\n  csiSnapshotTimeout: 10m0s\n  defaultVolumesToFsBackup:\n  includedNamespaces:\n  - mysql-persistent\n  itemOperationTimeout: 4h0m0s\n  snapshotMoveData: true\n  storageLocation: default\n  ttl: 720h0m0s\n  volumeSnapshotLocations:\n  - dpa-sample-1\n# ..."} lang="yaml" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>defaultVolumesToFsBackup</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Set to <code>true</code> if you use Data Mover only for volumes that opt out of <code>fs-backup</code>. Set to <code>false</code> if you use Data Mover by default for volumes.</p></dd>
+      <dt class="font-semibold"><code>snapshotMoveData</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Set to <code>true</code> to enable movement of CSI snapshots to remote object storage.</p></dd>
+      </dl>
+      <ol>
+      <li>
+      Apply the manifest:
+      <CodeBlock code={"$ oc create -f backup.yaml"} lang="terminal" />
+      <p>A <code>DataUpload</code> CR is created after the snapshot creation is complete.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you format the volume by using XFS filesystem and the volume is at 100% capacity, the backup fails with a <code>no space left on device</code> error. For example:</p>
+          <CodeBlock code={"Error: relabel failed /var/lib/kubelet/pods/3ac..34/volumes/ \\\nkubernetes.io~csi/pvc-684..12c/mount: lsetxattr /var/lib/kubelet/ \\\npods/3ac..34/volumes/kubernetes.io~csi/pvc-68..2c/mount/data-xfs-103: \\\nno space left on device"} lang="terminal" />
+          <p>In this scenario, consider resizing the volume or using a different filesystem type, for example, <code>ext4</code>, so that the backup completes successfully.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      Verify that the snapshot data is successfully transferred to the remote object store by monitoring the <code>status.phase</code> field of the <code>DataUpload</code> CR. Possible values are <code>In Progress</code>, <code>Completed</code>, <code>Failed</code>, or <code>Canceled</code>. The object store is configured in the <code>backupLocations</code> stanza of the <code>DataProtectionApplication</code> CR.
+      <ul>
+      <li>
+      Run the following command to get a list of all <code>DataUpload</code> objects:
+      <CodeBlock code={"$ oc get datauploads -A"} lang="terminal" />
+      <CodeBlock code={"NAMESPACE       NAME                  STATUS      STARTED   BYTES DONE   TOTAL BYTES   STORAGE LOCATION   AGE     NODE\nopenshift-adp   backup-test-1-sw76b   Completed   9m47s     108104082    108104082     dpa-sample-1       9m47s   ip-10-0-150-57.us-west-2.compute.internal\nopenshift-adp   mongo-block-7dtpf     Completed   14m       1073741824   1073741824    dpa-sample-1       14m     ip-10-0-150-57.us-west-2.compute.internal"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Check the value of the <code>status.phase</code> field of the specific <code>DataUpload</code> object by running the following command:
+      <CodeBlock code={"$ oc get datauploads <dataupload_name> -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: velero.io/v2alpha1\nkind: DataUpload\nmetadata:\n  name: backup-test-1-sw76b\n  namespace: openshift-adp\nspec:\n  backupStorageLocation: dpa-sample-1\n  csiSnapshot:\n    snapshotClass: \"\"\n    storageClass: gp3-csi\n    volumeSnapshot: velero-mysql-fq8sl\n  operationTimeout: 10m0s\n  snapshotType: CSI\n  sourceNamespace: mysql-persistent\n  sourcePVC: mysql\nstatus:\n  completionTimestamp: \"2023-11-02T16:57:02Z\"\n  node: ip-10-0-150-57.us-west-2.compute.internal\n  path: /host_pods/15116bac-cc01-4d9b-8ee7-609c3bef6bde/volumes/kubernetes.io~csi/pvc-eead8167-556b-461a-b3ec-441749e291c4/mount\n  phase: Completed\n  progress:\n    bytesDone: 108104082\n    totalBytes: 108104082\n  snapshotID: 8da1c5febf25225f4577ada2aeb9f899\n  startTimestamp: \"2023-11-02T16:56:22Z\""} lang="yaml" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>phase: Completed</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Indicates that snapshot data is successfully transferred to the remote object store.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="oadp-1-3-restoring-csi-snapshots_oadp-backup-restore-csi-snapshots" class="group scroll-mt-20">Restoring CSI volume snapshots<a href="#oadp-1-3-restoring-csi-snapshots_oadp-backup-restore-csi-snapshots" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can restore a volume snapshot by creating a <code>Restore</code> CR.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You cannot restore Volsync backups from OADP 1.2 with the OAPD 1.3 built-in Data Mover. It is recommended to do a file system backup of all of your workloads with Restic before upgrading to OADP 1.3.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>You have access to the cluster with the <code>cluster-admin</code> role.</li>
+      <li>You have an OADP <code>Backup</code> CR from which to restore the data.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Create a YAML file for the <code>Restore</code>  CR, as in the following example:
+      <CodeBlock code={"apiVersion: velero.io/v1\nkind: Restore\nmetadata:\n  name: restore\n  namespace: openshift-adp\nspec:\n  backupName: <backup>  \n# ..."} lang="yaml" title="Example Restore CR" />
+      </li>
+      <li>
+      Apply the manifest:
+      <CodeBlock code={"$ oc create -f restore.yaml"} lang="terminal" />
+      <p>A <code>DataDownload</code> CR is created when the restore starts.</p>
+      </li>
+      </ol>
+      <p><strong>Verification</strong></p>
+      <ul>
+      <li>
+      You can monitor the status of the restore process by checking the <code>status.phase</code> field of the <code>DataDownload</code> CR. Possible values are <code>In Progress</code>, <code>Completed</code>, <code>Failed</code>, or <code>Canceled</code>.
+      <ul>
+      <li>
+      To get a list of all <code>DataDownload</code> objects, run the following command:
+      <CodeBlock code={"$ oc get datadownloads -A"} lang="terminal" />
+      <CodeBlock code={"NAMESPACE       NAME                   STATUS      STARTED   BYTES DONE   TOTAL BYTES   STORAGE LOCATION   AGE     NODE\nopenshift-adp   restore-test-1-sk7lg   Completed   7m11s     108104082    108104082     dpa-sample-1       7m11s   ip-10-0-150-57.us-west-2.compute.internal"} lang="terminal" title="Example output" />
+      </li>
+      <li>
+      Enter the following command to check the value of the <code>status.phase</code> field of the specific <code>DataDownload</code> object:
+      <CodeBlock code={"$ oc get datadownloads <datadownload_name> -o yaml"} lang="terminal" />
+      <CodeBlock code={"apiVersion: velero.io/v2alpha1\nkind: DataDownload\nmetadata:\n  name: restore-test-1-sk7lg\n  namespace: openshift-adp\nspec:\n  backupStorageLocation: dpa-sample-1\n  operationTimeout: 10m0s\n  snapshotID: 8da1c5febf25225f4577ada2aeb9f899\n  sourceNamespace: mysql-persistent\n  targetVolume:\n    namespace: mysql-persistent\n    pv: \"\"\n    pvc: mysql\nstatus:\n  completionTimestamp: \"2023-11-02T17:01:24Z\"\n  node: ip-10-0-150-57.us-west-2.compute.internal\n  phase: Completed\n  progress:\n    bytesDone: 108104082\n    totalBytes: 108104082\n  startTimestamp: \"2023-11-02T17:00:52Z\""} lang="yaml" title="Example output" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>phase: Completed</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Indicates that the CSI snapshot data is successfully restored.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="oadp-deletion-policy-1-3_oadp-backup-restore-csi-snapshots" class="group scroll-mt-20">Deletion policy for OADP 1.3<a href="#oadp-deletion-policy-1-3_oadp-backup-restore-csi-snapshots" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The deletion policy determines rules for removing data from a system, specifying when and how deletion occurs based on factors such as retention periods, data sensitivity, and compliance requirements. It manages data removal effectively while meeting regulations and preserving valuable information.</p>
+      <h3 id="oadp-deletion-policy-guidelines-1-3_oadp-backup-restore-csi-snapshots" class="group scroll-mt-20">Deletion policy guidelines for OADP 1.3<a href="#oadp-deletion-policy-guidelines-1-3_oadp-backup-restore-csi-snapshots" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p>Review the following deletion policy guidelines for the OADP 1.3:</p>
+      <ul><li>In OADP 1.3.x, when using any type of backup and restore methods, you can set the <code>deletionPolicy</code> field to <code>Retain</code> or <code>Delete</code> in the <code>VolumeSnapshotClass</code> custom resource (CR).</li></ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

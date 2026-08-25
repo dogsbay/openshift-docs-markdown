@@ -2,7 +2,7 @@
 // Source: networking/multiple_networks/secondary_networks/removing-pod.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Removing a pod from a secondary network\n---\n\n# Removing a pod from a secondary network {#removing-pod}\n\nTo disconnect a pod from specific network configurations in OpenShift Container Platform, you can remove the pod from a secondary network. Delete the pod to remove its connection to the secondary network.\n";
+const body = "---\ntitle: Removing a pod from a secondary network\n---\n\n# Removing a pod from a secondary network {#removing-pod}\n\nTo disconnect a pod from specific network configurations in OpenShift Container Platform, you can remove the pod from a secondary network. Delete the pod to remove its connection to the secondary network.\n\n## Remove a pod from a secondary network {#nw-multus-remove-pod_removing-pod}\n\nTo disconnect a pod from specific network configurations in OpenShift Container Platform, you can remove the pod from a secondary network. Delete the pod using the `oc delete pod` command to remove its connection to the secondary network.\n\n**Prerequisites**\n\n- A secondary network is attached to the pod.\n- Install the OpenShift CLI (`oc`).\n- Log in to the cluster.\n\n**Procedure**\n\n- Delete the pod by entering the following command:\n\n  ```terminal\n  $ oc delete pod <name> -n <namespace>\n  ```\n\n  where:\n\n  `<name>`\n  :   Specifies the name of the pod.\n\n  `<namespace>`\n  :   Specifies the namespace that contains the pod.\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"virt-configuring-viewing-ips-for-vms","text":"Configuring and viewing IP addresses"},{"depth":2,"slug":"additional-resources_virt-configuring-viewing-ips-for-vms","text":"Additional resources"}];
+const headings = [{"depth":1,"slug":"virt-configuring-viewing-ips-for-vms","text":"Configuring and viewing IP addresses"},{"depth":2,"slug":"virt-configuring-ip-vm-web_virt-configuring-viewing-ips-for-vms","text":"Configuring a static IP address when creating a virtual machine by using the web console"},{"depth":2,"slug":"virt-configuring-ip-vm-cli_virt-configuring-viewing-ips-for-vms","text":"Configuring an IP address when creating a virtual machine by using the CLI"},{"depth":2,"slug":"virt-viewing-vmi-ip-web_virt-configuring-viewing-ips-for-vms","text":"Viewing the IP address of a virtual machine by using the web console"},{"depth":2,"slug":"virt-viewing-vmi-ip-cli_virt-configuring-viewing-ips-for-vms","text":"Viewing the IP address of a virtual machine by using the CLI"},{"depth":2,"slug":"additional-resources_virt-configuring-viewing-ips-for-vms","text":"Additional resources"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["virt","virt/vm_networking"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring and viewing IP addresses {#virt-configuring-viewing-ips-for-vms}\n\nYou can configure an IP address when you create a virtual machine (VM). The IP address is provisioned with cloud-init. View the IP address of a VM by using the OpenShift Container Platform web console or the command line. The network information is collected by the QEMU guest agent.\n\n## Additional resources {#additional-resources_virt-configuring-viewing-ips-for-vms}\n\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Configuring and viewing IP addresses {#virt-configuring-viewing-ips-for-vms}\n\nYou can configure an IP address when you create a virtual machine (VM). The IP address is provisioned with cloud-init. View the IP address of a VM by using the OpenShift Container Platform web console or the command line. The network information is collected by the QEMU guest agent.\n\n## Configuring a static IP address when creating a virtual machine by using the web console {#virt-configuring-ip-vm-web_virt-configuring-viewing-ips-for-vms}\n\nYou can configure a static IP address when you create a virtual machine (VM) by using the web console. The IP address is provisioned with cloud-init.\n\n> [!NOTE]\n> If the VM is connected to the pod network, the pod network interface is the default route unless you update it.\n\n**Prerequisites**\n\n- The virtual machine is connected to a secondary network.\n\n**Procedure**\n\n1. Navigate to **Virtualization** -> **Catalog** in the web console.\n2. Click a template tile.\n3. Click **Customize VirtualMachine**.\n4. Click **Next**.\n5. On the **Scripts** tab, click the edit icon beside **Cloud-init**.\n6. Select the **Add network data** checkbox.\n7. Enter the ethernet name, one or more IP addresses separated by commas, and the gateway address.\n8. Click **Apply**.\n9. Click **Create VirtualMachine**.\n\n## Configuring an IP address when creating a virtual machine by using the CLI {#virt-configuring-ip-vm-cli_virt-configuring-viewing-ips-for-vms}\n\nYou can configure a static or dynamic IP address when you create a virtual machine (VM). The IP address is provisioned with cloud-init.\n\n> [!NOTE]\n> If the VM is connected to the pod network, the pod network interface is the default route unless you update it.\n\n**Prerequisites**\n\n- The virtual machine is connected to a secondary network.\n- You have a DHCP server available on the secondary network to configure a dynamic IP for the virtual machine.\n\n**Procedure**\n\n- Edit the `spec.template.spec.volumes.cloudInitNoCloud.networkData` stanza of the virtual machine configuration:\n\n  - To configure a dynamic IP address, specify the interface name and enable DHCP:\n\n    ```yaml\n    apiVersion: kubevirt.io/v1\n    kind: VirtualMachine\n    metadata:\n      name: <interface_name>\n      kind: VirtualMachine\n    spec:\n    # ...\n      template:\n      # ...\n        spec:\n          volumes:\n          - cloudInitNoCloud:\n              networkData: |\n                version: 2\n                ethernets:\n                  eth1:\n                    dhcp4: true\n        # ...\n    ```\n  - To configure a static IP, specify the interface name and the IP address:\n\n    ```yaml\n    apiVersion: kubevirt.io/v1\n    kind: VirtualMachine\n    metadata:\n      name: <interface_name>\n      kind: VirtualMachine\n    spec:\n    # ...\n      template:\n      # ...\n        spec:\n          volumes:\n          - cloudInitNoCloud:\n              networkData: |\n                version: 2\n                ethernets:\n                  eth1:\n                    addresses:\n                    - 10.10.10.14/24\n        # ...\n    ```\n\n## Viewing the IP address of a virtual machine by using the web console {#virt-viewing-vmi-ip-web_virt-configuring-viewing-ips-for-vms}\n\nYou can view the IP address of a virtual machine (VM) by using the OpenShift Container Platform web console.\n\n> [!NOTE]\n> You must install the QEMU guest agent on a VM to view the IP address of a secondary network interface. A pod network interface does not require the QEMU guest agent.\n\n**Procedure**\n\n1. In the OpenShift Container Platform console, click **Virtualization** -> **VirtualMachines** from the side menu.\n2. Select a VM to open the **VirtualMachine details** page.\n3. Click the **Details** tab to view the IP address.\n\n## Viewing the IP address of a virtual machine by using the CLI {#virt-viewing-vmi-ip-cli_virt-configuring-viewing-ips-for-vms}\n\nYou can view the IP address of a virtual machine (VM) by using the command line.\n\n> [!NOTE]\n> You must install the QEMU guest agent on a VM to view the IP address of a secondary network interface. A pod network interface does not require the QEMU guest agent.\n\n**Prerequisites**\n\n- You have installed the OpenShift CLI (`oc`).\n\n**Procedure**\n\n- Obtain the virtual machine instance configuration by running the following command:\n\n  ```terminal\n  $ oc describe vmi <vmi_name>\n  ```\n\n  Example output:\n\n  ```yaml\n  # ...\n  Interfaces:\n     Interface Name:  eth0\n     Ip Address:      10.244.0.37/24\n     Ip Addresses:\n       10.244.0.37/24\n       fe80::858:aff:fef4:25/64\n     Mac:             0a:58:0a:f4:00:25\n     Name:            default\n     Interface Name:  v2\n     Ip Address:      1.1.1.7/24\n     Ip Addresses:\n       1.1.1.7/24\n       fe80::f4d9:70ff:fe13:9089/64\n     Mac:             f6:d9:70:13:90:89\n     Interface Name:  v1\n     Ip Address:      1.1.1.1/24\n     Ip Addresses:\n       1.1.1.1/24\n       1.1.1.2/24\n       1.1.1.4/24\n       2001:de7:0:f101::1/64\n       2001:db8:0:f101::1/64\n       fe80::1420:84ff:fe10:17aa/64\n     Mac:             16:20:84:10:17:aa\n  ```\n\n## Additional resources {#additional-resources_virt-configuring-viewing-ips-for-vms}\n\n- [Installing the QEMU guest agent](/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/vm_networking/virt-configuring-viewing-ips-for-vms.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,12 +95,91 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-configuring-viewing-ips-for-vms" class="group scroll-mt-20">Configuring and viewing IP addresses<a href="#virt-configuring-viewing-ips-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can configure an IP address when you create a virtual machine (VM). The IP address is provisioned with cloud-init. View the IP address of a VM by using the OpenShift Container Platform web console or the command line. The network information is collected by the QEMU guest agent.</p>
-      <p class="/modules/virt-configuring-ip-vm-web.md"></p>
-      <p class="/modules/virt-configuring-ip-vm-cli.md"></p>
-      <p class="/modules/virt-viewing-vmi-ip-web.md"></p>
-      <p class="/modules/virt-viewing-vmi-ip-cli.md"></p>
+      <h2 id="virt-configuring-ip-vm-web_virt-configuring-viewing-ips-for-vms" class="group scroll-mt-20">Configuring a static IP address when creating a virtual machine by using the web console<a href="#virt-configuring-ip-vm-web_virt-configuring-viewing-ips-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure a static IP address when you create a virtual machine (VM) by using the web console. The IP address is provisioned with cloud-init.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If the VM is connected to the pod network, the pod network interface is the default route unless you update it.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>The virtual machine is connected to a secondary network.</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>Navigate to <strong>Virtualization</strong> -&gt; <strong>Catalog</strong> in the web console.</li>
+      <li>Click a template tile.</li>
+      <li>Click <strong>Customize VirtualMachine</strong>.</li>
+      <li>Click <strong>Next</strong>.</li>
+      <li>On the <strong>Scripts</strong> tab, click the edit icon beside <strong>Cloud-init</strong>.</li>
+      <li>Select the <strong>Add network data</strong> checkbox.</li>
+      <li>Enter the ethernet name, one or more IP addresses separated by commas, and the gateway address.</li>
+      <li>Click <strong>Apply</strong>.</li>
+      <li>Click <strong>Create VirtualMachine</strong>.</li>
+      </ol>
+      <h2 id="virt-configuring-ip-vm-cli_virt-configuring-viewing-ips-for-vms" class="group scroll-mt-20">Configuring an IP address when creating a virtual machine by using the CLI<a href="#virt-configuring-ip-vm-cli_virt-configuring-viewing-ips-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can configure a static or dynamic IP address when you create a virtual machine (VM). The IP address is provisioned with cloud-init.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If the VM is connected to the pod network, the pod network interface is the default route unless you update it.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul>
+      <li>The virtual machine is connected to a secondary network.</li>
+      <li>You have a DHCP server available on the secondary network to configure a dynamic IP for the virtual machine.</li>
+      </ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Edit the <code>spec.template.spec.volumes.cloudInitNoCloud.networkData</code> stanza of the virtual machine configuration:
+      <ul>
+      <li>
+      To configure a dynamic IP address, specify the interface name and enable DHCP:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: <interface_name>\n  kind: VirtualMachine\nspec:\n# ...\n  template:\n  # ...\n    spec:\n      volumes:\n      - cloudInitNoCloud:\n          networkData: |\n            version: 2\n            ethernets:\n              eth1:\n                dhcp4: true\n    # ..."} lang="yaml" />
+      </li>
+      <li>
+      To configure a static IP, specify the interface name and the IP address:
+      <CodeBlock code={"apiVersion: kubevirt.io/v1\nkind: VirtualMachine\nmetadata:\n  name: <interface_name>\n  kind: VirtualMachine\nspec:\n# ...\n  template:\n  # ...\n    spec:\n      volumes:\n      - cloudInitNoCloud:\n          networkData: |\n            version: 2\n            ethernets:\n              eth1:\n                addresses:\n                - 10.10.10.14/24\n    # ..."} lang="yaml" />
+      </li>
+      </ul>
+      </li>
+      </ul>
+      <h2 id="virt-viewing-vmi-ip-web_virt-configuring-viewing-ips-for-vms" class="group scroll-mt-20">Viewing the IP address of a virtual machine by using the web console<a href="#virt-viewing-vmi-ip-web_virt-configuring-viewing-ips-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can view the IP address of a virtual machine (VM) by using the OpenShift Container Platform web console.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You must install the QEMU guest agent on a VM to view the IP address of a secondary network interface. A pod network interface does not require the QEMU guest agent.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>In the OpenShift Container Platform console, click <strong>Virtualization</strong> -&gt; <strong>VirtualMachines</strong> from the side menu.</li>
+      <li>Select a VM to open the <strong>VirtualMachine details</strong> page.</li>
+      <li>Click the <strong>Details</strong> tab to view the IP address.</li>
+      </ol>
+      <h2 id="virt-viewing-vmi-ip-cli_virt-configuring-viewing-ips-for-vms" class="group scroll-mt-20">Viewing the IP address of a virtual machine by using the CLI<a href="#virt-viewing-vmi-ip-cli_virt-configuring-viewing-ips-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can view the IP address of a virtual machine (VM) by using the command line.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>You must install the QEMU guest agent on a VM to view the IP address of a secondary network interface. A pod network interface does not require the QEMU guest agent.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Prerequisites</strong></p>
+      <ul><li>You have installed the OpenShift CLI (<code>oc</code>).</li></ul>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Obtain the virtual machine instance configuration by running the following command:
+      <CodeBlock code={"$ oc describe vmi <vmi_name>"} lang="terminal" />
+      <p>Example output:</p>
+      <CodeBlock code={"# ...\nInterfaces:\n   Interface Name:  eth0\n   Ip Address:      10.244.0.37/24\n   Ip Addresses:\n     10.244.0.37/24\n     fe80::858:aff:fef4:25/64\n   Mac:             0a:58:0a:f4:00:25\n   Name:            default\n   Interface Name:  v2\n   Ip Address:      1.1.1.7/24\n   Ip Addresses:\n     1.1.1.7/24\n     fe80::f4d9:70ff:fe13:9089/64\n   Mac:             f6:d9:70:13:90:89\n   Interface Name:  v1\n   Ip Address:      1.1.1.1/24\n   Ip Addresses:\n     1.1.1.1/24\n     1.1.1.2/24\n     1.1.1.4/24\n     2001:de7:0:f101::1/64\n     2001:db8:0:f101::1/64\n     fe80::1420:84ff:fe10:17aa/64\n   Mac:             16:20:84:10:17:aa"} lang="yaml" />
+      </li>
+      </ul>
       <h2 id="additional-resources_virt-configuring-viewing-ips-for-vms" class="group scroll-mt-20">Additional resources<a href="#additional-resources_virt-configuring-viewing-ips-for-vms" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
       <ul><li><a href="/openshift-docs-markdown/virt/managing_vms/virt-installing-qemu-guest-agent#virt-installing-qemu-guest-agent">Installing the QEMU guest agent</a></li></ul>
     </article>

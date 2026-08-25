@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"persistent-storage-csi-ebs","text":"AWS Elastic Block Store CSI Driver Operator"}];
+const headings = [{"depth":1,"slug":"persistent-storage-csi-ebs","text":"AWS Elastic Block Store CSI Driver Operator"},{"depth":2,"slug":"persistent-storage-csi-aws-ebs-overview_persistent-storage-csi-ebs","text":"Overview of the AWS EBS CSI Driver Operator"},{"depth":2,"slug":"csi-about_persistent-storage-csi-ebs","text":"About CSI"},{"depth":2,"slug":"byok_persistent-storage-csi-ebs","text":"User-managed encryption"},{"depth":2,"slug":"persistent-storage-csi-eusc_persistent-storage-csi-ebs","text":"Support for European Sovereign Cloud (EUSC) region"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-ebs";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +42,7 @@ const pageCategory = ["storage","storage/container_storage_interface"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# AWS Elastic Block Store CSI Driver Operator {#persistent-storage-csi-ebs}\n\nYou can provision and manage AWS Elastic Block Storage (EBS) in OpenShift Container Platform by using the AWS EBS Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning and eliminate the need to pre-provision storage.\n\n**Additional resources**\n\n- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)\n- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)\n- [Managing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)\n- [Creating the EBS storage class](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-aws#storage-create-storage-class_persistent-storage-aws)\n- [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning)\n\n**Additional resources**\n\n- [Optional AWS configuration parameters](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-configuration-parameters-optional-aws_installation-config-parameters-aws)\n\n**Additional resources**\n\n- [AWS EUSC region](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installation-aws-eusc_region_installing-aws-account)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-ebs.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# AWS Elastic Block Store CSI Driver Operator {#persistent-storage-csi-ebs}\n\nYou can provision and manage AWS Elastic Block Storage (EBS) in OpenShift Container Platform by using the AWS EBS Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning and eliminate the need to pre-provision storage.\n\n## Overview of the AWS EBS CSI Driver Operator {#persistent-storage-csi-aws-ebs-overview_persistent-storage-csi-ebs}\n\nOpenShift Container Platform is capable of provisioning persistent volumes (PVs) using the AWS Elastic Block Storage (EBS) Container Storage Interface (CSI) driver.\n\nFamiliarity with persistent storage and configuring CSI volumes is recommended when working with a CSI Operator and driver. For more information, see \"Understanding persistent storage\" and \"Configuring CSI volumes\".\n\nTo create CSI-provisioned PVs that mount to AWS EBS storage assets, OpenShift Container Platform installs the AWS EBS CSI Driver Operator (a Red Hat operator) and the AWS EBS CSI driver by default in the `openshift-cluster-csi-drivers` namespace.\n\nAWS EBS CSI Driver Operator\n:   The AWS EBS CSI Driver Operator provides a `StorageClass` by default that you can use to create persistent volume claims (PVCs). You can disable this default storage class if desired (see \"Managing the default storage class\"). You also have the option to create the AWS EBS `StorageClass` as described in \"Creating the EBS storage class\".\n\nAWS EBS CSI driver\n:   The AWS EBS CSI driver enables you to create and mount AWS EBS PVs.\n\n> [!NOTE]\n> If you installed the AWS EBS CSI Operator and driver on an OpenShift Container Platform 4.5 cluster, you must uninstall the 4.5 Operator and driver before you update to OpenShift Container Platform 4.22.\n\n> [!IMPORTANT]\n> OpenShift Container Platform defaults to using the CSI plugin to provision Amazon Elastic Block Store (Amazon EBS) storage.\n\nFor information about dynamically provisioning AWS EBS persistent volumes in OpenShift Container Platform, see \"Dynamic provisioning\".\n\n**Additional resources**\n\n- [Understanding persistent storage](/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage)\n- [Configuring CSI volumes](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi#persistent-storage-csi)\n- [Managing the default storage class](/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-sc-manage#persistent-storage-csi-sc-manage)\n- [Creating the EBS storage class](/openshift-docs-markdown/storage/persistent_storage/persistent-storage-aws#storage-create-storage-class_persistent-storage-aws)\n- [Dynamic provisioning](/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning)\n\n## About CSI {#csi-about_persistent-storage-csi-ebs}\n\nThe Container Storage Interface (CSI) enables storage vendors to deliver plugins through a standard interface without modifying Kubernetes core code, replacing traditional embedded storage drivers.\n\nCSI Operators give OpenShift Container Platform users storage options, such as volume snapshots, that are not possible with in-tree volume plugins.\n\n## User-managed encryption {#byok_persistent-storage-csi-ebs}\n\nThe user-managed encryption feature allows you to provide keys during installation that encrypt OpenShift Container Platform node root volumes, and enables all managed storage classes to use these keys to encrypt provisioned storage volumes.\n\nYou must specify the custom key in the `platform.<cloud_type>.defaultMachinePlatform` field in the install-config YAML file.\n\nThis features supports the following storage types:\n\n- Amazon Web Services (AWS) Elastic Block storage (EBS)\n\n  > [!NOTE]\n  > If there is no encrypted key defined in the storage class, only set `encrypted: \"true\"` in the storage class. The AWS EBS CSI driver uses the AWS managed alias/aws/ebs, which is created by Amazon EBS automatically in each region by default to encrypt provisioned storage volumes. In addition, the managed storage classes all have the `encrypted: \"true\"` setting.\n\n  For information about installing AWS EBS with user-managed encryption, see \"Optional AWS configuration parameters\".\n- Microsoft Azure Disk storage\n\n  > [!NOTE]\n  > If the OS (root) disk is encrypted, and there is no encrypted key defined in the storage class, Azure Disk CSI driver uses the OS disk encryption key by default to encrypt provisioned storage volumes.\n\n  For information about installing Azure Disk with user-managed encryption, see \"Preparing an Azure Disk Encryption Set\".\n- Google Cloud Platform (GCP) persistent disk (PD) storage\n\n  For information about installing GCP PD with user-managed encryption, see \"Additional Google Cloud configuration parameters\".\n- IBM Cloud(R) Virtual Private Cloud (VPC) Block storage\n\n  For information about installing with IBM Cloud with user-managed encryption, see \"User-managed encryption for IBM Cloud\" and \"Installing on IBM Cloud\".\n\n**Additional resources**\n\n- [Optional AWS configuration parameters](/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-configuration-parameters-optional-aws_installation-config-parameters-aws)\n\n## Support for European Sovereign Cloud (EUSC) region {#persistent-storage-csi-eusc_persistent-storage-csi-ebs}\n\nEuropean Sovereign Cloud (EUSC) region acts as a \"digital fortress\" built within a specific country’s borders. Sovereign Clouds are specifically designed to meet strict legal, jurisdictional, and security requirements of a particular nation or entity.\n\nIn the context of storage, EUSC ensures that all data, including primary storage, backups, and the resulting metadata, resides physically within the specific nation’s borders and remains exclusively under its legal jurisdiction.\n\nFor OpenShift Container Platform 4.22, and later, only AWS Elastic Block Storage supports EUSC. AWS Elastic File Storage (EFS) is not supported.\n\n> [!IMPORTANT]\n> EUSC is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.\n>\n> For more information about the support scope of Red Hat Technology Preview features, see [Technology Preview Features Support Scope](https://access.redhat.com/support/offerings/techpreview/).\n\nFor information about installing an OpenShift Container Platform cluster into the AWS EUSC, see \"AWS EUSC region\".\n\n**Additional resources**\n\n- [AWS EUSC region](/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installation-aws-eusc_region_installing-aws-account)\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/storage/container_storage_interface/persistent-storage-csi-ebs.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +94,30 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="persistent-storage-csi-ebs" class="group scroll-mt-20">AWS Elastic Block Store CSI Driver Operator<a href="#persistent-storage-csi-ebs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can provision and manage AWS Elastic Block Storage (EBS) in OpenShift Container Platform by using the AWS EBS Container Storage Interface (CSI) Driver Operator and driver, which provide dynamic volume provisioning and eliminate the need to pre-provision storage.</p>
-      <p class="/modules/persistent-storage-csi-aws-ebs-overview.md"></p>
+      <h2 id="persistent-storage-csi-aws-ebs-overview_persistent-storage-csi-ebs" class="group scroll-mt-20">Overview of the AWS EBS CSI Driver Operator<a href="#persistent-storage-csi-aws-ebs-overview_persistent-storage-csi-ebs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">OpenShift Container Platform is capable of provisioning persistent volumes (PVs) using the AWS Elastic Block Storage (EBS) Container Storage Interface (CSI) driver.</p>
+      <p>Familiarity with persistent storage and configuring CSI volumes is recommended when working with a CSI Operator and driver. For more information, see "Understanding persistent storage" and "Configuring CSI volumes".</p>
+      <p>To create CSI-provisioned PVs that mount to AWS EBS storage assets, OpenShift Container Platform installs the AWS EBS CSI Driver Operator (a Red Hat operator) and the AWS EBS CSI driver by default in the <code>openshift-cluster-csi-drivers</code> namespace.</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold">AWS EBS CSI Driver Operator</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The AWS EBS CSI Driver Operator provides a <code>StorageClass</code> by default that you can use to create persistent volume claims (PVCs). You can disable this default storage class if desired (see "Managing the default storage class"). You also have the option to create the AWS EBS <code>StorageClass</code> as described in "Creating the EBS storage class".</p></dd>
+      <dt class="font-semibold">AWS EBS CSI driver</dt>
+      <dd class="ml-6 text-muted-foreground"><p>The AWS EBS CSI driver enables you to create and mount AWS EBS PVs.</p></dd>
+      </dl>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If you installed the AWS EBS CSI Operator and driver on an OpenShift Container Platform 4.5 cluster, you must uninstall the 4.5 Operator and driver before you update to OpenShift Container Platform 4.22.</p>
+        </AlertDescription>
+      </Alert>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>OpenShift Container Platform defaults to using the CSI plugin to provision Amazon Elastic Block Store (Amazon EBS) storage.</p>
+        </AlertDescription>
+      </Alert>
+      <p>For information about dynamically provisioning AWS EBS persistent volumes in OpenShift Container Platform, see "Dynamic provisioning".</p>
       <p><strong>Additional resources</strong></p>
       <ul>
       <li><a href="/openshift-docs-markdown/storage/understanding-persistent-storage#understanding-persistent-storage">Understanding persistent storage</a></li>
@@ -102,9 +126,57 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <li><a href="/openshift-docs-markdown/storage/persistent_storage/persistent-storage-aws#storage-create-storage-class_persistent-storage-aws">Creating the EBS storage class</a></li>
       <li><a href="/openshift-docs-markdown/storage/dynamic-provisioning#dynamic-provisioning">Dynamic provisioning</a></li>
       </ul>
-      <p class="/modules/persistent-storage-byok.md"></p>
+      <h2 id="csi-about_persistent-storage-csi-ebs" class="group scroll-mt-20">About CSI<a href="#csi-about_persistent-storage-csi-ebs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The Container Storage Interface (CSI) enables storage vendors to deliver plugins through a standard interface without modifying Kubernetes core code, replacing traditional embedded storage drivers.</p>
+      <p>CSI Operators give OpenShift Container Platform users storage options, such as volume snapshots, that are not possible with in-tree volume plugins.</p>
+      <h2 id="byok_persistent-storage-csi-ebs" class="group scroll-mt-20">User-managed encryption<a href="#byok_persistent-storage-csi-ebs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">The user-managed encryption feature allows you to provide keys during installation that encrypt OpenShift Container Platform node root volumes, and enables all managed storage classes to use these keys to encrypt provisioned storage volumes. </p>
+      <p>You must specify the custom key in the <code>platform.&lt;cloud_type&gt;.defaultMachinePlatform</code> field in the install-config YAML file.</p>
+      <p>This features supports the following storage types:</p>
+      <ul>
+      <li>
+      Amazon Web Services (AWS) Elastic Block storage (EBS)
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If there is no encrypted key defined in the storage class, only set <code>encrypted: "true"</code> in the storage class. The AWS EBS CSI driver uses the AWS managed alias/aws/ebs, which is created by Amazon EBS automatically in each region by default to encrypt provisioned storage volumes. In addition, the managed storage classes all have the <code>encrypted: "true"</code> setting.</p>
+        </AlertDescription>
+      </Alert>
+      <p>For information about installing AWS EBS with user-managed encryption, see "Optional AWS configuration parameters".</p>
+      </li>
+      <li>
+      Microsoft Azure Disk storage
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>If the OS (root) disk is encrypted, and there is no encrypted key defined in the storage class, Azure Disk CSI driver uses the OS disk encryption key by default to encrypt provisioned storage volumes.</p>
+        </AlertDescription>
+      </Alert>
+      <p>For information about installing Azure Disk with user-managed encryption, see "Preparing an Azure Disk Encryption Set".</p>
+      </li>
+      <li>
+      Google Cloud Platform (GCP) persistent disk (PD) storage
+      <p>For information about installing GCP PD with user-managed encryption, see "Additional Google Cloud configuration parameters".</p>
+      </li>
+      <li>
+      IBM Cloud(R) Virtual Private Cloud (VPC) Block storage
+      <p>For information about installing with IBM Cloud with user-managed encryption, see "User-managed encryption for IBM Cloud" and "Installing on IBM Cloud".</p>
+      </li>
+      </ul>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/installation-config-parameters-aws#installation-configuration-parameters-optional-aws_installation-config-parameters-aws">Optional AWS configuration parameters</a></li></ul>
+      <h2 id="persistent-storage-csi-eusc_persistent-storage-csi-ebs" class="group scroll-mt-20">Support for European Sovereign Cloud (EUSC) region<a href="#persistent-storage-csi-eusc_persistent-storage-csi-ebs" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">European Sovereign Cloud (EUSC) region acts as a "digital fortress" built within a specific country’s borders. Sovereign Clouds are specifically designed to meet strict legal, jurisdictional, and security requirements of a particular nation or entity.</p>
+      <p>In the context of storage, EUSC ensures that all data, including primary storage, backups, and the resulting metadata, resides physically within the specific nation’s borders and remains exclusively under its legal jurisdiction.</p>
+      <p>For OpenShift Container Platform 4.22, and later, only AWS Elastic Block Storage supports EUSC. AWS Elastic File Storage (EFS) is not supported.</p>
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p>EUSC is a Technology Preview feature only. Technology Preview features are not supported with Red Hat production service level agreements (SLAs) and might not be functionally complete. Red Hat does not recommend using them in production. These features provide early access to upcoming product features, enabling customers to test functionality and provide feedback during the development process.</p>
+          <p>For more information about the support scope of Red Hat Technology Preview features, see <a href="https://access.redhat.com/support/offerings/techpreview/">Technology Preview Features Support Scope</a>.</p>
+        </AlertDescription>
+      </Alert>
+      <p>For information about installing an OpenShift Container Platform cluster into the AWS EUSC, see "AWS EUSC region".</p>
       <p><strong>Additional resources</strong></p>
       <ul><li><a href="/openshift-docs-markdown/installing/installing_aws/installing-aws-account#installation-aws-eusc_region_installing-aws-account">AWS EUSC region</a></li></ul>
     </article>

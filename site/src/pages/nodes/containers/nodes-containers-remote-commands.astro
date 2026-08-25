@@ -15,8 +15,12 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"nodes-containers-remote-commands","text":"Executing remote commands in an OpenShift Container Platform container"}];
+const headings = [{"depth":1,"slug":"nodes-containers-remote-commands","text":"Executing remote commands in an OpenShift Container Platform container"},{"depth":2,"slug":"nodes-containers-remote-commands-about_nodes-containers-remote-commands","text":"Executing remote commands in containers"},{"depth":2,"slug":"nodes-containers-remote-commands-protocol_nodes-containers-remote-commands","text":"Protocol for initiating a remote command from a client"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/nodes/containers/nodes-containers-remote-commands";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +43,7 @@ const pageCategory = ["nodes","nodes/containers"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Executing remote commands in an OpenShift Container Platform container {#nodes-containers-remote-commands}\n\nYou can use the `oc exec` command to execute remote commands in OpenShift Container Platform containers from your local machine.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/containers/nodes-containers-remote-commands.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Executing remote commands in an OpenShift Container Platform container {#nodes-containers-remote-commands}\n\nYou can use the `oc exec` command to execute remote commands in OpenShift Container Platform containers from your local machine.\n\n## Executing remote commands in containers {#nodes-containers-remote-commands-about_nodes-containers-remote-commands}\n\nYou can use the OpenShift CLI (`oc`) to execute remote commands in OpenShift Container Platform containers. By running commands in a container, you can perform troubleshooting, inspect logs, run scripts, and other tasks.\n\n**Procedure**\n\n- Use a command similar to the following to run a command in a container:\n\n  ```terminal\n  $ oc exec <pod> [-c <container>] -- <command> [<arg_1> ... <arg_n>]\n  ```\n\n  For example:\n\n  ```terminal\n  $ oc exec mypod date\n  ```\n\n  ```terminal {title=\"Example output\"}\n  Thu Apr  9 02:21:53 UTC 2015\n  ```\n\n  > [!IMPORTANT]\n  > [For security purposes](https://access.redhat.com/errata/RHSA-2015:1650), the `oc exec` command does not work when accessing privileged containers except when the command is executed by a `cluster-admin` user.\n\n## Protocol for initiating a remote command from a client {#nodes-containers-remote-commands-protocol_nodes-containers-remote-commands}\n\nA client resource in your cluster can initiate the execution of a remote command in a container by issuing a request to the Kubernetes API server.\n\nThe following example is the format for a typical request to a Kubernetes API server:\n\n```terminal\n/proxy/nodes/<node_name>/exec/<namespace>/<pod>/<container>?command=<command>\n```\n\nwhere:\n\n`<node_name>`\n:   Specifies the FQDN of the node.\n\n`<namespace>`\n:   Specifies the project of the target pod.\n\n`<pod>`\n:   Specifies the name of the target pod.\n\n`<container>`\n:   Specifies the name of the target container.\n\n`<command>`\n:   Specifies the desired command to be executed.\n\n```terminal {title=\"Example request\"}\n/proxy/nodes/node123.openshift.com/exec/myns/mypod/mycontainer?command=date\n```\n\nAdditionally, the client can add parameters to the request to indicate any of the following conditions:\n\n- The client should send input to the remote container’s command (stdin).\n- The client’s terminal is a TTY.\n- The remote container’s command should send output from stdout to the client.\n- The remote container’s command should send output from stderr to the client.\n\nAfter sending an `exec` request to the API server, the client upgrades the connection to one that supports multiplexed streams; the current implementation uses **HTTP/2**.\n\nThe client creates one stream each for stdin, stdout, and stderr. To distinguish among the streams, the client sets the `streamType` header on the stream to one of `stdin`, `stdout`, or `stderr`.\n\nThe client closes all streams, the upgraded connection, and the underlying connection when it is finished with the remote command execution request.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/nodes/containers/nodes-containers-remote-commands.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,10 +95,53 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="nodes-containers-remote-commands" class="group scroll-mt-20">Executing remote commands in an OpenShift Container Platform container<a href="#nodes-containers-remote-commands" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>You can use the <code>oc exec</code> command to execute remote commands in OpenShift Container Platform containers from your local machine.</p>
-      <p class="/modules/nodes-containers-remote-commands-about.md"></p>
-      <p class="/modules/nodes-containers-remote-commands-protocol.md"></p>
+      <h2 id="nodes-containers-remote-commands-about_nodes-containers-remote-commands" class="group scroll-mt-20">Executing remote commands in containers<a href="#nodes-containers-remote-commands-about_nodes-containers-remote-commands" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">You can use the OpenShift CLI (<code>oc</code>) to execute remote commands in OpenShift Container Platform containers. By running commands in a container, you can perform troubleshooting, inspect logs, run scripts, and other tasks.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Use a command similar to the following to run a command in a container:
+      <CodeBlock code={"$ oc exec <pod> [-c <container>] -- <command> [<arg_1> ... <arg_n>]"} lang="terminal" />
+      <p>For example:</p>
+      <CodeBlock code={"$ oc exec mypod date"} lang="terminal" />
+      <CodeBlock code={"Thu Apr  9 02:21:53 UTC 2015"} lang="terminal" title="Example output" />
+      <Alert variant="info" class="my-4">
+        <AlertTitle>Important</AlertTitle>
+        <AlertDescription>
+          <p><a href="https://access.redhat.com/errata/RHSA-2015:1650">For security purposes</a>, the <code>oc exec</code> command does not work when accessing privileged containers except when the command is executed by a <code>cluster-admin</code> user.</p>
+        </AlertDescription>
+      </Alert>
+      </li>
+      </ul>
+      <h2 id="nodes-containers-remote-commands-protocol_nodes-containers-remote-commands" class="group scroll-mt-20">Protocol for initiating a remote command from a client<a href="#nodes-containers-remote-commands-protocol_nodes-containers-remote-commands" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">A client resource in your cluster can initiate the execution of a remote command in a container by issuing a request to the Kubernetes API server.</p>
+      <p>The following example is the format for a typical request to a Kubernetes API server:</p>
+      <CodeBlock code={"/proxy/nodes/<node_name>/exec/<namespace>/<pod>/<container>?command=<command>"} lang="terminal" />
+      <p>where:</p>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>&lt;node_name&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the FQDN of the node.</p></dd>
+      <dt class="font-semibold"><code>&lt;namespace&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the project of the target pod.</p></dd>
+      <dt class="font-semibold"><code>&lt;pod&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the target pod.</p></dd>
+      <dt class="font-semibold"><code>&lt;container&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the name of the target container.</p></dd>
+      <dt class="font-semibold"><code>&lt;command&gt;</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Specifies the desired command to be executed.</p></dd>
+      </dl>
+      <CodeBlock code={"/proxy/nodes/node123.openshift.com/exec/myns/mypod/mycontainer?command=date"} lang="terminal" title="Example request" />
+      <p>Additionally, the client can add parameters to the request to indicate any of the following conditions:</p>
+      <ul>
+      <li>The client should send input to the remote container’s command (stdin).</li>
+      <li>The client’s terminal is a TTY.</li>
+      <li>The remote container’s command should send output from stdout to the client.</li>
+      <li>The remote container’s command should send output from stderr to the client.</li>
+      </ul>
+      <p>After sending an <code>exec</code> request to the API server, the client upgrades the connection to one that supports multiplexed streams; the current implementation uses <strong>HTTP/2</strong>.</p>
+      <p>The client creates one stream each for stdin, stdout, and stderr. To distinguish among the streams, the client sets the <code>streamType</code> header on the stream to one of <code>stdin</code>, <code>stdout</code>, or <code>stderr</code>.</p>
+      <p>The client closes all streams, the upgraded connection, and the underlying connection when it is finished with the remote command execution request.</p>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

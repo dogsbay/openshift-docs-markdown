@@ -2,7 +2,7 @@
 // Source: virt/storage/virt-managing-data-volume-annotations.md
 // Edit the source markdown and re-run `dogsbay convert` to regenerate.
 export const prerender = true;
-const body = "---\ntitle: Managing data volume annotations\n---\n\n# Managing data volume annotations {#virt-managing-data-volume-annotations}\n\nData volume (DV) annotations allow you to manage pod behavior. You can add one or more annotations to a data volume, which then propagates to the created importer pods.\n";
+const body = "---\ntitle: Managing data volume annotations\n---\n\n# Managing data volume annotations {#virt-managing-data-volume-annotations}\n\nData volume (DV) annotations allow you to manage pod behavior. You can add one or more annotations to a data volume, which then propagates to the created importer pods.\n\n## Example: Data volume annotations {#virt-dv-annotations_virt-managing-data-volume-annotations}\n\nYou can configure data volume (DV) annotations to control which network the importer pod uses. The `v1.multus-cni.io/default-network: bridge-network` annotation causes the pod to use the Multus network named `bridge-network` as its default network.\n\nIf you want the importer pod to use both the default network from the cluster and the secondary Multus network, use the `k8s.v1.cni.cncf.io/networks: <network_name>` annotation.\n\nMultus network annotation example:\n\n```yaml\napiVersion: cdi.kubevirt.io/v1beta1\nkind: DataVolume\nmetadata:\n  name: datavolume-example\n  annotations:\n    v1.multus-cni.io/default-network: bridge-network\n# ...\n```\n\nThe `v1.multus-cni.io/default-network` annotation specifies the Multus network name.\n";
 export const GET = () =>
   new Response(body, {
     headers: { "Content-Type": "text/markdown; charset=utf-8" },

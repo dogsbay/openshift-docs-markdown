@@ -15,8 +15,11 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import Alert from "@ui/alert/Alert.astro";
+import AlertDescription from "@ui/alert/AlertDescription.astro";
+import AlertTitle from "@ui/alert/AlertTitle.astro";
 
-const headings = [{"depth":1,"slug":"virt-migrating-vms-in-single-cluster-to-different-storage-class","text":"Migrate VMs in a single cluster to a different storage class"}];
+const headings = [{"depth":1,"slug":"virt-migrating-vms-in-single-cluster-to-different-storage-class","text":"Migrate VMs in a single cluster to a different storage class"},{"depth":2,"slug":"virt-migrating-bulk-vms-different-storage-class-web_virt-migrating-vms-in-single-cluster-to-different-storage-class","text":"Migrating VMs in a single cluster to a different storage class by using the web console"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/virt/managing_vms/virt-migrating-vms-in-single-cluster-to-different-storage-class";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +42,7 @@ const pageCategory = ["virt","virt/managing_vms"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Migrate VMs in a single cluster to a different storage class {#virt-migrating-vms-in-single-cluster-to-different-storage-class}\n\nTo optimize performance or reduce costs, you can migrate virtual machines (VMs) between storage classes within a single cluster. You can use the OpenShift Container Platform web console to perform these migrations in bulk.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-migrating-vms-in-single-cluster-to-different-storage-class.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Migrate VMs in a single cluster to a different storage class {#virt-migrating-vms-in-single-cluster-to-different-storage-class}\n\nTo optimize performance or reduce costs, you can migrate virtual machines (VMs) between storage classes within a single cluster. You can use the OpenShift Container Platform web console to perform these migrations in bulk.\n\n## Migrating VMs in a single cluster to a different storage class by using the web console {#virt-migrating-bulk-vms-different-storage-class-web_virt-migrating-vms-in-single-cluster-to-different-storage-class}\n\nBy using the OpenShift Container Platform web console, you can migrate single-cluster VMs in bulk from one storage class to another storage class.\n\n> [!NOTE]\n> When you migrate a virtual machine disk from one storage class to another, the source persistent volume claim (PVC) is not automatically deleted after the migration completes. After you verify that the migration was successful, you must manually delete the source PVC. This behavior is expected and applies only to storage class migrations.\n\n**Procedure**\n\n1. From the OpenShift Container Platform web console, navigate to **Virtualization** → **VirtualMachines**.\n2. From the list of VMs in the same namespace, select each VM that you want to move from its current storage class.\n3. Select **Actions** -> **Migrate storage**.\n\n   Alternatively, you can access this option by opening the Options menu ![](kebab.png \"Options menu\") for a selected VM, and then selecting **Migration** -> **Storage**.\n\n   The **Migrate VirtualMachine storage** page opens.\n4. To review the VMs that you want to migrate, click the link that identifies the number of VMs and volumes. Click **View more** to see the full list.\n5. Select either the entire VM or only selected volumes for storage class migration. If you choose to migrate only selected volumes, the page expands to allow you to make specific selections.\n\n   You can also click **VirtualMachine name** to select all VMs.\n6. Click **Next**.\n7. From the list of available storage classes, select the destination storage class for the migration.\n8. Click **Next**.\n9. Review the details, and click **Migrate VirtualMachine storage** to start the migration.\n10. Optional: Click **Stop** to interrupt the migration, or click **View storage migrations** to see the status of current and previous migrations.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/virt/managing_vms/virt-migrating-vms-in-single-cluster-to-different-storage-class.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -91,9 +94,35 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <MarkdownContentStack>
     <article class="docs-prose">
       <h1 id="virt-migrating-vms-in-single-cluster-to-different-storage-class" class="group scroll-mt-20">Migrate VMs in a single cluster to a different storage class<a href="#virt-migrating-vms-in-single-cluster-to-different-storage-class" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
-      <p class="/_attributes/common-attributes.md"></p>
       <p>To optimize performance or reduce costs, you can migrate virtual machines (VMs) between storage classes within a single cluster. You can use the OpenShift Container Platform web console to perform these migrations in bulk.</p>
-      <p class="/modules/virt-migrating-bulk-vms-different-storage-class-web.md"></p>
+      <h2 id="virt-migrating-bulk-vms-different-storage-class-web_virt-migrating-vms-in-single-cluster-to-different-storage-class" class="group scroll-mt-20">Migrating VMs in a single cluster to a different storage class by using the web console<a href="#virt-migrating-bulk-vms-different-storage-class-web_virt-migrating-vms-in-single-cluster-to-different-storage-class" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">By using the OpenShift Container Platform web console, you can migrate single-cluster VMs in bulk from one storage class to another storage class.</p>
+      <Alert variant="note" class="my-4">
+        <AlertTitle>Note</AlertTitle>
+        <AlertDescription>
+          <p>When you migrate a virtual machine disk from one storage class to another, the source persistent volume claim (PVC) is not automatically deleted after the migration completes. After you verify that the migration was successful, you must manually delete the source PVC. This behavior is expected and applies only to storage class migrations.</p>
+        </AlertDescription>
+      </Alert>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>From the OpenShift Container Platform web console, navigate to <strong>Virtualization</strong> → <strong>VirtualMachines</strong>.</li>
+      <li>From the list of VMs in the same namespace, select each VM that you want to move from its current storage class.</li>
+      <li>
+      Select <strong>Actions</strong> -&gt; <strong>Migrate storage</strong>.
+      <p>Alternatively, you can access this option by opening the Options menu <img src="kebab.png" alt="" loading="lazy" /> for a selected VM, and then selecting <strong>Migration</strong> -&gt; <strong>Storage</strong>.</p>
+      <p>The <strong>Migrate VirtualMachine storage</strong> page opens.</p>
+      </li>
+      <li>To review the VMs that you want to migrate, click the link that identifies the number of VMs and volumes. Click <strong>View more</strong> to see the full list.</li>
+      <li>
+      Select either the entire VM or only selected volumes for storage class migration. If you choose to migrate only selected volumes, the page expands to allow you to make specific selections.
+      <p>You can also click <strong>VirtualMachine name</strong> to select all VMs.</p>
+      </li>
+      <li>Click <strong>Next</strong>.</li>
+      <li>From the list of available storage classes, select the destination storage class for the migration.</li>
+      <li>Click <strong>Next</strong>.</li>
+      <li>Review the details, and click <strong>Migrate VirtualMachine storage</strong> to start the migration.</li>
+      <li>Optional: Click <strong>Stop</strong> to interrupt the migration, or click <strong>View storage migrations</strong> to see the status of current and previous migrations.</li>
+      </ol>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

@@ -15,8 +15,9 @@ import switcherMapData from "@/data/switcherMap.json";
 import MarkdownContentStack from "@/components/wrappers/MarkdownContentStack.astro";
 import RightRailStack from "@/components/wrappers/RightRailStack.astro";
 const siteConfig = siteConfigData as SiteConfig;
+import CodeBlock from "@ui/code-block/CodeBlock.astro";
 
-const headings = [{"depth":1,"slug":"admission-fair-sharing","text":"Admission fair sharing"}];
+const headings = [{"depth":1,"slug":"admission-fair-sharing","text":"Admission fair sharing"},{"depth":2,"slug":"configuring-kueue-instance-for-admission-fair-sharing_admission-fair-sharing","text":"Configuring the Red Hat build of Kueue instance for admission fair sharing"},{"depth":3,"slug":"setting-resource-weights_admission-fair-sharing","text":"Set resource weights"},{"depth":2,"slug":"configuring-clusterqueue-for-admission-fair-sharing_admission-fair-sharing","text":"Configuring a cluster queue for admission fair sharing"},{"depth":2,"slug":"configuring-localqueue-for-admission-fair-sharing_admission-fair-sharing","text":"Configuring a local queue for admission fair sharing (optional)"},{"depth":2,"slug":"verifying-the-admission-fair-sharing-status_admission-fair-sharing","text":"Verifying the admission fair sharing status"}];
 const nav = navData;
 const currentPath = "/openshift-docs-markdown/ai_workloads/kueue/admission-fair-sharing";
 const _navForPagination = filterNavByAxis(nav as any[], {
@@ -39,7 +40,7 @@ const pageCategory = ["ai_workloads","ai_workloads/kueue"];
 const pageTaxonomies = null;
 const tagsIndexPath = "/openshift-docs-markdown/tags";
 const lastUpdated = null || undefined;
-const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Admission fair sharing {#admission-fair-sharing}\n\nUse admission fair sharing to fairly distribute workloads across local Queues that share a single `ClusterQueue`.\n\nYou can balance workload admission by prioritizing workloads from local Queues that have used fewer resources historically. With admission fair sharing, you can track usage over time with a configurable decay function and apply admission penalties when workloads are admitted.\n\nWhen multiple tenants share a single `ClusterQueue`, some tenants risk resource starvation. Admission fair sharing adresses this issue by meeting the following requirements:\n\nEnforce multi-tenant fairness (business critical)\n:   Ensure fair distribution of cluster resources across all tenants based on their usage history.\n\nImprove service predictability\n:   Guarantee each tenant gets a consistent share of resources, reducing latency spikes and preventing starvation.\n\nEnable scalable governance\n:   Complement static quotas with dynamic, usage-based admission ordering that adapts as tenant demand changes.\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/admission-fair-sharing.md"} ?? undefined;
+const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplexity","gemini"],"placement":"header","copyButton":true,"footerLink":true,"markdownBody":"# Admission fair sharing {#admission-fair-sharing}\n\nUse admission fair sharing to fairly distribute workloads across local Queues that share a single `ClusterQueue`.\n\nYou can balance workload admission by prioritizing workloads from local Queues that have used fewer resources historically. With admission fair sharing, you can track usage over time with a configurable decay function and apply admission penalties when workloads are admitted.\n\nWhen multiple tenants share a single `ClusterQueue`, some tenants risk resource starvation. Admission fair sharing adresses this issue by meeting the following requirements:\n\nEnforce multi-tenant fairness (business critical)\n:   Ensure fair distribution of cluster resources across all tenants based on their usage history.\n\nImprove service predictability\n:   Guarantee each tenant gets a consistent share of resources, reducing latency spikes and preventing starvation.\n\nEnable scalable governance\n:   Complement static quotas with dynamic, usage-based admission ordering that adapts as tenant demand changes.\n\n## Configuring the Red Hat build of Kueue instance for admission fair sharing {#configuring-kueue-instance-for-admission-fair-sharing_admission-fair-sharing}\n\nConfigure Red Hat build of Kueue admission fair sharing using either the `Default` or `Custom` configuration.\n\n**Procedure**\n\n1. Choose the `configuration` type you want to use:\n\n   - `Default`: Uses predefined values.\n   - `Custom`: Uses values that you specify.\n2. Apply your chosen configuration:\n\n   - Use the following command to create a `Default` configuration:\n\n     ```terminal\n     $ oc patch kueue.kueue.openshift.io/cluster --type=merge -p \\ '{\"spec\":{\"config\":{\"admissionFairSharing\":{\"configuration\":\"Default\",\"custom\":null}}}}'\n     ```\n\n     ```yaml {title=\"Example of Kueue instance output\"}\n     config:\n         admissionFairSharing:\n           configuration: Default\n     ```\n   - Use the following command to create a `Custom` configuration that applies values that you specify:\n\n     ```terminal\n     $ oc patch kueue.kueue.openshift.io/cluster --type=merge -p \\ '{\"spec\":{\"config\":{\"admissionFairSharing\":{\"configuration\":\"Custom\",\"custom\":{\"usageHalfLifeTimeSeconds\":10,\"usageSamplingIntervalSeconds\":10,\"resourceWeights\":[{\"name\":\"cpu\",\"weight\":\"2.0\"}]}}}}}'\n     ```\n\n     ```terminal {title=\"Example of Kueue instance output\"}\n       config:\n         admissionFairSharing:\n           configuration: Custom\n           custom:\n             resourceWeights:\n             - name: cpu\n               weight: \"2.0\"\n             usageHalfLifeTimeSeconds: 10\n             usageSamplingIntervalSeconds: 10\n     ```\n\n     `resourceWeights`\n     :   Assigns weights to resources. The higher the weight, the higher the penalty.\n\n`usageHalfLifeTimeSeconds`\n:   The time in seconds after which the current usage will decrease by half. That is, it controls how long the past consumption should impact future admission.\n\n`usageSamplingIntervalSeconds`\n:   The frequency in seconds that Red Hat build of Kueue updates the `consumedResources` component in the `FairSharingStatus` component.\n\n### Set resource weights {#setting-resource-weights_admission-fair-sharing}\n\nResources measured in bytes, like memory, require scaled-down `resourceWeights` values. Kubernetes represents memory in bytes, creating values that are billions of times larger than CPU core counts.\n\nThis numeric difference makes CPU weights ineffective unless you scale memory weights down. Without this adjustment, the raw byte value of these resources will numerically dominate human-scale resources, such as CPU cores, by several orders of magnitude, effectively making their weights meaningless.\n\nFor example, if you want to achieve an effective memory weight of `1.0`, you would need to instead specify `9.31e-10`, which corresponds to `1.0 / 1,073,741,824`.\n\n## Configuring a cluster queue for admission fair sharing {#configuring-clusterqueue-for-admission-fair-sharing_admission-fair-sharing}\n\nConfigure the `admissionScope` section in your `ClusterQueue` object to be `UsageBasedAdmissionFairSharing`.\n\n**Procedure**\n\n- Specify `UsageBasedAdmissionFairSharing` as shown in the following example:\n\n  ```yaml\n  apiVersion: kueue.x-k8s.io/v1beta2\n  kind: ClusterQueue\n  metadata:\n    name: shared-queue\n  spec:\n    namespaceSelector: {}\n    admissionScope:\n      admissionMode: UsageBasedAdmissionFairSharing\n    resourceGroups:\n      - coveredResources: [\"cpu\", \"memory\"]\n        flavors:\n          - name: afs-rf\n            resources:\n              - name: cpu\n                nominalQuota: 2\n              - name: memory\n                nominalQuota: 2Gi\n  ```\n\n## Configuring a local queue for admission fair sharing (optional) {#configuring-localqueue-for-admission-fair-sharing_admission-fair-sharing}\n\nOptionally, you can configure `fairSharing` section in your `LocalQueue` object to adjust its weight in the fair sharing calculation. The higher the weight, the lower the penalty. For example, specifying a weight of `2` treats the queue as if it is used by half as many resources.\n\n**Procedure**\n\n- Specify a `weight` value as shown in the following example:\n\n  ```yaml\n  apiVersion: kueue.x-k8s.io/v1beta2\n  kind: LocalQueue\n  metadata:\n    name: team-a-queue\n    namespace: team-a\n  spec:\n    clusterQueue: shared-queue\n    fairSharing:\n      weight: \"2\"  # This queue will be treated as if it used half as many resources\n  ```\n\n## Verifying the admission fair sharing status {#verifying-the-admission-fair-sharing-status_admission-fair-sharing}\n\nCheck the `admissionFairSharingStatus` status in the local queue.\n\n**Procedure**\n\n- Use the following command to verify the status of admission fair sharing:\n\n  ```terminal\n  $ oc get lq <local-queue-name> -n <local-queue-namespace> -o jsonpath={.status.fairSharing}\n  ```\n\n  ```terminal {title=\"Example output\"}\n  {\"admissionFairSharingStatus\":{\"consumedResources\":{\"cpu\":\"31999m\"},\"lastUpdate\":\"2025-06-03T14:25:15Z\"},\"weightedShare\":0}\n  ```\n","mdUrl":"https://dogsbay.github.io/openshift-docs-markdown/ai_workloads/kueue/admission-fair-sharing.md"} ?? undefined;
 ---
 
 <DocsLayout
@@ -75,7 +76,7 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   category={pageCategory ?? undefined}
   lastUpdated={lastUpdated}
   taxonomies={pageTaxonomies ?? undefined}
-  autoH1={true}
+  autoH1={false}
   autoLede={false}
   llmActions={llmActionsProps}
   multiSource={null ?? undefined}
@@ -90,7 +91,6 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
   <RightRailStack slot="right-rail" />
   <MarkdownContentStack>
     <article class="docs-prose">
-      <p class="/_attributes/common-attributes.md"></p>
       <h1 id="admission-fair-sharing" class="group scroll-mt-20">Admission fair sharing<a href="#admission-fair-sharing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h1>
       <p>Use admission fair sharing to fairly distribute workloads across local Queues that share a single <code>ClusterQueue</code>.</p>
       <p>You can balance workload admission by prioritizing workloads from local Queues that have used fewer resources historically. With admission fair sharing, you can track usage over time with a configurable decay function and apply admission penalties when workloads are admitted.</p>
@@ -103,11 +103,75 @@ const llmActionsProps = {"enabled":true,"providers":["claude","chatgpt","perplex
       <dt class="font-semibold">Enable scalable governance</dt>
       <dd class="ml-6 text-muted-foreground"><p>Complement static quotas with dynamic, usage-based admission ordering that adapts as tenant demand changes.</p></dd>
       </dl>
-      <p class="/modules/kueue-configuring-kueue-instance-for-admission-fair-sharing.md"></p>
-      <p class="/modules/kueue-setting-resource-weights.md"></p>
-      <p class="/modules/kueue-configuring-clusterqueue-for-admission-fair-sharing.md"></p>
-      <p class="/modules/kueue-configuring-localqueue-for-admission-fair-sharing.md"></p>
-      <p class="/modules/kueue-verifying-the-admission-fair-sharing-status.md"></p>
+      <h2 id="configuring-kueue-instance-for-admission-fair-sharing_admission-fair-sharing" class="group scroll-mt-20">Configuring the Red Hat build of Kueue instance for admission fair sharing<a href="#configuring-kueue-instance-for-admission-fair-sharing_admission-fair-sharing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure Red Hat build of Kueue admission fair sharing using either the <code>Default</code> or <code>Custom</code> configuration. </p>
+      <p><strong>Procedure</strong></p>
+      <ol>
+      <li>
+      Choose the <code>configuration</code> type you want to use:
+      <ul>
+      <li><code>Default</code>: Uses predefined values.</li>
+      <li><code>Custom</code>: Uses values that you specify.</li>
+      </ul>
+      </li>
+      <li>
+      Apply your chosen configuration:
+      <ul>
+      <li>
+      Use the following command to create a <code>Default</code> configuration:
+      <CodeBlock code={"$ oc patch kueue.kueue.openshift.io/cluster --type=merge -p \\ '{\"spec\":{\"config\":{\"admissionFairSharing\":{\"configuration\":\"Default\",\"custom\":null}}}}'"} lang="terminal" />
+      <CodeBlock code={"config:\n    admissionFairSharing:\n      configuration: Default"} lang="yaml" title="Example of Kueue instance output" />
+      </li>
+      <li>
+      Use the following command to create a <code>Custom</code> configuration that applies values that you specify:
+      <CodeBlock code={"$ oc patch kueue.kueue.openshift.io/cluster --type=merge -p \\ '{\"spec\":{\"config\":{\"admissionFairSharing\":{\"configuration\":\"Custom\",\"custom\":{\"usageHalfLifeTimeSeconds\":10,\"usageSamplingIntervalSeconds\":10,\"resourceWeights\":[{\"name\":\"cpu\",\"weight\":\"2.0\"}]}}}}}'"} lang="terminal" />
+      <CodeBlock code={"  config:\n    admissionFairSharing:\n      configuration: Custom\n      custom:\n        resourceWeights:\n        - name: cpu\n          weight: \"2.0\"\n        usageHalfLifeTimeSeconds: 10\n        usageSamplingIntervalSeconds: 10"} lang="terminal" title="Example of Kueue instance output" />
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>resourceWeights</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>Assigns weights to resources. The higher the weight, the higher the penalty.</p></dd>
+      </dl>
+      </li>
+      </ul>
+      </li>
+      </ol>
+      <dl class="my-4 space-y-2">
+      <dt class="font-semibold"><code>usageHalfLifeTimeSeconds</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The time in seconds after which the current usage will decrease by half. That is, it controls how long the past consumption should impact future admission.</p></dd>
+      <dt class="font-semibold"><code>usageSamplingIntervalSeconds</code></dt>
+      <dd class="ml-6 text-muted-foreground"><p>The frequency in seconds that Red Hat build of Kueue updates the <code>consumedResources</code> component in the <code>FairSharingStatus</code> component.</p></dd>
+      </dl>
+      <h3 id="setting-resource-weights_admission-fair-sharing" class="group scroll-mt-20">Set resource weights<a href="#setting-resource-weights_admission-fair-sharing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h3>
+      <p class="_abstract">Resources measured in bytes, like memory, require scaled-down <code>resourceWeights</code> values. Kubernetes represents memory in bytes, creating values that are billions of times larger than CPU core counts. </p>
+      <p>This numeric difference makes CPU weights ineffective unless you scale memory weights down. Without this adjustment, the raw byte value of these resources will numerically dominate human-scale resources, such as CPU cores, by several orders of magnitude, effectively making their weights meaningless.</p>
+      <p>For example, if you want to achieve an effective memory weight of <code>1.0</code>, you would need to instead specify <code>9.31e-10</code>, which corresponds to <code>1.0 / 1,073,741,824</code>.</p>
+      <h2 id="configuring-clusterqueue-for-admission-fair-sharing_admission-fair-sharing" class="group scroll-mt-20">Configuring a cluster queue for admission fair sharing<a href="#configuring-clusterqueue-for-admission-fair-sharing_admission-fair-sharing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Configure the <code>admissionScope</code> section in your <code>ClusterQueue</code> object to be <code>UsageBasedAdmissionFairSharing</code>.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Specify <code>UsageBasedAdmissionFairSharing</code> as shown in the following example:
+      <CodeBlock code={"apiVersion: kueue.x-k8s.io/v1beta2\nkind: ClusterQueue\nmetadata:\n  name: shared-queue\nspec:\n  namespaceSelector: {}\n  admissionScope:\n    admissionMode: UsageBasedAdmissionFairSharing\n  resourceGroups:\n    - coveredResources: [\"cpu\", \"memory\"]\n      flavors:\n        - name: afs-rf\n          resources:\n            - name: cpu\n              nominalQuota: 2\n            - name: memory\n              nominalQuota: 2Gi"} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="configuring-localqueue-for-admission-fair-sharing_admission-fair-sharing" class="group scroll-mt-20">Configuring a local queue for admission fair sharing (optional)<a href="#configuring-localqueue-for-admission-fair-sharing_admission-fair-sharing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Optionally, you can configure <code>fairSharing</code> section in your <code>LocalQueue</code> object to adjust its weight in the fair sharing calculation. The higher the weight, the lower the penalty. For example, specifying a weight of <code>2</code> treats the queue as if it is used by half as many resources.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Specify a <code>weight</code> value as shown in the following example:
+      <CodeBlock code={"apiVersion: kueue.x-k8s.io/v1beta2\nkind: LocalQueue\nmetadata:\n  name: team-a-queue\n  namespace: team-a\nspec:\n  clusterQueue: shared-queue\n  fairSharing:\n    weight: \"2\"  # This queue will be treated as if it used half as many resources"} lang="yaml" />
+      </li>
+      </ul>
+      <h2 id="verifying-the-admission-fair-sharing-status_admission-fair-sharing" class="group scroll-mt-20">Verifying the admission fair sharing status<a href="#verifying-the-admission-fair-sharing-status_admission-fair-sharing" class="ml-2 text-muted-foreground opacity-0 group-hover:opacity-100 no-underline" aria-hidden="true" tabindex="-1">&para;</a></h2>
+      <p class="_abstract">Check the <code>admissionFairSharingStatus</code> status in the local queue.</p>
+      <p><strong>Procedure</strong></p>
+      <ul>
+      <li>
+      Use the following command to verify the status of admission fair sharing:
+      <CodeBlock code={"$ oc get lq <local-queue-name> -n <local-queue-namespace> -o jsonpath={.status.fairSharing}"} lang="terminal" />
+      <CodeBlock code={"{\"admissionFairSharingStatus\":{\"consumedResources\":{\"cpu\":\"31999m\"},\"lastUpdate\":\"2025-06-03T14:25:15Z\"},\"weightedShare\":0}"} lang="terminal" title="Example output" />
+      </li>
+      </ul>
     </article>
   </MarkdownContentStack>
 </DocsLayout>

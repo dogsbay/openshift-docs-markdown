@@ -7,7 +7,7 @@ title: About CI/CD
 OpenShift Container Platform is an enterprise-ready Kubernetes platform for developers, which enables organizations to automate the application delivery process through DevOps practices, such as continuous integration (CI) and continuous delivery (CD). To meet your organizational needs, the OpenShift Container Platform provides the following CI/CD solutions:
 
 - OpenShift Builds
-- {{ pipelines_shortname }}
+- OpenShift Pipelines
 - OpenShift GitOps
 - Jenkins
 
@@ -22,9 +22,9 @@ OpenShift Builds provides you the following options to configure and run a build
 
   For more information, see [Understanding image builds](/openshift-docs-markdown/cicd/builds/understanding-image-builds#understanding-image-builds).
 
-## {{ pipelines_shortname }} {#openshift-pipelines}
+## OpenShift Pipelines {#openshift-pipelines}
 
-{{ pipelines_shortname }} provides a Kubernetes-native CI/CD framework to design and run each step of the CI/CD pipeline in its own container. It can scale independently to meet the on-demand pipelines with predictable outcomes.
+OpenShift Pipelines provides a Kubernetes-native CI/CD framework to design and run each step of the CI/CD pipeline in its own container. It can scale independently to meet the on-demand pipelines with predictable outcomes.
 
 For more information, see [Red Hat OpenShift Pipelines](https://docs.redhat.com/en/documentation/red_hat_openshift_pipelines).
 
